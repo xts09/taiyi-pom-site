@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://xts09.github.io/taiyi-pom-site/sitemap.xml
