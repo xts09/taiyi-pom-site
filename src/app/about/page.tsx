@@ -10,6 +10,7 @@ import {
   factoryImages,
   honors,
 } from "@/data/company";
+import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -96,7 +97,7 @@ export default function AboutPage() {
           <div className="premium-card reveal-up overflow-hidden rounded-[1.2rem]">
             <div className="relative aspect-[16/10]">
               <Image
-                src="/factory-warehouse.png"
+                src={publicPath("/factory-warehouse.png")}
                 alt="Taiyi Nano production workshop"
                 fill
                 sizes="(min-width: 1024px) 55vw, 100vw"
@@ -132,7 +133,7 @@ export default function AboutPage() {
               >
                 <div className="relative aspect-[4/3]">
                   <Image
-                    src={image.src}
+                    src={publicPath(image.src)}
                     alt={image.alt}
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"

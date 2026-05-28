@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import { products } from "@/data/products";
 import { availableDocuments } from "@/data/company";
 import { ProductGrid } from "@/components/ProductGrid";
+import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -38,7 +39,7 @@ export default function ProductsPage() {
           <div className="premium-card overflow-hidden rounded-[1.2rem]">
             <div className="relative aspect-[16/9]">
               <Image
-                src="/factory-machine.png"
+                src={publicPath("/factory-machine.png")}
                 alt="Taiyi Nano extruder and production equipment"
                 fill
                 priority

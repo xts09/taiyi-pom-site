@@ -13,6 +13,7 @@ import {
   organizationJsonLd,
   websiteJsonLd,
 } from "@/lib/seo";
+import { publicPath } from "@/lib/paths";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Natural POM Resin & Modified POM Compounds Supplier | Taiyi Nano",
@@ -135,10 +136,10 @@ export default function Home() {
           muted
           playsInline
           preload="metadata"
-          poster="/factory-hero-clean-poster.jpg"
+          poster={publicPath("/factory-hero-clean-poster.jpg")}
           aria-hidden="true"
         >
-          <source src="/factory-hero-clean.mp4" type="video/mp4" />
+          <source src={publicPath("/factory-hero-clean.mp4")} type="video/mp4" />
         </video>
         <div className="home-noise" />
         <div className="polymer-field" aria-hidden="true">
@@ -330,7 +331,7 @@ export default function Home() {
                 style={{ "--item-index": index } as CSSProperties}
               >
                 <Image
-                  src={image.src}
+                  src={publicPath(image.src)}
                   alt={image.alt}
                   fill
                   sizes={index === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 24vw, 100vw"}

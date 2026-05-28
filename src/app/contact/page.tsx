@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -38,7 +39,7 @@ export default function ContactPage() {
           >
             <div className="relative aspect-[4/3]">
               <Image
-                src="/factory-machine.png"
+                src={publicPath("/factory-machine.png")}
                 alt="Taiyi Nano production equipment"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
