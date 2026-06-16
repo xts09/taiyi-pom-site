@@ -1,72 +1,138 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo } from "react";
-import type { CSSProperties, ReactNode } from "react";
-import { useSearchParams } from "next/navigation";
+import { type CSSProperties, type ReactNode } from "react";
+import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import type { Product } from "@/data/products";
 import { ValueText, ValueWithUnit } from "@/components/UnitText";
+import {
+  getProductListDescriptor,
+  getProductListTitle,
+} from "@/lib/productDisplay";
+import {
+  getCategoryPath,
+  getProductsByCategory,
+  productCategoryData,
+  productCategoryGroups,
+  productCategoryOrder,
+} from "@/lib/productCategories";
 
 type ProductGridProps = {
   products: Product[];
+  selectedCategory?: string;
 };
 
-export function ProductGrid({ products }: ProductGridProps) {
-  const searchParams = useSearchParams();
-  const selectedCategory = searchParams.get("category") || "All";
+export function ProductGrid({
+  products,
+  selectedCategory = "POM",
+}: ProductGridProps) {
+  const selectedCategoryGroup = productCategoryGroups[selectedCategory];
+  const isPomSubcategory = productCategoryOrder.includes(selectedCategory);
+  const showPomSubcategories = selectedCategory === "POM" || isPomSubcategory;
 
-  const categories = useMemo(() => {
-    return ["All", ...Array.from(new Set(products.map((item) => item.category)))];
-  }, [products]);
+  const sourceProducts =
+    selectedCategory === "POM"
+      ? getProductsByCategory(products, "POM")
+      : getProductsByCategory(products, selectedCategory);
 
-  const filteredProducts =
-    selectedCategory === "All"
-      ? products
-      : products.filter((product) => product.category === selectedCategory);
+  const sortedProducts = [...sourceProducts].sort((first, second) => {
+    const firstIndex = productCategoryOrder.indexOf(first.category);
+    const secondIndex = productCategoryOrder.indexOf(second.category);
+    const firstRank =
+      firstIndex === -1 ? productCategoryOrder.length : firstIndex;
+    const secondRank =
+      secondIndex === -1 ? productCategoryOrder.length : secondIndex;
+
+    return firstRank - secondRank;
+  });
+  const filteredProducts = sortedProducts;
+  const isCategoryFiltered = selectedCategory !== "POM";
+  const isGroupedCategory = Boolean(selectedCategoryGroup);
+  const gradeCountLabel = `${filteredProducts.length} Grade${
+    filteredProducts.length === 1 ? "" : "s"
+  }`;
+  const directoryCountLabel = gradeCountLabel;
 
   const readProperty = (product: Product, label: string) =>
     product.properties.find((item) => item.label === label);
 
+  const familyItems = productCategoryData.map((item, index) => ({
+    ...item,
+    count: getProductsByCategory(products, item.category).length,
+    number: String(index + 1).padStart(2, "0"),
+  }));
+
   return (
-    <div>
-      <div className="stagger-list mb-8 flex gap-3 overflow-x-auto pb-2 md:flex-wrap">
-        {categories.map((category, index) => {
-          const href =
-            category === "All"
-              ? "/products"
-              : `/products?category=${encodeURIComponent(category)}`;
+    <div className="product-grade-section">
+      <ProductAnimeMotion />
+      {showPomSubcategories ? (
+        <div id="material-families" className="product-filter-bar products-motion-filter">
+          <div className="product-filter-intro">
+            <span className="product-filter-label">Material Family</span>
+            <p>
+              Start from the performance direction, then compare grade data
+              against mold stage, cavity count, shrinkage behavior, and
+              application fit.
+            </p>
+          </div>
+          <div className="product-filter-rail">
+            {familyItems.map((item) => (
+              <Link
+                key={item.category}
+                href={getCategoryPath(item.category)}
+                className={`product-filter-link ${
+                  selectedCategory === item.category ? "is-active" : ""
+                }`}
+              >
+                <span className="product-filter-number">{item.number}</span>
+                <span className="product-filter-name">{item.label}</span>
+                <span className="product-filter-use">{item.applications[0]}</span>
+                <span className="product-filter-count">
+                  {item.count} Grade{item.count === 1 ? "" : "s"}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
-          const isActive = selectedCategory === category;
+      <div id="pom-grades" className="product-directory-head products-motion-head">
+        <div>
+          <h2>
+            {selectedCategory === "POM"
+              ? "POM Grades"
+              : `${filteredProducts.length} Available Grade${
+                  filteredProducts.length === 1 ? "" : "s"
+                }`}
+          </h2>
+          <p>
+            {selectedCategory === "POM"
+              ? "Compare key properties, shrinkage range, color, and application fit."
+              : "Shortlist by properties, tooling fit, shrinkage behavior, then open the grade detail page."}
+          </p>
+        </div>
 
-          return (
-            <Link
-              key={category}
-              href={href}
-              className={`shrink-0 rounded-md border px-4 py-2 text-sm font-extrabold transition ${
-                isActive
-                  ? "border-blue-700 bg-blue-700 text-white shadow-lg shadow-blue-700/20"
-                  : "border-slate-300 bg-white/80 text-slate-700 backdrop-blur hover:border-cyan-400 hover:text-blue-700"
-              }`}
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              {category}
-            </Link>
-          );
-        })}
+        <span className="product-directory-count">{directoryCountLabel}</span>
       </div>
 
       {filteredProducts.length === 0 ? (
-        <div className="premium-card rounded-2xl p-8 text-sm text-slate-600">
-          No products found under this category. Please contact us with your
-          application and target requirements for material recommendation.
+        <div className="product-empty products-motion-row">
+          No matching grades found. Clear the search or contact us with your
+          application, mold stage, cavity count, shrinkage target, and
+          performance requirements for material recommendation.
         </div>
       ) : (
-        <div className="stagger-list grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="product-directory">
+          <div className="product-directory-labels" aria-hidden="true">
+            <span>Grade</span>
+            <span>Key Data</span>
+            <span>Details</span>
+          </div>
+
           {filteredProducts.map((product, index) => {
             const tensile = readProperty(product, "Tensile Strength");
             const hdt = readProperty(product, "Heat Deflection Temperature");
             const specs: Array<[string, ReactNode]> = [
-              ["Grade", product.grade],
               ["MFI", product.mfi],
               [
                 "Tensile",
@@ -81,44 +147,51 @@ export function ProductGrid({ products }: ProductGridProps) {
                 hdt ? (
                   <ValueWithUnit value={hdt.value} unit="degC" />
                 ) : (
-                  "Project-based"
+                  "Project-Based"
                 ),
               ],
+              ["Color", product.color],
             ];
+            const eyebrow = isCategoryFiltered && !isGroupedCategory
+              ? getProductListDescriptor(product)
+              : product.category;
 
             return (
-            <Link
-              key={product.slug}
-              href={`/products/${product.slug}`}
-              className="premium-card lift-card flex min-h-[19rem] flex-col rounded-[1.1rem] p-6"
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              <div className="mb-5 border-b border-slate-200/70 pb-4">
-                <p className="section-kicker">{product.category}</p>
-                <h2 className="mt-3 text-lg font-black leading-snug text-slate-950">
-                  {product.title}
-                </h2>
-              </div>
+              <Link
+                key={product.slug}
+                href={`/products/${product.slug}`}
+                className="product-directory-row products-motion-row"
+                style={{ "--item-index": index } as CSSProperties}
+              >
+                <div className="product-directory-main">
+                  <span className="product-directory-index">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
 
-              <dl className="spec-grid grid-cols-2 text-sm">
-                {specs.map(([label, value]) => (
-                  <div key={label} className="spec-tile rounded-xl">
-                    <dt className="spec-label">{label}</dt>
-                    <dd className="spec-value">
-                      {typeof value === "string" ? (
-                        <ValueText value={value} />
-                      ) : (
-                        value
-                      )}
-                    </dd>
+                  <div>
+                    <p className="section-kicker">{eyebrow}</p>
+                    <h3>{getProductListTitle(product)}</h3>
+                    <p>{product.description}</p>
                   </div>
-                ))}
-              </dl>
+                </div>
 
-              <p className="mt-auto pt-5 text-sm leading-6 text-slate-600">
-                {product.description}
-              </p>
-            </Link>
+                <dl className="product-directory-specs">
+                  {specs.map(([label, value]) => (
+                    <div key={label}>
+                      <dt>{label}</dt>
+                      <dd>
+                        {typeof value === "string" ? (
+                          <ValueText value={value} />
+                        ) : (
+                          value
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <span className="product-directory-action">Grade Details</span>
+              </Link>
             );
           })}
         </div>

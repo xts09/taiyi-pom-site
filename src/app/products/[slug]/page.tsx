@@ -6,6 +6,12 @@ import { UnitText, ValueText } from "@/components/UnitText";
 import { products } from "@/data/products";
 import { availableDocuments } from "@/data/company";
 import {
+  getProductListDescriptor,
+  getProductListTitle,
+  toDisplayTitle,
+} from "@/lib/productDisplay";
+import { getCategoryPath } from "@/lib/productCategories";
+import {
   createBreadcrumbJsonLd,
   createProductJsonLd,
   defaultOgImage,
@@ -18,21 +24,46 @@ type ProductDetailPageProps = {
   }>;
 };
 
+const createGradePath = (grade: string) =>
+  grade
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+const getProductPathAliases = (product: (typeof products)[number]) =>
+  Array.from(
+    new Set([
+      product.slug,
+      createGradePath(product.grade),
+      ...(product.aliases ?? []),
+    ])
+  );
+
 export function generateStaticParams() {
-  return products.map((product) => ({
-    slug: product.slug,
-  }));
+  return products.flatMap((product) =>
+    getProductPathAliases(product).map((slug) => ({
+      slug,
+    }))
+  );
 }
+
+const findProductBySlug = (slug: string) =>
+  products.find((item) => getProductPathAliases(item).includes(slug));
 
 export async function generateMetadata({
   params,
 }: ProductDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const product = products.find((item) => item.slug === slug);
+  const product = findProductBySlug(slug);
 
   if (!product) {
     return {
-      title: "Product Not Found | Taiyi Nano",
+      title: "Page Not Found | Taiyi Nano",
+      robots: {
+        index: false,
+        follow: false,
+      },
     };
   }
 
@@ -71,15 +102,13 @@ export default async function ProductDetailPage({
   params,
 }: ProductDetailPageProps) {
   const { slug } = await params;
-  const product = products.find((item) => item.slug === slug);
+  const product = findProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  const categoryUrl = `/products?category=${encodeURIComponent(
-    product.category
-  )}`;
+  const categoryUrl = getCategoryPath(product.category);
 
   const relatedProducts = products
     .filter(
@@ -130,18 +159,19 @@ export default async function ProductDetailPage({
 
         <div className="mb-6 flex flex-wrap items-center gap-4">
           <Link href="/products" className="text-sm font-extrabold text-blue-700">
-            &larr; Back to All Products
+            &larr; Back to Product List
           </Link>
 
           <Link
             href={categoryUrl}
             className="text-sm font-extrabold text-slate-600 hover:text-blue-700"
           >
-            View more {product.category} &rarr;
+            View More {product.category}{" "}
+            &rarr;
           </Link>
         </div>
 
-        <div className="premium-card reveal-up rounded-[1.2rem] p-7 sm:p-8">
+        <article className="product-detail-sheet reveal-up">
           <p className="section-kicker mb-3">{product.category}</p>
 
           <h1 className="mb-3 text-4xl font-black tracking-tight text-slate-950 md:text-5xl">
@@ -150,11 +180,12 @@ export default async function ProductDetailPage({
 
           <p className="mb-7 max-w-3xl text-sm leading-7 text-slate-600">
             {product.description} Final suitability should be confirmed against
-            part design, processing conditions, target performance, and document
+            part design, mold development stage, cavity layout, processing
+            conditions, shrinkage behavior, target performance, and document
             requirements.
           </p>
 
-          <div className="stagger-list mb-8 grid gap-4 md:grid-cols-3">
+          <dl className="detail-facts mb-8">
             {[
               ["Grade", product.grade],
               ["MFI", product.mfi],
@@ -162,28 +193,28 @@ export default async function ProductDetailPage({
             ].map(([label, value], index) => (
               <div
                 key={label}
-                className="lift-card rounded-[1.1rem] border border-slate-200/80 bg-white/70 p-4"
+                className="detail-fact"
                 style={{ "--item-index": index } as CSSProperties}
               >
-                <p className="text-xs font-black uppercase text-slate-500">
+                <dt>
                   {label}
-                </p>
-                <p className="mt-1 font-black text-slate-950">
+                </dt>
+                <dd>
                   <ValueText value={value} />
-                </p>
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
 
-          <p className="mb-8 rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-bold text-slate-700">
-            Available material documents:{" "}
+          <p className="document-line detail-document-line mb-8">
+            Available Material Documents:{" "}
             <span className="text-blue-700">
               {availableDocuments.join(" / ")}
             </span>
             .
           </p>
 
-          <div className="grid gap-8 md:grid-cols-2">
+          <section className="detail-columns">
             <div>
               <h2 className="mb-4 text-xl font-black text-slate-950">
                 Key Features
@@ -193,7 +224,7 @@ export default async function ProductDetailPage({
                 {product.features.map((feature) => (
                   <li key={feature} className="flex gap-3">
                     <span className="signal-dot mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-400" />
-                    <span>{feature}</span>
+                    <span>{toDisplayTitle(feature)}</span>
                   </li>
                 ))}
               </ul>
@@ -208,17 +239,17 @@ export default async function ProductDetailPage({
                 {product.applications.map((application) => (
                   <li key={application} className="flex gap-3">
                     <span className="signal-dot mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-400" />
-                    <span>{application}</span>
+                    <span>{toDisplayTitle(application)}</span>
                   </li>
                 ))}
               </ul>
             </div>
-          </div>
+          </section>
 
           {product.properties.length > 0 ? (
-            <section className="reveal-up reveal-delay-1 mt-10 overflow-hidden rounded-[1.1rem] border border-slate-200/80 bg-white/80">
-              <div className="border-b border-slate-200/80 px-5 py-4">
-                <p className="section-kicker mb-2">Typical property data</p>
+            <section className="property-table-section reveal-up reveal-delay-1 mt-10">
+              <div className="property-table-head">
+                <p className="section-kicker mb-2">Typical Property Data</p>
                 <h2 className="text-xl font-black text-slate-950">
                   Typical Physical Properties
                 </h2>
@@ -244,7 +275,7 @@ export default async function ProductDetailPage({
                           {property.label}
                         </td>
                         <td className="px-5 py-3 font-black text-blue-700">
-                          {property.value}
+                          <ValueText value={property.value} />
                         </td>
                         <td className="px-5 py-3 text-slate-700">
                           <UnitText unit={property.unit} />
@@ -258,9 +289,24 @@ export default async function ProductDetailPage({
                 </table>
               </div>
             </section>
-          ) : null}
+          ) : (
+            <section className="evaluation-note reveal-up reveal-delay-1 mt-10">
+              <p className="section-kicker mb-2">Project-Based Property Review</p>
+              <h2 className="mb-3 text-xl font-black text-slate-950">
+                Property Data Confirmed by Requirement
+              </h2>
 
-          <section className="reveal-up reveal-delay-1 mt-10 rounded-[1.1rem] border border-slate-200/80 bg-white/70 p-6">
+              <p className="text-sm leading-6 text-slate-700">
+                This material direction is prepared as a project-based compound.
+                Typical property targets, friction requirements, shrinkage or
+                warpage targets, color, and document support should be confirmed
+                against the molded part, tooling plan, working condition, and
+                current reference material.
+              </p>
+            </section>
+          )}
+
+          <section className="evaluation-note reveal-up reveal-delay-1 mt-10">
             <h2 className="mb-3 text-xl font-black text-slate-950">
               Material Evaluation Notes
             </h2>
@@ -268,27 +314,29 @@ export default async function ProductDetailPage({
             <p className="text-sm leading-6 text-slate-700">
               This product page is for preliminary material selection. For
               project evaluation, please confirm the application, processing
-              method, target performance requirements, current reference grade,
-              document requirements, and estimated volume.
+              method, mold development stage, cavity count, target shrinkage or
+              dimensional requirement, target performance requirements, current
+              reference grade, document requirements, and estimated volume.
             </p>
           </section>
 
-          <section className="dark-panel reveal-up reveal-delay-2 mt-10 rounded-[1.1rem] p-6 text-white">
+          <section className="detail-cta reveal-up reveal-delay-2 mt-10">
             <h2 className="mb-2 text-lg font-black">
-              Need a recommendation for this grade?
+              Need a Recommendation for This Grade?
             </h2>
 
             <p className="mb-4 text-sm leading-6 text-slate-300">
               Contact us with your application, key performance requirements,
-              current material or reference grade, and estimated volume. We can
-              recommend a suitable POM material direction for review.
+              mold stage, cavity count, shrinkage or warpage concern, current
+              material or reference grade, and estimated volume. We can
+              recommend a suitable material direction for review.
             </p>
 
             <Link href="/contact" className="cta-primary px-5 py-3 text-sm">
               Contact Sales
             </Link>
           </section>
-        </div>
+        </article>
 
         <section className="mt-12">
           <div className="mb-6 flex items-end justify-between gap-6">
@@ -303,38 +351,42 @@ export default async function ProductDetailPage({
               href={categoryUrl}
               className="hidden text-sm font-extrabold text-blue-700 hover:text-blue-800 md:block"
             >
-              View category &rarr;
+              View Category{" "}
+              &rarr;
             </Link>
           </div>
 
-          <div className="stagger-list grid gap-5 md:grid-cols-3">
+          <div className="related-product-list stagger-list">
             {productsToShow.map((item, index) => (
               <Link
                 key={item.slug}
                 href={`/products/${item.slug}`}
-                className="premium-card lift-card rounded-[1.1rem] p-6"
+                className="related-product-row"
                 style={{ "--item-index": index } as CSSProperties}
               >
-                <p className="section-kicker mb-2">{item.category}</p>
+                <span className="related-product-index">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
 
-                <h3 className="mb-3 text-lg font-black text-slate-950">
-                  {item.title}
-                </h3>
-
-                <div className="text-sm leading-6 text-slate-700">
-                  <p>
-                    <span className="font-bold text-slate-950">Grade:</span>{" "}
-                    {item.grade}
+                <div className="related-product-main">
+                  <p className="section-kicker mb-2">
+                    {getProductListDescriptor(item)}
                   </p>
-                  <p>
-                    <span className="font-bold text-slate-950">MFI:</span>{" "}
-                    <ValueText value={item.mfi} />
-                  </p>
-                  <p>
-                    <span className="font-bold text-slate-950">Color:</span>{" "}
-                    {item.color}
-                  </p>
+                  <h3>{getProductListTitle(item)}</h3>
                 </div>
+
+                <dl>
+                  <div>
+                    <dt>MFI</dt>
+                    <dd>
+                      <ValueText value={item.mfi} />
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Color</dt>
+                    <dd>{item.color}</dd>
+                  </div>
+                </dl>
               </Link>
             ))}
           </div>

@@ -1,0 +1,17 @@
+.git
+.next
+.vercel
+node_modules
+.env
+.env.*
+
+.codex-run
+.codex-*.png
+
+taiyi-pom-carbon-promo
+taiyi-pom-promo
+taiyi-pom-wear-promo
+
+coverage
+output
+*.tsbuildinfo

@@ -1,200 +1,121 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { industries } from "@/data/company";
+import { applications, selectionBasis } from "@/data/applications";
+import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "POM Applications | Taiyi Nano",
+  title: "Application Areas | Taiyi Nano",
   description:
-    "Explore Natural POM Resin and Modified POM Compound directions for gears, bushings, sliding parts, automotive functional parts, electronic components, and precision injection molded parts.",
+    "Explore application areas for modified POM and selected engineering plastic compounds, including automotive, electronics, automation, motion components, water control, industrial machinery, outdoor equipment, and textile machinery.",
   path: "/applications",
 });
-
-const applications = [
-  {
-    title: "Gears & Gear Wheels",
-    description:
-      "For gears and gear wheels, wear resistance, low friction, dimensional stability, and stable molding performance are usually important.",
-    materialDirections: [
-      "Wear-resistant POM Compound",
-      "Low-friction POM Compound",
-      "Glass Fiber Reinforced POM Compound where higher stiffness is required",
-    ],
-  },
-  {
-    title: "Bushings, Rollers & Sliding Parts",
-    description:
-      "Sliding parts often require reduced friction, wear resistance, and consistent performance under repeated movement.",
-    materialDirections: [
-      "Wear-resistant POM Compound",
-      "Low-friction POM Compound",
-      "Custom formulation based on target friction and wear requirements",
-    ],
-  },
-  {
-    title: "Automotive Functional Parts",
-    description:
-      "POM materials are commonly evaluated for functional molded parts where strength, stiffness, wear resistance, and dimensional stability are required.",
-    materialDirections: [
-      "Natural POM Resin",
-      "Wear-resistant POM Compound",
-      "Glass Fiber Reinforced POM Compound",
-    ],
-  },
-  {
-    title: "Electronic & Electrical Components",
-    description:
-      "For selected electronic or electrical molded parts, dimensional stability, processing consistency, and antistatic or conductive requirements may be considered.",
-    materialDirections: [
-      "Natural POM Resin",
-      "Conductive / Antistatic POM Compound where relevant",
-      "Custom formulation based on project requirements",
-    ],
-  },
-  {
-    title: "Precision Injection Molded Parts",
-    description:
-      "Precision parts generally require stable flow, dimensional consistency, and suitable mechanical properties for the target application.",
-    materialDirections: [
-      "Natural POM Resin",
-      "High-flow POM grades",
-      "Modified POM Compound based on application requirements",
-    ],
-  },
-];
-
-const selectionBasis = [
-  "Part movement and load condition",
-  "Target friction and wear requirement",
-  "Dimensional stability and stiffness",
-  "Molding flow and color requirement",
-];
 
 export default function ApplicationsPage() {
   return (
     <main className="min-h-screen text-slate-900">
-      <section className="mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-        <div className="inner-hero reveal-up mb-12 max-w-4xl">
-          <p className="section-kicker mb-4">
-            Applications
-          </p>
+      <section className="mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
+        <div className="inner-hero application-hero reveal-up mb-8">
+          <nav className="subpage-breadcrumb mb-5">
+            <Link href="/">Home</Link>
+            <span>/</span>
+            <span>Applications</span>
+          </nav>
 
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
-            POM Compound Directions by Application
+            Application Areas
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-            Use this page to connect molded part types with practical POM
-            material directions. The final grade recommendation still depends on
-            working conditions, process requirements, and qualification needs.
+            Start from the industry or working scene, then review typical molded
+            parts, mold development needs, cavity layout, shrinkage behavior,
+            and practical modified material directions. Modified POM remains the
+            core line, with selected PA6, PA66, PPA, and PPS solutions reviewed
+            by requirement.
           </p>
         </div>
 
-        <section className="reveal-up reveal-delay-1 mb-10 rounded-[1.2rem] border border-cyan-100/30 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-950/20">
-          <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="section-kicker mb-3">Application industries</p>
-              <h2 className="text-2xl font-black tracking-tight">
-                B2B sectors served by Taiyi POM materials
-              </h2>
-            </div>
-            <p className="max-w-xl text-sm leading-6 text-slate-300">
-              These sectors come from the company profile and help shape
-              material recommendation priorities.
+        <section className="application-basis-strip reveal-up reveal-delay-1 mb-10">
+          <div>
+            <p className="section-kicker mb-3">Application Review</p>
+            <h2>
+              How We Narrow the Material Direction
+            </h2>
+            <p>
+              We start from the molded part, tooling plan, multi-cavity
+              consistency, shrinkage target, working condition, and performance
+              target before discussing a practical compound direction.
             </p>
           </div>
 
-          <div className="stagger-list grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {industries.map((item, index) => (
-              <div
-                key={item}
-                className="rounded-xl border border-white/10 bg-white/[0.06] p-4 text-sm font-black"
-                style={{ "--item-index": index } as CSSProperties}
-              >
+          <ol className="basis-rail stagger-list">
+            {selectionBasis.map((item, index) => (
+              <li key={item}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
                 {item}
-              </div>
+              </li>
             ))}
-          </div>
+          </ol>
         </section>
 
-        <div className="mb-10 grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="premium-card reveal-up rounded-[1.1rem] p-6">
-            <p className="section-kicker mb-3">Selection basis</p>
-            <h2 className="text-2xl font-black tracking-tight text-slate-950">
-              What we check before recommending a material
-            </h2>
-          </div>
-
-          <div className="stagger-list grid gap-3 sm:grid-cols-2">
-            {selectionBasis.map((item, index) => (
-              <div
-                key={item}
-                className="premium-card lift-card rounded-[1.1rem] p-5 text-sm font-black text-slate-950"
-                style={{ "--item-index": index } as CSSProperties}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="stagger-list grid gap-5">
+        <div className="application-directory-grid stagger-list">
           {applications.map((application, index) => (
-            <div
+            <Link
               key={application.title}
-              className="premium-card lift-card rounded-[1.1rem] p-6"
+              href={`/applications/${application.slug}`}
+              className="application-directory-card"
               style={{ "--item-index": index } as CSSProperties}
             >
-              <div className="grid gap-6 md:grid-cols-3">
-                <div>
-                  <h2 className="text-xl font-semibold text-slate-950">
-                    {application.title}
-                  </h2>
+              <span className="application-directory-index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {application.description}
-                  </p>
-                </div>
+              <h2>{application.title}</h2>
 
-                <div className="md:col-span-2">
-                  <h3 className="section-kicker mb-3">
-                    Relevant Material Directions
-                  </h3>
+              <p>{application.description}</p>
 
-                  <ul className="space-y-3 text-sm text-slate-700">
-                    {application.materialDirections.map((direction) => (
-                      <li key={direction} className="flex gap-3">
-                        <span className="signal-dot mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-400" />
-                        <span>{direction}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="application-image-strip">
+                {application.images.map((image) => (
+                  <figure key={image.src} className="application-part-frame">
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src={publicPath(image.src)}
+                        alt={image.alt}
+                        fill
+                        sizes="(min-width: 1024px) 130px, (min-width: 640px) 160px, 45vw"
+                        unoptimized
+                        className="object-contain"
+                      />
+                    </div>
+                    <figcaption>{image.label}</figcaption>
+                  </figure>
+                ))}
               </div>
-            </div>
+
+              <span className="text-link mt-5">View Application Page &rarr;</span>
+            </Link>
           ))}
         </div>
 
-        <section className="dark-panel reveal-up reveal-delay-1 mt-12 rounded-[1.2rem] p-8 text-white md:flex md:items-center md:justify-between">
-          <div className="max-w-2xl">
-            <h2 className="text-2xl font-black tracking-tight">
-              Need help matching material to your application?
-            </h2>
+        <section className="application-cta mt-10">
+          <div className="cta-ribbon">
+            <div>
+              <p className="section-kicker mb-3">Inquiry Preparation</p>
+              <h2>Need a Material Recommendation?</h2>
+              <p>
+                Share the application, mold stage, cavity count, shrinkage or
+                warpage concern, current material reference, color, document
+                requirements, and estimated volume. We will recommend a suitable
+                modified material direction for review.
+              </p>
+            </div>
 
-            <p className="mt-3 text-sm leading-6 text-slate-300">
-              Share the part type, working condition, target performance,
-              current material, and estimated volume. We can recommend a
-              suitable POM material direction for review.
-            </p>
+            <Link href="/contact" className="cta-primary shrink-0 px-7 py-3 text-sm">
+              Contact Sales
+            </Link>
           </div>
-
-          <Link
-            href="/contact"
-            className="cta-primary mt-6 px-6 py-3 text-sm md:mt-0"
-          >
-            Discuss Application
-          </Link>
         </section>
       </section>
     </main>

@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated promo/demo artifacts are not part of the Next.js app lint surface.
+    "taiyi-pom-promo/**",
+    "taiyi-pom-wear-promo/**",
   ]),
 ]);
 

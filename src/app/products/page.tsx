@@ -1,108 +1,165 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { Suspense } from "react";
 import { products } from "@/data/products";
-import { availableDocuments } from "@/data/company";
-import { ProductGrid } from "@/components/ProductGrid";
-import { publicPath } from "@/lib/paths";
+import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
+import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Natural POM Resin & Modified POM Compounds | Taiyi Nano",
+  title: "Engineering Plastic Product Directory | Taiyi Nano",
   description:
-    "Browse Taiyi Nano Natural POM Resin and Modified POM Compounds, including Wear-resistant POM Compound, Low-friction POM Compound, Glass Fiber Reinforced POM Compound, and Conductive / Antistatic POM Compound materials.",
+    "Browse Taiyi Nano modified POM compounds, selected base POM resin, and project-based PA6, PA66, PPA, and PPS engineering plastic compound support.",
   path: "/products",
-  image: "/factory-machine.png",
 });
+
+const productFamilies = [
+  {
+    number: "01",
+    title: "Modified POM Compounds",
+    label: "Core Product Line",
+    description:
+      "Wear-resistant, low-friction, reinforced, conductive, antistatic, and high-impact POM directions for precision molded parts.",
+    href: "/products/categories/pom",
+    metricValue: products.length,
+    metricLabel: "POM grades",
+  },
+  {
+    number: "02",
+    title: "Base POM Resin",
+    label: "Selected Sourcing",
+    description:
+      "Selected base resin options for customers who need baseline POM resin comparison, documents, and project review.",
+    href: "/products/categories/base-pom-resin",
+    metricValue: products.filter((product) => product.category === "Base POM Resin")
+      .length,
+    metricLabel: "base grades",
+  },
+  {
+    number: "03",
+    title: "PA6 / PA66 Compounds",
+    label: "Extended Capability",
+    description:
+      "Nylon compound directions for customers comparing toughness, heat resistance, and reinforced molded part requirements.",
+    href: "/contact",
+    metricLabel: "By requirement",
+  },
+  {
+    number: "04",
+    title: "PPA / PPS Compounds",
+    label: "High-Performance Review",
+    description:
+      "Higher temperature engineering plastic directions for selected projects requiring dimensional and thermal performance.",
+    href: "/contact",
+    metricLabel: "By review",
+  },
+];
 
 export default function ProductsPage() {
   return (
     <main className="min-h-screen text-slate-900">
-      <section className="mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-        <div className="inner-hero reveal-up mb-12">
-          <Link href="/" className="text-sm font-extrabold text-cyan-100">
-            &larr; Back to Home
-          </Link>
+      <ProductPageMotion>
+      <section className="mesh-surface mx-auto max-w-7xl px-5 pb-16 pt-0 sm:px-6 lg:px-8">
+        <div id="products-overview" className="product-index-hero products-motion-hero mb-8">
+          <nav className="subpage-breadcrumb mb-5">
+            <Link href="/">Home</Link>
+            <span>/</span>
+            <span>Products</span>
+          </nav>
 
-          <h1 className="mt-6 text-4xl font-black tracking-tight text-white">
-            Natural POM Resin &amp; Modified POM Compounds
-          </h1>
+          <div className="product-hero-card">
+            <p className="product-hero-eyebrow">Product Directory</p>
 
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-200">
-            Filter material directions by purchasing category, then review grade
-            data, physical properties, color, and typical application fit.
-          </p>
-        </div>
+            <h1 className="text-4xl font-black tracking-tight">
+              Engineering Plastic Materials
+            </h1>
 
-        <section className="reveal-up reveal-delay-1 mb-10 grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="premium-card overflow-hidden rounded-[1.2rem]">
-            <div className="relative aspect-[16/9]">
-              <Image
-                src={publicPath("/factory-machine.png")}
-                alt="Taiyi Nano extruder and production equipment"
-                fill
-                priority
-                sizes="(min-width: 1024px) 46vw, 100vw"
-                className="object-cover"
-              />
+            <p className="product-hero-subtitle">
+              Modified POM as the core product line
+            </p>
+
+            <p className="mt-4 max-w-3xl text-lg leading-8">
+              Start from product families, then enter the POM grade directory
+              for detailed properties, shrinkage data, documents, and
+              application matching.
+            </p>
+
+            <div className="product-hero-cta">
+              <Link
+                href="/products/categories/pom"
+                className="product-hero-primary-action"
+              >
+                View POM Grades
+              </Link>
+              <Link href="/technical-data-sheets" className="product-hero-tds-link">
+                Find a Technical Data Sheet (TDS)
+              </Link>
             </div>
           </div>
+        </div>
 
-          <div className="premium-card rounded-[1.2rem] p-7">
-            <p className="section-kicker mb-3">Property data</p>
-            <h2 className="text-2xl font-black tracking-tight text-slate-950">
-              Grade cards include typical test values
-            </h2>
-            <p className="mt-4 text-sm leading-7 text-slate-600">
-              Key POM grades include density, MFI, tensile strength, flexural
-              modulus, impact, HDT, and resistivity where applicable.
-            </p>
-            <p className="mt-5 rounded-xl border border-blue-100 bg-blue-50 px-4 py-3 text-sm font-bold text-slate-700">
-              Available material documents:{" "}
-              <span className="text-blue-700">
-                {availableDocuments.join(" / ")}
-              </span>
-              .
-            </p>
+        <section id="product-families" className="product-family-overview products-motion-filter">
+          <ProductAnimeMotion />
+          <div className="product-family-overview-head">
+            <p className="section-kicker">Product Families</p>
+            <h2>Choose a Material Direction</h2>
+          </div>
+
+          <div className="product-family-card-grid">
+            {productFamilies.map((family) => (
+              <Link
+                key={family.title}
+                href={family.href}
+                className="product-family-card product-filter-link"
+              >
+                <span className="product-filter-number">{family.number}</span>
+                <span className="product-family-label">{family.label}</span>
+                <strong>{family.title}</strong>
+                <span>{family.description}</span>
+                <em>
+                  {typeof family.metricValue === "number" ? (
+                    <>
+                      <span
+                        className="anime-count"
+                        data-count={family.metricValue}
+                      >
+                        {family.metricValue}
+                      </span>{" "}
+                    </>
+                  ) : null}
+                  {family.metricLabel}
+                </em>
+                <i className="anime-border-line anime-border-top" aria-hidden="true" />
+                <i className="anime-border-line anime-border-right" aria-hidden="true" />
+                <i className="anime-border-line anime-border-bottom" aria-hidden="true" />
+                <i className="anime-border-line anime-border-left" aria-hidden="true" />
+              </Link>
+            ))}
           </div>
         </section>
 
-        <Suspense fallback={<div>Loading products...</div>}>
-          <ProductGrid products={products} />
-        </Suspense>
-
-        <section className="dark-panel reveal-up reveal-delay-1 mt-12 rounded-[1.2rem] p-8 text-white">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+        <section id="product-inquiry" className="selection-support-band product-recommendation-band products-motion-support mt-12">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
-              <p className="section-kicker mb-3">Selection support</p>
-              <h2 className="text-2xl font-black tracking-tight">
-                Need help selecting a POM material?
+              <p className="section-kicker mb-3">Inquiry Preparation</p>
+              <h2 className="text-2xl font-black tracking-tight text-white">
+                Need a Material Recommendation?
               </h2>
               <p className="mt-4 text-sm leading-6 text-slate-300">
-                If you are evaluating POM materials for a specific application,
-                share the working condition, current grade, performance targets,
-                and estimated volume.
+                Share the application, mold stage, cavity count, shrinkage or
+                warpage concern, key performance requirements, current material
+                reference, color, document requirements, and estimated volume.
+                We will recommend a suitable modified material direction for
+                review.
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-3">
-              {["Application", "Requirement", "Document need"].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-white/10 bg-white/[0.06] p-4 text-sm font-black"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
+            <Link href="/contact" className="cta-primary px-6 py-3 text-sm">
+              Contact Sales
+            </Link>
           </div>
-
-          <Link href="/contact" className="cta-primary mt-7 px-6 py-3 text-sm">
-            Contact Sales
-          </Link>
         </section>
       </section>
+      </ProductPageMotion>
     </main>
   );
 }

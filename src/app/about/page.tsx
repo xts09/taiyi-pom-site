@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { ValueText } from "@/components/UnitText";
 import {
   availableDocuments,
   certifications,
@@ -14,18 +15,18 @@ import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Taiyi Nano | Natural POM Resin & Modified POM Compounds",
+  title: "About Taiyi Nano | Modified Engineering Plastic Compounds",
   description:
-    "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., a China-based supplier focused on Natural POM Resin and Modified POM Compounds for engineering plastic applications.",
+    "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., a factory-based manufacturer focused on modified POM and selected engineering plastic compound solutions.",
   path: "/about",
   image: "/company-profile.png",
 });
 
 const capabilities = [
   {
-    title: "POM Material Focus",
+    title: "Modified Material Focus",
     description:
-      "Focused on Modified POM Compounds and engineering plastic compounds for injection molding applications, including Wear-resistant POM Compound, Low-friction POM Compound, Glass Fiber Reinforced POM Compound, and Conductive / Antistatic POM Compound directions.",
+      "Focused on modified POM compounds for injection molding applications, with selected PA6, PA66, PPA, and PPS compound solutions developed around project requirements.",
   },
   {
     title: "In-house Production",
@@ -42,59 +43,67 @@ const capabilities = [
 export default function AboutPage() {
   return (
     <main className="min-h-screen text-slate-900">
-      <section className="mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-        <div className="inner-hero reveal-up mb-12 max-w-4xl">
-          <p className="section-kicker mb-4">
-            About Taiyi Nano
-          </p>
+      <section className="mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
+        <div className="inner-hero about-hero reveal-up mb-8">
+          <nav className="subpage-breadcrumb mb-5">
+            <Link href="/">Home</Link>
+            <span>/</span>
+            <span>About Taiyi Nano</span>
+          </nav>
 
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
-            Natural POM Resin &amp; Modified POM Compounds for Engineering Plastic Applications
+            Factory-Based Modified Material Manufacturer
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
             Jiangsu Taiyi Nano Technology Co., Ltd. is a factory-based
             manufacturer in Yancheng, Jiangsu, China, focused on modified POM
-            compounds and engineering plastic compounds for industrial applications.
+            compounds and selected engineering plastic compounds for industrial applications.
           </p>
         </div>
 
-        <div className="stagger-list mb-12 grid gap-4 md:grid-cols-5">
-          {companyFigures.map((item, index) => (
-            <div
-              key={item.label}
-              className="premium-card lift-card rounded-[1.1rem] p-5"
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              <p className="section-kicker mb-3">{item.label}</p>
-              <p className="text-2xl font-black text-blue-700">{item.value}</p>
-              <p className="mt-1 text-xs font-bold text-slate-500">
-                {item.note}
-              </p>
-            </div>
-          ))}
-        </div>
+        <section className="about-snapshot reveal-up reveal-delay-1 mb-10">
+          <dl className="company-figure-ribbon stagger-list">
+            {companyFigures.map((item, index) => (
+              <div
+                key={item.label}
+                className="company-figure-item"
+                style={{ "--item-index": index } as CSSProperties}
+              >
+                <dt>{item.label}</dt>
+                <dd>
+                  <ValueText value={item.value} />
+                </dd>
+                <span>
+                  {item.note}
+                </span>
+              </div>
+            ))}
+          </dl>
 
-        <div className="stagger-list grid gap-5 md:grid-cols-3">
-          {capabilities.map((item, index) => (
-            <div
-              key={item.title}
-              className="premium-card lift-card rounded-[1.1rem] p-6"
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              <h2 className="mb-3 text-lg font-semibold text-slate-950">
-                {item.title}
-              </h2>
+          <div className="capability-line-list stagger-list">
+            {capabilities.map((item, index) => (
+              <section
+                key={item.title}
+                className="capability-line"
+                style={{ "--item-index": index } as CSSProperties}
+              >
+                <span>{String(index + 1).padStart(2, "0")}</span>
 
-              <p className="text-sm leading-6 text-slate-600">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
+                <div>
+                  <h2>{item.title}</h2>
 
-        <section className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="premium-card reveal-up overflow-hidden rounded-[1.2rem]">
+                  <p>
+                    {item.description}
+                  </p>
+                </div>
+              </section>
+            ))}
+          </div>
+        </section>
+
+        <section className="factory-story mt-10">
+          <div className="factory-story-media reveal-up">
             <div className="relative aspect-[16/10]">
               <Image
                 src={publicPath("/factory-warehouse.png")}
@@ -106,10 +115,10 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="premium-card reveal-up reveal-delay-1 rounded-[1.2rem] p-7">
-            <p className="section-kicker mb-3">Company overview</p>
+          <div className="factory-story-copy reveal-up reveal-delay-1">
+            <p className="section-kicker mb-3">Company Overview</p>
             <h2 className="text-2xl font-black tracking-tight text-slate-950">
-              Factory capability for material evaluation
+              Factory Capability for Material Evaluation
             </h2>
             <ul className="mt-6 space-y-3 text-sm leading-6 text-slate-700">
               {companyOverview.map((item) => (
@@ -122,13 +131,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="stagger-list mt-6 grid gap-4 md:grid-cols-3">
+        <section className="factory-gallery stagger-list mt-6">
           {factoryImages
             .filter((image) => image.src !== "/factory-warehouse.png")
             .map((image, index) => (
               <figure
                 key={image.src}
-                className="premium-card lift-card group overflow-hidden rounded-[1.1rem]"
+                className="factory-gallery-frame group"
                 style={{ "--item-index": index } as CSSProperties}
               >
                 <div className="relative aspect-[4/3]">
@@ -140,14 +149,14 @@ export default function AboutPage() {
                     className="object-cover transition duration-500 group-hover:scale-[1.04]"
                   />
                 </div>
-                <figcaption className="px-4 py-3 text-sm font-black text-slate-950">
+                <figcaption>
                   {image.label}
                 </figcaption>
               </figure>
             ))}
         </section>
 
-        <section className="premium-card reveal-up reveal-delay-1 mt-12 rounded-[1.2rem] p-8">
+        <section className="credential-band about-credential-band reveal-up reveal-delay-1 mt-10">
           <h2 className="text-2xl font-black tracking-tight text-slate-950">
             How We Support Material Evaluation
           </h2>
@@ -161,7 +170,7 @@ export default function AboutPage() {
                 {certifications.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-black text-blue-800"
+                    className="document-chip"
                   >
                     {item}
                   </span>
@@ -177,7 +186,7 @@ export default function AboutPage() {
                 {availableDocuments.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-black text-slate-700"
+                    className="document-chip"
                   >
                     {item}
                   </span>

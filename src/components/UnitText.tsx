@@ -19,28 +19,42 @@ const unitRenderers: Record<string, ReactNode> = {
   degC: <>&deg;C</>,
   "ohm.cm": <>&Omega;&middot;cm</>,
   ohm: <>&Omega;</>,
+  "10^-5/degC": (
+    <>
+      &times;10<sup>-5</sup>/&deg;C
+    </>
+  ),
 };
 
-const unitPattern = /(g\/cm3|kJ\/m2|ohm\.cm|degC|m2|ohm)/g;
+const valuePattern =
+  /(10\^-5\/degC|g\/cm3|kJ\/m2|ohm\.cm|degC|m2|ohm|\b1e\d+\b)/g;
+
+const renderValuePart = (part: string, index: number) => {
+  if (unitRenderers[part]) {
+    return <UnitText key={`${part}-${index}`} unit={part} />;
+  }
+
+  const exponentMatch = part.match(/^1e(\d+)$/);
+
+  if (exponentMatch) {
+    return (
+      <span key={`${part}-${index}`}>
+        10<sup>{exponentMatch[1]}</sup>
+      </span>
+    );
+  }
+
+  return part;
+};
 
 export function UnitText({ unit }: { unit: string }) {
   return <>{unitRenderers[unit] ?? unit}</>;
 }
 
 export function ValueText({ value }: { value: string }) {
-  const parts = value.split(unitPattern);
+  const parts = value.split(valuePattern);
 
-  return (
-    <>
-      {parts.map((part, index) =>
-        unitRenderers[part] ? (
-          <UnitText key={`${part}-${index}`} unit={part} />
-        ) : (
-          part
-        )
-      )}
-    </>
-  );
+  return <>{parts.map(renderValuePart)}</>;
 }
 
 export function ValueWithUnit({

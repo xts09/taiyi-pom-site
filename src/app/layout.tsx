@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { IBM_Plex_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import {
@@ -9,21 +9,21 @@ import {
   siteUrl,
 } from "@/lib/seo";
 import "./globals.css";
+import "./styles/header.css";
+import "./styles/products.css";
+import "./styles/home.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-ibm-plex-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Taiyi Nano | Natural POM Resin & Modified POM Compounds",
+    default: "Taiyi Nano | Modified POM & Engineering Plastic Compounds",
     template: "%s",
   },
   description: defaultDescription,
@@ -31,22 +31,27 @@ export const metadata: Metadata = {
   authors: [{ name: "Jiangsu Taiyi Nano Technology Co., Ltd." }],
   creator: "Jiangsu Taiyi Nano Technology Co., Ltd.",
   publisher: "Jiangsu Taiyi Nano Technology Co., Ltd.",
-  category: "Engineering plastics",
+  category: "Modified Material Compounds",
   keywords: [
-    "Natural POM Resin",
+    "Modified POM and Engineering Plastic Compounds",
     "Modified POM Compounds",
-    "POM supplier China",
-    "POM injection molding material",
+    "Engineering Plastic Compounds",
     "wear-resistant POM compound",
     "low-friction POM compound",
     "glass fiber reinforced POM",
     "conductive POM compound",
+    "PA6 modified material",
+    "PA66 modified material",
+    "PPA modified material",
+    "PPS modified material",
+    "POM Resin",
+    "POM supplier China",
   ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Taiyi Nano | Natural POM Resin & Modified POM Compounds",
+    title: "Taiyi Nano | Modified POM & Engineering Plastic Compounds",
     description: defaultDescription,
     url: "/",
     siteName,
@@ -63,7 +68,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Taiyi Nano | Natural POM Resin & Modified POM Compounds",
+    title: "Taiyi Nano | Modified POM & Engineering Plastic Compounds",
     description: defaultDescription,
     images: [defaultOgImage],
   },
@@ -94,9 +99,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full overflow-x-hidden antialiased`}
+      className={`${ibmPlexSans.variable} h-full antialiased`}
     >
-      <body className="page-aura min-h-full flex flex-col overflow-x-hidden text-slate-900">
+      <body className="page-aura min-h-full flex flex-col text-slate-900">
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />

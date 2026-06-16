@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { Product } from "@/data/products";
+import { productCategoryOrder } from "@/lib/productCategories";
 
 const rawSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.taiyipom.com";
@@ -11,9 +12,9 @@ export const siteName = "Taiyi Nano";
 export const companyName = "Jiangsu Taiyi Nano Technology Co., Ltd.";
 
 export const defaultDescription =
-  "Jiangsu Taiyi Nano Technology Co., Ltd. supplies Natural POM Resin and Modified POM Compounds for injection molding applications.";
+  "Jiangsu Taiyi Nano Technology Co., Ltd. develops and produces modified POM, PA6, PA66, PPA, and PPS compounds for wear-resistant, low-friction, reinforced, and functional molded part applications.";
 
-export const defaultOgImage = "/factory-hero-clean-poster.jpg";
+export const defaultOgImage = "/factory-hero-no-machine-poster.jpg";
 
 export const absoluteUrl = (path = "/") =>
   path.startsWith("http")
@@ -85,12 +86,12 @@ export const organizationJsonLd = {
     },
   ],
   makesOffer: [
-    "Natural POM Resin",
     "Modified POM Compounds",
-    "Wear-resistant POM Compound",
-    "Low-friction POM Compound",
-    "Glass Fiber Reinforced POM Compound",
-    "Conductive / Antistatic POM Compound",
+    ...productCategoryOrder,
+    "Selected PA6 Modified Material Solutions",
+    "Selected PA66 Modified Material Solutions",
+    "Selected PPA Modified Material Solutions",
+    "Selected PPS Modified Material Solutions",
   ],
 };
 

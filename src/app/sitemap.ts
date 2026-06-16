@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
+import { productCategoryEntries } from "@/lib/productCategories";
 import { siteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -13,17 +14,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: route === "" ? 1 : 0.8,
   }));
 
+  const categoryRoutes = productCategoryEntries.map((entry) => ({
+    url: `${siteUrl}${entry.path}`,
+    changeFrequency: "monthly" as const,
+    priority: entry.category === "POM" ? 0.85 : 0.75,
+  }));
+
   const productRoutes = products.map((product) => ({
     url: `${siteUrl}/products/${product.slug}`,
-    lastModified: new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...productRoutes];
+  return [...staticRoutes, ...categoryRoutes, ...productRoutes];
 }
