@@ -20,15 +20,18 @@ import {
 type ProductGridProps = {
   products: Product[];
   selectedCategory?: string;
+  showFamilies?: boolean;
 };
 
 export function ProductGrid({
   products,
   selectedCategory = "POM",
+  showFamilies = true,
 }: ProductGridProps) {
   const selectedCategoryGroup = productCategoryGroups[selectedCategory];
   const isPomSubcategory = productCategoryOrder.includes(selectedCategory);
-  const showPomSubcategories = selectedCategory === "POM" || isPomSubcategory;
+  const showPomSubcategories =
+    showFamilies && (selectedCategory === "POM" || isPomSubcategory);
 
   const sourceProducts =
     selectedCategory === "POM"
@@ -68,7 +71,7 @@ export function ProductGrid({
       {showPomSubcategories ? (
         <div id="material-families" className="product-filter-bar products-motion-filter">
           <div className="product-filter-intro">
-            <span className="product-filter-label">Material Family</span>
+            <span className="product-filter-label">POM Family</span>
             <p>
               Start from the performance direction, then compare grade data
               against mold stage, cavity count, shrinkage behavior, and

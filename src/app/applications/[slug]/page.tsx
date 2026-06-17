@@ -12,6 +12,7 @@ import {
   type ApplicationItem,
 } from "@/data/applications";
 import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
+import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
 
@@ -26,6 +27,8 @@ type ApplicationVisualAssets = {
   components: string;
   cad: string;
   material: string;
+  productMaterial?: string;
+  ctaMaterial?: string;
 };
 
 type ApplicationVisualConfig = {
@@ -77,6 +80,8 @@ const automotiveVisualAssets: ApplicationVisualAssets = {
   components: "/generated/applications/automotive/automotive-components-background-unified.png",
   cad: "/generated/applications/automotive/automotive-cad-layout-overlay.png",
   material: "/generated/applications/automotive/pom-material-macro.png",
+  productMaterial: "/generated/applications/common/application-product-pellets-strip.png",
+  ctaMaterial: "/generated/applications/common/application-cta-pellets-dark-fade.png",
 };
 
 const commonApplicationVisualAssets: ApplicationVisualAssets = {
@@ -84,6 +89,8 @@ const commonApplicationVisualAssets: ApplicationVisualAssets = {
   components: "/generated/applications/common/pom-parts-transparent.png",
   cad: "/generated/applications/common/cad-overlay-transparent.png",
   material: "/generated/applications/common/pom-pellets-macro.png",
+  productMaterial: "/generated/applications/common/application-product-pellets-strip.png",
+  ctaMaterial: "/generated/applications/common/application-cta-pellets-dark-fade.png",
 };
 
 const automotiveReviewFocus = [
@@ -130,6 +137,11 @@ const getApplicationHeroStyle = (
           "--application-cad-image": `url(${publicPath(cadImageSrc)})`,
         }
       : {}),
+  } as CSSProperties);
+
+const getApplicationMaterialStyle = (materialImageSrc: string): CSSProperties =>
+  ({
+    "--application-material-image": `url(${publicPath(materialImageSrc)})`,
   } as CSSProperties);
 
 const getApplicationHeroClassName = (application: ApplicationItem) =>
@@ -287,21 +299,33 @@ function ApplicationUseCard({
 function ProductInfoCard({
   card,
   image,
+  materialImageSrc,
 }: {
   card: MaterialDirectionCardData;
   image?: ApplicationImage;
+  materialImageSrc?: string;
 }) {
+  const mediaSrc = materialImageSrc ?? image?.src;
+  const mediaAlt = materialImageSrc
+    ? `${card.directionName} material pellets`
+    : image?.alt;
+
   const productContent = (
     <>
-      {image ? (
-        <div className="application-product-card-media">
+      {mediaSrc ? (
+        <div
+          className={cx(
+            "application-product-card-media",
+            materialImageSrc && "application-product-card-media-material"
+          )}
+        >
           <Image
-            src={publicPath(image.src)}
-            alt={image.alt}
+            src={publicPath(mediaSrc)}
+            alt={mediaAlt ?? card.directionName}
             fill
             sizes="(min-width: 1280px) 360px, (min-width: 768px) 42vw, 92vw"
             unoptimized
-            className="object-contain"
+            className={materialImageSrc ? "object-cover" : "object-contain"}
           />
         </div>
       ) : null}
@@ -321,38 +345,6 @@ function ProductInfoCard({
         productContent
       )}
     </article>
-  );
-}
-
-function ApplicationSectionNav({
-  description,
-  title,
-}: {
-  description: string;
-  title: string;
-}) {
-  return (
-    <section className="application-section-nav" aria-label="Application sections">
-      <div className="application-section-nav-top">
-        <div className="application-section-identity">
-          <p>{title}</p>
-          <span className="application-section-subtitle">{description}</span>
-        </div>
-
-        <div className="application-section-actions">
-          <Link href="/contact">Discuss Requirement</Link>
-          <Link href="/technical-data-sheets">Find a TDS</Link>
-        </div>
-      </div>
-
-      <nav className="application-section-tabs">
-        {applicationSectionTabs.map((tab) => (
-          <a key={tab.href} href={tab.href}>
-            {tab.label}
-          </a>
-        ))}
-      </nav>
-    </section>
   );
 }
 
@@ -398,6 +390,9 @@ export default async function ApplicationDetailPage({
   const engineeringGroups = getEngineeringGroups(application);
   const partFitItems = getPerformanceItems(engineeringGroups);
   const { visualAssets, visualConfig } = getApplicationVisualContext(application);
+  const productMaterialImage =
+    visualAssets?.productMaterial ?? visualAssets?.material;
+  const ctaMaterialImage = visualAssets?.ctaMaterial;
   const materialDirectionCards = getMaterialDirectionCards(
     application,
     partFitItems,
@@ -443,9 +438,12 @@ export default async function ApplicationDetailPage({
         </div>
 
         {application.heroImage ? (
-          <ApplicationSectionNav
-            description={application.description}
+          <SecondarySectionNav
+            ariaLabel="Application sections"
+            subtitle={application.description}
+            tabs={applicationSectionTabs}
             title={application.title}
+            variant="application"
           />
         ) : null}
 
@@ -572,6 +570,11 @@ export default async function ApplicationDetailPage({
               ? "application-notes application-notes-material"
               : "application-notes"
           }
+          style={
+            productMaterialImage
+              ? getApplicationMaterialStyle(productMaterialImage)
+              : undefined
+          }
           data-application-motion
         >
           <div className="application-notes-head">
@@ -589,6 +592,7 @@ export default async function ApplicationDetailPage({
                 key={card.key}
                 card={card}
                 image={getCyclicItem(application.images, index)}
+                materialImageSrc={productMaterialImage}
               />
             ))}
           </div>
@@ -600,6 +604,11 @@ export default async function ApplicationDetailPage({
             visualAssets
               ? "application-review-cta application-brief-cta"
               : "application-review-cta"
+          }
+          style={
+            ctaMaterialImage
+              ? getApplicationMaterialStyle(ctaMaterialImage)
+              : undefined
           }
           data-application-motion
         >

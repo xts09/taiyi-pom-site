@@ -3,12 +3,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
+import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { applications } from "@/data/applications";
 import { availableDocuments } from "@/data/company";
 import { products } from "@/data/products";
 import {
   findCategoryBySlug,
-  getCategoryApplications,
   getCategoryDescription,
   getCategoryFaqs,
   getCategoryTitle,
@@ -67,12 +67,12 @@ export default async function ProductCategoryPage({
   }
 
   const categoryProducts = getProductsByCategory(products, entry.category);
-  const categoryApplications = getCategoryApplications(entry.category);
   const categoryFaqs = getCategoryFaqs(entry.category);
   const pageTitle =
     entry.category === "POM"
       ? "POM Material Grades"
       : getCategoryTitle(entry.category);
+  const heroTitle = entry.category === "POM" ? "POM Materials" : entry.label;
   const pageDescription =
     entry.category === "POM"
       ? "Modified compound data for wear-resistant, low-friction, reinforced, conductive, antistatic, and base resin sourcing requirements."
@@ -116,6 +116,15 @@ export default async function ProductCategoryPage({
       })),
     },
   ];
+  const sectionTabs = [
+    { href: "#category-overview", label: "Overview" },
+    ...(entry.category === "POM"
+      ? [{ href: "#material-families", label: "Families" }]
+      : []),
+    { href: "#pom-grades", label: "Grades" },
+    { href: "#category-applications", label: "Applications" },
+    { href: "#category-faq", label: "FAQ" },
+  ];
 
   return (
     <main className="min-h-screen text-slate-900">
@@ -140,7 +149,7 @@ export default async function ProductCategoryPage({
           <div className="product-hero-card">
             <p className="product-hero-eyebrow">Material Directory</p>
 
-            <h1 className="text-4xl font-black tracking-tight">{pageTitle}</h1>
+            <h1 className="text-4xl font-black tracking-tight">{heroTitle}</h1>
 
             <p className="mt-4 max-w-3xl text-lg leading-8">
               {pageDescription}
@@ -175,40 +184,23 @@ export default async function ProductCategoryPage({
           </div>
         </div>
 
-        <section
-          className="product-section-nav"
-          aria-label="Product section navigation"
+        <SecondarySectionNav
+          ariaLabel="Product section navigation"
           style={{
             backdropFilter: "none",
             WebkitBackdropFilter: "none",
             boxShadow: "none",
             filter: "none",
           }}
-        >
-          <div className="product-section-nav-top">
-            <div className="product-section-identity">
-              <p>{pageTitle}</p>
-              <span className="product-section-subtitle">
-                {entry.category === "POM"
-                  ? "Modified POM Compounds | Base POM Resin"
-                  : entry.label}
-              </span>
-            </div>
-
-            <div className="product-section-actions">
-              <Link href="/contact">Discuss Requirement</Link>
-              <Link href="/technical-data-sheets">Find a TDS</Link>
-            </div>
-          </div>
-
-          <nav className="product-section-tabs" aria-label="Product sections">
-            <a href="#category-overview">Overview</a>
-            <a href="#material-families">Families</a>
-            <a href="#pom-grades">Grades</a>
-            <a href="#category-applications">Applications</a>
-            <a href="#category-faq">FAQ</a>
-          </nav>
-        </section>
+          subtitle={
+            entry.category === "POM"
+              ? "Modified POM Compounds | Base POM Resin"
+              : entry.label
+          }
+          tabs={sectionTabs}
+          title={pageTitle}
+          variant="product"
+        />
 
         <section
           id="category-overview"
@@ -249,7 +241,11 @@ export default async function ProductCategoryPage({
           </div>
         </section>
 
-        <ProductGrid products={products} selectedCategory={entry.category} />
+        <ProductGrid
+          products={products}
+          selectedCategory={entry.category}
+          showFamilies={entry.category === "POM"}
+        />
 
         <section
           id="category-applications"
@@ -278,22 +274,7 @@ export default async function ProductCategoryPage({
           </div>
         </section>
 
-        <section className="products-motion-secondary mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="evaluation-note">
-            <p className="section-kicker mb-3">Application Fit</p>
-            <h2 className="mb-4 text-xl font-black text-slate-950">
-              Common Application Scenarios
-            </h2>
-            <ul className="space-y-3 text-sm leading-6 text-slate-700">
-              {categoryApplications.map((application) => (
-                <li key={application} className="flex gap-3">
-                  <span className="signal-dot mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-400" />
-                  <span>{application}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
+        <section className="products-motion-secondary mt-12">
           <div id="category-faq" className="evaluation-note">
             <p className="section-kicker mb-3">FAQ</p>
             <h2 className="mb-4 text-xl font-black text-slate-950">

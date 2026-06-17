@@ -643,14 +643,18 @@
   background:
     linear-gradient(90deg, rgba(248, 250, 252, 0.82), rgba(248, 250, 252, 0.26) 43%, rgba(248, 250, 252, 0.02)),
     linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(15, 23, 42, 0.08)),
-    url("/generated/pom-workbench-hero.png") center right / cover no-repeat;
+    url("/generated/pom-white-pellets-hero-v2.png") center right / cover no-repeat;
   padding: clamp(1rem, 2.2vw, 1.55rem) clamp(1.2rem, 3vw, 2rem) 0;
   overflow: visible;
   isolation: isolate;
 }
 
 .products-motion-root .product-category-hero-base-pom-resin {
-  background: url("/generated/pom-natural-pellets-hero.png") center right / cover no-repeat;
+  background: url("/generated/pom-base-resin-pellets-hero.png") center right / cover no-repeat;
+}
+
+.products-motion-root .product-category-hero-glass-fiber-reinforced-pom-compound {
+  background: url("/generated/pom-glass-fiber-pellets-hero-v2.png") center right / cover no-repeat;
 }
 
 .products-motion-root .product-category-hero-carbon-fiber-reinforced-pom-compound,
@@ -696,6 +700,17 @@
     0 0.9rem 1.8rem rgba(15, 23, 42, 0.07),
     0 0.18rem 0.45rem rgba(15, 23, 42, 0.05);
   padding: clamp(2rem, 4vw, 3.45rem);
+  overflow: hidden;
+}
+
+.products-motion-root .product-hero-card::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0.34rem;
+  background: #2f5f9e;
+  content: "";
 }
 
 .products-motion-root .product-hero-eyebrow {
@@ -1020,7 +1035,7 @@
 }
 
 .products-motion-root.is-section-nav-pinned .product-grade-section {
-  padding-top: var(--product-section-nav-height, 4.1rem);
+  padding-top: 0;
 }
 
 .products-motion-root :where(
@@ -1058,6 +1073,7 @@
 
 .products-motion-root.is-sticky-actions-visible .product-section-nav-top {
   max-height: 10.5rem;
+  overflow: visible;
   opacity: 1;
   padding: clamp(1rem, 1.8vw, 1.35rem) clamp(1.4rem, 4vw, 2.6rem) clamp(0.8rem, 1.4vw, 1.05rem);
   transform: translateY(0);
@@ -1252,6 +1268,32 @@
   padding: clamp(1.55rem, 3.8vw, 3rem) 0;
 }
 
+.products-motion-root .product-category-shell .product-overview-screen-head > .section-kicker,
+.products-motion-root .product-category-shell .product-family-overview-head > .section-kicker,
+.products-motion-root .product-category-shell .product-application-directory-head > .section-kicker,
+.products-motion-root .product-category-shell .evaluation-note > .section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #1f252d !important;
+  font-size: clamp(0.95rem, 1.15vw, 1.18rem);
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.products-motion-root .product-category-shell .product-overview-screen-head > .section-kicker::before,
+.products-motion-root .product-category-shell .product-family-overview-head > .section-kicker::before,
+.products-motion-root .product-category-shell .product-application-directory-head > .section-kicker::before,
+.products-motion-root .product-category-shell .evaluation-note > .section-kicker::before {
+  display: block;
+  width: 0.42rem;
+  height: 1.08em;
+  background: #2f5f9e;
+  content: "";
+}
+
 .products-motion-root .product-overview-screen-head h2 {
   color: #07111f;
   font-size: clamp(1.9rem, 3.8vw, 3.4rem);
@@ -1402,20 +1444,40 @@
 
 .products-motion-root .product-filter-bar {
   display: grid;
-  grid-template-columns: minmax(8rem, 0.2fr) minmax(0, 1fr);
-  column-gap: clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: minmax(11rem, 0.18fr) minmax(0, 1fr);
+  column-gap: clamp(1rem, 3vw, 2.4rem);
   align-items: start;
   border-bottom: 1px solid rgba(15, 23, 42, 0.12);
-  padding: clamp(1rem, 2.2vw, 1.5rem) 0;
+  padding: clamp(0.8rem, 1.7vw, 1.1rem) 0;
 }
 
 .products-motion-root .product-filter-label {
-  margin-top: 0.35rem;
-  color: #0f172a;
-  font-size: 0.86rem;
-  font-weight: 780;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.2rem;
+  color: #1f252d;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  font-weight: 760;
   letter-spacing: 0.08em;
+  line-height: 1;
   text-transform: uppercase;
+}
+
+.products-motion-root .product-filter-label::before {
+  display: block;
+  width: 0.38rem;
+  height: 1.08em;
+  background: #2f5f9e;
+  content: "";
+}
+
+.products-motion-root .product-filter-intro p {
+  margin-top: 0.65rem;
+  max-width: 18rem;
+  color: #526276;
+  font-size: 0.88rem;
+  line-height: 1.45;
 }
 
 .products-motion-root .product-filter-rail {
@@ -1490,6 +1552,14 @@
   font-size: 0.86rem;
   font-weight: 780;
   line-height: 1.18;
+}
+
+.products-motion-root .product-filter-use {
+  display: block;
+  color: #526276;
+  font-size: 0.76rem;
+  font-weight: 620;
+  line-height: 1.28;
 }
 
 .products-motion-root .product-filter-count {
@@ -1975,16 +2045,16 @@
   }
 
   .products-motion-root.is-sticky-actions-visible .product-section-nav-top {
+    display: grid;
     max-height: 13rem;
+    overflow: visible;
+    opacity: 1;
     padding: 1rem 1rem 0.8rem;
+    transform: translateY(0);
   }
 
   .products-motion-root.is-sticky-actions-visible .product-section-nav {
     display: block;
-  }
-
-  .products-motion-root.is-sticky-actions-visible .product-section-nav-top {
-    display: none;
   }
 
   .products-motion-root.is-sticky-actions-visible .product-section-tabs {

@@ -47,23 +47,24 @@ export function ProductPageMotion({ children }: ProductPageMotionProps) {
           return Number.isFinite(navStickyTop) ? navStickyTop : 0;
         };
         const setStickyActions = () => {
-          const heroRect = hero.getBoundingClientRect();
           const actionRect = heroActions.getBoundingClientRect();
+          const navRect = sectionNav.getBoundingClientRect();
           const stickyTop = getSectionNavTop();
-          const pinStartOffset = sectionNav.offsetHeight + 48;
           const isHeroActionVisible =
             actionRect.bottom > 96 && actionRect.top < window.innerHeight;
           const isSectionNavPinned =
-            heroRect.bottom <= stickyTop + pinStartOffset;
+            navRect.top <= stickyTop + 1 && window.scrollY > 24;
+          const shouldShowStickyActions =
+            !isHeroActionVisible && isSectionNavPinned;
 
-          root.style.setProperty(
-            "--product-section-nav-height",
-            `${sectionNav.offsetHeight}px`
-          );
           root.classList.toggle("is-section-nav-pinned", isSectionNavPinned);
           root.classList.toggle(
             "is-sticky-actions-visible",
-            !isHeroActionVisible && isSectionNavPinned
+            shouldShowStickyActions
+          );
+          root.style.setProperty(
+            "--product-section-nav-height",
+            `${sectionNav.offsetHeight}px`
           );
         };
 

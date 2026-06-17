@@ -58,7 +58,7 @@
   left: 0;
   height: 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(190, 198, 208, 0.42));
+  background: linear-gradient(90deg, rgba(0, 132, 205, 0.98), rgba(0, 205, 185, 0.86));
   content: "";
   transform: scaleX(0);
   transform-origin: right;
