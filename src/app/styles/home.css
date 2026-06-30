@@ -1,13 +1,12 @@
 .product-current .product-current-inner {
-  background: rgba(255, 255, 255, 0.34);
-  padding: clamp(1.35rem, 3vw, 2.2rem) clamp(0.85rem, 2.2vw, 1.35rem);
+  background: transparent;
+  padding: clamp(1.5rem, 2.4vw, 2rem) 0;
 }
 
 .product-current .product-current-head {
-  grid-template-columns: minmax(34rem, 1fr) minmax(20rem, 0.68fr);
-  gap: clamp(1.2rem, 4vw, 3.4rem);
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.55fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
   align-items: center;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
   margin-bottom: clamp(1rem, 2.4vw, 1.55rem);
   padding-bottom: clamp(1rem, 2.6vw, 1.6rem);
 }
@@ -15,7 +14,8 @@
 .product-current .product-current-copy h2 {
   max-width: none;
   font-size: clamp(2.15rem, 3.2vw, 3rem);
-  white-space: nowrap;
+  text-wrap: balance;
+  white-space: normal;
 }
 
 .product-current .product-current-copy > p:not(.section-kicker) {
@@ -28,11 +28,9 @@
   align-content: center;
   gap: 0.85rem;
   border: 0;
-  border-left: 2px solid rgba(11, 95, 184, 0.72);
-  background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.22)),
-    linear-gradient(180deg, rgba(14, 165, 233, 0.06), transparent);
-  padding: clamp(0.85rem, 1.8vw, 1.1rem) 0 clamp(0.85rem, 1.8vw, 1.1rem) clamp(1.1rem, 2.4vw, 1.45rem);
+  background: transparent;
+  padding: clamp(0.85rem, 1.8vw, 1.1rem) 0 clamp(0.85rem, 1.8vw, 1.1rem)
+    clamp(1.1rem, 2.4vw, 1.45rem);
 }
 
 .product-current .document-line {
@@ -54,10 +52,9 @@
 
 .product-current .product-disclosure {
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  background: rgba(255, 255, 255, 0.52);
+  border: 0;
+  background: transparent;
   transition:
-    border-color 180ms ease,
     background 180ms ease,
     box-shadow 220ms ease,
     scale 220ms ease,
@@ -73,15 +70,15 @@
 
 .product-current .product-disclosure::before {
   inset: 0;
-  background: linear-gradient(90deg, rgba(14, 165, 233, 0.08), rgba(255, 255, 255, 0.28), transparent 72%);
+  background: transparent;
 }
 
 .product-current .product-disclosure[open] {
-  background: rgba(255, 255, 255, 0.7);
+  background: transparent;
 }
 
 .product-current .product-disclosure:hover {
-  background: rgba(241, 250, 255, 0.74);
+  background: transparent;
 }
 
 .product-current .product-disclosure[open]::before {
@@ -99,10 +96,7 @@
 @media (min-width: 48rem) {
   .product-current .product-disclosure:hover,
   .product-current .product-disclosure:focus-within {
-    border-color: rgba(14, 165, 233, 0.28);
-    box-shadow:
-      0 14px 34px rgba(15, 23, 42, 0.08),
-      inset 0 0 0 1px rgba(14, 165, 233, 0.08);
+    box-shadow: none;
     scale: 1.003;
     translate: 0 -2px;
   }
@@ -120,7 +114,9 @@
   will-change: height, opacity;
 }
 
-.product-current.is-gsap-disclosure .product-disclosure[open] .product-disclosure-body {
+.product-current.is-gsap-disclosure
+  .product-disclosure[open]
+  .product-disclosure-body {
   grid-template-rows: none;
 }
 
@@ -142,7 +138,6 @@
 
   .product-current .product-current-aside {
     border-left: 0;
-    border-top: 1px solid rgba(15, 23, 42, 0.12);
     padding: clamp(0.95rem, 2vw, 1.15rem) 0 0;
   }
 
@@ -158,5 +153,135 @@
 @media (max-width: 39.999rem) {
   .product-current .product-disclosure-body > div {
     padding-left: 0;
+  }
+}
+
+.home-hero > .mx-auto,
+.product-current .product-current-inner,
+.selection-corridor > .mx-auto,
+.factory-sequence > .mx-auto,
+.home-cta > .mx-auto,
+.manufacturing-base .base-shell {
+  box-sizing: border-box;
+  width: min(82rem, 100%);
+}
+
+:root {
+  --home-content-rail: clamp(2.75rem, 4.2vw, 4.8rem);
+}
+
+.home-metrics-rail,
+.product-current .product-current-inner,
+.selection-corridor > .mx-auto,
+.factory-sequence > .mx-auto,
+.home-cta > .mx-auto {
+  padding-right: var(--home-content-rail);
+  padding-left: var(--home-content-rail);
+}
+
+.product-current .product-current-inner {
+  padding-top: clamp(1.5rem, 2.4vw, 2rem);
+  padding-bottom: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.manufacturing-base {
+  border-top: 0;
+  border-bottom: 0;
+  background: transparent;
+}
+
+.manufacturing-base::before {
+  display: none;
+}
+
+.base-figure {
+  border-right: 0;
+  padding-right: 0;
+}
+
+.base-metric {
+  border-right: 0;
+  background: transparent;
+}
+
+.product-current-inner {
+  border-top: 0;
+  border-bottom: 0;
+  background: transparent;
+}
+
+.document-line {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.flow-path {
+  padding: 0;
+}
+
+.flow-path::before,
+.flow-path-line {
+  display: none;
+}
+
+.flow-point > span {
+  border: 0;
+}
+
+.operation-stack p {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.factory-film {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.factory-frame {
+  border: 0;
+}
+
+.cta-ribbon {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.home-cinema::before {
+  background: #f3f6f8;
+}
+
+.home-cinema::after {
+  display: none;
+}
+
+.home-cinema .base-shell,
+.home-cinema .base-metric,
+.home-cinema .document-line,
+.home-cinema .product-disclosure,
+.home-cinema .product-current-aside,
+.home-cinema .operation-stack p,
+.home-cinema .cta-ribbon {
+  background: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.home-cinema .cta-ribbon h2 {
+  color: #07111f;
+}
+
+.home-cinema .cta-ribbon p {
+  color: #475569;
+}
+
+.home-cinema .cta-ribbon .section-kicker {
+  color: #0b5fb8;
+}
+
+@media (max-width: 63.999rem) {
+  :root {
+    --home-content-rail: 0rem;
   }
 }

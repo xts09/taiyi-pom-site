@@ -3,6 +3,7 @@ import { getCategoryPath, pomSubcategoryLabels } from "@/lib/productCategories";
 export type ApplicationDirection = {
   label: string;
   href?: string;
+  shortLabel?: string;
 };
 
 export type ApplicationImage = {
@@ -31,17 +32,21 @@ export type ApplicationItem = {
 
 const materialDirection = (
   category: string,
-  note?: string
-): ApplicationDirection => ({
-  label: note
-    ? `${pomSubcategoryLabels[category] ?? category} ${note}`
-    : pomSubcategoryLabels[category] ?? category,
-  href: getCategoryPath(category),
-});
+  note?: string,
+): ApplicationDirection => {
+  const baseLabel = pomSubcategoryLabels[category] ?? category;
+
+  return {
+    label: note ? `${baseLabel} ${note}` : baseLabel,
+    href: getCategoryPath(category),
+    shortLabel: baseLabel,
+  };
+};
 
 const customDirection = (label: string): ApplicationDirection => ({
   label,
   href: "/contact",
+  shortLabel: label,
 });
 
 export const applications: ApplicationItem[] = [
@@ -53,17 +58,17 @@ export const applications: ApplicationItem[] = [
     materialDirections: [
       materialDirection(
         "High-Impact POM Compound",
-        "for toughness and low-temperature requirements"
+        "for toughness and low-temperature requirements",
       ),
       materialDirection("Wear-Resistant POM Compound"),
       materialDirection("Low-Friction POM Compound"),
       materialDirection(
         "Glass Fiber Reinforced POM Compound",
-        "where higher stiffness or lower shrinkage is required"
+        "where higher stiffness or lower shrinkage is required",
       ),
     ],
     heroImage: {
-      src: "/applications/parts/automotive-hero.png",
+      src: "/applications/parts/automotive-hero.webp",
       alt: "Automotive assembly line with vehicle functional modules",
     },
     images: [
@@ -78,9 +83,9 @@ export const applications: ApplicationItem[] = [
         label: "Window Regulator",
       },
       {
-        src: "/applications/parts/automotive-controlbox-components.jpg",
-        alt: "Automotive plastic control box components",
-        label: "Control Box Components",
+        src: "/applications/parts/automotive-fasteners.png",
+        alt: "Automotive plastic fastener and buckle component",
+        label: "Fasteners",
       },
     ],
     engineeringFit: [
@@ -119,15 +124,18 @@ export const applications: ApplicationItem[] = [
     description:
       "Molded parts for electrical connection, control, actuation, insulation, and functional assembly environments.",
     materialDirections: [
-      materialDirection("Conductive / Antistatic POM Compound", "where relevant"),
+      materialDirection(
+        "Conductive / Antistatic POM Compound",
+        "where relevant",
+      ),
       materialDirection(
         "Carbon Fiber Reinforced POM Compound",
-        "where stiffness and conductivity are both considered"
+        "where stiffness and conductivity are both considered",
       ),
       customDirection("Custom formulation based on project requirements"),
     ],
     heroImage: {
-      src: "/applications/parts/electronics-hero.png",
+      src: "/applications/parts/electronics-hero.webp",
       alt: "Electronics assembly station with functional electrical modules",
     },
     images: [
@@ -187,21 +195,19 @@ export const applications: ApplicationItem[] = [
       materialDirection("Low-Friction POM Compound"),
       materialDirection(
         "Conductive / Antistatic POM Compound",
-        "where charge control is required"
+        "where charge control is required",
       ),
-      customDirection(
-        "Reinforced POM where higher stiffness is required"
-      ),
+      customDirection("Reinforced POM where higher stiffness is required"),
     ],
     heroImage: {
-      src: "/applications/parts/conveyor-automation-hero.png",
+      src: "/applications/parts/conveyor-automation-hero.webp",
       alt: "Clean conveyor automation line with modular chain plates",
     },
     images: [
       {
-        src: "/applications/parts/conveyor-chain-plate-modular.jpg",
-        alt: "White modular plastic conveyor chain plate",
-        label: "Modular Chain Plate",
+        src: "/applications/parts/conveying-parts.jpg",
+        alt: "Plastic conveying parts for high-strength wear-resistant movement",
+        label: "Conveying Parts",
       },
       {
         src: "/applications/parts/conveyor-chain-plate-bracket.jpg",
@@ -254,15 +260,15 @@ export const applications: ApplicationItem[] = [
       materialDirection("Low-Friction POM Compound"),
       materialDirection(
         "High-Impact POM Compound",
-        "where low-temperature toughness is required"
+        "where low-temperature toughness is required",
       ),
       materialDirection(
         "Glass Fiber Reinforced POM Compound",
-        "where higher stiffness is required"
+        "where higher stiffness is required",
       ),
     ],
     heroImage: {
-      src: "/applications/parts/motion-components-hero.png",
+      src: "/applications/parts/motion-components-hero.webp",
       alt: "Industrial motion module with gears and molded movement components",
     },
     images: [
@@ -277,9 +283,9 @@ export const applications: ApplicationItem[] = [
         label: "Guide Ring",
       },
       {
-        src: "/applications/parts/wiper-sleeve.jpg",
-        alt: "Plastic wiper sleeve components",
-        label: "Wiper Sleeve",
+        src: "/applications/parts/washer-base-gear.jpg",
+        alt: "Plastic washer base gear for high-strength movement",
+        label: "Washer Base Gear",
       },
     ],
     engineeringFit: [
@@ -322,11 +328,11 @@ export const applications: ApplicationItem[] = [
       materialDirection("Wear-Resistant POM Compound"),
       materialDirection(
         "Glass Fiber Reinforced POM Compound",
-        "where higher stiffness is required"
+        "where higher stiffness is required",
       ),
     ],
     heroImage: {
-      src: "/applications/parts/water-control-hero.png",
+      src: "/applications/parts/water-control-hero.webp",
       alt: "Clean water-control assembly line with valves and flow modules",
     },
     images: [
@@ -387,20 +393,15 @@ export const applications: ApplicationItem[] = [
       materialDirection("Wear-Resistant POM Compound"),
       materialDirection(
         "Glass Fiber Reinforced POM Compound",
-        "where higher stiffness is required"
+        "where higher stiffness is required",
       ),
       customDirection("Custom formulation based on working environment"),
     ],
     heroImage: {
-      src: "/applications/parts/industrial-machinery-hero.png",
+      src: "/applications/parts/industrial-machinery-hero.webp",
       alt: "Industrial machinery assembly area with automated equipment modules",
     },
     images: [
-      {
-        src: "/applications/parts/automotive-fasteners.png",
-        alt: "Color plastic fasteners and molded clips",
-        label: "Fasteners",
-      },
       {
         src: "/applications/parts/door-panel-control-latch.jpg",
         alt: "Plastic control latch parts",
@@ -410,6 +411,11 @@ export const applications: ApplicationItem[] = [
         src: "/applications/parts/speaker-enclosure.jpg",
         alt: "Plastic speaker enclosure part",
         label: "Speaker Enclosure",
+      },
+      {
+        src: "/applications/parts/industrial-bumper-bracket.jpg",
+        alt: "Plastic structural bracket component",
+        label: "Structural Bracket",
       },
     ],
     engineeringFit: [
@@ -454,7 +460,7 @@ export const applications: ApplicationItem[] = [
       customDirection("Custom formulation based on weather exposure and load"),
     ],
     heroImage: {
-      src: "/applications/parts/outdoor-equipment-hero.png",
+      src: "/applications/parts/outdoor-equipment-hero.webp",
       alt: "Outdoor equipment assembly line with garden machinery modules",
     },
     images: [
@@ -469,9 +475,9 @@ export const applications: ApplicationItem[] = [
         label: "Lawn Parts",
       },
       {
-        src: "/applications/parts/conveying-parts.jpg",
-        alt: "Plastic outdoor and industrial conveying parts",
-        label: "Outdoor Mechanisms",
+        src: "/applications/parts/outdoor-pipe-clamps.jpg",
+        alt: "Plastic pipe clamp parts for durable outdoor assembly",
+        label: "Pipe Clamps",
       },
     ],
     engineeringFit: [
@@ -514,12 +520,14 @@ export const applications: ApplicationItem[] = [
       materialDirection("Low-Friction POM Compound"),
       materialDirection(
         "Glass Fiber Reinforced POM Compound",
-        "where higher stiffness or lower shrinkage is required"
+        "where higher stiffness or lower shrinkage is required",
       ),
-      customDirection("Custom formulation based on hardness, shrinkage, and wear needs"),
+      customDirection(
+        "Custom formulation based on hardness, shrinkage, and wear needs",
+      ),
     ],
     heroImage: {
-      src: "/applications/parts/textile-machinery-hero.png",
+      src: "/applications/parts/textile-machinery-hero.webp",
       alt: "Textile machinery line with yarn handling and guide components",
     },
     images: [
@@ -592,5 +600,5 @@ const applicationSlugAliases: Record<string, string> = {
 export const getApplicationBySlug = (slug: string) =>
   applications.find(
     (application) =>
-      application.slug === (applicationSlugAliases[slug] ?? slug)
+      application.slug === (applicationSlugAliases[slug] ?? slug),
   );

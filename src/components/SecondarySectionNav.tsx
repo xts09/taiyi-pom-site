@@ -45,7 +45,13 @@ export function SecondarySectionNav({
     >
       <div className={`${prefix}-section-nav-top`}>
         <div className={`${prefix}-section-identity`}>
-          <p>{title}</p>
+          <p>
+            <span
+              className={`${prefix}-section-title-marker`}
+              aria-hidden="true"
+            />
+            <span className={`${prefix}-section-title-text`}>{title}</span>
+          </p>
           <span className={`${prefix}-section-subtitle`}>{subtitle}</span>
         </div>
 

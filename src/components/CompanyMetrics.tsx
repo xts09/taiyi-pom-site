@@ -70,10 +70,10 @@ export function CompanyMetrics({
   return (
     <section
       ref={sectionRef}
-      className="manufacturing-base relative z-10 px-5 sm:px-6 lg:px-8"
+      className="manufacturing-base relative z-10 px-5 sm:px-6 lg:px-10"
       data-metrics-trigger
     >
-      <div className="base-shell mx-auto max-w-7xl">
+      <div className="base-shell home-metrics-rail mx-auto max-w-[82rem]">
         <div className="base-figure">
           <p className="section-kicker">{annualCapacity.label}</p>
           <strong>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { applications, selectionBasis } from "@/data/applications";
 import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
@@ -16,14 +17,8 @@ export const metadata: Metadata = createPageMetadata({
 export default function ApplicationsPage() {
   return (
     <main className="min-h-screen text-slate-900">
-      <section className="mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
-        <div className="inner-hero application-hero reveal-up mb-8">
-          <nav className="subpage-breadcrumb mb-5">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <span>Applications</span>
-          </nav>
-
+      <section className="application-index-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
+        <div className="inner-hero application-index-hero reveal-up mb-8">
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
             Application Areas
           </h1>
@@ -66,6 +61,7 @@ export default function ApplicationsPage() {
               key={application.title}
               href={`/applications/${application.slug}`}
               className="application-directory-card"
+              aria-label={`View ${application.title} application details`}
               style={{ "--item-index": index } as CSSProperties}
             >
               <span className="application-directory-index">
@@ -93,30 +89,22 @@ export default function ApplicationsPage() {
                   </figure>
                 ))}
               </div>
-
-              <span className="text-link mt-5">View Application Page &rarr;</span>
             </Link>
           ))}
         </div>
 
-        <section className="application-cta mt-10">
-          <div className="cta-ribbon">
-            <div>
-              <p className="section-kicker mb-3">Inquiry Preparation</p>
-              <h2>Need a Material Recommendation?</h2>
-              <p>
-                Share the application, mold stage, cavity count, shrinkage or
-                warpage concern, current material reference, color, document
-                requirements, and estimated volume. We will recommend a suitable
-                modified material direction for review.
-              </p>
-            </div>
-
-            <Link href="/contact" className="cta-primary shrink-0 px-7 py-3 text-sm">
-              Contact Sales
-            </Link>
-          </div>
-        </section>
+        <MaterialRecommendationCta
+          kicker="Inquiry Preparation"
+          title="Need a Material Recommendation?"
+          className="application-cta cta-ribbon mt-10"
+        >
+          <p>
+            Share the application, mold stage, cavity count, shrinkage or
+            warpage concern, current material reference, color, document
+            requirements, and estimated volume. We will recommend a suitable
+            modified material direction for review.
+          </p>
+        </MaterialRecommendationCta>
       </section>
     </main>
   );

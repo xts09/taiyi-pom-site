@@ -4,6 +4,7 @@ type ProductCategoryData = {
   category: string;
   label: string;
   description: string;
+  navSubtitle: string;
   applications: string[];
 };
 
@@ -13,6 +14,8 @@ const pomCategoryOverview = {
   title: "POM Material Grades and Modified Compound Data",
   description:
     "Browse Taiyi Nano POM material grades including wear-resistant, high-impact, low-friction, UV-resistant, reinforced, conductive, antistatic, and base POM resin options.",
+  navSubtitle:
+    "Browse modified POM and base resin options by family, grade data, application fit, and documents.",
   applications: [
     "Precision injection molded parts",
     "Gears, bushings, rollers, and sliding parts",
@@ -26,6 +29,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "Wear-Resistant POM",
     description:
       "Browse Taiyi Nano wear-resistant POM grades with MFI, color, wear-related application fit, typical property data, and document support.",
+    navSubtitle:
+      "Shortlist wear-resistant POM grades by friction, MFI, shrinkage, and application fit.",
     applications: [
       "Gears and moving mechanical parts",
       "Bushings, rollers, guide rails, and sliding parts",
@@ -37,6 +42,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "High-Impact POM",
     description:
       "Browse Taiyi Nano high-impact POM grades with MFI, color, impact data, low-temperature performance, applications, and document support.",
+    navSubtitle:
+      "Review impact-modified POM grades by toughness need, molding fit, and application risk.",
     applications: [
       "Low-temperature molded parts",
       "Automotive, electrical, sanitary, and industrial components",
@@ -48,6 +55,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "Low-Friction POM",
     description:
       "Browse Taiyi Nano low-friction POM grades for sliding assemblies, moving parts, friction targets, typical property data, and document support.",
+    navSubtitle:
+      "Screen low-friction POM directions by movement, contact condition, and document needs.",
     applications: [
       "Sliding assemblies with repeated movement",
       "Low-noise gears and bearing-related parts",
@@ -59,6 +68,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "UV-Resistant POM",
     description:
       "Browse Taiyi Nano UV-resistant POM grades for light-exposed molded parts with color options, property data, applications, and document support.",
+    navSubtitle:
+      "Compare UV-resistant POM options by color, exposure condition, and document requirements.",
     applications: [
       "Outdoor or light-exposed molded parts",
       "Automotive and consumer components exposed to UV conditions",
@@ -70,6 +81,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "Glass Fiber Reinforced POM",
     description:
       "Browse Taiyi Nano glass fiber reinforced POM grades for higher stiffness, dimensional stability, molded part applications, and document support.",
+    navSubtitle:
+      "Compare reinforced POM grades by stiffness, strength, HDT, and molding fit.",
     applications: [
       "Structural molded parts requiring higher stiffness",
       "Precision parts with dimensional stability requirements",
@@ -81,6 +94,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "Carbon Fiber Reinforced POM",
     description:
       "Browse Taiyi Nano carbon fiber reinforced POM grades for high stiffness, controlled conductivity, dimensional stability, and document support.",
+    navSubtitle:
+      "Review carbon fiber reinforced POM by stiffness, conductivity target, dimensional control, and documents.",
     applications: [
       "High-stiffness precision parts",
       "Components requiring reinforcement and controlled conductivity",
@@ -92,6 +107,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "Conductive / Antistatic POM",
     description:
       "Browse Taiyi Nano conductive and antistatic POM grades with resistivity data, electrical application fit, color, and document support.",
+    navSubtitle:
+      "Review conductive and antistatic options by electrical target, part geometry, and validation needs.",
     applications: [
       "Electronic and electrical molded components",
       "Parts requiring antistatic or conductive performance",
@@ -103,6 +120,8 @@ export const productCategoryData: ProductCategoryData[] = [
     label: "Base POM Resin",
     description:
       "Browse selected Taiyi Nano base POM resin grades with MFI, physical property data, processing information, and document support.",
+    navSubtitle:
+      "Compare base POM resin options for reference, property data, documents, and project review.",
     applications: [
       "General injection molded POM parts",
       "Customers sourcing selected POM resin with document support",
@@ -166,7 +185,7 @@ export const getCategoryTitle = (category: string) => {
     return pomCategoryOverview.title;
   }
 
-  return `${getCategoryData(category)?.label ?? category} Grades and Data`;
+  return getCategoryData(category)?.label ?? category;
 };
 
 export const getCategoryDescription = (category: string) => {
@@ -178,6 +197,14 @@ export const getCategoryDescription = (category: string) => {
     getCategoryData(category)?.description ??
     `Browse Taiyi Nano ${category} grades with MFI, color, typical property data, application fit, and document support.`
   );
+};
+
+export const getCategoryNavSubtitle = (category: string) => {
+  if (category === pomCategoryOverview.category) {
+    return pomCategoryOverview.navSubtitle;
+  }
+
+  return getCategoryData(category)?.navSubtitle ?? getCategoryDescription(category);
 };
 
 export const getCategoryApplications = (category: string) => {

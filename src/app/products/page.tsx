@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { products } from "@/data/products";
+import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { createPageMetadata } from "@/lib/seo";
@@ -12,6 +13,11 @@ export const metadata: Metadata = createPageMetadata({
   path: "/products",
 });
 
+const basePomGradeCount = products.filter(
+  (product) => product.category === "Base POM Resin"
+).length;
+const modifiedPomGradeCount = products.length - basePomGradeCount;
+
 const productFamilies = [
   {
     number: "01",
@@ -20,8 +26,8 @@ const productFamilies = [
     description:
       "Wear-resistant, low-friction, reinforced, conductive, antistatic, and high-impact POM directions for precision molded parts.",
     href: "/products/categories/pom",
-    metricValue: products.length,
-    metricLabel: "POM grades",
+    metricValue: modifiedPomGradeCount,
+    metricLabel: "modified grades",
   },
   {
     number: "02",
@@ -30,8 +36,7 @@ const productFamilies = [
     description:
       "Selected base resin options for customers who need baseline POM resin comparison, documents, and project review.",
     href: "/products/categories/base-pom-resin",
-    metricValue: products.filter((product) => product.category === "Base POM Resin")
-      .length,
+    metricValue: basePomGradeCount,
     metricLabel: "base grades",
   },
   {
@@ -58,14 +63,8 @@ export default function ProductsPage() {
   return (
     <main className="min-h-screen text-slate-900">
       <ProductPageMotion>
-      <section className="mesh-surface mx-auto max-w-7xl px-5 pb-16 pt-0 sm:px-6 lg:px-8">
+      <section className="product-directory-shell mesh-surface mx-auto max-w-7xl px-5 pb-16 pt-0 sm:px-6 lg:px-8">
         <div id="products-overview" className="product-index-hero products-motion-hero mb-8">
-          <nav className="subpage-breadcrumb mb-5">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <span>Products</span>
-          </nav>
-
           <div className="product-hero-card">
             <p className="product-hero-eyebrow">Product Directory</p>
 
@@ -137,27 +136,19 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <section id="product-inquiry" className="selection-support-band product-recommendation-band products-motion-support mt-12">
-          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-            <div>
-              <p className="section-kicker mb-3">Inquiry Preparation</p>
-              <h2 className="text-2xl font-black tracking-tight text-white">
-                Need a Material Recommendation?
-              </h2>
-              <p className="mt-4 text-sm leading-6 text-slate-300">
-                Share the application, mold stage, cavity count, shrinkage or
-                warpage concern, key performance requirements, current material
-                reference, color, document requirements, and estimated volume.
-                We will recommend a suitable modified material direction for
-                review.
-              </p>
-            </div>
-
-            <Link href="/contact" className="cta-primary px-6 py-3 text-sm">
-              Contact Sales
-            </Link>
-          </div>
-        </section>
+        <MaterialRecommendationCta
+          id="product-inquiry"
+          kicker="Inquiry Preparation"
+          title="Need a Material Recommendation?"
+          className="selection-support-band product-recommendation-band products-motion-support mt-12"
+        >
+          <p>
+            Share the application, mold stage, cavity count, shrinkage or
+            warpage concern, key performance requirements, current material
+            reference, color, document requirements, and estimated volume. We
+            will recommend a suitable modified material direction for review.
+          </p>
+        </MaterialRecommendationCta>
       </section>
       </ProductPageMotion>
     </main>

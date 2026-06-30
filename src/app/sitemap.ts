@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/data/products";
+import { resourcePages } from "@/data/resources";
 import { productCategoryEntries } from "@/lib/productCategories";
 import { siteUrl } from "@/lib/seo";
 
@@ -10,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/products",
     "/applications",
+    "/resources",
+    "/technical-data-sheets",
     "/about",
     "/contact",
   ].map((route) => ({
@@ -30,5 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...productRoutes];
+  const resourceRoutes = resourcePages.map((page) => ({
+    url: `${siteUrl}/resources/${page.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.72,
+  }));
+
+  return [...staticRoutes, ...categoryRoutes, ...productRoutes, ...resourceRoutes];
 }

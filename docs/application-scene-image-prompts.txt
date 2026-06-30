@@ -1,0 +1,174 @@
+APPLICATION SCENE IMAGE PROMPTS
+
+Use these prompts to generate seven dedicated wide scene images for application detail pages.
+
+General output requirements are included in each prompt:
+- 2400x1100 px
+- no text
+- no logo
+- no watermark
+- clean B2B industrial website style
+- enough empty space on the left side for website overlay text
+
+Recommended file names:
+- electronics-application-scene.png
+- conveyor-automation-application-scene.png
+- motion-components-application-scene.png
+- water-control-application-scene.png
+- industrial-machinery-application-scene.png
+- outdoor-equipment-application-scene.png
+- textile-machinery-application-scene.png
+
+============================================================
+1. ELECTRONICS
+============================================================
+
+Create a high-quality realistic product scene image for a modified POM engineering plastic website.
+
+Application: Electronics
+
+Typical molded parts: electrical connectors, quick tubing connections, terminal housings, control box covers, small motor rotor components, actuator parts, wire harness clips, insulation supports.
+
+Visual style:
+clean industrial product photography, premium B2B engineering material website, light gray and white background, subtle blue-gray shadows, realistic molded engineering plastic parts, precise mechanical details, no brand logos, no text, no watermark.
+
+Composition:
+wide horizontal scene, 2400x1100 px, parts arranged naturally in a clean electronics assembly or precision component context, enough empty space on the left side for website overlay text, not too busy, not dark, not decorative.
+
+Material feeling:
+modified POM engineering plastic, clean molded surfaces, realistic edges, functional electrical and mechanical components.
+
+Output:
+one wide application scene image only.
+
+============================================================
+2. CONVEYOR AUTOMATION
+============================================================
+
+Create a high-quality realistic product scene image for a modified POM engineering plastic website.
+
+Application: Conveyor Automation
+
+Typical molded parts: modular chain plates, conveyor chain plate belts, conveyor guides, guide strips, rollers, sliding rails, side rails, fastening brackets, wear strips.
+
+Visual style:
+clean industrial product photography, premium B2B engineering material website, light gray and white background, subtle blue-gray shadows, realistic molded engineering plastic parts, precise mechanical details, no brand logos, no text, no watermark.
+
+Composition:
+wide horizontal scene, 2400x1100 px, parts arranged naturally in a clean conveyor automation line or handling system context, enough empty space on the left side for website overlay text, not too busy, not dark, not decorative.
+
+Material feeling:
+modified POM engineering plastic, wear-resistant and low-friction molded surfaces, clean functional conveyor movement components.
+
+Output:
+one wide application scene image only.
+
+============================================================
+3. MOTION COMPONENTS
+============================================================
+
+Create a high-quality realistic product scene image for a modified POM engineering plastic website.
+
+Application: Motion Components
+
+Typical molded parts: gears, gear wheels, bushings, sleeves, guide rings, rollers, sliders, sliding blocks, wiper sleeves, washer base gears, compact drive components.
+
+Visual style:
+clean industrial product photography, premium B2B engineering material website, light gray and white background, subtle blue-gray shadows, realistic molded engineering plastic parts, precise mechanical details, no brand logos, no text, no watermark.
+
+Composition:
+wide horizontal scene, 2400x1100 px, parts arranged naturally in a precision motion, transmission, and guidance component context, enough empty space on the left side for website overlay text, not too busy, not dark, not decorative.
+
+Material feeling:
+modified POM engineering plastic, low-friction and wear-resistant molded surfaces, realistic gears and sliding components.
+
+Output:
+one wide application scene image only.
+
+============================================================
+4. WATER CONTROL
+============================================================
+
+Create a high-quality realistic product scene image for a modified POM engineering plastic website.
+
+Application: Water Control
+
+Typical molded parts: valve bodies, valve spools, thermostatic valve bodies, bathroom guide wheels, pump functional parts, sanitary mechanism components, water-control molded parts.
+
+Visual style:
+clean industrial product photography, premium B2B engineering material website, light gray and white background, subtle blue-gray shadows, realistic molded engineering plastic parts, precise mechanical details, no brand logos, no text, no watermark.
+
+Composition:
+wide horizontal scene, 2400x1100 px, parts arranged naturally in a clean water-control, valve assembly, or sanitary hardware component context, enough empty space on the left side for website overlay text, not too busy, not dark, not decorative, not a kitchen or consumer bathroom advertisement.
+
+Material feeling:
+modified POM engineering plastic, stable molded surfaces, precise valve and water-control functional components.
+
+Output:
+one wide application scene image only.
+
+============================================================
+5. INDUSTRIAL MACHINERY
+============================================================
+
+Create a high-quality realistic product scene image for a modified POM engineering plastic website.
+
+Application: Industrial Machinery
+
+Typical molded parts: functional housings, control latches, clips, fasteners, brackets, equipment supports, structural molded components, speaker enclosures, precision assembly parts.
+
+Visual style:
+clean industrial product photography, premium B2B engineering material website, light gray and white background, subtle blue-gray shadows, realistic molded engineering plastic parts, precise mechanical details, no brand logos, no text, no watermark.
+
+Composition:
+wide horizontal scene, 2400x1100 px, parts arranged naturally in an industrial machinery assembly or equipment component context, enough empty space on the left side for website overlay text, not too busy, not dark, not decorative, not strongly automotive.
+
+Material feeling:
+modified POM engineering plastic, stable molded surfaces, functional industrial mechanical parts.
+
+Output:
+one wide application scene image only.
+
+============================================================
+6. OUTDOOR EQUIPMENT
+============================================================
+
+Create a high-quality realistic product scene image for a modified POM engineering plastic website.
+
+Application: Outdoor Equipment
+
+Typical molded parts: agricultural sprinkler heads, garden equipment mechanisms, outdoor pipe clamps, outdoor housings, brackets, covers, clips, weather-exposed guide and fastening parts.
+
+Visual style:
+clean industrial product photography, premium B2B engineering material website, light gray and white background with subtle outdoor daylight feeling, subtle blue-gray shadows, realistic molded engineering plastic parts, precise mechanical details, no brand logos, no text, no watermark.
+
+Composition:
+wide horizontal scene, 2400x1100 px, parts arranged naturally in an outdoor equipment or garden machinery component context, enough empty space on the left side for website overlay text, not too busy, not dark, not decorative, not a landscape photo.
+
+Material feeling:
+modified POM engineering plastic, UV-resistant and impact-resistant molded surfaces, durable weather-exposed functional parts.
+
+Output:
+one wide application scene image only.
+
+============================================================
+7. TEXTILE MACHINERY
+============================================================
+
+Create a high-quality realistic product scene image for a modified POM engineering plastic website.
+
+Application: Textile Machinery
+
+Typical molded parts: textile machinery guide parts, rollers, guide rings, sleeves, bushings, low-friction supports, wear-resistant sliding parts, yarn and fabric handling components.
+
+Visual style:
+clean industrial product photography, premium B2B engineering material website, light gray and white background, subtle blue-gray shadows, realistic molded engineering plastic parts, precise mechanical details, no brand logos, no text, no watermark.
+
+Composition:
+wide horizontal scene, 2400x1100 px, parts arranged naturally in a textile machinery, yarn handling, or fabric processing component context, enough empty space on the left side for website overlay text, not too busy, not dark, not decorative.
+
+Material feeling:
+modified POM engineering plastic, wear-resistant and low-friction molded surfaces, realistic textile machinery guide and roller components.
+
+Output:
+one wide application scene image only.

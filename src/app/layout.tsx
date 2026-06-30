@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Sans } from "next/font/google";
+import "@fontsource/ibm-plex-sans/400.css";
+import "@fontsource/ibm-plex-sans/500.css";
+import "@fontsource/ibm-plex-sans/600.css";
+import "@fontsource/ibm-plex-sans/700.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import {
@@ -12,13 +15,6 @@ import "./globals.css";
 import "./styles/header.css";
 import "./styles/products.css";
 import "./styles/home.css";
-
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  weight: "variable",
-  variable: "--font-ibm-plex-sans",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -97,10 +93,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${ibmPlexSans.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body className="page-aura min-h-full flex flex-col text-slate-900">
         <Header />
         <div className="flex-1">{children}</div>

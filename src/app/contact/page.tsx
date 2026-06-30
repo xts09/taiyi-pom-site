@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ContactInquiryForm } from "@/components/ContactInquiryForm";
 import { createPageMetadata } from "@/lib/seo";
@@ -9,7 +8,7 @@ export const metadata: Metadata = createPageMetadata({
   description:
     "Contact Jiangsu Taiyi Nano Technology Co., Ltd. for modified POM, engineering plastic compounds, POM resin, material recommendations, documents, samples, and project evaluation.",
   path: "/contact",
-  image: "/factory-extrusion.png",
+  image: "/factory-extrusion.webp",
 });
 
 export default function ContactPage() {
@@ -17,12 +16,6 @@ export default function ContactPage() {
     <main className="min-h-screen text-slate-900">
       <section className="mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
         <div className="inner-hero reveal-up mb-12 max-w-4xl">
-          <nav className="subpage-breadcrumb mb-5">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <span>Contact</span>
-          </nav>
-
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
             Send Us Your Material Requirements
           </h1>
@@ -42,8 +35,8 @@ export default function ContactPage() {
               <h2>Prepare These Details</h2>
             </div>
             <p>
-              These details reduce back-and-forth and help us recommend a
-              better material direction from the first reply.
+              These details reduce back-and-forth and help us recommend a better
+              material direction from the first reply.
             </p>
           </div>
 
@@ -95,9 +88,7 @@ export default function ContactPage() {
 
               <div className="contact-detail-list">
                 <div className="contact-detail-item">
-                  <p className="font-semibold text-slate-950">
-                    Contact Person
-                  </p>
+                  <p className="font-semibold text-slate-950">Contact Person</p>
                   <p>Ethan Xia</p>
                   <p>Sales Manager</p>
                 </div>

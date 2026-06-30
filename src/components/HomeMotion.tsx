@@ -18,7 +18,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
     (_context, contextSafe) => {
       const root = rootRef.current;
       const reduceMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
+        "(prefers-reduced-motion: reduce)",
       ).matches;
 
       if (reduceMotion) {
@@ -28,7 +28,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
           ?.classList.add("is-flow-active");
         gsap.set(
           ".hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .section-motion-copy, .product-current-head, .product-disclosure, .flow-point, .operation-stack p, .factory-frame, .cta-ribbon",
-          { autoAlpha: 1, x: 0, y: 0, filter: "none" }
+          { autoAlpha: 1, x: 0, y: 0, filter: "none" },
         );
         return;
       }
@@ -37,10 +37,21 @@ export function HomeMotion({ children }: HomeMotionProps) {
 
       const safeCallback = contextSafe ?? ((fn) => fn);
       const viewportTriggerCleanups: Array<() => void> = [];
+      let refreshTimer: number | undefined;
+      const scheduleScrollTriggerRefresh = () => {
+        if (refreshTimer !== undefined) {
+          window.clearTimeout(refreshTimer);
+        }
+
+        refreshTimer = window.setTimeout(() => {
+          refreshTimer = undefined;
+          ScrollTrigger.refresh();
+        }, 90);
+      };
       const playWhenScreenVisible = (
         target: HTMLElement | null | undefined,
         play: () => void,
-        observerOptions?: IntersectionObserverInit
+        observerOptions?: IntersectionObserverInit,
       ) => {
         if (!target) {
           return;
@@ -71,7 +82,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
               rootMargin: "0px 0px -18% 0px",
               threshold: 0.16,
               ...observerOptions,
-            }
+            },
           );
 
           observer.observe(target);
@@ -115,29 +126,15 @@ export function HomeMotion({ children }: HomeMotionProps) {
           return;
         }
 
-        heroVideo.play().catch(() => {
-          // Autoplay can be blocked by the browser; the poster remains as fallback.
-        });
+        const playHeroVideo = () => {
+          heroVideo.load();
+          heroVideo.play().catch(() => {
+            // Autoplay can be blocked by the browser; the poster remains as fallback.
+          });
+        };
 
-        const heroDrift = { scale: 1.018, x: 0, y: 0 };
+        window.setTimeout(playHeroVideo, 4500);
 
-        gsap.to(heroDrift, {
-          scale: 1.055,
-          x: -18,
-          y: -10,
-          duration: 16,
-          ease: "sine.inOut",
-          repeat: -1,
-          yoyo: true,
-          onUpdate: () => {
-            heroVideo.style.setProperty(
-              "--hero-motion-scale",
-              heroDrift.scale.toFixed(4)
-            );
-            heroVideo.style.setProperty("--hero-motion-x", `${heroDrift.x}px`);
-            heroVideo.style.setProperty("--hero-motion-y", `${heroDrift.y}px`);
-          },
-        });
       });
 
       const playHeroMotion = safeCallback(() => {
@@ -158,7 +155,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
             ".hero-motion-kicker",
             { autoAlpha: 0, y: 14 },
             { autoAlpha: 1, y: 0, duration: 0.56 },
-            0.08
+            0.08,
           )
           .to(
             ".type-letter",
@@ -170,13 +167,13 @@ export function HomeMotion({ children }: HomeMotionProps) {
               ease: "power3.out",
               stagger: 0.016,
             },
-            0.24
+            0.24,
           )
           .fromTo(
             ".hero-motion-copy",
             { autoAlpha: 0, y: 16 },
             { autoAlpha: 1, y: 0, duration: 0.62 },
-            0.72
+            0.72,
           )
           .fromTo(
             ".hero-motion-actions > *",
@@ -187,7 +184,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
               duration: 0.52,
               stagger: 0.08,
             },
-            0.98
+            0.98,
           );
       });
 
@@ -195,22 +192,18 @@ export function HomeMotion({ children }: HomeMotionProps) {
 
       const productSection =
         rootRef.current?.querySelector<HTMLElement>(".product-current");
-      const productHead =
-        rootRef.current?.querySelector<HTMLElement>(".product-current-head");
+      const productHead = rootRef.current?.querySelector<HTMLElement>(
+        ".product-current-head",
+      );
       const productRows = gsap.utils.toArray<HTMLDetailsElement>(
-        ".product-disclosure"
+        ".product-disclosure",
       );
       const cleanupProductDisclosure: Array<() => void> = [];
       let productMotionComplete = false;
-      let checkProductMotion = () => {};
       let selectionMotionComplete = false;
-      let checkSelectionMotion = () => {};
       let operationMotionComplete = false;
-      let checkOperationMotion = () => {};
       let factoryMotionComplete = false;
-      let checkFactoryMotion = () => {};
       let ctaMotionComplete = false;
-      let checkCtaMotion = () => {};
 
       if (productSection && productHead && productRows.length > 0) {
         productSection.classList.add("is-gsap-disclosure");
@@ -225,10 +218,11 @@ export function HomeMotion({ children }: HomeMotionProps) {
 
         const animateDisclosure = safeCallback(
           (item: HTMLDetailsElement, shouldOpen: boolean) => {
-            const body =
-              item.querySelector<HTMLElement>(".product-disclosure-body");
+            const body = item.querySelector<HTMLElement>(
+              ".product-disclosure-body",
+            );
             const bodyInner = item.querySelector<HTMLElement>(
-              ".product-disclosure-body > div"
+              ".product-disclosure-body > div",
             );
             const arrow = item.querySelector<HTMLElement>(".product-arrow");
             const index = item.querySelector<HTMLElement>(".product-index");
@@ -241,7 +235,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
             }
 
             const revealItems = gsap.utils.toArray<HTMLElement>(
-              bodyInner.querySelectorAll("p, .product-specs div, .text-link")
+              bodyInner.querySelectorAll("p, .product-specs div, .text-link"),
             );
             const currentHeight = body.getBoundingClientRect().height;
 
@@ -273,17 +267,17 @@ export function HomeMotion({ children }: HomeMotionProps) {
                   },
                   onComplete: () => {
                     gsap.set(body, { height: "auto", maxHeight: "none" });
-                    ScrollTrigger.refresh();
+                    scheduleScrollTriggerRefresh();
                   },
                 })
                 .to(
-                body,
-                {
-                  maxHeight: targetHeight,
-                  duration: 0.34,
-                  ease: "power2.out",
-                },
-                  0
+                  body,
+                  {
+                    maxHeight: targetHeight,
+                    duration: 0.34,
+                    ease: "power2.out",
+                  },
+                  0,
                 )
                 .to(
                   bodyInner,
@@ -292,7 +286,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
                     y: 0,
                     duration: 0.24,
                   },
-                  0.03
+                  0.03,
                 )
                 .to(
                   revealItems,
@@ -302,7 +296,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
                     duration: 0.22,
                     stagger: 0.012,
                   },
-                  0.06
+                  0.06,
                 )
                 .to(
                   arrow,
@@ -310,7 +304,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
                     rotation: 45,
                     duration: 0.22,
                   },
-                  0
+                  0,
                 )
                 .to(
                   index,
@@ -318,7 +312,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
                     scale: 1.06,
                     duration: 0.2,
                   },
-                  0
+                  0,
                 );
               return;
             }
@@ -346,7 +340,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
                   item.classList.remove("is-closing");
                   gsap.set(body, { height: 0, maxHeight: 0, autoAlpha: 0 });
                   gsap.set(bodyInner, { autoAlpha: 0, y: -8 });
-                  ScrollTrigger.refresh();
+                  scheduleScrollTriggerRefresh();
                 },
               })
               .to(
@@ -362,39 +356,39 @@ export function HomeMotion({ children }: HomeMotionProps) {
                     from: "end",
                   },
                 },
-                0
+                0,
               )
               .to(
-              bodyInner,
-              {
-                autoAlpha: 0.22,
-                y: -5,
-                duration: 0.18,
-                ease: "power2.out",
-                overwrite: true,
-              },
-                0.04
+                bodyInner,
+                {
+                  autoAlpha: 0.22,
+                  y: -5,
+                  duration: 0.18,
+                  ease: "power2.out",
+                  overwrite: true,
+                },
+                0.04,
               )
-              .to(
-              body,
-              {
-                maxHeight: 0,
-                duration: 0.3,
-                ease: "power1.out",
-                overwrite: "auto",
-              },
-              0
-            )
               .to(
                 body,
                 {
-                autoAlpha: 0,
-                duration: 0.1,
-                ease: "power1.out",
-                overwrite: "auto",
-              },
-              0.24
-            )
+                  maxHeight: 0,
+                  duration: 0.3,
+                  ease: "power1.out",
+                  overwrite: "auto",
+                },
+                0,
+              )
+              .to(
+                body,
+                {
+                  autoAlpha: 0,
+                  duration: 0.1,
+                  ease: "power1.out",
+                  overwrite: "auto",
+                },
+                0.24,
+              )
               .to(
                 arrow,
                 {
@@ -403,7 +397,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
                   ease: "power2.inOut",
                   overwrite: true,
                 },
-                0
+                0,
               )
               .to(
                 index,
@@ -413,9 +407,9 @@ export function HomeMotion({ children }: HomeMotionProps) {
                   ease: "power2.inOut",
                   overwrite: true,
                 },
-                0
+                0,
               );
-          }
+          },
         );
 
         const syncProductDisclosure = safeCallback((nextIndex: number) => {
@@ -426,12 +420,14 @@ export function HomeMotion({ children }: HomeMotionProps) {
         });
 
         productRows.forEach((item) => {
-          const summary =
-            item.querySelector<HTMLElement>(".product-disclosure-summary");
-          const body =
-            item.querySelector<HTMLElement>(".product-disclosure-body");
+          const summary = item.querySelector<HTMLElement>(
+            ".product-disclosure-summary",
+          );
+          const body = item.querySelector<HTMLElement>(
+            ".product-disclosure-body",
+          );
           const bodyInner = item.querySelector<HTMLElement>(
-            ".product-disclosure-body > div"
+            ".product-disclosure-body > div",
           );
 
           if (!summary || !body || !bodyInner) {
@@ -439,7 +435,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
           }
 
           const revealItems = gsap.utils.toArray<HTMLElement>(
-            bodyInner.querySelectorAll("p, .product-specs div, .text-link")
+            bodyInner.querySelectorAll("p, .product-specs div, .text-link"),
           );
 
           if (item.open) {
@@ -475,8 +471,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
           }
 
           productMotionComplete = true;
-          window.removeEventListener("scroll", checkProductMotion);
-          window.removeEventListener("resize", checkProductMotion);
 
           gsap
             .timeline({
@@ -493,7 +487,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
                 x: 0,
                 y: 0,
                 duration: 0.38,
-              }
+              },
             )
             .fromTo(
               productRows,
@@ -505,30 +499,19 @@ export function HomeMotion({ children }: HomeMotionProps) {
                 duration: 0.34,
                 stagger: 0.035,
               },
-              "-=0.2"
+              "-=0.2",
             );
         });
-
-        checkProductMotion = () => {
-          const rect = productHead.getBoundingClientRect();
-          const viewportHeight =
-            window.innerHeight || document.documentElement.clientHeight;
-
-          if (
-            rect.top < viewportHeight * 0.9 &&
-            rect.bottom > viewportHeight * 0.08
-          ) {
-            playProductMotion();
-          }
-        };
 
         playWhenScreenVisible(productSection, playProductMotion);
       }
 
-      const selectionSection =
-        rootRef.current?.querySelector<HTMLElement>(".selection-corridor");
-      const selectionCopy =
-        rootRef.current?.querySelector<HTMLElement>(".selection-motion-copy");
+      const selectionSection = rootRef.current?.querySelector<HTMLElement>(
+        ".selection-corridor",
+      );
+      const selectionCopy = rootRef.current?.querySelector<HTMLElement>(
+        ".selection-motion-copy",
+      );
       const flowPoints = gsap.utils.toArray<HTMLElement>(".flow-point");
 
       if (selectionSection && selectionCopy && flowPoints.length > 0) {
@@ -541,8 +524,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
           }
 
           selectionMotionComplete = true;
-          window.removeEventListener("scroll", checkSelectionMotion);
-          window.removeEventListener("resize", checkSelectionMotion);
 
           gsap
             .timeline({
@@ -561,19 +542,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
             });
         });
 
-        checkSelectionMotion = () => {
-          const rect = selectionSection.getBoundingClientRect();
-          const viewportHeight =
-            window.innerHeight || document.documentElement.clientHeight;
-
-          if (
-            rect.top < viewportHeight * 0.62 &&
-            rect.bottom > viewportHeight * 0.2
-          ) {
-            playSelectionMotion();
-          }
-        };
-
         playWhenScreenVisible(selectionSection, playSelectionMotion, {
           rootMargin: "0px 0px -24% 0px",
           threshold: 0.18,
@@ -582,8 +550,9 @@ export function HomeMotion({ children }: HomeMotionProps) {
 
       const operationSection =
         rootRef.current?.querySelector<HTMLElement>(".factory-sequence");
-      const operationCopy =
-        rootRef.current?.querySelector<HTMLElement>(".operation-motion-copy");
+      const operationCopy = rootRef.current?.querySelector<HTMLElement>(
+        ".operation-motion-copy",
+      );
       const operationItems =
         gsap.utils.toArray<HTMLElement>(".operation-stack p");
 
@@ -597,8 +566,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
           }
 
           operationMotionComplete = true;
-          window.removeEventListener("scroll", checkOperationMotion);
-          window.removeEventListener("resize", checkOperationMotion);
 
           gsap
             .timeline({
@@ -620,22 +587,9 @@ export function HomeMotion({ children }: HomeMotionProps) {
                 duration: 0.82,
                 stagger: 0.08,
               },
-              "-=0.42"
+              "-=0.42",
             );
         });
-
-        checkOperationMotion = () => {
-          const rect = operationCopy.getBoundingClientRect();
-          const viewportHeight =
-            window.innerHeight || document.documentElement.clientHeight;
-
-          if (
-            rect.top < viewportHeight * 0.86 &&
-            rect.bottom > viewportHeight * 0.12
-          ) {
-            playOperationMotion();
-          }
-        };
 
         playWhenScreenVisible(operationSection, playOperationMotion);
       }
@@ -651,8 +605,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
           }
 
           factoryMotionComplete = true;
-          window.removeEventListener("scroll", checkFactoryMotion);
-          window.removeEventListener("resize", checkFactoryMotion);
 
           gsap.fromTo(
             factoryFrames,
@@ -667,22 +619,9 @@ export function HomeMotion({ children }: HomeMotionProps) {
               ease: "power3.out",
               stagger: 0.09,
               overwrite: true,
-            }
+            },
           );
         });
-
-        checkFactoryMotion = () => {
-          const rect = factoryFilm.getBoundingClientRect();
-          const viewportHeight =
-            window.innerHeight || document.documentElement.clientHeight;
-
-          if (
-            rect.top < viewportHeight * 0.86 &&
-            rect.bottom > viewportHeight * 0.12
-          ) {
-            playFactoryMotion();
-          }
-        };
 
         playWhenScreenVisible(factoryFilm, playFactoryMotion);
       }
@@ -699,8 +638,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
           }
 
           ctaMotionComplete = true;
-          window.removeEventListener("scroll", checkCtaMotion);
-          window.removeEventListener("resize", checkCtaMotion);
 
           gsap.to(ctaRibbon, {
             autoAlpha: 1,
@@ -710,19 +647,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
             overwrite: true,
           });
         });
-
-        checkCtaMotion = () => {
-          const rect = ctaRibbon.getBoundingClientRect();
-          const viewportHeight =
-            window.innerHeight || document.documentElement.clientHeight;
-
-          if (
-            rect.top < viewportHeight * 0.86 &&
-            rect.bottom > viewportHeight * 0.12
-          ) {
-            playCtaMotion();
-          }
-        };
 
         playWhenScreenVisible(ctaRibbon, playCtaMotion);
       }
@@ -740,7 +664,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
       ScrollTrigger.update();
 
       const interactiveItems = gsap.utils.toArray<HTMLElement>(
-        ".hero-motion-actions a, .product-current-actions a, .cta-ribbon a"
+        ".hero-motion-actions a, .product-current-actions a, .cta-ribbon a",
       );
       const cleanupHover: Array<() => void> = [];
       const safeHover = contextSafe ?? ((fn) => fn);
@@ -778,16 +702,9 @@ export function HomeMotion({ children }: HomeMotionProps) {
       });
 
       return () => {
-        window.removeEventListener("scroll", checkProductMotion);
-        window.removeEventListener("resize", checkProductMotion);
-        window.removeEventListener("scroll", checkSelectionMotion);
-        window.removeEventListener("resize", checkSelectionMotion);
-        window.removeEventListener("scroll", checkOperationMotion);
-        window.removeEventListener("resize", checkOperationMotion);
-        window.removeEventListener("scroll", checkFactoryMotion);
-        window.removeEventListener("resize", checkFactoryMotion);
-        window.removeEventListener("scroll", checkCtaMotion);
-        window.removeEventListener("resize", checkCtaMotion);
+        if (refreshTimer !== undefined) {
+          window.clearTimeout(refreshTimer);
+        }
         viewportTriggerCleanups.forEach((cleanup) => cleanup());
 
         root?.classList.remove("is-home-motion-ready");
@@ -797,7 +714,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
         cleanupHover.forEach((cleanup) => cleanup());
       };
     },
-    { scope: rootRef }
+    { scope: rootRef },
   );
 
   return (

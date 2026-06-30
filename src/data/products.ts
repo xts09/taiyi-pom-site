@@ -2206,27 +2206,4 @@ export const products: Product[] = [
       ],
     }),
   },
-  {
-    slug: "low-friction-pom-compounds",
-    title: "Custom Low-Friction POM Compound",
-    grade: "Custom / Project-Based",
-    mfi: "Based on Requirement",
-    color: "Natural / Custom",
-    category: "Low-Friction POM Compound",
-    description:
-      "Project-based low-friction POM compound direction for sliding parts, bushings, rollers, and moving assemblies.",
-    features: [
-      "Low-friction material direction",
-      "Suitable for sliding and moving parts",
-      "Formulation based on target requirements",
-    ],
-    applications: [
-      "Sliding parts",
-      "Bushings",
-      "Rollers",
-      "Gears",
-    ],
-    documents: standardDocuments,
-    properties: [],
-  },
 ];

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
@@ -11,6 +12,7 @@ import {
   findCategoryBySlug,
   getCategoryDescription,
   getCategoryFaqs,
+  getCategoryNavSubtitle,
   getCategoryTitle,
   getProductsByCategory,
   productCategoryEntries,
@@ -71,7 +73,7 @@ export default async function ProductCategoryPage({
   const pageTitle =
     entry.category === "POM"
       ? "POM Material Grades"
-      : getCategoryTitle(entry.category);
+      : entry.label;
   const heroTitle = entry.category === "POM" ? "POM Materials" : entry.label;
   const pageDescription =
     entry.category === "POM"
@@ -138,14 +140,6 @@ export default async function ProductCategoryPage({
       <ProductPageMotion>
       <section className="product-category-shell mesh-surface">
         <div className={heroClassName}>
-          <nav className="subpage-breadcrumb">
-            <Link href="/">Home</Link>
-            <span>/</span>
-            <Link href="/products">Products</Link>
-            <span>/</span>
-            <span>{entry.label}</span>
-          </nav>
-
           <div className="product-hero-card">
             <p className="product-hero-eyebrow">Material Directory</p>
 
@@ -192,11 +186,7 @@ export default async function ProductCategoryPage({
             boxShadow: "none",
             filter: "none",
           }}
-          subtitle={
-            entry.category === "POM"
-              ? "Modified POM Compounds | Base POM Resin"
-              : entry.label
-          }
+          subtitle={getCategoryNavSubtitle(entry.category)}
           tabs={sectionTabs}
           title={pageTitle}
           variant="product"
@@ -295,21 +285,11 @@ export default async function ProductCategoryPage({
           </div>
         </section>
 
-        <section className="selection-support-band products-motion-support mt-12">
-          <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-            <div>
-              <p className="section-kicker mb-3">Inquiry Support</p>
-              <h2 className="text-2xl font-black tracking-tight text-white">
-                Request a Grade Recommendation
-              </h2>
-              <p className="mt-4 text-sm leading-6 text-slate-300">
-                Share your application, mold development stage, cavity count,
-                operating condition, current material, shrinkage or warpage
-                concern, document needs, and target volume so we can recommend a
-                suitable Taiyi material direction.
-              </p>
-            </div>
-
+        <MaterialRecommendationCta
+          kicker="Inquiry Support"
+          title="Request a Grade Recommendation"
+          className="selection-support-band products-motion-support mt-12"
+          aside={
             <div className="support-line-steps">
               {["Tooling Plan", "Shrinkage Target", "Document Needs"].map(
                 (item, index) => (
@@ -320,12 +300,15 @@ export default async function ProductCategoryPage({
                 )
               )}
             </div>
-          </div>
-
-          <Link href="/contact" className="cta-primary mt-7 px-6 py-3 text-sm">
-            Contact Sales
-          </Link>
-        </section>
+          }
+        >
+          <p>
+            Share your application, mold development stage, cavity count,
+            operating condition, current material, shrinkage or warpage concern,
+            document needs, and target volume so we can recommend a suitable
+            Taiyi material direction.
+          </p>
+        </MaterialRecommendationCta>
       </section>
       </ProductPageMotion>
     </main>

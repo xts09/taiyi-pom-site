@@ -12,6 +12,7 @@ import {
   type ApplicationItem,
 } from "@/data/applications";
 import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
+import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
@@ -28,7 +29,6 @@ type ApplicationVisualAssets = {
   cad: string;
   material: string;
   productMaterial?: string;
-  ctaMaterial?: string;
 };
 
 type ApplicationVisualConfig = {
@@ -76,22 +76,42 @@ const reviewCardTitles = [
 ];
 
 const automotiveVisualAssets: ApplicationVisualAssets = {
-  scene: "/generated/applications/automotive/automotive-application-scene.png",
-  components: "/generated/applications/automotive/automotive-components-background-unified.png",
-  cad: "/generated/applications/automotive/automotive-cad-layout-overlay.png",
-  material: "/generated/applications/automotive/pom-material-macro.png",
-  productMaterial: "/generated/applications/common/application-product-pellets-strip.png",
-  ctaMaterial: "/generated/applications/common/application-cta-pellets-dark-fade.png",
+  scene: "/generated/applications/automotive/automotive-application-scene.webp",
+  components:
+    "/generated/applications/automotive/automotive-components-background-unified.png",
+  cad: "/generated/applications/automotive/automotive-cad-layout-overlay.webp",
+  material: "/generated/applications/automotive/pom-material-macro.webp",
+  productMaterial:
+    "/generated/applications/common/application-product-pellets-strip.png",
 };
 
 const commonApplicationVisualAssets: ApplicationVisualAssets = {
-  scene: "/generated/applications/common/automation-scene.png",
-  components: "/generated/applications/common/pom-parts-transparent.png",
-  cad: "/generated/applications/common/cad-overlay-transparent.png",
-  material: "/generated/applications/common/pom-pellets-macro.png",
-  productMaterial: "/generated/applications/common/application-product-pellets-strip.png",
-  ctaMaterial: "/generated/applications/common/application-cta-pellets-dark-fade.png",
+  scene: "/generated/applications/common/automation-scene.webp",
+  components: "/generated/applications/common/pom-parts-transparent.webp",
+  cad: "/generated/applications/common/cad-overlay-transparent.webp",
+  material: "/generated/applications/common/pom-pellets-macro.webp",
+  productMaterial:
+    "/generated/applications/common/application-product-pellets-strip.png",
 };
+
+const createApplicationVisualAssets = (
+  scene: string,
+): ApplicationVisualAssets => ({
+  ...commonApplicationVisualAssets,
+  scene,
+});
+
+const materialCardImages = {
+  natural: "/generated/pom-natural-pellets-dish-square.webp",
+  naturalWide: "/generated/pom-natural-pellets-hero-wide.webp",
+  naturalMacro: "/generated/pom-natural-pellets-macro-texture.webp",
+  wearNatural: "/generated/pom-wear-natural-pellets-dish-square.webp",
+  wearNaturalMacro: "/generated/pom-wear-natural-pellets-macro-texture.webp",
+  glassFiber: "/generated/pom-glass-fiber-pellets-dish-square.webp",
+  black: "/generated/pom-black-pellets-card-crop.webp",
+  uvBlack: "/generated/pom-uv-black-pellets-dish-square.webp",
+  white: "/generated/pom-white-pellets-dish-square.webp",
+} as const;
 
 const automotiveReviewFocus = [
   "Impact response | tolerance control",
@@ -104,11 +124,48 @@ const applicationUseFallbackTitles: Record<string, readonly string[]> = {
   automotive: ["Interior Mechanisms"],
 };
 
-const applicationVisualConfigs: Partial<Record<string, ApplicationVisualConfig>> = {
+const applicationVisualConfigs: Partial<
+  Record<string, ApplicationVisualConfig>
+> = {
   automotive: {
     assets: automotiveVisualAssets,
     primaryDirectionIndex: 0,
     reviewFocus: automotiveReviewFocus,
+  },
+  electronics: {
+    assets: createApplicationVisualAssets(
+      "/applications/parts/electronic-electrical-components-wide.webp",
+    ),
+  },
+  "conveyor-automation": {
+    assets: createApplicationVisualAssets(
+      "/applications/parts/conveyor-chain-plates-wide.webp",
+    ),
+  },
+  "motion-components": {
+    assets: createApplicationVisualAssets(
+      "/applications/parts/gears-moving-mechanical-parts-wide.webp",
+    ),
+  },
+  "water-control": {
+    assets: createApplicationVisualAssets(
+      "/applications/parts/bathroom-parts-2.jpg",
+    ),
+  },
+  "industrial-machinery": {
+    assets: createApplicationVisualAssets(
+      "/applications/parts/automotive-controlbox-components.jpg",
+    ),
+  },
+  "outdoor-equipment": {
+    assets: createApplicationVisualAssets(
+      "/applications/parts/agricultural-sprinkler-head.jpg",
+    ),
+  },
+  "textile-machinery": {
+    assets: createApplicationVisualAssets(
+      "/applications/parts/textile-parts.jpg",
+    ),
   },
 };
 
@@ -128,7 +185,7 @@ const getCyclicItem = <T,>(items: readonly T[] | undefined, index: number) =>
 
 const getApplicationHeroStyle = (
   heroImageSrc: string,
-  cadImageSrc?: string
+  cadImageSrc?: string,
 ): CSSProperties =>
   ({
     "--application-hero-image": `url(${publicPath(heroImageSrc)})`,
@@ -137,12 +194,35 @@ const getApplicationHeroStyle = (
           "--application-cad-image": `url(${publicPath(cadImageSrc)})`,
         }
       : {}),
-  } as CSSProperties);
+  }) as CSSProperties;
 
-const getApplicationMaterialStyle = (materialImageSrc: string): CSSProperties =>
-  ({
-    "--application-material-image": `url(${publicPath(materialImageSrc)})`,
-  } as CSSProperties);
+const getMaterialCardImage = (card: MaterialDirectionCardData): string => {
+  const text = `${card.directionName} ${card.condition}`.toLowerCase();
+
+  if (/uv|light-exposed|outdoor/.test(text)) {
+    return materialCardImages.uvBlack;
+  }
+
+  if (/carbon|conductive|antistatic|esd/.test(text)) {
+    return materialCardImages.black;
+  }
+
+  if (
+    /wear|low-friction|friction|sliding|lubricat|high-impact|impact/.test(text)
+  ) {
+    return materialCardImages.white;
+  }
+
+  if (/glass|fiber|reinforced/.test(text)) {
+    return materialCardImages.white;
+  }
+
+  if (/base|natural|standard/.test(text)) {
+    return materialCardImages.naturalMacro;
+  }
+
+  return materialCardImages.white;
+};
 
 const getApplicationHeroClassName = (application: ApplicationItem) =>
   cx(
@@ -150,11 +230,11 @@ const getApplicationHeroClassName = (application: ApplicationItem) =>
     "application-hero",
     application.heroImage && "application-hero-with-image",
     `application-hero-${application.slug}`,
-    "mb-8"
+    "mb-8",
   );
 
 const getEngineeringGroups = (
-  application: ApplicationItem
+  application: ApplicationItem,
 ): ApplicationEngineeringGroup[] =>
   application.engineeringFit ?? [
     {
@@ -172,18 +252,18 @@ const getEngineeringGroups = (
   ];
 
 const getPerformanceItems = (
-  engineeringGroups: readonly ApplicationEngineeringGroup[]
+  engineeringGroups: readonly ApplicationEngineeringGroup[],
 ) =>
   (
     engineeringGroups.find((group) =>
-      performanceGroupTitlePattern.test(group.title)
+      performanceGroupTitlePattern.test(group.title),
     ) ?? engineeringGroups[1]
   )?.items ?? [];
 
 const getApplicationVisualContext = (application: ApplicationItem) => {
   const visualConfig = applicationVisualConfigs[application.slug];
   const visualAssets = application.heroImage
-    ? visualConfig?.assets ?? commonApplicationVisualAssets
+    ? (visualConfig?.assets ?? commonApplicationVisualAssets)
     : undefined;
 
   return {
@@ -204,7 +284,7 @@ const splitDirectionLabel = (label: string) => {
 const getMaterialDirectionCards = (
   application: ApplicationItem,
   partFitItems: readonly string[],
-  visualConfig?: ApplicationVisualConfig
+  visualConfig?: ApplicationVisualConfig,
 ): MaterialDirectionCardData[] =>
   application.materialDirections.map((direction, index) => {
     const directionLabel = splitDirectionLabel(direction.label);
@@ -220,14 +300,15 @@ const getMaterialDirectionCards = (
       href: direction.href,
       image: getCyclicItem(application.images, index),
       isPrimaryDirection: visualConfig?.primaryDirectionIndex === index,
-      part: getCyclicItem(application.images, index)?.label ?? application.title,
+      part:
+        getCyclicItem(application.images, index)?.label ?? application.title,
       reviewFocus: getCyclicItem(visualConfig?.reviewFocus, index),
     };
   });
 
 const getApplicationUseCards = (
   application: ApplicationItem,
-  engineeringGroups: readonly ApplicationEngineeringGroup[]
+  engineeringGroups: readonly ApplicationEngineeringGroup[],
 ): ApplicationUseCardData[] => {
   const typicalParts = engineeringGroups[0]?.items ?? [];
   const performanceNeeds = getPerformanceItems(engineeringGroups);
@@ -241,7 +322,9 @@ const getApplicationUseCards = (
         ? {
             src: application.heroImage.src,
             alt: application.heroImage.alt,
-            label: fallbackTitles[index - application.images.length] ?? application.title,
+            label:
+              fallbackTitles[index - application.images.length] ??
+              application.title,
           }
         : undefined;
     const image = application.images[index] ?? fallbackImage;
@@ -316,7 +399,7 @@ function ProductInfoCard({
         <div
           className={cx(
             "application-product-card-media",
-            materialImageSrc && "application-product-card-media-material"
+            materialImageSrc && "application-product-card-media-material",
           )}
         >
           <Image
@@ -389,22 +472,20 @@ export default async function ApplicationDetailPage({
 
   const engineeringGroups = getEngineeringGroups(application);
   const partFitItems = getPerformanceItems(engineeringGroups);
-  const { visualAssets, visualConfig } = getApplicationVisualContext(application);
-  const productMaterialImage =
-    visualAssets?.productMaterial ?? visualAssets?.material;
-  const ctaMaterialImage = visualAssets?.ctaMaterial;
+  const { visualAssets, visualConfig } =
+    getApplicationVisualContext(application);
   const materialDirectionCards = getMaterialDirectionCards(
     application,
     partFitItems,
-    visualConfig
+    visualConfig,
   );
   const applicationUseCards = getApplicationUseCards(
     application,
-    engineeringGroups
+    engineeringGroups,
   );
 
   return (
-    <main className="min-h-screen text-slate-900">
+    <main className="application-detail-page min-h-screen text-slate-900">
       <ApplicationAnimeMotion />
       <section
         className={`application-detail-shell application-detail-${application.slug} mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8`}
@@ -413,7 +494,10 @@ export default async function ApplicationDetailPage({
           className={getApplicationHeroClassName(application)}
           style={
             application.heroImage
-              ? getApplicationHeroStyle(application.heroImage.src, visualAssets?.cad)
+              ? getApplicationHeroStyle(
+                  application.heroImage.src,
+                  visualAssets?.cad,
+                )
               : undefined
           }
         >
@@ -427,6 +511,35 @@ export default async function ApplicationDetailPage({
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               {application.description}
             </p>
+
+            <div
+              className="application-hero-data"
+              aria-label="Application material review inputs"
+            >
+              <div className="application-hero-summary">
+                <strong>Review Inputs</strong>
+                <p>
+                  Part geometry, movement, assembly fit, dimensional target, and
+                  document needs.
+                </p>
+              </div>
+
+              <div className="application-hero-directions">
+                <strong>Material Directions</strong>
+                <span>
+                  {application.materialDirections
+                    .slice(0, 3)
+                    .map((direction) => (
+                      <Link
+                        key={direction.label}
+                        href={direction.href ?? "/contact"}
+                      >
+                        {direction.shortLabel ?? direction.label}
+                      </Link>
+                    ))}
+                </span>
+              </div>
+            </div>
 
             <div className="application-hero-cta">
               <Link href="/contact">Discuss Requirement</Link>
@@ -458,7 +571,7 @@ export default async function ApplicationDetailPage({
         >
           {visualAssets ? (
             <>
-              <div className="application-scene-visual" data-application-motion-item>
+              <div className="application-scene-visual">
                 <Image
                   src={publicPath(visualAssets.scene)}
                   alt={`${application.title} application scene for engineering plastic material review`}
@@ -471,24 +584,24 @@ export default async function ApplicationDetailPage({
 
                 <div className="application-scene-copy application-scene-copy-overlay">
                   <p className="section-kicker mb-3">Overview</p>
-                  <h2>{application.title} parts, read by real conditions.</h2>
+                  <h2>Material Fit Review</h2>
                   <p>
                     Start from the actual mechanism: movement, assembly fit, and
-                    dimensional targets should define the material direction before
-                    a grade is screened.
+                    dimensional targets should define the material direction
+                    before a grade is screened.
                   </p>
                 </div>
               </div>
-
             </>
           ) : (
             <>
               <div className="application-scene-copy">
                 <p className="section-kicker mb-3">Overview</p>
-                <h2>{application.title} parts, read by real conditions.</h2>
+                <h2>Material Fit Review</h2>
                 <p>
                   Start with part geometry, motion, dimensional target, and
-                  document needs before moving into a modified POM grade direction.
+                  document needs before moving into a modified POM grade
+                  direction.
                 </p>
 
                 <ul
@@ -504,7 +617,10 @@ export default async function ApplicationDetailPage({
                 </ul>
               </div>
 
-              <div className="application-scene-gallery" aria-label="Typical parts">
+              <div
+                className="application-scene-gallery"
+                aria-label="Typical parts"
+              >
                 {application.images.map((image, index) => (
                   <figure
                     key={image.src}
@@ -570,11 +686,6 @@ export default async function ApplicationDetailPage({
               ? "application-notes application-notes-material"
               : "application-notes"
           }
-          style={
-            productMaterialImage
-              ? getApplicationMaterialStyle(productMaterialImage)
-              : undefined
-          }
           data-application-motion
         >
           <div className="application-notes-head">
@@ -592,39 +703,30 @@ export default async function ApplicationDetailPage({
                 key={card.key}
                 card={card}
                 image={getCyclicItem(application.images, index)}
-                materialImageSrc={productMaterialImage}
+                materialImageSrc={getMaterialCardImage(card)}
               />
             ))}
           </div>
         </section>
 
-        <section
+        <MaterialRecommendationCta
           id="material-evaluation"
+          kicker="Material Evaluation"
+          title="Ready to narrow the material direction?"
           className={
             visualAssets
               ? "application-review-cta application-brief-cta"
               : "application-review-cta"
           }
-          style={
-            ctaMaterialImage
-              ? getApplicationMaterialStyle(ctaMaterialImage)
-              : undefined
-          }
+          actionLabel={`Discuss ${application.title} Requirement`}
+          actionClassName="shrink-0 px-7"
           data-application-motion
         >
-          <div>
-            <p className="section-kicker mb-3">Material Evaluation</p>
-            <h2>Ready to narrow the material direction?</h2>
-            <p>
-              Share the part, condition, and target. We will help screen the
-              suitable modified POM direction.
-            </p>
-          </div>
-
-          <Link href="/contact" className="cta-primary shrink-0 px-7 py-3 text-sm">
-            Discuss {application.title} Requirement
-          </Link>
-        </section>
+          <p>
+            Share the part, condition, and target. We will help screen the
+            suitable modified POM direction.
+          </p>
+        </MaterialRecommendationCta>
       </section>
     </main>
   );
