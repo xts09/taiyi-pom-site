@@ -35,9 +35,14 @@ yarn-error.log*
 /.codex-run/
 /.codex-audits/
 /.playwright-cli/
+/.gitnexus/
+/.impeccable/
 /.codex-*.png
 /taiyi-pom-promo/
 /taiyi-pom-*-promo/
+
+# local generated exports
+/outputs/
 
 # env files (can opt-in for committing if needed)
 .env*
