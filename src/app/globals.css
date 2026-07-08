@@ -3918,6 +3918,33 @@ body {
   line-height: 1.5;
 }
 
+@media (max-width: 74.999rem) {
+  .site-footer-inner {
+    grid-template-columns: 1fr;
+    gap: clamp(1.35rem, 3vw, 2rem);
+  }
+
+  .site-footer-brand {
+    max-width: none;
+  }
+
+  .site-footer-menu {
+    grid-template-columns: minmax(8.5rem, 0.85fr) minmax(16rem, 1.45fr) minmax(11rem, 1.1fr) minmax(8.5rem, 0.9fr);
+  }
+}
+
+@media (max-width: 56rem) {
+  .site-footer-menu {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem 1.2rem;
+  }
+
+  .site-footer-column + .site-footer-column {
+    padding-left: 0;
+    border-left: 0;
+  }
+}
+
 .factory-gallery {
   gap: 0;
   border-top: 1px solid rgba(15, 23, 42, 0.12);
