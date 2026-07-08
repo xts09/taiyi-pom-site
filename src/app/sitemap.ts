@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { applications } from "@/data/applications";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { productCategoryEntries } from "@/lib/productCategories";
@@ -27,6 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: entry.category === "POM" ? 0.85 : 0.75,
   }));
 
+  const applicationRoutes = applications.map((application) => ({
+    url: `${siteUrl}/applications/${application.slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.74,
+  }));
+
   const productRoutes = products.map((product) => ({
     url: `${siteUrl}/products/${product.slug}`,
     changeFrequency: "monthly" as const,
@@ -39,5 +46,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.72,
   }));
 
-  return [...staticRoutes, ...categoryRoutes, ...productRoutes, ...resourceRoutes];
+  return [
+    ...staticRoutes,
+    ...categoryRoutes,
+    ...productRoutes,
+    ...applicationRoutes,
+    ...resourceRoutes,
+  ];
 }

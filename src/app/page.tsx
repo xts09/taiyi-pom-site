@@ -21,9 +21,9 @@ import { publicPath } from "@/lib/paths";
 import { getCategoryPath } from "@/lib/productCategories";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "POM Compounds & Engineering Plastic Compounding | Taiyi Nano",
+  title: "Modified POM Compounds for Industrial Parts | Taiyi Nano",
   description:
-    "We develop and produce POM compounds as the core line, with selected PA6, PA66, PPA, and PPS compound support for wear-resistant, low-friction, reinforced, conductive, and antistatic molded part applications.",
+    "Taiyi Nano manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66, PPA and PPS compound support.",
   path: "/",
 });
 
