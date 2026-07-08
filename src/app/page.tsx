@@ -4,7 +4,6 @@ import { Fragment, type CSSProperties } from "react";
 import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
 import { HomeMotion } from "@/components/HomeMotion";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import AnimatedContent from "@/components/reactbits/AnimatedContent";
 import { SelectionLogicStepper } from "@/components/SelectionLogicStepper";
 import {
@@ -412,22 +411,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-cta py-20">
-          <div className="site-container">
-            <MaterialRecommendationCta
-              kicker="Inquiry Preparation"
-              title="Need a Material Recommendation?"
-              className="cta-ribbon"
-            >
-              <p>
-                Share the application, mold stage, cavity count, target
-                shrinkage or dimensional concern, current material reference,
-                color, document requirements, and estimated volume. We will
-                recommend a suitable modified material direction for review.
-              </p>
-            </MaterialRecommendationCta>
-          </div>
-        </section>
       </main>
     </HomeMotion>
   );
