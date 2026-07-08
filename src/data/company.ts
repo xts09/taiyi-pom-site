@@ -28,15 +28,19 @@ export type FactoryProofRow = {
 };
 
 export const companyFigures: CompanyFigure[] = [
-  { label: "Established", value: "2003", note: "June 18, 2003" },
-  { label: "Annual Capacity", value: "60,000", note: "Tons/year" },
+  {
+    label: "Experience",
+    value: "20+",
+    note: "Years since 2003",
+  },
+  { label: "Annual Capacity", value: "60,000", note: "Tons / year" },
   {
     label: "Production Lines",
     value: "15",
-    note: "Twin-Screw Extrusion Lines",
+    note: "Twin-screw extrusion lines",
   },
-  { label: "Factory Scale", value: "25,000 m2", note: "Building Area" },
-  { label: "Laboratory", value: "32", note: "Sets of Testing Equipment" },
+  { label: "Factory Area", value: "25,000 m2", note: "Building area" },
+  { label: "Testing Equipment", value: "32", note: "Sets" },
 ];
 
 export const companyCapabilities: CompanyCapability[] = [

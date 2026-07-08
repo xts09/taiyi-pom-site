@@ -27,7 +27,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
           ?.querySelector<HTMLElement>(".selection-corridor")
           ?.classList.add("is-flow-active");
         gsap.set(
-          ".hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .section-motion-copy, .product-current-head, .product-disclosure, .flow-point, .operation-stack p, .factory-frame, .cta-ribbon",
+          ".hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .section-motion-copy, .product-current-head, .product-disclosure, .product-portfolio-explorer, .selection-stepper, .flow-point, .operation-stack p, .factory-frame, .cta-ribbon",
           { autoAlpha: 1, x: 0, y: 0, filter: "none" },
         );
         return;
@@ -127,14 +127,13 @@ export function HomeMotion({ children }: HomeMotionProps) {
         }
 
         const playHeroVideo = () => {
-          heroVideo.load();
           heroVideo.play().catch(() => {
             // Autoplay can be blocked by the browser; the poster remains as fallback.
           });
         };
 
-        window.setTimeout(playHeroVideo, 4500);
-
+        playHeroVideo();
+        window.setTimeout(playHeroVideo, 800);
       });
 
       const playHeroMotion = safeCallback(() => {
@@ -197,6 +196,9 @@ export function HomeMotion({ children }: HomeMotionProps) {
       );
       const productRows = gsap.utils.toArray<HTMLDetailsElement>(
         ".product-disclosure",
+      );
+      const productExplorer = rootRef.current?.querySelector<HTMLElement>(
+        ".product-portfolio-explorer",
       );
       const cleanupProductDisclosure: Array<() => void> = [];
       let productMotionComplete = false;
@@ -504,6 +506,42 @@ export function HomeMotion({ children }: HomeMotionProps) {
         });
 
         playWhenScreenVisible(productSection, playProductMotion);
+      } else if (productSection && productHead && productExplorer) {
+        gsap.set(productHead, { autoAlpha: 0, x: -18, y: 4 });
+        gsap.set(productExplorer, { x: 18, y: 5 });
+
+        const playProductMotion = safeCallback(() => {
+          if (productMotionComplete) {
+            return;
+          }
+
+          productMotionComplete = true;
+
+          gsap
+            .timeline({
+              defaults: {
+                ease: "power3.out",
+                overwrite: true,
+              },
+            })
+            .to(productHead, {
+              autoAlpha: 1,
+              x: 0,
+              y: 0,
+              duration: 0.38,
+            })
+            .to(
+              productExplorer,
+              {
+                x: 0,
+                y: 0,
+                duration: 0.36,
+              },
+              "-=0.18",
+            );
+        });
+
+        playWhenScreenVisible(productSection, playProductMotion);
       }
 
       const selectionSection = rootRef.current?.querySelector<HTMLElement>(
@@ -513,10 +551,19 @@ export function HomeMotion({ children }: HomeMotionProps) {
         ".selection-motion-copy",
       );
       const flowPoints = gsap.utils.toArray<HTMLElement>(".flow-point");
+      const selectionStepper =
+        rootRef.current?.querySelector<HTMLElement>(".selection-stepper");
 
-      if (selectionSection && selectionCopy && flowPoints.length > 0) {
+      if (
+        selectionSection &&
+        selectionCopy &&
+        (flowPoints.length > 0 || selectionStepper)
+      ) {
         selectionSection.classList.add("is-flow-ready");
         gsap.set(selectionCopy, { autoAlpha: 0, x: -46 });
+        if (selectionStepper) {
+          gsap.set(selectionStepper, { x: 34 });
+        }
 
         const playSelectionMotion = safeCallback(() => {
           if (selectionMotionComplete) {
@@ -525,7 +572,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
 
           selectionMotionComplete = true;
 
-          gsap
+          const timeline = gsap
             .timeline({
               defaults: {
                 ease: "power3.out",
@@ -540,6 +587,17 @@ export function HomeMotion({ children }: HomeMotionProps) {
               x: 0,
               duration: 1.25,
             });
+
+          if (selectionStepper) {
+            timeline.to(
+              selectionStepper,
+              {
+                x: 0,
+                duration: 1,
+              },
+              0.08,
+            );
+          }
         });
 
         playWhenScreenVisible(selectionSection, playSelectionMotion, {
@@ -651,20 +709,11 @@ export function HomeMotion({ children }: HomeMotionProps) {
         playWhenScreenVisible(ctaRibbon, playCtaMotion);
       }
 
-      ScrollTrigger.create({
-        trigger: "[data-metrics-trigger]",
-        start: "top 88%",
-        once: true,
-        onEnter: ({ trigger }) => {
-          trigger?.classList.add("metrics-counting");
-        },
-      });
-
       ScrollTrigger.refresh();
       ScrollTrigger.update();
 
       const interactiveItems = gsap.utils.toArray<HTMLElement>(
-        ".hero-motion-actions a, .product-current-actions a, .cta-ribbon a",
+        ".hero-motion-actions a, .portfolio-panel-actions a, .cta-ribbon a",
       );
       const cleanupHover: Array<() => void> = [];
       const safeHover = contextSafe ?? ((fn) => fn);
@@ -718,7 +767,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
   );
 
   return (
-    <div ref={rootRef} className="home-motion-root is-home-motion-ready">
+    <div ref={rootRef} className="home-motion-root">
       {children}
     </div>
   );

@@ -1375,6 +1375,21 @@
   top: var(--site-header-height) !important;
 }
 
+.products-motion-root.is-section-nav-pinned .product-section-nav {
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.products-motion-root.is-section-nav-pinned .product-section-nav::before,
+.products-motion-root.is-section-nav-pinned .product-section-nav::after {
+  display: none !important;
+  content: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
 .products-motion-root .product-family-overview {
   display: grid;
   grid-template-columns: minmax(10rem, 0.22fr) minmax(0, 1fr);

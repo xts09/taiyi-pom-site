@@ -10,11 +10,16 @@
   --taiyi-cyan: #00b8d9;
   --taiyi-mint: #45d3a7;
   --taiyi-line: rgba(148, 163, 184, 0.28);
-  --site-header-height: 5.5625rem;
-  --font-ibm-plex-sans: "IBM Plex Sans";
-  --font-geist-sans:
-    var(--font-ibm-plex-sans), "IBM Plex Sans", "Noto Sans SC", system-ui,
+  --site-header-height: 3.9375rem;
+  --font-ibm-plex-sans: "IBM Plex Sans Variable";
+  --font-display:
+    "Archivo Variable", var(--font-ibm-plex-sans), "Noto Sans SC", system-ui,
     sans-serif;
+  --font-nav:
+    "Saira Variable", "Archivo Variable", var(--font-ibm-plex-sans),
+    "Noto Sans SC", system-ui, sans-serif;
+  --font-geist-sans:
+    var(--font-ibm-plex-sans), "Noto Sans SC", system-ui, sans-serif;
   --font-geist-mono: "Cascadia Mono", "Consolas", "SFMono-Regular", monospace;
 }
 
@@ -44,20 +49,21 @@ body {
 }
 
 .font-black {
-  font-weight: 620 !important;
+  font-weight: 700 !important;
 }
 
 .font-extrabold {
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
 .font-bold {
-  font-weight: 620 !important;
+  font-weight: 700 !important;
 }
 
 :where(h1, h2, h3) {
-  font-family: var(--font-geist-sans);
-  font-weight: 620;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-optical-sizing: auto;
 }
 
 ::selection {
@@ -7735,6 +7741,26 @@ body {
 .application-detail-shell.mesh-surface .application-section-nav {
   border-bottom: 0;
   box-shadow: none;
+}
+
+.application-detail-shell.mesh-surface.is-section-nav-pinned
+  .application-section-nav {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.application-detail-shell.mesh-surface.is-section-nav-pinned
+  .application-section-nav::before,
+.application-detail-shell.mesh-surface.is-section-nav-pinned
+  .application-section-nav::after {
+  display: none !important;
+  content: none !important;
+  box-shadow: none !important;
+  filter: none !important;
 }
 
 .application-detail-shell.mesh-surface .application-scene-solution,

@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
 import { HomeMotion } from "@/components/HomeMotion";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import AnimatedContent from "@/components/reactbits/AnimatedContent";
+import { SelectionLogicStepper } from "@/components/SelectionLogicStepper";
 import {
   availableDocuments,
   companyFigures,
@@ -19,9 +21,9 @@ import { publicPath } from "@/lib/paths";
 import { getCategoryPath } from "@/lib/productCategories";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Modified POM & Engineering Plastic Compounds | Taiyi Nano",
+  title: "POM Compounds & Engineering Plastic Compounding | Taiyi Nano",
   description:
-    "We develop and produce modified POM, PA6, PA66, PPA, and PPS compounds for wear-resistant, low-friction, reinforced, and functional molded part applications. POM resin is also available for selected sourcing requirements.",
+    "We develop and produce POM compounds as the core line, with selected PA6, PA66, PPA, and PPS compound support for wear-resistant, low-friction, reinforced, conductive, and antistatic molded part applications.",
   path: "/",
 });
 
@@ -35,11 +37,11 @@ const supportingFigures = companyFigures.filter(
 
 const materialDirections = [
   {
-    title: "Modified POM Compounds",
+    title: "POM Compounds",
     description:
       "Core product line for wear-resistant, low-friction, reinforced, conductive, and antistatic molded part applications.",
     href: getCategoryPath("POM"),
-    action: "Browse POM Materials",
+    action: "Browse POM Compounds",
     specs: [
       ["Role", "Core Product Line"],
       ["Directions", "Wear / Friction / Reinforced"],
@@ -118,7 +120,7 @@ const operationItems = [
   "Document Support for Qualification",
 ];
 
-const heroTitle = "Modified POM & Engineering Plastic Compounds";
+const heroTitle = "Modified POM Compounds for Demanding Industrial Parts";
 
 const heroTitleWords = (() => {
   let letterIndex = 0;
@@ -132,6 +134,11 @@ const heroTitleWords = (() => {
   }));
 })();
 
+const heroTitleLines = [
+  heroTitleWords.slice(0, 3),
+  heroTitleWords.slice(3),
+];
+
 export default function Home() {
   return (
     <HomeMotion>
@@ -142,18 +149,19 @@ export default function Home() {
             __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
           }}
         />
-        <section className="home-hero relative isolate min-h-[calc(100vh-4.25rem)] overflow-hidden">
+        <section className="home-hero relative isolate overflow-hidden">
           <video
             className="hero-video absolute inset-0 -z-20 h-full w-full object-cover"
+            autoPlay
             loop
             muted
             playsInline
-            preload="none"
-            poster={publicPath("/factory-hero-no-machine-poster.jpg")}
+            preload="metadata"
+            poster={publicPath("/factory-hero-95b-loop-v6-poster.jpg")}
             aria-hidden="true"
           >
             <source
-              src={publicPath("/factory-hero-no-machine.mp4")}
+              src={publicPath("/factory-hero-95b-loop-v6.mp4")}
               type="video/mp4"
               media="(min-width: 520px)"
             />
@@ -168,60 +176,75 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mx-auto flex min-h-[calc(100vh-4.25rem)] max-w-[82rem] items-center px-5 py-14 sm:px-6 lg:px-10">
-            <div className="relative z-10 w-full max-w-4xl">
-              <div className="hero-motion-kicker hero-identity mb-6">
-                <p>Jiangsu Taiyi Nano Technology Co., Ltd.</p>
-                <span>
-                  Modified POM Materials &amp; Engineering Plastic Compounds
-                </span>
-              </div>
+          <div className="site-container flex items-center py-14">
+            <div className="home-hero-content relative z-10 w-full">
+              <p className="hero-eyebrow hero-motion-kicker">
+                Factory-Based Engineering Plastic Compounder
+              </p>
 
               <h1
-                className="hero-motion-title typewriter-title max-w-[20.5rem] text-[2.3rem] font-black leading-[1.08] tracking-tight text-white sm:max-w-4xl sm:text-[2.9rem] sm:leading-[1.04] md:text-[3.25rem] lg:text-6xl lg:leading-[1.02]"
+                className="hero-motion-title typewriter-title max-w-[20.5rem] text-[2.3rem] leading-[1.08] text-white sm:max-w-3xl sm:text-[2.9rem] sm:leading-[1.04] md:text-[3.25rem] lg:text-[3.7rem] lg:leading-[1.02]"
                 aria-label={heroTitle}
               >
                 <span className="typewriter-visual" aria-hidden="true">
-                  {heroTitleWords.map(({ word, letters }, wordIndex) => (
-                    <Fragment key={`${word}-${wordIndex}`}>
-                      <span className="type-word">
-                        {letters.map(({ letter, index }) => (
-                          <span
-                            key={`${letter}-${index}`}
-                            className="type-letter"
-                            style={{ "--letter-index": index } as CSSProperties}
-                          >
-                            {letter}
-                          </span>
+                  {heroTitleLines.map((line, lineIndex) => (
+                    <Fragment key={`hero-title-line-${lineIndex}`}>
+                      <span className="hero-title-line">
+                        {line.map(({ word, letters }, wordIndex) => (
+                          <Fragment key={`${word}-${lineIndex}-${wordIndex}`}>
+                            <span className="type-word">
+                              {letters.map(({ letter, index }) => (
+                                <span
+                                  key={`${letter}-${index}`}
+                                  className="type-letter"
+                                  style={
+                                    { "--letter-index": index } as CSSProperties
+                                  }
+                                >
+                                  {letter}
+                                </span>
+                              ))}
+                            </span>
+                            {wordIndex < line.length - 1 ? " " : null}
+                          </Fragment>
                         ))}
                       </span>
-                      {wordIndex < heroTitleWords.length - 1 ? " " : null}
+                      {lineIndex < heroTitleLines.length - 1 ? " " : null}
                     </Fragment>
                   ))}
                 </span>
               </h1>
 
-              <p className="hero-motion-copy hero-readable-copy mt-6 max-w-2xl text-base leading-8 sm:text-lg">
-                Modified POM compounds for wear-resistant, low-friction,
-                reinforced, conductive, and antistatic molded parts. We also
-                support selected PA6, PA66, PPA, PPS, and base POM resin
-                sourcing for project-based material review.
-              </p>
+              <AnimatedContent
+                className="hero-support-motion"
+                distance={18}
+                duration={0.68}
+                delay={0.55}
+                threshold={0}
+              >
+                <p className="hero-motion-copy hero-readable-copy mt-6 max-w-2xl text-base leading-8 sm:text-[1.05rem]">
+                  Taiyi Nano manufactures wear-resistant, low-friction,
+                  reinforced, conductive and antistatic POM compounds for gears,
+                  bushings, sliding parts, valve components and precision molded
+                  parts. Selected PA6, PA66, PPA and PPS compounds are also
+                  available for project-based development.
+                </p>
 
-              <div className="hero-motion-actions mt-9 flex flex-wrap gap-3">
-                <Link
+                <div className="hero-motion-actions mt-8 flex flex-wrap gap-3">
+                  <Link
                   href="/products"
                   className="cta-primary hero-cta-primary px-6 py-3 text-sm"
                 >
-                  Compare POM Grades
+                  Explore Products
                 </Link>
-                <Link
-                  href="/contact"
-                  className="hero-cta-link px-2 py-3 text-sm"
-                >
-                  Discuss My Application
-                </Link>
-              </div>
+                  <Link
+                    href="/contact"
+                    className="hero-cta-link px-2 py-3 text-sm"
+                  >
+                    Discuss Your Application
+                  </Link>
+                </div>
+              </AnimatedContent>
             </div>
           </div>
         </section>
@@ -231,8 +254,8 @@ export default function Home() {
           supportingFigures={supportingFigures}
         />
 
-        <section className="home-section product-current relative px-5 py-14 sm:px-6 lg:px-10">
-          <div className="product-current-inner mx-auto max-w-[82rem]">
+        <section className="home-section product-current relative py-14">
+          <div className="site-container product-current-inner">
             <div className="product-current-head">
               <div className="product-current-copy">
                 <p className="section-kicker mb-3">Product Portfolio</p>
@@ -241,21 +264,21 @@ export default function Home() {
                   Modified compounds are the main line. POM resin is shown as a
                   supplementary product line for selected sourcing requirements.
                 </p>
-              </div>
 
-              <div className="product-current-aside">
-                <div className="document-line">
-                  Available Material Documents:{" "}
-                  <span>{availableDocuments.join(" / ")}</span>.
-                </div>
+                <div className="product-current-aside">
+                  <div className="document-line">
+                    Available Material Documents:{" "}
+                    <span>{availableDocuments.join(" / ")}</span>.
+                  </div>
 
-                <div className="product-current-actions">
-                  <Link href="/products" className="text-link">
-                    View Complete Material List &rarr;
-                  </Link>
-                  <Link href="/contact" className="text-link">
-                    Send Requirement &rarr;
-                  </Link>
+                  <div className="product-current-actions">
+                    <Link href="/products" className="text-link">
+                      View Complete Material List &rarr;
+                    </Link>
+                    <Link href="/contact" className="text-link">
+                      Send Requirement &rarr;
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -309,14 +332,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-section selection-corridor px-5 py-20 sm:px-6 lg:px-10">
-          <div className="mx-auto grid max-w-[82rem] gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+        <section className="home-section selection-corridor py-20">
+          <div className="site-container grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="section-motion-copy selection-motion-copy">
               <p className="section-kicker mb-3">Selection Logic</p>
-              <h2 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
+              <h2 className="text-3xl text-white sm:text-4xl">
                 Application-Based Material Recommendation
               </h2>
-              <p className="mt-5 max-w-xl text-sm leading-7 text-slate-300">
+              <p className="mt-5 max-w-xl text-slate-300">
                 We evaluate the molded part together with mold development,
                 cavity layout, shrinkage behavior, working conditions, and
                 performance targets before recommending a practical grade
@@ -325,33 +348,18 @@ export default function Home() {
 
               <Link
                 href="/applications"
-                className="mt-6 inline-flex text-sm font-extrabold text-cyan-100 hover:text-white"
+                className="selection-corridor-link mt-6 inline-flex text-cyan-100 hover:text-white"
               >
                 Browse Application Areas &rarr;
               </Link>
             </div>
 
-            <div className="flow-path">
-              <span className="flow-path-line" aria-hidden="true" />
-              {selectionFlow.map((item, index) => (
-                <div
-                  key={item.title}
-                  className="flow-point"
-                  style={{ "--item-index": index } as CSSProperties}
-                >
-                  <span>{index + 1}</span>
-                  <div>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <SelectionLogicStepper steps={selectionFlow} />
           </div>
         </section>
 
-        <section className="home-section factory-sequence px-5 py-20 sm:px-6 lg:px-10">
-          <div className="mx-auto max-w-[82rem]">
+        <section className="home-section factory-sequence py-20">
+          <div className="site-container">
             <div className="factory-lead">
               <div className="section-motion-copy operation-motion-copy">
                 <p className="section-kicker mb-3">Operations</p>
@@ -404,8 +412,8 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-cta px-5 py-20 sm:px-6 lg:px-10">
-          <div className="mx-auto max-w-[82rem]">
+        <section className="home-cta py-20">
+          <div className="site-container">
             <MaterialRecommendationCta
               kicker="Inquiry Preparation"
               title="Need a Material Recommendation?"

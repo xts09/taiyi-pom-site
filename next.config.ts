@@ -5,6 +5,9 @@ const githubPagesBasePath = "/taiyi-pom-site";
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
+  experimental: {
+    cpus: 4,
+  },
   ...(isGithubPages
     ? {
         output: "export",

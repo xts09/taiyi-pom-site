@@ -59,6 +59,10 @@ export function setupSecondarySectionNavMotion({
     const isSectionNavPinned = navRect.top <= stickyTop + 1 && window.scrollY > 24;
 
     root.classList.toggle("is-section-nav-pinned", isSectionNavPinned);
+    document.documentElement.classList.toggle(
+      "is-secondary-section-nav-pinned",
+      isSectionNavPinned,
+    );
     root.classList.toggle(
       "is-sticky-actions-visible",
       showCompactActions && isSectionNavPinned,
@@ -159,5 +163,6 @@ export function setupSecondarySectionNavMotion({
     });
     root.style.removeProperty(navHeightProperty);
     root.classList.remove("is-section-nav-pinned", "is-sticky-actions-visible");
+    document.documentElement.classList.remove("is-secondary-section-nav-pinned");
   };
 }

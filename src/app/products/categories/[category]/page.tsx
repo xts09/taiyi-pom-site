@@ -70,13 +70,14 @@ export default async function ProductCategoryPage({
 
   const categoryProducts = getProductsByCategory(products, entry.category);
   const categoryFaqs = getCategoryFaqs(entry.category);
+  const isPomCategory = entry.category === "POM";
   const pageTitle =
-    entry.category === "POM"
+    isPomCategory
       ? "POM Material Grades"
       : entry.label;
-  const heroTitle = entry.category === "POM" ? "POM Materials" : entry.label;
+  const heroTitle = isPomCategory ? "POM Materials" : entry.label;
   const pageDescription =
-    entry.category === "POM"
+    isPomCategory
       ? "Modified compound data for wear-resistant, low-friction, reinforced, conductive, antistatic, and base resin sourcing requirements."
       : getCategoryDescription(entry.category);
   const heroClassName = [
@@ -120,7 +121,7 @@ export default async function ProductCategoryPage({
   ];
   const sectionTabs = [
     { href: "#category-overview", label: "Overview" },
-    ...(entry.category === "POM"
+    ...(isPomCategory
       ? [{ href: "#material-families", label: "Families" }]
       : []),
     { href: "#pom-grades", label: "Grades" },
@@ -197,13 +198,40 @@ export default async function ProductCategoryPage({
           className="product-overview-screen products-motion-secondary"
         >
           <div className="product-overview-screen-head">
-            <p className="section-kicker mb-3">Overview</p>
-            <h2>{pageTitle}</h2>
-            <p>
-              Compare matching grades by material family, grade data,
-              mold-development fit, shrinkage behavior, application fit, and
-              document requirements.
+            <p className="section-kicker mb-3">
+              {isPomCategory ? "OVERVIEW" : "Overview"}
             </p>
+            <h2>
+              {isPomCategory
+                ? "POM Material Overview"
+                : pageTitle}
+            </h2>
+            {isPomCategory ? (
+              <>
+                <p>
+                  POM, also known as acetal, is a dimensionally stable
+                  engineering thermoplastic used in precision molded mechanical
+                  parts.
+                </p>
+                <p>
+                  It offers low friction, good wear resistance, high stiffness
+                  and reliable molding accuracy, making it suitable for gears,
+                  bushings, sliding parts, valve components and other moving or
+                  load-bearing parts.
+                </p>
+                <p>
+                  Modified POM grades can further adjust performance for wear,
+                  friction, reinforcement, impact, UV exposure, or conductive /
+                  antistatic requirements.
+                </p>
+              </>
+            ) : (
+              <p>
+                Compare matching grades by material family, grade data,
+                mold-development fit, shrinkage behavior, application fit, and
+                document requirements.
+              </p>
+            )}
           </div>
 
           <div className="product-overview-screen-grid">

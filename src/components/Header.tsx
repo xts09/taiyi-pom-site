@@ -1,18 +1,21 @@
+﻿"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Search } from "lucide-react";
+import { usePathname } from "next/navigation";
+import {
+  useEffect,
+  useState,
+  type CSSProperties,
+  type FocusEvent,
+  type KeyboardEvent,
+  type PointerEvent,
+} from "react";
 import { applications } from "@/data/applications";
 import { resourcePages } from "@/data/resources";
-import {
-  getCategoryPath,
-  pomSubcategoryLabels,
-  productCategoryOrder,
-} from "@/lib/productCategories";
-
-const pomMaterialLinks = productCategoryOrder.map((category) => ({
-  label: pomSubcategoryLabels[category] ?? category,
-  href: getCategoryPath(category),
-}));
+import { getCategoryPath } from "@/lib/productCategories";
 
 const applicationLinks = applications.map((application) => ({
   label: application.title,
@@ -30,16 +33,38 @@ const resourceLinks = [
   },
 ];
 
-const productMegaLinks = [
+const productOverviewLinks = [
   {
     label: "All Products",
     href: "/products",
   },
+];
+
+const productCategoryLinks = [
   {
-    label: "POM Material Grades",
+    label: "POM Compounds",
     href: getCategoryPath("POM"),
+    eyebrow: "Core line",
+    description: "Wear / friction / reinforced / functional",
   },
-  ...pomMaterialLinks,
+  {
+    label: "PA6 / PA66",
+    href: "/contact",
+    eyebrow: "Extended review",
+    description: "Modified nylon compounds",
+  },
+  {
+    label: "PPA / PPS",
+    href: "/contact",
+    eyebrow: "Extended review",
+    description: "Heat and stiffness review",
+  },
+  {
+    label: "POM Resin",
+    href: getCategoryPath("Base POM Resin"),
+    eyebrow: "Supplement",
+    description: "Selected base resin sourcing",
+  },
 ];
 
 const navItems = [
@@ -53,19 +78,115 @@ const navItems = [
   },
 ];
 
+type MegaValue = "" | "products" | "applications" | "resources";
+
+const isMegaValue = (value: string): value is Exclude<MegaValue, ""> =>
+  value === "products" || value === "applications" || value === "resources";
+
+const isNodeTarget = (target: EventTarget | null): target is Node =>
+  target instanceof Node;
+
+const headerSurfaceStyle: CSSProperties = {
+  backdropFilter: "none",
+  WebkitBackdropFilter: "none",
+};
+
+const headerGlassFilterStyle: CSSProperties = {
+  backdropFilter: "blur(44px) saturate(144%) brightness(72%) contrast(114%)",
+  WebkitBackdropFilter:
+    "blur(44px) saturate(144%) brightness(72%) contrast(114%)",
+};
+
 export function Header() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const [megaValue, setMegaValue] = useState<MegaValue>("");
+  const activeMega = megaValue || null;
+
+  const closeMega = () => {
+    setMegaValue("");
+  };
+
+  useEffect(() => {
+    if (!activeMega) {
+      return;
+    }
+
+    const closeMegaOnDocumentEscape = (event: globalThis.KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMegaValue("");
+      }
+    };
+
+    document.addEventListener("keydown", closeMegaOnDocumentEscape);
+
+    return () => {
+      document.removeEventListener("keydown", closeMegaOnDocumentEscape);
+    };
+  }, [activeMega]);
+
+  const updateMegaValue = (value: string) => {
+    if (isMegaValue(value)) {
+      setMegaValue(value);
+      return;
+    }
+
+    closeMega();
+  };
+
+  const closeMegaOnPointerLeave = (event: PointerEvent<HTMLElement>) => {
+    const nextTarget = event.relatedTarget;
+
+    if (!isNodeTarget(nextTarget) || !event.currentTarget.contains(nextTarget)) {
+      closeMega();
+    }
+  };
+
+  const closeMegaOnBlur = (event: FocusEvent<HTMLElement>) => {
+    const nextTarget = event.relatedTarget;
+    if (!isNodeTarget(nextTarget) || !event.currentTarget.contains(nextTarget)) {
+      closeMega();
+    }
+  };
+
+  const closeMegaOnEscape = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key === "Escape") {
+      closeMega();
+    }
+  };
+
   return (
-    <header className="site-header sticky top-0 z-50 text-slate-950">
-      <div className="mx-auto flex w-full max-w-[82rem] items-center justify-between px-5 py-4 sm:px-6 lg:px-10">
+    <header
+      className={[
+        "site-header site-header--over-hero sticky top-0 z-50 text-slate-950",
+        isHome ? "site-header--home" : "",
+        activeMega ? "site-header--mega-open" : "",
+        activeMega === "products" ? "site-header--products-open" : "",
+        activeMega === "applications" ? "site-header--applications-open" : "",
+        activeMega === "resources" ? "site-header--resources-open" : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+      onBlur={closeMegaOnBlur}
+      onKeyDown={closeMegaOnEscape}
+      onPointerLeave={closeMegaOnPointerLeave}
+      style={headerSurfaceStyle}
+    >
+      <span
+        className="site-header-glass"
+        aria-hidden="true"
+        style={headerGlassFilterStyle}
+      />
+      <div className="site-container flex items-center justify-between py-3">
         <Link
           href="/"
           prefetch={false}
-          className="brand-mark group inline-flex items-center"
+          className="brand-mark group inline-flex"
           aria-label="Taiyi Nano home"
         >
-          <span className="brand-logo w-[clamp(10rem,12.5vw,11.8rem)] max-w-[46vw]">
+          <span className="brand-logo w-[clamp(9.35rem,11.4vw,10.65rem)] max-w-[46vw]">
             <Image
-              src="/platform-wordmark.png"
+              src="/platform-wordmark-white.png"
               alt="PLATFORM"
               width={1400}
               height={217}
@@ -75,143 +196,161 @@ export function Header() {
           </span>
         </Link>
 
-        <div className="hidden items-center justify-end gap-8 lg:flex xl:gap-9">
-          <nav className="flex items-center justify-end gap-7 text-[0.95rem] font-semibold text-slate-200 xl:gap-8">
-            <div className="product-nav group relative">
-              <button
-                type="button"
-                className="nav-link nav-trigger transition"
-                aria-haspopup="true"
-              >
-                Products
-              </button>
+        <div className="hidden items-center justify-end gap-7 lg:flex xl:gap-8">
+          <NavigationMenu.Root
+            value={megaValue}
+            onValueChange={updateMegaValue}
+            delayDuration={110}
+            skipDelayDuration={260}
+            className="desktop-navigation-menu"
+          >
+            <NavigationMenu.List className="desktop-navigation-list">
+              <NavigationMenu.Item value="products">
+                <NavigationMenu.Trigger
+                  className="nav-link nav-trigger transition"
+                  onPointerEnter={() => updateMegaValue("products")}
+                  onFocus={() => updateMegaValue("products")}
+                >
+                  Products
+                </NavigationMenu.Trigger>
+                <NavigationMenu.Content className="mega-menu mega-menu-content product-menu">
+                  {activeMega === "products" ? (
+                    <div className="mega-menu-inner mega-menu-inner-products">
+                      <div className="mega-menu-panel-head">
+                        <span>Product Categories</span>
+                        <Link
+                          href="/products"
+                          prefetch={false}
+                          className="mega-menu-all-link"
+                          onClick={closeMega}
+                        >
+                          All Products <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                      </div>
 
-              <div className="product-menu mega-menu">
-                <div className="mega-menu-inner">
-                  <div className="product-menu-head">
-                    <span>Product Categories</span>
-                  </div>
+                      <div className="mega-category-grid">
+                        {productCategoryLinks.map((item) => (
+                          <Link
+                            key={`${item.label}-${item.href}`}
+                            href={item.href}
+                            prefetch={false}
+                            className="mega-category-link"
+                            onClick={closeMega}
+                          >
+                            <span className="mega-category-eyebrow">
+                              {item.eyebrow}
+                            </span>
+                            <span className="mega-category-title">
+                              {item.label}
+                            </span>
+                            <span className="mega-category-description">
+                              {item.description}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </NavigationMenu.Content>
+              </NavigationMenu.Item>
 
-                  <div className="mega-link-grid mega-link-grid-products">
-                    {productMegaLinks.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        prefetch={false}
-                        className="product-menu-link"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
+              <NavigationMenu.Item value="applications">
+                <NavigationMenu.Trigger
+                  className="nav-link nav-trigger transition"
+                  onPointerEnter={() => updateMegaValue("applications")}
+                  onFocus={() => updateMegaValue("applications")}
+                >
+                  Applications
+                </NavigationMenu.Trigger>
+                <NavigationMenu.Content className="mega-menu mega-menu-content application-menu">
+                  {activeMega === "applications" ? (
+                    <div className="mega-menu-inner mega-menu-inner-simple">
+                      <div className="mega-menu-panel-head">
+                        <span>Application Areas</span>
+                        <Link
+                          href="/applications"
+                          prefetch={false}
+                          className="mega-menu-all-link"
+                          onClick={closeMega}
+                        >
+                          All Applications <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                      </div>
 
-                  <div className="mega-menu-footer">
+                      <div className="mega-simple-grid mega-simple-grid-applications">
+                        {applicationLinks.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            prefetch={false}
+                            className="mega-simple-link"
+                            onClick={closeMega}
+                          >
+                            <span className="mega-simple-title">{item.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </NavigationMenu.Content>
+              </NavigationMenu.Item>
+
+              <NavigationMenu.Item value="resources">
+                <NavigationMenu.Trigger
+                  className="nav-link nav-trigger transition"
+                  onPointerEnter={() => updateMegaValue("resources")}
+                  onFocus={() => updateMegaValue("resources")}
+                >
+                  Resources
+                </NavigationMenu.Trigger>
+                <NavigationMenu.Content className="mega-menu mega-menu-content resource-menu">
+                  {activeMega === "resources" ? (
+                    <div className="mega-menu-inner mega-menu-inner-simple mega-menu-inner-compact">
+                      <div className="mega-menu-panel-head">
+                        <span>Technical Resources</span>
+                        <Link
+                          href="/resources"
+                          prefetch={false}
+                          className="mega-menu-all-link"
+                          onClick={closeMega}
+                        >
+                          All Resources <span aria-hidden="true">&rarr;</span>
+                        </Link>
+                      </div>
+
+                      <div className="mega-simple-grid mega-simple-grid-resources">
+                        {resourceLinks.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            prefetch={false}
+                            className="mega-simple-link"
+                            onClick={closeMega}
+                          >
+                            <span className="mega-simple-title">{item.label}</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </NavigationMenu.Content>
+              </NavigationMenu.Item>
+
+              {navItems.map((item) => (
+                <NavigationMenu.Item key={item.href}>
+                  <NavigationMenu.Link asChild>
                     <Link
-                      href="/products"
+                      href={item.href}
                       prefetch={false}
-                      className="mega-menu-view-all"
+                      className="nav-link nav-trigger transition"
                     >
-                      View All Products <span aria-hidden="true">&rarr;</span>
+                      {item.label}
                     </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="application-nav group relative">
-              <button
-                type="button"
-                className="nav-link nav-trigger transition"
-                aria-haspopup="true"
-              >
-                Applications
-              </button>
-
-              <div className="application-menu mega-menu">
-                <div className="mega-menu-inner">
-                  <div className="product-menu-head">
-                    <span>Application Areas</span>
-                  </div>
-
-                  <div className="mega-link-grid mega-link-grid-applications">
-                    {applicationLinks.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        prefetch={false}
-                        className="product-menu-link"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-
-                  <div className="mega-menu-footer">
-                    <Link
-                      href="/applications"
-                      prefetch={false}
-                      className="mega-menu-view-all"
-                    >
-                      View All Applications{" "}
-                      <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="resource-nav group relative">
-              <button
-                type="button"
-                className="nav-link nav-trigger transition"
-                aria-haspopup="true"
-              >
-                Resources
-              </button>
-
-              <div className="resource-menu mega-menu">
-                <div className="mega-menu-inner mega-menu-inner-compact">
-                  <div className="product-menu-head">
-                    <span>Technical Resources</span>
-                  </div>
-
-                  <div className="mega-link-grid mega-link-grid-resources">
-                    {resourceLinks.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        prefetch={false}
-                        className="product-menu-link"
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-
-                  <div className="mega-menu-footer">
-                    <Link
-                      href="/resources"
-                      prefetch={false}
-                      className="mega-menu-view-all"
-                    >
-                      View All Resources <span aria-hidden="true">&rarr;</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                prefetch={false}
-                className="nav-link transition"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+                  </NavigationMenu.Link>
+                </NavigationMenu.Item>
+              ))}
+            </NavigationMenu.List>
+          </NavigationMenu.Root>
 
           <Link
             href="/technical-data-sheets"
@@ -219,7 +358,7 @@ export function Header() {
             className="nav-search-button inline-flex items-center justify-center"
             aria-label="Search technical data sheets and resources"
           >
-            <Search aria-hidden="true" size={20} strokeWidth={2.25} />
+            <Search aria-hidden="true" size={18} strokeWidth={2.1} />
           </Link>
         </div>
 
@@ -240,25 +379,20 @@ export function Header() {
               </summary>
 
               <div className="mt-3 space-y-1 pl-4">
-                <Link
-                  href="/products"
-                  prefetch={false}
-                  className="mobile-product-list mb-2 block py-1"
-                >
-                  All Products
-                </Link>
-
-                <Link
-                  href={getCategoryPath("POM")}
-                  prefetch={false}
-                  className="block py-2 text-white hover:text-cyan-200"
-                >
-                  POM Material Grades
-                </Link>
-
-                {pomMaterialLinks.map((category) => (
+                {productOverviewLinks.map((item) => (
                   <Link
-                    key={category.href}
+                    key={item.href}
+                    href={item.href}
+                    prefetch={false}
+                    className="mobile-product-list mb-2 block py-1"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+
+                {productCategoryLinks.map((category) => (
+                  <Link
+                    key={`${category.label}-${category.href}`}
                     href={category.href}
                     prefetch={false}
                     className="block py-2 text-slate-400 hover:text-cyan-200"

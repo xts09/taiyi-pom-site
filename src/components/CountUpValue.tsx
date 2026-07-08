@@ -18,7 +18,7 @@ const parseValue = (value: string) => {
 
   return {
     numberText: match[1],
-    unitSuffix: match[2] ?? "",
+    unitSuffix: match[2]?.trim() ?? "",
   };
 };
 
@@ -28,7 +28,7 @@ const getCountSteps = (targetNumber: number) => {
   }
 
   return Array.from({ length: 21 }, (_, index) =>
-    Math.round(targetNumber * (1 - (1 - index / 20) ** 3))
+    Math.round(targetNumber * (1 - (1 - index / 20) ** 3)),
   );
 };
 
@@ -51,7 +51,6 @@ export function CountUpValue({ value }: CountUpValueProps) {
       aria-label={value}
       style={
         {
-          "--character-count": parsed.numberText.length,
           "--step-count": steps.length - 1,
         } as CSSProperties
       }
@@ -68,7 +67,8 @@ export function CountUpValue({ value }: CountUpValueProps) {
         </span>
       </span>
       {parsed.unitSuffix ? (
-        <span className="count-up-unit" aria-hidden="true">
+        <span className="count-up-static-unit" aria-hidden="true">
+          {" "}
           <ValueText value={parsed.unitSuffix} />
         </span>
       ) : null}
