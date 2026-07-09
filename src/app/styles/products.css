@@ -1954,6 +1954,7 @@
 .products-motion-root .product-directory {
   gap: 0.65rem;
   padding-top: 0.25rem;
+  contain: layout paint style;
 }
 
 .products-motion-root .product-directory-row {
@@ -1971,6 +1972,9 @@
     ),
     rgba(255, 255, 255, 0.72);
   padding: clamp(0.95rem, 1.55vw, 1.18rem) clamp(0.85rem, 1.8vw, 1.15rem);
+  contain: layout paint style;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 5.75rem;
 }
 
 .products-motion-root .product-directory-row:hover {

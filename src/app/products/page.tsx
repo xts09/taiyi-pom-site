@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { products } from "@/data/products";
+import { engineeringTdsDocuments } from "@/data/engineeringTds";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
@@ -17,6 +18,9 @@ const basePomGradeCount = products.filter(
   (product) => product.category === "Base POM Resin"
 ).length;
 const modifiedPomGradeCount = products.length - basePomGradeCount;
+const engineeringGradeCount = (family: "PA6" | "PA66" | "PPA") =>
+  engineeringTdsDocuments.filter((document) => document.family === family)
+    .length;
 
 const productFamilies = [
   {
@@ -41,20 +45,41 @@ const productFamilies = [
   },
   {
     number: "03",
-    title: "PA6 / PA66 Compounds",
+    title: "PA6 Compounds",
     label: "Extended Capability",
     description:
-      "Nylon compound directions for customers comparing toughness, heat resistance, and reinforced molded part requirements.",
-    href: "/contact",
-    metricLabel: "By requirement",
+      "Selected PA6 compound directions for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+    href: "/products/categories/pa6-compound",
+    metricValue: engineeringGradeCount("PA6"),
+    metricLabel: "reference grades",
   },
   {
     number: "04",
-    title: "PPA / PPS Compounds",
+    title: "PA66 Compounds",
+    label: "Extended Capability",
+    description:
+      "Selected PA66 compound directions for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+    href: "/products/categories/pa66-compound",
+    metricValue: engineeringGradeCount("PA66"),
+    metricLabel: "reference grades",
+  },
+  {
+    number: "05",
+    title: "PPA Compounds",
     label: "High-Performance Review",
     description:
-      "Higher temperature engineering plastic directions for selected projects requiring dimensional and thermal performance.",
-    href: "/contact",
+      "Project-based PPA directions for higher-temperature molded parts requiring stiffness and dimensional stability.",
+    href: "/products/categories/ppa-compound",
+    metricValue: engineeringGradeCount("PPA"),
+    metricLabel: "reference grades",
+  },
+  {
+    number: "06",
+    title: "PPS Compounds",
+    label: "High-Performance Review",
+    description:
+      "Project-based PPS directions for molded parts requiring heat resistance, chemical resistance, and dimensional control.",
+    href: "/products/categories/pps-compound",
     metricLabel: "By review",
   },
 ];

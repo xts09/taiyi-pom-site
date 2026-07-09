@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { Boxes, Factory, FileCheck } from "lucide-react";
 import AnimatedContent from "@/components/AnimatedContent";
 import { ValueText } from "@/components/UnitText";
 import type {
@@ -33,44 +32,64 @@ type CredentialSupportProps = {
   honors: string[];
 };
 
-const capabilityIcons = [Boxes, Factory, FileCheck];
-
 export function AboutHero({ heroImage, intro, title }: AboutHeroProps) {
   return (
-    <div className="inner-hero about-hero reveal-up mb-8">
-      <div className="about-hero-copy">
-        <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
-          {title}
-        </h1>
-
-        <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-          {intro}
-        </p>
-      </div>
-
+    <section className="about-hero reveal-up">
       <figure className="about-hero-media">
         <Image
           src={publicPath(heroImage.src)}
           alt={heroImage.alt}
           fill
           priority
-          sizes="(min-width: 1024px) 34vw, 100vw"
+          sizes="100vw"
           className="object-cover"
         />
         <figcaption>{heroImage.label}</figcaption>
       </figure>
-    </div>
+
+      <div className="site-container about-hero-inner">
+        <div className="about-hero-card">
+          <p className="about-hero-eyebrow">
+            Jiangsu Taiyi Nano Technology Co., Ltd.
+          </p>
+
+          <h1>{title}</h1>
+
+          <p>{intro}</p>
+
+          <div className="about-hero-proof" aria-label="Company profile highlights">
+            <div>
+              <span>Factory Base</span>
+              <strong>Yancheng, Jiangsu, China</strong>
+            </div>
+            <div>
+              <span>Main Focus</span>
+              <strong>Modified POM and selected engineering plastic compounds</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
 export function AboutSnapshot({ capabilities, figures }: AboutSnapshotProps) {
   return (
-    <section className="about-snapshot reveal-up reveal-delay-1 mb-10">
-      <dl className="company-figure-ribbon stagger-list">
+    <section className="about-snapshot reveal-up reveal-delay-1">
+      <div className="about-snapshot-intro">
+        <p className="section-kicker">Factory Snapshot</p>
+        <h2>Factory capability for material review.</h2>
+        <p>
+          Production scale, manufacturing experience, and in-house testing
+          support for engineering plastic compounding projects.
+        </p>
+      </div>
+
+      <dl className="about-snapshot-metrics stagger-list">
         {figures.map((item, index) => (
           <div
             key={item.label}
-            className="company-figure-item"
+            className="about-snapshot-metric"
             style={{ "--item-index": index } as CSSProperties}
           >
             <dt>{item.label}</dt>
@@ -82,27 +101,17 @@ export function AboutSnapshot({ capabilities, figures }: AboutSnapshotProps) {
         ))}
       </dl>
 
-      <div className="capability-line-list stagger-list">
-        {capabilities.map((item, index) => {
-          const Icon = capabilityIcons[index] ?? Boxes;
-
-          return (
-            <section
-              key={item.title}
-              className="capability-line about-capability-line"
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              <span className="about-capability-icon" aria-hidden="true">
-                <Icon />
-              </span>
-
-              <div>
-                <h2>{item.title}</h2>
-                <p>{item.description}</p>
-              </div>
-            </section>
-          );
-        })}
+      <div className="about-proof-list stagger-list">
+        {capabilities.map((item, index) => (
+          <section
+            key={item.title}
+            className="about-proof-item"
+            style={{ "--item-index": index } as CSSProperties}
+          >
+            <h2>{item.title}</h2>
+            <p>{item.description}</p>
+          </section>
+        ))}
       </div>
     </section>
   );

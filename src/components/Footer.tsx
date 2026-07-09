@@ -10,8 +10,10 @@ const footerColumns = [
     title: "Products",
     links: [
       { href: getCategoryPath("POM"), label: "POM Compounds" },
-      { href: "/contact", label: "PA6 / PA66" },
-      { href: "/contact", label: "PPA / PPS" },
+      { href: getCategoryPath("PA6 Compound"), label: "PA6 Compounds" },
+      { href: getCategoryPath("PA66 Compound"), label: "PA66 Compounds" },
+      { href: getCategoryPath("PPA Compound"), label: "PPA Compounds" },
+      { href: getCategoryPath("PPS Compound"), label: "PPS Compounds" },
       { href: getCategoryPath("Base POM Resin"), label: "POM Resin" },
     ],
   },

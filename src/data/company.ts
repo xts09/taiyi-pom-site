@@ -28,12 +28,12 @@ export type FactoryProofRow = {
 };
 
 export const companyFigures: CompanyFigure[] = [
+  { label: "Annual Capacity", value: "60,000", note: "Tons / year" },
   {
     label: "Experience",
     value: "20+",
     note: "Years since 2003",
   },
-  { label: "Annual Capacity", value: "60,000", note: "Tons / year" },
   {
     label: "Production Lines",
     value: "15",

@@ -128,9 +128,71 @@ export const productCategoryData: ProductCategoryData[] = [
       "Projects requiring baseline POM resin comparison",
     ],
   },
+  {
+    category: "PA6 Compound",
+    label: "PA6 Compounds",
+    description:
+      "Review selected PA6 compound grade directions for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+    navSubtitle:
+      "Compare PA6 compound reference grades by reinforcement, toughness, flame rating, heat performance, and application fit.",
+    applications: [
+      "Electrical housings, connectors, and industrial molded parts",
+      "Reinforced or impact-modified nylon components",
+      "Projects requiring practical PA6 compound data before material review",
+    ],
+  },
+  {
+    category: "PA66 Compound",
+    label: "PA66 Compounds",
+    description:
+      "Review selected PA66 compound grade directions for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+    navSubtitle:
+      "Compare PA66 compound reference grades by reinforcement, flame rating, heat performance, wear behavior, and application fit.",
+    applications: [
+      "Automotive, electrical, and industrial molded components",
+      "Glass fiber reinforced or flame-retardant nylon parts",
+      "Projects requiring PA66 stiffness, heat performance, or wear review",
+    ],
+  },
+  {
+    category: "PPA Compound",
+    label: "PPA Compounds",
+    description:
+      "Review project-based PPA compound directions for higher-temperature molded parts requiring stiffness, dimensional stability, and reinforced performance.",
+    navSubtitle:
+      "Discuss PPA compound requirements by temperature, reinforcement, dimensional target, and application risk.",
+    applications: [
+      "High-temperature automotive and electrical parts",
+      "Reinforced precision molded components",
+      "Projects requiring stiffness and dimensional stability beyond standard nylon",
+    ],
+  },
+  {
+    category: "PPS Compound",
+    label: "PPS Compounds",
+    description:
+      "Review project-based PPS compound directions for molded parts requiring heat resistance, chemical resistance, low moisture uptake, and dimensional control.",
+    navSubtitle:
+      "Discuss PPS compound requirements by heat exposure, chemical contact, dimensional control, and document needs.",
+    applications: [
+      "Valve, pump, and fluid-control components",
+      "Electrical and industrial parts exposed to heat or chemicals",
+      "Projects requiring low moisture uptake and stable molded dimensions",
+    ],
+  },
 ];
 
-export const productCategoryOrder = productCategoryData.map(
+export const pomProductCategoryData = productCategoryData.filter(
+  (item) =>
+    ![
+      "PA6 Compound",
+      "PA66 Compound",
+      "PPA Compound",
+      "PPS Compound",
+    ].includes(item.category)
+);
+
+export const productCategoryOrder = pomProductCategoryData.map(
   (item) => item.category
 );
 

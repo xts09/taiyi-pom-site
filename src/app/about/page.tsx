@@ -25,21 +25,21 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 const heroIntro =
-  "Jiangsu Taiyi Nano Technology Co., Ltd. is a factory-based manufacturer in Yancheng, Jiangsu, China, focused on modified POM compounds and selected engineering plastic compounds for industrial applications.";
+  "Jiangsu Taiyi Nano Technology Co., Ltd. operates factory-based compounding production in Yancheng, Jiangsu, China, focused on modified POM compounds with selected PA6, PA66, PPA, and PPS support for industrial molded parts.";
 
 const heroImage =
   factoryImages.find((image) => image.placement === "hero") ?? factoryImages[0];
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-background text-slate-900">
-      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
-        <AboutHero
-          heroImage={heroImage}
-          intro={heroIntro}
-          title="Factory-Based Modified Material Manufacturer"
-        />
+    <main className="min-h-screen bg-white text-slate-900">
+      <AboutHero
+        heroImage={heroImage}
+        intro={heroIntro}
+        title="About Taiyi Nano"
+      />
 
+      <section className="site-container about-page-shell">
         <AboutSnapshot
           capabilities={companyCapabilities}
           figures={companyFigures}

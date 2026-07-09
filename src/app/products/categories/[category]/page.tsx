@@ -7,6 +7,10 @@ import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { applications } from "@/data/applications";
 import { availableDocuments } from "@/data/company";
+import {
+  createEngineeringTdsSlug,
+  getEngineeringTdsByProductCategory,
+} from "@/data/engineeringTds";
 import { products } from "@/data/products";
 import {
   findCategoryBySlug,
@@ -69,8 +73,10 @@ export default async function ProductCategoryPage({
   }
 
   const categoryProducts = getProductsByCategory(products, entry.category);
+  const engineeringGrades = getEngineeringTdsByProductCategory(entry.category);
   const categoryFaqs = getCategoryFaqs(entry.category);
   const isPomCategory = entry.category === "POM";
+  const hasEngineeringGrades = engineeringGrades.length > 0;
   const pageTitle =
     isPomCategory
       ? "POM Material Grades"
@@ -80,6 +86,20 @@ export default async function ProductCategoryPage({
     isPomCategory
       ? "Modified compound data for wear-resistant, low-friction, reinforced, conductive, antistatic, and base resin sourcing requirements."
       : getCategoryDescription(entry.category);
+  const itemListElement =
+    categoryProducts.length > 0
+      ? categoryProducts.map((product, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${siteUrl}/products/${product.slug}`,
+          name: product.title,
+        }))
+      : engineeringGrades.map((document, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          url: `${siteUrl}/products/${createEngineeringTdsSlug(document)}`,
+          name: `${document.grade} ${document.family} ${document.category}`,
+        }));
   const heroClassName = [
     "product-index-hero",
     "product-category-hero",
@@ -98,13 +118,8 @@ export default async function ProductCategoryPage({
       name: getCategoryTitle(entry.category),
       description: getCategoryDescription(entry.category),
       url: `${siteUrl}${entry.path}`,
-      numberOfItems: categoryProducts.length,
-      itemListElement: categoryProducts.map((product, index) => ({
-        "@type": "ListItem",
-        position: index + 1,
-        url: `${siteUrl}/products/${product.slug}`,
-        name: product.title,
-      })),
+      numberOfItems: itemListElement.length,
+      itemListElement,
     },
     {
       "@context": "https://schema.org",
@@ -121,8 +136,13 @@ export default async function ProductCategoryPage({
   ];
   const sectionTabs = [
     { href: "#category-overview", label: "Overview" },
-    ...(isPomCategory
-      ? [{ href: "#material-families", label: "Families" }]
+    ...(isPomCategory || hasEngineeringGrades
+      ? [
+          {
+            href: "#material-families",
+            label: isPomCategory ? "Families" : "Directions",
+          },
+        ]
       : []),
     { href: "#pom-grades", label: "Grades" },
     { href: "#category-applications", label: "Applications" },

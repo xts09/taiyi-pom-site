@@ -313,12 +313,15 @@ const getApplicationUseCards = (
   const typicalParts = engineeringGroups[0]?.items ?? [];
   const performanceNeeds = getPerformanceItems(engineeringGroups);
   const fallbackItems = typicalParts.length > 0 ? typicalParts : selectionBasis;
-  const cardCount = Math.max(application.images.length, 4);
+  const cardImages = application.productExamples ?? application.images;
+  const cardCount = application.productExamples?.length ?? Math.max(application.images.length, 4);
   const fallbackTitles = applicationUseFallbackTitles[application.slug] ?? [];
 
   return Array.from({ length: cardCount }, (_, index) => {
     const fallbackImage =
-      index >= application.images.length && application.heroImage
+      !application.productExamples &&
+      index >= application.images.length &&
+      application.heroImage
         ? {
             src: application.heroImage.src,
             alt: application.heroImage.alt,
@@ -327,11 +330,12 @@ const getApplicationUseCards = (
               application.title,
           }
         : undefined;
-    const image = application.images[index] ?? fallbackImage;
+    const image = cardImages[index] ?? fallbackImage;
 
     return {
       key: `${image?.label ?? application.title}-${index}`,
       description:
+        image?.description ??
         getCyclicItem(performanceNeeds, index) ??
         getCyclicItem(fallbackItems, index) ??
         application.description,

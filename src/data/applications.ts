@@ -10,6 +10,7 @@ export type ApplicationImage = {
   src: string;
   alt: string;
   label: string;
+  description?: string;
 };
 
 export type ApplicationEngineeringGroup = {
@@ -27,6 +28,7 @@ export type ApplicationItem = {
     alt: string;
   };
   images: ApplicationImage[];
+  productExamples?: ApplicationImage[];
   engineeringFit?: ApplicationEngineeringGroup[];
 };
 
@@ -218,6 +220,56 @@ export const applications: ApplicationItem[] = [
         src: "/applications/parts/electrical-roller.jpg",
         alt: "Plastic roller component for low-friction movement",
         label: "Roller",
+      },
+    ],
+    productExamples: [
+      {
+        src: "/applications/parts/conveyor-examples/chain-plate.webp",
+        alt: "Plastic modular chain plate for conveyor systems",
+        label: "Chain Plate",
+        description: "Wear-resistant review for repeated chain movement.",
+      },
+      {
+        src: "/applications/parts/conveyor-examples/conveyor-part.webp",
+        alt: "Curved plastic conveyor part for modular conveying systems",
+        label: "Conveyor Part",
+        description: "Low-friction review for curved modular conveying links.",
+      },
+      {
+        src: "/applications/parts/conveyor-examples/conveyor-plate.webp",
+        alt: "White plastic conveyor plate with modular openings",
+        label: "Conveyor Plate",
+        description: "Dimensional stability for plates with openings or slots.",
+      },
+      {
+        src: "/applications/parts/conveyor-examples/conveyor-panel.webp",
+        alt: "Flat plastic conveyor panel for conveying equipment",
+        label: "Conveyor Panel",
+        description: "Flat panel parts needing stiffness and assembly fit.",
+      },
+      {
+        src: "/applications/parts/conveyor-examples/chain-component.webp",
+        alt: "Plastic chain component with roller contact surface",
+        label: "Chain Component",
+        description: "Contact surfaces requiring wear and friction review.",
+      },
+      {
+        src: "/applications/parts/conveyor-examples/chain-plate-part.webp",
+        alt: "Curved plastic chain plate parts for conveyor assemblies",
+        label: "Chain Plate Part",
+        description: "Curved chain plate parts for modular conveyor assemblies.",
+      },
+      {
+        src: "/applications/parts/conveyor-examples/conveyor-component.webp",
+        alt: "Brown plastic conveyor component and modular chain strip",
+        label: "Conveyor Component",
+        description: "Moving strip components with repeated sliding contact.",
+      },
+      {
+        src: "/applications/parts/conveyor-examples/conveyor-housing.webp",
+        alt: "Black molded conveyor housing component",
+        label: "Conveyor Housing",
+        description: "Molded housing parts requiring toughness and fit control.",
       },
     ],
     engineeringFit: [

@@ -49,28 +49,54 @@ const materialDirections = [
     ],
   },
   {
-    title: "PA6 / PA66 Compounds",
+    title: "PA6 Compounds",
     description:
-      "Selected modified nylon compound solutions for reinforced, wear-related, and application-specific molded part requirements.",
-    href: "/contact",
-    action: "Discuss Requirement",
+      "Selected PA6 compound directions for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+    href: getCategoryPath("PA6 Compound"),
+    action: "Review PA6 Direction",
     specs: [
       ["Role", "Extended Capability"],
-      ["Materials", "PA6 / PA66"],
-      ["Fit", "Reinforced Parts"],
+      ["Material", "PA6"],
+      ["Fit", "Reinforced / Impact Parts"],
       ["Review", "Project-Based"],
     ],
   },
   {
-    title: "PPA / PPS Compounds",
+    title: "PA66 Compounds",
     description:
-      "Selected high-performance compound solutions for applications requiring heat resistance, stiffness, or functional performance.",
-    href: "/contact",
-    action: "Discuss Requirement",
+      "Selected PA66 compound directions for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+    href: getCategoryPath("PA66 Compound"),
+    action: "Review PA66 Direction",
     specs: [
       ["Role", "Extended Capability"],
-      ["Materials", "PPA / PPS"],
-      ["Fit", "Heat-Related Parts"],
+      ["Material", "PA66"],
+      ["Fit", "Stiffness / Heat Parts"],
+      ["Review", "Project-Based"],
+    ],
+  },
+  {
+    title: "PPA Compounds",
+    description:
+      "Project-based PPA compound support for higher-temperature molded parts requiring stiffness and dimensional stability.",
+    href: getCategoryPath("PPA Compound"),
+    action: "Review PPA Direction",
+    specs: [
+      ["Role", "Extended Capability"],
+      ["Material", "PPA"],
+      ["Fit", "High-Temperature Parts"],
+      ["Review", "Project-Based"],
+    ],
+  },
+  {
+    title: "PPS Compounds",
+    description:
+      "Project-based PPS compound support for heat-resistant, chemically exposed, and dimensionally controlled molded parts.",
+    href: getCategoryPath("PPS Compound"),
+    action: "Review PPS Direction",
+    specs: [
+      ["Role", "Extended Capability"],
+      ["Material", "PPS"],
+      ["Fit", "Heat / Chemical Exposure"],
       ["Review", "Project-Based"],
     ],
   },
@@ -231,11 +257,11 @@ export default function Home() {
 
                 <div className="hero-motion-actions mt-8 flex flex-wrap gap-3">
                   <Link
-                  href="/products"
-                  className="cta-primary hero-cta-primary px-6 py-3 text-sm"
-                >
-                  Explore Products
-                </Link>
+                    href="/products"
+                    className="cta-primary hero-cta-primary px-6 py-3 text-sm"
+                  >
+                    Explore Products
+                  </Link>
                   <Link
                     href="/contact"
                     className="hero-cta-link px-2 py-3 text-sm"

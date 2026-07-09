@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  createEngineeringTdsSlug,
+  engineeringTdsDocuments,
+} from "@/data/engineeringTds";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { createPageMetadata } from "@/lib/seo";
@@ -7,7 +11,7 @@ import { createPageMetadata } from "@/lib/seo";
 export const metadata: Metadata = createPageMetadata({
   title: "Technical Resource Search | Taiyi Nano",
   description:
-    "Search Taiyi Nano grade data, technical data sheet paths, POM material guides, FAQ answers, processing guidance, and application notes.",
+    "Search Taiyi Nano grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.",
   path: "/technical-data-sheets",
 });
 
@@ -72,6 +76,24 @@ export default async function TechnicalDataSheetsPage({
     !activeResource ||
     activeResource === "grade-data" ||
     activeResource === "tds";
+  const engineeringGradeAllowed =
+    !activeResource ||
+    activeResource === "grade-data" ||
+    activeResource === "tds";
+  const searchableEngineeringTds = engineeringGradeAllowed
+    ? engineeringTdsDocuments.filter((document) => {
+        const haystack = [
+          document.grade,
+          document.family,
+          document.category,
+          "grade data technical data sheet engineering plastic compound",
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return !normalizedQuery || haystack.includes(normalizedQuery);
+      })
+    : [];
   const searchableProducts = productResourceAllowed
     ? products.filter((product) => {
         const haystack = [
@@ -126,7 +148,10 @@ export default async function TechnicalDataSheetsPage({
 
     return matchesQuery && matchesResource;
   });
-  const totalResults = searchableProducts.length + searchableResources.length;
+  const totalResults =
+    searchableProducts.length +
+    searchableResources.length +
+    searchableEngineeringTds.length;
 
   const filterSummary = [
     activeResource &&
@@ -263,6 +288,29 @@ export default async function TechnicalDataSheetsPage({
                   </h2>
                   <span>{resource.description}</span>
                   <small>Resource page</small>
+                </article>
+              ))}
+
+              {searchableEngineeringTds.map((document) => (
+                <article
+                  className="resource-site-result"
+                  key={`${document.family}-${document.grade}`}
+                >
+                  <p>Engineering Plastic Grade Data</p>
+                  <h2>
+                    <Link href={`/products/${createEngineeringTdsSlug(document)}`}>
+                      {document.grade} {document.family} Compound
+                    </Link>
+                  </h2>
+                  <span>
+                    {document.category} {document.family} engineering plastic
+                    compound reference for material review.
+                  </span>
+                  <div className="resource-site-result-meta">
+                    <span>Family: {document.family}</span>
+                    <span>Category: {document.category}</span>
+                    <span>Documents available on request</span>
+                  </div>
                 </article>
               ))}
 

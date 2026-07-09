@@ -7,6 +7,7 @@ import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
   useEffect,
+  useRef,
   useState,
   type CSSProperties,
   type FocusEvent,
@@ -48,16 +49,28 @@ const productCategoryLinks = [
     description: "Wear / friction / reinforced / functional",
   },
   {
-    label: "PA6 / PA66",
-    href: "/contact",
-    eyebrow: "Extended review",
-    description: "Modified nylon compounds",
+    label: "PA6 Compounds",
+    href: getCategoryPath("PA6 Compound"),
+    eyebrow: "Extended line",
+    description: "Reinforced / impact / flame-retardant nylon",
   },
   {
-    label: "PPA / PPS",
-    href: "/contact",
+    label: "PA66 Compounds",
+    href: getCategoryPath("PA66 Compound"),
+    eyebrow: "Extended line",
+    description: "Higher stiffness / heat / reinforced nylon",
+  },
+  {
+    label: "PPA Compounds",
+    href: getCategoryPath("PPA Compound"),
     eyebrow: "Extended review",
-    description: "Heat and stiffness review",
+    description: "High-temperature reinforced review",
+  },
+  {
+    label: "PPS Compounds",
+    href: getCategoryPath("PPS Compound"),
+    eyebrow: "Extended review",
+    description: "Heat and chemical resistance review",
   },
   {
     label: "POM Resin",
@@ -92,19 +105,38 @@ const headerSurfaceStyle: CSSProperties = {
 };
 
 const headerGlassFilterStyle: CSSProperties = {
-  backdropFilter: "blur(44px) saturate(144%) brightness(72%) contrast(114%)",
+  backdropFilter: "blur(28px) saturate(122%) brightness(74%) contrast(108%)",
   WebkitBackdropFilter:
-    "blur(44px) saturate(144%) brightness(72%) contrast(114%)",
+    "blur(28px) saturate(122%) brightness(74%) contrast(108%)",
 };
 
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const [megaValue, setMegaValue] = useState<MegaValue>("");
+  const closeTimerRef = useRef<number | null>(null);
   const activeMega = megaValue || null;
 
+  const cancelScheduledClose = () => {
+    if (closeTimerRef.current === null) {
+      return;
+    }
+
+    window.clearTimeout(closeTimerRef.current);
+    closeTimerRef.current = null;
+  };
+
   const closeMega = () => {
-    setMegaValue("");
+    cancelScheduledClose();
+    setMegaValue((currentValue) => (currentValue ? "" : currentValue));
+  };
+
+  const scheduleCloseMega = () => {
+    cancelScheduledClose();
+    closeTimerRef.current = window.setTimeout(() => {
+      closeTimerRef.current = null;
+      setMegaValue((currentValue) => (currentValue ? "" : currentValue));
+    }, 90);
   };
 
   useEffect(() => {
@@ -125,20 +157,28 @@ export function Header() {
     };
   }, [activeMega]);
 
+  useEffect(() => {
+    return () => {
+      cancelScheduledClose();
+    };
+  }, []);
+
   const updateMegaValue = (value: string) => {
-    if (isMegaValue(value)) {
-      setMegaValue(value);
+    if (!isMegaValue(value)) {
       return;
     }
 
-    closeMega();
+    cancelScheduledClose();
+    setMegaValue((currentValue) =>
+      currentValue === value ? currentValue : value,
+    );
   };
 
   const closeMegaOnPointerLeave = (event: PointerEvent<HTMLElement>) => {
     const nextTarget = event.relatedTarget;
 
     if (!isNodeTarget(nextTarget) || !event.currentTarget.contains(nextTarget)) {
-      closeMega();
+      scheduleCloseMega();
     }
   };
 
@@ -169,6 +209,7 @@ export function Header() {
         .join(" ")}
       onBlur={closeMegaOnBlur}
       onKeyDown={closeMegaOnEscape}
+      onPointerEnter={cancelScheduledClose}
       onPointerLeave={closeMegaOnPointerLeave}
       style={headerSurfaceStyle}
     >
@@ -217,7 +258,13 @@ export function Header() {
                   {activeMega === "products" ? (
                     <div className="mega-menu-inner mega-menu-inner-products">
                       <div className="mega-menu-panel-head">
-                        <span>Product Categories</span>
+                        <div>
+                          <span>Product Categories</span>
+                          <p>
+                            Start with POM, then compare selected PA6, PA66,
+                            PPA and PPS compound directions.
+                          </p>
+                        </div>
                         <Link
                           href="/products"
                           prefetch={false}
@@ -266,7 +313,13 @@ export function Header() {
                   {activeMega === "applications" ? (
                     <div className="mega-menu-inner mega-menu-inner-simple">
                       <div className="mega-menu-panel-head">
-                        <span>Application Areas</span>
+                        <div>
+                          <span>Application Areas</span>
+                          <p>
+                            Browse common molded-part applications by working
+                            condition and material requirement.
+                          </p>
+                        </div>
                         <Link
                           href="/applications"
                           prefetch={false}
@@ -307,7 +360,13 @@ export function Header() {
                   {activeMega === "resources" ? (
                     <div className="mega-menu-inner mega-menu-inner-simple mega-menu-inner-compact">
                       <div className="mega-menu-panel-head">
-                        <span>Technical Resources</span>
+                        <div>
+                          <span>Technical Resources</span>
+                          <p>
+                            Find selection guidance, processing notes, FAQ, and
+                            grade data references.
+                          </p>
+                        </div>
                         <Link
                           href="/resources"
                           prefetch={false}
