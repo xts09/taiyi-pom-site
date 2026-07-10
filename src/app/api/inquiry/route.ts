@@ -3,6 +3,13 @@ import { NextResponse } from "next/server";
 const contactEmail = process.env.CONTACT_TO_EMAIL ?? "xiatianshi@jstynm.com";
 const resendApiKey = process.env.RESEND_API_KEY;
 const resendFromEmail = process.env.CONTACT_FROM_EMAIL;
+const maxRequestBodyBytes = 32 * 1024;
+const rateLimitWindowMs = 10 * 60 * 1000;
+const maxRequestsPerWindow = 5;
+const maxRateLimitBuckets = 500;
+const allowedDocuments = new Set(["TDS", "SDS", "COA", "REACH", "RoHS"]);
+const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type InquiryPayload = {
   name?: string;
@@ -19,18 +26,61 @@ type InquiryPayload = {
   website?: string;
 };
 
-const cleanText = (value: unknown, fallback = "Not specified") => {
+const cleanText = (
+  value: unknown,
+  fallback = "Not specified",
+  maxLength = 240
+) => {
   const text = String(value ?? "")
     .replace(/\s+/g, " ")
     .trim();
 
-  return text ? text.slice(0, 1200) : fallback;
+  return text ? text.slice(0, maxLength) : fallback;
+};
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+
+const getClientIp = (headers: Headers) =>
+  headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+  headers.get("x-real-ip") ||
+  "unknown";
+
+const isRateLimited = (key: string) => {
+  const now = Date.now();
+  const bucket = rateLimitBuckets.get(key);
+
+  if (!bucket || bucket.resetAt <= now) {
+    rateLimitBuckets.set(key, {
+      count: 1,
+      resetAt: now + rateLimitWindowMs,
+    });
+
+    if (rateLimitBuckets.size > maxRateLimitBuckets) {
+      const oldestKey = rateLimitBuckets.keys().next().value;
+
+      if (oldestKey) {
+        rateLimitBuckets.delete(oldestKey);
+      }
+    }
+
+    return false;
+  }
+
+  if (bucket.count >= maxRequestsPerWindow) {
+    return true;
+  }
+
+  bucket.count += 1;
+  return false;
 };
 
 const createInquiryBody = (payload: InquiryPayload) => {
   const documents =
     Array.isArray(payload.documents) && payload.documents.length > 0
-      ? payload.documents.map((item) => cleanText(item, "")).filter(Boolean)
+      ? payload.documents
+          .map((item) => cleanText(item, "", 20))
+          .filter((item) => allowedDocuments.has(item))
       : [];
 
   return [
@@ -38,7 +88,7 @@ const createInquiryBody = (payload: InquiryPayload) => {
     "",
     `Name: ${cleanText(payload.name)}`,
     `Company: ${cleanText(payload.company)}`,
-    `Email: ${cleanText(payload.email)}`,
+    `Email: ${cleanText(payload.email, "Not specified", 254)}`,
     `Country / Region: ${cleanText(payload.region)}`,
     `Material Interest: ${cleanText(payload.material)}`,
     `Application / Part: ${cleanText(payload.application)}`,
@@ -48,15 +98,66 @@ const createInquiryBody = (payload: InquiryPayload) => {
     `Required Documents: ${documents.join(", ") || "Not specified"}`,
     "",
     "Message:",
-    cleanText(payload.message),
+    cleanText(payload.message, "Not specified", 2000),
   ].join("\n");
 };
 
 export async function POST(request: Request) {
   let payload: InquiryPayload;
 
+  const contentType = request.headers.get("content-type")?.toLowerCase() ?? "";
+
+  if (!contentType.includes("application/json")) {
+    return NextResponse.json(
+      { delivered: false, fallback: true, message: "JSON body is required." },
+      { status: 415 }
+    );
+  }
+
+  const contentLength = Number(request.headers.get("content-length") ?? 0);
+
+  if (contentLength > maxRequestBodyBytes) {
+    return NextResponse.json(
+      { delivered: false, fallback: true, message: "Request body is too large." },
+      { status: 413 }
+    );
+  }
+
+  if (isRateLimited(`inquiry:${getClientIp(request.headers)}`)) {
+    return NextResponse.json(
+      {
+        delivered: false,
+        fallback: true,
+        message: "Too many requests. Please try again later.",
+      },
+      { status: 429 }
+    );
+  }
+
   try {
-    payload = (await request.json()) as InquiryPayload;
+    const rawBody = await request.text();
+
+    if (new TextEncoder().encode(rawBody).length > maxRequestBodyBytes) {
+      return NextResponse.json(
+        {
+          delivered: false,
+          fallback: true,
+          message: "Request body is too large.",
+        },
+        { status: 413 }
+      );
+    }
+
+    const parsedPayload = JSON.parse(rawBody);
+
+    if (!isRecord(parsedPayload)) {
+      return NextResponse.json(
+        { delivered: false, fallback: true, message: "Invalid request body." },
+        { status: 400 }
+      );
+    }
+
+    payload = parsedPayload;
   } catch {
     return NextResponse.json(
       { delivered: false, fallback: true, message: "Invalid request body." },
@@ -68,9 +169,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ delivered: true, spamFiltered: true });
   }
 
-  const email = cleanText(payload.email, "");
+  const email = cleanText(payload.email, "", 254);
 
-  if (!email || !email.includes("@")) {
+  if (!email || !emailPattern.test(email)) {
     return NextResponse.json(
       { delivered: false, fallback: true, message: "Email is required." },
       { status: 400 }
