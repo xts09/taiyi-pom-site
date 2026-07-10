@@ -4319,8 +4319,8 @@ body {
 .home-motion-root.is-home-motion-ready .hero-motion-copy,
 .home-motion-root.is-home-motion-ready .hero-motion-actions > * {
   opacity: 0;
-  transform: translate3d(0, 0.9rem, 0);
-  will-change: opacity, transform;
+  transform: none;
+  will-change: opacity;
 }
 
 .home-motion-root.is-home-motion-ready .product-current-head,
@@ -4364,8 +4364,8 @@ body {
 .home-motion-root.is-home-motion-ready .type-letter {
   opacity: 0;
   filter: blur(0.22rem);
-  transform: translate3d(0, 0.38em, 0);
-  will-change: opacity, filter, transform;
+  transform: none;
+  will-change: opacity, filter;
 }
 
 .polymer-field {

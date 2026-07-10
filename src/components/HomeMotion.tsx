@@ -152,15 +152,14 @@ export function HomeMotion({ children }: HomeMotionProps) {
           })
           .fromTo(
             ".hero-motion-kicker",
-            { autoAlpha: 0, y: 14 },
-            { autoAlpha: 1, y: 0, duration: 0.56 },
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.56 },
             0.08,
           )
           .to(
             ".type-letter",
             {
               autoAlpha: 1,
-              y: 0,
               filter: "blur(0px)",
               duration: 0.72,
               ease: "power3.out",
@@ -170,16 +169,15 @@ export function HomeMotion({ children }: HomeMotionProps) {
           )
           .fromTo(
             ".hero-motion-copy",
-            { autoAlpha: 0, y: 16 },
-            { autoAlpha: 1, y: 0, duration: 0.62 },
+            { autoAlpha: 0 },
+            { autoAlpha: 1, duration: 0.62 },
             0.72,
           )
           .fromTo(
             ".hero-motion-actions > *",
-            { autoAlpha: 0, y: 14 },
+            { autoAlpha: 0 },
             {
               autoAlpha: 1,
-              y: 0,
               duration: 0.52,
               stagger: 0.08,
             },

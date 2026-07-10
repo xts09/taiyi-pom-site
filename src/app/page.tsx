@@ -242,7 +242,7 @@ export default function Home() {
 
               <AnimatedContent
                 className="hero-support-motion"
-                distance={18}
+                distance={0}
                 duration={0.68}
                 delay={0.55}
                 threshold={0}
