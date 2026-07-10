@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, type CSSProperties } from "react";
 import { publicPath } from "@/lib/paths";
 
@@ -52,10 +53,13 @@ export function ExportMarketsMap() {
         aria-label="Interactive export map showing supply routes from China to Europe, South Korea, Brazil and Argentina"
         onMouseLeave={() => setActiveRegionId(null)}
       >
-        <img
+        <Image
           className="export-map-image"
           src={publicPath("/export-markets-routes-map.svg")}
           alt="World map showing export routes from China to Europe, South Korea, Brazil and Argentina."
+          width={1280}
+          height={720}
+          sizes="(min-width: 1024px) 50vw, 100vw"
         />
 
         {regions.map((region) => (

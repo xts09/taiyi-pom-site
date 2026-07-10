@@ -1,5 +1,9 @@
 import type { MetadataRoute } from "next";
 import { applications } from "@/data/applications";
+import {
+  createEngineeringTdsSlug,
+  engineeringTdsDocuments,
+} from "@/data/engineeringTds";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { productCategoryEntries } from "@/lib/productCategories";
@@ -40,6 +44,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const engineeringTdsRoutes = engineeringTdsDocuments.map((document) => ({
+    url: `${siteUrl}/products/${createEngineeringTdsSlug(document)}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.64,
+  }));
+
   const resourceRoutes = resourcePages.map((page) => ({
     url: `${siteUrl}/resources/${page.slug}`,
     changeFrequency: "monthly" as const,
@@ -50,6 +60,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticRoutes,
     ...categoryRoutes,
     ...productRoutes,
+    ...engineeringTdsRoutes,
     ...applicationRoutes,
     ...resourceRoutes,
   ];

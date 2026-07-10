@@ -17,6 +17,7 @@ type InquiryPayload = {
   email?: string;
   region?: string;
   material?: string;
+  currentMaterial?: string;
   application?: string;
   tooling?: string;
   shrinkage?: string;
@@ -91,6 +92,7 @@ const createInquiryBody = (payload: InquiryPayload) => {
     `Email: ${cleanText(payload.email, "Not specified", 254)}`,
     `Country / Region: ${cleanText(payload.region)}`,
     `Material Interest: ${cleanText(payload.material)}`,
+    `Current Material / Grade: ${cleanText(payload.currentMaterial)}`,
     `Application / Part: ${cleanText(payload.application)}`,
     `Mold Stage / Cavity Count: ${cleanText(payload.tooling)}`,
     `Shrinkage / Warpage Concern: ${cleanText(payload.shrinkage)}`,
@@ -174,6 +176,26 @@ export async function POST(request: Request) {
   if (!email || !emailPattern.test(email)) {
     return NextResponse.json(
       { delivered: false, fallback: true, message: "Email is required." },
+      { status: 400 }
+    );
+  }
+
+  const requiredFields = [
+    ["company", payload.company],
+    ["currentMaterial", payload.currentMaterial],
+    ["application", payload.application],
+  ];
+  const missingFields = requiredFields
+    .filter(([, value]) => !cleanText(value, "", 240))
+    .map(([field]) => field);
+
+  if (missingFields.length > 0) {
+    return NextResponse.json(
+      {
+        delivered: false,
+        fallback: true,
+        message: `Missing required fields: ${missingFields.join(", ")}.`,
+      },
       { status: 400 }
     );
   }

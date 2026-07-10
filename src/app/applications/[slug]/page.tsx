@@ -363,7 +363,6 @@ function ApplicationUseCard({
             alt={image.alt}
             fill
             sizes="(min-width: 1280px) 310px, (min-width: 768px) 42vw, 92vw"
-            unoptimized
             className="object-contain"
           />
         </div>
@@ -411,7 +410,6 @@ function ProductInfoCard({
             alt={mediaAlt ?? card.directionName}
             fill
             sizes="(min-width: 1280px) 360px, (min-width: 768px) 42vw, 92vw"
-            unoptimized
             className={materialImageSrc ? "object-cover" : "object-contain"}
           />
         </div>
@@ -582,7 +580,6 @@ export default async function ApplicationDetailPage({
                   fill
                   sizes="100vw"
                   priority
-                  unoptimized
                   className="object-cover"
                 />
 
@@ -645,7 +642,6 @@ export default async function ApplicationDetailPage({
                             ? "(min-width: 1024px) 560px, 92vw"
                             : "(min-width: 1024px) 260px, 44vw"
                         }
-                        unoptimized
                         className="object-contain"
                       />
                     </div>

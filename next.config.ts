@@ -11,8 +11,8 @@ const contentSecurityPolicy = [
   "media-src 'self'",
   "font-src 'self' data:",
   "style-src 'self' 'unsafe-inline'",
-  "script-src 'self' 'unsafe-inline'",
-  "connect-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
+  "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net https://www.google.com https://googleads.g.doubleclick.net",
   "form-action 'self' mailto:",
   "upgrade-insecure-requests",
 ].join("; ");

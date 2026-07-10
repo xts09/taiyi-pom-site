@@ -4,6 +4,8 @@ import "@fontsource-variable/ibm-plex-sans/wght.css";
 import "@fontsource-variable/saira/wdth.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { GoogleTag } from "@/components/GoogleTag";
+import { googleSiteVerification } from "@/lib/googleTracking";
 import {
   defaultDescription,
   defaultOgImage,
@@ -78,6 +80,13 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+  ...(googleSiteVerification
+    ? {
+        verification: {
+          google: googleSiteVerification,
+        },
+      }
+    : {}),
 };
 
 export const viewport: Viewport = {
@@ -97,6 +106,7 @@ export default function RootLayout({
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
+        <GoogleTag />
       </body>
     </html>
   );

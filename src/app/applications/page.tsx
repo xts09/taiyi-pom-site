@@ -81,7 +81,6 @@ export default function ApplicationsPage() {
                         alt={image.alt}
                         fill
                         sizes="(min-width: 1024px) 130px, (min-width: 640px) 160px, 45vw"
-                        unoptimized
                         className="object-contain"
                       />
                     </div>

@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import {
+  trackInquiryFallback,
+  trackInquirySubmitted,
+} from "@/lib/conversionEvents";
 import { pomSubcategoryLabels, productCategoryOrder } from "@/lib/productCategories";
 
 const materialOptions = [
@@ -27,6 +31,7 @@ const buildInquiryMessage = (formData: FormData, documents: string) =>
     `Email: ${readField(formData, "email")}`,
     `Country / Region: ${readField(formData, "region")}`,
     `Material Interest: ${readField(formData, "material")}`,
+    `Current Material / Grade: ${readField(formData, "currentMaterial")}`,
     `Application / Part: ${readField(formData, "application")}`,
     `Mold Stage / Cavity Count: ${readField(formData, "tooling")}`,
     `Shrinkage / Warpage Concern: ${readField(formData, "shrinkage")}`,
@@ -74,6 +79,7 @@ export function ContactInquiryForm() {
           email: readField(formData, "email"),
           region: readField(formData, "region"),
           material: readField(formData, "material"),
+          currentMaterial: readField(formData, "currentMaterial"),
           application: readField(formData, "application"),
           tooling: readField(formData, "tooling"),
           shrinkage: readField(formData, "shrinkage"),
@@ -89,6 +95,7 @@ export function ContactInquiryForm() {
       };
 
       if (response.ok && result.delivered && !result.fallback) {
+        trackInquirySubmitted("server_email");
         setStatus("sent");
         form.reset();
         return;
@@ -104,6 +111,7 @@ export function ContactInquiryForm() {
     }
 
     setStatus("fallback");
+    trackInquiryFallback("mailto_draft");
     window.location.href = mailto;
   };
 
@@ -129,6 +137,7 @@ export function ContactInquiryForm() {
             name="company"
             autoComplete="organization"
             placeholder="Company name"
+            required
           />
         </label>
 
@@ -167,8 +176,21 @@ export function ContactInquiryForm() {
         </label>
 
         <label className="contact-field">
+          <span>Current Material / Grade</span>
+          <input
+            name="currentMaterial"
+            placeholder="Current grade, resin, or target material"
+            required
+          />
+        </label>
+
+        <label className="contact-field">
           <span>Application / Part</span>
-          <input name="application" placeholder="Gear, clip, housing..." />
+          <input
+            name="application"
+            placeholder="Gear, clip, housing..."
+            required
+          />
         </label>
 
         <label className="contact-field">
