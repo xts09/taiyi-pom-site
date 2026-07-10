@@ -82,7 +82,7 @@ export function Footer() {
               Jiangsu Taiyi Nano Technology Co., Ltd.
             </p>
             <p className="site-footer-line">
-              Modified POM & engineering plastic compounds
+              Modified POM compounds & selected engineering plastic compounds
             </p>
             <p className="site-footer-location">
               Jiangsu, China
