@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { CountUpValue } from "@/components/CountUpValue";
 
 type CompanyFigure = {
@@ -21,8 +22,8 @@ export function CompanyMetrics({
         <div className="manufacturing-base-head">
           <h2>Factory Snapshot</h2>
           <p>
-            Production scale, manufacturing experience and in-house testing
-            capability for engineering plastic compounding.
+            Production scale, compounding experience and in&#8209;house testing
+            for engineering plastic materials.
           </p>
         </div>
 
@@ -36,8 +37,12 @@ export function CompanyMetrics({
           </div>
 
           <div className="base-metrics">
-            {supportingFigures.map((item) => (
-              <div key={item.label} className="base-metric">
+            {supportingFigures.map((item, index) => (
+              <div
+                key={item.label}
+                className="base-metric"
+                style={{ "--item-index": index } as CSSProperties}
+              >
                 <p>{item.label}</p>
                 <strong>
                   <CountUpValue value={item.value} />

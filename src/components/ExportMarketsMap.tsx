@@ -1,0 +1,111 @@
+"use client";
+
+import { useState, type CSSProperties } from "react";
+import { publicPath } from "@/lib/paths";
+
+type Region = {
+  id: "europe" | "south-korea" | "south-america";
+  name: string;
+  countries: string;
+  note: string;
+  hotspot: { x: string; y: string };
+  popover: { x: string; y: string };
+};
+
+const regions: Region[] = [
+  {
+    id: "europe",
+    name: "Europe",
+    countries: "Germany / Italy / Turkey / Czechia",
+    note: "Project supply communication across established European routes.",
+    hotspot: { x: "52.7%", y: "25.5%" },
+    popover: { x: "37.5%", y: "6%" },
+  },
+  {
+    id: "south-korea",
+    name: "South Korea",
+    countries: "South Korea",
+    note: "Material discussions for precision molded-part applications.",
+    hotspot: { x: "77.4%", y: "31%" },
+    popover: { x: "63%", y: "9%" },
+  },
+  {
+    id: "south-america",
+    name: "South America",
+    countries: "Brazil / Argentina",
+    note: "Project-based compound communication across South American markets.",
+    hotspot: { x: "37.1%", y: "64%" },
+    popover: { x: "20%", y: "40%" },
+  },
+];
+
+export function ExportMarketsMap() {
+  const [activeRegionId, setActiveRegionId] = useState<Region["id"] | null>(
+    null,
+  );
+  const activeRegion = regions.find((region) => region.id === activeRegionId);
+
+  return (
+    <div className="export-map-experience">
+      <div
+        className="export-map-stage"
+        aria-label="Interactive export map showing supply routes from China to Europe, South Korea, Brazil and Argentina"
+        onMouseLeave={() => setActiveRegionId(null)}
+      >
+        <img
+          className="export-map-image"
+          src={publicPath("/export-markets-routes-map.svg")}
+          alt="World map showing export routes from China to Europe, South Korea, Brazil and Argentina."
+        />
+
+        {regions.map((region) => (
+          <button
+            key={region.id}
+            className={`export-map-hotspot${
+              activeRegionId === region.id ? " is-active" : ""
+            }`}
+            type="button"
+            style={
+              {
+                "--hotspot-x": region.hotspot.x,
+                "--hotspot-y": region.hotspot.y,
+              } as CSSProperties
+            }
+            aria-pressed={activeRegionId === region.id}
+            aria-label={`Show export details for ${region.name}`}
+            onFocus={() => setActiveRegionId(region.id)}
+            onMouseEnter={() => setActiveRegionId(region.id)}
+            onClick={() =>
+              setActiveRegionId((current) =>
+                current === region.id ? null : region.id,
+              )
+            }
+          >
+            <span className="sr-only">{region.name}</span>
+          </button>
+        ))}
+
+        {activeRegion && (
+          <div
+            className="export-map-popover"
+            style={
+              {
+                "--popover-x": activeRegion.popover.x,
+                "--popover-y": activeRegion.popover.y,
+              } as CSSProperties
+            }
+            role="status"
+          >
+            <p>{activeRegion.name}</p>
+            <strong>{activeRegion.countries}</strong>
+            <span>{activeRegion.note}</span>
+          </div>
+        )}
+      </div>
+
+      <p className="export-map-caption">
+        Select a region to view current supply coverage.
+      </p>
+    </div>
+  );
+}

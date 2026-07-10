@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Fragment, type CSSProperties } from "react";
 import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
+import { ExportMarketsMap } from "@/components/ExportMarketsMap";
 import { HomeMotion } from "@/components/HomeMotion";
 import AnimatedContent from "@/components/reactbits/AnimatedContent";
 import { SelectionLogicStepper } from "@/components/SelectionLogicStepper";
@@ -361,10 +362,10 @@ export default function Home() {
           <div className="site-container grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="section-motion-copy selection-motion-copy">
               <p className="section-kicker mb-3">Selection Logic</p>
-              <h2 className="text-3xl text-white sm:text-4xl">
-                Application-Based Material Recommendation
+              <h2 className="text-3xl sm:text-4xl">
+                Material Review Before Recommendation
               </h2>
-              <p className="mt-5 max-w-xl text-slate-300">
+              <p className="mt-5 max-w-xl">
                 We evaluate the molded part together with mold development,
                 cavity layout, shrinkage behavior, working conditions, and
                 performance targets before recommending a practical grade
@@ -373,7 +374,7 @@ export default function Home() {
 
               <Link
                 href="/applications"
-                className="selection-corridor-link mt-6 inline-flex text-cyan-100 hover:text-white"
+                className="selection-corridor-link mt-6 inline-flex"
               >
                 Browse Application Areas &rarr;
               </Link>
@@ -434,6 +435,33 @@ export default function Home() {
                 </figure>
               ))}
             </div>
+          </div>
+        </section>
+
+        <section className="home-section global-footprint">
+          <div className="site-container global-footprint-inner">
+            <div className="global-footprint-copy">
+              <p className="section-kicker">Global Supply Footprint</p>
+              <h2>Export Markets</h2>
+              <p>
+                Current supply routes cover Europe, South Korea and South
+                America for project-based material communication.
+              </p>
+            </div>
+
+            <ExportMarketsMap />
+          </div>
+        </section>
+
+        <section className="home-inquiry">
+          <div className="site-container home-inquiry-inner">
+            <div>
+              <p>Material Review</p>
+              <h2>Have a part or material requirement?</h2>
+            </div>
+            <Link href="/contact" className="home-inquiry-action">
+              Discuss Your Application
+            </Link>
           </div>
         </section>
 
