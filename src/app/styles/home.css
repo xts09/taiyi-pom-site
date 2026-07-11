@@ -1808,3 +1808,94 @@
     display: contents;
   }
 }
+
+/* Keep the desktop snapshot as a distinct proof section rather than a compact rail. */
+@media (min-width: 64rem) {
+  .manufacturing-base {
+    background: linear-gradient(180deg, #03101b 0%, #061827 100%) !important;
+  }
+
+  .manufacturing-base::before,
+  .manufacturing-base::after {
+    display: none;
+  }
+
+  .manufacturing-base-inner {
+    display: block;
+    padding-top: clamp(1.15rem, 2.1vw, 1.65rem);
+    padding-bottom: clamp(0.85rem, 1.8vw, 1.25rem);
+  }
+
+  .manufacturing-base-head {
+    display: block;
+    max-width: 44rem;
+    margin-bottom: clamp(1.05rem, 1.9vw, 1.4rem);
+  }
+
+  .manufacturing-base-head h2 {
+    color: rgba(255, 255, 255, 0.96);
+    font-size: clamp(2.1rem, 3.2vw, 3rem);
+    font-weight: 760;
+    letter-spacing: 0;
+    line-height: 1.05;
+    text-transform: none;
+  }
+
+  .manufacturing-base-head > p:not(.section-kicker) {
+    margin-top: 1rem;
+    max-width: 39rem;
+    color: rgba(226, 232, 240, 0.68);
+    font-size: clamp(0.98rem, 1.05vw, 1.08rem);
+    font-weight: 400;
+    line-height: 1.7;
+  }
+
+  .manufacturing-base .home-metrics-rail {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(0.95rem, 2vw, 1.65rem) !important;
+    align-items: center;
+    padding: clamp(1rem, 1.7vw, 1.35rem) 0 clamp(0.65rem, 1.15vw, 0.95rem) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .manufacturing-base .base-metrics {
+    display: contents;
+  }
+
+  .manufacturing-base .base-figure,
+  .manufacturing-base .base-metric {
+    grid-template-rows: none;
+    align-content: center;
+  }
+
+  .manufacturing-base .base-figure .section-kicker,
+  .manufacturing-base .base-metric p {
+    color: rgba(125, 211, 252, 0.72) !important;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+
+  .manufacturing-base .base-figure strong,
+  .manufacturing-base .base-metric strong {
+    margin-top: 0.58rem;
+    color: rgba(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
+    font-size: clamp(2rem, 2.4vw, 2.35rem);
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1;
+  }
+
+  .manufacturing-base .base-figure > span,
+  .manufacturing-base .base-metric > span {
+    margin-top: 0.48rem;
+    color: rgba(255, 255, 255, 0.62) !important;
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.3;
+  }
+}

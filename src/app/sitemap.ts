@@ -4,6 +4,7 @@ import {
   createEngineeringTdsSlug,
   engineeringTdsDocuments,
 } from "@/data/engineeringTds";
+import { publicTechnicalLandingLinks } from "@/data/pomLandingPages";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { productCategoryEntries } from "@/lib/productCategories";
@@ -56,6 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.72,
   }));
 
+  const technicalLandingRoutes = publicTechnicalLandingLinks.map((page) => ({
+    url: `${siteUrl}${page.href}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.78,
+  }));
+
   return [
     ...staticRoutes,
     ...categoryRoutes,
@@ -63,5 +70,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...engineeringTdsRoutes,
     ...applicationRoutes,
     ...resourceRoutes,
+    ...technicalLandingRoutes,
   ];
 }

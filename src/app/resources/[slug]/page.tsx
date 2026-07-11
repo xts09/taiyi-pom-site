@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { ResourceArticleLayout } from "@/components/ResourceArticleLayout";
 import { ResourceFaqExplorer } from "@/components/ResourceFaqExplorer";
 import { ResourceGuideExplorer } from "@/components/ResourceGuideExplorer";
+import { ResourcePageActions } from "@/components/ResourcePageActions";
+import { ResourceHero } from "@/components/ResourceHero";
 import { getResourcePage, resourcePages } from "@/data/resources";
+import { toResourceSectionId } from "@/lib/resource-page";
 import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
 
 type ResourcePageProps = {
@@ -12,12 +14,6 @@ type ResourcePageProps = {
     slug: string;
   }>;
 };
-
-const toSectionId = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
 
 export const dynamic = "force-static";
 
@@ -61,8 +57,14 @@ export default async function ResourceDetailPage({
   ]);
   const faqItems = page.modules.flatMap((module) => module.faqItems ?? []);
   const hasFaqItems = faqItems.length > 0;
-  const usesGuideExplorer = !hasFaqItems;
+  const usesArticleLayout = Boolean(page.articleSections?.length);
+  const usesGuideExplorer = !hasFaqItems && !usesArticleLayout;
   const usesFaqLayout = hasFaqItems || usesGuideExplorer;
+  const resourceContext = hasFaqItems
+    ? "Technical FAQ"
+    : usesGuideExplorer
+      ? "Technical guide"
+      : "Technical resource";
   const jsonLd = hasFaqItems
     ? [
         breadcrumbJsonLd,
@@ -82,7 +84,9 @@ export default async function ResourceDetailPage({
     : breadcrumbJsonLd;
 
   return (
-    <main className="min-h-screen text-slate-900">
+    <main
+      className={`min-h-screen text-slate-900${usesArticleLayout ? " resource-article-page" : ""}`}
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -91,35 +95,20 @@ export default async function ResourceDetailPage({
       />
 
       <section
-        className={`resource-page-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8${usesFaqLayout ? " resource-faq-shell" : ""}`}
+        className={`resource-page-shell${usesArticleLayout ? "" : " mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8"}${usesFaqLayout ? " resource-faq-shell" : ""}${usesArticleLayout ? " resource-article-shell" : ""}`}
       >
-        <div
-          className={`resource-hero rounded-[0.8rem] border border-slate-200 bg-white/90 p-6 shadow-[0_1.25rem_2.6rem_rgba(15,23,42,0.08)] sm:p-8${usesFaqLayout ? " resource-faq-hero" : ""}`}
-        >
-          {usesFaqLayout ? (
-            <div className="resource-faq-hero-grid">
-              <div className="resource-faq-hero-copy">
-                <h1 className="max-w-4xl text-4xl font-black leading-none tracking-normal text-slate-950 md:text-6xl">
-                  {page.title}
-                </h1>
-                <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">
-                  {page.intro}
-                </p>
-              </div>
-            </div>
-          ) : (
-            <>
-              <h1 className="max-w-4xl text-4xl font-black leading-none tracking-normal text-slate-950 md:text-6xl">
-                {page.title}
-              </h1>
-              <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">
-                {page.intro}
-              </p>
-            </>
-          )}
-        </div>
+        {!usesArticleLayout ? (
+          <ResourceHero
+            context={resourceContext}
+            title={page.title}
+            description={page.intro}
+            className={usesFaqLayout ? "resource-faq-hero" : "resource-standard-hero"}
+          />
+        ) : null}
 
-        {hasFaqItems ? (
+        {usesArticleLayout ? (
+          <ResourceArticleLayout page={page} />
+        ) : hasFaqItems ? (
           <ResourceFaqExplorer modules={page.modules} />
         ) : usesGuideExplorer ? (
           <ResourceGuideExplorer
@@ -133,7 +122,7 @@ export default async function ResourceDetailPage({
           >
             {page.modules.map((module, index) => (
               <article
-                id={toSectionId(module.title)}
+                id={toResourceSectionId(module.title)}
                 key={module.title}
                 className="resource-module-card rounded-[0.8rem] border border-blue-200 bg-white/90 p-6 shadow-[0_1.4rem_3rem_rgba(15,23,42,0.06)]"
               >
@@ -158,31 +147,9 @@ export default async function ResourceDetailPage({
           </section>
         )}
 
-        <section
-          className="resource-related-links"
-          aria-label="Related resources"
-        >
-          <h2>Related Next Steps</h2>
-          <div>
-            {page.relatedLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <MaterialRecommendationCta
-          kicker="Technical Review"
-          title="Need This Filled Around Your Project?"
-          className="selection-support-band resource-cta mt-12"
-        >
-          <p>
-            Send the part information, working condition, target property,
-            current material, tooling stage, and document needs. We will help
-            connect the right material direction with the right supporting data.
-          </p>
-        </MaterialRecommendationCta>
+        {!usesArticleLayout ? (
+          <ResourcePageActions relatedLinks={page.relatedLinks} />
+        ) : null}
       </section>
     </main>
   );

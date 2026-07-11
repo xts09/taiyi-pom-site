@@ -1,3 +1,5 @@
+import { publicTechnicalLandingLinks } from "@/data/pomLandingPages";
+
 export type ResourceFaqItem = {
   question: string;
   answer: string;
@@ -11,12 +13,58 @@ export type ResourceModule = {
   faqItems?: ResourceFaqItem[];
 };
 
+export type ResourceArticleSection = {
+  title: string;
+  paragraphs: string[];
+  points?: string[];
+};
+
+type ResourceArticleFeaturePlacement =
+  | {
+      position: "after-intro";
+    }
+  | {
+      position: "after-section";
+      sectionTitle: string;
+    };
+
+type ResourceArticleMediaFeature = ResourceArticleFeaturePlacement & {
+  type: "media";
+  src: string;
+  alt: string;
+  title: string;
+  description: string;
+  labels: string[];
+};
+
+type ResourceArticleComparisonFeature = ResourceArticleFeaturePlacement & {
+  type: "comparison";
+  items: Array<{
+    title: string;
+    description: string;
+  }>;
+};
+
+type ResourceArticleMatrixFeature = ResourceArticleFeaturePlacement & {
+  type: "matrix";
+  title: string;
+  columns: [string, string, string];
+  rows: Array<[string, string, string]>;
+};
+
+export type ResourceArticleFeature =
+  | ResourceArticleMediaFeature
+  | ResourceArticleComparisonFeature
+  | ResourceArticleMatrixFeature;
+
 export type ResourcePage = {
   slug: string;
   title: string;
   navLabel: string;
   description: string;
   intro: string;
+  articleSections?: ResourceArticleSection[];
+  articleFeatures?: ResourceArticleFeature[];
   modules: ResourceModule[];
   relatedLinks: Array<{
     label: string;
@@ -33,6 +81,95 @@ export const resourcePages: ResourcePage[] = [
       "A practical POM material selection guide for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV, and high-impact compounds.",
     intro:
       "Selecting a modified POM compound should begin with the molded part, its working conditions, and the failure risk the material must solve. This guide gives buyers and engineers a practical framework for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV-resistant, and high-impact POM directions. It also explains how to read common TDS items such as MFI, tensile and flexural performance, impact strength, HDT, and molding shrinkage. Final suitability should always be confirmed with the selected grade TDS, part design review, and application-specific molding trials.",
+    articleSections: [
+      {
+        title: "Start with the Molded Part, Not the Grade Name",
+        paragraphs: [
+          "A grade name is only a reference point. It does not fully describe whether a material is suitable for a specific molded component. Engineers should first review the function of the part, the failure risks, the required service life, and the production process.",
+          "For an existing component, useful starting information includes the current material type, molding method, part dimensions, wall thickness, assembly method, and any known performance issues. Wear marks, cracking, deformation, noise, static accumulation, discoloration, or unstable molding may indicate different material requirements.",
+          "For a new component, the selection process should begin with the intended operating conditions. A grade that performs well in a lightly loaded internal mechanism may not be suitable for a continuously moving part, an outdoor application, or a component exposed to aggressive chemicals.",
+          "Material names and market references may support initial screening, but they should not be used as the sole basis for selection. The correct question is not which grade is similar, but which material characteristics are required for this part.",
+        ],
+      },
+      {
+        title: "Define the Application Conditions Clearly",
+        paragraphs: [
+          "POM material selection is strongly influenced by the actual working environment. Mechanical requirements should be reviewed together with movement, contact conditions, temperature, chemicals, moisture, UV exposure, and electrical performance.",
+          "Load should be considered in terms of both magnitude and duration. A short-term assembly load is different from continuous stress. Static loading, repeated loading, impact loading, and vibration may each require a different balance of stiffness, toughness, and dimensional stability.",
+          "Temperature should be reviewed as an operating range rather than a single maximum value. Local frictional heating, nearby heat sources, thermal cycling, and dimensional tolerance requirements may all influence material performance.",
+          "Chemical contact must also be defined carefully. Fuel, grease, cleaning agents, process fluids, detergents, and other substances may affect the material differently depending on concentration, exposure time, and temperature.",
+        ],
+        points: [
+          "Sliding, rotating, oscillating, or intermittent movement",
+          "Continuous operation or occasional movement",
+          "Contact with metal, plastic, rubber, or coated surfaces",
+          "Dry running or externally lubricated operation",
+          "Surface pressure, speed, and expected operating cycles",
+        ],
+      },
+      {
+        title: "Compare Standard, Wear-Resistant, Low-Friction, and High-Impact POM",
+        paragraphs: [
+          "Standard POM may be considered when the part requires a typical balance of stiffness, dimensional consistency, surface quality, and processing performance. It is often the first option for general precision components without demanding wear, impact, electrical, or environmental requirements.",
+          "Wear-resistant POM should be reviewed when material loss, surface damage, or reduced service life is the main concern. Typical applications include gears, bushings, rollers, guides, chain components, and repeated-contact mechanisms. The appropriate formulation depends on the mating surface, contact pressure, motion pattern, lubrication conditions, and expected service duration.",
+          "Low-friction POM is selected when reducing resistance to movement, operating force, noise, or stick-slip behavior is more important than simply reducing material loss. Wear resistance and low friction are related, but they are not interchangeable. Both should be evaluated under representative contact conditions.",
+          "High-impact POM may be considered for snap-fit parts, clips, latches, assembly components, or mechanisms exposed to sudden loads. Increasing toughness may affect stiffness, surface hardness, dimensional behavior, or other properties, so the required balance should be reviewed against the actual part geometry and failure mode.",
+        ],
+      },
+      {
+        title: "When to Consider Glass Fiber or Carbon Fiber Reinforced POM",
+        paragraphs: [
+          "Glass fiber reinforced POM may be considered when higher stiffness, improved load-bearing capability, or reduced deformation is required. It can be relevant for structural parts, support components, precision mechanisms, and applications where standard POM does not provide sufficient rigidity.",
+          "Reinforcement does not automatically make a material better for every component. Glass fiber can affect mold flow, surface appearance, anisotropic shrinkage, dimensional behavior, and wear against mating surfaces. For tight-tolerance parts, engineers should review gate position, flow path, weld lines, wall thickness, and fiber orientation.",
+          "Carbon fiber reinforced POM may be considered where high stiffness, lower deformation, electrical conductivity, or reduced weight relative to some highly filled systems is required. It may also offer different friction and wear behavior from glass fiber reinforced grades.",
+          "The choice between unfilled, glass fiber reinforced, carbon fiber reinforced, and other modified directions should be based on the complete performance balance, not only on the highest stiffness value.",
+        ],
+      },
+      {
+        title: "Conductive, Antistatic, UV-Resistant, and High-Impact Directions",
+        paragraphs: [
+          "Conductive and antistatic POM should be reviewed when the molded part must manage electrical charge, reduce static accumulation, or meet a defined resistance target. The required range, measurement method, part geometry, conditioning, and grounding concept should be confirmed before a grade is selected.",
+          "Electrical modification can influence color, flow, mechanical balance, surface appearance, and processing behavior. A conductive or antistatic description should therefore be treated as one part of the material review, not as a complete specification.",
+          "UV-resistant POM may be considered for parts exposed to sunlight, outdoor conditions, or light-aging requirements. UV resistance should not be treated as a guarantee of unlimited outdoor service. Final suitability depends on temperature, moisture, chemicals, stress, color requirement, and the geometry of the molded component.",
+        ],
+      },
+      {
+        title: "How to Read a POM TDS Cautiously",
+        paragraphs: [
+          "A technical data sheet is useful for comparing materials, but it should not be read as a direct prediction of molded-part performance. TDS values are generally obtained under controlled test conditions using defined specimen geometries, conditioning procedures, and test methods.",
+          "Mechanical values such as tensile strength, flexural modulus, impact performance, and elongation help describe the material, but they do not fully represent a complex component. Wall thickness, weld lines, fiber orientation, internal stress, molding conditions, and part design can produce different results.",
+          "Flow data should also be reviewed cautiously. A higher or lower melt flow value does not independently determine whether a material will fill a mold successfully. Gate size, flow length, wall thickness, venting, tool temperature, machine capability, and the additive system all influence processing behavior.",
+          "Wear and friction data require particular care because they depend strongly on the mating material, surface roughness, load, speed, lubrication, temperature, and test method. A single laboratory value cannot represent every moving component.",
+        ],
+      },
+      {
+        title: "Why Molded-Part Trials Are Necessary",
+        paragraphs: [
+          "Standard test specimens cannot reproduce every detail of a production part. Molded-part trials help confirm how the selected material behaves in the intended mold, geometry, machine, processing window, and application environment.",
+          "During trial review, engineers should evaluate filling behavior, appearance, dimensions, warpage, shrinkage, weld lines, ejection, part weight consistency, assembly performance, and functional testing. For moving parts, wear, friction, noise, and counterpart behavior should be tested under representative conditions.",
+          "Final suitability should be confirmed through TDS review, molded-part trials, and application testing under conditions that represent actual use.",
+        ],
+      },
+      {
+        title: "What to Send for Material Review",
+        paragraphs: [
+          "A useful material review requires more than a grade name. Providing complete application information helps the supplier identify the most appropriate modification direction and avoid unnecessary sampling.",
+          "Based on this information, standard POM or a modified direction such as wear-resistant, low-friction, reinforced, conductive, antistatic, UV-resistant, or high-impact POM may be considered. The final material should be confirmed through technical data review, molding trials, and application testing.",
+        ],
+        points: [
+          "Part name, drawing, photo, or application description",
+          "Current material and current performance issues",
+          "Required stiffness, impact, wear, friction, or electrical behavior",
+          "Type of movement and mating material",
+          "Load, speed, pressure, and expected service cycle",
+          "Operating temperature and environmental exposure",
+          "Contact with chemicals, oils, cleaners, fuel, or water",
+          "Indoor or outdoor use and expected UV exposure",
+          "Color, surface, dimensional, and processing requirements",
+          "Existing TDS, test reports, or failed-part observations",
+        ],
+      },
+    ],
     modules: [
       {
         title: "Quick Selection Logic",
@@ -97,6 +234,211 @@ export const resourcePages: ResourcePage[] = [
     relatedLinks: [
       { label: "View POM Grades", href: "/products/categories/pom" },
       { label: "Find a TDS", href: "/technical-data-sheets" },
+    ],
+  },
+  {
+    slug: "wear-resistant-low-friction-pom-selection-guide",
+    title: "Wear-Resistant and Low-Friction POM Selection Guide",
+    navLabel: "Wear / Low-Friction POM Guide",
+    description:
+      "A practical guide to selecting wear-resistant and low-friction POM for gears, bushings, rollers, sliders, guides, and valve moving parts.",
+    intro:
+      "Selecting POM for a moving component is not simply a matter of choosing the grade described as having the lowest friction or highest wear resistance. A gear, bushing, roller, slider, guide part, or moving valve component operates as part of a tribological system. Its performance depends on the molded material, mating surface, contact pressure, movement pattern, speed, lubrication, temperature, surface finish, and dimensional stability of the assembly.",
+    articleSections: [
+      {
+        title: "Wear Resistance and Low Friction Are Not the Same Requirement",
+        paragraphs: [
+          "Wear resistance describes how well a material resists surface loss, scoring, deformation, or other damage during repeated contact. Low friction describes the resistance generated when one surface begins or continues to move against another. These properties are related, but they should not be treated as interchangeable.",
+          "A low-friction material may reduce operating force without necessarily providing the longest wear life under high load. Conversely, a highly wear-resistant material may maintain its dimensions over repeated cycles but still produce more friction, noise, or heat than the application allows.",
+          "The distinction becomes important in practical component selection. A bushing may need long service life with minimal dimensional change. A slider may require smooth initial movement and limited stick-slip. A gear may need stable tooth geometry, acceptable noise, and controlled wear on both surfaces. A valve moving part may need predictable movement after long periods of inactivity.",
+        ],
+        points: [
+          "Is the molded POM part wearing too quickly?",
+          "Is the mating component being damaged?",
+          "Is the movement force too high or inconsistent?",
+          "Is the mechanism producing noise, vibration, or stick-slip?",
+          "Is external lubrication unavailable or undesirable?",
+          "Is dimensional change affecting positioning or sealing?",
+        ],
+      },
+      {
+        title: "Review Load, Speed, and Movement Pattern Together",
+        paragraphs: [
+          "Load should be reviewed at the contact surface, not only as the total force applied to the component. A small contact area can create high local pressure even when the overall load appears moderate. Edge contact, misalignment, sharp geometry, and uneven assembly can further increase local stress.",
+          "Speed also influences wear and friction behavior. Slow movement can create stick-slip or high breakaway force, while faster movement may generate frictional heat. The effect of speed depends on the load, mating surface, lubrication condition, and movement duration.",
+          "Continuous rotation, repeated oscillation, short sliding strokes, and occasional actuation do not produce the same wear conditions. A roller running continuously may require a different material direction from a valve component that remains stationary for long periods and then moves suddenly.",
+          "For relatively demanding wear conditions, Taiyi POM EDM-111 may be reviewed as a high wear-resistant direction. POM EMS162, based on a MoS2-filled high wear-resistant direction, may also be considered where the selected additive system matches the contact conditions. POM ENM1040 provides another option based on a special wear-resistant additive direction.",
+        ],
+      },
+      {
+        title: "Mating Material and Surface Finish Can Change the Result",
+        paragraphs: [
+          "A POM component does not wear independently. Its behavior is strongly affected by the material and surface condition of the part it contacts. Steel, aluminum, brass, coated metal, rubber, POM, PA, and other engineering plastics may each produce different friction and wear results.",
+          "Surface finish is equally important. A rough metal surface can act as an abrasive and remove material from the polymer. A damaged, corroded, poorly machined, or contaminated mating surface can cause rapid wear even when a suitable modified POM has been selected.",
+          "Hard fillers or reinforcing fibers should also be reviewed for their possible effect on the counterpart. A reinforced POM may improve stiffness and dimensional control but could increase wear on a softer mating surface.",
+          "For applications requiring both reinforcement and lubrication, POM EGH20-TF may be considered as a PTFE and glass fiber direction. Aramid fiber or aramid powder filled POM directions may also be reviewed where wear behavior, mechanical support, or a particular contact balance is required.",
+        ],
+      },
+      {
+        title: "Selecting PTFE, MoS2, Silicone Oil, or Other Wear Additive Directions",
+        paragraphs: [
+          "Different wear and lubrication additives influence POM through different mechanisms. They should be selected according to the operating system rather than treated as equivalent methods of achieving self-lubrication.",
+          "PTFE-filled POM is commonly considered where reduced friction, smoother sliding, or lower operating force is required. Taiyi POM EPTL402 represents a PTFE-filled direction. POM EGH20-TF combines PTFE with glass fiber and may be considered where the application requires a balance of lubrication and additional stiffness.",
+          "MoS2-filled POM, represented by POM EMS162, may be considered for high wear-resistant applications where its solid-lubricant system is appropriate. POM ES0162 represents a silicone-oil-modified high-lubricity direction and may be considered where smooth movement, reduced friction, lower operating force, or improved running feel is important.",
+          "POM ENM1040 uses a special wear-resistant additive direction, while POM EDM-111 is positioned as a high wear-resistant direction. These options may be relevant where a customer requires a different balance from conventional PTFE-, MoS2-, or silicone-modified systems.",
+        ],
+        points: [
+          "Required wear life",
+          "Static and dynamic friction",
+          "Mechanical strength and stiffness",
+          "Dimensional tolerance",
+          "Counterpart material and hardness",
+          "Dry or lubricated service",
+          "Noise and movement quality",
+          "Surface and secondary-process requirements",
+          "Production stability and moldability",
+        ],
+      },
+      {
+        title: "Lubrication, Noise, and Stick-Slip Should Be Evaluated Separately",
+        paragraphs: [
+          "The first question regarding lubrication is whether the component operates dry, with grease or oil, or with occasional contact from process fluids. A material that performs well in dry sliding may not provide the same advantage in an externally lubricated system.",
+          "Where external lubrication is not practical, an internally lubricated POM direction may be considered. However, self-lubricating should not be interpreted as meaning that friction and wear are eliminated. The contact system still depends on load, speed, geometry, temperature, mating material, and surface condition.",
+          "Noise is also not controlled by friction alone. Gear noise, squeaking, chatter, and vibration may be influenced by dimensional accuracy, stiffness, tooth profile, assembly clearance, surface finish, resonance, lubrication, and molding variation.",
+          "Stick-slip occurs when the force required to begin movement is significantly different from the force required to continue movement. It is often important in sliders, guides, adjustment mechanisms, valve controls, seats, and slow-moving components.",
+        ],
+      },
+      {
+        title: "Counterpart Wear Can Be More Important Than POM Wear",
+        paragraphs: [
+          "Material evaluation often focuses only on the weight loss or dimensional change of the POM component. This can produce an incomplete conclusion. The mating surface may experience polishing, scratching, coating removal, abrasion, or dimensional damage even when the POM part appears acceptable.",
+          "This is especially important when POM runs against soft metals, plated components, painted surfaces, sealing elements, or another molded polymer. Reinforcing fibers and some functional fillers may alter the wear mechanism of the contact pair.",
+          "A successful tribological material should therefore be evaluated as part of a two-surface system. Tests should inspect both the POM component and the counterpart. Engineers may need to review dimensional change, wear debris, surface damage, operating force, temperature rise, noise, and the stability of the contact area.",
+          "For gears and similar paired components, the material combination should be considered together. Using the same material on both parts is not always the best solution. Different hardness, surface conditions, geometries, or modification systems may provide a more stable contact pair, but the final combination should be tested.",
+        ],
+      },
+      {
+        title: "Why Laboratory Wear and Friction Data Are Not Enough",
+        paragraphs: [
+          "Laboratory values are useful for preliminary comparison, but tribological results are highly dependent on the test method. A coefficient of friction or wear rate measured under one set of conditions may not predict performance in another system.",
+          "Even data from two suppliers may not be directly comparable when the test methods, specimen preparation, conditioning, or counterpart surfaces are different. A lower reported friction value should not automatically be interpreted as better component performance.",
+          "Molded parts introduce additional variables that standard laboratory specimens may not represent. These include gate position, weld lines, shrinkage, orientation of fibers or fillers, residual stress, surface replication, part warpage, and dimensional tolerance.",
+          "Molded-part trials should therefore reproduce the real assembly as closely as possible. Testing should use the actual counterpart material, representative load and speed, expected lubrication condition, and a meaningful number of operating cycles.",
+        ],
+        points: [
+          "Test specimen geometry",
+          "Counterpart material and hardness",
+          "Surface roughness",
+          "Contact pressure",
+          "Sliding speed",
+          "Movement direction",
+          "Test duration",
+          "Temperature and humidity",
+          "Dry or lubricated conditions",
+          "Initial running-in period",
+        ],
+      },
+      {
+        title: "What to Send Before Grade Recommendation",
+        paragraphs: [
+          "A grade recommendation should not be based only on the statement that the customer needs wear-resistant POM or low-friction POM. More complete application information helps distinguish between EDM-111, EGH20-TF, EMS162, ENM1040, EPTL402, ES0162, aramid-filled directions, or another material approach.",
+          "Based on this information, a suitable material direction may be considered. The initial recommendation should then be confirmed by reviewing the applicable TDS, molding representative components, and testing the parts under actual or closely simulated operating conditions.",
+        ],
+        points: [
+          "Part name, drawing, photo, and main function",
+          "Current material or current grade",
+          "Current failure mode or performance problem",
+          "Type of movement: sliding, rotation, oscillation, rolling, or intermittent actuation",
+          "Load, contact pressure, speed, sliding distance, and duty cycle",
+          "Expected service life or number of cycles",
+          "Mating material, hardness, coating, and surface finish",
+          "Dry operation or lubricant type",
+          "Operating temperature and environmental conditions",
+          "Noise, stick-slip, or operating-force requirements",
+          "Existing TDS, test reports, wear samples, or failed components",
+        ],
+      },
+    ],
+    articleFeatures: [
+      {
+        type: "media",
+        position: "after-intro",
+        src: "/applications/parts/gears-moving-mechanical-parts-wide.webp",
+        alt: "POM gears, bushings, and rollers used in moving mechanical assemblies",
+        title: "Select the contact system, not a material label",
+        description:
+          "The molded part, counterpart surface, local contact condition, and movement pattern must be reviewed together before a POM direction is narrowed.",
+        labels: [
+          "Molded POM part",
+          "Counterpart surface",
+          "Load and speed",
+          "Movement cycle",
+        ],
+      },
+      {
+        type: "comparison",
+        position: "after-section",
+        sectionTitle: "Wear Resistance and Low Friction Are Not the Same Requirement",
+        items: [
+          {
+            title: "Wear resistance",
+            description:
+              "Prioritize controlled surface loss, scoring, and dimensional stability through repeated contact.",
+          },
+          {
+            title: "Low friction",
+            description:
+              "Prioritize lower operating force, smoother motion, and reduced stick-slip or noise risk.",
+          },
+        ],
+      },
+      {
+        type: "matrix",
+        position: "after-section",
+        sectionTitle:
+          "Selecting PTFE, MoS2, Silicone Oil, or Other Wear Additive Directions",
+        title: "Modified POM directions to review against the application",
+        columns: ["Primary selection direction", "Typical review focus", "Taiyi direction"],
+        rows: [
+          [
+            "PTFE-filled POM",
+            "Lower sliding resistance and smoother movement",
+            "EPTL402",
+          ],
+          [
+            "PTFE + glass fiber POM",
+            "Lubrication with additional stiffness support",
+            "EGH20-TF",
+          ],
+          [
+            "MoS2-filled POM",
+            "High wear-resistant contact conditions",
+            "EMS162",
+          ],
+          [
+            "Silicone-oil-modified POM",
+            "High lubricity, lower operating force, and running feel",
+            "ES0162",
+          ],
+          [
+            "Special wear-resistant directions",
+            "A different balance from conventional lubricated systems",
+            "ENM1040 / EDM-111",
+          ],
+        ],
+      },
+    ],
+    modules: [],
+    relatedLinks: [
+      {
+        label: "Wear-Resistant POM Page",
+        href: "/wear-resistant-low-friction-pom",
+      },
+      {
+        label: "Material Selection Guide",
+        href: "/resources/material-selection-guide",
+      },
+      { label: "Request Material Review", href: "/contact" },
     ],
   },
   // 中文编辑注释：后续替换为 POM 加工/注塑指南正式内容。
@@ -423,6 +765,38 @@ export const resourceIndexLinks = [
     href: "/technical-data-sheets",
     description:
       "Find available TDS documents and grade references for listed material grades.",
+  },
+];
+
+export const resourceIndexGroups = [
+  {
+    title: "Core Guides",
+    description:
+      "Long-form technical resources for selection, processing, application screening, and common engineering questions.",
+    links: resourcePages.map((page) => ({
+      label: page.navLabel,
+      href: `/resources/${page.slug}`,
+      description: page.description,
+    })),
+  },
+  {
+    title: "POM Review Pages",
+    description:
+      "High-intent technical landing pages for buyers who search by material requirement before they know the exact grade.",
+    links: publicTechnicalLandingLinks,
+  },
+  {
+    title: "Technical Data",
+    description:
+      "Grade-level documents and data references used after the material direction has been narrowed.",
+    links: [
+      {
+        label: "Technical Data Sheets",
+        href: "/technical-data-sheets",
+        description:
+          "Find available TDS documents and grade references for listed material grades.",
+      },
+    ],
   },
 ];
 
