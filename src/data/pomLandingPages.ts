@@ -35,6 +35,10 @@ export type PomLandingPageData = {
   eyebrow: string;
   intro: string;
   primaryActionLabel: string;
+  heroImage?: {
+    src: string;
+    alt: string;
+  };
   metrics: LandingMetric[];
   sections: LandingSection[];
   catalogEvidence?: {
@@ -262,7 +266,11 @@ export const pomLandingPages = {
         description:
           "Read the full technical guide for moving parts, mating surfaces, lubrication, noise, and wear validation.",
       },
-      { href: "/products/categories/wear-resistant-pom-compound", label: "Wear-Resistant POM Grades", description: "Browse listed wear-resistant POM grades." },
+      {
+        href: "/products/categories/wear-resistant-low-friction-pom-compound",
+        label: "Wear-Resistant & Low-Friction POM Grades",
+        description: "Browse listed POM grades for wear and friction review.",
+      },
       { href: "/applications/motion-components", label: "Motion Components", description: "Review gears, bushings, sliders, and moving parts." },
       technicalLandingLinks[0],
     ],
@@ -289,6 +297,10 @@ export const pomLandingPages = {
     intro:
       "Conductive and antistatic POM directions should be selected by electrical target, part function, color requirement, mechanical retention, and validation method rather than by a general material family name.",
     primaryActionLabel: "Review an Electrical Requirement",
+    heroImage: {
+      src: "/generated/landing/conductive-antistatic-pom-functional-components.png",
+      alt: "Illustrative black precision-molded functional component forms",
+    },
     metrics: [
       { label: "Target", value: "Charge control" },
       { label: "Typical color", value: "Black" },
@@ -333,9 +345,9 @@ export const pomLandingPages = {
             "Carbon-fiber conductive POM directions listed with 10^6-10^8 range and thermal-conductive note.",
         },
         {
-          label: "POM ECN1003B",
+          label: "POM EGH25CN / ECN1003B",
           detail:
-            "MFI 3.5 g/10 min; black color; conductive POM grade direction.",
+            "Black conductive and antistatic POM grade directions with controlled resistivity data for electrical and industrial molded parts.",
         },
         {
           label: "Cross-material antistatic series",

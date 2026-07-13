@@ -371,9 +371,10 @@
 }
 
 .home-hero::after {
+  display: none;
   inset: auto 0 0 0;
-  height: 12rem;
-  background: linear-gradient(180deg, transparent, #061827);
+  height: clamp(3.75rem, 4.5vw, 4.25rem);
+  background: linear-gradient(180deg, transparent 0%, #03101b 100%);
 }
 
 .hero-video {
@@ -525,13 +526,13 @@
   width: min(38rem, 45vw);
   display: block !important;
   content: "";
-  opacity: 0.54;
+  opacity: 0.72;
   background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(19, 112, 175, 0.3) 1px,
-    transparent 1.3px
+    circle at 1.35px 1.35px,
+    rgba(19, 112, 175, 0.44) 1.35px,
+    transparent 1.7px
   );
-  background-size: 15px 15px;
+  background-size: 20px 20px;
   mask-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.85) 34%, transparent);
   pointer-events: none;
 }
@@ -564,14 +565,19 @@
 }
 
 .global-footprint {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background: #f8fbfe;
   padding-top: clamp(3.2rem, 5vw, 4.9rem);
   padding-bottom: clamp(3.25rem, 5.2vw, 5rem);
 }
 
 .global-footprint-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
-  grid-template-columns: minmax(17rem, 0.28fr) minmax(0, 0.72fr);
+  grid-template-columns: minmax(18rem, 0.34fr) minmax(0, 0.66fr);
   gap: clamp(2.2rem, 4.8vw, 5.5rem);
   align-items: center;
 }
@@ -605,25 +611,53 @@
   line-height: 1.9;
 }
 
+.export-market-summary {
+  display: grid;
+  margin: 1.7rem 0 0;
+  border-top: 1px solid rgba(22, 83, 126, 0.2);
+}
+
+.export-market-summary > div {
+  display: grid;
+  grid-template-columns: minmax(6.7rem, 0.8fr) minmax(0, 1.35fr);
+  gap: 0.75rem;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid rgba(22, 83, 126, 0.14);
+}
+
+.export-market-summary dt {
+  color: #0a4d7e;
+  font-size: 0.78rem;
+  font-weight: 720;
+  line-height: 1.4;
+}
+
+.export-market-summary dd {
+  margin: 0;
+  color: #536171;
+  font-size: 0.78rem;
+  font-weight: 520;
+  line-height: 1.4;
+}
+
 .export-map-experience {
   position: relative;
   display: grid;
   min-width: 0;
-  gap: 0.6rem;
 }
 
 .export-map-stage {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 18 / 7;
 }
 
 .export-map-image {
   position: relative;
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   min-height: 0;
   object-fit: contain;
 }
@@ -696,13 +730,6 @@
   color: #536171;
   font-size: 0.76rem;
   line-height: 1.45;
-}
-
-.export-map-caption {
-  margin: 0;
-  color: #647487;
-  font-size: 0.74rem;
-  line-height: 1.4;
 }
 
 @media (max-width: 63.999rem) {
@@ -831,14 +858,14 @@
   height: 31rem;
   display: block;
   content: "";
-  opacity: 0.46;
+  opacity: 0.68;
   background-image: radial-gradient(
-    circle at 1px 1px,
-    rgba(19, 112, 175, 0.34) 1px,
-    transparent 1.35px
+    circle at 1.35px 1.35px,
+    rgba(19, 112, 175, 0.48) 1.35px,
+    transparent 1.75px
   );
-  background-size: 15px 15px;
-  mask-image: radial-gradient(ellipse at 60% 36%, rgba(0, 0, 0, 0.85), transparent 70%);
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse at 60% 36%, rgba(0, 0, 0, 0.9), transparent 74%);
   pointer-events: none;
 }
 
@@ -1361,8 +1388,7 @@
   isolation: isolate;
   overflow: hidden;
   margin-top: 0 !important;
-  background:
-    linear-gradient(180deg, #061827 0%, #071a29 100%) !important;
+  background: #03101b !important;
 }
 
 .manufacturing-base::before {
@@ -1431,7 +1457,7 @@
 
 .manufacturing-base-head h2 {
   color: rgba(255, 255, 255, 0.96);
-  font-size: clamp(2.1rem, 3.2vw, 3rem);
+  font-size: clamp(1.8rem, 2.2vw, 2.35rem);
   font-weight: 760;
   letter-spacing: 0;
   line-height: 1.05;
@@ -1635,7 +1661,7 @@
 @media (min-width: 64rem) {
   .home-hero,
   .home-hero > .site-container {
-    min-height: calc(100svh - clamp(6.75rem, 9vw, 8.5rem));
+    min-height: calc(100svh - clamp(4.75rem, 6vw, 6.25rem));
   }
 
   .home-hero-content {
@@ -1811,51 +1837,18 @@
 
 /* Keep the desktop snapshot as a distinct proof section rather than a compact rail. */
 @media (min-width: 64rem) {
-  .manufacturing-base {
-    background: linear-gradient(180deg, #03101b 0%, #061827 100%) !important;
-  }
-
-  .manufacturing-base::before,
-  .manufacturing-base::after {
-    display: none;
-  }
-
   .manufacturing-base-inner {
     display: block;
-    padding-top: clamp(1.15rem, 2.1vw, 1.65rem);
+    padding-top: clamp(1.85rem, 2.55vw, 2.3rem);
     padding-bottom: clamp(0.85rem, 1.8vw, 1.25rem);
-  }
-
-  .manufacturing-base-head {
-    display: block;
-    max-width: 44rem;
-    margin-bottom: clamp(1.05rem, 1.9vw, 1.4rem);
-  }
-
-  .manufacturing-base-head h2 {
-    color: rgba(255, 255, 255, 0.96);
-    font-size: clamp(2.1rem, 3.2vw, 3rem);
-    font-weight: 760;
-    letter-spacing: 0;
-    line-height: 1.05;
-    text-transform: none;
-  }
-
-  .manufacturing-base-head > p:not(.section-kicker) {
-    margin-top: 1rem;
-    max-width: 39rem;
-    color: rgba(226, 232, 240, 0.68);
-    font-size: clamp(0.98rem, 1.05vw, 1.08rem);
-    font-weight: 400;
-    line-height: 1.7;
   }
 
   .manufacturing-base .home-metrics-rail {
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: clamp(0.95rem, 2vw, 1.65rem) !important;
     align-items: center;
-    padding: clamp(1rem, 1.7vw, 1.35rem) 0 clamp(0.65rem, 1.15vw, 0.95rem) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: clamp(0.65rem, 1vw, 0.85rem) 0 clamp(0.6rem, 0.9vw, 0.75rem) !important;
+    border-top: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
   }

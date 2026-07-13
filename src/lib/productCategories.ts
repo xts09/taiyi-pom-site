@@ -6,6 +6,19 @@ type ProductCategoryData = {
   description: string;
   navSubtitle: string;
   applications: string[];
+  sourceCategories?: string[];
+};
+
+const wearAndLowFrictionSourceCategories = [
+  "Wear-Resistant POM Compound",
+  "Low-Friction POM Compound",
+];
+
+const ultraHighFlowPomCategory = "Ultra-High Flow POM";
+
+const canonicalCategoryBySourceCategory: Record<string, string> = {
+  "Wear-Resistant POM Compound": "Wear-Resistant Low-Friction POM Compound",
+  "Low-Friction POM Compound": "Wear-Resistant Low-Friction POM Compound",
 };
 
 const pomCategoryOverview = {
@@ -25,17 +38,18 @@ const pomCategoryOverview = {
 
 export const productCategoryData: ProductCategoryData[] = [
   {
-    category: "Wear-Resistant POM Compound",
-    label: "Wear-Resistant POM",
+    category: "Wear-Resistant Low-Friction POM Compound",
+    label: "Wear-Resistant & Low-Friction POM",
     description:
-      "Browse Taiyi Nano wear-resistant POM grades with MFI, color, wear-related application fit, typical property data, and document support.",
+      "Browse Taiyi Nano wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, motion components, grade data, and document support.",
     navSubtitle:
-      "Shortlist wear-resistant POM grades by friction, MFI, shrinkage, and application fit.",
+      "Shortlist wear-resistant and low-friction POM directions by movement, friction, MFI, shrinkage, and application fit.",
     applications: [
       "Gears and moving mechanical parts",
       "Bushings, rollers, guide rails, and sliding parts",
-      "Molded components requiring improved wear life",
+      "Molded components requiring wear-life or friction review",
     ],
+    sourceCategories: wearAndLowFrictionSourceCategories,
   },
   {
     category: "High-Impact POM Compound",
@@ -48,19 +62,6 @@ export const productCategoryData: ProductCategoryData[] = [
       "Low-temperature molded parts",
       "Automotive, electrical, sanitary, and industrial components",
       "Functional parts requiring improved impact toughness",
-    ],
-  },
-  {
-    category: "Low-Friction POM Compound",
-    label: "Low-Friction POM",
-    description:
-      "Browse Taiyi Nano low-friction POM grades for sliding assemblies, moving parts, friction targets, typical property data, and document support.",
-    navSubtitle:
-      "Screen low-friction POM directions by movement, contact condition, and document needs.",
-    applications: [
-      "Sliding assemblies with repeated movement",
-      "Low-noise gears and bearing-related parts",
-      "Parts requiring reduced friction against mating surfaces",
     ],
   },
   {
@@ -126,6 +127,19 @@ export const productCategoryData: ProductCategoryData[] = [
       "General injection molded POM parts",
       "Customers sourcing selected POM resin with document support",
       "Projects requiring baseline POM resin comparison",
+    ],
+  },
+  {
+    category: ultraHighFlowPomCategory,
+    label: "Ultra-High Flow POM",
+    description:
+      "Browse Taiyi Nano POM grades with MFI of 100 g/10 min or higher for flow-sensitive injection molding and thin-wall molded part review.",
+    navSubtitle:
+      "Compare ultra-high flow POM grades by MFI, processing fit, shrinkage behavior, and application requirements.",
+    applications: [
+      "Thin-wall injection molded POM parts",
+      "Flow-sensitive molds with longer flow paths",
+      "Projects requiring easier filling and stable processability",
     ],
   },
   {
@@ -196,13 +210,24 @@ export const productCategoryOrder = pomProductCategoryData.map(
   (item) => item.category
 );
 
+export const getCanonicalProductCategory = (category: string) =>
+  canonicalCategoryBySourceCategory[category] ?? category;
+
+export const getProductCategoryOrderIndex = (category: string) =>
+  productCategoryOrder.indexOf(getCanonicalProductCategory(category));
+
 export const productCategoryGroups: Record<string, string[]> = {
-  POM: productCategoryOrder,
+  POM: pomProductCategoryData.flatMap(
+    (item) => item.sourceCategories ?? [item.category]
+  ),
 };
 
 export const pomSubcategoryLabels = Object.fromEntries(
   productCategoryData.map((item) => [item.category, item.label])
 ) as Record<string, string>;
+
+pomSubcategoryLabels["Wear-Resistant POM Compound"] = "Wear-Resistant POM";
+pomSubcategoryLabels["Low-Friction POM Compound"] = "Low-Friction POM";
 
 export const createCategorySlug = (category: string) =>
   category
@@ -214,10 +239,22 @@ export const createCategorySlug = (category: string) =>
     .replace(/^-|-$/g, "");
 
 export const getCategoryPath = (category: string) =>
-  `/products/categories/${createCategorySlug(category)}`;
+  `/products/categories/${createCategorySlug(
+    canonicalCategoryBySourceCategory[category] ?? category
+  )}`;
 
 const getCategoryData = (category: string) =>
   productCategoryData.find((item) => item.category === category);
+
+export const getLegacyCategoryRedirect = (slug: string) => {
+  const sourceCategory = Object.keys(canonicalCategoryBySourceCategory).find(
+    (category) => createCategorySlug(category) === slug
+  );
+
+  return sourceCategory
+    ? createCategorySlug(canonicalCategoryBySourceCategory[sourceCategory])
+    : undefined;
+};
 
 export const productCategoryEntries = [
   pomCategoryOverview,
@@ -232,11 +269,32 @@ export const productCategoryEntries = [
 export const findCategoryBySlug = (slug: string) =>
   productCategoryEntries.find((entry) => entry.slug === slug);
 
+export const legacyProductCategorySlugs = Object.keys(
+  canonicalCategoryBySourceCategory
+).map(createCategorySlug);
+
+const getMfiNumber = (mfi: string) => Number.parseFloat(mfi.replace(/,/g, ""));
+
+const isUltraHighFlowPomProduct = (product: Product) => {
+  const mfi = getMfiNumber(product.mfi);
+
+  return product.category.includes("POM") && Number.isFinite(mfi) && mfi >= 100;
+};
+
 export const getProductsByCategory = (items: Product[], category: string) => {
   const group = productCategoryGroups[category];
+  const sourceCategories = getCategoryData(category)?.sourceCategories;
+
+  if (category === ultraHighFlowPomCategory) {
+    return items.filter(isUltraHighFlowPomProduct);
+  }
 
   if (group) {
     return items.filter((product) => group.includes(product.category));
+  }
+
+  if (sourceCategories) {
+    return items.filter((product) => sourceCategories.includes(product.category));
   }
 
   return items.filter((product) => product.category === category);
