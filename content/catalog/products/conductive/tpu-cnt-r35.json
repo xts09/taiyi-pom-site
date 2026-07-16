@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:tpu-cnt-r35",
+  "sortOrder": 17,
+  "grade": "TPU-CNT-R35",
+  "polymer": "TPU",
+  "matrix": "TPU",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

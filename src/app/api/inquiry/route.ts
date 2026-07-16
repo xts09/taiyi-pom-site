@@ -45,7 +45,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const getClientIp = (headers: Headers) =>
   headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
   headers.get("x-real-ip") ||
-  "unknown";
+  null;
 
 const isRateLimited = (key: string) => {
   const now = Date.now();
@@ -125,7 +125,9 @@ export async function POST(request: Request) {
     );
   }
 
-  if (isRateLimited(`inquiry:${getClientIp(request.headers)}`)) {
+  const clientIp = getClientIp(request.headers);
+
+  if (clientIp && isRateLimited(`inquiry:${clientIp}`)) {
     return NextResponse.json(
       {
         delivered: false,
@@ -211,20 +213,34 @@ export async function POST(request: Request) {
     });
   }
 
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${resendApiKey}`,
-    },
-    body: JSON.stringify({
-      from: resendFromEmail,
-      to: contactEmail,
-      reply_to: email,
-      subject,
-      text: body,
-    }),
-  });
+  let response: Response;
+
+  try {
+    response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${resendApiKey}`,
+      },
+      body: JSON.stringify({
+        from: resendFromEmail,
+        to: contactEmail,
+        reply_to: email,
+        subject,
+        text: body,
+      }),
+      signal: AbortSignal.timeout(8_000),
+    });
+  } catch {
+    return NextResponse.json(
+      {
+        delivered: false,
+        fallback: true,
+        message: "Email service is temporarily unavailable.",
+      },
+      { status: 502 }
+    );
+  }
 
   if (!response.ok) {
     return NextResponse.json(

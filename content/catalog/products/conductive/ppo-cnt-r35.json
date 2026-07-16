@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:ppo-cnt-r35",
+  "sortOrder": 27,
+  "grade": "PPO-CNT-R35",
+  "polymer": "PPO",
+  "matrix": "PPO",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

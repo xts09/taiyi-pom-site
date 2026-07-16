@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pe-cnt-r610",
+  "sortOrder": 18,
+  "grade": "PE-CNT-R610",
+  "polymer": "PE",
+  "matrix": "PE",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

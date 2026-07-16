@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pc-pet-gp3",
+  "sortOrder": 73,
+  "grade": "PC/PET-GP3",
+  "polymer": "PC/PET",
+  "matrix": "PC/PET",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

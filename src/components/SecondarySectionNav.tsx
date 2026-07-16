@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import Link from "next/link";
 
 export type SecondarySectionNavTab = {
@@ -14,7 +13,6 @@ type SecondarySectionNavAction = {
 type SecondarySectionNavProps = {
   actions?: SecondarySectionNavAction[];
   ariaLabel: string;
-  style?: CSSProperties;
   subtitle: string;
   tabs: SecondarySectionNavTab[];
   title: string;
@@ -23,13 +21,12 @@ type SecondarySectionNavProps = {
 
 const defaultActions: SecondarySectionNavAction[] = [
   { href: "/contact", label: "Discuss Requirement" },
-  { href: "/technical-data-sheets", label: "Find a TDS" },
+  { href: "/technical-data-sheets", label: "Search Data / TDS" },
 ];
 
 export function SecondarySectionNav({
   actions = defaultActions,
   ariaLabel,
-  style,
   subtitle,
   tabs,
   title,
@@ -38,11 +35,7 @@ export function SecondarySectionNav({
   const prefix = variant === "product" ? "product" : "application";
 
   return (
-    <section
-      className={`${prefix}-section-nav`}
-      aria-label={ariaLabel}
-      style={style}
-    >
+    <section className={`${prefix}-section-nav`} aria-label={ariaLabel}>
       <div className={`${prefix}-section-nav-top`}>
         <div className={`${prefix}-section-identity`}>
           <p>

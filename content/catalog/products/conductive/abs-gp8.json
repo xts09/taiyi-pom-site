@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:abs-gp8",
+  "sortOrder": 44,
+  "grade": "ABS GP8",
+  "polymer": "ABS",
+  "matrix": "ABS",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

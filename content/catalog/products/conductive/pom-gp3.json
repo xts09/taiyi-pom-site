@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pom-gp3",
+  "sortOrder": 59,
+  "grade": "POM GP3",
+  "polymer": "POM",
+  "matrix": "POM",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "kind": "engineering-tds",
+  "id": "engineering-tds:eaw620-ppa-wear-low-friction",
+  "sortOrder": 74,
+  "slug": "eaw620-ppa-wear-low-friction",
+  "polymer": "PPA",
+  "grade": "EAW620",
+  "family": "PPA",
+  "category": "Wear Low Friction",
+  "description": "30% wear-resistant and low-friction PPA compound for sliding, moving and tribological molded parts.",
+  "applications": "Gears, bushings, rollers, sliding blocks, guide parts and motion components.",
+  "filler": "30",
+  "density": "1.54",
+  "waterAbsorption": "",
+  "moldShrinkage": "",
+  "meltingPoint": "310",
+  "hdt045": "",
+  "hdt": "275",
+  "flammability": "HB",
+  "tensileModulus": "",
+  "tensile": "205",
+  "elongationAtBreak": "",
+  "flexuralStrength": "290",
+  "flexuralModulus": "9500",
+  "impact": "13.5",
+  "rockwellHardness": "",
+  "volumeResistivity": "",
+  "permittivity": "",
+  "properties": [
+    {
+      "group": "Physical properties",
+      "label": "Filler contents",
+      "value": "30",
+      "unit": "%",
+      "method": "ISO 1172"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Specific gravity",
+      "value": "1.54",
+      "unit": "",
+      "method": "ISO 1183"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Melting point (10 °C/min)",
+      "value": "310",
+      "unit": "degC",
+      "method": "ISO 11357"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (1.8 MPa)",
+      "value": "275",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Flammability (t = 0.8 mm)",
+      "value": "HB",
+      "unit": "Class",
+      "method": "UL 94"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile stress",
+      "value": "205",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural strength",
+      "value": "290",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural modulus",
+      "value": "9500",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Charpy impact strength(Notched) @ 23 °C",
+      "value": "13.5",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

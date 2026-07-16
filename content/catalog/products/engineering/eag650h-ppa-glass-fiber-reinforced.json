@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "kind": "engineering-tds",
+  "id": "engineering-tds:eag650h-ppa-glass-fiber-reinforced",
+  "sortOrder": 72,
+  "slug": "eag650h-ppa-glass-fiber-reinforced",
+  "polymer": "PPA",
+  "grade": "EAG650H",
+  "family": "PPA",
+  "category": "Glass Fiber Reinforced",
+  "description": "50% glass fiber reinforced PPA compound for stiffness, dimensional stability and industrial injection molded parts.",
+  "applications": "Automotive parts, electrical & electronics, industrial housings, brackets and precision molded components.",
+  "filler": "50",
+  "density": "1.65",
+  "waterAbsorption": "0.3",
+  "moldShrinkage": "0.2~0.6",
+  "meltingPoint": "310",
+  "hdt045": "",
+  "hdt": "280",
+  "flammability": "HB",
+  "tensileModulus": "",
+  "tensile": "295",
+  "elongationAtBreak": "2.2",
+  "flexuralStrength": "420",
+  "flexuralModulus": "16400",
+  "impact": "15",
+  "rockwellHardness": "",
+  "volumeResistivity": "1015",
+  "permittivity": "4.5",
+  "properties": [
+    {
+      "group": "Physical properties",
+      "label": "Filler contents",
+      "value": "50",
+      "unit": "%",
+      "method": "ISO 1172"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Specific gravity",
+      "value": "1.65",
+      "unit": "",
+      "method": "ISO 1183"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Water absorption(23 °C, 50 %RH)",
+      "value": "0.3",
+      "unit": "%",
+      "method": "ISO 62"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Mold shrinkage(Flow direction, Φ = 100 mm, t = 3 mm)",
+      "value": "0.2~0.6",
+      "unit": "%",
+      "method": "TAIYI Standard"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Melting point (10 °C/min)",
+      "value": "310",
+      "unit": "degC",
+      "method": "ISO 11357"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (1.8 MPa)",
+      "value": "280",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Flammability (t = 0.8 mm)",
+      "value": "HB",
+      "unit": "Class",
+      "method": "UL 94"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile stress",
+      "value": "295",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Elongation at break",
+      "value": "2.2",
+      "unit": "%",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural strength",
+      "value": "420",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural modulus",
+      "value": "16400",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Charpy impact strength(Notched) @ 23 °C",
+      "value": "15",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Volume resistivity",
+      "value": "1015",
+      "unit": "ohm.cm",
+      "method": "IEC 60093"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Permittivity (1 MHz)",
+      "value": "4.5",
+      "unit": "",
+      "method": "IEC 60250"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:tpu-gp8",
+  "sortOrder": 60,
+  "grade": "TPU GP8",
+  "polymer": "TPU",
+  "matrix": "TPU",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

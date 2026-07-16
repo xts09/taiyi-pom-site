@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:ppo-gp3",
+  "sortOrder": 71,
+  "grade": "PPO GP3",
+  "polymer": "PPO",
+  "matrix": "PPO",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

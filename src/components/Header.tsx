@@ -6,16 +6,16 @@ import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import {
+  useCallback,
   useEffect,
   useRef,
   useState,
-  type CSSProperties,
   type FocusEvent,
   type KeyboardEvent,
+  type MouseEvent,
   type PointerEvent,
 } from "react";
 import { applications } from "@/data/applications";
-import { resourcePages } from "@/data/resources";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const applicationLinks = applications.map((application) => ({
@@ -24,13 +24,17 @@ const applicationLinks = applications.map((application) => ({
 }));
 
 const resourceLinks = [
-  ...resourcePages.map((page) => ({
-    label: page.navLabel,
-    href: `/resources/${page.slug}`,
-  })),
   {
-    label: "Technical Data Sheets",
-    href: "/technical-data-sheets",
+    label: "Selection Guides",
+    href: "/resources#selection-guides",
+  },
+  {
+    label: "Processing & Technical Notes",
+    href: "/resources#technical-notes",
+  },
+  {
+    label: "Documents & Grade Data",
+    href: "/resources#documents-grade-data",
   },
 ];
 
@@ -46,37 +50,31 @@ const productCategoryLinks = [
     label: "POM Compounds",
     href: getCategoryPath("POM"),
     eyebrow: "Core line",
-    description: "Wear / friction / reinforced / functional",
   },
   {
     label: "PA6 Compounds",
     href: getCategoryPath("PA6 Compound"),
     eyebrow: "Extended line",
-    description: "Reinforced / impact / flame-retardant nylon",
   },
   {
     label: "PA66 Compounds",
     href: getCategoryPath("PA66 Compound"),
     eyebrow: "Extended line",
-    description: "Higher stiffness / heat / reinforced nylon",
   },
   {
     label: "PPA Compounds",
     href: getCategoryPath("PPA Compound"),
     eyebrow: "Extended review",
-    description: "High-temperature reinforced review",
   },
   {
     label: "PPS Compounds",
     href: getCategoryPath("PPS Compound"),
     eyebrow: "Extended review",
-    description: "Heat and chemical resistance review",
   },
   {
     label: "POM Resin",
     href: getCategoryPath("Base POM Resin"),
     eyebrow: "Supplement",
-    description: "Selected base resin sourcing",
   },
 ];
 
@@ -93,29 +91,26 @@ const navItems = [
 
 type MegaValue = "" | "products" | "applications" | "resources";
 
+const HEADER_SURFACE_HYSTERESIS = 8;
+
 const isMegaValue = (value: string): value is Exclude<MegaValue, ""> =>
   value === "products" || value === "applications" || value === "resources";
 
 const isNodeTarget = (target: EventTarget | null): target is Node =>
   target instanceof Node;
 
-const headerSurfaceStyle: CSSProperties = {
-  backdropFilter: "none",
-  WebkitBackdropFilter: "none",
-};
-
-const headerGlassFilterStyle: CSSProperties = {
-  backdropFilter: "blur(28px) saturate(122%) brightness(74%) contrast(108%)",
-  WebkitBackdropFilter:
-    "blur(28px) saturate(122%) brightness(74%) contrast(108%)",
-};
-
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const [isOverHomeHero, setIsOverHomeHero] = useState(true);
   const [megaValue, setMegaValue] = useState<MegaValue>("");
   const closeTimerRef = useRef<number | null>(null);
+  const headerRef = useRef<HTMLElement | null>(null);
+  const isOverHomeHeroRef = useRef(true);
+  const megaResizeObserverRef = useRef<ResizeObserver | null>(null);
+  const mobileMenuRef = useRef<HTMLDetailsElement | null>(null);
   const activeMega = megaValue || null;
+  const useHeroHeader = isHome && isOverHomeHero;
 
   const cancelScheduledClose = () => {
     if (closeTimerRef.current === null) {
@@ -139,6 +134,48 @@ export function Header() {
     }, 90);
   };
 
+  const closeMobileMenu = () => {
+    if (mobileMenuRef.current) {
+      mobileMenuRef.current.open = false;
+    }
+  };
+
+  const closeMobileMenuOnLinkClick = (event: MouseEvent<HTMLElement>) => {
+    const target = event.target;
+
+    if (target instanceof Element && target.closest("a")) {
+      closeMobileMenu();
+    }
+  };
+
+  const syncActiveMegaHeight = useCallback((node: HTMLDivElement | null) => {
+    megaResizeObserverRef.current?.disconnect();
+    megaResizeObserverRef.current = null;
+
+    const header = headerRef.current;
+    if (!header) {
+      return;
+    }
+
+    if (!node) {
+      header.style.removeProperty("--active-mega-height");
+      return;
+    }
+
+    const updateHeight = () => {
+      header.style.setProperty(
+        "--active-mega-height",
+        `${node.getBoundingClientRect().height}px`,
+      );
+    };
+
+    updateHeight();
+    if (typeof ResizeObserver !== "undefined") {
+      megaResizeObserverRef.current = new ResizeObserver(updateHeight);
+      megaResizeObserverRef.current.observe(node);
+    }
+  }, []);
+
   useEffect(() => {
     if (!activeMega) {
       return;
@@ -159,9 +196,63 @@ export function Header() {
 
   useEffect(() => {
     return () => {
-      cancelScheduledClose();
+      if (closeTimerRef.current !== null) {
+        window.clearTimeout(closeTimerRef.current);
+      }
+      megaResizeObserverRef.current?.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    if (!isHome) {
+      return;
+    }
+
+    let frame: number | null = null;
+
+    const updateHeaderSurface = () => {
+      frame = null;
+      const homeHero = document.querySelector(".home-hero");
+      const heroBottom = homeHero?.getBoundingClientRect().bottom;
+      const headerHeight =
+        document
+          .querySelector(".site-header > .site-container")
+          ?.getBoundingClientRect().height ?? 64;
+
+      const distanceFromBoundary =
+        heroBottom === undefined
+          ? Number.POSITIVE_INFINITY
+          : heroBottom - headerHeight;
+      const nextIsOverHomeHero = isOverHomeHeroRef.current
+        ? distanceFromBoundary > -HEADER_SURFACE_HYSTERESIS
+        : distanceFromBoundary > HEADER_SURFACE_HYSTERESIS;
+
+      if (nextIsOverHomeHero !== isOverHomeHeroRef.current) {
+        isOverHomeHeroRef.current = nextIsOverHomeHero;
+        setIsOverHomeHero(nextIsOverHomeHero);
+      }
+    };
+
+    const scheduleHeaderSurfaceUpdate = () => {
+      if (frame === null) {
+        frame = window.requestAnimationFrame(updateHeaderSurface);
+      }
+    };
+
+    scheduleHeaderSurfaceUpdate();
+    window.addEventListener("scroll", scheduleHeaderSurfaceUpdate, {
+      passive: true,
+    });
+    window.addEventListener("resize", scheduleHeaderSurfaceUpdate);
+
+    return () => {
+      if (frame !== null) {
+        window.cancelAnimationFrame(frame);
+      }
+      window.removeEventListener("scroll", scheduleHeaderSurfaceUpdate);
+      window.removeEventListener("resize", scheduleHeaderSurfaceUpdate);
+    };
+  }, [isHome]);
 
   const updateMegaValue = (value: string) => {
     if (!isMegaValue(value)) {
@@ -197,13 +288,12 @@ export function Header() {
 
   return (
     <header
+      ref={headerRef}
       className={[
-        "site-header site-header--over-hero sticky top-0 z-50 text-slate-950",
+        "site-header sticky top-0 z-50 text-slate-950",
         isHome ? "site-header--home" : "",
+        useHeroHeader ? "site-header--over-hero" : "site-header--solid",
         activeMega ? "site-header--mega-open" : "",
-        activeMega === "products" ? "site-header--products-open" : "",
-        activeMega === "applications" ? "site-header--applications-open" : "",
-        activeMega === "resources" ? "site-header--resources-open" : "",
       ]
         .filter(Boolean)
         .join(" ")}
@@ -211,12 +301,10 @@ export function Header() {
       onKeyDown={closeMegaOnEscape}
       onPointerEnter={cancelScheduledClose}
       onPointerLeave={closeMegaOnPointerLeave}
-      style={headerSurfaceStyle}
     >
       <span
         className="site-header-glass"
         aria-hidden="true"
-        style={headerGlassFilterStyle}
       />
       <div className="site-container flex items-center justify-between py-3">
         <Link
@@ -227,7 +315,11 @@ export function Header() {
         >
           <span className="brand-logo w-[clamp(9.35rem,11.4vw,10.65rem)] max-w-[46vw]">
             <Image
-              src="/platform-wordmark-white.png"
+              src={
+                useHeroHeader
+                  ? "/platform-wordmark-white.png"
+                  : "/platform-wordmark.png"
+              }
               alt="PLATFORM"
               width={1400}
               height={217}
@@ -256,7 +348,10 @@ export function Header() {
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="mega-menu mega-menu-content product-menu">
                   {activeMega === "products" ? (
-                    <div className="mega-menu-inner mega-menu-inner-products">
+                    <div
+                      ref={syncActiveMegaHeight}
+                      className="mega-menu-inner mega-menu-inner-products"
+                    >
                       <div className="mega-menu-panel-head">
                         <div>
                           <span>Product Categories</span>
@@ -290,9 +385,6 @@ export function Header() {
                             <span className="mega-category-title">
                               {item.label}
                             </span>
-                            <span className="mega-category-description">
-                              {item.description}
-                            </span>
                           </Link>
                         ))}
                       </div>
@@ -311,7 +403,10 @@ export function Header() {
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="mega-menu mega-menu-content application-menu">
                   {activeMega === "applications" ? (
-                    <div className="mega-menu-inner mega-menu-inner-simple">
+                    <div
+                      ref={syncActiveMegaHeight}
+                      className="mega-menu-inner mega-menu-inner-simple"
+                    >
                       <div className="mega-menu-panel-head">
                         <div>
                           <span>Application Areas</span>
@@ -358,13 +453,16 @@ export function Header() {
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="mega-menu mega-menu-content resource-menu">
                   {activeMega === "resources" ? (
-                    <div className="mega-menu-inner mega-menu-inner-simple mega-menu-inner-compact">
+                    <div
+                      ref={syncActiveMegaHeight}
+                      className="mega-menu-inner mega-menu-inner-simple mega-menu-inner-compact"
+                    >
                       <div className="mega-menu-panel-head">
                         <div>
                           <span>Technical Resources</span>
                           <p>
-                            Find selection guidance, processing notes, FAQ, and
-                            grade data references.
+                            Find selection guides, processing notes, and grade
+                            data without scanning every individual article.
                           </p>
                         </div>
                         <Link
@@ -421,7 +519,11 @@ export function Header() {
           </Link>
         </div>
 
-        <details className="mobile-menu relative z-50 lg:hidden">
+        <details
+          key={pathname}
+          ref={mobileMenuRef}
+          className="mobile-menu relative z-50 lg:hidden"
+        >
           <summary className="nav-pill inline-flex cursor-pointer list-none items-center justify-center gap-2 px-3 py-2 text-sm">
             <span>Menu</span>
             <span className="grid gap-1" aria-hidden="true">
@@ -430,9 +532,12 @@ export function Header() {
             </span>
           </summary>
 
-          <nav className="animate-menu-down absolute right-0 top-[calc(100%+0.8rem)] flex w-[min(20rem,calc(100vw-2.5rem))] flex-col rounded-2xl border border-cyan-100/15 bg-slate-950/98 p-4 text-sm font-semibold text-slate-200 shadow-2xl shadow-slate-950/40 backdrop-blur-xl">
-            <details className="mobile-product-group border-b border-white/10 py-3">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-white hover:text-cyan-200">
+          <nav
+            className="mobile-menu-panel animate-menu-down absolute right-0 top-[calc(100%+0.8rem)] flex w-[min(20rem,calc(100vw-2.5rem))] flex-col p-4 text-sm font-semibold"
+            onClick={closeMobileMenuOnLinkClick}
+          >
+            <details className="mobile-product-group mobile-menu-section py-3">
+              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
                 <span>Products</span>
                 <span aria-hidden="true">+</span>
               </summary>
@@ -454,7 +559,7 @@ export function Header() {
                     key={`${category.label}-${category.href}`}
                     href={category.href}
                     prefetch={false}
-                    className="block py-2 text-slate-400 hover:text-cyan-200"
+                    className="mobile-menu-sub-link block py-2"
                   >
                     {category.label}
                   </Link>
@@ -462,8 +567,8 @@ export function Header() {
               </div>
             </details>
 
-            <details className="mobile-product-group border-b border-white/10 py-3">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-white hover:text-cyan-200">
+            <details className="mobile-product-group mobile-menu-section py-3">
+              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
                 <span>Applications</span>
                 <span aria-hidden="true">+</span>
               </summary>
@@ -482,7 +587,7 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     prefetch={false}
-                    className="block py-2 text-slate-400 hover:text-cyan-200"
+                    className="mobile-menu-sub-link block py-2"
                   >
                     {item.label}
                   </Link>
@@ -490,8 +595,8 @@ export function Header() {
               </div>
             </details>
 
-            <details className="mobile-product-group border-b border-white/10 py-3">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-white hover:text-cyan-200">
+            <details className="mobile-product-group mobile-menu-section py-3">
+              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
                 <span>Resources</span>
                 <span aria-hidden="true">+</span>
               </summary>
@@ -510,7 +615,7 @@ export function Header() {
                     key={item.href}
                     href={item.href}
                     prefetch={false}
-                    className="block py-2 text-slate-400 hover:text-cyan-200"
+                    className="mobile-menu-sub-link block py-2"
                   >
                     {item.label}
                   </Link>
@@ -523,7 +628,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 prefetch={false}
-                className="border-b border-white/10 py-3 hover:text-cyan-200"
+                className="mobile-menu-primary-link py-3"
               >
                 {item.label}
               </Link>

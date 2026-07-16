@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pok-cnt-r610",
+  "sortOrder": 30,
+  "grade": "POK-CNT-R610",
+  "polymer": "POK",
+  "matrix": "POK",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

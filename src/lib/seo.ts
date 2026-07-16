@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { availableDocuments } from "@/data/company";
+import {
+  createEngineeringTdsSlug,
+  type EngineeringTdsDocument,
+} from "@/data/engineeringTds";
 import type { Product } from "@/data/products";
 import { productCategoryOrder } from "@/lib/productCategories";
 
@@ -26,14 +31,26 @@ export const createPageMetadata = ({
   description,
   path,
   image = defaultOgImage,
+  imageAlt = `${siteName} POM material manufacturing`,
+  indexable = true,
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
+  imageAlt?: string;
+  indexable?: boolean;
 }): Metadata => ({
   title,
   description,
+  ...(!indexable
+    ? {
+        robots: {
+          index: false,
+          follow: true,
+        },
+      }
+    : {}),
   alternates: {
     canonical: path,
   },
@@ -49,7 +66,7 @@ export const createPageMetadata = ({
         url: image,
         width: 1200,
         height: 630,
-        alt: `${siteName} POM material manufacturing`,
+        alt: imageAlt,
       },
     ],
   },
@@ -60,6 +77,44 @@ export const createPageMetadata = ({
     images: [image],
   },
 });
+
+export const createProductPageMetadata = (product: Product): Metadata => {
+  const title = product.seo?.title ?? `${product.title} | ${siteName}`;
+  const description =
+    product.seo?.description ??
+    `${product.title}, ${product.category}, MFI ${product.mfi}, ${product.color} color. ${product.description}`;
+
+  return createPageMetadata({
+    title,
+    description,
+    path: `/products/${product.slug}`,
+    image: product.seo?.image,
+    imageAlt: `${product.title} from ${siteName}`,
+    indexable: product.seo?.indexable !== false,
+  });
+};
+
+export const getEngineeringTdsTitle = (document: EngineeringTdsDocument) =>
+  `${document.grade} ${document.family} ${document.category}`;
+
+export const createEngineeringTdsPageMetadata = (
+  document: EngineeringTdsDocument,
+): Metadata => {
+  const productTitle = getEngineeringTdsTitle(document);
+  const title = document.seo?.title ?? `${productTitle} | ${siteName}`;
+  const description =
+    document.seo?.description ??
+    `${productTitle}. ${document.description} Typical data includes specific gravity ${document.density}, tensile stress ${document.tensile} MPa, and heat deflection temperature ${document.hdt} degC.`;
+
+  return createPageMetadata({
+    title,
+    description,
+    path: `/products/${createEngineeringTdsSlug(document)}`,
+    image: document.seo?.image,
+    imageAlt: `${productTitle} from ${siteName}`,
+    indexable: document.seo?.indexable !== false,
+  });
+};
 
 export const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -145,6 +200,45 @@ export const createProductJsonLd = (product: Product) => ({
     })),
   ],
 });
+
+export const createEngineeringProductJsonLd = (
+  document: EngineeringTdsDocument,
+) => {
+  const slug = createEngineeringTdsSlug(document);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: getEngineeringTdsTitle(document),
+    sku: document.grade,
+    brand: {
+      "@type": "Brand",
+      name: siteName,
+    },
+    manufacturer: {
+      "@type": "Organization",
+      name: companyName,
+      url: siteUrl,
+    },
+    category: `${document.family} Compound`,
+    description: document.description,
+    material: document.family,
+    url: absoluteUrl(`/products/${slug}`),
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Available documents",
+        value: availableDocuments.join(", "),
+      },
+      ...document.properties.map((property) => ({
+        "@type": "PropertyValue",
+        name: property.label,
+        value: `${property.value} ${property.unit}`.trim(),
+        measurementTechnique: property.method,
+      })),
+    ],
+  };
+};
 
 export const createBreadcrumbJsonLd = (
   items: Array<{ name: string; path: string }>

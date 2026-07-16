@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pbt-gp3-3",
+  "sortOrder": 51,
+  "grade": "PBT GP3-3",
+  "polymer": "PBT",
+  "matrix": "PBT",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

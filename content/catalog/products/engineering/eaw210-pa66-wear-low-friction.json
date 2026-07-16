@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "kind": "engineering-tds",
+  "id": "engineering-tds:eaw210-pa66-wear-low-friction",
+  "sortOrder": 55,
+  "slug": "eaw210-pa66-wear-low-friction",
+  "polymer": "PA66",
+  "grade": "EAW210",
+  "family": "PA66",
+  "category": "Wear Low Friction",
+  "description": "wear-resistant and low-friction PA66 compound for sliding, moving and tribological molded parts.",
+  "applications": "Gears, bushings, rollers, sliding blocks, guide parts and motion components.",
+  "filler": "",
+  "density": "1.2",
+  "waterAbsorption": "1.1~1.5",
+  "moldShrinkage": "",
+  "meltingPoint": "260",
+  "hdt045": "215",
+  "hdt": "65",
+  "flammability": "HB",
+  "tensileModulus": "2800",
+  "tensile": "80",
+  "elongationAtBreak": "14",
+  "flexuralStrength": "110",
+  "flexuralModulus": "2900",
+  "impact": "4",
+  "rockwellHardness": "115",
+  "volumeResistivity": "1015",
+  "permittivity": "3.2",
+  "properties": [
+    {
+      "group": "Physical properties",
+      "label": "Specific gravity",
+      "value": "1.2",
+      "unit": "",
+      "method": "ISO 1183"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Water absorption(23 °C, 50 %RH)",
+      "value": "1.1~1.5",
+      "unit": "%",
+      "method": "ISO 62"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Melting point (10 °C/min)",
+      "value": "260",
+      "unit": "degC",
+      "method": "ISO 11357"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (0.45 MPa)",
+      "value": "215",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (1.8 MPa)",
+      "value": "65",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Flammability (t = 0.8 mm)",
+      "value": "HB",
+      "unit": "Class",
+      "method": "UL 94"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile modulus",
+      "value": "2800",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile stress",
+      "value": "80",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Elongation at break",
+      "value": "14",
+      "unit": "%",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural strength",
+      "value": "110",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural modulus",
+      "value": "2900",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Charpy impact strength(Notched) @ 23 °C",
+      "value": "4",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Rockwell Hardness(R-Scale)",
+      "value": "115",
+      "unit": "",
+      "method": "ISO 2039-2"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Volume resistivity",
+      "value": "1015",
+      "unit": "ohm.cm",
+      "method": "IEC 60093"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Permittivity (1 MHz)",
+      "value": "3.2",
+      "unit": "",
+      "method": "IEC 60250"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

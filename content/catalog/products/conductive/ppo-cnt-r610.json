@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:ppo-cnt-r610",
+  "sortOrder": 26,
+  "grade": "PPO-CNT-R610",
+  "polymer": "PPO",
+  "matrix": "PPO",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

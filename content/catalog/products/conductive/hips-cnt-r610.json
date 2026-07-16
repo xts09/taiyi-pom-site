@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:hips-cnt-r610",
+  "sortOrder": 20,
+  "grade": "HIPS-CNT-R610",
+  "polymer": "HIPS",
+  "matrix": "HIPS",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

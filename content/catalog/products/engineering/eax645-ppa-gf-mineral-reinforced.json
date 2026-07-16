@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "kind": "engineering-tds",
+  "id": "engineering-tds:eax645-ppa-gf-mineral-reinforced",
+  "sortOrder": 70,
+  "slug": "eax645-ppa-gf-mineral-reinforced",
+  "polymer": "PPA",
+  "grade": "EAX645",
+  "family": "PPA",
+  "category": "GF Mineral Reinforced",
+  "description": "45% glass fiber / mineral reinforced PPA compound for stiffness, dimensional stability and industrial injection molded parts.",
+  "applications": "Automotive parts, electrical & electronics, industrial housings, brackets and precision molded components requiring reduced warpage.",
+  "filler": "45",
+  "density": "1.6",
+  "waterAbsorption": "0.4",
+  "moldShrinkage": "0.4~0.7",
+  "meltingPoint": "310",
+  "hdt045": "",
+  "hdt": "282",
+  "flammability": "HB",
+  "tensileModulus": "",
+  "tensile": "180",
+  "elongationAtBreak": "",
+  "flexuralStrength": "14100",
+  "flexuralModulus": "5.5",
+  "impact": "",
+  "rockwellHardness": "",
+  "volumeResistivity": "",
+  "permittivity": "",
+  "properties": [
+    {
+      "group": "Physical properties",
+      "label": "Filler contents",
+      "value": "45",
+      "unit": "%",
+      "method": "ISO 1172"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Specific gravity",
+      "value": "1.6",
+      "unit": "",
+      "method": "ISO 1183"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Water absorption(23 °C, 50 %RH)",
+      "value": "0.4",
+      "unit": "%",
+      "method": "ISO 62"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Mold shrinkage(Flow direction, Φ = 100 mm, t = 3 mm)",
+      "value": "0.4~0.7",
+      "unit": "%",
+      "method": "TAIYI Standard"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Melting point (10 °C/min)",
+      "value": "310",
+      "unit": "degC",
+      "method": "ISO 11357"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (1.8 MPa)",
+      "value": "282",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Flammability (t = 0.8 mm)",
+      "value": "HB",
+      "unit": "Class",
+      "method": "UL 94"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile stress",
+      "value": "180",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural strength",
+      "value": "14100",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural modulus",
+      "value": "5.5",
+      "unit": "MPa",
+      "method": "ISO 178"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

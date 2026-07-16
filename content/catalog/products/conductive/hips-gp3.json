@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:hips-gp3",
+  "sortOrder": 65,
+  "grade": "HIPS GP3",
+  "polymer": "HIPS",
+  "matrix": "HIPS",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

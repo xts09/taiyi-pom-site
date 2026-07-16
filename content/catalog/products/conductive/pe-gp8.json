@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pe-gp8",
+  "sortOrder": 62,
+  "grade": "PE GP8",
+  "polymer": "PE",
+  "matrix": "PE",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

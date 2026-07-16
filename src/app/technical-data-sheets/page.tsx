@@ -6,9 +6,14 @@ import {
 } from "@/data/engineeringTds";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
+import {
+  matchesMfiSearch,
+  parseMfiSearch,
+  removeMfiSearch,
+} from "@/lib/mfiSearch";
 import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = createPageMetadata({
+const technicalDataSheetsMetadata: Metadata = createPageMetadata({
   title: "Technical Resource Search | Taiyi Nano",
   description:
     "Search Taiyi Nano grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.",
@@ -17,6 +22,12 @@ export const metadata: Metadata = createPageMetadata({
 
 const getSearchValue = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
+
+const getSearchTerms = (value: string) =>
+  removeMfiSearch(value)
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean);
 
 const resourceTypeForSlug = (slug: string) => {
   if (slug === "faq") {
@@ -58,12 +69,63 @@ const contentTypeFilter = {
   ],
 };
 
+const searchExamples = [
+  { label: "ETM100", href: "/technical-data-sheets?q=ETM100" },
+  { label: "MFI 100", href: "/technical-data-sheets?q=MFI+100" },
+  { label: "TDS", href: "/technical-data-sheets?resource=tds" },
+  { label: "Automotive", href: "/technical-data-sheets?q=automotive" },
+];
+
+const emptyQuickLinks = [
+  {
+    label: "POM Grades",
+    description: "Browse POM material families and grade-level TDS paths.",
+    href: "/products/categories/pom",
+  },
+  {
+    label: "Conductive / Antistatic",
+    description: "Review charge-control POM directions and project notes.",
+    href: "/conductive-antistatic-pom",
+  },
+  {
+    label: "Ultra-High Flow",
+    description: "Search grades around MFI 100 and high-flow molding needs.",
+    href: "/technical-data-sheets?q=MFI+100",
+  },
+  {
+    label: "Resources",
+    description: "Open selection guides, processing notes, FAQ, and TDS help.",
+    href: "/resources",
+  },
+];
+
 type TechnicalDataSheetsPageProps = {
   searchParams?: Promise<{
     q?: string | string[];
     resource?: string | string[];
   }>;
 };
+
+export async function generateMetadata({
+  searchParams,
+}: TechnicalDataSheetsPageProps): Promise<Metadata> {
+  const params = searchParams ? await searchParams : {};
+  const hasSearchIntent = Boolean(
+    getSearchValue(params.q).trim() || getSearchValue(params.resource).trim(),
+  );
+
+  return {
+    ...technicalDataSheetsMetadata,
+    ...(hasSearchIntent
+      ? {
+          robots: {
+            index: false,
+            follow: true,
+          },
+        }
+      : {}),
+  };
+}
 
 export default async function TechnicalDataSheetsPage({
   searchParams,
@@ -72,6 +134,10 @@ export default async function TechnicalDataSheetsPage({
   const query = getSearchValue(params.q).trim();
   const activeResource = getSearchValue(params.resource).trim();
   const normalizedQuery = query.toLowerCase();
+  const mfiSearch = parseMfiSearch(query);
+  const searchTerms = getSearchTerms(query);
+  const matchesSearchTerms = (haystack: string) =>
+    searchTerms.every((term) => haystack.includes(term));
   const productResourceAllowed =
     !activeResource ||
     activeResource === "grade-data" ||
@@ -91,7 +157,10 @@ export default async function TechnicalDataSheetsPage({
           .join(" ")
           .toLowerCase();
 
-        return !normalizedQuery || haystack.includes(normalizedQuery);
+        return (
+          !normalizedQuery ||
+          (mfiSearch === null && matchesSearchTerms(haystack))
+        );
       })
     : [];
   const searchableProducts = productResourceAllowed
@@ -102,6 +171,7 @@ export default async function TechnicalDataSheetsPage({
           product.category,
           product.color,
           product.description,
+          `MFI ${product.mfi}`,
           product.features.join(" "),
           product.applications.join(" "),
           product.documents.join(" "),
@@ -109,8 +179,9 @@ export default async function TechnicalDataSheetsPage({
           .join(" ")
           .toLowerCase();
 
+        const matchesMfi = matchesMfiSearch(product.mfi, mfiSearch);
         const matchesQuery =
-          !normalizedQuery || haystack.includes(normalizedQuery);
+          !normalizedQuery || (matchesSearchTerms(haystack) && matchesMfi);
 
         return matchesQuery;
       })
@@ -139,12 +210,11 @@ export default async function TechnicalDataSheetsPage({
     ]
       .join(" ")
       .toLowerCase();
-    const matchesQuery = !normalizedQuery || haystack.includes(normalizedQuery);
+    const matchesQuery =
+      !normalizedQuery ||
+      (mfiSearch === null && matchesSearchTerms(haystack));
     const matchesResource =
-      !activeResource ||
-      resourceType === activeResource ||
-      (activeResource === "tds" &&
-        resource.slug === "material-selection-guide");
+      !activeResource || resourceType === activeResource;
 
     return matchesQuery && matchesResource;
   });
@@ -175,10 +245,11 @@ export default async function TechnicalDataSheetsPage({
       ? `/technical-data-sheets?${nextQuery}`
       : "/technical-data-sheets";
   };
+  const resultCountLabel = `${totalResults} ${totalResults === 1 ? "result" : "results"}`;
   const resultHeading = hasSearchIntent
     ? query
-      ? `Search "${query}" found ${totalResults} results`
-      : `${totalResults} results for selected filters`
+      ? `Search "${query}" found ${resultCountLabel}`
+      : `${resultCountLabel} for selected filters`
     : "Search technical resources";
 
   return (
@@ -215,6 +286,14 @@ export default async function TechnicalDataSheetsPage({
               ) : null}
               <button type="submit">Search</button>
             </div>
+            <div className="resource-site-search-examples" aria-label="Search examples">
+              <span>Try</span>
+              {searchExamples.map((example) => (
+                <Link key={example.label} href={example.href}>
+                  {example.label}
+                </Link>
+              ))}
+            </div>
           </form>
         </div>
       </section>
@@ -245,16 +324,18 @@ export default async function TechnicalDataSheetsPage({
           </section>
         </aside>
 
-        <section
-          id="resource-results"
-          className="resource-site-results"
-          aria-live="polite"
-        >
+        <section id="resource-results" className="resource-site-results">
           <div className="resource-site-results-head">
             <div>
-              <h1 id="resource-search-title">{resultHeading}</h1>
+              <h1
+                id="resource-search-title"
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                {resultHeading}
+              </h1>
             </div>
-            <span>Sort: Relevance</span>
+            <span>Grouped by content type</span>
           </div>
 
           {filterSummary.length > 0 ? (
@@ -275,6 +356,14 @@ export default async function TechnicalDataSheetsPage({
                 Search by grade, document path, resource type, or technical
                 topic. Results will appear in this panel.
               </p>
+              <div className="resource-empty-quick-links">
+                {emptyQuickLinks.map((item) => (
+                  <Link key={item.label} href={item.href}>
+                    <strong>{item.label}</strong>
+                    <span>{item.description}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
           ) : totalResults > 0 ? (
             <div className="resource-site-result-list">

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:abs-cnt-r35",
+  "sortOrder": 1,
+  "grade": "ABS-CNT-R35",
+  "polymer": "ABS",
+  "matrix": "ABS",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

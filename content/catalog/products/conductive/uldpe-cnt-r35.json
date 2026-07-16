@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:uldpe-cnt-r35",
+  "sortOrder": 41,
+  "grade": "ULDPE-CNT-R35",
+  "polymer": "ULDPE",
+  "matrix": "ULDPE",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

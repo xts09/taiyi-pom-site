@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "kind": "product",
+  "id": "product:etm270h-wear-resistant-pom",
+  "sortOrder": 8,
+  "slug": "etm270h-wear-resistant-pom",
+  "grade": "ETM270H",
+  "title": "ETM270H Wear-Resistant POM Compound",
+  "polymer": "POM",
+  "family": "Wear-Resistant POM Compound",
+  "category": "Wear-Resistant POM Compound",
+  "mfi": {
+    "value": 27,
+    "display": "27 g/10 min"
+  },
+  "colors": [
+    "Natural"
+  ],
+  "description": "Wear-resistant POM direction with higher tensile and flexural performance for sliding and moving molded parts.",
+  "features": [
+    "High flow",
+    "Wear resistance",
+    "Suitable for sliding applications"
+  ],
+  "applications": [
+    "Gears",
+    "Sliding parts",
+    "Bushings",
+    "Functional molded parts"
+  ],
+  "documents": [
+    "TDS",
+    "SDS",
+    "COA",
+    "REACH",
+    "RoHS"
+  ],
+  "properties": [
+    {
+      "label": "Density",
+      "value": "1.41",
+      "unit": "g/cm3",
+      "method": "ISO 1183"
+    },
+    {
+      "label": "Molding Shrinkage",
+      "value": "1.8-2.0",
+      "unit": "%",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Tensile Strength",
+      "value": "72",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "label": "Flexural Strength",
+      "value": "95",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "label": "Flexural Modulus",
+      "value": "2900",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "label": "Charpy Notched Impact Strength",
+      "value": "5.3",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    },
+    {
+      "label": "Heat Deflection Temperature",
+      "value": "96",
+      "unit": "degC",
+      "method": "ISO 75-2, 1.8 MPa"
+    },
+    {
+      "label": "Volume Resistivity",
+      "value": "1e14",
+      "unit": "ohm.cm",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Surface Resistivity",
+      "value": "1e16",
+      "unit": "ohm",
+      "method": "Internal Method"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

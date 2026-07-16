@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "kind": "engineering-tds",
+  "id": "engineering-tds:eac220c-pa66-carbon-fiber-reinforced",
+  "sortOrder": 57,
+  "slug": "eac220c-pa66-carbon-fiber-reinforced",
+  "polymer": "PA66",
+  "grade": "EAC220C",
+  "family": "PA66",
+  "category": "Carbon Fiber Reinforced",
+  "description": "20% carbon fiber reinforced PA66 compound for stiffness, dimensional stability and industrial injection molded parts.",
+  "applications": "Automotive parts, electrical & electronics, industrial housings, brackets and precision molded components.",
+  "filler": "20",
+  "density": "1.23",
+  "waterAbsorption": "0.8~1.2",
+  "moldShrinkage": "",
+  "meltingPoint": "260",
+  "hdt045": "260",
+  "hdt": "255",
+  "flammability": "HB",
+  "tensileModulus": "16000",
+  "tensile": "240",
+  "elongationAtBreak": "2.2",
+  "flexuralStrength": "335",
+  "flexuralModulus": "14700",
+  "impact": "8",
+  "rockwellHardness": "120",
+  "volumeResistivity": "103",
+  "permittivity": "3.6",
+  "properties": [
+    {
+      "group": "Physical properties",
+      "label": "Filler contents",
+      "value": "20",
+      "unit": "%",
+      "method": "ISO 1172"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Specific gravity",
+      "value": "1.23",
+      "unit": "",
+      "method": "ISO 1183"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Water absorption(23 °C, 50 %RH)",
+      "value": "0.8~1.2",
+      "unit": "%",
+      "method": "ISO 62"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Melting point (10 °C/min)",
+      "value": "260",
+      "unit": "degC",
+      "method": "ISO 11357"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (0.45 MPa)",
+      "value": "260",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (1.8 MPa)",
+      "value": "255",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Flammability (t = 0.8 mm)",
+      "value": "HB",
+      "unit": "Class",
+      "method": "UL 94"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile modulus",
+      "value": "16000",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile stress",
+      "value": "240",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Elongation at break",
+      "value": "2.2",
+      "unit": "%",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural strength",
+      "value": "335",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural modulus",
+      "value": "14700",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Charpy impact strength(Notched) @ 23 °C",
+      "value": "8",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Rockwell Hardness(R-Scale)",
+      "value": "120",
+      "unit": "",
+      "method": "ISO 2039-2"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Volume resistivity",
+      "value": "103",
+      "unit": "ohm.cm",
+      "method": "IEC 60093"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Permittivity (1 MHz)",
+      "value": "3.6",
+      "unit": "",
+      "method": "IEC 60250"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

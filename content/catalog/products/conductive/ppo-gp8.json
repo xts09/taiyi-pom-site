@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:ppo-gp8",
+  "sortOrder": 70,
+  "grade": "PPO-GP8",
+  "polymer": "PPO",
+  "matrix": "PPO",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

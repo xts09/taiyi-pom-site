@@ -1,0 +1,141 @@
+/* Resources are the calm baseline: technical directory first, decoration second. */
+.resource-page-shell.mesh-surface:not(.resource-article-shell) {
+  width: 100%;
+  max-width: none !important;
+  background: #f3f5f7;
+  padding: clamp(1.4rem, 3vw, 2.2rem) 0 clamp(3rem, 6vw, 5rem) !important;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-hero,
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-directory,
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-cta,
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-module-grid,
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-page-nav {
+  box-sizing: border-box;
+  width: var(--site-rail-width);
+  max-width: none;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-hero {
+  margin-bottom: clamp(1.45rem, 3vw, 2.15rem);
+  border-bottom-color: rgba(15, 23, 42, 0.12);
+  padding: clamp(1.5rem, 3vw, 2.3rem) 0 clamp(1.45rem, 2.8vw, 2.1rem);
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-hero-context {
+  color: #0b5fb8;
+  font-size: 0.84rem;
+  font-weight: 760;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-hero h1 {
+  color: #07111f;
+  font-size: clamp(2.35rem, 3.8vw, 3.75rem);
+  font-weight: 840;
+  line-height: 1.02;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-hero-description {
+  max-width: 68ch;
+  color: #334155;
+  font-size: clamp(1rem, 1.05vw, 1.08rem);
+  font-weight: 520;
+  line-height: 1.65;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-directory {
+  margin-top: clamp(1.2rem, 2.6vw, 1.85rem);
+  border-top-color: rgba(15, 23, 42, 0.12);
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-section {
+  grid-template-columns: minmax(14rem, 0.26fr) minmax(0, 1fr);
+  gap: clamp(1.4rem, 3.4vw, 3rem);
+  border-bottom-color: rgba(15, 23, 42, 0.1);
+  padding: clamp(1.35rem, 2.8vw, 2.05rem) 0;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-section-head
+  h2 {
+  color: #07111f;
+  font-size: clamp(1.2rem, 1.55vw, 1.42rem);
+  font-weight: 820;
+  line-height: 1.16;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-section-head
+  p {
+  max-width: 20rem;
+  color: #475569;
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-link {
+  grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr);
+  gap: clamp(0.9rem, 2vw, 1.5rem);
+  border-top-color: rgba(15, 23, 42, 0.1);
+  padding: 0.82rem 0;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-link:hover,
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-link:focus-visible {
+  color: #0b5fb8;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-link
+  strong {
+  color: #07111f;
+  font-size: 0.94rem;
+  font-weight: 780;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-link
+  em {
+  color: #526276;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.resource-article-shell .resource-article-main {
+  padding-right: var(--site-rail-inset);
+  padding-left: clamp(2rem, 5vw, 6rem);
+}
+
+.resource-article-shell .resource-article-hero h1 {
+  color: #07111f;
+  font-size: clamp(2.35rem, 3.1vw, 3.55rem);
+  font-weight: 840;
+}
+
+.resource-article-shell .resource-article-hero .resource-hero-description,
+.resource-article-shell .resource-article-section p {
+  color: #334155;
+}
+
+@media (max-width: 720px) {
+  .resource-page-shell.mesh-surface:not(.resource-article-shell)
+    .resource-directory-section,
+  .resource-page-shell.mesh-surface:not(.resource-article-shell)
+    .resource-directory-link {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .resource-article-shell .resource-article-main {
+    padding-right: var(--site-gutter);
+    padding-left: var(--site-gutter);
+  }
+}

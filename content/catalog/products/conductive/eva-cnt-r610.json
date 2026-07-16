@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:eva-cnt-r610",
+  "sortOrder": 36,
+  "grade": "EVA-CNT-R610",
+  "polymer": "EVA",
+  "matrix": "EVA",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

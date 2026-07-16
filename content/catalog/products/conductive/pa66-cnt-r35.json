@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pa66-cnt-r35",
+  "sortOrder": 25,
+  "grade": "PA66-CNT-R35",
+  "polymer": "PA66",
+  "matrix": "PA66",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "kind": "engineering-tds",
+  "id": "engineering-tds:eag225v0b-pa66-flame-retardant",
+  "sortOrder": 68,
+  "slug": "eag225v0b-pa66-flame-retardant",
+  "polymer": "PA66",
+  "grade": "EAG225V0B",
+  "family": "PA66",
+  "category": "Flame Retardant",
+  "description": "25% flame-retardant PA66 compound for electrical and structural molded parts requiring flame rating review.",
+  "applications": "Connectors, electrical housings, switches, bobbins, terminal blocks and other E&E components.",
+  "filler": "25",
+  "density": "1.34",
+  "waterAbsorption": "0.4~0.8",
+  "moldShrinkage": "",
+  "meltingPoint": "260",
+  "hdt045": "260",
+  "hdt": "240",
+  "flammability": "V-0",
+  "tensileModulus": "8300",
+  "tensile": "140",
+  "elongationAtBreak": "2.5",
+  "flexuralStrength": "205",
+  "flexuralModulus": "7700",
+  "impact": "7.8",
+  "rockwellHardness": "121",
+  "volumeResistivity": "1015",
+  "permittivity": "3.4",
+  "properties": [
+    {
+      "group": "Physical properties",
+      "label": "Filler contents",
+      "value": "25",
+      "unit": "%",
+      "method": "ISO 1172"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Specific gravity",
+      "value": "1.34",
+      "unit": "",
+      "method": "ISO 1183"
+    },
+    {
+      "group": "Physical properties",
+      "label": "Water absorption(23 °C, 50 %RH)",
+      "value": "0.4~0.8",
+      "unit": "%",
+      "method": "ISO 62"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Melting point (10 °C/min)",
+      "value": "260",
+      "unit": "degC",
+      "method": "ISO 11357"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (0.45 MPa)",
+      "value": "260",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Heat deflection temperature (1.8 MPa)",
+      "value": "240",
+      "unit": "degC",
+      "method": "ISO 75"
+    },
+    {
+      "group": "Thermal properties",
+      "label": "Flammability (t = 0.8 mm)",
+      "value": "V-0",
+      "unit": "Class",
+      "method": "UL 94"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile modulus",
+      "value": "8300",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Tensile stress",
+      "value": "140",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Elongation at break",
+      "value": "2.5",
+      "unit": "%",
+      "method": "ISO 527"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural strength",
+      "value": "205",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Flexural modulus",
+      "value": "7700",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Charpy impact strength(Notched) @ 23 °C",
+      "value": "7.8",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    },
+    {
+      "group": "Mechanical properties",
+      "label": "Rockwell Hardness(R-Scale)",
+      "value": "121",
+      "unit": "",
+      "method": "ISO 2039-2"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Volume resistivity",
+      "value": "1015",
+      "unit": "ohm.cm",
+      "method": "IEC 60093"
+    },
+    {
+      "group": "Electrical properties",
+      "label": "Permittivity (1 MHz)",
+      "value": "3.4",
+      "unit": "",
+      "method": "IEC 60250"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

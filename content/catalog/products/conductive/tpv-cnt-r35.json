@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:tpv-cnt-r35",
+  "sortOrder": 39,
+  "grade": "TPV-CNT-R35",
+  "polymer": "TPV",
+  "matrix": "TPV",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

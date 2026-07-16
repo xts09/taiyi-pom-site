@@ -46,7 +46,7 @@ const buildInquiryMessage = (formData: FormData, documents: string) =>
 
 export function ContactInquiryForm() {
   const [status, setStatus] = useState<
-    "idle" | "submitting" | "sent" | "fallback" | "error"
+    "idle" | "submitting" | "sent" | "fallback"
   >("idle");
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -247,7 +247,7 @@ export function ContactInquiryForm() {
           type="submit"
           disabled={status === "submitting"}
         >
-          {status === "submitting" ? "Sending..." : "Send Requirement"}
+          {status === "submitting" ? "Sending…" : "Send Requirement"}
         </button>
         <p>
           Direct delivery is used when server email is configured. Otherwise,
@@ -255,14 +255,16 @@ export function ContactInquiryForm() {
         </p>
       </div>
 
-      <p className={`contact-submit-status contact-submit-status-${status}`}>
+      <p
+        className={`contact-submit-status contact-submit-status-${status}`}
+        role="status"
+        aria-live="polite"
+      >
         {status === "sent"
           ? "Submitted successfully. We will review your requirement and reply by email."
           : status === "fallback"
             ? "Server delivery is not configured yet, so an email draft was prepared. The inquiry text was also copied when possible."
-            : status === "error"
-              ? "Submission failed. Please email xiatianshi@jstynm.com directly."
-              : ""}
+            : ""}
       </p>
     </form>
   );

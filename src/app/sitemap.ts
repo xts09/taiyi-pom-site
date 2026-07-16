@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
 import { applications } from "@/data/applications";
 import {
-  createEngineeringTdsSlug,
-  engineeringTdsDocuments,
-} from "@/data/engineeringTds";
+  catalogEngineeringTds,
+  catalogProducts,
+  isCatalogRecordIndexable,
+} from "@/data/catalog";
 import { publicTechnicalLandingLinks } from "@/data/pomLandingPages";
-import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { productCategoryEntries } from "@/lib/productCategories";
 import { siteUrl } from "@/lib/seo";
@@ -39,17 +39,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.74,
   }));
 
-  const productRoutes = products.map((product) => ({
-    url: `${siteUrl}/products/${product.slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-  }));
+  const productRoutes = catalogProducts
+    .filter(isCatalogRecordIndexable)
+    .map((product) => ({
+      url: `${siteUrl}/products/${product.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
 
-  const engineeringTdsRoutes = engineeringTdsDocuments.map((document) => ({
-    url: `${siteUrl}/products/${createEngineeringTdsSlug(document)}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.64,
-  }));
+  const engineeringTdsRoutes = catalogEngineeringTds
+    .filter(isCatalogRecordIndexable)
+    .map((document) => ({
+      url: `${siteUrl}/products/${document.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.64,
+    }));
 
   const resourceRoutes = resourcePages.map((page) => ({
     url: `${siteUrl}/resources/${page.slug}`,

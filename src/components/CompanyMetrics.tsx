@@ -19,14 +19,6 @@ export function CompanyMetrics({
   return (
     <section className="manufacturing-base relative z-10">
       <div className="manufacturing-base-inner site-container">
-        <div className="manufacturing-base-head">
-          <h2>Factory Snapshot</h2>
-          <p>
-            Production scale, compounding experience and in&#8209;house testing
-            for engineering plastic materials.
-          </p>
-        </div>
-
         <div className="base-shell home-metrics-rail">
           <div className="base-figure">
             <p className="section-kicker">{annualCapacity.label}</p>

@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { applications, selectionBasis } from "@/data/applications";
-import { publicPath } from "@/lib/paths";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -30,6 +28,38 @@ export default function ApplicationsPage() {
             core line, with selected PA6, PA66, PPA, and PPS solutions reviewed
             by requirement.
           </p>
+
+          <div className="application-index-actions">
+            <Link href="/contact" className="cta-primary px-6 py-3 text-sm">
+              Discuss Requirement
+            </Link>
+            <Link
+              href="/products/categories/pom"
+              className="cta-secondary px-6 py-3 text-sm"
+            >
+              Browse Product Directions
+            </Link>
+          </div>
+        </div>
+
+        <div className="application-directory-grid stagger-list">
+          {applications.map((application, index) => (
+            <Link
+              key={application.title}
+              href={`/applications/${application.slug}`}
+              className="application-directory-card"
+              aria-label={`View ${application.title} application details`}
+              style={{ "--item-index": index } as CSSProperties}
+            >
+              <span className="application-directory-index">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+
+              <h2>{application.title}</h2>
+
+              <p>{application.description}</p>
+            </Link>
+          ))}
         </div>
 
         <section className="application-basis-strip reveal-up reveal-delay-1 mb-10">
@@ -54,43 +84,6 @@ export default function ApplicationsPage() {
             ))}
           </ol>
         </section>
-
-        <div className="application-directory-grid stagger-list">
-          {applications.map((application, index) => (
-            <Link
-              key={application.title}
-              href={`/applications/${application.slug}`}
-              className="application-directory-card"
-              aria-label={`View ${application.title} application details`}
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              <span className="application-directory-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-
-              <h2>{application.title}</h2>
-
-              <p>{application.description}</p>
-
-              <div className="application-image-strip">
-                {application.images.map((image) => (
-                  <figure key={image.src} className="application-part-frame">
-                    <div className="relative aspect-[4/3]">
-                      <Image
-                        src={publicPath(image.src)}
-                        alt={image.alt}
-                        fill
-                        sizes="(min-width: 1024px) 130px, (min-width: 640px) 160px, 45vw"
-                        className="object-contain"
-                      />
-                    </div>
-                    <figcaption>{image.label}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            </Link>
-          ))}
-        </div>
 
         <MaterialRecommendationCta
           kicker="Inquiry Preparation"

@@ -62,9 +62,9 @@ type ApplicationUseCardData = {
 };
 
 const applicationSectionTabs = [
-  { href: "#application-scene", label: "Overview" },
-  { href: "#material-match", label: "Key Applications" },
-  { href: "#review-checklist", label: "Key Products" },
+  { href: "#application-scene", label: "Parts & Conditions" },
+  { href: "#material-match", label: "Typical Parts" },
+  { href: "#review-checklist", label: "Material Directions" },
   { href: "#material-evaluation", label: "Material Evaluation" },
 ];
 
@@ -144,7 +144,7 @@ const applicationVisualConfigs: Partial<
   },
   "motion-components": {
     assets: createApplicationVisualAssets(
-      "/applications/parts/gears-moving-mechanical-parts-wide.webp",
+      "/generated/applications/motion-components/precision-molded-motion-components.png",
     ),
   },
   "water-control": {
@@ -504,7 +504,7 @@ export default async function ApplicationDetailPage({
           }
         >
           <div className="application-hero-card">
-            <p className="application-hero-kicker">Application Area</p>
+            <p className="application-hero-kicker">Application & Part Review</p>
 
             <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
               {application.title}
@@ -519,10 +519,10 @@ export default async function ApplicationDetailPage({
               aria-label="Application material review inputs"
             >
               <div className="application-hero-summary">
-                <strong>Review Inputs</strong>
+                <strong>Part & Operating Conditions</strong>
                 <p>
-                  Part geometry, movement, assembly fit, dimensional target, and
-                  document needs.
+                  Part function, movement, assembly fit, dimensional target,
+                  and document needs.
                 </p>
               </div>
 
@@ -546,7 +546,7 @@ export default async function ApplicationDetailPage({
             <div className="application-hero-cta">
               <Link href="/contact">Discuss Requirement</Link>
               <Link href="/technical-data-sheets">
-                Find a Technical Data Sheet (TDS)
+                Search Data / TDS
               </Link>
             </div>
           </div>
@@ -580,16 +580,20 @@ export default async function ApplicationDetailPage({
                   fill
                   sizes="100vw"
                   priority
-                  className="object-cover"
+                  className={cx(
+                    "object-cover",
+                    application.slug === "motion-components" &&
+                      "application-scene-image-motion-components",
+                  )}
                 />
 
                 <div className="application-scene-copy application-scene-copy-overlay">
-                  <p className="section-kicker mb-3">Overview</p>
-                  <h2>Material Fit Review</h2>
+                  <p className="section-kicker mb-3">Parts & Conditions</p>
+                  <h2>Start with the part and working condition.</h2>
                   <p>
-                    Start from the actual mechanism: movement, assembly fit, and
-                    dimensional targets should define the material direction
-                    before a grade is screened.
+                    The material direction should follow the actual mechanism,
+                    movement, assembly fit, and dimensional target before a
+                    grade is screened.
                   </p>
                 </div>
               </div>
@@ -597,12 +601,12 @@ export default async function ApplicationDetailPage({
           ) : (
             <>
               <div className="application-scene-copy">
-                <p className="section-kicker mb-3">Overview</p>
-                <h2>Material Fit Review</h2>
+                <p className="section-kicker mb-3">Parts & Conditions</p>
+                <h2>Start with the part and working condition.</h2>
                 <p>
-                  Start with part geometry, motion, dimensional target, and
-                  document needs before moving into a modified POM grade
-                  direction.
+                  Start with the part function, working condition, dimensional
+                  target, and document needs before moving into a modified POM
+                  grade direction.
                 </p>
 
                 <ul
@@ -689,11 +693,11 @@ export default async function ApplicationDetailPage({
           data-application-motion
         >
           <div className="application-notes-head">
-            <p className="section-kicker mb-3">Key Products</p>
-            <h2>Material directions for {application.title}.</h2>
+            <p className="section-kicker mb-3">Material Directions</p>
+            <h2>Material directions for the parts above.</h2>
             <p>
               Review the modified POM directions commonly screened against the
-              application needs above.
+              part function and working conditions above.
             </p>
           </div>
 

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:tpu-cnt-r610",
+  "sortOrder": 16,
+  "grade": "TPU-CNT-R610",
+  "polymer": "TPU",
+  "matrix": "TPU",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

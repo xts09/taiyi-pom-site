@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pbt-gp5-8",
+  "sortOrder": 50,
+  "grade": "PBT GP5-8",
+  "polymer": "PBT",
+  "matrix": "PBT",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

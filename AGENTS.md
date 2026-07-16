@@ -23,3 +23,40 @@ This version has breaking changes - APIs, conventions, and file structure may al
 - Preserve the user's pointed distinction words. If the user asks for "frosted glass", do not silently replace it with a dark translucent panel; if the user asks for "aligned", do not answer with "container widths are equal" unless the visible edges also align.
 - Change one visual variable family at a time: material, spacing, typography, layout, imagery, or interaction. Avoid mixing several visual corrections in one patch unless the user explicitly asks for a larger redesign.
 - Use rendered visual acceptance as the final standard. For UI work, report both what changed in code and what visible condition it is meant to satisfy.
+
+## Visual Regression Contract (Mandatory)
+
+This project has a history of layered CSS, repeated media queries, and late
+overrides. For any visual edit, follow this contract in addition to the visual
+feedback protocol above.
+
+1. Before editing, state the exact route, viewport, visible acceptance criteria,
+   and file scope. Do not silently reinterpret a material request as a layout
+   redesign, or a local request as a shared-component redesign.
+2. Find the final active CSS rule before changing it. Search every matching
+   selector, media query, and `!important` declaration. Change the owning rule
+   instead of appending a broad override at the end of a stylesheet.
+3. Do not touch `globals.css`, `Header`, shared navigation, or a shared component
+   for a page-local issue unless the user explicitly asked for the cross-page
+   behavior. When a shared change is required, name the affected routes before
+   editing.
+4. Change one visual family per pass: layout, material, type scale, spacing,
+   imagery, or interaction. Do not bundle an unrequested visual cleanup into a
+   bug fix.
+5. Capture a rendered before/after comparison at the same viewport. At desktop,
+   use `1920x1080` unless the user names another target. Build success, clean
+   CSS, or matching computed variables never substitutes for a rendered check.
+6. Run the relevant regression matrix before calling a visual task complete:
+   - Home change: verify `/` hero and `Factory Snapshot`.
+   - Header or mega-menu change: verify `/` dark header and one inner-page white
+     header, each closed and expanded.
+   - Shared secondary navigation change: verify one product category and one
+     application page, including the pinned state.
+   - Responsive layout change: verify the named desktop viewport plus one mobile
+     viewport.
+7. If computed styles do not match the source after a hot update, stop treating
+   the result as verified. Restart the existing dev server, clear `.next`, reload
+   the exact route, and repeat the rendered check.
+8. Final reports must include the changed files, exact routes/states checked, and
+   whether visual evidence was inspected. Do not claim completion from a build
+   result alone.

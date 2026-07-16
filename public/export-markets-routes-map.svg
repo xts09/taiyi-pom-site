@@ -1,12 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 280" role="img" aria-labelledby="title desc">
   <title id="title">Taiyi Nano Export Markets</title>
   <desc id="desc">Light world map with routes from China to Germany, Italy, Turkey, Czechia, South Korea, Brazil and Argentina.</desc>
   <style>
     .sphere{fill:transparent}
-    .land{fill:#dcebf4;stroke:#c8dfec;stroke-width:.7}
-    .borders{fill:none;stroke:#b7d0df;stroke-opacity:.42;stroke-width:.38}
-    .highlight path{fill:#bcdceb;stroke:#7fb7d3;stroke-width:.9}
-    .routes path{fill:none;stroke:#8fbdd8;stroke-opacity:.58;stroke-width:1.15}
+    .land{fill:#d3e7f3;stroke:#b9d7e8;stroke-width:.7}
+    .borders{fill:none;stroke:#a8c9db;stroke-opacity:.48;stroke-width:.38}
+    .highlight path{fill:#acd7ea;stroke:#6faecc;stroke-width:.9}
+    .routes path{fill:none;stroke:#5f9fc5;stroke-opacity:.78;stroke-width:1.25}
     .pin .halo{fill:#0b6daf;fill-opacity:.12}
     .pin.destination .dot{fill:#075f9f;stroke:#ffffff;stroke-width:2.2}
     .pin.origin .halo{fill:#d40000;fill-opacity:.16}

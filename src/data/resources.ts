@@ -1,5 +1,3 @@
-import { publicTechnicalLandingLinks } from "@/data/pomLandingPages";
-
 export type ResourceFaqItem = {
   question: string;
   answer: string;
@@ -232,8 +230,8 @@ export const resourcePages: ResourcePage[] = [
       },
     ],
     relatedLinks: [
-      { label: "View POM Grades", href: "/products/categories/pom" },
-      { label: "Find a TDS", href: "/technical-data-sheets" },
+      { label: "View POM Material Families", href: "/products/categories/pom" },
+      { label: "Search Data / TDS", href: "/technical-data-sheets" },
     ],
   },
   {
@@ -761,40 +759,64 @@ export const resourceIndexLinks = [
     description: page.description,
   })),
   {
-    label: "Technical Data Sheets",
+    label: "Data / TDS Search",
     href: "/technical-data-sheets",
     description:
-      "Find available TDS documents and grade references for listed material grades.",
+      "Search grade data, TDS paths, guides, and technical resource references.",
   },
 ];
 
 export const resourceIndexGroups = [
   {
-    title: "Core Guides",
+    id: "selection-guides",
+    title: "Selection Guides",
     description:
-      "Long-form technical resources for selection, processing, application screening, and common engineering questions.",
-    links: resourcePages.map((page) => ({
-      label: page.navLabel,
-      href: `/resources/${page.slug}`,
-      description: page.description,
-    })),
+      "Start with the molded part, movement, failure risk, and working conditions before narrowing a material direction.",
+    links: resourcePages
+      .filter((page) =>
+        [
+          "material-selection-guide",
+          "wear-resistant-low-friction-pom-selection-guide",
+        ].includes(page.slug),
+      )
+      .map((page) => ({
+        label: page.navLabel,
+        href: `/resources/${page.slug}`,
+        description: page.description,
+      })),
   },
   {
-    title: "POM Review Pages",
+    id: "technical-notes",
+    title: "Processing & Technical Notes",
     description:
-      "High-intent technical landing pages for buyers who search by material requirement before they know the exact grade.",
-    links: publicTechnicalLandingLinks,
+      "Use these references to review processing, application conditions, and common technical questions before a trial or grade discussion.",
+    links: resourcePages
+      .filter((page) =>
+        ["processing-guide", "application-notes", "faq"].includes(page.slug),
+      )
+      .map((page) => ({
+        label: page.navLabel,
+        href: `/resources/${page.slug}`,
+        description: page.description,
+      })),
   },
   {
-    title: "Technical Data",
+    id: "documents-grade-data",
+    title: "Documents & Grade Data",
     description:
-      "Grade-level documents and data references used after the material direction has been narrowed.",
+      "Use grade data, TDS paths, and the POM material-family directory after the material direction has been narrowed.",
     links: [
       {
-        label: "Technical Data Sheets",
+        label: "Data / TDS Search",
         href: "/technical-data-sheets",
         description:
-          "Find available TDS documents and grade references for listed material grades.",
+          "Search grade data, TDS paths, guides, and technical resource references.",
+      },
+      {
+        label: "POM Material Families",
+        href: "/products/categories/pom",
+        description:
+          "Browse POM material families before opening available grade-level details.",
       },
     ],
   },

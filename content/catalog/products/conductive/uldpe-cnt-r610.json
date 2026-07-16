@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:uldpe-cnt-r610",
+  "sortOrder": 40,
+  "grade": "ULDPE-CNT-R610",
+  "polymer": "ULDPE",
+  "matrix": "ULDPE",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

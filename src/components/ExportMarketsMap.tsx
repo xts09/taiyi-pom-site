@@ -19,24 +19,24 @@ const regions: Region[] = [
     name: "Europe",
     countries: "Germany / Italy / Turkey / Czechia",
     note: "Project supply communication across established European routes.",
-    hotspot: { x: "52.7%", y: "25.5%" },
-    popover: { x: "37.5%", y: "6%" },
+    hotspot: { x: "52.7%", y: "33%" },
+    popover: { x: "37.5%", y: "9%" },
   },
   {
     id: "south-korea",
     name: "South Korea",
     countries: "South Korea",
     note: "Material discussions for precision molded-part applications.",
-    hotspot: { x: "77.4%", y: "31%" },
-    popover: { x: "63%", y: "9%" },
+    hotspot: { x: "77.4%", y: "40%" },
+    popover: { x: "62%", y: "12%" },
   },
   {
     id: "south-america",
     name: "South America",
     countries: "Brazil / Argentina",
     note: "Project-based compound communication across South American markets.",
-    hotspot: { x: "37.1%", y: "64%" },
-    popover: { x: "20%", y: "40%" },
+    hotspot: { x: "37.1%", y: "80%" },
+    popover: { x: "20%", y: "48%" },
   },
 ];
 
@@ -58,7 +58,7 @@ export function ExportMarketsMap() {
           src={publicPath("/export-markets-routes-map.svg")}
           alt="World map showing export routes from China to Europe, South Korea, Brazil and Argentina."
           width={1280}
-          height={720}
+          height={498}
           sizes="(min-width: 1024px) 50vw, 100vw"
         />
 
@@ -107,9 +107,6 @@ export function ExportMarketsMap() {
         )}
       </div>
 
-      <p className="export-map-caption">
-        Select a region to view current supply coverage.
-      </p>
     </div>
   );
 }

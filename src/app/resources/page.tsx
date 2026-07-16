@@ -28,7 +28,11 @@ export default function ResourcesPage() {
           aria-label="Technical resource topics"
         >
           {resourceIndexGroups.map((group) => (
-            <section key={group.title} className="resource-directory-section">
+            <section
+              key={group.id}
+              id={group.id}
+              className="resource-directory-section"
+            >
               <div className="resource-directory-section-head">
                 <h2>{group.title}</h2>
                 <p>{group.description}</p>

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:abs-gp3",
+  "sortOrder": 45,
+  "grade": "ABS GP3",
+  "polymer": "ABS",
+  "matrix": "ABS",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

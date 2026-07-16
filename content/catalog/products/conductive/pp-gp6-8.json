@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pp-gp6-8",
+  "sortOrder": 54,
+  "grade": "PP GP6-8",
+  "polymer": "PP",
+  "matrix": "PP",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

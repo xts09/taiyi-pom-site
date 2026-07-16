@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen text-slate-900">
+    <main className="contact-page min-h-screen text-slate-900">
       <section className="mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
         <div className="inner-hero reveal-up mb-12 max-w-4xl">
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">

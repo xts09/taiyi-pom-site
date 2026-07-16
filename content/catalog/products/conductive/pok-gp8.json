@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pok-gp8",
+  "sortOrder": 74,
+  "grade": "POK GP8",
+  "polymer": "POK",
+  "matrix": "POK",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pa6-cnt-r610",
+  "sortOrder": 22,
+  "grade": "PA6-CNT-R610",
+  "polymer": "PA6",
+  "matrix": "PA6",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

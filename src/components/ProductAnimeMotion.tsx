@@ -29,30 +29,26 @@ export function ProductAnimeMotion() {
       return;
     }
 
-    if (reduceMotion) {
+    const showContent = () => {
       links.forEach((link) => {
         link.style.opacity = "";
         link.style.transform = "";
       });
+      horizontalLines.forEach((line) => {
+        line.style.transform = "";
+      });
+      verticalLines.forEach((line) => {
+        line.style.transform = "";
+      });
       counters.forEach((counter) => {
         counter.textContent = counter.dataset.count ?? counter.textContent;
       });
+    };
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      showContent();
       return;
     }
-
-    links.forEach((link) => {
-      link.style.opacity = "0";
-      link.style.transform = "translateY(24px) scale(0.98)";
-    });
-    horizontalLines.forEach((line) => {
-      line.style.transform = "scaleX(0)";
-    });
-    verticalLines.forEach((line) => {
-      line.style.transform = "scaleY(0)";
-    });
-    counters.forEach((counter) => {
-      counter.textContent = "0";
-    });
 
     const activeAnimations: ReturnType<typeof animate>[] = [];
     const playIntro = () => {
@@ -106,17 +102,44 @@ export function ProductAnimeMotion() {
       links[0].closest(".product-family-overview, .product-filter-bar") ??
       links[0];
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          observer.disconnect();
-          playIntro();
-        }
-      },
-      { threshold: 0.18 }
-    );
+    let observer: IntersectionObserver;
 
-    observer.observe(trigger);
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            observer.disconnect();
+            playIntro();
+          }
+        },
+        { threshold: 0.18 }
+      );
+    } catch {
+      showContent();
+      return;
+    }
+
+    links.forEach((link) => {
+      link.style.opacity = "0";
+      link.style.transform = "translateY(24px) scale(0.98)";
+    });
+    horizontalLines.forEach((line) => {
+      line.style.transform = "scaleX(0)";
+    });
+    verticalLines.forEach((line) => {
+      line.style.transform = "scaleY(0)";
+    });
+    counters.forEach((counter) => {
+      counter.textContent = "0";
+    });
+
+    try {
+      observer.observe(trigger);
+    } catch {
+      observer.disconnect();
+      showContent();
+      return;
+    }
 
     return () => {
       observer.disconnect();

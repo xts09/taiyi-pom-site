@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:tpv-cnt-r610",
+  "sortOrder": 38,
+  "grade": "TPV-CNT-R610",
+  "polymer": "TPV",
+  "matrix": "TPV",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

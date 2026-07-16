@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:tpee-cnt-r35",
+  "sortOrder": 43,
+  "grade": "TPEE-CNT-R35",
+  "polymer": "TPEE",
+  "matrix": "TPEE",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

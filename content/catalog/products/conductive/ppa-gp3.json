@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:ppa-gp3",
+  "sortOrder": 77,
+  "grade": "PPA GP3",
+  "polymer": "PPA",
+  "matrix": "PPA",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

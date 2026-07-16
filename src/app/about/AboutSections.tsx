@@ -136,7 +136,11 @@ export function FactoryProofRows({ rows }: FactoryProofRowsProps) {
               alt={row.imageAlt}
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
-              className="object-cover"
+              className={`object-cover${
+                row.imageVariant === "warehouse"
+                  ? " factory-proof-media-warehouse"
+                  : ""
+              }`}
             />
             <figcaption>{row.imageLabel}</figcaption>
           </figure>

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pa66-gp3",
+  "sortOrder": 69,
+  "grade": "PA66 GP3",
+  "polymer": "PA66",
+  "matrix": "PA66",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

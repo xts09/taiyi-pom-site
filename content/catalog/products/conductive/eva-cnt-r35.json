@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:eva-cnt-r35",
+  "sortOrder": 37,
+  "grade": "EVA-CNT-R35",
+  "polymer": "EVA",
+  "matrix": "EVA",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

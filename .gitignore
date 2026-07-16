@@ -35,11 +35,19 @@ yarn-error.log*
 /.codex-run/
 /.codex-audits/
 /.playwright-cli/
+/.playwright-mcp/
 /.gitnexus/
 /.impeccable/
 /.codex-*.png
 /taiyi-pom-promo/
 /taiyi-pom-*-promo/
+/public/generated/taiyi-nano-asset-candidates/
+
+# root-level visual verification artifacts
+/*.png
+/*.log
+/header-*.json
+/header-*.md
 
 # local generated exports
 /outputs/

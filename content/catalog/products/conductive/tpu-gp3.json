@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:tpu-gp3",
+  "sortOrder": 61,
+  "grade": "TPU GP3",
+  "polymer": "TPU",
+  "matrix": "TPU",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

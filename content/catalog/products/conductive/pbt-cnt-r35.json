@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pbt-cnt-r35",
+  "sortOrder": 7,
+  "grade": "PBT-CNT-R35",
+  "polymer": "PBT",
+  "matrix": "PBT",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

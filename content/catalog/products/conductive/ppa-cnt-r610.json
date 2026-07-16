@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:ppa-cnt-r610",
+  "sortOrder": 32,
+  "grade": "PPA-CNT-R610",
+  "polymer": "PPA",
+  "matrix": "PPA",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

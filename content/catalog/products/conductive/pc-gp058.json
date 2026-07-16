@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pc-gp058",
+  "sortOrder": 46,
+  "grade": "PC GP058",
+  "polymer": "PC",
+  "matrix": "PC",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

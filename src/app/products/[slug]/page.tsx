@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { CSSProperties } from "react";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { UnitText, ValueText } from "@/components/UnitText";
@@ -18,13 +18,12 @@ import {
 } from "@/lib/productDisplay";
 import { getCategoryPath } from "@/lib/productCategories";
 import {
-  absoluteUrl,
-  companyName,
   createBreadcrumbJsonLd,
+  createEngineeringProductJsonLd,
+  createEngineeringTdsPageMetadata,
   createProductJsonLd,
-  defaultOgImage,
-  siteUrl,
-  siteName,
+  createProductPageMetadata,
+  getEngineeringTdsTitle,
 } from "@/lib/seo";
 
 type ProductDetailPageProps = {
@@ -74,8 +73,13 @@ const findEngineeringDocumentBySlug = (slug: string) =>
 const getEngineeringCategory = (document: EngineeringTdsDocument) =>
   `${document.family} Compound`;
 
-const getEngineeringTitle = (document: EngineeringTdsDocument) =>
-  `${document.grade} ${document.family} ${document.category}`;
+const hasReferenceValue = (value?: string) =>
+  Boolean(value && value !== "-" && value.toUpperCase() !== "N/A");
+
+const formatReferenceFacts = (facts: string[]) => {
+  if (facts.length <= 1) return facts[0] ?? "grade-specific property data";
+  return `${facts.slice(0, -1).join(", ")}, and ${facts.at(-1)}`;
+};
 
 const toEngineeringProperties = (
   document: EngineeringTdsDocument
@@ -86,44 +90,6 @@ const toEngineeringProperties = (
     unit: property.unit,
     method: property.method,
   }));
-
-const createEngineeringProductJsonLd = (document: EngineeringTdsDocument) => {
-  const properties = toEngineeringProperties(document);
-  const slug = createEngineeringTdsSlug(document);
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: getEngineeringTitle(document),
-    sku: document.grade,
-    brand: {
-      "@type": "Brand",
-      name: siteName,
-    },
-    manufacturer: {
-      "@type": "Organization",
-      name: companyName,
-      url: siteUrl,
-    },
-    category: getEngineeringCategory(document),
-    description: document.description,
-    material: document.family,
-    url: absoluteUrl(`/products/${slug}`),
-    additionalProperty: [
-      {
-        "@type": "PropertyValue",
-        name: "Available documents",
-        value: availableDocuments.join(", "),
-      },
-      ...properties.map((property) => ({
-        "@type": "PropertyValue",
-        name: property.label,
-        value: `${property.value} ${property.unit}`.trim(),
-        measurementTechnique: property.method,
-      })),
-    ],
-  };
-};
 
 export async function generateMetadata({
   params,
@@ -145,41 +111,7 @@ export async function generateMetadata({
   }
 
   if (engineeringDocument) {
-    const title = getEngineeringTitle(engineeringDocument);
-    const canonicalPath = `/products/${createEngineeringTdsSlug(
-      engineeringDocument
-    )}`;
-    const description = `${title}. ${engineeringDocument.description} Typical data includes specific gravity ${engineeringDocument.density}, tensile stress ${engineeringDocument.tensile} MPa, and heat deflection temperature ${engineeringDocument.hdt} degC.`;
-
-    return {
-      title: `${title} | Taiyi Nano`,
-      description,
-      alternates: {
-        canonical: canonicalPath,
-      },
-      openGraph: {
-        title: `${title} | Taiyi Nano`,
-        description,
-        url: canonicalPath,
-        siteName,
-        type: "website",
-        locale: "en_US",
-        images: [
-          {
-            url: defaultOgImage,
-            width: 1200,
-            height: 630,
-            alt: `${title} from Taiyi Nano`,
-          },
-        ],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: `${title} | Taiyi Nano`,
-        description,
-        images: [defaultOgImage],
-      },
-    };
+    return createEngineeringTdsPageMetadata(engineeringDocument);
   }
 
   if (!product) {
@@ -192,35 +124,7 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: `${product.title} | Taiyi Nano`,
-    description: `${product.title}, ${product.category}, MFI ${product.mfi}, ${product.color} color. ${product.description}`,
-    alternates: {
-      canonical: `/products/${product.slug}`,
-    },
-    openGraph: {
-      title: `${product.title} | Taiyi Nano`,
-      description: `${product.title}, ${product.category}, MFI ${product.mfi}, ${product.color} color. ${product.description}`,
-      url: `/products/${product.slug}`,
-      siteName,
-      type: "website",
-      locale: "en_US",
-      images: [
-        {
-          url: defaultOgImage,
-          width: 1200,
-          height: 630,
-          alt: `${product.title} from Taiyi Nano`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${product.title} | Taiyi Nano`,
-      description: `${product.title}, ${product.category}, MFI ${product.mfi}, ${product.color} color. ${product.description}`,
-      images: [defaultOgImage],
-    },
-  };
+  return createProductPageMetadata(product);
 }
 
 function EngineeringProductDetailPage({
@@ -231,7 +135,7 @@ function EngineeringProductDetailPage({
   const category = getEngineeringCategory(document);
   const categoryUrl = getCategoryPath(category);
   const slug = createEngineeringTdsSlug(document);
-  const title = getEngineeringTitle(document);
+  const title = getEngineeringTdsTitle(document);
   const properties = toEngineeringProperties(document);
   const applicationItems = document.applications
     .split(",")
@@ -294,6 +198,19 @@ function EngineeringProductDetailPage({
       note: "UL 94, 0.8 mm",
     },
   ].filter((item) => item.value);
+  const gradeProfile = formatReferenceFacts(
+    [
+      hasReferenceValue(document.density)
+        ? `specific gravity ${document.density}`
+        : "",
+      hasReferenceValue(document.tensile)
+        ? `tensile stress ${document.tensile} MPa`
+        : "",
+      hasReferenceValue(document.hdt)
+        ? `HDT ${document.hdt} degrees C`
+        : "",
+    ].filter(Boolean),
+  );
 
   return (
     <main className="product-detail-page min-h-screen text-slate-900">
@@ -315,10 +232,9 @@ function EngineeringProductDetailPage({
                 <h1>{document.grade}</h1>
 
                 <p className="product-detail-summary">
-                  {document.description} Confirm final suitability against
-                  part design, mold stage, cavity layout, processing
-                  conditions, dimensional behavior, target performance, and
-                  document requirements.
+                  {document.description} The recorded profile for this grade
+                  lists {gradeProfile}. Confirm final suitability against the
+                  molded part and processing conditions.
                 </p>
 
                 <div
@@ -343,7 +259,7 @@ function EngineeringProductDetailPage({
                     href="/technical-data-sheets"
                     className="product-hero-tds-link"
                   >
-                    Find a TDS
+                    Search Data / TDS
                   </Link>
                 </div>
               </div>
@@ -510,9 +426,9 @@ function EngineeringProductDetailPage({
         <section className="product-detail-related mt-12">
           <div className="mb-6 flex items-end justify-between gap-6">
             <div>
-              <p className="section-kicker mb-2">Related Products</p>
+              <p className="section-kicker mb-2">Grade Comparison</p>
               <h2 className="text-2xl font-black tracking-tight text-slate-950">
-                More {document.family} Options
+                Compare Related {document.family} Grades
               </h2>
             </div>
 
@@ -576,6 +492,10 @@ export default async function ProductDetailPage({
     ? undefined
     : findEngineeringDocumentBySlug(slug);
 
+  if (product && slug !== product.slug) {
+    permanentRedirect(`/products/${product.slug}`);
+  }
+
   if (engineeringDocument) {
     return <EngineeringProductDetailPage document={engineeringDocument} />;
   }
@@ -627,6 +547,19 @@ export default async function ProductDetailPage({
     },
     { label: "Color", value: product.color, note: "Available color" },
   ].filter((item) => item.value);
+  const gradeProfile = formatReferenceFacts(
+    [
+      product.mfi ? `MFI ${product.mfi}` : "",
+      tensileProperty
+        ? `tensile strength ${tensileProperty.value} ${tensileProperty.unit}`
+        : "",
+      hdtProperty
+        ? `HDT ${hdtProperty.value} ${
+            hdtProperty.unit === "degC" ? "degrees C" : hdtProperty.unit
+          }`
+        : "",
+    ].filter(Boolean),
+  );
 
   return (
     <main className="product-detail-page min-h-screen text-slate-900">
@@ -646,10 +579,9 @@ export default async function ProductDetailPage({
                 <h1>{product.grade}</h1>
 
                 <p className="product-detail-summary">
-                  {product.description} Confirm final suitability against part
-                  design, mold stage, cavity layout, processing conditions,
-                  shrinkage behavior, target performance, and document
-                  requirements.
+                  {product.description} The recorded profile for this grade
+                  lists {gradeProfile}. Confirm final suitability against the
+                  molded part and processing conditions.
                 </p>
 
                 <div
@@ -674,7 +606,7 @@ export default async function ProductDetailPage({
                     href="/technical-data-sheets"
                     className="product-hero-tds-link"
                   >
-                    Find a TDS
+                    Search Data / TDS
                   </Link>
                 </div>
               </div>
@@ -858,9 +790,9 @@ export default async function ProductDetailPage({
         <section className="product-detail-related mt-12">
           <div className="mb-6 flex items-end justify-between gap-6">
             <div>
-              <p className="section-kicker mb-2">Related Products</p>
+              <p className="section-kicker mb-2">Grade Comparison</p>
               <h2 className="text-2xl font-black tracking-tight text-slate-950">
-                More POM Material Options
+                Compare Related POM Grades
               </h2>
             </div>
 

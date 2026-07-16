@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pps-cnt-r35",
+  "sortOrder": 13,
+  "grade": "PPS-CNT-R35",
+  "polymer": "PPS",
+  "matrix": "PPS",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

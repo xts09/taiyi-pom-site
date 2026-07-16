@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pa6-gp8",
+  "sortOrder": 66,
+  "grade": "PA6 GP8",
+  "polymer": "PA6",
+  "matrix": "PA6",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

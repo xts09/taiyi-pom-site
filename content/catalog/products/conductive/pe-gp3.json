@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pe-gp3",
+  "sortOrder": 63,
+  "grade": "PE GP3",
+  "polymer": "PE",
+  "matrix": "PE",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

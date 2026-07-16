@@ -80,6 +80,12 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
     description:
       "Use a preliminary cross-reference path to discuss current grades, application needs, and Taiyi material review.",
   },
+  {
+    href: "/conductive-antistatic-compounds",
+    label: "Cross-Material Conductive and Antistatic Compounds",
+    description:
+      "Compare carbon-nanotube antistatic and carbon-fiber conductive directions across multiple polymer matrices.",
+  },
 ];
 
 export const publicTechnicalLandingLinks = technicalLandingLinks.filter(
@@ -106,7 +112,7 @@ export const pomLandingPages = {
     sections: [
       {
         title: "How This Page Differs From The Product Category",
-        body: "The product category lists grade records. This overview explains how to choose a direction before the buyer knows which grade to open.",
+        body: "The POM category groups material families and directions. This overview explains how to choose a direction before the buyer knows which grade or TDS to open.",
         points: [
           "Use the overview for early material screening and inquiry qualification",
           "Use the POM category page when the buyer wants listed grades and documents",
@@ -162,7 +168,7 @@ export const pomLandingPages = {
     relatedLinks: [
       technicalLandingLinks[1],
       technicalLandingLinks[2],
-      { href: "/products/categories/pom", label: "POM Grades", description: "Browse listed POM grade data and documents." },
+      { href: "/products/categories/pom", label: "POM Material Families", description: "Browse POM material directions before opening specific grade data." },
     ],
     faqs: [
       {
@@ -352,7 +358,7 @@ export const pomLandingPages = {
         {
           label: "Cross-material antistatic series",
           detail:
-            "The catalogue also lists carbon-nanotube antistatic directions across ABS, ASA, PA6, PA66, PBT, PC, PC/ABS, PPA, PPO, and other polymers with 10^3-10^5 or 10^6-10^8 ranges.",
+            "The catalogue also lists carbon-nanotube antistatic directions across ABS, ASA, PA6, PA66, PBT, PC, PC/ABS, PPA, PPO, and other polymers in R35 or R610 target bands.",
         },
       ],
     },
@@ -364,9 +370,9 @@ export const pomLandingPages = {
       "Color and document needs",
     ],
     relatedLinks: [
-      { href: "/products/categories/conductive-and-antistatic-pom-compound", label: "Conductive / Antistatic POM Grade", description: "Review the listed charge-control POM grade path." },
+      technicalLandingLinks[4],
+      { href: "/products/categories/conductive-antistatic-pom-compound", label: "Conductive / Antistatic POM Grades", description: "Review the listed charge-control POM grade path." },
       { href: "/applications/electronics", label: "Electronics Applications", description: "Review electrical and electronic molded component needs." },
-      technicalLandingLinks[0],
     ],
     faqs: [
       {
@@ -482,7 +488,7 @@ export const pomLandingPages = {
     relatedLinks: [
       technicalLandingLinks[0],
       technicalLandingLinks[1],
-      { href: "/technical-data-sheets", label: "Technical Data Sheet Search", description: "Search listed grade data and resources." },
+      { href: "/technical-data-sheets", label: "Data / TDS Search", description: "Search listed grade data, TDS paths, and resources." },
     ],
     faqs: [
       {

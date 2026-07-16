@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pc-abs-cnt-r610",
+  "sortOrder": 4,
+  "grade": "PC/ABS-CNT-R610",
+  "polymer": "PC/ABS",
+  "matrix": "PC/ABS",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

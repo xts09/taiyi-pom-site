@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:asa-gp3-3",
+  "sortOrder": 53,
+  "grade": "ASA GP3-3",
+  "polymer": "ASA",
+  "matrix": "ASA",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

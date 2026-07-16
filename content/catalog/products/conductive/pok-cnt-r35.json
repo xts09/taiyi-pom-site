@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pok-cnt-r35",
+  "sortOrder": 31,
+  "grade": "POK-CNT-R35",
+  "polymer": "POK",
+  "matrix": "POK",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

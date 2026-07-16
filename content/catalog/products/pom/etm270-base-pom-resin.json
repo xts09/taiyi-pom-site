@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 1,
+  "kind": "product",
+  "id": "product:etm270-base-pom-resin",
+  "sortOrder": 2,
+  "slug": "etm270-base-pom-resin",
+  "aliases": [
+    "etm270-natural-pom-resin"
+  ],
+  "grade": "ETM270",
+  "title": "ETM270 Base POM Resin",
+  "polymer": "POM",
+  "family": "Base POM Resin",
+  "category": "Base POM Resin",
+  "mfi": {
+    "value": 27,
+    "display": "27 g/10 min"
+  },
+  "colors": [
+    "Natural"
+  ],
+  "description": "High-flow base POM resin grade for thin-wall molded parts, precision components, and general injection applications.",
+  "features": [
+    "Higher flow",
+    "Good processability",
+    "Injection molding"
+  ],
+  "applications": [
+    "Thin-wall molded parts",
+    "Precision components",
+    "General molded parts"
+  ],
+  "documents": [
+    "TDS",
+    "SDS",
+    "COA",
+    "REACH",
+    "RoHS"
+  ],
+  "properties": [
+    {
+      "label": "Density",
+      "value": "1.41",
+      "unit": "g/cm3",
+      "method": "ISO 1183"
+    },
+    {
+      "label": "Melt Flow Rate (MFI)",
+      "value": "27",
+      "unit": "g/10 min",
+      "method": "ISO 1133, 195 °C/2.16 kg"
+    },
+    {
+      "label": "Molding Shrinkage",
+      "value": "1.8-2.0",
+      "unit": "%",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Water Absorption",
+      "value": "0.2",
+      "unit": "%",
+      "method": "ISO 62"
+    },
+    {
+      "label": "Tensile Strength",
+      "value": "62",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "label": "Tensile Strain at Break",
+      "value": "25",
+      "unit": "%",
+      "method": "ISO 527"
+    },
+    {
+      "label": "Flexural Strength",
+      "value": "90",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "label": "Flexural Modulus",
+      "value": "2700",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "label": "Charpy Notched Impact Strength",
+      "value": "5.3",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    },
+    {
+      "label": "Izod Notched Impact Strength",
+      "value": "5.5",
+      "unit": "kJ/m2",
+      "method": "ISO 180/1A"
+    },
+    {
+      "label": "Melting Temperature",
+      "value": "165",
+      "unit": "degC",
+      "method": "ISO 11357"
+    },
+    {
+      "label": "Heat Deflection Temperature",
+      "value": "100",
+      "unit": "degC",
+      "method": "ISO 75-2, 1.8 MPa"
+    },
+    {
+      "label": "Coefficient of Linear Thermal Expansion, CLTE",
+      "value": "12",
+      "unit": "10^-5/degC",
+      "method": "ISO 11359"
+    },
+    {
+      "label": "Volume Resistivity",
+      "value": "1e14",
+      "unit": "ohm.cm",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Surface Resistivity",
+      "value": "1e16",
+      "unit": "ohm",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Dielectric Strength",
+      "value": "19",
+      "unit": "kV/mm",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Drying Temperature",
+      "value": "85",
+      "unit": "degC",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Drying Time",
+      "value": "2",
+      "unit": "h",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Suggested Max Moisture",
+      "value": "5",
+      "unit": "%",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Hopper Temperature",
+      "value": "95",
+      "unit": "degC",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Rear Temperature",
+      "value": "165",
+      "unit": "degC",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Middle Temperature",
+      "value": "175",
+      "unit": "degC",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Front Temperature",
+      "value": "185",
+      "unit": "degC",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Nozzle Temperature",
+      "value": "190",
+      "unit": "degC",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Melt Temperature",
+      "value": "200",
+      "unit": "degC",
+      "method": "Injection Molding"
+    },
+    {
+      "label": "Mold Temperature",
+      "value": "30-60",
+      "unit": "degC",
+      "method": "Injection Molding"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

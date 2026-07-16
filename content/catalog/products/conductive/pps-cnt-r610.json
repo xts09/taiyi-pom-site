@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pps-cnt-r610",
+  "sortOrder": 12,
+  "grade": "PPS-CNT-R610",
+  "polymer": "PPS",
+  "matrix": "PPS",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:ppa-gp8",
+  "sortOrder": 76,
+  "grade": "PPA GP8",
+  "polymer": "PPA",
+  "matrix": "PPA",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

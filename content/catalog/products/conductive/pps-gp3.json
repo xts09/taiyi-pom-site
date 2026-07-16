@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pps-gp3",
+  "sortOrder": 57,
+  "grade": "PPS GP3",
+  "polymer": "PPS",
+  "matrix": "PPS",
+  "technology": "cf",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

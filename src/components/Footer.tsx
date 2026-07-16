@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Mail, Phone } from "lucide-react";
 import { applications } from "@/data/applications";
-import { resourcePages } from "@/data/resources";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const footerColumns = [
@@ -27,11 +26,15 @@ const footerColumns = [
   {
     title: "Resources",
     links: [
-      ...resourcePages.map((page) => ({
-        href: `/resources/${page.slug}`,
-        label: page.navLabel,
-      })),
-      { href: "/technical-data-sheets", label: "Technical Data Sheets" },
+      { href: "/resources#selection-guides", label: "Selection Guides" },
+      {
+        href: "/resources#technical-notes",
+        label: "Processing & Technical Notes",
+      },
+      {
+        href: "/resources#documents-grade-data",
+        label: "Documents & Grade Data",
+      },
     ],
   },
   {

@@ -16,6 +16,7 @@ import {
 } from "@/lib/productDisplay";
 import {
   getCategoryPath,
+  getProductCategoryOrderIndex,
   getProductsByCategory,
   pomProductCategoryData,
   productCategoryGroups,
@@ -26,6 +27,7 @@ type ProductGridProps = {
   products: Product[];
   selectedCategory?: string;
   showFamilies?: boolean;
+  hideGrades?: boolean;
 };
 
 const engineeringDirectionSummary: Record<string, string> = {
@@ -45,6 +47,7 @@ export function ProductGrid({
   products,
   selectedCategory = "POM",
   showFamilies = true,
+  hideGrades = false,
 }: ProductGridProps) {
   const selectedCategoryGroup = productCategoryGroups[selectedCategory];
   const isPomSubcategory = productCategoryOrder.includes(selectedCategory);
@@ -57,8 +60,8 @@ export function ProductGrid({
       : getProductsByCategory(products, selectedCategory);
 
   const sortedProducts = [...sourceProducts].sort((first, second) => {
-    const firstIndex = productCategoryOrder.indexOf(first.category);
-    const secondIndex = productCategoryOrder.indexOf(second.category);
+    const firstIndex = getProductCategoryOrderIndex(first.category);
+    const secondIndex = getProductCategoryOrderIndex(second.category);
     const firstRank =
       firstIndex === -1 ? productCategoryOrder.length : firstIndex;
     const secondRank =
@@ -123,11 +126,10 @@ export function ProductGrid({
       {showPomSubcategories ? (
         <div id="material-families" className="product-filter-bar products-motion-filter">
           <div className="product-filter-intro">
-            <span className="product-filter-label">POM Family</span>
+            <span className="product-filter-label">Choose a Material Direction</span>
             <p>
-              Start from the performance direction, then compare grade data
-              against mold stage, cavity count, shrinkage behavior, and
-              application fit.
+              Choose the requirement closest to the part, then compare the
+              matching grades by processing fit and property data.
             </p>
           </div>
           <div className="product-filter-rail">
@@ -182,6 +184,8 @@ export function ProductGrid({
         </div>
       ) : null}
 
+      {hideGrades ? null : (
+        <>
       <div id="pom-grades" className="product-directory-head products-motion-head">
         <div>
           <h2>
@@ -190,7 +194,7 @@ export function ProductGrid({
               : isEngineeringCategory
               ? `${engineeringGrades[0]?.family} Grades`
               : selectedCategory === "POM"
-              ? "POM Grades"
+              ? "POM Grade Data"
               : `${filteredProducts.length} Available Grade${
                   filteredProducts.length === 1 ? "" : "s"
                 }`}
@@ -204,6 +208,11 @@ export function ProductGrid({
               ? "Compare key properties, shrinkage range, color, and application fit."
               : "Shortlist by properties, tooling fit, shrinkage behavior, then open the grade detail page."}
           </p>
+          {selectedCategory === "POM" ? (
+            <p className="product-directory-guidance">
+              Not sure which direction fits? <Link href="/contact">Request a grade recommendation.</Link>
+            </p>
+          ) : null}
         </div>
 
         <span className="product-directory-count">{directoryCountLabel}</span>
@@ -334,6 +343,8 @@ export function ProductGrid({
             );
           })}
         </div>
+      )}
+        </>
       )}
     </div>
   );

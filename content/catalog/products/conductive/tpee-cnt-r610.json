@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:tpee-cnt-r610",
+  "sortOrder": 42,
+  "grade": "TPEE-CNT-R610",
+  "polymer": "TPEE",
+  "matrix": "TPEE",
+  "technology": "cnt",
+  "range": "r610",
+  "rangeLabel": "10⁶–10¹⁰"
+}

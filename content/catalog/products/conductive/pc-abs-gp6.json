@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pc-abs-gp6",
+  "sortOrder": 48,
+  "grade": "PC/ABS GP6",
+  "polymer": "PC/ABS",
+  "matrix": "PC/ABS",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

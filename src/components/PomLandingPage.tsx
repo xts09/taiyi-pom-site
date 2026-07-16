@@ -1,9 +1,14 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import type { PomLandingPageData } from "@/data/pomLandingPages";
 import { createBreadcrumbJsonLd, siteUrl } from "@/lib/seo";
 
 export function PomLandingPage({ page }: { page: PomLandingPageData }) {
+  const hasImageHero = Boolean(page.heroImage);
+  const heroClassName = hasImageHero
+    ? "pom-landing-hero pom-landing-hero-image"
+    : "pom-landing-hero pom-landing-hero-plain";
   const jsonLd = [
     createBreadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -31,7 +36,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
   ];
 
   return (
-    <main className="min-h-screen text-slate-900">
+    <main className="pom-landing-page">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -39,64 +44,61 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         }}
       />
 
-      <section className="mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
-        <div className="rounded-[0.8rem] border border-slate-200 bg-white/95 p-6 shadow-[0_1.25rem_2.6rem_rgba(15,23,42,0.08)] sm:p-8">
-          <p className="section-kicker mb-3">{page.eyebrow}</p>
-          <h1 className="max-w-4xl text-4xl font-black leading-tight tracking-normal text-slate-950 md:text-6xl">
-            {page.title}
-          </h1>
-          <p className="mt-5 max-w-4xl text-lg leading-8 text-slate-600">
-            {page.intro}
-          </p>
+      <section className="pom-landing-shell">
+        <div className={heroClassName}>
+          {page.heroImage ? (
+            <>
+              <Image
+                src={page.heroImage.src}
+                alt={page.heroImage.alt}
+                fill
+                priority
+                sizes="(min-width: 1280px) 1280px, 100vw"
+                className="pom-landing-hero-media"
+              />
+              <div className="pom-landing-hero-scrim" />
+            </>
+          ) : null}
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/contact" className="cta-primary px-6 py-3 text-sm">
-              {page.primaryActionLabel}
-            </Link>
-            <Link
-              href="/technical-data-sheets"
-              className="cta-secondary px-6 py-3 text-sm"
-            >
-              Find Technical Data
-            </Link>
+          <div className="pom-landing-hero-copy">
+            <p className="pom-landing-eyebrow">{page.eyebrow}</p>
+            <h1>{page.title}</h1>
+            <p>{page.intro}</p>
+
+            <div className="pom-landing-actions">
+              <Link href="/contact" className="cta-primary">
+                {page.primaryActionLabel}
+              </Link>
+              <Link
+                href="/technical-data-sheets"
+                className="pom-landing-secondary-action"
+              >
+                Find Technical Data
+              </Link>
+            </div>
           </div>
         </div>
 
         <section
-          className="mt-8 grid gap-4 md:grid-cols-4"
+          className="pom-landing-metrics"
           aria-label="Material review summary"
         >
           {page.metrics.map((metric) => (
-            <div
-              key={metric.label}
-              className="rounded-[0.8rem] border border-blue-100 bg-white/90 p-5 shadow-[0_1rem_2rem_rgba(15,23,42,0.05)]"
-            >
-              <p className="text-xs font-extrabold uppercase tracking-wider text-slate-500">
-                {metric.label}
-              </p>
-              <strong className="mt-2 block text-lg text-slate-950">
-                {metric.value}
-              </strong>
+            <div key={metric.label}>
+              <p>{metric.label}</p>
+              <strong>{metric.value}</strong>
             </div>
           ))}
         </section>
 
-        <section className="mt-10 grid gap-6 lg:grid-cols-2">
+        <section className="pom-landing-section-grid">
           {page.sections.map((section) => (
-            <article
-              key={section.title}
-              className="rounded-[0.8rem] border border-blue-100 bg-white/95 p-6 shadow-[0_1.25rem_2.4rem_rgba(15,23,42,0.06)]"
-            >
-              <h2 className="text-2xl font-black text-slate-950">
-                {section.title}
-              </h2>
-              <p className="mt-4 leading-7 text-slate-600">{section.body}</p>
-              <ul className="mt-5 grid gap-3 text-sm leading-6 text-slate-700">
+            <article key={section.title} className="pom-landing-panel">
+              <h2>{section.title}</h2>
+              <p>{section.body}</p>
+              <ul>
                 {section.points.map((point) => (
-                  <li key={point} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-cyan-400" />
-                    <span>{point}</span>
-                  </li>
+                  <li key={point}>{point}</li>
                 ))}
               </ul>
             </article>
@@ -104,26 +106,17 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         </section>
 
         {page.catalogEvidence ? (
-          <section className="mt-10 rounded-[0.8rem] border border-blue-100 bg-white/95 p-6 shadow-[0_1.25rem_2.4rem_rgba(15,23,42,0.06)]">
-            <p className="section-kicker mb-3">Catalogue Evidence</p>
-            <h2 className="text-2xl font-black text-slate-950">
-              {page.catalogEvidence.title}
-            </h2>
-            <p className="mt-4 max-w-4xl leading-7 text-slate-600">
-              {page.catalogEvidence.note}
-            </p>
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <section className="pom-landing-evidence">
+            <div className="pom-landing-section-head">
+              <p className="section-kicker">Catalogue Evidence</p>
+              <h2>{page.catalogEvidence.title}</h2>
+              <p>{page.catalogEvidence.note}</p>
+            </div>
+            <div className="pom-landing-evidence-list">
               {page.catalogEvidence.items.map((item) => (
-                <article
-                  key={item.label}
-                  className="rounded-[0.6rem] border border-slate-200 bg-slate-50 p-4"
-                >
-                  <h3 className="font-extrabold text-slate-950">
-                    {item.label}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {item.detail}
-                  </p>
+                <article key={item.label}>
+                  <h3>{item.label}</h3>
+                  <p>{item.detail}</p>
                 </article>
               ))}
             </div>
@@ -131,38 +124,29 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         ) : null}
 
         {page.crossReferenceRows ? (
-          <section className="mt-10 rounded-[0.8rem] border border-slate-200 bg-white/95 p-6 shadow-[0_1.25rem_2.4rem_rgba(15,23,42,0.06)]">
-            <p className="section-kicker mb-3">Cross-Reference Review</p>
-            <h2 className="text-2xl font-black text-slate-950">
-              Preliminary Grade Review Table
-            </h2>
-            <div className="mt-5 overflow-x-auto">
-              <table className="min-w-[48rem] w-full text-left text-sm">
-                <thead className="bg-slate-950 text-white">
+          <section className="pom-landing-cross-reference">
+            <div className="pom-landing-section-head">
+              <p className="section-kicker">Cross-Reference Review</p>
+              <h2>Preliminary Grade Review Table</h2>
+            </div>
+            <div className="pom-landing-table-wrap">
+              <table>
+                <thead>
                   <tr>
-                    <th className="px-5 py-3">Reference grade</th>
-                    <th className="px-5 py-3">Material type</th>
-                    <th className="px-5 py-3">Review direction</th>
-                    <th className="px-5 py-3">Taiyi path</th>
+                    <th>Reference grade</th>
+                    <th>Material type</th>
+                    <th>Review direction</th>
+                    <th>Taiyi path</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-200">
+                <tbody>
                   {page.crossReferenceRows.map((row) => (
                     <tr key={row.reference}>
-                      <td className="px-5 py-3 font-bold text-slate-950">
-                        {row.reference}
-                      </td>
-                      <td className="px-5 py-3 text-slate-700">
-                        {row.materialType}
-                      </td>
-                      <td className="px-5 py-3 text-slate-700">
-                        {row.reviewDirection}
-                      </td>
-                      <td className="px-5 py-3">
-                        <Link
-                          href={row.taiyiPath}
-                          className="font-extrabold text-blue-700 hover:text-blue-800"
-                        >
+                      <td>{row.reference}</td>
+                      <td>{row.materialType}</td>
+                      <td>{row.reviewDirection}</td>
+                      <td>
+                        <Link href={row.taiyiPath}>
                           Review path
                         </Link>
                       </td>
@@ -171,7 +155,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                 </tbody>
               </table>
             </div>
-            <p className="mt-4 text-sm leading-6 text-slate-600">
+            <p className="pom-landing-note">
               Cross-reference information is provided for preliminary material
               selection only. Final suitability should be confirmed through
               testing under the customer&apos;s actual processing and application
@@ -180,48 +164,52 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
           </section>
         ) : null}
 
-        <section className="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-[0.8rem] border border-blue-100 bg-white/95 p-6">
-            <p className="section-kicker mb-3">Inquiry Inputs</p>
-            <h2 className="text-2xl font-black text-slate-950">
-              Send These Details
-            </h2>
-            <ul className="mt-5 grid gap-3 text-sm leading-6 text-slate-700">
+        <section className="pom-landing-review-grid">
+          <div className="pom-landing-panel">
+            <p className="section-kicker">Inquiry Inputs</p>
+            <h2>Send These Details</h2>
+            <ul>
               {page.reviewInputs.map((input) => (
-                <li key={input} className="flex gap-3">
-                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-blue-500" />
-                  <span>{input}</span>
-                </li>
+                <li key={input}>{input}</li>
               ))}
             </ul>
           </div>
 
-          <div className="rounded-[0.8rem] border border-blue-100 bg-white/95 p-6">
-            <p className="section-kicker mb-3">Related Paths</p>
-            <h2 className="text-2xl font-black text-slate-950">
-              Continue Material Review
-            </h2>
-            <div className="mt-5 grid gap-3">
+          <div className="pom-landing-panel">
+            <p className="section-kicker">Related Paths</p>
+            <h2>Continue Material Review</h2>
+            <div className="pom-landing-related-list">
               {page.relatedLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-[0.6rem] border border-slate-200 p-4 hover:border-blue-300 hover:bg-blue-50/50"
                 >
-                  <strong className="block text-slate-950">{link.label}</strong>
-                  <span className="mt-1 block text-sm leading-6 text-slate-600">
-                    {link.description}
-                  </span>
+                  <strong>{link.label}</strong>
+                  <span>{link.description}</span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
+        <section className="pom-landing-faq" aria-labelledby="pom-landing-faq-title">
+          <div className="pom-landing-section-head">
+            <h2 id="pom-landing-faq-title">Frequently Asked Questions</h2>
+          </div>
+          <dl>
+            {page.faqs.map((item) => (
+              <div key={item.question}>
+                <dt>{item.question}</dt>
+                <dd>{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+
         <MaterialRecommendationCta
           kicker="Material Review"
           title="Need a practical material direction?"
-          className="selection-support-band resource-cta mt-12"
+          className="selection-support-band resource-cta pom-landing-cta"
           actionLabel={page.primaryActionLabel}
         >
           <p>

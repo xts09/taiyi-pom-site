@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:pps-gp8",
+  "sortOrder": 56,
+  "grade": "PPS GP8",
+  "polymer": "PPS",
+  "matrix": "PPS",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

@@ -86,7 +86,7 @@ const productFamilies = [
 
 export default function ProductsPage() {
   return (
-    <main className="min-h-screen text-slate-900">
+    <main className="products-index-page min-h-screen text-slate-900">
       <ProductPageMotion>
       <section className="product-directory-shell mesh-surface mx-auto max-w-7xl px-5 pb-16 pt-0 sm:px-6 lg:px-8">
         <div id="products-overview" className="product-index-hero products-motion-hero mb-8">
@@ -102,9 +102,9 @@ export default function ProductsPage() {
             </p>
 
             <p className="mt-4 max-w-3xl text-lg leading-8">
-              Start from product families, then enter the POM grade directory
-              for detailed properties, shrinkage data, documents, and
-              application matching.
+              Start from product families, then enter the POM material
+              directions to compare grade data, shrinkage behavior, documents,
+              and application matching.
             </p>
 
             <div className="product-hero-cta">
@@ -112,10 +112,10 @@ export default function ProductsPage() {
                 href="/products/categories/pom"
                 className="product-hero-primary-action"
               >
-                View POM Grades
+                View POM Material Families
               </Link>
               <Link href="/technical-data-sheets" className="product-hero-tds-link">
-                Find a Technical Data Sheet (TDS)
+                Search Data / TDS
               </Link>
             </div>
           </div>
@@ -126,6 +126,11 @@ export default function ProductsPage() {
           <div className="product-family-overview-head">
             <p className="section-kicker">Product Families</p>
             <h2>Choose a Material Direction</h2>
+            <p>
+              Start with the family closest to the molded part requirement,
+              then open the category for grade data, documents, and application
+              matching.
+            </p>
           </div>
 
           <div className="product-family-card-grid">

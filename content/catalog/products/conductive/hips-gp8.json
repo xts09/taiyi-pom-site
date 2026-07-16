@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cf:hips-gp8",
+  "sortOrder": 64,
+  "grade": "HIPS GP8",
+  "polymer": "HIPS",
+  "matrix": "HIPS",
+  "technology": "cf",
+  "range": "r68",
+  "rangeLabel": "10⁶–10⁸"
+}

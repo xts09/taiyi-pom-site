@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "kind": "conductive-entry",
+  "id": "conductive:cnt:pe-cnt-r35",
+  "sortOrder": 19,
+  "grade": "PE-CNT-R35",
+  "polymer": "PE",
+  "matrix": "PE",
+  "technology": "cnt",
+  "range": "r35",
+  "rangeLabel": "10³–10⁵"
+}

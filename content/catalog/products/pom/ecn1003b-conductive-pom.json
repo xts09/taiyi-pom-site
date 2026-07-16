@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "kind": "product",
+  "id": "product:ecn1003b-conductive-pom",
+  "sortOrder": 36,
+  "slug": "ecn1003b-conductive-pom",
+  "grade": "ECN1003B",
+  "title": "ECN1003B Conductive POM Compound",
+  "polymer": "POM",
+  "family": "Conductive / Antistatic POM Compound",
+  "category": "Conductive / Antistatic POM Compound",
+  "mfi": {
+    "value": 3.5,
+    "display": "3.5 g/10 min"
+  },
+  "colors": [
+    "Black"
+  ],
+  "description": "Black conductive POM grade for selected molded parts that need lower surface and volume resistivity.",
+  "features": [
+    "Conductive grade",
+    "Black color",
+    "Dimensional stability"
+  ],
+  "applications": [
+    "Electronic components",
+    "Antistatic molded parts",
+    "Functional plastic parts"
+  ],
+  "documents": [
+    "TDS",
+    "SDS",
+    "COA",
+    "REACH",
+    "RoHS"
+  ],
+  "properties": [
+    {
+      "label": "Density",
+      "value": "1.39",
+      "unit": "g/cm3",
+      "method": "ISO 1183"
+    },
+    {
+      "label": "Molding Shrinkage",
+      "value": "1.8-2.0",
+      "unit": "%",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Tensile Strength",
+      "value": "56",
+      "unit": "MPa",
+      "method": "ISO 527"
+    },
+    {
+      "label": "Flexural Strength",
+      "value": "80",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "label": "Flexural Modulus",
+      "value": "2500",
+      "unit": "MPa",
+      "method": "ISO 178"
+    },
+    {
+      "label": "Charpy Notched Impact Strength",
+      "value": "5.5",
+      "unit": "kJ/m2",
+      "method": "ISO 179/1eA"
+    },
+    {
+      "label": "Heat Deflection Temperature",
+      "value": "110",
+      "unit": "degC",
+      "method": "ISO 75-2, 1.8 MPa"
+    },
+    {
+      "label": "Volume Resistivity",
+      "value": "1e3",
+      "unit": "ohm.cm",
+      "method": "Internal Method"
+    },
+    {
+      "label": "Surface Resistivity",
+      "value": "1e4",
+      "unit": "ohm",
+      "method": "Internal Method"
+    }
+  ],
+  "tds": {
+    "status": "data-only"
+  }
+}

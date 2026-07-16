@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
 import { ExportMarketsMap } from "@/components/ExportMarketsMap";
 import { HomeMotion } from "@/components/HomeMotion";
-import AnimatedContent from "@/components/reactbits/AnimatedContent";
 import { SelectionLogicStepper } from "@/components/SelectionLogicStepper";
 import {
   availableDocuments,
@@ -34,6 +33,21 @@ const annualCapacity =
 const supportingFigures = companyFigures.filter(
   (item) => item.label !== annualCapacity.label,
 );
+
+const exportMarkets = [
+  {
+    region: "Europe",
+    coverage: "Germany, Italy, Turkey and Czechia",
+  },
+  {
+    region: "South Korea",
+    coverage: "Precision molded-part projects",
+  },
+  {
+    region: "South America",
+    coverage: "Brazil and Argentina",
+  },
+];
 
 const materialDirections = [
   {
@@ -241,13 +255,7 @@ export default function Home() {
                 </span>
               </h1>
 
-              <AnimatedContent
-                className="hero-support-motion"
-                distance={0}
-                duration={0.68}
-                delay={0.55}
-                threshold={0}
-              >
+              <div className="hero-support-motion">
                 <p className="hero-motion-copy hero-readable-copy mt-6 max-w-2xl text-base leading-8 sm:text-[1.05rem]">
                   Taiyi Nano manufactures wear-resistant, low-friction,
                   reinforced, conductive and antistatic POM compounds for gears,
@@ -270,7 +278,7 @@ export default function Home() {
                     Discuss Your Application
                   </Link>
                 </div>
-              </AnimatedContent>
+              </div>
             </div>
           </div>
         </section>
@@ -447,6 +455,15 @@ export default function Home() {
                 Current supply routes cover Europe, South Korea and South
                 America for project-based material communication.
               </p>
+
+              <dl className="export-market-summary">
+                {exportMarkets.map((market) => (
+                  <div key={market.region}>
+                    <dt>{market.region}</dt>
+                    <dd>{market.coverage}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
 
             <ExportMarketsMap />

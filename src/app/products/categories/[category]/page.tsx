@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
@@ -18,7 +18,9 @@ import {
   getCategoryFaqs,
   getCategoryNavSubtitle,
   getCategoryTitle,
+  getLegacyCategoryRedirect,
   getProductsByCategory,
+  legacyProductCategorySlugs,
   productCategoryEntries,
 } from "@/lib/productCategories";
 import {
@@ -34,15 +36,27 @@ type ProductCategoryPageProps = {
 };
 
 export function generateStaticParams() {
-  return productCategoryEntries.map((entry) => ({
-    category: entry.slug,
-  }));
+  return [
+    ...productCategoryEntries.map((entry) => ({ category: entry.slug })),
+    ...legacyProductCategorySlugs.map((category) => ({ category })),
+  ];
 }
 
 export async function generateMetadata({
   params,
 }: ProductCategoryPageProps): Promise<Metadata> {
   const { category: categorySlug } = await params;
+  const legacyRedirect = getLegacyCategoryRedirect(categorySlug);
+
+  if (legacyRedirect) {
+    return createPageMetadata({
+      title: "Wear-Resistant & Low-Friction POM | Taiyi Nano",
+      description:
+        "Browse Taiyi Nano wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, and motion components.",
+      path: `/products/categories/${legacyRedirect}`,
+    });
+  }
+
   const entry = findCategoryBySlug(categorySlug);
 
   if (!entry) {
@@ -66,6 +80,12 @@ export default async function ProductCategoryPage({
   params,
 }: ProductCategoryPageProps) {
   const { category: categorySlug } = await params;
+  const legacyRedirect = getLegacyCategoryRedirect(categorySlug);
+
+  if (legacyRedirect) {
+    permanentRedirect(`/products/categories/${legacyRedirect}`);
+  }
+
   const entry = findCategoryBySlug(categorySlug);
 
   if (!entry) {
@@ -84,7 +104,7 @@ export default async function ProductCategoryPage({
   const heroTitle = isPomCategory ? "POM Materials" : entry.label;
   const pageDescription =
     isPomCategory
-      ? "Modified compound data for wear-resistant, low-friction, reinforced, conductive, antistatic, and base resin sourcing requirements."
+      ? "A focused directory for Taiyi modified POM compounds and selected base resin data used in precision molded mechanical parts."
       : getCategoryDescription(entry.category);
   const itemListElement =
     categoryProducts.length > 0
@@ -135,7 +155,6 @@ export default async function ProductCategoryPage({
     },
   ];
   const sectionTabs = [
-    { href: "#category-overview", label: "Overview" },
     ...(isPomCategory || hasEngineeringGrades
       ? [
           {
@@ -144,7 +163,7 @@ export default async function ProductCategoryPage({
           },
         ]
       : []),
-    { href: "#pom-grades", label: "Grades" },
+    ...(!isPomCategory ? [{ href: "#pom-grades", label: "Grades" }] : []),
     { href: "#category-applications", label: "Applications" },
     { href: "#category-faq", label: "FAQ" },
   ];
@@ -173,10 +192,18 @@ export default async function ProductCategoryPage({
             <div className="products-motion-data product-hero-data">
               <div className="product-hero-summary">
                 <p className="section-kicker mb-2">Overview</p>
-                <p>
-                  Compare matching grades by properties, mold stage, shrinkage
-                  behavior, color, application fit, and documents.
-                </p>
+                {isPomCategory ? (
+                  <p>
+                    Start from the material direction closest to your part, then
+                    compare grade-level properties, mold behavior, color options,
+                    application fit, and documents.
+                  </p>
+                ) : (
+                  <p>
+                    Compare matching grades by properties, mold stage, shrinkage
+                    behavior, color, application fit, and documents.
+                  </p>
+                )}
               </div>
               <p className="product-hero-documents">
                 <strong>Documents</strong>
@@ -193,7 +220,7 @@ export default async function ProductCategoryPage({
                 Discuss Requirement
               </Link>
               <Link href="/technical-data-sheets" className="product-hero-tds-link">
-                Find a Technical Data Sheet (TDS)
+                Search Data / TDS
               </Link>
             </div>
           </div>
@@ -201,86 +228,15 @@ export default async function ProductCategoryPage({
 
         <SecondarySectionNav
           ariaLabel="Product section navigation"
-          style={{
-            backdropFilter: "none",
-            WebkitBackdropFilter: "none",
-            boxShadow: "none",
-            filter: "none",
-          }}
           subtitle={getCategoryNavSubtitle(entry.category)}
           tabs={sectionTabs}
           title={pageTitle}
           variant="product"
         />
 
-        <section
-          id="category-overview"
-          className="product-overview-screen products-motion-secondary"
-        >
-          <div className="product-overview-screen-head">
-            <p className="section-kicker mb-3">
-              {isPomCategory ? "OVERVIEW" : "Overview"}
-            </p>
-            <h2>
-              {isPomCategory
-                ? "POM Material Overview"
-                : pageTitle}
-            </h2>
-            {isPomCategory ? (
-              <>
-                <p>
-                  POM, also known as acetal, is a dimensionally stable
-                  engineering thermoplastic used in precision molded mechanical
-                  parts.
-                </p>
-                <p>
-                  It offers low friction, good wear resistance, high stiffness
-                  and reliable molding accuracy, making it suitable for gears,
-                  bushings, sliding parts, valve components and other moving or
-                  load-bearing parts.
-                </p>
-                <p>
-                  Modified POM grades can further adjust performance for wear,
-                  friction, reinforcement, impact, UV exposure, or conductive /
-                  antistatic requirements.
-                </p>
-              </>
-            ) : (
-              <p>
-                Compare matching grades by material family, grade data,
-                mold-development fit, shrinkage behavior, application fit, and
-                document requirements.
-              </p>
-            )}
-          </div>
-
-          <div className="product-overview-screen-grid">
-            <div>
-              <span>01</span>
-              <strong>Material Families</strong>
-              <p>Start from wear, friction, impact, reinforcement, or base resin needs.</p>
-            </div>
-            <div>
-              <span>02</span>
-              <strong>Grade Comparison</strong>
-              <p>
-                Review MFI, shrinkage range, color, key properties, documents,
-                and typical usage.
-              </p>
-            </div>
-            <div>
-              <span>03</span>
-              <strong>Application Fit</strong>
-              <p>
-                Map part design, cavity count, flow path, and shrinkage targets
-                to a practical POM material direction.
-              </p>
-            </div>
-          </div>
-        </section>
-
         <ProductGrid
           products={products}
+          hideGrades={isPomCategory}
           selectedCategory={entry.category}
           showFamilies={entry.category === "POM"}
         />
@@ -291,11 +247,6 @@ export default async function ProductCategoryPage({
         >
           <div className="product-application-directory-head">
             <p className="section-kicker mb-3">Applications</p>
-            <h2>Application Fields We Support</h2>
-            <p>
-              Simple application directions covered by Taiyi modified POM and
-              selected engineering plastic compounds.
-            </p>
           </div>
 
           <div className="product-application-list">
@@ -305,8 +256,10 @@ export default async function ProductCategoryPage({
                 href={`/applications/${application.slug}`}
                 className="product-application-list-item"
               >
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {application.title}
+                <span className="product-application-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <strong>{application.title}</strong>
               </Link>
             ))}
           </div>

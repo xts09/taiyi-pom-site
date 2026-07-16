@@ -40,12 +40,84 @@ export function ApplicationAnimeMotion() {
       heroCard.style.transform = "";
     }
 
-    if (reduceMotion) {
+    const showSections = () => {
       sections.forEach((section) => {
         section.style.opacity = "";
         section.style.transform = "";
+        section
+          .querySelectorAll<HTMLElement>("[data-application-motion-item]")
+          .forEach((item) => {
+            item.style.opacity = "";
+            item.style.transform = "";
+          });
       });
+    };
 
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      showSections();
+
+      return () => {
+        cleanupSectionNav();
+      };
+    }
+
+    let observer: IntersectionObserver;
+
+    try {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+            const section = entry.target as HTMLElement;
+            const isContinuousBand = section.matches(
+              ".application-scene-solution, .application-match-solution, .application-notes-material, .application-brief-cta",
+            );
+            const items = Array.from(
+              section.querySelectorAll<HTMLElement>(
+                "[data-application-motion-item]",
+              ),
+            );
+
+            if (!isContinuousBand) {
+              activeAnimations.push(
+                animate(section, {
+                  opacity: [0, 1],
+                  translateY: [24, 0],
+                  duration: 660,
+                  ease: "outCubic",
+                }),
+              );
+            }
+
+            if (items.length > 0) {
+              items.forEach((item) => {
+                item.style.opacity = "0";
+                item.style.transform = "translateY(16px)";
+              });
+              activeAnimations.push(
+                animate(items, {
+                  opacity: [0, 1],
+                  translateY: [16, 0],
+                  duration: 540,
+                  delay: stagger(70, { start: 120 }),
+                  ease: "outCubic",
+                }),
+              );
+            }
+
+            observer.unobserve(section);
+          });
+        },
+        {
+          rootMargin: "0px 0px -12% 0px",
+          threshold: 0.16,
+        },
+      );
+    } catch {
+      showSections();
       return () => {
         cleanupSectionNav();
       };
@@ -59,67 +131,21 @@ export function ApplicationAnimeMotion() {
       if (isContinuousBand) {
         section.style.opacity = "";
         section.style.transform = "";
-        return;
+      } else {
+        section.style.opacity = "0";
+        section.style.transform = "translateY(24px)";
       }
-
-      section.style.opacity = "0";
-      section.style.transform = "translateY(24px)";
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          const section = entry.target as HTMLElement;
-          const isContinuousBand = section.matches(
-            ".application-scene-solution, .application-match-solution, .application-notes-material, .application-brief-cta",
-          );
-          const items = Array.from(
-            section.querySelectorAll<HTMLElement>(
-              "[data-application-motion-item]",
-            ),
-          );
-
-          if (!isContinuousBand) {
-            activeAnimations.push(
-              animate(section, {
-                opacity: [0, 1],
-                translateY: [24, 0],
-                duration: 660,
-                ease: "outCubic",
-              }),
-            );
-          }
-
-          if (items.length > 0) {
-            items.forEach((item) => {
-              item.style.opacity = "0";
-              item.style.transform = "translateY(16px)";
-            });
-            activeAnimations.push(
-              animate(items, {
-                opacity: [0, 1],
-                translateY: [16, 0],
-                duration: 540,
-                delay: stagger(70, { start: 120 }),
-                ease: "outCubic",
-              }),
-            );
-          }
-
-          observer.unobserve(section);
-        });
-      },
-      {
-        rootMargin: "0px 0px -12% 0px",
-        threshold: 0.16,
-      },
-    );
-
-    sections.forEach((section) => observer.observe(section));
+    try {
+      sections.forEach((section) => observer.observe(section));
+    } catch {
+      observer.disconnect();
+      showSections();
+      return () => {
+        cleanupSectionNav();
+      };
+    }
 
     return () => {
       cleanupSectionNav();

@@ -24,6 +24,7 @@ export type FactoryProofRow = {
   imageAlt: string;
   imageLabel: string;
   imageSide: "left" | "right";
+  imageVariant?: "warehouse";
   points: string[];
 };
 
@@ -75,10 +76,11 @@ export const factoryProofRows: FactoryProofRow[] = [
     eyebrow: "Factory Base",
     description:
       "Factory-based production and warehouse coordination support repeat industrial supply from material screening through batch communication.",
-    imageSrc: "/factory-warehouse.webp",
-    imageAlt: "Taiyi Nano production and warehouse area",
-    imageLabel: "Compounding Workshop",
+    imageSrc: "/factory-warehouse-inventory.jpg",
+    imageAlt: "Taiyi Nano packaged material inventory and warehouse handling area",
+    imageLabel: "Warehouse Inventory",
     imageSide: "right",
+    imageVariant: "warehouse",
     points: [
       "Factory-based manufacturer located in Yancheng, Jiangsu, China",
       "Focused on modified POM and selected engineering plastic compounds",

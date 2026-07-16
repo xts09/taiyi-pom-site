@@ -389,6 +389,13 @@ export const applications: ApplicationItem[] = [
     },
     images: [
       {
+        src: "/generated/applications/water-control/illustrative-water-control-components.png",
+        alt: "Illustrative white water-control molded component forms",
+        label: "Water-Control Component Forms",
+        description:
+          "Valve bodies, pump housings, fittings, and sealing-adjacent part forms for material review.",
+      },
+      {
         src: "/applications/parts/bathroom-parts-1.jpg",
         alt: "Plastic bathroom valve and water-control parts",
         label: "Valve Components",
