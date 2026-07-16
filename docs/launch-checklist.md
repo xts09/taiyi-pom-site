@@ -3,6 +3,7 @@
 ## Before Deploying
 
 - Run `npm run prepublish:check`.
+- Configure production variables from `.env.example`; never commit real secrets.
 - Confirm `NEXT_PUBLIC_SITE_URL=https://www.taiyipom.com`.
 - Set `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and `RESEND_API_KEY`.
 - Set Google measurement, Ads, and site-verification variables when available.
