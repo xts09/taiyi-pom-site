@@ -21,10 +21,9 @@ export default function ContactPage() {
           </h1>
 
           <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-            For faster material review, send the application, current material
-            reference, mold development stage, cavity count, shrinkage or
-            warpage concern, key requirements, document needs, color, and
-            estimated volume in one message.
+            Send the application, current material, mold stage, target
+            properties, document needs, and estimated volume for a faster
+            material review.
           </p>
         </div>
 
@@ -68,10 +67,9 @@ export default function ContactPage() {
               Request Material Review
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-700">
-              Share the application, mold stage, cavity count, shrinkage or
-              warpage concern, material direction, annual volume, and required
-              documents. The form submits a structured requirement when server
-              email is configured, with an email draft fallback.
+              Share the part, current material, mold stage, target properties,
+              required documents, and estimated volume. If direct delivery is
+              unavailable, we will prepare an email draft instead.
             </p>
 
             <ContactInquiryForm />

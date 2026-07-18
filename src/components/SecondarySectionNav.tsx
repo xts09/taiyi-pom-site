@@ -20,7 +20,7 @@ type SecondarySectionNavProps = {
 };
 
 const defaultActions: SecondarySectionNavAction[] = [
-  { href: "/contact", label: "Discuss Requirement" },
+  { href: "/contact", label: "Send Requirement" },
   { href: "/technical-data-sheets", label: "Search Data / TDS" },
 ];
 

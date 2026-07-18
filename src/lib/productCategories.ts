@@ -81,9 +81,9 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Glass Fiber Reinforced POM Compound",
     label: "Glass Fiber Reinforced POM",
     description:
-      "Browse Taiyi Nano glass fiber reinforced POM grades for higher stiffness, dimensional stability, molded part applications, and document support.",
+      "Compare Taiyi Nano 10% to 30% glass fiber reinforced POM grades for stiffness and dimensional stability. Beyond POM, the current portfolio includes PA6, PA66, and PPA glass fiber compounds with up to 50% glass fiber.",
     navSubtitle:
-      "Compare reinforced POM grades by stiffness, strength, HDT, and molding fit.",
+      "Compare 10% to 30% glass fiber POM grades, then discuss PA6, PA66, and PPA directions with up to 50% glass fiber when heat, moisture, or stiffness targets move beyond POM.",
     applications: [
       "Structural molded parts requiring higher stiffness",
       "Precision parts with dimensional stability requirements",

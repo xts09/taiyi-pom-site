@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
@@ -21,6 +22,7 @@ import {
   getLegacyCategoryRedirect,
   getProductsByCategory,
   legacyProductCategorySlugs,
+  productCategoryOrder,
   productCategoryEntries,
 } from "@/lib/productCategories";
 import {
@@ -96,6 +98,7 @@ export default async function ProductCategoryPage({
   const engineeringGrades = getEngineeringTdsByProductCategory(entry.category);
   const categoryFaqs = getCategoryFaqs(entry.category);
   const isPomCategory = entry.category === "POM";
+  const isPomSubcategory = productCategoryOrder.includes(entry.category);
   const hasEngineeringGrades = engineeringGrades.length > 0;
   const pageTitle =
     isPomCategory
@@ -180,6 +183,22 @@ export default async function ProductCategoryPage({
       <ProductPageMotion>
       <section className="product-category-shell mesh-surface">
         <div className={heroClassName}>
+          <Breadcrumbs
+            items={[
+              { href: "/products", label: "Products" },
+              ...(isPomSubcategory
+                ? [
+                    {
+                      href: "/products/categories/pom",
+                      label: "POM Materials",
+                    },
+                  ]
+                : []),
+              { label: heroTitle },
+            ]}
+            variant="hero"
+          />
+
           <div className="product-hero-card">
             <p className="product-hero-eyebrow">Material Directory</p>
 
@@ -217,7 +236,7 @@ export default async function ProductCategoryPage({
 
             <div className="product-hero-cta">
               <Link href="/contact" className="product-hero-primary-action">
-                Discuss Requirement
+                Send Requirement
               </Link>
               <Link href="/technical-data-sheets" className="product-hero-tds-link">
                 Search Data / TDS

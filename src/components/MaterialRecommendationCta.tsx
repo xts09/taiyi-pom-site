@@ -22,7 +22,7 @@ export function MaterialRecommendationCta({
   kicker,
   title,
   children,
-  actionLabel = "Contact Sales",
+  actionLabel = "Send Requirement",
   actionHref = "/contact",
   actionClassName = "px-7",
   aside,

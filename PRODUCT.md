@@ -15,6 +15,20 @@ The current homepage and main navigation baseline is:
 - The homepage should avoid region-dividing lines, faint grid overlays, nested pale panels, and second-layer background blocks over the main page background.
 - The first screen should stay restrained and image-led. React Bits-style interaction should begin below the hero unless there is a strong functional reason.
 
+### Active Implementation Snapshot (2026-07-16)
+
+This is a handoff snapshot for future maintenance sessions. Refresh it after the next checkpoint commit rather than treating stale working-tree details as permanent product requirements.
+
+- Active branch: `codex/keptds`; last committed baseline at the time of this snapshot: `2c97a27 Add deployment environment template`.
+- The working tree contains intentional, uncommitted Resources and Header work. Inspect `git status --short` before editing and preserve all existing changes.
+- Resources are organized by buyer task: Choose a Material, Process & Troubleshoot, and Find Data. `src/data/resourceNavigation.ts` is the shared navigation source used to keep the Resources mega menu and Resources page language aligned.
+- `/resources` has an image-led technical hero, task navigation, grouped resource lists, and a restrained contact path. Do not turn it back into a collection of unrelated cards.
+- Products, Applications, and Resources mega-menu item underlines now share the `mega-nav-label` implementation. Their thickness, color, offset, animation, and text-width behavior should remain visually consistent.
+- The dark homepage header and its expanded menu are one frosted-glass material system. Inner pages use the white header and white expanded menu with no gap between them.
+- A cross-material Conductive / Antistatic page can support search intent and specialist inquiries without becoming a primary top-navigation branch. Keep the main product architecture focused on established material families.
+- Current uncommitted files at this snapshot: `src/app/resources/page.tsx`, `src/app/styles/header.css`, `src/app/styles/resources.css`, `src/components/Header.tsx`, `src/data/resources.ts`, and new `src/data/resourceNavigation.ts`.
+- Most recent verification for the shared navigation work: `npm run typecheck` passed; Products, Applications, and Resources expanded-menu hover states were visually inspected at `1920x1080` on a white inner-page header, and Products was also checked on the dark homepage header. Browser console errors: none.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Nano's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.

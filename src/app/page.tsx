@@ -160,7 +160,7 @@ const operationItems = [
   "Document Support for Qualification",
 ];
 
-const heroTitle = "Modified POM Compounds for Demanding Industrial Parts";
+const heroTitle = "Modified POM Compounds for Industrial Parts";
 
 const heroTitleWords = (() => {
   let letterIndex = 0;
@@ -258,10 +258,9 @@ export default function Home() {
               <div className="hero-support-motion">
                 <p className="hero-motion-copy hero-readable-copy mt-6 max-w-2xl text-base leading-8 sm:text-[1.05rem]">
                   Taiyi Nano manufactures wear-resistant, low-friction,
-                  reinforced, conductive and antistatic POM compounds for gears,
-                  bushings, sliding parts, valve components and precision molded
-                  parts. Selected PA6, PA66, PPA and PPS compounds are also
-                  available for project-based development.
+                  reinforced and conductive POM compounds for precision molded
+                  parts. Selected PA6, PA66, PPA and PPS compounds are available
+                  for project review.
                 </p>
 
                 <div className="hero-motion-actions mt-8 flex flex-wrap gap-3">
@@ -275,7 +274,7 @@ export default function Home() {
                     href="/contact"
                     className="hero-cta-link px-2 py-3 text-sm"
                   >
-                    Discuss Your Application
+                    Send Requirement
                   </Link>
                 </div>
               </div>
@@ -477,7 +476,7 @@ export default function Home() {
               <h2>Have a part or material requirement?</h2>
             </div>
             <Link href="/contact" className="home-inquiry-action">
-              Discuss Your Application
+              Send Requirement
             </Link>
           </div>
         </section>

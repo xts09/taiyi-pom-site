@@ -15,7 +15,11 @@ import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { publicPath } from "@/lib/paths";
-import { createPageMetadata } from "@/lib/seo";
+import {
+  createBreadcrumbJsonLd,
+  createPageMetadata,
+  createWebPageJsonLd,
+} from "@/lib/seo";
 
 type ApplicationDetailPageProps = {
   params: Promise<{
@@ -186,9 +190,15 @@ const getCyclicItem = <T,>(items: readonly T[] | undefined, index: number) =>
 const getApplicationHeroStyle = (
   heroImageSrc: string,
   cadImageSrc?: string,
+  heroImageSize?: string,
 ): CSSProperties =>
   ({
     "--application-hero-image": `url(${publicPath(heroImageSrc)})`,
+    ...(heroImageSize
+      ? {
+          "--application-hero-size": heroImageSize,
+        }
+      : {}),
     ...(cadImageSrc
       ? {
           "--application-cad-image": `url(${publicPath(cadImageSrc)})`,
@@ -459,6 +469,8 @@ export async function generateMetadata({
     title: `${application.title} | Taiyi Nano`,
     description: `${application.description} Review relevant modified POM material directions, typical parts, and application selection factors.`,
     path: `/applications/${application.slug}`,
+    image: application.heroImage?.src,
+    imageAlt: application.heroImage?.alt,
   });
 }
 
@@ -476,6 +488,7 @@ export default async function ApplicationDetailPage({
   const partFitItems = getPerformanceItems(engineeringGroups);
   const { visualAssets, visualConfig } =
     getApplicationVisualContext(application);
+  const detailHeroImage = application.detailHeroImage ?? application.heroImage;
   const materialDirectionCards = getMaterialDirectionCards(
     application,
     partFitItems,
@@ -485,9 +498,30 @@ export default async function ApplicationDetailPage({
     application,
     engineeringGroups,
   );
+  const pagePath = `/applications/${application.slug}`;
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Applications", path: "/applications" },
+    { name: application.title, path: pagePath },
+  ]);
+  const webPageJsonLd = createWebPageJsonLd({
+    title: application.title,
+    description: application.description,
+    path: pagePath,
+    image: application.heroImage?.src,
+  });
 
   return (
     <main className="application-detail-page min-h-screen text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([breadcrumbJsonLd, webPageJsonLd]).replace(
+            /</g,
+            "\\u003c",
+          ),
+        }}
+      />
       <ApplicationAnimeMotion />
       <section
         className={`application-detail-shell application-detail-${application.slug} mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8`}
@@ -495,10 +529,11 @@ export default async function ApplicationDetailPage({
         <div
           className={getApplicationHeroClassName(application)}
           style={
-            application.heroImage
+            detailHeroImage
               ? getApplicationHeroStyle(
-                  application.heroImage.src,
+                  detailHeroImage.src,
                   visualAssets?.cad,
+                  application.detailHeroImage ? "contain" : undefined,
                 )
               : undefined
           }
@@ -544,7 +579,7 @@ export default async function ApplicationDetailPage({
             </div>
 
             <div className="application-hero-cta">
-              <Link href="/contact">Discuss Requirement</Link>
+              <Link href="/contact">Send Requirement</Link>
               <Link href="/technical-data-sheets">
                 Search Data / TDS
               </Link>
@@ -722,7 +757,7 @@ export default async function ApplicationDetailPage({
               ? "application-review-cta application-brief-cta"
               : "application-review-cta"
           }
-          actionLabel={`Discuss ${application.title} Requirement`}
+          actionLabel="Send Requirement"
           actionClassName="shrink-0 px-7"
           data-application-motion
         >

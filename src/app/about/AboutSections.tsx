@@ -194,7 +194,7 @@ export function CredentialSupport({
 
       <div className="mt-8">
         <Link href="/contact" className="cta-primary px-6 py-3 text-sm">
-          Discuss Your Application
+          Send Requirement
         </Link>
       </div>
     </section>

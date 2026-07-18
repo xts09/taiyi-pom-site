@@ -17,6 +17,7 @@ import {
   toDisplayTitle,
 } from "@/lib/productDisplay";
 import { getCategoryPath } from "@/lib/productCategories";
+import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
 import {
   createBreadcrumbJsonLd,
   createEngineeringProductJsonLd,
@@ -137,6 +138,7 @@ function EngineeringProductDetailPage({
   const slug = createEngineeringTdsSlug(document);
   const title = getEngineeringTdsTitle(document);
   const properties = toEngineeringProperties(document);
+  const coreProperties = getPublicCoreProperties(properties);
   const applicationItems = document.applications
     .split(",")
     .map((item) => item.trim())
@@ -253,7 +255,7 @@ function EngineeringProductDetailPage({
               <div className="product-detail-hero-side">
                 <div className="product-detail-hero-actions">
                   <Link href="/contact" className="product-hero-primary-action">
-                    Discuss Requirement
+                    Send Requirement
                   </Link>
                   <Link
                     href="/technical-data-sheets"
@@ -315,14 +317,14 @@ function EngineeringProductDetailPage({
             className="property-table-section product-detail-table-section"
           >
             <div className="property-table-head">
-              <p className="section-kicker mb-2">Typical Property Data</p>
+              <p className="section-kicker mb-2">Core Selection Data</p>
               <h2 className="text-xl font-black text-slate-950">
-                Reference Property Data
+                Reference Values for Early Screening
               </h2>
             </div>
 
             <div className="overflow-x-auto">
-              <table className="min-w-[42rem] w-full text-left text-sm">
+              <table className="product-detail-core-property-table w-full text-left text-sm">
                 <thead className="bg-slate-950 text-white">
                   <tr>
                     {["Property", "Value", "Unit", "Test Method"].map(
@@ -335,7 +337,7 @@ function EngineeringProductDetailPage({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200/80">
-                  {properties.map((property) => (
+                  {coreProperties.map((property) => (
                     <tr key={property.label} className="hover:bg-cyan-50/60">
                       <td className="px-5 py-3 font-bold text-slate-950">
                         {property.label}
@@ -353,6 +355,15 @@ function EngineeringProductDetailPage({
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            <div className="product-detail-core-data-note">
+              <p>
+                Core comparison values are shown here. Full property,
+                processing, impact, electrical, and project-specific data are
+                provided through TDS or project review.
+              </p>
+              <Link href="/contact">Request Full TDS</Link>
             </div>
           </section>
 
@@ -529,6 +540,7 @@ export default async function ProductDetailPage({
   ]);
   const getProperty = (label: string) =>
     product.properties.find((property) => property.label === label);
+  const coreProperties = getPublicCoreProperties(product.properties);
   const tensileProperty = getProperty("Tensile Strength");
   const hdtProperty = getProperty("Heat Deflection Temperature");
   const snapshotItems = [
@@ -600,7 +612,7 @@ export default async function ProductDetailPage({
               <div className="product-detail-hero-side">
                 <div className="product-detail-hero-actions">
                   <Link href="/contact" className="product-hero-primary-action">
-                    Discuss Requirement
+                    Send Requirement
                   </Link>
                   <Link
                     href="/technical-data-sheets"
@@ -657,20 +669,20 @@ export default async function ProductDetailPage({
         </nav>
 
         <article className="product-detail-sheet">
-          {product.properties.length > 0 ? (
+          {coreProperties.length > 0 ? (
             <section
               id="typical-properties"
               className="property-table-section product-detail-table-section"
             >
               <div className="property-table-head">
-                <p className="section-kicker mb-2">Typical Property Data</p>
+                <p className="section-kicker mb-2">Core Selection Data</p>
                 <h2 className="text-xl font-black text-slate-950">
-                  Typical Physical Properties
+                  Reference Values for Early Screening
                 </h2>
               </div>
 
               <div className="overflow-x-auto">
-                <table className="min-w-[42rem] w-full text-left text-sm">
+                <table className="product-detail-core-property-table w-full text-left text-sm">
                   <thead className="bg-slate-950 text-white">
                     <tr>
                       {["Property", "Value", "Unit", "Test Method"].map(
@@ -683,7 +695,7 @@ export default async function ProductDetailPage({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-200/80">
-                    {product.properties.map((property) => (
+                    {coreProperties.map((property) => (
                       <tr key={property.label} className="hover:bg-cyan-50/60">
                         <td className="px-5 py-3 font-bold text-slate-950">
                           {property.label}
@@ -701,6 +713,15 @@ export default async function ProductDetailPage({
                     ))}
                   </tbody>
                 </table>
+              </div>
+
+              <div className="product-detail-core-data-note">
+                <p>
+                  Core comparison values are shown here. Full property,
+                  processing, impact, electrical, and project-specific data are
+                  provided through TDS or project review.
+                </p>
+                <Link href="/contact">Request Full TDS</Link>
               </div>
             </section>
           ) : (

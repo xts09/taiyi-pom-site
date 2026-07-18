@@ -15,6 +15,21 @@ This version has breaking changes - APIs, conventions, and file structure may al
 - If the thread already contains many screenshots, large images, long logs, or large tool outputs, suggest continuing with a lightweight new thread that carries only a short task summary.
 - If reconnecting, rate-limit, or tool timeout symptoms appear, stop the long path, preserve the known state, and continue with a smaller current-session step.
 
+## Change Ownership And Handoff
+
+- Assume the working tree may contain intentional uncommitted user or prior-session work. Run `git status --short` before editing and never revert, replace, or reformat unrelated changes.
+- A visual or technical audit is not authorization for a broad redesign. Review first; implement only the page, component, and visual family the user explicitly approves.
+- When continuing from a long visual-review thread, read the dated implementation snapshot in `PRODUCT.md` before changing shared navigation, Resources, product data, or SEO behavior.
+- Prefer editing the owning component or final active rule. Remove obsolete duplicate rules when ownership is clear; do not accumulate late overrides to force a result.
+
+## Shared Navigation Contract
+
+- Header and mega-menu work is cross-page work. Verify `/` with the dark over-hero header and one inner route with the white header, both closed and expanded, at `1920x1080` unless another viewport is requested.
+- Mega-menu item hover underlines are owned by the shared `.mega-nav-label` element in `Header.tsx` and `header.css`. Products, Applications, and Resources must not reintroduce separate pseudo-element underline implementations.
+- The top-level navigation underline is a current-section indicator at the header edge. The mega-menu underline is a text-level hover indicator. Keep each internally consistent without forcing both into one structural role.
+- Navigation alignment is accepted by visible rendered edges, not by matching container variables alone.
+- Dark header and expanded mega menu must render as one perceived frosted-glass material. White inner-page navigation must connect directly to the expanded panel without a visible gap.
+
 ## Visual Feedback Handling Protocol
 
 - Treat visual feedback as a result-quality issue first, not an implementation-detail issue. CSS variables, shared components, or cleaner DOM structure do not count as success unless the rendered result satisfies the user's visual intent.

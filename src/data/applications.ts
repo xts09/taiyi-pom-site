@@ -27,6 +27,10 @@ export type ApplicationItem = {
     src: string;
     alt: string;
   };
+  detailHeroImage?: {
+    src: string;
+    alt: string;
+  };
   images: ApplicationImage[];
   productExamples?: ApplicationImage[];
   engineeringFit?: ApplicationEngineeringGroup[];
@@ -70,8 +74,12 @@ export const applications: ApplicationItem[] = [
       ),
     ],
     heroImage: {
-      src: "/applications/parts/automotive-hero.webp",
-      alt: "Automotive assembly line with vehicle functional modules",
+      src: "/applications/parts/automotive-cad-hero.webp",
+      alt: "CAD visualization highlighting molded polymer components in an automotive window regulator assembly",
+    },
+    detailHeroImage: {
+      src: "/applications/parts/automotive-detail-cad-hero.webp",
+      alt: "Wide CAD visualization of an automotive window regulator with molded polymer components highlighted",
     },
     images: [
       {
@@ -137,8 +145,12 @@ export const applications: ApplicationItem[] = [
       customDirection("Custom formulation based on project requirements"),
     ],
     heroImage: {
-      src: "/applications/parts/electronics-hero.webp",
-      alt: "Electronics assembly station with functional electrical modules",
+      src: "/applications/parts/electronics-cad-hero.webp",
+      alt: "CAD visualization highlighting connector, insulating, and actuator components in an electronics control module",
+    },
+    detailHeroImage: {
+      src: "/applications/parts/electronics-detail-cad-hero.webp",
+      alt: "Wide CAD visualization of an electronics control module with molded polymer components highlighted",
     },
     images: [
       {
@@ -202,8 +214,12 @@ export const applications: ApplicationItem[] = [
       customDirection("Reinforced POM where higher stiffness is required"),
     ],
     heroImage: {
-      src: "/applications/parts/conveyor-automation-hero.webp",
-      alt: "Clean conveyor automation line with modular chain plates",
+      src: "/applications/parts/conveyor-automation-cad-hero.webp",
+      alt: "CAD visualization highlighting modular chain plates, guide rails, rollers, and wear components",
+    },
+    detailHeroImage: {
+      src: "/applications/parts/conveyor-automation-detail-cad-hero.webp",
+      alt: "Wide CAD visualization of a conveyor system with molded polymer components highlighted",
     },
     images: [
       {
@@ -224,62 +240,42 @@ export const applications: ApplicationItem[] = [
     ],
     productExamples: [
       {
-        src: "/applications/parts/conveyor-examples/chain-plate.webp",
-        alt: "Plastic modular chain plate for conveyor systems",
-        label: "Chain Plate",
-        description: "Wear-resistant review for repeated chain movement.",
+        src: "/applications/parts/conveyor-modular-chain-cad.webp",
+        alt: "CAD visualization of molded polymer modular conveyor chain plates",
+        label: "Modular Chain Plate",
+        description:
+          "Wear and dimensional review for repeated movement across modular links.",
       },
       {
-        src: "/applications/parts/conveyor-examples/conveyor-part.webp",
-        alt: "Curved plastic conveyor part for modular conveying systems",
-        label: "Conveyor Part",
-        description: "Low-friction review for curved modular conveying links.",
+        src: "/applications/parts/conveyor-sprocket-cad.webp",
+        alt: "CAD visualization of a molded polymer conveyor sprocket engaging a modular chain",
+        label: "Conveyor Sprocket",
+        description:
+          "Fit, wear, and load review at repeated sprocket-to-chain contact.",
       },
       {
-        src: "/applications/parts/conveyor-examples/conveyor-plate.webp",
-        alt: "White plastic conveyor plate with modular openings",
-        label: "Conveyor Plate",
-        description: "Dimensional stability for plates with openings or slots.",
+        src: "/applications/parts/conveyor-guide-rail-cad.webp",
+        alt: "CAD visualization of molded polymer conveyor wear strips and side guide rails",
+        label: "Wear Strip & Guide Rail",
+        description:
+          "Low-friction review for wear strips and side-guide contact surfaces.",
       },
       {
-        src: "/applications/parts/conveyor-examples/conveyor-panel.webp",
-        alt: "Flat plastic conveyor panel for conveying equipment",
-        label: "Conveyor Panel",
-        description: "Flat panel parts needing stiffness and assembly fit.",
-      },
-      {
-        src: "/applications/parts/conveyor-examples/chain-component.webp",
-        alt: "Plastic chain component with roller contact surface",
-        label: "Chain Component",
-        description: "Contact surfaces requiring wear and friction review.",
-      },
-      {
-        src: "/applications/parts/conveyor-examples/chain-plate-part.webp",
-        alt: "Curved plastic chain plate parts for conveyor assemblies",
-        label: "Chain Plate Part",
-        description: "Curved chain plate parts for modular conveyor assemblies.",
-      },
-      {
-        src: "/applications/parts/conveyor-examples/conveyor-component.webp",
-        alt: "Brown plastic conveyor component and modular chain strip",
-        label: "Conveyor Component",
-        description: "Moving strip components with repeated sliding contact.",
-      },
-      {
-        src: "/applications/parts/conveyor-examples/conveyor-housing.webp",
-        alt: "Black molded conveyor housing component",
-        label: "Conveyor Housing",
-        description: "Molded housing parts requiring toughness and fit control.",
+        src: "/applications/parts/bearing-cage-cad.webp",
+        alt: "CAD visualization of a molded polymer bearing cage and bushing assembly",
+        label: "Bearing Cage & Bushing",
+        description:
+          "Wear and fit control for rotating supports and bearing-cage geometry.",
       },
     ],
     engineeringFit: [
       {
         title: "Typical Parts",
         items: [
-          "Modular chain plates, chain plate belts, and chain components",
-          "Conveyor plates, conveyor housings, and guide parts",
-          "Rollers, guide strips, side rails, and sliding-contact brackets",
-          "Fastening brackets and wear strips for handling systems",
+          "Modular chain plates and conveyor sprockets",
+          "Wear strips, guide rails, and sliding-contact supports",
+          "Bearing cages, bushings, and rotating support components",
+          "Conveyor housings and fastening brackets",
         ],
       },
       {
@@ -322,6 +318,10 @@ export const applications: ApplicationItem[] = [
     heroImage: {
       src: "/applications/parts/motion-components-hero.webp",
       alt: "Industrial motion module with gears and molded movement components",
+    },
+    detailHeroImage: {
+      src: "/applications/parts/motion-components-detail-cad-hero.webp",
+      alt: "Wide CAD visualization of a motion module with molded polymer gears, rollers, bushings, and guides highlighted",
     },
     images: [
       {
@@ -387,28 +387,38 @@ export const applications: ApplicationItem[] = [
       src: "/applications/parts/water-control-hero.webp",
       alt: "Clean water-control assembly line with valves and flow modules",
     },
+    detailHeroImage: {
+      src: "/applications/parts/water-control-detail-cad-hero.webp",
+      alt: "Wide CAD visualization of a valve-control assembly with molded polymer motion components highlighted",
+    },
     images: [
       {
-        src: "/generated/applications/water-control/illustrative-water-control-components.png",
-        alt: "Illustrative white water-control molded component forms",
-        label: "Water-Control Component Forms",
+        src: "/applications/parts/water-valve-spool-cad.webp",
+        alt: "CAD visualization of a molded polymer valve spool and cartridge assembly",
+        label: "Valve Spool & Cartridge",
         description:
-          "Valve bodies, pump housings, fittings, and sealing-adjacent part forms for material review.",
+          "Dimensional, friction, and sealing-adjacent review for repeated valve movement.",
       },
       {
-        src: "/applications/parts/bathroom-parts-1.jpg",
-        alt: "Plastic bathroom valve and water-control parts",
-        label: "Valve Components",
+        src: "/applications/parts/water-valve-body-cad.webp",
+        alt: "CAD visualization of molded polymer functional components inside a water-control valve body",
+        label: "Valve Body Assembly",
+        description:
+          "Strength, fit, and media-resistance review for molded valve mechanisms.",
       },
       {
-        src: "/applications/parts/bathroom-guide-wheel.jpg",
-        alt: "Plastic bathroom guide wheel component",
-        label: "Guide Wheel",
+        src: "/applications/parts/pump-impeller-cad.webp",
+        alt: "CAD visualization of a molded polymer centrifugal pump impeller",
+        label: "Pump Impeller",
+        description:
+          "Stiffness, balance, and dimensional review for rotating pump components.",
       },
       {
-        src: "/applications/parts/thermostatic-valve-body.jpg",
-        alt: "Plastic thermostatic valve body",
-        label: "Thermostatic Valve",
+        src: "/applications/parts/water-thermostatic-valve-cad.webp",
+        alt: "CAD visualization of molded polymer components inside a thermostatic control valve",
+        label: "Thermostatic Control Valve",
+        description:
+          "Stable assembly and repeatable movement in temperature-control mechanisms.",
       },
     ],
     engineeringFit: [
@@ -416,9 +426,9 @@ export const applications: ApplicationItem[] = [
         title: "Typical Parts",
         items: [
           "Valve bodies and spool assemblies",
-          "Guide wheels and sanitary mechanisms",
-          "Thermostatic valve bodies",
-          "PPS replacement opportunities in selected valve parts",
+          "Cartridges, actuator sleeves, and sanitary mechanisms",
+          "Pump impellers and rotating water-control components",
+          "Thermostatic valve bodies and control mechanisms",
         ],
       },
       {
@@ -445,7 +455,7 @@ export const applications: ApplicationItem[] = [
     slug: "industrial-machinery",
     title: "Industrial Machinery",
     description:
-      "Functional molded parts for industrial machinery, equipment housings, brackets, fasteners, and precision assemblies.",
+      "Precision molded gears, bearing cages, pump components, guide blocks, and other functional machine elements.",
     materialDirections: [
       materialDirection("Base POM Resin"),
       materialDirection("High-Impact POM Compound"),
@@ -462,38 +472,51 @@ export const applications: ApplicationItem[] = [
     },
     images: [
       {
-        src: "/applications/parts/door-panel-control-latch.jpg",
-        alt: "Plastic control latch parts",
-        label: "Control Latch",
+        src: "/applications/parts/industrial-precision-gear-cad.webp",
+        alt: "CAD visualization of molded polymer precision gears in an industrial shaft module",
+        label: "Precision Gear Drive",
+        description:
+          "Tooth wear, torque transfer, and dimensional consistency under repeated motion.",
       },
       {
-        src: "/applications/parts/speaker-enclosure.jpg",
-        alt: "Plastic speaker enclosure part",
-        label: "Speaker Enclosure",
+        src: "/applications/parts/bearing-cage-cad.webp",
+        alt: "CAD visualization of a molded polymer bearing cage and bushing assembly",
+        label: "Bearing Cage & Bushing",
+        description:
+          "Low-friction support, wear control, and repeatable bearing geometry.",
       },
       {
-        src: "/applications/parts/industrial-bumper-bracket.jpg",
-        alt: "Plastic structural bracket component",
-        label: "Structural Bracket",
+        src: "/applications/parts/pump-impeller-cad.webp",
+        alt: "CAD visualization of a molded polymer centrifugal pump impeller",
+        label: "Pump Impeller",
+        description:
+          "Stiffness, chemical exposure, and dimensional balance for rotating service.",
+      },
+      {
+        src: "/applications/parts/industrial-linear-guide-cad.webp",
+        alt: "CAD visualization of molded polymer wear pads and bushings in a linear guide module",
+        label: "Linear Guide Block",
+        description:
+          "Sliding friction, guide accuracy, and assembly fit across repeated travel.",
       },
     ],
     engineeringFit: [
       {
         title: "Typical Parts",
         items: [
-          "Fasteners, clips, latches, brackets, and functional housings",
-          "Precision molded supports and equipment components",
-          "Speaker enclosures, control latches, and molded structural parts",
-          "General industrial functional parts where assembly fit matters",
+          "Precision gears and compact drive components",
+          "Bearing cages, bushings, and rotating supports",
+          "Pump impellers and media-contact machine components",
+          "Linear guide blocks, wear pads, and sliding supports",
         ],
       },
       {
         title: "Performance Needs",
         items: [
-          "Stable flow and dimensional consistency",
-          "Strength, stiffness, and low warpage",
-          "Impact resistance where equipment use requires toughness",
-          "Processing consistency for precision molded parts",
+          "Dimensional consistency under repeated mechanical load",
+          "Low friction and controlled wear at moving interfaces",
+          "Strength, stiffness, and low warpage for assembly fit",
+          "Media resistance and processing consistency for precision parts",
         ],
       },
       {

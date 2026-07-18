@@ -6,6 +6,7 @@ import {
 } from "@/data/engineeringTds";
 import type { Product } from "@/data/products";
 import { productCategoryOrder } from "@/lib/productCategories";
+import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
 
 const rawSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.taiyipom.com";
@@ -17,9 +18,27 @@ export const siteName = "Taiyi Nano";
 export const companyName = "Jiangsu Taiyi Nano Technology Co., Ltd.";
 
 export const defaultDescription =
-  "Jiangsu Taiyi Nano Technology Co., Ltd. develops and produces modified POM, PA6, PA66, PPA, and PPS compounds for wear-resistant, low-friction, reinforced, and functional molded part applications.";
+  "Taiyi Nano manufactures modified POM, PA6, PA66, PPA, and PPS compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
 
 export const defaultOgImage = "/factory-hero-no-machine-poster.jpg";
+
+export const organizationLogo = "/platform-wordmark.png";
+
+const formatMetadataDescription = (description: string, maxLength = 160) => {
+  const normalized = description.replace(/\s+/g, " ").trim();
+
+  if (normalized.length <= maxLength) {
+    return normalized;
+  }
+
+  const candidate = normalized.slice(0, maxLength - 1);
+  const lastWordBoundary = candidate.lastIndexOf(" ");
+  const trimmed = candidate
+    .slice(0, lastWordBoundary > maxLength * 0.7 ? lastWordBoundary : undefined)
+    .replace(/[,:;.\-\s]+$/, "");
+
+  return `${trimmed}…`;
+};
 
 export const absoluteUrl = (path = "/") =>
   path.startsWith("http")
@@ -40,41 +59,71 @@ export const createPageMetadata = ({
   image?: string;
   imageAlt?: string;
   indexable?: boolean;
-}): Metadata => ({
+}): Metadata => {
+  const metadataDescription = formatMetadataDescription(description);
+
+  return {
+    title,
+    description: metadataDescription,
+    ...(!indexable
+      ? {
+          robots: {
+            index: false,
+            follow: true,
+          },
+        }
+      : {}),
+    alternates: {
+      canonical: path,
+    },
+    openGraph: {
+      title,
+      description: metadataDescription,
+      url: path,
+      siteName,
+      type: "website",
+      locale: "en_US",
+      images: [
+        {
+          url: image,
+          alt: imageAlt,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: metadataDescription,
+      images: [image],
+    },
+  };
+};
+
+export const createCollectionPageJsonLd = ({
   title,
   description,
-  ...(!indexable
-    ? {
-        robots: {
-          index: false,
-          follow: true,
-        },
-      }
-    : {}),
-  alternates: {
-    canonical: path,
-  },
-  openGraph: {
-    title,
-    description,
-    url: path,
-    siteName,
-    type: "website",
-    locale: "en_US",
-    images: [
-      {
-        url: image,
-        width: 1200,
-        height: 630,
-        alt: imageAlt,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title,
-    description,
-    images: [image],
+  path,
+  items,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  items: ReadonlyArray<{ name: string; path: string }>;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description: formatMetadataDescription(description),
+  url: absoluteUrl(path),
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(item.path),
+    })),
   },
 });
 
@@ -122,7 +171,7 @@ export const organizationJsonLd = {
   name: companyName,
   alternateName: siteName,
   url: siteUrl,
-  logo: absoluteUrl(defaultOgImage),
+  logo: absoluteUrl(organizationLogo),
   foundingDate: "2003-06-18",
   address: {
     "@type": "PostalAddress",
@@ -160,7 +209,77 @@ export const websiteJsonLd = {
     "@type": "Organization",
     name: companyName,
   },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteUrl}/technical-data-sheets?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
 };
+
+export const createWebPageJsonLd = ({
+  title,
+  description,
+  path,
+  image,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  image?: string;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description: formatMetadataDescription(description),
+  url: absoluteUrl(path),
+  inLanguage: "en",
+  isPartOf: {
+    "@type": "WebSite",
+    name: siteName,
+    url: siteUrl,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: companyName,
+    url: siteUrl,
+  },
+  ...(image ? { primaryImageOfPage: absoluteUrl(image) } : {}),
+});
+
+export const createTechArticleJsonLd = ({
+  title,
+  description,
+  path,
+}: {
+  title: string;
+  description: string;
+  path: string;
+}) => ({
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  headline: title,
+  description: formatMetadataDescription(description),
+  url: absoluteUrl(path),
+  mainEntityOfPage: absoluteUrl(path),
+  inLanguage: "en",
+  author: {
+    "@type": "Organization",
+    name: companyName,
+    url: siteUrl,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: companyName,
+    url: siteUrl,
+    logo: {
+      "@type": "ImageObject",
+      url: absoluteUrl(organizationLogo),
+    },
+  },
+});
 
 export const createProductJsonLd = (product: Product) => ({
   "@context": "https://schema.org",
@@ -192,7 +311,7 @@ export const createProductJsonLd = (product: Product) => ({
       name: "Available documents",
       value: product.documents.join(", "),
     },
-    ...product.properties.map((property) => ({
+    ...getPublicCoreProperties(product.properties).map((property) => ({
       "@type": "PropertyValue",
       name: property.label,
       value: `${property.value} ${property.unit}`.trim(),
@@ -230,7 +349,7 @@ export const createEngineeringProductJsonLd = (
         name: "Available documents",
         value: availableDocuments.join(", "),
       },
-      ...document.properties.map((property) => ({
+      ...getPublicCoreProperties(document.properties).map((property) => ({
         "@type": "PropertyValue",
         name: property.label,
         value: `${property.value} ${property.unit}`.trim(),

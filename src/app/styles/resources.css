@@ -1,13 +1,169 @@
 /* Resources are the calm baseline: technical directory first, decoration second. */
-.resource-page-shell.mesh-surface:not(.resource-article-shell) {
+.resource-page-shell.mesh-surface:not(.resource-article-shell):not(
+    .resource-index-shell
+  ) {
   width: 100%;
   max-width: none !important;
   background: #f3f5f7;
   padding: clamp(1.4rem, 3vw, 2.2rem) 0 clamp(3rem, 6vw, 5rem) !important;
 }
 
+.resource-page-shell.mesh-surface.resource-index-shell {
+  width: 100%;
+  max-width: none !important;
+  background: #f3f5f7;
+  padding: 0 0 clamp(3rem, 6vw, 5rem) !important;
+}
+
+.resource-index-shell .resource-index-hero {
+  position: relative;
+  display: grid;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  align-items: center;
+  background: #f3f5f7;
+  padding: clamp(2rem, 4vw, 3.5rem) 0;
+}
+
+.resource-index-hero-card {
+  position: relative;
+  display: grid;
+  width: var(--site-rail-width);
+  min-height: clamp(30rem, 34vw, 34rem);
+  margin: 0 auto;
+  overflow: hidden;
+  align-items: center;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  background: #ffffff;
+  box-shadow: 0 0.25rem 0.5rem rgba(15, 23, 42, 0.045);
+  isolation: isolate;
+}
+
+.resource-index-hero-media {
+  z-index: 0;
+  object-fit: contain;
+  object-position: right center;
+  opacity: 0.42;
+  transform: translateX(clamp(8rem, 10vw, 12rem));
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 24%,
+    #000 52%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) 24%,
+    #000 52%
+  );
+}
+
+.resource-index-hero-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: min(44rem, 58%);
+  margin: 0;
+  padding: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+.resource-index-hero-content > * {
+  max-width: 42rem;
+}
+
+.resource-index-kicker {
+  margin: 0 0 0.9rem;
+  color: #0b5fb8;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.resource-index-hero h1 {
+  margin: 0;
+  color: #07111f;
+  font-size: clamp(2.5rem, 3.3vw, 3.75rem);
+  font-weight: 780;
+  letter-spacing: 0;
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.resource-index-description {
+  margin: 1.25rem 0 0;
+  color: #334155;
+  font-size: clamp(1rem, 1.12vw, 1.16rem);
+  font-weight: 430;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.resource-index-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.72rem;
+  margin-top: 1.7rem;
+}
+
+.resource-index-action {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.72rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.2;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.resource-index-action-primary {
+  border-color: #0b67b1;
+  background: #0b67b1;
+  color: #ffffff;
+}
+
+.resource-index-action-primary:hover,
+.resource-index-action-primary:focus-visible {
+  border-color: #095793;
+  background: #095793;
+}
+
+.resource-index-action-secondary {
+  border-color: rgba(11, 95, 184, 0.34);
+  background: rgba(255, 255, 255, 0.68);
+  color: #0b5fb8;
+}
+
+.resource-index-action-secondary:hover,
+.resource-index-action-secondary:focus-visible {
+  border-color: rgba(11, 95, 184, 0.58);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.resource-index-action:focus-visible {
+  outline: 2px solid #0b5fb8;
+  outline-offset: 0.2rem;
+}
+
 .resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-hero,
+.resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-task-nav,
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-faq-explorer,
 .resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-directory,
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-related-links,
 .resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-cta,
 .resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-module-grid,
 .resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-page-nav {
@@ -16,6 +172,65 @@
   max-width: none;
   margin-right: auto;
   margin-left: auto;
+}
+
+.resource-task-nav {
+  display: flex;
+  min-height: 4.2rem;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3.25rem);
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  white-space: nowrap;
+}
+
+.resource-task-nav > span {
+  color: #526276;
+  font-size: 0.76rem;
+  font-weight: 620;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.resource-task-nav a {
+  position: relative;
+  color: #0f172a;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 560;
+  line-height: 1.2;
+}
+
+.resource-task-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.48rem;
+  left: 0;
+  height: 2px;
+  content: "";
+  background: #0b5fb8;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition:
+    opacity 150ms ease,
+    transform 150ms ease;
+}
+
+.resource-task-nav a:hover,
+.resource-task-nav a:focus-visible {
+  color: #0b5fb8;
+}
+
+.resource-task-nav a:hover::after,
+.resource-task-nav a:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.resource-task-nav a:focus-visible {
+  outline: 2px solid #0b5fb8;
+  outline-offset: 0.24rem;
 }
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-hero {
@@ -49,8 +264,8 @@
 }
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell) .resource-directory {
-  margin-top: clamp(1.2rem, 2.6vw, 1.85rem);
-  border-top-color: rgba(15, 23, 42, 0.12);
+  margin-top: 0;
+  border-top: 0;
 }
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell)
@@ -59,6 +274,16 @@
   gap: clamp(1.4rem, 3.4vw, 3rem);
   border-bottom-color: rgba(15, 23, 42, 0.1);
   padding: clamp(1.35rem, 2.8vw, 2.05rem) 0;
+}
+
+.resource-directory-section-number {
+  display: block;
+  margin-bottom: 0.72rem;
+  color: #0b5fb8;
+  font-size: 0.72rem;
+  font-weight: 680;
+  letter-spacing: 0.08em;
+  line-height: 1;
 }
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell)
@@ -81,17 +306,38 @@
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell)
   .resource-directory-link {
-  grid-template-columns: minmax(12rem, 0.32fr) minmax(0, 1fr);
+  grid-template-columns:
+    minmax(6.75rem, 0.16fr) minmax(12rem, 0.28fr) minmax(0, 1fr)
+    1.1rem;
   gap: clamp(0.9rem, 2vw, 1.5rem);
   border-top-color: rgba(15, 23, 42, 0.1);
-  padding: 0.82rem 0;
+  padding: 0.95rem 0.72rem;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
 }
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell)
   .resource-directory-link:hover,
 .resource-page-shell.mesh-surface:not(.resource-article-shell)
   .resource-directory-link:focus-visible {
+  background: rgba(255, 255, 255, 0.72);
   color: #0b5fb8;
+}
+
+.resource-page-shell.mesh-surface:not(.resource-article-shell)
+  .resource-directory-link:focus-visible {
+  outline: 2px solid #0b5fb8;
+  outline-offset: -2px;
+}
+
+.resource-directory-type {
+  color: #0b5fb8;
+  font-size: 0.68rem;
+  font-weight: 680;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
 }
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell)
@@ -103,11 +349,31 @@
 }
 
 .resource-page-shell.mesh-surface:not(.resource-article-shell)
-  .resource-directory-link
-  em {
+  .resource-directory-description {
   color: #526276;
   font-size: 0.9rem;
+  font-style: normal;
   line-height: 1.5;
+}
+
+.resource-directory-arrow {
+  width: 1rem;
+  height: 1rem;
+  color: #64748b;
+  transition:
+    color 150ms ease,
+    transform 150ms ease;
+}
+
+.resource-directory-link:hover .resource-directory-arrow,
+.resource-directory-link:focus-visible .resource-directory-arrow {
+  color: #0b5fb8;
+  transform: translate(0.12rem, -0.12rem);
+}
+
+.resource-index-shell .resource-cta {
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .resource-article-shell .resource-article-main {
@@ -127,11 +393,86 @@
 }
 
 @media (max-width: 720px) {
+  .resource-index-shell .resource-index-hero {
+    min-height: auto;
+    padding: 1.5rem 0;
+  }
+
+  .resource-index-hero-card {
+    min-height: auto;
+  }
+
+  .resource-index-hero-media {
+    object-position: 72% center;
+    opacity: 0.12;
+    transform: none;
+  }
+
+  .resource-index-hero-content {
+    width: 100%;
+    margin: 0;
+    padding: 1.6rem 1.4rem;
+  }
+
+  .resource-index-hero h1 {
+    font-size: clamp(2.15rem, 10vw, 2.65rem);
+  }
+
+  .resource-index-actions,
+  .resource-index-action {
+    width: 100%;
+  }
+
+  .resource-task-nav {
+    display: flex;
+    gap: 0.6rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    padding: 1rem 0;
+    scrollbar-width: thin;
+    scroll-snap-type: x proximity;
+    white-space: nowrap;
+  }
+
+  .resource-task-nav > span {
+    flex: 0 0 auto;
+    min-height: 2.75rem;
+    align-content: center;
+  }
+
+  .resource-task-nav a {
+    display: inline-flex;
+    flex: 0 0 auto;
+    min-height: 2.75rem;
+    align-items: center;
+    border: 1px solid rgba(0, 94, 184, 0.16);
+    border-radius: 0.28rem;
+    background: #ffffff;
+    font-size: 0.82rem;
+    padding: 0.62rem 0.8rem;
+    scroll-snap-align: start;
+  }
+
   .resource-page-shell.mesh-surface:not(.resource-article-shell)
-    .resource-directory-section,
+    .resource-directory-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .resource-page-shell.mesh-surface:not(.resource-article-shell)
     .resource-directory-link {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 1.1rem;
+    gap: 0.52rem 0.75rem;
+  }
+
+  .resource-directory-type,
+  .resource-directory-link strong,
+  .resource-directory-description {
+    grid-column: 1;
+  }
+
+  .resource-directory-arrow {
+    grid-row: 1;
+    grid-column: 2;
   }
 
   .resource-article-shell .resource-article-main {

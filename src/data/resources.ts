@@ -766,61 +766,7 @@ export const resourceIndexLinks = [
   },
 ];
 
-export const resourceIndexGroups = [
-  {
-    id: "selection-guides",
-    title: "Selection Guides",
-    description:
-      "Start with the molded part, movement, failure risk, and working conditions before narrowing a material direction.",
-    links: resourcePages
-      .filter((page) =>
-        [
-          "material-selection-guide",
-          "wear-resistant-low-friction-pom-selection-guide",
-        ].includes(page.slug),
-      )
-      .map((page) => ({
-        label: page.navLabel,
-        href: `/resources/${page.slug}`,
-        description: page.description,
-      })),
-  },
-  {
-    id: "technical-notes",
-    title: "Processing & Technical Notes",
-    description:
-      "Use these references to review processing, application conditions, and common technical questions before a trial or grade discussion.",
-    links: resourcePages
-      .filter((page) =>
-        ["processing-guide", "application-notes", "faq"].includes(page.slug),
-      )
-      .map((page) => ({
-        label: page.navLabel,
-        href: `/resources/${page.slug}`,
-        description: page.description,
-      })),
-  },
-  {
-    id: "documents-grade-data",
-    title: "Documents & Grade Data",
-    description:
-      "Use grade data, TDS paths, and the POM material-family directory after the material direction has been narrowed.",
-    links: [
-      {
-        label: "Data / TDS Search",
-        href: "/technical-data-sheets",
-        description:
-          "Search grade data, TDS paths, guides, and technical resource references.",
-      },
-      {
-        label: "POM Material Families",
-        href: "/products/categories/pom",
-        description:
-          "Browse POM material families before opening available grade-level details.",
-      },
-    ],
-  },
-];
+export { resourceNavigationGroups as resourceIndexGroups } from "@/data/resourceNavigation";
 
 export const getResourcePage = (slug: string) =>
   resourcePages.find((page) => page.slug === slug);

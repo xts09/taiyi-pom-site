@@ -5,12 +5,19 @@ import { engineeringTdsDocuments } from "@/data/engineeringTds";
 import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
-import { createPageMetadata } from "@/lib/seo";
+import {
+  createBreadcrumbJsonLd,
+  createCollectionPageJsonLd,
+  createPageMetadata,
+} from "@/lib/seo";
+
+const productDirectoryTitle = "Engineering Plastic Product Directory | Taiyi Nano";
+const productDirectoryDescription =
+  "Browse Taiyi Nano modified POM compounds, selected base POM resin, and project-based PA6, PA66, PPA, and PPS engineering plastic compound support.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Engineering Plastic Product Directory | Taiyi Nano",
-  description:
-    "Browse Taiyi Nano modified POM compounds, selected base POM resin, and project-based PA6, PA66, PPA, and PPS engineering plastic compound support.",
+  title: productDirectoryTitle,
+  description: productDirectoryDescription,
   path: "/products",
 });
 
@@ -84,9 +91,31 @@ const productFamilies = [
   },
 ];
 
+const productDirectoryJsonLd = [
+  createBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+  ]),
+  createCollectionPageJsonLd({
+    title: productDirectoryTitle,
+    description: productDirectoryDescription,
+    path: "/products",
+    items: productFamilies.map((family) => ({
+      name: family.title,
+      path: family.href,
+    })),
+  }),
+];
+
 export default function ProductsPage() {
   return (
     <main className="products-index-page min-h-screen text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(productDirectoryJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <ProductPageMotion>
       <section className="product-directory-shell mesh-surface mx-auto max-w-7xl px-5 pb-16 pt-0 sm:px-6 lg:px-8">
         <div id="products-overview" className="product-index-hero products-motion-hero mb-8">

@@ -23,48 +23,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
-    changeFrequency: "monthly" as const,
-    priority: route === "" ? 1 : 0.8,
   }));
 
   const categoryRoutes = productCategoryEntries.map((entry) => ({
     url: `${siteUrl}${entry.path}`,
-    changeFrequency: "monthly" as const,
-    priority: entry.category === "POM" ? 0.85 : 0.75,
   }));
 
   const applicationRoutes = applications.map((application) => ({
     url: `${siteUrl}/applications/${application.slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.74,
   }));
 
   const productRoutes = catalogProducts
     .filter(isCatalogRecordIndexable)
     .map((product) => ({
       url: `${siteUrl}/products/${product.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
     }));
 
   const engineeringTdsRoutes = catalogEngineeringTds
     .filter(isCatalogRecordIndexable)
     .map((document) => ({
       url: `${siteUrl}/products/${document.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.64,
     }));
 
   const resourceRoutes = resourcePages.map((page) => ({
     url: `${siteUrl}/resources/${page.slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.72,
   }));
 
   const technicalLandingRoutes = publicTechnicalLandingLinks.map((page) => ({
     url: `${siteUrl}${page.href}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.78,
   }));
 
   return [

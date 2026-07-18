@@ -7,7 +7,11 @@ import { ResourcePageActions } from "@/components/ResourcePageActions";
 import { ResourceHero } from "@/components/ResourceHero";
 import { getResourcePage, resourcePages } from "@/data/resources";
 import { toResourceSectionId } from "@/lib/resource-page";
-import { createBreadcrumbJsonLd, createPageMetadata } from "@/lib/seo";
+import {
+  createBreadcrumbJsonLd,
+  createPageMetadata,
+  createTechArticleJsonLd,
+} from "@/lib/seo";
 
 type ResourcePageProps = {
   params: Promise<{
@@ -65,6 +69,11 @@ export default async function ResourceDetailPage({
     : usesGuideExplorer
       ? "Technical guide"
       : "Technical resource";
+  const articleJsonLd = createTechArticleJsonLd({
+    title: page.title,
+    description: page.description,
+    path: `/resources/${page.slug}`,
+  });
   const jsonLd = hasFaqItems
     ? [
         breadcrumbJsonLd,
@@ -81,7 +90,7 @@ export default async function ResourceDetailPage({
           })),
         },
       ]
-    : breadcrumbJsonLd;
+    : [breadcrumbJsonLd, articleJsonLd];
 
   return (
     <main

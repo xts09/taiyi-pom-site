@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import {
   createEngineeringTdsSlug,
   engineeringTdsDocuments,
@@ -11,12 +12,19 @@ import {
   parseMfiSearch,
   removeMfiSearch,
 } from "@/lib/mfiSearch";
-import { createPageMetadata } from "@/lib/seo";
+import {
+  createBreadcrumbJsonLd,
+  createPageMetadata,
+  createWebPageJsonLd,
+} from "@/lib/seo";
+
+const technicalDataSheetsTitle = "Technical Resource Search | Taiyi Nano";
+const technicalDataSheetsDescription =
+  "Search Taiyi Nano grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.";
 
 const technicalDataSheetsMetadata: Metadata = createPageMetadata({
-  title: "Technical Resource Search | Taiyi Nano",
-  description:
-    "Search Taiyi Nano grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.",
+  title: technicalDataSheetsTitle,
+  description: technicalDataSheetsDescription,
   path: "/technical-data-sheets",
 });
 
@@ -69,6 +77,97 @@ const contentTypeFilter = {
   ],
 };
 
+const materialFamilyFilter = {
+  title: "Material Family",
+  options: [
+    { label: "All materials", value: "" },
+    { label: "POM", value: "POM" },
+    { label: "PA6", value: "PA6" },
+    { label: "PA66", value: "PA66" },
+    { label: "PPA", value: "PPA" },
+  ],
+};
+
+type MaterialDirectionOption = {
+  label: string;
+  value: string;
+  categories?: readonly string[];
+};
+
+const materialDirectionFilter: {
+  title: string;
+  options: readonly MaterialDirectionOption[];
+} = {
+  title: "Material Direction",
+  options: [
+    { label: "All product directions", value: "" },
+    {
+      label: "Glass fiber reinforced",
+      value: "glass-fiber",
+      categories: [
+        "Glass Fiber Reinforced POM Compound",
+        "Glass Fiber Reinforced",
+        "GF Mineral Reinforced",
+      ],
+    },
+    {
+      label: "Carbon fiber reinforced",
+      value: "carbon-fiber",
+      categories: [
+        "Carbon Fiber Reinforced POM Compound",
+        "Carbon Fiber Reinforced",
+      ],
+    },
+    {
+      label: "Wear / low friction",
+      value: "wear-low-friction",
+      categories: ["Wear-Resistant POM Compound", "Wear Low Friction"],
+    },
+    {
+      label: "Impact modified",
+      value: "impact-modified",
+      categories: ["High-Impact POM Compound", "Impact Modified"],
+    },
+    {
+      label: "Flame retardant",
+      value: "flame-retardant",
+      categories: ["Flame Retardant", "V0 Flame Retardant"],
+    },
+    {
+      label: "Conductive / antistatic",
+      value: "conductive-antistatic",
+      categories: ["Conductive / Antistatic POM Compound"],
+    },
+    {
+      label: "UV resistant",
+      value: "uv-resistant",
+      categories: ["UV-Resistant POM Compound"],
+    },
+    {
+      label: "Mineral / glass bead filled",
+      value: "mineral-filled",
+      categories: [
+        "GF Mineral Reinforced",
+        "Mineral Filled",
+        "Glass Bead Filled",
+      ],
+    },
+    {
+      label: "Mold release",
+      value: "mold-release",
+      categories: ["Mold Release"],
+    },
+    {
+      label: "Base resin",
+      value: "base-resin",
+      categories: ["Base POM Resin"],
+    },
+  ],
+};
+
+const isProductContentType = (resource: string) =>
+  !resource || resource === "grade-data" || resource === "tds";
+
 const searchExamples = [
   { label: "ETM100", href: "/technical-data-sheets?q=ETM100" },
   { label: "MFI 100", href: "/technical-data-sheets?q=MFI+100" },
@@ -103,6 +202,8 @@ type TechnicalDataSheetsPageProps = {
   searchParams?: Promise<{
     q?: string | string[];
     resource?: string | string[];
+    family?: string | string[];
+    direction?: string | string[];
   }>;
 };
 
@@ -111,7 +212,10 @@ export async function generateMetadata({
 }: TechnicalDataSheetsPageProps): Promise<Metadata> {
   const params = searchParams ? await searchParams : {};
   const hasSearchIntent = Boolean(
-    getSearchValue(params.q).trim() || getSearchValue(params.resource).trim(),
+    getSearchValue(params.q).trim() ||
+      getSearchValue(params.resource).trim() ||
+      getSearchValue(params.family).trim() ||
+      getSearchValue(params.direction).trim(),
   );
 
   return {
@@ -133,21 +237,35 @@ export default async function TechnicalDataSheetsPage({
   const params = searchParams ? await searchParams : {};
   const query = getSearchValue(params.q).trim();
   const activeResource = getSearchValue(params.resource).trim();
+  const requestedFamily = getSearchValue(params.family).trim();
+  const requestedDirection = getSearchValue(params.direction).trim();
+  const activeFamily = materialFamilyFilter.options.some(
+    (option) => option.value === requestedFamily,
+  )
+    ? requestedFamily
+    : "";
+  const activeDirection = materialDirectionFilter.options.some(
+    (option) => option.value === requestedDirection,
+  )
+    ? requestedDirection
+    : "";
+  const activeDirectionFilter = materialDirectionFilter.options.find(
+    (option) => option.value === activeDirection,
+  );
   const normalizedQuery = query.toLowerCase();
   const mfiSearch = parseMfiSearch(query);
   const searchTerms = getSearchTerms(query);
   const matchesSearchTerms = (haystack: string) =>
     searchTerms.every((term) => haystack.includes(term));
-  const productResourceAllowed =
-    !activeResource ||
-    activeResource === "grade-data" ||
-    activeResource === "tds";
-  const engineeringGradeAllowed =
-    !activeResource ||
-    activeResource === "grade-data" ||
-    activeResource === "tds";
+  const productResourceAllowed = isProductContentType(activeResource);
+  const engineeringGradeAllowed = isProductContentType(activeResource);
   const searchableEngineeringTds = engineeringGradeAllowed
     ? engineeringTdsDocuments.filter((document) => {
+        const matchesFamily =
+          !activeFamily || document.family === activeFamily;
+        const matchesDirection =
+          !activeDirectionFilter?.categories ||
+          activeDirectionFilter.categories.includes(document.category);
         const haystack = [
           document.grade,
           document.family,
@@ -158,13 +276,19 @@ export default async function TechnicalDataSheetsPage({
           .toLowerCase();
 
         return (
-          !normalizedQuery ||
-          (mfiSearch === null && matchesSearchTerms(haystack))
+          matchesFamily &&
+          matchesDirection &&
+          (!normalizedQuery ||
+            (mfiSearch === null && matchesSearchTerms(haystack)))
         );
       })
     : [];
   const searchableProducts = productResourceAllowed
     ? products.filter((product) => {
+        const matchesFamily = !activeFamily || activeFamily === "POM";
+        const matchesDirection =
+          !activeDirectionFilter?.categories ||
+          activeDirectionFilter.categories.includes(product.category);
         const haystack = [
           product.grade,
           product.title,
@@ -183,41 +307,44 @@ export default async function TechnicalDataSheetsPage({
         const matchesQuery =
           !normalizedQuery || (matchesSearchTerms(haystack) && matchesMfi);
 
-        return matchesQuery;
+        return matchesFamily && matchesDirection && matchesQuery;
       })
     : [];
-  const searchableResources = resourcePages.filter((resource) => {
-    const resourceType = resourceTypeForSlug(resource.slug);
-    const haystack = [
-      resource.title,
-      resource.navLabel,
-      resource.description,
-      resource.intro,
-      resource.modules
-        .map((module) =>
-          [
-            module.title,
-            module.navLabel,
-            module.description,
-            ...(module.points ?? []),
-            ...(module.faqItems ?? []).flatMap((item) => [
-              item.question,
-              item.answer,
-            ]),
-          ].join(" "),
-        )
-        .join(" "),
-    ]
-      .join(" ")
-      .toLowerCase();
-    const matchesQuery =
-      !normalizedQuery ||
-      (mfiSearch === null && matchesSearchTerms(haystack));
-    const matchesResource =
-      !activeResource || resourceType === activeResource;
+  const searchableResources =
+    activeFamily || activeDirection
+      ? []
+      : resourcePages.filter((resource) => {
+          const resourceType = resourceTypeForSlug(resource.slug);
+          const haystack = [
+            resource.title,
+            resource.navLabel,
+            resource.description,
+            resource.intro,
+            resource.modules
+              .map((module) =>
+                [
+                  module.title,
+                  module.navLabel,
+                  module.description,
+                  ...(module.points ?? []),
+                  ...(module.faqItems ?? []).flatMap((item) => [
+                    item.question,
+                    item.answer,
+                  ]),
+                ].join(" "),
+              )
+              .join(" "),
+          ]
+            .join(" ")
+            .toLowerCase();
+          const matchesQuery =
+            !normalizedQuery ||
+            (mfiSearch === null && matchesSearchTerms(haystack));
+          const matchesResource =
+            !activeResource || resourceType === activeResource;
 
-    return matchesQuery && matchesResource;
-  });
+          return matchesQuery && matchesResource;
+        });
   const totalResults =
     searchableProducts.length +
     searchableResources.length +
@@ -227,17 +354,41 @@ export default async function TechnicalDataSheetsPage({
     activeResource &&
       contentTypeFilter.options.find((item) => item.value === activeResource)
         ?.label,
+    activeFamily &&
+      materialFamilyFilter.options.find((item) => item.value === activeFamily)
+        ?.label,
+    activeDirection && activeDirectionFilter?.label,
   ].filter(Boolean);
-  const hasSearchIntent = Boolean(query || activeResource);
-  const getFilterHref = (value: string) => {
+  const hasSearchIntent = Boolean(
+    query || activeResource || activeFamily || activeDirection,
+  );
+  const getFilterHref = ({
+    resource = activeResource,
+    family = activeFamily,
+    direction = activeDirection,
+  }: {
+    resource?: string;
+    family?: string;
+    direction?: string;
+  }) => {
+    const nextResource =
+      (family || direction) && !isProductContentType(resource) ? "" : resource;
     const nextParams = new URLSearchParams();
 
     if (query) {
       nextParams.set("q", query);
     }
 
-    if (value) {
-      nextParams.set("resource", value);
+    if (nextResource) {
+      nextParams.set("resource", nextResource);
+    }
+
+    if (family) {
+      nextParams.set("family", family);
+    }
+
+    if (direction) {
+      nextParams.set("direction", direction);
     }
 
     const nextQuery = nextParams.toString();
@@ -251,19 +402,46 @@ export default async function TechnicalDataSheetsPage({
       ? `Search "${query}" found ${resultCountLabel}`
       : `${resultCountLabel} for selected filters`
     : "Search technical resources";
+  const technicalSearchJsonLd = hasSearchIntent
+    ? null
+    : [
+        createBreadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Resources", path: "/resources" },
+          { name: "Technical Resource Search", path: "/technical-data-sheets" },
+        ]),
+        createWebPageJsonLd({
+          title: technicalDataSheetsTitle,
+          description: technicalDataSheetsDescription,
+          path: "/technical-data-sheets",
+        }),
+      ];
 
   return (
     <main className="resource-search-page">
+      {technicalSearchJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(technicalSearchJsonLd).replace(
+              /</g,
+              "\\u003c",
+            ),
+          }}
+        />
+      ) : null}
       <section
         className="resource-site-hero"
         aria-label="Technical resource search"
       >
         <div className="resource-site-hero-inner">
-          <nav className="resource-site-path" aria-label="Breadcrumb">
-            <Link href="/resources">Resources</Link>
-            <span>/</span>
-            <span>Technical Search</span>
-          </nav>
+          <Breadcrumbs
+            items={[
+              { href: "/resources", label: "Resources" },
+              { label: "Technical Search" },
+            ]}
+            variant="resource"
+          />
 
           <form
             className="resource-site-searchbox"
@@ -284,6 +462,16 @@ export default async function TechnicalDataSheetsPage({
               {activeResource ? (
                 <input type="hidden" name="resource" value={activeResource} />
               ) : null}
+              {activeFamily ? (
+                <input type="hidden" name="family" value={activeFamily} />
+              ) : null}
+              {activeDirection ? (
+                <input
+                  type="hidden"
+                  name="direction"
+                  value={activeDirection}
+                />
+              ) : null}
               <button type="submit">Search</button>
             </div>
             <div className="resource-site-search-examples" aria-label="Search examples">
@@ -300,28 +488,89 @@ export default async function TechnicalDataSheetsPage({
 
       <section className="resource-site-body" aria-label="Technical resources">
         <aside className="resource-site-filter-panel" aria-label="Filters">
-          <div className="resource-site-filter-head">
-            <h2>Filter By</h2>
-            <Link href="/technical-data-sheets">Reset</Link>
-          </div>
+          <details
+            className="resource-site-filter-shell"
+            open={filterSummary.length > 0 ? true : undefined}
+          >
+            <summary>
+              <span>Filters</span>
+              <strong>
+                {filterSummary.length > 0
+                  ? `${filterSummary.length} active`
+                  : "Refine results"}
+              </strong>
+            </summary>
+            <div className="resource-site-filter-inner">
+              <div className="resource-site-filter-head">
+                <h2>Filter By</h2>
+                <Link href="/technical-data-sheets">Reset</Link>
+              </div>
 
-          <section className="resource-site-filter-group">
-            <h3>{contentTypeFilter.title}</h3>
-            <div className="resource-site-filter-options">
-              {contentTypeFilter.options.map((option) => (
-                <Link
-                  key={option.value || "all"}
-                  href={getFilterHref(option.value)}
-                  aria-current={
-                    activeResource === option.value ? "true" : undefined
-                  }
+              <section className="resource-site-filter-group">
+                <h3>{contentTypeFilter.title}</h3>
+                <div className="resource-site-filter-options">
+                  {contentTypeFilter.options.map((option) => (
+                    <Link
+                      key={option.value || "all"}
+                      href={getFilterHref({
+                        resource: option.value,
+                        ...(isProductContentType(option.value)
+                          ? {}
+                          : { family: "", direction: "" }),
+                      })}
+                      aria-current={
+                        activeResource === option.value ? "true" : undefined
+                      }
+                    >
+                      <span aria-hidden="true" />
+                      {option.label}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+
+              <section className="resource-site-filter-group">
+                <h3>{materialFamilyFilter.title}</h3>
+                <div className="resource-site-filter-options">
+                  {materialFamilyFilter.options.map((option) => (
+                    <Link
+                      key={option.value || "all"}
+                      href={getFilterHref({ family: option.value })}
+                      aria-current={
+                        activeFamily === option.value ? "true" : undefined
+                      }
+                    >
+                      <span aria-hidden="true" />
+                      {option.label}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+
+              <section className="resource-site-filter-group">
+                <details
+                  className="resource-site-filter-disclosure"
+                  open={Boolean(activeDirection)}
                 >
-                  <span aria-hidden="true" />
-                  {option.label}
-                </Link>
-              ))}
+                  <summary>{materialDirectionFilter.title}</summary>
+                  <div className="resource-site-filter-options">
+                    {materialDirectionFilter.options.map((option) => (
+                      <Link
+                        key={option.value || "all"}
+                        href={getFilterHref({ direction: option.value })}
+                        aria-current={
+                          activeDirection === option.value ? "true" : undefined
+                        }
+                      >
+                        <span aria-hidden="true" />
+                        {option.label}
+                      </Link>
+                    ))}
+                  </div>
+                </details>
+              </section>
             </div>
-          </section>
+          </details>
         </aside>
 
         <section id="resource-results" className="resource-site-results">
@@ -353,8 +602,9 @@ export default async function TechnicalDataSheetsPage({
             <div className="resource-search-empty">
               <h2>Enter a keyword or choose a filter</h2>
               <p>
-                Search by grade, document path, resource type, or technical
-                topic. Results will appear in this panel.
+                Search by grade, material family, product direction, document
+                path, resource type, or technical topic. Results will appear in
+                this panel.
               </p>
               <div className="resource-empty-quick-links">
                 {emptyQuickLinks.map((item) => (

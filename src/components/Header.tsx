@@ -16,27 +16,13 @@ import {
   type PointerEvent,
 } from "react";
 import { applications } from "@/data/applications";
+import { resourceNavigationGroups } from "@/data/resourceNavigation";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const applicationLinks = applications.map((application) => ({
   label: application.title,
   href: `/applications/${application.slug}`,
 }));
-
-const resourceLinks = [
-  {
-    label: "Selection Guides",
-    href: "/resources#selection-guides",
-  },
-  {
-    label: "Processing & Technical Notes",
-    href: "/resources#technical-notes",
-  },
-  {
-    label: "Documents & Grade Data",
-    href: "/resources#documents-grade-data",
-  },
-];
 
 const productOverviewLinks = [
   {
@@ -102,6 +88,8 @@ const isNodeTarget = (target: EventTarget | null): target is Node =>
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isCurrentSection = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
   const [isOverHomeHero, setIsOverHomeHero] = useState(true);
   const [megaValue, setMegaValue] = useState<MegaValue>("");
   const closeTimerRef = useRef<number | null>(null);
@@ -312,6 +300,7 @@ export function Header() {
           prefetch={false}
           className="brand-mark group inline-flex"
           aria-label="Taiyi Nano home"
+          aria-current={isHome ? "page" : undefined}
         >
           <span className="brand-logo w-[clamp(9.35rem,11.4vw,10.65rem)] max-w-[46vw]">
             <Image
@@ -343,6 +332,9 @@ export function Header() {
                   className="nav-link nav-trigger transition"
                   onPointerEnter={() => updateMegaValue("products")}
                   onFocus={() => updateMegaValue("products")}
+                  aria-current={
+                    isCurrentSection("/products") ? "page" : undefined
+                  }
                 >
                   Products
                 </NavigationMenu.Trigger>
@@ -382,7 +374,7 @@ export function Header() {
                             <span className="mega-category-eyebrow">
                               {item.eyebrow}
                             </span>
-                            <span className="mega-category-title">
+                            <span className="mega-category-title mega-nav-label">
                               {item.label}
                             </span>
                           </Link>
@@ -398,6 +390,9 @@ export function Header() {
                   className="nav-link nav-trigger transition"
                   onPointerEnter={() => updateMegaValue("applications")}
                   onFocus={() => updateMegaValue("applications")}
+                  aria-current={
+                    isCurrentSection("/applications") ? "page" : undefined
+                  }
                 >
                   Applications
                 </NavigationMenu.Trigger>
@@ -434,7 +429,9 @@ export function Header() {
                             className="mega-simple-link"
                             onClick={closeMega}
                           >
-                            <span className="mega-simple-title">{item.label}</span>
+                            <span className="mega-simple-title mega-nav-label">
+                              {item.label}
+                            </span>
                           </Link>
                         ))}
                       </div>
@@ -448,6 +445,9 @@ export function Header() {
                   className="nav-link nav-trigger transition"
                   onPointerEnter={() => updateMegaValue("resources")}
                   onFocus={() => updateMegaValue("resources")}
+                  aria-current={
+                    isCurrentSection("/resources") ? "page" : undefined
+                  }
                 >
                   Resources
                 </NavigationMenu.Trigger>
@@ -475,17 +475,28 @@ export function Header() {
                         </Link>
                       </div>
 
-                      <div className="mega-simple-grid mega-simple-grid-resources">
-                        {resourceLinks.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            prefetch={false}
-                            className="mega-simple-link"
-                            onClick={closeMega}
-                          >
-                            <span className="mega-simple-title">{item.label}</span>
-                          </Link>
+                      <div className="mega-resource-groups">
+                        {resourceNavigationGroups.map((group) => (
+                          <section className="mega-resource-group" key={group.id}>
+                            <span className="mega-resource-group-title">
+                              {group.navigationLabel}
+                            </span>
+                            <div className="mega-resource-links">
+                              {group.links.map((item) => (
+                                <Link
+                                  key={item.href}
+                                  href={item.href}
+                                  prefetch={false}
+                                  className="mega-resource-link"
+                                  onClick={closeMega}
+                                >
+                                  <span className="mega-nav-label">
+                                    {item.label}
+                                  </span>
+                                </Link>
+                              ))}
+                            </div>
+                          </section>
                         ))}
                       </div>
                     </div>
@@ -500,6 +511,9 @@ export function Header() {
                       href={item.href}
                       prefetch={false}
                       className="nav-link nav-trigger transition"
+                      aria-current={
+                        isCurrentSection(item.href) ? "page" : undefined
+                      }
                     >
                       {item.label}
                     </Link>
@@ -514,6 +528,9 @@ export function Header() {
             prefetch={false}
             className="nav-search-button inline-flex items-center justify-center"
             aria-label="Search technical data sheets and resources"
+            aria-current={
+              isCurrentSection("/technical-data-sheets") ? "page" : undefined
+            }
           >
             <Search aria-hidden="true" size={18} strokeWidth={2.1} />
           </Link>
@@ -525,10 +542,11 @@ export function Header() {
           className="mobile-menu relative z-50 lg:hidden"
         >
           <summary className="nav-pill inline-flex cursor-pointer list-none items-center justify-center gap-2 px-3 py-2 text-sm">
-            <span>Menu</span>
-            <span className="grid gap-1" aria-hidden="true">
-              <span className="block h-0.5 w-4 rounded-full bg-cyan-100" />
-              <span className="block h-0.5 w-4 rounded-full bg-cyan-100" />
+            <span className="mobile-menu-label mobile-menu-label-open">Menu</span>
+            <span className="mobile-menu-label mobile-menu-label-close">Close</span>
+            <span className="mobile-menu-icon" aria-hidden="true">
+              <span className="mobile-menu-icon-bar mobile-menu-icon-bar-first" />
+              <span className="mobile-menu-icon-bar mobile-menu-icon-bar-second" />
             </span>
           </summary>
 
@@ -549,6 +567,9 @@ export function Header() {
                     href={item.href}
                     prefetch={false}
                     className="mobile-product-list mb-2 block py-1"
+                    aria-current={
+                      isCurrentSection(item.href) ? "page" : undefined
+                    }
                   >
                     {item.label}
                   </Link>
@@ -560,6 +581,9 @@ export function Header() {
                     href={category.href}
                     prefetch={false}
                     className="mobile-menu-sub-link block py-2"
+                    aria-current={
+                      pathname === category.href ? "page" : undefined
+                    }
                   >
                     {category.label}
                   </Link>
@@ -578,6 +602,9 @@ export function Header() {
                   href="/applications"
                   prefetch={false}
                   className="mobile-product-list mb-2 block py-1"
+                  aria-current={
+                    pathname === "/applications" ? "page" : undefined
+                  }
                 >
                   All Applications
                 </Link>
@@ -588,6 +615,7 @@ export function Header() {
                     href={item.href}
                     prefetch={false}
                     className="mobile-menu-sub-link block py-2"
+                    aria-current={pathname === item.href ? "page" : undefined}
                   >
                     {item.label}
                   </Link>
@@ -606,19 +634,30 @@ export function Header() {
                   href="/resources"
                   prefetch={false}
                   className="mobile-product-list mb-2 block py-1"
+                  aria-current={pathname === "/resources" ? "page" : undefined}
                 >
                   All Resources
                 </Link>
 
-                {resourceLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    prefetch={false}
-                    className="mobile-menu-sub-link block py-2"
-                  >
-                    {item.label}
-                  </Link>
+                {resourceNavigationGroups.map((group) => (
+                  <div className="mobile-resource-group" key={group.id}>
+                    <span className="mobile-resource-group-title">
+                      {group.navigationLabel}
+                    </span>
+                    {group.links.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        prefetch={false}
+                        className="mobile-menu-sub-link block py-2"
+                        aria-current={
+                          pathname === item.href ? "page" : undefined
+                        }
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </div>
                 ))}
               </div>
             </details>
@@ -629,6 +668,9 @@ export function Header() {
                 href={item.href}
                 prefetch={false}
                 className="mobile-menu-primary-link py-3"
+                aria-current={
+                  isCurrentSection(item.href) ? "page" : undefined
+                }
               >
                 {item.label}
               </Link>
@@ -639,7 +681,7 @@ export function Header() {
               prefetch={false}
               className="cta-primary mt-4 px-4 py-3 text-center text-sm"
             >
-              Request Quote
+              Send Requirement
             </Link>
           </nav>
         </details>

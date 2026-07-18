@@ -14,6 +14,7 @@ import {
 } from "@/lib/seo";
 import "./globals.css";
 import "./styles/header.css";
+import "./styles/breadcrumbs.css";
 import "./styles/products.css";
 import "./styles/home.css";
 import "./styles/applications.css";
@@ -59,8 +60,6 @@ export const metadata: Metadata = {
     images: [
       {
         url: defaultOgImage,
-        width: 1200,
-        height: 630,
         alt: "Taiyi Nano POM material manufacturing",
       },
     ],
@@ -105,8 +104,13 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <body className="page-aura min-h-full flex flex-col text-slate-900">
+        <a className="skip-link" href="#main-content">
+          Skip to main content
+        </a>
         <Header />
-        <div className="flex-1">{children}</div>
+        <div id="main-content" className="flex-1" tabIndex={-1}>
+          {children}
+        </div>
         <Footer />
         <GoogleTag />
       </body>

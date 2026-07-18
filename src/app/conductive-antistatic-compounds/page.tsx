@@ -95,7 +95,7 @@ export default function ConductiveAntistaticCompoundsPage() {
                 Explore Grades
               </Link>
               <Link href="/contact" className={styles.secondaryAction}>
-                Discuss Requirement
+                Send Requirement
               </Link>
             </div>
           </div>
