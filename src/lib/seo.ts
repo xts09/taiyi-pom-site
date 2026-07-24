@@ -18,7 +18,7 @@ export const siteName = "Taiyi Nano";
 export const companyName = "Jiangsu Taiyi Nano Technology Co., Ltd.";
 
 export const defaultDescription =
-  "Taiyi Nano manufactures modified POM, PA6, PA66, PPA, and PPS compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
+  "Taiyi Nano manufactures modified POM, PA6, PA66, and PPA compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
 
 export const defaultOgImage = "/factory-hero-no-machine-poster.jpg";
 
@@ -195,7 +195,6 @@ export const organizationJsonLd = {
     "Selected PA6 Modified Material Solutions",
     "Selected PA66 Modified Material Solutions",
     "Selected PPA Modified Material Solutions",
-    "Selected PPS Modified Material Solutions",
   ],
 };
 
@@ -253,10 +252,12 @@ export const createTechArticleJsonLd = ({
   title,
   description,
   path,
+  image,
 }: {
   title: string;
   description: string;
   path: string;
+  image?: string;
 }) => ({
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -265,6 +266,12 @@ export const createTechArticleJsonLd = ({
   url: absoluteUrl(path),
   mainEntityOfPage: absoluteUrl(path),
   inLanguage: "en",
+  isPartOf: {
+    "@type": "WebSite",
+    name: siteName,
+    url: siteUrl,
+  },
+  ...(image ? { image: [absoluteUrl(image)] } : {}),
   author: {
     "@type": "Organization",
     name: companyName,

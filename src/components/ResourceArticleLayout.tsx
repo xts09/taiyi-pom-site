@@ -31,7 +31,8 @@ export function ResourceArticleLayout({ page }: ResourceArticleLayoutProps) {
         sections={articleSections}
         features={page.articleFeatures}
       />
-      <ResourcePageActions relatedLinks={page.relatedLinks} />
+      <div id="resource-article-end" className="h-px" aria-hidden="true" />
+      <ResourcePageActions relatedLinks={page.relatedLinks} variant="article" />
     </ResourceDocumentFrame>
   );
 }

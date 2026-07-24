@@ -1,5 +1,5 @@
 import { ResourceArticleFeature } from "@/components/ResourceArticleFeature";
-import { ResourceHero } from "@/components/ResourceHero";
+import styles from "@/components/ResourceArticle.module.css";
 import type {
   ResourceArticleFeature as ResourceArticleFeatureData,
   ResourceArticleSection,
@@ -32,12 +32,15 @@ export function ResourceArticleContent({
 
   return (
     <>
-      <ResourceHero
-        context="Technical guide"
-        title={title}
-        description={intro}
-        className="resource-article-hero"
-      />
+      <header className="pb-1">
+        <p className="text-sm font-semibold text-sky-700">Technical guide</p>
+        <h1 className="mt-4 w-full font-[var(--font-display)] text-[2.1rem] leading-[1.04] font-bold tracking-[-0.035em] text-slate-950 sm:text-[clamp(2.65rem,3.4vw,3.25rem)]">
+          {title}
+        </h1>
+        <p className="mt-6 max-w-none text-[1.03rem] leading-7 text-pretty text-slate-600 sm:text-[1.14rem] sm:leading-8">
+          {intro}
+        </p>
+      </header>
 
       {introFeatures.map((feature) => (
         <ResourceArticleFeature
@@ -46,12 +49,12 @@ export function ResourceArticleContent({
         />
       ))}
 
-      <article className="resource-article">
+      <article className={styles.article}>
         {sections.map((section) => (
           <section
             id={toResourceSectionId(section.title)}
             key={section.title}
-            className="resource-article-section"
+            className={styles.section}
           >
             <h2>{section.title}</h2>
             {section.paragraphs.map((paragraph) => (

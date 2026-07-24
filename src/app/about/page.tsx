@@ -1,57 +1,109 @@
 import type { Metadata } from "next";
 import {
   AboutHero,
+  AboutIdentity,
+  AboutInquiryBridge,
+  AboutManufacturingPath,
   AboutSnapshot,
   CredentialSupport,
-  FactoryProofRows,
 } from "@/app/about/AboutSections";
 import {
   availableDocuments,
   certifications,
-  companyCapabilities,
   companyFigures,
   factoryImages,
-  factoryProofRows,
   honors,
 } from "@/data/company";
-import { createPageMetadata } from "@/lib/seo";
+import {
+  companyName,
+  createBreadcrumbJsonLd,
+  createPageMetadata,
+  createWebPageJsonLd,
+  siteUrl,
+} from "@/lib/seo";
+import styles from "./AboutPage.module.css";
+
+const aboutDescription =
+  "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., a factory-based manufacturer focused on modified POM and selected engineering plastic compound solutions.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Taiyi Nano | Modified Engineering Plastic Compounds",
-  description:
-    "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., a factory-based manufacturer focused on modified POM and selected engineering plastic compound solutions.",
+  title: "About Us | Taiyi Nano",
+  description: aboutDescription,
   path: "/about",
   image: "/company-profile.webp",
+  imageAlt: "Jiangsu Taiyi Nano factory and engineering plastic compounding operations",
 });
 
+const aboutJsonLd = [
+  {
+    ...createWebPageJsonLd({
+      title: "About Us | Taiyi Nano",
+      description: aboutDescription,
+      path: "/about",
+      image: "/company-profile.webp",
+    }),
+    "@type": "AboutPage",
+    about: {
+      "@type": "Organization",
+      name: companyName,
+      url: siteUrl,
+    },
+  },
+  createBreadcrumbJsonLd([
+    { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
+  ]),
+];
+
 const heroIntro =
-  "Jiangsu Taiyi Nano Technology Co., Ltd. operates factory-based compounding production in Yancheng, Jiangsu, China, focused on modified POM compounds with selected PA6, PA66, PPA, and PPS support for industrial molded parts.";
+  "Jiangsu Taiyi Nano Technology Co., Ltd. operates factory-based compounding production in Yancheng, Jiangsu, China, focused on modified POM compounds with selected PA6, PA66, and PPA support for industrial molded parts.";
 
 const heroImage =
   factoryImages.find((image) => image.placement === "hero") ?? factoryImages[0];
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className={`${styles.page} ${styles.pageLight}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(aboutJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+
       <AboutHero
         heroImage={heroImage}
         intro={heroIntro}
-        title="About Taiyi Nano"
+        title="About Us"
       />
 
-      <section className="site-container about-page-shell">
-        <AboutSnapshot
-          capabilities={companyCapabilities}
-          figures={companyFigures}
-        />
+      <section className={styles.identityBand}>
+        <div className="site-container">
+          <AboutIdentity />
+        </div>
+      </section>
 
-        <FactoryProofRows rows={factoryProofRows} />
+      <section className={styles.snapshotBand}>
+        <div className={`site-container ${styles.snapshotRail}`}>
+          <AboutSnapshot figures={companyFigures} />
+          <AboutManufacturingPath />
+        </div>
+      </section>
 
-        <CredentialSupport
-          availableDocuments={availableDocuments}
-          certifications={certifications}
-          honors={honors}
-        />
+      <section className={styles.inquiryBand}>
+        <div className={`site-container ${styles.inquiryRail}`}>
+          <AboutInquiryBridge />
+        </div>
+      </section>
+
+      <section className={styles.storyBand}>
+        <div className={`site-container ${styles.contentRail}`}>
+          <CredentialSupport
+            availableDocuments={availableDocuments}
+            certifications={certifications}
+            honors={honors}
+          />
+        </div>
       </section>
     </main>
   );

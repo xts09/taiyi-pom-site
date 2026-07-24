@@ -132,7 +132,12 @@ export function ContactInquiryForm() {
         </label>
 
         <label className="contact-field">
-          <span>Company</span>
+          <span>
+            Company{" "}
+            <span aria-hidden="true" className="contact-required-marker">
+              *
+            </span>
+          </span>
           <input
             name="company"
             autoComplete="organization"
@@ -142,7 +147,12 @@ export function ContactInquiryForm() {
         </label>
 
         <label className="contact-field">
-          <span>Email</span>
+          <span>
+            Email{" "}
+            <span aria-hidden="true" className="contact-required-marker">
+              *
+            </span>
+          </span>
           <input
             name="email"
             type="email"
@@ -176,7 +186,12 @@ export function ContactInquiryForm() {
         </label>
 
         <label className="contact-field">
-          <span>Current Material / Grade</span>
+          <span>
+            Current Material / Grade{" "}
+            <span aria-hidden="true" className="contact-required-marker">
+              *
+            </span>
+          </span>
           <input
             name="currentMaterial"
             placeholder="Current grade, resin, or target material"
@@ -185,7 +200,12 @@ export function ContactInquiryForm() {
         </label>
 
         <label className="contact-field">
-          <span>Application / Part</span>
+          <span>
+            Application / Part{" "}
+            <span aria-hidden="true" className="contact-required-marker">
+              *
+            </span>
+          </span>
           <input
             name="application"
             placeholder="Gear, clip, housing..."

@@ -1,7 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { type CSSProperties, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState,
+  type CSSProperties,
+  type ReactNode,
+} from "react";
 import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import {
   createEngineeringTdsSlug,
@@ -15,7 +21,9 @@ import {
   getProductListTitle,
 } from "@/lib/productDisplay";
 import {
+  createCategorySlug,
   getCategoryPath,
+  getCategoryTitle,
   getProductCategoryOrderIndex,
   getProductsByCategory,
   pomProductCategoryData,
@@ -49,15 +57,61 @@ export function ProductGrid({
   showFamilies = true,
   hideGrades = false,
 }: ProductGridProps) {
-  const selectedCategoryGroup = productCategoryGroups[selectedCategory];
+  const [activePomCategory, setActivePomCategory] = useState("POM");
+
+  useEffect(() => {
+    if (selectedCategory !== "POM") {
+      return;
+    }
+
+    const syncCategoryFromUrl = () => {
+      const categoryParam = new URLSearchParams(window.location.search).get(
+        "type",
+      );
+      const matchingCategory = productCategoryOrder.find(
+        (category) => createCategorySlug(category) === categoryParam,
+      );
+
+      setActivePomCategory(matchingCategory ?? "POM");
+    };
+
+    syncCategoryFromUrl();
+    window.addEventListener("popstate", syncCategoryFromUrl);
+
+    return () => {
+      window.removeEventListener("popstate", syncCategoryFromUrl);
+    };
+  }, [selectedCategory]);
+
+  const selectPomCategory = useCallback((category: string) => {
+    setActivePomCategory(category);
+
+    const nextUrl = new URL(window.location.href);
+
+    if (category === "POM") {
+      nextUrl.searchParams.delete("type");
+    } else {
+      nextUrl.searchParams.set("type", createCategorySlug(category));
+    }
+
+    window.history.replaceState(
+      null,
+      "",
+      `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`,
+    );
+  }, []);
+
+  const effectiveCategory =
+    selectedCategory === "POM" ? activePomCategory : selectedCategory;
+  const selectedCategoryGroup = productCategoryGroups[effectiveCategory];
   const isPomSubcategory = productCategoryOrder.includes(selectedCategory);
   const showPomSubcategories =
     showFamilies && (selectedCategory === "POM" || isPomSubcategory);
 
   const sourceProducts =
-    selectedCategory === "POM"
+    effectiveCategory === "POM"
       ? getProductsByCategory(products, "POM")
-      : getProductsByCategory(products, selectedCategory);
+      : getProductsByCategory(products, effectiveCategory);
 
   const sortedProducts = [...sourceProducts].sort((first, second) => {
     const firstIndex = getProductCategoryOrderIndex(first.category);
@@ -70,8 +124,8 @@ export function ProductGrid({
     return firstRank - secondRank;
   });
   const filteredProducts = sortedProducts;
-  const engineeringGrades = getEngineeringTdsByProductCategory(selectedCategory);
-  const isCategoryFiltered = selectedCategory !== "POM";
+  const engineeringGrades = getEngineeringTdsByProductCategory(effectiveCategory);
+  const isCategoryFiltered = effectiveCategory !== "POM";
   const isGroupedCategory = Boolean(selectedCategoryGroup);
   const isEngineeringCategory = engineeringGrades.length > 0;
   const visibleGradeCount = isEngineeringCategory
@@ -94,6 +148,16 @@ export function ProductGrid({
     count: getProductsByCategory(products, item.category).length,
     number: String(index + 1).padStart(2, "0"),
   }));
+  const pomFilterItems = [
+    {
+      category: "POM",
+      label: "All POM Grades",
+      applications: ["Compare every listed POM material direction"],
+      count: getProductsByCategory(products, "POM").length,
+      number: "00",
+    },
+    ...familyItems,
+  ];
   const engineeringDirectionItems = engineeringGrades.map((document) => document.category)
     .filter((category, index, list) => list.indexOf(category) === index)
     .map((category, index) => {
@@ -186,6 +250,27 @@ export function ProductGrid({
 
       {hideGrades ? null : (
         <>
+      {selectedCategory === "POM" ? (
+        <div className="product-directory-filter" aria-label="Filter POM grade data">
+          <span className="product-directory-filter-label">Filter Grade Data</span>
+          <div className="product-directory-filter-options">
+            {pomFilterItems.map((item) => (
+              <button
+                key={item.category}
+                type="button"
+                className={`product-directory-filter-button ${
+                  activePomCategory === item.category ? "is-active" : ""
+                }`}
+                aria-pressed={activePomCategory === item.category}
+                onClick={() => selectPomCategory(item.category)}
+              >
+                <span>{item.label}</span>
+                <b>{item.count}</b>
+              </button>
+            ))}
+          </div>
+        </div>
+      ) : null}
       <div id="pom-grades" className="product-directory-head products-motion-head">
         <div>
           <h2>
@@ -194,7 +279,9 @@ export function ProductGrid({
               : isEngineeringCategory
               ? `${engineeringGrades[0]?.family} Grades`
               : selectedCategory === "POM"
-              ? "POM Grade Data"
+              ? effectiveCategory === "POM"
+                ? "All POM Grade Data"
+                : `${getCategoryTitle(effectiveCategory)} Grades`
               : `${filteredProducts.length} Available Grade${
                   filteredProducts.length === 1 ? "" : "s"
                 }`}
@@ -205,12 +292,23 @@ export function ProductGrid({
               : isEngineeringCategory
               ? "Compare reference grade data from selected engineering plastic compound directions before requesting material review."
               : selectedCategory === "POM"
-              ? "Compare key properties, shrinkage range, color, and application fit."
+              ? effectiveCategory === "POM"
+                ? "Compare all listed POM directions, then narrow the directory by material function."
+                : "Compare the matching grades here, or open the dedicated category page for its technical overview."
               : "Shortlist by properties, tooling fit, shrinkage behavior, then open the grade detail page."}
           </p>
           {selectedCategory === "POM" ? (
             <p className="product-directory-guidance">
-              Not sure which direction fits? <Link href="/contact">Request a grade recommendation.</Link>
+              {effectiveCategory === "POM" ? (
+                <>
+                  Not sure which direction fits?{" "}
+                  <Link href="/contact">Request a grade recommendation.</Link>
+                </>
+              ) : (
+                <Link href={getCategoryPath(effectiveCategory)}>
+                  Open the {getCategoryTitle(effectiveCategory)} category page.
+                </Link>
+              )}
             </p>
           ) : null}
         </div>

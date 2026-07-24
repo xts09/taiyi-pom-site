@@ -13,7 +13,7 @@ import {
 
 const productDirectoryTitle = "Engineering Plastic Product Directory | Taiyi Nano";
 const productDirectoryDescription =
-  "Browse Taiyi Nano modified POM compounds, selected base POM resin, and project-based PA6, PA66, PPA, and PPS engineering plastic compound support.";
+  "Browse Taiyi Nano modified POM compounds, selected base POM resin, and project-based PA6, PA66, and PPA engineering plastic compound support.";
 
 export const metadata: Metadata = createPageMetadata({
   title: productDirectoryTitle,
@@ -79,15 +79,6 @@ const productFamilies = [
     href: "/products/categories/ppa-compound",
     metricValue: engineeringGradeCount("PPA"),
     metricLabel: "reference grades",
-  },
-  {
-    number: "06",
-    title: "PPS Compounds",
-    label: "High-Performance Review",
-    description:
-      "Project-based PPS directions for molded parts requiring heat resistance, chemical resistance, and dimensional control.",
-    href: "/products/categories/pps-compound",
-    metricLabel: "By review",
   },
 ];
 

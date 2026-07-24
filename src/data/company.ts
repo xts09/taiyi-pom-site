@@ -28,6 +28,16 @@ export type FactoryProofRow = {
   points: string[];
 };
 
+export type Certification = {
+  standard: string;
+  system: string;
+  scope: string;
+  certificateNumber: string;
+  validUntil: string;
+  imageSrc: string;
+  documentHref: string;
+};
+
 export const companyFigures: CompanyFigure[] = [
   { label: "Annual Capacity", value: "60,000", note: "Tons / year" },
   {
@@ -48,7 +58,7 @@ export const companyCapabilities: CompanyCapability[] = [
   {
     title: "Modified Material Focus",
     description:
-      "Focused on modified POM compounds for injection molding applications, with selected PA6, PA66, PPA, and PPS compound solutions developed around project requirements.",
+      "Focused on modified POM compounds for injection molding applications, with selected PA6, PA66, and PPA compound solutions developed around project requirements.",
   },
   {
     title: "In-house Production",
@@ -72,7 +82,7 @@ export const companyOverview = [
 
 export const factoryProofRows: FactoryProofRow[] = [
   {
-    title: "Production and Warehouse Control",
+    title: "Production & Warehousing",
     eyebrow: "Factory Base",
     description:
       "Factory-based production and warehouse coordination support repeat industrial supply from material screening through batch communication.",
@@ -87,11 +97,11 @@ export const factoryProofRows: FactoryProofRow[] = [
     ],
   },
   {
-    title: "Twin-Screw Extrusion Capability",
+    title: "Twin-Screw Compounding",
     eyebrow: "Compounding",
     description:
       "In-house twin-screw extrusion lines support modified material compounding, sample evaluation, and practical adjustment around project requirements.",
-    imageSrc: "/factory-extrusion.webp",
+    imageSrc: "/factory-extrusion.png",
     imageAlt: "Taiyi Nano twin-screw extrusion production line",
     imageLabel: "Extrusion Lines",
     imageSide: "left",
@@ -101,7 +111,7 @@ export const factoryProofRows: FactoryProofRow[] = [
     ],
   },
   {
-    title: "Evaluation and Document Support",
+    title: "Testing & Documentation",
     eyebrow: "Project Review",
     description:
       "Testing equipment and document support help engineering teams compare candidate materials before a grade is confirmed for a specific part.",
@@ -117,11 +127,46 @@ export const factoryProofRows: FactoryProofRow[] = [
 ];
 
 export const certifications = [
-  "IATF 16949",
-  "ISO 9001",
-  "ISO 14001",
-  "ISO 45001",
-];
+  {
+    standard: "IATF 16949:2016",
+    system: "Automotive Quality Management",
+    scope:
+      "Manufacture of plastic granules, excluding product design under clause 8.3.",
+    certificateNumber: "135347/A/0001/SM/En",
+    validUntil: "October 8, 2027",
+    imageSrc: "/certificates/iatf-16949-certificate.webp",
+    documentHref: "/certificates/iatf-16949-certificate.pdf",
+  },
+  {
+    standard: "ISO 9001:2015",
+    system: "Quality Management",
+    scope: "Production of nano-polymer materials (plastic particles).",
+    certificateNumber: "30323Q21228R0S",
+    validUntil: "December 7, 2026",
+    imageSrc: "/certificates/iso-9001-certificate.webp",
+    documentHref: "/certificates/iso-9001-certificate.pdf",
+  },
+  {
+    standard: "ISO 14001:2015",
+    system: "Environmental Management",
+    scope:
+      "Environmental management in sales-related areas of nano-polymer materials (plastic particles).",
+    certificateNumber: "30324E20638R0S",
+    validUntil: "June 20, 2027",
+    imageSrc: "/certificates/iso-14001-certificate.webp",
+    documentHref: "/certificates/iso-14001-certificate.pdf",
+  },
+  {
+    standard: "ISO 45001:2018",
+    system: "Occupational Health & Safety",
+    scope:
+      "Occupational health and safety management in sales-related areas of nano-polymer materials (plastic particles).",
+    certificateNumber: "30324S20638R0S",
+    validUntil: "June 20, 2027",
+    imageSrc: "/certificates/iso-45001-certificate.webp",
+    documentHref: "/certificates/iso-45001-certificate.pdf",
+  },
+] satisfies Certification[];
 
 export const availableDocuments = ["TDS", "SDS", "COA", "REACH", "RoHS"];
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { ContactInquiryForm } from "@/components/ContactInquiryForm";
 import { createPageMetadata } from "@/lib/seo";
+import styles from "./ContactPage.module.css";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Contact Taiyi Nano | Material Requirement Request",
@@ -13,9 +14,11 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function ContactPage() {
   return (
-    <main className="contact-page min-h-screen text-slate-900">
-      <section className="mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
-        <div className="inner-hero reveal-up mb-12 max-w-4xl">
+    <main className={`${styles.page} contact-page min-h-screen text-slate-900`}>
+      <section
+        className={`${styles.shell} mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8`}
+      >
+        <div className={`${styles.hero} inner-hero reveal-up mb-12 max-w-4xl`}>
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
             Send Us Your Material Requirements
           </h1>
@@ -27,39 +30,9 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="contact-preflight reveal-up">
-          <div className="contact-preflight-head">
-            <div>
-              <p className="section-kicker">Before You Send</p>
-              <h2>Prepare These Details</h2>
-            </div>
-            <p>
-              These details reduce back-and-forth and help us recommend a better
-              material direction from the first reply.
-            </p>
-          </div>
-
-          <ol className="contact-checklist contact-checklist-compact">
-            {[
-              "Application / Part Type",
-              "Mold Stage / Cavities",
-              "Shrinkage / Warpage",
-              "Current Material",
-              "MFI / Processing",
-              "Color / Documents",
-              "Estimated Volume",
-            ].map((item, index) => (
-              <li key={item} style={{ "--item-index": index } as CSSProperties}>
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                {item}
-              </li>
-            ))}
-          </ol>
-        </div>
-
-        <div className="contact-split stagger-list">
+        <div className={`${styles.workspace} contact-split stagger-list`}>
           <section
-            className="contact-form-panel"
+            className={`${styles.formPanel} contact-form-panel`}
             style={{ "--item-index": 0 } as CSSProperties}
           >
             <p className="section-kicker mb-3">Inquiry Form</p>
@@ -71,12 +44,16 @@ export default function ContactPage() {
               required documents, and estimated volume. If direct delivery is
               unavailable, we will prepare an email draft instead.
             </p>
+            <p className="contact-required-note">
+              Fields marked <span className="contact-required-marker">*</span>{" "}
+              are required.
+            </p>
 
             <ContactInquiryForm />
           </section>
 
           <aside
-            className="contact-identity"
+            className={`${styles.identity} contact-identity`}
             style={{ "--item-index": 1 } as CSSProperties}
           >
             <div className="contact-details">

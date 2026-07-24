@@ -1,11 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ResourceArticleLayout } from "@/components/ResourceArticleLayout";
+import { ResourceCategoryPage } from "@/components/ResourceCategoryPage";
 import { ResourceFaqExplorer } from "@/components/ResourceFaqExplorer";
 import { ResourceGuideExplorer } from "@/components/ResourceGuideExplorer";
 import { ResourcePageActions } from "@/components/ResourcePageActions";
 import { ResourceHero } from "@/components/ResourceHero";
-import { getResourcePage, resourcePages } from "@/data/resources";
+import {
+  getResourceNavigationGroup,
+  getResourceNavigationGroupForHref,
+  getResourceNavigationGroupPath,
+  resourceNavigationGroups,
+} from "@/data/resourceNavigation";
+import {
+  getResourcePage,
+  resourcePages,
+  type ResourcePage,
+} from "@/data/resources";
 import { toResourceSectionId } from "@/lib/resource-page";
 import {
   createBreadcrumbJsonLd,
@@ -22,25 +33,50 @@ type ResourcePageProps = {
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return resourcePages.map((page) => ({
-    slug: page.slug,
-  }));
+  return [
+    ...resourceNavigationGroups.map((group) => ({ slug: group.id })),
+    ...resourcePages.map((page) => ({ slug: page.slug })),
+  ];
 }
+
+const getPrimaryArticleMedia = (page: ResourcePage) => {
+  const feature = page.articleFeatures?.find(
+    (articleFeature) => articleFeature.type === "media",
+  );
+
+  return feature?.type === "media" ? feature : undefined;
+};
 
 export async function generateMetadata({
   params,
 }: ResourcePageProps): Promise<Metadata> {
   const { slug } = await params;
+  const group = getResourceNavigationGroup(slug);
+
+  if (group) {
+    return createPageMetadata({
+      title: `${group.title} Resources | Taiyi Nano`,
+      description: group.description,
+      path: getResourceNavigationGroupPath(group),
+      image: group.image,
+      imageAlt: group.imageAlt,
+    });
+  }
+
   const page = getResourcePage(slug);
 
   if (!page) {
     return {};
   }
 
+  const primaryMedia = getPrimaryArticleMedia(page);
+
   return createPageMetadata({
     title: `${page.title} | Taiyi Nano`,
     description: page.description,
     path: `/resources/${page.slug}`,
+    image: primaryMedia?.src,
+    imageAlt: primaryMedia?.alt,
   });
 }
 
@@ -48,22 +84,39 @@ export default async function ResourceDetailPage({
   params,
 }: ResourcePageProps) {
   const { slug } = await params;
+  const group = getResourceNavigationGroup(slug);
+
+  if (group) {
+    return <ResourceCategoryPage group={group} />;
+  }
+
   const page = getResourcePage(slug);
 
   if (!page) {
     notFound();
   }
 
+  const pagePath = `/resources/${page.slug}`;
+  const pageGroup = getResourceNavigationGroupForHref(pagePath);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Resources", path: "/resources" },
-    { name: page.title, path: `/resources/${page.slug}` },
+    ...(pageGroup
+      ? [
+          {
+            name: pageGroup.title,
+            path: getResourceNavigationGroupPath(pageGroup),
+          },
+        ]
+      : []),
+    { name: page.title, path: pagePath },
   ]);
   const faqItems = page.modules.flatMap((module) => module.faqItems ?? []);
   const hasFaqItems = faqItems.length > 0;
   const usesArticleLayout = Boolean(page.articleSections?.length);
   const usesGuideExplorer = !hasFaqItems && !usesArticleLayout;
   const usesFaqLayout = hasFaqItems || usesGuideExplorer;
+  const primaryMedia = getPrimaryArticleMedia(page);
   const resourceContext = hasFaqItems
     ? "Technical FAQ"
     : usesGuideExplorer
@@ -73,28 +126,36 @@ export default async function ResourceDetailPage({
     title: page.title,
     description: page.description,
     path: `/resources/${page.slug}`,
+    image: primaryMedia?.src,
   });
-  const jsonLd = hasFaqItems
-    ? [
-        breadcrumbJsonLd,
-        {
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: faqItems.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: item.answer,
-            },
-          })),
-        },
-      ]
-    : [breadcrumbJsonLd, articleJsonLd];
+  const jsonLd = [
+    breadcrumbJsonLd,
+    articleJsonLd,
+    ...(hasFaqItems
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: item.answer,
+              },
+            })),
+          },
+        ]
+      : []),
+  ];
 
   return (
     <main
-      className={`min-h-screen text-slate-900${usesArticleLayout ? " resource-article-page" : ""}`}
+      className={
+        usesArticleLayout
+          ? "min-h-screen bg-[#f2f5f7] text-slate-900"
+          : "min-h-screen text-slate-900"
+      }
     >
       <script
         type="application/ld+json"
@@ -104,7 +165,11 @@ export default async function ResourceDetailPage({
       />
 
       <section
-        className={`resource-page-shell${usesArticleLayout ? "" : " mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8"}${usesFaqLayout ? " resource-faq-shell" : ""}${usesArticleLayout ? " resource-article-shell" : ""}`}
+        className={
+          usesArticleLayout
+            ? "w-full bg-[#f2f5f7]"
+            : `resource-page-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8${usesFaqLayout ? " resource-faq-shell" : ""}`
+        }
       >
         {!usesArticleLayout ? (
           <ResourceHero

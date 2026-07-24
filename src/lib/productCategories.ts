@@ -181,19 +181,6 @@ export const productCategoryData: ProductCategoryData[] = [
       "Projects requiring stiffness and dimensional stability beyond standard nylon",
     ],
   },
-  {
-    category: "PPS Compound",
-    label: "PPS Compounds",
-    description:
-      "Review project-based PPS compound directions for molded parts requiring heat resistance, chemical resistance, low moisture uptake, and dimensional control.",
-    navSubtitle:
-      "Discuss PPS compound requirements by heat exposure, chemical contact, dimensional control, and document needs.",
-    applications: [
-      "Valve, pump, and fluid-control components",
-      "Electrical and industrial parts exposed to heat or chemicals",
-      "Projects requiring low moisture uptake and stable molded dimensions",
-    ],
-  },
 ];
 
 export const pomProductCategoryData = productCategoryData.filter(
@@ -202,7 +189,6 @@ export const pomProductCategoryData = productCategoryData.filter(
       "PA6 Compound",
       "PA66 Compound",
       "PPA Compound",
-      "PPS Compound",
     ].includes(item.category)
 );
 

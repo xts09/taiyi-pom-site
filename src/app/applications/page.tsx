@@ -61,7 +61,7 @@ export default function ApplicationsPage() {
               Start with the molded part, not a generic material name. Taiyi Nano
               reviews motion, load, environment, dimensional targets, tooling
               stage, and document needs before narrowing modified POM or selected
-              PA6, PA66, PPA, and PPS directions.
+              PA6, PA66, and PPA directions.
             </p>
 
             <div className="application-index-actions">

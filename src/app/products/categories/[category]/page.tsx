@@ -37,6 +37,14 @@ type ProductCategoryPageProps = {
   }>;
 };
 
+const categorySocialMedia = {
+  "carbon-fiber-reinforced-pom-compound": {
+    image: "/generated/pom-carbon-fiber-reinforced-hero-material-v5.png",
+    imageAlt:
+      "Carbon fiber reinforced POM short-cut black compound pellets from Taiyi Nano",
+  },
+} as const;
+
 export function generateStaticParams() {
   return [
     ...productCategoryEntries.map((entry) => ({ category: entry.slug })),
@@ -71,10 +79,15 @@ export async function generateMetadata({
     };
   }
 
+  const socialMedia = categorySocialMedia[
+    entry.slug as keyof typeof categorySocialMedia
+  ];
+
   return createPageMetadata({
     title: `${getCategoryTitle(entry.category)} | Taiyi Nano`,
     description: getCategoryDescription(entry.category),
     path: entry.path,
+    ...socialMedia,
   });
 }
 
@@ -167,6 +180,7 @@ export default async function ProductCategoryPage({
         ]
       : []),
     ...(!isPomCategory ? [{ href: "#pom-grades", label: "Grades" }] : []),
+    ...(isPomCategory ? [{ href: "#pom-grades", label: "Grades" }] : []),
     { href: "#category-applications", label: "Applications" },
     { href: "#category-faq", label: "FAQ" },
   ];
@@ -255,7 +269,6 @@ export default async function ProductCategoryPage({
 
         <ProductGrid
           products={products}
-          hideGrades={isPomCategory}
           selectedCategory={entry.category}
           showFamilies={entry.category === "POM"}
         />

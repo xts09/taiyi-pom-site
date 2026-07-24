@@ -16,7 +16,10 @@ import {
   type PointerEvent,
 } from "react";
 import { applications } from "@/data/applications";
-import { resourceNavigationGroups } from "@/data/resourceNavigation";
+import {
+  getResourceNavigationGroupPath,
+  resourceNavigationGroups,
+} from "@/data/resourceNavigation";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const applicationLinks = applications.map((application) => ({
@@ -53,11 +56,6 @@ const productCategoryLinks = [
     eyebrow: "Extended review",
   },
   {
-    label: "PPS Compounds",
-    href: getCategoryPath("PPS Compound"),
-    eyebrow: "Extended review",
-  },
-  {
     label: "POM Resin",
     href: getCategoryPath("Base POM Resin"),
     eyebrow: "Supplement",
@@ -66,21 +64,33 @@ const productCategoryLinks = [
 
 const navItems = [
   {
-    label: "About",
-    href: "/about",
-  },
-  {
     label: "Contact",
     href: "/contact",
   },
 ];
 
-type MegaValue = "" | "products" | "applications" | "resources";
+const aboutLinks = [
+  {
+    label: "Company Overview",
+    description: "Who we are, factory scale, certifications, and document support.",
+    href: "/about",
+  },
+  {
+    label: "Manufacturing",
+    description: "Production lines, warehousing, equipment, and project evaluation.",
+    href: "/about/manufacturing-capabilities",
+  },
+];
+
+type MegaValue = "" | "products" | "applications" | "resources" | "about";
 
 const HEADER_SURFACE_HYSTERESIS = 8;
 
 const isMegaValue = (value: string): value is Exclude<MegaValue, ""> =>
-  value === "products" || value === "applications" || value === "resources";
+  value === "products" ||
+  value === "applications" ||
+  value === "resources" ||
+  value === "about";
 
 const isNodeTarget = (target: EventTarget | null): target is Node =>
   target instanceof Node;
@@ -88,6 +98,8 @@ const isNodeTarget = (target: EventTarget | null): target is Node =>
 export function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isAbout = pathname === "/about" || pathname.startsWith("/about/");
+  const hasHeroHeaderSurface = isHome || isAbout;
   const isCurrentSection = (href: string) =>
     pathname === href || pathname.startsWith(`${href}/`);
   const [isOverHomeHero, setIsOverHomeHero] = useState(true);
@@ -98,7 +110,7 @@ export function Header() {
   const megaResizeObserverRef = useRef<ResizeObserver | null>(null);
   const mobileMenuRef = useRef<HTMLDetailsElement | null>(null);
   const activeMega = megaValue || null;
-  const useHeroHeader = isHome && isOverHomeHero;
+  const useHeroHeader = isAbout || (isHome && isOverHomeHero);
 
   const cancelScheduledClose = () => {
     if (closeTimerRef.current === null) {
@@ -200,8 +212,8 @@ export function Header() {
 
     const updateHeaderSurface = () => {
       frame = null;
-      const homeHero = document.querySelector(".home-hero");
-      const heroBottom = homeHero?.getBoundingClientRect().bottom;
+      const heroSurface = document.querySelector(".home-hero");
+      const heroBottom = heroSurface?.getBoundingClientRect().bottom;
       const headerHeight =
         document
           .querySelector(".site-header > .site-container")
@@ -279,6 +291,7 @@ export function Header() {
       ref={headerRef}
       className={[
         "site-header sticky top-0 z-50 text-slate-950",
+        hasHeroHeaderSurface ? "site-header--hero-route" : "",
         isHome ? "site-header--home" : "",
         useHeroHeader ? "site-header--over-hero" : "site-header--solid",
         activeMega ? "site-header--mega-open" : "",
@@ -349,7 +362,7 @@ export function Header() {
                           <span>Product Categories</span>
                           <p>
                             Start with POM, then compare selected PA6, PA66,
-                            PPA and PPS compound directions.
+                            and PPA compound directions.
                           </p>
                         </div>
                         <Link
@@ -475,28 +488,73 @@ export function Header() {
                         </Link>
                       </div>
 
-                      <div className="mega-resource-groups">
+                      <div className="mega-simple-grid mega-simple-grid-resources">
                         {resourceNavigationGroups.map((group) => (
-                          <section className="mega-resource-group" key={group.id}>
+                          <Link
+                            key={group.id}
+                            href={getResourceNavigationGroupPath(group)}
+                            prefetch={false}
+                            className="mega-simple-link"
+                            onClick={closeMega}
+                          >
                             <span className="mega-resource-group-title">
                               {group.navigationLabel}
                             </span>
-                            <div className="mega-resource-links">
-                              {group.links.map((item) => (
-                                <Link
-                                  key={item.href}
-                                  href={item.href}
-                                  prefetch={false}
-                                  className="mega-resource-link"
-                                  onClick={closeMega}
-                                >
-                                  <span className="mega-nav-label">
-                                    {item.label}
-                                  </span>
-                                </Link>
-                              ))}
-                            </div>
-                          </section>
+                            <span className="mega-simple-title mega-nav-label">
+                              {group.title}
+                            </span>
+                            <span className="mega-simple-description">
+                              {group.description}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </NavigationMenu.Content>
+              </NavigationMenu.Item>
+
+              <NavigationMenu.Item value="about">
+                <NavigationMenu.Trigger
+                  className="nav-link nav-trigger transition"
+                  onPointerEnter={() => updateMegaValue("about")}
+                  onFocus={() => updateMegaValue("about")}
+                  aria-current={isCurrentSection("/about") ? "page" : undefined}
+                >
+                  About Us
+                </NavigationMenu.Trigger>
+                <NavigationMenu.Content className="mega-menu mega-menu-content about-menu">
+                  {activeMega === "about" ? (
+                    <div
+                      ref={syncActiveMegaHeight}
+                      className="mega-menu-inner mega-menu-inner-simple"
+                    >
+                      <div className="mega-menu-panel-head">
+                        <div>
+                          <span>Company</span>
+                          <p>
+                            Company profile, manufacturing proof,
+                            certifications, and document support.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="mega-simple-grid mega-simple-grid-about">
+                        {aboutLinks.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            prefetch={false}
+                            className="mega-simple-link"
+                            onClick={closeMega}
+                          >
+                            <span className="mega-simple-title mega-nav-label">
+                              {item.label}
+                            </span>
+                            <span className="mega-simple-description">
+                              {item.description}
+                            </span>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -644,20 +702,44 @@ export function Header() {
                     <span className="mobile-resource-group-title">
                       {group.navigationLabel}
                     </span>
-                    {group.links.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        prefetch={false}
-                        className="mobile-menu-sub-link block py-2"
-                        aria-current={
-                          pathname === item.href ? "page" : undefined
-                        }
-                      >
-                        {item.label}
-                      </Link>
-                    ))}
+                    <Link
+                      href={getResourceNavigationGroupPath(group)}
+                      prefetch={false}
+                      className="mobile-menu-sub-link block py-2"
+                      aria-current={
+                        pathname === getResourceNavigationGroupPath(group)
+                          ? "page"
+                          : undefined
+                      }
+                    >
+                      {group.title}
+                    </Link>
                   </div>
+                ))}
+              </div>
+            </details>
+
+            <details className="mobile-product-group mobile-menu-section py-3">
+              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
+                <span>About Us</span>
+                <span aria-hidden="true">+</span>
+              </summary>
+
+              <div className="mt-3 space-y-1 pl-4">
+                {aboutLinks.map((item, index) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    prefetch={false}
+                    className={
+                      index === 0
+                        ? "mobile-product-list mb-2 block py-1"
+                        : "mobile-menu-sub-link block py-2"
+                    }
+                    aria-current={pathname === item.href ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
                 ))}
               </div>
             </details>

@@ -1,0 +1,54 @@
+:root {
+  --home-color-paper: oklch(98% 0.008 240);
+  --home-color-paper-soft: oklch(95% 0.014 238);
+  --home-color-paper-blue: oklch(92% 0.028 235);
+  --home-color-ink: oklch(18% 0.035 245);
+  --home-color-ink-muted: oklch(47% 0.035 244);
+  --home-color-ink-soft: oklch(62% 0.026 242);
+  --home-color-night: oklch(15% 0.036 245);
+  --home-color-night-2: oklch(21% 0.042 242);
+  --home-color-night-3: oklch(27% 0.045 240);
+  --home-color-white: oklch(99% 0.004 240);
+  --home-color-white-muted: oklch(88% 0.018 235);
+  --home-color-accent: oklch(48% 0.19 253);
+  --home-color-accent-ink: oklch(99% 0.004 240);
+  --home-color-accent-bright: oklch(74% 0.14 221);
+  --home-color-rule: oklch(84% 0.025 238);
+  --home-color-rule-dark: oklch(100% 0 0 / 0.18);
+  --home-color-scrim: oklch(10% 0.025 245 / 0.76);
+  --home-color-scrim-soft: oklch(12% 0.03 245 / 0.48);
+  --home-color-focus: oklch(52% 0.2 245);
+
+  --home-font-display: var(--font-display);
+  --home-font-body: var(--font-geist-sans);
+  --home-font-mono: var(--font-geist-mono);
+
+  --home-space-3xs: 0.25rem;
+  --home-space-2xs: 0.5rem;
+  --home-space-xs: 0.75rem;
+  --home-space-sm: 1rem;
+  --home-space-md: 1.5rem;
+  --home-space-lg: 2rem;
+  --home-space-xl: 3rem;
+  --home-space-2xl: 4.5rem;
+  --home-space-3xl: 7rem;
+
+  --home-text-xs: 0.75rem;
+  --home-text-sm: 0.875rem;
+  --home-text-md: 1rem;
+  --home-text-lg: 1.25rem;
+  --home-text-xl: 1.75rem;
+  --home-text-2xl: 2.5rem;
+  --home-text-display: clamp(3.25rem, 6.1vw, 7rem);
+
+  --home-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --home-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --home-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --home-dur-short: 180ms;
+  --home-dur-medium: 360ms;
+
+  --home-rule-thin: 1px;
+  --home-rule-strong: 2px;
+  --home-radius-card: 0.25rem;
+  --home-radius-pill: 999px;
+}

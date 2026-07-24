@@ -43,7 +43,6 @@ export const metadata: Metadata = {
     "PA6 modified material",
     "PA66 modified material",
     "PPA modified material",
-    "PPS modified material",
     "POM Resin",
     "POM supplier China",
   ],

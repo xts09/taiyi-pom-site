@@ -3,11 +3,18 @@ import Link from "next/link";
 import { Fragment, type CSSProperties } from "react";
 import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
-import { ExportMarketsMap } from "@/components/ExportMarketsMap";
+import { ExportRoutesSection } from "@/components/ExportRoutesSection";
+import { FactoryProofSection } from "@/components/FactoryProofSection";
+import { HomeInquirySection } from "@/components/HomeInquirySection";
 import { HomeMotion } from "@/components/HomeMotion";
-import { SelectionLogicStepper } from "@/components/SelectionLogicStepper";
+import { HomeReviewCard } from "@/components/HomeReviewCard";
+import { HomeStageHeader } from "@/components/HomeStageHeader";
+import { MaterialRangeAccordion } from "@/components/MaterialRangeAccordion";
+import { QualitySystemsSection } from "@/components/QualitySystemsSection";
+import { Button } from "@/components/ui/button";
 import {
   availableDocuments,
+  certifications,
   companyFigures,
   factoryImages,
 } from "@/data/company";
@@ -22,7 +29,7 @@ import { getCategoryPath } from "@/lib/productCategories";
 export const metadata: Metadata = createPageMetadata({
   title: "Modified POM Compounds for Industrial Parts | Taiyi Nano",
   description:
-    "Taiyi Nano manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66, PPA and PPS compound support.",
+    "Taiyi Nano manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compound support.",
   path: "/",
 });
 
@@ -103,19 +110,6 @@ const materialDirections = [
     ],
   },
   {
-    title: "PPS Compounds",
-    description:
-      "Project-based PPS compound support for heat-resistant, chemically exposed, and dimensionally controlled molded parts.",
-    href: getCategoryPath("PPS Compound"),
-    action: "Review PPS Direction",
-    specs: [
-      ["Role", "Extended Capability"],
-      ["Material", "PPS"],
-      ["Fit", "Heat / Chemical Exposure"],
-      ["Review", "Project-Based"],
-    ],
-  },
-  {
     title: "Base POM Resin",
     description:
       "Available as a supplementary sourcing line when customers require selected POM resin supply alongside compound support.",
@@ -132,35 +126,82 @@ const materialDirections = [
 
 const selectionFlow = [
   {
-    title: "Part and Tooling Review",
+    title: "Part and Tooling",
     description:
-      "Part type, mold development stage, cavity count, gate / flow path, movement mode, and assembly environment.",
+      "Part type, mold stage, cavity count, gate, movement mode and assembly environment.",
   },
   {
-    title: "Processing and Shrinkage Targets",
+    title: "Processing and Shrinkage",
     description:
-      "Flowability, filling balance for multi-cavity tooling, molding shrinkage, warpage, dimensional stability, and color requirements.",
+      "Flowability, multi-cavity filling, shrinkage, warpage, dimensional stability and color.",
   },
   {
     title: "Performance Targets",
     description:
-      "Wear resistance, friction, stiffness, impact resistance, conductivity, antistatic performance, and working temperature.",
+      "Wear, friction, stiffness, impact, conductivity, antistatic behavior and working temperature.",
   },
   {
     title: "Grade Direction",
     description:
-      "Grade shortlist based on tool design, shrinkage behavior, property targets, document support, sample discussion, and batch communication.",
+      "A practical shortlist with document, sample and batch follow-up.",
   },
 ];
 
+function QualificationSteps({
+  steps,
+}: {
+  steps: ReadonlyArray<(typeof selectionFlow)[number]>;
+}) {
+  return (
+    <ol className="qualification-steps grid flex-1 xl:grid-rows-4">
+      {steps.map((step, index) => (
+        <li
+          key={step.title}
+          className="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-x-4 gap-y-2 border-t border-white/15 py-5 md:grid-cols-[2.25rem_minmax(15rem,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-x-6 md:py-6"
+        >
+          <span>0{index + 1}</span>
+          <h3>{step.title}</h3>
+          <p className="col-start-2 md:col-start-auto">{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 const operationItems = [
-  "Production Records for Repeat Supply",
-  "Incoming and In-Process Inspection",
-  "Batch Information for Customer Review",
-  "Document Support for Qualification",
+  {
+    label: "Record",
+    title: "Production Records",
+    detail:
+      "Batch and production context for repeat supply and follow-up qualification.",
+  },
+  {
+    label: "Inspection",
+    title: "Incoming & In-Process Inspection",
+    detail: "Incoming checks and in-process inspection context.",
+  },
+  {
+    label: "Batch",
+    title: "Batch Review",
+    detail:
+      "Batch information for purchasing and engineering review before release.",
+  },
+  {
+    label: "Documents",
+    title: "Qualification Documents",
+    detail:
+      "TDS, SDS, COA, REACH and RoHS available with the grade review.",
+  },
 ];
 
-const heroTitle = "Modified POM Compounds for Industrial Parts";
+const inquiryChecklist = [
+  "Part function and movement mode",
+  "Mold / processing constraints",
+  "Target properties or current failure point",
+  "Required documents and sample timing",
+];
+
+const heroTitle = "POM Compounds for Demanding Parts.";
 
 const heroTitleWords = (() => {
   let letterIndex = 0;
@@ -174,15 +215,12 @@ const heroTitleWords = (() => {
   }));
 })();
 
-const heroTitleLines = [
-  heroTitleWords.slice(0, 3),
-  heroTitleWords.slice(3),
-];
+const heroTitleLines = [heroTitleWords.slice(0, 2), heroTitleWords.slice(2)];
 
 export default function Home() {
   return (
     <HomeMotion>
-      <main className="home-cinema min-h-screen overflow-hidden text-white">
+      <main className="home-cinema home-redesign min-h-screen overflow-hidden text-white">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -206,20 +244,15 @@ export default function Home() {
               media="(min-width: 520px)"
             />
           </video>
-          <div className="home-noise" />
-          <div className="polymer-field" aria-hidden="true">
-            {Array.from({ length: 13 }).map((_, index) => (
-              <span
-                key={index}
-                style={{ "--particle-index": index } as CSSProperties}
-              />
-            ))}
-          </div>
-
-          <div className="site-container flex items-center py-14">
-            <div className="home-hero-content relative z-10 w-full">
+          <div className="site-container home-hero-grid">
+            <div className="home-hero-content relative z-10">
               <p className="hero-eyebrow hero-motion-kicker">
-                Factory-Based Engineering Plastic Compounder
+                <span className="hero-eyebrow-desktop">
+                  Modified engineering plastics from Yancheng, China
+                </span>
+                <span className="hero-eyebrow-mobile">
+                  Engineering plastics from Yancheng
+                </span>
               </p>
 
               <h1
@@ -256,29 +289,33 @@ export default function Home() {
               </h1>
 
               <div className="hero-support-motion">
-                <p className="hero-motion-copy hero-readable-copy mt-6 max-w-2xl text-base leading-8 sm:text-[1.05rem]">
+                <p className="hero-motion-copy hero-readable-copy">
                   Taiyi Nano manufactures wear-resistant, low-friction,
                   reinforced and conductive POM compounds for precision molded
-                  parts. Selected PA6, PA66, PPA and PPS compounds are available
-                  for project review.
+                  parts, with PA6, PA66, PPA and PPS available by project.
                 </p>
 
-                <div className="hero-motion-actions mt-8 flex flex-wrap gap-3">
-                  <Link
-                    href="/products"
-                    className="cta-primary hero-cta-primary px-6 py-3 text-sm"
+                <div className="hero-motion-actions">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="cta-primary hero-cta-primary h-auto"
                   >
-                    Explore Products
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="hero-cta-link px-2 py-3 text-sm"
+                    <Link href="/products">Browse material range</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="hero-cta-link h-auto"
                   >
-                    Send Requirement
-                  </Link>
+                    <Link href="/contact">Send Requirement</Link>
+                  </Button>
                 </div>
               </div>
             </div>
+
+            <HomeReviewCard className="hero-review-card-desktop" />
           </div>
         </section>
 
@@ -287,199 +324,128 @@ export default function Home() {
           supportingFigures={supportingFigures}
         />
 
-        <section className="home-section product-current relative py-14">
-          <div className="site-container product-current-inner">
-            <div className="product-current-head">
-              <div className="product-current-copy">
-                <p className="section-kicker mb-3">Product Portfolio</p>
-                <h2>Material Portfolio Structure</h2>
-                <p>
-                  Modified compounds are the main line. POM resin is shown as a
-                  supplementary product line for selected sourcing requirements.
-                </p>
+        <div className="home-review-mobile-shell">
+          <div className="site-container">
+            <HomeReviewCard className="hero-review-card-mobile" />
+          </div>
+        </div>
 
-                <div className="product-current-aside">
-                  <div className="document-line">
-                    Available Material Documents:{" "}
-                    <span>{availableDocuments.join(" / ")}</span>.
-                  </div>
+        <section className="home-stage product-current">
+          <span id="materials" className="home-section-anchor" aria-hidden="true" />
+          <div className="site-container">
+            <HomeStageHeader
+              title="Material Range"
+              className="product-current-head"
+            >
+              <p>
+                POM compounds lead the range, with selected PA6, PA66 and PPA
+                directions for project review. Base POM resin supports
+                supplementary sourcing.
+              </p>
+              <div className="document-support">
+                <span className="document-support-label">Document support</span>
+                <div
+                  className="document-tags"
+                  aria-label="Available material documents"
+                >
+                  {availableDocuments.map((document) => (
+                    <span key={document}>{document}</span>
+                  ))}
+                </div>
+              </div>
+            </HomeStageHeader>
 
-                  <div className="product-current-actions">
-                    <Link href="/products" className="text-link">
-                      View Complete Material List &rarr;
+            <div className="product-catalogue">
+              <article className="product-core">
+                <p>Core product line</p>
+                <h3>{materialDirections[0].title}</h3>
+                <p>{materialDirections[0].description}</p>
+                <ul aria-label="POM compound directions">
+                  <li>Wear resistance</li>
+                  <li>Low friction</li>
+                  <li>Reinforcement</li>
+                  <li>Conductive / antistatic</li>
+                </ul>
+                <div>
+                  <Button
+                    asChild
+                    className="catalogue-primary-link h-auto rounded-sm"
+                  >
+                    <Link href={materialDirections[0].href}>
+                      {materialDirections[0].action} &rarr;
                     </Link>
-                    <Link href="/contact" className="text-link">
-                      Send Requirement &rarr;
+                  </Button>
+                  <Button
+                    asChild
+                    variant="link"
+                    className="catalogue-secondary-link h-auto"
+                  >
+                    <Link href="/products">Complete material list</Link>
+                  </Button>
+                </div>
+              </article>
+
+              <MaterialRangeAccordion
+                directions={materialDirections.slice(1)}
+              />
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="grade-review"
+          className="home-stage qualification-sequence overflow-clip text-white"
+        >
+          <div className="site-container">
+            <div className="qualification-layout grid grid-cols-1 gap-10 xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] xl:items-stretch xl:gap-14">
+              <figure className="qualification-visual relative m-0 min-h-[21rem] overflow-hidden rounded-[var(--home-radius-card)] sm:min-h-[27rem] xl:min-h-[32rem]">
+                <Image
+                  src={publicPath(factoryImages[1].src)}
+                  alt={factoryImages[1].alt}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 47vw"
+                  className="object-cover"
+                />
+                <figcaption>{factoryImages[1].label}</figcaption>
+              </figure>
+
+              <div className="qualification-feature-panel flex min-w-0 flex-col">
+                <header className="qualification-heading">
+                  <div className="stage-heading-main">
+                    <h2>Grade Qualification</h2>
+                  </div>
+                  <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
+                    <p className="qualification-intro">
+                      The review starts with the part and tooling, then narrows the
+                      material direction against processing and performance targets.
+                    </p>
+                    <Link
+                      href="/applications"
+                      className="qualification-link inline-flex min-h-11 items-center justify-self-start"
+                    >
+                      Browse application directions &rarr;
                     </Link>
                   </div>
+                </header>
+
+                <div className="qualification-path flex min-w-0 flex-1 flex-col">
+                  <QualificationSteps steps={selectionFlow} />
                 </div>
               </div>
             </div>
-
-            <div className="product-stream">
-              {materialDirections.map((direction, index) => (
-                <details
-                  key={direction.title}
-                  className="product-disclosure"
-                  open={index === 0}
-                  style={{ "--item-index": index } as CSSProperties}
-                >
-                  <summary className="product-disclosure-summary">
-                    <span className="product-index">0{index + 1}</span>
-
-                    <span className="product-line-main">
-                      <h3>{direction.title}</h3>
-                      <span>{direction.specs[0][1]}</span>
-                    </span>
-
-                    <span className="product-disclosure-hint">
-                      View Direction
-                    </span>
-
-                    <span className="product-arrow" aria-hidden="true">
-                      +
-                    </span>
-                  </summary>
-
-                  <div className="product-disclosure-body">
-                    <div>
-                      <p>{direction.description}</p>
-
-                      <dl className="product-specs">
-                        {direction.specs.slice(1).map(([label, value]) => (
-                          <div key={label}>
-                            <dt>{label}</dt>
-                            <dd>{value}</dd>
-                          </div>
-                        ))}
-                      </dl>
-
-                      <Link href={direction.href} className="text-link">
-                        {direction.action} &rarr;
-                      </Link>
-                    </div>
-                  </div>
-                </details>
-              ))}
-            </div>
           </div>
         </section>
 
-        <section className="home-section selection-corridor py-20">
-          <div className="site-container grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-            <div className="section-motion-copy selection-motion-copy">
-              <p className="section-kicker mb-3">Selection Logic</p>
-              <h2 className="text-3xl sm:text-4xl">
-                Material Review Before Recommendation
-              </h2>
-              <p className="mt-5 max-w-xl">
-                We evaluate the molded part together with mold development,
-                cavity layout, shrinkage behavior, working conditions, and
-                performance targets before recommending a practical grade
-                direction.
-              </p>
+        <FactoryProofSection
+          images={[factoryImages[2], factoryImages[0], factoryImages[3]]}
+          evidence={operationItems}
+        />
 
-              <Link
-                href="/applications"
-                className="selection-corridor-link mt-6 inline-flex"
-              >
-                Browse Application Areas &rarr;
-              </Link>
-            </div>
+        <QualitySystemsSection certifications={certifications} />
 
-            <SelectionLogicStepper steps={selectionFlow} />
-          </div>
-        </section>
+        <ExportRoutesSection markets={exportMarkets} />
 
-        <section className="home-section factory-sequence py-20">
-          <div className="site-container">
-            <div className="factory-lead">
-              <div className="section-motion-copy operation-motion-copy">
-                <p className="section-kicker mb-3">Operations</p>
-                <h2>Manufacturing and Quality Communication</h2>
-                <p>
-                  Production and testing information helps purchasing teams,
-                  distributors, and engineering teams compare materials and
-                  qualify supply routes with less friction.
-                </p>
-              </div>
-
-              <div className="operation-stack">
-                {operationItems.map((item, index) => (
-                  <p
-                    key={item}
-                    style={{ "--item-index": index } as CSSProperties}
-                  >
-                    {item}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            <div className="factory-film">
-              {factoryImages.map((image, index) => (
-                <figure
-                  key={image.src}
-                  className={
-                    index === 0
-                      ? "factory-frame factory-frame-large"
-                      : "factory-frame"
-                  }
-                  style={{ "--item-index": index } as CSSProperties}
-                >
-                  <Image
-                    src={publicPath(image.src)}
-                    alt={image.alt}
-                    fill
-                    sizes={
-                      index === 0
-                        ? "(min-width: 1024px) 50vw, 100vw"
-                        : "(min-width: 1024px) 24vw, 100vw"
-                    }
-                    className="object-cover"
-                  />
-                  <figcaption>{image.label}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="home-section global-footprint">
-          <div className="site-container global-footprint-inner">
-            <div className="global-footprint-copy">
-              <p className="section-kicker">Global Supply Footprint</p>
-              <h2>Export Markets</h2>
-              <p>
-                Current supply routes cover Europe, South Korea and South
-                America for project-based material communication.
-              </p>
-
-              <dl className="export-market-summary">
-                {exportMarkets.map((market) => (
-                  <div key={market.region}>
-                    <dt>{market.region}</dt>
-                    <dd>{market.coverage}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-
-            <ExportMarketsMap />
-          </div>
-        </section>
-
-        <section className="home-inquiry">
-          <div className="site-container home-inquiry-inner">
-            <div>
-              <p>Material Review</p>
-              <h2>Have a part or material requirement?</h2>
-            </div>
-            <Link href="/contact" className="home-inquiry-action">
-              Send Requirement
-            </Link>
-          </div>
-        </section>
+        <HomeInquirySection checklist={inquiryChecklist} />
 
       </main>
     </HomeMotion>

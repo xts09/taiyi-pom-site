@@ -2,6 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Mail, Phone } from "lucide-react";
 import { applications } from "@/data/applications";
+import {
+  getResourceNavigationGroupPath,
+  resourceNavigationGroups,
+} from "@/data/resourceNavigation";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const footerColumns = [
@@ -12,7 +16,6 @@ const footerColumns = [
       { href: getCategoryPath("PA6 Compound"), label: "PA6 Compounds" },
       { href: getCategoryPath("PA66 Compound"), label: "PA66 Compounds" },
       { href: getCategoryPath("PPA Compound"), label: "PPA Compounds" },
-      { href: getCategoryPath("PPS Compound"), label: "PPS Compounds" },
       { href: getCategoryPath("Base POM Resin"), label: "POM Resin" },
     ],
   },
@@ -25,22 +28,15 @@ const footerColumns = [
   },
   {
     title: "Resources",
-    links: [
-      { href: "/resources#selection-guides", label: "Selection Guides" },
-      {
-        href: "/resources#technical-notes",
-        label: "Processing & Technical Notes",
-      },
-      {
-        href: "/resources#documents-grade-data",
-        label: "Documents & Grade Data",
-      },
-    ],
+    links: resourceNavigationGroups.map((group) => ({
+      href: getResourceNavigationGroupPath(group),
+      label: group.title,
+    })),
   },
   {
     title: "Company",
     links: [
-      { href: "/about", label: "About Taiyi Nano" },
+      { href: "/about", label: "About Us" },
       { href: "/contact", label: "Contact Sales" },
       { href: "/products", label: "Product Portfolio" },
       { href: "/applications", label: "Application Areas" },

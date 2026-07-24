@@ -496,10 +496,9 @@
   .products-motion-root
     .product-category-shell
     .product-category-hero-glass-fiber-reinforced-pom-compound {
-    background-color: #e8eef2;
-    background-position: center top;
-    background-size: 100% auto;
-    padding-top: 10rem;
+    background-color: #f3f5f7;
+    background-image: none;
+    padding-top: clamp(1rem, 2.2vw, 1.55rem);
   }
 
   .products-motion-root
@@ -535,7 +534,11 @@
   .products-motion-root .product-filter-rail {
     flex-wrap: nowrap;
     overflow-x: auto;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+  }
+
+  .products-motion-root .product-filter-rail::-webkit-scrollbar {
+    display: none;
   }
 
   .products-motion-root .product-filter-link {
@@ -664,12 +667,24 @@
 
 .products-motion-root
   .product-category-hero-glass-fiber-reinforced-pom-compound {
-  background: url("/generated/pom-glass-fiber-pellets-hero-v2.webp") center
-    right / cover no-repeat;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(248, 250, 252, 0.94) 0%,
+      rgba(248, 250, 252, 0.82) 43%,
+      rgba(248, 250, 252, 0.18) 70%,
+      rgba(248, 250, 252, 0.02) 100%
+    ),
+    url("/generated/applications/automotive/automotive-application-scene.webp")
+      center right / cover no-repeat;
 }
 
 .products-motion-root
-  .product-category-hero-carbon-fiber-reinforced-pom-compound,
+  .product-category-hero-carbon-fiber-reinforced-pom-compound {
+  background: url("/generated/pom-carbon-fiber-reinforced-hero-material-v5.png")
+    center right / cover no-repeat;
+}
+
 .products-motion-root .product-category-hero-conductive-antistatic-pom-compound,
 .products-motion-root .product-category-hero-uv-resistant-pom-compound {
   background: url("/generated/pom-black-pellets-hero.webp") center right / cover
@@ -727,6 +742,15 @@
   font-size: clamp(2.25rem, 4.2vw, 3.75rem);
   line-height: 1;
   white-space: normal;
+}
+
+@media (min-width: 64rem) {
+  .products-motion-root
+    .product-category-hero-glass-fiber-reinforced-pom-compound
+    h1 {
+    max-width: none;
+    font-size: clamp(2.25rem, 3.7vw, 3.5rem);
+  }
 }
 
 .products-motion-root .product-hero-card > p:not(.product-hero-eyebrow) {
@@ -1800,6 +1824,67 @@
   color: #0b5fb8;
 }
 
+.products-motion-root .product-directory-filter {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.8rem 1.1rem;
+  align-items: center;
+  padding: clamp(1rem, 2vw, 1.35rem) 0 0.45rem;
+}
+
+.products-motion-root .product-directory-filter-label {
+  color: #1f252d;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.products-motion-root .product-directory-filter-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.products-motion-root .product-directory-filter-button {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  min-height: 2.15rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 0.35rem;
+  background: rgba(255, 255, 255, 0.74);
+  padding: 0.45rem 0.62rem;
+  color: #475569;
+  font-size: 0.74rem;
+  font-weight: 720;
+  line-height: 1.15;
+  cursor: pointer;
+}
+
+.products-motion-root .product-directory-filter-button b {
+  color: #64748b;
+  font-size: 0.66rem;
+}
+
+.products-motion-root .product-directory-filter-button:hover,
+.products-motion-root .product-directory-filter-button.is-active {
+  border-color: #0b5fb8;
+  background: #0b5fb8;
+  color: #ffffff;
+}
+
+.products-motion-root .product-directory-filter-button:hover b,
+.products-motion-root .product-directory-filter-button.is-active b {
+  color: #dbeafe;
+}
+
+.products-motion-root .product-directory-filter-button:focus-visible {
+  outline: 2px solid #0b5fb8;
+  outline-offset: 2px;
+}
+
 .products-motion-root .product-application-directory {
   display: grid;
   min-height: clamp(24rem, 58vh, 38rem);
@@ -2370,6 +2455,26 @@
   .tds-results-head {
     align-items: start;
     flex-direction: column;
+  }
+
+  .products-motion-root .product-directory-filter {
+    display: block;
+  }
+
+  .products-motion-root .product-directory-filter-options {
+    margin-top: 0.65rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+
+  .products-motion-root
+    .product-directory-filter-options::-webkit-scrollbar {
+    display: none;
+  }
+
+  .products-motion-root .product-directory-filter-button {
+    flex: 0 0 auto;
   }
 }
 
@@ -3683,7 +3788,10 @@
   border: 0;
   border-bottom: 1px solid rgba(15, 23, 42, 0.12);
   border-radius: 0;
-  background: transparent;
+  background:
+    url("/generated/landing/pom-satin-wave-background-v1.webp") center 58% /
+      cover no-repeat,
+    #f8f8f6;
   padding: clamp(2.25rem, 5vw, 4.1rem) 0 clamp(1.85rem, 3.6vw, 2.75rem);
 }
 

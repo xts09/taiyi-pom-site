@@ -6,6 +6,10 @@ import {
   isCatalogRecordIndexable,
 } from "@/data/catalog";
 import { publicTechnicalLandingLinks } from "@/data/pomLandingPages";
+import {
+  getResourceNavigationGroupPath,
+  resourceNavigationGroups,
+} from "@/data/resourceNavigation";
 import { resourcePages } from "@/data/resources";
 import { productCategoryEntries } from "@/lib/productCategories";
 import { siteUrl } from "@/lib/seo";
@@ -20,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/resources",
     "/technical-data-sheets",
     "/about",
+    "/about/manufacturing-capabilities",
     "/contact",
   ].map((route) => ({
     url: `${siteUrl}${route}`,
@@ -49,6 +54,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${siteUrl}/resources/${page.slug}`,
   }));
 
+  const resourceCategoryRoutes = resourceNavigationGroups.map((group) => ({
+    url: `${siteUrl}${getResourceNavigationGroupPath(group)}`,
+  }));
+
   const technicalLandingRoutes = publicTechnicalLandingLinks.map((page) => ({
     url: `${siteUrl}${page.href}`,
   }));
@@ -59,6 +68,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...productRoutes,
     ...engineeringTdsRoutes,
     ...applicationRoutes,
+    ...resourceCategoryRoutes,
     ...resourceRoutes,
     ...technicalLandingRoutes,
   ];
