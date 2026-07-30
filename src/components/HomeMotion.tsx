@@ -27,7 +27,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
           ?.querySelector<HTMLElement>(".selection-corridor")
           ?.classList.add("is-flow-active");
         gsap.set(
-          ".hero-video, .hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .hero-review-card, .manufacturing-base .base-figure, .manufacturing-base .base-metric, .section-motion-copy, .product-current-head, .product-disclosure, .product-portfolio-explorer, .selection-stepper, .flow-point, .operation-stack article, .factory-frame, .cta-ribbon",
+          ".hero-video, .hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .hero-review-card, .manufacturing-base [data-slot='metric-item'], .section-motion-copy, .product-current-head, .product-disclosure, .product-portfolio-explorer, .selection-stepper, .flow-point, .operation-stack article, .factory-frame, .cta-ribbon, .certification-heading, .certificate-document, .home-inquiry-copy, .home-inquiry-panel",
           { autoAlpha: 1, x: 0, y: 0, scale: 1, filter: "none" },
         );
         return;
@@ -185,6 +185,80 @@ export function HomeMotion({ children }: HomeMotionProps) {
         });
 
         playWhenScreenVisible(productSection, playProductMotion);
+      }
+
+      const certificationSection = root?.querySelector<HTMLElement>(
+        ".quality-systems-section",
+      );
+      const certificationHeading = certificationSection?.querySelector<HTMLElement>(
+        ".certification-heading",
+      );
+      const certificateDocuments = certificationSection
+        ? gsap.utils.toArray<HTMLElement>(
+            ".certificate-document",
+            certificationSection,
+          )
+        : [];
+
+      if (
+        certificationSection &&
+        certificationHeading &&
+        certificateDocuments.length > 0
+      ) {
+        gsap.set(certificationHeading, { autoAlpha: 0.72, y: 12 });
+        gsap.set(certificateDocuments, { autoAlpha: 0.72, y: 18 });
+
+        playWhenScreenVisible(certificationSection, () => {
+          gsap
+            .timeline({ defaults: { ease: "power3.out", overwrite: true } })
+            .to(certificationHeading, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.48,
+            })
+            .to(
+              certificateDocuments,
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.46,
+                stagger: 0.06,
+              },
+              "-=0.24",
+            );
+        });
+      }
+
+      const inquirySection = root?.querySelector<HTMLElement>(".home-inquiry");
+      const inquiryCopy = inquirySection?.querySelector<HTMLElement>(
+        ".home-inquiry-copy",
+      );
+      const inquiryPanel = inquirySection?.querySelector<HTMLElement>(
+        ".home-inquiry-panel",
+      );
+
+      if (inquirySection && inquiryCopy && inquiryPanel) {
+        gsap.set(inquiryCopy, { autoAlpha: 0.76, x: -14 });
+        gsap.set(inquiryPanel, { autoAlpha: 0.76, x: 14 });
+
+        playWhenScreenVisible(inquirySection, () => {
+          gsap
+            .timeline({ defaults: { ease: "power3.out", overwrite: true } })
+            .to(inquiryCopy, {
+              autoAlpha: 1,
+              x: 0,
+              duration: 0.52,
+            })
+            .to(
+              inquiryPanel,
+              {
+                autoAlpha: 1,
+                x: 0,
+                duration: 0.52,
+              },
+              "-=0.34",
+            );
+        });
       }
 
       ScrollTrigger.refresh();

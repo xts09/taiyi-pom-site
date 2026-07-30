@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
 import { ContactInquiryForm } from "@/components/ContactInquiryForm";
+import { PageHero } from "@/components/PageHero";
+import { Card } from "@/components/ui/card";
 import { createPageMetadata } from "@/lib/seo";
 import styles from "./ContactPage.module.css";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Contact Taiyi Nano | Material Requirement Request",
+  title: "Contact Taiyi Plastic | Material Requirement Request",
   description:
     "Contact Jiangsu Taiyi Nano Technology Co., Ltd. for modified POM, engineering plastic compounds, POM resin, material recommendations, documents, samples, and project evaluation.",
   path: "/contact",
@@ -18,39 +20,34 @@ export default function ContactPage() {
       <section
         className={`${styles.shell} mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8`}
       >
-        <div className={`${styles.hero} inner-hero reveal-up mb-12 max-w-4xl`}>
-          <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
-            Send Us Your Material Requirements
-          </h1>
-
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-            Send the application, current material, mold stage, target
-            properties, document needs, and estimated volume for a faster
-            material review.
-          </p>
-        </div>
+        <PageHero
+          variant="editorial"
+          className={`${styles.hero} inner-hero reveal-up mb-12 max-w-4xl`}
+          title="Request a Material Review"
+          description="Tell us what the part does and what you need from the material. We will reply with a practical starting point."
+        />
 
         <div className={`${styles.workspace} contact-split stagger-list`}>
-          <section
-            className={`${styles.formPanel} contact-form-panel`}
-            style={{ "--item-index": 0 } as CSSProperties}
-          >
-            <p className="section-kicker mb-3">Inquiry Form</p>
-            <h2 className="text-2xl font-semibold text-slate-950">
-              Request Material Review
-            </h2>
-            <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-700">
-              Share the part, current material, mold stage, target properties,
-              required documents, and estimated volume. If direct delivery is
-              unavailable, we will prepare an email draft instead.
-            </p>
-            <p className="contact-required-note">
-              Fields marked <span className="contact-required-marker">*</span>{" "}
-              are required.
-            </p>
+          <Card asChild variant="soft">
+            <section
+              className={styles.formPanel}
+              style={{ "--item-index": 0 } as CSSProperties}
+            >
+              <h2 className="text-2xl font-semibold text-slate-950">
+                Start with the essentials
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-700">
+                Company, email, and application are enough to start. Add
+                technical details only if you already have them.
+              </p>
+              <p className="contact-required-note">
+                Fields marked <span className="contact-required-marker">*</span>{" "}
+                are required.
+              </p>
 
-            <ContactInquiryForm />
-          </section>
+              <ContactInquiryForm />
+            </section>
+          </Card>
 
           <aside
             className={`${styles.identity} contact-identity`}
@@ -75,8 +72,8 @@ export default function ContactPage() {
 
                 <div className="contact-detail-item">
                   <p className="font-semibold text-slate-950">Email</p>
-                  <a href="mailto:xiatianshi@jstynm.com">
-                    xiatianshi@jstynm.com
+                  <a href="mailto:sales@taiyiplastic.com">
+                    sales@taiyiplastic.com
                   </a>
                 </div>
 
@@ -103,16 +100,14 @@ export default function ContactPage() {
                 Response and Support
               </p>
               <ul>
-                <li>Tooling and shrinkage-aware material direction review</li>
-                <li>TDS / SDS / COA / REACH / RoHS support</li>
-                <li>Sample and grade recommendation discussion</li>
-                <li>Typical response within 1 business day</li>
+                <li>Material direction and grade discussion</li>
+                <li>Technical documents confirmed by grade and project</li>
               </ul>
             </div>
 
             <div className="contact-direct-links">
               <a
-                href="mailto:xiatianshi@jstynm.com?subject=Material%20Requirement%20Request&body=Dear%20Ethan%2C%0D%0A%0D%0AWe%20would%20like%20to%20review%20a%20modified%20material%20requirement.%0D%0A%0D%0AApplication%3A%0D%0AMold%20stage%20and%20cavity%20count%3A%0D%0AShrinkage%20or%20warpage%20concern%3A%0D%0ACurrent%20material%20or%20reference%20grade%3A%0D%0AKey%20requirements%3A%0D%0AEstimated%20volume%3A%0D%0ADestination%20country%3A%0D%0A%0D%0ARegards%2C"
+                href="mailto:sales@taiyiplastic.com?subject=Material%20Requirement%20Request&body=Dear%20Ethan%2C%0D%0A%0D%0AApplication%20or%20part%3A%0D%0AMaterial%20or%20current%20grade%3A%0D%0AKey%20requirements%3A%0D%0ADocument%20needs%3A%0D%0A%0D%0ARegards%2C"
                 className="cta-secondary px-6 py-3 text-sm"
               >
                 Email Directly

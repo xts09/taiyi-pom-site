@@ -16,9 +16,10 @@
   "colors": [
     "Natural"
   ],
-  "description": "Very high-flow base POM resin grade for flow-sensitive injection molded parts and general industrial applications.",
+  "description": "Very high-flow POM resin grade for thin-wall and flow-sensitive injection-molded parts.",
   "features": [
     "Very high flow",
+    "Thin-wall molding direction",
     "Injection molding",
     "Natural color"
   ],
@@ -195,5 +196,9 @@
   ],
   "tds": {
     "status": "data-only"
+  },
+  "seo": {
+    "title": "ETM750 High-Flow POM for Injection Molding | Taiyi Plastic",
+    "description": "ETM750 is a very high-flow POM grade for thin-wall and flow-sensitive injection-molded parts. Review technical data and request sample evaluation."
   }
 }

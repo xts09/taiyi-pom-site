@@ -9,16 +9,16 @@ import { productCategoryOrder } from "@/lib/productCategories";
 import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
 
 const rawSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.taiyipom.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.taiyiplastic.com";
 
 export const siteUrl = rawSiteUrl.replace(/\/$/, "");
 
-export const siteName = "Taiyi Nano";
+export const siteName = "Taiyi Plastic";
 
 export const companyName = "Jiangsu Taiyi Nano Technology Co., Ltd.";
 
 export const defaultDescription =
-  "Taiyi Nano manufactures modified POM, PA6, PA66, and PPA compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
+  "Taiyi Plastic manufactures modified POM, PA6, PA66, and PPA compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
 
 export const defaultOgImage = "/factory-hero-no-machine-poster.jpg";
 
@@ -179,12 +179,12 @@ export const organizationJsonLd = {
     addressRegion: "Jiangsu",
     addressCountry: "CN",
   },
-  email: "xiatianshi@jstynm.com",
+  email: "sales@taiyiplastic.com",
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "xiatianshi@jstynm.com",
+      email: "sales@taiyiplastic.com",
       telephone: "+86-18796418919",
       availableLanguage: ["en", "zh"],
     },

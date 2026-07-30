@@ -11,9 +11,12 @@ import {
   type ApplicationImage,
   type ApplicationItem,
 } from "@/data/applications";
+import { ActionPanel } from "@/components/ActionPanel";
 import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { MediaFigure } from "@/components/MediaFigure";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { publicPath } from "@/lib/paths";
 import {
   createBreadcrumbJsonLd,
@@ -50,7 +53,6 @@ type MaterialDirectionCardData = {
   key: string;
   condition: string;
   directionName: string;
-  directionNote?: string;
   href?: string;
   image?: ApplicationImage;
   isPrimaryDirection: boolean;
@@ -61,7 +63,11 @@ type MaterialDirectionCardData = {
 type ApplicationUseCardData = {
   key: string;
   description: string;
-  image?: ApplicationImage;
+  image?: {
+    src: string;
+    alt: string;
+  };
+  index: number;
   title: string;
 };
 
@@ -123,10 +129,6 @@ const automotiveReviewFocus = [
   "Mold shrinkage | fit consistency",
   "Warpage control | tooling validation",
 ];
-
-const applicationUseFallbackTitles: Record<string, readonly string[]> = {
-  automotive: ["Interior Mechanisms"],
-};
 
 const applicationVisualConfigs: Partial<
   Record<string, ApplicationVisualConfig>
@@ -293,7 +295,6 @@ const splitDirectionLabel = (label: string) => {
 
 const getMaterialDirectionCards = (
   application: ApplicationItem,
-  partFitItems: readonly string[],
   visualConfig?: ApplicationVisualConfig,
 ): MaterialDirectionCardData[] =>
   application.materialDirections.map((direction, index) => {
@@ -301,12 +302,8 @@ const getMaterialDirectionCards = (
 
     return {
       key: direction.label,
-      condition:
-        partFitItems[index] ??
-        getCyclicItem(selectionBasis, index) ??
-        "Material review focus",
+      condition: direction.keyUse,
       directionName: directionLabel.name,
-      directionNote: directionLabel.note,
       href: direction.href,
       image: getCyclicItem(application.images, index),
       isPrimaryDirection: visualConfig?.primaryDirectionIndex === index,
@@ -318,77 +315,62 @@ const getMaterialDirectionCards = (
 
 const getApplicationUseCards = (
   application: ApplicationItem,
-  engineeringGroups: readonly ApplicationEngineeringGroup[],
-): ApplicationUseCardData[] => {
-  const typicalParts = engineeringGroups[0]?.items ?? [];
-  const performanceNeeds = getPerformanceItems(engineeringGroups);
-  const fallbackItems = typicalParts.length > 0 ? typicalParts : selectionBasis;
-  const cardImages = application.productExamples ?? application.images;
-  const cardCount = application.productExamples?.length ?? Math.max(application.images.length, 4);
-  const fallbackTitles = applicationUseFallbackTitles[application.slug] ?? [];
-
-  return Array.from({ length: cardCount }, (_, index) => {
-    const fallbackImage =
-      !application.productExamples &&
-      index >= application.images.length &&
-      application.heroImage
-        ? {
-            src: application.heroImage.src,
-            alt: application.heroImage.alt,
-            label:
-              fallbackTitles[index - application.images.length] ??
-              application.title,
-          }
-        : undefined;
-    const image = cardImages[index] ?? fallbackImage;
-
-    return {
-      key: `${image?.label ?? application.title}-${index}`,
-      description:
-        image?.description ??
-        getCyclicItem(performanceNeeds, index) ??
-        getCyclicItem(fallbackItems, index) ??
-        application.description,
-      image,
-      title:
-        image?.label ??
-        fallbackTitles[index - application.images.length] ??
-        getCyclicItem(typicalParts, index) ??
-        application.title,
-    };
-  });
-};
+): ApplicationUseCardData[] =>
+  application.parts.map((part, index) => ({
+    key: `${part.label}-${index}`,
+    description: part.description,
+    image: part.image,
+    index,
+    title: part.label,
+  }));
 
 function ApplicationUseCard({
   description,
   image,
+  index,
   title,
 }: ApplicationUseCardData) {
   return (
-    <article className="application-use-card">
-      {image ? (
-        <div className="application-use-card-media">
-          <Image
-            src={publicPath(image.src)}
-            alt={image.alt}
-            fill
-            sizes="(min-width: 1280px) 310px, (min-width: 768px) 42vw, 92vw"
-            className="object-contain"
+    <Card asChild variant="standard">
+      <article
+        className={cx(
+          "application-use-card",
+          !image && "application-use-card-without-image",
+        )}
+      >
+        {image ? (
+          <MediaFigure
+            variant="landscape"
+            fit="contain"
+            className="application-use-card-media"
+            media={
+              <Image
+              src={publicPath(image.src)}
+              alt={image.alt}
+              fill
+              sizes="(min-width: 1280px) 310px, (min-width: 768px) 42vw, 92vw"
+              className="object-contain"
+              />
+            }
           />
-        </div>
-      ) : null}
+        ) : null}
 
-      <div className="application-use-card-body">
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <a href="#review-checklist">
-          Discover More
-          <span aria-hidden="true" className="application-use-card-arrow">
-            →
-          </span>
-        </a>
-      </div>
-    </article>
+        <CardContent className="application-use-card-body">
+          <div className="application-use-card-meta">
+            <span>Typical part</span>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+          </div>
+          <h3>{title}</h3>
+          <p>{description}</p>
+          <a href="#review-checklist">
+            Review material direction
+            <span aria-hidden="true" className="application-use-card-arrow">
+              -&gt;
+            </span>
+          </a>
+        </CardContent>
+      </article>
+    </Card>
   );
 }
 
@@ -457,7 +439,7 @@ export async function generateMetadata({
 
   if (!application) {
     return {
-      title: "Page Not Found | Taiyi Nano",
+      title: "Page Not Found | Taiyi Plastic",
       robots: {
         index: false,
         follow: false,
@@ -466,7 +448,7 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: `${application.title} | Taiyi Nano`,
+    title: `${application.title} | Taiyi Plastic`,
     description: `${application.description} Review relevant modified POM material directions, typical parts, and application selection factors.`,
     path: `/applications/${application.slug}`,
     image: application.heroImage?.src,
@@ -491,13 +473,9 @@ export default async function ApplicationDetailPage({
   const detailHeroImage = application.detailHeroImage ?? application.heroImage;
   const materialDirectionCards = getMaterialDirectionCards(
     application,
-    partFitItems,
     visualConfig,
   );
-  const applicationUseCards = getApplicationUseCards(
-    application,
-    engineeringGroups,
-  );
+  const applicationUseCards = getApplicationUseCards(application);
   const pagePath = `/applications/${application.slug}`;
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
@@ -579,10 +557,20 @@ export default async function ApplicationDetailPage({
             </div>
 
             <div className="application-hero-cta">
-              <Link href="/contact">Send Requirement</Link>
-              <Link href="/technical-data-sheets">
-                Search Data / TDS
-              </Link>
+              <Button
+                asChild
+                size="applicationHero"
+                variant="applicationHeroPrimary"
+              >
+                <Link href="/contact">Send Requirement</Link>
+              </Button>
+              <Button
+                asChild
+                size="applicationHero"
+                variant="applicationHeroSecondary"
+              >
+                <Link href="/technical-data-sheets">Search Data / TDS</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -706,11 +694,26 @@ export default async function ApplicationDetailPage({
           }
           data-application-motion
         >
+          <div className="application-use-head">
+            <div>
+              <p className="section-kicker">Typical Parts</p>
+              <h2>
+                Representative parts for {application.title.toLowerCase()}.
+              </h2>
+            </div>
+            <p>
+              Use the part geometry, load, movement, and environment as the
+              starting point. Final material selection remains grade- and
+              project-specific.
+            </p>
+          </div>
+
           <div className="application-use-grid">
             {applicationUseCards.map((card) => (
               <ApplicationUseCard
                 key={card.key}
                 image={card.image}
+                index={card.index}
                 title={card.title}
                 description={card.description}
               />
@@ -748,24 +751,33 @@ export default async function ApplicationDetailPage({
           </div>
         </section>
 
-        <MaterialRecommendationCta
+        <ActionPanel
           id="material-evaluation"
-          kicker="Material Evaluation"
+          variant="recommendation"
           title="Ready to narrow the material direction?"
           className={
             visualAssets
               ? "application-review-cta application-brief-cta"
               : "application-review-cta"
           }
-          actionLabel="Send Requirement"
-          actionClassName="shrink-0 px-7"
+          eyebrow="Material Evaluation"
+          eyebrowClassName="section-kicker mb-3"
+          action={
+            <Button
+              asChild
+              variant="inverse"
+              className="h-auto px-7 py-3 text-sm"
+            >
+              <Link href="/contact">Send Requirement</Link>
+            </Button>
+          }
           data-application-motion
         >
           <p>
             Share the part, condition, and target. We will help screen the
             suitable modified POM direction.
           </p>
-        </MaterialRecommendationCta>
+        </ActionPanel>
       </section>
     </main>
   );

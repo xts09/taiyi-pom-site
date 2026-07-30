@@ -15,9 +15,9 @@ export function HomeReviewCard({ className }: HomeReviewCardProps) {
         className,
       )}
       role="complementary"
-      aria-label="Project review inputs"
+      aria-label="Material screening inputs"
     >
-      <p>Review starts with the part</p>
+      <p>Screening starts with the part</p>
       <dl>
         <div>
           <dt>Motion</dt>
@@ -32,7 +32,7 @@ export function HomeReviewCard({ className }: HomeReviewCardProps) {
           <dd>Samples, TDS, COA and batch context</dd>
         </div>
       </dl>
-      <Link href="/applications">See application directions &rarr;</Link>
+      <Link href="/applications">See application requirements &rarr;</Link>
     </Card>
   );
 }

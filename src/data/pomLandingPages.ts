@@ -96,7 +96,7 @@ export const pomLandingPages = {
   modifiedPomCompounds: {
     slug: "modified-pom-compounds",
     title: "Modified POM Technical Overview",
-    metaTitle: "Modified POM Technical Overview | Taiyi Nano",
+    metaTitle: "Modified POM Technical Overview | Taiyi Plastic",
     metaDescription:
       "Screen Taiyi modified POM directions for wear-resistant, low-friction, reinforced, conductive, antistatic, impact, UV, low-odor, and high-flow molded parts.",
     eyebrow: "Technical Screening Page",
@@ -186,7 +186,7 @@ export const pomLandingPages = {
   wearLowFrictionPom: {
     slug: "wear-resistant-low-friction-pom",
     title: "Wear-Resistant and Low-Friction POM",
-    metaTitle: "Wear-Resistant Low-Friction POM Compound | Taiyi Nano",
+    metaTitle: "Wear-Resistant Low-Friction POM Compound | Taiyi Plastic",
     metaDescription:
       "Review Taiyi wear-resistant and low-friction POM material directions for gears, bushings, rollers, sliding parts, and motion components.",
     eyebrow: "Motion Components",
@@ -296,7 +296,7 @@ export const pomLandingPages = {
   conductiveAntistaticPom: {
     slug: "conductive-antistatic-pom",
     title: "Conductive and Antistatic POM",
-    metaTitle: "Conductive and Antistatic POM Compound | Taiyi Nano",
+    metaTitle: "Conductive and Antistatic POM Compound | Taiyi Plastic",
     metaDescription:
       "Review Taiyi conductive and antistatic POM directions for charge-control molded parts, electrical components, and functional precision applications.",
     eyebrow: "Charge-Control POM",
@@ -390,9 +390,9 @@ export const pomLandingPages = {
   pomGradeCrossReference: {
     slug: "pom-grade-cross-reference",
     title: "POM Grade Cross-Reference",
-    metaTitle: "POM Grade Cross-Reference for Material Review | Taiyi Nano",
+    metaTitle: "POM Grade Cross-Reference for Material Review | Taiyi Plastic",
     metaDescription:
-      "Use Taiyi Nano's POM grade cross-reference page for preliminary material screening, current grade review, document requests, and sample discussion.",
+      "Use Taiyi Plastic's POM grade cross-reference page for preliminary material screening, current grade review, document requests, and sample discussion.",
     eyebrow: "Preliminary Material Screening",
     intro:
       "This cross-reference page is for early material discussion only. The current public catalogue confirms Taiyi material directions, but it does not publish direct equivalence against third-party grade names. Similar grade names or data points do not confirm final replacement.",

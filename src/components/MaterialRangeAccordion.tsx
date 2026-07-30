@@ -58,7 +58,6 @@ export function MaterialRangeAccordion({
               <span className="product-line-title">{direction.title}</span>
               <span>{direction.specs[0][1]}</span>
             </span>
-            <span className="product-disclosure-hint">Review line</span>
           </AccordionTrigger>
 
           <AccordionContent className="product-disclosure-body">

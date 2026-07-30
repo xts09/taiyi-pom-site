@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -255,6 +255,12 @@ export function Header() {
   }, [isHome]);
 
   const updateMegaValue = (value: string) => {
+    if (value === "") {
+      cancelScheduledClose();
+      setMegaValue("");
+      return;
+    }
+
     if (!isMegaValue(value)) {
       return;
     }
@@ -312,7 +318,7 @@ export function Header() {
           href="/"
           prefetch={false}
           className="brand-mark group inline-flex"
-          aria-label="Taiyi Nano home"
+          aria-label="Taiyi Plastic home"
           aria-current={isHome ? "page" : undefined}
         >
           <span className="brand-logo w-[clamp(9.35rem,11.4vw,10.65rem)] max-w-[46vw]">
@@ -743,6 +749,18 @@ export function Header() {
                 ))}
               </div>
             </details>
+
+            <Link
+              href="/technical-data-sheets"
+              prefetch={false}
+              className="mobile-menu-primary-link mobile-menu-search-link py-3"
+              aria-current={
+                isCurrentSection("/technical-data-sheets") ? "page" : undefined
+              }
+            >
+              <Search aria-hidden="true" size={16} strokeWidth={2.1} />
+              <span>Search Data / TDS</span>
+            </Link>
 
             {navItems.map((item) => (
               <Link

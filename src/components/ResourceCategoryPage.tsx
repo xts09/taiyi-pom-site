@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { ActionPanel } from "@/components/ActionPanel";
 import { ResourceHero } from "@/components/ResourceHero";
+import { Button } from "@/components/ui/button";
 import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
@@ -25,7 +26,7 @@ export function ResourceCategoryPage({ group }: ResourceCategoryPageProps) {
       { name: group.title, path },
     ]),
     createCollectionPageJsonLd({
-      title: `${group.title} Resources | Taiyi Nano`,
+      title: `${group.title} Resources | Taiyi Plastic`,
       description: group.description,
       path,
       items: group.links.map((item) => ({
@@ -104,16 +105,27 @@ export function ResourceCategoryPage({ group }: ResourceCategoryPageProps) {
           </section>
         </section>
 
-        <MaterialRecommendationCta
-          kicker="Technical Review"
+        <ActionPanel
+          variant="recommendation"
           title="Need Help Choosing a Starting Point?"
           className="selection-support-band resource-cta mt-12"
+          eyebrow="Technical Review"
+          eyebrowClassName="section-kicker mb-3"
+          action={
+            <Button
+              asChild
+              variant="inverse"
+              className="h-auto px-7 py-3 text-sm"
+            >
+              <Link href="/contact">Send Requirement</Link>
+            </Button>
+          }
         >
           <p>
             Share the part, current material, target property, process, and
             document needs for a project-based material review.
           </p>
-        </MaterialRecommendationCta>
+        </ActionPanel>
       </section>
     </main>
   );

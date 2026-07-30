@@ -35,31 +35,69 @@ export function SecondarySectionNav({
   const prefix = variant === "product" ? "product" : "application";
 
   return (
-    <section className={`${prefix}-section-nav`} aria-label={ariaLabel}>
-      <div className={`${prefix}-section-nav-top`}>
-        <div className={`${prefix}-section-identity`}>
-          <p>
+    <section
+      className={`${prefix}-section-nav`}
+      aria-label={ariaLabel}
+      data-slot="secondary-section-nav"
+      data-variant={variant}
+    >
+      <div
+        className={`${prefix}-section-nav-top`}
+        data-slot="secondary-section-nav-top"
+      >
+        <div
+          className={`${prefix}-section-identity`}
+          data-slot="secondary-section-identity"
+        >
+          <p data-slot="secondary-section-title">
             <span
               className={`${prefix}-section-title-marker`}
+              data-slot="secondary-section-marker"
               aria-hidden="true"
             />
-            <span className={`${prefix}-section-title-text`}>{title}</span>
+            <span
+              className={`${prefix}-section-title-text`}
+              data-slot="secondary-section-title-text"
+            >
+              {title}
+            </span>
           </p>
-          <span className={`${prefix}-section-subtitle`}>{subtitle}</span>
+          <span
+            className={`${prefix}-section-subtitle`}
+            data-slot="secondary-section-subtitle"
+          >
+            {subtitle}
+          </span>
         </div>
 
-        <div className={`${prefix}-section-actions`}>
-          {actions.map((action) => (
-            <Link key={action.href} href={action.href}>
+        <div
+          className={`${prefix}-section-actions`}
+          data-slot="secondary-section-actions"
+        >
+          {actions.map((action, index) => (
+            <Link
+              key={action.href}
+              href={action.href}
+              data-slot="secondary-section-action"
+              data-priority={index === 0 ? "primary" : "secondary"}
+            >
               {action.label}
             </Link>
           ))}
         </div>
       </div>
 
-      <nav className={`${prefix}-section-tabs`} aria-label="Page sections">
+      <nav
+        className={`${prefix}-section-tabs`}
+        aria-label="Page sections"
+        data-slot="secondary-section-tabs"
+      >
         {tabs.map((tab) => (
-          <a key={tab.href} href={tab.href}>
+          <a
+            key={tab.href}
+            href={tab.href}
+            data-slot="secondary-section-tab"
+          >
             {tab.label}
           </a>
         ))}

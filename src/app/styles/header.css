@@ -170,9 +170,9 @@
 .nav-link {
   position: relative;
   color: var(--nav-ink);
-  font-family: var(--font-display);
+  font-family: var(--font-nav);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
   line-height: 1.15;
   transition:
@@ -229,7 +229,7 @@
   transform: scaleX(1);
 }
 
-.nav-link--active::after {
+.nav-link[aria-current="page"]::after {
   opacity: 1;
   transform: scaleX(1);
 }
@@ -410,9 +410,9 @@
 .mega-menu-panel-head span {
   display: block;
   color: var(--nav-accent);
-  font-family: var(--font-display);
-  font-size: 0.64rem;
-  font-weight: 520;
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -422,7 +422,7 @@
   max-width: 17rem;
   margin-top: 0.64rem;
   color: rgba(238, 246, 250, 0.82);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
 }
@@ -440,8 +440,8 @@
   padding: 0.32rem 0;
   border-radius: 999px;
   color: rgba(248, 252, 255, 0.96);
-  font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-family: var(--font-nav);
+  font-size: 0.9375rem;
   font-weight: 500;
   letter-spacing: 0;
   line-height: 1;
@@ -503,9 +503,9 @@
 
 .mega-resource-group-title {
   color: var(--nav-accent);
-  font-family: var(--font-display);
-  font-size: 0.61rem;
-  font-weight: 500;
+  font-family: var(--font-nav);
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.07em;
   line-height: 1;
   text-transform: uppercase;
@@ -551,7 +551,7 @@
   border-radius: 0.34rem;
   background: transparent;
   color: rgba(238, 246, 250, 0.9);
-  font-family: var(--font-display);
+  font-family: var(--font-nav);
   transition:
     background 150ms ease,
     color 150ms ease,
@@ -567,8 +567,8 @@
 
 .mega-simple-title {
   color: rgba(255, 255, 255, 0.96);
-  font-size: 0.94rem;
-  font-weight: 480;
+  font-size: 0.9375rem;
+  font-weight: 500;
   letter-spacing: 0;
   line-height: 1.22;
 }
@@ -576,7 +576,7 @@
 .mega-simple-description {
   max-width: 30ch;
   color: rgba(238, 246, 250, 0.68);
-  font-size: 0.76rem;
+  font-size: 0.8125rem;
   font-weight: 400;
   line-height: 1.45;
 }
@@ -603,7 +603,7 @@
   border-radius: 0.34rem;
   background: transparent;
   color: rgba(238, 246, 250, 0.9);
-  font-family: var(--font-display);
+  font-family: var(--font-nav);
   transition:
     background 150ms ease,
     color 150ms ease,
@@ -619,8 +619,8 @@
 
 .mega-category-eyebrow {
   color: var(--nav-accent);
-  font-size: 0.61rem;
-  font-weight: 480;
+  font-size: 0.75rem;
+  font-weight: 600;
   letter-spacing: 0.07em;
   line-height: 1;
   text-transform: uppercase;
@@ -630,8 +630,8 @@
   position: relative;
   width: fit-content;
   color: rgba(255, 255, 255, 0.99);
-  font-size: 0.92rem;
-  font-weight: 430;
+  font-size: 0.9375rem;
+  font-weight: 500;
   letter-spacing: 0;
   line-height: 1.18;
 }
@@ -680,8 +680,8 @@
 
 .mobile-product-list {
   color: #a2f4fd;
-  font-size: 0.72rem;
-  font-weight: 620;
+  font-size: 0.8125rem;
+  font-weight: 600;
 }
 
 .mobile-resource-group {
@@ -697,7 +697,7 @@
 .mobile-resource-group-title {
   margin-bottom: 0.22rem;
   color: #7dd3fc;
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.07em;
   line-height: 1.2;
@@ -713,12 +713,23 @@
 }
 
 .mobile-menu-panel {
+  max-height: calc(100dvh - var(--site-header-height) - 1.6rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
   border: 1px solid rgba(207, 250, 254, 0.15);
   border-radius: 0.5rem;
   background: rgba(2, 6, 23, 0.985);
   color: #e2e8f0;
   box-shadow: 0 1.4rem 2.8rem rgba(2, 6, 23, 0.46);
   backdrop-filter: blur(20px) saturate(1.05);
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-menu-search-link {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
 }
 
 .mobile-menu-section,

@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
 import {
   conductiveCompounds,
   conductiveMatrices,
@@ -117,9 +119,10 @@ export function ConductiveCompoundsExplorer() {
           <div className={styles.filters}>
             <label>
               <span>Material matrix</span>
-              <select
+              <Select
                 value={matrix}
                 onChange={(event) => setMatrix(event.target.value)}
+                className={`${styles.filterControl} ${styles.filterSelect}`}
               >
                 <option value="all">All materials</option>
                 {conductiveMatrices.map((item) => (
@@ -127,16 +130,17 @@ export function ConductiveCompoundsExplorer() {
                     {item}
                   </option>
                 ))}
-              </select>
+              </Select>
             </label>
 
             <label>
               <span>Target range</span>
-              <select
+              <Select
                 value={range}
                 onChange={(event) =>
                   setRange(event.target.value as RangeFilter)
                 }
+                className={`${styles.filterControl} ${styles.filterSelect}`}
               >
                 <option value="all">All ranges</option>
                 {rangeOptionsByTechnology[technology].map((item) => (
@@ -144,18 +148,19 @@ export function ConductiveCompoundsExplorer() {
                     {rangeLabels[item]}
                   </option>
                 ))}
-              </select>
+              </Select>
             </label>
 
             <label className={styles.searchField}>
               <span>Search grade or material</span>
               <span className={styles.searchInput}>
                 <Search aria-hidden="true" size={17} strokeWidth={2} />
-                <input
+                <Input
                   type="search"
                   value={query}
                   placeholder="e.g. POM or CNT-R35"
                   onChange={(event) => setQuery(event.target.value)}
+                  className={`${styles.filterControl} ${styles.searchControl}`}
                 />
               </span>
             </label>

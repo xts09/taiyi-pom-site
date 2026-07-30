@@ -18,19 +18,19 @@ import {
 import styles from "../AboutPage.module.css";
 
 const manufacturingDescription =
-  "Review Taiyi Nano's factory-based engineering plastic compounding capabilities, including twin-screw extrusion, warehouse coordination, material evaluation, and document support.";
+  "Review Taiyi Plastic's factory-based engineering plastic compounding capabilities, including twin-screw extrusion, warehouse coordination, material evaluation, and document support.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Manufacturing & Compounding Capabilities | Taiyi Nano",
+  title: "Manufacturing & Compounding Capabilities | Taiyi Plastic",
   description: manufacturingDescription,
   path: "/about/manufacturing-capabilities",
   image: "/factory-extrusion.webp",
-  imageAlt: "Taiyi Nano twin-screw extrusion production line",
+  imageAlt: "Taiyi Plastic twin-screw extrusion production line",
 });
 
 const manufacturingJsonLd = [
   createWebPageJsonLd({
-    title: "Manufacturing & Compounding Capabilities | Taiyi Nano",
+    title: "Manufacturing & Compounding Capabilities | Taiyi Plastic",
     description: manufacturingDescription,
     path: "/about/manufacturing-capabilities",
     image: "/factory-extrusion.webp",
@@ -46,10 +46,10 @@ const manufacturingJsonLd = [
 ];
 
 const heroIntro =
-  "Explore Taiyi Nano's factory-based compounding setup in Yancheng, including twin-screw extrusion, production and warehouse coordination, material evaluation, and project-specific document support.";
+  "See how in-house compounding, material evaluation and document support move a grade from trial to repeat production.";
 
 const heroImage =
-  factoryImages.find((image) => image.label === "Compounding Workshop") ??
+  factoryImages.find((image) => image.label === "Extrusion Lines") ??
   factoryImages[0];
 
 export default function ManufacturingCapabilitiesPage() {
@@ -65,7 +65,7 @@ export default function ManufacturingCapabilitiesPage() {
       <AboutHero
         heroImage={heroImage}
         intro={heroIntro}
-        title="Manufacturing Capability"
+        title="Manufacturing Capabilities"
       />
 
       <section className={styles.manufacturingIntroBand}>

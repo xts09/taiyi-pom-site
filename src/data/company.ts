@@ -13,7 +13,8 @@ export type FactoryImage = {
   src: string;
   alt: string;
   label: string;
-  placement: "hero" | "story" | "gallery";
+  placement: "hero" | "story" | "gallery" | "testing";
+  fit?: "cover" | "contain";
 };
 
 export type FactoryProofRow = {
@@ -42,8 +43,8 @@ export const companyFigures: CompanyFigure[] = [
   { label: "Annual Capacity", value: "60,000", note: "Tons / year" },
   {
     label: "Experience",
-    value: "20+",
-    note: "Years since 2003",
+    value: "23+",
+    note: "Years of experience",
   },
   {
     label: "Production Lines",
@@ -56,19 +57,19 @@ export const companyFigures: CompanyFigure[] = [
 
 export const companyCapabilities: CompanyCapability[] = [
   {
-    title: "Modified Material Focus",
+    title: "Modified POM Focus",
     description:
-      "Focused on modified POM compounds for injection molding applications, with selected PA6, PA66, and PPA compound solutions developed around project requirements.",
+      "Modified POM is the core material direction, with selected PA6, PA66, and PPA compounds reviewed when the part requires them.",
   },
   {
-    title: "In-house Production",
+    title: "In-House Production",
     description:
-      "15 twin-screw extrusion lines support stable compounding, sample evaluation, and repeat batch communication for long-term industrial supply.",
+      "15 twin-screw extrusion lines support sample evaluation, controlled compounding, and repeat production.",
   },
   {
     title: "Document Support",
     description:
-      "For new material evaluation, we can provide TDS, SDS, COA, REACH, RoHS, and quality system documents according to grade and project needs.",
+      "TDS, SDS, COA, REACH, RoHS, and quality-system documents are provided according to the grade and project.",
   },
 ];
 
@@ -85,43 +86,43 @@ export const factoryProofRows: FactoryProofRow[] = [
     title: "Production & Warehousing",
     eyebrow: "Factory Base",
     description:
-      "Factory-based production and warehouse coordination support repeat industrial supply from material screening through batch communication.",
+      "Production and warehouse coordination are handled at the Yancheng site to support repeat industrial supply and batch documentation.",
     imageSrc: "/factory-warehouse-inventory.jpg",
-    imageAlt: "Taiyi Nano packaged material inventory and warehouse handling area",
+    imageAlt: "Taiyi Plastic packaged material inventory and warehouse handling area",
     imageLabel: "Warehouse Inventory",
     imageSide: "right",
     imageVariant: "warehouse",
     points: [
-      "Factory-based manufacturer located in Yancheng, Jiangsu, China",
-      "Focused on modified POM and selected engineering plastic compounds",
+      "Production base in Yancheng, Jiangsu, China",
+      "Warehouse handling coordinated with batch documentation",
     ],
   },
   {
     title: "Twin-Screw Compounding",
     eyebrow: "Compounding",
     description:
-      "In-house twin-screw extrusion lines support modified material compounding, sample evaluation, and practical adjustment around project requirements.",
+      "In-house twin-screw lines are used to compound trial materials, review practical adjustments, and prepare confirmed grades for repeat production.",
     imageSrc: "/factory-extrusion.png",
-    imageAlt: "Taiyi Nano twin-screw extrusion production line",
+    imageAlt: "Taiyi Plastic twin-screw extrusion production line",
     imageLabel: "Extrusion Lines",
     imageSide: "left",
     points: [
-      "In-house extrusion compounding and material testing",
-      "Support grade recommendation, sample evaluation, and customized solutions",
+      "15 in-house twin-screw extrusion lines",
+      "Sample evaluation before repeat production",
     ],
   },
   {
-    title: "Testing & Documentation",
+    title: "Testing and Documentation",
     eyebrow: "Project Review",
     description:
-      "Testing equipment and document support help engineering teams compare candidate materials before a grade is confirmed for a specific part.",
-    imageSrc: "/factory-machine.webp",
-    imageAlt: "Taiyi Nano extruder and production equipment",
-    imageLabel: "Production Equipment",
+      "Laboratory equipment supports material comparison during grade review, while project-specific documents support customer evaluation.",
+    imageSrc: "/factory-laboratory-testing-documentary-v4.webp",
+    imageAlt: "Taiyi Plastic material testing laboratory and evaluation equipment",
+    imageLabel: "Material Testing Laboratory",
     imageSide: "right",
     points: [
-      "Stable batch control for long-term industrial supply",
-      "TDS, SDS, COA, REACH, RoHS, and quality system documents according to grade and project needs",
+      "Material testing for candidate-grade comparison",
+      "TDS, SDS, COA, REACH, RoHS, and quality-system documents by grade and project",
     ],
   },
 ];
@@ -192,26 +193,32 @@ export const industries = [
 export const factoryImages: FactoryImage[] = [
   {
     src: "/factory-exterior.webp",
-    alt: "Taiyi Nano factory exterior in Yancheng, Jiangsu",
+    alt: "Taiyi Plastic factory exterior in Yancheng, Jiangsu",
     label: "Factory Exterior",
     placement: "hero",
   },
   {
     src: "/factory-warehouse.webp",
-    alt: "Taiyi Nano production and warehouse area",
+    alt: "Taiyi Plastic production and warehouse area",
     label: "Compounding Workshop",
     placement: "story",
   },
   {
     src: "/factory-extrusion.webp",
-    alt: "Taiyi Nano twin-screw extrusion production line",
+    alt: "Taiyi Plastic twin-screw extrusion production line",
     label: "Extrusion Lines",
     placement: "gallery",
   },
   {
     src: "/factory-machine.webp",
-    alt: "Taiyi Nano extruder and production equipment",
+    alt: "Taiyi Plastic extruder and production equipment",
     label: "Production Equipment",
     placement: "gallery",
+  },
+  {
+    src: "/factory-laboratory-testing-documentary-v4.webp",
+    alt: "Taiyi Plastic material testing laboratory and evaluation equipment",
+    label: "Material Testing Laboratory",
+    placement: "testing",
   },
 ];

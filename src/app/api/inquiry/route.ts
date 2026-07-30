@@ -1,28 +1,20 @@
 import { NextResponse } from "next/server";
 
-const contactEmail = process.env.CONTACT_TO_EMAIL ?? "xiatianshi@jstynm.com";
+const contactEmail = process.env.CONTACT_TO_EMAIL ?? "sales@taiyiplastic.com";
 const resendApiKey = process.env.RESEND_API_KEY;
 const resendFromEmail = process.env.CONTACT_FROM_EMAIL;
 const maxRequestBodyBytes = 32 * 1024;
 const rateLimitWindowMs = 10 * 60 * 1000;
 const maxRequestsPerWindow = 5;
 const maxRateLimitBuckets = 500;
-const allowedDocuments = new Set(["TDS", "SDS", "COA", "REACH", "RoHS"]);
 const rateLimitBuckets = new Map<string, { count: number; resetAt: number }>();
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type InquiryPayload = {
-  name?: string;
   company?: string;
   email?: string;
-  region?: string;
   material?: string;
-  currentMaterial?: string;
   application?: string;
-  tooling?: string;
-  shrinkage?: string;
-  volume?: string;
-  documents?: string[];
   message?: string;
   website?: string;
 };
@@ -77,29 +69,15 @@ const isRateLimited = (key: string) => {
 };
 
 const createInquiryBody = (payload: InquiryPayload) => {
-  const documents =
-    Array.isArray(payload.documents) && payload.documents.length > 0
-      ? payload.documents
-          .map((item) => cleanText(item, "", 20))
-          .filter((item) => allowedDocuments.has(item))
-      : [];
-
   return [
-    "New material requirement from taiyipom.com",
+    "New material requirement from taiyiplastic.com",
     "",
-    `Name: ${cleanText(payload.name)}`,
     `Company: ${cleanText(payload.company)}`,
     `Email: ${cleanText(payload.email, "Not specified", 254)}`,
-    `Country / Region: ${cleanText(payload.region)}`,
     `Material Interest: ${cleanText(payload.material)}`,
-    `Current Material / Grade: ${cleanText(payload.currentMaterial)}`,
     `Application / Part: ${cleanText(payload.application)}`,
-    `Mold Stage / Cavity Count: ${cleanText(payload.tooling)}`,
-    `Shrinkage / Warpage Concern: ${cleanText(payload.shrinkage)}`,
-    `Annual Volume: ${cleanText(payload.volume)}`,
-    `Required Documents: ${documents.join(", ") || "Not specified"}`,
     "",
-    "Message:",
+    "Requirement Details:",
     cleanText(payload.message, "Not specified", 2000),
   ].join("\n");
 };
@@ -184,7 +162,6 @@ export async function POST(request: Request) {
 
   const requiredFields = [
     ["company", payload.company],
-    ["currentMaterial", payload.currentMaterial],
     ["application", payload.application],
   ];
   const missingFields = requiredFields

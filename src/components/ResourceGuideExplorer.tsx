@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 import type { ResourceModule } from "@/data/resources";
 
 type ResourceGuideExplorerProps = {
@@ -60,8 +62,12 @@ export function ResourceGuideExplorer({
         <label className="resource-faq-search-label" htmlFor={inputId}>
           <span>Search guide</span>
           <span className="resource-faq-search-control">
-            <span aria-hidden="true" className="resource-search-mark" />
-            <input
+            <Search
+              aria-hidden="true"
+              className="resource-search-mark"
+              strokeWidth={2.25}
+            />
+            <Input
               id={inputId}
               name="resource-guide-search"
               type="search"
@@ -69,6 +75,7 @@ export function ResourceGuideExplorer({
               value={query}
               placeholder="Try: shrinkage, warpage, drying, wear..."
               onChange={(event) => setQuery(event.target.value)}
+              className="resource-faq-search-input"
             />
           </span>
         </label>

@@ -25,23 +25,43 @@ export function Breadcrumbs({
     .join(" ");
 
   return (
-    <nav className={classes} aria-label="Breadcrumb">
-      <ol>
+    <nav
+      className={classes}
+      aria-label="Breadcrumb"
+      data-slot="breadcrumb"
+      data-variant={variant}
+    >
+      <ol data-slot="breadcrumb-list">
         {items.map((item, index) => {
           const isCurrent = index === items.length - 1;
 
           return (
-            <li key={`${item.label}-${index}`}>
+            <li
+              key={`${item.label}-${index}`}
+              data-slot="breadcrumb-item"
+              data-current={isCurrent ? "true" : undefined}
+            >
               {index > 0 ? (
-                <span className="site-breadcrumb__separator" aria-hidden="true">
+                <span
+                  className="site-breadcrumb__separator"
+                  data-slot="breadcrumb-separator"
+                  aria-hidden="true"
+                >
                   /
                 </span>
               ) : null}
 
               {item.href && !isCurrent ? (
-                <Link href={item.href}>{item.label}</Link>
+                <Link href={item.href} data-slot="breadcrumb-link">
+                  {item.label}
+                </Link>
               ) : (
-                <span aria-current={isCurrent ? "page" : undefined}>
+                <span
+                  aria-current={isCurrent ? "page" : undefined}
+                  data-slot={
+                    isCurrent ? "breadcrumb-current" : "breadcrumb-label"
+                  }
+                >
                   {item.label}
                 </span>
               )}

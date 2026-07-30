@@ -1,0 +1,26 @@
+{
+  "scannedAt": "2026-07-20",
+  "target": "/about",
+  "framework": "Next.js 16.2.6 app router",
+  "fontStack": {
+    "display": "Archivo Variable",
+    "body": "IBM Plex Sans Variable",
+    "navigation": "Saira Variable"
+  },
+  "palette": {
+    "background": "var(--background)",
+    "ink": "var(--taiyi-ink)",
+    "accent": "var(--taiyi-blue)",
+    "secondaryAccent": "var(--taiyi-cyan)"
+  },
+  "motion": "motion-on: GSAP is installed; About currently uses AnimatedContent",
+  "spacing": "existing site rail variables plus local clamp-based spacing",
+  "preserve": [
+    "existing font stack",
+    "brand palette",
+    "global site rail",
+    "real factory photography"
+  ],
+  "designSystemFile": null,
+  "priorHallmarkLog": null
+}

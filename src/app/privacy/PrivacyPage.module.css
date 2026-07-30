@@ -1,0 +1,121 @@
+.page {
+  background: #f3f6f9;
+  color: #111b29;
+}
+
+.hero {
+  background:
+    linear-gradient(112deg, rgba(3, 16, 29, 0.96), rgba(7, 36, 57, 0.88)),
+    url("/material-satin-midnight-v1.png") center 46% / cover no-repeat;
+  padding-block: clamp(7rem, 11vw, 10rem) clamp(3.5rem, 6vw, 5.5rem);
+  color: #ffffff;
+}
+
+.heroInner {
+  max-width: 62rem;
+}
+
+.hero h1 {
+  max-width: 12ch;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5.5vw, 5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.hero p {
+  max-width: 62ch;
+  margin-top: 1.35rem;
+  color: rgba(235, 243, 248, 0.88);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.updated {
+  display: block;
+  margin-top: 1rem;
+  color: rgba(179, 212, 231, 0.82);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.content {
+  padding-block: clamp(3rem, 6vw, 6rem);
+}
+
+.policy {
+  max-width: 68rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  box-shadow: 0 1.25rem 3.5rem rgba(20, 38, 58, 0.08);
+}
+
+.intro {
+  max-width: 70ch;
+  color: #3f4d5e;
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.section {
+  max-width: 72ch;
+  margin-top: clamp(2.25rem, 4vw, 3.5rem);
+}
+
+.section h2 {
+  color: #0a1524;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.section p,
+.section li {
+  color: #465466;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.section p,
+.section ul {
+  margin-top: 0.8rem;
+}
+
+.section ul {
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+
+.section a {
+  color: #076ec2;
+  font-weight: 600;
+  text-underline-offset: 0.18rem;
+}
+
+.section a:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 0.2rem;
+}
+
+@media (max-width: 39.999rem) {
+  .hero {
+    padding-block: 6.5rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.65rem, 13vw, 3.5rem);
+  }
+
+  .policy {
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+  }
+}

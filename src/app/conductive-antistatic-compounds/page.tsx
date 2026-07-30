@@ -19,7 +19,7 @@ const heroImage =
   "/generated/landing/conductive-antistatic-pom-functional-components.png";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Conductive & Antistatic Plastic Compounds | Taiyi Nano",
+  title: "Conductive & Antistatic Plastic Compounds | Taiyi Plastic",
   description:
     "Compare Taiyi carbon-nanotube antistatic and carbon-fiber conductive compound directions across ABS, PC, POM, PA6, PA66, PPS, TPU, and other polymer matrices.",
   path,
@@ -180,15 +180,15 @@ export default function ConductiveAntistaticCompoundsPage() {
               <strong>POM</strong>
               <span>Polymer matrix</span>
             </div>
-            <span aria-hidden="true">–</span>
+            <span aria-hidden="true">-&gt;</span>
             <div>
               <strong>CNT</strong>
               <span>Carbon nanotube</span>
             </div>
-            <span aria-hidden="true">–</span>
+            <span aria-hidden="true">-&gt;</span>
             <div>
               <strong>R35</strong>
-              <span>10³–10⁵ band</span>
+              <span>10^3-10^5 band</span>
             </div>
           </div>
         </div>

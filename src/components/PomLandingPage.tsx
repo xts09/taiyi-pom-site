@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { ActionPanel } from "@/components/ActionPanel";
+import { MetricGroup } from "@/components/MetricGroup";
+import { Button } from "@/components/ui/button";
 import type { PomLandingPageData } from "@/data/pomLandingPages";
 import { createBreadcrumbJsonLd, siteUrl } from "@/lib/seo";
 
@@ -66,30 +68,29 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
             <p>{page.intro}</p>
 
             <div className="pom-landing-actions">
-              <Link href="/contact" className="cta-primary">
-                {page.primaryActionLabel}
-              </Link>
-              <Link
-                href="/technical-data-sheets"
+              <Button asChild variant="primary" size="form">
+                <Link href="/contact" className="pom-landing-action">
+                  {page.primaryActionLabel}
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="form"
                 className="pom-landing-secondary-action"
               >
-                Find Technical Data
-              </Link>
+                <Link href="/technical-data-sheets">Find Technical Data</Link>
+              </Button>
             </div>
           </div>
         </div>
 
-        <section
+        <MetricGroup
           className="pom-landing-metrics"
           aria-label="Material review summary"
-        >
-          {page.metrics.map((metric) => (
-            <div key={metric.label}>
-              <p>{metric.label}</p>
-              <strong>{metric.value}</strong>
-            </div>
-          ))}
-        </section>
+          items={page.metrics}
+          variant="rail"
+        />
 
         <section className="pom-landing-section-grid">
           {page.sections.map((section) => (
@@ -206,18 +207,28 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
           </dl>
         </section>
 
-        <MaterialRecommendationCta
-          kicker="Material Review"
+        <ActionPanel
+          variant="recommendation"
           title="Need a practical material direction?"
           className="selection-support-band resource-cta pom-landing-cta"
-          actionLabel={page.primaryActionLabel}
+          eyebrow="Material Review"
+          eyebrowClassName="section-kicker mb-3"
+          action={
+            <Button
+              asChild
+              variant="inverse"
+              className="h-auto px-7 py-3 text-sm"
+            >
+              <Link href="/contact">{page.primaryActionLabel}</Link>
+            </Button>
+          }
         >
           <p>
             Share the current material, application, target properties, mold
             stage, document requirements, and estimated volume. Taiyi can review
             a suitable material direction for sample or TDS discussion.
           </p>
-        </MaterialRecommendationCta>
+        </ActionPanel>
       </section>
     </main>
   );

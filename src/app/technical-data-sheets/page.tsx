@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { DocumentCard } from "@/components/DocumentCard";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   createEngineeringTdsSlug,
   engineeringTdsDocuments,
@@ -18,9 +21,9 @@ import {
   createWebPageJsonLd,
 } from "@/lib/seo";
 
-const technicalDataSheetsTitle = "Technical Resource Search | Taiyi Nano";
+const technicalDataSheetsTitle = "Technical Resource Search | Taiyi Plastic";
 const technicalDataSheetsDescription =
-  "Search Taiyi Nano grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.";
+  "Search Taiyi Plastic grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.";
 
 const technicalDataSheetsMetadata: Metadata = createPageMetadata({
   title: technicalDataSheetsTitle,
@@ -451,13 +454,14 @@ export default async function TechnicalDataSheetsPage({
               Search technical resources
             </label>
             <div className="resource-site-search-row">
-              <input
+              <Input
                 id="resource-search"
                 name="q"
                 type="search"
                 defaultValue={query}
                 aria-label="Search technical resources"
                 placeholder="POM"
+                className="resource-site-search-input"
               />
               {activeResource ? (
                 <input type="hidden" name="resource" value={activeResource} />
@@ -472,7 +476,14 @@ export default async function TechnicalDataSheetsPage({
                   value={activeDirection}
                 />
               ) : null}
-              <button type="submit">Search</button>
+              <Button
+                type="submit"
+                variant="primary"
+                size="form"
+                className="resource-site-search-submit"
+              >
+                Search
+              </Button>
             </div>
             <div className="resource-site-search-examples" aria-label="Search examples">
               <span>Try</span>
@@ -631,45 +642,50 @@ export default async function TechnicalDataSheetsPage({
               ))}
 
               {searchableEngineeringTds.map((document) => (
-                <article
-                  className="resource-site-result"
+                <DocumentCard
                   key={`${document.family}-${document.grade}`}
-                >
-                  <p>Engineering Plastic Grade Data</p>
-                  <h2>
-                    <Link href={`/products/${createEngineeringTdsSlug(document)}`}>
-                      {document.grade} {document.family} Compound
-                    </Link>
-                  </h2>
-                  <span>
+                  variant="compact-link"
+                  titleLevel={2}
+                  linkTitle
+                  eyebrow="Engineering Plastic Grade Data"
+                  title={`${document.grade} ${document.family} Compound`}
+                  href={`/products/${createEngineeringTdsSlug(document)}`}
+                  description={
+                    <>
                     {document.category} {document.family} engineering plastic
                     compound reference for material review.
-                  </span>
-                  <div className="resource-site-result-meta">
-                    <span>Family: {document.family}</span>
-                    <span>Category: {document.category}</span>
-                    <span>Documents available on request</span>
-                  </div>
-                </article>
+                    </>
+                  }
+                  meta={
+                    <>
+                      <span>Family: {document.family}</span>
+                      <span>Category: {document.category}</span>
+                      <span>Documents available on request</span>
+                    </>
+                  }
+                />
               ))}
 
               {searchableProducts.map((product) => (
-                <article className="resource-site-result" key={product.slug}>
-                  <p>Grade Data / TDS Path</p>
-                  <h2>
-                    <Link href={`/products/${product.slug}`}>
-                      {product.grade} {product.category}
-                    </Link>
-                  </h2>
-                  <span>{product.description}</span>
-                  <div className="resource-site-result-meta">
-                    <span>MFI: {product.mfi}</span>
-                    <span>Color: {product.color}</span>
-                    <span>
-                      Documents: {product.documents.slice(0, 5).join(", ")}
-                    </span>
-                  </div>
-                </article>
+                <DocumentCard
+                  key={product.slug}
+                  variant="compact-link"
+                  titleLevel={2}
+                  linkTitle
+                  eyebrow="Grade Data / TDS Path"
+                  title={`${product.grade} ${product.category}`}
+                  href={`/products/${product.slug}`}
+                  description={product.description}
+                  meta={
+                    <>
+                      <span>MFI: {product.mfi}</span>
+                      <span>Color: {product.color}</span>
+                      <span>
+                        Documents: {product.documents.slice(0, 5).join(", ")}
+                      </span>
+                    </>
+                  }
+                />
               ))}
             </div>
           ) : (

@@ -404,9 +404,7 @@
   box-shadow: 0 0.18rem 0.5rem rgba(15, 23, 42, 0.12);
 }
 
-.segmentedControl button:focus-visible,
-.filters select:focus-visible,
-.filters input:focus-visible {
+.segmentedControl button:focus-visible {
   outline: 2px solid #1674b9;
   outline-offset: 0.14rem;
 }
@@ -430,19 +428,13 @@
   text-transform: uppercase;
 }
 
-.filters select,
-.filters input {
-  width: 100%;
-  min-height: 2.8rem;
-  border: 1px solid #cbd5df;
-  border-radius: 0.32rem;
-  background: #ffffff;
-  color: #172033;
-  font: inherit;
+.filterControl {
+  --ds-input-height: 2.8rem;
+  --ds-input-font-size: 1rem;
 }
 
-.filters select {
-  padding: 0.55rem 2rem 0.55rem 0.75rem;
+.filterSelect {
+  padding-right: 2rem;
 }
 
 .searchInput {
@@ -453,13 +445,14 @@
 
 .searchInput svg {
   position: absolute;
+  z-index: 1;
   left: 0.78rem;
-  color: #718096;
+  color: var(--ds-foreground-muted);
   pointer-events: none;
 }
 
-.searchInput input {
-  padding: 0.55rem 0.75rem 0.55rem 2.35rem;
+.searchInput .searchControl {
+  padding-left: 2.35rem;
 }
 
 .resultsMeta {

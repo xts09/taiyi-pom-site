@@ -1,0 +1,50 @@
+.control {
+  width: 100%;
+  min-width: 0;
+  height: var(--ds-input-height);
+  border: 1px solid var(--ds-input-border);
+  border-radius: var(--ds-input-radius);
+  background: var(--ds-input-bg);
+  padding-inline: var(--ds-input-padding-inline);
+  color: var(--ds-input-fg);
+  font: inherit;
+  font-size: var(--ds-input-font-size);
+  line-height: 1.35;
+  outline: none;
+  transition:
+    border-color var(--ds-duration-short) ease,
+    box-shadow var(--ds-duration-short) ease,
+    background-color var(--ds-duration-short) ease;
+}
+
+.control::placeholder {
+  color: var(--ds-input-placeholder);
+  opacity: 1;
+}
+
+.control:hover:not(:disabled) {
+  border-color: var(--ds-input-border-hover);
+}
+
+.control:focus-visible {
+  border-color: var(--ds-input-border-focus);
+  box-shadow: 0 0 0 3px var(--ds-input-focus-halo);
+}
+
+.control:disabled {
+  cursor: not-allowed;
+  background: var(--ds-input-disabled-bg);
+  color: var(--ds-input-disabled-fg);
+  opacity: 0.72;
+}
+
+.select {
+  cursor: pointer;
+}
+
+.textarea {
+  min-height: var(--ds-input-textarea-min-height);
+  height: auto;
+  padding-block: 0.72rem;
+  resize: vertical;
+}

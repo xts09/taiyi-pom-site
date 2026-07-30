@@ -1,0 +1,6 @@
+.root:focus-visible {
+  outline-width: var(--ds-button-focus-outline-width);
+  outline-style: solid;
+  outline-color: var(--ds-button-focus-outline);
+  outline-offset: var(--ds-button-focus-outline-offset);
+}

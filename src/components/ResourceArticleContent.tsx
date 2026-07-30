@@ -33,11 +33,11 @@ export function ResourceArticleContent({
   return (
     <>
       <header className="pb-1">
-        <p className="text-sm font-semibold text-sky-700">Technical guide</p>
-        <h1 className="mt-4 w-full font-[var(--font-display)] text-[2.1rem] leading-[1.04] font-bold tracking-[-0.035em] text-slate-950 sm:text-[clamp(2.65rem,3.4vw,3.25rem)]">
+        <p className="resource-article-kicker">Technical guide</p>
+        <h1 className="resource-article-title mt-4 w-full">
           {title}
         </h1>
-        <p className="mt-6 max-w-none text-[1.03rem] leading-7 text-pretty text-slate-600 sm:text-[1.14rem] sm:leading-8">
+        <p className="resource-article-intro mt-6 text-pretty">
           {intro}
         </p>
       </header>

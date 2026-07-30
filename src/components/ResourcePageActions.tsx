@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRightIcon } from "lucide-react";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { ActionPanel } from "@/components/ActionPanel";
+import { Button } from "@/components/ui/button";
 import type { ResourcePage } from "@/data/resources";
 
 type ResourcePageActionsProps = {
@@ -53,12 +54,13 @@ export function ResourcePageActions({
               connect the material direction with the supporting data.
             </p>
           </div>
-          <Link
-            href="/contact"
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-white px-5 py-3 text-sm font-semibold text-slate-950 transition-colors hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 sm:w-fit"
+          <Button
+            asChild
+            size="resourceArticleAction"
+            variant="resourceArticleInverse"
           >
-            Send project requirements
-          </Link>
+            <Link href="/contact">Send project requirements</Link>
+          </Button>
         </section>
       </footer>
     );
@@ -77,17 +79,28 @@ export function ResourcePageActions({
         </div>
       </section>
 
-      <MaterialRecommendationCta
-        kicker="Technical Review"
+      <ActionPanel
+        variant="recommendation"
         title="Need This Filled Around Your Project?"
         className="selection-support-band resource-cta mt-12"
+        eyebrow="Technical Review"
+        eyebrowClassName="section-kicker mb-3"
+        action={
+          <Button
+            asChild
+            variant="inverse"
+            className="h-auto px-7 py-3 text-sm"
+          >
+            <Link href="/contact">Send Requirement</Link>
+          </Button>
+        }
       >
         <p>
           Send the part information, working condition, target property,
           current material, tooling stage, and document needs. We will help
           connect the right material direction with the right supporting data.
         </p>
-      </MaterialRecommendationCta>
+      </ActionPanel>
     </>
   );
 }

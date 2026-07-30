@@ -1,6 +1,6 @@
 # Taiyi POM Site PRD
 
-This file is the product, content, design, and acceptance reference for the Taiyi Nano website. It is not runtime code. Use it to keep future page edits, AI-generated content, component choices, and visual polish aligned with the site's business goal, brand direction, implementation scope, and release quality bar.
+This file is the product, content, design, and acceptance reference for the Taiyi Plastic website. It is not runtime code. Use it to keep future page edits, AI-generated content, component choices, and visual polish aligned with the site's business goal, brand direction, implementation scope, and release quality bar.
 
 ## Current Working Baseline
 
@@ -31,7 +31,7 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 
 ## Version Goal
 
-The current site version should help an overseas buyer or engineer understand Taiyi Nano's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
+The current site version should help an overseas buyer or engineer understand Taiyi Plastic's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
 
 The experience should feel like a credible B2B engineering plastics manufacturer: clear, technical, calm, and easy to scan. It should not feel like a generic AI landing page, a consumer startup site, or a decorative portfolio.
 
@@ -70,7 +70,7 @@ The site should feel like a credible engineering plastics manufacturer, not a ge
 
 ## Core Jobs
 
-- Explain what Taiyi Nano supplies and where POM compounds fit.
+- Explain what Taiyi Plastic supplies and where POM compounds fit.
 - Help users move from application need to material direction.
 - Make product families, grade categories, and TDS routes easy to scan.
 - Provide resources that answer common technical screening questions before inquiry.
@@ -78,7 +78,7 @@ The site should feel like a credible engineering plastics manufacturer, not a ge
 
 ## Positioning
 
-Taiyi Nano should be positioned as a factory-based engineering plastic compound manufacturer with practical POM compound evaluation support, in-house compounding capability, and document support for industrial sourcing.
+Taiyi Plastic should be positioned as a factory-based engineering plastic compound manufacturer with practical POM compound evaluation support, in-house compounding capability, and document support for industrial sourcing.
 
 Use proof points such as factory scale, production lines, testing equipment, available documents, applications, and real production imagery. Avoid claims that require unverified certificates, customer cases, compliance approvals, or performance guarantees.
 
@@ -181,6 +181,60 @@ News or updates can exist under Resources later, but should not become a primary
 - Internal links should move users between product, application, resource, and inquiry paths without trapping them in isolated pages.
 - Reduced-motion users should still receive the same content and interaction affordances.
 
+## Visual DNA v1
+
+Visual DNA v1 is the stable design contract for the current site. It captures the approved direction without freezing one screenshot, one generated asset, or one temporary module layout. Future redesigns should preserve this DNA unless the product direction is intentionally revised.
+
+### Brand Character
+
+- The site should feel calm, precise, physical, and industrial rather than generic, decorative, or software-like.
+- Material expertise should be communicated through real production context, disciplined typography, useful technical detail, and controlled motion.
+- Reference sites may inform pacing, image use, material surfaces, and interaction logic, but their layouts or visual signatures should not be copied literally.
+
+### Image Hierarchy And Authenticity
+
+- Prefer verified real imagery in this order: factory and production, laboratory and testing, certificates and documents, products and molded-part context.
+- One decisive, well-cropped image is better than several mediocre images. Do not introduce a carousel merely to compensate for weak or insufficient assets.
+- Use a carousel only when there are at least three visually consistent, high-quality images that each add distinct information. Otherwise use one static image or a deliberate image-and-content composition.
+- AI-generated imagery may support abstract material textures, satin-like light surfaces, and non-factual atmospheric backgrounds. It must not fabricate factories, laboratories, certificates, customer cases, test results, or product evidence.
+- Generated product or document visuals must not introduce unverified grades, compliance claims, performance values, or packaging details. Essential claims and navigation must remain live HTML text rather than being available only inside an image.
+- Crop real images intentionally. Avoid empty image containers, visibly stretched photos, inconsistent aspect ratios, and controls that draw attention to low-resolution assets.
+
+### Surface And Background Language
+
+- Avoid long runs of flat, undifferentiated color when a restrained physical surface would improve depth. Use real photography or approved light/dark satin-like textures selectively, not as decoration on every section.
+- Dark surfaces should feel like controlled industrial material: deep navy-black, subtly translucent or softly textured when appropriate, with strong text contrast.
+- Light surfaces should remain clean and neutral. White satin or technical-paper texture may add depth, but must not reduce legibility or make the page look dirty, cloudy, or over-processed.
+- Gradients must describe plausible light, depth, or material response. Do not use arbitrary colorful gradients, blobs, glows, or decorative effects.
+
+### Layout, Density, And Typography
+
+- All primary modules align to the shared site rail. Visible rendered edges are the acceptance standard; matching variables alone is not enough.
+- Use space deliberately. Avoid both crowded technical tables and large unearned voids. A section should feel compact enough to scan and open enough to establish hierarchy.
+- Keep module titles concise and naturally wrapped. Do not force line breaks for effect, allow narrow columns to create awkward wraps, or use oversized headings that consume the module.
+- Preserve clear alignment within each module: title, supporting copy, controls, imagery, and content blocks should share deliberate top or baseline relationships.
+- Use the established type system and scale. Do not add new fonts or typographic treatments to solve a local layout problem.
+
+### Components And Interaction
+
+- Use Tailwind for layout, responsive behavior, spacing, state styling, and small adjustments. Use shadcn/Radix primitives for interaction-heavy elements such as accordions, dialogs, menus, and carousels when those behaviors are genuinely needed.
+- Components should reduce bugs and create consistency; they should not be added merely to make a static section look more designed.
+- Comparison or review accordions should keep one meaningful item expanded when closing every item would create an empty or confusing state.
+- Remove redundant controls, repeated labels, and duplicate information. Static presentation is preferred when interaction does not improve comprehension.
+
+### Motion
+
+- Motion should clarify hierarchy, establish pacing, or confirm interaction. It must not compensate for weak composition or weak imagery.
+- Prefer a small number of coordinated moments: restrained hero entry, purposeful section reveals, and clear state transitions. Avoid constant looping, decorative parallax, or identical reveal effects on every module.
+- Never gate essential content behind animation. Respect `prefers-reduced-motion` and preserve the same information and interaction affordances without motion.
+
+### Visual Acceptance
+
+- Judge changes from rendered output, not component reuse, CSS cleanliness, or design intent alone.
+- For desktop visual work, compare before and after at `1920x1080` unless another viewport is specified. Responsive changes also require one representative mobile check.
+- Verify alignment, crop quality, title wrapping, information density, interaction state, and transition behavior in the affected module and its immediate neighboring sections.
+- Do not call a visual change complete when the page still contains obvious empty space, mismatched surfaces, hard wrapping, low-quality imagery, or controls that do not earn their place.
+
 ## Visual Direction
 
 The design should be industrial, restrained, and confident.
@@ -258,7 +312,7 @@ Motion is allowed only when it improves hierarchy, feedback, or polish.
 
 The site is successful when:
 
-- A first-time buyer can understand what Taiyi Nano supplies within the first screen and first scroll.
+- A first-time buyer can understand what Taiyi Plastic supplies within the first screen and first scroll.
 - A material engineer can find a relevant product family, grade direction, application path, or TDS route without guessing.
 - The website feels credible for industrial sourcing and does not rely on unsupported claims.
 - Contact and document inquiry paths are visible but do not overpower technical content.

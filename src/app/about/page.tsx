@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import {
-  AboutHero,
-  AboutIdentity,
-  AboutInquiryBridge,
-  AboutManufacturingPath,
-  AboutSnapshot,
-  CredentialSupport,
+  AboutCredentials,
+  AboutFacility,
+  AboutOverviewHero,
+  AboutOverviewInquiry,
+  AboutProductionSupport,
 } from "@/app/about/AboutSections";
 import {
   availableDocuments,
   certifications,
   companyFigures,
   factoryImages,
+  factoryProofRows,
   honors,
 } from "@/data/company";
 import {
@@ -27,7 +27,7 @@ const aboutDescription =
   "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., a factory-based manufacturer focused on modified POM and selected engineering plastic compound solutions.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Us | Taiyi Nano",
+  title: "About Us | Taiyi Plastic",
   description: aboutDescription,
   path: "/about",
   image: "/company-profile.webp",
@@ -37,7 +37,7 @@ export const metadata: Metadata = createPageMetadata({
 const aboutJsonLd = [
   {
     ...createWebPageJsonLd({
-      title: "About Us | Taiyi Nano",
+      title: "About Us | Taiyi Plastic",
       description: aboutDescription,
       path: "/about",
       image: "/company-profile.webp",
@@ -56,14 +56,23 @@ const aboutJsonLd = [
 ];
 
 const heroIntro =
-  "Jiangsu Taiyi Nano Technology Co., Ltd. operates factory-based compounding production in Yancheng, Jiangsu, China, focused on modified POM compounds with selected PA6, PA66, and PPA support for industrial molded parts.";
+  "Developed and manufactured in Yancheng, China since 2003.";
 
 const heroImage =
   factoryImages.find((image) => image.placement === "hero") ?? factoryImages[0];
 
+const aboutEvidenceRows = factoryProofRows.filter(
+  (row) => row.title !== "Production & Warehousing",
+);
+
+const aboutProcessImages = factoryImages.filter(
+  (image) =>
+    image.placement === "story" || image.label === "Production Equipment",
+);
+
 export default function AboutPage() {
   return (
-    <main className={`${styles.page} ${styles.pageLight}`}>
+    <main className={`${styles.page} ${styles.pageLight} ${styles.overviewPage}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -71,40 +80,23 @@ export default function AboutPage() {
         }}
       />
 
-      <AboutHero
+      <AboutOverviewHero
         heroImage={heroImage}
         intro={heroIntro}
-        title="About Us"
       />
 
-      <section className={styles.identityBand}>
-        <div className="site-container">
-          <AboutIdentity />
-        </div>
-      </section>
-
-      <section className={styles.snapshotBand}>
-        <div className={`site-container ${styles.snapshotRail}`}>
-          <AboutSnapshot figures={companyFigures} />
-          <AboutManufacturingPath />
-        </div>
-      </section>
-
-      <section className={styles.inquiryBand}>
-        <div className={`site-container ${styles.inquiryRail}`}>
-          <AboutInquiryBridge />
-        </div>
-      </section>
-
-      <section className={styles.storyBand}>
-        <div className={`site-container ${styles.contentRail}`}>
-          <CredentialSupport
+      <div className={styles.overviewCanvas}>
+        <div className={`site-container ${styles.overviewRail}`}>
+          <AboutFacility figures={companyFigures} rows={aboutEvidenceRows} />
+          <AboutProductionSupport images={aboutProcessImages} />
+          <AboutCredentials
             availableDocuments={availableDocuments}
             certifications={certifications}
             honors={honors}
           />
+          <AboutOverviewInquiry />
         </div>
-      </section>
+      </div>
     </main>
   );
 }

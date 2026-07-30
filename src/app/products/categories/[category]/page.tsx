@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
+import { Button } from "@/components/ui/button";
 import { applications } from "@/data/applications";
 import { availableDocuments } from "@/data/company";
 import {
@@ -41,7 +42,7 @@ const categorySocialMedia = {
   "carbon-fiber-reinforced-pom-compound": {
     image: "/generated/pom-carbon-fiber-reinforced-hero-material-v5.png",
     imageAlt:
-      "Carbon fiber reinforced POM short-cut black compound pellets from Taiyi Nano",
+      "Carbon fiber reinforced POM short-cut black compound pellets from Taiyi Plastic",
   },
 } as const;
 
@@ -60,9 +61,9 @@ export async function generateMetadata({
 
   if (legacyRedirect) {
     return createPageMetadata({
-      title: "Wear-Resistant & Low-Friction POM | Taiyi Nano",
+      title: "Wear-Resistant & Low-Friction POM | Taiyi Plastic",
       description:
-        "Browse Taiyi Nano wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, and motion components.",
+        "Browse Taiyi Plastic wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, and motion components.",
       path: `/products/categories/${legacyRedirect}`,
     });
   }
@@ -71,7 +72,7 @@ export async function generateMetadata({
 
   if (!entry) {
     return {
-      title: "Product Category Not Found | Taiyi Nano",
+      title: "Product Category Not Found | Taiyi Plastic",
       robots: {
         index: false,
         follow: false,
@@ -84,7 +85,7 @@ export async function generateMetadata({
   ];
 
   return createPageMetadata({
-    title: `${getCategoryTitle(entry.category)} | Taiyi Nano`,
+    title: `${getCategoryTitle(entry.category)} | Taiyi Plastic`,
     description: getCategoryDescription(entry.category),
     path: entry.path,
     ...socialMedia,
@@ -227,19 +228,18 @@ export default async function ProductCategoryPage({
                 <p className="section-kicker mb-2">Overview</p>
                 {isPomCategory ? (
                   <p>
-                    Start from the material direction closest to your part, then
-                    compare grade-level properties, mold behavior, color options,
-                    application fit, and documents.
+                    Compare grade-level properties, mold behavior, color options,
+                    application fit, and documents against the part requirements.
                   </p>
                 ) : (
                   <p>
                     Compare matching grades by properties, mold stage, shrinkage
-                    behavior, color, application fit, and documents.
+                    behavior, color, application fit, and document availability.
                   </p>
                 )}
               </div>
               <p className="product-hero-documents">
-                <strong>Documents</strong>
+                <strong>Documents by grade and project</strong>
                 <span>
                   {availableDocuments.map((document) => (
                     <b key={document}>{document}</b>
@@ -249,12 +249,12 @@ export default async function ProductCategoryPage({
             </div>
 
             <div className="product-hero-cta">
-              <Link href="/contact" className="product-hero-primary-action">
-                Send Requirement
-              </Link>
-              <Link href="/technical-data-sheets" className="product-hero-tds-link">
-                Search Data / TDS
-              </Link>
+              <Button asChild size="productHero" variant="productHeroPrimary">
+                <Link href="/contact">Send Requirement</Link>
+              </Button>
+              <Button asChild size="productHero" variant="productHeroSecondary">
+                <Link href="/technical-data-sheets">Search Data / TDS</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -318,10 +318,12 @@ export default async function ProductCategoryPage({
           </div>
         </section>
 
-        <MaterialRecommendationCta
-          kicker="Inquiry Support"
-          title="Request a Grade Recommendation"
+        <ActionPanel
+          variant="recommendation"
+          title="Prepare a Grade Shortlist"
           className="selection-support-band products-motion-support mt-12"
+          eyebrow="Inquiry Support"
+          eyebrowClassName="section-kicker mb-3"
           aside={
             <div className="support-line-steps">
               {["Tooling Plan", "Shrinkage Target", "Document Needs"].map(
@@ -334,14 +336,23 @@ export default async function ProductCategoryPage({
               )}
             </div>
           }
+          action={
+            <Button
+              asChild
+              variant="inverse"
+              className="h-auto px-7 py-3 text-sm"
+            >
+              <Link href="/contact">Send Requirement</Link>
+            </Button>
+          }
         >
           <p>
             Share your application, mold development stage, cavity count,
             operating condition, current material, shrinkage or warpage concern,
-            document needs, and target volume so we can recommend a suitable
-            Taiyi material direction.
+            document needs, and target volume. These inputs support a grade
+            shortlist and confirmation of document availability and sample needs.
           </p>
-        </MaterialRecommendationCta>
+        </ActionPanel>
       </section>
       </ProductPageMotion>
     </main>

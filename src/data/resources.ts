@@ -78,12 +78,12 @@ export const resourcePages: ResourcePage[] = [
     description:
       "A practical POM material selection guide for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV, and high-impact compounds.",
     intro:
-      "Selecting a modified POM compound should begin with the molded part, its working conditions, and the failure risk the material must solve. This guide gives buyers and engineers a practical framework for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV-resistant, and high-impact POM directions. It also explains how to read common TDS items such as MFI, tensile and flexural performance, impact strength, HDT, and molding shrinkage. Final suitability should always be confirmed with the selected grade TDS, part design review, and application-specific molding trials.",
+      "Use this guide to compare POM directions against the part's operating conditions and failure risks. Treat it as an initial screen: confirm the selected grade with its TDS, part design review, and application-specific molding trials.",
     articleSections: [
       {
         title: "Start with the Molded Part, Not the Grade Name",
         paragraphs: [
-          "A grade name is only a reference point. It does not fully describe whether a material is suitable for a specific molded component. Engineers should first review the function of the part, the failure risks, the required service life, and the production process.",
+          "A grade name describes a formulation family, not a molded-part outcome. Use it to build a candidate set after the initial screen; suitability still depends on the part geometry, mold setup, and operating conditions.",
           "For an existing component, useful starting information includes the current material type, molding method, part dimensions, wall thickness, assembly method, and any known performance issues. Wear marks, cracking, deformation, noise, static accumulation, discoloration, or unstable molding may indicate different material requirements.",
           "For a new component, the selection process should begin with the intended operating conditions. A grade that performs well in a lightly loaded internal mechanism may not be suitable for a continuously moving part, an outdoor application, or a component exposed to aggressive chemicals.",
           "Material names and market references may support initial screening, but they should not be used as the sole basis for selection. The correct question is not which grade is similar, but which material characteristics are required for this part.",
@@ -763,9 +763,9 @@ export const resourcePages: ResourcePage[] = [
       { label: "Discuss a Gear Application", href: "/contact" },
     ],
   },
-  // 中文编辑注释：后续替换为 POM 加工/注塑指南正式内容。
-  // 建议内容覆盖：干燥、料筒/模温、注射、保压/冷却、收缩翘曲、常见缺陷排查。
-  // 没有 verified TDS 前，不写固定绝对温度参数。
+  // Editorial note: replace with formal POM processing guide content later.
+  // Suggested coverage: drying, barrel temperature, mold temperature, injection, holding pressure, cooling, shrinkage, warpage, and defect troubleshooting.
+  // Do not publish fixed absolute temperatures before verified TDS values are available.
   {
     slug: "processing-guide",
     title: "Processing Guide",
@@ -971,9 +971,9 @@ export const resourcePages: ResourcePage[] = [
       { label: "Discuss a Warpage Issue", href: "/contact" },
     ],
   },
-  // 中文编辑注释：后续替换为 POM 应用笔记正式内容。
-  // 建议按应用场景写：汽车、齿轮、轴套、滑块、滚轮、水控、电子电器、工业机械等。
-  // 每个应用建议包含：典型零件、工况、常见失效、材料关注点、可互链的站内应用页。
+  // Editorial note: replace with formal POM application-note content later.
+  // Suggested coverage: automotive, gears, bushings, sliders, rollers, water-control, electronics, and industrial machinery.
+  // Include typical parts, operating conditions, failure modes, material concerns, and internal application links.
   {
     slug: "application-notes",
     title: "Modified POM Application Review by Part Function",
@@ -1079,7 +1079,7 @@ export const resourcePages: ResourcePage[] = [
           {
             question: "What is modified POM?",
             answer:
-              "Modified POM is a polyoxymethylene compound formulated with selected additives, fillers, reinforcements, lubricants, impact modifiers, or electrical modifiers to change a specific property balance. Depending on the formulation, the direction may target wear, friction, stiffness, impact response, UV resistance, conductivity, antistatic behavior, or dimensional control. The word “modified” does not define one universal performance level, so the exact grade TDS and application conditions must be reviewed.",
+              "Modified POM is a polyoxymethylene compound formulated with selected additives, fillers, reinforcements, lubricants, impact modifiers, or electrical modifiers to change a specific property balance. Depending on the formulation, the direction may target wear, friction, stiffness, impact response, UV resistance, conductivity, antistatic behavior, or dimensional control. The word modified does not define one universal performance level, so the exact grade TDS and application conditions must be reviewed.",
           },
           {
             question: "How do I choose a POM grade?",
@@ -1287,7 +1287,7 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Compare reinforced PA6 and PA66 by conditioning state, temperature, stiffness, impact, dimensional behavior, molding risk, and grade-specific data.",
     intro:
-      "PA6 and PA66 are related polyamides, but they should not be treated as interchangeable names for reinforced nylon. Their melting behavior, moisture uptake, conditioned properties, processing window, dimensional response, toughness, stiffness, and available modification packages can lead to different results in the same mold or application. This guide provides a project-based comparison and uses Taiyi Nano EAG130 PA6 GF30 and EAG230 PA66 GF30 only as grade-specific examples—not as universal values for every PA6 or PA66 compound.",
+      "PA6 and PA66 are related polyamides, but they should not be treated as interchangeable names for reinforced nylon. Their melting behavior, moisture uptake, conditioned properties, processing window, dimensional response, toughness, stiffness, and available modification packages can lead to different results in the same mold or application. This guide provides a project-based comparison and uses Taiyi Plastic EAG130 PA6 GF30 and EAG230 PA66 GF30 only as grade-specific examples—not as universal values for every PA6 or PA66 compound.",
     articleSections: [
       {
         title: "Start With the Finished-Part Requirement",
@@ -1326,7 +1326,7 @@ export const resourcePages: ResourcePage[] = [
       {
         title: "Use Same-Filler Catalogue Examples Correctly",
         paragraphs: [
-          "Taiyi Nano EAG130 and EAG230 are both listed as 30% glass-fiber-reinforced compounds, which makes them useful for a controlled first comparison. In the current catalogue, EAG130 is the PA6 direction and EAG230 is the PA66 direction. Their data indicate different moisture and thermal directions while their room-temperature mechanical values remain grade-specific.",
+          "Taiyi Plastic EAG130 and EAG230 are both listed as 30% glass-fiber-reinforced compounds, which makes them useful for a controlled first comparison. In the current catalogue, EAG130 is the PA6 direction and EAG230 is the PA66 direction. Their data indicate different moisture and thermal directions while their room-temperature mechanical values remain grade-specific.",
           "The table is not a family rule or an equivalence statement. Values are typical catalogue references obtained with the listed methods and specimen conditions. Confirm the current grade TDS, color, conditioning and processing guidance before using the numbers in a design calculation, specification, or replacement decision.",
         ],
       },
@@ -1347,7 +1347,7 @@ export const resourcePages: ResourcePage[] = [
         columns: ["Property and method", "EAG130 PA6 GF30", "EAG230 PA66 GF30"],
         rows: [
           ["Glass fiber content, ISO 1172", "30%", "30%"],
-          ["Water absorption at 23°C / 50% RH, ISO 62", "1.1–1.5%", "0.5–0.9%"],
+          ["Water absorption at 23°C / 50% RH, ISO 62", "1.1-1.5%", "0.5-0.9%"],
           ["Melting point, ISO 11357", "220°C", "260°C"],
           ["HDT at 1.8 MPa, ISO 75", "210°C", "250°C"],
           ["Tensile stress, ISO 527", "185 MPa", "200 MPa"],
@@ -1388,7 +1388,7 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Select glass-fiber-reinforced PA6 and PA66 by fiber level, conditioning, load, orientation, warpage, molding feasibility, and molded-part evidence.",
     intro:
-      "Glass fiber percentage is only one input in selecting a reinforced PA6 or PA66 compound. Polymer matrix, fiber length and retention, interface, heat stabilization, impact or flame modification, moisture state, flow orientation, weld lines, wall thickness, gate design, surface requirements, and processing history all influence the finished part. This guide explains how to use Taiyi Nano's 15%, 30%, and 50% glass-fiber catalogue directions as a screening ladder while keeping the final decision tied to molded-part performance.",
+      "Glass fiber percentage is only one input in selecting a reinforced PA6 or PA66 compound. Polymer matrix, fiber length and retention, interface, heat stabilization, impact or flame modification, moisture state, flow orientation, weld lines, wall thickness, gate design, surface requirements, and processing history all influence the finished part. This guide explains how to use Taiyi Plastic's 15%, 30%, and 50% glass-fiber catalogue directions as a screening ladder while keeping the final decision tied to molded-part performance.",
     articleSections: [
       {
         title: "Define the Load Case and Failure Limit",
@@ -1433,7 +1433,7 @@ export const resourcePages: ResourcePage[] = [
       {
         title: "Use the Catalogue Ladder as a Screening Tool",
         paragraphs: [
-          "Taiyi Nano lists PA6 and PA66 glass-fiber directions at multiple reinforcement levels. The examples below show how published tensile, flexural, water-absorption and HDT values change within selected catalogue grades. They provide a structured shortlist, not an instruction to select the highest value.",
+          "Taiyi Plastic lists PA6 and PA66 glass-fiber directions at multiple reinforcement levels. The examples below show how published tensile, flexural, water-absorption and HDT values change within selected catalogue grades. They provide a structured shortlist, not an instruction to select the highest value.",
           "All figures are grade-specific typical data. Fiber content is reported to ISO 1172, tensile stress to ISO 527, flexural modulus to ISO 178, water absorption at 23°C and 50% RH to ISO 62, and HDT at 1.8 MPa to ISO 75 in the current catalogue. Confirm the latest TDS and conditioning basis before specification.",
         ],
       },
@@ -1463,32 +1463,32 @@ export const resourcePages: ResourcePage[] = [
           [
             "EAG115 · PA6 GF15",
             "Tensile 120 MPa · Flexural modulus 5,500 MPa",
-            "Water absorption 1.3–1.7% · HDT 205°C",
+            "Water absorption 1.3-1.7% · HDT 205°C",
           ],
           [
             "EAG130 · PA6 GF30",
             "Tensile 185 MPa · Flexural modulus 8,800 MPa",
-            "Water absorption 1.1–1.5% · HDT 210°C",
+            "Water absorption 1.1-1.5% · HDT 210°C",
           ],
           [
             "EAG150U · PA6 GF50",
             "Tensile 230 MPa · Flexural modulus 14,500 MPa",
-            "Water absorption 0.8–1.2% · HDT 210°C",
+            "Water absorption 0.8-1.2% · HDT 210°C",
           ],
           [
             "EAG215 · PA66 GF15",
             "Tensile 130 MPa · Flexural modulus 5,400 MPa",
-            "Water absorption 0.8–1.2% · HDT 240°C",
+            "Water absorption 0.8-1.2% · HDT 240°C",
           ],
           [
             "EAG230 · PA66 GF30",
             "Tensile 200 MPa · Flexural modulus 9,000 MPa",
-            "Water absorption 0.5–0.9% · HDT 250°C",
+            "Water absorption 0.5-0.9% · HDT 250°C",
           ],
           [
             "EAG250 · PA66 GF50",
             "Tensile 240 MPa · Flexural modulus 14,800 MPa",
-            "Water absorption 0.3–0.7% · HDT 250°C",
+            "Water absorption 0.3-0.7% · HDT 250°C",
           ],
         ],
       },
@@ -1530,7 +1530,7 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Compare PPA and PA66 by high-temperature load, moisture response, dimensional stability, chemicals, processing requirements, and grade data.",
     intro:
-      "PPA should not be specified only because a project requests a 'higher-performance nylon.' It is most useful when a defined temperature, conditioned mechanical, dimensional, chemical, electrical, or process requirement cannot be met reliably by the selected PA66 direction. The additional performance can also bring a different molding window, drying requirement, tooling demand, cost structure, and validation scope. This guide frames the upgrade decision and uses Taiyi Nano EAG630H PPA GF30 and EAG230 PA66 GF30 as grade-specific catalogue examples.",
+      "PPA should not be specified only because a project requests a 'higher-performance nylon.' It is most useful when a defined temperature, conditioned mechanical, dimensional, chemical, electrical, or process requirement cannot be met reliably by the selected PA66 direction. The additional performance can also bring a different molding window, drying requirement, tooling demand, cost structure, and validation scope. This guide frames the upgrade decision and uses Taiyi Plastic EAG630H PPA GF30 and EAG230 PA66 GF30 as grade-specific catalogue examples.",
     articleSections: [
       {
         title: "Prove the Performance Gap in the PA66 Baseline",
@@ -1575,7 +1575,7 @@ export const resourcePages: ResourcePage[] = [
       {
         title: "Use Matched GF30 Catalogue Examples Correctly",
         paragraphs: [
-          "Taiyi Nano EAG630H and EAG230 are both listed as 30% glass-fiber-reinforced compounds. EAG630H provides the PPA direction and EAG230 the PA66 direction. This matched filler level helps isolate the polymer-family direction during early screening, while the exact grade formulations and processing behavior remain different.",
+          "Taiyi Plastic EAG630H and EAG230 are both listed as 30% glass-fiber-reinforced compounds. EAG630H provides the PPA direction and EAG230 the PA66 direction. This matched filler level helps isolate the polymer-family direction during early screening, while the exact grade formulations and processing behavior remain different.",
           "The table contains typical current catalogue values with the listed ISO methods. It does not establish universal PPA-versus-PA66 performance, long-term service temperature, chemical resistance, processing interchangeability or part approval. Confirm the latest grade documents and obtain missing temperature-dependent, conditioned or application-specific evidence before specification.",
         ],
       },
@@ -1596,7 +1596,7 @@ export const resourcePages: ResourcePage[] = [
         columns: ["Property and method", "EAG230 PA66 GF30", "EAG630H PPA GF30"],
         rows: [
           ["Glass fiber content, ISO 1172", "30%", "30%"],
-          ["Water absorption at 23°C / 50% RH, ISO 62", "0.5–0.9%", "0.5%"],
+          ["Water absorption at 23°C / 50% RH, ISO 62", "0.5-0.9%", "0.5%"],
           ["Melting point, ISO 11357", "260°C", "310°C"],
           ["HDT at 1.8 MPa, ISO 75", "250°C", "275°C"],
           ["Tensile stress, ISO 527", "200 MPa", "210 MPa"],
@@ -1692,7 +1692,7 @@ export const resourcePages: ResourcePage[] = [
       {
         title: "Use Catalogue Moisture Values as Grade References",
         paragraphs: [
-          "Taiyi Nano catalogue fields allow a controlled first comparison of selected reinforced PA6 and PA66 grades at the stated 23°C and 50% RH condition under ISO 62. The values show that polymer matrix and reinforcement level both matter. They are not universal equilibrium values for every geometry or a drying specification for pellets.",
+          "Taiyi Plastic catalogue fields allow a controlled first comparison of selected reinforced PA6 and PA66 grades at the stated 23°C and 50% RH condition under ISO 62. The values show that polymer matrix and reinforcement level both matter. They are not universal equilibrium values for every geometry or a drying specification for pellets.",
           "Confirm the latest grade TDS, exact specimen definition and conditioning basis before calculation or specification. A finished part can absorb moisture at a different rate from a standard specimen, and local thickness or reinforcement orientation can affect dimensional response.",
         ],
       },
@@ -1712,10 +1712,10 @@ export const resourcePages: ResourcePage[] = [
         title: "Selected Taiyi PA moisture references",
         columns: ["Catalogue grade", "Reinforcement", "Water absorption at 23°C / 50% RH, ISO 62"],
         rows: [
-          ["EAG115 · PA6", "15% glass fiber", "1.3–1.7%"],
-          ["EAG130 · PA6", "30% glass fiber", "1.1–1.5%"],
-          ["EAG215 · PA66", "15% glass fiber", "0.8–1.2%"],
-          ["EAG230 · PA66", "30% glass fiber", "0.5–0.9%"],
+          ["EAG115 · PA6", "15% glass fiber", "1.3-1.7%"],
+          ["EAG130 · PA6", "30% glass fiber", "1.1-1.5%"],
+          ["EAG215 · PA66", "15% glass fiber", "0.8-1.2%"],
+          ["EAG230 · PA66", "30% glass fiber", "0.5-0.9%"],
         ],
       },
     ],
@@ -1756,7 +1756,7 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Select CNT or carbon-fiber PA6, PA66 and PPA compounds by electrical method, target band, grounding, geometry, conditioning, molding, and validation.",
     intro:
-      "A conductive or antistatic polymer specification must define more than a power-of-ten range. Surface resistance, surface resistivity, volume resistance, volume resistivity and static decay describe different measurements, while part thickness, electrode geometry, conditioning, humidity, flow orientation, weld lines and grounding can change the observed result. Taiyi Nano lists CNT and carbon-fiber directions across PA6, PA66 and PPA matrices. This guide explains how to choose a matrix and technology, interpret the catalogue bands cautiously, and qualify the finished part.",
+      "A conductive or antistatic polymer specification must define more than a power-of-ten range. Surface resistance, surface resistivity, volume resistance, volume resistivity and static decay describe different measurements, while part thickness, electrode geometry, conditioning, humidity, flow orientation, weld lines and grounding can change the observed result. Taiyi Plastic lists CNT and carbon-fiber directions across PA6, PA66 and PPA matrices. This guide explains how to choose a matrix and technology, interpret the catalogue bands cautiously, and qualify the finished part.",
     articleSections: [
       {
         title: "Define the Electrical Function and Measurement Basis",
@@ -1781,7 +1781,7 @@ export const resourcePages: ResourcePage[] = [
       {
         title: "Compare CNT and Carbon-Fiber Directions",
         paragraphs: [
-          "Taiyi Nano positions the CNT series as a permanent static-control direction and the carbon-fiber series as a controlled-conductivity direction with a separate thermal-conductive review path. CNT and carbon fiber form conductive networks differently and can create different balances of electrical response, density, stiffness, impact, flow, surface, wear, color and cost.",
+          "Taiyi Plastic positions the CNT series as a permanent static-control direction and the carbon-fiber series as a controlled-conductivity direction with a separate thermal-conductive review path. CNT and carbon fiber form conductive networks differently and can create different balances of electrical response, density, stiffness, impact, flow, surface, wear, color and cost.",
           "Carbon fiber can introduce mechanical reinforcement and directional electrical or dimensional behavior as fibers align with molded flow. CNT performance depends on the dispersed network and its survival through compounding and molding. Neither technology should be selected only from a generic label. Compare the exact grade, matrix, target band, mechanical data, processing guidance and finished-part evidence.",
         ],
         points: [
@@ -1830,18 +1830,18 @@ export const resourcePages: ResourcePage[] = [
         rows: [
           [
             "PA6",
-            "PA6-CNT-R35 · 10³–10⁵ | PA6-CNT-R610 · 10⁶–10¹⁰",
-            "PA6 GP3 · 10³–10⁵ | PA6 GP8 · 10⁶–10⁸",
+            "PA6-CNT-R35 - 10^3-10^5 | PA6-CNT-R610 - 10^6-10^10",
+            "PA6 GP3 - 10^3-10^5 | PA6 GP8 - 10^6-10^8",
           ],
           [
             "PA66",
-            "PA66-CNT-R35 · 10³–10⁵ | PA66-CNT-R610 · 10⁶–10¹⁰",
-            "PA66 GP3 · 10³–10⁵ | PA66 GP8 · 10⁶–10⁸",
+            "PA66-CNT-R35 - 10^3-10^5 | PA66-CNT-R610 - 10^6-10^10",
+            "PA66 GP3 - 10^3-10^5 | PA66 GP8 - 10^6-10^8",
           ],
           [
             "PPA",
-            "PPA-CNT-R35 · 10³–10⁵ | PPA-CNT-R610 · 10⁶–10¹⁰",
-            "PPA GP3 · 10³–10⁵ | PPA GP8 · 10⁶–10⁸",
+            "PPA-CNT-R35 - 10^3-10^5 | PPA-CNT-R610 - 10^6-10^10",
+            "PPA GP3 - 10^3-10^5 | PPA GP8 - 10^6-10^8",
           ],
         ],
       },

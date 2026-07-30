@@ -55,7 +55,7 @@ export async function generateMetadata({
 
   if (group) {
     return createPageMetadata({
-      title: `${group.title} Resources | Taiyi Nano`,
+      title: `${group.title} Resources | Taiyi Plastic`,
       description: group.description,
       path: getResourceNavigationGroupPath(group),
       image: group.image,
@@ -72,7 +72,7 @@ export async function generateMetadata({
   const primaryMedia = getPrimaryArticleMedia(page);
 
   return createPageMetadata({
-    title: `${page.title} | Taiyi Nano`,
+    title: `${page.title} | Taiyi Plastic`,
     description: page.description,
     path: `/resources/${page.slug}`,
     image: primaryMedia?.src,

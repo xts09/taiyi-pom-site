@@ -1,0 +1,70 @@
+.root {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ds-page-hero-fg);
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  min-height: inherit;
+  align-items: center;
+}
+
+.copy {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  gap: var(--ds-page-hero-copy-gap);
+  color: var(--ds-page-hero-fg);
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--ds-page-hero-eyebrow);
+  font-family: var(--ds-font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.title {
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  color: var(--ds-page-hero-fg);
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-page-hero-title-size);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 52ch;
+  margin: 0;
+  color: var(--ds-page-hero-muted);
+  font-family: var(--ds-font-body);
+  font-size: var(--ds-page-hero-description-size);
+  font-weight: 500;
+  line-height: 1.62;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+}

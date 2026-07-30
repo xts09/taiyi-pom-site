@@ -1,0 +1,21 @@
+- generic [active] [ref=e1] [box=0,0,390,4756]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer] [box=12,-48,168,44]:
+    - /url: "#main-content"
+  - banner [ref=e3] [box=0,0,390,63]:
+    - generic [ref=e4] [box=32,0,326,62]:
+      - link "Taiyi Nano home" [ref=e5] [cursor=pointer] [box=48,20,150,23]:
+        - /url: /
+      - group [ref=e226] [box=256,12,86,38]
+  - main [ref=e27] [box=0,63,390,4042]:
+    - generic [ref=e28] [box=0,63,390,4042]:
+      - generic "Resources for Material Selection & Grade Review" [ref=e29] [box=0,63,390,829]
+      - navigation "Browse resources by task" [ref=e38] [box=32,892,326,71]
+      - region "Technical resource topics" [ref=e43] [box=32,979,326,2404]
+      - generic [ref=e132] [box=32,3411,326,646]
+  - contentinfo [ref=e139] [box=0,4105,390,651]:
+    - generic [ref=e140] [box=32,4134,326,607]:
+      - generic [ref=e141] [box=32,4134,326,150]
+      - navigation "Footer navigation" [ref=e161] [box=32,4303,326,354]
+      - paragraph [ref=e215] [box=32,4706,326,36]: © 2026 Jiangsu Taiyi Nano Technology Co., Ltd. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=e221] [cursor=pointer] [box=22,790,32,32]
+  - alert [ref=e225] [box=-1,-1,1,1]: Resources for Material Selection & Grade Review

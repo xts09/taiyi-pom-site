@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
@@ -11,7 +13,7 @@ import {
   createPageMetadata,
 } from "@/lib/seo";
 
-const resourcesTitle = "Technical Resources | Taiyi Nano";
+const resourcesTitle = "Technical Resources | Taiyi Plastic";
 const resourcesDescription =
   "Choose a technical resource path for material selection, processing and troubleshooting, or grade data and validation.";
 
@@ -71,18 +73,22 @@ export default function ResourcesPage() {
                 keeps the detailed articles in context.
               </p>
               <div className="resource-index-actions">
-                <Link
-                  href="/resources/material-selection"
-                  className="resource-index-action resource-index-action-primary"
+                <Button
+                  asChild
+                  size="resourceIndexAction"
+                  variant="resourceIndexPrimary"
                 >
-                  Choose a Material
-                </Link>
-                <Link
-                  href="/technical-data-sheets"
-                  className="resource-index-action resource-index-action-secondary"
+                  <Link href="/resources/material-selection">
+                    Choose a Material
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  size="resourceIndexAction"
+                  variant="resourceIndexSecondary"
                 >
-                  Search Data / TDS
-                </Link>
+                  <Link href="/technical-data-sheets">Search Data / TDS</Link>
+                </Button>
               </div>
             </div>
             <div
@@ -92,15 +98,16 @@ export default function ResourcesPage() {
               <p className="resource-index-panel-label">Start by task</p>
               <div className="resource-index-path-list">
                 {resourceNavigationGroups.map((group) => (
-                  <Link
-                    key={group.id}
-                    href={getResourceNavigationGroupPath(group)}
-                    className="resource-index-path"
-                  >
-                    <span>{group.navigationLabel}</span>
-                    <strong>{group.title}</strong>
-                    <small>{group.links.length} resources</small>
-                  </Link>
+                  <Card key={group.id} asChild variant="interactive">
+                    <Link
+                      href={getResourceNavigationGroupPath(group)}
+                      className="resource-index-path"
+                    >
+                      <span>{group.navigationLabel}</span>
+                      <strong>{group.title}</strong>
+                      <small>{group.links.length} resources</small>
+                    </Link>
+                  </Card>
                 ))}
               </div>
             </div>

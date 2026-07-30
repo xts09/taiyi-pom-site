@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { ActionPanel } from "@/components/ActionPanel";
+import { Button } from "@/components/ui/button";
 import { applications, selectionBasis } from "@/data/applications";
 import {
   createBreadcrumbJsonLd,
@@ -10,7 +11,7 @@ import {
   createPageMetadata,
 } from "@/lib/seo";
 
-const applicationsTitle = "Application Areas | Taiyi Nano";
+const applicationsTitle = "Application Areas | Taiyi Plastic";
 const applicationsDescription =
   "Explore application areas for modified POM and selected engineering plastic compounds, including automotive, electronics, automation, motion components, water control, industrial machinery, outdoor equipment, and textile machinery.";
 
@@ -58,22 +59,30 @@ export default function ApplicationsPage() {
             </h1>
 
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              Start with the molded part, not a generic material name. Taiyi Nano
+              Start with the molded part, not a generic material name. Taiyi Plastic
               reviews motion, load, environment, dimensional targets, tooling
-              stage, and document needs before narrowing modified POM or selected
-              PA6, PA66, and PPA directions.
+              stage, and document needs to screen a modified POM direction. For
+              PA6, PA66, or PPA projects, send the same inputs for a
+              project-specific compound review.
             </p>
 
             <div className="application-index-actions">
-              <Link href="/contact" className="cta-primary px-6 py-3 text-sm">
-                Send Requirement
-              </Link>
-              <Link
-                href="/products/categories/pom"
-                className="cta-secondary px-6 py-3 text-sm"
+              <Button
+                asChild
+                variant="primary"
+                className="h-auto px-6 py-3 text-sm font-[var(--ds-button-font-weight)]"
               >
-                Browse Product Directions
-              </Link>
+                <Link href="/contact">Send Requirement</Link>
+              </Button>
+              <Button
+                asChild
+                variant="secondary"
+                className="h-auto px-6 py-3 text-sm"
+              >
+                <Link href="/products/categories/pom">
+                  Browse POM Compounds
+                </Link>
+              </Button>
             </div>
           </div>
 
@@ -149,18 +158,30 @@ export default function ApplicationsPage() {
           </ol>
         </section>
 
-        <MaterialRecommendationCta
-          kicker="Inquiry Preparation"
+        <ActionPanel
+          variant="recommendation"
           title="Need a Material Recommendation?"
           className="application-cta cta-ribbon mt-10"
+          eyebrow="Inquiry Preparation"
+          eyebrowClassName="section-kicker mb-3"
+          action={
+            <Button
+              asChild
+              variant="inverse"
+              className="h-auto px-7 py-3 text-sm"
+            >
+              <Link href="/contact">Send Requirement</Link>
+            </Button>
+          }
         >
           <p>
             Share the application, mold stage, cavity count, shrinkage or
             warpage concern, current material reference, color, document
-            requirements, and estimated volume. We will recommend a suitable
-            modified material direction for review.
+            requirements, and estimated volume. We will use those inputs to
+            prepare a modified-material shortlist and confirm the next document
+            or sample step.
           </p>
-        </MaterialRecommendationCta>
+        </ActionPanel>
       </section>
     </main>
   );

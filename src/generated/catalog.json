@@ -12409,9 +12409,10 @@
     "colors": [
       "Natural"
     ],
-    "description": "Very high-flow base POM resin grade for flow-sensitive injection molded parts and general industrial applications.",
+    "description": "Very high-flow POM resin grade for thin-wall and flow-sensitive injection-molded parts.",
     "features": [
       "Very high flow",
+      "Thin-wall molding direction",
       "Injection molding",
       "Natural color"
     ],
@@ -12588,6 +12589,10 @@
     ],
     "tds": {
       "status": "data-only"
+    },
+    "seo": {
+      "title": "ETM750 High-Flow POM for Injection Molding | Taiyi Plastic",
+      "description": "ETM750 is a very high-flow POM grade for thin-wall and flow-sensitive injection-molded parts. Review technical data and request sample evaluation."
     }
   },
   {
@@ -13000,16 +13005,17 @@
     "family": "Base POM Resin",
     "category": "Base POM Resin",
     "mfi": {
-      "value": 8,
-      "display": "8 g/10 min"
+      "value": 9,
+      "display": "9 g/10 min"
     },
     "colors": [
       "Natural"
     ],
-    "description": "Standard base POM resin grade with balanced flow and mechanical properties for general injection molding.",
+    "description": "Low-density, high-impact POM resin grade for precision and general injection-molded parts.",
     "features": [
-      "Standard grade",
-      "Balanced flow",
+      "Low-density direction",
+      "High-impact direction",
+      "Injection molding",
       "Natural color"
     ],
     "applications": [
@@ -13034,7 +13040,7 @@
       },
       {
         "label": "Melt Flow Rate (MFI)",
-        "value": "8",
+        "value": "9",
         "unit": "g/10 min",
         "method": "ISO 1133, 195 °C/2.16 kg"
       },
@@ -13185,6 +13191,10 @@
     ],
     "tds": {
       "status": "data-only"
+    },
+    "seo": {
+      "title": "XT-100 Low-Density High-Impact POM | Taiyi Plastic",
+      "description": "XT-100 is a low-density, high-impact POM grade for precision and general injection-molded parts. Review data and request a sample."
     }
   },
   {
@@ -17085,6 +17095,210 @@
   {
     "schemaVersion": 1,
     "kind": "product",
+    "id": "product:egb25-glass-bead-pom",
+    "sortOrder": 26,
+    "slug": "egb25-glass-bead-pom",
+    "grade": "EGB25",
+    "title": "EGB25 Glass Bead Filled POM Compound",
+    "polymer": "POM",
+    "family": "Glass Bead Filled POM Compound",
+    "category": "Glass Bead Filled POM Compound",
+    "mfi": {
+      "value": 8.5,
+      "display": "8.5 g/10 min"
+    },
+    "colors": [
+      "Natural"
+    ],
+    "description": "25% glass-bead-filled POM compound for injection-molded parts requiring balanced longitudinal and transverse shrinkage evaluation.",
+    "features": [
+      "25% glass bead content",
+      "Balanced longitudinal and transverse shrinkage direction",
+      "Heat deflection temperature: 110 degC at 1.8 MPa",
+      "Natural color"
+    ],
+    "applications": [
+      "Automotive components",
+      "Electrical and electronic components",
+      "Sanitary components",
+      "Industrial molded parts"
+    ],
+    "documents": [
+      "TDS",
+      "SDS",
+      "COA",
+      "REACH",
+      "RoHS"
+    ],
+    "properties": [
+      {
+        "label": "Density",
+        "value": "1.55",
+        "unit": "g/cm3",
+        "method": "ISO 1183"
+      },
+      {
+        "label": "Melt Flow Rate (MFI)",
+        "value": "8.5",
+        "unit": "g/10 min",
+        "method": "ISO 1133, 195 degC/2.16 kg"
+      },
+      {
+        "label": "Molding Shrinkage",
+        "value": "1.5-1.6",
+        "unit": "%",
+        "method": "Internal Method"
+      },
+      {
+        "label": "Water Absorption",
+        "value": "0.1",
+        "unit": "%",
+        "method": "ISO 62"
+      },
+      {
+        "label": "Tensile Strength",
+        "value": "40",
+        "unit": "MPa",
+        "method": "ISO 527"
+      },
+      {
+        "label": "Tensile Strain at Break",
+        "value": "15",
+        "unit": "%",
+        "method": "ISO 527"
+      },
+      {
+        "label": "Flexural Strength",
+        "value": "75",
+        "unit": "MPa",
+        "method": "ISO 178"
+      },
+      {
+        "label": "Flexural Modulus",
+        "value": "2400",
+        "unit": "MPa",
+        "method": "ISO 178"
+      },
+      {
+        "label": "Charpy Notched Impact Strength",
+        "value": "4",
+        "unit": "kJ/m2",
+        "method": "ISO 179/1eA"
+      },
+      {
+        "label": "Izod Notched Impact Strength",
+        "value": "3.8",
+        "unit": "kJ/m2",
+        "method": "ISO 180/1A"
+      },
+      {
+        "label": "Melting Temperature",
+        "value": "165",
+        "unit": "degC",
+        "method": "ISO 11357"
+      },
+      {
+        "label": "Heat Deflection Temperature",
+        "value": "110",
+        "unit": "degC",
+        "method": "ISO 75-2, 1.8 MPa"
+      },
+      {
+        "label": "Coefficient of Linear Thermal Expansion, CLTE",
+        "value": "9",
+        "unit": "10^-5/degC",
+        "method": "ISO 11359"
+      },
+      {
+        "label": "Volume Resistivity",
+        "value": "1e14",
+        "unit": "ohm.cm",
+        "method": "Internal Method"
+      },
+      {
+        "label": "Surface Resistivity",
+        "value": "1e16",
+        "unit": "ohm",
+        "method": "Internal Method"
+      },
+      {
+        "label": "Dielectric Strength",
+        "value": "20",
+        "unit": "kV/mm",
+        "method": "Internal Method"
+      },
+      {
+        "label": "Drying Temperature",
+        "value": "85",
+        "unit": "degC",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Drying Time",
+        "value": "4",
+        "unit": "h",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Suggested Max Moisture",
+        "value": "5",
+        "unit": "%",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Hopper Temperature",
+        "value": "95",
+        "unit": "degC",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Rear Temperature",
+        "value": "165",
+        "unit": "degC",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Middle Temperature",
+        "value": "175",
+        "unit": "degC",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Front Temperature",
+        "value": "185",
+        "unit": "degC",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Nozzle Temperature",
+        "value": "190",
+        "unit": "degC",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Melt Temperature",
+        "value": "200",
+        "unit": "degC",
+        "method": "Injection Molding"
+      },
+      {
+        "label": "Mold Temperature",
+        "value": "50-70",
+        "unit": "degC",
+        "method": "Injection Molding"
+      }
+    ],
+    "tds": {
+      "status": "data-only"
+    },
+    "seo": {
+      "title": "EGB25 Glass-Bead-Filled POM for Injection Molding | Taiyi Plastic",
+      "description": "EGB25 is a 25% glass-bead-filled POM compound for screening balanced longitudinal and transverse shrinkage in injection-molded parts. Review data and request a sample."
+    }
+  },
+  {
+    "schemaVersion": 1,
+    "kind": "product",
     "id": "product:egh502h-glass-fiber-pom",
     "sortOrder": 26,
     "slug": "egh502h-glass-fiber-pom",
@@ -17100,11 +17314,12 @@
     "colors": [
       "Natural"
     ],
-    "description": "25% glass-fiber reinforced POM for molded parts that need high stiffness, lower shrinkage, and balanced processing flow.",
+    "description": "25% glass-fiber reinforced POM for molded parts requiring high rigidity, creep-resistance review, and low shrinkage.",
     "features": [
       "25% glass fiber content",
-      "High stiffness",
-      "Lower molding shrinkage"
+      "High rigidity",
+      "Creep-resistance direction",
+      "Low molding shrinkage"
     ],
     "applications": [
       "Automotive applications",
@@ -17278,6 +17493,10 @@
     ],
     "tds": {
       "status": "data-only"
+    },
+    "seo": {
+      "title": "EGH502H High-Rigidity Glass Fiber POM | Taiyi Plastic",
+      "description": "EGH502H is a 25% glass-fiber reinforced POM grade for high rigidity, creep-resistance and low-shrinkage evaluation in molded parts. Review data and request a sample."
     }
   },
   {

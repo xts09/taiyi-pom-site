@@ -26,7 +26,7 @@ const pomCategoryOverview = {
   label: "POM",
   title: "POM Material Grades and Modified Compound Data",
   description:
-    "Browse Taiyi Nano POM material grades including wear-resistant, high-impact, low-friction, UV-resistant, reinforced, conductive, antistatic, and base POM resin options.",
+    "Browse Taiyi Plastic POM material grades including wear-resistant, high-impact, low-friction, UV-resistant, reinforced, conductive, antistatic, and base POM resin options.",
   navSubtitle:
     "Browse modified POM and base resin options by family, grade data, application fit, and documents.",
   applications: [
@@ -41,7 +41,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Wear-Resistant Low-Friction POM Compound",
     label: "Wear-Resistant & Low-Friction POM",
     description:
-      "Browse Taiyi Nano wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, motion components, grade data, and document support.",
+      "Browse Taiyi Plastic wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, motion components, grade data, and document support.",
     navSubtitle:
       "Shortlist wear-resistant and low-friction POM directions by movement, friction, MFI, shrinkage, and application fit.",
     applications: [
@@ -55,7 +55,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "High-Impact POM Compound",
     label: "High-Impact POM",
     description:
-      "Browse Taiyi Nano high-impact POM grades with MFI, color, impact data, low-temperature performance, applications, and document support.",
+      "Browse Taiyi Plastic high-impact POM grades with MFI, color, impact data, low-temperature performance, applications, and document support.",
     navSubtitle:
       "Review impact-modified POM grades by toughness need, molding fit, and application risk.",
     applications: [
@@ -68,7 +68,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "UV-Resistant POM Compound",
     label: "UV-Resistant POM",
     description:
-      "Browse Taiyi Nano UV-resistant POM grades for light-exposed molded parts with color options, property data, applications, and document support.",
+      "Browse Taiyi Plastic UV-resistant POM grades for light-exposed molded parts with color options, property data, applications, and document support.",
     navSubtitle:
       "Compare UV-resistant POM options by color, exposure condition, and document requirements.",
     applications: [
@@ -81,7 +81,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Glass Fiber Reinforced POM Compound",
     label: "Glass Fiber Reinforced POM",
     description:
-      "Compare Taiyi Nano 10% to 30% glass fiber reinforced POM grades for stiffness and dimensional stability. Beyond POM, the current portfolio includes PA6, PA66, and PPA glass fiber compounds with up to 50% glass fiber.",
+      "Compare Taiyi Plastic 10% to 30% glass fiber reinforced POM grades for stiffness and dimensional stability. Beyond POM, the current portfolio includes PA6, PA66, and PPA glass fiber compounds with up to 50% glass fiber.",
     navSubtitle:
       "Compare 10% to 30% glass fiber POM grades, then discuss PA6, PA66, and PPA directions with up to 50% glass fiber when heat, moisture, or stiffness targets move beyond POM.",
     applications: [
@@ -91,10 +91,23 @@ export const productCategoryData: ProductCategoryData[] = [
     ],
   },
   {
+    category: "Glass Bead Filled POM Compound",
+    label: "Glass Bead Filled POM",
+    description:
+      "Review Taiyi Plastic glass-bead-filled POM grades with MFI, shrinkage, thermal data, application fit, and document support.",
+    navSubtitle:
+      "Screen glass-bead-filled POM by shrinkage, thermal profile, molding conditions, and document requirements.",
+    applications: [
+      "Injection-molded parts requiring shrinkage review",
+      "Automotive, electrical, sanitary, and industrial components",
+      "Parts requiring project-specific dimensional and thermal evaluation",
+    ],
+  },
+  {
     category: "Carbon Fiber Reinforced POM Compound",
     label: "Carbon Fiber Reinforced POM",
     description:
-      "Browse Taiyi Nano carbon fiber reinforced POM grades for high stiffness, controlled conductivity, dimensional stability, and document support.",
+      "Browse Taiyi Plastic carbon fiber reinforced POM grades for high stiffness, controlled conductivity, dimensional stability, and document support.",
     navSubtitle:
       "Review carbon fiber reinforced POM by stiffness, conductivity target, dimensional control, and documents.",
     applications: [
@@ -107,7 +120,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Conductive / Antistatic POM Compound",
     label: "Conductive / Antistatic POM",
     description:
-      "Browse Taiyi Nano conductive and antistatic POM grades with resistivity data, electrical application fit, color, and document support.",
+      "Browse Taiyi Plastic conductive and antistatic POM grades with resistivity data, electrical application fit, color, and document support.",
     navSubtitle:
       "Review conductive and antistatic options by electrical target, part geometry, and validation needs.",
     applications: [
@@ -120,7 +133,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Base POM Resin",
     label: "Base POM Resin",
     description:
-      "Browse selected Taiyi Nano base POM resin grades with MFI, physical property data, processing information, and document support.",
+      "Browse selected Taiyi Plastic base POM resin grades with MFI, physical property data, processing information, and document support.",
     navSubtitle:
       "Compare base POM resin options for reference, property data, documents, and project review.",
     applications: [
@@ -133,7 +146,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: ultraHighFlowPomCategory,
     label: "Ultra-High Flow POM",
     description:
-      "Browse Taiyi Nano POM grades with MFI of 100 g/10 min or higher for flow-sensitive injection molding and thin-wall molded part review.",
+      "Browse Taiyi Plastic POM grades with MFI of 100 g/10 min or higher for flow-sensitive injection molding and thin-wall molded part review.",
     navSubtitle:
       "Compare ultra-high flow POM grades by MFI, processing fit, shrinkage behavior, and application requirements.",
     applications: [
@@ -301,7 +314,7 @@ export const getCategoryDescription = (category: string) => {
 
   return (
     getCategoryData(category)?.description ??
-    `Browse Taiyi Nano ${category} grades with MFI, color, typical property data, application fit, and document support.`
+    `Browse Taiyi Plastic ${category} grades with MFI, color, typical property data, application fit, and document support.`
   );
 };
 

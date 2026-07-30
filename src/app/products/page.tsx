@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { products } from "@/data/products";
 import { engineeringTdsDocuments } from "@/data/engineeringTds";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { ActionPanel } from "@/components/ActionPanel";
 import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
+import { Button } from "@/components/ui/button";
 import {
   createBreadcrumbJsonLd,
   createCollectionPageJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
 
-const productDirectoryTitle = "Engineering Plastic Product Directory | Taiyi Nano";
+const productDirectoryTitle = "Engineering Plastic Product Directory | Taiyi Plastic";
 const productDirectoryDescription =
-  "Browse Taiyi Nano modified POM compounds, selected base POM resin, and project-based PA6, PA66, and PPA engineering plastic compound support.";
+  "Browse Taiyi Plastic modified POM compounds, selected base POM resin, and project-based PA6, PA66, and PPA engineering plastic compound support.";
 
 export const metadata: Metadata = createPageMetadata({
   title: productDirectoryTitle,
@@ -122,21 +123,20 @@ export default function ProductsPage() {
             </p>
 
             <p className="mt-4 max-w-3xl text-lg leading-8">
-              Start from product families, then enter the POM material
-              directions to compare grade data, shrinkage behavior, documents,
-              and application matching.
+              Browse product families first. Each category then presents the
+              relevant grade data, processing considerations, document scope,
+              and application fit.
             </p>
 
             <div className="product-hero-cta">
-              <Link
-                href="/products/categories/pom"
-                className="product-hero-primary-action"
-              >
-                View POM Material Families
-              </Link>
-              <Link href="/technical-data-sheets" className="product-hero-tds-link">
-                Search Data / TDS
-              </Link>
+              <Button asChild size="productHero" variant="productHeroPrimary">
+                <Link href="/products/categories/pom">
+                  View POM Material Families
+                </Link>
+              </Button>
+              <Button asChild size="productHero" variant="productHeroSecondary">
+                <Link href="/technical-data-sheets">Search Data / TDS</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -145,11 +145,11 @@ export default function ProductsPage() {
           <ProductAnimeMotion />
           <div className="product-family-overview-head">
             <p className="section-kicker">Product Families</p>
-            <h2>Choose a Material Direction</h2>
+            <h2>Choose a Product Family</h2>
             <p>
-              Start with the family closest to the molded part requirement,
-              then open the category for grade data, documents, and application
-              matching.
+              Choose the family closest to the part requirement. Its category
+              page provides the related grade data, document scope, and
+              application context.
             </p>
           </div>
 
@@ -186,19 +186,31 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        <MaterialRecommendationCta
+        <ActionPanel
           id="product-inquiry"
-          kicker="Inquiry Preparation"
-          title="Need a Material Recommendation?"
+          variant="recommendation"
+          title="Prepare a Material Shortlist"
           className="selection-support-band product-recommendation-band products-motion-support mt-12"
+          eyebrow="Inquiry Preparation"
+          eyebrowClassName="section-kicker mb-3"
+          action={
+            <Button
+              asChild
+              variant="inverse"
+              className="h-auto px-7 py-3 text-sm"
+            >
+              <Link href="/contact">Send Requirement</Link>
+            </Button>
+          }
         >
           <p>
             Share the application, mold stage, cavity count, shrinkage or
             warpage concern, key performance requirements, current material
-            reference, color, document requirements, and estimated volume. We
-            will recommend a suitable modified material direction for review.
+            reference, color, document requirements, and estimated volume.
+            These inputs identify the relevant material family and establish
+            the grade data, document, and sample follow-up for the project.
           </p>
-        </MaterialRecommendationCta>
+        </ActionPanel>
       </section>
       </ProductPageMotion>
     </main>

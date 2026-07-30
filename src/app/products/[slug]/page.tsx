@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import type { CSSProperties } from "react";
-import { MaterialRecommendationCta } from "@/components/MaterialRecommendationCta";
+import { ActionPanel } from "@/components/ActionPanel";
 import { UnitText, ValueText } from "@/components/UnitText";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   createEngineeringTdsSlug,
   engineeringTdsDocuments,
@@ -82,6 +84,96 @@ const formatReferenceFacts = (facts: string[]) => {
   return `${facts.slice(0, -1).join(", ")}, and ${facts.at(-1)}`;
 };
 
+type GradeCampaignProfile = {
+  eyebrow: string;
+  positioning: string;
+  mfiNote: string;
+  screeningCopy: string;
+};
+
+const gradeCampaignProfiles: Record<string, GradeCampaignProfile> = {
+  "etm750-base-pom-resin": {
+    eyebrow: "Very High-Flow POM · Injection Molding",
+    positioning:
+      "Thin-wall and flow-sensitive parts, screened with published grade data and confirmed through sample molding.",
+    mfiNote: "Very high-flow profile",
+    screeningCopy:
+      "Start with the published values, then review the part, process, and document requirements before sampling.",
+  },
+  "xt-100-base-pom-resin": {
+    eyebrow: "Low-Density High-Impact POM · Injection Molding",
+    positioning:
+      "A low-density, high-impact POM screening direction for precision and general injection-molded parts.",
+    mfiNote: "Low-density high-impact profile",
+    screeningCopy:
+      "Start with the published density and impact data, then review part geometry, process conditions, and document requirements before sampling.",
+  },
+  "egb25-glass-bead-pom": {
+    eyebrow: "25% Glass Bead Filled POM · Injection Molding",
+    positioning:
+      "A glass-bead-filled POM screening direction for injection-molded parts requiring balanced longitudinal and transverse shrinkage review.",
+    mfiNote: "Glass-bead-filled profile",
+    screeningCopy:
+      "Start with the published shrinkage data, then review part geometry, molding orientation, process conditions, and document requirements before sampling.",
+  },
+  "egh502h-glass-fiber-pom": {
+    eyebrow: "25% Glass Fiber Reinforced POM · Injection Molding",
+    positioning:
+      "A glass-fiber-reinforced POM screening direction for molded parts requiring high rigidity, creep-resistance, and low-shrinkage review.",
+    mfiNote: "Reinforced flow profile",
+    screeningCopy:
+      "Start with the published rigidity, shrinkage, and thermal data, then review part geometry, load condition, process conditions, and document requirements before sampling.",
+  },
+  "ehi402t-high-impact-pom": {
+    eyebrow: "High-Impact POM · Injection Molding",
+    positioning:
+      "A high-impact POM screening direction for functional injection-molded parts requiring toughness and low-temperature performance review.",
+    mfiNote: "Toughness-focused flow profile",
+    screeningCopy:
+      "Start with the published grade data, then review part geometry, impact target, process conditions, and document requirements before sampling.",
+  },
+  "edr180-high-impact-pom": {
+    eyebrow: "High-Impact POM · Injection Molding",
+    positioning:
+      "A high-impact POM screening direction for functional injection-molded parts requiring toughness and low-temperature performance review.",
+    mfiNote: "High-impact flow profile",
+    screeningCopy:
+      "Start with the published grade data, then review part geometry, impact target, process conditions, and document requirements before sampling.",
+  },
+  "ecn1003b-conductive-pom": {
+    eyebrow: "Conductive POM · Injection Molding",
+    positioning:
+      "A conductive POM screening direction for injection-molded parts requiring resistivity and charge-control performance review.",
+    mfiNote: "Conductive flow profile",
+    screeningCopy:
+      "Start with the published resistivity data, then review part geometry, electrical target, process conditions, and document requirements before sampling.",
+  },
+  "etm450-base-pom-resin": {
+    eyebrow: "High-Flow POM · Injection Molding",
+    positioning:
+      "A high-flow POM screening direction for precision injection-molded parts requiring flow and mechanical-profile review.",
+    mfiNote: "High-flow profile",
+    screeningCopy:
+      "Start with the published flow and mechanical data, then review part geometry, process conditions, and document requirements before sampling.",
+  },
+  "epaf100a-high-wear-resistant-pom": {
+    eyebrow: "Wear-Resistant POM · Injection Molding",
+    positioning:
+      "An aramid-fiber-modified POM screening direction for injection-molded parts requiring wear, stiffness, and thermal-profile review.",
+    mfiNote: "Wear-focused flow profile",
+    screeningCopy:
+      "Start with the published wear, stiffness, and thermal data, then review the mating surface, load, speed, process conditions, and document requirements before sampling.",
+  },
+  "etm090u-uv-resistant-pom": {
+    eyebrow: "UV-Resistant POM · Injection Molding",
+    positioning:
+      "A UV-resistant POM screening direction for molded parts requiring material, color, and exposure-condition review.",
+    mfiNote: "UV-resistant flow profile",
+    screeningCopy:
+      "Start with the published grade data, then review the exposure condition, color, part geometry, process conditions, and document requirements before sampling.",
+  },
+};
+
 const toEngineeringProperties = (
   document: EngineeringTdsDocument
 ): ProductProperty[] =>
@@ -103,7 +195,7 @@ export async function generateMetadata({
 
   if (!product && !engineeringDocument) {
     return {
-      title: "Page Not Found | Taiyi Nano",
+      title: "Page Not Found | Taiyi Plastic",
       robots: {
         index: false,
         follow: false,
@@ -117,7 +209,7 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: "Page Not Found | Taiyi Nano",
+      title: "Page Not Found | Taiyi Plastic",
       robots: {
         index: false,
         follow: false,
@@ -239,30 +331,38 @@ function EngineeringProductDetailPage({
                   molded part and processing conditions.
                 </p>
 
-                <div
-                  className="product-detail-document-strip"
-                  aria-label="Available material documents"
-                >
-                  <span>Documents</span>
+                <div className="product-detail-hero-bottom-row">
+                  <div
+                    className="product-detail-document-strip"
+                    aria-label="Material document support"
+                  >
+                  <span>Document Support</span>
                   <div>
                     {availableDocuments.map((availableDocument) => (
                       <span key={availableDocument}>{availableDocument}</span>
                     ))}
                   </div>
-                </div>
-              </div>
+                  <p>REACH / RoHS support available upon request.</p>
+                  </div>
 
-              <div className="product-detail-hero-side">
+                  <div className="product-detail-hero-side">
                 <div className="product-detail-hero-actions">
-                  <Link href="/contact" className="product-hero-primary-action">
-                    Send Requirement
-                  </Link>
-                  <Link
-                    href="/technical-data-sheets"
-                    className="product-hero-tds-link"
+                  <Button
+                    asChild
+                    size="productDetailHero"
+                    variant="productDetailPrimary"
                   >
-                    Search Data / TDS
-                  </Link>
+                    <Link href="/contact">Send Requirement</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="productDetailHero"
+                    variant="productDetailSecondary"
+                  >
+                    <Link href="/technical-data-sheets">Search Data / TDS</Link>
+                  </Button>
+                </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -270,37 +370,38 @@ function EngineeringProductDetailPage({
           </div>
         </div>
 
-        <section
-          className="product-detail-resource-panel"
-          aria-label="Grade snapshot"
-        >
-          <div className="product-detail-resource-copy">
-            <strong>Grade Snapshot</strong>
-            <p>
-              Review the reference values before confirming this material for a
-              molded part or document request.
-            </p>
-          </div>
+        <Card asChild variant="evidence">
+          <section
+            className="product-detail-resource-panel"
+            aria-label="Grade snapshot"
+          >
+            <div className="product-detail-resource-copy">
+              <strong>Grade Snapshot</strong>
+              <p>
+                Review the reference values before confirming this material for a
+                molded part or document request.
+              </p>
+            </div>
 
-          <dl className="product-detail-snapshot-grid">
-            {snapshotItems.map((item) => (
-              <div key={item.label}>
-                <dt>{item.label}</dt>
-                <dd>
-                  <ValueText value={item.value ?? ""} />
-                  {item.unit ? (
-                    <>
-                      {" "}
-                      <UnitText unit={item.unit} />
-                    </>
-                  ) : null}
-                </dd>
-                <span>{item.note}</span>
-              </div>
-            ))}
-          </dl>
-
-        </section>
+            <dl className="product-detail-snapshot-grid">
+              {snapshotItems.map((item) => (
+                <div key={item.label}>
+                  <dt>{item.label}</dt>
+                  <dd>
+                    <ValueText value={item.value ?? ""} />
+                    {item.unit ? (
+                      <>
+                        {" "}
+                        <UnitText unit={item.unit} />
+                      </>
+                    ) : null}
+                  </dd>
+                  <span>{item.note}</span>
+                </div>
+              ))}
+            </dl>
+          </section>
+        </Card>
 
         <nav
           className="product-detail-topic-list product-detail-section-nav"
@@ -419,19 +520,29 @@ function EngineeringProductDetailPage({
             </p>
           </section>
 
-          <MaterialRecommendationCta
-            kicker="Inquiry Preparation"
-            title="Need a Recommendation for This Grade?"
+          <ActionPanel
+            variant="recommendation"
+            title="Prepare a Grade Evaluation"
             className="detail-cta reveal-up reveal-delay-2 mt-10"
-            actionClassName="px-5"
+            eyebrow="Inquiry Preparation"
+            eyebrowClassName="section-kicker mb-3"
+            action={
+              <Button
+                asChild
+                variant="inverse"
+                className="h-auto px-5 py-3 text-sm"
+              >
+                <Link href="/contact">Send Requirement</Link>
+              </Button>
+            }
           >
             <p>
-              Contact us with your application, key performance requirements,
-              mold stage, cavity count, dimensional concern, current material
-              or reference grade, and estimated volume. We can recommend a
-              suitable material direction for review.
+              Send the application, key performance requirements, mold stage,
+              cavity count, dimensional concern, current material or reference
+              grade, document needs, and estimated volume. These inputs identify
+              the next grade, document, and sample steps for the project.
             </p>
-          </MaterialRecommendationCta>
+          </ActionPanel>
         </article>
 
         <section className="product-detail-related mt-12">
@@ -515,7 +626,15 @@ export default async function ProductDetailPage({
     notFound();
   }
 
+  const campaignProfile = gradeCampaignProfiles[product.slug];
   const categoryUrl = getCategoryPath(product.category);
+  const gradeQuery = encodeURIComponent(product.grade);
+  const sampleRequestHref = campaignProfile
+    ? `/contact?grade=${gradeQuery}&intent=sample`
+    : "/contact";
+  const gradeEvaluationHref = campaignProfile
+    ? `/contact?grade=${gradeQuery}&intent=grade-evaluation`
+    : "/technical-data-sheets";
 
   const relatedProducts = products
     .filter(
@@ -544,7 +663,11 @@ export default async function ProductDetailPage({
   const tensileProperty = getProperty("Tensile Strength");
   const hdtProperty = getProperty("Heat Deflection Temperature");
   const snapshotItems = [
-    { label: "MFI", value: product.mfi, note: "Flow index" },
+    {
+      label: "MFI",
+      value: product.mfi,
+      note: campaignProfile?.mfiNote ?? "Flow index",
+    },
     {
       label: "Tensile",
       value: tensileProperty?.value,
@@ -574,7 +697,11 @@ export default async function ProductDetailPage({
   );
 
   return (
-    <main className="product-detail-page min-h-screen text-slate-900">
+    <main
+      className={`product-detail-page min-h-screen text-slate-900${
+        campaignProfile ? " product-detail-page--campaign-grade" : ""
+      }`}
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -586,40 +713,80 @@ export default async function ProductDetailPage({
           <div className="product-detail-hero-card">
             <div className="product-detail-heading-row">
               <div className="product-detail-main-copy">
-                <p className="product-detail-eyebrow">{product.category}</p>
+                <p className="product-detail-eyebrow">
+                  {campaignProfile?.eyebrow ?? product.category}
+                </p>
 
                 <h1>{product.grade}</h1>
 
+                {campaignProfile ? (
+                  <p className="product-detail-positioning">
+                    {campaignProfile.positioning}
+                  </p>
+                ) : null}
+
                 <p className="product-detail-summary">
-                  {product.description} The recorded profile for this grade
-                  lists {gradeProfile}. Confirm final suitability against the
-                  molded part and processing conditions.
+                  {campaignProfile ? (
+                    <>
+                      {product.description} The recorded profile lists{" "}
+                      {gradeProfile}. Use these values for early screening, then
+                      confirm suitability with the actual part, tooling, and
+                      processing conditions.
+                    </>
+                  ) : (
+                    <>
+                      {product.description} The recorded profile for this grade
+                      lists {gradeProfile}. Confirm final suitability against
+                      the molded part and processing conditions.
+                    </>
+                  )}
                 </p>
 
-                <div
-                  className="product-detail-document-strip"
-                  aria-label="Available material documents"
-                >
-                  <span>Documents</span>
+                <div className="product-detail-hero-bottom-row">
+                  <div
+                    className="product-detail-document-strip"
+                    aria-label="Material document support"
+                  >
+                  <span>Document Support</span>
                   <div>
                     {availableDocuments.map((document) => (
                       <span key={document}>{document}</span>
                     ))}
                   </div>
-                </div>
-              </div>
+                  <p>REACH / RoHS support available upon request.</p>
+                  </div>
 
-              <div className="product-detail-hero-side">
+                  <div className="product-detail-hero-side">
                 <div className="product-detail-hero-actions">
-                  <Link href="/contact" className="product-hero-primary-action">
-                    Send Requirement
-                  </Link>
-                  <Link
-                    href="/technical-data-sheets"
-                    className="product-hero-tds-link"
+                  <Button
+                    asChild
+                    size="productDetailHero"
+                    variant="productDetailPrimary"
                   >
-                    Search Data / TDS
-                  </Link>
+                    <Link href={sampleRequestHref}>
+                      {campaignProfile
+                        ? `Request an ${product.grade} Sample`
+                        : "Send Requirement"}
+                    </Link>
+                  </Button>
+                  <Button
+                    asChild
+                    size="productDetailHero"
+                    variant="productDetailSecondary"
+                  >
+                    <Link href={gradeEvaluationHref}>
+                      {campaignProfile
+                        ? "Ask for Grade Evaluation"
+                        : "Search Data / TDS"}
+                    </Link>
+                  </Button>
+                </div>
+                {campaignProfile ? (
+                  <p className="product-detail-hero-action-note">
+                    Independent Taiyi grade · Sample testing recommended
+                  </p>
+                ) : null}
+                  </div>
                 </div>
               </div>
             </div>
@@ -627,37 +794,42 @@ export default async function ProductDetailPage({
           </div>
         </div>
 
-        <section
-          className="product-detail-resource-panel"
-          aria-label="Grade snapshot"
-        >
-          <div className="product-detail-resource-copy">
-            <strong>Grade Snapshot</strong>
-            <p>
-              Check the core values and review sections before confirming this
-              material for a molded part.
-            </p>
-          </div>
+        <Card asChild variant="evidence">
+          <section
+            className="product-detail-resource-panel"
+            aria-label="Grade snapshot"
+          >
+            <div className="product-detail-resource-copy">
+              <strong>
+                {campaignProfile
+                  ? `${product.grade} Screening Profile`
+                  : "Grade Snapshot"}
+              </strong>
+              <p>
+                {campaignProfile?.screeningCopy ??
+                  "Check the core values and review sections before confirming this material for a molded part."}
+              </p>
+            </div>
 
-          <dl className="product-detail-snapshot-grid">
-            {snapshotItems.map((item) => (
-              <div key={item.label}>
-                <dt>{item.label}</dt>
-                <dd>
-                  <ValueText value={item.value ?? ""} />
-                  {item.unit ? (
-                    <>
-                      {" "}
-                      <UnitText unit={item.unit} />
-                    </>
-                  ) : null}
-                </dd>
-                <span>{item.note}</span>
-              </div>
-            ))}
-          </dl>
-
-        </section>
+            <dl className="product-detail-snapshot-grid">
+              {snapshotItems.map((item) => (
+                <div key={item.label}>
+                  <dt>{item.label}</dt>
+                  <dd>
+                    <ValueText value={item.value ?? ""} />
+                    {item.unit ? (
+                      <>
+                        {" "}
+                        <UnitText unit={item.unit} />
+                      </>
+                    ) : null}
+                  </dd>
+                  <span>{item.note}</span>
+                </div>
+              ))}
+            </dl>
+          </section>
+        </Card>
 
         <nav
           className="product-detail-topic-list product-detail-section-nav"
@@ -665,6 +837,7 @@ export default async function ProductDetailPage({
         >
           <a href="#typical-properties">Property Data</a>
           <a href="#material-fit">Material Fit</a>
+          {campaignProfile ? <a href="#evaluation-path">Evaluation Path</a> : null}
           <a href="#evaluation-notes">Evaluation Notes</a>
         </nav>
 
@@ -776,6 +949,44 @@ export default async function ProductDetailPage({
             </div>
           </section>
 
+          {campaignProfile ? (
+            <section
+              id="evaluation-path"
+              className="product-detail-evaluation-path"
+              aria-labelledby="evaluation-path-title"
+            >
+              <div className="product-detail-evaluation-path-intro">
+                <p className="section-kicker">Grade Evaluation Path</p>
+                <h2 id="evaluation-path-title">
+                  Move from data screening to a molding decision
+                </h2>
+                <p>
+                  {product.grade}{" "}is offered as a candidate grade for
+                  evaluation. Final approval should follow the customer&apos;s own
+                  molding trial and part requirements.
+                </p>
+              </div>
+
+              <ol className="product-detail-evaluation-steps">
+                <li>
+                  <span>01</span>
+                  <strong>Share the application</strong>
+                  <p>Part geometry, process, current material, and key targets.</p>
+                </li>
+                <li>
+                  <span>02</span>
+                  <strong>Review data and sample</strong>
+                  <p>Confirm documents, grade direction, color, and sample needs.</p>
+                </li>
+                <li>
+                  <span>03</span>
+                  <strong>Validate in your process</strong>
+                  <p>Check filling, dimensions, appearance, and end-use performance.</p>
+                </li>
+              </ol>
+            </section>
+          ) : null}
+
           <section
             id="evaluation-notes"
             className="evaluation-note reveal-up reveal-delay-1 mt-10"
@@ -785,27 +996,46 @@ export default async function ProductDetailPage({
             </h2>
 
             <p className="text-sm leading-6 text-slate-700">
-              This product page is for preliminary material selection. For
-              project evaluation, please confirm the application, processing
-              method, mold development stage, cavity count, target shrinkage or
-              dimensional requirement, target performance requirements, current
-              reference grade, document requirements, and estimated volume.
+              {campaignProfile
+                ? `This page supports preliminary ${product.grade} screening. Suitability is not automatic: part design, mold construction, processing conditions, performance targets, and customer certification can change the result. Request the current technical documents and confirm the grade through sampling and application testing.`
+                : "This product page is for preliminary material selection. For project evaluation, please confirm the application, processing method, mold development stage, cavity count, target shrinkage or dimensional requirement, target performance requirements, current reference grade, document requirements, and estimated volume."}
             </p>
           </section>
 
-          <MaterialRecommendationCta
-            kicker="Inquiry Preparation"
-            title="Need a Recommendation for This Grade?"
+          <ActionPanel
+            variant="recommendation"
+            eyebrow={
+              campaignProfile
+                ? `${product.grade} Project Review`
+                : "Inquiry Preparation"
+            }
+            title={
+              campaignProfile
+                ? `Ready to screen ${product.grade} for your molded part?`
+                : "Prepare a Grade Evaluation"
+            }
             className="detail-cta reveal-up reveal-delay-2 mt-10"
-            actionClassName="px-5"
+            eyebrowClassName="section-kicker mb-3"
+            action={
+              <Button
+                asChild
+                variant="inverse"
+                className="h-auto px-5 py-3 text-sm"
+              >
+                <Link href={campaignProfile ? gradeEvaluationHref : "/contact"}>
+                  {campaignProfile
+                    ? `Ask for ${product.grade} Evaluation`
+                    : "Send Requirement"}
+                </Link>
+              </Button>
+            }
           >
             <p>
-              Contact us with your application, key performance requirements,
-              mold stage, cavity count, shrinkage or warpage concern, current
-              material or reference grade, and estimated volume. We can
-              recommend a suitable material direction for review.
+              {campaignProfile
+                ? "Send the application, processing method, current material, target properties, color, estimated volume, and required documents. We can prepare the grade review and sample discussion."
+                : "Send the application, key performance requirements, mold stage, cavity count, shrinkage or warpage concern, current material or reference grade, document needs, and estimated volume. These inputs identify the next grade, document, and sample steps for the project."}
             </p>
-          </MaterialRecommendationCta>
+          </ActionPanel>
         </article>
 
         <section className="product-detail-related mt-12">

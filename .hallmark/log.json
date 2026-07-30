@@ -1,0 +1,46 @@
+[
+  {
+    "date": "2026-07-24",
+    "brief": "Homepage evidence-chain detail polish",
+    "scope": "section polish",
+    "genre": "modern-minimal",
+    "macrostructure": "Narrative Workflow",
+    "theme": "Taiyi industrial",
+    "enrichment": "real factory photography and certificate documents",
+    "navigation": "preserved",
+    "footer": "preserved"
+  },
+  {
+    "date": "2026-07-22",
+    "brief": "Full homepage evidence-chain redesign",
+    "scope": "single-page",
+    "genre": "modern-minimal",
+    "macrostructure": "Narrative Workflow",
+    "theme": "Taiyi industrial",
+    "enrichment": "real factory photography",
+    "navigation": "preserved",
+    "footer": "preserved"
+  },
+  {
+    "date": "2026-07-22",
+    "brief": "Homepage industrial dossier redesign",
+    "scope": "single-page",
+    "genre": "modern-minimal",
+    "macrostructure": "Workbench-led industrial dossier",
+    "theme": "Taiyi industrial",
+    "enrichment": "real factory photography",
+    "navigation": "preserved",
+    "footer": "preserved"
+  },
+  {
+    "date": "2026-07-20",
+    "brief": "About Taiyi Nano factory capability page",
+    "scope": "single-page",
+    "genre": "editorial",
+    "macrostructure": "Split Studio",
+    "theme": "Taiyi industrial",
+    "enrichment": "real factory photography",
+    "navigation": "preserved",
+    "footer": "preserved"
+  }
+]

@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Search } from "lucide-react";
 import { ResourceFaqAccordion } from "@/components/ResourceFaqAccordion";
+import { Input } from "@/components/ui/input";
 import type { ResourceModule } from "@/data/resources";
 
 type ResourceFaqExplorerProps = {
@@ -64,8 +66,12 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
         >
           <span>Search questions</span>
           <span className="resource-faq-search-control">
-            <span aria-hidden="true" className="resource-search-mark" />
-            <input
+            <Search
+              aria-hidden="true"
+              className="resource-search-mark"
+              strokeWidth={2.25}
+            />
+            <Input
               id="resource-faq-search"
               name="faq-search"
               type="search"
@@ -73,6 +79,7 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
               value={query}
               placeholder="Try: shrinkage, HDT, conductive, TDS..."
               onChange={(event) => setQuery(event.target.value)}
+              className="resource-faq-search-input"
             />
           </span>
         </label>

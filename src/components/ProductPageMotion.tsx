@@ -12,7 +12,9 @@ export function ProductPageMotion({ children }: ProductPageMotionProps) {
 
   useEffect(() => {
     const root = rootRef.current;
-    const sectionNav = root?.querySelector<HTMLElement>(".product-section-nav");
+    const sectionNav = root?.querySelector<HTMLElement>(
+      '[data-slot="secondary-section-nav"]',
+    );
 
     if (!root || !sectionNav) {
       return;
@@ -22,7 +24,8 @@ export function ProductPageMotion({ children }: ProductPageMotionProps) {
       navHeightProperty: "--product-section-nav-height",
       root,
       sectionNav,
-      tabLinkSelector: '.product-section-tabs a[href^="#"]',
+      tabLinkSelector:
+        '[data-slot="secondary-section-tabs"] a[href^="#"]',
     });
   }, []);
 

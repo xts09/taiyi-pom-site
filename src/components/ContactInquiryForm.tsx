@@ -6,6 +6,10 @@ import {
   trackInquirySubmitted,
 } from "@/lib/conversionEvents";
 import { pomSubcategoryLabels, productCategoryOrder } from "@/lib/productCategories";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 const materialOptions = [
   "Modified POM Compounds",
@@ -15,30 +19,21 @@ const materialOptions = [
   "Other Engineering Plastic Compound",
 ];
 
-const documentOptions = ["TDS", "SDS", "COA", "REACH", "RoHS"];
-
 const readField = (formData: FormData, name: string) =>
   String(formData.get(name) ?? "").trim() || "Not specified";
 
-const buildInquiryMessage = (formData: FormData, documents: string) =>
+const buildInquiryMessage = (formData: FormData) =>
   [
     "Dear Ethan,",
     "",
     "Please review the following material requirement:",
     "",
-    `Name: ${readField(formData, "name")}`,
     `Company: ${readField(formData, "company")}`,
     `Email: ${readField(formData, "email")}`,
-    `Country / Region: ${readField(formData, "region")}`,
     `Material Interest: ${readField(formData, "material")}`,
-    `Current Material / Grade: ${readField(formData, "currentMaterial")}`,
     `Application / Part: ${readField(formData, "application")}`,
-    `Mold Stage / Cavity Count: ${readField(formData, "tooling")}`,
-    `Shrinkage / Warpage Concern: ${readField(formData, "shrinkage")}`,
-    `Annual Volume: ${readField(formData, "volume")}`,
-    `Required Documents: ${documents || "Not specified"}`,
     "",
-    "Message:",
+    "Requirement Details:",
     readField(formData, "message"),
     "",
     "Regards,",
@@ -54,14 +49,12 @@ export function ContactInquiryForm() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const documentList = formData.getAll("documents").map(String);
-    const documents = documentList.join(", ");
-    const body = buildInquiryMessage(formData, documents);
+    const body = buildInquiryMessage(formData);
     const subject = `Material Requirement Request - ${readField(
       formData,
       "company"
     )}`;
-    const mailto = `mailto:xiatianshi@jstynm.com?subject=${encodeURIComponent(
+    const mailto = `mailto:sales@taiyiplastic.com?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
 
@@ -74,17 +67,10 @@ export function ContactInquiryForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: readField(formData, "name"),
           company: readField(formData, "company"),
           email: readField(formData, "email"),
-          region: readField(formData, "region"),
           material: readField(formData, "material"),
-          currentMaterial: readField(formData, "currentMaterial"),
           application: readField(formData, "application"),
-          tooling: readField(formData, "tooling"),
-          shrinkage: readField(formData, "shrinkage"),
-          volume: readField(formData, "volume"),
-          documents: documentList,
           message: readField(formData, "message"),
           website: String(formData.get("website") ?? ""),
         }),
@@ -127,18 +113,13 @@ export function ContactInquiryForm() {
 
       <div className="contact-form-grid">
         <label className="contact-field">
-          <span>Name</span>
-          <input name="name" autoComplete="name" placeholder="Your name" />
-        </label>
-
-        <label className="contact-field">
           <span>
             Company{" "}
             <span aria-hidden="true" className="contact-required-marker">
               *
             </span>
           </span>
-          <input
+          <Input
             name="company"
             autoComplete="organization"
             placeholder="Company name"
@@ -153,7 +134,7 @@ export function ContactInquiryForm() {
               *
             </span>
           </span>
-          <input
+          <Input
             name="email"
             type="email"
             autoComplete="email"
@@ -163,17 +144,8 @@ export function ContactInquiryForm() {
         </label>
 
         <label className="contact-field">
-          <span>Country / Region</span>
-          <input
-            name="region"
-            autoComplete="country-name"
-            placeholder="Destination market"
-          />
-        </label>
-
-        <label className="contact-field contact-field-wide">
           <span>Material Interest</span>
-          <select name="material" defaultValue="">
+          <Select name="material" defaultValue="">
             <option value="" disabled>
               Select material direction
             </option>
@@ -182,21 +154,7 @@ export function ContactInquiryForm() {
                 {option}
               </option>
             ))}
-          </select>
-        </label>
-
-        <label className="contact-field">
-          <span>
-            Current Material / Grade{" "}
-            <span aria-hidden="true" className="contact-required-marker">
-              *
-            </span>
-          </span>
-          <input
-            name="currentMaterial"
-            placeholder="Current grade, resin, or target material"
-            required
-          />
+          </Select>
         </label>
 
         <label className="contact-field">
@@ -206,72 +164,36 @@ export function ContactInquiryForm() {
               *
             </span>
           </span>
-          <input
+          <Input
             name="application"
             placeholder="Gear, clip, housing..."
             required
           />
         </label>
 
-        <label className="contact-field">
-          <span>Mold Stage / Cavities</span>
-          <input
-            name="tooling"
-            placeholder="New mold, 8 cavities, trial mold..."
-          />
-        </label>
-
-        <label className="contact-field">
-          <span>Shrinkage / Warpage</span>
-          <input
-            name="shrinkage"
-            placeholder="Target shrinkage, warpage concern..."
-          />
-        </label>
-
-        <label className="contact-field">
-          <span>Annual Volume</span>
-          <input name="volume" placeholder="kg/year or tons/year" />
-        </label>
       </div>
 
-      <fieldset className="contact-documents">
-        <legend>Required Documents</legend>
-        <div className="contact-document-options">
-          {documentOptions.map((option) => (
-            <label key={option} className="contact-document-option">
-              <input
-                name="documents"
-                type="checkbox"
-                value={option}
-                defaultChecked={option === "TDS"}
-              />
-              <span>{option}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
-
       <label className="contact-field contact-message">
-        <span>Requirement Details</span>
-        <textarea
+        <span>Requirement Details (optional)</span>
+        <Textarea
           name="message"
-          rows={6}
-          placeholder="Please include current material, color, working condition, gate or flow-path notes, target properties, and any known testing requirements."
+          rows={5}
+          placeholder="Current grade, operating conditions, target properties, annual volume, or document needs."
         />
       </label>
 
       <div className="contact-form-actions">
-        <button
-          className="cta-primary px-6 py-3 text-sm"
+        <Button
+          variant="primary"
+          size="form"
           type="submit"
           disabled={status === "submitting"}
+          aria-busy={status === "submitting"}
         >
-          {status === "submitting" ? "Sending…" : "Send Requirement"}
-        </button>
+          {status === "submitting" ? "Sending..." : "Send Requirement"}
+        </Button>
         <p>
-          Direct delivery is used when server email is configured. Otherwise,
-          we prepare an email draft and copy the inquiry text for backup.
+          If direct delivery is unavailable, an email draft will open instead.
         </p>
       </div>
 
@@ -281,9 +203,9 @@ export function ContactInquiryForm() {
         aria-live="polite"
       >
         {status === "sent"
-          ? "Submitted successfully. We will review your requirement and reply by email."
+          ? "Submitted. We will review your requirement and reply by email."
           : status === "fallback"
-            ? "Server delivery is not configured yet, so an email draft was prepared. The inquiry text was also copied when possible."
+            ? "An email draft was prepared, and the inquiry text was copied when possible."
             : ""}
       </p>
     </form>

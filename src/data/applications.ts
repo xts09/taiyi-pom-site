@@ -2,6 +2,7 @@ import { getCategoryPath, pomSubcategoryLabels } from "@/lib/productCategories";
 
 export type ApplicationDirection = {
   label: string;
+  keyUse: string;
   href?: string;
   shortLabel?: string;
 };
@@ -11,6 +12,15 @@ export type ApplicationImage = {
   alt: string;
   label: string;
   description?: string;
+};
+
+export type ApplicationPart = {
+  label: string;
+  description: string;
+  image?: {
+    src: string;
+    alt: string;
+  };
 };
 
 export type ApplicationEngineeringGroup = {
@@ -32,8 +42,25 @@ export type ApplicationItem = {
     alt: string;
   };
   images: ApplicationImage[];
-  productExamples?: ApplicationImage[];
+  parts: ApplicationPart[];
   engineeringFit?: ApplicationEngineeringGroup[];
+};
+
+const materialDirectionKeyUses: Record<string, string> = {
+  "Base POM Resin":
+    "Baseline POM property and processing review for general molded parts.",
+  "High-Impact POM Compound":
+    "Toughness for impact or lower-temperature service conditions.",
+  "Wear-Resistant POM Compound": "Wear resistance under repeated movement.",
+  "Low-Friction POM Compound": "Low friction at sliding or mating surfaces.",
+  "Glass Fiber Reinforced POM Compound":
+    "Higher stiffness and dimensional stability where reinforcement is required.",
+  "Carbon Fiber Reinforced POM Compound":
+    "Combined stiffness and controlled conductivity where both are required.",
+  "Conductive / Antistatic POM Compound":
+    "Charge control where conductive or antistatic performance is required.",
+  "UV-Resistant POM Compound":
+    "Outdoor exposure conditions where UV resistance is required.",
 };
 
 const materialDirection = (
@@ -44,13 +71,21 @@ const materialDirection = (
 
   return {
     label: note ? `${baseLabel} ${note}` : baseLabel,
+    keyUse:
+      materialDirectionKeyUses[category] ??
+      "Project-specific material review against part function and working conditions.",
     href: getCategoryPath(category),
     shortLabel: baseLabel,
   };
 };
 
-const customDirection = (label: string): ApplicationDirection => ({
+const customDirection = (
+  label: string,
+  keyUse =
+    "Project-specific formulation review against part function and working conditions.",
+): ApplicationDirection => ({
   label,
+  keyUse,
   href: "/contact",
   shortLabel: label,
 });
@@ -74,28 +109,98 @@ export const applications: ApplicationItem[] = [
       ),
     ],
     heroImage: {
-      src: "/applications/parts/automotive-cad-hero.webp",
-      alt: "CAD visualization highlighting molded polymer components in an automotive window regulator assembly",
-    },
-    detailHeroImage: {
-      src: "/applications/parts/automotive-detail-cad-hero.webp",
-      alt: "Wide CAD visualization of an automotive window regulator with molded polymer components highlighted",
+      src: "/applications/parts/automotive-hero.webp",
+      alt: "Automotive assembly line with vehicle functional modules",
     },
     images: [
       {
-        src: "/applications/parts/automotive-fuel-pump-assembly.jpg",
+        src: "/applications/parts/transparent/automotive-fuel-pump-assembly-transparent.png",
         alt: "Automotive plastic fuel pump assembly",
         label: "Fuel Pump Assembly",
       },
       {
-        src: "/applications/parts/automotive-window-regulator.jpg",
+        src: "/applications/parts/transparent/automotive-window-regulator-transparent.png",
         alt: "Automotive plastic window regulator component",
         label: "Window Regulator",
       },
       {
-        src: "/applications/parts/automotive-fasteners.png",
+        src: "/applications/parts/transparent/automotive-fasteners-transparent.png",
         alt: "Automotive plastic fastener and buckle component",
         label: "Fasteners",
+      },
+    ],
+    parts: [
+      {
+        label: "Fuel Pump Assembly",
+        description:
+          "Review dimensional fit, fuel-system movement, and repeatable assembly conditions.",
+        image: {
+          src: "/applications/parts/transparent/automotive-fuel-pump-assembly-transparent.png",
+          alt: "Automotive plastic fuel pump assembly",
+        },
+      },
+      {
+        label: "Window Regulator",
+        description:
+          "Screen low-friction movement, gear wear, and stable guide engagement.",
+        image: {
+          src: "/applications/parts/transparent/automotive-window-regulator-transparent.png",
+          alt: "Automotive plastic window regulator component",
+        },
+      },
+      {
+        label: "Automotive Clips & Fasteners",
+        description:
+          "Check retention force, snap-fit consistency, and low-warpage assembly fit.",
+        image: {
+          src: "/applications/parts/transparent/automotive-fasteners-transparent.png",
+          alt: "Automotive plastic fastener and buckle component",
+        },
+      },
+      {
+        label: "Safety Latch",
+        description:
+          "Review release geometry, retention force, and repeatable assembly fit.",
+        image: {
+          src: "/applications/parts/transparent/automotive-safety-latch-transparent.png",
+          alt: "Automotive molded safety latch component",
+        },
+      },
+      {
+        label: "Wiper Motor Gear",
+        description:
+          "Screen tooth wear, torque transfer, and smooth repeated movement.",
+        image: {
+          src: "/applications/parts/transparent/wiper-motor-gears-transparent.png",
+          alt: "Automotive wiper motor assembly with molded polymer gears",
+        },
+      },
+      {
+        label: "Seat Guide Ring",
+        description:
+          "Evaluate sliding contact, guide accuracy, and resistance to repeated wear.",
+        image: {
+          src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
+          alt: "Automotive molded seat guide ring component",
+        },
+      },
+      {
+        label: "Gear Shift Seat",
+        description:
+          "Review controlled movement, assembly fit, and low-noise operation.",
+        image: {
+          src: "/applications/parts/transparent/gear-shift-ball-seat-transparent.png",
+          alt: "Automotive gear shift seat and linkage components",
+        },
+      },
+      {
+        label: "Mirror Adjustment Gear",
+        description:
+          "Screen compact gear engagement, repeatability, and dimensional stability.",
+        image: {
+          src: "/applications/parts/transparent/automotive-rearview-mirror-adjustment-transparent.png",
+          alt: "Automotive rearview mirror adjustment molded components",
+        },
       },
     ],
     engineeringFit: [
@@ -142,15 +247,14 @@ export const applications: ApplicationItem[] = [
         "Carbon Fiber Reinforced POM Compound",
         "where stiffness and conductivity are both considered",
       ),
-      customDirection("Custom formulation based on project requirements"),
+      customDirection(
+        "Custom formulation based on project requirements",
+        "Project-specific formulation review for electrical and assembly requirements.",
+      ),
     ],
     heroImage: {
-      src: "/applications/parts/electronics-cad-hero.webp",
-      alt: "CAD visualization highlighting connector, insulating, and actuator components in an electronics control module",
-    },
-    detailHeroImage: {
-      src: "/applications/parts/electronics-detail-cad-hero.webp",
-      alt: "Wide CAD visualization of an electronics control module with molded polymer components highlighted",
+      src: "/applications/parts/electronics-hero.webp",
+      alt: "Electronics assembly station with functional electrical modules",
     },
     images: [
       {
@@ -159,14 +263,72 @@ export const applications: ApplicationItem[] = [
         label: "Quick Connections",
       },
       {
-        src: "/applications/parts/rotor-electric-shear.jpg",
+        src: "/applications/parts/transparent/rotor-electric-shear-transparent.png",
         alt: "Plastic rotor and electric shear components",
         label: "Rotor Components",
       },
       {
-        src: "/applications/parts/electronics-parts-10.jpg",
+        src: "/applications/parts/transparent/electronics-parts-10-transparent.png",
         alt: "Precision plastic electronics parts",
         label: "Electronics Parts",
+      },
+    ],
+    parts: [
+      {
+        label: "Connector Housing",
+        description:
+          "Review terminal alignment, fine feature fill, and repeatable connector fit.",
+      },
+      {
+        label: "Terminal Housing",
+        description:
+          "Check retention geometry, dimensional consistency, and stable assembly clearance.",
+      },
+      {
+        label: "Insulation Support",
+        description:
+          "Screen stiffness, low warpage, and support accuracy around electrical assemblies.",
+      },
+      {
+        label: "Control Box Cover",
+        description:
+          "Review flatness, clip engagement, and repeatable enclosure assembly.",
+        image: {
+          src: "/applications/parts/transparent/automotive-controlbox-components-transparent.png",
+          alt: "Molded control box and electrical enclosure components",
+        },
+      },
+      {
+        label: "Wire Harness Clip",
+        description:
+          "Evaluate snap-fit retention, impact response, and installation consistency.",
+        image: {
+          src: "/applications/parts/transparent/electronics-buckle-set-transparent.png",
+          alt: "Molded buckle and wire retention components",
+        },
+      },
+      {
+        label: "Small Motor Rotor",
+        description:
+          "Screen balance, dimensional control, and stability during repeated rotation.",
+        image: {
+          src: "/applications/parts/transparent/rotor-electric-shear-transparent.png",
+          alt: "Small electric motor rotor and molded component assembly",
+        },
+      },
+      {
+        label: "Actuator Gear",
+        description:
+          "Review tooth wear, low-friction movement, and noise-sensitive actuation.",
+      },
+      {
+        label: "Antistatic Precision Component",
+        description:
+          "Match charge-control targets with dimensional and processing requirements.",
+        image: {
+          src: "/applications/parts/transparent/electronics-parts-10-transparent.png",
+          alt: "Precision molded electronics components",
+        },
       },
     ],
     engineeringFit: [
@@ -211,61 +373,104 @@ export const applications: ApplicationItem[] = [
         "Conductive / Antistatic POM Compound",
         "where charge control is required",
       ),
-      customDirection("Reinforced POM where higher stiffness is required"),
+      customDirection(
+        "Reinforced POM where higher stiffness is required",
+        "Higher stiffness for loaded components and assembly geometry.",
+      ),
     ],
     heroImage: {
-      src: "/applications/parts/conveyor-automation-cad-hero.webp",
-      alt: "CAD visualization highlighting modular chain plates, guide rails, rollers, and wear components",
-    },
-    detailHeroImage: {
-      src: "/applications/parts/conveyor-automation-detail-cad-hero.webp",
-      alt: "Wide CAD visualization of a conveyor system with molded polymer components highlighted",
+      src: "/applications/parts/conveyor-automation-hero.webp",
+      alt: "Clean conveyor automation line with modular chain plates",
     },
     images: [
       {
-        src: "/applications/parts/conveying-parts.jpg",
+        src: "/applications/parts/transparent/conveying-parts-transparent.png",
         alt: "Plastic conveying parts for high-strength wear-resistant movement",
         label: "Conveying Parts",
       },
       {
-        src: "/applications/parts/conveyor-chain-plate-bracket.jpg",
+        src: "/applications/parts/transparent/conveyor-chain-plate-bracket-transparent.png",
         alt: "Black plastic conveyor chain plate bracket component",
         label: "Chain Plate Bracket",
       },
       {
-        src: "/applications/parts/electrical-roller.jpg",
+        src: "/applications/parts/transparent/electrical-roller-transparent.png",
         alt: "Plastic roller component for low-friction movement",
         label: "Roller",
       },
     ],
-    productExamples: [
+    parts: [
       {
-        src: "/applications/parts/conveyor-modular-chain-cad.webp",
-        alt: "CAD visualization of molded polymer modular conveyor chain plates",
         label: "Modular Chain Plate",
         description:
-          "Wear and dimensional review for repeated movement across modular links.",
+          "Review link fit, repeated articulation, and wear across moving chain surfaces.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-chain-plate-modular-transparent.png",
+          alt: "Molded modular conveyor chain plate components",
+        },
       },
       {
-        src: "/applications/parts/conveyor-sprocket-cad.webp",
-        alt: "CAD visualization of a molded polymer conveyor sprocket engaging a modular chain",
-        label: "Conveyor Sprocket",
+        label: "Chain Plate Bracket",
         description:
-          "Fit, wear, and load review at repeated sprocket-to-chain contact.",
+          "Check stiffness, fastening geometry, and assembly stability under load.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-chain-plate-bracket-transparent.png",
+          alt: "Molded conveyor chain plate bracket components",
+        },
       },
       {
-        src: "/applications/parts/conveyor-guide-rail-cad.webp",
-        alt: "CAD visualization of molded polymer conveyor wear strips and side guide rails",
-        label: "Wear Strip & Guide Rail",
+        label: "Conveying Link",
         description:
-          "Low-friction review for wear strips and side-guide contact surfaces.",
+          "Review pivot fit, repeated articulation, and load transfer between links.",
+        image: {
+          src: "/applications/parts/transparent/conveying-parts-transparent.png",
+          alt: "Black molded conveying link components",
+        },
       },
       {
-        src: "/applications/parts/bearing-cage-cad.webp",
-        alt: "CAD visualization of a molded polymer bearing cage and bushing assembly",
-        label: "Bearing Cage & Bushing",
+        label: "Conveyor Segment",
         description:
-          "Wear and fit control for rotating supports and bearing-cage geometry.",
+          "Screen segment geometry, edge engagement, and repeatable conveyor movement.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-segment-transparent.png",
+          alt: "Molded segmented conveyor belt component",
+        },
+      },
+      {
+        label: "Conveyor Plate",
+        description:
+          "Evaluate plate flatness, hinge geometry, and wear under repeated travel.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-plate-transparent.png",
+          alt: "White molded conveyor plate component",
+        },
+      },
+      {
+        label: "Conveyor Panel",
+        description:
+          "Review panel alignment, load distribution, and dimensional consistency.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-panel-transparent.png",
+          alt: "Brown molded conveyor panel assembly",
+        },
+      },
+      {
+        label: "Chain Component",
+        description:
+          "Screen chain engagement, repeated flexing, and contact wear.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-chain-component-transparent.png",
+          alt: "Molded conveyor chain component assembly",
+        },
+      },
+      {
+        label: "Conveyor Housing",
+        description:
+          "Check housing stiffness, mounting fit, and low-warpage assembly geometry.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-housing-transparent.png",
+          alt: "Black molded conveyor housing component",
+        },
       },
     ],
     engineeringFit: [
@@ -319,25 +524,75 @@ export const applications: ApplicationItem[] = [
       src: "/applications/parts/motion-components-hero.webp",
       alt: "Industrial motion module with gears and molded movement components",
     },
-    detailHeroImage: {
-      src: "/applications/parts/motion-components-detail-cad-hero.webp",
-      alt: "Wide CAD visualization of a motion module with molded polymer gears, rollers, bushings, and guides highlighted",
-    },
     images: [
       {
-        src: "/applications/parts/wiper-motor-gears.jpg",
+        src: "/applications/parts/transparent/wiper-motor-gears-transparent.png",
         alt: "Automotive wiper motor plastic gears",
         label: "Wiper Motor Gears",
       },
       {
-        src: "/applications/parts/main-frame-guide-ring.jpg",
+        src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
         alt: "Plastic main frame guide ring",
         label: "Guide Ring",
       },
       {
-        src: "/applications/parts/washer-base-gear.jpg",
+        src: "/applications/parts/transparent/washer-base-gear-transparent.png",
         alt: "Plastic washer base gear for high-strength movement",
         label: "Washer Base Gear",
+      },
+    ],
+    parts: [
+      {
+        label: "Precision Gear",
+        description:
+          "Review tooth accuracy, torque transfer, and repeatable dimensional control.",
+        image: {
+          src: "/applications/parts/transparent/washer-base-gear-transparent.png",
+          alt: "Molded precision gear component",
+        },
+      },
+      {
+        label: "Worm Gear",
+        description:
+          "Screen sliding tooth contact, wear, and smooth reduction movement.",
+      },
+      {
+        label: "Roller",
+        description:
+          "Evaluate rolling contact, shaft fit, and stability under repeated cycles.",
+        image: {
+          src: "/applications/parts/transparent/electrical-roller-transparent.png",
+          alt: "Molded roller component for low-friction movement",
+        },
+      },
+      {
+        label: "Bushing",
+        description:
+          "Review clearance, friction, and wear at rotating support interfaces.",
+      },
+      {
+        label: "Sleeve",
+        description:
+          "Check concentricity, surface contact, and repeatable press or sliding fit.",
+      },
+      {
+        label: "Guide Ring",
+        description:
+          "Screen guide accuracy, low-friction movement, and dimensional stability.",
+        image: {
+          src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
+          alt: "Molded guide ring component",
+        },
+      },
+      {
+        label: "Sliding Block",
+        description:
+          "Review load distribution, guide clearance, and repeated sliding wear.",
+      },
+      {
+        label: "Cam",
+        description:
+          "Evaluate profile accuracy, contact stress, and controlled actuation movement.",
       },
     ],
     engineeringFit: [
@@ -387,10 +642,6 @@ export const applications: ApplicationItem[] = [
       src: "/applications/parts/water-control-hero.webp",
       alt: "Clean water-control assembly line with valves and flow modules",
     },
-    detailHeroImage: {
-      src: "/applications/parts/water-control-detail-cad-hero.webp",
-      alt: "Wide CAD visualization of a valve-control assembly with molded polymer motion components highlighted",
-    },
     images: [
       {
         src: "/applications/parts/water-valve-spool-cad.webp",
@@ -419,6 +670,76 @@ export const applications: ApplicationItem[] = [
         label: "Thermostatic Control Valve",
         description:
           "Stable assembly and repeatable movement in temperature-control mechanisms.",
+      },
+    ],
+    parts: [
+      {
+        label: "Valve Cartridge",
+        description:
+          "Screen assembly fit, internal movement, and sealing-adjacent geometry.",
+        image: {
+          src: "/applications/parts/transparent/water-valve-cartridge-transparent.png",
+          alt: "Bathroom valve cartridge components",
+        },
+      },
+      {
+        label: "Valve Internal Parts",
+        description:
+          "Review molded accuracy, mating fit, and repeatable internal movement.",
+        image: {
+          src: "/applications/parts/transparent/water-valve-internal-parts-transparent.png",
+          alt: "Assorted molded valve internal parts",
+        },
+      },
+      {
+        label: "Valve Component",
+        description:
+          "Check structural fit, sliding geometry, and compatibility with the project medium.",
+        image: {
+          src: "/applications/parts/transparent/water-valve-component-transparent.png",
+          alt: "Valve stem and molded valve component",
+        },
+      },
+      {
+        label: "Thermostatic Valve Body",
+        description:
+          "Evaluate stable actuation, assembly tolerance, and temperature-cycle conditions.",
+        image: {
+          src: "/applications/parts/transparent/water-thermostatic-valve-body-transparent.png",
+          alt: "Thermostatic valve body assembly",
+        },
+      },
+      {
+        label: "Valve Spool Assembly",
+        description:
+          "Review sliding clearance, dimensional stability, and repeated valve movement.",
+        image: {
+          src: "/applications/parts/transparent/water-valve-spool-assembly-transparent.png",
+          alt: "Valve body and spool assembly components",
+        },
+      },
+      {
+        label: "Guide Wheel",
+        description:
+          "Screen rolling contact, dimensional consistency, and low-friction movement.",
+        image: {
+          src: "/applications/parts/transparent/water-guide-wheel-transparent.png",
+          alt: "Molded bathroom guide wheel components",
+        },
+      },
+      {
+        label: "Valve Housing Component",
+        description:
+          "Review stiffness, shrinkage control, and stable housing assembly fit.",
+        image: {
+          src: "/applications/parts/transparent/water-pps-replacement-component-transparent.png",
+          alt: "Black molded valve housing component",
+        },
+      },
+      {
+        label: "Pump Impeller",
+        description:
+          "Review balance, stiffness, and dimensional control during repeated rotation.",
       },
     ],
     engineeringFit: [
@@ -464,7 +785,10 @@ export const applications: ApplicationItem[] = [
         "Glass Fiber Reinforced POM Compound",
         "where higher stiffness is required",
       ),
-      customDirection("Custom formulation based on working environment"),
+      customDirection(
+        "Custom formulation based on working environment",
+        "Project-specific formulation review for working environment and part conditions.",
+      ),
     ],
     heroImage: {
       src: "/applications/parts/industrial-machinery-hero.webp",
@@ -498,6 +822,52 @@ export const applications: ApplicationItem[] = [
         label: "Linear Guide Block",
         description:
           "Sliding friction, guide accuracy, and assembly fit across repeated travel.",
+      },
+    ],
+    parts: [
+      {
+        label: "Precision Gear Drive",
+        description:
+          "Review torque transfer, tooth wear, and dimensional consistency under cycling.",
+        image: {
+          src: "/applications/parts/transparent/washer-base-gear-transparent.png",
+          alt: "Injection-molded precision gear drive components",
+        },
+      },
+      {
+        label: "Bearing Cage",
+        description:
+          "Screen pocket geometry, rotational stability, and repeatable bearing spacing.",
+      },
+      {
+        label: "Industrial Bushing",
+        description:
+          "Evaluate shaft clearance, low-friction support, and controlled wear.",
+      },
+      {
+        label: "Pump Impeller",
+        description:
+          "Check balance, stiffness, and compatibility with the operating medium.",
+      },
+      {
+        label: "Linear Guide Block",
+        description:
+          "Review guide accuracy, sliding friction, and fit across repeated travel.",
+      },
+      {
+        label: "Wear Pad",
+        description:
+          "Screen contact pressure, surface wear, and dimensional retention under load.",
+      },
+      {
+        label: "Thrust Washer",
+        description:
+          "Evaluate axial load, friction, and stable thickness at rotating interfaces.",
+      },
+      {
+        label: "Coupling Insert",
+        description:
+          "Review torque response, assembly fit, and repeated engagement conditions.",
       },
     ],
     engineeringFit: [
@@ -539,7 +909,10 @@ export const applications: ApplicationItem[] = [
       materialDirection("High-Impact POM Compound"),
       materialDirection("UV-Resistant POM Compound"),
       materialDirection("Wear-Resistant POM Compound"),
-      customDirection("Custom formulation based on weather exposure and load"),
+      customDirection(
+        "Custom formulation based on weather exposure and load",
+        "Project-specific formulation review for weather exposure and load.",
+      ),
     ],
     heroImage: {
       src: "/applications/parts/outdoor-equipment-hero.webp",
@@ -547,19 +920,81 @@ export const applications: ApplicationItem[] = [
     },
     images: [
       {
-        src: "/applications/parts/agricultural-sprinkler-head.jpg",
+        src: "/applications/parts/transparent/agricultural-sprinkler-head-transparent.png",
         alt: "Plastic agricultural sprinkler head parts",
         label: "Sprinkler Head",
       },
       {
-        src: "/applications/parts/lawn-parts.jpg",
+        src: "/applications/parts/transparent/lawn-parts-transparent.png",
         alt: "Plastic lawn equipment parts",
         label: "Lawn Parts",
       },
       {
-        src: "/applications/parts/outdoor-pipe-clamps.jpg",
+        src: "/applications/parts/transparent/outdoor-pipe-clamps-transparent.png",
         alt: "Plastic pipe clamp parts for durable outdoor assembly",
         label: "Pipe Clamps",
+      },
+    ],
+    parts: [
+      {
+        label: "Sprinkler Head",
+        description:
+          "Review repeated rotation, outdoor exposure, and stable flow geometry.",
+        image: {
+          src: "/applications/parts/transparent/agricultural-sprinkler-head-transparent.png",
+          alt: "Agricultural sprinkler head component",
+        },
+      },
+      {
+        label: "Lawn Mower Gear",
+        description:
+          "Screen tooth wear, impact response, and movement under outdoor service.",
+        image: {
+          src: "/applications/parts/transparent/lawn-parts-transparent.png",
+          alt: "Molded lawn equipment parts",
+        },
+      },
+      {
+        label: "Trimmer Spool",
+        description:
+          "Evaluate rotational balance, impact conditions, and dimensional stability.",
+      },
+      {
+        label: "Outdoor Pipe Clamp",
+        description:
+          "Check retention force, weather exposure, and repeatable fastening fit.",
+        image: {
+          src: "/applications/parts/transparent/outdoor-pipe-clamps-transparent.png",
+          alt: "Molded outdoor pipe clamp components",
+        },
+      },
+      {
+        label: "Irrigation Connector",
+        description:
+          "Review connection geometry, assembly repeatability, and outdoor media exposure.",
+        image: {
+          src: "/applications/parts/transparent/quick-tubing-connection-transparent.png",
+          alt: "Molded quick tubing connector for irrigation equipment",
+        },
+      },
+      {
+        label: "Trigger Lever",
+        description:
+          "Screen repeated actuation, impact response, and pivot wear.",
+      },
+      {
+        label: "Wheel Hub Bushing",
+        description:
+          "Evaluate shaft fit, rolling support, and wear in contaminated environments.",
+      },
+      {
+        label: "Weather-Resistant Housing Clip",
+        description:
+          "Review snap-fit retention, dimensional stability, and exposure conditions.",
+        image: {
+          src: "/applications/parts/transparent/automotive-fasteners-transparent.png",
+          alt: "Injection-molded snap-fit housing clips",
+        },
       },
     ],
     engineeringFit: [
@@ -606,6 +1041,7 @@ export const applications: ApplicationItem[] = [
       ),
       customDirection(
         "Custom formulation based on hardness, shrinkage, and wear needs",
+        "Project-specific formulation review for hardness, shrinkage, and wear targets.",
       ),
     ],
     heroImage: {
@@ -614,19 +1050,77 @@ export const applications: ApplicationItem[] = [
     },
     images: [
       {
-        src: "/applications/parts/textile-parts.jpg",
+        src: "/applications/parts/transparent/textile-parts-transparent.png",
         alt: "Plastic textile machinery parts",
         label: "Textile Parts",
       },
       {
-        src: "/applications/parts/electrical-roller.jpg",
+        src: "/applications/parts/transparent/electrical-roller-transparent.png",
         alt: "Plastic roller component for low-friction movement",
         label: "Roller",
       },
       {
-        src: "/applications/parts/main-frame-guide-ring.jpg",
+        src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
         alt: "Plastic guide ring component",
         label: "Guide Ring",
+      },
+    ],
+    parts: [
+      {
+        label: "Yarn Guide",
+        description:
+          "Review smooth contact, guide accuracy, and wear against moving yarn.",
+        image: {
+          src: "/applications/parts/transparent/textile-parts-transparent.png",
+          alt: "Molded textile machinery guide components",
+        },
+      },
+      {
+        label: "Guide Ring",
+        description:
+          "Screen low-friction guidance, dimensional stability, and surface wear.",
+        image: {
+          src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
+          alt: "Molded textile guide ring component",
+        },
+      },
+      {
+        label: "Yarn Tensioner",
+        description:
+          "Evaluate controlled movement, contact consistency, and repeated adjustment.",
+      },
+      {
+        label: "Textile Roller",
+        description:
+          "Review rolling resistance, shaft alignment, and fabric or yarn contact.",
+        image: {
+          src: "/applications/parts/transparent/electrical-roller-transparent.png",
+          alt: "Molded roller component for textile machinery movement",
+        },
+      },
+      {
+        label: "Spindle Sleeve",
+        description:
+          "Check concentricity, rotational fit, and dimensional control under cycling.",
+      },
+      {
+        label: "Bobbin Holder",
+        description:
+          "Screen retention geometry, repeated loading, and stable rotational support.",
+      },
+      {
+        label: "Loom Gear",
+        description:
+          "Evaluate tooth wear, timing consistency, and low-noise transmission.",
+        image: {
+          src: "/applications/parts/transparent/washer-base-gear-transparent.png",
+          alt: "Injection-molded POM loom drive gear",
+        },
+      },
+      {
+        label: "Textile Sliding Block",
+        description:
+          "Review guide clearance, repeated sliding wear, and assembly accuracy.",
       },
     ],
     engineeringFit: [

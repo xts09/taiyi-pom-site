@@ -1,10 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Fragment, type CSSProperties } from "react";
 import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
 import { ExportRoutesSection } from "@/components/ExportRoutesSection";
-import { FactoryProofSection } from "@/components/FactoryProofSection";
 import { HomeInquirySection } from "@/components/HomeInquirySection";
 import { HomeMotion } from "@/components/HomeMotion";
 import { HomeReviewCard } from "@/components/HomeReviewCard";
@@ -16,7 +14,6 @@ import {
   availableDocuments,
   certifications,
   companyFigures,
-  factoryImages,
 } from "@/data/company";
 import {
   createPageMetadata,
@@ -27,9 +24,9 @@ import { publicPath } from "@/lib/paths";
 import { getCategoryPath } from "@/lib/productCategories";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Modified POM Compounds for Industrial Parts | Taiyi Nano",
+  title: "Modified POM Compounds for Industrial Parts | Taiyi Plastic",
   description:
-    "Taiyi Nano manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compound support.",
+    "Taiyi Plastic manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compound support.",
   path: "/",
 });
 
@@ -73,27 +70,27 @@ const materialDirections = [
   {
     title: "PA6 Compounds",
     description:
-      "Selected PA6 compound directions for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+      "Selected PA6 compounds for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
     href: getCategoryPath("PA6 Compound"),
-    action: "Review PA6 Direction",
+    action: "Browse PA6 Compounds",
     specs: [
       ["Role", "Extended Capability"],
       ["Material", "PA6"],
       ["Fit", "Reinforced / Impact Parts"],
-      ["Review", "Project-Based"],
+      ["Scope", "Project-Based"],
     ],
   },
   {
     title: "PA66 Compounds",
     description:
-      "Selected PA66 compound directions for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+      "Selected PA66 compounds for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
     href: getCategoryPath("PA66 Compound"),
-    action: "Review PA66 Direction",
+    action: "Browse PA66 Compounds",
     specs: [
       ["Role", "Extended Capability"],
       ["Material", "PA66"],
       ["Fit", "Stiffness / Heat Parts"],
-      ["Review", "Project-Based"],
+      ["Scope", "Project-Based"],
     ],
   },
   {
@@ -101,12 +98,12 @@ const materialDirections = [
     description:
       "Project-based PPA compound support for higher-temperature molded parts requiring stiffness and dimensional stability.",
     href: getCategoryPath("PPA Compound"),
-    action: "Review PPA Direction",
+    action: "Browse PPA Compounds",
     specs: [
       ["Role", "Extended Capability"],
       ["Material", "PPA"],
       ["Fit", "High-Temperature Parts"],
-      ["Review", "Project-Based"],
+      ["Scope", "Project-Based"],
     ],
   },
   {
@@ -141,9 +138,9 @@ const selectionFlow = [
       "Wear, friction, stiffness, impact, conductivity, antistatic behavior and working temperature.",
   },
   {
-    title: "Grade Direction",
+    title: "Grade Shortlist",
     description:
-      "A practical shortlist with document, sample and batch follow-up.",
+      "A practical shortlist with document availability and sample evaluation needs confirmed for the project.",
   },
 ];
 
@@ -157,7 +154,7 @@ function QualificationSteps({
       {steps.map((step, index) => (
         <li
           key={step.title}
-          className="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-x-4 gap-y-2 border-t border-white/15 py-5 md:grid-cols-[2.25rem_minmax(15rem,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-x-6 md:py-6"
+          className="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-x-4 gap-y-2 py-4 md:grid-cols-[2.25rem_minmax(15rem,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-x-6 md:py-5"
         >
           <span>0{index + 1}</span>
           <h3>{step.title}</h3>
@@ -167,32 +164,6 @@ function QualificationSteps({
     </ol>
   );
 }
-
-const operationItems = [
-  {
-    label: "Record",
-    title: "Production Records",
-    detail:
-      "Batch and production context for repeat supply and follow-up qualification.",
-  },
-  {
-    label: "Inspection",
-    title: "Incoming & In-Process Inspection",
-    detail: "Incoming checks and in-process inspection context.",
-  },
-  {
-    label: "Batch",
-    title: "Batch Review",
-    detail:
-      "Batch information for purchasing and engineering review before release.",
-  },
-  {
-    label: "Documents",
-    title: "Qualification Documents",
-    detail:
-      "TDS, SDS, COA, REACH and RoHS available with the grade review.",
-  },
-];
 
 const inquiryChecklist = [
   "Part function and movement mode",
@@ -256,7 +227,7 @@ export default function Home() {
               </p>
 
               <h1
-                className="hero-motion-title typewriter-title max-w-[20.5rem] text-[2.3rem] leading-[1.08] text-white sm:max-w-3xl sm:text-[2.9rem] sm:leading-[1.04] md:text-[3.25rem] lg:text-[3.7rem] lg:leading-[1.02]"
+                className="hero-motion-title typewriter-title text-white"
                 aria-label={heroTitle}
               >
                 <span className="typewriter-visual" aria-hidden="true">
@@ -290,9 +261,9 @@ export default function Home() {
 
               <div className="hero-support-motion">
                 <p className="hero-motion-copy hero-readable-copy">
-                  Taiyi Nano manufactures wear-resistant, low-friction,
+                  Taiyi Plastic manufactures wear-resistant, low-friction,
                   reinforced and conductive POM compounds for precision molded
-                  parts, with PA6, PA66, PPA and PPS available by project.
+                  parts, with PA6, PA66 and PPA available by project.
                 </p>
 
                 <div className="hero-motion-actions">
@@ -338,15 +309,19 @@ export default function Home() {
               className="product-current-head"
             >
               <p>
-                POM compounds lead the range, with selected PA6, PA66 and PPA
-                directions for project review. Base POM resin supports
-                supplementary sourcing.
+                POM compounds lead the range. Selected PA6, PA66 and PPA
+                compounds are evaluated against project requirements, while Base
+                POM resin supports supplementary sourcing. Use this overview to
+                enter a material family; compare the full range and grade data in
+                the Product Directory.
               </p>
               <div className="document-support">
-                <span className="document-support-label">Document support</span>
+                <span className="document-support-label">
+                  Document support by grade and project
+                </span>
                 <div
                   className="document-tags"
-                  aria-label="Available material documents"
+                  aria-label="Typical material documents confirmed by grade and project"
                 >
                   {availableDocuments.map((document) => (
                     <span key={document}>{document}</span>
@@ -397,33 +372,24 @@ export default function Home() {
           className="home-stage qualification-sequence overflow-clip text-white"
         >
           <div className="site-container">
-            <div className="qualification-layout grid grid-cols-1 gap-10 xl:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] xl:items-stretch xl:gap-14">
-              <figure className="qualification-visual relative m-0 min-h-[21rem] overflow-hidden rounded-[var(--home-radius-card)] sm:min-h-[27rem] xl:min-h-[32rem]">
-                <Image
-                  src={publicPath(factoryImages[1].src)}
-                  alt={factoryImages[1].alt}
-                  fill
-                  sizes="(max-width: 900px) 100vw, 47vw"
-                  className="object-cover"
-                />
-                <figcaption>{factoryImages[1].label}</figcaption>
-              </figure>
-
+            <div className="qualification-layout">
               <div className="qualification-feature-panel flex min-w-0 flex-col">
                 <header className="qualification-heading">
                   <div className="stage-heading-main">
-                    <h2>Grade Qualification</h2>
+                    <h2>How Grades Are Qualified</h2>
                   </div>
                   <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
                     <p className="qualification-intro">
-                      The review starts with the part and tooling, then narrows the
-                      material direction against processing and performance targets.
+                      Once a material family or application is identified, part and
+                      tooling inputs set the starting point. Processing, performance,
+                      document, and sample requirements then define a practical grade
+                      shortlist.
                     </p>
                     <Link
                       href="/applications"
                       className="qualification-link inline-flex min-h-11 items-center justify-self-start"
                     >
-                      Browse application directions &rarr;
+                      Review application requirements &rarr;
                     </Link>
                   </div>
                 </header>
@@ -435,11 +401,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
-        <FactoryProofSection
-          images={[factoryImages[2], factoryImages[0], factoryImages[3]]}
-          evidence={operationItems}
-        />
 
         <QualitySystemsSection certifications={certifications} />
 

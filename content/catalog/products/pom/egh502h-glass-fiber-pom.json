@@ -16,11 +16,12 @@
   "colors": [
     "Natural"
   ],
-  "description": "25% glass-fiber reinforced POM for molded parts that need high stiffness, lower shrinkage, and balanced processing flow.",
+  "description": "25% glass-fiber reinforced POM for molded parts requiring high rigidity, creep-resistance review, and low shrinkage.",
   "features": [
     "25% glass fiber content",
-    "High stiffness",
-    "Lower molding shrinkage"
+    "High rigidity",
+    "Creep-resistance direction",
+    "Low molding shrinkage"
   ],
   "applications": [
     "Automotive applications",
@@ -194,5 +195,9 @@
   ],
   "tds": {
     "status": "data-only"
+  },
+  "seo": {
+    "title": "EGH502H High-Rigidity Glass Fiber POM | Taiyi Plastic",
+    "description": "EGH502H is a 25% glass-fiber reinforced POM grade for high rigidity, creep-resistance and low-shrinkage evaluation in molded parts. Review data and request a sample."
   }
 }

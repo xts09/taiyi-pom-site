@@ -1,4 +1,186 @@
 /* Application pages follow docs/site-visual-rules.md: light technical directories, restrained surfaces. */
+.application-detail-shell.mesh-surface .application-use-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  width: min(calc(100% - clamp(1.5rem, 5vw, 5rem)), 84rem);
+  margin: 0 auto clamp(1.7rem, 3vw, 2.5rem);
+  padding-bottom: clamp(1.2rem, 2vw, 1.6rem);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.application-detail-shell.mesh-surface .application-use-head .section-kicker {
+  margin: 0 0 0.7rem;
+  color: #0b5fb8;
+  font-size: 0.75rem;
+  font-weight: 780;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.application-detail-shell.mesh-surface .application-use-head h2 {
+  max-width: 20ch;
+  color: #07111f;
+  font-size: clamp(1.8rem, 2.7vw, 2.8rem);
+  font-weight: 820;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.application-detail-shell.mesh-surface .application-use-head > p {
+  max-width: 34rem;
+  margin: 0;
+  color: #475569;
+  font-size: clamp(0.94rem, 1.05vw, 1.04rem);
+  line-height: 1.6;
+}
+
+.application-detail-shell.mesh-surface .application-use-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 1.45vw, 1.3rem);
+  width: min(calc(100% - clamp(1.5rem, 5vw, 5rem)), 84rem);
+}
+
+.application-detail-shell.mesh-surface .application-use-card {
+  --use-card-accent: #0b66c3;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: #ffffff;
+  box-shadow:
+    0 0.65rem 1.5rem rgba(15, 38, 61, 0.08),
+    0 0.08rem 0.18rem rgba(15, 38, 61, 0.05);
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.application-detail-shell.mesh-surface .application-use-card:hover,
+.application-detail-shell.mesh-surface .application-use-card:focus-within {
+  box-shadow:
+    0 0.9rem 2rem rgba(15, 38, 61, 0.11),
+    0 0.08rem 0.2rem rgba(15, 38, 61, 0.06);
+  transform: translateY(-0.16rem);
+}
+
+.application-detail-shell.mesh-surface .application-use-card-media,
+.application-detail-shell.mesh-surface
+  .application-use-card-without-image::before {
+  --media-radius: 0;
+  aspect-ratio: 16 / 9;
+  border-bottom: 1px solid rgba(15, 38, 61, 0.08);
+  background: #f2f5f8;
+}
+
+.application-detail-shell.mesh-surface .application-use-card-media img {
+  padding: clamp(0.8rem, 1.2vw, 1.15rem);
+  filter: saturate(0.98) contrast(1.02);
+}
+
+.application-detail-shell.mesh-surface
+  .application-use-card-without-image::before {
+  display: block;
+  content: "";
+}
+
+.application-detail-shell.mesh-surface .application-use-card-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(13.5rem, 15vw, 15rem);
+  gap: 0.72rem;
+  border-top: 0;
+  padding: clamp(1.1rem, 1.5vw, 1.35rem)
+    clamp(1.15rem, 1.65vw, 1.45rem) clamp(1.2rem, 1.7vw, 1.5rem)
+    clamp(1.9rem, 2.15vw, 2.2rem);
+}
+
+.application-detail-shell.mesh-surface .application-use-card-body::before {
+  position: absolute;
+  top: 1.15rem;
+  bottom: 1.15rem;
+  left: clamp(0.85rem, 1vw, 1rem);
+  width: 2px;
+  background: var(--use-card-accent);
+  content: "";
+}
+
+.application-use-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #64748b;
+  font-size: 0.68rem;
+  font-weight: 780;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.application-use-card-meta span:last-child {
+  color: #94a3b8;
+  font-family: var(--font-geist-mono), monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.application-detail-shell.mesh-surface .application-use-card h3 {
+  min-height: 2.4em;
+  max-width: 22ch;
+  font-size: clamp(1.08rem, 1.25vw, 1.28rem);
+  line-height: 1.2;
+}
+
+.application-detail-shell.mesh-surface .application-use-card p {
+  max-width: 34ch;
+  font-size: clamp(0.9rem, 0.96vw, 0.97rem);
+  line-height: 1.52;
+}
+
+.application-detail-shell.mesh-surface .application-use-card a {
+  margin-top: auto;
+}
+
+@media (max-width: 64rem) {
+  .application-detail-shell.mesh-surface .application-use-head {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .application-detail-shell.mesh-surface .application-use-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 42rem) {
+  .application-detail-shell.mesh-surface .application-use-head {
+    gap: 1rem;
+    padding-bottom: 1.15rem;
+  }
+
+  .application-detail-shell.mesh-surface .application-use-head h2 {
+    max-width: none;
+    font-size: clamp(1.8rem, 8vw, 2.35rem);
+  }
+
+  .application-detail-shell.mesh-surface .application-use-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .application-detail-shell.mesh-surface .application-use-card-body {
+    min-height: 0;
+  }
+
+  .application-detail-shell.mesh-surface .application-use-card h3 {
+    min-height: 0;
+  }
+}
+
 .application-detail-shell.mesh-surface .application-section-nav {
   border-bottom: 0;
   box-shadow: none;
@@ -71,37 +253,46 @@
 }
 
 .application-index-shell.mesh-surface .application-index-hero h1 {
-  max-width: 16ch;
+  max-width: none;
   color: #07111f !important;
-  font-size: clamp(2.45rem, 4vw, 4.15rem);
-  font-weight: 840 !important;
-  letter-spacing: 0;
-  line-height: 1;
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-application-hero-title-size);
+  font-weight: var(--ds-application-hero-title-weight) !important;
+  letter-spacing: var(--ds-application-hero-title-tracking);
+  line-height: var(--ds-application-hero-title-leading);
   text-wrap: balance;
 }
 
 .application-index-shell.mesh-surface .application-index-hero p {
-  max-width: 68ch;
+  max-width: var(--ds-application-hero-body-measure);
   color: #334155 !important;
-  font-size: clamp(1rem, 1.05vw, 1.08rem);
-  font-weight: 520;
-  line-height: 1.65;
+  font-family: var(--ds-font-body);
+  font-size: var(--ds-application-hero-body-size);
+  font-weight: var(--ds-application-hero-body-weight);
+  line-height: var(--ds-application-hero-body-leading);
   text-wrap: pretty;
+}
+
+.application-index-shell.mesh-surface
+  .application-index-hero-copy
+  > p:not(.application-index-kicker) {
+  margin-top: var(--ds-application-hero-body-gap);
 }
 
 .application-index-shell.mesh-surface .application-index-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: clamp(1.35rem, 2.4vw, 1.9rem);
+  margin-top: var(--ds-application-hero-group-gap);
 }
 
 .application-index-shell.mesh-surface .application-index-kicker {
-  margin: 0 0 0.85rem;
+  margin: 0 0 var(--ds-application-hero-eyebrow-gap);
   color: #0b5fb8 !important;
-  font-size: 0.78rem !important;
-  font-weight: 780 !important;
-  letter-spacing: 0.06em;
+  font-family: var(--ds-font-body);
+  font-size: var(--ds-application-hero-eyebrow-size) !important;
+  font-weight: var(--ds-application-hero-eyebrow-weight) !important;
+  letter-spacing: var(--ds-application-hero-eyebrow-tracking);
   line-height: 1.2 !important;
   text-transform: uppercase;
 }
@@ -353,8 +544,9 @@
     height: 11rem;
   }
 
-  .application-index-shell.mesh-surface .application-index-actions .cta-primary,
-  .application-index-shell.mesh-surface .application-index-actions .cta-secondary {
+  .application-index-shell.mesh-surface
+    .application-index-actions
+    > [data-slot="button"] {
     width: 100%;
     justify-content: center;
   }

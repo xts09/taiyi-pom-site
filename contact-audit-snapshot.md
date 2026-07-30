@@ -1,0 +1,36 @@
+- generic [active] [ref=f4e1] [box=0,0,1920,2210]:
+  - link "Skip to main content" [ref=f4e2] [cursor=pointer] [box=12,-48,168,44]:
+    - /url: "#main-content"
+  - banner [ref=f4e3] [box=0,0,1920,63]:
+    - generic [ref=f4e4] [box=224,0,1472,62]:
+      - link "Taiyi Nano home" [ref=f4e5] [cursor=pointer] [box=224,18,170,26]:
+        - /url: /
+        - img "PLATFORM" [ref=f4e7] [box=224,18,170,26]
+      - generic [ref=f4e218] [box=1164,12,532,38]:
+        - navigation "Main" [ref=f4e219] [box=1164,13,462,36]
+        - link "Search technical data sheets and resources" [ref=f4e232] [cursor=pointer] [box=1658,12,38,38]:
+          - /url: /technical-data-sheets
+  - main [ref=f4e15] [box=0,63,1920,1795]:
+    - generic [ref=f4e16] [box=0,63,1920,1795]:
+      - generic [ref=f4e17] [box=224,127,1472,368]:
+        - heading "Send Us Your Material Requirements" [level=1] [ref=f4e18] [box=298,244,701,134]
+        - paragraph [ref=f4e19] [box=1095,265,529,92]: Send the application, current material, mold stage, target properties, document needs, and estimated volume for a faster material review.
+      - generic [ref=f4e20] [box=224,543,1472,139]:
+        - generic [ref=f4e21] [box=259,572,1403,43]
+        - list [ref=f4e26] [box=259,630,1403,42]
+      - generic [ref=f4e41] [box=224,714,1472,1081]:
+        - generic [ref=f4e42] [box=224,714,987,1081]
+        - complementary [ref=f4e103] [box=1253,714,443,803]
+  - contentinfo [ref=f4e132] [box=0,1858,1920,351]:
+    - generic [ref=f4e133] [box=224,1900,1472,291]:
+      - generic [ref=f4e134] [box=224,1900,336,155]:
+        - img "PLATFORM registered trademark" [ref=f4e136] [box=224,1900,168,26]
+        - generic [ref=f4e137] [box=224,1939,336,116]
+      - navigation "Footer navigation" [ref=f4e154] [box=640,1900,1056,143]:
+        - generic [ref=f4e155] [box=640,1900,193,143]
+        - generic [ref=f4e168] [box=864,1900,333,143]
+        - generic [ref=f4e187] [box=1227,1900,241,143]
+        - generic [ref=f4e196] [box=1498,1900,198,143]
+      - paragraph [ref=f4e208] [box=224,2173,358,18]: © 2026 Jiangsu Taiyi Nano Technology Co., Ltd. All rights reserved.
+  - button "Open Next.js Dev Tools" [ref=f4e214] [cursor=pointer] [box=22,1026,32,32]
+  - alert [ref=f4e236] [box=-1,-1,1,1]

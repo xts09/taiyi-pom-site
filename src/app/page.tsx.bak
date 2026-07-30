@@ -51,7 +51,7 @@ export default function Home() {
             href="/products"
             className="hidden text-sm font-semibold text-blue-700 hover:text-blue-800 md:block"
           >
-            View all products →
+            View all products -&gt;
           </Link>
         </div>
 

@@ -19,7 +19,7 @@ export function ApplicationAnimeMotion() {
     ).matches;
     const heroCard = root.querySelector<HTMLElement>(".application-hero-card");
     const sectionNav = root.querySelector<HTMLElement>(
-      ".application-section-nav",
+      '[data-slot="secondary-section-nav"]',
     );
     const sections = Array.from(
       root.querySelectorAll<HTMLElement>("[data-application-motion]"),
@@ -31,7 +31,8 @@ export function ApplicationAnimeMotion() {
           navHeightProperty: "--application-section-nav-height",
           root,
           sectionNav,
-          tabLinkSelector: '.application-section-tabs a[href^="#"]',
+          tabLinkSelector:
+            '[data-slot="secondary-section-tabs"] a[href^="#"]',
         })
       : () => {};
 

@@ -1,0 +1,61 @@
+.root {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  margin: 0;
+  border-radius: var(--media-radius, var(--ds-media-radius));
+  background: var(--media-bg, var(--ds-media-bg));
+}
+
+.media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.media > img,
+.media > video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--media-fit, cover);
+}
+
+.root[data-fit="contain"] {
+  --media-fit: contain;
+}
+
+.root[data-fit="cover"] {
+  --media-fit: cover;
+}
+
+.root[data-variant="landscape"] {
+  aspect-ratio: var(--media-aspect-ratio, 16 / 9);
+}
+
+.root[data-variant="captioned"] {
+  aspect-ratio: var(--media-aspect-ratio, 16 / 9);
+}
+
+.root[data-variant="portrait-document"] {
+  aspect-ratio: var(--media-aspect-ratio, 0.72);
+}
+
+.root[data-variant="edge-to-edge"] {
+  min-height: var(--media-min-height, var(--ds-media-edge-min-height));
+  border-radius: var(--media-radius, 0);
+}
+
+.caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background: var(--media-caption-bg, var(--ds-media-caption-bg));
+  padding: var(--media-caption-padding, 2.5rem var(--ds-space-4) var(--ds-space-4));
+  color: var(--media-caption-fg, var(--ds-media-caption-fg));
+  font-size: var(--media-caption-size, var(--ds-text-xs));
+  font-weight: 700;
+  line-height: 1.35;
+}

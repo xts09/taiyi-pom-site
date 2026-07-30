@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Page Not Found | Taiyi Nano",
+  title: "Page Not Found | Taiyi Plastic",
   robots: {
     index: false,
     follow: false,

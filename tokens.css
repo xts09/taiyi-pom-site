@@ -1,54 +1,456 @@
 :root {
-  --home-color-paper: oklch(98% 0.008 240);
-  --home-color-paper-soft: oklch(95% 0.014 238);
-  --home-color-paper-blue: oklch(92% 0.028 235);
-  --home-color-ink: oklch(18% 0.035 245);
-  --home-color-ink-muted: oklch(47% 0.035 244);
-  --home-color-ink-soft: oklch(62% 0.026 242);
-  --home-color-night: oklch(15% 0.036 245);
-  --home-color-night-2: oklch(21% 0.042 242);
-  --home-color-night-3: oklch(27% 0.045 240);
-  --home-color-white: oklch(99% 0.004 240);
-  --home-color-white-muted: oklch(88% 0.018 235);
-  --home-color-accent: oklch(48% 0.19 253);
-  --home-color-accent-ink: oklch(99% 0.004 240);
-  --home-color-accent-bright: oklch(74% 0.14 221);
-  --home-color-rule: oklch(84% 0.025 238);
-  --home-color-rule-dark: oklch(100% 0 0 / 0.18);
-  --home-color-scrim: oklch(10% 0.025 245 / 0.76);
-  --home-color-scrim-soft: oklch(12% 0.03 245 / 0.48);
-  --home-color-focus: oklch(52% 0.2 245);
+  /* Layer 1: primitives. */
+  --ds-color-cobalt-600: #0b5fb8;
+  --ds-color-cobalt-700: #084d94;
+  --ds-color-product-blue-600: #1f6fb8;
+  --ds-color-product-blue-700: #185f9f;
+  --ds-color-product-blue-border: #2f5f9e;
+  --ds-color-product-detail-blue-hover: #264f86;
+  --ds-color-cyan-500: #00b8d9;
+  --ds-color-resource-cyan-400: #57b8ff;
+  --ds-color-resource-cyan-300: #8bd0ff;
+  --ds-color-brand-red: oklch(56% 0.22 27);
+  --ds-color-white: #ffffff;
+  --ds-color-canvas: #f4f7fa;
+  --ds-color-paper-blue-50: #eef6fb;
+  --ds-color-sky-50: #f0f9ff;
+  --ds-color-paper-50: oklch(98% 0.008 240);
+  --ds-color-paper-100: oklch(95% 0.014 238);
+  --ds-color-paper-200: oklch(92% 0.028 235);
+  --ds-color-slate-950: #0f172a;
+  --ds-color-slate-1000: #020617;
+  --ds-color-ink-950: #07111f;
+  --ds-color-ink-975: #06101d;
+  --ds-color-resource-ink: #04111f;
+  --ds-color-ink-home: oklch(18% 0.035 245);
+  --ds-color-slate-700: #526276;
+  --ds-color-slate-300: #cbd5e1;
+  --ds-color-slate-home: oklch(47% 0.035 244);
+  --ds-color-slate-soft: oklch(62% 0.026 242);
+  --ds-color-navy-950: #03101d;
+  --ds-color-night-home: oklch(15% 0.036 245);
+  --ds-color-night-home-2: oklch(21% 0.042 242);
+  --ds-color-night-home-3: oklch(27% 0.045 240);
+  --ds-color-on-dark: oklch(99% 0.004 240);
+  --ds-color-on-dark-muted: oklch(88% 0.018 235);
+  --ds-color-cobalt-home: oklch(48% 0.19 253);
+  --ds-color-cyan-bright: oklch(74% 0.14 221);
+  --ds-color-rule-light: oklch(84% 0.025 238);
+  --ds-color-rule-dark: oklch(100% 0 0 / 0.18);
+  --ds-color-scrim: oklch(10% 0.025 245 / 0.76);
+  --ds-color-scrim-soft: oklch(12% 0.03 245 / 0.48);
+  --ds-color-focus-home: oklch(52% 0.2 245);
 
-  --home-font-display: var(--font-display);
-  --home-font-body: var(--font-geist-sans);
-  --home-font-mono: var(--font-geist-mono);
+  --ds-space-1: 0.25rem;
+  --ds-space-2: 0.5rem;
+  --ds-space-3: 0.75rem;
+  --ds-space-4: 1rem;
+  --ds-space-6: 1.5rem;
+  --ds-space-8: 2rem;
+  --ds-space-12: 3rem;
+  --ds-space-18: 4.5rem;
+  --ds-space-28: 7rem;
 
-  --home-space-3xs: 0.25rem;
-  --home-space-2xs: 0.5rem;
-  --home-space-xs: 0.75rem;
-  --home-space-sm: 1rem;
-  --home-space-md: 1.5rem;
-  --home-space-lg: 2rem;
-  --home-space-xl: 3rem;
-  --home-space-2xl: 4.5rem;
-  --home-space-3xl: 7rem;
+  --ds-text-xs: 0.75rem;
+  --ds-text-sm: 0.875rem;
+  --ds-text-md: 1rem;
+  --ds-text-lg: 1.25rem;
+  --ds-text-xl: 1.75rem;
+  --ds-text-2xl: 2.5rem;
+  --ds-text-display-home: clamp(3.25rem, 6.1vw, 7rem);
 
-  --home-text-xs: 0.75rem;
-  --home-text-sm: 0.875rem;
-  --home-text-md: 1rem;
-  --home-text-lg: 1.25rem;
-  --home-text-xl: 1.75rem;
-  --home-text-2xl: 2.5rem;
-  --home-text-display: clamp(3.25rem, 6.1vw, 7rem);
+  --ds-radius-tight: 0.25rem;
+  --ds-radius-control: 0.32rem;
+  --ds-radius-panel: 0.5rem;
+  --ds-radius-evidence: 1rem;
+  --ds-radius-pill: 999px;
 
-  --home-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --home-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
-  --home-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
-  --home-dur-short: 180ms;
-  --home-dur-medium: 360ms;
+  --ds-rule-thin: 1px;
+  --ds-rule-strong: 2px;
+  --ds-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ds-ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ds-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ds-duration-short: 180ms;
+  --ds-duration-medium: 360ms;
+  --ds-shadow-header: 0 1px 0 rgba(255, 255, 255, 0.58),
+    0 8px 18px rgba(15, 23, 42, 0.026);
+  --ds-shadow-panel: 0 1rem 3rem oklch(19% 0.031 254 / 0.13);
 
-  --home-rule-thin: 1px;
-  --home-rule-strong: 2px;
-  --home-radius-card: 0.25rem;
-  --home-radius-pill: 999px;
+  /* Layer 2: semantic roles. */
+  --ds-background-canvas: var(--ds-color-canvas);
+  --ds-background-surface: var(--ds-color-white);
+  --ds-background-evidence: var(--ds-color-navy-950);
+  --ds-foreground-primary: var(--ds-color-ink-950);
+  --ds-foreground-muted: var(--ds-color-slate-700);
+  --ds-foreground-on-dark: var(--ds-color-white);
+  --ds-foreground-on-dark-muted: rgba(226, 236, 245, 0.82);
+  --ds-action-primary: var(--ds-color-cobalt-600);
+  --ds-action-primary-hover: var(--ds-color-cobalt-700);
+  --ds-focus-ring: var(--ds-color-cyan-500);
+  --ds-border-subtle: rgba(15, 23, 42, 0.13);
+  --ds-font-display: var(--font-display);
+  --ds-font-body: var(--font-geist-sans);
+  --ds-font-nav: var(--font-nav);
+  --ds-font-mono: var(--font-geist-mono);
+  --ds-section-space-sm: var(--ds-space-12);
+  --ds-section-space-md: var(--ds-space-18);
+  --ds-section-space-lg: var(--ds-space-28);
+
+  /* Layer 3: component roles. */
+  --ds-button-primary-bg: var(--ds-action-primary);
+  --ds-button-primary-bg-hover: var(--ds-action-primary-hover);
+  --ds-button-primary-fg: var(--ds-foreground-on-dark);
+  --ds-button-secondary-bg: rgba(255, 255, 255, 0.9);
+  --ds-button-secondary-fg: var(--ds-color-slate-950);
+  --ds-button-secondary-border: rgba(15, 23, 42, 0.18);
+  --ds-button-secondary-border-hover: rgba(11, 95, 184, 0.38);
+  --ds-button-secondary-fg-hover: var(--ds-action-primary);
+  --ds-button-secondary-font-weight: 620;
+  --ds-button-product-hero-primary-bg: var(--ds-color-product-blue-600);
+  --ds-button-product-hero-primary-bg-hover: var(--ds-color-product-blue-700);
+  --ds-button-product-hero-primary-border: var(
+    --ds-color-product-blue-border
+  );
+  --ds-button-product-hero-primary-fg: var(--ds-foreground-on-dark);
+  --ds-button-product-hero-secondary-bg: rgba(248, 250, 252, 0.72);
+  --ds-button-product-hero-secondary-bg-hover: rgba(31, 111, 184, 0.08);
+  --ds-button-product-hero-secondary-border: rgba(31, 111, 184, 0.28);
+  --ds-button-product-hero-secondary-fg: var(--ds-color-product-blue-600);
+  --ds-button-product-hero-secondary-fg-hover: var(
+    --ds-color-product-blue-700
+  );
+  --ds-button-product-hero-height: 3.15rem;
+  --ds-button-product-hero-font-size: 0.98rem;
+  --ds-button-product-hero-font-weight: 780;
+  --ds-button-product-hero-primary-padding-inline: 2rem;
+  --ds-button-product-hero-secondary-padding-inline: 1.7rem;
+  --ds-button-product-detail-primary-bg: var(--ds-color-product-blue-border);
+  --ds-button-product-detail-primary-bg-hover: var(
+    --ds-color-product-detail-blue-hover
+  );
+  --ds-button-product-detail-primary-border: var(
+    --ds-color-product-blue-border
+  );
+  --ds-button-product-detail-primary-fg: var(--ds-foreground-on-dark);
+  --ds-button-product-detail-secondary-bg: rgba(246, 249, 252, 0.86);
+  --ds-button-product-detail-secondary-border: rgba(47, 95, 158, 0.28);
+  --ds-button-product-detail-secondary-bg-hover: rgba(47, 95, 158, 0.08);
+  --ds-button-product-detail-secondary-fg: var(--ds-color-product-blue-border);
+  --ds-button-product-detail-height: 3rem;
+  --ds-button-product-detail-radius: var(--ds-radius-tight);
+  --ds-button-product-detail-padding-block: 0.75rem;
+  --ds-button-product-detail-padding-inline: 1.05rem;
+  --ds-button-product-detail-font-size: 0.9rem;
+  --ds-button-product-detail-font-weight: 640;
+  --ds-button-application-hero-primary-bg: var(--ds-color-product-blue-600);
+  --ds-button-application-hero-primary-bg-hover: var(
+    --ds-color-product-blue-700
+  );
+  --ds-button-application-hero-primary-border: var(
+    --ds-color-product-blue-600
+  );
+  --ds-button-application-hero-primary-fg: var(--ds-foreground-on-dark);
+  --ds-button-application-hero-secondary-bg: rgba(248, 251, 255, 0.92);
+  --ds-button-application-hero-secondary-bg-hover: rgba(31, 111, 184, 0.1);
+  --ds-button-application-hero-secondary-border: rgba(31, 111, 184, 0.24);
+  --ds-button-application-hero-secondary-fg: var(--ds-color-product-blue-600);
+  --ds-button-application-hero-secondary-fg-hover: var(
+    --ds-color-product-blue-700
+  );
+  --ds-button-application-hero-height: 3.25rem;
+  --ds-button-application-hero-padding-block: 0.78rem;
+  --ds-button-application-hero-padding-inline: 1.35rem;
+  --ds-button-application-hero-font-size: 1rem;
+  --ds-button-application-hero-font-weight: 780;
+  --ds-button-resource-article-bg: var(--ds-color-white);
+  --ds-button-resource-article-bg-hover: var(--ds-color-sky-50);
+  --ds-button-resource-article-fg: var(--ds-color-slate-1000);
+  --ds-button-resource-article-height: 2.75rem;
+  --ds-button-resource-article-radius: var(--ds-radius-panel);
+  --ds-button-resource-article-padding-block: 0.75rem;
+  --ds-button-resource-article-padding-inline: 1.25rem;
+  --ds-button-resource-article-font-size: 0.875rem;
+  --ds-button-resource-article-font-weight: 600;
+  --ds-button-resource-index-primary-bg: var(--ds-color-resource-cyan-400);
+  --ds-button-resource-index-primary-bg-hover: var(
+    --ds-color-resource-cyan-300
+  );
+  --ds-button-resource-index-primary-border: var(
+    --ds-color-resource-cyan-400
+  );
+  --ds-button-resource-index-primary-border-hover: var(
+    --ds-color-resource-cyan-300
+  );
+  --ds-button-resource-index-primary-fg: var(--ds-color-resource-ink);
+  --ds-button-resource-index-secondary-bg: rgba(255, 255, 255, 0.08);
+  --ds-button-resource-index-secondary-bg-hover: rgba(255, 255, 255, 0.14);
+  --ds-button-resource-index-secondary-border: rgba(226, 242, 255, 0.34);
+  --ds-button-resource-index-secondary-border-hover: rgba(226, 242, 255, 0.62);
+  --ds-button-resource-index-secondary-fg: var(--ds-color-white);
+  --ds-button-resource-index-height: 3rem;
+  --ds-button-resource-index-radius: var(--ds-radius-tight);
+  --ds-button-resource-index-padding-block: 0.72rem;
+  --ds-button-resource-index-padding-inline: 1.15rem;
+  --ds-button-resource-index-font-size: 0.9rem;
+  --ds-button-resource-index-font-weight: 650;
+  --ds-button-inverse-bg: var(--ds-color-white);
+  --ds-button-inverse-bg-hover: var(--ds-color-paper-blue-50);
+  --ds-button-inverse-fg: var(--ds-color-ink-975);
+  --ds-button-inverse-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 1rem 2rem rgba(2, 7, 17, 0.28);
+  --ds-button-inverse-shadow-hover: 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 1.1rem 2.15rem rgba(2, 7, 17, 0.32);
+  --ds-button-focus-outline: rgba(14, 165, 233, 0.55);
+  --ds-button-focus-outline-width: 3px;
+  --ds-button-focus-outline-offset: 3px;
+  --ds-button-radius: var(--ds-radius-tight);
+  --ds-button-height: 3rem;
+  --ds-button-padding-inline: 1.15rem;
+  --ds-button-font-size: 0.875rem;
+  --ds-button-font-weight: 640;
+  --ds-input-bg: var(--ds-background-surface);
+  --ds-input-fg: var(--ds-foreground-primary);
+  --ds-input-border: var(--ds-border-subtle);
+  --ds-input-border-hover: rgba(15, 23, 42, 0.24);
+  --ds-input-border-focus: rgba(11, 95, 184, 0.62);
+  --ds-input-focus-halo: rgba(22, 163, 212, 0.14);
+  --ds-input-placeholder: #8994a3;
+  --ds-input-disabled-bg: var(--ds-color-paper-100);
+  --ds-input-disabled-fg: var(--ds-color-slate-500);
+  --ds-input-radius: var(--ds-radius-control);
+  --ds-input-height: 2.75rem;
+  --ds-input-padding-inline: 0.82rem;
+  --ds-input-font-size: 0.88rem;
+  --ds-input-textarea-min-height: 7.5rem;
+  --ds-panel-bg: var(--ds-background-surface);
+  --ds-panel-bg-soft: var(--ds-color-paper-100);
+  --ds-panel-fg: var(--ds-foreground-primary);
+  --ds-panel-border: var(--ds-border-subtle);
+  --ds-panel-border-hover: rgba(11, 95, 184, 0.34);
+  --ds-panel-radius: var(--ds-radius-panel);
+  --ds-panel-padding: var(--ds-space-6);
+  --ds-panel-padding-compact: var(--ds-space-4);
+  --ds-panel-interactive-shadow-hover: 0 0.75rem 1.8rem
+    rgba(15, 23, 42, 0.08);
+  --ds-evidence-bg: var(--ds-background-evidence);
+  --ds-evidence-fg: var(--ds-foreground-on-dark);
+  --ds-evidence-radius: var(--ds-radius-evidence);
+  --ds-evidence-surface:
+    linear-gradient(145deg, rgba(10, 31, 49, 0.82), rgba(3, 16, 29, 0.96)),
+    url("/material-satin-midnight-v1.png") center / cover no-repeat,
+    var(--ds-evidence-bg);
+  --ds-evidence-shadow: var(--ds-shadow-panel);
+  --ds-page-hero-fg: var(--ds-foreground-on-dark);
+  --ds-page-hero-muted: var(--ds-foreground-on-dark-muted);
+  --ds-page-hero-eyebrow: var(--ds-color-cyan-bright);
+  --ds-page-hero-title-size: clamp(2.85rem, 4.8vw, 5rem);
+  --ds-page-hero-description-size: clamp(1rem, 1.2vw, 1.16rem);
+  --ds-page-hero-copy-gap: var(--ds-space-4);
+  --ds-product-hero-eyebrow-size: var(--ds-text-xs);
+  --ds-product-hero-eyebrow-weight: 700;
+  --ds-product-hero-eyebrow-tracking: 0.08em;
+  --ds-product-hero-title-size: clamp(2.25rem, 3.75vw, 3.75rem);
+  --ds-product-hero-title-weight: 700;
+  --ds-product-hero-title-leading: 0.98;
+  --ds-product-hero-title-tracking: -0.025em;
+  --ds-product-hero-body-size: clamp(1rem, 1.12vw, 1.125rem);
+  --ds-product-hero-body-leading: 1.65;
+  --ds-product-hero-body-measure: 65ch;
+  --ds-product-hero-subtitle-size: clamp(1.125rem, 1.5vw, 1.35rem);
+  --ds-product-hero-subtitle-weight: 600;
+  --ds-product-hero-subtitle-leading: 1.35;
+  --ds-product-hero-surface-bg: var(--ds-background-surface);
+  --ds-product-hero-surface-border: rgba(15, 23, 42, 0.1);
+  --ds-product-hero-surface-radius: var(--ds-radius-panel);
+  --ds-product-hero-surface-shadow: none;
+  --ds-product-hero-inset: clamp(var(--ds-space-6), 3vw, var(--ds-space-12));
+  --ds-product-hero-eyebrow-gap: var(--ds-space-3);
+  --ds-product-hero-subtitle-gap: var(--ds-space-4);
+  --ds-product-hero-body-gap: var(--ds-space-6);
+  --ds-application-hero-eyebrow-size: var(--ds-product-hero-eyebrow-size);
+  --ds-application-hero-eyebrow-weight: var(--ds-product-hero-eyebrow-weight);
+  --ds-application-hero-eyebrow-tracking: var(
+    --ds-product-hero-eyebrow-tracking
+  );
+  --ds-application-hero-title-size: var(--ds-product-hero-title-size);
+  --ds-application-hero-title-weight: var(--ds-product-hero-title-weight);
+  --ds-application-hero-title-leading: var(--ds-product-hero-title-leading);
+  --ds-application-hero-title-tracking: var(--ds-product-hero-title-tracking);
+  --ds-application-hero-body-size: var(--ds-product-hero-body-size);
+  --ds-application-hero-body-weight: 400;
+  --ds-application-hero-body-leading: var(--ds-product-hero-body-leading);
+  --ds-application-hero-body-measure: var(--ds-product-hero-body-measure);
+  --ds-application-hero-surface-bg: var(--ds-product-hero-surface-bg);
+  --ds-application-hero-surface-border: var(--ds-product-hero-surface-border);
+  --ds-application-hero-surface-radius: var(--ds-product-hero-surface-radius);
+  --ds-application-hero-surface-shadow: var(--ds-product-hero-surface-shadow);
+  --ds-application-hero-inset: var(--ds-product-hero-inset);
+  --ds-application-hero-eyebrow-gap: var(--ds-product-hero-eyebrow-gap);
+  --ds-application-hero-body-gap: var(--ds-product-hero-body-gap);
+  --ds-application-hero-group-gap: var(--ds-space-6);
+  --ds-resource-hero-eyebrow-size: var(--ds-product-hero-eyebrow-size);
+  --ds-resource-hero-eyebrow-weight: var(--ds-product-hero-eyebrow-weight);
+  --ds-resource-hero-eyebrow-tracking: 0.06em;
+  --ds-resource-hero-title-size: var(--ds-product-hero-title-size);
+  --ds-resource-hero-title-weight: var(--ds-product-hero-title-weight);
+  --ds-resource-hero-title-leading: var(--ds-product-hero-title-leading);
+  --ds-resource-hero-title-tracking: var(--ds-product-hero-title-tracking);
+  --ds-resource-hero-body-size: var(--ds-product-hero-body-size);
+  --ds-resource-hero-body-weight: 400;
+  --ds-resource-hero-body-leading: var(--ds-product-hero-body-leading);
+  --ds-resource-hero-body-measure: var(--ds-product-hero-body-measure);
+  --ds-resource-hero-evidence-bg: var(--ds-evidence-surface);
+  --ds-resource-hero-evidence-border: rgba(255, 255, 255, 0.1);
+  --ds-resource-hero-evidence-radius: var(--ds-evidence-radius);
+  --ds-resource-hero-evidence-shadow: none;
+  --ds-resource-index-hero-split: 65%;
+  --ds-resource-index-hero-bg:
+    linear-gradient(
+      90deg,
+      rgba(7, 17, 31, 0.95) 0%,
+      rgba(7, 17, 31, 0.92) var(--ds-resource-index-hero-split),
+      rgba(248, 251, 255, 0.94) var(--ds-resource-index-hero-split),
+      rgba(255, 255, 255, 0.98) 100%
+    ),
+    url("/material-satin-midnight-v1.png") left center /
+      var(--ds-resource-index-hero-split) 100% no-repeat,
+    var(--ds-background-surface);
+  --ds-resource-index-hero-border: var(--ds-product-hero-surface-border);
+  --ds-resource-index-task-bg:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(244, 248, 251, 0.9)
+    );
+  --ds-resource-index-task-seam: rgba(15, 23, 42, 0.05);
+  --ds-resource-article-title-size: var(--ds-section-intro-title-size-display);
+  --ds-resource-article-title-weight: 700;
+  --ds-resource-article-title-leading: 1;
+  --ds-resource-article-title-tracking: -0.025em;
+  --ds-resource-article-intro-size: var(--ds-product-hero-body-size);
+  --ds-resource-article-intro-leading: 1.75;
+  --ds-resource-article-intro-measure: var(--ds-product-hero-body-measure);
+  --ds-resource-article-surface-bg: var(--ds-product-hero-surface-bg);
+  --ds-resource-article-surface-border: var(--ds-product-hero-surface-border);
+  --ds-resource-article-surface-radius: var(--ds-product-hero-surface-radius);
+  --ds-resource-article-surface-shadow: var(--ds-product-hero-surface-shadow);
+  --ds-section-intro-fg: var(--ds-foreground-primary);
+  --ds-section-intro-muted: var(--ds-foreground-muted);
+  --ds-section-intro-eyebrow: var(--ds-action-primary);
+  --ds-section-intro-title-size: clamp(2rem, 2.4vw, 2.75rem);
+  --ds-section-intro-title-size-display: clamp(2.1rem, 3.2vw, 3.35rem);
+  --ds-section-intro-gap: var(--ds-space-4);
+  --ds-metric-label-fg: var(--ds-action-primary);
+  --ds-metric-value-fg: var(--ds-foreground-primary);
+  --ds-metric-note-fg: var(--ds-foreground-muted);
+  --ds-metric-label-size: 0.7rem;
+  --ds-metric-value-size: clamp(1.75rem, 2.2vw, 2.4rem);
+  --ds-metric-value-size-featured: clamp(2rem, 2.55vw, 2.7rem);
+  --ds-metric-note-size: 0.78rem;
+  --ds-metric-gap: var(--ds-space-6);
+  --ds-metric-item-gap: var(--ds-space-2);
+  --ds-action-panel-gap: clamp(var(--ds-space-6), 4vw, var(--ds-space-12));
+  --ds-action-panel-padding: clamp(var(--ds-space-8), 3.2vw, var(--ds-space-12));
+  --ds-action-panel-radius: var(--ds-radius-evidence);
+  --ds-action-panel-light-bg: var(--ds-background-surface);
+  --ds-action-panel-light-fg: var(--ds-foreground-primary);
+  --ds-action-panel-evidence-bg: var(--ds-evidence-surface);
+  --ds-action-panel-evidence-fg: var(--ds-foreground-on-dark);
+  --ds-action-panel-recommendation-body-fg: var(--ds-color-slate-300);
+  --ds-action-panel-recommendation-body-max: 58rem;
+  --ds-action-panel-recommendation-copy-basis: 34rem;
+  --ds-action-panel-recommendation-aside-basis: 24rem;
+  --ds-action-panel-recommendation-aside-min: 18rem;
+  --ds-action-panel-recommendation-action-border: rgba(255, 255, 255, 0.42);
+  --ds-action-panel-recommendation-action-bg: var(--ds-button-inverse-bg);
+  --ds-action-panel-recommendation-action-fg: var(--ds-button-inverse-fg);
+  --ds-action-panel-recommendation-action-bg-hover: var(
+    --ds-button-inverse-bg-hover
+  );
+  --ds-action-panel-recommendation-action-shadow: var(
+    --ds-button-inverse-shadow
+  );
+  --ds-action-panel-recommendation-action-shadow-hover: var(
+    --ds-button-inverse-shadow-hover
+  );
+  --ds-document-label-fg: var(--ds-action-primary);
+  --ds-document-title-fg: var(--ds-foreground-primary);
+  --ds-document-body-fg: var(--ds-foreground-muted);
+  --ds-document-action-fg: var(--ds-action-primary);
+  --ds-document-row-border: var(--ds-border-subtle);
+  --ds-document-preview-bg: var(--ds-background-surface);
+  --ds-document-preview-radius: var(--ds-radius-tight);
+  --ds-document-row-padding-block: 1.45rem;
+  --ds-media-bg: var(--ds-color-paper-100);
+  --ds-media-radius: var(--ds-radius-panel);
+  --ds-media-edge-min-height: 18rem;
+  --ds-media-caption-fg: var(--ds-foreground-on-dark);
+  --ds-media-caption-bg: linear-gradient(
+    180deg,
+    transparent,
+    rgba(3, 16, 29, 0.78)
+  );
+  --ds-home-hero-title-size: clamp(3.4rem, 5.15vw, 6.1rem);
+  --ds-home-hero-title-size-compact: clamp(3.5rem, 7vw, 6rem);
+  --ds-home-hero-title-size-medium: clamp(3.8rem, 5.1vw, 4.25rem);
+  --ds-home-hero-title-size-mobile: clamp(2.4rem, 10.2vw, 3.1rem);
+
+  /* Compatibility aliases. Keep current pages visually stable during migration. */
+  --home-color-paper: var(--ds-color-paper-50);
+  --home-color-paper-soft: var(--ds-color-paper-100);
+  --home-color-paper-blue: var(--ds-color-paper-200);
+  --home-color-ink: var(--ds-color-ink-home);
+  --home-color-ink-muted: var(--ds-color-slate-home);
+  --home-color-ink-soft: var(--ds-color-slate-soft);
+  --home-color-night: var(--ds-color-night-home);
+  --home-color-night-2: var(--ds-color-night-home-2);
+  --home-color-night-3: var(--ds-color-night-home-3);
+  --home-color-white: var(--ds-color-on-dark);
+  --home-color-white-muted: var(--ds-color-on-dark-muted);
+  --home-color-accent: var(--ds-color-cobalt-home);
+  --home-color-origin: var(--ds-color-brand-red);
+  --home-color-accent-ink: var(--ds-color-on-dark);
+  --home-color-accent-bright: var(--ds-color-cyan-bright);
+  --home-color-rule: var(--ds-color-rule-light);
+  --home-color-rule-dark: var(--ds-color-rule-dark);
+  --home-color-scrim: var(--ds-color-scrim);
+  --home-color-scrim-soft: var(--ds-color-scrim-soft);
+  --home-color-focus: var(--ds-color-focus-home);
+
+  --home-font-display: var(--ds-font-display);
+  --home-font-body: var(--ds-font-body);
+  --home-font-mono: var(--ds-font-mono);
+
+  --home-space-3xs: var(--ds-space-1);
+  --home-space-2xs: var(--ds-space-2);
+  --home-space-xs: var(--ds-space-3);
+  --home-space-sm: var(--ds-space-4);
+  --home-space-md: var(--ds-space-6);
+  --home-space-lg: var(--ds-space-8);
+  --home-space-xl: var(--ds-space-12);
+  --home-space-2xl: var(--ds-space-18);
+  --home-space-3xl: var(--ds-space-28);
+
+  --home-text-xs: var(--ds-text-xs);
+  --home-text-sm: var(--ds-text-sm);
+  --home-text-md: var(--ds-text-md);
+  --home-text-lg: var(--ds-text-lg);
+  --home-text-xl: var(--ds-text-xl);
+  --home-text-2xl: var(--ds-text-2xl);
+  --home-text-display: var(--ds-text-display-home);
+  --home-hero-title-size: var(--ds-home-hero-title-size);
+  --home-hero-title-size-compact: var(--ds-home-hero-title-size-compact);
+  --home-hero-title-size-medium: var(--ds-home-hero-title-size-medium);
+  --home-hero-title-size-mobile: var(--ds-home-hero-title-size-mobile);
+
+  --home-ease-out: var(--ds-ease-out);
+  --home-ease-in: var(--ds-ease-in);
+  --home-ease-in-out: var(--ds-ease-in-out);
+  --home-dur-short: var(--ds-duration-short);
+  --home-dur-medium: var(--ds-duration-medium);
+
+  --home-rule-thin: var(--ds-rule-thin);
+  --home-rule-strong: var(--ds-rule-strong);
+  --home-radius-card: var(--ds-radius-tight);
+  --home-radius-pill: var(--ds-radius-pill);
 }

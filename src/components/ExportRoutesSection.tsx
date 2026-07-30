@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { ExportMarketsMap } from "@/components/ExportMarketsMap";
 import { HomeStageHeader } from "@/components/HomeStageHeader";
 import { Card } from "@/components/ui/card";
@@ -21,6 +23,16 @@ export function ExportRoutesSection({ markets }: ExportRoutesSectionProps) {
         <div className="supply-map-layout">
           <div className="supply-map-shell">
             <ExportMarketsMap />
+            <div className="supply-map-legend" aria-label="Map legend">
+              <span>
+                <i className="supply-map-legend-mark supply-map-legend-mark-origin" />
+                Production base
+              </span>
+              <span>
+                <i className="supply-map-legend-mark supply-map-legend-mark-route" />
+                Project route
+              </span>
+            </div>
           </div>
           <Card className="export-market-panel grid gap-0 rounded-none border-0 py-0 shadow-none">
             <p className="export-market-intro">
@@ -37,6 +49,9 @@ export function ExportRoutesSection({ markets }: ExportRoutesSectionProps) {
                 </div>
               ))}
             </dl>
+            <Link className="export-market-action" href="/contact">
+              Start a material review →
+            </Link>
           </Card>
         </div>
       </div>

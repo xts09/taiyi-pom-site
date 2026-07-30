@@ -275,7 +275,61 @@
     gap: 1.6rem;
   }
 
+  .matrixTable {
+    overflow: visible;
+    border: 0;
+  }
+
+  .matrixHead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
   .matrixRow {
-    min-width: 39rem;
+    min-width: 0;
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 0.75rem;
+    border: 1px solid #cad5de;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .matrixRow + .matrixRow {
+    border-top: 1px solid #cad5de;
+  }
+
+  .matrixRow > span {
+    display: grid;
+    grid-template-columns: minmax(7.25rem, 0.76fr) minmax(0, 1.24fr);
+    gap: 0.75rem;
+    align-items: start;
+    padding: 0.75rem 0.85rem;
+  }
+
+  .matrixRow > span + span {
+    border-top: 1px solid #e1e7ec;
+  }
+
+  .matrixRow > span::before {
+    color: #657386;
+    content: attr(data-label);
+    font-size: 0.73rem;
+    font-weight: 650;
+    line-height: 1.45;
+  }
+
+  .matrixRow > span:first-child {
+    display: block;
+    background: #f6f9fb;
+    font-size: 1rem;
+  }
+
+  .matrixRow > span:first-child::before {
+    display: none;
   }
 }
