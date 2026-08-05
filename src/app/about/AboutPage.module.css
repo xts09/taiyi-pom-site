@@ -173,6 +173,11 @@
   background: color-mix(in srgb, var(--about-on-dark) 12%, transparent);
 }
 
+.heroPrimaryAction:active,
+.heroSecondaryAction:active {
+  transform: translateY(0) scale(0.98);
+}
+
 .heroPrimaryAction:focus-visible,
 .heroSecondaryAction:focus-visible {
   outline: 2px solid var(--about-accent-soft);
@@ -1286,7 +1291,7 @@
 .overviewSecondaryAction:active,
 .overviewFacilityAction:active,
 .overviewInquiryAction:active {
-  transform: translateY(1px);
+  transform: translateY(0) scale(0.98);
 }
 
 .overviewPrimaryAction:focus-visible,

@@ -11,7 +11,7 @@ import {
   createPageMetadata,
 } from "@/lib/seo";
 
-const applicationsTitle = "Application Areas | Taiyi Plastic";
+const applicationsTitle = "Engineering Plastic Applications | Taiyi Polymer";
 const applicationsDescription =
   "Explore application areas for modified POM and selected engineering plastic compounds, including automotive, electronics, automation, motion components, water control, industrial machinery, outdoor equipment, and textile machinery.";
 
@@ -19,6 +19,8 @@ export const metadata: Metadata = createPageMetadata({
   title: applicationsTitle,
   description: applicationsDescription,
   path: "/applications",
+  image: "/applications/parts/industrial-machinery-hero.webp",
+  imageAlt: "Taiyi Polymer application engineering for industrial parts",
 });
 
 const featuredApplications = applications
@@ -52,32 +54,48 @@ export default function ApplicationsPage() {
       />
       <section className="application-index-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
         <div className="inner-hero application-index-hero reveal-up mb-8">
-          <div className="application-index-hero-copy">
-            <p className="application-index-kicker">Application Engineering</p>
-            <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
+          <div className="application-index-hero-copy stagger-list">
+            <p
+              className="application-index-kicker"
+              style={{ "--item-index": 0 } as CSSProperties}
+            >
+              Application Engineering
+            </p>
+            <h1
+              className="text-4xl font-black tracking-tight text-white md:text-5xl"
+              style={{ "--item-index": 1 } as CSSProperties}
+            >
               Application Engineering for Molded Parts
             </h1>
 
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
-              Start with the molded part, not a generic material name. Taiyi Plastic
+            <p
+              className="mt-5 max-w-3xl text-lg leading-8 text-slate-200"
+              style={{ "--item-index": 2 } as CSSProperties}
+            >
+              Start with the molded part, not a generic material name. Taiyi Polymer
               reviews motion, load, environment, dimensional targets, tooling
-              stage, and document needs to screen a modified POM direction. For
-              PA6, PA66, or PPA projects, send the same inputs for a
-              project-specific compound review.
+              stage, and document needs to shortlist modified POM candidates.
+              For PA6, PA66, or PPA projects, send the same inputs for a focused
+              grade review.
             </p>
 
-            <div className="application-index-actions">
+            <div
+              className="application-index-actions stagger-list"
+              style={{ "--item-index": 3 } as CSSProperties}
+            >
               <Button
                 asChild
                 variant="primary"
                 className="h-auto px-6 py-3 text-sm font-[var(--ds-button-font-weight)]"
+                style={{ "--item-index": 0 } as CSSProperties}
               >
-                <Link href="/contact">Send Requirement</Link>
+                <Link href="/contact">Discuss Your Application</Link>
               </Button>
               <Button
                 asChild
                 variant="secondary"
                 className="h-auto px-6 py-3 text-sm"
+                style={{ "--item-index": 1 } as CSSProperties}
               >
                 <Link href="/products/categories/pom">
                   Browse POM Compounds
@@ -87,7 +105,7 @@ export default function ApplicationsPage() {
           </div>
 
           <div
-            className="application-index-hero-media"
+            className="application-index-hero-media stagger-list"
             aria-label="Featured application areas"
           >
             {featuredApplications.map((application, index) => (
@@ -95,6 +113,7 @@ export default function ApplicationsPage() {
                 key={application.slug}
                 href={`/applications/${application.slug}`}
                 className={`application-index-visual application-index-visual-${index + 1}`}
+                style={{ "--item-index": index } as CSSProperties}
               >
                 {application.heroImage ? (
                   <Image
@@ -135,22 +154,33 @@ export default function ApplicationsPage() {
           ))}
         </div>
 
-        <section className="application-basis-strip reveal-up reveal-delay-1 mb-10">
-          <div>
-            <p className="section-kicker mb-3">Application Review</p>
-            <h2>
-              How We Narrow the Material Direction
+        <section className="application-basis-strip stagger-list reveal-up reveal-delay-1 mb-10">
+          <div className="stagger-list" style={{ "--item-index": 0 } as CSSProperties}>
+            <p
+              className="section-kicker mb-3"
+              style={{ "--item-index": 0 } as CSSProperties}
+            >
+              Application Review
+            </p>
+            <h2 style={{ "--item-index": 1 } as CSSProperties}>
+              How We Build a Grade Shortlist
             </h2>
-            <p>
+            <p style={{ "--item-index": 2 } as CSSProperties}>
               We start from the molded part, tooling plan, multi-cavity
               consistency, shrinkage target, working condition, and performance
-              target before discussing a practical compound direction.
+              target before building a practical grade shortlist.
             </p>
           </div>
 
-          <ol className="basis-rail stagger-list">
+          <ol
+            className="basis-rail stagger-list"
+            style={{ "--item-index": 1 } as CSSProperties}
+          >
             {selectionBasis.map((item, index) => (
-              <li key={item}>
+              <li
+                key={item}
+                style={{ "--item-index": index } as CSSProperties}
+              >
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 {item}
               </li>
@@ -159,8 +189,9 @@ export default function ApplicationsPage() {
         </section>
 
         <ActionPanel
+          footerAdjacent
           variant="recommendation"
-          title="Need a Material Recommendation?"
+          title="Need Help Shortlisting a Grade?"
           className="application-cta cta-ribbon mt-10"
           eyebrow="Inquiry Preparation"
           eyebrowClassName="section-kicker mb-3"
@@ -170,7 +201,7 @@ export default function ApplicationsPage() {
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Send Requirement</Link>
+              <Link href="/contact">Discuss Your Application</Link>
             </Button>
           }
         >

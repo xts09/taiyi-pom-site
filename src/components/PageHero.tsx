@@ -58,7 +58,7 @@ export function PageHero({
       >
         <div
           data-slot="page-hero-copy"
-          className={cn(styles.copy, copyClassName)}
+          className={cn(styles.copy, "stagger-list", copyClassName)}
         >
           {eyebrow ? (
             <p className={cn(styles.eyebrow, eyebrowClassName)}>{eyebrow}</p>

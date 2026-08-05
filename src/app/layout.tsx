@@ -24,7 +24,7 @@ import "./styles/resources.css";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Taiyi Plastic | Modified POM & Engineering Plastic Compounds",
+    default: "Taiyi Polymer | Modified POM & Engineering Plastic Compounds",
     template: "%s",
   },
   description: defaultDescription,
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Taiyi Plastic | Modified POM & Engineering Plastic Compounds",
+    title: "Taiyi Polymer | Modified POM & Engineering Plastic Compounds",
     description: defaultDescription,
     url: "/",
     siteName,
@@ -60,13 +60,13 @@ export const metadata: Metadata = {
     images: [
       {
         url: defaultOgImage,
-        alt: "Taiyi Plastic POM material manufacturing",
+        alt: "Taiyi Polymer POM material manufacturing",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Taiyi Plastic | Modified POM & Engineering Plastic Compounds",
+    title: "Taiyi Polymer | Modified POM & Engineering Plastic Compounds",
     description: defaultDescription,
     images: [defaultOgImage],
   },

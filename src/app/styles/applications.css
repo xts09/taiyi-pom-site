@@ -96,18 +96,15 @@
   gap: 0.72rem;
   border-top: 0;
   padding: clamp(1.1rem, 1.5vw, 1.35rem)
-    clamp(1.15rem, 1.65vw, 1.45rem) clamp(1.2rem, 1.7vw, 1.5rem)
-    clamp(1.9rem, 2.15vw, 2.2rem);
+    clamp(1.15rem, 1.65vw, 1.45rem) clamp(1.2rem, 1.7vw, 1.5rem);
 }
 
 .application-detail-shell.mesh-surface .application-use-card-body::before {
-  position: absolute;
-  top: 1.15rem;
-  bottom: 1.15rem;
-  left: clamp(0.85rem, 1vw, 1rem);
-  width: 2px;
-  background: var(--use-card-accent);
-  content: "";
+  content: none;
+}
+
+.application-detail-shell.mesh-surface .application-match-card::before {
+  content: none;
 }
 
 .application-use-card-meta {
@@ -189,7 +186,6 @@
 .application-detail-shell.mesh-surface.is-section-nav-pinned
   .application-section-nav {
   z-index: 49;
-  margin-top: 0 !important;
   border-bottom: 1px solid rgba(15, 23, 42, 0.09) !important;
   background: #ffffff !important;
   box-shadow: 0 0.55rem 1.25rem rgba(15, 23, 42, 0.06) !important;

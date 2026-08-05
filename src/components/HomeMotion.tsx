@@ -27,9 +27,22 @@ export function HomeMotion({ children }: HomeMotionProps) {
           ?.querySelector<HTMLElement>(".selection-corridor")
           ?.classList.add("is-flow-active");
         gsap.set(
-          ".hero-video, .hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .hero-review-card, .manufacturing-base [data-slot='metric-item'], .section-motion-copy, .product-current-head, .product-disclosure, .product-portfolio-explorer, .selection-stepper, .flow-point, .operation-stack article, .factory-frame, .cta-ribbon, .certification-heading, .certificate-document, .home-inquiry-copy, .home-inquiry-panel",
-          { autoAlpha: 1, x: 0, y: 0, scale: 1, filter: "none" },
+          ".hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .manufacturing-base [data-slot='metric-item'], .section-motion-copy, .product-current-head, .product-disclosure, .selection-stepper, .flow-point, .operation-stack article, .factory-frame, .cta-ribbon, .certification-heading, .certificate-document, .home-inquiry-copy, .home-inquiry-panel, .global-footprint [data-slot='section-intro'] > *, .global-footprint .supply-map-shell, .global-footprint .export-market-panel, .global-footprint .export-market-summary > li, .qualification-sequence .qualification-heading > *, .qualification-sequence .qualification-steps li",
+          {
+            autoAlpha: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            scaleX: 1,
+            scaleY: 1,
+            filter: "none",
+          },
         );
+        gsap.set(".global-footprint .export-map-route", { strokeDashoffset: 0 });
+        gsap.set(".qualification-sequence .qualification-progress-fill", {
+          scaleX: 1,
+          scaleY: 1,
+        });
         return;
       }
 
@@ -101,14 +114,11 @@ export function HomeMotion({ children }: HomeMotionProps) {
       const productRows = gsap.utils.toArray<HTMLElement>(
         ".product-disclosure",
       );
-      const productExplorer = rootRef.current?.querySelector<HTMLElement>(
-        ".product-portfolio-explorer",
-      );
       let productMotionComplete = false;
 
       if (productSection && productHead && productRows.length > 0) {
-        gsap.set(productHead, { autoAlpha: 0, x: -18, y: 4 });
-        gsap.set(productRows, { autoAlpha: 0, x: 18, y: 5 });
+        gsap.set(productHead, { x: -18, y: 4 });
+        gsap.set(productRows, { x: 18, y: 5 });
 
         const playProductMotion = safeCallback(() => {
           if (productMotionComplete) {
@@ -126,9 +136,8 @@ export function HomeMotion({ children }: HomeMotionProps) {
             })
             .fromTo(
               productHead,
-              { autoAlpha: 0, x: -18, y: 4 },
+              { x: -18, y: 4 },
               {
-                autoAlpha: 1,
                 x: 0,
                 y: 0,
                 duration: 0.38,
@@ -136,9 +145,8 @@ export function HomeMotion({ children }: HomeMotionProps) {
             )
             .fromTo(
               productRows,
-              { autoAlpha: 0, x: 18, y: 5 },
+              { x: 18, y: 5 },
               {
-                autoAlpha: 1,
                 x: 0,
                 y: 0,
                 duration: 0.34,
@@ -149,42 +157,159 @@ export function HomeMotion({ children }: HomeMotionProps) {
         });
 
         playWhenScreenVisible(productSection, playProductMotion);
-      } else if (productSection && productHead && productExplorer) {
-        gsap.set(productHead, { autoAlpha: 0, x: -18, y: 4 });
-        gsap.set(productExplorer, { x: 18, y: 5 });
+      }
 
-        const playProductMotion = safeCallback(() => {
-          if (productMotionComplete) {
-            return;
-          }
+      const qualificationSection = root?.querySelector<HTMLElement>(
+        ".qualification-sequence",
+      );
+      const qualificationHeadingParts = qualificationSection
+        ? gsap.utils.toArray<HTMLElement>(
+            ".qualification-heading > *",
+            qualificationSection,
+          )
+        : [];
+      const qualificationSteps = qualificationSection
+        ? gsap.utils.toArray<HTMLElement>(
+            ".qualification-steps li",
+            qualificationSection,
+          )
+        : [];
+      const qualificationProgress = qualificationSection?.querySelector<HTMLElement>(
+        ".qualification-progress-fill",
+      );
 
-          productMotionComplete = true;
+      if (
+        qualificationSection &&
+        qualificationHeadingParts.length > 0 &&
+        qualificationSteps.length > 0 &&
+        qualificationProgress
+      ) {
+        gsap.set(qualificationHeadingParts, { y: 16 });
+        gsap.set(qualificationSteps, { y: 18 });
+        gsap.set(qualificationProgress, {
+          scaleX: 1,
+          scaleY: 0,
+        });
 
+        const playQualificationMotion = safeCallback(() => {
           gsap
-            .timeline({
-              defaults: {
-                ease: "power3.out",
-                overwrite: true,
-              },
-            })
-            .to(productHead, {
-              autoAlpha: 1,
-              x: 0,
+            .timeline({ defaults: { ease: "power3.out", overwrite: true } })
+            .to(qualificationHeadingParts, {
               y: 0,
-              duration: 0.38,
+              duration: 0.48,
+              stagger: 0.08,
             })
             .to(
-              productExplorer,
+              qualificationProgress,
               {
-                x: 0,
-                y: 0,
-                duration: 0.36,
+                scaleY: 1,
+                duration: 0.78,
+                ease: "power2.inOut",
               },
-              "-=0.18",
+              "-=0.12",
+            )
+            .to(
+              qualificationSteps,
+              {
+                y: 0,
+                duration: 0.42,
+                stagger: 0.06,
+              },
+              "-=0.6",
             );
         });
 
-        playWhenScreenVisible(productSection, playProductMotion);
+        playWhenScreenVisible(qualificationSection, playQualificationMotion);
+      }
+
+      const globalFootprintSection = root?.querySelector<HTMLElement>(
+        ".global-footprint",
+      );
+      const globalFootprintHeadingParts = globalFootprintSection
+        ? gsap.utils.toArray<HTMLElement>(
+            "[data-slot='section-intro'] > *",
+            globalFootprintSection,
+          )
+        : [];
+      const supplyMapShell = globalFootprintSection?.querySelector<HTMLElement>(
+        ".supply-map-shell",
+      );
+      const exportMarketPanel = globalFootprintSection?.querySelector<HTMLElement>(
+        ".export-market-panel",
+      );
+      const exportMarketRows = globalFootprintSection
+        ? gsap.utils.toArray<HTMLElement>(
+            ".export-market-summary > li",
+            globalFootprintSection,
+          )
+        : [];
+      const exportMapRoutes = globalFootprintSection
+        ? gsap.utils.toArray<SVGPathElement>(
+            ".export-map-route",
+            globalFootprintSection,
+          )
+        : [];
+
+      if (
+        globalFootprintSection &&
+        globalFootprintHeadingParts.length > 0 &&
+        supplyMapShell &&
+        exportMarketPanel
+      ) {
+        gsap.set(globalFootprintHeadingParts, { y: 16 });
+        gsap.set(supplyMapShell, { x: -18 });
+        gsap.set(exportMarketPanel, { x: 18 });
+        gsap.set(exportMarketRows, { y: 12 });
+        gsap.set(exportMapRoutes, {
+          strokeDasharray: 1000,
+          strokeDashoffset: 1000,
+        });
+
+        const playGlobalFootprintMotion = safeCallback(() => {
+          gsap
+            .timeline({ defaults: { ease: "power3.out", overwrite: true } })
+            .to(globalFootprintHeadingParts, {
+              y: 0,
+              duration: 0.44,
+              stagger: 0.08,
+            })
+            .to(
+              supplyMapShell,
+              {
+                x: 0,
+                duration: 0.5,
+              },
+              "-=0.18",
+            )
+            .to(
+              exportMarketPanel,
+              {
+                x: 0,
+                duration: 0.5,
+              },
+              "-=0.34",
+            )
+            .to(
+              exportMarketRows,
+              {
+                y: 0,
+                duration: 0.4,
+                stagger: 0.05,
+              },
+              "-=0.14",
+            )
+            .to(
+              exportMapRoutes,
+              {
+                strokeDashoffset: 0,
+                duration: 0.72,
+                stagger: 0.08,
+              },
+              "-=0.28",
+            );
+        });
+
+        playWhenScreenVisible(globalFootprintSection, playGlobalFootprintMotion);
       }
 
       const certificationSection = root?.querySelector<HTMLElement>(
@@ -208,7 +333,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
         gsap.set(certificationHeading, { autoAlpha: 0.72, y: 12 });
         gsap.set(certificateDocuments, { autoAlpha: 0.72, y: 18 });
 
-        playWhenScreenVisible(certificationSection, () => {
+        const playCertificationMotion = safeCallback(() => {
           gsap
             .timeline({ defaults: { ease: "power3.out", overwrite: true } })
             .to(certificationHeading, {
@@ -227,6 +352,8 @@ export function HomeMotion({ children }: HomeMotionProps) {
               "-=0.24",
             );
         });
+
+        playWhenScreenVisible(certificationSection, playCertificationMotion);
       }
 
       const inquirySection = root?.querySelector<HTMLElement>(".home-inquiry");
@@ -241,7 +368,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
         gsap.set(inquiryCopy, { autoAlpha: 0.76, x: -14 });
         gsap.set(inquiryPanel, { autoAlpha: 0.76, x: 14 });
 
-        playWhenScreenVisible(inquirySection, () => {
+        const playInquiryMotion = safeCallback(() => {
           gsap
             .timeline({ defaults: { ease: "power3.out", overwrite: true } })
             .to(inquiryCopy, {
@@ -259,6 +386,8 @@ export function HomeMotion({ children }: HomeMotionProps) {
               "-=0.34",
             );
         });
+
+        playWhenScreenVisible(inquirySection, playInquiryMotion);
       }
 
       ScrollTrigger.refresh();

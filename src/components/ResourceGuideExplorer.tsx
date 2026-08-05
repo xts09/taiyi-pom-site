@@ -47,14 +47,14 @@ export function ResourceGuideExplorer({
 
   return (
     <section
-      className="resource-faq-explorer"
+      className="resource-faq-explorer stagger-list"
       aria-label={`${pageTitle} explorer`}
     >
-      <div className="resource-faq-finder">
-        <div className="resource-faq-finder-copy">
+      <div className="resource-faq-finder stagger-list">
+        <div className="resource-faq-finder-copy stagger-list">
           <strong>Search {pageTitle}</strong>
           <p>
-            Search the guide topics, review points, material direction notes,
+            Search guide topics, review points, material selection notes,
             and validation inputs.
           </p>
         </div>
@@ -73,7 +73,7 @@ export function ResourceGuideExplorer({
               type="search"
               autoComplete="off"
               value={query}
-              placeholder="Try: shrinkage, warpage, drying, wear..."
+              placeholder={"Try: shrinkage, warpage, drying, wear\u2026"}
               onChange={(event) => setQuery(event.target.value)}
               className="resource-faq-search-input"
             />
@@ -84,7 +84,7 @@ export function ResourceGuideExplorer({
           className="resource-faq-topic-panel"
           aria-label={`${pageTitle} topics`}
         >
-          <div className="resource-faq-topic-list">
+          <div className="resource-faq-topic-list stagger-list">
             {topicModules.map((module) => (
               <button
                 key={module.title}
@@ -100,11 +100,11 @@ export function ResourceGuideExplorer({
         </section>
       </div>
 
-      <div className="resource-faq-content">
+      <div className="resource-faq-content stagger-list">
         {activeModule ? (
           <section
             id={`panel-${toSectionId(activeModule.title)}`}
-            className="resource-faq-section resource-guide-section"
+            className="resource-faq-section resource-guide-section stagger-list"
           >
             <div className="resource-faq-section-head">
               <h2>{activeModule.title}</h2>

@@ -16,6 +16,7 @@ type ActionPanelProps = Omit<
   copyClassName?: string
   eyebrow?: ReactNode
   eyebrowClassName?: string
+  footerAdjacent?: boolean
   layout?: "split" | "distributed"
   title: ReactNode
   titleClassName?: string
@@ -34,6 +35,7 @@ export function ActionPanel({
   copyClassName,
   eyebrow,
   eyebrowClassName,
+  footerAdjacent = false,
   layout = "split",
   title,
   titleClassName,
@@ -44,13 +46,14 @@ export function ActionPanel({
   return (
     <section
       {...sectionProps}
+      data-footer-adjacent={footerAdjacent ? "true" : undefined}
       data-layout={layout}
       data-slot="action-panel"
       data-variant={variant}
-      className={cn(styles.root, className)}
+      className={cn(styles.root, "stagger-list", className)}
     >
       <div
-        className={cn(styles.copy, copyClassName)}
+        className={cn(styles.copy, "stagger-list", copyClassName)}
         data-slot="action-panel-copy"
       >
         {eyebrow ? (

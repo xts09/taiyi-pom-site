@@ -329,7 +329,9 @@
   --ds-resource-article-title-tracking: -0.025em;
   --ds-resource-article-intro-size: var(--ds-product-hero-body-size);
   --ds-resource-article-intro-leading: 1.75;
-  --ds-resource-article-intro-measure: var(--ds-product-hero-body-measure);
+  --ds-resource-article-canvas-measure: 60rem;
+  --ds-resource-article-prose-measure: 52rem;
+  --ds-resource-article-intro-measure: 100%;
   --ds-resource-article-surface-bg: var(--ds-product-hero-surface-bg);
   --ds-resource-article-surface-border: var(--ds-product-hero-surface-border);
   --ds-resource-article-surface-radius: var(--ds-product-hero-surface-radius);
@@ -390,7 +392,7 @@
     transparent,
     rgba(3, 16, 29, 0.78)
   );
-  --ds-home-hero-title-size: clamp(3.4rem, 5.15vw, 6.1rem);
+  --ds-home-hero-title-size: clamp(3.4rem, 4.7vw, 5.6rem);
   --ds-home-hero-title-size-compact: clamp(3.5rem, 7vw, 6rem);
   --ds-home-hero-title-size-medium: clamp(3.8rem, 5.1vw, 4.25rem);
   --ds-home-hero-title-size-mobile: clamp(2.4rem, 10.2vw, 3.1rem);

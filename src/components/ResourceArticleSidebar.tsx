@@ -15,34 +15,9 @@ type ResourceArticleSidebarProps = {
   }>;
 };
 
-const compactSectionLabel = (title: string) => {
-  if (title.includes("Molded Part")) return "Molded Part First";
-  if (title.includes("Application Conditions")) return "Conditions";
-  if (title.includes("Standard, Wear-Resistant")) return "POM Direction";
-  if (title.includes("When to Consider Glass Fiber or Carbon Fiber Reinforced POM")) {
-    return "Reinforced POM";
-  }
-  if (title.includes("What High Glass Fiber Changes")) return "Higher-Fill Effects";
-  if (title.includes("When Carbon Fiber Merits Investigation")) {
-    return "Carbon Fiber Review";
-  }
-  if (title.includes("Conductive")) return "Functional Grades";
-  if (title.includes("TDS")) return "Reading TDS";
-  if (title.includes("Molded-Part Trials")) return "Trials";
-  if (title.includes("Wear Resistance and Low Friction")) return "Wear vs Friction";
-  if (title.includes("Load, Speed")) return "Load / Speed";
-  if (title.includes("Mating Material")) return "Mating Surface";
-  if (title.includes("PTFE") || title.includes("MoS2")) return "Additives";
-  if (title.includes("Lubrication")) return "Noise / Stick-Slip";
-  if (title.includes("Counterpart Wear")) return "Counterpart Wear";
-  if (title.includes("Laboratory")) return "Test Limits";
-  if (title.includes("What to Send")) return "Review Inputs";
-
-  return title;
-};
-
 export function ResourceArticleSidebar({ sections }: ResourceArticleSidebarProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [mobileTocValue, setMobileTocValue] = useState("");
 
   useEffect(() => {
     if (!sections.length) {
@@ -104,14 +79,19 @@ export function ResourceArticleSidebar({ sections }: ResourceArticleSidebarProps
             <a
               href={`#${section.id}`}
               aria-current={isActive ? "location" : undefined}
-              className={`block rounded-md border-l-2 px-3 py-2 text-sm leading-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2 ${
+              className={`block rounded-md border-l px-3 py-2 text-sm leading-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2 ${
                 isActive
                   ? "border-sky-600 bg-sky-50 font-semibold text-sky-800"
                   : "border-transparent text-slate-600 hover:border-slate-300 hover:bg-white hover:text-slate-950"
               }`}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                setActiveIndex(index);
+                if (mobile) {
+                  setMobileTocValue("");
+                }
+              }}
             >
-              {compactSectionLabel(section.title)}
+              {section.title}
             </a>
           </li>
         );
@@ -129,7 +109,12 @@ export function ResourceArticleSidebar({ sections }: ResourceArticleSidebarProps
       </div>
 
       <div className="border-b border-slate-200 bg-white px-5 py-3 sm:px-8 lg:hidden">
-        <Accordion type="single" collapsible>
+        <Accordion
+          type="single"
+          collapsible
+          value={mobileTocValue}
+          onValueChange={setMobileTocValue}
+        >
           <AccordionItem value="article-sections" className="border-0">
             <AccordionTrigger className="py-2 text-sm font-semibold text-slate-800 hover:no-underline">
               On this page

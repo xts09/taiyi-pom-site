@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ResourcePageMotion } from "@/components/ResourcePageMotion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { DirectoryRow } from "@/components/DirectoryRow";
+import { SectionIntro } from "@/components/SectionIntro";
 import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
@@ -13,7 +17,7 @@ import {
   createPageMetadata,
 } from "@/lib/seo";
 
-const resourcesTitle = "Technical Resources | Taiyi Plastic";
+const resourcesTitle = "Technical Resources | Taiyi Polymer";
 const resourcesDescription =
   "Choose a technical resource path for material selection, processing and troubleshooting, or grade data and validation.";
 
@@ -21,6 +25,8 @@ export const metadata: Metadata = createPageMetadata({
   title: resourcesTitle,
   description: resourcesDescription,
   path: "/resources",
+  image: "/og-resources-material-selection.jpg",
+  imageAlt: "Taiyi Polymer technical resources and material selection",
 });
 
 const resourcesJsonLd = [
@@ -41,14 +47,15 @@ const resourcesJsonLd = [
 
 export default function ResourcesPage() {
   return (
-    <main className="min-h-screen text-slate-900">
+    <main className="text-slate-900">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(resourcesJsonLd).replace(/</g, "\\u003c"),
         }}
       />
-      <section className="resource-page-shell resource-index-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
+      <ResourcePageMotion>
+        <section className="resource-page-shell resource-index-shell mesh-surface">
         <header
           className="resource-index-hero"
           aria-labelledby="resource-index-title"
@@ -87,7 +94,7 @@ export default function ResourcesPage() {
                   size="resourceIndexAction"
                   variant="resourceIndexSecondary"
                 >
-                  <Link href="/technical-data-sheets">Search Data / TDS</Link>
+                  <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
                 </Button>
               </div>
             </div>
@@ -113,7 +120,75 @@ export default function ResourcesPage() {
             </div>
           </div>
         </header>
-      </section>
+
+        <section
+          className="resource-index-directory"
+          aria-labelledby="resource-directory-title"
+        >
+          <SectionIntro
+            className="resource-index-directory-head"
+            layout="split"
+            title="Browse Technical Resources"
+            titleId="resource-directory-title"
+            description="Open a focused guide, troubleshooting note, data tool, or FAQ without leaving the engineering task that brought you here."
+          />
+
+          <div className="resource-index-directory-groups">
+            {resourceNavigationGroups.map((group) => (
+              <section
+                key={`directory-${group.id}`}
+                className="resource-index-directory-group"
+                aria-labelledby={`resource-group-${group.id}`}
+              >
+                <header className="resource-index-directory-group-head">
+                  <div>
+                    <h3 id={`resource-group-${group.id}`}>{group.title}</h3>
+                    <p>{group.description}</p>
+                  </div>
+                  <Link href={getResourceNavigationGroupPath(group)}>
+                    View all {group.links.length}
+                    <ArrowRight aria-hidden="true" size={16} />
+                  </Link>
+                </header>
+
+                <ul className="resource-index-directory-list">
+                  {group.links.map((item) => (
+                    <li key={`${group.id}-${item.href}`}>
+                      <DirectoryRow
+                        href={item.href}
+                        eyebrow={item.type}
+                        label={item.label}
+                        description={item.description}
+                        variant="compact"
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+
+          <div
+            className="resource-index-contact-row"
+            data-footer-adjacent="true"
+          >
+            <div>
+              <h2>Need a grade-specific document?</h2>
+              <p>
+                Share the grade, application, required document, and project
+                stage so availability can be confirmed in context.
+              </p>
+            </div>
+            <Button asChild variant="primary" size="form">
+              <Link href="/contact">
+                Discuss Your Application
+                <ArrowRight aria-hidden="true" size={16} />
+              </Link>
+            </Button>
+          </div>
+        </section>
+        </section>
+      </ResourcePageMotion>
     </main>
   );
 }

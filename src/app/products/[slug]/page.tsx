@@ -195,7 +195,7 @@ export async function generateMetadata({
 
   if (!product && !engineeringDocument) {
     return {
-      title: "Page Not Found | Taiyi Plastic",
+      title: "Page Not Found | Taiyi Polymer",
       robots: {
         index: false,
         follow: false,
@@ -209,7 +209,7 @@ export async function generateMetadata({
 
   if (!product) {
     return {
-      title: "Page Not Found | Taiyi Plastic",
+      title: "Page Not Found | Taiyi Polymer",
       robots: {
         index: false,
         follow: false,
@@ -316,9 +316,9 @@ function EngineeringProductDetailPage({
       />
       <section className="product-detail-shell">
         <div className="product-detail-hero">
-          <div className="product-detail-hero-card">
+          <div className="product-detail-hero-card reveal-up">
             <div className="product-detail-heading-row">
-              <div className="product-detail-main-copy">
+              <div className="product-detail-main-copy stagger-list">
                 <p className="product-detail-eyebrow">
                   {document.family} {document.category}
                 </p>
@@ -331,37 +331,39 @@ function EngineeringProductDetailPage({
                   molded part and processing conditions.
                 </p>
 
-                <div className="product-detail-hero-bottom-row">
+                <div className="product-detail-hero-bottom-row stagger-list">
                   <div
-                    className="product-detail-document-strip"
+                    className="product-detail-document-strip stagger-list"
                     aria-label="Material document support"
                   >
-                  <span>Document Support</span>
-                  <div>
-                    {availableDocuments.map((availableDocument) => (
-                      <span key={availableDocument}>{availableDocument}</span>
-                    ))}
-                  </div>
-                  <p>REACH / RoHS support available upon request.</p>
+                    <span>Document Support</span>
+                    <div>
+                      {availableDocuments.map((availableDocument) => (
+                        <span key={availableDocument}>{availableDocument}</span>
+                      ))}
+                    </div>
+                    <p>REACH / RoHS support available upon request.</p>
                   </div>
 
-                  <div className="product-detail-hero-side">
-                <div className="product-detail-hero-actions">
-                  <Button
-                    asChild
-                    size="productDetailHero"
-                    variant="productDetailPrimary"
-                  >
-                    <Link href="/contact">Send Requirement</Link>
-                  </Button>
-                  <Button
-                    asChild
-                    size="productDetailHero"
-                    variant="productDetailSecondary"
-                  >
-                    <Link href="/technical-data-sheets">Search Data / TDS</Link>
-                  </Button>
-                </div>
+                  <div className="product-detail-hero-side stagger-list">
+                    <div className="product-detail-hero-actions stagger-list">
+                      <Button
+                        asChild
+                        size="productDetailHero"
+                        variant="productDetailPrimary"
+                      >
+                        <Link href="/contact">Discuss Your Application</Link>
+                      </Button>
+                      <Button
+                        asChild
+                        size="productDetailHero"
+                        variant="productDetailSecondary"
+                      >
+                        <Link href="/technical-data-sheets">
+                          Find Grade Data & TDS
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -372,10 +374,10 @@ function EngineeringProductDetailPage({
 
         <Card asChild variant="evidence">
           <section
-            className="product-detail-resource-panel"
+            className="product-detail-resource-panel reveal-up"
             aria-label="Grade snapshot"
           >
-            <div className="product-detail-resource-copy">
+            <div className="product-detail-resource-copy stagger-list">
               <strong>Grade Snapshot</strong>
               <p>
                 Review the reference values before confirming this material for a
@@ -383,7 +385,7 @@ function EngineeringProductDetailPage({
               </p>
             </div>
 
-            <dl className="product-detail-snapshot-grid">
+            <dl className="product-detail-snapshot-grid stagger-list">
               {snapshotItems.map((item) => (
                 <div key={item.label}>
                   <dt>{item.label}</dt>
@@ -474,7 +476,7 @@ function EngineeringProductDetailPage({
           >
             <div>
               <h2 className="mb-4 text-xl font-black text-slate-950">
-                Material Direction
+                Grade Characteristics
               </h2>
 
               <ul className="space-y-3 text-slate-700">
@@ -532,7 +534,7 @@ function EngineeringProductDetailPage({
                 variant="inverse"
                 className="h-auto px-5 py-3 text-sm"
               >
-                <Link href="/contact">Send Requirement</Link>
+                <Link href="/contact">Discuss Your Application</Link>
               </Button>
             }
           >
@@ -710,9 +712,9 @@ export default async function ProductDetailPage({
       />
       <section className="product-detail-shell">
         <div className="product-detail-hero">
-          <div className="product-detail-hero-card">
+          <div className="product-detail-hero-card reveal-up">
             <div className="product-detail-heading-row">
-              <div className="product-detail-main-copy">
+              <div className="product-detail-main-copy stagger-list">
                 <p className="product-detail-eyebrow">
                   {campaignProfile?.eyebrow ?? product.category}
                 </p>
@@ -742,22 +744,22 @@ export default async function ProductDetailPage({
                   )}
                 </p>
 
-                <div className="product-detail-hero-bottom-row">
+                <div className="product-detail-hero-bottom-row stagger-list">
                   <div
-                    className="product-detail-document-strip"
+                    className="product-detail-document-strip stagger-list"
                     aria-label="Material document support"
                   >
-                  <span>Document Support</span>
-                  <div>
-                    {availableDocuments.map((document) => (
-                      <span key={document}>{document}</span>
-                    ))}
-                  </div>
-                  <p>REACH / RoHS support available upon request.</p>
+                    <span>Document Support</span>
+                    <div>
+                      {availableDocuments.map((document) => (
+                        <span key={document}>{document}</span>
+                      ))}
+                    </div>
+                    <p>REACH / RoHS support available upon request.</p>
                   </div>
 
-                  <div className="product-detail-hero-side">
-                <div className="product-detail-hero-actions">
+                  <div className="product-detail-hero-side stagger-list">
+                    <div className="product-detail-hero-actions stagger-list">
                   <Button
                     asChild
                     size="productDetailHero"
@@ -766,7 +768,7 @@ export default async function ProductDetailPage({
                     <Link href={sampleRequestHref}>
                       {campaignProfile
                         ? `Request an ${product.grade} Sample`
-                        : "Send Requirement"}
+                        : "Discuss Your Application"}
                     </Link>
                   </Button>
                   <Button
@@ -777,7 +779,7 @@ export default async function ProductDetailPage({
                     <Link href={gradeEvaluationHref}>
                       {campaignProfile
                         ? "Ask for Grade Evaluation"
-                        : "Search Data / TDS"}
+                        : "Find Grade Data & TDS"}
                     </Link>
                   </Button>
                 </div>
@@ -796,10 +798,10 @@ export default async function ProductDetailPage({
 
         <Card asChild variant="evidence">
           <section
-            className="product-detail-resource-panel"
+            className="product-detail-resource-panel reveal-up"
             aria-label="Grade snapshot"
           >
-            <div className="product-detail-resource-copy">
+            <div className="product-detail-resource-copy stagger-list">
               <strong>
                 {campaignProfile
                   ? `${product.grade} Screening Profile`
@@ -811,7 +813,7 @@ export default async function ProductDetailPage({
               </p>
             </div>
 
-            <dl className="product-detail-snapshot-grid">
+            <dl className="product-detail-snapshot-grid stagger-list">
               {snapshotItems.map((item) => (
                 <div key={item.label}>
                   <dt>{item.label}</dt>
@@ -1025,7 +1027,7 @@ export default async function ProductDetailPage({
                 <Link href={campaignProfile ? gradeEvaluationHref : "/contact"}>
                   {campaignProfile
                     ? `Ask for ${product.grade} Evaluation`
-                    : "Send Requirement"}
+                    : "Discuss Your Application"}
                 </Link>
               </Button>
             }

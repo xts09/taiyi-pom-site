@@ -124,9 +124,9 @@ export const applications: ApplicationItem[] = [
         label: "Window Regulator",
       },
       {
-        src: "/applications/parts/transparent/automotive-fasteners-transparent.png",
-        alt: "Automotive plastic fastener and buckle component",
-        label: "Fasteners",
+        src: "/applications/parts/transparent/automotive-clips-user-v3.png",
+        alt: "Automotive molded clips and fastener components",
+        label: "Clips & Fasteners",
       },
     ],
     parts: [
@@ -153,8 +153,8 @@ export const applications: ApplicationItem[] = [
         description:
           "Check retention force, snap-fit consistency, and low-warpage assembly fit.",
         image: {
-          src: "/applications/parts/transparent/automotive-fasteners-transparent.png",
-          alt: "Automotive plastic fastener and buckle component",
+          src: "/applications/parts/transparent/automotive-clips-user-v3.png",
+          alt: "Automotive molded clips and fastener components",
         },
       },
       {
@@ -181,7 +181,7 @@ export const applications: ApplicationItem[] = [
           "Evaluate sliding contact, guide accuracy, and resistance to repeated wear.",
         image: {
           src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
-          alt: "Automotive molded seat guide ring component",
+          alt: "Automotive molded interior seat guide ring component",
         },
       },
       {
@@ -194,12 +194,48 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Mirror Adjustment Gear",
+        label: "Interior Rearview Mirror Base",
         description:
-          "Screen compact gear engagement, repeatability, and dimensional stability.",
+          "Review molded fit, mounting geometry, and stable support around the interior rearview mirror.",
         image: {
           src: "/applications/parts/transparent/automotive-rearview-mirror-adjustment-transparent.png",
-          alt: "Automotive rearview mirror adjustment molded components",
+          alt: "Automotive molded interior rearview mirror base components",
+        },
+      },
+      {
+        label: "Wiper Arm Components",
+        description:
+          "Review connector fit, retention geometry, and repeatable assembly around the windshield wiper arm.",
+        image: {
+          src: "/applications/parts/transparent/automotive-wiper-arm-components-transparent.png",
+          alt: "Automotive molded windshield wiper arm components",
+        },
+      },
+      {
+        label: "Fuel Filter Element",
+        description:
+          "Review sealing fit, retention geometry, and repeatable assembly around the fuel filter module.",
+        image: {
+          src: "/applications/parts/transparent/automotive-fuel-filter-element-transparent.png",
+          alt: "Automotive fuel filter element",
+        },
+      },
+      {
+        label: "Fuel Cap Assembly",
+        description:
+          "Review sealing fit, thread engagement, and repeatable assembly around the fuel filler cap.",
+        image: {
+          src: "/applications/parts/transparent/automotive-fuel-cap-assembly-transparent.png",
+          alt: "Automotive fuel cap assembly components",
+        },
+      },
+      {
+        label: "EV Brake Component",
+        description:
+          "Review gear engagement, torque transfer, and dimensional stability for electric brake actuator assemblies.",
+        image: {
+          src: "/applications/parts/transparent/automotive-ev-brake-component-transparent.png",
+          alt: "Electric vehicle brake component with molded gear",
         },
       },
     ],
@@ -278,24 +314,36 @@ export const applications: ApplicationItem[] = [
         label: "Connector Housing",
         description:
           "Review terminal alignment, fine feature fill, and repeatable connector fit.",
+        image: {
+          src: "/applications/parts/transparent/electronics-connector-housing-transparent.png",
+          alt: "Injection-molded six-position electrical connector housing",
+        },
       },
       {
         label: "Terminal Housing",
         description:
           "Check retention geometry, dimensional consistency, and stable assembly clearance.",
+        image: {
+          src: "/applications/parts/transparent/electronics-terminal-housing-transparent.png",
+          alt: "Injection-molded two-position electrical terminal housing",
+        },
       },
       {
         label: "Insulation Support",
         description:
           "Screen stiffness, low warpage, and support accuracy around electrical assemblies.",
+        image: {
+          src: "/applications/parts/transparent/electronics-insulation-support-transparent.png",
+          alt: "Injection-molded electrical insulation support bracket",
+        },
       },
       {
         label: "Control Box Cover",
         description:
           "Review flatness, clip engagement, and repeatable enclosure assembly.",
         image: {
-          src: "/applications/parts/transparent/automotive-controlbox-components-transparent.png",
-          alt: "Molded control box and electrical enclosure components",
+          src: "/applications/parts/transparent/electronics-control-box-cover-v2.png",
+          alt: "Molded electrical control box cover",
         },
       },
       {
@@ -320,6 +368,10 @@ export const applications: ApplicationItem[] = [
         label: "Actuator Gear",
         description:
           "Review tooth wear, low-friction movement, and noise-sensitive actuation.",
+        image: {
+          src: "/applications/parts/transparent/electronics-actuator-gear-transparent.png",
+          alt: "Injection-molded POM compound actuator gear",
+        },
       },
       {
         label: "Antistatic Precision Component",
@@ -391,7 +443,7 @@ export const applications: ApplicationItem[] = [
       {
         src: "/applications/parts/transparent/conveyor-chain-plate-bracket-transparent.png",
         alt: "Black plastic conveyor chain plate bracket component",
-        label: "Chain Plate Bracket",
+        label: "Antistatic Conveyor Chain Plate",
       },
       {
         src: "/applications/parts/transparent/electrical-roller-transparent.png",
@@ -401,7 +453,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
-        label: "Modular Chain Plate",
+        label: "Mini Conveyor Chain Plate",
         description:
           "Review link fit, repeated articulation, and wear across moving chain surfaces.",
         image: {
@@ -410,7 +462,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Chain Plate Bracket",
+        label: "Antistatic Conveyor Chain Plate",
         description:
           "Check stiffness, fastening geometry, and assembly stability under load.",
         image: {
@@ -419,7 +471,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Conveying Link",
+        label: "High-Load Conveyor Chain",
         description:
           "Review pivot fit, repeated articulation, and load transfer between links.",
         image: {
@@ -437,7 +489,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Conveyor Plate",
+        label: "Anti-Slip Conveyor Plate",
         description:
           "Evaluate plate flatness, hinge geometry, and wear under repeated travel.",
         image: {
@@ -455,7 +507,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Chain Component",
+        label: "Conveyor Roller",
         description:
           "Screen chain engagement, repeated flexing, and contact wear.",
         image: {
@@ -464,7 +516,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Conveyor Housing",
+        label: "Conductive Conveyor Chain Plate",
         description:
           "Check housing stiffness, mounting fit, and low-warpage assembly geometry.",
         image: {
@@ -531,7 +583,7 @@ export const applications: ApplicationItem[] = [
         label: "Wiper Motor Gears",
       },
       {
-        src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
+        src: "/applications/parts/transparent/guide-ring-v2-transparent.png",
         alt: "Plastic main frame guide ring",
         label: "Guide Ring",
       },
@@ -547,40 +599,52 @@ export const applications: ApplicationItem[] = [
         description:
           "Review tooth accuracy, torque transfer, and repeatable dimensional control.",
         image: {
-          src: "/applications/parts/transparent/washer-base-gear-transparent.png",
-          alt: "Molded precision gear component",
+          src: "/applications/parts/transparent/motion-precision-gear-v2-transparent.png",
+          alt: "Molded precision gear component group",
         },
       },
       {
         label: "Worm Gear",
         description:
           "Screen sliding tooth contact, wear, and smooth reduction movement.",
+        image: {
+          src: "/applications/parts/transparent/motion-worm-gear-v2-transparent.png",
+          alt: "Molded worm gear shaft components",
+        },
       },
       {
         label: "Roller",
         description:
           "Evaluate rolling contact, shaft fit, and stability under repeated cycles.",
         image: {
-          src: "/applications/parts/transparent/electrical-roller-transparent.png",
-          alt: "Molded roller component for low-friction movement",
+          src: "/applications/parts/transparent/motion-roller-v2-transparent.png",
+          alt: "Green molded roller component",
         },
       },
       {
         label: "Bushing",
         description:
           "Review clearance, friction, and wear at rotating support interfaces.",
+        image: {
+          src: "/applications/parts/transparent/motion-bushing-v2-transparent.png",
+          alt: "Molded POM bushing component group",
+        },
       },
       {
         label: "Sleeve",
         description:
           "Check concentricity, surface contact, and repeatable press or sliding fit.",
+        image: {
+          src: "/applications/parts/transparent/motion-sleeve-v2-transparent.png",
+          alt: "Molded sleeve and bushing component group",
+        },
       },
       {
         label: "Guide Ring",
         description:
           "Screen guide accuracy, low-friction movement, and dimensional stability.",
         image: {
-          src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
+          src: "/applications/parts/transparent/guide-ring-v2-transparent.png",
           alt: "Molded guide ring component",
         },
       },
@@ -588,11 +652,19 @@ export const applications: ApplicationItem[] = [
         label: "Sliding Block",
         description:
           "Review load distribution, guide clearance, and repeated sliding wear.",
+        image: {
+          src: "/applications/parts/transparent/motion-sliding-block-v2-transparent.png",
+          alt: "Molded sliding block components with brass inserts",
+        },
       },
       {
         label: "Cam",
         description:
           "Evaluate profile accuracy, contact stress, and controlled actuation movement.",
+        image: {
+          src: "/applications/parts/transparent/motion-cam-v2-transparent.png",
+          alt: "Molded off-white cam gear component",
+        },
       },
     ],
     engineeringFit: [
@@ -674,6 +746,15 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        label: "Valve Spool Assembly",
+        description:
+          "Review sliding clearance, dimensional stability, and repeated valve movement.",
+        image: {
+          src: "/applications/parts/transparent/water-valve-spool-assembly-transparent.png",
+          alt: "Valve body and spool assembly components",
+        },
+      },
+      {
         label: "Valve Cartridge",
         description:
           "Screen assembly fit, internal movement, and sealing-adjacent geometry.",
@@ -710,21 +791,12 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Valve Spool Assembly",
-        description:
-          "Review sliding clearance, dimensional stability, and repeated valve movement.",
-        image: {
-          src: "/applications/parts/transparent/water-valve-spool-assembly-transparent.png",
-          alt: "Valve body and spool assembly components",
-        },
-      },
-      {
         label: "Guide Wheel",
         description:
           "Screen rolling contact, dimensional consistency, and low-friction movement.",
         image: {
-          src: "/applications/parts/transparent/water-guide-wheel-transparent.png",
-          alt: "Molded bathroom guide wheel components",
+          src: "/applications/parts/transparent/water-guide-wheel-v2.png",
+          alt: "Molded water-control guide wheel",
         },
       },
       {
@@ -732,14 +804,18 @@ export const applications: ApplicationItem[] = [
         description:
           "Review stiffness, shrinkage control, and stable housing assembly fit.",
         image: {
-          src: "/applications/parts/transparent/water-pps-replacement-component-transparent.png",
-          alt: "Black molded valve housing component",
+          src: "/applications/parts/transparent/water-valve-housing-component-v2-transparent.png",
+          alt: "Water-control valve housing cartridge components",
         },
       },
       {
         label: "Pump Impeller",
         description:
           "Review balance, stiffness, and dimensional control during repeated rotation.",
+        image: {
+          src: "/applications/parts/transparent/industrial-pump-impeller-transparent.png",
+          alt: "Injection-molded POM centrifugal pump impeller",
+        },
       },
     ],
     engineeringFit: [
@@ -838,36 +914,64 @@ export const applications: ApplicationItem[] = [
         label: "Bearing Cage",
         description:
           "Screen pocket geometry, rotational stability, and repeatable bearing spacing.",
+        image: {
+          src: "/applications/parts/transparent/industrial-bearing-cage-transparent.png",
+          alt: "Injection-molded polymer bearing cage",
+        },
       },
       {
         label: "Industrial Bushing",
         description:
           "Evaluate shaft clearance, low-friction support, and controlled wear.",
+        image: {
+          src: "/applications/parts/transparent/industrial-bushing-transparent.png",
+          alt: "Injection-molded POM flanged industrial bushing",
+        },
       },
       {
         label: "Pump Impeller",
         description:
           "Check balance, stiffness, and compatibility with the operating medium.",
+        image: {
+          src: "/applications/parts/transparent/industrial-pump-impeller-transparent.png",
+          alt: "Injection-molded polymer centrifugal pump impeller",
+        },
       },
       {
         label: "Linear Guide Block",
         description:
           "Review guide accuracy, sliding friction, and fit across repeated travel.",
+        image: {
+          src: "/applications/parts/transparent/industrial-linear-guide-block-transparent.png",
+          alt: "Injection-molded POM linear guide block",
+        },
       },
       {
         label: "Wear Pad",
         description:
           "Screen contact pressure, surface wear, and dimensional retention under load.",
+        image: {
+          src: "/applications/parts/transparent/industrial-wear-pad-transparent.png",
+          alt: "Injection-molded POM industrial wear pad",
+        },
       },
       {
         label: "Thrust Washer",
         description:
           "Evaluate axial load, friction, and stable thickness at rotating interfaces.",
+        image: {
+          src: "/applications/parts/transparent/industrial-thrust-washer-transparent.png",
+          alt: "Injection-molded POM thrust washer",
+        },
       },
       {
         label: "Coupling Insert",
         description:
           "Review torque response, assembly fit, and repeated engagement conditions.",
+        image: {
+          src: "/applications/parts/transparent/industrial-coupling-insert-transparent.png",
+          alt: "Injection-molded POM coupling center insert",
+        },
       },
     ],
     engineeringFit: [
@@ -950,14 +1054,18 @@ export const applications: ApplicationItem[] = [
         description:
           "Screen tooth wear, impact response, and movement under outdoor service.",
         image: {
-          src: "/applications/parts/transparent/lawn-parts-transparent.png",
-          alt: "Molded lawn equipment parts",
+          src: "/applications/parts/transparent/outdoor-lawn-mower-gear-v2.png",
+          alt: "Molded outdoor equipment lawn mower gear",
         },
       },
       {
         label: "Trimmer Spool",
         description:
           "Evaluate rotational balance, impact conditions, and dimensional stability.",
+        image: {
+          src: "/applications/parts/transparent/outdoor-trimmer-spool-transparent.png",
+          alt: "Injection-molded black POM line trimmer spool",
+        },
       },
       {
         label: "Outdoor Pipe Clamp",
@@ -981,19 +1089,27 @@ export const applications: ApplicationItem[] = [
         label: "Trigger Lever",
         description:
           "Screen repeated actuation, impact response, and pivot wear.",
+        image: {
+          src: "/applications/parts/transparent/outdoor-trigger-lever-transparent.png",
+          alt: "Injection-molded black POM outdoor equipment trigger lever",
+        },
       },
       {
         label: "Wheel Hub Bushing",
         description:
           "Evaluate shaft fit, rolling support, and wear in contaminated environments.",
+        image: {
+          src: "/applications/parts/transparent/outdoor-wheel-hub-bushing-transparent.png",
+          alt: "Injection-molded POM outdoor equipment wheel hub bushing",
+        },
       },
       {
         label: "Weather-Resistant Housing Clip",
         description:
           "Review snap-fit retention, dimensional stability, and exposure conditions.",
         image: {
-          src: "/applications/parts/transparent/automotive-fasteners-transparent.png",
-          alt: "Injection-molded snap-fit housing clips",
+          src: "/applications/parts/transparent/outdoor-housing-clip-v2.png",
+          alt: "Molded weather-resistant outdoor housing clip",
         },
       },
     ],
@@ -1060,7 +1176,7 @@ export const applications: ApplicationItem[] = [
         label: "Roller",
       },
       {
-        src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
+        src: "/applications/parts/transparent/guide-ring-v2-transparent.png",
         alt: "Plastic guide ring component",
         label: "Guide Ring",
       },
@@ -1080,7 +1196,7 @@ export const applications: ApplicationItem[] = [
         description:
           "Screen low-friction guidance, dimensional stability, and surface wear.",
         image: {
-          src: "/applications/parts/transparent/main-frame-guide-ring-transparent.png",
+          src: "/applications/parts/transparent/guide-ring-v2-transparent.png",
           alt: "Molded textile guide ring component",
         },
       },
@@ -1088,6 +1204,10 @@ export const applications: ApplicationItem[] = [
         label: "Yarn Tensioner",
         description:
           "Evaluate controlled movement, contact consistency, and repeated adjustment.",
+        image: {
+          src: "/applications/parts/transparent/textile-yarn-tensioner-transparent.png",
+          alt: "Injection-molded black POM yarn tensioner lever",
+        },
       },
       {
         label: "Textile Roller",
@@ -1102,11 +1222,19 @@ export const applications: ApplicationItem[] = [
         label: "Spindle Sleeve",
         description:
           "Check concentricity, rotational fit, and dimensional control under cycling.",
+        image: {
+          src: "/applications/parts/transparent/textile-spindle-sleeve-transparent.png",
+          alt: "Injection-molded POM textile spindle sleeve",
+        },
       },
       {
         label: "Bobbin Holder",
         description:
           "Screen retention geometry, repeated loading, and stable rotational support.",
+        image: {
+          src: "/applications/parts/transparent/textile-bobbin-holder-transparent.png",
+          alt: "Injection-molded black POM bobbin holder adapter",
+        },
       },
       {
         label: "Loom Gear",
@@ -1121,6 +1249,10 @@ export const applications: ApplicationItem[] = [
         label: "Textile Sliding Block",
         description:
           "Review guide clearance, repeated sliding wear, and assembly accuracy.",
+        image: {
+          src: "/applications/parts/transparent/textile-sliding-block-transparent.png",
+          alt: "Injection-molded black POM textile guide sliding block",
+        },
       },
     ],
     engineeringFit: [

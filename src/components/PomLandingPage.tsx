@@ -75,7 +75,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
               </Button>
               <Button
                 asChild
-                variant="outline"
+                variant="secondary"
                 size="form"
                 className="pom-landing-secondary-action"
               >
@@ -208,8 +208,9 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         </section>
 
         <ActionPanel
+          footerAdjacent
           variant="recommendation"
-          title="Need a practical material direction?"
+          title="Need Help Shortlisting a Grade?"
           className="selection-support-band resource-cta pom-landing-cta"
           eyebrow="Material Review"
           eyebrowClassName="section-kicker mb-3"
@@ -225,8 +226,9 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         >
           <p>
             Share the current material, application, target properties, mold
-            stage, document requirements, and estimated volume. Taiyi can review
-            a suitable material direction for sample or TDS discussion.
+            stage, document requirements, and estimated volume. Taiyi Polymer
+            can shortlist relevant grades and confirm the next sample or TDS
+            step.
           </p>
         </ActionPanel>
       </section>

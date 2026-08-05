@@ -1,6 +1,6 @@
 # Taiyi POM Site PRD
 
-This file is the product, content, design, and acceptance reference for the Taiyi Plastic website. It is not runtime code. Use it to keep future page edits, AI-generated content, component choices, and visual polish aligned with the site's business goal, brand direction, implementation scope, and release quality bar.
+This file is the product, content, design, and acceptance reference for the Taiyi Polymer website. It is not runtime code. Use it to keep future page edits, AI-generated content, component choices, and visual polish aligned with the site's business goal, brand direction, implementation scope, and release quality bar.
 
 ## Current Working Baseline
 
@@ -31,7 +31,7 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 
 ## Version Goal
 
-The current site version should help an overseas buyer or engineer understand Taiyi Plastic's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
+The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
 
 The experience should feel like a credible B2B engineering plastics manufacturer: clear, technical, calm, and easy to scan. It should not feel like a generic AI landing page, a consumer startup site, or a decorative portfolio.
 
@@ -70,7 +70,7 @@ The site should feel like a credible engineering plastics manufacturer, not a ge
 
 ## Core Jobs
 
-- Explain what Taiyi Plastic supplies and where POM compounds fit.
+- Explain what Taiyi Polymer supplies and where POM compounds fit.
 - Help users move from application need to material direction.
 - Make product families, grade categories, and TDS routes easy to scan.
 - Provide resources that answer common technical screening questions before inquiry.
@@ -78,7 +78,7 @@ The site should feel like a credible engineering plastics manufacturer, not a ge
 
 ## Positioning
 
-Taiyi Plastic should be positioned as a factory-based engineering plastic compound manufacturer with practical POM compound evaluation support, in-house compounding capability, and document support for industrial sourcing.
+Taiyi Polymer should be positioned as a factory-based engineering plastic compound manufacturer with practical POM compound evaluation support, in-house compounding capability, and document support for industrial sourcing.
 
 Use proof points such as factory scale, production lines, testing equipment, available documents, applications, and real production imagery. Avoid claims that require unverified certificates, customer cases, compliance approvals, or performance guarantees.
 
@@ -91,13 +91,16 @@ Use:
 - Direct engineering language.
 - Short explanations that clarify tradeoffs.
 - Grade-specific or project-specific framing.
-- Plain CTAs such as "Discuss Requirement", "Find a TDS", or "Contact Sales".
+- Use `Taiyi Polymer` as the public company name, `PLATFORM` as the material brand, and `Jiangsu Taiyi Nano Technology Co., Ltd.` where the legal entity is required.
+- Use `Discuss Your Application` for a general inquiry, `Submit Project Requirements` for form submission, and `Find Grade Data & TDS` for technical-data entry points.
+- Name the expected result when possible: candidate material families, a grade shortlist, available documents, or a sample-evaluation step.
 
 Avoid:
 
 - Hype words like revolutionary, cutting-edge, world-class, best, unmatched, or guaranteed.
 - Consumer-startup friendliness.
 - Vague innovation copy.
+- Generic `direction`, `review`, or `support` wording when a concrete customer outcome can be named.
 - Unsupported claims about potable water, food contact, automotive approval, flammability, outdoor durability, fuel contact, or electrical compliance.
 
 ## Content Rules
@@ -312,7 +315,7 @@ Motion is allowed only when it improves hierarchy, feedback, or polish.
 
 The site is successful when:
 
-- A first-time buyer can understand what Taiyi Plastic supplies within the first screen and first scroll.
+- A first-time buyer can understand what Taiyi Polymer supplies within the first screen and first scroll.
 - A material engineer can find a relevant product family, grade direction, application path, or TDS route without guessing.
 - The website feels credible for industrial sourcing and does not rely on unsupported claims.
 - Contact and document inquiry paths are visible but do not overpower technical content.

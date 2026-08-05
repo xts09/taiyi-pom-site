@@ -18,19 +18,19 @@ import {
 import styles from "../AboutPage.module.css";
 
 const manufacturingDescription =
-  "Review Taiyi Plastic's factory-based engineering plastic compounding capabilities, including twin-screw extrusion, warehouse coordination, material evaluation, and document support.";
+  "Review Taiyi Polymer's factory-based engineering plastic compounding capabilities, including twin-screw extrusion, warehouse coordination, material evaluation, and document support.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Manufacturing & Compounding Capabilities | Taiyi Plastic",
+  title: "Manufacturing & Compounding Capabilities | Taiyi Polymer",
   description: manufacturingDescription,
   path: "/about/manufacturing-capabilities",
   image: "/factory-extrusion.webp",
-  imageAlt: "Taiyi Plastic twin-screw extrusion production line",
+  imageAlt: "Taiyi Polymer twin-screw extrusion production line",
 });
 
 const manufacturingJsonLd = [
   createWebPageJsonLd({
-    title: "Manufacturing & Compounding Capabilities | Taiyi Plastic",
+    title: "Manufacturing & Compounding Capabilities | Taiyi Polymer",
     description: manufacturingDescription,
     path: "/about/manufacturing-capabilities",
     image: "/factory-extrusion.webp",

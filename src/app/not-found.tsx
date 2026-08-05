@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Page Not Found | Taiyi Plastic",
+  title: "Page Not Found | Taiyi Polymer",
   robots: {
     index: false,
     follow: false,
@@ -11,9 +11,12 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen text-slate-900">
-      <section className="mesh-surface mx-auto max-w-5xl px-5 py-24 sm:px-6 lg:px-8">
-        <div className="inner-hero reveal-up">
+    <main className="text-slate-900">
+      <section className="mesh-surface mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8">
+        <div
+          className="inner-hero reveal-up"
+          data-footer-adjacent="true"
+        >
           <p className="section-kicker mb-4">404</p>
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
             Page Not Found
@@ -27,7 +30,7 @@ export default function NotFound() {
               Browse Materials
             </Link>
             <Link href="/contact" className="cta-secondary px-6 py-3 text-sm">
-              Request Recommendation
+              Discuss Your Application
             </Link>
           </div>
         </div>

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import { contactEmail } from "@/lib/seo";
 import styles from "./PrivacyPage.module.css";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Taiyi Plastic",
+  title: "Privacy Policy | Taiyi Polymer",
   description:
     "How Jiangsu Taiyi Nano Technology Co., Ltd. collects, uses, and protects information submitted through the PLATFORM website.",
   alternates: {
@@ -145,9 +146,7 @@ export default function PrivacyPolicyPage() {
             <h2>Contact us</h2>
             <p>
               For privacy questions or requests, email{" "}
-              <a href="mailto:sales@taiyiplastic.com">
-                sales@taiyiplastic.com
-              </a>
+              <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
               . You can also contact Jiangsu Taiyi Nano Technology Co., Ltd. in
               Yancheng, Jiangsu, China.
             </p>

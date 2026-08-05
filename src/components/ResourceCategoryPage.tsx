@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import { ActionPanel } from "@/components/ActionPanel";
+import { DirectoryRow } from "@/components/DirectoryRow";
 import { ResourceHero } from "@/components/ResourceHero";
+import { SectionIntro } from "@/components/SectionIntro";
 import { Button } from "@/components/ui/button";
 import {
   getResourceNavigationGroupPath,
@@ -26,7 +27,7 @@ export function ResourceCategoryPage({ group }: ResourceCategoryPageProps) {
       { name: group.title, path },
     ]),
     createCollectionPageJsonLd({
-      title: `${group.title} Resources | Taiyi Plastic`,
+      title: `${group.title} Resources | Taiyi Polymer`,
       description: group.description,
       path,
       items: group.links.map((item) => ({
@@ -45,7 +46,7 @@ export function ResourceCategoryPage({ group }: ResourceCategoryPageProps) {
         }}
       />
 
-      <section className="resource-page-shell resource-category-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
+      <section className="resource-page-shell resource-category-shell mesh-surface">
         <ResourceHero
           context="Technical Resources"
           title={group.title}
@@ -69,43 +70,32 @@ export function ResourceCategoryPage({ group }: ResourceCategoryPageProps) {
 
         <section className="resource-directory" aria-label={`${group.title} resources`}>
           <section className="resource-directory-section">
-            <div className="resource-directory-section-head">
-              <span className="resource-directory-section-number">
-                {group.navigationLabel}
-              </span>
-              <h2>Resources in this section</h2>
-              <p>
-                Open the guide, technical note, data tool, or directory that
-                matches the next decision in your project.
-              </p>
-            </div>
+            <SectionIntro
+              className="resource-directory-section-head"
+              eyebrow={group.navigationLabel}
+              eyebrowClassName="resource-directory-section-number"
+              title="Resources in this section"
+              description="Open the guide, technical note, data tool, or directory that matches the next decision in your project."
+            />
 
-            <div className="resource-directory-list">
+            <div className="resource-directory-list stagger-list">
               {group.links.map((resource, index) => (
-                <Link
+                <DirectoryRow
                   key={resource.href}
                   href={resource.href}
-                  className={`resource-directory-link${
-                    index === 0 ? " resource-directory-link-primary" : ""
-                  }`}
-                >
-                  <span className="resource-directory-type">{resource.type}</span>
-                  <strong>{resource.label}</strong>
-                  <span className="resource-directory-description">
-                    {resource.description}
-                  </span>
-                  <ArrowUpRight
-                    className="resource-directory-arrow"
-                    aria-hidden="true"
-                    strokeWidth={1.8}
-                  />
-                </Link>
+                  eyebrow={resource.type}
+                  label={resource.label}
+                  description={resource.description}
+                  emphasized={index === 0}
+                  variant="data"
+                />
               ))}
             </div>
           </section>
         </section>
 
         <ActionPanel
+          footerAdjacent
           variant="recommendation"
           title="Need Help Choosing a Starting Point?"
           className="selection-support-band resource-cta mt-12"
@@ -117,13 +107,14 @@ export function ResourceCategoryPage({ group }: ResourceCategoryPageProps) {
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Send Requirement</Link>
+              <Link href="/contact">Discuss Your Application</Link>
             </Button>
           }
         >
           <p>
             Share the part, current material, target property, process, and
-            document needs for a project-based material review.
+            document needs. We will help identify a practical material family
+            and the documents needed for comparison.
           </p>
         </ActionPanel>
       </section>

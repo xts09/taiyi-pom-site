@@ -24,10 +24,10 @@ import {
 import styles from "./AboutPage.module.css";
 
 const aboutDescription =
-  "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., a factory-based manufacturer focused on modified POM and selected engineering plastic compound solutions.";
+  "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., the Yancheng manufacturer behind Taiyi Polymer and PLATFORM engineering materials, focused on modified POM and selected PA6, PA66, and PPA compounds.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "About Us | Taiyi Plastic",
+  title: "Engineering Plastic Compound Manufacturer | Taiyi Polymer",
   description: aboutDescription,
   path: "/about",
   image: "/company-profile.webp",
@@ -37,7 +37,7 @@ export const metadata: Metadata = createPageMetadata({
 const aboutJsonLd = [
   {
     ...createWebPageJsonLd({
-      title: "About Us | Taiyi Plastic",
+      title: "Engineering Plastic Compound Manufacturer | Taiyi Polymer",
       description: aboutDescription,
       path: "/about",
       image: "/company-profile.webp",

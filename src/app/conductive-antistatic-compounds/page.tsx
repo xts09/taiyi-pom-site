@@ -19,9 +19,9 @@ const heroImage =
   "/generated/landing/conductive-antistatic-pom-functional-components.png";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Conductive & Antistatic Plastic Compounds | Taiyi Plastic",
+  title: "Conductive & Antistatic Plastic Compounds | Taiyi Polymer",
   description:
-    "Compare Taiyi carbon-nanotube antistatic and carbon-fiber conductive compound directions across ABS, PC, POM, PA6, PA66, PPS, TPU, and other polymer matrices.",
+    "Compare Taiyi Polymer carbon-nanotube antistatic and carbon-fiber conductive compound options across ABS, PC, POM, PA6, PA66, PPS, TPU, and other polymer matrices.",
   path,
   image: heroImage,
 });
@@ -44,7 +44,7 @@ const jsonLd = [
     "@type": "CollectionPage",
     name: "Conductive and Antistatic Plastic Compounds",
     description:
-      "Cross-material directory of carbon-nanotube antistatic and carbon-fiber conductive compound directions.",
+      "Cross-material directory of carbon-nanotube antistatic and carbon-fiber conductive compound options.",
     url: `${siteUrl}${path}`,
     mainEntity: {
       "@type": "ItemList",
@@ -95,7 +95,7 @@ export default function ConductiveAntistaticCompoundsPage() {
                 Explore Grades
               </Link>
               <Link href="/contact" className={styles.secondaryAction}>
-                Send Requirement
+                Discuss Your Application
               </Link>
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function ConductiveAntistaticCompoundsPage() {
         </div>
       </section>
 
-      <section className={styles.ctaBand}>
+      <section className={styles.ctaBand} data-footer-adjacent="true">
         <div className={`${styles.rail} ${styles.ctaLayout}`}>
           <div>
             <p className={styles.kicker}>Material Review</p>
@@ -231,7 +231,7 @@ export default function ConductiveAntistaticCompoundsPage() {
           </div>
           <div className={styles.ctaActions}>
             <Link href="/contact" className={styles.primaryAction}>
-              Send Requirement
+              Discuss Your Application
             </Link>
             <Link
               href="/conductive-antistatic-pom"

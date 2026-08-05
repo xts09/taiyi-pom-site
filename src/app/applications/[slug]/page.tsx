@@ -74,7 +74,7 @@ type ApplicationUseCardData = {
 const applicationSectionTabs = [
   { href: "#application-scene", label: "Parts & Conditions" },
   { href: "#material-match", label: "Typical Parts" },
-  { href: "#review-checklist", label: "Material Directions" },
+  { href: "#review-checklist", label: "Candidate Materials" },
   { href: "#material-evaluation", label: "Material Evaluation" },
 ];
 
@@ -258,7 +258,7 @@ const getEngineeringGroups = (
       items: selectionBasis,
     },
     {
-      title: "Taiyi Material Direction",
+      title: "Candidate Material Families",
       items: application.materialDirections.map((direction) => direction.label),
     },
   ];
@@ -337,6 +337,7 @@ function ApplicationUseCard({
           "application-use-card",
           !image && "application-use-card-without-image",
         )}
+        data-application-motion-item
       >
         {image ? (
           <MediaFigure
@@ -363,7 +364,7 @@ function ApplicationUseCard({
           <h3>{title}</h3>
           <p>{description}</p>
           <a href="#review-checklist">
-            Review material direction
+            Review candidate materials
             <span aria-hidden="true" className="application-use-card-arrow">
               -&gt;
             </span>
@@ -415,7 +416,7 @@ function ProductInfoCard({
   );
 
   return (
-    <article className="application-product-card">
+    <article className="application-product-card" data-application-motion-item>
       {card.href ? (
         <Link href={card.href}>{productContent}</Link>
       ) : (
@@ -439,7 +440,7 @@ export async function generateMetadata({
 
   if (!application) {
     return {
-      title: "Page Not Found | Taiyi Plastic",
+      title: "Page Not Found | Taiyi Polymer",
       robots: {
         index: false,
         follow: false,
@@ -448,8 +449,8 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: `${application.title} | Taiyi Plastic`,
-    description: `${application.description} Review relevant modified POM material directions, typical parts, and application selection factors.`,
+    title: `${application.title} | Taiyi Polymer`,
+    description: `${application.description} Review relevant modified POM candidates, typical parts, and application selection factors.`,
     path: `/applications/${application.slug}`,
     image: application.heroImage?.src,
     imageAlt: application.heroImage?.alt,
@@ -540,7 +541,7 @@ export default async function ApplicationDetailPage({
               </div>
 
               <div className="application-hero-directions">
-                <strong>Material Directions</strong>
+                <strong>Candidate Materials</strong>
                 <span>
                   {application.materialDirections
                     .slice(0, 3)
@@ -562,14 +563,14 @@ export default async function ApplicationDetailPage({
                 size="applicationHero"
                 variant="applicationHeroPrimary"
               >
-                <Link href="/contact">Send Requirement</Link>
+                <Link href="/contact">Discuss Your Application</Link>
               </Button>
               <Button
                 asChild
                 size="applicationHero"
                 variant="applicationHeroSecondary"
               >
-                <Link href="/technical-data-sheets">Search Data / TDS</Link>
+                <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
               </Button>
             </div>
           </div>
@@ -614,7 +615,7 @@ export default async function ApplicationDetailPage({
                   <p className="section-kicker mb-3">Parts & Conditions</p>
                   <h2>Start with the part and working condition.</h2>
                   <p>
-                    The material direction should follow the actual mechanism,
+                    The material choice should follow the actual mechanism,
                     movement, assembly fit, and dimensional target before a
                     grade is screened.
                   </p>
@@ -731,10 +732,10 @@ export default async function ApplicationDetailPage({
           data-application-motion
         >
           <div className="application-notes-head">
-            <p className="section-kicker mb-3">Material Directions</p>
-            <h2>Material directions for the parts above.</h2>
+            <p className="section-kicker mb-3">Candidate Materials</p>
+            <h2>Material options for the parts above.</h2>
             <p>
-              Review the modified POM directions commonly screened against the
+              Review the modified POM options commonly screened against the
               part function and working conditions above.
             </p>
           </div>
@@ -752,9 +753,10 @@ export default async function ApplicationDetailPage({
         </section>
 
         <ActionPanel
+          footerAdjacent
           id="material-evaluation"
           variant="recommendation"
-          title="Ready to narrow the material direction?"
+          title="Ready to shortlist a grade?"
           className={
             visualAssets
               ? "application-review-cta application-brief-cta"
@@ -768,7 +770,7 @@ export default async function ApplicationDetailPage({
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Send Requirement</Link>
+              <Link href="/contact">Discuss Your Application</Link>
             </Button>
           }
           data-application-motion

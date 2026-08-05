@@ -21,14 +21,16 @@ import {
   createWebPageJsonLd,
 } from "@/lib/seo";
 
-const technicalDataSheetsTitle = "Technical Resource Search | Taiyi Plastic";
+const technicalDataSheetsTitle = "Technical Data Sheets & Grade Data | Taiyi Polymer";
 const technicalDataSheetsDescription =
-  "Search Taiyi Plastic grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.";
+  "Search Taiyi Polymer grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.";
 
 const technicalDataSheetsMetadata: Metadata = createPageMetadata({
   title: technicalDataSheetsTitle,
   description: technicalDataSheetsDescription,
   path: "/technical-data-sheets",
+  image: "/generated/pom-workbench-hero.webp",
+  imageAlt: "Taiyi Polymer technical data and grade search",
 });
 
 const getSearchValue = (value: string | string[] | undefined) =>
@@ -101,9 +103,9 @@ const materialDirectionFilter: {
   title: string;
   options: readonly MaterialDirectionOption[];
 } = {
-  title: "Material Direction",
+  title: "Material Family",
   options: [
-    { label: "All product directions", value: "" },
+    { label: "All material families", value: "" },
     {
       label: "Glass fiber reinforced",
       value: "glass-fiber",
@@ -693,7 +695,7 @@ export default async function TechnicalDataSheetsPage({
               <h2>No matching resources found</h2>
               <p>
                 Try a broader grade, document, or technical keyword. You can
-                also reset filters and search all Taiyi resource paths.
+                also reset filters and search all Taiyi Polymer resource paths.
               </p>
               <Link href="/technical-data-sheets" scroll={false}>
                 Reset search

@@ -50,9 +50,12 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
     topicModules[0];
 
   return (
-    <section className="resource-faq-explorer" aria-label="FAQ explorer">
-      <div className="resource-faq-finder">
-        <div className="resource-faq-finder-copy">
+    <section
+      className="resource-faq-explorer stagger-list"
+      aria-label="FAQ explorer"
+    >
+      <div className="resource-faq-finder stagger-list">
+        <div className="resource-faq-finder-copy stagger-list">
           <strong>Search Technical FAQ</strong>
           <p>
             Search material comparison, modification direction, TDS
@@ -77,7 +80,7 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
               type="search"
               autoComplete="off"
               value={query}
-              placeholder="Try: shrinkage, HDT, conductive, TDS..."
+              placeholder={"Try: shrinkage, HDT, conductive, TDS\u2026"}
               onChange={(event) => setQuery(event.target.value)}
               className="resource-faq-search-input"
             />
@@ -85,7 +88,7 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
         </label>
 
         <section className="resource-faq-topic-panel" aria-label="FAQ topics">
-          <div className="resource-faq-topic-list">
+          <div className="resource-faq-topic-list stagger-list">
             {topicModules.map((module) => (
               <button
                 key={module.title}
@@ -101,11 +104,11 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
         </section>
       </div>
 
-      <div className="resource-faq-content">
+      <div className="resource-faq-content stagger-list">
         {activeModule ? (
           <section
             id={`panel-${toSectionId(activeModule.title)}`}
-            className="resource-faq-section"
+            className="resource-faq-section stagger-list"
           >
             <div className="resource-faq-section-head">
               <h2>{activeModule.title}</h2>

@@ -59,7 +59,7 @@ export const companyCapabilities: CompanyCapability[] = [
   {
     title: "Modified POM Focus",
     description:
-      "Modified POM is the core material direction, with selected PA6, PA66, and PPA compounds reviewed when the part requires them.",
+      "Modified POM is the core material family, with selected PA6, PA66, and PPA compounds reviewed when the part requires them.",
   },
   {
     title: "In-House Production",
@@ -77,8 +77,8 @@ export const companyOverview = [
   "Factory-based manufacturer located in Yancheng, Jiangsu, China",
   "Focused on modified POM and selected engineering plastic compounds",
   "In-house extrusion compounding, material testing, and quality control",
-  "Support grade recommendation, sample evaluation, and customized solutions",
-  "Stable batch control for long-term industrial supply",
+  "Support grade shortlisting, sample evaluation, and project-specific review",
+  "Batch documentation and repeat industrial supply coordination",
 ];
 
 export const factoryProofRows: FactoryProofRow[] = [
@@ -88,7 +88,7 @@ export const factoryProofRows: FactoryProofRow[] = [
     description:
       "Production and warehouse coordination are handled at the Yancheng site to support repeat industrial supply and batch documentation.",
     imageSrc: "/factory-warehouse-inventory.jpg",
-    imageAlt: "Taiyi Plastic packaged material inventory and warehouse handling area",
+    imageAlt: "Taiyi Polymer packaged material inventory and warehouse handling area",
     imageLabel: "Warehouse Inventory",
     imageSide: "right",
     imageVariant: "warehouse",
@@ -103,7 +103,7 @@ export const factoryProofRows: FactoryProofRow[] = [
     description:
       "In-house twin-screw lines are used to compound trial materials, review practical adjustments, and prepare confirmed grades for repeat production.",
     imageSrc: "/factory-extrusion.png",
-    imageAlt: "Taiyi Plastic twin-screw extrusion production line",
+    imageAlt: "Taiyi Polymer twin-screw extrusion production line",
     imageLabel: "Extrusion Lines",
     imageSide: "left",
     points: [
@@ -117,7 +117,7 @@ export const factoryProofRows: FactoryProofRow[] = [
     description:
       "Laboratory equipment supports material comparison during grade review, while project-specific documents support customer evaluation.",
     imageSrc: "/factory-laboratory-testing-documentary-v4.webp",
-    imageAlt: "Taiyi Plastic material testing laboratory and evaluation equipment",
+    imageAlt: "Taiyi Polymer material testing laboratory and evaluation equipment",
     imageLabel: "Material Testing Laboratory",
     imageSide: "right",
     points: [
@@ -193,31 +193,31 @@ export const industries = [
 export const factoryImages: FactoryImage[] = [
   {
     src: "/factory-exterior.webp",
-    alt: "Taiyi Plastic factory exterior in Yancheng, Jiangsu",
+    alt: "Taiyi Polymer factory exterior in Yancheng, Jiangsu",
     label: "Factory Exterior",
     placement: "hero",
   },
   {
     src: "/factory-warehouse.webp",
-    alt: "Taiyi Plastic production and warehouse area",
+    alt: "Taiyi Polymer production and warehouse area",
     label: "Compounding Workshop",
     placement: "story",
   },
   {
     src: "/factory-extrusion.webp",
-    alt: "Taiyi Plastic twin-screw extrusion production line",
+    alt: "Taiyi Polymer twin-screw extrusion production line",
     label: "Extrusion Lines",
     placement: "gallery",
   },
   {
     src: "/factory-machine.webp",
-    alt: "Taiyi Plastic extruder and production equipment",
+    alt: "Taiyi Polymer extruder and production equipment",
     label: "Production Equipment",
     placement: "gallery",
   },
   {
     src: "/factory-laboratory-testing-documentary-v4.webp",
-    alt: "Taiyi Plastic material testing laboratory and evaluation equipment",
+    alt: "Taiyi Polymer material testing laboratory and evaluation equipment",
     label: "Material Testing Laboratory",
     placement: "testing",
   },

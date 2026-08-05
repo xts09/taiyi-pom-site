@@ -24,7 +24,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
       "Start with the part function, failure risk, operating conditions, and required evidence before narrowing a material or grade direction.",
     image: "/og-resources-material-selection.jpg",
     imageAlt:
-      "Material Selection technical resources from Taiyi Plastic",
+      "Material Selection technical resources from Taiyi Polymer",
     links: [
       {
         label: "Material Selection Guide",
@@ -99,7 +99,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
       "Prepare molding trials, control material condition, and diagnose dimensional or processing problems from traceable evidence.",
     image: "/og-resources-processing-troubleshooting.jpg",
     imageAlt:
-      "Processing and Troubleshooting technical resources from Taiyi Plastic",
+      "Processing and Troubleshooting technical resources from Taiyi Polymer",
     links: [
       {
         label: "Processing Guide",
@@ -131,7 +131,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
     description:
       "Compare grade evidence, find technical data, prepare replacement trials, and confirm the documents needed for production release.",
     image: "/og-resources-data-validation.jpg",
-    imageAlt: "Data and Validation technical resources from Taiyi Plastic",
+    imageAlt: "Data and Validation technical resources from Taiyi Polymer",
     links: [
       {
         label: "Alternative POM Grade Validation",

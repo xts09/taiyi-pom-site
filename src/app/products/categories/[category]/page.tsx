@@ -42,7 +42,19 @@ const categorySocialMedia = {
   "carbon-fiber-reinforced-pom-compound": {
     image: "/generated/pom-carbon-fiber-reinforced-hero-material-v5.png",
     imageAlt:
-      "Carbon fiber reinforced POM short-cut black compound pellets from Taiyi Plastic",
+      "Carbon fiber reinforced POM short-cut black compound pellets from Taiyi Polymer",
+  },
+  "pa6-compound": {
+    image: "/generated/landing/home-dark-satin-wave-v1.webp",
+    imageAlt: "Dark satin texture background for PA6 compounds",
+  },
+  "pa66-compound": {
+    image: "/generated/landing/home-dark-satin-wave-v1.webp",
+    imageAlt: "Dark satin texture background for PA66 compounds",
+  },
+  "ppa-compound": {
+    image: "/generated/landing/home-dark-satin-wave-v1.webp",
+    imageAlt: "Dark satin texture background for PPA compounds",
   },
 } as const;
 
@@ -61,9 +73,9 @@ export async function generateMetadata({
 
   if (legacyRedirect) {
     return createPageMetadata({
-      title: "Wear-Resistant & Low-Friction POM | Taiyi Plastic",
+      title: "Wear-Resistant & Low-Friction POM | Taiyi Polymer",
       description:
-        "Browse Taiyi Plastic wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, and motion components.",
+        "Browse Taiyi Polymer wear-resistant and low-friction POM options for sliding parts, gears, bushings, rollers, and motion components.",
       path: `/products/categories/${legacyRedirect}`,
     });
   }
@@ -72,7 +84,7 @@ export async function generateMetadata({
 
   if (!entry) {
     return {
-      title: "Product Category Not Found | Taiyi Plastic",
+      title: "Product Category Not Found | Taiyi Polymer",
       robots: {
         index: false,
         follow: false,
@@ -85,7 +97,7 @@ export async function generateMetadata({
   ];
 
   return createPageMetadata({
-    title: `${getCategoryTitle(entry.category)} | Taiyi Plastic`,
+    title: `${getCategoryTitle(entry.category)} | Taiyi Polymer`,
     description: getCategoryDescription(entry.category),
     path: entry.path,
     ...socialMedia,
@@ -121,7 +133,7 @@ export default async function ProductCategoryPage({
   const heroTitle = isPomCategory ? "POM Materials" : entry.label;
   const pageDescription =
     isPomCategory
-      ? "A focused directory for Taiyi modified POM compounds and selected base resin data used in precision molded mechanical parts."
+      ? "A focused directory for Taiyi Polymer modified POM compounds and selected base resin data used in precision molded mechanical parts."
       : getCategoryDescription(entry.category);
   const itemListElement =
     categoryProducts.length > 0
@@ -250,10 +262,10 @@ export default async function ProductCategoryPage({
 
             <div className="product-hero-cta">
               <Button asChild size="productHero" variant="productHeroPrimary">
-                <Link href="/contact">Send Requirement</Link>
+                <Link href="/contact">Discuss Your Application</Link>
               </Button>
               <Button asChild size="productHero" variant="productHeroSecondary">
-                <Link href="/technical-data-sheets">Search Data / TDS</Link>
+                <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
               </Button>
             </div>
           </div>
@@ -319,6 +331,7 @@ export default async function ProductCategoryPage({
         </section>
 
         <ActionPanel
+          footerAdjacent
           variant="recommendation"
           title="Prepare a Grade Shortlist"
           className="selection-support-band products-motion-support mt-12"
@@ -342,7 +355,7 @@ export default async function ProductCategoryPage({
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Send Requirement</Link>
+              <Link href="/contact">Discuss Your Application</Link>
             </Button>
           }
         >

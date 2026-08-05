@@ -4,6 +4,70 @@
 This version has breaking changes - APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
+## Mandatory Task Preflight And Sources Of Truth
+
+Before the first edit or implementation command in every task, classify the
+requested scope and read the required project sources below. Do not rely on
+memory from an earlier thread. If the scope expands during the task, stop and
+read the newly relevant source before continuing.
+
+### Source Priority
+
+Use project guidance in this order:
+
+1. `AGENTS.md` - execution, ownership, regression, and handoff rules.
+2. `DESIGN.md` - canonical visual system, layout grids, alignment, type,
+   surfaces, radius, motion, and visual acceptance.
+3. `tokens.css` - runtime primitive, semantic, and component values.
+4. `COMPONENTS.md` - canonical component ownership, variants, and migration
+   boundaries.
+5. `PRODUCT.md` - brand names, business goals, copy, claims, CTA meaning, SEO,
+   route intent, and dated implementation state.
+6. `docs/site-visual-rules.md` - quick review checklist only. It never overrides
+   `DESIGN.md`.
+7. `.impeccable/design.json` - visual tooling samples only. It never overrides
+   runtime tokens, component ownership, or `DESIGN.md`.
+
+When two sources conflict, follow the higher-priority source and repair or flag
+the lower-priority source. Page-local CSS and a screenshot from an old thread
+are not new sources of truth.
+
+### Required Reading By Task Type
+
+- **Any visual, layout, responsive, styling, imagery, or motion task:** read the
+  relevant sections of `DESIGN.md` and the Visual Regression Contract in this
+  file before editing.
+- **Any shared component, Button, Card, form control, Hero, Section Intro,
+  Header, Footer, or navigation task:** also read the owning entry in
+  `COMPONENTS.md` and inspect `tokens.css` before introducing values or
+  variants.
+- **Any copy, brand, CTA, SEO, claim, product-positioning, application, About,
+  Contact, or Footer-content task:** read the relevant `PRODUCT.md` sections.
+  Use `Taiyi Polymer` publicly, `PLATFORM` for the material brand, and the legal
+  company name only where the entity is required.
+- **Any product catalog, generated data, Resources, sitemap, or technical-data
+  task:** read the dated implementation snapshot in `PRODUCT.md` and the
+  relevant maintenance guide before changing source or generated files.
+- **Any Next.js API, convention, routing, metadata, caching, or build task:**
+  read the relevant local guide under `node_modules/next/dist/docs/` before
+  writing code.
+- **Any deployment or launch-readiness task:** read
+  `docs/launch-checklist.md` and use the documented project checks.
+
+### Pre-Edit Declaration
+
+Before a visual edit, state the route, viewport, acceptance criteria, visual
+family being changed, and owning files. Before a cross-page edit, name the
+affected route families and shared owner. An audit or critique does not by
+itself authorize implementation outside the approved scope.
+
+### Completion Gate
+
+Before reporting completion, verify the result against the same sources read at
+preflight. For visual work, rendered evidence and the viewport matrix are
+mandatory. For copy and CTA work, search for stale variants. For shared
+components, verify representative consumers from each affected route family.
+
 ## Stable Session Protocol
 
 - Keep work in short, verifiable steps. Avoid combining broad analysis, large edits, build, browser automation, and screenshots in one long chain.

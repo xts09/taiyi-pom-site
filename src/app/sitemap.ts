@@ -16,51 +16,60 @@ import { siteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
+const buildTimestamp = new Date();
+
+const createUrlEntry = (
+  path: string,
+  priority: number,
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
+) => ({
+  url: `${siteUrl}${path}`,
+  lastModified: buildTimestamp,
+  changeFrequency,
+  priority,
+});
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
-    "",
-    "/products",
-    "/applications",
-    "/resources",
-    "/technical-data-sheets",
-    "/about",
-    "/about/manufacturing-capabilities",
-    "/contact",
-  ].map((route) => ({
-    url: `${siteUrl}${route}`,
-  }));
+    createUrlEntry("", 1, "weekly"),
+    createUrlEntry("/products", 0.9, "weekly"),
+    createUrlEntry("/applications", 0.9, "weekly"),
+    createUrlEntry("/resources", 0.85, "weekly"),
+    createUrlEntry("/technical-data-sheets", 0.8, "weekly"),
+    createUrlEntry("/about", 0.6, "monthly"),
+    createUrlEntry("/about/manufacturing-capabilities", 0.6, "monthly"),
+    createUrlEntry("/contact", 0.6, "monthly"),
+  ];
 
   const categoryRoutes = productCategoryEntries.map((entry) => ({
-    url: `${siteUrl}${entry.path}`,
+    ...createUrlEntry(entry.path, 0.75, "weekly"),
   }));
 
   const applicationRoutes = applications.map((application) => ({
-    url: `${siteUrl}/applications/${application.slug}`,
+    ...createUrlEntry(`/applications/${application.slug}`, 0.7, "monthly"),
   }));
 
   const productRoutes = catalogProducts
     .filter(isCatalogRecordIndexable)
-    .map((product) => ({
-      url: `${siteUrl}/products/${product.slug}`,
-    }));
+    .map((product) => createUrlEntry(`/products/${product.slug}`, 0.65, "monthly"));
 
   const engineeringTdsRoutes = catalogEngineeringTds
     .filter(isCatalogRecordIndexable)
-    .map((document) => ({
-      url: `${siteUrl}/products/${document.slug}`,
-    }));
+    .map((document) =>
+      createUrlEntry(`/products/${document.slug}`, 0.65, "monthly"),
+    );
 
-  const resourceRoutes = resourcePages.map((page) => ({
-    url: `${siteUrl}/resources/${page.slug}`,
-  }));
+  const resourceRoutes = resourcePages.map((page) =>
+    createUrlEntry(`/resources/${page.slug}`, 0.65, "monthly"),
+  );
 
   const resourceCategoryRoutes = resourceNavigationGroups.map((group) => ({
-    url: `${siteUrl}${getResourceNavigationGroupPath(group)}`,
+    ...createUrlEntry(getResourceNavigationGroupPath(group), 0.75, "weekly"),
   }));
 
-  const technicalLandingRoutes = publicTechnicalLandingLinks.map((page) => ({
-    url: `${siteUrl}${page.href}`,
-  }));
+  const technicalLandingRoutes = publicTechnicalLandingLinks.map((page) =>
+    createUrlEntry(page.href, 0.75, "weekly"),
+  );
 
   return [
     ...staticRoutes,

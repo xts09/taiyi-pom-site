@@ -60,13 +60,13 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
     href: "/modified-pom-compounds",
     label: "Modified POM Technical Overview",
     description:
-      "Use a technical overview to screen Taiyi POM directions before reviewing listed grades and TDS documents.",
+      "Use a technical overview to compare Taiyi Polymer POM options before reviewing listed grades and TDS documents.",
   },
   {
     href: "/wear-resistant-low-friction-pom",
     label: "Wear-Resistant and Low-Friction POM",
     description:
-      "Screen POM material directions for sliding parts, gears, bushings, rollers, and motion components.",
+      "Compare POM options for sliding parts, gears, bushings, rollers, and motion components.",
   },
   {
     href: "/conductive-antistatic-pom",
@@ -78,7 +78,7 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
     href: "/pom-grade-cross-reference",
     label: "POM Grade Cross-Reference",
     description:
-      "Use a preliminary cross-reference path to discuss current grades, application needs, and Taiyi material review.",
+      "Use a preliminary cross-reference path to discuss current grades and application needs with Taiyi Polymer.",
   },
   {
     href: "/conductive-antistatic-compounds",
@@ -96,12 +96,12 @@ export const pomLandingPages = {
   modifiedPomCompounds: {
     slug: "modified-pom-compounds",
     title: "Modified POM Technical Overview",
-    metaTitle: "Modified POM Technical Overview | Taiyi Plastic",
+    metaTitle: "Modified POM Technical Overview | Taiyi Polymer",
     metaDescription:
-      "Screen Taiyi modified POM directions for wear-resistant, low-friction, reinforced, conductive, antistatic, impact, UV, low-odor, and high-flow molded parts.",
+      "Compare Taiyi Polymer modified POM options for wear-resistant, low-friction, reinforced, conductive, antistatic, impact, UV, low-odor, and high-flow molded parts.",
     eyebrow: "Technical Screening Page",
     intro:
-      "Use this page as a technical screening overview before entering the POM product category. It summarizes catalog-confirmed Taiyi POM directions and the information needed to shortlist a grade for TDS, sample, or molding-trial discussion.",
+      "Use this page as a technical screening overview before entering the POM product category. It summarizes catalog-confirmed Taiyi Polymer POM options and the information needed to shortlist a grade for TDS, sample, or molding-trial discussion.",
     primaryActionLabel: "Request a POM Grade Recommendation",
     metrics: [
       { label: "Material family", value: "POM" },
@@ -117,7 +117,7 @@ export const pomLandingPages = {
           "Use the overview for early material screening and inquiry qualification",
           "Use the POM category page when the buyer wants listed grades and documents",
           "Use dedicated landing pages for wear, friction, conductive, or antistatic intent",
-          "Use TDS pages after the material direction is narrowed",
+          "Use TDS pages after candidate grades are shortlisted",
         ],
       },
       {
@@ -134,7 +134,7 @@ export const pomLandingPages = {
     catalogEvidence: {
       title: "Catalog-Confirmed POM Directions",
       note:
-        "Based on Taiyi's 2026 modified POM product catalogue. These are screening directions, not complete TDS claims.",
+        "Based on Taiyi Polymer's 2026 modified POM product catalogue. These are screening options, not complete TDS claims.",
       items: [
         {
           label: "Base and high-flow POM",
@@ -168,7 +168,7 @@ export const pomLandingPages = {
     relatedLinks: [
       technicalLandingLinks[1],
       technicalLandingLinks[2],
-      { href: "/products/categories/pom", label: "POM Material Families", description: "Browse POM material directions before opening specific grade data." },
+      { href: "/products/categories/pom", label: "POM Material Families", description: "Browse POM material families before opening specific grade data." },
     ],
     faqs: [
       {
@@ -177,18 +177,18 @@ export const pomLandingPages = {
           "Modified POM means a POM compound adjusted with selected additives, fillers, reinforcements, lubricants, impact modifiers, or electrical modifiers. Final suitability depends on the exact grade and application conditions.",
       },
       {
-        question: "Can Taiyi recommend a grade from an application requirement?",
+        question: "Can Taiyi Polymer shortlist a grade from an application requirement?",
         answer:
-          "Yes. Share the part, current material, target performance, mold information, documents, and estimated volume so a suitable material direction can be reviewed.",
+          "Yes. Share the part, current material, target performance, mold information, documents, and estimated volume so relevant grades can be shortlisted.",
       },
     ],
   },
   wearLowFrictionPom: {
     slug: "wear-resistant-low-friction-pom",
     title: "Wear-Resistant and Low-Friction POM",
-    metaTitle: "Wear-Resistant Low-Friction POM Compound | Taiyi Plastic",
+    metaTitle: "Wear-Resistant Low-Friction POM Compound | Taiyi Polymer",
     metaDescription:
-      "Review Taiyi wear-resistant and low-friction POM material directions for gears, bushings, rollers, sliding parts, and motion components.",
+      "Review Taiyi Polymer wear-resistant and low-friction POM options for gears, bushings, rollers, sliding parts, and motion components.",
     eyebrow: "Motion Components",
     intro:
       "Wear-resistant and low-friction POM directions are reviewed for molded parts with repeated movement, sliding contact, abrasion, noise, stick-slip, or counterpart wear concerns.",
@@ -296,9 +296,9 @@ export const pomLandingPages = {
   conductiveAntistaticPom: {
     slug: "conductive-antistatic-pom",
     title: "Conductive and Antistatic POM",
-    metaTitle: "Conductive and Antistatic POM Compound | Taiyi Plastic",
+    metaTitle: "Conductive and Antistatic POM Compound | Taiyi Polymer",
     metaDescription:
-      "Review Taiyi conductive and antistatic POM directions for charge-control molded parts, electrical components, and functional precision applications.",
+      "Review Taiyi Polymer conductive and antistatic POM options for charge-control molded parts, electrical components, and functional precision applications.",
     eyebrow: "Charge-Control POM",
     intro:
       "Conductive and antistatic POM directions should be selected by electrical target, part function, color requirement, mechanical retention, and validation method rather than by a general material family name.",
@@ -390,12 +390,12 @@ export const pomLandingPages = {
   pomGradeCrossReference: {
     slug: "pom-grade-cross-reference",
     title: "POM Grade Cross-Reference",
-    metaTitle: "POM Grade Cross-Reference for Material Review | Taiyi Plastic",
+    metaTitle: "POM Grade Cross-Reference for Material Review | Taiyi Polymer",
     metaDescription:
-      "Use Taiyi Plastic's POM grade cross-reference page for preliminary material screening, current grade review, document requests, and sample discussion.",
+      "Use Taiyi Polymer's POM grade cross-reference page for preliminary material screening, current grade review, document requests, and sample discussion.",
     eyebrow: "Preliminary Material Screening",
     intro:
-      "This cross-reference page is for early material discussion only. The current public catalogue confirms Taiyi material directions, but it does not publish direct equivalence against third-party grade names. Similar grade names or data points do not confirm final replacement.",
+      "This cross-reference page is for early material discussion only. The current public catalogue lists Taiyi Polymer material families, but it does not publish direct equivalence against third-party grade names. Similar grade names or data points do not confirm final replacement.",
     primaryActionLabel: "Send a Current Grade for Review",
     metrics: [
       { label: "Use case", value: "Grade review" },
@@ -406,7 +406,7 @@ export const pomLandingPages = {
     sections: [
       {
         title: "How To Use This Page",
-        body: "Start with the current material grade and the reason for review, then compare the required performance with Taiyi's available material directions.",
+        body: "Start with the current material grade and the reason for review, then compare the required performance with Taiyi Polymer material options.",
         points: [
           "Share the current grade, TDS, color, and application",
           "Define the target improvement or supply problem",

@@ -9,6 +9,8 @@ export const metadata: Metadata = createPageMetadata({
   title: page.metaTitle,
   description: page.metaDescription,
   path: `/${page.slug}`,
+  image: "/generated/pom-material-hero.webp",
+  imageAlt: "Taiyi Polymer modified POM material overview",
 });
 
 export default function ModifiedPomCompoundsPage() {

@@ -602,18 +602,46 @@
   background: #f3f5f7;
 }
 
-.products-motion-root .product-directory-shell.mesh-surface {
+.products-motion-root .product-directory-shell {
   width: 100%;
   max-width: none;
   padding-top: 0;
   padding-right: 0;
   padding-left: 0;
-  background: #f3f5f7;
+  background: var(--ds-background-canvas);
 }
 
 .products-motion-root .product-directory-shell .product-index-hero {
+  align-items: center;
+  min-height: clamp(29rem, 34vw, 34rem);
   margin-right: 0;
+  margin-bottom: 0;
   margin-left: 0;
+  border: 0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--ds-background-canvas) 0 46%,
+      color-mix(in srgb, var(--ds-background-canvas) 88%, transparent) 59%,
+      transparent 76%
+    ),
+    url("/generated/pom-white-pellets-hero-v2.webp") center right / cover
+      no-repeat;
+}
+
+.products-motion-root .product-directory-shell .product-index-hero::after {
+  display: none;
+}
+
+.products-motion-root .product-directory-shell .product-hero-card {
+  width: min(100%, 46rem);
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: clamp(3rem, 6vw, 5rem) 0;
+  overflow: visible;
 }
 
 @media (min-width: 64rem) {
@@ -622,8 +650,25 @@
     padding-left: var(--site-rail-inset);
   }
 
+}
+
+@media (max-width: 47.999rem) {
+  .products-motion-root .product-directory-shell .product-index-hero {
+    min-height: 0;
+    background:
+      linear-gradient(
+        180deg,
+        transparent 0 9.5rem,
+        var(--ds-background-canvas) 13rem
+      ),
+      url("/generated/pom-white-pellets-hero-v2.webp") top right / auto 13rem
+        no-repeat,
+      var(--ds-background-canvas);
+    padding: 11rem var(--site-rail-inset) 0;
+  }
+
   .products-motion-root .product-directory-shell .product-hero-card {
-    margin-left: 0;
+    padding: var(--ds-space-8) 0 var(--ds-space-12);
   }
 }
 
@@ -683,6 +728,22 @@
   .product-category-hero-carbon-fiber-reinforced-pom-compound {
   background: url("/generated/pom-carbon-fiber-reinforced-hero-material-v5.png")
     center right / cover no-repeat;
+}
+
+.products-motion-root .product-category-hero-pa6-compound,
+.products-motion-root .product-category-hero-pa66-compound,
+.products-motion-root .product-category-hero-ppa-compound {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 17, 31, 0.98) 0%,
+      rgba(7, 17, 31, 0.9) 38%,
+      rgba(7, 17, 31, 0.58) 68%,
+      rgba(7, 17, 31, 0.22) 100%
+    ),
+    url("/generated/landing/home-dark-satin-wave-v1.webp") center right / cover
+      no-repeat;
+  background-color: #07111f;
 }
 
 .products-motion-root .product-category-hero-conductive-antistatic-pom-compound,
@@ -1535,28 +1596,17 @@
 }
 
 .products-motion-root .product-directory-shell .product-family-card-grid {
-  gap: 0 clamp(1.25rem, 2.6vw, 2rem);
-  border-top: 1px solid rgba(15, 23, 42, 0.12);
+  gap: var(--ds-space-4);
 }
 
 .products-motion-root .product-directory-shell .product-family-card {
+  display: grid;
   grid-template-columns: 2.35rem minmax(0, 1fr);
-  min-height: auto;
+  min-height: 10.5rem;
   gap: 0.34rem 0.85rem;
   align-content: start;
-  border: 0;
-  border-radius: 0;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
-  background: transparent;
-  box-shadow: none;
-  padding: 0.95rem 0 1rem;
+  padding: var(--ds-panel-padding);
   color: #475569;
-  overflow: visible;
-}
-
-.products-motion-root .product-directory-shell .product-family-card::before,
-.products-motion-root .product-directory-shell .product-family-card .anime-border-line {
-  display: none;
 }
 
 .products-motion-root
@@ -1592,17 +1642,14 @@
 }
 
 .products-motion-root .product-directory-shell .product-family-card em {
-  margin-top: 0.08rem;
+  align-self: end;
+  margin-top: var(--ds-space-2);
   color: #526276;
 }
 
 .products-motion-root .product-directory-shell .product-family-card:hover,
 .products-motion-root .product-directory-shell .product-family-card:focus-visible {
-  border-color: rgba(15, 23, 42, 0.1);
-  background: rgba(255, 255, 255, 0.46);
-  box-shadow: none;
   color: #0b5fb8;
-  transform: none;
 }
 
 .products-motion-root .anime-count {
@@ -3139,13 +3186,13 @@
   align-content: end;
   justify-items: end;
   gap: clamp(1rem, 2vw, 1.35rem);
-  width: min(100%, 21.5rem);
+  width: min(100%, 28rem);
   min-width: 0;
 }
 
 .product-detail-hero-bottom-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 21.5rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 28rem);
   align-items: end;
   gap: clamp(1rem, 2vw, 1.35rem);
   margin-top: clamp(0.9rem, 1.8vw, 1.2rem);
@@ -3416,15 +3463,18 @@
   margin-bottom: 0.95rem !important;
 }
 
-.product-detail-table-section .property-table-head h2::before,
-.product-detail-support-section h2::before,
-#evaluation-notes h2::before {
+.product-detail-table-section .property-table-head h2::before {
   display: block;
   flex: 0 0 auto;
   width: 0.38rem;
   height: 1em;
   background: #2f5f9e;
   content: "";
+}
+
+.product-detail-support-section h2,
+#evaluation-notes h2 {
+  gap: 0;
 }
 
 .product-detail-table-section .overflow-x-auto {

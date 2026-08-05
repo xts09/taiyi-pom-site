@@ -62,6 +62,20 @@ spacing:
   xl: "3rem"
   2xl: "4.5rem"
   3xl: "7rem"
+layout:
+  siteMax: "92rem"
+  siteGutter: "clamp(2rem, 7.5vw, 7rem)"
+  splitPrimary: "minmax(0, 5fr) minmax(0, 7fr)"
+  splitBalanced: "repeat(2, minmax(0, 1fr))"
+  indexedTracks: "2.25rem minmax(15rem, 5fr) minmax(0, 7fr)"
+  columnGap: "1.5rem"
+  copyMax: "42rem"
+  alignmentTolerance: "2px"
+breakpoints:
+  sm: "40rem"
+  md: "48rem"
+  lg: "64rem"
+  xl: "80rem"
 components:
   button-primary:
     backgroundColor: "{colors.taiyi-cobalt}"
@@ -118,6 +132,47 @@ Cards, shadows, dark sections, and texture must explain hierarchy. They are not 
 - Real imagery with intentional crops and useful captions.
 - Compact, readable typography with natural wrapping.
 - Shared rails, spacing rhythm, and component states.
+
+## External Reference Synthesis
+
+Taiyi may borrow useful patterns from the `awesome-design-md` collection, but
+the project does not copy another brand's identity. The reference blend is
+**structured enterprise technology + white-paper product engineering**:
+
+- **IBM influence — structure:** Use Carbon-like discipline for data hierarchy,
+  modular grids, restrained labels, and clear separation between product
+  explanation and technical evidence. Keep the existing Archivo / IBM Plex Sans
+  pairing rather than importing IBM's proprietary brand system.
+- **HP influence — material sequence:** Keep the near-white technical canvas,
+  one strong blue interaction signal, and deep navy closing or proof surfaces.
+  Angular or chevron-like motifs are allowed only when they explain a real
+  product, process, or directional relationship; they are not a decorative
+  pattern library.
+- **Taiyi override — authority:** Taiyi cobalt, production navy, laboratory
+  canvas, real manufacturing imagery, and the evidence-first reading path remain
+  the source of truth. Reference styles may shape hierarchy and composition,
+  never the logo, claims, color ownership, or content language.
+
+**Reference Guardrail:** Treat external `DESIGN.md` files as inspiration for
+layout, surface sequencing, and interaction clarity. Do not paste a reference
+file over this document or introduce its gradients, fonts, rounded language,
+or brand motifs unless an explicit Taiyi design decision adopts them.
+
+## Governance And Sources Of Truth
+
+Use the design sources in this order:
+
+1. `DESIGN.md` defines visual principles, composition roles, alignment,
+   typography, surfaces, motion, and acceptance criteria.
+2. `tokens.css` defines runtime primitive, semantic, and component values.
+3. `COMPONENTS.md` defines component ownership, variants, and migration status.
+4. `PRODUCT.md` defines business goals, content rules, claims, and CTA meaning.
+5. `.impeccable/design.json` supplies visual samples for tooling. It does not
+   override runtime tokens, component ownership, or this document.
+
+When sources conflict, fix the lower-priority source or document an intentional
+exception in the owning component. Page-local CSS is never a new design-system
+source of truth.
 
 ## Colors
 
@@ -186,6 +241,84 @@ The spacing rhythm uses a 4px base with repeated 8, 12, 16, 24, 32, 48, 72, and 
 
 **The Section Rhythm Rule.** Use surface contrast, spacing, or one grouped container before adding separator lines.
 
+### Alignment Contract
+
+Alignment is accepted by visible rendered edges, not by matching container
+variables or using the same nominal `max-width`.
+
+- **Outer rail:** Every primary page module uses `--site-rail-width` and
+  `--site-rail-inset`. At a 1920px viewport this currently renders as a 1472px
+  rail with a 224px left edge. Full-bleed media and background bands may escape
+  the rail; their readable content may not.
+- **Peer alignment:** Titles, descriptions, controls, rows, and media that play
+  the same role on one page must use the same grid track. A section cannot move
+  its supporting-copy column simply because its paragraph is shorter.
+- **Header-to-body alignment:** A split section intro and the body immediately
+  below it must share track definitions. In numbered layouts, the marker aligns
+  with the number column, the heading aligns with row titles, and the supporting
+  copy aligns with row descriptions.
+- **Measure alignment:** Normal body copy is limited to 42rem or roughly 65
+  characters unless it is an article. Peer paragraphs use the same starting
+  edge even when their line lengths differ.
+- **Tolerance:** Peer visible edges should differ by no more than 2px at the
+  same viewport. A larger difference requires a documented composition role,
+  not a page-local nudge.
+
+### Standard Interior Grids
+
+Use these composition roles instead of inventing new fractions per section:
+
+1. **Split 5/7:** Default desktop section intro and ordinary title/copy
+   composition. Use a 24px minimum column gap and keep the copy on the right
+   track. This is the default for peer homepage stages and inner-page section
+   intros.
+2. **Split 6/6:** Balanced media/text, form/contact, and final conversion
+   compositions where both sides carry similar visual weight. Increase the gap
+   with spacing tokens; do not alter the track ratio to tune one paragraph.
+3. **Indexed 3-track:** `2.25rem / minmax(15rem, 5fr) / minmax(0, 7fr)` for
+   numbered engineering steps and scan-first directories. The section header
+   must reuse the title and description tracks.
+4. **Editorial stack:** One readable column, normally 42rem to 65ch, for
+   articles, technical explanations, and narrow utility pages.
+5. **Evidence canvas:** A full rail evidence panel may own an internal grid,
+   but its outer edge, panel header, and primary media edge still align to the
+   site rail and to each other.
+
+Do not create a fifth split ratio to fix wrapping. First adjust copy measure,
+type scale, or the documented role of the module.
+
+### Section Header Levels
+
+- **Level 1 - Page Hero:** One H1 per route. Display scale, one or two natural
+  desktop lines, with optional eyebrow and actions.
+- **Level 2 - Journey Stage:** A primary page step such as material range or
+  grade shortlisting. Use the large section headline scale. A technical-cyan
+  marker is allowed only when the page uses the same marker grammar for peer
+  journey stages.
+- **Level 3 - Evidence Section:** Factory, certification, export, document, or
+  capability proof. Use the standard headline scale and no decorative marker
+  unless markers are functional labels.
+- **Level 4 - Component Title:** Cards, rows, disclosures, and compact panels.
+  Keep these close to body scale; they must not compete with section headings.
+
+Two different levels may look different. Two headings at the same level must
+share type scale, wrap behavior, intro spacing, and split-grid role.
+
+### Responsive Layout Contract
+
+- **80rem and above:** Apply the documented desktop grid roles.
+- **64rem to 79.999rem:** Simplify wide evidence compositions and remove
+  non-essential overlaps before reducing type size.
+- **48rem to 63.999rem:** Split layouts may stack; directories can retain two
+  columns only when labels remain readable.
+- **Below 48rem:** Use one primary content column. Number/title pairs may keep a
+  compact marker column, but descriptions move under the title.
+- **Sticky-header targets:** Every addressable section uses
+  `scroll-margin-top: var(--site-header-height)` plus any required breathing
+  room.
+- **No overflow:** At 390px, the document width equals the viewport width,
+  actions remain one line, and no heading or label is clipped by its container.
+
 ## Elevation & Depth
 
 The system is flat by default and uses tonal layering first. Light panels separate from the canvas through a small surface difference, while dark evidence panels use navy depth and restrained satin texture. Shadows are structural and quiet, not decorative halos.
@@ -199,6 +332,33 @@ The system is flat by default and uses tonal layering first. Light panels separa
 **The Flat by Default Rule.** A component gets either a border, a surface change, or a shadow at rest. Do not stack all three.
 
 **The Satin Containment Rule.** Satin texture belongs inside large proof or CTA surfaces. Do not cover every page section with texture.
+
+### Surface Roles And Sequence
+
+Every background or panel surface must declare one of these roles:
+
+- **Canvas:** Polymer white, laboratory canvas, or cool paper for readable
+  technical content.
+- **Narrative:** Real photography or approved calm material texture supporting
+  a brand or manufacturing story.
+- **Process:** Deep navy for selection logic, engineering steps, or concentrated
+  technical emphasis.
+- **Evidence:** Production/evidence navy around real certificates, documents,
+  factory images, or test context.
+- **Conversion:** One decisive inquiry area near the end of a page.
+- **Footer:** Production navy navigation and contact foundation; it does not
+  become a second full conversion section when a conversion band directly
+  precedes it.
+
+Adjacent full-width bands must differ through a meaningful role, not a thin
+line. Do not place more than two visually similar dark bands in sequence. When
+a dark conversion band sits directly above the Footer, either reduce the
+Footer pitch hierarchy or simplify the conversion band so the two do not read
+as duplicate endings.
+
+Generated texture is permitted only for calm, non-factual material surfaces.
+Real certificates, factories, laboratories, parts, and production claims must
+use authentic source imagery.
 
 ## Shapes
 
@@ -221,6 +381,24 @@ the registry defines which shared implementation owns each recurring role.
 - **Secondary:** White or transparent neutral surface with a quiet border and industrial-ink text. On dark backgrounds, use a controlled translucent fill and on-dark text.
 - **Hover / Active:** One-pixel lift on hover and subtle press on active. Do not resize or wrap.
 - **Focus:** Visible cobalt or technical-cyan outline with a clear offset.
+
+#### Action Intent And Labels
+
+Use one label for one recurring intent across every route:
+
+| Intent | Canonical label | Destination / use |
+| --- | --- | --- |
+| General material inquiry | `Discuss Your Application` | `/contact` |
+| Inquiry form submission | `Submit Project Requirements` | Contact form submit |
+| Grade and document search | `Find Grade Data & TDS` | Technical-data search |
+| Full grade document request | `Request Full TDS` | Grade-specific inquiry |
+| Grade sample request | `Request a [Grade] Sample` | Grade-specific inquiry |
+| Product exploration | `Browse [Family] Compounds` or `Explore Material Range` | Product navigation |
+
+Do not alternate between `Start a material review`, `Share Project
+Requirements`, `Send Requirement`, and `Discuss Your Application` for the same
+general-contact intent. A section gets one primary action. A secondary action
+must lead to a genuinely different task.
 
 ### Cards / Containers
 
@@ -277,6 +455,51 @@ height, radius, border, focus treatment, or primary-action color.
 - Captions are functional and short. They name what the visitor is seeing.
 
 **The Shared Ownership Rule.** Header, Footer, standard buttons, fields, rail containers, and recurring evidence panels each have one owning component or rule set. Page CSS may compose them but must not redefine their fundamental states.
+
+## Motion
+
+Motion supports hierarchy, state change, or spatial explanation. It is not a
+separate decorative layer.
+
+- Entry reveals use opacity and transform, normally 360ms to 800ms with the
+  shared ease-out curve.
+- Related items may stagger by 60ms to 100ms. Long cascades that delay reading
+  are not allowed.
+- Scroll-triggered section reveals normally run once. They must not shift the
+  final layout or change document height.
+- Route lines, progress paths, and diagrams animate from origin to destination;
+  endpoint pulses cannot substitute for path progression.
+- Auto-playing video remains muted, inline, and visually useful without audio.
+  Motion controls are not required when the video is decorative, muted, short,
+  and does not contain essential information.
+- `prefers-reduced-motion` removes non-essential movement and preserves the
+  complete final state.
+- Animate transforms and opacity by default. Avoid layout-thrashing properties,
+  heavy filters, and simultaneous animation across every module.
+
+## Visual Acceptance Contract
+
+Visual quality is proven in the rendered page, not inferred from shared class
+names or clean component code.
+
+For every visual change:
+
+1. Name the affected route, viewport, state, and visible acceptance criteria
+   before editing.
+2. Find the final active rule. Do not append a broad override when ownership is
+   already clear.
+3. Capture before and after at the same viewport. Desktop defaults to
+   1920x1080; mobile defaults to 390x844.
+4. Measure peer title, copy, control, and panel edges when alignment is part of
+   the request. Use the 2px tolerance rule.
+5. Check closed and expanded Header states when navigation or the shared rail is
+   affected.
+6. Verify adjacent sections, not only the edited crop. Surface and spacing
+   transitions are part of the result.
+7. Confirm no horizontal overflow, clipped text, wrapped desktop CTA labels,
+   overlapping content, or console errors.
+8. Report the exact routes and states inspected. Build success alone is not
+   visual acceptance.
 
 ## Do's and Don'ts
 

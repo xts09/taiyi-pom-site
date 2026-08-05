@@ -6,6 +6,7 @@ import {
   trackInquirySubmitted,
 } from "@/lib/conversionEvents";
 import { pomSubcategoryLabels, productCategoryOrder } from "@/lib/productCategories";
+import { contactEmail } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -54,7 +55,7 @@ export function ContactInquiryForm() {
       formData,
       "company"
     )}`;
-    const mailto = `mailto:sales@taiyiplastic.com?subject=${encodeURIComponent(
+    const mailto = `mailto:${contactEmail}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
 
@@ -138,16 +139,17 @@ export function ContactInquiryForm() {
             name="email"
             type="email"
             autoComplete="email"
+            spellCheck={false}
             placeholder="name@company.com"
             required
           />
         </label>
 
         <label className="contact-field">
-          <span>Material Interest</span>
+          <span>Material Family (optional)</span>
           <Select name="material" defaultValue="">
             <option value="" disabled>
-              Select material direction
+              Choose a material family
             </option>
             {materialOptions.map((option) => (
               <option key={option} value={option}>
@@ -166,7 +168,8 @@ export function ContactInquiryForm() {
           </span>
           <Input
             name="application"
-            placeholder="Gear, clip, housing..."
+            autoComplete="off"
+            placeholder={"Gear, clip, housing\u2026"}
             required
           />
         </label>
@@ -178,6 +181,7 @@ export function ContactInquiryForm() {
         <Textarea
           name="message"
           rows={5}
+          autoComplete="off"
           placeholder="Current grade, operating conditions, target properties, annual volume, or document needs."
         />
       </label>
@@ -190,7 +194,7 @@ export function ContactInquiryForm() {
           disabled={status === "submitting"}
           aria-busy={status === "submitting"}
         >
-          {status === "submitting" ? "Sending..." : "Send Requirement"}
+          {status === "submitting" ? "Sending\u2026" : "Submit Project Requirements"}
         </Button>
         <p>
           If direct delivery is unavailable, an email draft will open instead.

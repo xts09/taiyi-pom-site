@@ -164,13 +164,17 @@ certificate cards, and page-local inquiry panels.
 **Rule:** a surface gets one primary depth signal at rest: border, surface
 change, or shadow. Do not automatically wrap editorial content in cards.
 
-### Directory Row — Planned
+### Directory Row — Canonical, Partial Migration
+
+**Canonical owner:** `src/components/DirectoryRow.tsx`.
 
 **Role:** dense, scan-first navigation for product families, application
 directories, grade lists, and similar indexed collections.
 
-**Current implementations:** product family directory rows, application index
-rows, product grade rows, and related-product rows.
+**Current implementations:** resource overview rows, resource category data
+rows, and resource article related links. Product family directories,
+application indexes, product grade lists, and related-product rows remain
+eligible migration targets when those route families are next changed.
 
 **Variants:** `compact`, `data`, `related`.
 
@@ -279,10 +283,11 @@ Heroes share `--ds-resource-hero-*` eyebrow, title, and body roles, aliased to
 the verified Products Hero scale while retaining their route-specific dark
 evidence surfaces. Long-form resource articles use the related
 `--ds-resource-article-*` Read-mode roles: the same display/body families and
-weights, a quieter headline scale, and a 65ch introductory measure. Resource
-titles wrap naturally against their real content width; page-local type ramps
-must not be reintroduced. Directory and standard resource Heroes also share
-one evidence-material contract: the existing midnight satin texture, evidence
+weights, a quieter headline scale, a 60rem editorial canvas for introductions
+and technical features, and a 52rem measure for long prose. Resource titles
+wrap naturally against their real content width; page-local type ramps must
+not be reintroduced. Directory and standard resource Heroes also share one
+evidence-material contract: the existing midnight satin texture, evidence
 radius, quiet border, and no resting shadow. The split directory Hero keeps its
 light task side without inventing a separate dark-panel material. Article
 documents use the standard polymer-white surface, quiet border, 8px panel
@@ -303,6 +308,12 @@ certification headings, product directory heads, and resource section heads.
 
 **Variants:** `light`, `dark`, `split`.
 
+The canonical `split` layout follows the `Split 5/7` contract in `DESIGN.md`.
+Page styles may stack it responsively, but they must not introduce arbitrary
+desktop fractions for peer section intros. Indexed process layouts remain a
+specialized composition; their intro must reuse the same title and description
+tracks as the indexed rows below it.
+
 **Canonical owner:** `src/components/SectionIntro.tsx`. The manufacturing
 capability introduction is the first migrated representative.
 
@@ -310,6 +321,8 @@ capability introduction is the first migrated representative.
 layout. Its title has no default character-width cap: split layouts use the real
 grid column, stacked layouts use the available rail, and a consumer may opt into
 `--section-intro-title-max` only for a documented reading-width requirement.
+Canonical action labels and one-intent-per-label behavior follow the Action
+Intent And Labels table in `DESIGN.md`.
 
 ### Metric Group — Canonical
 
@@ -340,6 +353,12 @@ system documents.
 
 **Rule:** cropping and focal point remain page data. The shared component owns
 frame, caption hierarchy, loading behavior, and accessible image structure.
+
+Long-form resource articles may use the `part-showcase` Read-mode variant for
+three or fewer related molded-part geometries. It uses complete-object
+containment instead of the landscape crop, keeps one shared caption, and must
+frame images as representative application context rather than grade or test
+evidence.
 
 **Canonical owner:** `src/components/MediaFigure.tsx`. About facility evidence,
 Manufacturing proof rows, and Automotive typical-part media are the first
@@ -381,6 +400,10 @@ supporting-copy treatment, evidence aside, action styling, and responsive
 stacking through component tokens and internal slots. No compatibility hooks
 remain.
 
+Resource article endings now use `ActionPanel` instead of a page-local dark CTA
+composition. Resource index and category section headings use the canonical
+`SectionIntro` hierarchy.
+
 **Variants:**
 
 - `light` — neutral section-ending action.
@@ -396,6 +419,11 @@ primary action, optional evidence aside.
 spacing, type hierarchy, and Button implementation come from the component.
 Recommendation titles use the full available copy width on desktop; they must
 not be constrained by an arbitrary character width or forced onto one line.
+
+Set `footerAdjacent` only when the panel is the page's final conversion action.
+The shared Footer then omits its own pitch and duplicate CTA while preserving
+brand, contact actions, navigation, and legal information. Do not set it when
+related grades, documents, or another decision section follows the panel.
 
 ### Contact Action Tile — Canonical, Footer-scoped
 

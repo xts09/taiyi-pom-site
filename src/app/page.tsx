@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Fragment, type CSSProperties } from "react";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
 import { ExportRoutesSection } from "@/components/ExportRoutesSection";
 import { HomeInquirySection } from "@/components/HomeInquirySection";
 import { HomeMotion } from "@/components/HomeMotion";
-import { HomeReviewCard } from "@/components/HomeReviewCard";
 import { HomeStageHeader } from "@/components/HomeStageHeader";
 import { MaterialRangeAccordion } from "@/components/MaterialRangeAccordion";
 import { QualitySystemsSection } from "@/components/QualitySystemsSection";
@@ -15,6 +16,7 @@ import {
   certifications,
   companyFigures,
 } from "@/data/company";
+import { exportRoutes } from "@/data/exportRoutes";
 import {
   createPageMetadata,
   organizationJsonLd,
@@ -24,9 +26,9 @@ import { publicPath } from "@/lib/paths";
 import { getCategoryPath } from "@/lib/productCategories";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Modified POM Compounds for Industrial Parts | Taiyi Plastic",
+  title: "Modified POM Compounds for Industrial Parts | Taiyi Polymer",
   description:
-    "Taiyi Plastic manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compound support.",
+    "Taiyi Polymer manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compound support.",
   path: "/",
 });
 
@@ -37,21 +39,6 @@ const annualCapacity =
 const supportingFigures = companyFigures.filter(
   (item) => item.label !== annualCapacity.label,
 );
-
-const exportMarkets = [
-  {
-    region: "Europe",
-    coverage: "Germany, Italy, Turkey and Czechia",
-  },
-  {
-    region: "South Korea",
-    coverage: "Precision molded-part projects",
-  },
-  {
-    region: "South America",
-    coverage: "Brazil and Argentina",
-  },
-];
 
 const materialDirections = [
   {
@@ -74,7 +61,7 @@ const materialDirections = [
     href: getCategoryPath("PA6 Compound"),
     action: "Browse PA6 Compounds",
     specs: [
-      ["Role", "Extended Capability"],
+      ["Role", "Additional Material Family"],
       ["Material", "PA6"],
       ["Fit", "Reinforced / Impact Parts"],
       ["Scope", "Project-Based"],
@@ -87,7 +74,7 @@ const materialDirections = [
     href: getCategoryPath("PA66 Compound"),
     action: "Browse PA66 Compounds",
     specs: [
-      ["Role", "Extended Capability"],
+      ["Role", "Additional Material Family"],
       ["Material", "PA66"],
       ["Fit", "Stiffness / Heat Parts"],
       ["Scope", "Project-Based"],
@@ -100,7 +87,7 @@ const materialDirections = [
     href: getCategoryPath("PPA Compound"),
     action: "Browse PPA Compounds",
     specs: [
-      ["Role", "Extended Capability"],
+      ["Role", "Additional Material Family"],
       ["Material", "PPA"],
       ["Fit", "High-Temperature Parts"],
       ["Scope", "Project-Based"],
@@ -123,21 +110,25 @@ const materialDirections = [
 
 const selectionFlow = [
   {
+    stage: "Input",
     title: "Part and Tooling",
     description:
       "Part type, mold stage, cavity count, gate, movement mode and assembly environment.",
   },
   {
+    stage: "Processing",
     title: "Processing and Shrinkage",
     description:
       "Flowability, multi-cavity filling, shrinkage, warpage, dimensional stability and color.",
   },
   {
+    stage: "Performance",
     title: "Performance Targets",
     description:
       "Wear, friction, stiffness, impact, conductivity, antistatic behavior and working temperature.",
   },
   {
+    stage: "Decision",
     title: "Grade Shortlist",
     description:
       "A practical shortlist with document availability and sample evaluation needs confirmed for the project.",
@@ -148,20 +139,28 @@ function QualificationSteps({
   steps,
 }: {
   steps: ReadonlyArray<(typeof selectionFlow)[number]>;
-}) {
+  }) {
   return (
-    <ol className="qualification-steps grid flex-1 xl:grid-rows-4">
-      {steps.map((step, index) => (
-        <li
-          key={step.title}
-          className="grid grid-cols-[2.25rem_minmax(0,1fr)] items-start gap-x-4 gap-y-2 py-4 md:grid-cols-[2.25rem_minmax(15rem,0.8fr)_minmax(0,1.2fr)] md:items-center md:gap-x-6 md:py-5"
-        >
-          <span>0{index + 1}</span>
-          <h3>{step.title}</h3>
-          <p className="col-start-2 md:col-start-auto">{step.description}</p>
-        </li>
-      ))}
-    </ol>
+    <div className="qualification-flow">
+      <div className="qualification-progress" aria-hidden="true">
+        <span className="qualification-progress-fill" />
+      </div>
+      <ol className="qualification-steps" aria-label="Grade qualification stages">
+        {steps.map((step, index) => (
+          <li key={step.title} data-step={index + 1}>
+            <span className="qualification-step-node" aria-hidden="true" />
+            <div className="qualification-step-content">
+              <div className="qualification-step-key">
+                <span className="qualification-step-index">0{index + 1}</span>
+                <span className="qualification-step-stage">{step.stage}</span>
+              </div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 
@@ -172,7 +171,7 @@ const inquiryChecklist = [
   "Required documents and sample timing",
 ];
 
-const heroTitle = "POM Compounds for Demanding Parts.";
+const heroTitle = "Modified POM Compounds for Precision Molded Parts.";
 
 const heroTitleWords = (() => {
   let letterIndex = 0;
@@ -185,8 +184,6 @@ const heroTitleWords = (() => {
     })),
   }));
 })();
-
-const heroTitleLines = [heroTitleWords.slice(0, 2), heroTitleWords.slice(2)];
 
 export default function Home() {
   return (
@@ -219,10 +216,10 @@ export default function Home() {
             <div className="home-hero-content relative z-10">
               <p className="hero-eyebrow hero-motion-kicker">
                 <span className="hero-eyebrow-desktop">
-                  Modified engineering plastics from Yancheng, China
+                  PLATFORM® engineering materials · Taiyi Polymer
                 </span>
                 <span className="hero-eyebrow-mobile">
-                  Engineering plastics from Yancheng
+                  PLATFORM® · Taiyi Polymer
                 </span>
               </p>
 
@@ -231,29 +228,22 @@ export default function Home() {
                 aria-label={heroTitle}
               >
                 <span className="typewriter-visual" aria-hidden="true">
-                  {heroTitleLines.map((line, lineIndex) => (
-                    <Fragment key={`hero-title-line-${lineIndex}`}>
-                      <span className="hero-title-line">
-                        {line.map(({ word, letters }, wordIndex) => (
-                          <Fragment key={`${word}-${lineIndex}-${wordIndex}`}>
-                            <span className="type-word">
-                              {letters.map(({ letter, index }) => (
-                                <span
-                                  key={`${letter}-${index}`}
-                                  className="type-letter"
-                                  style={
-                                    { "--letter-index": index } as CSSProperties
-                                  }
-                                >
-                                  {letter}
-                                </span>
-                              ))}
-                            </span>
-                            {wordIndex < line.length - 1 ? " " : null}
-                          </Fragment>
+                  {heroTitleWords.map(({ word, letters }, wordIndex) => (
+                    <Fragment key={`${word}-${wordIndex}`}>
+                      <span className="type-word">
+                        {letters.map(({ letter, index }) => (
+                          <span
+                            key={`${letter}-${index}`}
+                            className="type-letter"
+                            style={
+                              { "--letter-index": index } as CSSProperties
+                            }
+                          >
+                            {letter}
+                          </span>
                         ))}
                       </span>
-                      {lineIndex < heroTitleLines.length - 1 ? " " : null}
+                      {wordIndex < heroTitleWords.length - 1 ? " " : null}
                     </Fragment>
                   ))}
                 </span>
@@ -261,9 +251,10 @@ export default function Home() {
 
               <div className="hero-support-motion">
                 <p className="hero-motion-copy hero-readable-copy">
-                  Taiyi Plastic manufactures wear-resistant, low-friction,
-                  reinforced and conductive POM compounds for precision molded
-                  parts, with PA6, PA66 and PPA available by project.
+                  Taiyi Polymer manufactures in Yancheng. Our modified POM
+                  compounds support wear, friction,
+                  reinforcement and static-control requirements. Grade review,
+                  samples and technical documents are available by project.
                 </p>
 
                 <div className="hero-motion-actions">
@@ -272,21 +263,18 @@ export default function Home() {
                     size="lg"
                     className="cta-primary hero-cta-primary h-auto"
                   >
-                    <Link href="/products">Browse material range</Link>
+                    <Link href="/products">Explore Material Range</Link>
                   </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="lg"
-                    className="hero-cta-link h-auto"
+                  <Link
+                    href="/contact"
+                    className="hero-cta-secondary inline-flex min-h-11 items-center gap-2"
                   >
-                    <Link href="/contact">Send Requirement</Link>
-                  </Button>
+                    Discuss Your Application
+                    <ArrowRight aria-hidden="true" size={16} />
+                  </Link>
                 </div>
               </div>
             </div>
-
-            <HomeReviewCard className="hero-review-card-desktop" />
           </div>
         </section>
 
@@ -294,12 +282,6 @@ export default function Home() {
           annualCapacity={annualCapacity}
           supportingFigures={supportingFigures}
         />
-
-        <div className="home-review-mobile-shell">
-          <div className="site-container">
-            <HomeReviewCard className="hero-review-card-mobile" />
-          </div>
-        </div>
 
         <section className="home-stage product-current">
           <span id="materials" className="home-section-anchor" aria-hidden="true" />
@@ -309,16 +291,26 @@ export default function Home() {
               className="product-current-head"
             >
               <p>
-                POM compounds lead the range. Selected PA6, PA66 and PPA
-                compounds are evaluated against project requirements, while Base
-                POM resin supports supplementary sourcing. Use this overview to
-                enter a material family; compare the full range and grade data in
-                the Product Directory.
+                Start with modified POM, our core product line. Selected PA6,
+                PA66 and PPA compounds are reviewed when the part requires a
+                different balance of stiffness, temperature or processing
+                performance.
               </p>
               <div className="document-support">
                 <span className="document-support-label">
                   Document support by grade and project
                 </span>
+                <Button
+                  asChild
+                  variant="link"
+                  size="sm"
+                  className="document-support-link h-auto"
+                >
+                  <Link href="/technical-data-sheets">
+                    Find Grade Data &amp; TDS
+                    <ArrowRight aria-hidden="true" size={14} />
+                  </Link>
+                </Button>
                 <div
                   className="document-tags"
                   aria-label="Typical material documents confirmed by grade and project"
@@ -376,25 +368,38 @@ export default function Home() {
               <div className="qualification-feature-panel flex min-w-0 flex-col">
                 <header className="qualification-heading">
                   <div className="stage-heading-main">
-                    <h2>How Grades Are Qualified</h2>
+                    <h2>How We Shortlist a Grade</h2>
                   </div>
                   <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
                     <p className="qualification-intro">
-                      Once a material family or application is identified, part and
-                      tooling inputs set the starting point. Processing, performance,
-                      document, and sample requirements then define a practical grade
-                      shortlist.
+                      We start with the part, mold, operating conditions and
+                      document needs. These inputs narrow candidate grades for
+                      TDS review, samples and molding trials.
                     </p>
                     <Link
                       href="/applications"
                       className="qualification-link inline-flex min-h-11 items-center justify-self-start"
                     >
-                      Review application requirements &rarr;
+                      See application requirements &rarr;
                     </Link>
                   </div>
                 </header>
 
                 <div className="qualification-path flex min-w-0 flex-1 flex-col">
+                  <figure className="qualification-visual">
+                    <Image
+                      fill
+                      src={publicPath("/generated/pom-black-pellets-lab-hero.webp")}
+                      alt="Black engineering-plastic pellets arranged in a laboratory dish."
+                      sizes="(min-width: 1280px) 38vw, (min-width: 768px) 80vw, 100vw"
+                    />
+                    <figcaption>
+                      <span>Material review</span>
+                      <strong>
+                        From molded-part requirements to a practical grade shortlist.
+                      </strong>
+                    </figcaption>
+                  </figure>
                   <QualificationSteps steps={selectionFlow} />
                 </div>
               </div>
@@ -404,7 +409,7 @@ export default function Home() {
 
         <QualitySystemsSection certifications={certifications} />
 
-        <ExportRoutesSection markets={exportMarkets} />
+        <ExportRoutesSection routes={exportRoutes} />
 
         <HomeInquirySection checklist={inquiryChecklist} />
 

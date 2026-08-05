@@ -7,6 +7,7 @@ import {
   resourceNavigationGroups,
 } from "@/data/resourceNavigation";
 import { getCategoryPath } from "@/lib/productCategories";
+import { contactEmail } from "@/lib/seo";
 
 function LinkedInMark({
   size = 20,
@@ -61,10 +62,13 @@ const footerColumns = [
   },
   {
     title: "Applications",
-    links: applications.map((item) => ({
-      href: `/applications/${item.slug}`,
-      label: item.title,
-    })),
+    links: [
+      ...applications.slice(0, 4).map((item) => ({
+        href: `/applications/${item.slug}`,
+        label: item.title,
+      })),
+      { href: "/applications", label: "All Applications" },
+    ],
   },
   {
     title: "Resources",
@@ -92,11 +96,11 @@ const footerColumns = [
 
 const contactActions = [
   {
-    href: "mailto:sales@taiyiplastic.com",
+    href: `mailto:${contactEmail}`,
     label: "Email",
-    detail: "Email us",
+    detail: contactEmail,
     icon: Mail,
-    ariaLabel: "Email sales@taiyiplastic.com",
+    ariaLabel: `Email ${contactEmail}`,
     external: false,
   },
   {
@@ -110,9 +114,9 @@ const contactActions = [
   {
     href: "https://wa.me/8618796418919",
     label: "WhatsApp",
-    detail: "Message us",
+    detail: "+86 187 9641 8919",
     icon: WhatsAppMark,
-    ariaLabel: "Message Taiyi Plastic on WhatsApp",
+    ariaLabel: "Message Taiyi Polymer on WhatsApp",
     external: true,
   },
 ];
@@ -133,7 +137,7 @@ export function Footer() {
             </span>
             <div className="site-footer-brand-body">
               <p className="site-footer-brand-relation">
-                A materials brand of Jiangsu Taiyi Nano Technology Co., Ltd.
+                Taiyi Polymer · PLATFORM® Engineering Materials
               </p>
             </div>
           </div>
@@ -142,8 +146,8 @@ export function Footer() {
             <h2>Material decisions, grounded in the part.</h2>
             <p className="site-footer-pitch-copy">
               Tell us about your part, operating conditions and performance
-              targets. We&apos;ll recommend suitable grades and provide the samples
-              and technical documentation needed for evaluation.
+              targets. We&apos;ll help shortlist relevant grades and confirm the
+              samples and technical documents available for evaluation.
             </p>
             <Link className="site-footer-pitch-action" href="/contact">
               Discuss Your Application

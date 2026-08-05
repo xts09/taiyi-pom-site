@@ -11,9 +11,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[var(--taiyi-blue)] text-white hover:brightness-[0.96]",
+          "bg-[var(--taiyi-blue)] text-white hover:-translate-y-px hover:brightness-[0.96] active:translate-y-0 active:scale-[0.98]",
         primary:
-          "rounded-[var(--ds-button-radius)] bg-[var(--ds-button-primary-bg)] text-[var(--ds-button-primary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-primary-bg-hover)] active:translate-y-0",
+          "rounded-[var(--ds-button-radius)] bg-[var(--ds-button-primary-bg)] text-[var(--ds-button-primary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-primary-bg-hover)] active:translate-y-0 active:scale-[0.98]",
         inverse:
           "rounded-[var(--ds-button-radius)] bg-[var(--ds-button-inverse-bg)] font-[var(--ds-button-font-weight)] text-[var(--ds-button-inverse-fg)] shadow-[var(--ds-button-inverse-shadow)] hover:-translate-y-px hover:bg-[var(--ds-button-inverse-bg-hover)] hover:shadow-[var(--ds-button-inverse-shadow-hover)] active:translate-y-0 active:scale-[0.98]",
         destructive:
@@ -23,23 +23,23 @@ const buttonVariants = cva(
         secondary:
           "rounded-[var(--ds-button-radius)] border border-[var(--ds-button-secondary-border)] bg-[var(--ds-button-secondary-bg)] font-[var(--ds-button-secondary-font-weight)] text-[var(--ds-button-secondary-fg)] hover:-translate-y-px hover:border-[var(--ds-button-secondary-border-hover)] hover:bg-[var(--ds-button-secondary-bg)] hover:text-[var(--ds-button-secondary-fg-hover)] active:translate-y-0 active:scale-[0.98]",
         productHeroPrimary:
-          "border border-[var(--ds-button-product-hero-primary-border)] bg-[var(--ds-button-product-hero-primary-bg)] px-[var(--ds-button-product-hero-primary-padding-inline)] leading-none text-[var(--ds-button-product-hero-primary-fg)] hover:bg-[var(--ds-button-product-hero-primary-bg-hover)]",
+          "border border-[var(--ds-button-product-hero-primary-border)] bg-[var(--ds-button-product-hero-primary-bg)] px-[var(--ds-button-product-hero-primary-padding-inline)] leading-none text-[var(--ds-button-product-hero-primary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-product-hero-primary-bg-hover)] active:translate-y-0 active:scale-[0.98]",
         productHeroSecondary:
-          "border border-[var(--ds-button-product-hero-secondary-border)] bg-[var(--ds-button-product-hero-secondary-bg)] px-[var(--ds-button-product-hero-secondary-padding-inline)] leading-[1.25] text-[var(--ds-button-product-hero-secondary-fg)] hover:bg-[var(--ds-button-product-hero-secondary-bg-hover)] hover:text-[var(--ds-button-product-hero-secondary-fg-hover)]",
+          "border border-[var(--ds-button-product-hero-secondary-border)] bg-[var(--ds-button-product-hero-secondary-bg)] px-[var(--ds-button-product-hero-secondary-padding-inline)] leading-[1.25] text-[var(--ds-button-product-hero-secondary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-product-hero-secondary-bg-hover)] hover:text-[var(--ds-button-product-hero-secondary-fg-hover)] active:translate-y-0 active:scale-[0.98]",
         productDetailPrimary:
-          "border border-[var(--ds-button-product-detail-primary-border)] bg-[var(--ds-button-product-detail-primary-bg)] text-[var(--ds-button-product-detail-primary-fg)] hover:bg-[var(--ds-button-product-detail-primary-bg-hover)]",
+          "border border-[var(--ds-button-product-detail-primary-border)] bg-[var(--ds-button-product-detail-primary-bg)] text-[var(--ds-button-product-detail-primary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-product-detail-primary-bg-hover)] active:translate-y-0 active:scale-[0.98]",
         productDetailSecondary:
-          "border border-l-0 border-[var(--ds-button-product-detail-secondary-border)] bg-[var(--ds-button-product-detail-secondary-bg)] text-[var(--ds-button-product-detail-secondary-fg)] hover:bg-[var(--ds-button-product-detail-secondary-bg-hover)]",
+          "border border-l-0 border-[var(--ds-button-product-detail-secondary-border)] bg-[var(--ds-button-product-detail-secondary-bg)] text-[var(--ds-button-product-detail-secondary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-product-detail-secondary-bg-hover)] active:translate-y-0 active:scale-[0.98]",
         applicationHeroPrimary:
-          "border border-[var(--ds-button-application-hero-primary-border)] bg-[var(--ds-button-application-hero-primary-bg)] text-[var(--ds-button-application-hero-primary-fg)] hover:bg-[var(--ds-button-application-hero-primary-bg-hover)]",
+          "border border-[var(--ds-button-application-hero-primary-border)] bg-[var(--ds-button-application-hero-primary-bg)] text-[var(--ds-button-application-hero-primary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-application-hero-primary-bg-hover)] active:translate-y-0 active:scale-[0.98]",
         applicationHeroSecondary:
-          "border border-[var(--ds-button-application-hero-secondary-border)] bg-[var(--ds-button-application-hero-secondary-bg)] text-[var(--ds-button-application-hero-secondary-fg)] hover:bg-[var(--ds-button-application-hero-secondary-bg-hover)] hover:text-[var(--ds-button-application-hero-secondary-fg-hover)]",
+          "border border-[var(--ds-button-application-hero-secondary-border)] bg-[var(--ds-button-application-hero-secondary-bg)] text-[var(--ds-button-application-hero-secondary-fg)] hover:-translate-y-px hover:bg-[var(--ds-button-application-hero-secondary-bg-hover)] hover:text-[var(--ds-button-application-hero-secondary-fg-hover)] active:translate-y-0 active:scale-[0.98]",
         resourceArticleInverse:
-          "rounded-[var(--ds-button-resource-article-radius)] bg-[var(--ds-button-resource-article-bg)] text-[var(--ds-button-resource-article-fg)] shadow-none hover:bg-[var(--ds-button-resource-article-bg-hover)] hover:shadow-none active:scale-100",
+          "rounded-[var(--ds-button-resource-article-radius)] bg-[var(--ds-button-resource-article-bg)] text-[var(--ds-button-resource-article-fg)] shadow-none hover:-translate-y-px hover:bg-[var(--ds-button-resource-article-bg-hover)] hover:shadow-none active:translate-y-0 active:scale-[0.98]",
         resourceIndexPrimary:
-          "border border-[var(--ds-button-resource-index-primary-border)] bg-[var(--ds-button-resource-index-primary-bg)] text-[var(--ds-button-resource-index-primary-fg)] hover:border-[var(--ds-button-resource-index-primary-border-hover)] hover:bg-[var(--ds-button-resource-index-primary-bg-hover)] focus-visible:border-[var(--ds-button-resource-index-primary-border-hover)] focus-visible:bg-[var(--ds-button-resource-index-primary-bg-hover)]",
+          "border border-[var(--ds-button-resource-index-primary-border)] bg-[var(--ds-button-resource-index-primary-bg)] text-[var(--ds-button-resource-index-primary-fg)] hover:-translate-y-px hover:border-[var(--ds-button-resource-index-primary-border-hover)] hover:bg-[var(--ds-button-resource-index-primary-bg-hover)] active:translate-y-0 active:scale-[0.98] focus-visible:border-[var(--ds-button-resource-index-primary-border-hover)] focus-visible:bg-[var(--ds-button-resource-index-primary-bg-hover)]",
         resourceIndexSecondary:
-          "border border-[var(--ds-button-resource-index-secondary-border)] bg-[var(--ds-button-resource-index-secondary-bg)] text-[var(--ds-button-resource-index-secondary-fg)] hover:border-[var(--ds-button-resource-index-secondary-border-hover)] hover:bg-[var(--ds-button-resource-index-secondary-bg-hover)] focus-visible:border-[var(--ds-button-resource-index-secondary-border-hover)] focus-visible:bg-[var(--ds-button-resource-index-secondary-bg-hover)]",
+          "border border-[var(--ds-button-resource-index-secondary-border)] bg-[var(--ds-button-resource-index-secondary-bg)] text-[var(--ds-button-resource-index-secondary-fg)] hover:-translate-y-px hover:border-[var(--ds-button-resource-index-secondary-border-hover)] hover:bg-[var(--ds-button-resource-index-secondary-bg-hover)] active:translate-y-0 active:scale-[0.98] focus-visible:border-[var(--ds-button-resource-index-secondary-border-hover)] focus-visible:bg-[var(--ds-button-resource-index-secondary-bg-hover)]",
         ghost: "text-inherit hover:bg-[#e8eef5] hover:text-[var(--taiyi-ink)]",
         link: "text-[var(--taiyi-blue)] underline-offset-4 hover:underline",
       },
@@ -58,7 +58,7 @@ const buttonVariants = cva(
         resourceArticleAction:
           "h-auto min-h-[var(--ds-button-resource-article-height)] w-full whitespace-normal px-[var(--ds-button-resource-article-padding-inline)] py-[var(--ds-button-resource-article-padding-block)] text-[length:var(--ds-button-resource-article-font-size)] leading-5 font-[var(--ds-button-resource-article-font-weight)] sm:w-fit",
         resourceIndexAction:
-          "h-auto min-h-[var(--ds-button-resource-index-height)] whitespace-normal rounded-[var(--ds-button-resource-index-radius)] px-[var(--ds-button-resource-index-padding-inline)] py-[var(--ds-button-resource-index-padding-block)] [font-family:var(--ds-font-display)] text-[length:var(--ds-button-resource-index-font-size)] leading-[1.2] font-[var(--ds-button-resource-index-font-weight)] transition-[background,border-color,color] duration-150",
+          "h-auto min-h-[var(--ds-button-resource-index-height)] whitespace-normal rounded-[var(--ds-button-resource-index-radius)] px-[var(--ds-button-resource-index-padding-inline)] py-[var(--ds-button-resource-index-padding-block)] [font-family:var(--ds-font-display)] text-[length:var(--ds-button-resource-index-font-size)] leading-[1.2] font-[var(--ds-button-resource-index-font-weight)] transition-[background,border-color,color,transform] duration-150",
         icon: "size-9",
         "icon-xs": "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
         "icon-sm": "size-8",

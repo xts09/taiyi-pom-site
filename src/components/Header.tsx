@@ -43,17 +43,17 @@ const productCategoryLinks = [
   {
     label: "PA6 Compounds",
     href: getCategoryPath("PA6 Compound"),
-    eyebrow: "Extended line",
+    eyebrow: "Additional family",
   },
   {
     label: "PA66 Compounds",
     href: getCategoryPath("PA66 Compound"),
-    eyebrow: "Extended line",
+    eyebrow: "Additional family",
   },
   {
     label: "PPA Compounds",
     href: getCategoryPath("PPA Compound"),
-    eyebrow: "Extended review",
+    eyebrow: "Higher-temperature",
   },
   {
     label: "POM Resin",
@@ -318,7 +318,7 @@ export function Header() {
           href="/"
           prefetch={false}
           className="brand-mark group inline-flex"
-          aria-label="Taiyi Plastic home"
+          aria-label="Taiyi Polymer home"
           aria-current={isHome ? "page" : undefined}
         >
           <span className="brand-logo w-[clamp(9.35rem,11.4vw,10.65rem)] max-w-[46vw]">
@@ -368,7 +368,7 @@ export function Header() {
                           <span>Product Categories</span>
                           <p>
                             Start with POM, then compare selected PA6, PA66,
-                            and PPA compound directions.
+                            and PPA compound families.
                           </p>
                         </div>
                         <Link
@@ -759,7 +759,7 @@ export function Header() {
               }
             >
               <Search aria-hidden="true" size={16} strokeWidth={2.1} />
-              <span>Search Data / TDS</span>
+              <span>Find Grade Data & TDS</span>
             </Link>
 
             {navItems.map((item) => (
@@ -781,7 +781,7 @@ export function Header() {
               prefetch={false}
               className="cta-primary mt-4 px-4 py-3 text-center text-sm"
             >
-              Send Requirement
+              Discuss Your Application
             </Link>
           </nav>
         </details>

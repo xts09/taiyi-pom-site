@@ -125,6 +125,9 @@
 .primaryAction:hover,
 .primaryAction:focus-visible {
   background: #084e8b;
+}
+
+.primaryAction:hover {
   transform: translateY(-1px);
 }
 
@@ -138,6 +141,10 @@
 .secondaryAction:focus-visible {
   border-color: rgba(255, 255, 255, 0.82);
   background: rgba(255, 255, 255, 0.1);
+}
+
+.secondaryAction:hover {
+  transform: translateY(-1px);
 }
 
 .primaryAction:focus-visible,
@@ -658,6 +665,16 @@
 .lightSecondaryAction:focus-visible {
   border-color: #ffffff;
   background: rgba(255, 255, 255, 0.08);
+}
+
+.lightSecondaryAction:hover {
+  transform: translateY(-1px);
+}
+
+.primaryAction:active,
+.secondaryAction:active,
+.lightSecondaryAction:active {
+  transform: translateY(0) scale(0.98);
 }
 
 @media (max-width: 64rem) {

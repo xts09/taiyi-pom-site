@@ -9,6 +9,8 @@ export const metadata: Metadata = createPageMetadata({
   title: page.metaTitle,
   description: page.metaDescription,
   path: `/${page.slug}`,
+  image: page.heroImage?.src,
+  imageAlt: page.heroImage?.alt,
 });
 
 export default function ConductiveAntistaticPomPage() {

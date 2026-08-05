@@ -55,7 +55,7 @@ export async function generateMetadata({
 
   if (group) {
     return createPageMetadata({
-      title: `${group.title} Resources | Taiyi Plastic`,
+      title: `${group.title} Resources | Taiyi Polymer`,
       description: group.description,
       path: getResourceNavigationGroupPath(group),
       image: group.image,
@@ -72,7 +72,7 @@ export async function generateMetadata({
   const primaryMedia = getPrimaryArticleMedia(page);
 
   return createPageMetadata({
-    title: `${page.title} | Taiyi Plastic`,
+    title: `${page.title} | Taiyi Polymer`,
     description: page.description,
     path: `/resources/${page.slug}`,
     image: primaryMedia?.src,
@@ -168,7 +168,7 @@ export default async function ResourceDetailPage({
         className={
           usesArticleLayout
             ? "w-full bg-[#f2f5f7]"
-            : `resource-page-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8${usesFaqLayout ? " resource-faq-shell" : ""}`
+            : `resource-page-shell mesh-surface${usesFaqLayout ? " resource-faq-shell" : ""}`
         }
       >
         {!usesArticleLayout ? (

@@ -14,8 +14,10 @@
     "catalog:generate": "node --no-warnings --experimental-strip-types scripts/catalog/generate.ts",
     "catalog:check": "node --no-warnings --experimental-strip-types scripts/catalog/generate.ts --check",
     "seo:catalog-check": "node --no-warnings --experimental-strip-types scripts/catalog/seo-check.ts",
+    "launch:env-check": "node --env-file-if-exists=.env.local scripts/launch/validate-env.mjs",
     "check": "npm run catalog:check && npm run seo:catalog-check && npm run lint && npm run typecheck && npm run test",
-    "prepublish:check": "npm run catalog:generate && npm run check && npm run build"
+    "prepublish:check": "npm run catalog:generate && npm run check && npm run build",
+    "launch:check": "npm run launch:env-check && npm run prepublish:check"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.2.8",

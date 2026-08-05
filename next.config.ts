@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 const isDevelopment = process.env.NODE_ENV === "development";
+const distDir = process.env.NEXT_DIST_DIR;
 const githubPagesBasePath = "/taiyi-pom-site";
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -39,10 +40,20 @@ const securityHeaders = [
     key: "Permissions-Policy",
     value: "camera=(), microphone=(), geolocation=(), payment=()",
   },
+  ...(!isDevelopment
+    ? [
+        {
+          key: "Strict-Transport-Security",
+          value: "max-age=31536000",
+        },
+      ]
+    : []),
 ];
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
+  poweredByHeader: false,
+  ...(distDir ? { distDir } : {}),
   experimental: {
     cpus: 4,
   },
@@ -53,6 +64,21 @@ const nextConfig: NextConfig = {
             {
               source: "/:path*",
               headers: securityHeaders,
+            },
+          ];
+        },
+        async redirects() {
+          return [
+            {
+              source: "/:path*",
+              has: [
+                {
+                  type: "host",
+                  value: "taiyipolymer.com",
+                },
+              ],
+              destination: "https://www.taiyipolymer.com/:path*",
+              permanent: true,
             },
           ];
         },

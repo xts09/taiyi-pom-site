@@ -16,7 +16,7 @@ export function ResourceArticleLayout({ page }: ResourceArticleLayoutProps) {
   const articleSections = getResourceArticleSections(page);
   const sidebarSections = articleSections.map((section) => ({
     id: toResourceSectionId(section.title),
-    title: section.title,
+    title: section.navLabel ?? section.title,
   }));
 
   return (

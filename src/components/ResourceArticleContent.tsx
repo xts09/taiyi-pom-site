@@ -32,7 +32,7 @@ export function ResourceArticleContent({
 
   return (
     <>
-      <header className="pb-1">
+      <header className="stagger-list pb-1">
         <p className="resource-article-kicker">Technical guide</p>
         <h1 className="resource-article-title mt-4 w-full">
           {title}
@@ -49,7 +49,7 @@ export function ResourceArticleContent({
         />
       ))}
 
-      <article className={styles.article}>
+      <article className={`${styles.article} stagger-list`}>
         {sections.map((section) => (
           <section
             id={toResourceSectionId(section.title)}

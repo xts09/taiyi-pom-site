@@ -17,7 +17,7 @@ export function ResourceArticleFeature({
             src={feature.src}
             alt={feature.alt}
             fill
-            priority
+            priority={feature.position === "after-intro"}
             sizes="(max-width: 1024px) calc(100vw - 2.5rem), 70rem"
           />
         </div>
@@ -51,6 +51,32 @@ export function ResourceArticleFeature({
     );
   }
 
+  if (feature.type === "part-showcase") {
+    return (
+      <figure className={styles.partShowcase}>
+        <figcaption>
+          <strong>{feature.title}</strong>
+          <p>{feature.description}</p>
+        </figcaption>
+        <ul className={styles.partShowcaseList}>
+          {feature.items.map((item) => (
+            <li key={item.src}>
+              <div className={styles.partShowcaseImage}>
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 767px) 72vw, (max-width: 1024px) 28vw, 18rem"
+                />
+              </div>
+              <span>{item.label}</span>
+            </li>
+          ))}
+        </ul>
+      </figure>
+    );
+  }
+
   return (
     <section className={styles.matrix} aria-label={feature.title}>
       <h3>{feature.title}</h3>
@@ -65,7 +91,11 @@ export function ResourceArticleFeature({
         {feature.rows.map((row) => (
           <div className={styles.matrixRow} key={row.join("-")} role="row">
             {row.map((value, index) => (
-              <span key={value} role="cell" data-label={feature.columns[index]}>
+              <span
+                key={`${index}-${value}`}
+                role="cell"
+                data-label={feature.columns[index]}
+              >
                 {value}
               </span>
             ))}

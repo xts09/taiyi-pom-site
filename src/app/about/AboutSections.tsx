@@ -121,8 +121,8 @@ export function AboutOverviewHero({
             </p>
             <h1>Modified POM compounds, built around the part.</h1>
             <p className={styles.overviewHeroSlogan}>
-              Application-specific grades for demanding components. Compounded
-              and tested for consistent production performance.
+              Modified compounds reviewed around the part, processing, and
+              documentation requirements.
             </p>
             <p className={styles.overviewHeroIntro}>{intro}</p>
             <div className={styles.overviewHeroActions}>
@@ -149,11 +149,11 @@ export function AboutOverviewHero({
                 Engineering plastics developed for repeat production.
               </strong>
               <span>
-                Modified POM is our core specialty, supported by PA6, PA66 and
-                PPA compounds for demanding industrial applications. From grade
-                selection and sampling to validation and production scale-up, we
-                help customers move from the first trial to reliable series
-                production.
+                Modified POM is our core specialty, with selected PA6, PA66 and
+                PPA compounds available for broader project requirements.
+                In-house compounding, material testing, sample evaluation and
+                document coordination support the path from initial screening
+                to repeat production.
               </span>
             </div>
           </div>
@@ -378,6 +378,7 @@ export function AboutCredentials({
 export function AboutOverviewInquiry() {
   return (
     <ActionPanel
+      footerAdjacent
       variant="light"
       className={styles.overviewInquiry}
       aria-labelledby="overview-inquiry-title"
@@ -394,8 +395,8 @@ export function AboutOverviewInquiry() {
     >
       <p>
         Tell us about your part, operating conditions and performance targets.
-        We&apos;ll recommend suitable grades and provide the samples and technical
-        documentation needed for evaluation.
+        We&apos;ll help shortlist relevant grades and confirm the samples and
+        technical documents available for evaluation.
       </p>
     </ActionPanel>
   );
@@ -441,6 +442,7 @@ export function ManufacturingOverview({
 export function AboutInquiryBridge() {
   return (
     <ActionPanel
+      footerAdjacent
       variant="evidence"
       layout="distributed"
       className={styles.inquiry}
@@ -459,8 +461,8 @@ export function AboutInquiryBridge() {
     >
       <p>
         Share the part function, operating conditions, performance targets and
-        document needs. We&apos;ll recommend suitable grades and provide the
-        samples and technical documentation needed for evaluation.
+        document needs. We&apos;ll help shortlist relevant grades and confirm the
+        samples and technical documents available for evaluation.
       </p>
     </ActionPanel>
   );

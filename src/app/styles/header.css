@@ -738,16 +738,19 @@
 }
 
 .mobile-menu-section-summary {
+  min-height: 2.75rem;
   color: #ffffff;
   transition: color 150ms ease;
 }
 
 .mobile-menu-sub-link {
+  min-height: 2.75rem;
   color: #94a3b8;
   transition: color 150ms ease;
 }
 
 .mobile-menu-primary-link {
+  min-height: 2.75rem;
   color: #e2e8f0;
   transition: color 150ms ease;
 }
@@ -900,6 +903,7 @@
 }
 
 .mobile-menu > summary.nav-pill {
+  min-height: 2.75rem;
   border-color: var(--nav-accent);
   border-radius: 0.35rem;
   background: var(--nav-accent);

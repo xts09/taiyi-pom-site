@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -9,16 +10,23 @@ type HomeInquirySectionProps = {
 
 export function HomeInquirySection({ checklist }: HomeInquirySectionProps) {
   return (
-    <section id="material-review" className="home-inquiry">
+    <section
+      id="material-review"
+      className="home-inquiry"
+      data-footer-adjacent="true"
+    >
       <div className="site-container home-inquiry-inner">
         <div className="home-inquiry-copy">
-          <h2>Send the part. We’ll narrow the grade.</h2>
+          <p className="home-inquiry-kicker">MATERIAL REVIEW</p>
+          <h2>Share the requirements. Start with a grade shortlist.</h2>
           <span>
-            Share the working conditions, tooling constraints and required
-            documents so the discussion starts with engineering context.
+            Tell us the working conditions, tooling constraints and document
+            needs. We&apos;ll identify candidate grades for TDS review, samples
+            and molding trials.
           </span>
         </div>
-        <Card className="home-inquiry-panel gap-0 rounded-none border-0 py-0 shadow-none">
+        <Card className="home-inquiry-panel gap-0 border-0 py-0 shadow-none">
+          <p className="home-inquiry-panel-label">PROJECT INPUTS</p>
           <ul className="home-inquiry-checklist">
             {checklist.map((item) => (
               <li key={item}>{item}</li>
@@ -26,10 +34,14 @@ export function HomeInquirySection({ checklist }: HomeInquirySectionProps) {
           </ul>
           <Button
             asChild
-            variant="ghost"
-            className="home-inquiry-action h-auto rounded-none"
+            size="form"
+            variant="primary"
+            className="home-inquiry-action h-auto"
           >
-            <Link href="/contact">Send Requirement &rarr;</Link>
+            <Link href="/contact">
+              Discuss Your Application
+              <ArrowRight aria-hidden="true" size={16} />
+            </Link>
           </Button>
         </Card>
       </div>

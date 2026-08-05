@@ -31,17 +31,38 @@ export function ApplicationAnimeMotion() {
           navHeightProperty: "--application-section-nav-height",
           root,
           sectionNav,
+          showCompactActions: window.matchMedia("(min-width: 64rem)").matches,
           tabLinkSelector:
             '[data-slot="secondary-section-tabs"] a[href^="#"]',
         })
       : () => {};
 
+    const showHeroCard = () => {
+      if (heroCard) {
+        heroCard.style.opacity = "";
+        heroCard.style.transform = "";
+      }
+    };
+
     if (heroCard) {
-      heroCard.style.opacity = "";
-      heroCard.style.transform = "";
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        showHeroCard();
+      } else {
+        heroCard.style.opacity = "0";
+        heroCard.style.transform = "translateY(24px)";
+        activeAnimations.push(
+          animate(heroCard, {
+            opacity: [0, 1],
+            translateY: [24, 0],
+            duration: 700,
+            ease: "outCubic",
+          }),
+        );
+      }
     }
 
     const showSections = () => {
+      showHeroCard();
       sections.forEach((section) => {
         section.style.opacity = "";
         section.style.transform = "";

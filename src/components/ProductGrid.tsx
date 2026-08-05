@@ -21,7 +21,6 @@ import {
 import {
   createCategorySlug,
   getCategoryPath,
-  getCategoryTitle,
   getProductCategoryOrderIndex,
   getProductsByCategory,
   pomProductCategoryData,
@@ -131,7 +130,7 @@ export function ProductGrid({
         count: matchingGrades.length,
         description:
           engineeringDirectionSummary[category] ??
-          "Project-based compound direction for material review.",
+          "Review the compound option against part function, processing fit, and target properties.",
         family: exampleGrade?.family ?? engineeringGrades[0]?.family,
         number: String(index + 1).padStart(2, "0"),
       };
@@ -182,7 +181,7 @@ export function ProductGrid({
         <div id="material-families" className="product-filter-bar products-motion-filter">
           <div className="product-filter-intro">
             <span className="product-filter-label">
-              {engineeringDirectionItems[0]?.family} Directions
+              {engineeringDirectionItems[0]?.family} Options
             </span>
             <p>
               Start from reinforcement, toughness, flame rating, wear,
@@ -201,7 +200,7 @@ export function ProductGrid({
                 <span className="product-filter-name">{item.category}</span>
                 <span className="product-filter-use">{item.description}</span>
                 <span className="product-filter-count">
-                  {item.count} Reference Grade{item.count === 1 ? "" : "s"}
+                  {item.count} Listed Grade{item.count === 1 ? "" : "s"}
                 </span>
               </a>
             ))}
@@ -226,9 +225,9 @@ export function ProductGrid({
           </h2>
           <p>
             {isProjectBasedCategory
-              ? "Share the part requirement, working condition, target property, and document needs so a suitable material direction can be reviewed."
+              ? "Share the part requirement, working condition, target property, and document needs so relevant material families can be shortlisted."
               : isEngineeringCategory
-              ? "Compare reference grade data from selected engineering plastic compound directions before requesting material review."
+              ? "Compare listed grade data from selected engineering plastic compound families before discussing the application."
               : selectedCategory === "POM"
               ? "Compare all listed POM grades here, or open a material family above for a focused category view."
               : "Shortlist by properties, tooling fit, shrinkage behavior, then open the grade detail page."}
@@ -249,7 +248,7 @@ export function ProductGrid({
           <div className="product-directory-labels" aria-hidden="true">
             <span>Grade</span>
             <span>Key Data</span>
-            <span>Review</span>
+              <span>Details</span>
           </div>
 
           {engineeringGrades.map((document, index) => (
@@ -290,10 +289,10 @@ export function ProductGrid({
         </div>
       ) : filteredProducts.length === 0 ? (
         <div className="product-empty products-motion-row">
-          This material direction is reviewed by project rather than displayed
-          as a fixed grade list. Contact us with your application, mold stage,
-          cavity count, shrinkage target, and performance requirements for a
-          practical material recommendation.
+          This material family is reviewed by project rather than displayed as
+          a fixed grade list. Share the application, mold stage, cavity count,
+          shrinkage target, and performance requirements so we can shortlist
+          relevant options.
         </div>
       ) : (
         <div className="product-directory">

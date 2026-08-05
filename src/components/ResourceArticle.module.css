@@ -10,6 +10,7 @@
 
 .section > :where(h2, p, ul) {
   width: 100%;
+  max-width: var(--ds-resource-article-prose-measure);
 }
 
 .section h2 {
@@ -69,7 +70,8 @@
 
 .media,
 .comparison,
-.matrix {
+.matrix,
+.partShowcase {
   width: 100%;
 }
 
@@ -146,6 +148,79 @@
   border-radius: 999px;
   background: #1689c7;
   content: "";
+}
+
+.partShowcase {
+  margin: clamp(2.5rem, 4vw, 3.5rem) 0 0;
+  border-top: 1px solid #d5dee6;
+  border-bottom: 1px solid #d5dee6;
+  background: #f3f6f8;
+}
+
+.partShowcase figcaption {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 1rem clamp(2rem, 5vw, 4.5rem);
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.partShowcase figcaption strong {
+  max-width: 25ch;
+  color: #101828;
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.45vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.partShowcase figcaption p {
+  max-width: 52ch;
+  margin: 0;
+  color: #526174;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.partShowcaseList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #d5dee6;
+  list-style: none;
+}
+
+.partShowcaseList li {
+  min-width: 0;
+  padding: 1.25rem;
+}
+
+.partShowcaseList li::before {
+  display: none;
+}
+
+.partShowcaseList li + li {
+  border-left: 1px solid #d5dee6;
+}
+
+.partShowcaseImage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.partShowcaseImage > img {
+  object-fit: contain;
+  filter: drop-shadow(0 0.65rem 0.8rem rgb(15 31 48 / 12%));
+}
+
+.partShowcaseList span {
+  display: block;
+  margin-top: 0.65rem;
+  color: #245579;
+  font-size: 0.78rem;
+  font-weight: 650;
+  line-height: 1.4;
 }
 
 .comparison {
@@ -262,7 +337,8 @@
   }
 
   .media figcaption,
-  .comparison {
+  .comparison,
+  .partShowcase figcaption {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -273,6 +349,28 @@
 
   .comparison {
     gap: 1.6rem;
+  }
+
+  .partShowcase figcaption {
+    gap: 0.65rem;
+    padding: 1.25rem;
+  }
+
+  .partShowcaseList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow: visible;
+  }
+
+  .partShowcaseList li {
+    padding: 1rem;
+  }
+
+  .partShowcaseList li:last-child {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: center;
   }
 
   .matrixTable {

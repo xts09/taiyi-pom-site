@@ -9,16 +9,20 @@ import { productCategoryOrder } from "@/lib/productCategories";
 import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
 
 const rawSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.taiyiplastic.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.taiyipolymer.com";
 
 export const siteUrl = rawSiteUrl.replace(/\/$/, "");
 
-export const siteName = "Taiyi Plastic";
+export const siteName = "Taiyi Polymer";
+
+export const brandName = "PLATFORM";
 
 export const companyName = "Jiangsu Taiyi Nano Technology Co., Ltd.";
 
+export const contactEmail = "xiatianshi@jstynm.com";
+
 export const defaultDescription =
-  "Taiyi Plastic manufactures modified POM, PA6, PA66, and PPA compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
+  "Taiyi Polymer manufactures modified POM, PA6, PA66, and PPA compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
 
 export const defaultOgImage = "/factory-hero-no-machine-poster.jpg";
 
@@ -26,18 +30,23 @@ export const organizationLogo = "/platform-wordmark.png";
 
 const formatMetadataDescription = (description: string, maxLength = 160) => {
   const normalized = description.replace(/\s+/g, " ").trim();
+  const ellipsis = "...";
 
   if (normalized.length <= maxLength) {
     return normalized;
   }
 
-  const candidate = normalized.slice(0, maxLength - 1);
+  if (maxLength <= ellipsis.length) {
+    return normalized.slice(0, maxLength);
+  }
+
+  const candidate = normalized.slice(0, maxLength - ellipsis.length);
   const lastWordBoundary = candidate.lastIndexOf(" ");
   const trimmed = candidate
     .slice(0, lastWordBoundary > maxLength * 0.7 ? lastWordBoundary : undefined)
     .replace(/[,:;.\-\s]+$/, "");
 
-  return `${trimmed}…`;
+  return `${trimmed || candidate}${ellipsis}`;
 };
 
 export const absoluteUrl = (path = "/") =>
@@ -172,6 +181,10 @@ export const organizationJsonLd = {
   alternateName: siteName,
   url: siteUrl,
   logo: absoluteUrl(organizationLogo),
+  brand: {
+    "@type": "Brand",
+    name: brandName,
+  },
   foundingDate: "2003-06-18",
   address: {
     "@type": "PostalAddress",
@@ -179,12 +192,12 @@ export const organizationJsonLd = {
     addressRegion: "Jiangsu",
     addressCountry: "CN",
   },
-  email: "sales@taiyiplastic.com",
+  email: contactEmail,
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "sales@taiyiplastic.com",
+      email: contactEmail,
       telephone: "+86-18796418919",
       availableLanguage: ["en", "zh"],
     },
@@ -295,7 +308,7 @@ export const createProductJsonLd = (product: Product) => ({
   sku: product.grade,
   brand: {
     "@type": "Brand",
-    name: siteName,
+    name: brandName,
   },
   manufacturer: {
     "@type": "Organization",
@@ -339,7 +352,7 @@ export const createEngineeringProductJsonLd = (
     sku: document.grade,
     brand: {
       "@type": "Brand",
-      name: siteName,
+      name: brandName,
     },
     manufacturer: {
       "@type": "Organization",

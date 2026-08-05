@@ -1,25 +1,28 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { products } from "@/data/products";
 import { engineeringTdsDocuments } from "@/data/engineeringTds";
 import { ActionPanel } from "@/components/ActionPanel";
-import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import {
   createBreadcrumbJsonLd,
   createCollectionPageJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
 
-const productDirectoryTitle = "Engineering Plastic Product Directory | Taiyi Plastic";
+const productDirectoryTitle = "Engineering Plastic Compounds | Taiyi Polymer";
 const productDirectoryDescription =
-  "Browse Taiyi Plastic modified POM compounds, selected base POM resin, and project-based PA6, PA66, and PPA engineering plastic compound support.";
+  "Browse Taiyi Polymer modified POM compounds, base POM resin, and selected PA6, PA66, and PPA compound families.";
 
 export const metadata: Metadata = createPageMetadata({
   title: productDirectoryTitle,
   description: productDirectoryDescription,
   path: "/products",
+  image: "/generated/pom-material-hero.webp",
+  imageAlt: "Taiyi Polymer POM material and engineering plastic directory",
 });
 
 const basePomGradeCount = products.filter(
@@ -36,7 +39,7 @@ const productFamilies = [
     title: "Modified POM Compounds",
     label: "Core Product Line",
     description:
-      "Wear-resistant, low-friction, reinforced, conductive, antistatic, and high-impact POM directions for precision molded parts.",
+      "Wear-resistant, low-friction, reinforced, conductive, antistatic, and high-impact POM options for precision molded parts.",
     href: "/products/categories/pom",
     metricValue: modifiedPomGradeCount,
     metricLabel: "modified grades",
@@ -46,7 +49,7 @@ const productFamilies = [
     title: "Base POM Resin",
     label: "Selected Sourcing",
     description:
-      "Selected base resin options for customers who need baseline POM resin comparison, documents, and project review.",
+      "Selected base resin options for customers who need baseline POM comparison, technical documents, and application review.",
     href: "/products/categories/base-pom-resin",
     metricValue: basePomGradeCount,
     metricLabel: "base grades",
@@ -54,32 +57,32 @@ const productFamilies = [
   {
     number: "03",
     title: "PA6 Compounds",
-    label: "Extended Capability",
+    label: "Additional Material Family",
     description:
-      "Selected PA6 compound directions for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+      "Selected PA6 compound options for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
     href: "/products/categories/pa6-compound",
     metricValue: engineeringGradeCount("PA6"),
-    metricLabel: "reference grades",
+    metricLabel: "listed grades",
   },
   {
     number: "04",
     title: "PA66 Compounds",
-    label: "Extended Capability",
+    label: "Additional Material Family",
     description:
-      "Selected PA66 compound directions for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+      "Selected PA66 compound options for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
     href: "/products/categories/pa66-compound",
     metricValue: engineeringGradeCount("PA66"),
-    metricLabel: "reference grades",
+    metricLabel: "listed grades",
   },
   {
     number: "05",
     title: "PPA Compounds",
-    label: "High-Performance Review",
+    label: "Higher-Temperature Materials",
     description:
-      "Project-based PPA directions for higher-temperature molded parts requiring stiffness and dimensional stability.",
+      "PPA compound options for higher-temperature molded parts that need stiffness and dimensional stability.",
     href: "/products/categories/ppa-compound",
     metricValue: engineeringGradeCount("PPA"),
-    metricLabel: "reference grades",
+    metricLabel: "listed grades",
   },
 ];
 
@@ -109,84 +112,106 @@ export default function ProductsPage() {
         }}
       />
       <ProductPageMotion>
-      <section className="product-directory-shell mesh-surface mx-auto max-w-7xl px-5 pb-16 pt-0 sm:px-6 lg:px-8">
-        <div id="products-overview" className="product-index-hero products-motion-hero mb-8">
-          <div className="product-hero-card">
-            <p className="product-hero-eyebrow">Product Directory</p>
+      <section className="product-directory-shell mx-auto max-w-7xl px-5 pb-16 pt-0 sm:px-6 lg:px-8">
+        <div
+          id="products-overview"
+          className="product-index-hero products-motion-hero mb-8"
+        >
+          <div className="product-hero-card stagger-list">
+            <p
+              className="product-hero-eyebrow"
+              style={{ "--item-index": 0 } as CSSProperties}
+            >
+              Product Directory
+            </p>
 
-            <h1 className="text-4xl font-black tracking-tight">
-              Engineering Plastic Materials
+            <h1
+              className="text-4xl font-black tracking-tight"
+              style={{ "--item-index": 1 } as CSSProperties}
+            >
+              Engineering Plastic Compounds
             </h1>
 
-            <p className="product-hero-subtitle">
+            <p
+              className="product-hero-subtitle"
+              style={{ "--item-index": 2 } as CSSProperties}
+            >
               Modified POM as the core product line
             </p>
 
-            <p className="mt-4 max-w-3xl text-lg leading-8">
-              Browse product families first. Each category then presents the
-              relevant grade data, processing considerations, document scope,
-              and application fit.
+            <p
+              className="mt-4 max-w-3xl text-lg leading-8"
+              style={{ "--item-index": 3 } as CSSProperties}
+            >
+              Browse material families, then compare listed grades, processing
+              considerations, available documents, and application fit.
             </p>
 
-            <div className="product-hero-cta">
+            <div
+              className="product-hero-cta stagger-list"
+              style={{ "--item-index": 4 } as CSSProperties}
+            >
               <Button asChild size="productHero" variant="productHeroPrimary">
-                <Link href="/products/categories/pom">
+                <Link
+                  href="/products/categories/pom"
+                  style={{ "--item-index": 0 } as CSSProperties}
+                >
                   View POM Material Families
                 </Link>
               </Button>
               <Button asChild size="productHero" variant="productHeroSecondary">
-                <Link href="/technical-data-sheets">Search Data / TDS</Link>
+                <Link
+                  href="/technical-data-sheets"
+                  style={{ "--item-index": 1 } as CSSProperties}
+                >
+                  Find Grade Data & TDS
+                </Link>
               </Button>
             </div>
           </div>
         </div>
 
         <section id="product-families" className="product-family-overview products-motion-filter">
-          <ProductAnimeMotion />
-          <div className="product-family-overview-head">
-            <p className="section-kicker">Product Families</p>
-            <h2>Choose a Product Family</h2>
-            <p>
-              Choose the family closest to the part requirement. Its category
-              page provides the related grade data, document scope, and
-              application context.
+          <div className="product-family-overview-head stagger-list">
+            <p
+              className="section-kicker"
+              style={{ "--item-index": 0 } as CSSProperties}
+            >
+              Product Families
+            </p>
+            <h2 style={{ "--item-index": 1 } as CSSProperties}>
+              Choose a Product Family
+            </h2>
+            <p style={{ "--item-index": 2 } as CSSProperties}>
+              Choose the family closest to the part requirement, then review
+              its listed grades, documents, and application context.
             </p>
           </div>
 
           <div className="product-family-card-grid">
             {productFamilies.map((family) => (
-              <Link
-                key={family.title}
-                href={family.href}
-                className="product-family-card product-filter-link"
-              >
-                <span className="product-filter-number">{family.number}</span>
-                <span className="product-family-label">{family.label}</span>
-                <strong>{family.title}</strong>
-                <span>{family.description}</span>
-                <em>
-                  {typeof family.metricValue === "number" ? (
-                    <>
-                      <span
-                        className="anime-count"
-                        data-count={family.metricValue}
-                      >
-                        {family.metricValue}
-                      </span>{" "}
-                    </>
-                  ) : null}
-                  {family.metricLabel}
-                </em>
-                <i className="anime-border-line anime-border-top" aria-hidden="true" />
-                <i className="anime-border-line anime-border-right" aria-hidden="true" />
-                <i className="anime-border-line anime-border-bottom" aria-hidden="true" />
-                <i className="anime-border-line anime-border-left" aria-hidden="true" />
-              </Link>
+              <Card key={family.title} asChild variant="interactive">
+                <Link href={family.href} className="product-family-card">
+                  <span className="product-filter-number">{family.number}</span>
+                  <span className="product-family-label">{family.label}</span>
+                  <strong>{family.title}</strong>
+                  <span>{family.description}</span>
+                  <em>
+                    {typeof family.metricValue === "number" ? (
+                      <>
+                        <span>{family.metricValue}</span>{" "}
+                      </>
+                    ) : null}
+                    {family.metricLabel}
+                  </em>
+                </Link>
+              </Card>
             ))}
           </div>
         </section>
 
         <ActionPanel
+          footerAdjacent
           id="product-inquiry"
           variant="recommendation"
           title="Prepare a Material Shortlist"
@@ -199,7 +224,7 @@ export default function ProductsPage() {
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Send Requirement</Link>
+              <Link href="/contact">Discuss Your Application</Link>
             </Button>
           }
         >

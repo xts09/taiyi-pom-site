@@ -1,112 +1,142 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import { useState, type CSSProperties } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+
 import { publicPath } from "@/lib/paths";
 
-type Region = {
-  id: "europe" | "south-korea" | "south-america";
-  name: string;
-  countries: string;
-  note: string;
-  hotspot: { x: string; y: string };
-  popover: { x: string; y: string };
+gsap.registerPlugin(useGSAP);
+
+export type ExportRegionId = "central-asia" | "europe" | "east-asia" | "americas";
+
+type MapMarker = {
+  id: string;
+  label: string;
+  region: ExportRegionId;
+  x: number;
+  y: number;
 };
 
-const regions: Region[] = [
-  {
-    id: "europe",
-    name: "Europe",
-    countries: "Germany / Italy / Turkey / Czechia",
-    note: "Project supply communication across established European routes.",
-    hotspot: { x: "52.7%", y: "33%" },
-    popover: { x: "37.5%", y: "9%" },
-  },
-  {
-    id: "south-korea",
-    name: "South Korea",
-    countries: "South Korea",
-    note: "Material discussions for precision molded-part applications.",
-    hotspot: { x: "77.4%", y: "40%" },
-    popover: { x: "62%", y: "12%" },
-  },
-  {
-    id: "south-america",
-    name: "South America",
-    countries: "Brazil / Argentina",
-    note: "Project-based compound communication across South American markets.",
-    hotspot: { x: "37.1%", y: "80%" },
-    popover: { x: "20%", y: "48%" },
-  },
+type RoutePath = MapMarker & {
+  path: string;
+};
+
+const markers: ReadonlyArray<MapMarker> = [
+  { id: "uzbekistan", label: "Uzbekistan", region: "central-asia", x: 56, y: 15 },
+  { id: "kazakhstan", label: "Kazakhstan", region: "central-asia", x: 59, y: 11 },
+  { id: "poland", label: "Poland", region: "europe", x: 46.4, y: 13.2 },
+  { id: "turkey", label: "Turkey", region: "europe", x: 50.1, y: 17.2 },
+  { id: "south-korea", label: "South Korea", region: "east-asia", x: 72.6, y: 16.6 },
+  { id: "japan", label: "Japan", region: "east-asia", x: 76.4, y: 14 },
+  { id: "mexico", label: "Mexico", region: "americas", x: 19, y: 21.7 },
+  { id: "brazil", label: "Brazil", region: "americas", x: 30.3, y: 30.2 },
+  { id: "argentina", label: "Argentina", region: "americas", x: 27.7, y: 35.1 },
 ];
 
-export function ExportMarketsMap() {
-  const [activeRegionId, setActiveRegionId] = useState<Region["id"] | null>(
-    null,
+const origin = { x: 65.6, y: 17.2 };
+
+const routePaths: ReadonlyArray<RoutePath> = markers.map((marker) => {
+  const controlX = (origin.x + marker.x) / 2;
+  const controlY = Math.max(4, Math.min(origin.y, marker.y) - 7);
+
+  return {
+    ...marker,
+    path: `M ${origin.x} ${origin.y} Q ${controlX} ${controlY} ${marker.x} ${marker.y}`,
+  };
+});
+
+type ExportMarketsMapProps = {
+  activeRegion: ExportRegionId | null;
+};
+
+export function ExportMarketsMap({
+  activeRegion,
+}: ExportMarketsMapProps) {
+  const mapRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (!activeRegion) {
+        return;
+      }
+
+      const activeRoutes = gsap.utils.toArray<SVGPathElement>(
+        `.export-map-route[data-region="${activeRegion}"]`,
+      );
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap.set(activeRoutes, { strokeDasharray: 1000, strokeDashoffset: 0 });
+        return;
+      }
+
+      gsap.fromTo(
+        activeRoutes,
+        { strokeDasharray: 1000, strokeDashoffset: 1000 },
+        {
+          strokeDashoffset: 0,
+          duration: 0.68,
+          ease: "power3.out",
+          stagger: 0.06,
+          overwrite: true,
+        },
+      );
+    },
+    { dependencies: [activeRegion], revertOnUpdate: true, scope: mapRef },
   );
-  const activeRegion = regions.find((region) => region.id === activeRegionId);
 
   return (
-    <div className="export-map-experience">
-      <div
-        className="export-map-stage"
-        aria-label="Interactive export map showing supply routes from China to Europe, South Korea, Brazil and Argentina"
-        onMouseLeave={() => setActiveRegionId(null)}
+    <div ref={mapRef} className="export-map-stage">
+      <Image
+        className="export-map-image"
+        src={publicPath("/generated/landing/export-routes-map-v5.png")}
+        alt="World map showing Taiyi production and export regions across Central Asia, Europe, East Asia, and the Americas."
+        width={1983}
+        height={793}
+        sizes="(min-width: 1024px) 76vw, 100vw"
+      />
+
+      <svg
+        className="export-map-markers"
+        data-active-region={activeRegion ?? undefined}
+        viewBox="0 0 100 40"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+        focusable="false"
       >
-        <Image
-          className="export-map-image"
-          src={publicPath("/export-markets-routes-map.svg")}
-          alt="World map showing export routes from China to Europe, South Korea, Brazil and Argentina."
-          width={1280}
-          height={498}
-          sizes="(min-width: 1024px) 50vw, 100vw"
-        />
+        {routePaths.map((route) => {
+          const isActive = activeRegion === route.region;
 
-        {regions.map((region) => (
-          <button
-            key={region.id}
-            className={`export-map-hotspot${
-              activeRegionId === region.id ? " is-active" : ""
-            }`}
-            type="button"
-            style={
-              {
-                "--hotspot-x": region.hotspot.x,
-                "--hotspot-y": region.hotspot.y,
-              } as CSSProperties
-            }
-            aria-pressed={activeRegionId === region.id}
-            aria-label={`Show export details for ${region.name}`}
-            onFocus={() => setActiveRegionId(region.id)}
-            onMouseEnter={() => setActiveRegionId(region.id)}
-            onClick={() =>
-              setActiveRegionId((current) =>
-                current === region.id ? null : region.id,
-              )
-            }
-          >
-            <span className="sr-only">{region.name}</span>
-          </button>
-        ))}
+          return (
+            <g
+              key={route.id}
+              className={`export-map-route-group${isActive ? " is-active" : ""}`}
+              data-region={route.region}
+            >
+              <path
+                className="export-map-route-hit"
+                d={route.path}
+                pathLength="1"
+              />
+              <path
+                className={`export-map-route${isActive ? " is-active" : ""}`}
+                data-region={route.region}
+                d={route.path}
+                pathLength="1"
+              />
+              <circle
+                className={`export-map-destination${isActive ? " is-active" : ""}`}
+                cx={route.x}
+                cy={route.y}
+                r="0.48"
+              />
+            </g>
+          );
+        })}
 
-        {activeRegion && (
-          <div
-            className="export-map-popover"
-            style={
-              {
-                "--popover-x": activeRegion.popover.x,
-                "--popover-y": activeRegion.popover.y,
-              } as CSSProperties
-            }
-            role="status"
-          >
-            <p>{activeRegion.name}</p>
-            <strong>{activeRegion.countries}</strong>
-            <span>{activeRegion.note}</span>
-          </div>
-        )}
-      </div>
-
+        <circle className="export-map-origin" cx={origin.x} cy={origin.y} r="0.72" />
+      </svg>
     </div>
   );
 }
