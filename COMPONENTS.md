@@ -454,6 +454,19 @@ related grades, documents, or another decision section follows the panel.
 **Rule:** this is a specialized contact primitive. Do not reuse its dark Footer
 styling for ordinary content cards.
 
+### Floating Contact Shortcut — Canonical
+
+**Owner:** `src/components/FloatingContact.tsx` and
+`src/components/FloatingContact.module.css`.
+
+**Role:** persistent access to the inquiry form, email, WhatsApp, and phone on
+public routes. Desktop uses a restrained right-edge tab with a left-opening
+panel; mobile uses a compact bottom-right trigger with a bottom panel.
+
+**Rule:** hide the shortcut on `/contact`, never open it automatically, keep it
+below shared navigation layers, and do not replace it with a permanently
+expanded stack of contact icons.
+
 ## Pattern-Only Compositions
 
 The following must share tokens and primitives but remain domain compositions:

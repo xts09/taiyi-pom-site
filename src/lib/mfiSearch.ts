@@ -50,3 +50,37 @@ export const matchesMfiSearch = (
 
   return productMfi >= search.target;
 };
+
+type TechnicalSearchTarget = {
+  fields: readonly string[];
+  mfi?: string;
+};
+
+export const matchesTechnicalQuery = (
+  query: string,
+  target: TechnicalSearchTarget,
+) => {
+  const normalizedQuery = query.trim();
+
+  if (!normalizedQuery) {
+    return true;
+  }
+
+  const mfiSearch = parseMfiSearch(normalizedQuery);
+  const searchTerms = removeMfiSearch(normalizedQuery)
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean);
+  const haystack = target.fields.join(" ").toLowerCase();
+  const matchesTerms = searchTerms.every((term) => haystack.includes(term));
+
+  if (!matchesTerms) {
+    return false;
+  }
+
+  if (mfiSearch === null) {
+    return true;
+  }
+
+  return target.mfi !== undefined && matchesMfiSearch(target.mfi, mfiSearch);
+};

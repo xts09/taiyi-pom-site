@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/ibm-plex-sans/wght.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingContact } from "@/components/FloatingContact";
 import { GoogleTag } from "@/components/GoogleTag";
 import { googleSiteVerification } from "@/lib/googleTracking";
 import {
@@ -109,6 +110,7 @@ export default function RootLayout({
         <div id="main-content" className="flex-1" tabIndex={-1}>
           {children}
         </div>
+        <FloatingContact />
         <Footer />
         <GoogleTag />
       </body>

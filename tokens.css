@@ -396,6 +396,21 @@
     transparent,
     rgba(3, 16, 29, 0.78)
   );
+  --ds-floating-contact-layer: 44;
+  --ds-floating-contact-panel-width: 18rem;
+  --ds-floating-contact-panel-bg: var(--ds-background-surface);
+  --ds-floating-contact-panel-fg: var(--ds-foreground-primary);
+  --ds-floating-contact-panel-radius: var(--ds-radius-panel);
+  --ds-floating-contact-panel-shadow: var(--ds-shadow-panel);
+  --ds-floating-contact-trigger-bg: var(--ds-action-primary);
+  --ds-floating-contact-trigger-bg-hover: var(--ds-button-primary-bg-hover);
+  --ds-floating-contact-trigger-fg: var(--ds-foreground-on-dark);
+  --ds-floating-contact-trigger-shadow: 0 0.75rem 2rem
+    oklch(19% 0.031 254 / 0.2);
+  --ds-floating-contact-action-bg: var(--ds-color-paper-100);
+  --ds-floating-contact-action-bg-hover: var(--ds-color-paper-200);
+  --ds-floating-contact-icon-bg: var(--ds-color-white);
+  --ds-floating-contact-backdrop: oklch(10% 0.025 245 / 0.42);
   --ds-home-hero-title-size: clamp(3.4rem, 4.7vw, 5.6rem);
   --ds-home-hero-title-size-compact: clamp(3.5rem, 7vw, 6rem);
   --ds-home-hero-title-size-medium: clamp(3.8rem, 5.1vw, 4.25rem);

@@ -8,13 +8,13 @@ import {
   createEngineeringTdsSlug,
   engineeringTdsDocuments,
 } from "@/data/engineeringTds";
+import {
+  conductiveCompounds,
+  conductiveSeries,
+} from "@/data/conductiveCompounds";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
-import {
-  matchesMfiSearch,
-  parseMfiSearch,
-  removeMfiSearch,
-} from "@/lib/mfiSearch";
+import { matchesTechnicalQuery } from "@/lib/mfiSearch";
 import {
   createBreadcrumbJsonLd,
   createPageMetadata,
@@ -35,12 +35,6 @@ const technicalDataSheetsMetadata: Metadata = createPageMetadata({
 
 const getSearchValue = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
-
-const getSearchTerms = (value: string) =>
-  removeMfiSearch(value)
-    .toLowerCase()
-    .split(/\s+/)
-    .filter(Boolean);
 
 const resourceTypeForSlug = (slug: string) => {
   if (slug === "faq") {
@@ -103,7 +97,7 @@ const materialDirectionFilter: {
   title: string;
   options: readonly MaterialDirectionOption[];
 } = {
-  title: "Material Family",
+  title: "Material Direction",
   options: [
     { label: "All material families", value: "" },
     {
@@ -175,7 +169,7 @@ const isProductContentType = (resource: string) =>
 
 const searchExamples = [
   { label: "ETM100", href: "/technical-data-sheets?q=ETM100" },
-  { label: "MFI 100", href: "/technical-data-sheets?q=MFI+100" },
+  { label: "MFI ≥ 100", href: "/technical-data-sheets?q=MFI+%3E%3D+100" },
   { label: "TDS", href: "/technical-data-sheets?resource=tds" },
   { label: "Automotive", href: "/technical-data-sheets?q=automotive" },
 ];
@@ -188,13 +182,13 @@ const emptyQuickLinks = [
   },
   {
     label: "Conductive / Antistatic",
-    description: "Review charge-control POM directions and project notes.",
-    href: "/conductive-antistatic-pom",
+    description: "Compare charge-control grades across polymer matrices.",
+    href: "/products/conductive-antistatic-compounds",
   },
   {
     label: "Ultra-High Flow",
-    description: "Search grades around MFI 100 and high-flow molding needs.",
-    href: "/technical-data-sheets?q=MFI+100",
+    description: "Search grades at MFI ≥ 100 and high-flow molding needs.",
+    href: "/technical-data-sheets?q=MFI+%3E%3D+100",
   },
   {
     label: "Resources",
@@ -257,11 +251,6 @@ export default async function TechnicalDataSheetsPage({
   const activeDirectionFilter = materialDirectionFilter.options.find(
     (option) => option.value === activeDirection,
   );
-  const normalizedQuery = query.toLowerCase();
-  const mfiSearch = parseMfiSearch(query);
-  const searchTerms = getSearchTerms(query);
-  const matchesSearchTerms = (haystack: string) =>
-    searchTerms.every((term) => haystack.includes(term));
   const productResourceAllowed = isProductContentType(activeResource);
   const engineeringGradeAllowed = isProductContentType(activeResource);
   const searchableEngineeringTds = engineeringGradeAllowed
@@ -271,20 +260,17 @@ export default async function TechnicalDataSheetsPage({
         const matchesDirection =
           !activeDirectionFilter?.categories ||
           activeDirectionFilter.categories.includes(document.category);
-        const haystack = [
-          document.grade,
-          document.family,
-          document.category,
-          "grade data technical data sheet engineering plastic compound",
-        ]
-          .join(" ")
-          .toLowerCase();
-
         return (
           matchesFamily &&
           matchesDirection &&
-          (!normalizedQuery ||
-            (mfiSearch === null && matchesSearchTerms(haystack)))
+          matchesTechnicalQuery(query, {
+            fields: [
+              document.grade,
+              document.family,
+              document.category,
+              "grade data technical data sheet engineering plastic compound",
+            ],
+          })
         );
       })
     : [];
@@ -294,25 +280,46 @@ export default async function TechnicalDataSheetsPage({
         const matchesDirection =
           !activeDirectionFilter?.categories ||
           activeDirectionFilter.categories.includes(product.category);
-        const haystack = [
-          product.grade,
-          product.title,
-          product.category,
-          product.color,
-          product.description,
-          `MFI ${product.mfi}`,
-          product.features.join(" "),
-          product.applications.join(" "),
-          product.documents.join(" "),
-        ]
-          .join(" ")
-          .toLowerCase();
-
-        const matchesMfi = matchesMfiSearch(product.mfi, mfiSearch);
-        const matchesQuery =
-          !normalizedQuery || (matchesSearchTerms(haystack) && matchesMfi);
+        const matchesQuery = matchesTechnicalQuery(query, {
+          fields: [
+            product.grade,
+            product.title,
+            product.category,
+            product.color,
+            product.description,
+            `MFI ${product.mfi}`,
+            product.features.join(" "),
+            product.applications.join(" "),
+            product.documents.join(" "),
+          ],
+          mfi: product.mfi,
+        });
 
         return matchesFamily && matchesDirection && matchesQuery;
+      })
+    : [];
+  const searchableConductiveCompounds = productResourceAllowed
+    ? conductiveCompounds.filter((compound) => {
+        const matchesFamily =
+          !activeFamily || compound.matrix === activeFamily;
+        const matchesDirection =
+          !activeDirection || activeDirection === "conductive-antistatic";
+        const series = conductiveSeries[compound.technology];
+
+        return (
+          matchesFamily &&
+          matchesDirection &&
+          matchesTechnicalQuery(query, {
+            fields: [
+              compound.grade,
+              compound.matrix,
+              series.shortLabel,
+              series.title,
+              compound.rangeLabel,
+              "conductive antistatic static control charge control grade data",
+            ],
+          })
+        );
       })
     : [];
   const searchableResources =
@@ -320,31 +327,28 @@ export default async function TechnicalDataSheetsPage({
       ? []
       : resourcePages.filter((resource) => {
           const resourceType = resourceTypeForSlug(resource.slug);
-          const haystack = [
-            resource.title,
-            resource.navLabel,
-            resource.description,
-            resource.intro,
-            resource.modules
-              .map((module) =>
-                [
-                  module.title,
-                  module.navLabel,
-                  module.description,
-                  ...(module.points ?? []),
-                  ...(module.faqItems ?? []).flatMap((item) => [
-                    item.question,
-                    item.answer,
-                  ]),
-                ].join(" "),
-              )
-              .join(" "),
-          ]
-            .join(" ")
-            .toLowerCase();
-          const matchesQuery =
-            !normalizedQuery ||
-            (mfiSearch === null && matchesSearchTerms(haystack));
+          const matchesQuery = matchesTechnicalQuery(query, {
+            fields: [
+              resource.title,
+              resource.navLabel,
+              resource.description,
+              resource.intro,
+              resource.modules
+                .map((module) =>
+                  [
+                    module.title,
+                    module.navLabel,
+                    module.description,
+                    ...(module.points ?? []),
+                    ...(module.faqItems ?? []).flatMap((item) => [
+                      item.question,
+                      item.answer,
+                    ]),
+                  ].join(" "),
+                )
+                .join(" "),
+            ],
+          });
           const matchesResource =
             !activeResource || resourceType === activeResource;
 
@@ -353,7 +357,8 @@ export default async function TechnicalDataSheetsPage({
   const totalResults =
     searchableProducts.length +
     searchableResources.length +
-    searchableEngineeringTds.length;
+    searchableEngineeringTds.length +
+    searchableConductiveCompounds.length;
 
   const filterSummary = [
     activeResource &&
@@ -465,19 +470,6 @@ export default async function TechnicalDataSheetsPage({
                 placeholder="POM"
                 className="resource-site-search-input"
               />
-              {activeResource ? (
-                <input type="hidden" name="resource" value={activeResource} />
-              ) : null}
-              {activeFamily ? (
-                <input type="hidden" name="family" value={activeFamily} />
-              ) : null}
-              {activeDirection ? (
-                <input
-                  type="hidden"
-                  name="direction"
-                  value={activeDirection}
-                />
-              ) : null}
               <Button
                 type="submit"
                 variant="primary"
@@ -667,6 +659,30 @@ export default async function TechnicalDataSheetsPage({
                   }
                 />
               ))}
+
+              {searchableConductiveCompounds.map((compound) => {
+                const series = conductiveSeries[compound.technology];
+
+                return (
+                  <DocumentCard
+                    key={`${compound.technology}-${compound.grade}`}
+                    variant="compact-link"
+                    titleLevel={2}
+                    linkTitle
+                    eyebrow="Conductive / Antistatic Grade Directory"
+                    title={`${compound.grade} ${compound.matrix} Compound`}
+                    href="/products/conductive-antistatic-compounds#grade-explorer"
+                    description={`${series.shortLabel} direction with catalogue target band ${compound.rangeLabel}. Confirm the test method, units, and molded-part result before approval.`}
+                    meta={
+                      <>
+                        <span>Family: {compound.matrix}</span>
+                        <span>Technology: {series.shortLabel}</span>
+                        <span>Grade data available on request</span>
+                      </>
+                    }
+                  />
+                );
+              })}
 
               {searchableProducts.map((product) => (
                 <DocumentCard
