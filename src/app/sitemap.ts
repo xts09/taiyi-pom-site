@@ -16,15 +16,12 @@ import { siteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
-const buildTimestamp = new Date();
-
 const createUrlEntry = (
   path: string,
   priority: number,
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"],
 ) => ({
   url: `${siteUrl}${path}`,
-  lastModified: buildTimestamp,
   changeFrequency,
   priority,
 });

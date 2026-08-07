@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { AnalyticsSettingsButton } from "@/components/AnalyticsConsent";
 import { applications } from "@/data/applications";
 import {
   getResourceNavigationGroupPath,
@@ -246,6 +247,7 @@ export function Footer() {
               &copy; 2026 Jiangsu Taiyi Nano Technology Co., Ltd. All rights reserved.
             </p>
             <Link href="/privacy">Privacy Policy</Link>
+            <AnalyticsSettingsButton />
           </div>
         </div>
       </div>

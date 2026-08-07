@@ -76,9 +76,9 @@ export function ExportMarketsMap({
         { strokeDasharray: 1000, strokeDashoffset: 1000 },
         {
           strokeDashoffset: 0,
-          duration: 0.68,
-          ease: "power3.out",
-          stagger: 0.06,
+          duration: 0.95,
+          ease: "power2.out",
+          stagger: 0.1,
           overwrite: true,
         },
       );

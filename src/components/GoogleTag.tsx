@@ -1,8 +1,13 @@
+"use client";
+
 import Script from "next/script";
+import { useGoogleAnalyticsConsent } from "@/lib/googleConsent";
 import { googleTagConfigIds, googleTagId } from "@/lib/googleTracking";
 
 export function GoogleTag() {
-  if (!googleTagId) {
+  const consent = useGoogleAnalyticsConsent();
+
+  if (!googleTagId || consent !== "granted") {
     return null;
   }
 
@@ -23,6 +28,12 @@ export function GoogleTag() {
           __html: `
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+gtag("consent", "update", {
+  analytics_storage: "granted",
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied"
+});
 gtag("js", new Date());
 ${configCalls}
           `.trim(),
@@ -31,4 +42,3 @@ ${configCalls}
     </>
   );
 }
-

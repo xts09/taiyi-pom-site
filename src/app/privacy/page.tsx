@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   },
 };
 
-const updatedDate = "July 28, 2026";
+const updatedDate = "August 8, 2026";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -54,9 +54,9 @@ export default function PrivacyPolicyPage() {
                 rate limiting and abuse prevention.
               </li>
               <li>
-                If Google Analytics or Google Ads tags are enabled, usage data
-                such as browser and device information, approximate location,
-                site interactions, and cookie or similar identifiers.
+                If you accept analytics, Google Analytics usage data such as
+                browser and device information, approximate location, site
+                interactions, and cookie or similar identifiers.
               </li>
             </ul>
           </section>
@@ -71,8 +71,8 @@ export default function PrivacyPolicyPage() {
               </li>
               <li>To operate, secure, diagnose, and improve the website.</li>
               <li>
-                To measure site and inquiry performance when analytics or
-                advertising measurement is enabled.
+                To measure site and inquiry performance when you have accepted
+                analytics.
               </li>
               <li>To comply with applicable legal obligations.</li>
             </ul>
@@ -103,20 +103,21 @@ export default function PrivacyPolicyPage() {
           <section className={styles.section}>
             <h2>Cookies and analytics</h2>
             <p>
-              When Google measurement tags are enabled, Google Analytics may use
-              first-party cookies and collect device, browser, approximate
-              location, and site interaction data. You can block or delete
-              cookies through your browser settings. For more information, see
-              Google&apos;s{" "}
+              Google Analytics stays off unless you select Accept analytics.
+              If accepted, it may use first-party cookies and collect device,
+              browser, approximate location, and site interaction data. We
+              store your choice in your browser so the site can remember it.
+              Advertising storage and personalization remain disabled. You can
+              change or withdraw your choice at any time using Cookie Settings
+              in the footer, or block and delete cookies through your browser
+              settings. For more information, see Google&apos;s{" "}
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"
                 rel="noreferrer"
               >
                 Privacy Policy
-              </a>
-              . This website does not currently present a separate Cookie
-              Settings control.
+              </a>.
             </p>
           </section>
 

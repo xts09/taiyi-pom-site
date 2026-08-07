@@ -5,7 +5,7 @@ import {
   googleAdsLeadConversionLabel,
 } from "@/lib/googleTracking";
 
-type GtagCommand = "event";
+type GtagCommand = "consent" | "event";
 
 type Gtag = (
   command: GtagCommand,
@@ -48,4 +48,3 @@ export function trackInquiryFallback(method: "mailto_draft") {
     method,
   });
 }
-
