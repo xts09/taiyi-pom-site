@@ -41,8 +41,6 @@ export type Certification = {
   standard: string;
   system: string;
   scope: string;
-  certificateNumber: string;
-  validUntil: string;
   imageSrc: string;
   documentHref: string;
 };
@@ -161,8 +159,6 @@ export const certifications = [
     system: "Automotive Quality Management",
     scope:
       "Manufacture of plastic granules, excluding product design under clause 8.3.",
-    certificateNumber: "135347/A/0001/SM/En",
-    validUntil: "October 8, 2027",
     imageSrc: "/certificates/iatf-16949-certificate.webp",
     documentHref: "/certificates/iatf-16949-certificate.pdf",
   },
@@ -170,8 +166,6 @@ export const certifications = [
     standard: "ISO 9001:2015",
     system: "Quality Management",
     scope: "Production of nano-polymer materials (plastic particles).",
-    certificateNumber: "30323Q21228R0S",
-    validUntil: "December 7, 2026",
     imageSrc: "/certificates/iso-9001-certificate.webp",
     documentHref: "/certificates/iso-9001-certificate.pdf",
   },
@@ -180,8 +174,6 @@ export const certifications = [
     system: "Environmental Management",
     scope:
       "Environmental management in sales-related areas of nano-polymer materials (plastic particles).",
-    certificateNumber: "30324E20638R0S",
-    validUntil: "June 20, 2027",
     imageSrc: "/certificates/iso-14001-certificate.webp",
     documentHref: "/certificates/iso-14001-certificate.pdf",
   },
@@ -190,8 +182,6 @@ export const certifications = [
     system: "Occupational Health & Safety",
     scope:
       "Occupational health and safety management in sales-related areas of nano-polymer materials (plastic particles).",
-    certificateNumber: "30324S20638R0S",
-    validUntil: "June 20, 2027",
     imageSrc: "/certificates/iso-45001-certificate.webp",
     documentHref: "/certificates/iso-45001-certificate.pdf",
   },

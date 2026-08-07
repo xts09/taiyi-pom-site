@@ -2754,6 +2754,15 @@
   font-weight: 700;
 }
 
+.home-redesign .certificate-vault-intro {
+  max-width: 72ch;
+  margin: calc(var(--home-space-sm) * -1) 0 var(--home-space-lg);
+  color: var(--home-color-white-muted);
+  font-size: var(--home-text-sm);
+  font-weight: 500;
+  line-height: 1.65;
+}
+
 .home-redesign .certificate-document {
   display: block;
   min-width: 0;
@@ -2763,7 +2772,7 @@
 
 .home-redesign .certificate-document figure {
   display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  grid-template-rows: auto 1fr auto;
   min-width: 0;
   height: 100%;
   margin: 0;
@@ -2821,17 +2830,6 @@
   font-size: var(--home-text-xs);
   font-weight: 600;
   line-height: 1.45;
-}
-
-.home-redesign .certificate-meta {
-  display: grid;
-  gap: var(--home-space-3xs);
-  margin-top: var(--home-space-xs);
-  color: var(--home-color-white-muted);
-  font-size: var(--home-text-xs);
-  font-weight: 600;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
 }
 
 .home-redesign .certificate-document .certificate-view {
@@ -3592,10 +3590,6 @@
 
   .home-redesign .certificate-document figcaption {
     padding-top: var(--home-space-md);
-  }
-
-  .home-redesign .certificate-meta {
-    margin-top: var(--home-space-sm);
   }
 
   .home-redesign .export-market-action {

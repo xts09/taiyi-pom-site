@@ -13,8 +13,6 @@ type QualitySystemsSectionProps = {
       Certification,
       | "standard"
       | "system"
-      | "certificateNumber"
-      | "validUntil"
       | "imageSrc"
       | "documentHref"
     >
@@ -52,6 +50,12 @@ export function QualitySystemsSection({
               <strong>{certificateCount} current certificates</strong>
             </div>
 
+            <p className="certificate-vault-intro">
+              These documents cover the management systems supporting material
+              production, environmental controls, and workplace safety. Open
+              each certificate to review its certified scope.
+            </p>
+
             <div className="certificate-gallery">
               {certifications.map((certificate) => (
                 <Link
@@ -74,10 +78,6 @@ export function QualitySystemsSection({
                       <span>{certificate.system}</span>
                       <strong>{certificate.standard}</strong>
                     </figcaption>
-                    <div className="certificate-meta">
-                      <span>Certificate no. {certificate.certificateNumber}</span>
-                      <span>Valid through {certificate.validUntil}</span>
-                    </div>
                     <span className="certificate-view">
                       View PDF <ArrowUpRight aria-hidden="true" size={14} />
                     </span>
