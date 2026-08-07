@@ -509,12 +509,21 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
-        label: "Conveyor Housing",
+        label: "Conveyor Chain Plate Bracket",
         description:
-          "Check housing stiffness, mounting fit, and low-warpage assembly geometry.",
+          "Review fastening geometry, support stiffness, and repeatable alignment at the chain-plate interface.",
+        image: {
+          src: "/applications/parts/transparent/conveyor-chain-plate-bracket-transparent.png",
+          alt: "Molded conveyor chain plate bracket and support components",
+        },
+      },
+      {
+        label: "Conductive Conveyor Chain Plate",
+        description:
+          "Review static-dissipative material direction, link engagement, and repeatable movement in charge-sensitive conveyor lines.",
         image: {
           src: "/applications/parts/transparent/conveyor-housing-transparent.png",
-          alt: "Black molded conveyor mounting housing",
+          alt: "Black conductive conveyor chain plate component for charge-sensitive handling lines",
         },
       },
     ],
