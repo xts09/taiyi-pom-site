@@ -15,6 +15,7 @@ import {
   availableDocuments,
   certifications,
   companyFigures,
+  companyQualifications,
 } from "@/data/company";
 import { exportRoutes } from "@/data/exportRoutes";
 import {
@@ -407,7 +408,10 @@ export default function Home() {
           </div>
         </section>
 
-        <QualitySystemsSection certifications={certifications} />
+        <QualitySystemsSection
+          certifications={certifications}
+          qualifications={companyQualifications}
+        />
 
         <ExportRoutesSection routes={exportRoutes} />
 

@@ -9,6 +9,11 @@ export type CompanyCapability = {
   description: string;
 };
 
+export type CompanyQualification = {
+  category: string;
+  title: string;
+};
+
 export type FactoryImage = {
   src: string;
   alt: string;
@@ -189,10 +194,19 @@ export const certifications = [
 
 export const availableDocuments = ["TDS", "SDS", "COA", "REACH", "RoHS"];
 
-export const honors = [
-  "National High-Tech Enterprise",
-  "Jiangsu Province High-Tech Enterprise",
-  "Jiangsu Yancheng Plastic R&D Unit",
+export const companyQualifications: CompanyQualification[] = [
+  {
+    category: "Enterprise recognition",
+    title: "National High-Tech Enterprise",
+  },
+  {
+    category: "Provincial designation",
+    title: "Jiangsu Provincial Specialized and Innovative SME",
+  },
+  {
+    category: "Intellectual property",
+    title: "29 Granted Patents",
+  },
 ];
 
 export const industries = [

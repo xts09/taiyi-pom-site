@@ -2271,7 +2271,7 @@
 .home-redesign .qualification-sequence {
   background: var(--home-color-night);
   scroll-margin-top: var(--site-header-height);
-  padding: clamp(2.75rem, 4vw, 4rem) 0;
+  padding: clamp(2.75rem, 4vw, 4rem) 0 clamp(2rem, 2.4vw, 2.5rem);
   color: var(--home-color-white);
 }
 
@@ -2667,7 +2667,7 @@
     "eyebrow ."
     "title description";
   grid-template-rows: auto auto;
-  grid-template-columns: minmax(0, 0.9fr) minmax(24rem, 0.82fr);
+  grid-template-columns: minmax(0, 5fr) minmax(24rem, 7fr);
   column-gap: clamp(2.5rem, 4.2vw, 4.5rem);
   row-gap: var(--home-space-sm);
   align-items: start;
@@ -2709,6 +2709,47 @@
   line-height: 1.65;
 }
 
+.home-redesign .company-credential-register {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(var(--home-space-lg), 2.4vw, 2.5rem);
+}
+
+.home-redesign .company-credential-item {
+  display: grid;
+  min-width: 0;
+  min-height: 9.5rem;
+  gap: var(--home-space-xs);
+  align-content: center;
+  border-radius: var(--ds-radius-panel);
+  background: color-mix(
+    in oklch,
+    var(--home-color-white) 11%,
+    transparent
+  );
+  padding: clamp(var(--home-space-md), 2vw, var(--home-space-lg));
+}
+
+.home-redesign .company-credential-item span {
+  color: var(--home-color-white-muted);
+  font-size: var(--home-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.home-redesign .company-credential-item strong {
+  max-width: 28ch;
+  color: var(--home-color-white);
+  font-family: var(--home-font-display);
+  font-size: clamp(1.15rem, 1.55vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  text-wrap: balance;
+}
+
 .home-redesign .certificate-gallery {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2729,11 +2770,8 @@
   padding: clamp(var(--home-space-md), 2.2vw, 2rem)
     clamp(var(--home-space-lg), 2.8vw, 2.75rem)
     clamp(var(--home-space-lg), 2.8vw, 2.75rem);
-  box-shadow:
-    0 1.75rem 4rem
-      color-mix(in oklch, var(--home-color-night) 74%, transparent),
-    inset 0 1px 0
-      color-mix(in oklch, var(--home-color-white) 8%, transparent);
+  box-shadow: 0 1.75rem 4rem
+    color-mix(in oklch, var(--home-color-night) 74%, transparent);
 }
 
 .home-redesign .certificate-vault-head {
@@ -2846,7 +2884,7 @@
 .home-redesign .quality-systems-section {
   border-top: 0;
   background: var(--home-color-night);
-  padding: clamp(2.9rem, 3.6vw, 3.9rem) 0 clamp(4.25rem, 5vw, 5.5rem);
+  padding: clamp(2rem, 2.4vw, 2.5rem) 0 clamp(4.25rem, 5vw, 5.5rem);
   color: var(--home-color-white);
 }
 
@@ -3567,6 +3605,15 @@
 
   .home-redesign .certification-heading h2 {
     font-size: clamp(2rem, 9vw, 2.75rem);
+  }
+
+  .home-redesign .company-credential-register {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--home-space-md);
+  }
+
+  .home-redesign .company-credential-item {
+    min-height: 8rem;
   }
 
   .home-redesign .certificate-gallery {

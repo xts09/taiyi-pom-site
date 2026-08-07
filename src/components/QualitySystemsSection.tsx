@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 
 import { SectionIntro } from "@/components/SectionIntro";
 import { Card } from "@/components/ui/card";
-import type { Certification } from "@/data/company";
+import type { Certification, CompanyQualification } from "@/data/company";
 import { publicPath } from "@/lib/paths";
 
 type QualitySystemsSectionProps = {
@@ -17,10 +17,12 @@ type QualitySystemsSectionProps = {
       | "documentHref"
     >
   >;
+  qualifications: ReadonlyArray<CompanyQualification>;
 };
 
 export function QualitySystemsSection({
   certifications,
+  qualifications,
 }: QualitySystemsSectionProps) {
   const certificateCount = certifications.length.toString().padStart(2, "0");
 
@@ -34,15 +36,30 @@ export function QualitySystemsSection({
           <SectionIntro
             className="certification-heading home-evidence-intro"
             descriptionClassName="home-evidence-description"
-            description="View our current IATF 16949, ISO 9001, ISO 14001 and ISO 45001 management-system certificates."
-            eyebrow="QUALITY EVIDENCE"
+            description="Recognized enterprise credentials and current management-system certificates provide practical evidence for supplier qualification."
+            eyebrow="COMPANY EVIDENCE"
             eyebrowClassName="home-evidence-eyebrow"
             layout="split"
-            title="Certified Quality Systems"
+            title="Credentials and Quality Systems"
             titleClassName="home-evidence-title"
             titleId="quality-systems-title"
             variant="dark"
           />
+
+          <div
+            className="company-credential-register"
+            aria-label="Company credentials"
+          >
+            {qualifications.map((qualification) => (
+              <div
+                className="company-credential-item"
+                key={qualification.title}
+              >
+                <span>{qualification.category}</span>
+                <strong>{qualification.title}</strong>
+              </div>
+            ))}
+          </div>
 
           <Card className="certificate-vault" variant="evidence">
             <div className="certificate-vault-head">

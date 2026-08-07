@@ -11,9 +11,9 @@ import {
   availableDocuments,
   certifications,
   companyFigures,
+  companyQualifications,
   factoryImages,
   factoryProofRows,
-  honors,
 } from "@/data/company";
 import {
   companyName,
@@ -114,7 +114,7 @@ export default function AboutPage() {
           <AboutCredentials
             availableDocuments={availableDocuments}
             certifications={certifications}
-            honors={honors}
+            qualifications={companyQualifications}
           />
           <AboutOverviewInquiry />
         </div>

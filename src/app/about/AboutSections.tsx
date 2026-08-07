@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import type {
   Certification,
   CompanyFigure,
+  CompanyQualification,
   FactoryImage,
   FactoryProofRow,
 } from "@/data/company";
@@ -38,7 +39,7 @@ type FactoryProofRowsProps = {
 type CredentialSupportProps = {
   availableDocuments: string[];
   certifications: Certification[];
-  honors: string[];
+  qualifications: CompanyQualification[];
 };
 
 type AboutFacilityProps = {
@@ -226,7 +227,7 @@ export function AboutFacility({ figures, rows }: AboutFacilityProps) {
 export function AboutCredentials({
   availableDocuments,
   certifications,
-  honors,
+  qualifications,
 }: CredentialSupportProps) {
   return (
     <section
@@ -235,16 +236,29 @@ export function AboutCredentials({
     >
       <header className={styles.overviewSectionHeader}>
         <h2 id="overview-credentials-title">
-          Certificates and supplier documentation
+          Credentials, certificates and supplier documentation
         </h2>
         <p>
-          Current management-system certificates and material documents for
-          supplier qualification. Availability is confirmed by grade and
-          project.
+          Jiangsu Taiyi Nano Technology Co., Ltd. is recognized as a National
+          High-Tech Enterprise and a Jiangsu Provincial Specialized and
+          Innovative SME, with 29 granted patents. The certificates and
+          material documents below support supplier qualification.
         </p>
       </header>
 
       <div className={styles.overviewCertificateGrid}>
+        <div
+          className={styles.overviewQualificationRegister}
+          aria-label="Company credentials"
+        >
+          {qualifications.map((qualification) => (
+            <div key={qualification.title}>
+              <span>{qualification.category}</span>
+              <strong>{qualification.title}</strong>
+            </div>
+          ))}
+        </div>
+
         {certifications.map((certificate) => (
           <DocumentCard
             key={certificate.standard}
@@ -291,14 +305,6 @@ export function AboutCredentials({
           <h3>Material documents</h3>
           <ul className={styles.overviewDocumentList}>
             {availableDocuments.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <h3>Company qualifications</h3>
-          <ul className={styles.overviewQualificationList}>
-            {honors.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
