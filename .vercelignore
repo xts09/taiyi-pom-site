@@ -1,5 +1,6 @@
 .git
 .next
+.next-*
 .vercel
 node_modules
 .env
@@ -7,6 +8,15 @@ node_modules
 
 .codex-run
 .codex-*.png
+.playwright-cli
+.playwright-mcp
+.gitnexus
+.impeccable
+
+deliverable.md
+notes.md
+task_plan.md
+motion-*.png
 
 taiyi-pom-carbon-promo
 taiyi-pom-promo
@@ -14,4 +24,6 @@ taiyi-pom-wear-promo
 
 coverage
 output
+outputs
+tmp
 *.tsbuildinfo
