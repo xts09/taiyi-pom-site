@@ -48,7 +48,7 @@ export function ResourcePageMotion({ children }: ResourcePageMotionProps) {
     if (reduceMotion) {
       gsap.set(resetTargets, {
         autoAlpha: 1,
-        clearProps: "opacity,visibility,transform,filter",
+        clearProps: "opacity,visibility,transform",
         scale: 1,
         x: 0,
         y: 0,
@@ -56,7 +56,7 @@ export function ResourcePageMotion({ children }: ResourcePageMotionProps) {
 
       if (heroMedia) {
         gsap.set(heroMedia, {
-          clearProps: "opacity,visibility,filter",
+          clearProps: "opacity,visibility",
         });
       }
 
@@ -99,12 +99,11 @@ export function ResourcePageMotion({ children }: ResourcePageMotionProps) {
     if (heroMedia) {
       timeline.fromTo(
         heroMedia,
-        { autoAlpha: 0.22, filter: "blur(5px)" },
+        { autoAlpha: 0.22 },
         {
           autoAlpha: 0.44,
-          clearProps: "opacity,visibility,filter",
+          clearProps: "opacity,visibility",
           duration: 0.62,
-          filter: "blur(0px)",
         },
         heroCard ? "-=0.46" : 0,
       );

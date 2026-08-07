@@ -6,7 +6,6 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
-import { ProductAnimeMotion } from "@/components/ProductAnimeMotion";
 import {
   createEngineeringTdsSlug,
   getEngineeringTdsByProductCategory,
@@ -145,7 +144,6 @@ export function ProductGrid({
 
   return (
     <div className="product-grade-section">
-      {showPomSubcategories ? <ProductAnimeMotion /> : null}
       {showPomSubcategories ? (
         <div id="material-families" className="product-filter-bar products-motion-filter">
           <div className="product-filter-intro">

@@ -17,11 +17,31 @@ export function HomeMotion({ children }: HomeMotionProps) {
   useGSAP(
     (_context, contextSafe) => {
       const root = rootRef.current;
-      const reduceMotion = window.matchMedia(
+      const motionPreference = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
-      ).matches;
+      );
+      const reduceMotion = motionPreference.matches;
+      const heroVideo = root?.querySelector<HTMLVideoElement>(".hero-video");
+
+      const syncHeroVideoMotion = () => {
+        if (!heroVideo) {
+          return;
+        }
+
+        if (motionPreference.matches) {
+          heroVideo.pause();
+          return;
+        }
+
+        heroVideo.play().catch(() => {
+          // Autoplay can be blocked by the browser; the poster remains as fallback.
+        });
+      };
+
+      motionPreference.addEventListener("change", syncHeroVideoMotion);
 
       if (reduceMotion) {
+        syncHeroVideoMotion();
         root?.classList.remove("is-home-motion-ready");
         root
           ?.querySelector<HTMLElement>(".selection-corridor")
@@ -43,7 +63,9 @@ export function HomeMotion({ children }: HomeMotionProps) {
           scaleX: 1,
           scaleY: 1,
         });
-        return;
+        return () => {
+          motionPreference.removeEventListener("change", syncHeroVideoMotion);
+        };
       }
 
       const safeCallback = contextSafe ?? ((fn) => fn);
@@ -93,18 +115,8 @@ export function HomeMotion({ children }: HomeMotionProps) {
         playOnce();
       };
 
-      const heroVideo = root?.querySelector<HTMLVideoElement>(".hero-video");
       root?.classList.add("is-home-motion-ready");
-
-      if (heroVideo) {
-        const playHeroVideo = safeCallback(() => {
-          heroVideo.play().catch(() => {
-            // Autoplay can be blocked by the browser; the poster remains as fallback.
-          });
-        });
-
-        playHeroVideo();
-      }
+      syncHeroVideoMotion();
 
       const productSection =
         rootRef.current?.querySelector<HTMLElement>(".product-current");
@@ -394,6 +406,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
       ScrollTrigger.update();
 
       return () => {
+        motionPreference.removeEventListener("change", syncHeroVideoMotion);
         viewportTriggerCleanups.forEach((cleanup) => cleanup());
 
         root?.classList.remove("is-home-motion-ready");

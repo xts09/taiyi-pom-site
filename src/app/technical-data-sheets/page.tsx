@@ -467,7 +467,7 @@ export default async function TechnicalDataSheetsPage({
                 type="search"
                 defaultValue={query}
                 aria-label="Search technical resources"
-                placeholder="POM"
+                placeholder="e.g. POM, R35…"
                 className="resource-site-search-input"
               />
               <Button

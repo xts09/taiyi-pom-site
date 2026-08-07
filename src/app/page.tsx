@@ -186,7 +186,6 @@ export default function Home() {
         <section className="home-hero relative isolate overflow-hidden">
           <video
             className="hero-video absolute inset-0 -z-20 h-full w-full object-cover"
-            autoPlay
             loop
             muted
             playsInline
