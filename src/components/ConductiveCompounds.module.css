@@ -54,7 +54,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: 0.76rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -69,7 +69,7 @@
   margin: 1.2rem 0 1.35rem;
   font-family: var(--font-display);
   font-size: 4.35rem;
-  font-weight: 690;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.02;
 }
@@ -79,7 +79,7 @@
   margin: 0;
   color: rgba(241, 245, 249, 0.88);
   font-size: 1.13rem;
-  font-weight: 430;
+  font-weight: 400;
   line-height: 1.68;
 }
 
@@ -107,7 +107,7 @@
   border-radius: 0.38rem;
   font-family: var(--font-display);
   font-size: 0.95rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.2;
   text-align: center;
   transition:
@@ -180,7 +180,7 @@
   color: #07111f;
   font-family: var(--font-display);
   font-size: 2.2rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -188,7 +188,7 @@
   margin-top: 0.48rem;
   color: #5a6877;
   font-size: 0.85rem;
-  font-weight: 560;
+  font-weight: 600;
 }
 
 .overviewBand,
@@ -217,7 +217,7 @@
   color: #07111f;
   font-family: var(--font-display);
   font-size: 2.45rem;
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.08;
 }
@@ -256,7 +256,7 @@
   color: #8a98a7;
   font-family: var(--font-display);
   font-size: 0.8rem;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .seriesTag {
@@ -268,7 +268,7 @@
   color: #101827;
   font-family: var(--font-display);
   font-size: 1.55rem;
-  font-weight: 660;
+  font-weight: 600;
   letter-spacing: 0;
   line-height: 1.18;
 }
@@ -350,7 +350,7 @@
   color: #ffffff;
   font-family: var(--font-display);
   font-size: 1.8rem;
-  font-weight: 680;
+  font-weight: 700;
 }
 
 .codeAnatomy > div span {
@@ -402,7 +402,7 @@
   cursor: pointer;
   font-family: var(--font-display);
   font-size: 0.86rem;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .segmentedControl button[aria-pressed="true"] {
@@ -431,7 +431,7 @@
 .filters label > span:first-child {
   color: #465568;
   font-size: 0.72rem;
-  font-weight: 650;
+  font-weight: 600;
   text-transform: uppercase;
 }
 
@@ -483,6 +483,53 @@
   text-align: right;
 }
 
+.matrixGroups {
+  display: grid;
+  gap: 2.4rem;
+}
+
+.matrixGroup {
+  scroll-margin-top: calc(var(--site-header-height) + 1rem);
+}
+
+.matrixGroupHeader {
+  display: flex;
+  gap: 1.5rem;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid #cbd5dd;
+}
+
+.matrixGroupHeader p {
+  margin: 0 0 0.4rem;
+  color: #0b67b2;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.matrixGroupHeader h3 {
+  margin: 0;
+  color: #07111f;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.matrixGroupHeader > span {
+  flex: 0 0 auto;
+  color: #526174;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
 .tableWrap {
   overflow: hidden;
   border: 1px solid #d1d9e0;
@@ -508,7 +555,7 @@
   background: #e7edf1;
   color: #425163;
   font-size: 0.7rem;
-  font-weight: 680;
+  font-weight: 700;
   text-transform: uppercase;
 }
 
@@ -549,12 +596,12 @@
   color: #101827;
   font-family: var(--font-display);
   font-size: 0.94rem;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .tableWrap td a {
   color: #0b67b2;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .tableWrap td a:hover,
@@ -577,7 +624,7 @@
   align-items: center;
   border-radius: 0.28rem;
   font-size: 0.7rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1.15;
 }
 
@@ -627,7 +674,7 @@
 .reviewList strong {
   color: #101827;
   font-family: var(--font-display);
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .reviewList span {
@@ -855,6 +902,20 @@
     text-align: left;
   }
 
+  .matrixGroups {
+    gap: 2rem;
+  }
+
+  .matrixGroupHeader {
+    display: grid;
+    gap: 0.45rem;
+    align-items: start;
+  }
+
+  .matrixGroupHeader > span {
+    justify-self: start;
+  }
+
   .tableWrap {
     overflow: visible;
     border: 0;
@@ -901,7 +962,7 @@
     color: #718096;
     content: attr(data-label);
     font-size: 0.64rem;
-    font-weight: 680;
+    font-weight: 700;
     text-transform: uppercase;
   }
 

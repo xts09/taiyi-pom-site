@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { conductiveCompounds } from "@/data/conductiveCompounds";
 import { products } from "@/data/products";
 import { engineeringTdsDocuments } from "@/data/engineeringTds";
 import { ActionPanel } from "@/components/ActionPanel";
@@ -15,7 +16,7 @@ import {
 
 const productDirectoryTitle = "Engineering Plastic Compounds | Taiyi Polymer";
 const productDirectoryDescription =
-  "Browse Taiyi Polymer modified POM compounds, base POM resin, and selected PA6, PA66, and PPA compound families.";
+  "Browse Taiyi Polymer modified POM compounds, base POM resin, selected PA6, PA66, and PPA families, plus a cross-material conductive and antistatic compound directory.";
 
 export const metadata: Metadata = createPageMetadata({
   title: productDirectoryTitle,
@@ -82,6 +83,16 @@ const productFamilies = [
       "PPA compound options for higher-temperature molded parts that need stiffness and dimensional stability.",
     href: "/products/categories/ppa-compound",
     metricValue: engineeringGradeCount("PPA"),
+    metricLabel: "listed grades",
+  },
+  {
+    number: "06",
+    title: "Conductive & Antistatic Compounds",
+    label: "Cross-Material Directory",
+    description:
+      "Compare CNT antistatic and carbon-fiber conductive directions across POM, ABS, PC, PA6, PA66, PPS, TPU, and other matrices.",
+    href: "/products/conductive-antistatic-compounds",
+    metricValue: conductiveCompounds.length,
     metricLabel: "listed grades",
   },
 ];

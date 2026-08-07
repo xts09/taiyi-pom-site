@@ -18,7 +18,7 @@
 .eyebrow {
   color: var(--document-label-fg, var(--ds-document-label-fg));
   font-size: var(--document-label-size, 0.75rem);
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -26,7 +26,7 @@
   color: var(--document-title-fg, var(--ds-document-title-fg));
   font-family: var(--ds-font-display);
   font-size: var(--document-title-size, 1.25rem);
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.2;
 }
@@ -55,7 +55,7 @@
   gap: var(--document-meta-gap, 0.45rem 1.1rem);
   color: var(--document-body-fg, var(--ds-document-body-fg));
   font-size: var(--document-meta-size, 0.82rem);
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .action {
@@ -142,7 +142,7 @@
   color: var(--document-row-title-fg, #0077a5);
   font-family: var(--ds-font-body);
   font-size: 1.12rem;
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.34;
 }

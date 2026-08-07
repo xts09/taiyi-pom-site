@@ -135,7 +135,7 @@
   padding-left: 0.85rem;
   color: #245579;
   font-size: 0.76rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.4;
 }
 
@@ -219,7 +219,7 @@
   margin-top: 0.65rem;
   color: #245579;
   font-size: 0.78rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.4;
 }
 
@@ -291,7 +291,7 @@
 
 .matrixRow > span:first-child {
   color: #172033;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .matrixRow > span:last-child {
@@ -304,7 +304,7 @@
 .matrixHead > span:last-child {
   color: #657386;
   font-size: 0.73rem;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 @media (max-width: 767px) {
@@ -417,7 +417,7 @@
     color: #657386;
     content: attr(data-label);
     font-size: 0.73rem;
-    font-weight: 650;
+    font-weight: 600;
     line-height: 1.45;
   }
 

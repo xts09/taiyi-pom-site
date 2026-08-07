@@ -18,19 +18,19 @@ colors:
   quiet-rule: "rgba(15, 23, 42, 0.13)"
 typography:
   display:
-    fontFamily: '"Archivo Variable", "IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
+    fontFamily: '"IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
     fontSize: "clamp(3rem, 5.4vw, 5rem)"
     fontWeight: 700
     lineHeight: 0.96
     letterSpacing: "-0.03em"
   headline:
-    fontFamily: '"Archivo Variable", "IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
+    fontFamily: '"IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
     fontSize: "clamp(2rem, 3.2vw, 3.35rem)"
     fontWeight: 700
     lineHeight: 1
     letterSpacing: "-0.03em"
   title:
-    fontFamily: '"Archivo Variable", "IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
+    fontFamily: '"IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
     fontSize: "1.25rem"
     fontWeight: 600
     lineHeight: 1.2
@@ -120,7 +120,7 @@ components:
 
 The site should feel like a well-run materials laboratory connected directly to a real production floor. It is precise, evidence-led, calm, and physical. Real factory, laboratory, certificate, pellet, molded-part, and technical-document imagery carries more authority than decorative graphics.
 
-The existing industrial identity remains the foundation: a near-white technical canvas, deep navy evidence surfaces, Taiyi cobalt interactions, restrained satin texture, Archivo display type, IBM Plex Sans body type, and a shared wide content rail. The system consolidates these choices rather than replacing them.
+The existing industrial identity remains the foundation: a near-white technical canvas, deep navy evidence surfaces, Taiyi cobalt interactions, restrained satin texture, one IBM Plex Sans voice across display, navigation, and body roles, and a shared wide content rail. The system consolidates these choices rather than replacing them.
 
 Cards, shadows, dark sections, and texture must explain hierarchy. They are not default decoration. Pages should first establish one clear reading path, then use components only where grouping or interaction earns them.
 
@@ -133,6 +133,29 @@ Cards, shadows, dark sections, and texture must explain hierarchy. They are not 
 - Compact, readable typography with natural wrapping.
 - Shared rails, spacing rhythm, and component states.
 
+## Page Family Language
+
+The site uses a shared foundation, not one visual template. Each route family
+keeps the composition that best explains its job while reusing the same rail,
+type, actions, and evidence rules.
+
+- **Company / About:** identity, factory scale, real manufacturing and testing
+  proof, credentials, then one application inquiry. `/about` is the single
+  Company destination; its `#manufacturing` section owns production, warehouse,
+  and testing evidence.
+- **Products:** comparison and grade-selection workbench. Product data and
+  technical documents take priority over factory storytelling.
+- **Applications:** part-first decision support. Typical components, operating
+  conditions, and candidate-material direction carry the page.
+- **Resources:** reading and document discovery. Editorial hierarchy and clear
+  metadata lead; promotional visual treatment stays restrained.
+- **Conversion:** direct, low-friction forms and contact support, with only the
+  evidence needed to build confidence in the next action.
+
+Family consistency is judged by visible composition and information rhythm,
+not by duplicating every section. A detailed page should extend its overview's
+logic rather than introduce a disconnected surface language.
+
 ## External Reference Synthesis
 
 Taiyi may borrow useful patterns from the `awesome-design-md` collection, but
@@ -141,8 +164,8 @@ the project does not copy another brand's identity. The reference blend is
 
 - **IBM influence — structure:** Use Carbon-like discipline for data hierarchy,
   modular grids, restrained labels, and clear separation between product
-  explanation and technical evidence. Keep the existing Archivo / IBM Plex Sans
-  pairing rather than importing IBM's proprietary brand system.
+  explanation and technical evidence. Use IBM Plex Sans as Taiyi's unified
+  interface typeface without importing IBM's proprietary brand system.
 - **HP influence — material sequence:** Keep the near-white technical canvas,
   one strong blue interaction signal, and deep navy closing or proof surfaces.
   Angular or chevron-like motifs are allowed only when they explain a real
@@ -209,11 +232,11 @@ The palette is cool, technical, and industrial. Taiyi cobalt is the only primary
 
 ## Typography
 
-**Display Font:** Archivo Variable with IBM Plex Sans Variable, Noto Sans SC, and system fallbacks.
+**Display Font:** IBM Plex Sans Variable with Noto Sans SC and system fallbacks.
 
 **Body Font:** IBM Plex Sans Variable with Noto Sans SC and system fallbacks.
 
-**Character:** Archivo provides compact industrial authority for headings. IBM Plex Sans keeps navigation, body copy, data labels, and forms practical and internationally readable.
+**Character:** IBM Plex Sans provides one precise industrial voice across headings, navigation, body copy, data labels, and forms. Hierarchy comes from size, spacing, and the controlled weight roles below rather than from switching families.
 
 ### Hierarchy
 
@@ -225,7 +248,9 @@ The palette is cool, technical, and industrial. Taiyi cobalt is the only primary
 
 **The Natural Wrap Rule.** Adjust the column or type scale before forcing a line break. A title should never be split simply to create a composition.
 
-**The One Display Voice Rule.** Headings use Archivo. Do not solve a local layout problem by adding another font or decorative italic family.
+**The One Display Voice Rule.** All proportional interface text uses IBM Plex Sans. Do not solve a local layout problem by adding another font or decorative italic family. Monospace is reserved for genuine identifiers, measurements, and technical data.
+
+**The Four Weight Rule.** Use only 400 for body copy, 500 for emphasized body and navigation, 600 for titles, labels, and controls, and 700 for display and headline roles. Do not introduce intermediate variable-font weights.
 
 ## Layout
 
@@ -505,7 +530,7 @@ For every visual change:
 
 ### Do:
 
-- **Do** preserve the current PLATFORM logo, Archivo and IBM Plex type pairing, 92rem rail, industrial navy, near-white canvas, and Taiyi cobalt interaction language.
+- **Do** preserve the current PLATFORM logo, unified IBM Plex Sans type system, 92rem rail, industrial navy, near-white canvas, and Taiyi cobalt interaction language.
 - **Do** use real production, laboratory, certificate, material, and molded-part imagery as evidence.
 - **Do** create hierarchy through spacing, typography, surface contrast, and deliberate dark proof bands.
 - **Do** keep headings concise and naturally wrapped at desktop and mobile widths.

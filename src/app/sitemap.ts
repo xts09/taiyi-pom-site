@@ -33,11 +33,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     createUrlEntry("", 1, "weekly"),
     createUrlEntry("/products", 0.9, "weekly"),
+    createUrlEntry("/products/conductive-antistatic-compounds", 0.8, "weekly"),
     createUrlEntry("/applications", 0.9, "weekly"),
     createUrlEntry("/resources", 0.85, "weekly"),
     createUrlEntry("/technical-data-sheets", 0.8, "weekly"),
     createUrlEntry("/about", 0.6, "monthly"),
-    createUrlEntry("/about/manufacturing-capabilities", 0.6, "monthly"),
     createUrlEntry("/contact", 0.6, "monthly"),
   ];
 

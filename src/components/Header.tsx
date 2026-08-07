@@ -60,6 +60,11 @@ const productCategoryLinks = [
     href: getCategoryPath("Base POM Resin"),
     eyebrow: "Supplement",
   },
+  {
+    label: "Conductive & Antistatic Compounds",
+    href: "/products/conductive-antistatic-compounds",
+    eyebrow: "Cross-material",
+  },
 ];
 
 const navItems = [
@@ -69,28 +74,14 @@ const navItems = [
   },
 ];
 
-const aboutLinks = [
-  {
-    label: "Company Overview",
-    description: "Who we are, factory scale, certifications, and document support.",
-    href: "/about",
-  },
-  {
-    label: "Manufacturing",
-    description: "Production lines, warehousing, equipment, and project evaluation.",
-    href: "/about/manufacturing-capabilities",
-  },
-];
-
-type MegaValue = "" | "products" | "applications" | "resources" | "about";
+type MegaValue = "" | "products" | "applications" | "resources";
 
 const HEADER_SURFACE_HYSTERESIS = 8;
 
 const isMegaValue = (value: string): value is Exclude<MegaValue, ""> =>
   value === "products" ||
   value === "applications" ||
-  value === "resources" ||
-  value === "about";
+  value === "resources";
 
 const isNodeTarget = (target: EventTarget | null): target is Node =>
   target instanceof Node;
@@ -367,8 +358,8 @@ export function Header() {
                         <div>
                           <span>Product Categories</span>
                           <p>
-                            Start with POM, then compare selected PA6, PA66,
-                            and PPA compound families.
+                            Start with a material family or compare conductive
+                            and antistatic grades across matrices.
                           </p>
                         </div>
                         <Link
@@ -479,10 +470,6 @@ export function Header() {
                       <div className="mega-menu-panel-head">
                         <div>
                           <span>Technical Resources</span>
-                          <p>
-                            Find selection guides, processing notes, and grade
-                            data without scanning every individual article.
-                          </p>
                         </div>
                         <Link
                           href="/resources"
@@ -503,14 +490,8 @@ export function Header() {
                             className="mega-simple-link"
                             onClick={closeMega}
                           >
-                            <span className="mega-resource-group-title">
-                              {group.navigationLabel}
-                            </span>
                             <span className="mega-simple-title mega-nav-label">
                               {group.title}
-                            </span>
-                            <span className="mega-simple-description">
-                              {group.description}
                             </span>
                           </Link>
                         ))}
@@ -520,52 +501,18 @@ export function Header() {
                 </NavigationMenu.Content>
               </NavigationMenu.Item>
 
-              <NavigationMenu.Item value="about">
-                <NavigationMenu.Trigger
-                  className="nav-link nav-trigger transition"
-                  onPointerEnter={() => updateMegaValue("about")}
-                  onFocus={() => updateMegaValue("about")}
-                  aria-current={isCurrentSection("/about") ? "page" : undefined}
-                >
-                  About Us
-                </NavigationMenu.Trigger>
-                <NavigationMenu.Content className="mega-menu mega-menu-content about-menu">
-                  {activeMega === "about" ? (
-                    <div
-                      ref={syncActiveMegaHeight}
-                      className="mega-menu-inner mega-menu-inner-simple"
-                    >
-                      <div className="mega-menu-panel-head">
-                        <div>
-                          <span>Company</span>
-                          <p>
-                            Company profile, manufacturing proof,
-                            certifications, and document support.
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="mega-simple-grid mega-simple-grid-about">
-                        {aboutLinks.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={item.href}
-                            prefetch={false}
-                            className="mega-simple-link"
-                            onClick={closeMega}
-                          >
-                            <span className="mega-simple-title mega-nav-label">
-                              {item.label}
-                            </span>
-                            <span className="mega-simple-description">
-                              {item.description}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </NavigationMenu.Content>
+              <NavigationMenu.Item>
+                <NavigationMenu.Link asChild>
+                  <Link
+                    href="/about"
+                    prefetch={false}
+                    className="nav-link transition"
+                    aria-current={isCurrentSection("/about") ? "page" : undefined}
+                    onClick={closeMega}
+                  >
+                    About Us
+                  </Link>
+                </NavigationMenu.Link>
               </NavigationMenu.Item>
 
               {navItems.map((item) => (
@@ -725,30 +672,14 @@ export function Header() {
               </div>
             </details>
 
-            <details className="mobile-product-group mobile-menu-section py-3">
-              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
-                <span>About Us</span>
-                <span aria-hidden="true">+</span>
-              </summary>
-
-              <div className="mt-3 space-y-1 pl-4">
-                {aboutLinks.map((item, index) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    prefetch={false}
-                    className={
-                      index === 0
-                        ? "mobile-product-list mb-2 block py-1"
-                        : "mobile-menu-sub-link block py-2"
-                    }
-                    aria-current={pathname === item.href ? "page" : undefined}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </details>
+            <Link
+              href="/about"
+              prefetch={false}
+              className="mobile-menu-primary-link py-3"
+              aria-current={isCurrentSection("/about") ? "page" : undefined}
+            >
+              About Us
+            </Link>
 
             <Link
               href="/technical-data-sheets"

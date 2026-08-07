@@ -92,6 +92,10 @@
   --ds-font-body: var(--font-geist-sans);
   --ds-font-nav: var(--font-nav);
   --ds-font-mono: var(--font-geist-mono);
+  --ds-font-weight-regular: 400;
+  --ds-font-weight-medium: 500;
+  --ds-font-weight-semibold: 600;
+  --ds-font-weight-bold: 700;
   --ds-section-space-sm: var(--ds-space-12);
   --ds-section-space-md: var(--ds-space-18);
   --ds-section-space-lg: var(--ds-space-28);
@@ -105,7 +109,7 @@
   --ds-button-secondary-border: rgba(15, 23, 42, 0.18);
   --ds-button-secondary-border-hover: rgba(11, 95, 184, 0.38);
   --ds-button-secondary-fg-hover: var(--ds-action-primary);
-  --ds-button-secondary-font-weight: 620;
+  --ds-button-secondary-font-weight: var(--ds-font-weight-semibold);
   --ds-button-product-hero-primary-bg: var(--ds-color-product-blue-600);
   --ds-button-product-hero-primary-bg-hover: var(--ds-color-product-blue-700);
   --ds-button-product-hero-primary-border: var(
@@ -121,7 +125,7 @@
   );
   --ds-button-product-hero-height: 3.15rem;
   --ds-button-product-hero-font-size: 0.98rem;
-  --ds-button-product-hero-font-weight: 780;
+  --ds-button-product-hero-font-weight: var(--ds-font-weight-bold);
   --ds-button-product-hero-primary-padding-inline: 2rem;
   --ds-button-product-hero-secondary-padding-inline: 1.7rem;
   --ds-button-product-detail-primary-bg: var(--ds-color-product-blue-border);
@@ -141,7 +145,7 @@
   --ds-button-product-detail-padding-block: 0.75rem;
   --ds-button-product-detail-padding-inline: 1.05rem;
   --ds-button-product-detail-font-size: 0.9rem;
-  --ds-button-product-detail-font-weight: 640;
+  --ds-button-product-detail-font-weight: var(--ds-font-weight-semibold);
   --ds-button-application-hero-primary-bg: var(--ds-color-product-blue-600);
   --ds-button-application-hero-primary-bg-hover: var(
     --ds-color-product-blue-700
@@ -161,7 +165,7 @@
   --ds-button-application-hero-padding-block: 0.78rem;
   --ds-button-application-hero-padding-inline: 1.35rem;
   --ds-button-application-hero-font-size: 1rem;
-  --ds-button-application-hero-font-weight: 780;
+  --ds-button-application-hero-font-weight: var(--ds-font-weight-bold);
   --ds-button-resource-article-bg: var(--ds-color-white);
   --ds-button-resource-article-bg-hover: var(--ds-color-sky-50);
   --ds-button-resource-article-fg: var(--ds-color-slate-1000);
@@ -170,7 +174,7 @@
   --ds-button-resource-article-padding-block: 0.75rem;
   --ds-button-resource-article-padding-inline: 1.25rem;
   --ds-button-resource-article-font-size: 0.875rem;
-  --ds-button-resource-article-font-weight: 600;
+  --ds-button-resource-article-font-weight: var(--ds-font-weight-semibold);
   --ds-button-resource-index-primary-bg: var(--ds-color-resource-cyan-400);
   --ds-button-resource-index-primary-bg-hover: var(
     --ds-color-resource-cyan-300
@@ -192,7 +196,7 @@
   --ds-button-resource-index-padding-block: 0.72rem;
   --ds-button-resource-index-padding-inline: 1.15rem;
   --ds-button-resource-index-font-size: 0.9rem;
-  --ds-button-resource-index-font-weight: 650;
+  --ds-button-resource-index-font-weight: var(--ds-font-weight-semibold);
   --ds-button-inverse-bg: var(--ds-color-white);
   --ds-button-inverse-bg-hover: var(--ds-color-paper-blue-50);
   --ds-button-inverse-fg: var(--ds-color-ink-975);
@@ -207,7 +211,7 @@
   --ds-button-height: 3rem;
   --ds-button-padding-inline: 1.15rem;
   --ds-button-font-size: 0.875rem;
-  --ds-button-font-weight: 640;
+  --ds-button-font-weight: var(--ds-font-weight-semibold);
   --ds-input-bg: var(--ds-background-surface);
   --ds-input-fg: var(--ds-foreground-primary);
   --ds-input-border: var(--ds-border-subtle);
@@ -247,17 +251,17 @@
   --ds-page-hero-description-size: clamp(1rem, 1.2vw, 1.16rem);
   --ds-page-hero-copy-gap: var(--ds-space-4);
   --ds-product-hero-eyebrow-size: var(--ds-text-xs);
-  --ds-product-hero-eyebrow-weight: 700;
+  --ds-product-hero-eyebrow-weight: var(--ds-font-weight-bold);
   --ds-product-hero-eyebrow-tracking: 0.08em;
   --ds-product-hero-title-size: clamp(2.25rem, 3.75vw, 3.75rem);
-  --ds-product-hero-title-weight: 700;
+  --ds-product-hero-title-weight: var(--ds-font-weight-bold);
   --ds-product-hero-title-leading: 0.98;
   --ds-product-hero-title-tracking: -0.025em;
   --ds-product-hero-body-size: clamp(1rem, 1.12vw, 1.125rem);
   --ds-product-hero-body-leading: 1.65;
   --ds-product-hero-body-measure: 65ch;
   --ds-product-hero-subtitle-size: clamp(1.125rem, 1.5vw, 1.35rem);
-  --ds-product-hero-subtitle-weight: 600;
+  --ds-product-hero-subtitle-weight: var(--ds-font-weight-semibold);
   --ds-product-hero-subtitle-leading: 1.35;
   --ds-product-hero-surface-bg: var(--ds-background-surface);
   --ds-product-hero-surface-border: rgba(15, 23, 42, 0.1);
@@ -277,7 +281,7 @@
   --ds-application-hero-title-leading: var(--ds-product-hero-title-leading);
   --ds-application-hero-title-tracking: var(--ds-product-hero-title-tracking);
   --ds-application-hero-body-size: var(--ds-product-hero-body-size);
-  --ds-application-hero-body-weight: 400;
+  --ds-application-hero-body-weight: var(--ds-font-weight-regular);
   --ds-application-hero-body-leading: var(--ds-product-hero-body-leading);
   --ds-application-hero-body-measure: var(--ds-product-hero-body-measure);
   --ds-application-hero-surface-bg: var(--ds-product-hero-surface-bg);
@@ -296,7 +300,7 @@
   --ds-resource-hero-title-leading: var(--ds-product-hero-title-leading);
   --ds-resource-hero-title-tracking: var(--ds-product-hero-title-tracking);
   --ds-resource-hero-body-size: var(--ds-product-hero-body-size);
-  --ds-resource-hero-body-weight: 400;
+  --ds-resource-hero-body-weight: var(--ds-font-weight-regular);
   --ds-resource-hero-body-leading: var(--ds-product-hero-body-leading);
   --ds-resource-hero-body-measure: var(--ds-product-hero-body-measure);
   --ds-resource-hero-evidence-bg: var(--ds-evidence-surface);
@@ -324,7 +328,7 @@
     );
   --ds-resource-index-task-seam: rgba(15, 23, 42, 0.05);
   --ds-resource-article-title-size: var(--ds-section-intro-title-size-display);
-  --ds-resource-article-title-weight: 700;
+  --ds-resource-article-title-weight: var(--ds-font-weight-bold);
   --ds-resource-article-title-leading: 1;
   --ds-resource-article-title-tracking: -0.025em;
   --ds-resource-article-intro-size: var(--ds-product-hero-body-size);

@@ -24,6 +24,14 @@ export type FactoryProofRow = {
   imageSrc: string;
   imageAlt: string;
   imageLabel: string;
+  manufacturingImageSrc?: string;
+  manufacturingImageAlt?: string;
+  manufacturingImageLabel?: string;
+  supportingImages?: Array<{
+    src: string;
+    alt: string;
+    label: string;
+  }>;
   imageSide: "left" | "right";
   imageVariant?: "warehouse";
   points: string[];
@@ -40,19 +48,23 @@ export type Certification = {
 };
 
 export const companyFigures: CompanyFigure[] = [
-  { label: "Annual Capacity", value: "60,000", note: "Tons / year" },
   {
-    label: "Experience",
+    label: "Annual Compound Capacity",
+    value: "60,000",
+    note: "Metric tons per year",
+  },
+  {
+    label: "Years in Operation",
     value: "23+",
-    note: "Years of experience",
+    note: "Manufacturing since 2003",
   },
   {
-    label: "Production Lines",
+    label: "Twin-Screw Lines",
     value: "15",
-    note: "Twin-screw extrusion lines",
+    note: "In-house extrusion lines",
   },
-  { label: "Factory Area", value: "25,000 m2", note: "Building area" },
-  { label: "Testing Equipment", value: "32", note: "Sets" },
+  { label: "Facility Area", value: "25,000 m2", note: "Square metres" },
+  { label: "Test Equipment", value: "32", note: "In-house units" },
 ];
 
 export const companyCapabilities: CompanyCapability[] = [
@@ -83,46 +95,62 @@ export const companyOverview = [
 
 export const factoryProofRows: FactoryProofRow[] = [
   {
-    title: "Production & Warehousing",
-    eyebrow: "Factory Base",
+    title: "Production & Batch Coordination",
+    eyebrow: "Repeat Supply",
     description:
-      "Production and warehouse coordination are handled at the Yancheng site to support repeat industrial supply and batch documentation.",
+      "Production, warehouse handling and batch documentation are coordinated at the Yancheng site for repeat industrial orders.",
     imageSrc: "/factory-warehouse-inventory.jpg",
     imageAlt: "Taiyi Polymer packaged material inventory and warehouse handling area",
     imageLabel: "Warehouse Inventory",
     imageSide: "right",
     imageVariant: "warehouse",
     points: [
-      "Production base in Yancheng, Jiangsu, China",
+      "Production and warehousing at the Yancheng site",
       "Warehouse handling coordinated with batch documentation",
     ],
   },
   {
-    title: "Twin-Screw Compounding",
-    eyebrow: "Compounding",
+    title: "In-House Compounding",
+    eyebrow: "Twin-Screw Production",
     description:
-      "In-house twin-screw lines are used to compound trial materials, review practical adjustments, and prepare confirmed grades for repeat production.",
+      "Fifteen twin-screw extrusion lines are used to prepare trial compounds and reproduce confirmed grades for repeat production.",
     imageSrc: "/factory-extrusion.png",
     imageAlt: "Taiyi Polymer twin-screw extrusion production line",
     imageLabel: "Extrusion Lines",
     imageSide: "left",
     points: [
       "15 in-house twin-screw extrusion lines",
-      "Sample evaluation before repeat production",
+      "Trial batches prepared before repeat production",
     ],
   },
   {
-    title: "Testing and Documentation",
-    eyebrow: "Project Review",
+    title: "Material Evaluation & Documentation",
+    eyebrow: "Project Evaluation",
     description:
-      "Laboratory equipment supports material comparison during grade review, while project-specific documents support customer evaluation.",
-    imageSrc: "/factory-laboratory-testing-documentary-v4.webp",
-    imageAlt: "Taiyi Polymer material testing laboratory and evaluation equipment",
-    imageLabel: "Material Testing Laboratory",
+      "In-house equipment is used to compare candidate materials before grade selection. Document availability is then confirmed against the selected grade and project.",
+    imageSrc: "/factory-laboratory-test-chamber.jpg",
+    imageAlt: "Taiyi Polymer laboratory test chamber",
+    imageLabel: "Laboratory Test Chamber",
+    manufacturingImageSrc: "/factory-tensile-test-specimen.jpg",
+    manufacturingImageAlt:
+      "Taiyi Polymer tensile-test specimen clamped in laboratory testing equipment",
+    manufacturingImageLabel: "Tensile Test Specimen",
+    supportingImages: [
+      {
+        src: "/factory-laboratory-test-equipment.jpg",
+        alt: "Taiyi Polymer laboratory test equipment with three digital measuring gauges",
+        label: "Test Rig",
+      },
+      {
+        src: "/factory-tensile-test-specimen.jpg",
+        alt: "Taiyi Polymer tensile-test specimen clamped in laboratory testing equipment",
+        label: "Tensile Fixture",
+      },
+    ],
     imageSide: "right",
     points: [
-      "Material testing for candidate-grade comparison",
-      "TDS, SDS, COA, REACH, RoHS, and quality-system documents by grade and project",
+      "Candidate-grade comparison using in-house test equipment",
+      "TDS, SDS, COA, REACH, RoHS and quality-system documents confirmed by grade and project",
     ],
   },
 ];

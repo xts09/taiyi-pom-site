@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/archivo/wght.css";
 import "@fontsource-variable/ibm-plex-sans/wght.css";
-import "@fontsource-variable/saira/wdth.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { GoogleTag } from "@/components/GoogleTag";

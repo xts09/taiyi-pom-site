@@ -1,4 +1,4 @@
-﻿@import "tailwindcss";
+@import "tailwindcss";
 @source not "../../.codex-run";
 @source not "../../output";
 @source not "../../.next";
@@ -20,8 +20,7 @@
   --site-rail-inset: max(var(--site-gutter), calc((100vw - var(--site-max)) / 2));
   --font-ibm-plex-sans: "IBM Plex Sans Variable";
   --font-display:
-    "Archivo Variable", var(--font-ibm-plex-sans), "Noto Sans SC", system-ui,
-    sans-serif;
+    var(--font-ibm-plex-sans), "Noto Sans SC", system-ui, sans-serif;
   --font-nav:
     var(--font-ibm-plex-sans), "Noto Sans SC", system-ui, sans-serif;
   --font-geist-sans:
@@ -260,7 +259,7 @@ body {
 .section-kicker {
   color: #0b5fb8;
   font-size: 0.78rem;
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: 0.015em;
   text-transform: none;
 }
@@ -275,7 +274,7 @@ body {
   border-radius: 999px;
   background: linear-gradient(135deg, #0b5fb8, #1680b7 58%, #3d8ca6);
   color: white;
-  font-weight: 640;
+  font-weight: 600;
   box-shadow: 0 14px 32px rgba(4, 22, 37, 0.26);
   transition:
     transform 260ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -318,7 +317,7 @@ body {
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.78);
   color: #0f172a;
-  font-weight: 800;
+  font-weight: 700;
   backdrop-filter: blur(16px);
   transition:
     border-color 180ms ease,
@@ -396,7 +395,7 @@ body {
 .section-head h2 {
   color: #020618;
   font-size: clamp(1.75rem, 3vw, 2.5rem);
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: -0.012em;
   line-height: 1.08;
 }
@@ -422,7 +421,7 @@ body {
 .spec-label {
   color: #62748e;
   font-size: 0.7rem;
-  font-weight: 580;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: none;
 }
@@ -430,7 +429,7 @@ body {
 .spec-value {
   margin-top: 0.35rem;
   color: #020618;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .process-line {
@@ -470,7 +469,7 @@ body {
   background: #f8fbff;
   color: #0b5fb8;
   font-size: 0.75rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .product-category-shell {
@@ -524,7 +523,7 @@ body {
 .product-filter-label {
   color: #334155;
   font-size: 0.82rem;
-  font-weight: 640;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -533,7 +532,7 @@ body {
   max-width: 17ch;
   color: #07111f;
   font-size: clamp(2.5rem, 5.2vw, 4.8rem);
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 0.98;
 }
@@ -566,7 +565,7 @@ body {
   margin-bottom: 0.5rem;
   color: #334155;
   font-size: 0.74rem;
-  font-weight: 640;
+  font-weight: 600;
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -580,7 +579,7 @@ body {
 .product-hero-documents b {
   color: #0b5fb8;
   font-size: 0.86rem;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .product-hero-cta {
@@ -600,7 +599,7 @@ body {
   padding: 0.85rem 1.6rem;
   color: #2f5f9e;
   font-size: 0.96rem;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .product-section-actions a:first-child {
@@ -648,7 +647,7 @@ body {
 .product-section-identity p {
   color: #07111f;
   font-size: clamp(1.35rem, 2vw, 1.85rem);
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: -0.012em;
   line-height: 1.15;
 }
@@ -658,7 +657,7 @@ body {
   margin-top: 0.45rem;
   color: #334155;
   font-size: 1rem;
-  font-weight: 520;
+  font-weight: 500;
 }
 
 .product-section-actions {
@@ -690,7 +689,7 @@ body {
   align-items: center;
   color: #1f2937;
   font-size: 1rem;
-  font-weight: 560;
+  font-weight: 600;
 }
 
 .product-section-tabs a::after {
@@ -780,7 +779,7 @@ body {
 .product-filter-count {
   color: #64748b;
   font-size: 0.76rem;
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -788,7 +787,7 @@ body {
 .product-filter-name {
   color: #07111f;
   font-size: 1rem;
-  font-weight: 620;
+  font-weight: 600;
   line-height: 1.25;
 }
 
@@ -813,7 +812,7 @@ body {
   padding-top: 0.55rem;
   color: #334155;
   font-size: 0.82rem;
-  font-weight: 640;
+  font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -832,7 +831,7 @@ body {
   padding: 0.85rem 1.2rem;
   color: #64748b;
   font-size: 0.75rem;
-  font-weight: 640;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -961,7 +960,7 @@ body {
 .industry-rail-section h2 {
   color: #020618;
   font-size: clamp(1.45rem, 2.4vw, 2rem);
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.1;
 }
@@ -981,7 +980,7 @@ body {
 
 .product-directory-guidance a {
   color: #0f5faf;
-  font-weight: 720;
+  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
@@ -1068,7 +1067,7 @@ body {
 .capability-line > span:first-child {
   color: #0ea5e9;
   font-size: clamp(1.2rem, 2vw, 1.8rem);
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: 0.02em;
   line-height: 1;
 }
@@ -1079,7 +1078,7 @@ body {
   margin-top: 0.35rem;
   color: #07111f;
   font-size: clamp(1.2rem, 2vw, 1.65rem);
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.12;
 }
@@ -1103,7 +1102,7 @@ body {
 .detail-fact dt {
   color: #64748b;
   font-size: 0.65rem;
-  font-weight: 580;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: none;
 }
@@ -1114,7 +1113,7 @@ body {
   margin-top: 0.3rem;
   color: #0f172a;
   font-size: 0.86rem;
-  font-weight: 620;
+  font-weight: 600;
   line-height: 1.3;
 }
 
@@ -1122,7 +1121,7 @@ body {
   justify-self: end;
   color: #0b5fb8;
   font-size: 0.78rem;
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: 0.03em;
   text-transform: none;
 }
@@ -1192,13 +1191,13 @@ body {
   padding: 0.8rem 0;
   color: #e2e8f0;
   font-size: 0.95rem;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .support-line-steps span {
   color: #7dd3fc;
   font-size: 0.76rem;
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: 0.06em;
 }
 
@@ -1307,7 +1306,7 @@ body {
   padding: 0.85rem 1.15rem;
   color: #e2e8f0;
   font-size: 0.85rem;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .selection-basis-band {
@@ -1368,7 +1367,7 @@ body {
   max-width: 24ch;
   color: #07111f;
   font-size: clamp(1.6rem, 2.45vw, 2.45rem);
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.08;
 }
@@ -1403,7 +1402,7 @@ body {
 .application-scene-keywords strong {
   color: #0b5fb8;
   font-size: 0.78rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.04em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -1412,7 +1411,7 @@ body {
 .application-scene-keywords span {
   color: #334155;
   font-size: 0.9rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -1486,7 +1485,7 @@ body {
   padding: 0.72rem 0.78rem 0.78rem;
   color: #64748b;
   font-size: 0.74rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -1494,7 +1493,7 @@ body {
   display: block;
   color: #07111f;
   font-size: 0.86rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -1603,7 +1602,7 @@ body {
 .application-match-part {
   color: #0b5fb8;
   font-size: 0.74rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -1613,7 +1612,7 @@ body {
   max-width: 24rem;
   color: #07111f;
   font-size: clamp(1.04rem, 1.18vw, 1.18rem);
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.22;
 }
@@ -1621,7 +1620,7 @@ body {
 .application-match-card p {
   color: #475569;
   font-size: 0.94rem;
-  font-weight: 540;
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -1631,7 +1630,7 @@ body {
   color: #64748b;
   font-size: 0.82rem;
   font-style: normal;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -1679,7 +1678,7 @@ body {
 .application-notes-grid h3 {
   color: #f8fafc;
   font-size: 0.96rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -1693,7 +1692,7 @@ body {
 .application-notes-grid li {
   color: #cbd5e1;
   font-size: 0.9rem;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -1833,7 +1832,7 @@ body {
 .application-engineering-head h3 {
   color: #07111f;
   font-size: clamp(1.35rem, 2.15vw, 1.85rem);
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.12;
 }
@@ -1877,7 +1876,7 @@ body {
   grid-row: 1 / span 2;
   color: #0ea5e9;
   font-size: 0.76rem;
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: 0.06em;
 }
 
@@ -1899,7 +1898,7 @@ body {
 .basis-rail strong {
   color: #07111f;
   font-size: 0.92rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -1907,7 +1906,7 @@ body {
   color: #475569;
   font-size: 0.78rem;
   font-style: normal;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.35;
 }
 
@@ -1941,7 +1940,7 @@ body {
 .application-directory-index {
   color: #0ea5e9;
   font-size: 0.82rem;
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: 0.06em;
 }
 
@@ -1949,7 +1948,7 @@ body {
   margin-top: 0.55rem;
   color: #07111f;
   font-size: clamp(1.1rem, 1.7vw, 1.35rem);
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: -0.006em;
   line-height: 1.18;
 }
@@ -1982,7 +1981,7 @@ body {
 .application-row-copy h2 {
   color: #07111f;
   font-size: clamp(1.1rem, 1.7vw, 1.35rem);
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: -0.006em;
   line-height: 1.18;
 }
@@ -2026,7 +2025,7 @@ body {
   padding: 0.55rem 0.55rem 0.6rem;
   color: #475569;
   font-size: 0.68rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.25;
 }
 
@@ -2034,7 +2033,7 @@ body {
   display: block;
   color: #07111f;
   font-size: 0.78rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -2043,7 +2042,7 @@ body {
   margin-top: 0.28rem;
   color: #64748b;
   font-size: 0.68rem;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.32;
 }
 
@@ -2062,7 +2061,7 @@ body {
 .application-row-materials h3 {
   color: #07111f;
   font-size: clamp(1.05rem, 1.45vw, 1.28rem);
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: -0.006em;
   line-height: 1.15;
 }
@@ -2092,7 +2091,7 @@ body {
   padding: 0.6rem 0.68rem;
   color: #1e293b;
   font-size: 0.82rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.3;
 }
 
@@ -2107,7 +2106,7 @@ body {
 .application-material-tags strong {
   color: #0b5fb8;
   font-size: 0.84rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1.18;
 }
 
@@ -2120,7 +2119,7 @@ body {
   padding: 0;
   color: #64748b;
   font-size: 0.72rem;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.32;
 }
 
@@ -2172,7 +2171,7 @@ body {
 .application-engineering-grid h4 {
   color: #0f172a;
   font-size: 0.86rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -2186,7 +2185,7 @@ body {
 .application-engineering-grid li {
   color: #475569;
   font-size: 0.82rem;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.45;
 }
 
@@ -2206,7 +2205,7 @@ body {
 .company-figure-item dt {
   color: #0b5fb8;
   font-size: 0.68rem;
-  font-weight: 950;
+  font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -2215,7 +2214,7 @@ body {
   margin-top: 0.55rem;
   color: #07111f;
   font-size: clamp(1.45rem, 3vw, 2.25rem);
-  font-weight: 950;
+  font-weight: 700;
   letter-spacing: -0.035em;
   line-height: 1;
 }
@@ -2225,7 +2224,7 @@ body {
   margin-top: 0.45rem;
   color: #64748b;
   font-size: 0.76rem;
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .capability-line {
@@ -2304,7 +2303,7 @@ body {
   z-index: 1;
   color: white;
   font-size: 0.78rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.02em;
   text-shadow: 0 12px 30px rgba(0, 0, 0, 0.46);
 }
@@ -2328,7 +2327,7 @@ body {
 .factory-proof-eyebrow {
   color: #0b5fb8;
   font-size: 0.76rem;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
@@ -2338,7 +2337,7 @@ body {
   max-width: 18ch;
   color: #07111f;
   font-size: clamp(1.65rem, 3.4vw, 2.45rem);
-  font-weight: 950;
+  font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1.03;
 }
@@ -2348,7 +2347,7 @@ body {
   max-width: 42rem;
   color: #334155;
   font-size: 1rem;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.75;
 }
 
@@ -2439,7 +2438,7 @@ body {
   padding: 0.82rem 0.9rem;
   color: #334155;
   font-size: 0.78rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -2450,7 +2449,7 @@ body {
 .contact-intake-strip strong {
   color: #0b5fb8;
   font-size: 0.68rem;
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
@@ -2476,7 +2475,7 @@ body {
 .contact-preflight h2 {
   color: #0f172a;
   font-size: 1rem;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -2533,7 +2532,7 @@ body {
 .contact-documents legend {
   color: #334155;
   font-size: 0.74rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.035em;
 }
 
@@ -2561,7 +2560,7 @@ body {
   padding: 0.5rem 0.68rem;
   color: #0f172a;
   font-size: 0.78rem;
-  font-weight: 680;
+  font-weight: 700;
 }
 
 .contact-document-option input {
@@ -2604,7 +2603,7 @@ body {
 
 .contact-details a {
   color: #0b5fb8;
-  font-weight: 680;
+  font-weight: 700;
 }
 
 .contact-detail-list {
@@ -2722,7 +2721,7 @@ body {
 
 .inner-hero h1 {
   max-width: 58rem;
-  font-weight: 560;
+  font-weight: 600;
   letter-spacing: -0.018em;
   line-height: 1.03;
 }
@@ -2785,7 +2784,7 @@ body {
   max-width: none;
   color: #07111f;
   font-size: clamp(2.65rem, 4.6vw, 5rem);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 0.98;
 }
@@ -2794,7 +2793,7 @@ body {
   max-width: 68rem;
   color: #334155;
   font-size: clamp(1rem, 1.28vw, 1.18rem);
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.65;
 }
 
@@ -2848,7 +2847,9 @@ body {
 }
 
 .application-detail-shell.mesh-surface {
-  --application-page-x: calc((100vw - var(--site-rail-width, min(92rem, calc(100vw - 4rem)))) / 2);
+  --application-page-x: calc(
+    (100% - var(--site-rail-width, min(92rem, calc(100vw - 4rem)))) / 2
+  );
   --application-band-y: clamp(1.65rem, 3vw, 3rem);
   width: 100%;
   max-width: none !important;
@@ -3005,7 +3006,7 @@ body {
   gap: 0.52rem;
   color: #07111f;
   font-size: clamp(1.18rem, 1.38vw, 1.42rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.08;
 }
 
@@ -3031,7 +3032,7 @@ body {
   max-width: 46rem;
   color: #334155;
   font-size: clamp(0.78rem, 0.82vw, 0.84rem);
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.38;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -3082,7 +3083,7 @@ body {
   padding: 0.56rem 0.92rem;
   color: #1f6fb8;
   font-size: 0.86rem;
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1.15;
   text-align: center;
 }
@@ -3139,7 +3140,7 @@ body {
   align-items: center;
   color: #2f343a;
   font-size: 1rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1;
   white-space: nowrap;
   transition: color 160ms ease;
@@ -3245,7 +3246,7 @@ body {
   margin-bottom: 0.38rem;
   color: #07111f;
   font-size: 0.76rem;
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -3275,7 +3276,7 @@ body {
   padding: 0.42rem 0.62rem;
   color: #155b96;
   font-size: 0.78rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.15;
   text-decoration: none;
 }
@@ -3332,7 +3333,7 @@ body {
 .cta-secondary {
   border-color: rgba(15, 23, 42, 0.18);
   background: rgba(255, 255, 255, 0.9);
-  font-weight: 620;
+  font-weight: 600;
   backdrop-filter: none;
 }
 
@@ -3448,7 +3449,7 @@ body {
 .mega-menu-view-all {
   color: #7dd3fc;
   font-size: 0.94rem;
-  font-weight: 640;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -3498,7 +3499,7 @@ body {
   padding: 0.42rem 0.68rem;
   color: #0f172a;
   font-size: 0.72rem;
-  font-weight: 580;
+  font-weight: 600;
   letter-spacing: 0.025em;
 }
 
@@ -4121,14 +4122,14 @@ body {
   margin-top: 0.24rem;
   color: rgba(186, 230, 253, 0.64);
   font-size: clamp(0.7rem, 0.9vw, 0.78rem);
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.3;
 }
 
 .hero-readable-copy {
   max-width: 48rem;
   color: rgba(241, 245, 249, 0.94);
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.6;
   text-shadow:
     0 1px 1px rgba(0, 0, 0, 0.32),
@@ -4300,7 +4301,7 @@ body {
   max-width: 42rem;
   color: #07111f;
   font-size: clamp(1.85rem, 3.2vw, 3.15rem);
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: -0.018em;
   line-height: 1.04;
 }
@@ -4368,7 +4369,7 @@ body {
   padding: 0.55rem 0 0.55rem 1rem;
   color: #334155;
   font-size: 0.92rem;
-  font-weight: 620;
+  font-weight: 600;
   overflow-wrap: normal;
 }
 
@@ -4381,7 +4382,7 @@ body {
   margin-top: 1.5rem;
   color: #0f5f8d;
   font-size: 0.9rem;
-  font-weight: 900;
+  font-weight: 700;
   text-underline-offset: 0.3rem;
   white-space: nowrap;
 }
@@ -4418,7 +4419,7 @@ body {
 .selection-corridor .section-kicker {
   color: #8fb6c8;
   font-size: 0.72rem;
-  font-weight: 560;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -4499,7 +4500,7 @@ body {
   border-radius: 999px;
   background: #07101d;
   color: #bae6fd;
-  font-weight: 950;
+  font-weight: 700;
   transition:
     border-color 420ms ease,
     box-shadow 520ms ease,
@@ -4509,7 +4510,7 @@ body {
 .flow-point h3 {
   color: white;
   font-size: 1.1rem;
-  font-weight: 950;
+  font-weight: 700;
 }
 
 .flow-point p {
@@ -4569,7 +4570,7 @@ body {
   padding: 0.85rem 1rem;
   color: #0f172a;
   font-size: 0.9rem;
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .factory-film {
@@ -4624,7 +4625,7 @@ body {
   z-index: 1;
   color: white;
   font-size: 0.84rem;
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: 0.01em;
 }
 
@@ -4688,7 +4689,7 @@ body {
   .basis-rail span,
   .contact-checklist span
 ) {
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: 0.015em;
   text-transform: none;
 }
@@ -4708,7 +4709,7 @@ body {
   .flow-point h3,
   .inner-hero h1
 ) {
-  font-weight: 620;
+  font-weight: 600;
   letter-spacing: -0.006em;
 }
 
@@ -4725,7 +4726,7 @@ body {
   .factory-frame figcaption,
   .product-directory-action
 ) {
-  font-weight: 560;
+  font-weight: 600;
 }
 
 :where(
@@ -4742,7 +4743,7 @@ body {
 }
 
 :where(.company-figure-item span) {
-  font-weight: 520;
+  font-weight: 500;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -5416,7 +5417,7 @@ body {
 .application-scene-copy-overlay h2 {
   max-width: 18ch;
   font-size: clamp(1.85rem, 2.25vw, 2.45rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.06;
 }
 
@@ -5462,7 +5463,7 @@ body {
 .application-condition-strip span {
   color: #0f172a;
   font-size: 0.94rem;
-  font-weight: 640;
+  font-weight: 600;
   line-height: 1.42;
 }
 
@@ -5547,68 +5548,15 @@ body {
 .application-use-card h3 {
   color: #07111f;
   font-size: clamp(1rem, 1.14vw, 1.18rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.22;
 }
 
 .application-use-card p {
   color: #415166;
   font-size: clamp(0.9rem, 0.98vw, 0.98rem);
-  font-weight: 540;
+  font-weight: 500;
   line-height: 1.48;
-}
-
-.application-use-card a {
-  display: inline-flex;
-  gap: 0.65rem;
-  align-items: center;
-  align-self: end;
-  margin-top: auto;
-  color: #0b5fb8;
-  font-size: 0.94rem;
-  font-weight: 760;
-  line-height: 1;
-}
-
-.application-use-card a::after {
-  display: none;
-}
-
-.application-use-card-arrow {
-  position: relative;
-  display: inline-grid;
-  width: 1.85rem;
-  height: 1.85rem;
-  flex: 0 0 auto;
-  place-items: center;
-  border-radius: 999px;
-  background: rgba(11, 95, 184, 0.08);
-  color: #0b5fb8;
-  font-size: 0;
-  transform: translateY(0.02rem);
-}
-
-.application-use-card-arrow::before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0.48rem;
-  height: 0.48rem;
-  border-top: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-  content: "";
-  transform: translate(-46%, -50%) rotate(45deg);
-}
-
-.application-use-card-arrow::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0.72rem;
-  height: 2px;
-  background: currentColor;
-  content: "";
-  transform: translate(-58%, -50%);
 }
 
 .application-product-card > a {
@@ -5955,7 +5903,7 @@ body {
 
 .application-detail-electronics .application-review-brief strong {
   color: rgba(255, 255, 255, 0.94);
-  font-weight: 590;
+  font-weight: 600;
 }
 
 .application-detail-electronics
@@ -6029,7 +5977,7 @@ body {
 .application-match-specs dt {
   color: #0b5fb8;
   font-size: 0.68rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.1em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -6039,7 +5987,7 @@ body {
   margin: 0;
   color: #334155;
   font-size: 0.92rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.48;
 }
 
@@ -6181,7 +6129,7 @@ body {
   margin-top: 0.35rem;
   color: #52606f;
   font-size: 0.66rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -6290,7 +6238,7 @@ body {
   display: inline;
   color: #8dd8f8;
   font-size: 0.66rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -6301,7 +6249,7 @@ body {
   margin-top: 0;
   color: #ffffff;
   font-size: 0.96rem;
-  font-weight: 620;
+  font-weight: 600;
   line-height: 1.45;
 }
 
@@ -6402,8 +6350,8 @@ body {
 .application-detail-shell.mesh-surface .application-hero-card {
   display: flex;
   z-index: 3;
-  width: min(100%, 53.5rem);
-  min-height: clamp(21.25rem, 23vw, 27rem);
+  width: min(100%, 48rem);
+  min-height: clamp(18.5rem, 19vw, 22rem);
   flex-direction: column;
   justify-content: center;
   margin-bottom: calc(clamp(2.1rem, 4.2vw, 3rem) * -1);
@@ -7067,7 +7015,7 @@ body {
   padding: 0.16rem 0.38rem;
   color: #254b72;
   font-size: 0.58rem;
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -7089,7 +7037,7 @@ body {
 .application-detail-automotive .application-match-specs dt {
   color: #5f6b78;
   font-size: 0.6rem;
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: 0.06em;
 }
 
@@ -7215,7 +7163,7 @@ body {
   gap: 0.6rem;
   color: #1f252d !important;
   font-size: clamp(0.95rem, 1.15vw, 1.18rem);
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -7312,7 +7260,7 @@ body {
   margin: 0 0 0.75rem;
   color: #0369a1;
   font-size: 0.88rem;
-  font-weight: 750;
+  font-weight: 700;
   line-height: 1.3;
 }
 
@@ -7320,7 +7268,7 @@ body {
   max-width: 52rem;
   color: #020817;
   font-size: clamp(2.45rem, 4.25vw, 4.1rem);
-  font-weight: 850;
+  font-weight: 700;
   line-height: 1.04;
   letter-spacing: 0;
   text-wrap: balance;
@@ -7358,7 +7306,7 @@ body {
   flex: 0 0 auto;
   color: #64748b;
   font-size: 0.78rem;
-  font-weight: 850;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -7379,7 +7327,7 @@ body {
   padding: 0.48rem 0.7rem;
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -7458,7 +7406,7 @@ body {
 .resource-module-card > span {
   color: #64748b;
   font-size: 0.78rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.06em;
 }
 
@@ -7466,7 +7414,7 @@ body {
 .resource-module-card h2 {
   color: #020817;
   font-size: clamp(1.25rem, 2vw, 1.65rem);
-  font-weight: 850;
+  font-weight: 700;
   line-height: 1.16;
   letter-spacing: 0;
 }
@@ -7501,7 +7449,7 @@ body {
 .resource-directory-section-head h2 {
   color: #020817;
   font-size: clamp(1.18rem, 1.55vw, 1.38rem);
-  font-weight: 850;
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -7541,7 +7489,7 @@ body {
 .resource-directory-link strong {
   color: #0f172a;
   font-size: 0.94rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -7642,7 +7590,7 @@ body {
   padding: 1.05rem 1.1rem;
   text-align: left;
   font: inherit;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.45;
   transition:
     background 160ms ease,
@@ -7766,7 +7714,7 @@ body {
   gap: 0.55rem;
   color: #ffffff;
   font-size: 1.02rem;
-  font-weight: 850;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -7795,7 +7743,7 @@ body {
 .resource-faq-search-label span {
   color: rgba(241, 245, 249, 0.88);
   font-size: 0.84rem;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .resource-faq-search-control {
@@ -7819,7 +7767,7 @@ body {
 
 .resource-faq-search-label .resource-faq-search-input {
   padding-left: calc(var(--ds-space-8) + var(--ds-space-2));
-  font-weight: 720;
+  font-weight: 700;
 }
 
 .resource-faq-topic-panel {
@@ -7855,7 +7803,7 @@ body {
   cursor: pointer;
   padding: 0;
   font: inherit;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1;
   transition:
     color 160ms ease,
@@ -7932,7 +7880,7 @@ body {
   margin: 0;
   color: #020817;
   font-size: clamp(1.45rem, 2vw, 1.9rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.18;
   letter-spacing: 0;
 }
@@ -7972,7 +7920,7 @@ body {
   color: #1e293b;
   padding: 0.95rem 1rem 0.95rem 2.35rem;
   font-size: 0.98rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.65;
   box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.18);
 }
@@ -7998,7 +7946,7 @@ body {
 
 .resource-faq-empty strong {
   color: #020817;
-  font-weight: 850;
+  font-weight: 700;
 }
 
 .resource-faq-empty p {
@@ -8016,7 +7964,7 @@ body {
   margin: 0 0 1rem;
   color: #020817;
   font-size: clamp(1.25rem, 2vw, 1.55rem);
-  font-weight: 850;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -8032,7 +7980,7 @@ body {
   background: #ffffff;
   padding: 0.75rem 1rem;
   color: #075cb4;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
 }
 

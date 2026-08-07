@@ -37,9 +37,25 @@ The registry was derived from all current route families:
 | Products | `/products`, category routes, product detail routes, POM landings |
 | Applications | `/applications`, application detail routes |
 | Resources | `/resources`, resource categories and articles |
-| Company | `/about`, `/about/manufacturing-capabilities` |
+| Company | `/about` |
 | Conversion | `/contact`, technical data sheet search |
 | Utility | Privacy policy, not-found, global Header and Footer |
+
+## Company Family Composition — Pattern Only
+
+**Owner:** `src/app/about/AboutSections.tsx` and
+`src/app/about/AboutPage.module.css`.
+
+**Composition:** image-led hero, overlapping identity plate, open company
+metric rail, manufacturing evidence, credential proof, then one inquiry.
+`/about` owns this complete Company sequence; the `#manufacturing` anchor
+exposes production, warehouse, and testing evidence without a duplicate route.
+
+**Rule:** reuse the family sequence and its visual materials, but do not turn
+the evidence rows into generic cards or force unrelated route families into
+this composition. `AboutOverviewHero`, `AboutIdentityPlate`,
+`AboutCompanySnapshot`, `FactoryProofRows`, and `AboutOverviewInquiry` are a
+page-family composition, not a new global component suite.
 
 ## Foundation Components
 
@@ -235,12 +251,15 @@ a specialized composition, not a generic Card.
 - `image` — real factory, product, or application image with controlled scrim.
 - `evidence` — dark technical hero paired with data or document context.
 
-**Current implementations to consolidate:** `AboutHero`, `ResourceHero`,
-`.inner-hero`, `.product-index-hero`, `.application-index-hero`,
+**Current implementations to consolidate:** `ResourceHero`, `.inner-hero`,
+`.product-index-hero`, `.application-index-hero`,
 product-detail heroes, application-detail heroes, and POM landing heroes.
 
-**Canonical owner:** `src/components/PageHero.tsx`. About image Hero and Contact
-editorial Hero are the first migrated representatives.
+**Canonical owner:** `src/components/PageHero.tsx`. Contact editorial Hero is
+the first migrated representative. The About family deliberately owns a more
+specific image-plus-evidence composition; its overview and manufacturing
+detail share that page-family structure rather than adding another generic
+`PageHero` variant.
 
 **Heading rule:** Hero titles wrap against the real copy-column width and use
 balanced line wrapping. Do not impose arbitrary `ch` limits or manual line
@@ -315,7 +334,8 @@ specialized composition; their intro must reuse the same title and description
 tracks as the indexed rows below it.
 
 **Canonical owner:** `src/components/SectionIntro.tsx`. The manufacturing
-capability introduction is the first migrated representative.
+capability introduction now belongs to the About-family evidence composition;
+it no longer uses a standalone `SectionIntro` wrapper.
 
 **Rule:** this component standardizes hierarchy and spacing, not section body
 layout. Its title has no default character-width cap: split layouts use the real

@@ -4,7 +4,8 @@
   grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.9fr);
   gap: clamp(1.5rem, 4vw, 4rem);
   align-items: end;
-  width: min(calc(100% - clamp(1.5rem, 5vw, 5rem)), 84rem);
+  width: var(--site-rail-width);
+  max-width: none;
   margin: 0 auto clamp(1.7rem, 3vw, 2.5rem);
   padding-bottom: clamp(1.2rem, 2vw, 1.6rem);
   border-bottom: 1px solid rgba(15, 23, 42, 0.12);
@@ -14,7 +15,7 @@
   margin: 0 0 0.7rem;
   color: #0b5fb8;
   font-size: 0.75rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -24,7 +25,7 @@
   max-width: 20ch;
   color: #07111f;
   font-size: clamp(1.8rem, 2.7vw, 2.8rem);
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.04;
   text-wrap: balance;
@@ -41,7 +42,8 @@
 .application-detail-shell.mesh-surface .application-use-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1rem, 1.45vw, 1.3rem);
-  width: min(calc(100% - clamp(1.5rem, 5vw, 5rem)), 84rem);
+  width: var(--site-rail-width);
+  max-width: none;
 }
 
 .application-detail-shell.mesh-surface .application-use-card {
@@ -49,22 +51,17 @@
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 100%;
-  border: 0;
+  border: 1px solid var(--ds-border-subtle);
   border-radius: 0;
   background: #ffffff;
-  box-shadow:
-    0 0.65rem 1.5rem rgba(15, 38, 61, 0.08),
-    0 0.08rem 0.18rem rgba(15, 38, 61, 0.05);
   transition:
-    box-shadow 220ms ease,
+    border-color 220ms ease,
     transform 220ms ease;
 }
 
 .application-detail-shell.mesh-surface .application-use-card:hover,
 .application-detail-shell.mesh-surface .application-use-card:focus-within {
-  box-shadow:
-    0 0.9rem 2rem rgba(15, 38, 61, 0.11),
-    0 0.08rem 0.2rem rgba(15, 38, 61, 0.06);
+  border-color: rgba(11, 95, 184, 0.32);
   transform: translateY(-0.16rem);
 }
 
@@ -92,7 +89,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: clamp(13.5rem, 15vw, 15rem);
+  min-height: 0;
   gap: 0.72rem;
   border-top: 0;
   padding: clamp(1.1rem, 1.5vw, 1.35rem)
@@ -114,7 +111,7 @@
   gap: 1rem;
   color: #64748b;
   font-size: 0.68rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -137,10 +134,6 @@
   max-width: 34ch;
   font-size: clamp(0.9rem, 0.96vw, 0.97rem);
   line-height: 1.52;
-}
-
-.application-detail-shell.mesh-surface .application-use-card a {
-  margin-top: auto;
 }
 
 @media (max-width: 64rem) {
@@ -337,7 +330,7 @@
   bottom: 0.72rem;
   left: 0.85rem;
   font-size: 0.84rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.2;
   text-shadow: 0 0.1rem 0.55rem rgba(0, 0, 0, 0.48);
 }
@@ -371,7 +364,7 @@
 .application-index-shell.mesh-surface .application-basis-strip h2 {
   color: #07111f;
   font-size: clamp(1.35rem, 2.1vw, 1.95rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.08;
   text-wrap: balance;
 }
@@ -447,7 +440,7 @@
   grid-row: 1 / span 2;
   color: #94a3b8;
   font-size: 0.72rem;
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -455,7 +448,7 @@
   grid-column: 2;
   color: #07111f;
   font-size: clamp(0.98rem, 1.05vw, 1.08rem);
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1.18;
 }
 
@@ -474,7 +467,7 @@
   justify-self: end;
   color: #0b5fb8;
   font-size: 1.05rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1;
   opacity: 0.72;
   transition:
@@ -553,4 +546,155 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+}
+
+.application-section-mobile-menu,
+.application-use-mobile-content,
+.application-notes-mobile-content {
+  display: none;
+}
+
+@media (max-width: 47.999rem) {
+  .application-detail-shell.mesh-surface {
+    --application-section-nav-height: 9rem;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-tabs,
+  .application-detail-shell.mesh-surface .application-use-grid-desktop,
+  .application-detail-shell.mesh-surface .application-notes-grid-desktop {
+    display: none;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-actions
+    a[data-priority="secondary"],
+  .application-detail-shell.mesh-surface .application-hero-cta > :not(:first-child) {
+    display: none;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-actions
+    a[data-priority="primary"] {
+    flex-basis: 100%;
+  }
+
+  .application-detail-shell.mesh-surface .application-hero-data {
+    display: none;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu {
+    display: block;
+    width: var(--site-rail-width);
+    margin: 0 auto;
+    border-top: 1px solid rgba(15, 23, 42, 0.12);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu summary {
+    display: flex;
+    min-height: 2.9rem;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: #07111f;
+    font-size: 0.92rem;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu summary::-webkit-details-marker,
+  .application-detail-shell.mesh-surface .application-mobile-disclosure summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu summary::after {
+    color: #0b5fb8;
+    content: "+";
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu[open] summary::after {
+    content: "−";
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel {
+    display: grid;
+    gap: 0;
+    padding-bottom: 0.55rem;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a {
+    display: flex;
+    min-height: 2.7rem;
+    align-items: center;
+    color: #334155;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a:focus-visible,
+  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a:hover {
+    color: #0b5fb8;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a:focus-visible,
+  .application-detail-shell.mesh-surface .application-section-mobile-menu summary:focus-visible,
+  .application-detail-shell.mesh-surface .application-mobile-disclosure summary:focus-visible {
+    outline: 2px solid rgba(0, 184, 217, 0.82);
+    outline-offset: 0.2rem;
+  }
+
+  .application-detail-shell.mesh-surface .application-section-mobile-menu-action {
+    border-top: 1px solid rgba(15, 23, 42, 0.1);
+    color: #0b5fb8 !important;
+    font-weight: 700 !important;
+  }
+
+  .application-detail-shell.mesh-surface .application-use-mobile-content,
+  .application-detail-shell.mesh-surface .application-notes-mobile-content {
+    display: block;
+  }
+
+  .application-detail-shell.mesh-surface .application-mobile-disclosure {
+    display: block;
+    width: var(--site-rail-width);
+    margin: 0.9rem auto 0;
+    border-top: 1px solid rgba(15, 23, 42, 0.12);
+  }
+
+  .application-detail-shell.mesh-surface .application-mobile-disclosure summary {
+    display: flex;
+    min-height: 3.1rem;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: #0b5fb8;
+    font-size: 0.92rem;
+    font-weight: 700;
+    list-style: none;
+  }
+
+  .application-detail-shell.mesh-surface .application-mobile-disclosure summary::after {
+    color: #0b5fb8;
+    content: "+";
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .application-detail-shell.mesh-surface .application-mobile-disclosure[open] summary::after {
+    content: "−";
+  }
+
+  .application-detail-shell.mesh-surface .application-mobile-disclosure-grid {
+    gap: 0.9rem;
+    padding-bottom: 0.9rem;
+  }
+
+  .application-detail-shell.mesh-surface .application-use-card-body {
+    gap: 0.55rem;
+    padding: 1rem;
+  }
+
+  .application-detail-shell.mesh-surface .application-use-card-meta span:first-child {
+    display: none;
+  }
 }

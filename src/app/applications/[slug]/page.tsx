@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import {
   applications,
   getApplicationBySlug,
@@ -130,6 +130,12 @@ const automotiveReviewFocus = [
   "Warpage control | tooling validation",
 ];
 
+const electronicsReviewFocus = [
+  "Resistance target | test method",
+  "Stiffness | grounding path",
+  "Part geometry | processing",
+];
+
 const applicationVisualConfigs: Partial<
   Record<string, ApplicationVisualConfig>
 > = {
@@ -142,6 +148,8 @@ const applicationVisualConfigs: Partial<
     assets: createApplicationVisualAssets(
       "/applications/parts/electronic-electrical-components-wide.webp",
     ),
+    primaryDirectionIndex: 0,
+    reviewFocus: electronicsReviewFocus,
   },
   "conveyor-automation": {
     assets: createApplicationVisualAssets(
@@ -158,9 +166,9 @@ const applicationVisualConfigs: Partial<
       "/applications/parts/bathroom-parts-2.jpg",
     ),
   },
-  "industrial-machinery": {
+  "washing-machine-components": {
     assets: createApplicationVisualAssets(
-      "/applications/parts/automotive-controlbox-components.jpg",
+      "/applications/parts/washing-machine-components-hero.png",
     ),
   },
   "outdoor-equipment": {
@@ -363,12 +371,6 @@ function ApplicationUseCard({
           </div>
           <h3>{title}</h3>
           <p>{description}</p>
-          <a href="#review-checklist">
-            Review candidate materials
-            <span aria-hidden="true" className="application-use-card-arrow">
-              -&gt;
-            </span>
-          </a>
         </CardContent>
       </article>
     </Card>
@@ -450,7 +452,7 @@ export async function generateMetadata({
 
   return createPageMetadata({
     title: `${application.title} | Taiyi Polymer`,
-    description: `${application.description} Review relevant modified POM candidates, typical parts, and application selection factors.`,
+    description: `${application.description} Review candidate material directions, typical parts, and application selection factors.`,
     path: `/applications/${application.slug}`,
     image: application.heroImage?.src,
     imageAlt: application.heroImage?.alt,
@@ -467,6 +469,10 @@ export default async function ApplicationDetailPage({
     notFound();
   }
 
+  if (slug !== application.slug) {
+    permanentRedirect(`/applications/${application.slug}`);
+  }
+
   const engineeringGroups = getEngineeringGroups(application);
   const partFitItems = getPerformanceItems(engineeringGroups);
   const { visualAssets, visualConfig } =
@@ -477,6 +483,10 @@ export default async function ApplicationDetailPage({
     visualConfig,
   );
   const applicationUseCards = getApplicationUseCards(application);
+  const featuredApplicationUseCards = applicationUseCards.slice(0, 4);
+  const remainingApplicationUseCards = applicationUseCards.slice(4);
+  const featuredMaterialDirectionCards = materialDirectionCards.slice(0, 3);
+  const remainingMaterialDirectionCards = materialDirectionCards.slice(3);
   const pagePath = `/applications/${application.slug}`;
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
@@ -527,35 +537,6 @@ export default async function ApplicationDetailPage({
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               {application.description}
             </p>
-
-            <div
-              className="application-hero-data"
-              aria-label="Application material review inputs"
-            >
-              <div className="application-hero-summary">
-                <strong>Part & Operating Conditions</strong>
-                <p>
-                  Part function, movement, assembly fit, dimensional target,
-                  and document needs.
-                </p>
-              </div>
-
-              <div className="application-hero-directions">
-                <strong>Candidate Materials</strong>
-                <span>
-                  {application.materialDirections
-                    .slice(0, 3)
-                    .map((direction) => (
-                      <Link
-                        key={direction.label}
-                        href={direction.href ?? "/contact"}
-                      >
-                        {direction.shortLabel ?? direction.label}
-                      </Link>
-                    ))}
-                </span>
-              </div>
-            </div>
 
             <div className="application-hero-cta">
               <Button
@@ -709,7 +690,7 @@ export default async function ApplicationDetailPage({
             </p>
           </div>
 
-          <div className="application-use-grid">
+          <div className="application-use-grid application-use-grid-desktop">
             {applicationUseCards.map((card) => (
               <ApplicationUseCard
                 key={card.key}
@@ -719,6 +700,39 @@ export default async function ApplicationDetailPage({
                 description={card.description}
               />
             ))}
+          </div>
+
+          <div className="application-use-mobile-content">
+            <div className="application-use-grid">
+              {featuredApplicationUseCards.map((card) => (
+                <ApplicationUseCard
+                  key={card.key}
+                  image={card.image}
+                  index={card.index}
+                  title={card.title}
+                  description={card.description}
+                />
+              ))}
+            </div>
+
+            {remainingApplicationUseCards.length > 0 ? (
+              <details className="application-mobile-disclosure">
+                <summary>
+                  Show {remainingApplicationUseCards.length} more parts
+                </summary>
+                <div className="application-mobile-disclosure-grid application-use-grid">
+                  {remainingApplicationUseCards.map((card) => (
+                    <ApplicationUseCard
+                      key={card.key}
+                      image={card.image}
+                      index={card.index}
+                      title={card.title}
+                      description={card.description}
+                    />
+                  ))}
+                </div>
+              </details>
+            ) : null}
           </div>
         </section>
 
@@ -735,12 +749,12 @@ export default async function ApplicationDetailPage({
             <p className="section-kicker mb-3">Candidate Materials</p>
             <h2>Material options for the parts above.</h2>
             <p>
-              Review the modified POM options commonly screened against the
-              part function and working conditions above.
+              Review the candidate POM material directions commonly screened
+              against the part function and working conditions above.
             </p>
           </div>
 
-          <div className="application-notes-grid">
+          <div className="application-notes-grid application-notes-grid-desktop">
             {materialDirectionCards.map((card, index) => (
               <ProductInfoCard
                 key={card.key}
@@ -749,6 +763,43 @@ export default async function ApplicationDetailPage({
                 materialImageSrc={getMaterialCardImage(card)}
               />
             ))}
+          </div>
+
+          <div className="application-notes-mobile-content">
+            <div className="application-notes-grid">
+              {featuredMaterialDirectionCards.map((card, index) => (
+                <ProductInfoCard
+                  key={card.key}
+                  card={card}
+                  image={getCyclicItem(application.images, index)}
+                  materialImageSrc={getMaterialCardImage(card)}
+                />
+              ))}
+            </div>
+
+            {remainingMaterialDirectionCards.length > 0 ? (
+              <details className="application-mobile-disclosure">
+                <summary>
+                  Show {remainingMaterialDirectionCards.length} more material
+                  options
+                </summary>
+                <div className="application-mobile-disclosure-grid application-notes-grid">
+                  {remainingMaterialDirectionCards.map((card, index) => {
+                    const materialIndex =
+                      index + featuredMaterialDirectionCards.length;
+
+                    return (
+                      <ProductInfoCard
+                        key={card.key}
+                        card={card}
+                        image={getCyclicItem(application.images, materialIndex)}
+                        materialImageSrc={getMaterialCardImage(card)}
+                      />
+                    );
+                  })}
+                </div>
+              </details>
+            ) : null}
           </div>
         </section>
 
@@ -777,7 +828,7 @@ export default async function ApplicationDetailPage({
         >
           <p>
             Share the part, condition, and target. We will help screen the
-            suitable modified POM direction.
+            candidate material direction for project-specific review.
           </p>
         </ActionPanel>
       </section>

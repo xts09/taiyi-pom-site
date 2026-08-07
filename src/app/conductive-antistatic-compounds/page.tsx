@@ -15,15 +15,18 @@ import {
 import styles from "@/components/ConductiveCompounds.module.css";
 
 const path = "/conductive-antistatic-compounds";
-const heroImage =
+export const conductiveAntistaticCompoundsTitle =
+  "Conductive & Antistatic Plastic Compounds | Taiyi Polymer";
+export const conductiveAntistaticCompoundsDescription =
+  "Compare Taiyi Polymer carbon-nanotube antistatic and carbon-fiber conductive compound options across ABS, PC, POM, PA6, PA66, PPS, TPU, and other polymer matrices.";
+export const conductiveAntistaticCompoundsHeroImage =
   "/generated/landing/conductive-antistatic-pom-functional-components.png";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Conductive & Antistatic Plastic Compounds | Taiyi Polymer",
-  description:
-    "Compare Taiyi Polymer carbon-nanotube antistatic and carbon-fiber conductive compound options across ABS, PC, POM, PA6, PA66, PPS, TPU, and other polymer matrices.",
+  title: conductiveAntistaticCompoundsTitle,
+  description: conductiveAntistaticCompoundsDescription,
   path,
-  image: heroImage,
+  image: conductiveAntistaticCompoundsHeroImage,
 });
 
 const cntGradeCount = conductiveCompounds.filter(
@@ -33,11 +36,11 @@ const cfGradeCount = conductiveCompounds.filter(
   (compound) => compound.technology === "cf",
 ).length;
 
-const jsonLd = [
+const createJsonLd = (pagePath: string) => [
   createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
-    { name: "Conductive and Antistatic Compounds", path },
+    { name: "Conductive and Antistatic Compounds", path: pagePath },
   ]),
   {
     "@context": "https://schema.org",
@@ -45,7 +48,7 @@ const jsonLd = [
     name: "Conductive and Antistatic Plastic Compounds",
     description:
       "Cross-material directory of carbon-nanotube antistatic and carbon-fiber conductive compound options.",
-    url: `${siteUrl}${path}`,
+    url: `${siteUrl}${pagePath}`,
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: conductiveCompounds.length,
@@ -58,7 +61,19 @@ const jsonLd = [
   },
 ];
 
-export default function ConductiveAntistaticCompoundsPage() {
+type ConductiveAntistaticCompoundsContentProps = {
+  groupByMatrix?: boolean;
+  pagePath?: string;
+  showAllByDefault?: boolean;
+};
+
+export function ConductiveAntistaticCompoundsContent({
+  groupByMatrix = false,
+  pagePath = path,
+  showAllByDefault = false,
+}: ConductiveAntistaticCompoundsContentProps) {
+  const jsonLd = createJsonLd(pagePath);
+
   return (
     <main className={styles.page}>
       <script
@@ -70,7 +85,7 @@ export default function ConductiveAntistaticCompoundsPage() {
 
       <section className={styles.hero}>
         <Image
-          src={heroImage}
+          src={conductiveAntistaticCompoundsHeroImage}
           alt="Black precision molded functional plastic components"
           fill
           priority
@@ -194,7 +209,10 @@ export default function ConductiveAntistaticCompoundsPage() {
         </div>
       </section>
 
-      <ConductiveCompoundsExplorer />
+      <ConductiveCompoundsExplorer
+        defaultTechnology={showAllByDefault ? "all" : "cnt"}
+        groupByMatrix={groupByMatrix}
+      />
 
       <section className={styles.reviewBand}>
         <div className={`${styles.rail} ${styles.reviewLayout}`}>
@@ -244,4 +262,8 @@ export default function ConductiveAntistaticCompoundsPage() {
       </section>
     </main>
   );
+}
+
+export default function ConductiveAntistaticCompoundsPage() {
+  return <ConductiveAntistaticCompoundsContent />;
 }

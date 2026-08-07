@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import {
+  AboutCompanySnapshot,
   AboutCredentials,
-  AboutFacility,
+  AboutIdentityPlate,
   AboutOverviewHero,
   AboutOverviewInquiry,
-  AboutProductionSupport,
+  FactoryProofRows,
 } from "@/app/about/AboutSections";
 import {
   availableDocuments,
@@ -24,7 +25,7 @@ import {
 import styles from "./AboutPage.module.css";
 
 const aboutDescription =
-  "Learn about Jiangsu Taiyi Nano Technology Co., Ltd., the Yancheng manufacturer behind Taiyi Polymer and PLATFORM engineering materials, focused on modified POM and selected PA6, PA66, and PPA compounds.";
+  "Taiyi Polymer is the public brand of Jiangsu Taiyi Nano Technology Co., Ltd., a Yancheng manufacturer focused on modified POM and selected PA6, PA66, and PPA compounds.";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Engineering Plastic Compound Manufacturer | Taiyi Polymer",
@@ -55,20 +56,18 @@ const aboutJsonLd = [
   ]),
 ];
 
-const heroIntro =
-  "Developed and manufactured in Yancheng, China since 2003.";
-
 const heroImage =
   factoryImages.find((image) => image.placement === "hero") ?? factoryImages[0];
 
-const aboutEvidenceRows = factoryProofRows.filter(
-  (row) => row.title !== "Production & Warehousing",
-);
+const manufacturingProofRows = [...factoryProofRows].sort((a, b) => {
+  const order: Record<string, number> = {
+    "In-House Compounding": 0,
+    "Material Evaluation & Documentation": 1,
+    "Production & Batch Coordination": 2,
+  };
 
-const aboutProcessImages = factoryImages.filter(
-  (image) =>
-    image.placement === "story" || image.label === "Production Equipment",
-);
+  return order[a.title] - order[b.title];
+});
 
 export default function AboutPage() {
   return (
@@ -80,15 +79,38 @@ export default function AboutPage() {
         }}
       />
 
-      <AboutOverviewHero
-        heroImage={heroImage}
-        intro={heroIntro}
+      <AboutOverviewHero heroImage={heroImage} />
+
+      <AboutIdentityPlate
+        label="Yancheng, Jiangsu · Manufacturing since 2003"
+        title="Modified POM at industrial scale."
+        description="Modified POM is our core line, with selected PA6, PA66 and PPA compounds for broader project requirements. Grade screening, sample evaluation and batch documentation are coordinated through our Yancheng operation."
       />
 
       <div className={styles.overviewCanvas}>
+        <AboutCompanySnapshot figures={companyFigures} />
+
+        <section
+          id="manufacturing"
+          className={styles.manufacturingEvidence}
+          aria-labelledby="manufacturing-evidence-title"
+        >
+          <div className="site-container">
+            <header className={styles.overviewSectionHeader}>
+              <h2 id="manufacturing-evidence-title">
+                From trial compound to repeat order.
+              </h2>
+              <p>
+                Compounding, material testing and batch documentation are
+                coordinated at our Yancheng site around the selected grade and
+                project requirements.
+              </p>
+            </header>
+            <FactoryProofRows rows={manufacturingProofRows} />
+          </div>
+        </section>
+
         <div className={`site-container ${styles.overviewRail}`}>
-          <AboutFacility figures={companyFigures} rows={aboutEvidenceRows} />
-          <AboutProductionSupport images={aboutProcessImages} />
           <AboutCredentials
             availableDocuments={availableDocuments}
             certifications={certifications}

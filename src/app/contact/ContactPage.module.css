@@ -172,7 +172,7 @@
 
 .formPanel :global(.contact-required-marker) {
   color: var(--contact-accent);
-  font-weight: 800;
+  font-weight: 700;
 }
 
 @media (max-width: 63.999rem) {

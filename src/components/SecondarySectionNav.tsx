@@ -102,6 +102,28 @@ export function SecondarySectionNav({
           </a>
         ))}
       </nav>
+
+      {variant === "application" ? (
+        <details className="application-section-mobile-menu">
+          <summary>On this page</summary>
+          <div className="application-section-mobile-menu-panel">
+            {tabs.map((tab) => (
+              <a key={tab.href} href={tab.href}>
+                {tab.label}
+              </a>
+            ))}
+            {actions.slice(1).map((action) => (
+              <Link
+                key={action.href}
+                href={action.href}
+                className="application-section-mobile-menu-action"
+              >
+                {action.label}
+              </Link>
+            ))}
+          </div>
+        </details>
+      ) : null}
     </section>
   );
 }

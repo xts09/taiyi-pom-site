@@ -1,17 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { DocumentCard } from "@/components/DocumentCard";
 import { MediaFigure } from "@/components/MediaFigure";
 import { MetricGroup } from "@/components/MetricGroup";
-import { PageHero } from "@/components/PageHero";
-import { SectionIntro } from "@/components/SectionIntro";
 import { ValueText } from "@/components/UnitText";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type {
   Certification,
-  CompanyCapability,
   CompanyFigure,
   FactoryImage,
   FactoryProofRow,
@@ -19,20 +16,19 @@ import type {
 import { publicPath } from "@/lib/paths";
 import styles from "./AboutPage.module.css";
 
-type AboutHeroProps = {
+type AboutOverviewHeroProps = {
   heroImage: FactoryImage;
-  intro: string;
+  intro?: string;
+  label?: string;
+  title?: string;
+  summary?: string;
+};
+
+type AboutIdentityPlateProps = {
+  label: string;
   title: string;
-};
-
-type AboutOverviewHeroProps = Omit<AboutHeroProps, "title">;
-
-type AboutSnapshotProps = {
-  figures: CompanyFigure[];
-};
-
-type AboutFactoryEvidenceProps = {
-  rows: FactoryProofRow[];
+  description: string;
+  children?: ReactNode;
 };
 
 type FactoryProofRowsProps = {
@@ -45,60 +41,21 @@ type CredentialSupportProps = {
   honors: string[];
 };
 
-type AboutFacilityProps = AboutSnapshotProps & AboutFactoryEvidenceProps;
-
-type AboutProductionSupportProps = {
-  images: FactoryImage[];
+type AboutFacilityProps = {
+  figures: CompanyFigure[];
+  rows: FactoryProofRow[];
 };
 
-type ManufacturingOverviewProps = {
-  capabilities: CompanyCapability[];
+type AboutCompanySnapshotProps = {
+  figures: CompanyFigure[];
 };
-
-export function AboutHero({ heroImage, intro, title }: AboutHeroProps) {
-  return (
-    <PageHero
-      variant="image"
-      className={styles.hero}
-      mediaClassName={styles.heroMedia}
-      innerClassName={`site-container ${styles.heroInner}`}
-      copyClassName={`${styles.heroCard} ${styles.heroLead}`}
-      eyebrow="Jiangsu Taiyi Nano Technology Co., Ltd."
-      eyebrowClassName={styles.heroEyebrow}
-      title={title}
-      description={intro}
-      descriptionClassName={styles.heroIntro}
-      actionsClassName={styles.heroActions}
-      media={
-        <Image
-          src={publicPath(heroImage.src)}
-          alt={heroImage.alt}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-      }
-      actions={
-        <>
-          <Link href="/contact" className={styles.heroPrimaryAction}>
-            Discuss Your Application
-          </Link>
-          <Link
-            href="/products/categories/pom"
-            className={styles.heroSecondaryAction}
-          >
-            Browse POM Compounds
-          </Link>
-        </>
-      }
-    />
-  );
-}
 
 export function AboutOverviewHero({
   heroImage,
   intro,
+  label = "Engineering Plastic Compounds",
+  title = "Engineering plastics, compounded for production.",
+  summary = "Modified POM is our core line, backed by in-house compounding, material evaluation and grade-specific documentation.",
 }: AboutOverviewHeroProps) {
   return (
     <>
@@ -116,15 +73,10 @@ export function AboutOverviewHero({
 
         <div className={`site-container ${styles.overviewHeroInner}`}>
           <div className={styles.overviewHeroCopy}>
-            <p className={styles.overviewHeroLabel}>
-              Modified Engineering Plastics
-            </p>
-            <h1>Modified POM compounds, built around the part.</h1>
-            <p className={styles.overviewHeroSlogan}>
-              Modified compounds reviewed around the part, processing, and
-              documentation requirements.
-            </p>
-            <p className={styles.overviewHeroIntro}>{intro}</p>
+            <p className={styles.overviewHeroLabel}>{label}</p>
+            <h1>{title}</h1>
+            <p className={styles.overviewHeroSlogan}>{summary}</p>
+            {intro ? <p className={styles.overviewHeroIntro}>{intro}</p> : null}
             <div className={styles.overviewHeroActions}>
               <Link href="/contact" className={styles.overviewPrimaryAction}>
                 Discuss Your Application
@@ -140,26 +92,29 @@ export function AboutOverviewHero({
         </div>
       </section>
 
-      <section className={styles.overviewIdentity}>
-        <div className="site-container">
-          <div className={styles.overviewIdentityPlate}>
-            <p>Made in Yancheng · Since 2003</p>
-            <div>
-              <strong>
-                Engineering plastics developed for repeat production.
-              </strong>
-              <span>
-                Modified POM is our core specialty, with selected PA6, PA66 and
-                PPA compounds available for broader project requirements.
-                In-house compounding, material testing, sample evaluation and
-                document coordination support the path from initial screening
-                to repeat production.
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
+  );
+}
+
+export function AboutIdentityPlate({
+  label,
+  title,
+  description,
+  children,
+}: AboutIdentityPlateProps) {
+  return (
+    <section className={styles.overviewIdentity}>
+      <div className="site-container">
+        <div className={styles.overviewIdentityPlate}>
+          <p>{label}</p>
+          <div className={styles.overviewIdentityCopy}>
+            <h2>{title}</h2>
+            <p className={styles.overviewIdentityDescription}>{description}</p>
+          </div>
+          {children}
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -190,26 +145,67 @@ export function AboutFacility({ figures, rows }: AboutFacilityProps) {
         {rows.map((row, index) => (
           <article
             key={row.title}
-            className={index === 0 ? styles.overviewEvidencePrimary : undefined}
+            className={
+              index === 0
+                ? styles.overviewEvidencePrimary
+                : row.supportingImages
+                  ? styles.overviewTestingEvidence
+                  : undefined
+            }
           >
-            <MediaFigure
-              variant="captioned"
-              fit="cover"
-              caption={row.imageLabel}
-              media={
-                <Image
-                src={publicPath(row.imageSrc)}
-                alt={row.imageAlt}
-                fill
-                sizes={
-                  index === 0
-                    ? "(min-width: 1024px) 58vw, 100vw"
-                    : "(min-width: 1024px) 30vw, 100vw"
-                }
-                className="object-cover"
+            {row.supportingImages ? (
+              <div className={styles.overviewTestingMedia}>
+                <MediaFigure
+                  variant="captioned"
+                  fit="cover"
+                  className={styles.overviewTestingPrimaryMedia}
+                  caption={row.imageLabel}
+                  media={
+                    <Image
+                      src={publicPath(row.imageSrc)}
+                      alt={row.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 42vw, 100vw"
+                      className="object-cover"
+                    />
+                  }
                 />
-              }
-            />
+                <div className={styles.overviewTestingSupportMedia}>
+                  {row.supportingImages.map((image) => (
+                    <MediaFigure
+                      key={image.src}
+                      variant="captioned"
+                      fit="cover"
+                      caption={image.label}
+                      media={
+                        <Image
+                          src={publicPath(image.src)}
+                          alt={image.alt}
+                          fill
+                          sizes="(min-width: 1024px) 22vw, 50vw"
+                          className="object-cover"
+                        />
+                      }
+                    />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <MediaFigure
+                variant="captioned"
+                fit="cover"
+                caption={row.imageLabel}
+                media={
+                  <Image
+                    src={publicPath(row.imageSrc)}
+                    alt={row.imageAlt}
+                    fill
+                    sizes="(min-width: 1024px) 58vw, 100vw"
+                    className="object-cover"
+                  />
+                }
+              />
+            )}
             <h3>{row.title}</h3>
             <p>{row.description}</p>
           </article>
@@ -217,76 +213,12 @@ export function AboutFacility({ figures, rows }: AboutFacilityProps) {
       </div>
 
       <Link
-        href="/about/manufacturing-capabilities"
+        href="/about#manufacturing"
         className={styles.overviewFacilityAction}
       >
         View Manufacturing Capabilities
         <span aria-hidden="true">&rarr;</span>
       </Link>
-    </section>
-  );
-}
-
-const overviewProductionSteps = [
-  {
-    title: "Define the application",
-    description:
-      "Part function, molding conditions, target properties and document requirements.",
-  },
-  {
-    title: "Compare candidate grades",
-    description:
-      "Samples, available test evidence and practical processing context.",
-  },
-  {
-    title: "Confirm production requirements",
-    description:
-      "Confirmed grade, batch documentation and repeat-order requirements.",
-  },
-] as const;
-
-export function AboutProductionSupport({ images }: AboutProductionSupportProps) {
-  return (
-    <section
-      className={styles.overviewProcess}
-      aria-labelledby="overview-process-title"
-    >
-      <div className={styles.overviewProcessLead}>
-        <h2 id="overview-process-title">
-          From Grade Selection to Serial Production
-        </h2>
-        <p>
-          A practical review path built around the part, the molding process
-          and the evidence needed for approval.
-        </p>
-      </div>
-
-      <ol className={styles.overviewProcessSteps}>
-        {overviewProductionSteps.map((step, index) => (
-          <li key={step.title}>
-            <span>{String(index + 1).padStart(2, "0")}</span>
-            <div>
-              <h3>{step.title}</h3>
-              <p>{step.description}</p>
-            </div>
-          </li>
-        ))}
-      </ol>
-
-      <div className={styles.overviewProcessGallery}>
-        {images.map((image) => (
-          <figure key={image.src}>
-            <Image
-              src={publicPath(image.src)}
-              alt={image.alt}
-              fill
-              sizes="(min-width: 1024px) 42vw, (min-width: 768px) 46vw, 100vw"
-              className="object-cover"
-            />
-            <figcaption>{image.label}</figcaption>
-          </figure>
-        ))}
-      </div>
     </section>
   );
 }
@@ -303,11 +235,12 @@ export function AboutCredentials({
     >
       <header className={styles.overviewSectionHeader}>
         <h2 id="overview-credentials-title">
-          Quality Certifications &amp; Technical Documentation
+          Certificates and supplier documentation
         </h2>
         <p>
-          Our current management-system certifications and technical documents
-          commonly requested for supplier qualification and material approval.
+          Current management-system certificates and material documents for
+          supplier qualification. Availability is confirmed by grade and
+          project.
         </p>
       </header>
 
@@ -341,7 +274,7 @@ export function AboutCredentials({
         ))}
 
         <div className={styles.overviewCertificationScope}>
-          <h3>Certification scope</h3>
+          <h3>Certificate scope</h3>
           <div>
             {certifications.map((certificate) => (
               <p key={certificate.standard}>
@@ -383,7 +316,7 @@ export function AboutOverviewInquiry() {
       className={styles.overviewInquiry}
       aria-labelledby="overview-inquiry-title"
       titleId="overview-inquiry-title"
-      title="Tell us about your application"
+      title="Start with the part."
       action={
         <Button asChild variant="primary" className={styles.overviewInquiryAction}>
           <Link href="/contact">
@@ -394,135 +327,155 @@ export function AboutOverviewInquiry() {
       }
     >
       <p>
-        Tell us about your part, operating conditions and performance targets.
-        We&apos;ll help shortlist relevant grades and confirm the samples and
-        technical documents available for evaluation.
+        Send the part function, operating conditions and target properties.
+        We&apos;ll return a practical grade shortlist and confirm the samples and
+        documents available for evaluation.
       </p>
     </ActionPanel>
   );
 }
 
-export function ManufacturingOverview({
-  capabilities,
-}: ManufacturingOverviewProps) {
+export function AboutCompanySnapshot({
+  figures,
+}: AboutCompanySnapshotProps) {
   return (
     <section
       className={styles.manufacturingOverview}
       aria-labelledby="manufacturing-overview-title"
     >
-      <SectionIntro
-        className={styles.manufacturingOverviewLead}
-        scale="display"
-        title="In-House Compounding"
-        titleId="manufacturing-overview-title"
-        description="Three capabilities shape each review: modified POM expertise, in-house twin-screw compounding and project-specific document support."
-      />
-
-      <div className={styles.manufacturingOverviewList}>
-        {capabilities.map((capability) => (
-          <Card
-            key={capability.title}
-            asChild
-            variant="standard"
-            className={styles.manufacturingCapabilityCard}
-          >
-            <article>
-              <CardContent className={styles.manufacturingCapabilityContent}>
-                <h3>{capability.title}</h3>
-                <p>{capability.description}</p>
-              </CardContent>
-            </article>
-          </Card>
-        ))}
+      <div className="site-container">
+        <header className={styles.manufacturingOverviewHeader}>
+          <p id="manufacturing-overview-title">Manufacturing in numbers</p>
+          <p>
+            Capacity, production lines and in-house test equipment at our
+            Yancheng facility.
+          </p>
+        </header>
+        <MetricGroup
+          variant="rail"
+          tone="light"
+          className={styles.manufacturingOverviewMetrics}
+          items={figures}
+          renderValue={(figure) => <ValueText value={String(figure.value)} />}
+        />
       </div>
     </section>
   );
 }
 
-export function AboutInquiryBridge() {
-  return (
-    <ActionPanel
-      footerAdjacent
-      variant="evidence"
-      layout="distributed"
-      className={styles.inquiry}
-      copyClassName={styles.inquiryCopy}
-      aria-labelledby="about-inquiry-title"
-      titleId="about-inquiry-title"
-      title="Start with your application"
-      action={
-        <Button asChild variant="primary" className={styles.inquiryAction}>
-          <Link href="/contact">
-            Discuss Your Application
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
-        </Button>
-      }
-    >
-      <p>
-        Share the part function, operating conditions, performance targets and
-        document needs. We&apos;ll help shortlist relevant grades and confirm the
-        samples and technical documents available for evaluation.
-      </p>
-    </ActionPanel>
-  );
-}
-
 export function FactoryProofRows({ rows }: FactoryProofRowsProps) {
-  return (
-    <section
-      aria-label="Factory proof"
-      className={styles.flow}
-    >
-      {rows.map((row, index) => (
-        <article
-          key={row.title}
-          className={`${styles.flowRow} ${
-            row.imageSide === "right" ? styles.flowRowReverse : ""
-          } ${
-            index === 0
-              ? styles.flowRowLead
-              : index === 1
-                ? styles.flowRowFeature
-                : styles.flowRowClose
-          }`}
-        >
-          <MediaFigure
-            variant="edge-to-edge"
-            fit="cover"
-            className={styles.flowMedia}
-            caption={row.imageLabel}
-            captionClassName={styles.caption}
-            media={
-              <Image
-              src={publicPath(row.imageSrc)}
-              alt={row.imageAlt}
-              fill
-              sizes={
-                index === 1
-                  ? "(min-width: 1024px) 100vw, 100vw"
-                  : "(min-width: 1024px) 52vw, 100vw"
-              }
-              className={`object-cover ${
-                row.imageVariant === "warehouse" ? styles.warehouse : ""
-              }`}
-              />
-            }
-          />
+  const production = rows.find(
+    (row) => !row.supportingImages && row.imageVariant !== "warehouse",
+  );
+  const testing = rows.find((row) => row.supportingImages);
+  const supply = rows.find((row) => row.imageVariant === "warehouse");
 
-          <div className={styles.flowCopy}>
-            <h2>{row.title}</h2>
-            <p>{row.description}</p>
-            <ul className={styles.flowFacts}>
-              {row.points.map((point) => (
-                <li key={point}>
-                  <span>{point}</span>
-                </li>
+  if (!production || !testing || !supply) return null;
+
+  const renderFigure = (
+    row: FactoryProofRow,
+    className: string,
+    sizes: string,
+  ) => (
+    <MediaFigure
+      variant="captioned"
+      fit="cover"
+      className={className}
+      caption={row.imageLabel}
+      captionClassName={styles.manufacturingProofCaption}
+      media={
+        <Image
+          src={publicPath(row.imageSrc)}
+          alt={row.imageAlt}
+          fill
+          sizes={sizes}
+          className="object-cover"
+        />
+      }
+    />
+  );
+
+  const renderCopy = (row: FactoryProofRow) => (
+    <>
+      <p className={styles.manufacturingProofLabel}>{row.eyebrow}</p>
+      <h3>{row.title}</h3>
+      <p>{row.description}</p>
+      <ul className={styles.manufacturingProofFacts}>
+        {row.points.map((point) => (
+          <li key={point}>{point}</li>
+        ))}
+      </ul>
+    </>
+  );
+
+  return (
+    <div className={styles.manufacturingProof}>
+      <article className={styles.manufacturingProofLead}>
+        {renderFigure(
+          production,
+          styles.manufacturingProofLeadMedia,
+          "(min-width: 1024px) 58vw, 100vw",
+        )}
+        <div>{renderCopy(production)}</div>
+      </article>
+
+      <article className={styles.manufacturingProofTesting}>
+        <div className={styles.manufacturingProofTestingCopy}>
+          {renderCopy(testing)}
+        </div>
+        <div className={styles.manufacturingTestingGallery}>
+          {renderFigure(
+            testing,
+            styles.manufacturingTestingPrimaryMedia,
+            "(min-width: 1024px) 38vw, 100vw",
+          )}
+          <div className={styles.manufacturingTestingSupportMedia}>
+            {testing.supportingImages?.map((image) => (
+              <MediaFigure
+                key={image.src}
+                variant="captioned"
+                fit="cover"
+                className={styles.manufacturingTestingSupportFigure}
+                caption={image.label}
+                captionClassName={styles.manufacturingProofCaption}
+                media={
+                  <Image
+                    src={publicPath(image.src)}
+                    alt={image.alt}
+                    fill
+                    sizes="(min-width: 1024px) 20vw, 50vw"
+                    className="object-cover"
+                  />
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </article>
+
+      <article className={styles.manufacturingProofSupply}>
+        {renderFigure(
+          supply,
+          styles.manufacturingProofSupplyMedia,
+          "(min-width: 1024px) 92rem, 100vw",
+        )}
+        <div className={styles.manufacturingProofSupplyCopy}>
+          <div>
+            <p className={styles.manufacturingProofLabel}>
+              {supply.eyebrow}
+            </p>
+            <h3>{supply.title}</h3>
+          </div>
+          <div>
+            <p>{supply.description}</p>
+            <ul className={styles.manufacturingProofFacts}>
+              {supply.points.map((point) => (
+                <li key={point}>{point}</li>
               ))}
             </ul>
           </div>
-        </article>
-      ))}
-    </section>
+        </div>
+      </article>
+    </div>
   );
 }

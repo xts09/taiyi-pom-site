@@ -5,7 +5,7 @@
   border-left-color: #0b5fb8 !important;
   background: transparent !important;
   padding: 0.55rem 0 0.55rem 1rem !important;
-  font-weight: 620 !important;
+  font-weight: 600 !important;
 }
 
 .products-motion-root .inner-hero {
@@ -44,7 +44,7 @@
   content: "/";
   margin-left: 0.45rem;
   color: #94a3b8;
-  font-weight: 520;
+  font-weight: 500;
 }
 
 .products-motion-root .product-hero-data p:not(.section-kicker) {
@@ -56,7 +56,7 @@
   border-left: 1px solid rgba(125, 211, 252, 0.55);
   padding-left: clamp(0.9rem, 2vw, 1.25rem);
   color: #eef8ff;
-  font-weight: 620;
+  font-weight: 600;
 }
 
 .products-motion-root .product-hero-documents strong {
@@ -79,7 +79,7 @@
   padding: 0.22rem 0.42rem;
   color: #7dd3fc;
   font-size: 0.78rem;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1;
   white-space: nowrap;
 }
@@ -126,7 +126,7 @@
   display: block;
   color: #0f172a;
   font-size: 0.9rem;
-  font-weight: 720;
+  font-weight: 700;
 }
 
 .products-motion-root .product-filter-link {
@@ -138,7 +138,7 @@
   padding: 0.48rem 0 0.42rem;
   color: #526276;
   font-size: 0.84rem;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1.15;
   transition:
     border-color 160ms ease,
@@ -184,7 +184,7 @@
   padding: 0.15rem 0 0.15rem 1rem;
   color: #475569;
   font-size: 0.8rem;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1;
   white-space: nowrap;
 }
@@ -203,7 +203,7 @@
   padding: 0.62rem 0;
   color: #64748b;
   font-size: 0.72rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -243,7 +243,7 @@
 .products-motion-root .product-directory-index {
   color: #64748b;
   font-size: 1rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 
@@ -271,7 +271,7 @@
   align-self: center;
   color: #0b5fb8;
   font-size: 0.82rem;
-  font-weight: 760;
+  font-weight: 700;
   justify-self: end;
   white-space: nowrap;
 }
@@ -868,7 +868,7 @@
 .products-motion-root .product-index-hero .product-hero-data .section-kicker {
   color: #64748b;
   font-size: 0.72rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -899,7 +899,7 @@
   padding: 0.25rem 0.75rem 0.7rem 0;
   color: #64748b;
   font-size: 0.68rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -930,14 +930,14 @@
   padding: 0.55rem 0 0.55rem clamp(0.9rem, 2vw, 1.15rem);
   color: #0f172a;
   font-size: 0.86rem;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 .products-motion-root .product-hero-actions a::after {
   content: "->";
   color: #0b5fb8;
-  font-weight: 760;
+  font-weight: 700;
 }
 
 .products-motion-root .product-hero-actions a:hover {
@@ -981,7 +981,7 @@
   padding: 0.7rem 0.65rem 0 0.65rem;
   color: rgba(226, 232, 240, 0.68);
   font-size: 0.68rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.1;
   text-transform: uppercase;
 }
@@ -1015,7 +1015,7 @@
 .products-motion-root .product-workbench-steps span {
   color: #7dd3fc;
   font-size: 0.72rem;
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -1030,7 +1030,7 @@
   color: rgba(226, 232, 240, 0.64);
   font-size: 0.74rem;
   font-style: normal;
-  font-weight: 620;
+  font-weight: 600;
   line-height: 1.2;
 }
 
@@ -1050,7 +1050,7 @@
   margin-bottom: 0.45rem;
   color: #64748b;
   font-size: 0.72rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -1155,7 +1155,7 @@
   gap: 0.52rem;
   color: #07111f;
   font-size: clamp(1.3rem, 2vw, 1.75rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.08;
 }
 
@@ -1181,7 +1181,7 @@
   max-width: min(58rem, 66vw);
   color: #334155;
   font-size: clamp(0.98rem, 1.35vw, 1.18rem);
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.35;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1196,7 +1196,7 @@
   .products-motion-root.is-section-nav-pinned .product-section-nav-top p {
     color: #07111f;
     font-size: clamp(1.18rem, 1.38vw, 1.42rem);
-    font-weight: 820;
+    font-weight: 700;
     line-height: 1.08;
   }
 }
@@ -1268,7 +1268,7 @@
   padding: 0.58rem 0.95rem;
   color: #1f6fb8;
   font-size: 0.9rem;
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1.15;
   text-align: center;
   white-space: normal;
@@ -1326,7 +1326,7 @@
   align-items: center;
   color: #334155;
   font-size: 1rem;
-  font-weight: 680;
+  font-weight: 700;
   line-height: 1;
   white-space: nowrap;
 }
@@ -1406,7 +1406,7 @@
   margin-top: 0.4rem;
   color: #07111f;
   font-size: clamp(1.35rem, 1.65vw, 1.65rem);
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.12;
 }
 
@@ -1488,7 +1488,7 @@
 .products-motion-root .product-overview-screen-head h2 {
   color: #07111f;
   font-size: clamp(2rem, 2.7vw, 2.55rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.08;
   text-wrap: balance;
   white-space: nowrap;
@@ -1529,7 +1529,7 @@
   margin-bottom: 0;
   color: #8aa0ba;
   font-size: 0.78rem;
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
@@ -1562,7 +1562,7 @@
 .products-motion-root .product-family-label {
   color: #0b5fb8;
   font-size: 0.72rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -1571,7 +1571,7 @@
 .products-motion-root .product-family-card strong {
   color: #07111f;
   font-size: clamp(1.05rem, 1.5vw, 1.22rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.15;
 }
 
@@ -1580,7 +1580,7 @@
   > span:not(.product-filter-number):not(.product-family-label) {
   color: #475569;
   font-size: 0.86rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.5;
 }
 
@@ -1590,7 +1590,7 @@
   color: #64748b;
   font-size: 0.72rem;
   font-style: normal;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -1629,7 +1629,7 @@
 
 .products-motion-root .product-directory-shell .product-family-card strong {
   font-size: clamp(0.98rem, 1.05vw, 1.08rem);
-  font-weight: 780;
+  font-weight: 700;
 }
 
 .products-motion-root
@@ -1655,7 +1655,7 @@
 .products-motion-root .anime-count {
   color: #07111f;
   font-size: 0.95rem;
-  font-weight: 840;
+  font-weight: 700;
 }
 
 .products-motion-root .anime-border-line {
@@ -1719,7 +1719,7 @@
   margin-top: 0.2rem;
   color: #1f252d;
   font-size: clamp(0.9rem, 1vw, 1rem);
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -1806,14 +1806,14 @@
 .products-motion-root .product-filter-number {
   color: #94a3b8;
   font-size: 0.7rem;
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1;
 }
 
 .products-motion-root .product-filter-name {
   color: #0f172a;
   font-size: 0.86rem;
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1.18;
 }
 
@@ -1821,7 +1821,7 @@
   display: block;
   color: #526276;
   font-size: 0.76rem;
-  font-weight: 620;
+  font-weight: 600;
   line-height: 1.28;
 }
 
@@ -1830,7 +1830,7 @@
   justify-self: start;
   color: #64748b;
   font-size: 0.7rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.2;
   text-transform: uppercase;
   white-space: nowrap;
@@ -1854,7 +1854,7 @@
 .products-motion-root .product-directory-filter-label {
   color: #1f252d;
   font-size: 0.76rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -1877,7 +1877,7 @@
   padding: 0.45rem 0.62rem;
   color: #475569;
   font-size: 0.74rem;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1.15;
   cursor: pointer;
 }
@@ -1922,7 +1922,7 @@
 .products-motion-root .product-application-directory-head h2 {
   color: #07111f;
   font-size: clamp(1.8rem, 3.4vw, 3rem);
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.05;
 }
 
@@ -1953,7 +1953,7 @@
   padding: 1rem clamp(1rem, 2vw, 1.35rem);
   color: #07111f;
   font-size: clamp(1rem, 1.25vw, 1.12rem);
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1.25;
   transition:
     background 160ms ease,
@@ -1968,7 +1968,7 @@
 .products-motion-root .product-application-list-item span {
   color: #8aa0ba;
   font-size: 0.8rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.08em;
 }
 
@@ -1976,7 +1976,7 @@
   content: "View";
   color: #1f6fb8;
   font-size: 0.78rem;
-  font-weight: 780;
+  font-weight: 700;
   opacity: 0.62;
   transition:
     opacity 160ms ease,
@@ -2005,7 +2005,7 @@
 .products-motion-root .product-finder-panel label {
   color: #0f172a;
   font-size: 0.86rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1;
   text-transform: uppercase;
@@ -2027,13 +2027,13 @@
   padding: 0.82rem 0.95rem;
   color: #07111f;
   font-size: 0.92rem;
-  font-weight: 620;
+  font-weight: 600;
   outline: none;
 }
 
 .products-motion-root .product-finder-control input::placeholder {
   color: #94a3b8;
-  font-weight: 560;
+  font-weight: 600;
 }
 
 .products-motion-root .product-finder-control:focus-within {
@@ -2048,7 +2048,7 @@
   padding: 0.82rem 0.95rem;
   color: #0b5fb8;
   font-size: 0.8rem;
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -2123,14 +2123,14 @@
 .products-motion-root .product-directory-index {
   color: #64748b;
   font-size: 0.76rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 .products-motion-root .product-directory-main .section-kicker {
   color: #0b5fb8;
   font-size: 0.72rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -2181,7 +2181,7 @@
   padding-bottom: 0.18rem;
   color: #0b5fb8;
   font-size: 0.8rem;
-  font-weight: 780;
+  font-weight: 700;
 }
 
 .tds-finder-page {
@@ -2219,7 +2219,7 @@
   margin-top: 0.65rem;
   color: #07111f;
   font-size: clamp(2.1rem, 3.2vw, 2.65rem);
-  font-weight: 820;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.02;
   text-wrap: balance;
@@ -2230,7 +2230,7 @@
   max-width: 38rem;
   color: #334155;
   font-size: 1.02rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.62;
 }
 
@@ -2245,7 +2245,7 @@
 .tds-search-panel label {
   color: #07111f;
   font-size: 1.08rem;
-  font-weight: 760;
+  font-weight: 700;
 }
 
 .tds-search-panel p {
@@ -2272,7 +2272,7 @@
   background: transparent;
   color: #07111f;
   font-size: 1rem;
-  font-weight: 560;
+  font-weight: 600;
   outline: none;
   padding: 0.85rem 1rem;
 }
@@ -2294,7 +2294,7 @@
   color: #ffffff;
   cursor: pointer;
   font: inherit;
-  font-weight: 720;
+  font-weight: 700;
   padding: 0.85rem 1.25rem;
 }
 
@@ -2316,7 +2316,7 @@
   border-radius: 0.3rem;
   color: #334155;
   font-size: 0.9rem;
-  font-weight: 680;
+  font-weight: 700;
   padding: 0.45rem 0.75rem;
   text-decoration: none;
 }
@@ -2345,13 +2345,13 @@
   margin-top: 0.25rem;
   color: #07111f;
   font-size: clamp(1.35rem, 2vw, 1.75rem);
-  font-weight: 820;
+  font-weight: 700;
 }
 
 .tds-results-head > span {
   color: #5b6680;
   font-size: 0.82rem;
-  font-weight: 720;
+  font-weight: 700;
 }
 
 .tds-results-table-wrap {
@@ -2388,7 +2388,7 @@
   background: #f1f5f9;
   color: #475569;
   font-size: 0.72rem;
-  font-weight: 780;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
@@ -2407,7 +2407,7 @@
 
 .tds-results-table tbody th {
   font-size: 1rem;
-  font-weight: 820;
+  font-weight: 700;
 }
 
 .tds-results-table a {
@@ -2426,7 +2426,7 @@
   background: #e7eef8;
   color: #0b5fb8;
   font-size: 0.72rem;
-  font-weight: 760;
+  font-weight: 700;
   padding: 0.18rem 0.45rem;
 }
 
@@ -2440,7 +2440,7 @@
 .tds-result-actions a {
   color: #0b5fb8;
   font-size: 0.84rem;
-  font-weight: 780;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -2791,7 +2791,7 @@
   h2 {
   margin-top: 0.6rem;
   font-size: clamp(1.2rem, 1.35vw, 1.45rem);
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1.16;
 }
 
@@ -2804,7 +2804,7 @@
   align-items: center;
   padding: 0.85rem 0;
   font-size: 0.95rem;
-  font-weight: 740;
+  font-weight: 700;
   line-height: 1.2;
 }
 
@@ -2815,7 +2815,7 @@
   display: block;
   color: #94a3b8;
   font-size: 0.72rem;
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1;
 }
 
@@ -2825,7 +2825,7 @@
   strong {
   color: #0f172a;
   font-size: 0.95rem;
-  font-weight: 780;
+  font-weight: 700;
   line-height: 1.18;
 }
 
@@ -3220,7 +3220,7 @@
   margin: 0;
   color: #526273;
   font-size: 0.77rem;
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: 0.015em;
   line-height: 1.45;
   text-align: right;
@@ -3252,7 +3252,7 @@
   gap: 0.55rem;
   color: #ffffff;
   font-size: 1.02rem;
-  font-weight: 850;
+  font-weight: 700;
 }
 
 .product-detail-resource-copy strong::before {
@@ -3288,7 +3288,7 @@
 .product-detail-snapshot-grid dt {
   color: rgba(241, 245, 249, 0.7);
   font-size: 0.7rem;
-  font-weight: 850;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -3297,7 +3297,7 @@
   margin-top: 0.22rem;
   color: #ffffff;
   font-size: 1rem;
-  font-weight: 850;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -3324,7 +3324,7 @@
 .product-detail-document-strip > span {
   color: #075db3;
   font-size: 0.78rem;
-  font-weight: 850;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -3343,7 +3343,7 @@
   color: #0b5fb8;
   padding: 0.28rem 0.58rem;
   font-size: 0.78rem;
-  font-weight: 850;
+  font-weight: 700;
 }
 
 .product-detail-document-strip p {
@@ -3351,7 +3351,7 @@
   margin: -0.1rem 0 0;
   color: rgba(51, 65, 85, 0.72);
   font-size: 0.75rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.4;
 }
 
@@ -3368,7 +3368,7 @@
 .product-detail-topic-list a {
   position: relative;
   color: rgba(241, 245, 249, 0.82);
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1;
   text-decoration: none;
 }
@@ -3411,7 +3411,7 @@
 
 .product-detail-section-nav a {
   color: #243145;
-  font-weight: 850;
+  font-weight: 700;
 }
 
 .product-detail-section-nav a::after {
@@ -3454,7 +3454,7 @@
   gap: 0.6rem;
   color: #020817;
   font-size: clamp(1.45rem, 2vw, 1.9rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1.18;
   letter-spacing: 0;
 }
@@ -3509,7 +3509,7 @@
 .product-detail-core-data-note a {
   color: #0b5fb8;
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -3598,7 +3598,7 @@
   margin-top: 0.45rem;
   color: #020817;
   font-size: clamp(1.45rem, 2vw, 1.9rem);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.15;
   text-wrap: balance;
@@ -3635,7 +3635,7 @@
   display: block;
   color: #2f5f9e;
   font-size: 0.72rem;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.12em;
 }
 
@@ -3644,7 +3644,7 @@
   margin-top: 0.65rem;
   color: #0f172a;
   font-size: 0.98rem;
-  font-weight: 850;
+  font-weight: 700;
   line-height: 1.35;
 }
 
@@ -3750,14 +3750,14 @@
 .product-detail-related .related-product-index {
   color: #2f5f9e;
   font-size: 1rem;
-  font-weight: 850;
+  font-weight: 700;
   line-height: 1.2;
 }
 
 .product-detail-related .related-product-main h3 {
   margin-top: 0.18rem;
   font-size: clamp(1.1rem, 1.7vw, 1.35rem);
-  font-weight: 850;
+  font-weight: 700;
   letter-spacing: 0;
 }
 
@@ -3767,14 +3767,14 @@
 
 .product-detail-related .related-product-row dt {
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: 0.04em;
 }
 
 .product-detail-related .related-product-row dd {
   margin-top: 0.2rem;
   font-size: 0.9rem;
-  font-weight: 780;
+  font-weight: 700;
 }
 
 @media (max-width: 72rem) {
@@ -3968,7 +3968,7 @@
   margin: 0 0 0.8rem;
   color: #0067a6;
   font-size: 0.78rem;
-  font-weight: 830;
+  font-weight: 700;
   letter-spacing: 0.11em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -3982,7 +3982,7 @@
   margin: 0;
   color: #07111f;
   font-size: clamp(2.5rem, 4.6vw, 4.45rem);
-  font-weight: 860;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 0.98;
 }
@@ -4075,7 +4075,7 @@
   margin: 0;
   color: #07111f;
   font-size: clamp(1.28rem, 1.9vw, 1.65rem);
-  font-weight: 850;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.18;
 }
@@ -4102,7 +4102,7 @@
   padding-left: 1rem;
   color: #243145;
   font-size: 0.95rem;
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.5;
 }
 
@@ -4157,7 +4157,7 @@
   margin: 0;
   color: #07111f;
   font-size: 1rem;
-  font-weight: 840;
+  font-weight: 700;
   line-height: 1.25;
 }
 
@@ -4191,7 +4191,7 @@
 .pom-landing-table-wrap th {
   color: #526074;
   font-size: 0.72rem;
-  font-weight: 840;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -4321,7 +4321,7 @@
 .pom-landing-faq dt {
   color: #07111f;
   font-size: 1rem;
-  font-weight: 760;
+  font-weight: 700;
   line-height: 1.45;
 }
 
@@ -4441,7 +4441,7 @@
   margin-top: 0.8rem;
   color: #526074;
   font-size: 0.82rem;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .resource-site-search-examples a {
@@ -4452,7 +4452,7 @@
   border-radius: 999px;
   background: #f3f8fb;
   color: #006d99;
-  font-weight: 760;
+  font-weight: 700;
   padding: 0.28rem 0.62rem;
   text-decoration: none;
 }
@@ -4508,13 +4508,13 @@
   margin: 0;
   color: #07111f;
   font-size: 1rem;
-  font-weight: 860;
+  font-weight: 700;
 }
 
 .resource-site-filter-head a {
   color: #0077a5;
   font-size: 0.78rem;
-  font-weight: 780;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -4527,7 +4527,7 @@
   margin: 0 0 0.75rem;
   color: #14072f;
   font-size: 0.88rem;
-  font-weight: 820;
+  font-weight: 700;
 }
 
 .resource-site-filter-disclosure summary {
@@ -4539,7 +4539,7 @@
   cursor: pointer;
   font-family: var(--font-display);
   font-size: 0.88rem;
-  font-weight: 820;
+  font-weight: 700;
   line-height: 1.25;
   list-style: none;
 }
@@ -4552,7 +4552,7 @@
   color: #0077a5;
   content: "+";
   font-size: 1.15rem;
-  font-weight: 620;
+  font-weight: 600;
   line-height: 1;
 }
 
@@ -4584,7 +4584,7 @@
   border-radius: 0.25rem;
   color: #243145;
   font-size: 0.9rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.25;
   padding: 0.35rem 0.45rem;
   text-decoration: none;
@@ -4612,7 +4612,7 @@
 
 .resource-site-filter-options a[aria-current="true"] {
   color: #006d99;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .resource-site-filter-options a[aria-current="true"] span {
@@ -4647,14 +4647,14 @@
   margin: 0;
   color: #07111f;
   font-size: clamp(1.55rem, 2.2vw, 2rem);
-  font-weight: 860;
+  font-weight: 700;
   line-height: 1.16;
 }
 
 .resource-site-results-head > span {
   color: #14072f;
   font-size: 0.9rem;
-  font-weight: 760;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -4672,7 +4672,7 @@
   background: #e8f4fa;
   color: #006d99;
   font-size: 0.75rem;
-  font-weight: 820;
+  font-weight: 700;
   padding: 0.32rem 0.58rem;
 }
 
@@ -4691,14 +4691,14 @@
   margin: 0;
   color: #526074;
   font-size: 0.82rem;
-  font-weight: 740;
+  font-weight: 700;
 }
 
 .resource-site-result h2 {
   margin: 0;
   color: #0077a5;
   font-size: 1.12rem;
-  font-weight: 860;
+  font-weight: 700;
   line-height: 1.34;
 }
 
@@ -4731,7 +4731,7 @@
 .resource-site-result-meta {
   color: #526074;
   font-size: 0.82rem;
-  font-weight: 650;
+  font-weight: 600;
 }
 
 .resource-site-result-meta {
@@ -4753,7 +4753,7 @@
   margin: 0;
   color: #07111f;
   font-size: clamp(1.25rem, 2vw, 1.55rem);
-  font-weight: 860;
+  font-weight: 700;
 }
 
 .resource-search-empty p {
@@ -4810,7 +4810,7 @@
   display: inline-flex;
   margin-top: 1rem;
   color: #0077a5;
-  font-weight: 820;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -4850,7 +4850,7 @@
     gap: 1rem;
     color: #07111f;
     cursor: pointer;
-    font-weight: 840;
+    font-weight: 700;
     list-style: none;
     padding: 0.75rem 1rem;
   }
@@ -4874,7 +4874,7 @@
     margin-left: auto;
     color: #526074;
     font-size: 0.78rem;
-    font-weight: 720;
+    font-weight: 700;
   }
 
   .resource-site-filter-shell > summary:focus-visible {

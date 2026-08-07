@@ -58,6 +58,10 @@ const footerColumns = [
       { href: getCategoryPath("PA66 Compound"), label: "PA66 Compounds" },
       { href: getCategoryPath("PPA Compound"), label: "PPA Compounds" },
       { href: getCategoryPath("Base POM Resin"), label: "POM Resin" },
+      {
+        href: "/products/conductive-antistatic-compounds",
+        label: "Conductive & Antistatic Compounds",
+      },
     ],
   },
   {
@@ -83,11 +87,11 @@ const footerColumns = [
       { href: "/about", label: "About Us" },
       { href: "/contact", label: "Contact Sales" },
       {
-        href: "/about#certifications-title",
+        href: "/about#overview-credentials-title",
         label: "Quality & Compliance",
       },
       {
-        href: "/about#manufacturing-path-title",
+        href: "/about#manufacturing",
         label: "Manufacturing",
       },
     ],

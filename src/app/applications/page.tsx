@@ -13,14 +13,14 @@ import {
 
 const applicationsTitle = "Engineering Plastic Applications | Taiyi Polymer";
 const applicationsDescription =
-  "Explore application areas for modified POM and selected engineering plastic compounds, including automotive, electronics, automation, motion components, water control, industrial machinery, outdoor equipment, and textile machinery.";
+  "Explore application areas for modified POM and selected engineering plastic compounds, including automotive, electronics, automation, motion components, water control, washing-machine components, outdoor equipment, and textile machinery.";
 
 export const metadata: Metadata = createPageMetadata({
   title: applicationsTitle,
   description: applicationsDescription,
   path: "/applications",
-  image: "/applications/parts/industrial-machinery-hero.webp",
-  imageAlt: "Taiyi Polymer application engineering for industrial parts",
+  image: "/applications/parts/washing-machine-components-hero.png",
+  imageAlt: "Taiyi Polymer application engineering for washing machine components",
 });
 
 const featuredApplications = applications
@@ -75,8 +75,8 @@ export default function ApplicationsPage() {
               Start with the molded part, not a generic material name. Taiyi Polymer
               reviews motion, load, environment, dimensional targets, tooling
               stage, and document needs to shortlist modified POM candidates.
-              For PA6, PA66, or PPA projects, send the same inputs for a focused
-              grade review.
+              For PA6, PA66, or PPA projects, use the inquiry path for a
+              separate, focused grade review.
             </p>
 
             <div

@@ -374,7 +374,7 @@
   margin-bottom: 0.78rem;
   color: #0b5fb8;
   font-size: 0.78rem;
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.35;
 }
@@ -382,7 +382,7 @@
 .global-footprint-copy h2 {
   color: #07111f;
   font-size: clamp(2.25rem, 3.6vw, 3.25rem);
-  font-weight: 740;
+  font-weight: 700;
   letter-spacing: 0;
   line-height: 1.04;
 }
@@ -391,7 +391,7 @@
   margin-top: 1.45rem;
   color: #536171;
   font-size: clamp(0.98rem, 1.05vw, 1.08rem);
-  font-weight: 420;
+  font-weight: 400;
   line-height: 1.9;
 }
 
@@ -414,7 +414,7 @@
 .export-market-summary strong {
   color: #0a4d7e;
   font-size: 0.78rem;
-  font-weight: 720;
+  font-weight: 700;
   line-height: 1.4;
 }
 
@@ -422,7 +422,7 @@
   margin: 0;
   color: #536171;
   font-size: 0.78rem;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -579,7 +579,7 @@
   margin: var(--home-space-lg) 0 0;
   color: var(--home-color-white-muted);
   font-size: clamp(1rem, 1.2vw, 1.2rem);
-  font-weight: 450;
+  font-weight: 400;
   line-height: 1.65;
 }
 
@@ -922,7 +922,7 @@
   padding: 0 0 0 0.9rem;
   color: color-mix(in oklch, var(--home-color-white) 88%, transparent);
   font-size: var(--home-text-sm);
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.45;
 }
 
@@ -1150,7 +1150,7 @@
 .selection-protocol-head span {
   color: #0b5f9f;
   font-size: 0.72rem;
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -1244,7 +1244,7 @@
 .operation-stack-head span {
   color: #0b5f9f;
   font-size: 0.72rem;
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.25;
   text-transform: uppercase;
@@ -1273,7 +1273,7 @@
 .operation-stack article > span {
   color: #0b5f9f;
   font-size: 0.72rem;
-  font-weight: 720;
+  font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.25;
   text-transform: uppercase;
@@ -1765,7 +1765,7 @@
 .selection-corridor .section-kicker,
 .factory-sequence .section-kicker {
   font-size: 0.78rem;
-  font-weight: 680;
+  font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1.35;
 }
@@ -1845,7 +1845,7 @@
 .home-hero .hero-identity p {
   color: rgba(255, 255, 255, 0.92);
   font-size: clamp(0.9rem, 0.96vw, 1rem);
-  font-weight: 580;
+  font-weight: 600;
   line-height: 1.25;
 }
 
@@ -1856,7 +1856,7 @@
 .home-hero .hero-motion-title {
   max-width: 70rem;
   font-size: clamp(2.75rem, 3.8vw, 4.25rem);
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   line-height: 1.08;
   letter-spacing: 0 !important;
 }
@@ -1867,7 +1867,7 @@
   max-width: 51.25rem;
   color: rgba(248, 252, 255, 0.96);
   font-size: 1.0625rem;
-  font-weight: 520;
+  font-weight: 500;
   line-height: 1.65;
 }
 
@@ -2037,7 +2037,7 @@
 .manufacturing-base .base-metric p {
   color: rgba(125, 211, 252, 0.84) !important;
   font-size: 0.68rem;
-  font-weight: 760;
+  font-weight: 700;
   letter-spacing: 0.045em;
   line-height: 1.2;
   text-transform: uppercase;
@@ -2049,7 +2049,7 @@
   color: rgba(255, 255, 255, 0.95) !important;
   -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
   font-size: clamp(1.9rem, 2.3vw, 2.25rem);
-  font-weight: 760 !important;
+  font-weight: 700 !important;
   line-height: 1;
   letter-spacing: 0 !important;
 }
@@ -2069,7 +2069,7 @@
   margin-top: 0.28rem;
   color: rgba(218, 234, 245, 0.68) !important;
   font-size: 0.72rem;
-  font-weight: 560;
+  font-weight: 600;
   line-height: 1.3;
   animation: none !important;
   opacity: 1 !important;
@@ -2251,7 +2251,7 @@
     color: rgba(255, 255, 255, 0.9) !important;
     -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
     font-size: clamp(2rem, 2.4vw, 2.35rem);
-    font-weight: 800 !important;
+    font-weight: 700 !important;
     letter-spacing: -0.02em !important;
     line-height: 1;
   }
@@ -2819,7 +2819,7 @@
 .home-redesign .certificate-document figcaption > span {
   color: var(--home-color-white-muted);
   font-size: var(--home-text-xs);
-  font-weight: 650;
+  font-weight: 600;
   line-height: 1.45;
 }
 
@@ -3207,7 +3207,7 @@
 .home-redesign .export-network-facts strong {
   font-family: var(--home-font-display);
   font-size: 1rem;
-  font-weight: 650;
+  font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.35;
 }
@@ -3338,7 +3338,7 @@
   padding: 0 clamp(var(--home-space-sm), 1.8vw, var(--home-space-md));
   color: var(--home-color-accent-ink);
   font-size: var(--home-text-sm);
-  font-weight: 750;
+  font-weight: 700;
   text-decoration: none;
   white-space: nowrap;
   transition:

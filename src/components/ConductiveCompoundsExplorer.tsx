@@ -9,6 +9,7 @@ import {
   conductiveCompounds,
   conductiveMatrices,
   conductiveSeries,
+  type ConductiveCompound,
   type ConductiveRange,
   type ConductiveTechnology,
 } from "@/data/conductiveCompounds";
@@ -16,6 +17,24 @@ import styles from "./ConductiveCompounds.module.css";
 
 type TechnologyFilter = "all" | ConductiveTechnology;
 type RangeFilter = "all" | ConductiveRange;
+
+type ConductiveCompoundsExplorerProps = {
+  defaultTechnology?: TechnologyFilter;
+  groupByMatrix?: boolean;
+};
+
+const matrixGroupPriority = [
+  "POM",
+  "PA6",
+  "PA66",
+  "PPA",
+  "PPS",
+  "ABS",
+  "PC",
+  "PC/ABS",
+  "PBT",
+  "TPU",
+] as const;
 
 const technologyOptions: Array<{
   value: TechnologyFilter;
@@ -41,9 +60,12 @@ const rangeOptionsByTechnology: Record<
   all: ["r35", "r68", "r610"],
 };
 
-export function ConductiveCompoundsExplorer() {
+export function ConductiveCompoundsExplorer({
+  defaultTechnology = "cnt",
+  groupByMatrix = false,
+}: ConductiveCompoundsExplorerProps) {
   const [technology, setTechnology] =
-    useState<TechnologyFilter>("cnt");
+    useState<TechnologyFilter>(defaultTechnology);
   const [matrix, setMatrix] = useState("all");
   const [range, setRange] = useState<RangeFilter>("all");
   const [query, setQuery] = useState("");
@@ -67,6 +89,33 @@ export function ConductiveCompoundsExplorer() {
     });
   }, [matrix, query, range, technology]);
 
+  const groupedCompounds = useMemo(() => {
+    const groups = new Map<string, ConductiveCompound[]>();
+
+    filteredCompounds.forEach((compound) => {
+      const group = groups.get(compound.matrix) ?? [];
+      group.push(compound);
+      groups.set(compound.matrix, group);
+    });
+
+    return Array.from(groups, ([matrixName, compounds]) => ({
+      matrix: matrixName,
+      compounds,
+    })).sort((left, right) => {
+      const leftIndex = matrixGroupPriority.indexOf(
+        left.matrix as (typeof matrixGroupPriority)[number],
+      );
+      const rightIndex = matrixGroupPriority.indexOf(
+        right.matrix as (typeof matrixGroupPriority)[number],
+      );
+      const leftRank = leftIndex === -1 ? matrixGroupPriority.length : leftIndex;
+      const rightRank =
+        rightIndex === -1 ? matrixGroupPriority.length : rightIndex;
+
+      return leftRank - rightRank || left.matrix.localeCompare(right.matrix);
+    });
+  }, [filteredCompounds]);
+
   const activeDescription =
     technology === "all"
       ? "Compare both modification systems, then narrow the list by polymer matrix and target range."
@@ -82,6 +131,46 @@ export function ConductiveCompoundsExplorer() {
       setRange("all");
     }
   };
+
+  const renderRows = (compounds: ConductiveCompound[]) =>
+    compounds.map((compound) => (
+      <tr key={`${compound.technology}-${compound.grade}`}>
+        <td data-label="Grade">
+          <strong>{compound.grade}</strong>
+        </td>
+        <td data-label="Material">{compound.matrix}</td>
+        <td data-label="Technology">
+          <span
+            className={
+              compound.technology === "cnt" ? styles.cntBadge : styles.cfBadge
+            }
+          >
+            {conductiveSeries[compound.technology].shortLabel}
+          </span>
+        </td>
+        <td data-label="Target range">{compound.rangeLabel}</td>
+        <td data-label="Next step">
+          <Link href="/contact">Request data</Link>
+        </td>
+      </tr>
+    ));
+
+  const renderTable = (compounds: ConductiveCompound[]) => (
+    <div className={styles.tableWrap}>
+      <table>
+        <thead>
+          <tr>
+            <th>Grade</th>
+            <th>Material</th>
+            <th>Technology</th>
+            <th>Target range</th>
+            <th>Next step</th>
+          </tr>
+        </thead>
+        <tbody>{renderRows(compounds)}</tbody>
+      </table>
+    </div>
+  );
 
   return (
     <section
@@ -176,46 +265,28 @@ export function ConductiveCompoundsExplorer() {
         </div>
 
         {filteredCompounds.length ? (
-          <div className={styles.tableWrap}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Grade</th>
-                  <th>Material</th>
-                  <th>Technology</th>
-                  <th>Target range</th>
-                  <th>Next step</th>
-                </tr>
-              </thead>
-              <tbody>
-                {filteredCompounds.map((compound) => (
-                  <tr key={`${compound.technology}-${compound.grade}`}>
-                    <td data-label="Grade">
-                      <strong>{compound.grade}</strong>
-                    </td>
-                    <td data-label="Material">{compound.matrix}</td>
-                    <td data-label="Technology">
-                      <span
-                        className={
-                          compound.technology === "cnt"
-                            ? styles.cntBadge
-                            : styles.cfBadge
-                        }
-                      >
-                        {conductiveSeries[compound.technology].shortLabel}
-                      </span>
-                    </td>
-                    <td data-label="Target range">
-                      {compound.rangeLabel}
-                    </td>
-                    <td data-label="Next step">
-                      <Link href="/contact">Request data</Link>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          groupByMatrix ? (
+            <div className={styles.matrixGroups}>
+              {groupedCompounds.map((group) => (
+                <section
+                  key={group.matrix}
+                  className={styles.matrixGroup}
+                  aria-label={`Conductive and antistatic ${group.matrix} grades`}
+                >
+                  <div className={styles.matrixGroupHeader}>
+                    <div>
+                      <p>Material Matrix</p>
+                      <h3>Conductive &amp; Antistatic {group.matrix}</h3>
+                    </div>
+                    <span>{group.compounds.length} listed grades</span>
+                  </div>
+                  {renderTable(group.compounds)}
+                </section>
+              ))}
+            </div>
+          ) : (
+            renderTable(filteredCompounds)
+          )
         ) : (
           <div className={styles.emptyState}>
             No grade matches these filters. Try another material or target
