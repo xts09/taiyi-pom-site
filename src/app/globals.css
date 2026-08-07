@@ -4153,26 +4153,6 @@ body {
   display: block;
 }
 
-.type-word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.type-letter {
-  display: inline-block;
-  opacity: 1;
-  filter: none;
-  transform: none;
-}
-
-.home-motion-root.is-home-motion-ready .hero-motion-kicker,
-.home-motion-root.is-home-motion-ready .hero-motion-copy,
-.home-motion-root.is-home-motion-ready .hero-motion-actions > * {
-  opacity: 0;
-  transform: none;
-  will-change: opacity;
-}
-
 .home-motion-root.is-home-motion-ready .product-current-head,
 .home-motion-root.is-home-motion-ready .selection-motion-copy,
 .home-motion-root.is-home-motion-ready .operation-motion-copy,
@@ -4207,13 +4187,6 @@ body {
   .flow-point {
   opacity: 0;
   transform: translate3d(1.35rem, 0, 0);
-}
-
-.home-motion-root.is-home-motion-ready .type-letter {
-  opacity: 0;
-  filter: blur(0.22rem);
-  transform: none;
-  will-change: opacity, filter;
 }
 
 .polymer-field {
@@ -4875,12 +4848,6 @@ body {
     transition-duration: 0.01ms !important;
   }
 
-  .type-letter {
-    opacity: 1;
-    filter: none;
-    transform: none;
-    animation: none !important;
-  }
 }
 
 @media (max-width: 39.999rem) {
@@ -6574,8 +6541,7 @@ body {
 
 /* Home color restore: undo the over-muted hero and factory imagery. */
 .home-hero .hero-motion-title,
-.home-hero .hero-motion-title span,
-.home-hero .type-letter {
+.home-hero .hero-motion-title span {
   color: #ffffff;
   -webkit-text-fill-color: #ffffff;
   text-shadow:

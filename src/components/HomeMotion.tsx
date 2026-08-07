@@ -27,7 +27,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
           ?.querySelector<HTMLElement>(".selection-corridor")
           ?.classList.add("is-flow-active");
         gsap.set(
-          ".hero-motion-kicker, .type-letter, .hero-motion-copy, .hero-motion-actions > *, .manufacturing-base [data-slot='metric-item'], .section-motion-copy, .product-current-head, .product-disclosure, .selection-stepper, .flow-point, .operation-stack article, .factory-frame, .cta-ribbon, .certification-heading, .certificate-document, .home-inquiry-copy, .home-inquiry-panel, .global-footprint [data-slot='section-intro'] > *, .global-footprint .supply-map-shell, .global-footprint .export-market-panel, .global-footprint .export-market-summary > li, .qualification-sequence .qualification-heading > *, .qualification-sequence .qualification-steps li",
+          ".manufacturing-base [data-slot='metric-item'], .section-motion-copy, .product-current-head, .product-disclosure, .selection-stepper, .flow-point, .operation-stack article, .factory-frame, .cta-ribbon, .certification-heading, .certificate-document, .home-inquiry-copy, .home-inquiry-panel, .global-footprint [data-slot='section-intro'] > *, .global-footprint .supply-map-shell, .global-footprint .export-market-panel, .global-footprint .export-market-summary > li, .qualification-sequence .qualification-heading > *, .qualification-sequence .qualification-steps li",
           {
             autoAlpha: 1,
             x: 0,

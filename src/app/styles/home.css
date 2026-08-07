@@ -179,19 +179,15 @@
 }
 
 .home-motion-root .home-hero .hero-motion-kicker,
-.home-motion-root .home-hero .type-letter,
-.home-motion-root .home-hero .hero-motion-copy,
-.home-motion-root .home-hero .hero-motion-actions > * {
+.home-motion-root .home-hero .hero-motion-title,
+.home-motion-root .home-hero .hero-support-motion {
   opacity: 1;
   visibility: visible;
 }
 
-.home-motion-root .home-hero .hero-motion-kicker {
-  transform: none;
-}
-
-.home-motion-root .home-hero .type-letter {
-  filter: none;
+.home-motion-root .home-hero .hero-motion-kicker,
+.home-motion-root .home-hero .hero-motion-title,
+.home-motion-root .home-hero .hero-support-motion {
   transform: none;
 }
 
@@ -221,24 +217,15 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .home-motion-root .home-hero .hero-motion-kicker {
-    animation: home-hero-rise 0.42s var(--home-ease-out) 0.08s both;
+    animation: home-hero-rise 0.36s var(--home-ease-out) 0.04s both;
   }
 
-  .home-motion-root .home-hero .type-letter {
-    animation: home-hero-rise 0.5s var(--home-ease-out) both;
-    animation-delay: calc(0.16s + var(--letter-index) * 0.012s);
+  .home-motion-root .home-hero .hero-motion-title {
+    animation: home-hero-rise 0.44s var(--home-ease-out) 0.08s both;
   }
 
-  .home-motion-root .home-hero .hero-motion-copy {
-    animation: home-hero-rise 0.5s var(--home-ease-out) 0.48s both;
-  }
-
-  .home-motion-root .home-hero .hero-motion-actions > * {
-    animation: home-hero-rise 0.42s var(--home-ease-out) 0.62s both;
-  }
-
-  .home-motion-root .home-hero .hero-motion-actions > :nth-child(2) {
-    animation-delay: 0.7s;
+  .home-motion-root .home-hero .hero-support-motion {
+    animation: home-hero-rise 0.4s var(--home-ease-out) 0.14s both;
   }
 
   .home-motion-root .manufacturing-base :is(.base-figure, .base-metric) {

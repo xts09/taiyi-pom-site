@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Fragment, type CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
@@ -174,18 +173,6 @@ const inquiryChecklist = [
 
 const heroTitle = "Modified POM Compounds for Precision Molded Parts.";
 
-const heroTitleWords = (() => {
-  let letterIndex = 0;
-
-  return heroTitle.split(" ").map((word) => ({
-    word,
-    letters: Array.from(word).map((letter) => ({
-      letter,
-      index: letterIndex++,
-    })),
-  }));
-})();
-
 export default function Home() {
   return (
     <HomeMotion>
@@ -229,24 +216,7 @@ export default function Home() {
                 aria-label={heroTitle}
               >
                 <span className="typewriter-visual" aria-hidden="true">
-                  {heroTitleWords.map(({ word, letters }, wordIndex) => (
-                    <Fragment key={`${word}-${wordIndex}`}>
-                      <span className="type-word">
-                        {letters.map(({ letter, index }) => (
-                          <span
-                            key={`${letter}-${index}`}
-                            className="type-letter"
-                            style={
-                              { "--letter-index": index } as CSSProperties
-                            }
-                          >
-                            {letter}
-                          </span>
-                        ))}
-                      </span>
-                      {wordIndex < heroTitleWords.length - 1 ? " " : null}
-                    </Fragment>
-                  ))}
+                  {heroTitle}
                 </span>
               </h1>
 
