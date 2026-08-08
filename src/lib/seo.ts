@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
-import { availableDocuments } from "@/data/company";
 import {
   createEngineeringTdsSlug,
   type EngineeringTdsDocument,
 } from "@/data/engineeringTds";
 import type { Product } from "@/data/products";
 import { productCategoryOrder } from "@/lib/productCategories";
-import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
 
 const rawSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.taiyipolymer.com";
@@ -300,84 +298,6 @@ export const createTechArticleJsonLd = ({
     },
   },
 });
-
-export const createProductJsonLd = (product: Product) => ({
-  "@context": "https://schema.org",
-  "@type": "Product",
-  name: product.title,
-  sku: product.grade,
-  brand: {
-    "@type": "Brand",
-    name: brandName,
-  },
-  manufacturer: {
-    "@type": "Organization",
-    name: companyName,
-    url: siteUrl,
-  },
-  category: product.category,
-  description: product.description,
-  material: "POM",
-  color: product.color,
-  url: absoluteUrl(`/products/${product.slug}`),
-  additionalProperty: [
-    {
-      "@type": "PropertyValue",
-      name: "MFI",
-      value: product.mfi,
-    },
-    {
-      "@type": "PropertyValue",
-      name: "Available documents",
-      value: product.documents.join(", "),
-    },
-    ...getPublicCoreProperties(product.properties).map((property) => ({
-      "@type": "PropertyValue",
-      name: property.label,
-      value: `${property.value} ${property.unit}`.trim(),
-      measurementTechnique: property.method,
-    })),
-  ],
-});
-
-export const createEngineeringProductJsonLd = (
-  document: EngineeringTdsDocument,
-) => {
-  const slug = createEngineeringTdsSlug(document);
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: getEngineeringTdsTitle(document),
-    sku: document.grade,
-    brand: {
-      "@type": "Brand",
-      name: brandName,
-    },
-    manufacturer: {
-      "@type": "Organization",
-      name: companyName,
-      url: siteUrl,
-    },
-    category: `${document.family} Compound`,
-    description: document.description,
-    material: document.family,
-    url: absoluteUrl(`/products/${slug}`),
-    additionalProperty: [
-      {
-        "@type": "PropertyValue",
-        name: "Available documents",
-        value: availableDocuments.join(", "),
-      },
-      ...getPublicCoreProperties(document.properties).map((property) => ({
-        "@type": "PropertyValue",
-        name: property.label,
-        value: `${property.value} ${property.unit}`.trim(),
-        measurementTechnique: property.method,
-      })),
-    ],
-  };
-};
 
 export const createBreadcrumbJsonLd = (
   items: Array<{ name: string; path: string }>

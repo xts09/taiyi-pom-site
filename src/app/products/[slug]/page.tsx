@@ -22,9 +22,7 @@ import { getCategoryPath } from "@/lib/productCategories";
 import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
 import {
   createBreadcrumbJsonLd,
-  createEngineeringProductJsonLd,
   createEngineeringTdsPageMetadata,
-  createProductJsonLd,
   createProductPageMetadata,
   getEngineeringTdsTitle,
 } from "@/lib/seo";
@@ -260,7 +258,6 @@ function EngineeringProductDetailPage({
     .slice(0, 3);
   const documentsToShow =
     relatedDocuments.length > 0 ? relatedDocuments : fallbackDocuments;
-  const productJsonLd = createEngineeringProductJsonLd(document);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
@@ -311,7 +308,7 @@ function EngineeringProductDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([productJsonLd, breadcrumbJsonLd]),
+          __html: JSON.stringify(breadcrumbJsonLd),
         }}
       />
       <section className="product-detail-shell">
@@ -652,7 +649,6 @@ export default async function ProductDetailPage({
   const productsToShow =
     relatedProducts.length > 0 ? relatedProducts : fallbackProducts;
 
-  const productJsonLd = createProductJsonLd(product);
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
@@ -707,7 +703,7 @@ export default async function ProductDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([productJsonLd, breadcrumbJsonLd]),
+          __html: JSON.stringify(breadcrumbJsonLd),
         }}
       />
       <section className="product-detail-shell">
