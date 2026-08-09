@@ -72,6 +72,7 @@ const footerColumns = [
         href: `/applications/${item.slug}`,
         label: item.title,
       })),
+      { href: "/components", label: "Component Solutions" },
       { href: "/applications", label: "All Applications" },
     ],
   },

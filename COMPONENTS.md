@@ -35,7 +35,7 @@ The registry was derived from all current route families:
 | --- | --- |
 | Home | `/` |
 | Products | `/products`, category routes, product detail routes, POM landings |
-| Applications | `/applications`, application detail routes |
+| Applications | `/applications`, application detail routes, `/components` hub and component solution routes |
 | Resources | `/resources`, resource categories and articles |
 | Company | `/about` |
 | Conversion | `/contact`, technical data sheet search |

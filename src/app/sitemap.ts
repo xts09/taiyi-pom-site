@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { applications } from "@/data/applications";
+import { componentSolutionDetails } from "@/data/componentSolutionDetails";
 import {
   catalogEngineeringTds,
   catalogProducts,
@@ -32,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     createUrlEntry("/products", 0.9, "weekly"),
     createUrlEntry("/products/conductive-antistatic-compounds", 0.8, "weekly"),
     createUrlEntry("/applications", 0.9, "weekly"),
+    createUrlEntry("/components", 0.8, "weekly"),
     createUrlEntry("/resources", 0.85, "weekly"),
     createUrlEntry("/technical-data-sheets", 0.8, "weekly"),
     createUrlEntry("/about", 0.6, "monthly"),
@@ -45,6 +47,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const applicationRoutes = applications.map((application) => ({
     ...createUrlEntry(`/applications/${application.slug}`, 0.7, "monthly"),
   }));
+
+  const componentSolutionRoutes = componentSolutionDetails.map((solution) =>
+    createUrlEntry(`/components/${solution.slug}`, 0.7, "monthly"),
+  );
 
   const productRoutes = catalogProducts
     .filter(isCatalogRecordIndexable)
@@ -74,6 +80,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...productRoutes,
     ...engineeringTdsRoutes,
     ...applicationRoutes,
+    ...componentSolutionRoutes,
     ...resourceCategoryRoutes,
     ...resourceRoutes,
     ...technicalLandingRoutes,

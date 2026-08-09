@@ -22,10 +22,16 @@ import {
 } from "@/data/resourceNavigation";
 import { getCategoryPath } from "@/lib/productCategories";
 
-const applicationLinks = applications.map((application) => ({
-  label: application.title,
-  href: `/applications/${application.slug}`,
-}));
+const applicationLinks = [
+  ...applications.map((application) => ({
+    label: application.title,
+    href: `/applications/${application.slug}`,
+  })),
+  {
+    label: "Component Solutions",
+    href: "/components",
+  },
+];
 
 const productOverviewLinks = [
   {
@@ -401,7 +407,10 @@ export function Header() {
                   onPointerEnter={() => updateMegaValue("applications")}
                   onFocus={() => updateMegaValue("applications")}
                   aria-current={
-                    isCurrentSection("/applications") ? "page" : undefined
+                    isCurrentSection("/applications") ||
+                    isCurrentSection("/components")
+                      ? "page"
+                      : undefined
                   }
                 >
                   Applications

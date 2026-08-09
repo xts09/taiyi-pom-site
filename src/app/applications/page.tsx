@@ -4,12 +4,15 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { applications, selectionBasis } from "@/data/applications";
+import { componentSolutions } from "@/data/componentSolutions";
 import {
   createBreadcrumbJsonLd,
   createCollectionPageJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
+import componentStyles from "@/app/components/ComponentSolutions.module.css";
 
 const applicationsTitle = "Engineering Plastic Applications | Taiyi Polymer";
 const applicationsDescription =
@@ -22,10 +25,6 @@ export const metadata: Metadata = createPageMetadata({
   image: "/applications/parts/washing-machine-components-hero.png",
   imageAlt: "Taiyi Polymer application engineering for washing machine components",
 });
-
-const featuredApplications = applications
-  .filter((application) => application.heroImage)
-  .slice(0, 3);
 
 const applicationsJsonLd = [
   createBreadcrumbJsonLd([
@@ -53,7 +52,7 @@ export default function ApplicationsPage() {
         }}
       />
       <section className="application-index-shell mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8">
-        <div className="inner-hero application-index-hero reveal-up mb-8">
+        <div className="inner-hero application-index-hero reveal-up">
           <div className="application-index-hero-copy stagger-list">
             <p
               className="application-index-kicker"
@@ -85,16 +84,16 @@ export default function ApplicationsPage() {
             >
               <Button
                 asChild
-                variant="primary"
-                className="h-auto px-6 py-3 text-sm font-[var(--ds-button-font-weight)]"
+                size="applicationHero"
+                variant="applicationHeroPrimary"
                 style={{ "--item-index": 0 } as CSSProperties}
               >
                 <Link href="/contact">Discuss Your Application</Link>
               </Button>
               <Button
                 asChild
-                variant="secondary"
-                className="h-auto px-6 py-3 text-sm"
+                size="applicationHero"
+                variant="applicationHeroSecondary"
                 style={{ "--item-index": 1 } as CSSProperties}
               >
                 <Link href="/products/categories/pom">
@@ -104,57 +103,155 @@ export default function ApplicationsPage() {
             </div>
           </div>
 
-          <div
-            className="application-index-hero-media stagger-list"
-            aria-label="Featured application areas"
+          <aside
+            className="application-index-hero-guide stagger-list"
+            aria-label="Application browsing paths"
           >
-            {featuredApplications.map((application, index) => (
+            <p className="application-index-guide-kicker">Find a starting point</p>
+            <div className="application-index-guide-links">
               <Link
-                key={application.slug}
-                href={`/applications/${application.slug}`}
-                className={`application-index-visual application-index-visual-${index + 1}`}
-                style={{ "--item-index": index } as CSSProperties}
+                href="#industry-applications"
+                className="application-index-guide-link"
+                style={{ "--item-index": 0 } as CSSProperties}
               >
-                {application.heroImage ? (
-                  <Image
-                    src={application.heroImage.src}
-                    alt={application.heroImage.alt}
-                    fill
-                    priority={index === 0}
-                    sizes="(min-width: 64rem) 24vw, 100vw"
-                  />
-                ) : null}
-                <span>{application.title}</span>
+                <span className="application-index-guide-index">01</span>
+                <span className="application-index-guide-copy">
+                  <strong>Browse by industry</strong>
+                  <small>{applications.length} operating contexts</small>
+                </span>
+                <span className="application-index-guide-arrow" aria-hidden="true">
+                  &rarr;
+                </span>
+              </Link>
+
+              <Link
+                href="#component-solutions-title"
+                className="application-index-guide-link"
+                style={{ "--item-index": 1 } as CSSProperties}
+              >
+                <span className="application-index-guide-index">02</span>
+                <span className="application-index-guide-copy">
+                  <strong>Browse by component</strong>
+                  <small>{componentSolutions.length} initial component families</small>
+                </span>
+                <span className="application-index-guide-arrow" aria-hidden="true">
+                  &rarr;
+                </span>
+              </Link>
+            </div>
+            <p className="application-index-guide-note">
+              Modified POM is the core line. Selected PA6, PA66, and PPA
+              projects follow a separate material review.
+            </p>
+          </aside>
+        </div>
+
+        <section
+          className="application-directory-section"
+          id="industry-applications"
+          aria-labelledby="industry-applications-title"
+        >
+          <header className="application-directory-head">
+            <div>
+              <p className="section-kicker">Browse by Industry</p>
+              <h2 id="industry-applications-title">Application areas</h2>
+            </div>
+            <p>
+              Choose the operating context closest to your part. Each route
+              connects typical components and working conditions to a practical
+              material-review direction.
+            </p>
+          </header>
+
+          <div className="application-directory-grid stagger-list">
+            {applications.map((application, index) => (
+              <Card key={application.title} asChild variant="interactive">
+                <Link
+                  href={`/applications/${application.slug}`}
+                  className="application-directory-card"
+                  aria-label={`View ${application.title} application details`}
+                  style={{ "--item-index": index } as CSSProperties}
+                >
+                  {application.heroImage ? (
+                    <div className="application-directory-media">
+                      <Image
+                        src={application.heroImage.src}
+                        alt={application.heroImage.alt}
+                        fill
+                        sizes="(min-width: 80rem) 23vw, (min-width: 48rem) 46vw, 100vw"
+                      />
+                      <span className="application-directory-index">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                  ) : null}
+
+                  <CardContent className="application-directory-body">
+                    <h3>{application.title}</h3>
+                    <p>{application.description}</p>
+                    <span className="application-directory-action">
+                      View application
+                      <span className="application-directory-arrow" aria-hidden="true">
+                        &rarr;
+                      </span>
+                    </span>
+                  </CardContent>
+                </Link>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className={`${componentStyles.applicationEntry} reveal-up`}
+          aria-labelledby="component-solutions-title"
+        >
+          <div className={componentStyles.applicationEntryHeader}>
+            <div>
+              <p className="section-kicker mb-3">Browse by Component</p>
+              <h2 id="component-solutions-title">Component solution paths</h2>
+            </div>
+            <p>
+              Move from a broad industry into a specific molded-part family.
+              These first six paths organize the next layer of engineering
+              content without duplicating the industry pages above.
+            </p>
+          </div>
+
+          <div className={componentStyles.applicationEntryGrid}>
+            {componentSolutions.map((solution, index) => (
+              <Link
+                key={solution.slug}
+                href={`/components/${solution.slug}`}
+                className={componentStyles.applicationEntryLink}
+              >
+                <span className={componentStyles.applicationEntryIndex}>
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <span className={componentStyles.applicationEntryTitle}>
+                  {solution.title}
+                </span>
+                <span
+                  className={componentStyles.applicationEntryArrow}
+                  aria-hidden="true"
+                >
+                  &rarr;
+                </span>
               </Link>
             ))}
           </div>
-        </div>
 
-        <div className="application-directory-grid stagger-list">
-          {applications.map((application, index) => (
-            <Link
-              key={application.title}
-              href={`/applications/${application.slug}`}
-              className="application-directory-card"
-              aria-label={`View ${application.title} application details`}
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              <span className="application-directory-index">
-                {String(index + 1).padStart(2, "0")}
-              </span>
+          <div className={componentStyles.applicationEntryFooter}>
+            <Button asChild variant="secondary" size="form">
+              <Link href="/components">View All Component Solutions</Link>
+            </Button>
+          </div>
+        </section>
 
-              <h2>{application.title}</h2>
-
-              <p>{application.description}</p>
-
-              <span className="application-directory-arrow" aria-hidden="true">
-                &rarr;
-              </span>
-            </Link>
-          ))}
-        </div>
-
-        <section className="application-basis-strip stagger-list reveal-up reveal-delay-1 mb-10">
+        <section
+          className="application-basis-strip stagger-list reveal-up reveal-delay-1"
+          aria-labelledby="application-review-title"
+        >
           <div className="stagger-list" style={{ "--item-index": 0 } as CSSProperties}>
             <p
               className="section-kicker mb-3"
@@ -162,7 +259,10 @@ export default function ApplicationsPage() {
             >
               Application Review
             </p>
-            <h2 style={{ "--item-index": 1 } as CSSProperties}>
+            <h2
+              id="application-review-title"
+              style={{ "--item-index": 1 } as CSSProperties}
+            >
               How We Build a Grade Shortlist
             </h2>
             <p style={{ "--item-index": 2 } as CSSProperties}>

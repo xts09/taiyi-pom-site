@@ -29,6 +29,13 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Current uncommitted files at this snapshot: `src/app/resources/page.tsx`, `src/app/styles/header.css`, `src/app/styles/resources.css`, `src/components/Header.tsx`, `src/data/resources.ts`, and new `src/data/resourceNavigation.ts`.
 - Most recent verification for the shared navigation work: `npm run typecheck` passed; Products, Applications, and Resources expanded-menu hover states were visually inspected at `1920x1080` on a white inner-page header, and Products was also checked on the dark homepage header. Browser console errors: none.
 
+### Component Solution Structure (2026-08-08)
+
+- Component-led content belongs to the Applications family. `/components` is the hub, with one detail route per component family; it is not a new top-level navigation branch and it is not part of Resources.
+- The initial six families are Precision Plastic Gears, Bushings and Sleeves, Conveyor Chain Components, Valve Spools and Cartridges, Textile Guide Components, and IC Handling Trays.
+- Applications, its mega menu, and the Footer expose the component hub without listing every child route in global navigation.
+- The hub and six initial detail routes now contain verified engineering content, useful component imagery, and complete internal-link paths. Keep the hub and only detail routes backed by `componentSolutionDetails` indexable and included in `sitemap.xml`; future scaffold routes remain `noindex, follow` and excluded until they pass the same content, imagery, and internal-link gate.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
