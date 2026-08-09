@@ -1,7 +1,10 @@
+const defaultGoogleAnalyticsId =
+  process.env.NODE_ENV === "production" ? "G-CQ8CYP39VN" : "";
+
 export const googleAnalyticsId =
   process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ??
   process.env.NEXT_PUBLIC_GA_ID ??
-  "";
+  defaultGoogleAnalyticsId;
 
 export const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "";
 
@@ -16,4 +19,3 @@ export const googleTagId = googleAnalyticsId || googleAdsId;
 export const googleTagConfigIds = Array.from(
   new Set([googleAnalyticsId, googleAdsId].filter(Boolean)),
 );
-
