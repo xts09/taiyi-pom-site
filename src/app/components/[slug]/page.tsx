@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -84,7 +85,7 @@ export default async function ComponentSolutionPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(detailJsonLd).replace(/</g, "\\u003c"),
+            __html: serializeJsonLd(detailJsonLd),
           }}
         />
         <DetailedComponentSolution detail={detail} solution={solution} />

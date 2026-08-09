@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { ContactInquiryForm } from "@/components/ContactInquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/card";
@@ -65,7 +66,7 @@ export default function ContactPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(contactJsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(contactJsonLd),
         }}
       />
       <section

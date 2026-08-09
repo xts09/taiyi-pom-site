@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { DocumentCard } from "@/components/DocumentCard";
 import { Button } from "@/components/ui/button";
@@ -433,10 +434,7 @@ export default async function TechnicalDataSheetsPage({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(technicalSearchJsonLd).replace(
-              /</g,
-              "\\u003c",
-            ),
+            __html: serializeJsonLd(technicalSearchJsonLd),
           }}
         />
       ) : null}

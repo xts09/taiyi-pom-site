@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { ResourceArticleLayout } from "@/components/ResourceArticleLayout";
 import { ResourceCategoryPage } from "@/components/ResourceCategoryPage";
 import { ResourceFaqExplorer } from "@/components/ResourceFaqExplorer";
@@ -160,7 +161,7 @@ export default async function ResourceDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(jsonLd),
         }}
       />
 

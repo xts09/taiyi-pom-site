@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { ConductiveCompoundsExplorer } from "@/components/ConductiveCompoundsExplorer";
 import {
   conductiveCompounds,
@@ -79,7 +80,7 @@ export function ConductiveAntistaticCompoundsContent({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(jsonLd),
         }}
       />
 

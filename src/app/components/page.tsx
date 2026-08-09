@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
 import { Button } from "@/components/ui/button";
@@ -47,10 +48,7 @@ export default function ComponentSolutionsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(componentSolutionsJsonLd).replace(
-            /</g,
-            "\\u003c",
-          ),
+          __html: serializeJsonLd(componentSolutionsJsonLd),
         }}
       />
       <div className={styles.shell}>

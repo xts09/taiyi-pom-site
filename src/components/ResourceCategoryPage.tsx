@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { ActionPanel } from "@/components/ActionPanel";
 import { DirectoryRow } from "@/components/DirectoryRow";
 import { ResourceHero } from "@/components/ResourceHero";
@@ -42,7 +43,7 @@ export function ResourceCategoryPage({ group }: ResourceCategoryPageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(jsonLd),
         }}
       />
 

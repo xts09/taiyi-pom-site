@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import {
   applications,
   getApplicationBySlug,
@@ -505,10 +506,7 @@ export default async function ApplicationDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([breadcrumbJsonLd, webPageJsonLd]).replace(
-            /</g,
-            "\\u003c",
-          ),
+          __html: serializeJsonLd([breadcrumbJsonLd, webPageJsonLd]),
         }}
       />
       <ApplicationAnimeMotion />

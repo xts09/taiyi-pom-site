@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { CSSProperties } from "react";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { conductiveCompounds } from "@/data/conductiveCompounds";
 import { products } from "@/data/products";
 import { engineeringTdsDocuments } from "@/data/engineeringTds";
@@ -119,7 +120,7 @@ export default function ProductsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productDirectoryJsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(productDirectoryJsonLd),
         }}
       />
       <ProductPageMotion>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { ResourcePageMotion } from "@/components/ResourcePageMotion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -51,7 +52,7 @@ export default function ResourcesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(resourcesJsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(resourcesJsonLd),
         }}
       />
       <ResourcePageMotion>

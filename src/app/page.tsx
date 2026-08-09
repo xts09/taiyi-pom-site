@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import { CompanyMetrics } from "@/components/CompanyMetrics";
 import { ExportRoutesSection } from "@/components/ExportRoutesSection";
 import { HomeInquirySection } from "@/components/HomeInquirySection";
@@ -180,7 +181,7 @@ export default function Home() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([organizationJsonLd, websiteJsonLd]),
+            __html: serializeJsonLd([organizationJsonLd, websiteJsonLd]),
           }}
         />
         <section className="home-hero relative isolate overflow-hidden">

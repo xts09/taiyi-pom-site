@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import {
   AboutCompanySnapshot,
   AboutCredentials,
@@ -75,7 +76,7 @@ export default function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(aboutJsonLd).replace(/</g, "\\u003c"),
+          __html: serializeJsonLd(aboutJsonLd),
         }}
       />
 

@@ -200,7 +200,7 @@ export const organizationJsonLd = {
       availableLanguage: ["en", "zh"],
     },
   ],
-  makesOffer: [
+  knowsAbout: [
     "Modified POM Compounds",
     ...productCategoryOrder,
     "Selected PA6 Modified Material Solutions",
@@ -218,14 +218,6 @@ export const websiteJsonLd = {
   publisher: {
     "@type": "Organization",
     name: companyName,
-  },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${siteUrl}/technical-data-sheets?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
   },
 };
 
