@@ -224,7 +224,13 @@
   display: none;
 }
 
-@media (max-width: 47.999rem) {
+@media (max-width: 63.999rem) {
+  .root {
+    display: none;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 109.999rem) {
   .root {
     top: auto;
     right: max(var(--ds-space-3), env(safe-area-inset-right));
@@ -269,16 +275,6 @@
 
   .open .panel {
     transform: translateY(0);
-  }
-
-  .backdrop {
-    position: fixed;
-    z-index: 0;
-    inset: 0;
-    display: block;
-    border: 0;
-    background: var(--ds-floating-contact-backdrop);
-    padding: 0;
   }
 }
 

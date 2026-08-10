@@ -87,6 +87,41 @@ function FloatingContactShell() {
   }, []);
 
   useEffect(() => {
+    const mobileNavigation = window.matchMedia("(max-width: 63.999rem)");
+    let focusFrame: number | undefined;
+
+    const syncWithNavigationMode = () => {
+      if (!mobileNavigation.matches) {
+        return;
+      }
+
+      const shouldMoveFocus =
+        rootRef.current?.contains(document.activeElement) ?? false;
+
+      setIsOpen(false);
+
+      if (shouldMoveFocus) {
+        focusFrame = window.requestAnimationFrame(() => {
+          document
+            .querySelector<HTMLElement>(".mobile-menu > summary")
+            ?.focus();
+        });
+      }
+    };
+
+    syncWithNavigationMode();
+    mobileNavigation.addEventListener("change", syncWithNavigationMode);
+
+    return () => {
+      mobileNavigation.removeEventListener("change", syncWithNavigationMode);
+
+      if (focusFrame !== undefined) {
+        window.cancelAnimationFrame(focusFrame);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     if (!isOpen) {
       return;
     }
