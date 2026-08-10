@@ -517,6 +517,25 @@
   gap: 0;
 }
 
+@media (min-width: 48rem) {
+  .resource-directory-list [data-slot="directory-row"] {
+    align-items: baseline;
+  }
+
+  .resource-directory-list
+    [data-slot="directory-row"]
+    > span:last-child {
+    align-self: center;
+  }
+}
+
+@media (max-width: 80rem) {
+  .resource-page-shell.mesh-surface:not(.resource-article-shell)
+    .resource-directory-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .resource-index-shell .resource-cta {
   border-radius: 0;
   box-shadow: none;
