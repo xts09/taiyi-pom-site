@@ -1023,6 +1023,17 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .card {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cardMedia {
+    min-height: 10.5rem;
+    border-right: 0;
+    border-bottom: var(--ds-rule-thin) solid var(--ds-panel-border);
+  }
+
   .detailHero {
     grid-template-columns: minmax(0, 1fr);
   }
@@ -1118,15 +1129,8 @@
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  .card {
-    min-height: auto;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   .cardMedia {
     min-height: 10rem;
-    border-right: 0;
-    border-bottom: var(--ds-rule-thin) solid var(--ds-panel-border);
   }
 
   .cardMedia img {
