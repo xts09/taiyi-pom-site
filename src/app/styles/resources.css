@@ -152,9 +152,11 @@
 }
 
 .resource-index-path span {
+  align-self: baseline;
   color: #0b5fb8;
   font-size: 0.78rem;
   font-weight: 700;
+  line-height: 1.2;
 }
 
 .resource-index-path strong {
@@ -165,12 +167,13 @@
 }
 
 .resource-index-path small {
-  grid-row: 1 / span 2;
+  grid-row: 1;
   grid-column: 2;
-  align-self: center;
+  align-self: baseline;
   color: #64748b;
   font-size: 0.75rem;
   font-weight: 600;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
@@ -215,7 +218,7 @@
 
 .resource-index-directory-group {
   display: grid;
-  grid-template-columns: minmax(16rem, 0.7fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(16rem, 0.71fr) minmax(0, 1.29fr);
   gap: clamp(2rem, 4vw, 4.5rem);
   border-radius: var(--ds-resource-hero-evidence-radius);
   background: #ffffff;
@@ -343,6 +346,9 @@
 
 .resource-task-nav a {
   position: relative;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
   color: #0f172a;
   font-family: var(--font-display);
   font-size: 0.9rem;
@@ -641,10 +647,7 @@
   }
 
   .resource-task-nav a {
-    display: inline-flex;
     flex: 0 0 auto;
-    min-height: 2.75rem;
-    align-items: center;
     border: 1px solid rgba(0, 94, 184, 0.16);
     border-radius: 0.28rem;
     background: #ffffff;
