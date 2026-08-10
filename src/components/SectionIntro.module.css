@@ -51,12 +51,13 @@
 }
 
 .root[data-layout="split"] {
-  grid-template-columns: minmax(0, 0.72fr) minmax(18rem, 1.28fr);
-  align-items: end;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: var(--ds-space-6);
+  align-items: start;
 }
 
 .root[data-layout="split"] .description {
-  justify-self: end;
+  justify-self: start;
 }
 
 @media (max-width: 47.999rem) {
