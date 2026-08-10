@@ -22,6 +22,16 @@ export function HomeMotion({ children }: HomeMotionProps) {
       }
 
       const heroVideo = root.querySelector<HTMLVideoElement>(".hero-video");
+      const heroVideoLoopStart = Number(heroVideo?.dataset.loopStart ?? "0");
+      const seekHeroVideoToLoopStart = () => {
+        if (
+          heroVideo &&
+          Number.isFinite(heroVideo.duration) &&
+          heroVideo.currentTime < heroVideoLoopStart
+        ) {
+          heroVideo.currentTime = heroVideoLoopStart;
+        }
+      };
       const media = gsap.matchMedia();
 
       media.add("(prefers-reduced-motion: reduce)", () => {
@@ -37,7 +47,22 @@ export function HomeMotion({ children }: HomeMotionProps) {
           root,
         );
 
-        heroVideo?.pause();
+        const showHeroVideoStartFrame = () => {
+          seekHeroVideoToLoopStart();
+          heroVideo?.pause();
+        };
+
+        if (heroVideo) {
+          if (heroVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
+            showHeroVideoStartFrame();
+          } else {
+            heroVideo.addEventListener(
+              "loadedmetadata",
+              showHeroVideoStartFrame,
+              { once: true },
+            );
+          }
+        }
 
         if (qualificationProgress) {
           gsap.set(qualificationProgress, { scaleY: 1 });
@@ -52,6 +77,13 @@ export function HomeMotion({ children }: HomeMotionProps) {
           strokeDasharray: 1000,
           strokeDashoffset: 0,
         });
+
+        return () => {
+          heroVideo?.removeEventListener(
+            "loadedmetadata",
+            showHeroVideoStartFrame,
+          );
+        };
       });
 
       media.add(
@@ -90,9 +122,32 @@ export function HomeMotion({ children }: HomeMotionProps) {
               )
             : [];
 
-          heroVideo?.play().catch(() => {
-            // Autoplay can be blocked; the poster remains as the fallback.
-          });
+          const playHeroVideo = () => {
+            seekHeroVideoToLoopStart();
+            heroVideo?.play().catch(() => {
+              // Autoplay can be blocked; the poster remains as the fallback.
+            });
+          };
+          const restartHeroVideo = () => {
+            if (!heroVideo) {
+              return;
+            }
+
+            heroVideo.currentTime = heroVideoLoopStart;
+            playHeroVideo();
+          };
+
+          if (heroVideo) {
+            heroVideo.addEventListener("ended", restartHeroVideo);
+
+            if (heroVideo.readyState >= HTMLMediaElement.HAVE_METADATA) {
+              playHeroVideo();
+            } else {
+              heroVideo.addEventListener("loadedmetadata", playHeroVideo, {
+                once: true,
+              });
+            }
+          }
 
           if (
             qualificationSection &&
@@ -159,6 +214,8 @@ export function HomeMotion({ children }: HomeMotionProps) {
           ScrollTrigger.update();
 
           return () => {
+            heroVideo?.removeEventListener("ended", restartHeroVideo);
+            heroVideo?.removeEventListener("loadedmetadata", playHeroVideo);
             heroVideo?.pause();
           };
         },

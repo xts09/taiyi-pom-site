@@ -5,6 +5,12 @@ import { ContactInquiryForm } from "@/components/ContactInquiryForm";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/card";
 import {
+  getContactContextLabel,
+  getContactContextMessage,
+  parseContactContext,
+  type ContactContextSearchParams,
+} from "@/lib/contactContext";
+import {
   contactEmail,
   companyName,
   createBreadcrumbJsonLd,
@@ -60,7 +66,33 @@ const contactJsonLd = [
   },
 ];
 
-export default function ContactPage() {
+type ContactPageProps = {
+  searchParams: Promise<ContactContextSearchParams>;
+};
+
+export default async function ContactPage({ searchParams }: ContactPageProps) {
+  const contactContext = parseContactContext(await searchParams);
+  const contextLabel = getContactContextLabel(contactContext);
+  const initialMessage = getContactContextMessage(contactContext);
+  const directEmailBody = [
+    "Dear Ethan,",
+    "",
+    `Application or part: ${contactContext.application ?? ""}`,
+    `Material or current grade: ${[
+      contactContext.material,
+      contactContext.grade,
+    ]
+      .filter(Boolean)
+      .join(" / ")}`,
+    "Key requirements:",
+    "Document needs:",
+    "",
+    "Regards,",
+  ].join("\r\n");
+  const directEmailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(
+    "Material Requirement Request"
+  )}&body=${encodeURIComponent(directEmailBody)}`;
+
   return (
     <main className={`${styles.page} contact-page min-h-screen text-slate-900`}>
       <script
@@ -97,7 +129,18 @@ export default function ContactPage() {
                 are required.
               </p>
 
-              <ContactInquiryForm />
+              <ContactInquiryForm
+                key={[
+                  contextLabel,
+                  contactContext.application,
+                  contactContext.material,
+                  initialMessage,
+                ].join("|")}
+                contextLabel={contextLabel}
+                initialApplication={contactContext.application}
+                initialMaterial={contactContext.material}
+                initialMessage={initialMessage}
+              />
             </section>
           </Card>
 
@@ -159,7 +202,7 @@ export default function ContactPage() {
 
             <div className="contact-direct-links">
               <a
-                href={`mailto:${contactEmail}?subject=Material%20Requirement%20Request&body=Dear%20Ethan%2C%0D%0A%0D%0AApplication%20or%20part%3A%0D%0AMaterial%20or%20current%20grade%3A%0D%0AKey%20requirements%3A%0D%0ADocument%20needs%3A%0D%0A%0D%0ARegards%2C`}
+                href={directEmailHref}
                 className="cta-secondary px-6 py-3 text-sm"
               >
                 Email Directly

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import type { CSSProperties } from "react";
 import { serializeJsonLd } from "@/lib/jsonLd";
+import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
@@ -19,7 +20,11 @@ import {
   getProductListTitle,
   toDisplayTitle,
 } from "@/lib/productDisplay";
-import { getCategoryPath } from "@/lib/productCategories";
+import {
+  getCanonicalProductCategory,
+  getCategoryPath,
+  pomSubcategoryLabels,
+} from "@/lib/productCategories";
 import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
 import {
   createBreadcrumbJsonLd,
@@ -228,6 +233,11 @@ function EngineeringProductDetailPage({
   const categoryUrl = getCategoryPath(category);
   const slug = createEngineeringTdsSlug(document);
   const title = getEngineeringTdsTitle(document);
+  const contactHref = createContactHref({
+    grade: document.grade,
+    material: `${document.family} Compounds`,
+    source: "Product grade",
+  });
   const properties = toEngineeringProperties(document);
   const coreProperties = getPublicCoreProperties(properties);
   const applicationItems = document.applications
@@ -350,7 +360,7 @@ function EngineeringProductDetailPage({
                         size="productDetailHero"
                         variant="productDetailPrimary"
                       >
-                        <Link href="/contact">Discuss Your Application</Link>
+                        <Link href={contactHref}>Discuss Your Application</Link>
                       </Button>
                       <Button
                         asChild
@@ -464,7 +474,7 @@ function EngineeringProductDetailPage({
                 processing, impact, electrical, and project-specific data are
                 provided through TDS or project review.
               </p>
-              <Link href="/contact">Request Full TDS</Link>
+              <Link href={contactHref}>Request Full TDS</Link>
             </div>
           </section>
 
@@ -532,7 +542,7 @@ function EngineeringProductDetailPage({
                 variant="inverse"
                 className="h-auto px-5 py-3 text-sm"
               >
-                <Link href="/contact">Discuss Your Application</Link>
+                <Link href={contactHref}>Discuss Your Application</Link>
               </Button>
             }
           >
@@ -628,12 +638,29 @@ export default async function ProductDetailPage({
 
   const campaignProfile = gradeCampaignProfiles[product.slug];
   const categoryUrl = getCategoryPath(product.category);
-  const gradeQuery = encodeURIComponent(product.grade);
+  const contactMaterial =
+    pomSubcategoryLabels[getCanonicalProductCategory(product.category)] ??
+    product.category;
+  const productContactHref = createContactHref({
+    grade: product.grade,
+    material: contactMaterial,
+    source: "Product grade",
+  });
   const sampleRequestHref = campaignProfile
-    ? `/contact?grade=${gradeQuery}&intent=sample`
-    : "/contact";
+    ? createContactHref({
+        grade: product.grade,
+        intent: "sample",
+        material: contactMaterial,
+        source: "Product grade",
+      })
+    : productContactHref;
   const gradeEvaluationHref = campaignProfile
-    ? `/contact?grade=${gradeQuery}&intent=grade-evaluation`
+    ? createContactHref({
+        grade: product.grade,
+        intent: "grade-evaluation",
+        material: contactMaterial,
+        source: "Product grade",
+      })
     : "/technical-data-sheets";
 
   const relatedProducts = products
@@ -893,7 +920,7 @@ export default async function ProductDetailPage({
                   processing, impact, electrical, and project-specific data are
                   provided through TDS or project review.
                 </p>
-                <Link href="/contact">Request Full TDS</Link>
+                <Link href={productContactHref}>Request Full TDS</Link>
               </div>
             </section>
           ) : (
@@ -1021,7 +1048,9 @@ export default async function ProductDetailPage({
                 variant="inverse"
                 className="h-auto px-5 py-3 text-sm"
               >
-                <Link href={campaignProfile ? gradeEvaluationHref : "/contact"}>
+                <Link
+                  href={campaignProfile ? gradeEvaluationHref : productContactHref}
+                >
                   {campaignProfile
                     ? `Ask for ${product.grade} Evaluation`
                     : "Discuss Your Application"}

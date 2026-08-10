@@ -39,11 +39,52 @@ const directContactActions = [
 
 function FloatingContactShell() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const panelTitleId = useId();
   const panelId = useId();
+
+  useEffect(() => {
+    const localInquiryAction = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>(
+        'main a[href^="/contact"]',
+      ),
+    ).find((action) => {
+      const rect = action.getBoundingClientRect();
+      return rect.width > 0 && rect.height > 0;
+    });
+
+    if (!localInquiryAction) {
+      const frame = window.requestAnimationFrame(() => setIsAvailable(true));
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    const updateAvailability = (isLocalActionVisible: boolean) => {
+      setIsAvailable(!isLocalActionVisible);
+
+      if (isLocalActionVisible) {
+        setIsOpen(false);
+      }
+    };
+    const frame = window.requestAnimationFrame(() => {
+      const rect = localInquiryAction.getBoundingClientRect();
+      updateAvailability(rect.bottom > 0 && rect.top < window.innerHeight);
+    });
+
+    const observer = new IntersectionObserver(
+      ([entry]) => updateAvailability(entry.isIntersecting),
+      { threshold: 0.01 },
+    );
+
+    observer.observe(localInquiryAction);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -91,7 +132,7 @@ function FloatingContactShell() {
   return (
     <div
       ref={rootRef}
-      className={`${styles.root} ${isOpen ? styles.open : ""}`}
+      className={`${styles.root} ${isAvailable ? styles.available : ""} ${isOpen ? styles.open : ""}`}
     >
       {isOpen ? (
         <button

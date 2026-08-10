@@ -84,15 +84,6 @@ export default function ResourcesPage() {
                 <Button
                   asChild
                   size="resourceIndexAction"
-                  variant="resourceIndexPrimary"
-                >
-                  <Link href="/resources/material-selection">
-                    Choose a Material
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="resourceIndexAction"
                   variant="resourceIndexSecondary"
                 >
                   <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>

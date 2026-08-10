@@ -5,7 +5,20 @@
   right: 0;
   color: var(--ds-floating-contact-panel-fg);
   font-family: var(--ds-font-body);
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
   transform: translateY(-50%);
+  transition:
+    opacity var(--ds-duration-short) var(--ds-ease-out),
+    visibility 0s linear var(--ds-duration-short);
+}
+
+.available {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .trigger {

@@ -187,12 +187,12 @@ export default function Home() {
         <section className="home-hero relative isolate overflow-hidden">
           <video
             className="hero-video absolute inset-0 -z-20 h-full w-full object-cover"
-            loop
             muted
             playsInline
             preload="metadata"
             poster={publicPath("/factory-hero-95b-loop-v6-poster.jpg")}
             aria-hidden="true"
+            data-loop-start="3"
           >
             <source
               src={publicPath("/factory-hero-95b-loop-v6.mp4")}

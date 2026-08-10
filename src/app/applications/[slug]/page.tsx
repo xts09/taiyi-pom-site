@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { serializeJsonLd } from "@/lib/jsonLd";
+import { createContactHref } from "@/lib/contactContext";
 import {
   applications,
   getApplicationBySlug,
@@ -489,6 +490,10 @@ export default async function ApplicationDetailPage({
   const featuredMaterialDirectionCards = materialDirectionCards.slice(0, 3);
   const remainingMaterialDirectionCards = materialDirectionCards.slice(3);
   const pagePath = `/applications/${application.slug}`;
+  const contactHref = createContactHref({
+    application: application.title,
+    source: "Application detail",
+  });
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Applications", path: "/applications" },
@@ -542,7 +547,7 @@ export default async function ApplicationDetailPage({
                 size="applicationHero"
                 variant="applicationHeroPrimary"
               >
-                <Link href="/contact">Discuss Your Application</Link>
+                <Link href={contactHref}>Discuss Your Application</Link>
               </Button>
               <Button
                 asChild
@@ -557,6 +562,13 @@ export default async function ApplicationDetailPage({
 
         {application.heroImage ? (
           <SecondarySectionNav
+            actions={[
+              { href: contactHref, label: "Discuss Your Application" },
+              {
+                href: "/technical-data-sheets",
+                label: "Find Grade Data & TDS",
+              },
+            ]}
             ariaLabel="Application sections"
             subtitle={application.description}
             tabs={applicationSectionTabs}
@@ -819,7 +831,7 @@ export default async function ApplicationDetailPage({
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Discuss Your Application</Link>
+              <Link href={contactHref}>Discuss Your Application</Link>
             </Button>
           }
           data-application-motion

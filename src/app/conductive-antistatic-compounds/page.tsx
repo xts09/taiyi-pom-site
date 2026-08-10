@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { serializeJsonLd } from "@/lib/jsonLd";
+import { createContactHref } from "@/lib/contactContext";
 import { ConductiveCompoundsExplorer } from "@/components/ConductiveCompoundsExplorer";
 import {
   conductiveCompounds,
@@ -74,6 +75,10 @@ export function ConductiveAntistaticCompoundsContent({
   showAllByDefault = false,
 }: ConductiveAntistaticCompoundsContentProps) {
   const jsonLd = createJsonLd(pagePath);
+  const contactHref = createContactHref({
+    material: "Conductive & Antistatic Compounds",
+    source: "Conductive and antistatic directory",
+  });
 
   return (
     <main className={styles.page}>
@@ -110,7 +115,7 @@ export function ConductiveAntistaticCompoundsContent({
               <Link href="#grade-explorer" className={styles.primaryAction}>
                 Explore Grades
               </Link>
-              <Link href="/contact" className={styles.secondaryAction}>
+              <Link href={contactHref} className={styles.secondaryAction}>
                 Discuss Your Application
               </Link>
             </div>
@@ -249,7 +254,7 @@ export function ConductiveAntistaticCompoundsContent({
             </p>
           </div>
           <div className={styles.ctaActions}>
-            <Link href="/contact" className={styles.primaryAction}>
+            <Link href={contactHref} className={styles.primaryAction}>
               Discuss Your Application
             </Link>
             <Link

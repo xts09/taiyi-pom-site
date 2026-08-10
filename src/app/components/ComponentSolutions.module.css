@@ -16,13 +16,31 @@
 .hero {
   --ds-page-hero-title-size: var(--ds-application-hero-title-size);
   --ds-page-hero-description-size: var(--ds-application-hero-body-size);
+  position: relative;
   min-height: clamp(20rem, 28vw, 27rem);
   border-radius: var(--ds-radius-panel);
-  background:
-    linear-gradient(105deg, rgba(3, 16, 29, 0.98), rgba(3, 16, 29, 0.78)),
-    url("/material-satin-midnight-v1.png") center / cover no-repeat,
-    var(--ds-background-evidence);
+  background: var(--ds-background-evidence);
   padding: clamp(2rem, 5vw, 4.5rem);
+}
+
+.hero::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(3, 16, 29, 0.99) 0 42%, rgba(3, 16, 29, 0.78) 63%, rgba(3, 16, 29, 0.2) 100%),
+    linear-gradient(0deg, rgba(3, 16, 29, 0.72), transparent 48%);
+  content: "";
+}
+
+.heroMedia {
+  z-index: 0;
+}
+
+.heroImage {
+  object-fit: cover;
+  object-position: 72% center;
+  filter: saturate(0.82) contrast(1.04) brightness(0.88);
 }
 
 .heroInner {
@@ -60,13 +78,41 @@
 
 .directory {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--ds-space-4);
 }
 
 .card {
-  min-height: 15rem;
+  display: grid;
+  min-height: 18rem;
+  grid-template-columns: minmax(10.5rem, 0.85fr) minmax(0, 1.15fr);
   color: inherit;
+}
+
+.cardMedia {
+  position: relative;
+  min-height: 100%;
+  overflow: hidden;
+  border-right: var(--ds-rule-thin) solid var(--ds-panel-border);
+  background: var(--ds-panel-bg-soft);
+}
+
+.cardMedia img {
+  object-fit: cover;
+  object-position: var(--component-card-image-position, 72% center);
+  filter: saturate(0.92) contrast(1.03);
+  transition: transform var(--ds-duration-medium) var(--ds-ease-out);
+}
+
+.card:hover .cardMedia img,
+.card:focus-visible .cardMedia img {
+  transform: scale(1.025);
+}
+
+.cardMedia .cardImageContain {
+  object-fit: contain;
+  object-position: center;
+  padding: var(--ds-space-6);
 }
 
 .cardContent {
@@ -97,11 +143,38 @@
   text-wrap: balance;
 }
 
-.card p {
+.cardFacts {
+  display: grid;
+  align-content: start;
+  gap: var(--ds-space-3);
   margin: 0;
+}
+
+.cardFacts div {
+  display: grid;
+  grid-template-columns: 4.75rem minmax(0, 1fr);
+  gap: var(--ds-space-3);
+  padding-top: var(--ds-space-3);
+  border-top: var(--ds-rule-thin) solid var(--ds-panel-border);
+}
+
+.cardFacts dt,
+.cardFacts dd {
+  margin: 0;
+}
+
+.cardFacts dt {
   color: var(--ds-foreground-muted);
-  font-size: var(--ds-text-sm);
-  line-height: 1.62;
+  font-size: 0.7rem;
+  font-weight: var(--ds-font-weight-semibold);
+  line-height: 1.4;
+}
+
+.cardFacts dd {
+  color: var(--ds-foreground-primary);
+  font-size: 0.78rem;
+  font-weight: var(--ds-font-weight-medium);
+  line-height: 1.45;
 }
 
 .cardAction {
@@ -1016,6 +1089,16 @@
     padding: var(--ds-space-8) var(--ds-space-6);
   }
 
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(3, 16, 29, 0.7), rgba(3, 16, 29, 0.98)),
+      linear-gradient(90deg, rgba(3, 16, 29, 0.92), rgba(3, 16, 29, 0.38));
+  }
+
+  .heroImage {
+    object-position: 72% center;
+  }
+
   .heroActions > * {
     width: 100%;
   }
@@ -1037,6 +1120,20 @@
 
   .card {
     min-height: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cardMedia {
+    min-height: 10rem;
+    border-right: 0;
+    border-bottom: var(--ds-rule-thin) solid var(--ds-panel-border);
+  }
+
+  .cardMedia img {
+    object-position: var(
+      --component-card-image-position-mobile,
+      var(--component-card-image-position, 72% center)
+    );
   }
 
   .applicationEntry {
@@ -1250,6 +1347,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .cardMedia img,
   .applicationEntryArrow,
   .gearRelatedLinks a {
     transition: none;

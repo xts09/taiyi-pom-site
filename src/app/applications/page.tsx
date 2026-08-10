@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { serializeJsonLd } from "@/lib/jsonLd";
+import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -42,6 +43,10 @@ const applicationsJsonLd = [
     })),
   }),
 ];
+
+const applicationDirectoryContactHref = createContactHref({
+  source: "Application directory",
+});
 
 export default function ApplicationsPage() {
   return (
@@ -89,7 +94,9 @@ export default function ApplicationsPage() {
                 variant="applicationHeroPrimary"
                 style={{ "--item-index": 0 } as CSSProperties}
               >
-                <Link href="/contact">Discuss Your Application</Link>
+                <Link href={applicationDirectoryContactHref}>
+                  Discuss Your Application
+                </Link>
               </Button>
               <Button
                 asChild
@@ -302,7 +309,9 @@ export default function ApplicationsPage() {
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Discuss Your Application</Link>
+              <Link href={applicationDirectoryContactHref}>
+                Discuss Your Application
+              </Link>
             </Button>
           }
         >

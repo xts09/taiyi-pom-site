@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { createContactHref } from "@/lib/contactContext";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -150,7 +151,15 @@ export function ConductiveCompoundsExplorer({
         </td>
         <td data-label="Target range">{compound.rangeLabel}</td>
         <td data-label="Next step">
-          <Link href="/contact">Request data</Link>
+          <Link
+            href={createContactHref({
+              grade: compound.grade,
+              material: `${compound.matrix} conductive / antistatic compound`,
+              source: "Conductive grade directory",
+            })}
+          >
+            Request data
+          </Link>
         </td>
       </tr>
     ));

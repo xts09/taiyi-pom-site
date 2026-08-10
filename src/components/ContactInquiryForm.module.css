@@ -1,0 +1,76 @@
+.context {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: center;
+  justify-content: space-between;
+  border-left: 3px solid var(--ds-action-primary);
+  background: var(--ds-panel-bg-soft);
+  padding: var(--ds-space-3) var(--ds-space-4);
+}
+
+.contextCopy {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.contextEyebrow {
+  color: var(--ds-action-primary);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.contextCopy strong {
+  color: var(--ds-foreground-primary);
+  font-family: var(--ds-font-display);
+  font-size: 0.94rem;
+  line-height: 1.3;
+  text-wrap: pretty;
+}
+
+.contextCopy p {
+  color: var(--ds-foreground-muted);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+.contextClear {
+  min-height: 2.75rem;
+  flex: 0 0 auto;
+  border: 0;
+  border-bottom: 1px solid var(--ds-action-primary);
+  background: transparent;
+  padding: 0 var(--ds-space-2);
+  color: var(--ds-action-primary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  transition:
+    border-color var(--ds-duration-short) ease,
+    color var(--ds-duration-short) ease;
+}
+
+.contextClear:hover {
+  border-color: var(--ds-action-primary-hover);
+  color: var(--ds-action-primary-hover);
+}
+
+.contextClear:focus-visible {
+  outline: 2px solid var(--ds-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (max-width: 39.999rem) {
+  .context {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contextClear {
+    align-self: flex-start;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

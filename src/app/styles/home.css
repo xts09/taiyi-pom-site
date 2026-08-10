@@ -3476,6 +3476,10 @@
       linear-gradient(90deg, var(--home-color-scrim), transparent);
   }
 
+  .home-redesign .hero-video {
+    object-position: 18% center;
+  }
+
   .home-redesign .home-hero-grid {
     min-height: auto;
     gap: 2rem;

@@ -11,14 +11,28 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import styles from "./ContactInquiryForm.module.css";
 
-const materialOptions = [
-  "Modified POM Compounds",
-  ...productCategoryOrder.map(
-    (category) => pomSubcategoryLabels[category] ?? category
-  ),
-  "Other Engineering Plastic Compound",
-];
+const materialOptions = Array.from(
+  new Set([
+    "Modified POM Compounds",
+    ...productCategoryOrder.map(
+      (category) => pomSubcategoryLabels[category] ?? category
+    ),
+    "PA6 Compounds",
+    "PA66 Compounds",
+    "PPA Compounds",
+    "Conductive & Antistatic Compounds",
+    "Other Engineering Plastic Compound",
+  ])
+);
+
+type ContactInquiryFormProps = {
+  contextLabel?: string;
+  initialApplication?: string;
+  initialMaterial?: string;
+  initialMessage?: string;
+};
 
 const readField = (formData: FormData, name: string) =>
   String(formData.get(name) ?? "").trim() || "Not specified";
@@ -40,10 +54,32 @@ const buildInquiryMessage = (formData: FormData) =>
     "Regards,",
   ].join("\n");
 
-export function ContactInquiryForm() {
+export function ContactInquiryForm({
+  contextLabel,
+  initialApplication = "",
+  initialMaterial = "",
+  initialMessage = "",
+}: ContactInquiryFormProps) {
   const [status, setStatus] = useState<
     "idle" | "submitting" | "sent" | "fallback"
   >("idle");
+  const [application, setApplication] = useState(initialApplication);
+  const [material, setMaterial] = useState(initialMaterial);
+  const [message, setMessage] = useState(initialMessage);
+  const [showContext, setShowContext] = useState(Boolean(contextLabel));
+  const selectableMaterialOptions =
+    initialMaterial && !materialOptions.includes(initialMaterial)
+      ? [initialMaterial, ...materialOptions]
+      : materialOptions;
+
+  const clearContext = () => {
+    setShowContext(false);
+    setApplication((value) =>
+      value === initialApplication ? "" : value
+    );
+    setMaterial((value) => (value === initialMaterial ? "" : value));
+    setMessage((value) => (value === initialMessage ? "" : value));
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -85,6 +121,10 @@ export function ContactInquiryForm() {
         trackInquirySubmitted("server_email");
         setStatus("sent");
         form.reset();
+        setApplication("");
+        setMaterial("");
+        setMessage("");
+        setShowContext(false);
         return;
       }
     } catch {
@@ -111,6 +151,23 @@ export function ContactInquiryForm() {
         autoComplete="off"
         aria-hidden="true"
       />
+
+      {showContext && contextLabel ? (
+        <div className={styles.context}>
+          <div className={styles.contextCopy}>
+            <span className={styles.contextEyebrow}>From</span>
+            <strong>{contextLabel}</strong>
+            <p>These details are prefilled. You can edit any field below.</p>
+          </div>
+          <button
+            className={styles.contextClear}
+            type="button"
+            onClick={clearContext}
+          >
+            Clear context
+          </button>
+        </div>
+      ) : null}
 
       <div className="contact-form-grid">
         <label className="contact-field">
@@ -147,11 +204,15 @@ export function ContactInquiryForm() {
 
         <label className="contact-field">
           <span>Material Family (optional)</span>
-          <Select name="material" defaultValue="">
+          <Select
+            name="material"
+            value={material}
+            onChange={(event) => setMaterial(event.target.value)}
+          >
             <option value="" disabled>
               Choose a material family
             </option>
-            {materialOptions.map((option) => (
+            {selectableMaterialOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
               </option>
@@ -170,6 +231,8 @@ export function ContactInquiryForm() {
             name="application"
             autoComplete="off"
             placeholder={"Gear, clip, housing\u2026"}
+            value={application}
+            onChange={(event) => setApplication(event.target.value)}
             required
           />
         </label>
@@ -183,6 +246,8 @@ export function ContactInquiryForm() {
           rows={5}
           autoComplete="off"
           placeholder="Current grade, operating conditions, target properties, annual volume, or document needs."
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
         />
       </label>
 

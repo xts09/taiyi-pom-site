@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { serializeJsonLd } from "@/lib/jsonLd";
+import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ProductGrid } from "@/components/ProductGrid";
@@ -132,6 +133,10 @@ export default async function ProductCategoryPage({
       ? "POM Material Grades"
       : entry.label;
   const heroTitle = isPomCategory ? "POM Materials" : entry.label;
+  const contactHref = createContactHref({
+    material: isPomCategory ? "Modified POM Compounds" : entry.label,
+    source: "Product category",
+  });
   const pageDescription =
     isPomCategory
       ? "A focused directory for Taiyi Polymer modified POM compounds and selected base resin data used in precision molded mechanical parts."
@@ -263,7 +268,7 @@ export default async function ProductCategoryPage({
 
             <div className="product-hero-cta">
               <Button asChild size="productHero" variant="productHeroPrimary">
-                <Link href="/contact">Discuss Your Application</Link>
+                <Link href={contactHref}>Discuss Your Application</Link>
               </Button>
               <Button asChild size="productHero" variant="productHeroSecondary">
                 <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
@@ -273,6 +278,13 @@ export default async function ProductCategoryPage({
         </div>
 
         <SecondarySectionNav
+          actions={[
+            { href: contactHref, label: "Discuss Your Application" },
+            {
+              href: "/technical-data-sheets",
+              label: "Find Grade Data & TDS",
+            },
+          ]}
           ariaLabel="Product section navigation"
           subtitle={getCategoryNavSubtitle(entry.category)}
           tabs={sectionTabs}
@@ -356,7 +368,7 @@ export default async function ProductCategoryPage({
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">Discuss Your Application</Link>
+              <Link href={contactHref}>Discuss Your Application</Link>
             </Button>
           }
         >

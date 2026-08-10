@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { ActionPanel } from "@/components/ActionPanel";
 import { MetricGroup } from "@/components/MetricGroup";
@@ -7,11 +8,21 @@ import { Button } from "@/components/ui/button";
 import type { PomLandingPageData } from "@/data/pomLandingPages";
 import { createBreadcrumbJsonLd, siteUrl } from "@/lib/seo";
 
+const landingMaterialBySlug: Partial<Record<PomLandingPageData["slug"], string>> = {
+  "conductive-antistatic-pom": "Conductive / Antistatic POM",
+  "modified-pom-compounds": "Modified POM Compounds",
+  "wear-resistant-low-friction-pom": "Wear-Resistant & Low-Friction POM",
+};
+
 export function PomLandingPage({ page }: { page: PomLandingPageData }) {
   const hasImageHero = Boolean(page.heroImage);
   const heroClassName = hasImageHero
     ? "pom-landing-hero pom-landing-hero-image"
     : "pom-landing-hero pom-landing-hero-plain";
+  const contactHref = createContactHref({
+    material: landingMaterialBySlug[page.slug],
+    source: page.title,
+  });
   const jsonLd = [
     createBreadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -70,7 +81,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
 
             <div className="pom-landing-actions">
               <Button asChild variant="primary" size="form">
-                <Link href="/contact" className="pom-landing-action">
+                <Link href={contactHref} className="pom-landing-action">
                   {page.primaryActionLabel}
                 </Link>
               </Button>
@@ -221,7 +232,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href="/contact">{page.primaryActionLabel}</Link>
+              <Link href={contactHref}>{page.primaryActionLabel}</Link>
             </Button>
           }
         >
