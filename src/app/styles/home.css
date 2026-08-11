@@ -447,13 +447,16 @@
   --metric-group-columns: 5;
   --metric-group-columns-tablet: 2;
   --metric-group-columns-mobile: 2;
-  --metric-group-gap: 0;
-  --metric-group-gap-mobile: 0;
-  --metric-group-padding: 0;
-  --metric-group-bg: transparent;
+  --metric-group-gap: var(--home-space-2xs);
+  --metric-group-gap-mobile: var(--home-space-2xs);
+  --metric-group-padding: var(--home-space-2xs);
+  --metric-group-bg: var(--ds-background-surface);
+  --metric-group-radius: var(--home-radius-card);
   --metric-item-gap: var(--home-space-2xs);
   --metric-item-min-height: 0;
   --metric-item-padding: 0;
+
+  box-shadow: var(--ds-shadow-panel);
 }
 
 .home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] {
@@ -461,18 +464,10 @@
 }
 
 .home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
-  background: var(--home-color-paper);
-  border-bottom: var(--home-rule-thin) solid var(--home-color-rule);
-}
-
-.home-redesign .manufacturing-base .home-metrics-rail
-  [data-slot="metric-item"]:not([data-featured]):nth-child(-n + 2) {
-  border-bottom: var(--home-rule-thin) solid var(--home-color-rule);
-}
-
-.home-redesign .manufacturing-base .home-metrics-rail
-  [data-slot="metric-item"]:not([data-featured]):nth-child(even) {
-  border-left: var(--home-rule-thin) solid var(--home-color-rule);
+  border-radius: var(--ds-radius-tight);
+  background:
+    url("/material-satin-light.png") center 62% / cover no-repeat,
+    var(--ds-background-surface);
 }
 
 .home-redesign .home-stage {
@@ -1652,8 +1647,8 @@
   }
 
   .manufacturing-base .home-metrics-rail {
-    --metric-group-gap: 1.2rem 0.9rem;
-    --metric-group-padding: 0;
+    --metric-group-gap: var(--home-space-xs);
+    --metric-group-padding: var(--home-space-sm);
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
@@ -1664,6 +1659,10 @@
 }
 
 @media (max-width: 47.999rem) {
+  .home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] {
+    padding-inline: var(--ds-space-1);
+  }
+
   .home-redesign .manufacturing-base .home-metrics-rail
     [data-slot="metric-item"]:not([data-featured]) {
     --metric-label-min-height: 2.6em;
@@ -1685,8 +1684,8 @@
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail {
-    --metric-group-gap: 0;
-    --metric-group-padding: 0;
+    --metric-group-gap: var(--home-space-xs);
+    --metric-group-padding: var(--home-space-sm);
     --metric-item-padding: 0;
     grid-template-columns: minmax(18rem, 1.15fr) repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(2, auto);
@@ -1702,9 +1701,6 @@
     grid-row: 1 / span 2;
     align-content: center;
     padding-right: clamp(2rem, 3vw, 3rem);
-    padding-left: 0;
-    border-right: var(--home-rule-thin) solid var(--home-color-rule);
-    border-bottom: 0;
   }
 
 }
