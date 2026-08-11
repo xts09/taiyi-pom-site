@@ -94,24 +94,22 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
   )}&body=${encodeURIComponent(directEmailBody)}`;
 
   return (
-    <main className={`${styles.page} contact-page min-h-screen text-slate-900`}>
+    <main className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: serializeJsonLd(contactJsonLd),
         }}
       />
-      <section
-        className={`${styles.shell} mesh-surface mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8`}
-      >
+      <section className={styles.shell}>
         <PageHero
           variant="editorial"
-          className={`${styles.hero} inner-hero reveal-up mb-12 max-w-4xl`}
+          className={`${styles.hero} reveal-up`}
           title="Request a Material Review"
           description="Tell us the part function, operating conditions and target requirements. We will identify relevant material families, confirm available documents and outline the next sample or evaluation step."
         />
 
-        <div className={`${styles.workspace} contact-split stagger-list`}>
+        <div className={`${styles.workspace} stagger-list`}>
           <Card asChild variant="soft">
             <section
               className={styles.formPanel}
@@ -145,7 +143,7 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
           </Card>
 
           <aside
-            className={`${styles.identity} contact-identity`}
+            className={styles.identity}
             style={{ "--item-index": 1 } as CSSProperties}
           >
             <div className="contact-details">
