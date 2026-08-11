@@ -33,32 +33,34 @@ export function QualitySystemsSection({
     >
       <div className="site-container">
         <div className="certification-strip">
-          <SectionIntro
-            className="certification-heading home-evidence-intro"
-            descriptionClassName="home-evidence-description"
-            description="Recognized enterprise credentials and current management-system certificates provide practical evidence for supplier qualification."
-            eyebrow="COMPANY EVIDENCE"
-            eyebrowClassName="home-evidence-eyebrow"
-            layout="split"
-            title="Credentials and Quality Systems"
-            titleClassName="home-evidence-title"
-            titleId="quality-systems-title"
-            variant="dark"
-          />
+          <div className="company-credentials-block">
+            <SectionIntro
+              className="certification-heading home-evidence-intro"
+              descriptionClassName="home-evidence-description"
+              description="Recognized enterprise credentials and current management-system certificates provide practical evidence for supplier qualification."
+              eyebrow="COMPANY EVIDENCE"
+              eyebrowClassName="home-evidence-eyebrow"
+              layout="split"
+              title="Credentials and Quality Systems"
+              titleClassName="home-evidence-title"
+              titleId="quality-systems-title"
+              variant="dark"
+            />
 
-          <div
-            className="company-credential-register"
-            aria-label="Company credentials"
-          >
-            {qualifications.map((qualification) => (
-              <div
-                className="company-credential-item"
-                key={qualification.title}
-              >
-                <span>{qualification.category}</span>
-                <strong>{qualification.title}</strong>
-              </div>
-            ))}
+            <div
+              className="company-credential-register"
+              aria-label="Company credentials"
+            >
+              {qualifications.map((qualification) => (
+                <div
+                  className="company-credential-item"
+                  key={qualification.title}
+                >
+                  <span>{qualification.category}</span>
+                  <strong>{qualification.title}</strong>
+                </div>
+              ))}
+            </div>
           </div>
 
           <Card className="certificate-vault" variant="evidence">

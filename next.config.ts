@@ -53,6 +53,10 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   poweredByHeader: false,
+  images: {
+    qualities: [75, 85],
+    ...(isGithubPages ? { unoptimized: true } : {}),
+  },
   ...(distDir ? { distDir } : {}),
   experimental: {
     cpus: 4,
@@ -90,9 +94,6 @@ const nextConfig: NextConfig = {
         basePath: githubPagesBasePath,
         assetPrefix: githubPagesBasePath,
         trailingSlash: true,
-        images: {
-          unoptimized: true,
-        },
       }
     : {}),
 };

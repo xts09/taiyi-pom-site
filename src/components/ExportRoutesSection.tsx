@@ -26,34 +26,17 @@ export function ExportRoutesSection({
       aria-labelledby="export-routes-title"
     >
       <div className="site-container">
-        <div className="export-routes-header">
-          <SectionIntro
-            className="export-routes-intro home-evidence-intro"
-            descriptionClassName="home-evidence-description"
-            description="Current project routes connect Yancheng with Central Asia, Europe, East Asia and the Americas. Grade screening and document coordination are handled project by project."
-            eyebrow="SUPPLY NETWORK"
-            eyebrowClassName="home-evidence-eyebrow"
-            layout="split"
-            title="Export Routes"
-            titleClassName="home-evidence-title"
-            titleId="export-routes-title"
-          />
-          <Button
-            asChild
-            className="export-market-action"
-            size="form"
-            variant="primary"
-          >
-            <Link href="/contact">
-              Discuss Your Application
-              <ArrowRight aria-hidden="true" size={16} />
-            </Link>
-          </Button>
-        </div>
-
         <div className="supply-map-layout">
           <Card className="export-network-board" variant="standard">
             <div className="supply-map-shell">
+              <SectionIntro
+                className="export-routes-intro"
+                description="Current project routes connect Yancheng with Central Asia, Europe, East Asia and the Americas. Grade screening and document coordination are handled project by project."
+                eyebrow="SUPPLY NETWORK"
+                layout="stacked"
+                title="Export Routes"
+                titleId="export-routes-title"
+              />
               <ExportMarketsMap activeRegion={activeRegion} />
               <div className="supply-map-legend" aria-label="Map legend">
                 <span>
@@ -102,6 +85,18 @@ export function ExportRoutesSection({
                   </li>
                 ))}
               </ul>
+
+              <Button
+                asChild
+                className="export-market-action"
+                size="form"
+                variant="primary"
+              >
+                <Link href="/contact">
+                  Discuss Your Application
+                  <ArrowRight aria-hidden="true" size={16} />
+                </Link>
+              </Button>
             </aside>
 
             <div className="export-network-facts" aria-label="Export network facts">

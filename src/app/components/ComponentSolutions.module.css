@@ -39,7 +39,7 @@
 
 .heroImage {
   object-fit: cover;
-  object-position: 72% center;
+  object-position: center;
   filter: saturate(0.82) contrast(1.04) brightness(0.88);
 }
 
@@ -53,27 +53,13 @@
 
 .section {
   padding-top: clamp(3rem, 5.5vw, 5rem);
+  scroll-margin-top: calc(var(--site-header-height) + var(--ds-space-4));
 }
 
 .directoryIntro {
-  grid-template-areas:
-    "eyebrow description"
-    "title description";
-  grid-template-columns: minmax(0, 5fr) minmax(18rem, 7fr) !important;
-  align-items: start !important;
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-}
-
-.directoryIntro > p:first-child {
-  grid-area: eyebrow;
-}
-
-.directoryIntro > h2 {
-  grid-area: title;
-}
-
-.directoryIntro > p:last-child {
-  grid-area: description;
+  --section-intro-description-max: 65ch;
+  width: min(62rem, 100%);
+  margin-bottom: clamp(2rem, 3vw, 2.5rem);
 }
 
 .directory {
@@ -94,13 +80,16 @@
   min-height: 100%;
   overflow: hidden;
   border-right: var(--ds-rule-thin) solid var(--ds-panel-border);
-  background: var(--ds-panel-bg-soft);
+  background:
+    var(--ds-media-bg)
+    url("/applications/parts/generated/components-directory-industrial-stage-v1.png")
+    center / cover no-repeat;
 }
 
 .cardMedia img {
   object-fit: cover;
   object-position: var(--component-card-image-position, 72% center);
-  filter: saturate(0.92) contrast(1.03);
+  filter: saturate(0.96) contrast(1.06);
   transition: transform var(--ds-duration-medium) var(--ds-ease-out);
 }
 
@@ -109,10 +98,17 @@
   transform: scale(1.025);
 }
 
-.cardMedia .cardImageContain {
+.cardMedia .directoryImage {
   object-fit: contain;
   object-position: center;
-  padding: var(--ds-space-6);
+  padding: clamp(0.45rem, 0.85vw, 0.75rem);
+  filter: none;
+  transform: scale(var(--component-directory-image-scale, 1));
+}
+
+.card:hover .cardMedia .directoryImage,
+.card:focus-visible .cardMedia .directoryImage {
+  transform: scale(var(--component-directory-image-scale-hover, 1.015));
 }
 
 .cardContent {
@@ -154,6 +150,7 @@
   display: grid;
   grid-template-columns: 4.75rem minmax(0, 1fr);
   gap: var(--ds-space-3);
+  align-items: baseline;
   padding-top: var(--ds-space-3);
   border-top: var(--ds-rule-thin) solid var(--ds-panel-border);
 }
@@ -165,7 +162,7 @@
 
 .cardFacts dt {
   color: var(--ds-foreground-muted);
-  font-size: 0.7rem;
+  font-size: var(--ds-text-xs);
   font-weight: var(--ds-font-weight-semibold);
   line-height: 1.4;
 }
@@ -1107,7 +1104,7 @@
   }
 
   .heroImage {
-    object-position: 72% center;
+    object-position: 64% center;
   }
 
   .heroActions > * {
@@ -1119,14 +1116,6 @@
   .detailGrid,
   .detailList {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .directoryIntro {
-    grid-template-areas:
-      "eyebrow"
-      "title"
-      "description";
-    grid-template-columns: minmax(0, 1fr) !important;
   }
 
   .cardMedia {

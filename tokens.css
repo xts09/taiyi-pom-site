@@ -308,24 +308,20 @@
   --ds-resource-hero-evidence-border: rgba(255, 255, 255, 0.1);
   --ds-resource-hero-evidence-radius: var(--ds-evidence-radius);
   --ds-resource-hero-evidence-shadow: none;
-  --ds-resource-index-hero-split: 65%;
   --ds-resource-index-hero-bg:
     linear-gradient(
       90deg,
       rgba(7, 17, 31, 0.95) 0%,
-      rgba(7, 17, 31, 0.92) var(--ds-resource-index-hero-split),
-      rgba(248, 251, 255, 0.94) var(--ds-resource-index-hero-split),
-      rgba(255, 255, 255, 0.98) 100%
+      rgba(7, 17, 31, 0.9) 100%
     ),
-    url("/material-satin-midnight-v1.png") left center /
-      var(--ds-resource-index-hero-split) 100% no-repeat,
-    var(--ds-background-surface);
+    url("/material-satin-midnight-v1.png") center / cover no-repeat,
+    var(--ds-evidence-bg);
   --ds-resource-index-hero-border: var(--ds-product-hero-surface-border);
   --ds-resource-index-task-bg:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.78),
-      rgba(244, 248, 251, 0.9)
+      rgba(255, 255, 255, 0.98),
+      rgba(244, 248, 251, 0.98)
     );
   --ds-resource-index-task-seam: rgba(15, 23, 42, 0.05);
   --ds-resource-article-title-size: var(--ds-section-intro-title-size-display);
@@ -350,10 +346,10 @@
   --ds-metric-label-fg: var(--ds-action-primary);
   --ds-metric-value-fg: var(--ds-foreground-primary);
   --ds-metric-note-fg: var(--ds-foreground-muted);
-  --ds-metric-label-size: 0.7rem;
+  --ds-metric-label-size: var(--ds-text-xs);
   --ds-metric-value-size: clamp(1.75rem, 2.2vw, 2.4rem);
   --ds-metric-value-size-featured: clamp(2rem, 2.55vw, 2.7rem);
-  --ds-metric-note-size: 0.78rem;
+  --ds-metric-note-size: var(--ds-text-sm);
   --ds-metric-gap: var(--ds-space-6);
   --ds-metric-item-gap: var(--ds-space-2);
   --ds-action-panel-gap: clamp(var(--ds-space-6), 4vw, var(--ds-space-12));
@@ -413,7 +409,7 @@
   --ds-floating-contact-icon-bg: var(--ds-color-white);
   --ds-floating-contact-backdrop: oklch(10% 0.025 245 / 0.42);
   --ds-home-hero-title-size: clamp(3.4rem, 4.7vw, 5.6rem);
-  --ds-home-hero-title-size-compact: clamp(3.5rem, 7vw, 6rem);
+  --ds-home-hero-title-size-compact: clamp(3.25rem, 5.4vw, 3.8rem);
   --ds-home-hero-title-size-medium: clamp(3.8rem, 5.1vw, 4.25rem);
   --ds-home-hero-title-size-mobile: clamp(2.4rem, 10.2vw, 3.1rem);
 

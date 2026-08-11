@@ -702,6 +702,10 @@
     grid-column: 1;
   }
 
+  .manufacturingOverviewMetrics {
+    --metric-label-min-height: 3.9em;
+  }
+
   .manufacturingProofLead {
     grid-template-columns: minmax(0, 1.1fr) minmax(17rem, 0.9fr);
   }

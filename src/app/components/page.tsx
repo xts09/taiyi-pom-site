@@ -24,9 +24,42 @@ const componentSolutionsTitle =
   "Component Solutions for Modified POM Parts | Taiyi Polymer";
 const componentSolutionsDescription =
   "Browse component-led review paths for gears, bushings, conveyor parts, valve internals, textile guides, and IC handling trays.";
-const featuredComponent = getComponentSolutionDetailBySlug(
-  "precision-plastic-gears",
-);
+const componentDirectoryHero = {
+  src: "/applications/parts/generated/components-directory-gears-cad-v2.png",
+  alt: "CAD visualization of a wiper motor gear assembly",
+};
+
+const componentDirectoryImages: Record<
+  string,
+  { src: string; position: string; scale?: string; hoverScale?: string }
+> = {
+  "precision-plastic-gears": {
+    src: "/applications/parts/generated/components-directory-gears-cad-transparent-v1.png",
+    position: "center",
+  },
+  "bushings-and-sleeves": {
+    src: "/applications/parts/generated/components-directory-bushings-cad-transparent-v1.png",
+    position: "center",
+    scale: "1.08",
+    hoverScale: "1.095",
+  },
+  "conveyor-chain-components": {
+    src: "/applications/parts/generated/components-directory-conveyor-chain-cad-transparent-v1.png",
+    position: "center",
+  },
+  "valve-spools-and-cartridges": {
+    src: "/applications/parts/generated/components-directory-valve-cartridges-cad-transparent-v1.png",
+    position: "center",
+  },
+  "textile-guide-components": {
+    src: "/applications/parts/generated/components-directory-textile-guide-cad-transparent-v1.png",
+    position: "center",
+  },
+  "ic-handling-trays": {
+    src: "/applications/parts/generated/components-directory-ic-jedec-tray-cad-transparent-v1.png",
+    position: "center",
+  },
+};
 
 export const metadata: Metadata = createPageMetadata({
   title: componentSolutionsTitle,
@@ -70,25 +103,24 @@ export default function ComponentSolutionsPage() {
             actionsClassName={styles.heroActions}
             eyebrow="Component Solutions"
             title="Start with the molded component"
-            description="Explore six component-led review paths that connect part function, operating conditions, failure modes, molding constraints, and validation needs to practical material directions."
+            description="Compare six component paths by part function, operating conditions, failure modes, molding constraints, and validation needs."
             media={
-              featuredComponent ? (
-                <Image
-                  fill
-                  loading="eager"
-                  src={featuredComponent.hero.image}
-                  alt={featuredComponent.hero.imageAlt}
-                  sizes="(min-width: 82rem) 82rem, 100vw"
-                  className={styles.heroImage}
-                />
-              ) : undefined
+              <Image
+                fill
+                loading="eager"
+                src={componentDirectoryHero.src}
+                alt={componentDirectoryHero.alt}
+                sizes="(min-width: 82rem) 82rem, 100vw"
+                quality={85}
+                className={styles.heroImage}
+              />
             }
             actions={
               <>
                 <Button asChild size="applicationHero" variant="applicationHeroPrimary">
                   <Link href="#component-families">Browse Component Families</Link>
                 </Button>
-                <Button asChild size="applicationHero" variant="applicationHeroSecondary">
+                <Button asChild size="applicationHero" variant="inverse">
                   <Link href="/applications">Browse Industries</Link>
                 </Button>
               </>
@@ -98,19 +130,23 @@ export default function ComponentSolutionsPage() {
           <section className={styles.section} id="component-families">
             <SectionIntro
               className={styles.directoryIntro}
-              layout="split"
+              layout="stacked"
               eyebrow="Component Directory"
               title="Choose the family closest to your part"
-              description="Each engineering page organizes recurring failure modes, candidate material directions, minimum project inputs, molding considerations, and component-level validation steps."
+              description="Review typical parts and engineering priorities, then open the path closest to your component."
             />
 
             <div className={styles.directory}>
               {componentSolutions.map((solution, index) => {
                 const detail: ComponentSolutionDetail | undefined =
                   getComponentSolutionDetailBySlug(solution.slug);
-                const imagePosition = detail?.hero.imagePosition ?? "72% center";
+                const directoryImage = componentDirectoryImages[solution.slug];
+                const imagePosition =
+                  directoryImage?.position ?? detail?.hero.imagePosition ?? "72% center";
                 const mobileImagePosition =
-                  detail?.hero.mobileImagePosition ?? imagePosition;
+                  directoryImage?.position ??
+                  detail?.hero.mobileImagePosition ??
+                  imagePosition;
 
                 return (
                   <Card key={solution.slug} asChild variant="interactive">
@@ -127,18 +163,23 @@ export default function ComponentSolutionsPage() {
                               "--component-card-image-position": imagePosition,
                               "--component-card-image-position-mobile":
                                 mobileImagePosition,
+                              "--component-directory-image-scale":
+                                directoryImage?.scale ?? "1",
+                              "--component-directory-image-scale-hover":
+                                directoryImage?.hoverScale ?? "1.015",
                             } as CSSProperties
                           }
                         >
                           <Image
                             fill
                             loading={index === 0 ? "eager" : "lazy"}
-                            src={detail.hero.image}
+                            src={directoryImage?.src ?? detail.hero.image}
                             alt=""
-                            sizes="(min-width: 1024px) 19rem, (min-width: 768px) 36vw, 100vw"
+                            sizes="(min-width: 64.0625rem) 18vw, (min-width: 48rem) 42vw, 100vw"
+                            quality={85}
                             className={
-                              solution.slug === "ic-handling-trays"
-                                ? styles.cardImageContain
+                              directoryImage
+                                ? styles.directoryImage
                                 : undefined
                             }
                           />

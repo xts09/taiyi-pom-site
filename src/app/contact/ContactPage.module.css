@@ -201,8 +201,8 @@
   }
 
   .hero h1 {
-    max-width: 15ch;
-    font-size: clamp(2.45rem, 12vw, 3.3rem) !important;
+    max-width: none;
+    font-size: clamp(2.25rem, 10.5vw, 2.6rem) !important;
   }
 
   .formPanel {

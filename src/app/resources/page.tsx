@@ -94,7 +94,9 @@ export default function ResourcesPage() {
               className="resource-index-task-panel"
               aria-label="Resource paths by task"
             >
-              <p className="resource-index-panel-label">Start by task</p>
+              <p className="resource-index-panel-label">
+                Browse by engineering task
+              </p>
               <div className="resource-index-path-list">
                 {resourceNavigationGroups.map((group) => (
                   <Card key={group.id} asChild variant="interactive">
@@ -122,7 +124,7 @@ export default function ResourcesPage() {
             layout="split"
             title="Browse Technical Resources"
             titleId="resource-directory-title"
-            description="Open a focused guide, troubleshooting note, data tool, or FAQ without leaving the engineering task that brought you here."
+            description="Open the complete guide, troubleshooting, data, and FAQ directory, organized by engineering task."
           />
 
           <div className="resource-index-directory-groups">

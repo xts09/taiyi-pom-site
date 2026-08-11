@@ -293,10 +293,11 @@ variables or using the same nominal `max-width`.
 
 Use these composition roles instead of inventing new fractions per section:
 
-1. **Split 5/7:** Default desktop section intro and ordinary title/copy
-   composition. Use a 24px minimum column gap and keep the copy on the right
-   track. This is the default for peer homepage stages and inner-page section
-   intros.
+1. **Split 5/7:** Standard desktop title/copy composition when the heading and
+   supporting copy are genuine peer tracks. Use a 24px minimum column gap and
+   keep the copy on the right track. It is not a universal section-header
+   template: use it only when the body below shares those tracks or the split
+   establishes a deliberate reading relationship.
 2. **Split 6/6:** Balanced media/text, form/contact, and final conversion
    compositions where both sides carry similar visual weight. Increase the gap
    with spacing tokens; do not alter the track ratio to tune one paragraph.
@@ -311,6 +312,20 @@ Use these composition roles instead of inventing new fractions per section:
 
 Do not create a fifth split ratio to fix wrapping. First adjust copy measure,
 type scale, or the documented role of the module.
+
+### Section Intro Composition Choice
+
+- Use a **stacked intro** when one heading leads one explanatory paragraph,
+  especially for scan-first directories. Keep it to a readable measure and
+  connect it to the first row with the 24px or 32px spacing tier.
+- Use a **split intro** only when both columns carry peer information and its
+  visible tracks align with the body immediately below. Do not stretch a short
+  introduction across the rail merely to occupy space.
+- Inside an **evidence canvas**, the intro may sit inside the canvas grid. Its
+  title, supporting copy, media, facts, and actions must align to the canvas
+  columns instead of forming a detached banner above it.
+- Keep an action beside the decision or evidence it affects. A title/copy/CTA
+  header must not become three unrelated horizontal zones.
 
 ### Section Header Levels
 

@@ -325,13 +325,21 @@ single action aligned to the site rail.
 **Current implementations:** `HomeStageHeader`, About section headers,
 certification headings, product directory heads, and resource section heads.
 
-**Variants:** `light`, `dark`, `split`.
+**Visual variants:** `light`, `dark`. **Layout variants:** `stacked`, `split`.
 
 The canonical `split` layout follows the `Split 5/7` contract in `DESIGN.md`.
-Page styles may stack it responsively, but they must not introduce arbitrary
-desktop fractions for peer section intros. Indexed process layouts remain a
-specialized composition; their intro must reuse the same title and description
-tracks as the indexed rows below it.
+It is selected only when the title and supporting copy are peer tracks and the
+section body continues that geometry. `stacked` remains the default for a
+single reading path. Page styles may stack a split intro responsively, but they
+must not introduce arbitrary desktop fractions for peer section intros.
+Indexed process layouts remain a specialized composition; their intro must
+reuse the same title and description tracks as the indexed rows below it.
+
+Evidence canvases do not require a new `SectionIntro` prop. The page owner may
+place a stacked intro inside the canvas or align a split intro to the canvas's
+documented internal columns. The component still owns semantics and type; page
+CSS owns that placement. Do not leave the intro as a detached full-rail banner
+when its copy, action, or evidence belongs to the canvas below.
 
 **Canonical owner:** `src/components/SectionIntro.tsx`. The manufacturing
 capability introduction now belongs to the About-family evidence composition;
