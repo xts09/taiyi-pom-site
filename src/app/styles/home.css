@@ -433,7 +433,7 @@
 }
 
 .home-redesign .manufacturing-base {
-  background: var(--ds-background-canvas);
+  background: var(--ds-background-surface);
   color: var(--home-color-ink);
 }
 
@@ -447,27 +447,47 @@
   --metric-group-columns: 5;
   --metric-group-columns-tablet: 2;
   --metric-group-columns-mobile: 2;
-  --metric-group-gap: var(--home-space-2xs);
-  --metric-group-gap-mobile: var(--home-space-2xs);
-  --metric-group-padding: var(--home-space-2xs);
-  --metric-group-bg: var(--ds-background-surface);
-  --metric-group-radius: var(--home-radius-card);
-  --metric-item-gap: var(--home-space-2xs);
+  --metric-group-gap: var(--home-space-xl) var(--home-space-lg);
+  --metric-group-gap-mobile: var(--home-space-xl) var(--home-space-md);
+  --metric-group-padding: 0;
+  --metric-group-bg: transparent;
+  --metric-group-radius: 0;
+  --metric-item-gap: var(--home-space-xs);
   --metric-item-min-height: 0;
   --metric-item-padding: 0;
-
-  box-shadow: var(--ds-shadow-panel);
+  --metric-label-color: var(--home-color-ink-muted);
+  --metric-note-color: var(--home-color-ink-muted);
+  --metric-value-color: var(--home-color-ink);
+  --metric-value-size: clamp(2.35rem, 3vw, 3.25rem);
+  --metric-value-weight: 650;
+  --metric-value-tracking: -0.045em;
 }
 
 .home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] {
-  padding: var(--home-space-sm);
+  padding: 0;
+}
+
+.home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] dt {
+  --metric-label-size: var(--home-text-sm);
+  --metric-label-tracking: 0;
+
+  font-weight: 600;
+  text-transform: none;
+}
+
+.home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] > span {
+  --metric-note-size: 0.9375rem;
 }
 
 .home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
-  border-radius: var(--ds-radius-tight);
-  background:
-    url("/material-satin-light.png") center 62% / cover no-repeat,
-    var(--ds-background-surface);
+  --metric-featured-value-size: clamp(4.75rem, 7vw, 7.5rem);
+  --metric-featured-value-size-mobile: clamp(3.85rem, 17vw, 4.75rem);
+  --metric-label-color: var(--home-color-ink);
+  --metric-value-color: var(--home-color-accent);
+
+  min-height: 0;
+  padding: 0;
+  background: transparent;
 }
 
 .home-redesign .home-stage {
@@ -1647,8 +1667,8 @@
   }
 
   .manufacturing-base .home-metrics-rail {
-    --metric-group-gap: var(--home-space-xs);
-    --metric-group-padding: var(--home-space-sm);
+    --metric-group-gap: var(--home-space-xl) var(--home-space-lg);
+    --metric-group-padding: 0;
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
@@ -1659,48 +1679,51 @@
 }
 
 @media (max-width: 47.999rem) {
+  .home-redesign .manufacturing-base-inner {
+    padding-top: var(--home-space-xl);
+    padding-bottom: var(--home-space-xl);
+  }
+
   .home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] {
-    padding-inline: var(--ds-space-1);
+    padding-inline: 0;
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail
     [data-slot="metric-item"]:not([data-featured]) {
-    --metric-label-min-height: 2.6em;
-    --metric-value-size-mobile: clamp(1.75rem, 8.2vw, 2rem);
-  }
-
-  .home-redesign .manufacturing-base .home-metrics-rail
-    [data-slot="metric-item"]:not([data-featured]):nth-last-child(-n + 2) {
-    --metric-label-min-height: 1.3em;
+    --metric-label-min-height: 0;
+    --metric-value-size-mobile: clamp(1.95rem, 8.7vw, 2.2rem);
   }
 }
 
-/* Factory proof uses one leading figure and a supporting 2-by-2 ledger. */
+/* Factory proof uses scale and whitespace instead of cards or dividers. */
 @media (min-width: 64rem) {
   .manufacturing-base-inner {
     display: block;
-    padding-top: clamp(1.85rem, 2.55vw, 2.3rem);
-    padding-bottom: clamp(0.85rem, 1.8vw, 1.25rem);
+    padding-top: clamp(3.75rem, 5vw, 5rem);
+    padding-bottom: clamp(4rem, 5.5vw, 5.5rem);
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail {
-    --metric-group-gap: var(--home-space-xs);
-    --metric-group-padding: var(--home-space-sm);
+    --metric-group-gap: 0;
+    --metric-group-padding: 0;
     --metric-item-padding: 0;
-    grid-template-columns: minmax(18rem, 1.15fr) repeat(2, minmax(0, 1fr));
+    grid-template-columns: minmax(27rem, 6.5fr) repeat(2, minmax(0, 2.75fr));
     grid-template-rows: repeat(2, auto);
+    column-gap: clamp(3.5rem, 6vw, 6rem);
+    row-gap: clamp(2.25rem, 3vw, 3rem);
     align-items: stretch;
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] {
-    padding: var(--home-space-sm) clamp(1.5rem, 2.3vw, 2.25rem);
+    padding: 0;
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
     grid-column: 1;
     grid-row: 1 / span 2;
     align-content: center;
-    padding-right: clamp(2rem, 3vw, 3rem);
+    min-height: 15rem;
+    padding: 0;
   }
 
 }
