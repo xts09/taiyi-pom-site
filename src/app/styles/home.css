@@ -1697,10 +1697,10 @@
 
 /* Factory proof uses scale and whitespace instead of cards or dividers. */
 @media (min-width: 64rem) {
-  .manufacturing-base-inner {
+  .home-redesign .manufacturing-base-inner {
     display: block;
-    padding-top: clamp(3.75rem, 5vw, 5rem);
-    padding-bottom: clamp(4rem, 5.5vw, 5.5rem);
+    padding-top: var(--home-space-2xl);
+    padding-bottom: var(--home-space-2xl);
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail {
