@@ -100,10 +100,6 @@
   content: none;
 }
 
-.application-detail-shell.mesh-surface .application-match-card::before {
-  content: none;
-}
-
 .application-use-card-meta {
   display: flex;
   align-items: center;

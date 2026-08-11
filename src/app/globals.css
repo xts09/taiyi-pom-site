@@ -1361,7 +1361,6 @@ body {
 }
 
 .application-scene-copy h2,
-.application-match-head h2,
 .application-notes-head h2,
 .application-review-cta h2 {
   max-width: 24ch;
@@ -1373,7 +1372,6 @@ body {
 }
 
 .application-scene-copy p:not(.section-kicker),
-.application-match-head p,
 .application-review-cta p {
   margin-top: 0.9rem;
   max-width: 31rem;
@@ -1521,117 +1519,6 @@ body {
     0 1.2rem 3rem rgba(15, 23, 42, 0.07),
     inset 0 1px rgba(255, 255, 255, 0.8);
   padding: clamp(1.25rem, 3vw, 2.1rem);
-}
-
-.application-match-head {
-  display: grid;
-  grid-template-columns: minmax(18rem, 0.48fr) minmax(0, 1fr);
-  column-gap: clamp(1.25rem, 5vw, 4rem);
-  row-gap: 0.55rem;
-  align-items: start;
-}
-
-.application-match-head h2 {
-  grid-column: 1;
-  grid-row: 2;
-  max-width: 22ch;
-}
-
-.application-match-head .section-kicker {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-.application-match-head p:not(.section-kicker) {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  max-width: 39rem;
-  margin-top: 0.35rem;
-  padding-bottom: 0.1rem;
-}
-
-.application-match-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(0.75rem, 1.5vw, 1rem);
-  margin-top: clamp(1.1rem, 2.5vw, 1.65rem);
-  border: 0;
-}
-
-.application-match-card {
-  position: relative;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid rgba(11, 95, 184, 0.13);
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow:
-    0 0.85rem 1.8rem rgba(15, 23, 42, 0.06),
-    inset 0 1px rgba(255, 255, 255, 0.9);
-}
-
-.application-match-card::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #0b5fb8, rgba(14, 165, 233, 0.46));
-  content: "";
-}
-
-.application-match-card a,
-.application-match-card > div {
-  display: grid;
-  min-height: 9.8rem;
-  align-content: start;
-  gap: 0.56rem;
-  padding: clamp(0.95rem, 1.9vw, 1.2rem);
-  color: inherit;
-  transition:
-    background 200ms ease,
-    color 200ms ease,
-    transform 200ms ease;
-}
-
-.application-match-card a:hover {
-  background: rgba(255, 255, 255, 0.96);
-  color: #084d94;
-  transform: translateY(-2px);
-}
-
-.application-match-part {
-  color: #0b5fb8;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.application-match-card h3 {
-  max-width: 24rem;
-  color: #07111f;
-  font-size: clamp(1.04rem, 1.18vw, 1.18rem);
-  font-weight: 700;
-  letter-spacing: 0;
-  line-height: 1.22;
-}
-
-.application-match-card p {
-  color: #475569;
-  font-size: 0.94rem;
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-.application-match-card em {
-  align-self: end;
-  margin-top: auto;
-  color: #64748b;
-  font-size: 0.82rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.35;
 }
 
 .application-notes {
@@ -1782,20 +1669,6 @@ body {
 
   .application-match-board {
     padding: 2.15rem 2.35rem;
-  }
-
-  .application-match-head {
-    grid-template-columns: minmax(25rem, 0.46fr) minmax(0, 1fr);
-  }
-
-  .application-match-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .application-match-card a,
-  .application-match-card > div {
-    min-height: 11.6rem;
-    padding: 1.25rem 1.35rem;
   }
 
   .application-notes {
@@ -4704,7 +4577,6 @@ body {
   .selection-basis-band,
   .application-basis-strip,
   .application-scene,
-  .application-match-head,
   .application-notes,
   .application-detail-layout,
   .application-engineering-notes,
@@ -4768,29 +4640,18 @@ body {
   }
 
   .application-scene-copy h2,
-  .application-match-head h2,
   .application-notes-head h2,
   .application-review-cta h2 {
     max-width: 18ch;
   }
 
   .application-scene-gallery,
-  .application-match-grid,
   .application-notes-grid {
     grid-template-columns: 1fr;
   }
 
   .application-scene-frame-main {
     grid-row: auto;
-  }
-
-  .application-match-head p {
-    margin-top: 0.65rem;
-  }
-
-  .application-match-card a,
-  .application-match-card > div {
-    min-height: 0;
   }
 
   .application-review-cta {
@@ -4858,14 +4719,12 @@ body {
   }
 
   .application-scene-copy h2,
-  .application-match-head h2,
   .application-notes-head h2,
   .application-review-cta h2 {
     font-size: clamp(1.55rem, 3.1vw, 2.25rem);
   }
 
   .application-scene-copy p:not(.section-kicker),
-  .application-match-head p:not(.section-kicker),
   .application-review-cta p {
     font-size: 0.94rem;
     line-height: 1.58;
@@ -4886,27 +4745,6 @@ body {
 
   .application-scene-frame figcaption span {
     display: none;
-  }
-
-  .application-match-head {
-    grid-template-columns: minmax(18rem, 0.52fr) minmax(0, 1fr);
-    column-gap: 1.25rem;
-    row-gap: 0.5rem;
-  }
-
-  .application-match-head h2 {
-    max-width: 15ch;
-  }
-
-  .application-match-head p:not(.section-kicker) {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    max-width: 29rem;
-    margin-top: 0.25rem;
-  }
-
-  .application-match-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .application-notes {
@@ -5107,19 +4945,6 @@ body {
 
   .application-scene-gallery {
     gap: 0.85rem;
-  }
-
-  .application-match-head {
-    display: block;
-  }
-
-  .application-match-head h2 {
-    max-width: 16ch;
-  }
-
-  .application-match-head p:not(.section-kicker) {
-    max-width: 31rem;
-    margin-top: 0.75rem;
   }
 
   .application-review-cta [data-slot="button"][data-variant="inverse"] {
@@ -5342,37 +5167,6 @@ body {
   color: inherit;
 }
 
-.application-match-stage {
-  display: grid;
-  grid-template-columns: minmax(20rem, 0.42fr) minmax(0, 1fr);
-  gap: clamp(1.25rem, 3.4vw, 3.25rem);
-  align-items: center;
-}
-
-.application-match-solution .application-match-head {
-  display: block;
-}
-
-.application-match-solution .application-match-head h2,
-.application-match-solution .application-match-head .section-kicker,
-.application-match-solution .application-match-head p:not(.section-kicker) {
-  grid-column: auto;
-  grid-row: auto;
-}
-
-.application-match-solution .application-match-head h2 {
-  max-width: 19ch;
-  font-size: clamp(1.85rem, 2.35vw, 2.75rem);
-  line-height: 1.04;
-}
-
-.application-match-solution .application-match-head p:not(.section-kicker) {
-  max-width: 28rem;
-  margin-top: 0.9rem;
-  font-size: clamp(0.95rem, 1vw, 1rem);
-  line-height: 1.56;
-}
-
 .application-component-visual {
   position: relative;
   min-height: clamp(21rem, 24vw, 27rem);
@@ -5459,22 +5253,6 @@ body {
   background: linear-gradient(180deg, #ffffff, #f6f9fc);
 }
 
-.application-detail-electronics .application-match-stage {
-  grid-template-columns: minmax(18rem, 0.34fr) minmax(0, 1fr);
-  gap: clamp(0.9rem, 2.2vw, 2rem);
-  align-items: center;
-}
-
-.application-detail-electronics .application-match-head h2 {
-  max-width: 23ch;
-  font-size: clamp(1.65rem, 2vw, 2.35rem);
-}
-
-.application-detail-electronics .application-match-head p:not(.section-kicker) {
-  max-width: 26rem;
-  color: #42526a;
-}
-
 .application-component-visual-electronics {
   min-height: clamp(16rem, 20vw, 21rem);
   border: 0;
@@ -5508,77 +5286,6 @@ body {
 
 .application-component-visual-electronics .application-component-image {
   display: none;
-}
-
-.application-detail-electronics
-  .application-match-solution
-  .application-match-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
-  margin-top: clamp(0.75rem, 1.6vw, 1.1rem);
-  border-top: 1px solid rgba(15, 23, 42, 0.11);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  background: transparent;
-}
-
-.application-detail-electronics
-  .application-match-solution
-  .application-match-card {
-  overflow: visible;
-  border: 0;
-  border-left: 1px solid rgba(15, 23, 42, 0.09);
-  background: transparent;
-  box-shadow: none;
-}
-
-.application-detail-electronics
-  .application-match-solution
-  .application-match-card:first-child {
-  border-left: 0;
-}
-
-.application-detail-electronics
-  .application-match-solution
-  .application-match-card::before {
-  right: auto;
-  left: 0;
-  width: 2.1rem;
-  height: 2px;
-  background: rgba(11, 95, 184, 0.72);
-}
-
-.application-detail-electronics .application-match-card a,
-.application-detail-electronics .application-match-card > div {
-  min-height: 9.2rem;
-  gap: 0.48rem;
-  padding: 0.95rem 1.05rem 1rem;
-}
-
-.application-detail-electronics .application-match-card a:hover {
-  background: rgba(11, 95, 184, 0.035);
-  transform: none;
-}
-
-.application-detail-electronics .application-match-part {
-  color: #64748b;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-}
-
-.application-detail-electronics .application-match-card h3 {
-  max-width: 15rem;
-  font-size: clamp(0.98rem, 1.02vw, 1.1rem);
-  line-height: 1.24;
-}
-
-.application-detail-electronics
-  .application-match-card
-  .application-match-specs {
-  gap: 0.5rem;
-}
-
-.application-detail-electronics .application-match-card em {
-  margin-top: 0.1rem;
 }
 
 .application-detail-electronics .application-notes-material {
@@ -5688,84 +5395,6 @@ body {
   [data-slot="button"][data-variant="inverse"] {
   grid-area: action;
   align-self: center;
-}
-
-.application-match-solution .application-match-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0;
-  margin-top: clamp(1rem, 2.2vw, 1.65rem);
-  border-top: 1px solid rgba(15, 23, 42, 0.1);
-  border-left: 1px solid rgba(15, 23, 42, 0.1);
-  background: rgba(255, 255, 255, 0.76);
-}
-
-.application-match-solution .application-match-card {
-  border: 0;
-  border-right: 1px solid rgba(15, 23, 42, 0.1);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: none;
-}
-
-.application-match-solution .application-match-card::before {
-  width: 2.6rem;
-  height: 3px;
-  right: auto;
-  left: 1.2rem;
-}
-
-.application-match-solution .application-match-card a,
-.application-match-solution .application-match-card > div {
-  min-height: 13.15rem;
-  gap: 0.78rem;
-  padding: 1.18rem 1.18rem 1.12rem;
-}
-
-.application-match-solution .application-match-card h3 {
-  font-size: clamp(1.04rem, 1.08vw, 1.16rem);
-}
-
-.application-match-card-media {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  background: #e5e7eb;
-}
-
-.application-match-card-media img {
-  transition: transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.application-match-card:hover .application-match-card-media img {
-  transform: scale(1.035);
-}
-
-.application-match-specs {
-  display: grid;
-  gap: 0.72rem;
-  margin: 0;
-}
-
-.application-match-specs div {
-  display: grid;
-  gap: 0.28rem;
-}
-
-.application-match-specs dt {
-  color: #0b5fb8;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.application-match-specs dd {
-  margin: 0;
-  color: #334155;
-  font-size: 0.92rem;
-  font-weight: 600;
-  line-height: 1.48;
 }
 
 .application-notes-material {
@@ -6223,8 +5852,6 @@ body {
   }
 
   .application-condition-strip,
-  .application-match-stage,
-  .application-match-solution .application-match-grid,
   .application-brief-cta {
     grid-template-columns: 1fr;
   }
@@ -6326,16 +5953,10 @@ body {
     padding: 1.35rem;
   }
 
-  .application-scene-copy-overlay h2,
-  .application-match-solution .application-match-head h2 {
+  .application-scene-copy-overlay h2 {
     max-width: none;
     font-size: clamp(1.85rem, 9vw, 2.4rem);
     line-height: 1.08;
-  }
-
-  .application-match-solution .application-match-card a,
-  .application-match-solution .application-match-card > div {
-    min-height: 0;
   }
 
   .application-use-grid,
@@ -6375,8 +5996,7 @@ body {
 /* Subtle card surface: a light industrial gradient without changing layout. */
 .premium-card,
 .document-line,
-.product-directory-row,
-.application-match-card {
+.product-directory-row {
   background:
     linear-gradient(
       145deg,
@@ -6387,8 +6007,7 @@ body {
     rgba(255, 255, 255, 0.72);
 }
 
-.product-directory-row:hover,
-.application-match-card:hover {
+.product-directory-row:hover {
   background:
     linear-gradient(
       145deg,
@@ -6552,11 +6171,6 @@ body {
   transform: none;
 }
 
-.application-detail-automotive .application-match-stage {
-  position: relative;
-  isolation: isolate;
-}
-
 .application-detail-automotive
   .application-component-visual-automotive
   .application-component-cad {
@@ -6576,52 +6190,6 @@ body {
   padding-bottom: clamp(1.7rem, 3vw, 2.6rem);
 }
 
-.application-detail-automotive .application-match-stage,
-.application-detail-automotive .application-match-head {
-  background: #ffffff !important;
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-grid {
-  background: #f7f9fc !important;
-}
-
-.application-detail-automotive .application-match-stage {
-  grid-template-columns: minmax(18rem, 0.34fr) minmax(0, 1fr);
-  gap: clamp(1.75rem, 4.6vw, 5.5rem);
-  min-height: clamp(18rem, 29vw, 24rem);
-  align-items: center;
-  padding-bottom: clamp(1.45rem, 3vw, 2.35rem);
-}
-
-.application-detail-automotive .application-match-head {
-  max-width: 23rem;
-  padding-left: 0;
-}
-
-.application-detail-automotive .application-match-head .section-kicker {
-  margin-bottom: 0.72rem;
-  color: #64748b;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-}
-
-.application-detail-automotive .application-match-head h2 {
-  max-width: 16ch;
-  font-size: clamp(1.65rem, 2vw, 2.3rem);
-  line-height: 1.05;
-}
-
-.application-detail-automotive .application-match-head p:not(.section-kicker) {
-  max-width: 21rem;
-  margin-top: 0.85rem;
-  color: #475569;
-  font-size: 0.94rem;
-  line-height: 1.52;
-}
-
-.application-detail-automotive .application-match-stage::before,
 .application-detail-automotive .application-component-visual-automotive::after {
   display: none;
   background: none;
@@ -6657,172 +6225,6 @@ body {
     filter 420ms ease;
 }
 
-.application-detail-automotive
-  .application-match-solution
-  .application-match-grid {
-  position: relative;
-  margin-top: clamp(0.95rem, 2vw, 1.45rem);
-  border-top: 0;
-  border-left: 0;
-  gap: clamp(0.85rem, 1.35vw, 1.05rem);
-  padding: clamp(1.1rem, 1.8vw, 1.35rem) 0 0;
-  isolation: isolate;
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-grid::before {
-  position: absolute;
-  inset: -0.6rem -1rem auto 44%;
-  z-index: -1;
-  height: 8.5rem;
-  background: var(--application-cad-image) center / contain no-repeat;
-  content: "";
-  opacity: 0.055;
-  pointer-events: none;
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card {
-  position: relative;
-  overflow: hidden;
-  border: 0;
-  border-radius: 0.9rem;
-  background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.98),
-    rgba(249, 252, 255, 0.9)
-  );
-  box-shadow:
-    0 0.65rem 1.6rem rgba(15, 23, 42, 0.055),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.82);
-  transition:
-    border-color 220ms ease,
-    background 220ms ease,
-    transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card::after {
-  position: absolute;
-  right: -2.2rem;
-  bottom: -1.8rem;
-  width: 9rem;
-  height: 6rem;
-  background: var(--application-cad-image) right bottom / 18rem auto no-repeat;
-  content: "";
-  opacity: 0.035;
-  pointer-events: none;
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card:first-child {
-  background: linear-gradient(
-    145deg,
-    rgba(242, 248, 253, 0.98),
-    rgba(255, 255, 255, 0.94)
-  );
-  box-shadow:
-    0 0.85rem 1.9rem rgba(15, 23, 42, 0.07),
-    inset 0 0 0 1px rgba(180, 211, 235, 0.42);
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card:first-child::before {
-  background: linear-gradient(
-    90deg,
-    rgba(47, 95, 158, 0.72),
-    rgba(125, 181, 218, 0.54)
-  );
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card:hover {
-  background: #ffffff;
-  box-shadow:
-    0 1rem 2.4rem rgba(15, 23, 42, 0.075),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.86);
-  transform: translateY(-2px);
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card
-  a,
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card
-  > div {
-  min-height: 9.6rem;
-  gap: 0.5rem;
-  padding: 0.88rem 0.95rem;
-}
-
-.application-detail-automotive
-  .application-match-solution
-  .application-match-card
-  h3 {
-  font-size: clamp(0.98rem, 0.98vw, 1.08rem);
-  line-height: 1.15;
-}
-
-.application-match-card-head {
-  display: block;
-  min-height: 1.25rem;
-}
-
-.application-detail-automotive .application-match-part {
-  display: block;
-  max-width: calc(100% - 5.4rem);
-  color: #155b96;
-}
-
-.application-match-badge {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  border: 1px solid rgba(11, 95, 184, 0.18);
-  background: rgba(11, 95, 184, 0.06);
-  padding: 0.16rem 0.38rem;
-  color: #254b72;
-  font-size: 0.58rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.application-detail-automotive .application-match-specs {
-  gap: 0.4rem;
-}
-
-.application-detail-automotive .application-match-specs div {
-  padding-top: 0.38rem;
-}
-
-.application-detail-automotive .application-match-specs div:first-child {
-  border-top: 0;
-  padding-top: 0;
-}
-
-.application-detail-automotive .application-match-specs dt {
-  color: #5f6b78;
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-}
-
-.application-detail-automotive .application-match-specs dd {
-  color: #2f3b4a;
-  font-size: 0.81rem;
-  line-height: 1.32;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .application-detail-automotive
     .application-component-visual-automotive:hover
@@ -6833,20 +6235,6 @@ body {
 
   .application-detail-automotive
     .application-component-visual-automotive:hover
-    .application-component-image {
-    filter: drop-shadow(0 1.1rem 1.8rem rgba(15, 23, 42, 0.12)) !important;
-    transform: translate3d(-2.75rem, -0.35rem, 0) scale(1.015) !important;
-  }
-
-  .application-detail-automotive
-    .application-match-solution:has(.application-match-card:hover)
-    .application-component-cad {
-    opacity: 0.36;
-    transform: translateX(14%) scale(1.28);
-  }
-
-  .application-detail-automotive
-    .application-match-solution:has(.application-match-card:hover)
     .application-component-image {
     filter: drop-shadow(0 1.1rem 1.8rem rgba(15, 23, 42, 0.12)) !important;
     transform: translate3d(-2.75rem, -0.35rem, 0) scale(1.015) !important;
@@ -6932,8 +6320,7 @@ body {
 }
 
 .application-detail-shell .application-scene .section-kicker,
-.application-detail-shell .application-notes .section-kicker,
-.application-detail-shell .application-match-head .section-kicker {
+.application-detail-shell .application-notes .section-kicker {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
@@ -6946,8 +6333,7 @@ body {
 }
 
 .application-detail-shell .application-scene .section-kicker::before,
-.application-detail-shell .application-notes .section-kicker::before,
-.application-detail-shell .application-match-head .section-kicker::before {
+.application-detail-shell .application-notes .section-kicker::before {
   display: block;
   width: 0.42rem;
   height: 1.08em;
