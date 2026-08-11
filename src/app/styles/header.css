@@ -126,6 +126,7 @@
 
 .brand-mark {
   align-items: center;
+  min-height: var(--ds-touch-target-min);
   text-shadow: none;
 }
 

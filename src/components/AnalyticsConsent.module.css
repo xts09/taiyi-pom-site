@@ -53,6 +53,9 @@
 }
 
 .settingsButton {
+  display: inline-flex;
+  min-height: var(--ds-touch-target-min);
+  align-items: center;
   padding: 0;
   border: 0;
   color: rgba(228, 238, 244, 0.9);
