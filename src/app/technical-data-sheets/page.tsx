@@ -21,6 +21,7 @@ import {
   createPageMetadata,
   createWebPageJsonLd,
 } from "@/lib/seo";
+import "../styles/products.css";
 
 const technicalDataSheetsTitle = "Technical Data Sheets & Grade Data | Taiyi Polymer";
 const technicalDataSheetsDescription =

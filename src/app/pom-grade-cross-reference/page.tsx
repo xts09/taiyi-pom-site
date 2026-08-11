@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PomLandingPage } from "@/components/PomLandingPage";
 import { pomLandingPages } from "@/data/pomLandingPages";
 import { createPageMetadata } from "@/lib/seo";
+import "../styles/products.css";
 
 const page = pomLandingPages.pomGradeCrossReference;
 

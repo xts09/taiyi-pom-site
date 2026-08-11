@@ -25,6 +25,7 @@ import {
 } from "@/lib/seo";
 import { publicPath } from "@/lib/paths";
 import { getCategoryPath } from "@/lib/productCategories";
+import "./styles/home.css";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Modified POM Compounds for Industrial Parts | Taiyi Polymer",

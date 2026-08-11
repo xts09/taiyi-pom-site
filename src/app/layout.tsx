@@ -17,10 +17,6 @@ import "../../tokens.css";
 import "./globals.css";
 import "./styles/header.css";
 import "./styles/breadcrumbs.css";
-import "./styles/products.css";
-import "./styles/home.css";
-import "./styles/applications.css";
-import "./styles/resources.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
