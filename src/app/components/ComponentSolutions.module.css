@@ -82,7 +82,7 @@
   border-right: var(--ds-rule-thin) solid var(--ds-panel-border);
   background:
     var(--ds-media-bg)
-    url("/applications/parts/generated/components-directory-industrial-stage-v1.png")
+    url("/applications/parts/generated/components-directory-industrial-stage-v1.webp")
     center / cover no-repeat;
 }
 

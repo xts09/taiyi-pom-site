@@ -25,7 +25,7 @@ const componentSolutionsTitle =
 const componentSolutionsDescription =
   "Browse component-led review paths for gears, bushings, conveyor parts, valve internals, textile guides, and IC handling trays.";
 const componentDirectoryHero = {
-  src: "/applications/parts/generated/components-directory-gears-cad-v2.png",
+  src: "/applications/parts/generated/components-directory-gears-cad-v2.webp",
   alt: "CAD visualization of a wiper motor gear assembly",
 };
 
@@ -34,29 +34,29 @@ const componentDirectoryImages: Record<
   { src: string; position: string; scale?: string; hoverScale?: string }
 > = {
   "precision-plastic-gears": {
-    src: "/applications/parts/generated/components-directory-gears-cad-transparent-v1.png",
+    src: "/applications/parts/generated/components-directory-gears-cad-transparent-v1.webp",
     position: "center",
   },
   "bushings-and-sleeves": {
-    src: "/applications/parts/generated/components-directory-bushings-cad-transparent-v1.png",
+    src: "/applications/parts/generated/components-directory-bushings-cad-transparent-v1.webp",
     position: "center",
     scale: "1.08",
     hoverScale: "1.095",
   },
   "conveyor-chain-components": {
-    src: "/applications/parts/generated/components-directory-conveyor-chain-cad-transparent-v1.png",
+    src: "/applications/parts/generated/components-directory-conveyor-chain-cad-transparent-v1.webp",
     position: "center",
   },
   "valve-spools-and-cartridges": {
-    src: "/applications/parts/generated/components-directory-valve-cartridges-cad-transparent-v1.png",
+    src: "/applications/parts/generated/components-directory-valve-cartridges-cad-transparent-v1.webp",
     position: "center",
   },
   "textile-guide-components": {
-    src: "/applications/parts/generated/components-directory-textile-guide-cad-transparent-v1.png",
+    src: "/applications/parts/generated/components-directory-textile-guide-cad-transparent-v1.webp",
     position: "center",
   },
   "ic-handling-trays": {
-    src: "/applications/parts/generated/components-directory-ic-jedec-tray-cad-transparent-v1.png",
+    src: "/applications/parts/generated/components-directory-ic-jedec-tray-cad-transparent-v1.webp",
     position: "center",
   },
 };
