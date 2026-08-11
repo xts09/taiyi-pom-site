@@ -452,8 +452,27 @@
   --metric-group-padding: 0;
   --metric-group-bg: transparent;
   --metric-item-gap: var(--home-space-2xs);
-  --metric-item-min-height: 8.75rem;
-  --metric-item-padding: var(--home-space-md) clamp(1rem, 2.2vw, 2rem);
+  --metric-item-min-height: 0;
+  --metric-item-padding: 0;
+}
+
+.home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] {
+  padding: var(--home-space-sm);
+}
+
+.home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
+  background: var(--home-color-paper);
+  border-bottom: var(--home-rule-thin) solid var(--home-color-rule);
+}
+
+.home-redesign .manufacturing-base .home-metrics-rail
+  [data-slot="metric-item"]:not([data-featured]):nth-child(-n + 2) {
+  border-bottom: var(--home-rule-thin) solid var(--home-color-rule);
+}
+
+.home-redesign .manufacturing-base .home-metrics-rail
+  [data-slot="metric-item"]:not([data-featured]):nth-child(even) {
+  border-left: var(--home-rule-thin) solid var(--home-color-rule);
 }
 
 .home-redesign .home-stage {
@@ -1637,9 +1656,27 @@
     --metric-group-padding: 0;
   }
 
+  .home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
+    --metric-label-min-height: 0;
+    grid-column: 1 / -1;
+  }
+
 }
 
-/* Keep the desktop snapshot as a distinct proof section rather than a compact rail. */
+@media (max-width: 47.999rem) {
+  .home-redesign .manufacturing-base .home-metrics-rail
+    [data-slot="metric-item"]:not([data-featured]) {
+    --metric-label-min-height: 2.6em;
+    --metric-value-size-mobile: clamp(1.75rem, 8.2vw, 2rem);
+  }
+
+  .home-redesign .manufacturing-base .home-metrics-rail
+    [data-slot="metric-item"]:not([data-featured]):nth-last-child(-n + 2) {
+    --metric-label-min-height: 1.3em;
+  }
+}
+
+/* Factory proof uses one leading figure and a supporting 2-by-2 ledger. */
 @media (min-width: 64rem) {
   .manufacturing-base-inner {
     display: block;
@@ -1648,10 +1685,26 @@
   }
 
   .home-redesign .manufacturing-base .home-metrics-rail {
-    --metric-group-gap: clamp(0.95rem, 2vw, 1.65rem);
-    --metric-group-padding: clamp(0.65rem, 1vw, 0.85rem) 0 clamp(0.6rem, 0.9vw, 0.75rem);
+    --metric-group-gap: 0;
+    --metric-group-padding: 0;
     --metric-item-padding: 0;
-    align-items: start;
+    grid-template-columns: minmax(18rem, 1.15fr) repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, auto);
+    align-items: stretch;
+  }
+
+  .home-redesign .manufacturing-base .home-metrics-rail [data-slot="metric-item"] {
+    padding: var(--home-space-sm) clamp(1.5rem, 2.3vw, 2.25rem);
+  }
+
+  .home-redesign .manufacturing-base .home-metrics-rail [data-featured] {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-content: center;
+    padding-right: clamp(2rem, 3vw, 3rem);
+    padding-left: 0;
+    border-right: var(--home-rule-thin) solid var(--home-color-rule);
+    border-bottom: 0;
   }
 
 }
@@ -2838,25 +2891,7 @@
   }
 }
 
-@media (min-width: 56.001rem) and (max-width: 70rem) {
-  .home-redesign .manufacturing-base .home-metrics-rail {
-    --metric-label-min-height: 2.6em;
-  }
-}
-
-@media (min-width: 64rem) and (max-width: 65rem) {
-  .home-redesign .manufacturing-base .home-metrics-rail {
-    --metric-group-gap: var(--home-space-xs);
-    grid-template-columns: minmax(10.5rem, 1.08fr) repeat(4, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 56rem) {
-  .home-redesign .manufacturing-base .home-metrics-rail
-    [data-slot="metric-item"]:not([data-featured]) {
-    --metric-label-min-height: 3.9em;
-  }
-
   .home-redesign .stage-heading,
   .home-redesign .home-inquiry-inner {
     grid-template-columns: minmax(0, 1fr);

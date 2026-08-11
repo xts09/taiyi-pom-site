@@ -35,7 +35,7 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 const annualCapacity =
-  companyFigures.find((item) => item.label === "Annual Capacity") ??
+  companyFigures.find((item) => item.label === "Annual Compound Capacity") ??
   companyFigures[1];
 
 const supportingFigures = companyFigures.filter(
