@@ -21,7 +21,7 @@ export function CompanyMetrics({
       <div className="manufacturing-base-inner site-container">
         <MetricGroup
           variant="rail"
-          tone="dark"
+          tone="light"
           className="base-shell home-metrics-rail"
           featuredItem={annualCapacity}
           items={supportingFigures}

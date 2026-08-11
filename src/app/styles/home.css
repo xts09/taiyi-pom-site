@@ -433,8 +433,8 @@
 }
 
 .home-redesign .manufacturing-base {
-  background: var(--home-color-night);
-  color: var(--home-color-white);
+  background: var(--ds-background-canvas);
+  color: var(--home-color-ink);
 }
 
 .home-redesign .manufacturing-base-inner {
@@ -1497,7 +1497,6 @@
   isolation: isolate;
   overflow: hidden;
   margin-top: 0 !important;
-  background: #03101b !important;
 }
 
 .manufacturing-base::before {
@@ -1519,11 +1518,6 @@
   width: var(--site-rail-width);
   padding-top: clamp(1.05rem, 1.75vw, 1.4rem);
   padding-bottom: clamp(1.05rem, 1.75vw, 1.4rem);
-}
-
-.manufacturing-base .count-up-number {
-  color: rgba(255, 255, 255, 0.95) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 .manufacturing-base .count-up-value {
@@ -1564,8 +1558,6 @@
 
 .manufacturing-base .count-up-static-unit,
 .manufacturing-base .count-up-static-unit sup {
-  color: rgba(255, 255, 255, 0.9) !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
   filter: none !important;
   text-shadow: none !important;
 }
