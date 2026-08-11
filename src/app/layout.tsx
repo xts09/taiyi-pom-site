@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "@fontsource-variable/ibm-plex-sans/wght.css";
+import { Analytics } from "@vercel/analytics/next";
 import { AnalyticsConsent } from "@/components/AnalyticsConsent";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -137,6 +138,7 @@ gtag("set", "ads_data_redaction", true);
         <Footer />
         <AnalyticsConsent enabled={Boolean(googleTagId)} />
         <GoogleTag />
+        <Analytics />
       </body>
     </html>
   );
