@@ -74,6 +74,11 @@ const nextConfig: NextConfig = {
         async redirects() {
           return [
             {
+              source: "/conductive-antistatic-compounds",
+              destination: "/products/conductive-antistatic-compounds",
+              permanent: true,
+            },
+            {
               source: "/:path*",
               has: [
                 {
