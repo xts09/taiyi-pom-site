@@ -1,13 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
 
 import { exportRoutes, type ExportRoute } from "@/data/exportRoutes";
 import { ExportMarketsMap, type ExportRegionId } from "@/components/ExportMarketsMap";
 import { SectionIntro } from "@/components/SectionIntro";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 
 type ExportRoutesSectionProps = {
@@ -31,7 +28,7 @@ export function ExportRoutesSection({
             <div className="supply-map-shell">
               <SectionIntro
                 className="export-routes-intro"
-                description="Current project routes connect Yancheng with Central Asia, Europe, East Asia and the Americas. Grade screening and document coordination are handled project by project."
+                description="Current project routes connect the Yancheng production base with nine destinations across Central Asia, Europe, East Asia and the Americas."
                 eyebrow="SUPPLY NETWORK"
                 layout="stacked"
                 title="Export Routes"
@@ -86,17 +83,6 @@ export function ExportRoutesSection({
                 ))}
               </ul>
 
-              <Button
-                asChild
-                className="export-market-action"
-                size="form"
-                variant="primary"
-              >
-                <Link href="/contact">
-                  Discuss Your Application
-                  <ArrowRight aria-hidden="true" size={16} />
-                </Link>
-              </Button>
             </aside>
 
             <div className="export-network-facts" aria-label="Export network facts">
@@ -107,10 +93,6 @@ export function ExportRoutesSection({
               <p>
                 <span>Destinations</span>
                 <strong>9 current destinations</strong>
-              </p>
-              <p>
-                <span>Project regions</span>
-                <strong>4 active regions</strong>
               </p>
             </div>
           </Card>

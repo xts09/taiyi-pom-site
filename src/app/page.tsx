@@ -133,7 +133,7 @@ const selectionFlow = [
     stage: "Decision",
     title: "Grade Shortlist",
     description:
-      "A practical shortlist with document availability and sample evaluation needs confirmed for the project.",
+      "Candidate grades are compared before document availability and sample-trial needs are confirmed.",
   },
 ];
 
@@ -168,9 +168,9 @@ function QualificationSteps({
 
 const inquiryChecklist = [
   "Part function and movement mode",
-  "Mold / processing constraints",
-  "Target properties or current failure point",
-  "Required documents and sample timing",
+  "Mold status and processing constraints",
+  "Priority performance targets",
+  "Current material, failure evidence and timing",
 ];
 
 const heroTitle = "Modified POM Compounds for Precision Molded Parts.";
@@ -235,7 +235,7 @@ export default function Home() {
                     size="lg"
                     className="cta-primary hero-cta-primary h-auto"
                   >
-                    <Link href="/products">Explore Material Range</Link>
+                    <Link href="#materials">Explore Material Range</Link>
                   </Button>
                   <Link
                     href="/contact"
@@ -283,14 +283,6 @@ export default function Home() {
                     <ArrowRight aria-hidden="true" size={14} />
                   </Link>
                 </Button>
-                <div
-                  className="document-tags"
-                  aria-label="Typical material documents confirmed by grade and project"
-                >
-                  {availableDocuments.map((document) => (
-                    <span key={document}>{document}</span>
-                  ))}
-                </div>
               </div>
             </HomeStageHeader>
 
@@ -366,9 +358,10 @@ export default function Home() {
                       sizes="(min-width: 1280px) 38vw, (min-width: 768px) 80vw, 100vw"
                     />
                     <figcaption>
-                      <span>Material review</span>
+                      <span>Review evidence</span>
                       <strong>
-                        From molded-part requirements to a practical grade shortlist.
+                        Candidate materials are checked against part, processing
+                        and document constraints.
                       </strong>
                     </figcaption>
                   </figure>
@@ -380,6 +373,7 @@ export default function Home() {
         </section>
 
         <QualitySystemsSection
+          availableDocuments={availableDocuments}
           certifications={certifications}
           qualifications={companyQualifications}
         />

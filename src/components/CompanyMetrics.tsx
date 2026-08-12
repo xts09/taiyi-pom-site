@@ -16,15 +16,21 @@ export function CompanyMetrics({
   annualCapacity,
   supportingFigures,
 }: CompanyMetricsProps) {
+  const [yearsInOperation, ...remainingFigures] = supportingFigures;
+  const featuredFigure = yearsInOperation ?? annualCapacity;
+  const metricFigures = yearsInOperation
+    ? [annualCapacity, ...remainingFigures]
+    : supportingFigures;
+
   return (
     <section className="manufacturing-base relative z-10">
       <div className="manufacturing-base-inner site-container">
         <MetricGroup
           variant="rail"
-          tone="light"
+          tone="dark"
           className="base-shell home-metrics-rail"
-          featuredItem={annualCapacity}
-          items={supportingFigures}
+          featuredItem={featuredFigure}
+          items={metricFigures}
           renderValue={(item) => <CountUpValue value={String(item.value)} />}
         />
       </div>

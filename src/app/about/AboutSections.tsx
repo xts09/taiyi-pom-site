@@ -37,9 +37,13 @@ type FactoryProofRowsProps = {
 };
 
 type CredentialSupportProps = {
-  availableDocuments: string[];
-  certifications: Certification[];
-  qualifications: CompanyQualification[];
+  availableDocuments: ReadonlyArray<string>;
+  certifications: ReadonlyArray<Certification>;
+  description?: string;
+  presentation?: "card" | "section";
+  qualifications: ReadonlyArray<CompanyQualification>;
+  title?: string;
+  tone?: "dark" | "light";
 };
 
 type AboutFacilityProps = {
@@ -227,23 +231,22 @@ export function AboutFacility({ figures, rows }: AboutFacilityProps) {
 export function AboutCredentials({
   availableDocuments,
   certifications,
+  description = "Jiangsu Taiyi Nano Technology Co., Ltd. is recognized as a National High-Tech Enterprise and a Jiangsu Provincial Specialized and Innovative SME, with 29 granted patents. The certificates and material documents below support supplier qualification.",
+  presentation = "card",
   qualifications,
+  title = "Credentials, certificates and supplier documentation",
+  tone = "dark",
 }: CredentialSupportProps) {
   return (
     <section
-      className={styles.overviewCredentials}
+      className={`${styles.overviewCredentials} ${styles.credentialsTheme} ${
+        tone === "light" ? styles.credentialsLight : ""
+      } ${presentation === "section" ? styles.credentialsSection : ""}`}
       aria-labelledby="overview-credentials-title"
     >
       <header className={styles.overviewSectionHeader}>
-        <h2 id="overview-credentials-title">
-          Credentials, certificates and supplier documentation
-        </h2>
-        <p>
-          Jiangsu Taiyi Nano Technology Co., Ltd. is recognized as a National
-          High-Tech Enterprise and a Jiangsu Provincial Specialized and
-          Innovative SME, with 29 granted patents. The certificates and
-          material documents below support supplier qualification.
-        </p>
+        <h2 id="overview-credentials-title">{title}</h2>
+        <p>{description}</p>
       </header>
 
       <div className={styles.overviewCertificateGrid}>

@@ -942,6 +942,58 @@
 }
 
 /* Company overview composition. */
+.credentialsTheme {
+  --about-satin-dark:
+    linear-gradient(
+      oklch(12% 0.031 252 / 0.28),
+      oklch(12% 0.031 252 / 0.52)
+    ),
+    url("/material-satin-midnight-v1.png") center 56% / cover no-repeat;
+  --about-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --overview-canvas: oklch(97.8% 0.004 245);
+  --overview-paper: oklch(99.5% 0.002 245);
+  --overview-paper-muted: oklch(94.8% 0.012 245);
+  --overview-ink: oklch(18.5% 0.03 253);
+  --overview-body: oklch(36% 0.025 252);
+  --overview-muted: oklch(67% 0.023 248);
+  --overview-dark: oklch(17.5% 0.037 253);
+  --overview-dark-soft: oklch(23% 0.04 252);
+  --overview-accent: oklch(52% 0.19 253);
+  --overview-on-dark: oklch(97% 0.007 245);
+  --overview-on-dark-muted: oklch(80% 0.022 245);
+  --overview-radius: 1rem;
+  --overview-inner-radius: 0.75rem;
+  --overview-shadow: 0 1.5rem 4.5rem oklch(22% 0.035 252 / 0.12);
+  --credentials-surface: var(--about-satin-dark);
+  --credentials-text: var(--overview-on-dark);
+  --credentials-muted: var(--overview-on-dark-muted);
+  --credentials-accent: oklch(81% 0.13 242);
+  --credentials-register-surface: oklch(97% 0.007 245 / 0.08);
+  --credentials-grid-surface: oklch(29% 0.032 252 / 0.5);
+  --credentials-support-surface: oklch(96% 0.01 245 / 0.08);
+  --credentials-chip-surface: oklch(97% 0.007 245 / 0.1);
+  --credentials-document-shadow: 0 0.75rem 1rem
+    oklch(8% 0.025 252 / 0.24);
+}
+
+.credentialsLight {
+  --credentials-surface:
+    linear-gradient(
+      oklch(97.2% 0.007 245 / 0.9),
+      oklch(92.8% 0.012 245 / 0.96)
+    ),
+    url("/material-satin-light.png") center 56% / cover no-repeat;
+  --credentials-text: var(--overview-ink);
+  --credentials-muted: var(--overview-body);
+  --credentials-accent: var(--overview-accent);
+  --credentials-register-surface: oklch(99.2% 0.003 245 / 0.68);
+  --credentials-grid-surface: oklch(99.2% 0.003 245 / 0.58);
+  --credentials-support-surface: oklch(99.2% 0.003 245 / 0.54);
+  --credentials-chip-surface: oklch(99.5% 0.002 245 / 0.82);
+  --credentials-document-shadow: 0 0.75rem 1.25rem
+    oklch(22% 0.025 252 / 0.13);
+}
+
 .overviewPage {
   --overview-canvas: oklch(97.8% 0.004 245);
   --overview-paper: oklch(99.5% 0.002 245);
@@ -1204,6 +1256,11 @@
   max-width: none;
 }
 
+.overviewCredentials.credentialsTheme {
+  background: var(--credentials-surface);
+  color: var(--credentials-text);
+}
+
 .overviewQualificationRegister {
   grid-column: 1 / -1;
   display: grid;
@@ -1218,7 +1275,7 @@
   gap: 0.55rem;
   align-content: start;
   border-radius: var(--overview-inner-radius);
-  background: oklch(97% 0.007 245 / 0.08);
+  background: var(--credentials-register-surface);
   padding: clamp(1rem, 2vw, 1.5rem);
 }
 
@@ -1231,7 +1288,7 @@
 }
 
 .overviewQualificationRegister span {
-  color: oklch(81% 0.13 242);
+  color: var(--credentials-accent);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1241,7 +1298,7 @@
 
 .overviewQualificationRegister strong {
   max-width: 29ch;
-  color: var(--overview-on-dark);
+  color: var(--credentials-text);
   font-family: var(--font-display);
   font-size: clamp(1.1rem, 1.5vw, 1.4rem);
   font-weight: 700;
@@ -1267,6 +1324,10 @@
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.68;
+}
+
+.overviewCredentials .overviewSectionHeader > p {
+  color: var(--credentials-muted);
 }
 
 .overviewMetricGroup {
@@ -1429,7 +1490,7 @@
   gap: clamp(1.5rem, 2.5vw, 2.75rem);
   margin-top: 2.5rem;
   border-radius: var(--overview-inner-radius);
-  background: oklch(29% 0.032 252 / 0.5);
+  background: var(--credentials-grid-surface);
   padding: 1.5rem;
 }
 
@@ -1441,7 +1502,7 @@
   flex-direction: column;
   background: transparent;
   padding: 0;
-  color: var(--overview-on-dark);
+  color: var(--credentials-text);
 }
 
 .overviewCertificatePreview {
@@ -1460,7 +1521,7 @@
 .overviewCertificatePreview img {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 0.75rem 1rem oklch(8% 0.025 252 / 0.24));
+  filter: drop-shadow(var(--credentials-document-shadow));
   object-fit: contain;
   object-position: left center;
 }
@@ -1475,7 +1536,7 @@
 }
 
 .overviewCertificateBody > p {
-  color: oklch(79% 0.13 242);
+  color: var(--credentials-accent);
   font-size: 0.7rem;
   font-weight: 700;
   line-height: 1.35;
@@ -1483,7 +1544,7 @@
 
 .overviewCertificateBody h3 {
   margin-top: 0.4rem;
-  color: var(--overview-on-dark);
+  color: var(--credentials-text);
   font-family: var(--font-display);
   font-size: clamp(1.08rem, 1.1vw, 1.15rem);
   font-weight: 700;
@@ -1498,7 +1559,7 @@
   gap: 0.5rem;
   margin-top: auto;
   padding-top: 1rem;
-  color: oklch(79% 0.13 242);
+  color: var(--credentials-accent);
   font-size: 0.76rem;
   font-weight: 700;
 }
@@ -1513,7 +1574,7 @@
 }
 
 .overviewCertificationScope > h3 {
-  color: oklch(81% 0.13 242);
+  color: var(--credentials-accent);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -1530,13 +1591,13 @@
 .overviewCertificationScope p {
   display: grid;
   gap: 0.3rem;
-  color: var(--overview-on-dark-muted);
+  color: var(--credentials-muted);
   font-size: 0.78rem;
   line-height: 1.5;
 }
 
 .overviewCertificationScope strong {
-  color: var(--overview-on-dark);
+  color: var(--credentials-text);
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -1544,12 +1605,12 @@
 .overviewCredentialSupport {
   margin-top: 1rem;
   border-radius: var(--overview-inner-radius);
-  background: oklch(96% 0.01 245 / 0.08);
+  background: var(--credentials-support-surface);
   padding: 1.5rem;
 }
 
 .overviewCredentialSupport h3 {
-  color: oklch(81% 0.13 242);
+  color: var(--credentials-accent);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.07em;
@@ -1559,7 +1620,7 @@
 .overviewDocumentList {
   margin: 1rem 0 0;
   padding: 0;
-  color: var(--overview-on-dark);
+  color: var(--credentials-text);
   list-style: none;
 }
 
@@ -1571,10 +1632,18 @@
 
 .overviewDocumentList li {
   border-radius: 0.45rem;
-  background: oklch(97% 0.007 245 / 0.1);
+  background: var(--credentials-chip-surface);
   padding: 0.55rem 0.75rem;
   font-size: 0.78rem;
   font-weight: 700;
+}
+
+.overviewCredentials.credentialsSection {
+  overflow: visible;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
 }
 
 .overviewInquiry {

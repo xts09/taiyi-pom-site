@@ -17,12 +17,11 @@ export function HomeInquirySection({ checklist }: HomeInquirySectionProps) {
     >
       <div className="site-container home-inquiry-inner">
         <div className="home-inquiry-copy">
-          <p className="home-inquiry-kicker">MATERIAL REVIEW</p>
-          <h2>Share the requirements. Start with a grade shortlist.</h2>
+          <p className="home-inquiry-kicker">START A REVIEW</p>
+          <h2>Send the project inputs for a useful first review.</h2>
           <span>
-            Tell us the working conditions, tooling constraints and document
-            needs. We&apos;ll identify candidate grades for TDS review, samples
-            and molding trials.
+            Known details are enough to begin. Mark uncertain items and include
+            any current grade, drawing or failure sample available.
           </span>
         </div>
         <Card className="home-inquiry-panel gap-0 border-0 py-0 shadow-none">

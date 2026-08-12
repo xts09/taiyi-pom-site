@@ -4862,7 +4862,7 @@ body {
     padding-left: 0;
   }
 
-  header > div,
+  .site-header > .site-container,
   .home-hero > .mx-auto {
     width: min(100%, 24.375rem);
     margin-right: auto;
