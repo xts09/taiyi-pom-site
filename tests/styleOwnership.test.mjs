@@ -9,7 +9,7 @@ const readProjectFile = (path) =>
   readFileSync(resolve(projectRoot, path), "utf8");
 
 test("route-specific styles stay out of the root layout", () => {
-  const rootLayout = readProjectFile("src/app/layout.tsx");
+  const rootLayout = readProjectFile("src/app/(en)/layout.tsx");
 
   assert.doesNotMatch(
     rootLayout,
@@ -17,13 +17,23 @@ test("route-specific styles stay out of the root layout", () => {
   );
 
   const routeOwners = new Map([
-    ["src/app/page.tsx", 'import "./styles/home.css";'],
+    ["src/app/(en)/page.tsx", 'import "./styles/home.css";'],
     [
-      "src/app/applications/layout.tsx",
+      "src/app/(en)/applications/layout.tsx",
       'import "../styles/applications.css";',
     ],
-    ["src/app/products/layout.tsx", 'import "../styles/products.css";'],
-    ["src/app/resources/layout.tsx", 'import "../styles/resources.css";'],
+    [
+      "src/app/(en)/products/layout.tsx",
+      'import "../styles/products.css";',
+    ],
+    [
+      "src/app/(en)/resources/layout.tsx",
+      'import "../styles/resources.css";',
+    ],
+    [
+      "src/app/[locale]/products/layout.tsx",
+      'import "../../(en)/styles/products.css";',
+    ],
   ]);
 
   for (const [path, expectedImport] of routeOwners) {
@@ -33,11 +43,11 @@ test("route-specific styles stay out of the root layout", () => {
 
 test("product side entrances retain their product stylesheet", () => {
   const productSideEntrances = [
-    "src/app/conductive-antistatic-pom/page.tsx",
-    "src/app/modified-pom-compounds/page.tsx",
-    "src/app/pom-grade-cross-reference/page.tsx",
-    "src/app/technical-data-sheets/page.tsx",
-    "src/app/wear-resistant-low-friction-pom/page.tsx",
+    "src/app/(en)/conductive-antistatic-pom/page.tsx",
+    "src/app/(en)/modified-pom-compounds/page.tsx",
+    "src/app/(en)/pom-grade-cross-reference/page.tsx",
+    "src/app/(en)/technical-data-sheets/page.tsx",
+    "src/app/(en)/wear-resistant-low-friction-pom/page.tsx",
   ];
 
   for (const path of productSideEntrances) {
@@ -49,9 +59,9 @@ test("product side entrances retain their product stylesheet", () => {
 });
 
 test("contact layout stays locally owned without override escalation", () => {
-  const contactPage = readProjectFile("src/app/contact/page.tsx");
+  const contactPage = readProjectFile("src/app/(en)/contact/page.tsx");
   const contactStyles = readProjectFile(
-    "src/app/contact/ContactPage.module.css",
+    "src/app/(en)/contact/ContactPage.module.css",
   );
 
   assert.doesNotMatch(contactStyles, /!important\b/);

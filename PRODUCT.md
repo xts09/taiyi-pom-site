@@ -36,6 +36,17 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Applications, its mega menu, and the Footer expose the component hub without listing every child route in global navigation.
 - The hub and six initial detail routes now contain verified engineering content, useful component imagery, and complete internal-link paths. Keep the hub and only detail routes backed by `componentSolutionDetails` indexable and included in `sitemap.xml`; future scaffold routes remain `noindex, follow` and excluded until they pass the same content, imagery, and internal-link gate.
 
+### Multilingual Products Release (2026-08-13)
+
+- Phase A is limited to isolated, non-indexable routing previews at `/de/i18n-preview`, `/fr/i18n-preview`, and `/pt-br/i18n-preview`.
+- Phase B publishes complete, human-reviewed React pages at `/de/products`, `/fr/products`, and `/pt-br/products`, backed by typed dictionaries and `next-intl`. The English `/products` page and these three localized pages form one public language group.
+- The four Products pages emit the correct HTML language, a self-canonical, reciprocal `hreflang` entries for `en`, `de`, `fr`, `pt-BR`, and `x-default`, and are indexable sitemap entries. The Header exposes the same four destinations on desktop and in the mobile menu only while visiting this released page group.
+- Existing unprefixed English routes outside this released group remain unchanged. Do not publish a localized URL, language switcher destination, sitemap entry, or `hreflang` for an incomplete page.
+- Every Phase A preview route remains `noindex` in metadata and HTTP policy and stays absent from sitemap, public language navigation, and `hreflang`.
+- The localized release manifest maps only reviewed page pairs. Unreleased destinations keep their existing English URL instead of creating a localized URL with English fallback or a false 404.
+- Codex owns linguistic, technical, factual, SEO, and rendered review. User confirmation is required only when the approved English source does not establish an underlying business fact.
+- Future localized pages require the same reviewed release gate. A locale URL must not expose English fallback content or become indexable before its full translated page passes review.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
@@ -58,7 +69,7 @@ The experience should feel like a credible B2B engineering plastics manufacturer
 - Online quoting, account login, cart, payments, real-time inventory, or order tracking.
 - User-uploaded part drawing analysis.
 - Live chat, CRM automation, or automated email workflows beyond the existing inquiry path.
-- CMS authoring, admin dashboards, multilingual content management, or customer portals.
+- CMS authoring, admin dashboards, broad multilingual content management beyond the published Products language group, or customer portals.
 - Claims that require unavailable certificates, audited test data, customer approvals, or legal review.
 - Decorative animation systems that do not directly improve product selection, scanning, or inquiry flow.
 
@@ -381,7 +392,7 @@ Potential future work should be evaluated against the PRD before implementation.
 - Add a more structured material selection path on the homepage.
 - Convert the homepage product portfolio into a controlled, accessible accordion or comparison explorer.
 - Improve technical-data-sheet discovery with filtering or search if product data supports it.
-- Add multilingual support only when translation ownership and content review are clear.
+- Expand multilingual support beyond the published Products language group only through reviewed, complete locale/page releases.
 - Add richer resource content when verified processing, selection, or troubleshooting material exists.
 - Add analytics or conversion tracking when privacy, hosting, and business reporting needs are defined.
 

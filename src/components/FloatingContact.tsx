@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import type { FloatingContactMessages } from "@/i18n/types";
 import { contactEmail } from "@/lib/seo";
 
 import styles from "./FloatingContact.module.css";
@@ -13,36 +15,40 @@ import styles from "./FloatingContact.module.css";
 const contactPhoneDisplay = "+86 187 9641 8919";
 const contactPhoneDigits = "8618796418919";
 
-const directContactActions = [
-  {
-    href: `mailto:${contactEmail}?subject=Material%20Requirement%20Request`,
-    label: "Email",
-    detail: contactEmail,
-    icon: Mail,
-    external: false,
-  },
-  {
-    href: `https://wa.me/${contactPhoneDigits}`,
-    label: "WhatsApp",
-    detail: contactPhoneDisplay,
-    icon: MessageCircle,
-    external: true,
-  },
-  {
-    href: `tel:+${contactPhoneDigits}`,
-    label: "Call",
-    detail: contactPhoneDisplay,
-    icon: Phone,
-    external: false,
-  },
-] as const;
+type FloatingContactProps = {
+  messages: FloatingContactMessages;
+  localeSegment?: LocalizedUrlSegment;
+};
 
-function FloatingContactShell() {
+function FloatingContactShell({ messages }: FloatingContactProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const directContactActions = [
+    {
+      href: `mailto:${contactEmail}?subject=${encodeURIComponent(messages.mailSubject)}`,
+      label: messages.email,
+      detail: contactEmail,
+      icon: Mail,
+      external: false,
+    },
+    {
+      href: `https://wa.me/${contactPhoneDigits}`,
+      label: messages.whatsapp,
+      detail: contactPhoneDisplay,
+      icon: MessageCircle,
+      external: true,
+    },
+    {
+      href: `tel:+${contactPhoneDigits}`,
+      label: messages.call,
+      detail: contactPhoneDisplay,
+      icon: Phone,
+      external: false,
+    },
+  ] as const;
   const panelTitleId = useId();
   const panelId = useId();
 
@@ -174,7 +180,7 @@ function FloatingContactShell() {
           className={styles.backdrop}
           type="button"
           tabIndex={-1}
-          aria-label="Close contact options"
+          aria-label={messages.closeOptions}
           onClick={() => closePanel()}
         />
       ) : null}
@@ -187,24 +193,21 @@ function FloatingContactShell() {
       >
         <div className={styles.panelHeader}>
           <div>
-            <span className={styles.eyebrow}>Sales contact</span>
-            <h2 id={panelTitleId}>Discuss Your Application</h2>
+            <span className={styles.eyebrow}>{messages.salesContact}</span>
+            <h2 id={panelTitleId}>{messages.title}</h2>
           </div>
           <button
             ref={closeRef}
             className={styles.closeButton}
             type="button"
-            aria-label="Close contact options"
+            aria-label={messages.closeOptions}
             onClick={() => closePanel(true)}
           >
             <X aria-hidden="true" size={18} />
           </button>
         </div>
 
-        <p className={styles.description}>
-          Share your part, performance targets, and document needs with our
-          material team.
-        </p>
+        <p className={styles.description}>{messages.description}</p>
 
         <Button
           asChild
@@ -213,12 +216,15 @@ function FloatingContactShell() {
           size="form"
         >
           <Link href="/contact" onClick={() => closePanel()}>
-            Discuss Your Application
+            {messages.title}
             <ArrowUpRight aria-hidden="true" size={16} />
           </Link>
         </Button>
 
-        <ul className={styles.directActions} aria-label="Direct contact options">
+        <ul
+          className={styles.directActions}
+          aria-label={messages.directOptionsAria}
+        >
           {directContactActions.map((action) => {
             const Icon = action.icon;
 
@@ -257,22 +263,32 @@ function FloatingContactShell() {
         type="button"
         aria-controls={panelId}
         aria-expanded={isOpen}
-        aria-label={isOpen ? "Close contact options" : "Open contact options"}
+        aria-label={isOpen ? messages.closeOptions : messages.openOptions}
         onClick={() => setIsOpen((current) => !current)}
       >
         <MessageCircle aria-hidden="true" size={19} />
-        <span>Contact</span>
+        <span>{messages.triggerLabel}</span>
       </button>
     </div>
   );
 }
 
-export function FloatingContact() {
+export function FloatingContact({
+  messages,
+  localeSegment,
+}: FloatingContactProps) {
   const pathname = usePathname();
+  const contactPath = localeSegment ? `/${localeSegment}/contact` : "/contact";
 
-  if (pathname === "/contact" || pathname.startsWith("/contact/")) {
+  if (pathname === contactPath || pathname.startsWith(`${contactPath}/`)) {
     return null;
   }
 
-  return <FloatingContactShell key={pathname} />;
+  return (
+    <FloatingContactShell
+      key={pathname}
+      messages={messages}
+      localeSegment={localeSegment}
+    />
+  );
 }

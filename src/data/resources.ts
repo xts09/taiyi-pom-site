@@ -71,6 +71,7 @@ export type ResourceArticleFeature =
 export type ResourcePage = {
   slug: string;
   title: string;
+  metadataTitle?: string;
   navLabel: string;
   description: string;
   intro: string;
@@ -87,103 +88,95 @@ export const resourcePages: ResourcePage[] = [
   {
     slug: "material-selection-guide",
     title: "Material Selection Guide",
+    metadataTitle: "POM Material Selection for Molded Parts",
     navLabel: "Material Selection Guide",
     description:
       "A practical POM material selection guide for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV, and high-impact compounds.",
     intro:
-      "Use this guide to compare POM directions against the part's operating conditions and failure risks. Treat it as an initial screen: confirm the selected grade with its TDS, part design review, and application-specific molding trials.",
+      "Choose a POM grade by defining the part's main failure risk, motion, load, mating surface, environment, dimensions, and molding constraints. Use those requirements to screen standard, wear-resistant, low-friction, reinforced, conductive, antistatic, UV-resistant, or high-impact POM. Confirm the exact grade with its current TDS and trials in the intended mold and application.",
     articleSections: [
       {
         title: "Start with the Molded Part, Not the Grade Name",
         navLabel: "Molded Part First",
         paragraphs: [
-          "A grade name describes a formulation family, not a molded-part outcome. Use it to build a candidate set after the initial screen; suitability still depends on the part geometry, mold setup, and operating conditions.",
-          "For an existing component, start with the current material, molding method, part dimensions, wall thickness, and assembly method. Record any known performance issues. Wear, cracking, deformation, noise, static, discoloration, or unstable molding may point to different material needs.",
-          "For a new component, start with the intended operating conditions. A grade suited to a lightly loaded internal mechanism may not suit continuous movement, outdoor exposure, or aggressive chemicals.",
-          "Material names and market references may support initial screening, but they should not be used as the sole basis for selection. The correct question is not which grade is similar, but which material characteristics are required for this part.",
+          "Choose from the finished part and its dominant failure risk, not from a grade name. Geometry, wall thickness, assembly, mold setup, and service conditions determine whether a formulation is a suitable candidate.",
+          "For an existing part, record the current material, molding method, dimensions, assembly, and known problems. Wear, cracking, deformation, noise, static, discoloration, or unstable molding may require different material directions.",
+          "For a new part, define the intended use before comparing grades. Market references can support screening, but they cannot replace the required material characteristics for the actual component.",
         ],
       },
       {
         title: "Define the Application Conditions Clearly",
         navLabel: "Conditions",
         paragraphs: [
-          "POM material selection is strongly influenced by the actual working environment. Mechanical requirements should be reviewed together with movement, contact conditions, temperature, chemicals, moisture, UV exposure, and electrical performance.",
-          "Load should be considered in terms of both magnitude and duration. A short-term assembly load is different from continuous stress. Static loading, repeated loading, impact loading, and vibration may each require a different balance of stiffness, toughness, and dimensional stability.",
-          "Temperature should be reviewed as an operating range rather than a single maximum value. Local frictional heating, nearby heat sources, thermal cycling, and dimensional tolerance requirements may all influence material performance.",
-          "Chemical contact must also be defined carefully. Fuel, grease, cleaning agents, process fluids, detergents, and other substances may affect the material differently depending on concentration, exposure time, and temperature.",
+          "Define the movement, mating surface, load, speed, temperature range, chemicals, moisture, UV exposure, and electrical function. Review these conditions together because one requirement can change the preferred material balance.",
+          "Separate short assembly loads from continuous stress, repeated loading, impact, and vibration. Include frictional heat, nearby heat sources, thermal cycling, and dimensional tolerances instead of relying on one maximum temperature.",
+          "For chemical contact, identify the substance, concentration, exposure time, and temperature. Fuel, grease, cleaners, process fluids, and detergents can create different risks.",
         ],
         points: [
           "Sliding, rotating, oscillating, or intermittent movement",
-          "Continuous operation or occasional movement",
           "Contact with metal, plastic, rubber, or coated surfaces",
           "Dry running or externally lubricated operation",
-          "Surface pressure, speed, and expected operating cycles",
+          "Continuous or occasional operation, surface pressure, speed, and expected cycles",
         ],
       },
       {
         title: "Compare Standard, Wear-Resistant, Low-Friction, and High-Impact POM",
         navLabel: "POM Direction",
         paragraphs: [
-          "Standard POM may be considered when the part requires a typical balance of stiffness, dimensional consistency, surface quality, and processing performance. It is often the first option for general precision components without demanding wear, impact, electrical, or environmental requirements.",
-          "Wear-resistant POM should be reviewed when material loss, surface damage, or reduced service life is the main concern. Typical applications include gears, bushings, rollers, guides, chain components, and repeated-contact mechanisms. The appropriate formulation depends on the mating surface, contact pressure, motion pattern, lubrication conditions, and expected service duration.",
-          "Low-friction POM is selected when reducing resistance to movement, operating force, noise, or stick-slip behavior is more important than simply reducing material loss. Wear resistance and low friction are related, but they are not interchangeable. Both should be evaluated under representative contact conditions.",
-          "High-impact POM may be considered for snap-fit parts, clips, latches, assembly components, or mechanisms exposed to sudden loads. More toughness may change stiffness, surface hardness, or dimensional behavior. Review that balance against the part geometry and failure mode.",
+          "Standard POM is the initial direction for precision parts that need a balanced combination of stiffness, dimensions, surface quality, and processing, without a dominant wear, impact, electrical, or outdoor risk.",
+          "Review wear-resistant POM when material loss, scoring, or service life is the main concern. Validate it with the actual mating surface, pressure, motion, lubrication, and operating duration.",
+          "Review low-friction POM when operating force, noise, or stick-slip matters most. Low friction and wear resistance are related but not interchangeable, so test both under representative contact conditions.",
+          "Review high-impact POM for snap-fits, clips, latches, or sudden loads. Confirm that added toughness does not create an unacceptable change in stiffness, surface hardness, or dimensions.",
         ],
       },
       {
         title: "When to Consider Glass Fiber or Carbon Fiber Reinforced POM",
         navLabel: "Reinforced POM",
         paragraphs: [
-          "Glass fiber reinforced POM may be considered when higher stiffness, improved load-bearing capability, or reduced deformation is required. It can be relevant for structural parts, support components, precision mechanisms, and applications where standard POM does not provide sufficient rigidity.",
-          "Reinforcement does not automatically make a material better for every component. Glass fiber can affect mold flow, surface appearance, anisotropic shrinkage, dimensional behavior, and wear against mating surfaces. For tight-tolerance parts, engineers should review gate position, flow path, weld lines, wall thickness, and fiber orientation.",
-          "Carbon fiber reinforced POM may be considered for high stiffness, lower deformation, electrical conductivity, or lower weight than some highly filled systems. Its friction and wear behavior may also differ from glass fiber reinforced grades.",
-          "Choose among unfilled, glass fiber reinforced, carbon fiber reinforced, and other modified POM by the full performance balance. Do not decide on stiffness alone.",
+          "Consider glass fiber reinforced POM when stiffness, load support, or deformation control is the main gap. It can suit structural parts and precision mechanisms when standard POM is not rigid enough.",
+          "Glass fiber can change flow, surface appearance, shrinkage direction, dimensions, and counterpart wear. Tight-tolerance parts require review of the gate, flow path, weld lines, wall thickness, and fiber orientation.",
+          "Consider carbon fiber reinforced POM when high stiffness, lower deformation, conductivity, or a different weight balance is relevant. Compare unfilled, glass fiber, and carbon fiber directions by the full requirement, not stiffness alone.",
         ],
       },
       {
         title: "Conductive, Antistatic, UV-Resistant, and High-Impact Directions",
         navLabel: "Functional Grades",
         paragraphs: [
-          "Conductive and antistatic POM should be reviewed when the molded part must manage electrical charge, reduce static accumulation, or meet a defined resistance target. The required range, measurement method, part geometry, conditioning, and grounding concept should be confirmed before a grade is selected.",
-          "Electrical modification can influence color, flow, mechanical balance, surface appearance, and processing behavior. A conductive or antistatic description should therefore be treated as one part of the material review, not as a complete specification.",
-          "UV-resistant POM may be considered for parts exposed to sunlight, outdoor conditions, or light-aging requirements. UV resistance should not be treated as a guarantee of unlimited outdoor service. Final suitability depends on temperature, moisture, chemicals, stress, color requirement, and the geometry of the molded component.",
+          "Review conductive or antistatic POM when the part must manage charge or meet a defined resistance target. Specify the target range, test method, geometry, conditioning, and grounding before selecting a grade.",
+          "Electrical modification can change color, flow, mechanics, surface, and processing. A conductive or antistatic label is therefore one requirement, not a complete material specification.",
+          "Review UV-resistant POM for sunlight or outdoor exposure, but do not treat it as unlimited outdoor durability. Confirm temperature, moisture, chemicals, stress, color, and part geometry for the intended service period.",
         ],
       },
       {
         title: "How to Read a POM TDS Cautiously",
         navLabel: "Reading TDS",
         paragraphs: [
-          "A technical data sheet is useful for comparing materials, but it should not be read as a direct prediction of molded-part performance. TDS values are generally obtained under controlled test conditions using defined specimen geometries, conditioning procedures, and test methods.",
-          "Tensile strength, flexural modulus, impact performance, and elongation help describe a material. They do not fully predict a complex component. Wall thickness, weld lines, fiber orientation, internal stress, molding conditions, and part design can change the result.",
-          "Flow data should also be reviewed cautiously. A higher or lower melt flow value does not independently determine whether a material will fill a mold successfully. Gate size, flow length, wall thickness, venting, tool temperature, machine capability, and the additive system all influence processing behavior.",
-          "Wear and friction data require particular care because they depend strongly on the mating material, surface roughness, load, speed, lubrication, temperature, and test method. A single laboratory value cannot represent every moving component.",
+          "Use a TDS to compare grades under stated test methods and specimen conditions. Do not read its values as a direct prediction of the molded part.",
+          "Tensile, flexural, impact, elongation, and flow data support screening. Part geometry, weld lines, orientation, stress, gate size, venting, tool conditions, and machine capability can change the production result.",
+          "Wear and friction data depend on the mating material, surface, load, speed, lubrication, temperature, and method. One laboratory value cannot represent every moving component.",
         ],
       },
       {
         title: "Why Molded-Part Trials Are Necessary",
         navLabel: "Trials",
         paragraphs: [
-          "Standard test specimens cannot reproduce every detail of a production part. Molded-part trials help confirm how the selected material behaves in the intended mold, geometry, machine, processing window, and application environment.",
-          "During trial review, engineers should evaluate filling behavior, appearance, dimensions, warpage, shrinkage, weld lines, ejection, part weight consistency, assembly performance, and functional testing. For moving parts, wear, friction, noise, and counterpart behavior should be tested under representative conditions.",
-          "Final suitability should be confirmed through TDS review, molded-part trials, and application testing under conditions that represent actual use.",
+          "Standard specimens cannot reproduce every production detail. Use molded-part trials to confirm the material in the intended mold, geometry, machine, processing window, and service environment.",
+          "Check filling, appearance, dimensions, warpage, shrinkage, weld lines, ejection, consistency, assembly, and function. For moving parts, test wear, friction, noise, and counterpart behavior under representative conditions.",
         ],
       },
       {
         title: "What to Send for Material Review",
         navLabel: "Review Inputs",
         paragraphs: [
-          "A useful material review requires more than a grade name. Providing complete application information helps the supplier identify the most appropriate modification direction and avoid unnecessary sampling.",
-          "Based on this information, standard POM or a modified direction such as wear-resistant, low-friction, reinforced, conductive, antistatic, UV-resistant, or high-impact POM may be considered. The final material should be confirmed through technical data review, molding trials, and application testing.",
+          "Provide enough part, process, and service information to identify a suitable POM direction and avoid unnecessary samples. Confirm the final grade through document review, molding trials, and application testing.",
         ],
         points: [
           "Part name, drawing, photo, or application description",
           "Current material and current performance issues",
           "Required stiffness, impact, wear, friction, or electrical behavior",
-          "Type of movement and mating material",
-          "Load, speed, pressure, and expected service cycle",
+          "Movement, mating material, load, speed, pressure, and service cycle",
           "Operating temperature and environmental exposure",
-          "Contact with chemicals, oils, cleaners, fuel, or water",
-          "Indoor or outdoor use and expected UV exposure",
+          "Contact with chemicals, oils, cleaners, fuel, water, or UV",
           "Color, surface, dimensional, and processing requirements",
           "Existing TDS, test reports, or failed-part observations",
         ],

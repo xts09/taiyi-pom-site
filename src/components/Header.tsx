@@ -20,65 +20,60 @@ import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
 } from "@/data/resourceNavigation";
+import {
+  stripLocalizedPrefix,
+  type LocalizedUrlSegment,
+} from "@/i18n/config";
+import {
+  getLocalizedHref,
+  getProductsLanguageOptions,
+  type ProductsLanguageOption,
+} from "@/i18n/releaseManifest";
+import type {
+  HeaderMessages,
+  ProductEyebrowKey,
+  ProductTaxonomyKey,
+  ResourceTaxonomyKey,
+  TaxonomyMessages,
+} from "@/i18n/types";
 import { getCategoryPath } from "@/lib/productCategories";
-
-const applicationLinks = [
-  ...applications.map((application) => ({
-    label: application.title,
-    href: `/applications/${application.slug}`,
-  })),
-  {
-    label: "Component Solutions",
-    href: "/components",
-  },
-];
-
-const productOverviewLinks = [
-  {
-    label: "All Products",
-    href: "/products",
-  },
-];
 
 const productCategoryLinks = [
   {
-    label: "POM Compounds",
+    labelKey: "pom",
     href: getCategoryPath("POM"),
-    eyebrow: "Core line",
+    eyebrowKey: "coreLine",
   },
   {
-    label: "PA6 Compounds",
+    labelKey: "pa6",
     href: getCategoryPath("PA6 Compound"),
-    eyebrow: "Additional family",
+    eyebrowKey: "additionalFamily",
   },
   {
-    label: "PA66 Compounds",
+    labelKey: "pa66",
     href: getCategoryPath("PA66 Compound"),
-    eyebrow: "Additional family",
+    eyebrowKey: "additionalFamily",
   },
   {
-    label: "PPA Compounds",
+    labelKey: "ppa",
     href: getCategoryPath("PPA Compound"),
-    eyebrow: "Higher-temperature",
+    eyebrowKey: "higherTemperature",
   },
   {
-    label: "POM Resin",
+    labelKey: "pomResin",
     href: getCategoryPath("Base POM Resin"),
-    eyebrow: "Supplement",
+    eyebrowKey: "supplement",
   },
   {
-    label: "Conductive & Antistatic Compounds",
+    labelKey: "conductiveAntistatic",
     href: "/products/conductive-antistatic-compounds",
-    eyebrow: "Cross-material",
+    eyebrowKey: "crossMaterial",
   },
-];
-
-const navItems = [
-  {
-    label: "Contact",
-    href: "/contact",
-  },
-];
+] satisfies ReadonlyArray<{
+  labelKey: ProductTaxonomyKey;
+  href: string;
+  eyebrowKey: ProductEyebrowKey;
+}>;
 
 type MegaValue = "" | "products" | "applications" | "resources";
 
@@ -92,13 +87,84 @@ const isMegaValue = (value: string): value is Exclude<MegaValue, ""> =>
 const isNodeTarget = (target: EventTarget | null): target is Node =>
   target instanceof Node;
 
-export function Header() {
+type LanguageSwitcherProps = {
+  label: string;
+  options: ReadonlyArray<ProductsLanguageOption>;
+  currentLocaleKey: ProductsLanguageOption["localeKey"];
+  variant: "desktop" | "mobile";
+};
+
+function LanguageSwitcher({
+  label,
+  options,
+  currentLocaleKey,
+  variant,
+}: LanguageSwitcherProps) {
+  return (
+    <div
+      className={`language-switcher language-switcher--${variant}`}
+      role="group"
+      aria-label={label}
+    >
+      {variant === "mobile" ? (
+        <span className="language-switcher-label">{label}</span>
+      ) : null}
+      <div className="language-switcher-options">
+        {options.map((option) => (
+          <Link
+            key={option.localeKey}
+            href={option.href}
+            hrefLang={option.hreflang}
+            lang={option.hreflang}
+            prefetch={false}
+            className="language-switcher-link"
+            aria-current={
+              option.localeKey === currentLocaleKey ? "page" : undefined
+            }
+          >
+            {variant === "desktop"
+              ? option.shortLabel
+              : option.nativeLabel}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+type HeaderProps = {
+  messages: HeaderMessages;
+  taxonomy: TaxonomyMessages;
+  localeSegment?: LocalizedUrlSegment;
+};
+
+export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const isAbout = pathname === "/about" || pathname.startsWith("/about/");
+  const logicalPathname = stripLocalizedPrefix(pathname, localeSegment);
+  const languageOptions = getProductsLanguageOptions(logicalPathname);
+  const currentLocaleKey = localeSegment ?? "en";
+  const localizedHref = (href: string) =>
+    getLocalizedHref(href, localeSegment);
+  const isHome = logicalPathname === "/";
+  const isAbout =
+    logicalPathname === "/about" || logicalPathname.startsWith("/about/");
   const hasHeroHeaderSurface = isHome || isAbout;
   const isCurrentSection = (href: string) =>
-    pathname === href || pathname.startsWith(`${href}/`);
+    logicalPathname === href || logicalPathname.startsWith(`${href}/`);
+  const applicationLinks = [
+    ...applications.map((application) => ({
+      label:
+        taxonomy.applications[
+          application.slug as keyof typeof taxonomy.applications
+        ] ?? application.title,
+      href: `/applications/${application.slug}`,
+    })),
+    {
+      label: taxonomy.componentSolutions,
+      href: "/components",
+    },
+  ];
+  const navItems = [{ label: messages.contact, href: "/contact" }];
   const [isOverHomeHero, setIsOverHomeHero] = useState(true);
   const [megaValue, setMegaValue] = useState<MegaValue>("");
   const closeTimerRef = useRef<number | null>(null);
@@ -315,7 +381,7 @@ export function Header() {
           href="/"
           prefetch={false}
           className="brand-mark group inline-flex"
-          aria-label="Taiyi Polymer home"
+          aria-label={messages.brandHomeLabel}
           aria-current={isHome ? "page" : undefined}
         >
           <span className="brand-logo w-[clamp(9.35rem,11.4vw,10.65rem)] max-w-[46vw]">
@@ -352,7 +418,7 @@ export function Header() {
                     isCurrentSection("/products") ? "page" : undefined
                   }
                 >
-                  Products
+                  {messages.products}
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="mega-menu mega-menu-content product-menu">
                   {activeMega === "products" ? (
@@ -362,36 +428,34 @@ export function Header() {
                     >
                       <div className="mega-menu-panel-head">
                         <div>
-                          <span>Product Categories</span>
-                          <p>
-                            Start with a material family or compare conductive
-                            and antistatic grades across matrices.
-                          </p>
+                          <span>{messages.productCategories}</span>
+                          <p>{messages.productDescription}</p>
                         </div>
                         <Link
-                          href="/products"
+                          href={localizedHref("/products")}
                           prefetch={false}
                           className="mega-menu-all-link"
                           onClick={closeMega}
                         >
-                          All Products <span aria-hidden="true">&rarr;</span>
+                          {messages.allProducts}{" "}
+                          <span aria-hidden="true">&rarr;</span>
                         </Link>
                       </div>
 
                       <div className="mega-category-grid">
                         {productCategoryLinks.map((item) => (
                           <Link
-                            key={`${item.label}-${item.href}`}
+                            key={`${item.labelKey}-${item.href}`}
                             href={item.href}
                             prefetch={false}
                             className="mega-category-link"
                             onClick={closeMega}
                           >
                             <span className="mega-category-eyebrow">
-                              {item.eyebrow}
+                              {taxonomy.productEyebrows[item.eyebrowKey]}
                             </span>
                             <span className="mega-category-title mega-nav-label">
-                              {item.label}
+                              {taxonomy.products[item.labelKey]}
                             </span>
                           </Link>
                         ))}
@@ -413,7 +477,7 @@ export function Header() {
                       : undefined
                   }
                 >
-                  Applications
+                  {messages.applications}
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="mega-menu mega-menu-content application-menu">
                   {activeMega === "applications" ? (
@@ -423,11 +487,8 @@ export function Header() {
                     >
                       <div className="mega-menu-panel-head">
                         <div>
-                          <span>Application Areas</span>
-                          <p>
-                            Browse common molded-part applications by working
-                            condition and material requirement.
-                          </p>
+                          <span>{messages.applicationAreas}</span>
+                          <p>{messages.applicationDescription}</p>
                         </div>
                         <Link
                           href="/applications"
@@ -435,7 +496,8 @@ export function Header() {
                           className="mega-menu-all-link"
                           onClick={closeMega}
                         >
-                          All Applications <span aria-hidden="true">&rarr;</span>
+                          {messages.allApplications}{" "}
+                          <span aria-hidden="true">&rarr;</span>
                         </Link>
                       </div>
 
@@ -468,7 +530,7 @@ export function Header() {
                     isCurrentSection("/resources") ? "page" : undefined
                   }
                 >
-                  Resources
+                  {messages.resources}
                 </NavigationMenu.Trigger>
                 <NavigationMenu.Content className="mega-menu mega-menu-content resource-menu">
                   {activeMega === "resources" ? (
@@ -478,7 +540,7 @@ export function Header() {
                     >
                       <div className="mega-menu-panel-head">
                         <div>
-                          <span>Technical Resources</span>
+                          <span>{messages.technicalResources}</span>
                         </div>
                         <Link
                           href="/resources"
@@ -486,7 +548,8 @@ export function Header() {
                           className="mega-menu-all-link"
                           onClick={closeMega}
                         >
-                          All Resources <span aria-hidden="true">&rarr;</span>
+                          {messages.allResources}{" "}
+                          <span aria-hidden="true">&rarr;</span>
                         </Link>
                       </div>
 
@@ -500,7 +563,11 @@ export function Header() {
                             onClick={closeMega}
                           >
                             <span className="mega-simple-title mega-nav-label">
-                              {group.title}
+                              {
+                                taxonomy.resources[
+                                  group.id as ResourceTaxonomyKey
+                                ].title
+                              }
                             </span>
                           </Link>
                         ))}
@@ -519,7 +586,7 @@ export function Header() {
                     aria-current={isCurrentSection("/about") ? "page" : undefined}
                     onClick={closeMega}
                   >
-                    About Us
+                    {messages.aboutUs}
                   </Link>
                 </NavigationMenu.Link>
               </NavigationMenu.Item>
@@ -543,17 +610,30 @@ export function Header() {
             </NavigationMenu.List>
           </NavigationMenu.Root>
 
-          <Link
-            href="/technical-data-sheets"
-            prefetch={false}
-            className="nav-search-button inline-flex items-center justify-center"
-            aria-label="Search technical data sheets and resources"
-            aria-current={
-              isCurrentSection("/technical-data-sheets") ? "page" : undefined
-            }
-          >
-            <Search aria-hidden="true" size={18} strokeWidth={2.1} />
-          </Link>
+          <div className="header-utility-group">
+            {languageOptions.length > 0 ? (
+              <LanguageSwitcher
+                label={messages.languageSwitcherLabel}
+                options={languageOptions}
+                currentLocaleKey={currentLocaleKey}
+                variant="desktop"
+              />
+            ) : null}
+
+            <Link
+              href="/technical-data-sheets"
+              prefetch={false}
+              className="nav-search-button inline-flex items-center justify-center"
+              aria-label={messages.searchLabel}
+              aria-current={
+                isCurrentSection("/technical-data-sheets")
+                  ? "page"
+                  : undefined
+              }
+            >
+              <Search aria-hidden="true" size={18} strokeWidth={2.1} />
+            </Link>
+          </div>
         </div>
 
         <details
@@ -562,8 +642,12 @@ export function Header() {
           className="mobile-menu relative z-50 lg:hidden"
         >
           <summary className="nav-pill inline-flex cursor-pointer list-none items-center justify-center gap-2 px-3 py-2 text-sm">
-            <span className="mobile-menu-label mobile-menu-label-open">Menu</span>
-            <span className="mobile-menu-label mobile-menu-label-close">Close</span>
+            <span className="mobile-menu-label mobile-menu-label-open">
+              {messages.menu}
+            </span>
+            <span className="mobile-menu-label mobile-menu-label-close">
+              {messages.close}
+            </span>
             <span className="mobile-menu-icon" aria-hidden="true">
               <span className="mobile-menu-icon-bar mobile-menu-icon-bar-first" />
               <span className="mobile-menu-icon-bar mobile-menu-icon-bar-second" />
@@ -574,38 +658,44 @@ export function Header() {
             className="mobile-menu-panel animate-menu-down absolute right-0 top-[calc(100%+0.8rem)] flex w-[min(20rem,calc(100vw-2.5rem))] flex-col p-4 text-sm font-semibold"
             onClick={closeMobileMenuOnLinkClick}
           >
+            {languageOptions.length > 0 ? (
+              <LanguageSwitcher
+                label={messages.languageSwitcherLabel}
+                options={languageOptions}
+                currentLocaleKey={currentLocaleKey}
+                variant="mobile"
+              />
+            ) : null}
+
             <details className="mobile-product-group mobile-menu-section py-3">
               <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
-                <span>Products</span>
+                <span>{messages.products}</span>
                 <span aria-hidden="true">+</span>
               </summary>
 
               <div className="mt-3 space-y-1 pl-4">
-                {productOverviewLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    prefetch={false}
-                    className="mobile-product-list mb-2 block py-1"
-                    aria-current={
-                      isCurrentSection(item.href) ? "page" : undefined
-                    }
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                <Link
+                  href={localizedHref("/products")}
+                  prefetch={false}
+                  className="mobile-product-list mb-2 block py-1"
+                  aria-current={
+                    isCurrentSection("/products") ? "page" : undefined
+                  }
+                >
+                  {messages.allProducts}
+                </Link>
 
                 {productCategoryLinks.map((category) => (
                   <Link
-                    key={`${category.label}-${category.href}`}
+                    key={`${category.labelKey}-${category.href}`}
                     href={category.href}
                     prefetch={false}
                     className="mobile-menu-sub-link block py-2"
                     aria-current={
-                      pathname === category.href ? "page" : undefined
+                      logicalPathname === category.href ? "page" : undefined
                     }
                   >
-                    {category.label}
+                    {taxonomy.products[category.labelKey]}
                   </Link>
                 ))}
               </div>
@@ -613,7 +703,7 @@ export function Header() {
 
             <details className="mobile-product-group mobile-menu-section py-3">
               <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
-                <span>Applications</span>
+                <span>{messages.applications}</span>
                 <span aria-hidden="true">+</span>
               </summary>
 
@@ -623,10 +713,10 @@ export function Header() {
                   prefetch={false}
                   className="mobile-product-list mb-2 block py-1"
                   aria-current={
-                    pathname === "/applications" ? "page" : undefined
+                    logicalPathname === "/applications" ? "page" : undefined
                   }
                 >
-                  All Applications
+                  {messages.allApplications}
                 </Link>
 
                 {applicationLinks.map((item) => (
@@ -635,7 +725,9 @@ export function Header() {
                     href={item.href}
                     prefetch={false}
                     className="mobile-menu-sub-link block py-2"
-                    aria-current={pathname === item.href ? "page" : undefined}
+                    aria-current={
+                      logicalPathname === item.href ? "page" : undefined
+                    }
                   >
                     {item.label}
                   </Link>
@@ -645,7 +737,7 @@ export function Header() {
 
             <details className="mobile-product-group mobile-menu-section py-3">
               <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
-                <span>Resources</span>
+                <span>{messages.resources}</span>
                 <span aria-hidden="true">+</span>
               </summary>
 
@@ -654,27 +746,35 @@ export function Header() {
                   href="/resources"
                   prefetch={false}
                   className="mobile-product-list mb-2 block py-1"
-                  aria-current={pathname === "/resources" ? "page" : undefined}
+                  aria-current={
+                    logicalPathname === "/resources" ? "page" : undefined
+                  }
                 >
-                  All Resources
+                  {messages.allResources}
                 </Link>
 
                 {resourceNavigationGroups.map((group) => (
                   <div className="mobile-resource-group" key={group.id}>
                     <span className="mobile-resource-group-title">
-                      {group.navigationLabel}
+                      {
+                        taxonomy.resources[group.id as ResourceTaxonomyKey]
+                          .navigationLabel
+                      }
                     </span>
                     <Link
                       href={getResourceNavigationGroupPath(group)}
                       prefetch={false}
                       className="mobile-menu-sub-link block py-2"
                       aria-current={
-                        pathname === getResourceNavigationGroupPath(group)
+                        logicalPathname === getResourceNavigationGroupPath(group)
                           ? "page"
                           : undefined
                       }
                     >
-                      {group.title}
+                      {
+                        taxonomy.resources[group.id as ResourceTaxonomyKey]
+                          .title
+                      }
                     </Link>
                   </div>
                 ))}
@@ -687,7 +787,7 @@ export function Header() {
               className="mobile-menu-primary-link py-3"
               aria-current={isCurrentSection("/about") ? "page" : undefined}
             >
-              About Us
+              {messages.aboutUs}
             </Link>
 
             <Link
@@ -699,7 +799,7 @@ export function Header() {
               }
             >
               <Search aria-hidden="true" size={16} strokeWidth={2.1} />
-              <span>Find Grade Data & TDS</span>
+              <span>{messages.findGradeData}</span>
             </Link>
 
             {navItems.map((item) => (
@@ -721,7 +821,7 @@ export function Header() {
               prefetch={false}
               className="cta-primary mt-4 px-4 py-3 text-center text-sm"
             >
-              Discuss Your Application
+              {messages.discussApplication}
             </Link>
           </nav>
         </details>

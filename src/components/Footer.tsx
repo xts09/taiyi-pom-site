@@ -7,6 +7,14 @@ import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
 } from "@/data/resourceNavigation";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
+import type {
+  AnalyticsMessages,
+  FooterMessages,
+  ResourceTaxonomyKey,
+  TaxonomyMessages,
+} from "@/i18n/types";
 import { getCategoryPath } from "@/lib/productCategories";
 import { contactEmail } from "@/lib/seo";
 
@@ -50,84 +58,116 @@ function WhatsAppMark({
   );
 }
 
-const footerColumns = [
-  {
-    title: "Products",
-    links: [
-      { href: getCategoryPath("POM"), label: "POM Compounds" },
-      { href: getCategoryPath("PA6 Compound"), label: "PA6 Compounds" },
-      { href: getCategoryPath("PA66 Compound"), label: "PA66 Compounds" },
-      { href: getCategoryPath("PPA Compound"), label: "PPA Compounds" },
-      { href: getCategoryPath("Base POM Resin"), label: "POM Resin" },
-      {
-        href: "/products/conductive-antistatic-compounds",
-        label: "Conductive & Antistatic Compounds",
-      },
-    ],
-  },
-  {
-    title: "Applications",
-    links: [
-      ...applications.slice(0, 4).map((item) => ({
-        href: `/applications/${item.slug}`,
-        label: item.title,
+type FooterProps = {
+  messages: FooterMessages;
+  taxonomy: TaxonomyMessages;
+  analyticsMessages: AnalyticsMessages;
+  localeSegment?: LocalizedUrlSegment;
+};
+
+export function Footer({
+  messages,
+  taxonomy,
+  analyticsMessages,
+  localeSegment,
+}: FooterProps) {
+  const localizedHref = (href: string) =>
+    getLocalizedHref(href, localeSegment);
+  const footerColumns = [
+    {
+      key: "products",
+      title: messages.products,
+      links: [
+        { href: getCategoryPath("POM"), label: taxonomy.products.pom },
+        {
+          href: getCategoryPath("PA6 Compound"),
+          label: taxonomy.products.pa6,
+        },
+        {
+          href: getCategoryPath("PA66 Compound"),
+          label: taxonomy.products.pa66,
+        },
+        {
+          href: getCategoryPath("PPA Compound"),
+          label: taxonomy.products.ppa,
+        },
+        {
+          href: getCategoryPath("Base POM Resin"),
+          label: taxonomy.products.pomResin,
+        },
+        {
+          href: "/products/conductive-antistatic-compounds",
+          label: taxonomy.products.conductiveAntistatic,
+        },
+      ],
+    },
+    {
+      key: "applications",
+      title: messages.applications,
+      links: [
+        ...applications.slice(0, 4).map((item) => ({
+          href: `/applications/${item.slug}`,
+          label:
+            taxonomy.applications[
+              item.slug as keyof typeof taxonomy.applications
+            ] ?? item.title,
+        })),
+        { href: "/components", label: taxonomy.componentSolutions },
+        { href: "/applications", label: messages.allApplications },
+      ],
+    },
+    {
+      key: "resources",
+      title: messages.resources,
+      links: resourceNavigationGroups.map((group) => ({
+        href: getResourceNavigationGroupPath(group),
+        label: taxonomy.resources[group.id as ResourceTaxonomyKey].title,
       })),
-      { href: "/components", label: "Component Solutions" },
-      { href: "/applications", label: "All Applications" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: resourceNavigationGroups.map((group) => ({
-      href: getResourceNavigationGroupPath(group),
-      label: group.title,
-    })),
-  },
-  {
-    title: "Company",
-    links: [
-      { href: "/about", label: "About Us" },
-      { href: "/contact", label: "Contact Sales" },
-      {
-        href: "/about#overview-credentials-title",
-        label: "Quality & Compliance",
-      },
-      {
-        href: "/about#manufacturing",
-        label: "Manufacturing",
-      },
-    ],
-  },
-];
+    },
+    {
+      key: "company",
+      title: messages.company,
+      links: [
+        { href: "/about", label: messages.aboutUs },
+        { href: "/contact", label: messages.contactSales },
+        {
+          href: "/about#overview-credentials-title",
+          label: messages.qualityCompliance,
+        },
+        {
+          href: "/about#manufacturing",
+          label: messages.manufacturing,
+        },
+      ],
+    },
+  ];
+  const contactActions = [
+    {
+      href: `mailto:${contactEmail}`,
+      label: messages.email,
+      detail: contactEmail,
+      icon: Mail,
+      ariaLabel: messages.emailAria,
+      external: false,
+    },
+    {
+      href: "tel:+8618796418919",
+      label: messages.call,
+      detail: "+86 187 9641 8919",
+      icon: Phone,
+      ariaLabel: messages.callAria,
+      external: false,
+    },
+    {
+      href: "https://wa.me/8618796418919",
+      label: "WhatsApp",
+      detail: "+86 187 9641 8919",
+      icon: WhatsAppMark,
+      ariaLabel: messages.whatsappAria,
+      external: true,
+    },
+  ];
 
-const contactActions = [
-  {
-    href: `mailto:${contactEmail}`,
-    label: "Email",
-    detail: contactEmail,
-    icon: Mail,
-    ariaLabel: `Email ${contactEmail}`,
-    external: false,
-  },
-  {
-    href: "tel:+8618796418919",
-    label: "Call",
-    detail: "+86 187 9641 8919",
-    icon: Phone,
-    ariaLabel: "Call +86 187 9641 8919",
-    external: false,
-  },
-  {
-    href: "https://wa.me/8618796418919",
-    label: "WhatsApp",
-    detail: "+86 187 9641 8919",
-    icon: WhatsAppMark,
-    ariaLabel: "Message Taiyi Polymer on WhatsApp",
-    external: true,
-  },
-];
-
-export function Footer() {
   return (
     <footer className="site-footer">
       <div className="site-footer-inner site-container">
@@ -143,27 +183,23 @@ export function Footer() {
             </span>
             <div className="site-footer-brand-body">
               <p className="site-footer-brand-relation">
-                Taiyi Polymer · PLATFORM® Engineering Materials
+                {messages.brandRelation}
               </p>
             </div>
           </div>
 
           <div className="site-footer-pitch">
-            <h2>Material decisions, grounded in the part.</h2>
-            <p className="site-footer-pitch-copy">
-              Tell us about your part, operating conditions and performance
-              targets. We&apos;ll help shortlist relevant grades and confirm the
-              samples and technical documents available for evaluation.
-            </p>
+            <h2>{messages.pitchTitle}</h2>
+            <p className="site-footer-pitch-copy">{messages.pitchCopy}</p>
             <Link className="site-footer-pitch-action" href="/contact">
-              Discuss Your Application
+              {messages.discussApplication}
               <ArrowUpRight aria-hidden="true" size={19} strokeWidth={1.8} />
             </Link>
           </div>
 
           <div
             className="site-footer-contact-actions"
-            aria-label="Footer contact actions"
+            aria-label={messages.contactActionsAria}
           >
             {contactActions.map((item) => (
               <a
@@ -187,18 +223,18 @@ export function Footer() {
 
         <nav
           className="site-footer-menu site-footer-menu--desktop"
-          aria-label="Footer navigation"
+          aria-label={messages.navigationAria}
         >
           {footerColumns.map((column) => (
             <section
               key={column.title}
-              className={`site-footer-column site-footer-column--${column.title.toLowerCase()}`}
+              className={`site-footer-column site-footer-column--${column.key}`}
             >
               <h3>{column.title}</h3>
               <ul>
                 {column.links.map((item) => (
                   <li key={`${column.title}-${item.href}-${item.label}`}>
-                    <Link href={item.href}>{item.label}</Link>
+                    <Link href={localizedHref(item.href)}>{item.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -208,7 +244,7 @@ export function Footer() {
 
         <nav
           className="site-footer-mobile-menu"
-          aria-label="Footer navigation"
+          aria-label={messages.navigationAria}
         >
           {footerColumns.map((column) => (
             <details key={`mobile-${column.title}`}>
@@ -221,7 +257,7 @@ export function Footer() {
               <ul>
                 {column.links.map((item) => (
                   <li key={`mobile-${column.title}-${item.href}-${item.label}`}>
-                    <Link href={item.href}>{item.label}</Link>
+                    <Link href={localizedHref(item.href)}>{item.label}</Link>
                   </li>
                 ))}
               </ul>
@@ -231,7 +267,7 @@ export function Footer() {
 
         <div className="site-footer-bottom">
           <div className="site-footer-bottom-meta">
-            <p className="site-footer-bottom-location">Yancheng, Jiangsu, China</p>
+            <p className="site-footer-bottom-location">{messages.location}</p>
             <a
               className="site-footer-bottom-link"
               href="https://www.linkedin.com/company/taiyi-nano-technology/"
@@ -245,10 +281,11 @@ export function Footer() {
           </div>
           <div className="site-footer-legal">
             <p className="site-footer-copy">
-              &copy; 2026 Jiangsu Taiyi Nano Technology Co., Ltd. All rights reserved.
+              &copy; 2026 Jiangsu Taiyi Nano Technology Co., Ltd.{" "}
+              {messages.rightsReserved}
             </p>
-            <Link href="/privacy">Privacy Policy</Link>
-            <AnalyticsSettingsButton />
+            <Link href="/privacy">{messages.privacyPolicy}</Link>
+            <AnalyticsSettingsButton messages={analyticsMessages} />
           </div>
         </div>
       </div>

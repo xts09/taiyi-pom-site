@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { AnalyticsMessages } from "@/i18n/types";
 import {
   clearGoogleAnalyticsCookies,
   GOOGLE_ANALYTICS_CONSENT_CHANGE_EVENT,
@@ -16,9 +17,13 @@ import styles from "./AnalyticsConsent.module.css";
 
 type AnalyticsConsentProps = {
   enabled: boolean;
+  messages: AnalyticsMessages;
 };
 
-export function AnalyticsConsent({ enabled }: AnalyticsConsentProps) {
+export function AnalyticsConsent({
+  enabled,
+  messages,
+}: AnalyticsConsentProps) {
   const choice = useGoogleAnalyticsConsent();
   const [isManuallyOpen, setIsManuallyOpen] = useState(false);
 
@@ -71,15 +76,15 @@ export function AnalyticsConsent({ enabled }: AnalyticsConsentProps) {
       aria-describedby="analytics-consent-description"
     >
       <div className={styles.copy}>
-        <h2 id="analytics-consent-title">Analytics choices</h2>
+        <h2 id="analytics-consent-title">{messages.title}</h2>
         <p id="analytics-consent-description">
-          We use Google Analytics to understand site use and improve material
-          information. Analytics stays off unless you accept. Read our{" "}
-          <Link href="/privacy">Privacy Policy</Link>.
+          {messages.descriptionBeforeLink}{" "}
+          <Link href="/privacy">{messages.privacyPolicy}</Link>.
         </p>
         {choice !== null ? (
           <span className={styles.currentChoice}>
-            Current choice: {choice === "granted" ? "accepted" : "not accepted"}
+            {messages.currentChoice}{" "}
+            {choice === "granted" ? messages.accepted : messages.notAccepted}
           </span>
         ) : null}
       </div>
@@ -90,7 +95,7 @@ export function AnalyticsConsent({ enabled }: AnalyticsConsentProps) {
           size="form"
           onClick={() => choose("granted")}
         >
-          Accept analytics
+          {messages.accept}
         </Button>
         <Button
           type="button"
@@ -98,14 +103,18 @@ export function AnalyticsConsent({ enabled }: AnalyticsConsentProps) {
           size="form"
           onClick={() => choose("denied")}
         >
-          Continue without analytics
+          {messages.continueWithout}
         </Button>
       </div>
     </section>
   );
 }
 
-export function AnalyticsSettingsButton() {
+export function AnalyticsSettingsButton({
+  messages,
+}: {
+  messages: AnalyticsMessages;
+}) {
   return (
     <button
       className={styles.settingsButton}
@@ -116,7 +125,7 @@ export function AnalyticsSettingsButton() {
         )
       }
     >
-      Cookie Settings
+      {messages.settings}
     </button>
   );
 }

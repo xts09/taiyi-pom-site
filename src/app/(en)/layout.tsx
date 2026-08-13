@@ -1,20 +1,21 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "@fontsource-variable/ibm-plex-sans/wght.css";
-import { AnalyticsConsent } from "@/components/AnalyticsConsent";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { FloatingContact } from "@/components/FloatingContact";
-import { GoogleTag } from "@/components/GoogleTag";
-import { googleSiteVerification, googleTagId } from "@/lib/googleTracking";
+import { SiteDocument } from "@/components/SiteDocument";
+import messages from "@/i18n/messages/en";
+import {
+  googleConsentDefaultScript,
+  googleSiteVerification,
+  googleTagId,
+} from "@/lib/googleTracking";
 import {
   defaultDescription,
   defaultOgImage,
   siteName,
   siteUrl,
 } from "@/lib/seo";
-import "../../tokens.css";
-import "./globals.css";
+import "../../../tokens.css";
+import "../globals.css";
 import "./styles/header.css";
 import "./styles/breadcrumbs.css";
 
@@ -85,41 +86,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className="page-aura min-h-full flex flex-col text-slate-900">
-        {googleTagId ? (
+    <SiteDocument
+      htmlLang="en"
+      messages={messages}
+      consentDefaultScript={
+        googleTagId ? (
           <Script
             id="google-consent-default"
             strategy="beforeInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-window.gtag = gtag;
-gtag("consent", "default", {
-  analytics_storage: "denied",
-  ad_storage: "denied",
-  ad_user_data: "denied",
-  ad_personalization: "denied",
-  wait_for_update: 500
-});
-gtag("set", "ads_data_redaction", true);
-              `.trim(),
-            }}
+            dangerouslySetInnerHTML={{ __html: googleConsentDefaultScript }}
           />
-        ) : null}
-        <a className="skip-link" href="#main-content">
-          Skip to main content
-        </a>
-        <Header />
-        <div id="main-content" className="flex-1" tabIndex={-1}>
-          {children}
-        </div>
-        <FloatingContact />
-        <Footer />
-        <AnalyticsConsent enabled={Boolean(googleTagId)} />
-        <GoogleTag />
-      </body>
-    </html>
+        ) : null
+      }
+    >
+      {children}
+    </SiteDocument>
   );
 }

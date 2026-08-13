@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 const isDevelopment = process.env.NODE_ENV === "development";
@@ -60,6 +63,7 @@ const nextConfig: NextConfig = {
   ...(distDir ? { distDir } : {}),
   experimental: {
     cpus: 4,
+    globalNotFound: true,
   },
   ...(!isGithubPages
     ? {
@@ -103,4 +107,4 @@ const nextConfig: NextConfig = {
     : {}),
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

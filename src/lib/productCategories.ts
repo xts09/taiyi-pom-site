@@ -307,6 +307,14 @@ export const getCategoryTitle = (category: string) => {
   return getCategoryData(category)?.label ?? category;
 };
 
+const categoryMetadataTitles: Record<string, string> = {
+  "PA6 Compound": "PA6 Compound Grades and Applications",
+  "PA66 Compound": "PA66 Compound Grades and Applications",
+};
+
+export const getCategoryMetadataTitle = (category: string) =>
+  categoryMetadataTitles[category] ?? getCategoryTitle(category);
+
 export const getCategoryDescription = (category: string) => {
   if (category === pomCategoryOverview.category) {
     return pomCategoryOverview.description;
@@ -339,12 +347,18 @@ export const getCategoryFaqs = (category: string) => {
     category === pomCategoryOverview.category
       ? "POM materials"
       : getCategoryData(category)?.label ?? category;
+  const usesReadabilityCopy = [
+    pomCategoryOverview.category,
+    "PA6 Compound",
+    "PA66 Compound",
+  ].includes(category);
 
   return [
     {
       question: `How should buyers choose ${label}?`,
-      answer:
-        "Selection should start from the part type, movement condition, load, friction or wear target, dimensional requirement, color, processing method, and document needs.",
+      answer: usesReadabilityCopy
+        ? "Start with the part function, movement, load, environment, dimensional target, and processing method. Then compare grades by the relevant properties and available documents."
+        : "Selection should start from the part type, movement condition, load, friction or wear target, dimensional requirement, color, processing method, and document needs.",
     },
     {
       question: "Can Taiyi Polymer provide technical documents for evaluation?",
@@ -353,8 +367,9 @@ export const getCategoryFaqs = (category: string) => {
     },
     {
       question: "Can grades be adjusted for a specific application?",
-      answer:
-        "Yes. Share the current material, working condition, target property, molded part details, and estimated volume so relevant grades can be shortlisted for project evaluation.",
+      answer: usesReadabilityCopy
+        ? "Yes. Share the current material, molded-part details, operating conditions, target property, and estimated volume. Taiyi Polymer can then shortlist relevant grades for project evaluation."
+        : "Yes. Share the current material, working condition, target property, molded part details, and estimated volume so relevant grades can be shortlisted for project evaluation.",
     },
   ];
 };

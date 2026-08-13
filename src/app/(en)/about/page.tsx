@@ -7,7 +7,7 @@ import {
   AboutOverviewHero,
   AboutOverviewInquiry,
   FactoryProofRows,
-} from "@/app/about/AboutSections";
+} from "@/app/(en)/about/AboutSections";
 import {
   availableDocuments,
   certifications,

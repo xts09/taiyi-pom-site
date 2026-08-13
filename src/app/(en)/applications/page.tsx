@@ -14,7 +14,7 @@ import {
   createCollectionPageJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
-import componentStyles from "@/app/components/ComponentSolutions.module.css";
+import componentStyles from "@/app/(en)/components/ComponentSolutions.module.css";
 
 const applicationsTitle = "Engineering Plastic Applications | Taiyi Polymer";
 const applicationsDescription =

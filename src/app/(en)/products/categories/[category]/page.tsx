@@ -20,6 +20,7 @@ import {
   findCategoryBySlug,
   getCategoryDescription,
   getCategoryFaqs,
+  getCategoryMetadataTitle,
   getCategoryNavSubtitle,
   getCategoryTitle,
   getLegacyCategoryRedirect,
@@ -99,7 +100,7 @@ export async function generateMetadata({
   ];
 
   return createPageMetadata({
-    title: `${getCategoryTitle(entry.category)} | Taiyi Polymer`,
+    title: `${getCategoryMetadataTitle(entry.category)} | Taiyi Polymer`,
     description: getCategoryDescription(entry.category),
     path: entry.path,
     ...socialMedia,
@@ -141,6 +142,11 @@ export default async function ProductCategoryPage({
     isPomCategory
       ? "A focused directory for Taiyi Polymer modified POM compounds and selected base resin data used in precision molded mechanical parts."
       : getCategoryDescription(entry.category);
+  const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
+    entry.category,
+  )
+    ? "Share the part function, current material, operating conditions, mold stage, critical dimensions, and document needs. Taiyi Polymer can use them to shortlist grades and confirm available documents or samples."
+    : "Share your application, mold development stage, cavity count, operating condition, current material, shrinkage or warpage concern, document needs, and target volume. These inputs support a grade shortlist and confirmation of document availability and sample needs.";
   const itemListElement =
     categoryProducts.length > 0
       ? categoryProducts.map((product, index) => ({
@@ -372,12 +378,7 @@ export default async function ProductCategoryPage({
             </Button>
           }
         >
-          <p>
-            Share your application, mold development stage, cavity count,
-            operating condition, current material, shrinkage or warpage concern,
-            document needs, and target volume. These inputs support a grade
-            shortlist and confirmation of document availability and sample needs.
-          </p>
+          <p>{inquirySupportCopy}</p>
         </ActionPanel>
       </section>
       </ProductPageMotion>

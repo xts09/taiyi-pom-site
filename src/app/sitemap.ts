@@ -12,8 +12,12 @@ import {
   resourceNavigationGroups,
 } from "@/data/resourceNavigation";
 import { resourcePages } from "@/data/resources";
+import {
+  productsLanguageAlternates,
+  productsLanguageOptions,
+} from "@/i18n/releaseManifest";
 import { productCategoryEntries } from "@/lib/productCategories";
-import { siteUrl } from "@/lib/seo";
+import { absoluteUrl, siteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -28,9 +32,22 @@ const createUrlEntry = (
 });
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const productAlternates = Object.fromEntries(
+    Object.entries(productsLanguageAlternates).map(([language, path]) => [
+      language,
+      absoluteUrl(path),
+    ]),
+  );
+
+  const productLanguageRoutes = productsLanguageOptions.map(({ href }) => ({
+    ...createUrlEntry(href, 0.9, "weekly"),
+    alternates: {
+      languages: productAlternates,
+    },
+  }));
+
   const staticRoutes = [
     createUrlEntry("", 1, "weekly"),
-    createUrlEntry("/products", 0.9, "weekly"),
     createUrlEntry("/applications", 0.9, "weekly"),
     createUrlEntry("/components", 0.8, "weekly"),
     createUrlEntry("/resources", 0.85, "weekly"),
@@ -75,6 +92,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
+    ...productLanguageRoutes,
     ...categoryRoutes,
     ...productRoutes,
     ...engineeringTdsRoutes,

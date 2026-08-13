@@ -51,7 +51,10 @@ test("routes use the shared JSON-LD serializer", () => {
 });
 
 test("retired or misleading SEO markers stay removed", () => {
-  const layoutSource = readFileSync(resolve(projectRoot, "src/app/layout.tsx"), "utf8");
+  const layoutSource = readFileSync(
+    resolve(projectRoot, "src/app/(en)/layout.tsx"),
+    "utf8",
+  );
   const seoSource = readFileSync(resolve(projectRoot, "src/lib/seo.ts"), "utf8");
 
   assert.doesNotMatch(layoutSource, /^\s*keywords:\s*\[/m);

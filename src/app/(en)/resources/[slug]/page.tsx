@@ -73,7 +73,7 @@ export async function generateMetadata({
   const primaryMedia = getPrimaryArticleMedia(page);
 
   return createPageMetadata({
-    title: `${page.title} | Taiyi Polymer`,
+    title: `${page.metadataTitle ?? page.title} | Taiyi Polymer`,
     description: page.description,
     path: `/resources/${page.slug}`,
     image: primaryMedia?.src,

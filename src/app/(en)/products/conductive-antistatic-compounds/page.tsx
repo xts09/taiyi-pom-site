@@ -4,7 +4,7 @@ import {
   conductiveAntistaticCompoundsDescription,
   conductiveAntistaticCompoundsHeroImage,
   conductiveAntistaticCompoundsTitle,
-} from "@/app/conductive-antistatic-compounds/page";
+} from "@/app/(en)/conductive-antistatic-compounds/page";
 import { createPageMetadata } from "@/lib/seo";
 
 const path = "/products/conductive-antistatic-compounds";

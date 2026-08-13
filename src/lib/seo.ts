@@ -59,6 +59,8 @@ export const createPageMetadata = ({
   image = defaultOgImage,
   imageAlt = `${siteName} POM material manufacturing`,
   indexable = true,
+  openGraphLocale = "en_US",
+  languageAlternates,
 }: {
   title: string;
   description: string;
@@ -66,6 +68,8 @@ export const createPageMetadata = ({
   image?: string;
   imageAlt?: string;
   indexable?: boolean;
+  openGraphLocale?: string;
+  languageAlternates?: Record<string, string>;
 }): Metadata => {
   const metadataDescription = formatMetadataDescription(description);
 
@@ -82,6 +86,7 @@ export const createPageMetadata = ({
       : {}),
     alternates: {
       canonical: path,
+      ...(languageAlternates ? { languages: languageAlternates } : {}),
     },
     openGraph: {
       title,
@@ -89,7 +94,7 @@ export const createPageMetadata = ({
       url: path,
       siteName,
       type: "website",
-      locale: "en_US",
+      locale: openGraphLocale,
       images: [
         {
           url: image,
@@ -111,17 +116,20 @@ export const createCollectionPageJsonLd = ({
   description,
   path,
   items,
+  inLanguage,
 }: {
   title: string;
   description: string;
   path: string;
   items: ReadonlyArray<{ name: string; path: string }>;
+  inLanguage?: string;
 }) => ({
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   name: title,
   description: formatMetadataDescription(description),
   url: absoluteUrl(path),
+  ...(inLanguage ? { inLanguage } : {}),
   mainEntity: {
     "@type": "ItemList",
     numberOfItems: items.length,
