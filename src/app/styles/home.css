@@ -1674,8 +1674,56 @@
   }
 }
 
+.home-redesign .qualification-evidence-continuum {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 86% 54%,
+      color-mix(in oklab, var(--ds-action-primary) 27%, transparent),
+      transparent 31%
+    ),
+    radial-gradient(
+      circle at 3% 98%,
+      color-mix(in oklab, var(--ds-action-primary) 13%, transparent),
+      transparent 23%
+    ),
+    linear-gradient(
+      116deg,
+      var(--ds-color-navy-950) 0%,
+      color-mix(
+          in oklab,
+          var(--ds-color-navy-950) 78%,
+          var(--ds-color-night-home-2)
+        )
+        52%,
+      var(--ds-color-ink-975) 100%
+    );
+}
+
+.home-redesign .qualification-evidence-continuum::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    112deg,
+    transparent 0 62%,
+    color-mix(in oklab, var(--ds-color-cyan-bright) 3.5%, transparent) 72%,
+    transparent 84%
+  );
+  content: "";
+  pointer-events: none;
+}
+
+.home-redesign .qualification-evidence-continuum > .qualification-sequence,
+.home-redesign .qualification-evidence-continuum > .quality-systems-section {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
 .home-redesign .qualification-sequence {
-  background: var(--home-color-night);
   scroll-margin-top: var(--site-header-height);
   padding: clamp(2.75rem, 4vw, 4rem) 0 clamp(2rem, 2.4vw, 2.5rem);
   color: var(--home-color-white);
@@ -2340,49 +2388,10 @@
 
 .home-redesign .quality-systems-section {
   position: relative;
-  isolation: isolate;
   overflow: hidden;
   border-top: 0;
-  background:
-    linear-gradient(
-      oklch(97.2% 0.007 245 / 0.9),
-      oklch(92.8% 0.012 245 / 0.96)
-    ),
-    url("/material-satin-light.png") center 56% / cover no-repeat;
-  padding: clamp(3.75rem, 5vw, 5.5rem) 0 clamp(4.25rem, 5vw, 5.5rem);
-  color: var(--home-color-ink);
-}
-
-.home-redesign .quality-systems-section::before,
-.home-redesign .quality-systems-section::after {
-  position: absolute;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-}
-
-.home-redesign .quality-systems-section::before {
-  top: 3rem;
-  right: -7rem;
-  width: min(40rem, 42vw);
-  height: 8rem;
-  background: linear-gradient(
-    100deg,
-    oklch(48% 0.035 245 / 0.09),
-    oklch(72% 0.025 245 / 0.035) 68%,
-    transparent 100%
-  );
-  clip-path: polygon(8% 0, 100% 0, 100% 62%, 0 62%);
-}
-
-.home-redesign .quality-systems-section::after {
-  top: auto;
-  bottom: -4rem;
-  left: -9rem;
-  width: 34rem;
-  height: 12rem;
-  background: oklch(63% 0.03 245 / 0.07);
-  clip-path: polygon(0 28%, 82% 0, 100% 100%, 0 100%);
+  padding: clamp(4.5rem, 5.5vw, 5.5rem) 0;
+  color: var(--ds-foreground-on-dark);
 }
 
 .home-redesign .quality-systems-section > .site-container {

@@ -323,60 +323,62 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="grade-review"
-          className="home-stage qualification-sequence overflow-clip text-white"
-        >
-          <div className="site-container">
-            <div className="qualification-layout">
-              <div className="qualification-feature-panel flex min-w-0 flex-col">
-                <header className="qualification-heading">
-                  <div className="stage-heading-main">
-                    <h2>How We Shortlist a Grade</h2>
-                  </div>
-                  <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
-                    <p className="qualification-intro">
-                      We start with the part, mold, operating conditions and
-                      document needs. These inputs narrow candidate grades for
-                      TDS review, samples and molding trials.
-                    </p>
-                    <Link
-                      href="/applications"
-                      className="qualification-link inline-flex min-h-11 items-center justify-self-start"
-                    >
-                      See application requirements &rarr;
-                    </Link>
-                  </div>
-                </header>
+        <div className="qualification-evidence-continuum">
+          <section
+            id="grade-review"
+            className="home-stage qualification-sequence overflow-clip text-white"
+          >
+            <div className="site-container">
+              <div className="qualification-layout">
+                <div className="qualification-feature-panel flex min-w-0 flex-col">
+                  <header className="qualification-heading">
+                    <div className="stage-heading-main">
+                      <h2>How We Shortlist a Grade</h2>
+                    </div>
+                    <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
+                      <p className="qualification-intro">
+                        We start with the part, mold, operating conditions and
+                        document needs. These inputs narrow candidate grades for
+                        TDS review, samples and molding trials.
+                      </p>
+                      <Link
+                        href="/applications"
+                        className="qualification-link inline-flex min-h-11 items-center justify-self-start"
+                      >
+                        See application requirements &rarr;
+                      </Link>
+                    </div>
+                  </header>
 
-                <div className="qualification-path flex min-w-0 flex-1 flex-col">
-                  <figure className="qualification-visual">
-                    <Image
-                      fill
-                      src={publicPath("/generated/pom-black-pellets-lab-hero.webp")}
-                      alt="Black engineering-plastic pellets arranged in a laboratory dish."
-                      sizes="(min-width: 1280px) 38vw, (min-width: 768px) 80vw, 100vw"
-                    />
-                    <figcaption>
-                      <span>Review evidence</span>
-                      <strong>
-                        Candidate materials are checked against part, processing
-                        and document constraints.
-                      </strong>
-                    </figcaption>
-                  </figure>
-                  <QualificationSteps steps={selectionFlow} />
+                  <div className="qualification-path flex min-w-0 flex-1 flex-col">
+                    <figure className="qualification-visual">
+                      <Image
+                        fill
+                        src={publicPath("/generated/pom-black-pellets-lab-hero.webp")}
+                        alt="Black engineering-plastic pellets arranged in a laboratory dish."
+                        sizes="(min-width: 1280px) 38vw, (min-width: 768px) 80vw, 100vw"
+                      />
+                      <figcaption>
+                        <span>Review evidence</span>
+                        <strong>
+                          Candidate materials are checked against part, processing
+                          and document constraints.
+                        </strong>
+                      </figcaption>
+                    </figure>
+                    <QualificationSteps steps={selectionFlow} />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <QualitySystemsSection
-          availableDocuments={availableDocuments}
-          certifications={certifications}
-          qualifications={companyQualifications}
-        />
+          <QualitySystemsSection
+            availableDocuments={availableDocuments}
+            certifications={certifications}
+            qualifications={companyQualifications}
+          />
+        </div>
 
         <ExportRoutesSection routes={exportRoutes} />
 
