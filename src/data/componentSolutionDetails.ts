@@ -74,7 +74,7 @@ export const componentSolutionDetails = [
     seo: {
       title: "Precision Plastic Gears | POM Material Selection Guide",
       description:
-        "Review material, wear, tolerance, molding, and validation factors for precision plastic gears, with POM compound directions for engineering applications.",
+        "Compare load, speed, tooth geometry, wear, tolerance, molding, and validation requirements for precision plastic gears using modified POM.",
       image: "/applications/parts/motion-components-detail-cad-hero.webp",
       imageAlt: "CAD visualization of a precision molded gear transmission system",
     },
@@ -82,7 +82,7 @@ export const componentSolutionDetails = [
       eyebrow: "Gear material solutions",
       title: "Precision plastic gears",
       summary:
-        "Screen a practical POM material direction for molded gears where wear, noise, tooth breakage, or dimensional variation is limiting performance. Share the geometry and operating conditions you know; final selection must be validated in the molded gear and complete assembly.",
+        "Compare modified POM options for molded gears affected by wear, noise, tooth breakage, or dimensional variation. Torque, tooth geometry, speed, mate material, lubrication, and accuracy targets define the shortlist.",
       scope:
         "For spur, helical, pinion, planetary, internal, compound, worm-wheel, and sector gears.",
       image: "/applications/parts/motion-components-detail-cad-hero.webp",
@@ -97,14 +97,14 @@ export const componentSolutionDetails = [
       ],
     },
     copy: {
-      reviewInputsLabel: "Inputs for gear material review",
+      reviewInputsLabel: "Inputs for gear material comparison",
       problemTitle: "Start with the gear problem.",
       problemSummary:
         "The same symptom can come from material, geometry, tooling, assembly, or operating conditions. Start with the observed problem before comparing compounds.",
       materialSummary:
-        "These POM directions are starting points for review, not grade approvals. The governing problem and actual gear system determine what deserves validation.",
+        "Compare the options below against the governing failure mode, tooth geometry, load, speed, mate, lubrication, and accuracy target.",
       processSummary:
-        "The first discussion narrows uncertainty. It does not replace molded-part trials or approval in the complete transmission.",
+        "The first response should narrow the material shortlist and define molded-gear and assembly tests. Production approval still depends on the complete transmission.",
     },
     decisionRows: [
       {
@@ -119,7 +119,7 @@ export const componentSolutionDetails = [
         review:
           "Check backlash, runout, center distance, shaft and housing alignment, hot and cold dimensions, and duty cycle.",
         direction:
-          "Consider a friction-modified direction only after geometry, assembly variation, and thermal clearance are separated from material behavior.",
+          "Consider a friction-modified formulation only after geometry, assembly variation, and thermal clearance are separated from material behavior.",
       },
       {
         symptom: "Root cracking or broken teeth",
@@ -140,7 +140,7 @@ export const componentSolutionDetails = [
       {
         title: "Balanced / unfilled POM",
         summary:
-          "A practical starting direction when stiffness, fatigue capability, dimensional control, moldability, and sliding behavior must be balanced.",
+          "A balanced POM option when stiffness, fatigue capability, dimensional control, moldability, and sliding behavior all matter.",
         caution:
           "It still requires validation at the actual torque, speed, temperature, lubrication condition, and target life.",
       },
@@ -160,7 +160,7 @@ export const componentSolutionDetails = [
       },
     ],
     materialNote:
-      "High temperature, humidity, chemical exposure, or a defined electrical requirement may move the project outside the practical POM window. Those cases should be reviewed separately rather than forcing a POM direction.",
+      "High temperature, humidity, chemical exposure, or a defined electrical requirement may move the project outside the practical POM window. In those cases, compare another polymer family instead of forcing POM into the application.",
     inquiryGroups: [
       {
         title: "Load",
@@ -212,9 +212,9 @@ export const componentSolutionDetails = [
           "Identify the likely governing failure mode, separate system and tooling effects, and mark the inputs that still need confirmation.",
       },
       {
-        title: "Compare candidate directions",
+        title: "Compare candidate materials",
         body:
-          "Compare the relevant POM direction and, where verified, the available grade data, TDS, and project-specific document path.",
+          "Compare relevant POM options and available verified grade data or TDS against the governing failure mode.",
       },
       {
         title: "Define the validation step",
@@ -223,11 +223,11 @@ export const componentSolutionDetails = [
       },
     ],
     processOutcome:
-      "A candidate material direction and, where verified, a grade shortlist, available document path, and proposed sample-evaluation step — not automatic final approval.",
+      "A material shortlist, available grade data or document path, and a proposed molded-gear evaluation plan.",
     technicalDetails: [
       {
         value: "material-review",
-        title: "Material review criteria",
+        title: "Material selection criteria",
         summary:
           "The six operating conditions that define a credible gear-material comparison.",
         groups: [
@@ -310,7 +310,7 @@ export const componentSolutionDetails = [
         value: "project-checklist",
         title: "Full project checklist",
         summary:
-          "The complete input set for a deeper material and validation review.",
+          "The complete project input set for material comparison and part validation.",
         groups: [
           {
             title: "Part and mechanism",
@@ -335,7 +335,7 @@ export const componentSolutionDetails = [
       {
         label: "POM Gear Material Selection",
         description:
-          "Define gear duty, compare material directions, and build a representative validation plan.",
+          "Define gear duty, compare POM options, and build a representative validation plan.",
         href: "/resources/pom-gear-material-selection",
       },
       {
@@ -352,10 +352,10 @@ export const componentSolutionDetails = [
       },
     ],
     finalCta: {
-      eyebrow: "Application review",
-      title: "Narrow the candidate direction before sampling.",
+      eyebrow: "Project input",
+      title: "Build a gear shortlist before sampling.",
       body:
-        "Send your gear drawing and the operating details you already know. Taiyi Polymer can help narrow candidate PLATFORM POM directions, identify available grade data or document paths, and define a possible sample-evaluation step. Unknown fields are acceptable for a first review; final selection must be validated in the molded gear and complete assembly.",
+        "Send the gear drawing plus the load, speed, mate, lubrication, accuracy, environment, target-life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose a molded-gear evaluation plan.",
     },
   },
   {
@@ -363,7 +363,7 @@ export const componentSolutionDetails = [
     seo: {
       title: "Plastic Bushings & Sleeves | POM Material Selection",
       description:
-        "Review load, speed, shaft, clearance, wear, molding, and validation factors when evaluating POM compounds for plastic bushings and bearing sleeves.",
+        "Compare load, speed, shaft, clearance, wear, molding, and validation requirements for plastic bushings and bearing sleeves using modified POM.",
       image: "/applications/parts/industrial-linear-guide-cad.webp",
       imageAlt: "CAD visualization of a shaft-supported sliding guide assembly",
     },
@@ -371,7 +371,7 @@ export const componentSolutionDetails = [
       eyebrow: "Sliding component solutions",
       title: "Bushings and sleeves",
       summary:
-        "Screen a practical POM direction for molded bushings where wear, binding, clearance drift, or housing retention is limiting performance. Treat the polymer, shaft, housing, fit, motion, lubricant, and environment as one sliding system.",
+        "Compare modified POM options for molded bushings affected by wear, binding, clearance drift, or housing retention. Treat the polymer, shaft, housing, fit, motion, lubricant, and environment as one sliding system.",
       scope:
         "For cylindrical, flanged, pivot, linkage, guide, and actuator bearing sleeves.",
       image: "/applications/parts/industrial-linear-guide-cad.webp",
@@ -388,14 +388,14 @@ export const componentSolutionDetails = [
       ],
     },
     copy: {
-      reviewInputsLabel: "Inputs for bushing material review",
+      reviewInputsLabel: "Inputs for bushing material comparison",
       problemTitle: "Start with the sliding-system problem.",
       problemSummary:
         "Wear, noise, binding, or clearance change can originate in the compound, shaft, fit, alignment, contamination, or duty cycle. Diagnose the complete interface before changing material.",
       materialSummary:
-        "These material directions are screening starting points, not bearing-life approvals. The installed bushing, production shaft, and actual motion profile determine what deserves validation.",
+        "Compare the options below against the installed fit, shaft condition, load, speed, lubrication, environment, and target life.",
       processSummary:
-        "The first discussion narrows the tribological and dimensional risks. It does not replace installed-bore measurement or endurance testing in the production-intent assembly.",
+        "The first response should narrow the material shortlist and define installed-bore, friction, wear, and endurance tests. Production approval still depends on the complete sliding assembly.",
     },
     decisionRows: [
       {
@@ -410,7 +410,7 @@ export const componentSolutionDetails = [
         review:
           "Measure the installed bore, housing interference, shaft alignment, startup torque, operating temperature, and real running clearance.",
         direction:
-          "Consider a friction-modified direction only after fit, deformation, and thermal-clearance causes are separated from material behavior.",
+          "Consider a friction-modified formulation only after fit, deformation, and thermal-clearance causes are separated from material behavior.",
       },
       {
         symptom: "One-sided wear, scoring, or debris",
@@ -424,14 +424,14 @@ export const componentSolutionDetails = [
         review:
           "Review housing tolerance, interference, lead-in geometry, insertion force, retention features, wall balance, and service temperature.",
         direction:
-          "Screen a balanced or reinforced direction only when assembly strain and retention geometry are already appropriate.",
+          "Compare balanced or reinforced POM only when assembly strain and retention geometry are already appropriate.",
       },
     ],
     materialDirections: [
       {
         title: "Balanced / unfilled POM",
         summary:
-          "A baseline direction for precision molded sleeves needing dimensional stability, moldability, useful stiffness and toughness, and stable sliding behavior.",
+          "A baseline POM option for precision molded sleeves needing dimensional stability, moldability, useful stiffness and toughness, and stable sliding behavior.",
         caution:
           "It still requires the production shaft, installed clearance, load, speed, temperature, lubricant, and target life to be tested together.",
       },
@@ -445,7 +445,7 @@ export const componentSolutionDetails = [
       {
         title: "Reinforced POM",
         summary:
-          "A structural direction when stiffness, creep, housing support, or load-induced deformation is more important than minimizing tribological complexity.",
+          "A reinforced option when stiffness, creep, housing support, or load-induced deformation matters more than minimizing tribological complexity.",
         caution:
           "Fiber orientation can change bore geometry, warpage, shrinkage, and counterface wear, especially in small precision sleeves.",
       },
@@ -503,9 +503,9 @@ export const componentSolutionDetails = [
           "Separate load, motion, shaft, housing fit, environment, and acceptance targets, then mark which inputs still need confirmation.",
       },
       {
-        title: "Compare candidate directions",
+        title: "Compare candidate materials",
         body:
-          "Compare the relevant POM direction and, where verified, available grade data and document paths against the governing failure mode.",
+          "Compare relevant POM options and available verified grade data against the governing failure mode.",
       },
       {
         title: "Plan component validation",
@@ -514,11 +514,11 @@ export const componentSolutionDetails = [
       },
     ],
     processOutcome:
-      "A candidate material direction and, where verified, a grade shortlist, available document path, and proposed installed-bushing evaluation step — not automatic final approval.",
+      "A material shortlist, available grade data or document path, and a proposed installed-bushing evaluation plan.",
     technicalDetails: [
       {
         value: "sliding-system",
-        title: "Sliding-system review criteria",
+        title: "Sliding-system criteria",
         summary:
           "The operating variables that define a credible bushing comparison.",
         groups: [
@@ -586,7 +586,7 @@ export const componentSolutionDetails = [
         value: "bushing-checklist",
         title: "Full project checklist",
         summary:
-          "The complete input set for a deeper material and validation review.",
+          "The complete project input set for material comparison and bushing validation.",
         groups: [
           {
             title: "Part and interface",
@@ -615,7 +615,7 @@ export const componentSolutionDetails = [
       {
         label: "Material Selection Guide",
         description:
-          "Translate operating conditions and failure modes into a defensible candidate-material direction.",
+          "Translate operating conditions and failure modes into a defensible material shortlist.",
         href: "/resources/material-selection-guide",
       },
       {
@@ -626,10 +626,10 @@ export const componentSolutionDetails = [
       },
     ],
     finalCta: {
-      eyebrow: "Application review",
+      eyebrow: "Project input",
       title: "Evaluate the complete sliding interface.",
       body:
-        "Send the bushing drawing and the shaft, load, motion, housing-fit, clearance, lubrication, environment, target-life, and failure details you already know. Taiyi Polymer can help narrow candidate PLATFORM POM directions, identify available grade data or document paths, and define a possible installed-bushing evaluation step. Final selection must be validated in the production-intent assembly.",
+        "Send the bushing drawing plus the shaft, load, motion, housing fit, clearance, lubrication, environment, target-life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose an installed-bushing evaluation plan.",
     },
   },
   {
@@ -637,7 +637,7 @@ export const componentSolutionDetails = [
     seo: {
       title: "Plastic Conveyor Chain Components | POM Material Selection",
       description:
-        "Review chain pull, hinge wear, guide friction, pitch, environment, molding, and validation factors for plastic conveyor chain components.",
+        "Compare chain pull, hinge wear, guide friction, pitch, environment, molding, and validation requirements for plastic conveyor chain components.",
       image: "/applications/parts/conveyor-chain-plates-wide.webp",
       imageAlt: "Injection-molded plastic conveyor chain plates and links",
     },
@@ -645,7 +645,7 @@ export const componentSolutionDetails = [
       eyebrow: "Conveyor material solutions",
       title: "Conveyor chain components",
       summary:
-        "Screen a practical material direction for molded chain links where elongation, hinge wear, plastic dust, drive load, breakage, or static control is limiting the line. Evaluate the links, pins, sprockets, guides, layout, and environment as one conveyor system.",
+        "Compare material options for molded chain links affected by elongation, hinge wear, plastic dust, drive load, breakage, or static control. Evaluate the links, pins, sprockets, guides, layout, and environment as one conveyor system.",
       scope:
         "For flat-top, side-flexing, modular, hinge, attachment, flight, and snap-on chain components.",
       image: "/applications/parts/conveyor-chain-plates-wide.webp",
@@ -661,14 +661,14 @@ export const componentSolutionDetails = [
       ],
     },
     copy: {
-      reviewInputsLabel: "Inputs for conveyor chain material review",
+      reviewInputsLabel: "Inputs for conveyor chain material comparison",
       problemTitle: "Start with the conveyor-system problem.",
       problemSummary:
         "The same symptom can come from compound behavior, chain pull, hinge geometry, guide condition, sprocket compatibility, contamination, or cleaning exposure. Diagnose the line before changing material.",
       materialSummary:
-        "These directions are starting points for component and system review, not chain-life approvals. The assembled chain, actual guides, sprockets, layout, and operating cycle determine what deserves validation.",
+        "Compare the options below against chain pull, hinge geometry, guide friction, sprocket engagement, environment, and the target service life.",
       processSummary:
-        "The first discussion narrows the load, wear, dimensional, and environmental risks. It does not replace testing of production links in the complete conveyor.",
+        "The first response should narrow the material shortlist and define dimensional, wear, drive-load, and endurance tests. Production approval still depends on the complete conveyor.",
     },
     decisionRows: [
       {
@@ -676,7 +676,7 @@ export const componentSolutionDetails = [
         review:
           "Measure accumulated pitch, hinge and pin wear, chain pull, creep, sprocket condition, link dimensions, and operating temperature.",
         direction:
-          "Compare a wear-resistant or structurally balanced POM direction only after the source of pitch growth is identified.",
+          "Compare wear-resistant or structurally balanced POM only after the source of pitch growth is identified.",
       },
       {
         symptom: "Plastic dust, heat, or high drive load",
@@ -718,14 +718,14 @@ export const componentSolutionDetails = [
       {
         title: "Reinforced POM",
         summary:
-          "A structural direction when stiffness, creep, or load-induced deformation limits a chain component.",
+          "A reinforced option when stiffness, creep, or load-induced deformation limits a chain component.",
         caution:
           "Fiber orientation can change pitch shrinkage, impact behavior, hinge durability, flatness, and counterface wear.",
       },
       {
         title: "Conductive or static-dissipative compounds",
         summary:
-          "A project-specific direction when conveyed products require a defined electrical classification and grounded handling path.",
+          "A project-specific electrically modified option when conveyed products require a defined electrical classification and grounded handling path.",
         caution:
           "Resistance, continuity, wear, contamination, humidity, and mechanical life must be verified on the assembled conveyor, not pellets alone.",
       },
@@ -783,9 +783,9 @@ export const componentSolutionDetails = [
           "Separate chain pull, hinge articulation, guide friction, curves, sprocket engagement, environment, and electrical requirements.",
       },
       {
-        title: "Compare candidate directions",
+        title: "Compare candidate materials",
         body:
-          "Compare relevant POM directions and, where verified, available grade data against the governing failure and molding constraints.",
+          "Compare relevant POM options and available verified grade data against the governing failure and molding constraints.",
       },
       {
         title: "Define assembled-chain validation",
@@ -794,7 +794,7 @@ export const componentSolutionDetails = [
       },
     ],
     processOutcome:
-      "A candidate material direction and, where verified, a grade shortlist, document path, and proposed link-and-conveyor evaluation step — not automatic final approval.",
+      "A material shortlist, available grade data or document path, and a proposed link-and-conveyor evaluation plan.",
     technicalDetails: [
       {
         value: "conveyor-review",
@@ -866,7 +866,7 @@ export const componentSolutionDetails = [
         value: "chain-checklist",
         title: "Full project checklist",
         summary:
-          "The complete input set for a deeper material and conveyor-validation review.",
+          "The complete project input set for material comparison and conveyor validation.",
         groups: [
           {
             title: "Part and conveyor",
@@ -906,10 +906,10 @@ export const componentSolutionDetails = [
       },
     ],
     finalCta: {
-      eyebrow: "Application review",
+      eyebrow: "Project input",
       title: "Evaluate the chain as a complete conveyor system.",
       body:
-        "Send the chain drawing and the load, speed, pins, sprockets, wear strips, layout, lubrication, environment, target life, and failure details you already know. Taiyi Polymer can help narrow candidate PLATFORM POM directions, identify available grade data or document paths, and define a possible assembled-chain evaluation step. Final selection must be validated in the production-intent conveyor.",
+        "Send the chain drawing plus the load, speed, pins, sprockets, wear strips, layout, lubrication, environment, target life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose an assembled-chain evaluation plan.",
     },
   },
   {
@@ -917,7 +917,7 @@ export const componentSolutionDetails = [
     seo: {
       title: "Plastic Valve Spools & Cartridges | POM Material Selection",
       description:
-        "Review pressure, fluid chemistry, spool clearance, seals, molding, and valve-level validation when evaluating POM for valve internals.",
+        "Compare pressure, fluid chemistry, spool clearance, seals, molding, and valve-level validation requirements when evaluating POM for valve internals.",
       image: "/applications/parts/water-control-detail-cad-hero.webp",
       imageAlt: "CAD visualization of a molded valve spool inside a fluid-control assembly",
     },
@@ -925,7 +925,7 @@ export const componentSolutionDetails = [
       eyebrow: "Fluid control components",
       title: "Valve spools and cartridges",
       summary:
-        "Determine whether a molded POM direction merits review for selected valve internals where sticking, leakage, scoring, dimensional drift, or unstable actuation is limiting performance. Pressure, medium, seals, clearance, and flow function define the application boundary first.",
+        "Determine whether molded POM fits selected valve internals affected by sticking, leakage, scoring, dimensional drift, or unstable actuation. Pressure, medium, seals, clearance, and flow function define the application boundary first.",
       scope:
         "For selected low- or moderate-pressure spools, pistons, guides, cartridge cages, seal carriers, and flow-control inserts.",
       image: "/applications/parts/water-control-detail-cad-hero.webp",
@@ -941,14 +941,14 @@ export const componentSolutionDetails = [
       ],
     },
     copy: {
-      reviewInputsLabel: "Inputs for valve-component material review",
+      reviewInputsLabel: "Inputs for valve-component material comparison",
       problemTitle: "Start with the valve-function problem.",
       problemSummary:
         "Sticking, leakage, scoring, or variable flow can originate in pressure forces, clearance, seals, contamination, fluid chemistry, tooling, or the compound. Diagnose the valve before changing polymer.",
       materialSummary:
-        "These directions are screening starting points, not pressure or leakage approvals. The molded component, mating bore, seals, real fluid, and complete valve determine what deserves validation.",
+        "Compare the options below against pressure, fluid chemistry, clearance, seals, actuation, contamination, and leakage targets.",
       processSummary:
-        "The first discussion should eliminate unsuitable material windows early. It does not replace dimensional inspection, pressure and leakage testing, or cycle validation in the production-intent valve.",
+        "The first response should eliminate unsuitable materials and define dimensional, pressure, leakage, fluid-exposure, and cycle tests. Production approval still depends on the complete valve.",
     },
     decisionRows: [
       {
@@ -963,7 +963,7 @@ export const componentSolutionDetails = [
         review:
           "Inspect seals, spool and bore wear, scoring, creep, metering geometry, cavity variation, actual clearance, temperature, and spool position.",
         direction:
-          "Compare a dimensionally stable POM direction only when material wear or deformation remains part of the limiting mechanism.",
+          "Compare dimensionally stable POM only when material wear or deformation remains part of the limiting mechanism.",
       },
       {
         symptom: "Scoring, intermittent movement, or debris",
@@ -977,7 +977,7 @@ export const componentSolutionDetails = [
         review:
           "Review pressure and surge loads, thin sections, weld lines, assembly stress, fluid compatibility, temperature, core accuracy, and gate location.",
         direction:
-          "Consider reinforced or alternative high-temperature directions only when structural and chemical boundaries justify them.",
+          "Consider reinforced POM or a higher-temperature polymer only when structural and chemical boundaries justify it.",
       },
     ],
     materialDirections: [
@@ -998,12 +998,12 @@ export const componentSolutionDetails = [
       {
         title: "Reinforced POM",
         summary:
-          "A structural direction for selected cartridge cages, carriers, or guides where stiffness and deformation control dominate.",
+          "A reinforced option for selected cartridge cages, carriers, or guides where stiffness and deformation control dominate.",
         caution:
           "Fiber orientation can affect roundness, shrinkage, and seal or bore interaction, so it is not an automatic choice for precision spool lands.",
       },
       {
-        title: "PA or PPA structural direction",
+        title: "PA or PPA structural option",
         summary:
           "A separate project path when a valve component needs a different hot, wet, or structural balance than the validated POM window can provide.",
         caution:
@@ -1063,9 +1063,9 @@ export const componentSolutionDetails = [
           "Screen pressure, pressure differential, medium, temperature, clearance, seals, actuation, contamination, and acceptance targets before comparing compounds.",
       },
       {
-        title: "Compare candidate directions",
+        title: "Compare candidate materials",
         body:
-          "Compare relevant POM or alternative structural directions and, where verified, available grade data against the governing valve failure.",
+          "Compare relevant POM or alternative structural materials and available verified grade data against the governing valve failure.",
       },
       {
         title: "Define valve-level validation",
@@ -1074,7 +1074,7 @@ export const componentSolutionDetails = [
       },
     ],
     processOutcome:
-      "An early material-fit decision and, where appropriate, a candidate direction, grade shortlist, document path, and proposed valve-level evaluation step — not automatic final approval.",
+      "A material-fit decision, candidate shortlist, available grade data or document path, and a proposed valve-level evaluation plan.",
     technicalDetails: [
       {
         value: "valve-review",
@@ -1146,7 +1146,7 @@ export const componentSolutionDetails = [
         value: "valve-checklist",
         title: "Full project checklist",
         summary:
-          "The complete input set for a deeper material and valve-qualification review.",
+          "The complete project input set for material comparison and valve qualification.",
         groups: [
           {
             title: "Part and operating system",
@@ -1186,10 +1186,10 @@ export const componentSolutionDetails = [
       },
     ],
     finalCta: {
-      eyebrow: "Application review",
+      eyebrow: "Project input",
       title: "Define the fluid system before selecting the polymer.",
       body:
-        "Send the component drawing and the pressures, medium, temperatures, mating bore, clearances, seals, actuation, flow targets, and failure details you already know. Taiyi Polymer can help determine whether a PLATFORM POM direction merits sampling, identify available grade data or document paths, and define a possible valve-level evaluation step. Final selection must be validated in the production-intent valve.",
+        "Send the component drawing plus the pressures, medium, temperatures, mating bore, clearances, seals, actuation, flow targets, and failure details already available. Taiyi Polymer can determine whether a PLATFORM POM option merits sampling, identify available grade data or document paths, and propose a valve-level evaluation plan.",
     },
   },
   {
@@ -1197,7 +1197,7 @@ export const componentSolutionDetails = [
     seo: {
       title: "Textile Guide Components | POM Material Selection",
       description:
-        "Review yarn, speed, tension, contact geometry, surface finish, wear, static control, molding, and validation for molded textile guide components.",
+        "Compare yarn, speed, tension, contact geometry, surface finish, wear, static control, molding, and validation requirements for textile guide components.",
       image: "/applications/parts/textile-machinery-hero.webp",
       imageAlt: "Textile machinery with yarn paths and guide mechanisms",
     },
@@ -1205,7 +1205,7 @@ export const componentSolutionDetails = [
       eyebrow: "Yarn handling components",
       title: "Textile guide components",
       summary:
-        "Screen a practical material direction for molded yarn guides where tension drift, filament damage, groove wear, deposits, or static behavior is limiting production. Evaluate the yarn, contact surface, geometry, speed, environment, and service life together.",
+        "Compare material options for molded yarn guides affected by tension drift, filament damage, groove wear, deposits, or static behavior. Evaluate the yarn, contact surface, geometry, speed, environment, and service life together.",
       scope:
         "For yarn eyes, thread and separator guides, slotted guides, hooks, shoes, traverse bodies, and molded guide carriers.",
       image: "/applications/parts/textile-machinery-hero.webp",
@@ -1221,14 +1221,14 @@ export const componentSolutionDetails = [
       ],
     },
     copy: {
-      reviewInputsLabel: "Inputs for textile-guide material review",
+      reviewInputsLabel: "Inputs for textile-guide material comparison",
       problemTitle: "Start with the yarn-path problem.",
       problemSummary:
         "Tension, breakage, wear, or static symptoms can originate in yarn construction, contact geometry, guide alignment, surface defects, deposits, environment, or material behavior. Inspect the actual yarn path first.",
       materialSummary:
-        "These directions are starting points for yarn-contact or structural-guide review, not universal friction or service-life approvals. The production yarn and molded contact surface determine what deserves validation.",
+        "Compare the options below against yarn construction, contact geometry, speed, tension, surface finish, environment, and target life.",
       processSummary:
-        "The first discussion narrows the yarn, surface, geometry, wear, and static-control risks. It does not replace production-yarn testing or machine validation over representative operating time.",
+        "The first response should narrow the contact and carrier materials and define tension, yarn-damage, wear, static, and endurance tests. Production approval still depends on the actual yarn and machine.",
     },
     decisionRows: [
       {
@@ -1236,7 +1236,7 @@ export const componentSolutionDetails = [
         review:
           "Check yarn type and finish, guide deposits, contact radius, wrap angle, alignment, speed, input tension, vibration, and surface condition.",
         direction:
-          "Screen a low-friction POM direction only when the molded yarn-contact interface remains the governing cause.",
+          "Screen low-friction POM only when the molded yarn-contact interface remains the governing cause.",
       },
       {
         symptom: "Yarn breakage, fuzz, or filament damage",
@@ -1278,14 +1278,14 @@ export const componentSolutionDetails = [
       {
         title: "Reinforced POM for carriers",
         summary:
-          "A structural direction for guide bodies, brackets, or mounting arms where stiffness and alignment matter more than direct contact-surface behavior.",
+          "A reinforced option for guide bodies, brackets, or mounting arms where stiffness and alignment matter more than direct contact-surface behavior.",
         caution:
           "Fiber orientation can change warpage, guide alignment, surface evolution, and yarn damage if reinforcement lies on the active path.",
       },
       {
         title: "Conductive or static-dissipative compounds",
         summary:
-          "A project-specific direction when yarn attraction, lint buildup, or process instability is linked to a defined electrostatic requirement.",
+          "A project-specific electrically modified option when yarn attraction, lint buildup, or process instability is linked to a defined electrostatic requirement.",
         caution:
           "Electrical performance depends on the installed mounting and ground path and must be checked across relevant humidity, contamination, and wear conditions.",
       },
@@ -1343,9 +1343,9 @@ export const componentSolutionDetails = [
           "Map the yarn, finish, tension, speed, contact geometry, surface condition, alignment, environment, and acceptance targets.",
       },
       {
-        title: "Compare contact and carrier directions",
+        title: "Compare contact and carrier materials",
         body:
-          "Compare relevant POM directions or hybrid contact architecture and, where verified, available grade data against the governing failure.",
+          "Compare relevant POM options or hybrid contact architecture and available verified grade data against the governing failure.",
       },
       {
         title: "Plan yarn and machine validation",
@@ -1354,11 +1354,11 @@ export const componentSolutionDetails = [
       },
     ],
     processOutcome:
-      "A candidate contact and carrier direction and, where verified, a grade shortlist, document path, and proposed production-yarn evaluation step — not automatic final approval.",
+      "A contact and carrier material shortlist, available grade data or document path, and a proposed production-yarn evaluation plan.",
     technicalDetails: [
       {
         value: "textile-review",
-        title: "Yarn-contact review criteria",
+        title: "Yarn-contact criteria",
         summary:
           "The yarn, motion, geometry, surface, and environment inputs that govern guide performance.",
         groups: [
@@ -1426,7 +1426,7 @@ export const componentSolutionDetails = [
         value: "textile-checklist",
         title: "Full project checklist",
         summary:
-          "The complete input set for a deeper material and textile-machine review.",
+          "The complete project input set for material comparison and textile-machine validation.",
         groups: [
           {
             title: "Guide, yarn, and machine",
@@ -1466,10 +1466,10 @@ export const componentSolutionDetails = [
       },
     ],
     finalCta: {
-      eyebrow: "Application review",
+      eyebrow: "Project input",
       title: "Match the guide material to the yarn and machine.",
       body:
-        "Send the guide drawing and the yarn, speed, tension, contact geometry, surface, environment, static, target-life, and failure details you already know. Taiyi Polymer can help narrow candidate PLATFORM POM directions, identify available grade data or document paths, and define a possible production-yarn evaluation step. Final selection must be validated in the production-intent machine.",
+        "Send the guide drawing plus the yarn, speed, tension, contact geometry, surface, environment, static, target-life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose a production-yarn evaluation plan.",
     },
   },
   {
@@ -1477,7 +1477,7 @@ export const componentSolutionDetails = [
     seo: {
       title: "IC Handling Trays | ESD Material Selection and Design",
       description:
-        "Review ESD behavior, tray flatness, pocket geometry, process temperature, cleanliness, automation, molding, and qualification for IC handling trays.",
+        "Compare ESD behavior, tray flatness, pocket geometry, process temperature, cleanliness, automation, molding, and qualification requirements for IC handling trays.",
       image: "/applications/parts/electronics-chip-holder.png",
       imageAlt: "Black molded matrix tray for precision electronic-component handling",
     },
@@ -1485,7 +1485,7 @@ export const componentSolutionDetails = [
       eyebrow: "Semiconductor handling",
       title: "IC handling trays",
       summary:
-        "Determine whether an electrically modified POM or another polymer direction merits review for a precision handling tray. ESD classification, process temperature, flatness, pocket geometry, cleanliness, automation, and reuse conditions must be defined together.",
+        "Determine whether electrically modified POM or another polymer fits a precision handling tray. Define the ESD class, process temperature, flatness, pocket geometry, cleanliness, automation, and reuse conditions together.",
       scope:
         "For matrix trays and molded carriers used to transport, store, sort, test, or present packaged semiconductor devices.",
       image: "/applications/parts/electronics-chip-holder.png",
@@ -1501,14 +1501,14 @@ export const componentSolutionDetails = [
       ],
     },
     copy: {
-      reviewInputsLabel: "Inputs for IC-tray material review",
+      reviewInputsLabel: "Inputs for IC-tray material comparison",
       problemTitle: "Start with the handling-process problem.",
       problemSummary:
         "Pickup faults, device movement, ESD failures, particles, or warpage can originate in tray geometry, molding, conditioning, automation, handling, or compound behavior. Diagnose the complete process first.",
       materialSummary:
-        "These directions are qualification starting points, not ESD, bake, cleanliness, or device-protection approvals. Electrical and dimensional behavior must be verified on the molded tray in the real handling process.",
+        "Compare the options below against the ESD class, temperature window, flatness, pocket geometry, cleanliness, automation, and reuse conditions.",
       processSummary:
-        "The first discussion should eliminate unsuitable electrical and temperature windows early. It does not replace molded-tray measurement, conditioning, or qualification with representative devices and automation.",
+        "The first response should eliminate unsuitable materials and define electrical, dimensional, thermal, cleanliness, device-fit, and automation tests. Production approval still depends on the molded tray and actual handling process.",
     },
     decisionRows: [
       {
@@ -1516,14 +1516,14 @@ export const componentSolutionDetails = [
         review:
           "Measure complete-tray flatness, pocket matrix, datums, outline, stacking features, conditioning, gate and flow orientation, cooling, and handler calibration.",
         direction:
-          "Compare dimensionally controlled or reinforced directions only when tray architecture and molding balance are already credible.",
+          "Compare dimensionally controlled or reinforced materials only when tray architecture and molding balance are already credible.",
       },
       {
         symptom: "Device movement, contact, or pocket damage",
         review:
           "Compare the full package drawing with pocket supports, terminal clearances, draft, corner relief, openings, flash, ejector witness, and loading method.",
         direction:
-          "Screen a stable molded-material direction only after the pocket architecture protects the actual semiconductor package.",
+          "Screen a dimensionally stable molding material only after the pocket architecture protects the actual semiconductor package.",
       },
       {
         symptom: "ESD classification or charge-control failure",
@@ -1544,26 +1544,26 @@ export const componentSolutionDetails = [
       {
         title: "Conductive or static-dissipative POM",
         summary:
-          "The primary POM direction for trays that directly handle ESD-sensitive devices and whose validated thermal window suits the process.",
+          "The primary POM option for trays that directly handle ESD-sensitive devices when its validated thermal window suits the process.",
         caution:
           "Resistance, charge behavior, filler cleanliness, flow, shrinkage, flatness, pocket dimensions, wear, and reuse stability require molded-tray qualification.",
       },
       {
         title: "Dimensionally controlled or reinforced POM",
         summary:
-          "A project direction when tray stiffness or long-span deformation limits an otherwise suitable lower-temperature POM system.",
+          "A reinforced option when tray stiffness or long-span deformation limits an otherwise suitable lower-temperature POM system.",
         caution:
           "Flow orientation can create directional shrinkage and warpage and can change ESD behavior or the surface exposed to the semiconductor.",
       },
       {
         title: "Unfilled POM for non-ESDS fixtures",
         summary:
-          "A possible direction for mechanical dividers, alignment parts, or associated handling components that do not directly require ESD control.",
+          "An option for mechanical dividers, alignment parts, or associated handling components that do not directly require ESD control.",
         caution:
           "Conventional unfilled POM is not a default ESD-tray material; direct ESDS handling requires a verified electrical specification.",
       },
       {
-        title: "PPA or another high-temperature direction",
+        title: "PPA or another high-temperature option",
         summary:
           "A separate path when process temperature, duration, loading, or reuse exceeds the validated POM window.",
         caution:
@@ -1634,11 +1634,11 @@ export const componentSolutionDetails = [
       },
     ],
     processOutcome:
-      "An early material-window decision and, where appropriate, a candidate system, grade shortlist, document path, and proposed molded-tray qualification step — not automatic final approval.",
+      "A material-window decision, candidate shortlist, available grade data or document path, and a proposed molded-tray qualification plan.",
     technicalDetails: [
       {
         value: "tray-review",
-        title: "IC-tray review criteria",
+        title: "IC-tray qualification criteria",
         summary:
           "The electrical, thermal, dimensional, cleanliness, and handling inputs that govern tray fit.",
         groups: [
@@ -1706,7 +1706,7 @@ export const componentSolutionDetails = [
         value: "tray-checklist",
         title: "Full project checklist",
         summary:
-          "The complete input set for a deeper material and IC-tray qualification review.",
+          "The complete project input set for material comparison and IC-tray qualification.",
         groups: [
           {
             title: "Device, tray, and process",
@@ -1746,10 +1746,10 @@ export const componentSolutionDetails = [
       },
     ],
     finalCta: {
-      eyebrow: "Application review",
+      eyebrow: "Project input",
       title: "Define the handling process before selecting the tray material.",
       body:
-        "Send the package drawing and the tray standard, ESD requirement, process temperature, pocket geometry, flatness, automation, cleanliness, reuse, and failure details you already know. Taiyi Polymer can help determine whether a PLATFORM POM or another candidate direction merits molding, identify available grade data or document paths, and define a possible tray-qualification step. Final selection must be validated in the production-intent handling process.",
+        "Send the package drawing plus the tray standard, ESD requirement, process temperature, pocket geometry, flatness, automation, cleanliness, reuse, and failure details already available. Taiyi Polymer can determine whether PLATFORM POM or another polymer merits molding, identify available grade data or document paths, and propose a tray-qualification plan.",
     },
   },
 ] as const satisfies readonly ComponentSolutionDetail[];

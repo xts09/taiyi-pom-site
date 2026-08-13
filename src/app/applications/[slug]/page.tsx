@@ -452,8 +452,13 @@ export async function generateMetadata({
     };
   }
 
+  const titleSubject =
+    application.slug === "washing-machine-components"
+      ? "Washing Machine"
+      : application.title;
+
   return createPageMetadata({
-    title: `${application.title} | Taiyi Polymer`,
+    title: `${titleSubject} Engineering Plastics | Taiyi Polymer`,
     description: `${application.description} Review candidate material directions, typical parts, and application selection factors.`,
     path: `/applications/${application.slug}`,
     image: application.heroImage?.src,

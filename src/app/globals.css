@@ -28,6 +28,12 @@
   --font-geist-mono: "Cascadia Mono", "Consolas", "SFMono-Regular", monospace;
 }
 
+.site-container {
+  box-sizing: border-box;
+  width: var(--site-rail-width);
+  margin-inline: auto;
+}
+
 @property --count {
   syntax: "<integer>";
   inherits: false;
@@ -3254,7 +3260,7 @@ body {
   inset: 0;
   background:
     linear-gradient(102deg, rgba(3, 16, 29, 0.98) 0%, rgba(3, 16, 29, 0.9) 52%, rgba(5, 28, 46, 0.74) 100%),
-    url("/material-satin-midnight-v1.png") center 48% / cover no-repeat;
+    url("/material-satin-midnight-v1.webp") center 48% / cover no-repeat;
   content: "";
   opacity: 0.2;
   pointer-events: none;

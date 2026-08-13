@@ -55,7 +55,7 @@
       oklch(12% 0.031 252 / 0.28),
       oklch(12% 0.031 252 / 0.52)
     ),
-    url("/material-satin-midnight-v1.png") center 56% / cover no-repeat;
+    url("/material-satin-midnight-v1.webp") center 56% / cover no-repeat;
 
   min-height: 100vh;
   overflow-x: clip;
@@ -948,7 +948,7 @@
       oklch(12% 0.031 252 / 0.28),
       oklch(12% 0.031 252 / 0.52)
     ),
-    url("/material-satin-midnight-v1.png") center 56% / cover no-repeat;
+    url("/material-satin-midnight-v1.webp") center 56% / cover no-repeat;
   --about-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --overview-canvas: oklch(97.8% 0.004 245);
   --overview-paper: oklch(99.5% 0.002 245);

@@ -52,7 +52,7 @@ const productFamilies = [
     title: "Base POM Resin",
     label: "Selected Sourcing",
     description:
-      "Selected base resin options for customers who need baseline POM comparison, technical documents, and application review.",
+      "Selected base resin options for baseline POM comparison, technical documents, and project sampling.",
     href: "/products/categories/base-pom-resin",
     metricValue: basePomGradeCount,
     metricLabel: "base grades",
@@ -92,7 +92,7 @@ const productFamilies = [
     title: "Conductive & Antistatic Compounds",
     label: "Cross-Material",
     description:
-      "Compare CNT antistatic and carbon-fiber conductive directions across POM, ABS, PC, PA6, PA66, PPS, TPU, and other matrices.",
+      "Compare CNT antistatic and carbon-fiber conductive options across POM, ABS, PC, PA6, PA66, PPS, TPU, and other matrices.",
     href: "/products/conductive-antistatic-compounds",
     metricValue: conductiveCompounds.length,
     metricLabel: "listed grades",
@@ -105,7 +105,7 @@ const requirementPaths = [
     label: "Wear / Friction",
     title: "Moving or sliding parts",
     description:
-      "Review load, speed, counterpart, lubrication, noise, and the required wear life.",
+      "Compare load, speed, counterpart, lubrication, noise, and the required wear life.",
     href: "/products/categories/wear-resistant-low-friction-pom-compound",
   },
   {
@@ -113,7 +113,7 @@ const requirementPaths = [
     label: "Stiffness / Dimension",
     title: "Precision under load",
     description:
-      "Review stiffness, creep, shrinkage direction, warpage, and molded flow orientation.",
+      "Compare stiffness, creep, shrinkage behavior, warpage, and molded flow orientation.",
     href: "/products/categories/glass-fiber-reinforced-pom-compound",
   },
   {
@@ -121,7 +121,7 @@ const requirementPaths = [
     label: "Impact / Assembly",
     title: "Snap fits or shock loads",
     description:
-      "Review impact direction, temperature, weld lines, and assembly stress before selecting toughness.",
+      "Check impact load, temperature, weld lines, and assembly stress before selecting toughness.",
     href: "/products/categories/high-impact-pom-compound",
   },
   {
@@ -195,9 +195,9 @@ export default function ProductsPage() {
               className="mt-4 max-w-3xl text-lg leading-8"
               style={{ "--item-index": 3 } as CSSProperties}
             >
-              Start with what the part must do. Review a likely material
-              direction, then compare listed grades, processing considerations,
-              and available documents.
+              Start with what the part must do, choose the closest material
+              family, then compare listed grades, processing constraints and
+              available documents.
             </p>
 
             <div
@@ -234,7 +234,7 @@ export default function ProductsPage() {
             <h2 id="selection-start-title">What must the part do?</h2>
             <p>
               Choose the closest screening path. Each route explains the
-              tradeoffs to review before comparing an exact grade.
+              tradeoffs that matter before comparing an exact grade.
             </p>
             <p className="product-workbench-note">
               Need higher temperature or another polymer family? Browse the

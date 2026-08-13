@@ -59,8 +59,8 @@ export function AboutOverviewHero({
   heroImage,
   intro,
   label = "Engineering Plastic Compounds",
-  title = "Engineering plastics, compounded for production.",
-  summary = "Modified POM is our core line, backed by in-house compounding, material evaluation and grade-specific documentation.",
+  title = "Modified POM, compounded for industrial production.",
+  summary = "Modified POM is our core line. Selected PA6, PA66 and PPA compounds extend the range when the part requires a different material family.",
 }: AboutOverviewHeroProps) {
   return (
     <>
@@ -231,10 +231,10 @@ export function AboutFacility({ figures, rows }: AboutFacilityProps) {
 export function AboutCredentials({
   availableDocuments,
   certifications,
-  description = "Jiangsu Taiyi Nano Technology Co., Ltd. is recognized as a National High-Tech Enterprise and a Jiangsu Provincial Specialized and Innovative SME, with 29 granted patents. The certificates and material documents below support supplier qualification.",
+  description = "Company qualifications, management-system certificates and available material documents are grouped here for supplier qualification.",
   presentation = "card",
   qualifications,
-  title = "Credentials, certificates and supplier documentation",
+  title = "Evidence for supplier qualification.",
   tone = "dark",
 }: CredentialSupportProps) {
   return (
@@ -356,8 +356,8 @@ export function AboutCompanySnapshot({
         <header className={styles.manufacturingOverviewHeader}>
           <p id="manufacturing-overview-title">Manufacturing in numbers</p>
           <p>
-            Capacity, production lines and in-house test equipment at our
-            Yancheng facility.
+            Factory scale for trial batches, material testing and repeat
+            production.
           </p>
         </header>
         <MetricGroup

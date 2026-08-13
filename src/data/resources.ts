@@ -2286,7 +2286,7 @@ export const resourcePages: ResourcePage[] = [
     relatedLinks: [
       {
         label: "Conductive and Antistatic Compounds",
-        href: "/conductive-antistatic-compounds",
+        href: "/products/conductive-antistatic-compounds",
       },
       {
         label: "PA6 / PA66 Moisture Guide",

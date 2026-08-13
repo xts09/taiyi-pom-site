@@ -43,7 +43,7 @@ export async function generateMetadata({
   }
 
   return createPageMetadata({
-    title: detail?.seo.title ?? `${solution.title} Material Review | Taiyi Polymer`,
+    title: detail?.seo.title ?? `${solution.title} Material Selection | Taiyi Polymer`,
     description: detail?.seo.description ?? solution.summary,
     path: `/components/${solution.slug}`,
     image: detail?.seo.image,

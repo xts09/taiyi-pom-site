@@ -31,7 +31,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     createUrlEntry("", 1, "weekly"),
     createUrlEntry("/products", 0.9, "weekly"),
-    createUrlEntry("/products/conductive-antistatic-compounds", 0.8, "weekly"),
     createUrlEntry("/applications", 0.9, "weekly"),
     createUrlEntry("/components", 0.8, "weekly"),
     createUrlEntry("/resources", 0.85, "weekly"),

@@ -98,25 +98,25 @@ export const companyOverview = [
 
 export const factoryProofRows: FactoryProofRow[] = [
   {
-    title: "Production & Batch Coordination",
+    title: "Repeat Production & Batch Records",
     eyebrow: "Repeat Supply",
     description:
-      "Production, warehouse handling and batch documentation are coordinated at the Yancheng site for repeat industrial orders.",
+      "Production and warehouse handling are paired with batch records for repeat industrial orders.",
     imageSrc: "/factory-warehouse-inventory.jpg",
     imageAlt: "Taiyi Polymer packaged material inventory and warehouse handling area",
     imageLabel: "Warehouse Inventory",
     imageSide: "right",
     imageVariant: "warehouse",
     points: [
-      "Production and warehousing at the Yancheng site",
-      "Warehouse handling coordinated with batch documentation",
+      "Repeat production and warehousing at the Yancheng site",
+      "Batch documentation available for repeat orders",
     ],
   },
   {
     title: "In-House Compounding",
     eyebrow: "Twin-Screw Production",
     description:
-      "Fifteen twin-screw extrusion lines are used to prepare trial compounds and reproduce confirmed grades for repeat production.",
+      "Trial compounds and confirmed production grades use the same in-house extrusion capability.",
     imageSrc: "/factory-extrusion.png",
     imageAlt: "Taiyi Polymer twin-screw extrusion production line",
     imageLabel: "Extrusion Lines",
@@ -127,10 +127,10 @@ export const factoryProofRows: FactoryProofRow[] = [
     ],
   },
   {
-    title: "Material Evaluation & Documentation",
+    title: "Material Testing & Documents",
     eyebrow: "Project Evaluation",
     description:
-      "In-house equipment is used to compare candidate materials before grade selection. Document availability is then confirmed against the selected grade and project.",
+      "Candidate materials are compared with in-house test equipment. Available documents are then checked against the selected grade.",
     imageSrc: "/factory-laboratory-test-chamber.jpg",
     imageAlt: "Taiyi Polymer laboratory test chamber",
     imageLabel: "Laboratory Test Chamber",

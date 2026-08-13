@@ -18,8 +18,8 @@ import styles from "../ComponentSolutions.module.css";
 const designContract = `<!--
 THESIS: Component-specific diagnosis leads the material conversation; this family refuses a generic resin landing page.
 OWN-WORLD: Inherited Taiyi industrial navy, technical paper, cobalt actions, real part or engineering-context imagery, and scan-first indexed rows.
-STORY: Recognize the part and failure, screen a candidate direction, send the minimum review input, then validate on molded components and the complete system.
-FIRST VIEWPORT: Desktop shows the part, outcome, review inputs, and inquiry action together; mobile keeps the part, outcome, and actions immediately legible with the review-input rail following intact.
+STORY: Recognize the part and failure, compare candidate materials, send the minimum project input, then validate on molded components and the complete system.
+FIRST VIEWPORT: Desktop shows the part, outcome, project inputs, and inquiry action together; mobile keeps the part, outcome, and actions immediately legible with the project-input rail following intact.
 FORM: Direct extension of the approved diagnostic brief; structure chosen over cards or a generic brochure sequence; concept seed not applicable.
 FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
 -->`;
@@ -129,7 +129,7 @@ export function DetailedComponentSolution({
                   </div>
                   <div>
                     <span className={styles.decisionLabel}>
-                      Possible material direction
+                      Material response
                     </span>
                     <p>{row.direction}</p>
                   </div>
@@ -141,8 +141,8 @@ export function DetailedComponentSolution({
           <section className={styles.gearSection} aria-labelledby="material-directions">
             <div className={styles.gearSectionIntro}>
               <div>
-                <p className={styles.gearEyebrow}>Candidate directions</p>
-                <h2 id="material-directions">Screen the direction, not just the resin name.</h2>
+                <p className={styles.gearEyebrow}>Candidate materials</p>
+                <h2 id="material-directions">Compare the material response, not just the resin name.</h2>
               </div>
               <p>{detail.copy.materialSummary}</p>
             </div>
@@ -171,7 +171,7 @@ export function DetailedComponentSolution({
                 <p>{detail.materialNote}</p>
               </div>
               <Link href="/resources/material-selection-guide">
-                Review the selection framework
+                Open the material selection guide
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
             </aside>
@@ -183,13 +183,13 @@ export function DetailedComponentSolution({
           >
             <div className={styles.gearSectionHeading}>
               <div>
-                <p className={styles.gearEyebrow}>Minimum review input</p>
+                <p className={styles.gearEyebrow}>Minimum project input</p>
                 <h2 id="review-information">Send what you know. Mark what is still unknown.</h2>
               </div>
               <p>
                 A drawing plus the operating conditions already available is enough
-                to start. Unknown items can be marked “not yet confirmed” and refined
-                during the review.
+                to start. Mark unknown items as not yet confirmed and add them after
+                the first response.
               </p>
             </div>
 
@@ -217,7 +217,7 @@ export function DetailedComponentSolution({
             <div className={styles.gearSectionIntro}>
               <div>
                 <p className={styles.gearEyebrow}>After contact</p>
-                <h2 id="after-contact">Know what the first review should produce.</h2>
+                <h2 id="after-contact">Know what the first response should produce.</h2>
               </div>
               <p>{detail.copy.processSummary}</p>
             </div>
@@ -254,8 +254,8 @@ export function DetailedComponentSolution({
                 <h2 id="technical-detail">Open the detail when the project needs it.</h2>
               </div>
               <p>
-                Continue into operating criteria, tooling, molded-part validation,
-                and the full project checklist without blocking the inquiry path.
+                Open the operating criteria, tooling requirements, molded-part tests,
+                and full project checklist as needed.
               </p>
             </div>
 
@@ -296,7 +296,7 @@ export function DetailedComponentSolution({
             <div className={styles.relatedCompact} aria-labelledby="related-reading">
               <div className={styles.relatedCompactHeader}>
                 <p className={styles.gearEyebrow}>Related guidance</p>
-                <h3 id="related-reading">Continue with a focused technical path.</h3>
+                <h3 id="related-reading">Open the next technical reference.</h3>
               </div>
               <div className={styles.gearRelatedLinks}>
                 {detail.related.map((item) => (

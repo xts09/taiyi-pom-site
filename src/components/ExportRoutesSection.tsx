@@ -28,7 +28,7 @@ export function ExportRoutesSection({
             <div className="supply-map-shell">
               <SectionIntro
                 className="export-routes-intro"
-                description="Current project routes connect the Yancheng production base with nine destinations across Central Asia, Europe, East Asia and the Americas."
+                description="Project routes connect the Yancheng production base with destinations across Central Asia, Europe, East Asia and the Americas."
                 eyebrow="SUPPLY NETWORK"
                 layout="stacked"
                 title="Export Routes"
@@ -50,7 +50,7 @@ export function ExportRoutesSection({
             <aside className="export-market-panel" aria-labelledby="export-market-title">
               <div className="export-market-panel-head">
                 <h3 id="export-market-title">Project regions</h3>
-                <p>Select a region to focus its current routes on the map.</p>
+                <p>Select a region to focus the routes shown on the map.</p>
               </div>
               <ul className="export-market-summary">
                 {routes.map((route, index) => (
@@ -91,8 +91,8 @@ export function ExportRoutesSection({
                 <strong>Yancheng, Jiangsu, China</strong>
               </p>
               <p>
-                <span>Destinations</span>
-                <strong>9 current destinations</strong>
+                <span>Listed destinations</span>
+                <strong>9 destinations shown</strong>
               </p>
             </div>
           </Card>

@@ -63,8 +63,8 @@ const heroImage =
 const manufacturingProofRows = [...factoryProofRows].sort((a, b) => {
   const order: Record<string, number> = {
     "In-House Compounding": 0,
-    "Material Evaluation & Documentation": 1,
-    "Production & Batch Coordination": 2,
+    "Material Testing & Documents": 1,
+    "Repeat Production & Batch Records": 2,
   };
 
   return order[a.title] - order[b.title];
@@ -84,8 +84,8 @@ export default function AboutPage() {
 
       <AboutIdentityPlate
         label="Yancheng, Jiangsu · Manufacturing since 2003"
-        title="Modified POM at industrial scale."
-        description="Modified POM is our core line, with selected PA6, PA66 and PPA compounds for broader project requirements. Grade screening, sample evaluation and batch documentation are coordinated through our Yancheng operation."
+        title="The manufacturer behind Taiyi Polymer."
+        description="Taiyi Polymer is the public brand of Jiangsu Taiyi Nano Technology Co., Ltd., the legal entity operating the Yancheng facility."
       />
 
       <div className={styles.overviewCanvas}>
@@ -99,12 +99,12 @@ export default function AboutPage() {
           <div className="site-container">
             <header className={styles.overviewSectionHeader}>
               <h2 id="manufacturing-evidence-title">
-                From trial compound to repeat order.
+                From trial batch to repeat production.
               </h2>
               <p>
-                Compounding, material testing and batch documentation are
-                coordinated at our Yancheng site around the selected grade and
-                project requirements.
+                The same site prepares trial compounds, compares candidate
+                materials and handles repeat production after a grade is
+                confirmed.
               </p>
             </header>
             <FactoryProofRows rows={manufacturingProofRows} />

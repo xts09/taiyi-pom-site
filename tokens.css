@@ -243,7 +243,7 @@
   --ds-evidence-radius: var(--ds-radius-evidence);
   --ds-evidence-surface:
     linear-gradient(145deg, rgba(10, 31, 49, 0.82), rgba(3, 16, 29, 0.96)),
-    url("/material-satin-midnight-v1.png") center / cover no-repeat,
+    url("/material-satin-midnight-v1.webp") center / cover no-repeat,
     var(--ds-evidence-bg);
   --ds-evidence-shadow: var(--ds-shadow-panel);
   --ds-page-hero-fg: var(--ds-foreground-on-dark);
@@ -315,7 +315,7 @@
       rgba(7, 17, 31, 0.95) 0%,
       rgba(7, 17, 31, 0.9) 100%
     ),
-    url("/material-satin-midnight-v1.png") center / cover no-repeat,
+    url("/material-satin-midnight-v1.webp") center / cover no-repeat,
     var(--ds-evidence-bg);
   --ds-resource-index-hero-border: var(--ds-product-hero-surface-border);
   --ds-resource-index-task-bg:

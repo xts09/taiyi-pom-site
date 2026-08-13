@@ -23,7 +23,7 @@ import styles from "./ComponentSolutions.module.css";
 const componentSolutionsTitle =
   "Component Solutions for Modified POM Parts | Taiyi Polymer";
 const componentSolutionsDescription =
-  "Browse component-led review paths for gears, bushings, conveyor parts, valve internals, textile guides, and IC handling trays.";
+  "Compare material-selection guides for gears, bushings, conveyor parts, valve internals, textile guides, and IC handling trays.";
 const componentDirectoryHero = {
   src: "/applications/parts/generated/components-directory-gears-cad-v2.webp",
   alt: "CAD visualization of a wiper motor gear assembly",
@@ -133,7 +133,7 @@ export default function ComponentSolutionsPage() {
               layout="stacked"
               eyebrow="Component Directory"
               title="Choose the family closest to your part"
-              description="Review typical parts and engineering priorities, then open the path closest to your component."
+              description="Compare typical parts and engineering priorities, then open the family closest to your component."
             />
 
             <div className={styles.directory}>
@@ -153,7 +153,7 @@ export default function ComponentSolutionsPage() {
                     <Link
                       href={`/components/${solution.slug}`}
                       className={styles.card}
-                      aria-label={`Open the ${solution.title} material review`}
+                      aria-label={`Open the ${solution.title} material guide`}
                     >
                       {detail ? (
                         <div
@@ -197,12 +197,12 @@ export default function ComponentSolutionsPage() {
                             <dd>{solution.typicalParts.slice(0, 2).join(" · ")}</dd>
                           </div>
                           <div>
-                            <dt>Review focus</dt>
+                            <dt>Selection focus</dt>
                             <dd>{solution.reviewAreas.slice(0, 2).join(" · ")}</dd>
                           </div>
                         </dl>
                         <span className={styles.cardAction}>
-                          Review component requirements{" "}
+                          Open component guide{" "}
                           <ArrowRight aria-hidden="true" size={17} />
                         </span>
                       </CardContent>

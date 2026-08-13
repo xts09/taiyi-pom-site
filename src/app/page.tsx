@@ -46,7 +46,7 @@ const materialDirections = [
   {
     title: "POM Compounds",
     description:
-      "Core product line for wear-resistant, low-friction, reinforced, conductive, and antistatic molded part applications.",
+      "Core product line for molded parts requiring wear resistance, low friction, reinforcement, conductivity or antistatic performance.",
     href: getCategoryPath("POM"),
     action: "Browse POM Compounds",
     specs: [
@@ -119,9 +119,9 @@ const selectionFlow = [
   },
   {
     stage: "Processing",
-    title: "Processing and Shrinkage",
+    title: "Processing and Dimensional Control",
     description:
-      "Flowability, multi-cavity filling, shrinkage, warpage, dimensional stability and color.",
+      "Flowability, multi-cavity filling, shrinkage, warpage, dimensional stability and color requirements.",
   },
   {
     stage: "Performance",
@@ -191,7 +191,7 @@ export default function Home() {
             muted
             playsInline
             preload="metadata"
-            poster={publicPath("/factory-hero-95b-loop-v6-poster.jpg")}
+            poster={publicPath("/factory-hero-95b-loop-v6-poster.webp")}
             aria-hidden="true"
             data-loop-start="3"
           >
@@ -223,10 +223,10 @@ export default function Home() {
 
               <div className="hero-support-motion">
                 <p className="hero-motion-copy hero-readable-copy">
-                  Taiyi Polymer manufactures in Yancheng. Our modified POM
-                  compounds support wear, friction,
-                  reinforcement and static-control requirements. Grade review,
-                  samples and technical documents are available by project.
+                  Taiyi Polymer manufactures modified POM compounds at our
+                  Yancheng facility for molded parts requiring wear resistance,
+                  low friction, reinforcement or static control. Grade options,
+                  samples and technical documents are confirmed by project.
                 </p>
 
                 <div className="hero-motion-actions">
@@ -263,10 +263,10 @@ export default function Home() {
               className="product-current-head"
             >
               <p>
-                Start with modified POM, our core product line. Selected PA6,
-                PA66 and PPA compounds are reviewed when the part requires a
-                different balance of stiffness, temperature or processing
-                performance.
+                Start with modified POM, our core product line. We also review
+                selected PA6, PA66 and PPA compounds when a part needs a
+                different balance of stiffness, heat resistance or processing
+                behavior.
               </p>
               <div className="document-support">
                 <span className="document-support-label">
@@ -311,7 +311,7 @@ export default function Home() {
                     variant="link"
                     className="catalogue-secondary-link h-auto"
                   >
-                    <Link href="/products">Complete material list</Link>
+                    <Link href="/products">View All Material Families</Link>
                   </Button>
                 </div>
               </article>
@@ -337,15 +337,15 @@ export default function Home() {
                     </div>
                     <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
                       <p className="qualification-intro">
-                        We start with the part, mold, operating conditions and
-                        document needs. These inputs narrow candidate grades for
-                        TDS review, samples and molding trials.
+                        We compare the part, mold, operating conditions and
+                        document needs to narrow candidate grades for TDS review,
+                        samples and molding trials.
                       </p>
                       <Link
                         href="/applications"
                         className="qualification-link inline-flex min-h-11 items-center justify-self-start"
                       >
-                        See application requirements &rarr;
+                        Explore Application Paths &rarr;
                       </Link>
                     </div>
                   </header>
@@ -361,8 +361,8 @@ export default function Home() {
                       <figcaption>
                         <span>Review evidence</span>
                         <strong>
-                          Candidate materials are checked against part, processing
-                          and document constraints.
+                          Candidate materials are checked against part,
+                          processing and document constraints.
                         </strong>
                       </figcaption>
                     </figure>

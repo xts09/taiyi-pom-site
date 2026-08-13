@@ -1,0 +1,42 @@
+# Taiyi Polymer
+
+> Taiyi Polymer is the public brand of Jiangsu Taiyi Nano Technology Co., Ltd., a Yancheng, China manufacturer focused on modified POM compounds and selected PA6, PA66, and PPA compounds for industrial molded parts.
+
+Use this file as a curated guide to the site's product, application, technical-resource, company, and inquiry pages. Pages are published in English as human-readable HTML. Material suitability, technical values, document availability, and compliance status are grade- and project-specific; confirm the latest TDS and project requirements before approval.
+
+## Products
+
+- [Product Directory](https://www.taiyipolymer.com/products): Browse material families, grade directions, technical data, and document paths.
+- [POM Material Grades](https://www.taiyipolymer.com/products/categories/pom): Compare modified POM and base POM resin options by application and grade data.
+- [PA6 Compounds](https://www.taiyipolymer.com/products/categories/pa6-compound): Review reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled PA6 options.
+- [PA66 Compounds](https://www.taiyipolymer.com/products/categories/pa66-compound): Review reinforced, flame-retardant, wear-related, and dimensionally stable PA66 options.
+- [PPA Compounds](https://www.taiyipolymer.com/products/categories/ppa-compound): Review PPA directions for higher-temperature, reinforced, and dimensionally demanding molded parts.
+- [Conductive and Antistatic Compounds](https://www.taiyipolymer.com/products/conductive-antistatic-compounds): Compare static-control and conductivity directions across POM, PA6, PA66, and PPA.
+
+## Applications and Components
+
+- [Applications](https://www.taiyipolymer.com/applications): Start with part function, operating conditions, and failure risks before narrowing a material direction.
+- [Component Solutions](https://www.taiyipolymer.com/components): Review component-led guidance for gears, bushings, conveyor parts, valve parts, textile guides, and IC handling trays.
+- [Precision Plastic Gears](https://www.taiyipolymer.com/components/precision-plastic-gears): Review gear-specific material screening, molding considerations, and validation needs.
+
+## Technical Resources
+
+- [Technical Resources](https://www.taiyipolymer.com/resources): Browse engineering guides organized by material selection, processing and troubleshooting, and data validation.
+- [Material Selection](https://www.taiyipolymer.com/resources/material-selection): Find material-selection guides based on part function, operating conditions, and required evidence.
+- [Processing and Troubleshooting](https://www.taiyipolymer.com/resources/processing-troubleshooting): Find molding-trial, moisture-control, warpage, and troubleshooting guidance.
+- [Data and Validation](https://www.taiyipolymer.com/resources/data-validation): Find grade-comparison, technical-data, document, and production-release guidance.
+- [Grade Data and TDS Search](https://www.taiyipolymer.com/technical-data-sheets): Search grade data, available TDS paths, and related technical resources.
+- [POM Material Selection Guide](https://www.taiyipolymer.com/resources/material-selection-guide): Compare POM directions for wear, friction, impact, reinforcement, UV exposure, and static control.
+- [Alternative POM Grade Validation](https://www.taiyipolymer.com/resources/alternative-pom-grade-validation): Qualify an alternative grade through document review, molding trials, molded-part validation, and controlled release.
+- [POM Processing Guide](https://www.taiyipolymer.com/resources/processing-guide): Review material handling, mold trials, shrinkage, warpage, dimensional drift, and troubleshooting inputs.
+- [Modified POM FAQ](https://www.taiyipolymer.com/resources/faq): Read concise answers to common POM selection, property, processing, and document questions.
+
+## Company and Contact
+
+- [About Taiyi Polymer](https://www.taiyipolymer.com/about): Review factory capability, production scale, testing equipment, certificates, and document support.
+- [Discuss an Application](https://www.taiyipolymer.com/contact): Send part function, operating conditions, processing method, target properties, and required documents for an initial grade review.
+
+## Optional
+
+- [Home](https://www.taiyipolymer.com/): Overview of Taiyi Polymer, its material range, qualification process, and supplier evidence.
+- [XML Sitemap](https://www.taiyipolymer.com/sitemap.xml): Complete list of indexable site URLs.

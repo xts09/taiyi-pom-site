@@ -18,7 +18,7 @@ export function HomeInquirySection({ checklist }: HomeInquirySectionProps) {
       <div className="site-container home-inquiry-inner">
         <div className="home-inquiry-copy">
           <p className="home-inquiry-kicker">START A REVIEW</p>
-          <h2>Send the project inputs for a useful first review.</h2>
+          <h2>Send the project inputs for an initial grade review.</h2>
           <span>
             Known details are enough to begin. Mark uncertain items and include
             any current grade, drawing or failure sample available.

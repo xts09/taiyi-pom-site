@@ -77,11 +77,11 @@ export default function ApplicationsPage() {
               className="mt-5 max-w-3xl text-lg leading-8 text-slate-200"
               style={{ "--item-index": 2 } as CSSProperties}
             >
-              Start with the molded part, not a generic material name. Taiyi Polymer
-              reviews motion, load, environment, dimensional targets, tooling
-              stage, and document needs to shortlist modified POM candidates.
-              For PA6, PA66, or PPA projects, use the inquiry path for a
-              separate, focused grade review.
+              Start with the molded part, not a generic material name. Motion,
+              load, environment, dimensions, tooling stage and document needs
+              determine which modified POM candidates deserve comparison.
+              PA6, PA66 and PPA are considered separately when the required
+              property balance falls outside the practical POM range.
             </p>
 
             <div
@@ -140,7 +140,7 @@ export default function ApplicationsPage() {
                 <span className="application-index-guide-index">02</span>
                 <span className="application-index-guide-copy">
                   <strong>Browse by component</strong>
-                  <small>{componentSolutions.length} initial component families</small>
+                  <small>{componentSolutions.length} molded-part families</small>
                 </span>
                 <span className="application-index-guide-arrow" aria-hidden="true">
                   &rarr;
@@ -148,8 +148,8 @@ export default function ApplicationsPage() {
               </Link>
             </div>
             <p className="application-index-guide-note">
-              Modified POM is the core line. Selected PA6, PA66, and PPA
-              projects follow a separate material review.
+              Modified POM is the core line; selected PA6, PA66 and PPA
+              compounds cover requirements outside the practical POM range.
             </p>
           </aside>
         </div>
@@ -166,8 +166,8 @@ export default function ApplicationsPage() {
             </div>
             <p>
               Choose the operating context closest to your part. Each route
-              connects typical components and working conditions to a practical
-              material-review direction.
+              connects typical components and working conditions to the
+              material properties that matter most.
             </p>
           </header>
 
@@ -220,9 +220,8 @@ export default function ApplicationsPage() {
               <h2 id="component-solutions-title">Component solution paths</h2>
             </div>
             <p>
-              Move from a broad industry into a specific molded-part family.
-              These first six paths organize the next layer of engineering
-              content without duplicating the industry pages above.
+              Choose the molded-part family closest to your design to compare
+              its operating inputs, failure modes and validation needs.
             </p>
           </div>
 
@@ -258,17 +257,17 @@ export default function ApplicationsPage() {
 
         <section
           className="application-basis-strip stagger-list reveal-up reveal-delay-1"
-          aria-labelledby="application-review-title"
+          aria-labelledby="grade-shortlist-title"
         >
           <div className="stagger-list" style={{ "--item-index": 0 } as CSSProperties}>
             <p
               className="section-kicker mb-3"
               style={{ "--item-index": 0 } as CSSProperties}
             >
-              Application Review
+              Selection Basis
             </p>
             <h2
-              id="application-review-title"
+              id="grade-shortlist-title"
               style={{ "--item-index": 1 } as CSSProperties}
             >
               How We Build a Grade Shortlist

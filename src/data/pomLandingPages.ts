@@ -72,7 +72,7 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
     href: "/conductive-antistatic-pom",
     label: "Conductive and Antistatic POM",
     description:
-      "Review charge-control POM directions for electrical, ESD-sensitive, and functional molded parts.",
+      "Compare charge-control POM options for electrical, ESD-sensitive, and functional molded parts.",
   },
   {
     href: "/pom-grade-cross-reference",
@@ -81,10 +81,10 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
       "Use a preliminary cross-reference path to discuss current grades and application needs with Taiyi Polymer.",
   },
   {
-    href: "/conductive-antistatic-compounds",
+    href: "/products/conductive-antistatic-compounds",
     label: "Cross-Material Conductive and Antistatic Compounds",
     description:
-      "Compare carbon-nanotube antistatic and carbon-fiber conductive directions across multiple polymer matrices.",
+      "Compare carbon-nanotube antistatic and carbon-fiber conductive options across multiple polymer matrices.",
   },
 ];
 
@@ -101,28 +101,28 @@ export const pomLandingPages = {
       "Compare Taiyi Polymer modified POM options for wear-resistant, low-friction, reinforced, conductive, antistatic, impact, UV, low-odor, and high-flow molded parts.",
     eyebrow: "Technical Screening Page",
     intro:
-      "Use this page as a technical screening overview before entering the POM product category. It summarizes catalog-confirmed Taiyi Polymer POM options and the information needed to shortlist a grade for TDS, sample, or molding-trial discussion.",
+      "Compare catalog-listed modified POM options by the job the molded part must perform, then narrow the list for TDS review, samples, and molding trials.",
     primaryActionLabel: "Request a POM Grade Recommendation",
     metrics: [
       { label: "Material family", value: "POM" },
-      { label: "Review focus", value: "Molded parts" },
+      { label: "Selection basis", value: "Molded part" },
       { label: "Documents", value: "TDS / SDS / COA" },
       { label: "Supply role", value: "Factory compounder" },
     ],
     sections: [
       {
-        title: "How This Page Differs From The Product Category",
-        body: "The POM category groups material families and directions. This overview explains how to choose a direction before the buyer knows which grade or TDS to open.",
+        title: "Choose by the Part Requirement",
+        body: "Start with the performance gap in the molded part, then compare the modification family most likely to address it.",
         points: [
-          "Use the overview for early material screening and inquiry qualification",
-          "Use the POM category page when the buyer wants listed grades and documents",
-          "Use dedicated landing pages for wear, friction, conductive, or antistatic intent",
-          "Use TDS pages after candidate grades are shortlisted",
+          "Flow and mold filling for thin or complex parts",
+          "Wear, friction, noise, or stick-slip in moving assemblies",
+          "Stiffness and dimensional control with reinforcement",
+          "Electrical charge control for functional components",
         ],
       },
       {
-        title: "Buyer Review Path",
-        body: "A useful material discussion starts with the part and mold conditions before grade names are shortlisted.",
+        title: "Inputs for a Grade Shortlist",
+        body: "Part duty and mold conditions determine which catalog-listed grades deserve closer comparison.",
         points: [
           "Application, current material, and target improvement",
           "Mold stage, cavity count, gate and flow path, shrinkage concern",
@@ -132,29 +132,29 @@ export const pomLandingPages = {
       },
     ],
     catalogEvidence: {
-      title: "Catalog-Confirmed POM Directions",
+      title: "POM Options Listed in the Catalogue",
       note:
         "Based on Taiyi Polymer's 2026 modified POM product catalogue. These are screening options, not complete TDS claims.",
       items: [
         {
           label: "Base and high-flow POM",
           detail:
-            "ETM090NC, ETM130, ETM270, ETM450, ETM750, ETM1500, and ETM1800 are listed with MFI-based flow directions.",
+            "ETM090NC, ETM130, ETM270, ETM450, ETM750, ETM1500, and ETM1800 cover listed MFI-based flow ranges.",
         },
         {
           label: "Wear-resistant / low-friction POM",
           detail:
-            "EDM-111, EGH20-TF, EMS162, ENM1040, EP-AF100A, EPAF100A, EPAF96A, EPTL402, ES0162, and ETM270H are listed as wear, PTFE, MoS2, aramid, silicone-oil, or lubricant directions.",
+            "EDM-111, EGH20-TF, EMS162, ENM1040, EP-AF100A, EPAF100A, EPAF96A, EPTL402, ES0162, and ETM270H use listed wear, PTFE, MoS2, aramid, silicone-oil, or lubricant modifications.",
         },
         {
           label: "Reinforced POM",
           detail:
-            "EGH402H, EGH502H, EGH602H, ECF200, ECF300, and ECF400 are listed as glass-fiber or carbon-fiber reinforced directions.",
+            "EGH402H, EGH502H, EGH602H, ECF200, ECF300, and ECF400 are listed with glass-fiber or carbon-fiber reinforcement.",
         },
         {
           label: "Conductive / antistatic POM",
           detail:
-            "E-CF3, E-CN3, GP3, GP8, and ECN1003B are listed for conductive or charge-control POM review.",
+            "E-CF3, E-CN3, GP3, GP8, and ECN1003B are listed for conductive or antistatic POM applications.",
         },
       ],
     },
@@ -188,73 +188,73 @@ export const pomLandingPages = {
     title: "Wear-Resistant and Low-Friction POM",
     metaTitle: "Wear-Resistant Low-Friction POM Compound | Taiyi Polymer",
     metaDescription:
-      "Review Taiyi Polymer wear-resistant and low-friction POM options for gears, bushings, rollers, sliding parts, and motion components.",
+      "Compare Taiyi Polymer wear-resistant and low-friction POM options for gears, bushings, rollers, sliding parts, and motion components.",
     eyebrow: "Motion Components",
     intro:
-      "Wear-resistant and low-friction POM directions are reviewed for molded parts with repeated movement, sliding contact, abrasion, noise, stick-slip, or counterpart wear concerns.",
+      "Compare wear-resistant and low-friction POM for molded parts affected by material loss, sliding resistance, noise, stick-slip, or counterpart wear.",
     primaryActionLabel: "Discuss a Wear or Friction Requirement",
     metrics: [
       { label: "Typical parts", value: "Gears / bushings" },
-      { label: "Review focus", value: "Wear / friction" },
+      { label: "Selection basis", value: "Wear / friction" },
       { label: "Validation", value: "Application trial" },
       { label: "Documents", value: "TDS on request" },
     ],
     sections: [
       {
         title: "Wear and Friction Are Different Targets",
-        body: "A low friction value does not automatically confirm long wear life, and a wear-resistant direction may still need friction and noise review.",
+        body: "Low friction does not guarantee long wear life, and a wear-resistant grade may still create excessive friction or noise.",
         points: [
           "Define load, speed, cycle, temperature, and mating material",
-          "Review lubrication, surface finish, alignment, and contamination",
+          "Check lubrication, surface finish, alignment, and contamination",
           "Compare wear loss, friction behavior, noise, and dimensional change",
           "Confirm results with representative molded-part testing",
         ],
       },
       {
-        title: "Where This Page Fits",
-        body: "Use this page when the customer searches for POM gear material, bushing material, sliding component material, or low-friction acetal compound.",
+        title: "Typical Moving Components",
+        body: "Use these screening factors for gears, bushings, rollers, sliders, guides, and other repeatedly moving molded parts.",
         points: [
           "Gears, worm gears, cams, rollers, sleeves, and sliders",
           "Guide rails, conveyor parts, textile machinery parts, and motion supports",
           "Applications needing reduced stick-slip, smoother movement, or longer surface life",
-          "Projects comparing modified POM directions before requesting samples",
+          "Projects comparing modified POM before requesting samples",
         ],
       },
     ],
     catalogEvidence: {
-      title: "Catalog-Confirmed Wear And Friction Directions",
+      title: "Wear and Friction Grades in the Catalogue",
       note:
-        "The catalogue supports using this page for early SEM and SEO traffic. Exact friction coefficient, wear loss, and molded-part approval still need grade-specific TDS or trial data.",
+        "The catalogue identifies the modification and selected listed properties. Exact friction, wear loss, and molded-part suitability still require grade-specific data and representative trials.",
       items: [
         {
           label: "POM EDM-111",
           detail:
-            "MFI 7 g/10 min; natural color; high wear-resistant direction.",
+            "MFI 7 g/10 min; natural color; listed for high wear resistance.",
         },
         {
           label: "POM EGH20-TF",
           detail:
-            "PTFE + 20% glass fiber direction; listed for high wear resistance.",
+            "PTFE + 20% glass fiber; listed for high wear resistance.",
         },
         {
           label: "POM EMS162",
           detail:
-            "MFI 7 g/10 min; black color; MoS2-filled high wear-resistant direction.",
+            "MFI 7 g/10 min; black color; MoS2-filled and listed for high wear resistance.",
         },
         {
           label: "POM ENM1040",
           detail:
-            "MFI 7 g/10 min; natural color; special wear-resistant additive direction.",
+            "MFI 7 g/10 min; natural color; listed with a special wear-resistant additive.",
         },
         {
           label: "POM EP-AF100A / EPAF100A / EPAF96A",
           detail:
-            "Aramid fiber or aramid powder filled directions for wear-resistant review.",
+            "Aramid fiber or aramid powder filled options for wear-resistant parts.",
         },
         {
           label: "POM EPTL402 / ES0162 / ETM270H",
           detail:
-            "PTFE-filled, silicone-oil-modified, and high-flow wear-resistant directions.",
+            "PTFE-filled, silicone-oil-modified, and high-flow wear-resistant options.",
         },
       ],
     },
@@ -275,9 +275,9 @@ export const pomLandingPages = {
       {
         href: "/products/categories/wear-resistant-low-friction-pom-compound",
         label: "Wear-Resistant & Low-Friction POM Grades",
-        description: "Browse listed POM grades for wear and friction review.",
+        description: "Browse listed POM grades for wear and friction comparison.",
       },
-      { href: "/applications/motion-components", label: "Motion Components", description: "Review gears, bushings, sliders, and moving parts." },
+      { href: "/applications/motion-components", label: "Motion Components", description: "Compare gears, bushings, sliders, and moving parts." },
       technicalLandingLinks[0],
     ],
     faqs: [
@@ -287,7 +287,7 @@ export const pomLandingPages = {
           "No. Wear resistance focuses on material loss and surface life, while low friction focuses on sliding resistance, startup force, stick-slip, or noise. Some formulations may support both, but they should be validated under the actual contact system.",
       },
       {
-        question: "What information is needed for a wear or friction review?",
+        question: "What information is needed for wear or friction comparison?",
         answer:
           "Share the part, movement mode, mating material, load, speed, temperature, lubrication, failure mode, current material, and target test or service-life requirement.",
       },
@@ -298,11 +298,11 @@ export const pomLandingPages = {
     title: "Conductive and Antistatic POM",
     metaTitle: "Conductive and Antistatic POM Compound | Taiyi Polymer",
     metaDescription:
-      "Review Taiyi Polymer conductive and antistatic POM options for charge-control molded parts, electrical components, and functional precision applications.",
+      "Compare Taiyi Polymer conductive and antistatic POM options for charge-control molded parts, electrical components, and functional precision applications.",
     eyebrow: "Charge-Control POM",
     intro:
-      "Conductive and antistatic POM directions should be selected by electrical target, part function, color requirement, mechanical retention, and validation method rather than by a general material family name.",
-    primaryActionLabel: "Review an Electrical Requirement",
+      "Select conductive or antistatic POM by the required electrical measurement, part function, color, retained mechanical properties, and finished-part test method.",
+    primaryActionLabel: "Compare an Electrical Requirement",
     heroImage: {
       src: "/generated/landing/conductive-antistatic-pom-functional-components.png",
       alt: "Illustrative black precision-molded functional component forms",
@@ -310,7 +310,7 @@ export const pomLandingPages = {
     metrics: [
       { label: "Target", value: "Charge control" },
       { label: "Typical color", value: "Black" },
-      { label: "Review data", value: "Resistivity" },
+      { label: "Selection data", value: "Resistivity" },
       { label: "Fit", value: "Functional parts" },
     ],
     sections: [
@@ -320,7 +320,7 @@ export const pomLandingPages = {
         points: [
           "Define surface or volume resistivity target and test method",
           "Confirm whether antistatic, dissipative, or conductive behavior is required",
-          "Review color, filler influence, mechanical properties, and molding risk",
+          "Check color, filler influence, mechanical properties, and molding risk",
           "Validate the molded part under the customer's real environment",
         ],
       },
@@ -331,34 +331,34 @@ export const pomLandingPages = {
           "Electrical or ESD-sensitive molded components",
           "Precision mechanical parts requiring charge-control behavior",
           "Assemblies where static buildup, dust attraction, or discharge risk matters",
-          "Projects needing TDS, sample discussion, and electrical property review",
+          "Projects needing TDS, samples, and finished-part electrical testing",
         ],
       },
     ],
     catalogEvidence: {
-      title: "Catalog-Confirmed Conductive And Antistatic Directions",
+      title: "Charge-Control Grades in the Catalogue",
       note:
-        "The catalogue confirms charge-control POM directions. Electrical targets should still be validated by the required surface or volume test method on molded parts.",
+        "The catalogue lists charge-control POM grades. Confirm the electrical target with the required surface or volume method on the molded part.",
       items: [
         {
           label: "POM E-CF3 / E-CN3",
           detail:
-            "Carbon-nanotube conductive POM directions described as lightweight, permanent, and non-blooming.",
+            "Carbon-nanotube conductive POM described as lightweight, permanent, and non-blooming.",
         },
         {
           label: "POM GP3 / GP8",
           detail:
-            "Carbon-fiber conductive POM directions listed with 10^6-10^8 range and thermal-conductive note.",
+            "Carbon-fiber conductive POM listed with a 10^6-10^8 range and a thermal-conductive note.",
         },
         {
           label: "POM EGH25CN / ECN1003B",
           detail:
-            "Black conductive and antistatic POM grade directions with controlled resistivity data for electrical and industrial molded parts.",
+            "Black conductive and antistatic POM grades with controlled resistivity data for electrical and industrial molded parts.",
         },
         {
           label: "Cross-material antistatic series",
           detail:
-            "The catalogue also lists carbon-nanotube antistatic directions across ABS, ASA, PA6, PA66, PBT, PC, PC/ABS, PPA, PPO, and other polymers in R35 or R610 target bands.",
+            "The catalogue also lists carbon-nanotube antistatic grades across ABS, ASA, PA6, PA66, PBT, PC, PC/ABS, PPA, PPO, and other polymers in R35 or R610 target bands.",
         },
       ],
     },
@@ -371,8 +371,8 @@ export const pomLandingPages = {
     ],
     relatedLinks: [
       technicalLandingLinks[4],
-      { href: "/products/categories/conductive-antistatic-pom-compound", label: "Conductive / Antistatic POM Grades", description: "Review the listed charge-control POM grade path." },
-      { href: "/applications/electronics", label: "Electronics Applications", description: "Review electrical and electronic molded component needs." },
+      { href: "/products/categories/conductive-antistatic-pom-compound", label: "Conductive / Antistatic POM Grades", description: "Browse listed charge-control POM grades." },
+      { href: "/applications/electronics", label: "Electronics Applications", description: "See electrical and electronic molded-component requirements." },
     ],
     faqs: [
       {
@@ -383,34 +383,34 @@ export const pomLandingPages = {
       {
         question: "Can electrical performance affect mechanical properties?",
         answer:
-          "Yes. Fillers or modifiers used for charge-control behavior may affect color, flow, impact, stiffness, wear, and surface quality. The complete property balance should be reviewed before approval.",
+          "Yes. Fillers or modifiers used for charge-control behavior may affect color, flow, impact, stiffness, wear, and surface quality. Compare the complete property balance before approval.",
       },
     ],
   },
   pomGradeCrossReference: {
     slug: "pom-grade-cross-reference",
     title: "POM Grade Cross-Reference",
-    metaTitle: "POM Grade Cross-Reference for Material Review | Taiyi Polymer",
+    metaTitle: "POM Grade Cross-Reference and Comparison | Taiyi Polymer",
     metaDescription:
-      "Use Taiyi Polymer's POM grade cross-reference page for preliminary material screening, current grade review, document requests, and sample discussion.",
+      "Compare a current POM grade with Taiyi Polymer options using property requirements, application conditions, documents, and sample trials.",
     eyebrow: "Preliminary Material Screening",
     intro:
-      "This cross-reference page is for early material discussion only. The current public catalogue lists Taiyi Polymer material families, but it does not publish direct equivalence against third-party grade names. Similar grade names or data points do not confirm final replacement.",
-    primaryActionLabel: "Send a Current Grade for Review",
+      "Compare a current POM grade with Taiyi Polymer options by property requirements and application conditions. The public catalogue does not claim direct equivalence to third-party grades, and similar data points do not confirm replacement.",
+    primaryActionLabel: "Send a Current Grade for Comparison",
     metrics: [
-      { label: "Use case", value: "Grade review" },
+      { label: "Use case", value: "Grade comparison" },
       { label: "Basis", value: "TDS + application" },
-      { label: "Output", value: "Direction shortlist" },
+      { label: "Output", value: "Candidate shortlist" },
       { label: "Validation", value: "Customer trial" },
     ],
     sections: [
       {
-        title: "How To Use This Page",
-        body: "Start with the current material grade and the reason for review, then compare the required performance with Taiyi Polymer material options.",
+        title: "Build a Comparable Requirement",
+        body: "Start with the current grade and the reason for change, then compare the properties and conditions that must be retained.",
         points: [
           "Share the current grade, TDS, color, and application",
           "Define the target improvement or supply problem",
-          "Compare property direction, not only one value",
+          "Compare the full property balance, not only one value",
           "Confirm final selection through sample and molded-part testing",
         ],
       },
@@ -421,32 +421,32 @@ export const pomLandingPages = {
           "It does not replace customer approval or qualification",
           "It does not confirm regulatory status for a specific grade or color",
           "It does not predict every molding, warpage, or assembly result",
-          "It should be used as a starting point for technical review",
+          "It provides a starting point for controlled material comparison",
         ],
       },
     ],
     catalogEvidence: {
       title: "What We Can Confirm From The Public Catalogue",
       note:
-        "Use this page to collect the buyer's current grade and application. Specific brand-to-grade cross-reference should be added only after internal technical review.",
+        "The public catalogue confirms Taiyi Polymer material families and listed properties. A specific replacement still requires the current grade, application, documents, and representative trials.",
       items: [
         {
-          label: "POM flow directions",
+          label: "POM flow ranges",
           detail:
-            "ETM series grades are listed from standard to ultra-high-flow directions with MFI values.",
+            "ETM series grades are listed from standard to ultra-high flow with MFI values.",
         },
         {
-          label: "Wear and friction directions",
+          label: "Wear and friction modifications",
           detail:
-            "PTFE, MoS2, aramid, silicone-oil, glass-fiber, and special wear-additive directions are listed.",
+            "PTFE, MoS2, aramid, silicone-oil, glass-fiber, and special wear-additive options are listed.",
         },
         {
-          label: "Conductive directions",
+          label: "Conductive modifications",
           detail:
-            "Carbon-nanotube, carbon-fiber, and conductive black POM directions are listed.",
+            "Carbon-nanotube, carbon-fiber, and conductive black POM options are listed.",
         },
         {
-          label: "Application directions",
+          label: "Application areas",
           detail:
             "Automotive, valve, electrical, industrial, and electronics applications are listed as screening areas.",
         },
@@ -456,32 +456,32 @@ export const pomLandingPages = {
       "Current grade and supplier",
       "Current TDS or property requirements",
       "Application and molded-part function",
-      "Reason for replacement or second-source review",
+      "Reason for replacement or second sourcing",
       "Required documents and annual volume",
     ],
     crossReferenceRows: [
       {
         reference: "Current standard POM grade",
         materialType: "POM",
-        reviewDirection: "Compare flow, strength, shrinkage, color, and document requirements",
+        reviewDirection: "Compare flow, strength, shrinkage, color, and required documents",
         taiyiPath: "/products/categories/pom",
       },
       {
         reference: "Current wear or low-friction POM grade",
         materialType: "Modified POM",
-        reviewDirection: "Review motion mode, mating material, wear, friction, and noise targets",
+        reviewDirection: "Compare motion, mating material, wear, friction, and noise targets",
         taiyiPath: "/wear-resistant-low-friction-pom",
       },
       {
         reference: "Current conductive or antistatic POM grade",
         materialType: "Charge-control POM",
-        reviewDirection: "Review resistivity range, test method, color, and molded-part function",
+        reviewDirection: "Compare resistivity, test method, color, and molded-part function",
         taiyiPath: "/conductive-antistatic-pom",
       },
       {
         reference: "Current reinforced POM grade",
         materialType: "Filled or reinforced POM",
-        reviewDirection: "Review stiffness, shrinkage direction, warpage, weld lines, and surface needs",
+        reviewDirection: "Compare stiffness, flow-related shrinkage, warpage, weld lines, and surface needs",
         taiyiPath: "/products/categories/pom",
       },
     ],
@@ -497,9 +497,9 @@ export const pomLandingPages = {
           "No. Cross-reference information is a preliminary screening aid. Final suitability depends on part design, processing, test method, working conditions, and customer validation.",
       },
       {
-        question: "What should be sent for a grade review?",
+        question: "What should be sent for a grade comparison?",
         answer:
-          "Send the current grade, TDS, application, target properties, color, document requirements, annual volume, and the reason for replacement or second-source review.",
+          "Send the current grade, TDS, application, target properties, color, document requirements, annual volume, and the reason for replacement or second sourcing.",
       },
     ],
   },

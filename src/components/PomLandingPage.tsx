@@ -99,7 +99,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
 
         <MetricGroup
           className="pom-landing-metrics"
-          aria-label="Material review summary"
+          aria-label="Material selection summary"
           items={page.metrics}
           variant="rail"
         />
@@ -139,8 +139,8 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         {page.crossReferenceRows ? (
           <section className="pom-landing-cross-reference">
             <div className="pom-landing-section-head">
-              <p className="section-kicker">Cross-Reference Review</p>
-              <h2>Preliminary Grade Review Table</h2>
+              <p className="section-kicker">Grade Comparison</p>
+              <h2>Preliminary Comparison Table</h2>
             </div>
             <div className="pom-landing-table-wrap">
               <table>
@@ -148,7 +148,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                   <tr>
                     <th>Reference grade</th>
                     <th>Material type</th>
-                    <th>Review direction</th>
+                    <th>Comparison basis</th>
                     <th>Taiyi path</th>
                   </tr>
                 </thead>
@@ -160,7 +160,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                       <td>{row.reviewDirection}</td>
                       <td>
                         <Link href={row.taiyiPath}>
-                          Review path
+                          Open material path
                         </Link>
                       </td>
                     </tr>
@@ -190,7 +190,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
 
           <div className="pom-landing-panel">
             <p className="section-kicker">Related Paths</p>
-            <h2>Continue Material Review</h2>
+            <h2>Continue Material Selection</h2>
             <div className="pom-landing-related-list">
               {page.relatedLinks.map((link) => (
                 <Link
@@ -224,7 +224,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
           variant="recommendation"
           title="Need Help Shortlisting a Grade?"
           className="selection-support-band resource-cta pom-landing-cta"
-          eyebrow="Material Review"
+          eyebrow="Grade Selection"
           eyebrowClassName="section-kicker mb-3"
           action={
             <Button

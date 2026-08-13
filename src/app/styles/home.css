@@ -23,12 +23,6 @@
   padding-left: 0 !important;
 }
 
-.site-container {
-  box-sizing: border-box;
-  width: var(--site-rail-width);
-  margin-inline: auto;
-}
-
 @media (max-width: 47.999rem) {
   .selection-stepper-card {
     grid-template-columns: 2.35rem minmax(0, 1fr);

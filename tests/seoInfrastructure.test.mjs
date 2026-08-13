@@ -59,3 +59,32 @@ test("retired or misleading SEO markers stay removed", () => {
   assert.doesNotMatch(seoSource, /makesOffer:\s*\[\s*"/s);
   assert.match(seoSource, /^\s*knowsAbout:\s*\[/m);
 });
+
+test("the legacy conductive compounds URL stays consolidated", () => {
+  const nextConfigSource = readFileSync(resolve(projectRoot, "next.config.ts"), "utf8");
+  const landingSource = readFileSync(
+    resolve(projectRoot, "src/data/pomLandingPages.ts"),
+    "utf8",
+  );
+  const resourcesSource = readFileSync(
+    resolve(projectRoot, "src/data/resources.ts"),
+    "utf8",
+  );
+
+  assert.match(
+    nextConfigSource,
+    /source:\s*"\/conductive-antistatic-compounds"[\s\S]*?destination:\s*"\/products\/conductive-antistatic-compounds"[\s\S]*?permanent:\s*true/,
+  );
+  assert.match(
+    landingSource,
+    /href:\s*"\/products\/conductive-antistatic-compounds"/,
+  );
+  assert.doesNotMatch(
+    landingSource,
+    /href:\s*"\/conductive-antistatic-compounds"/,
+  );
+  assert.doesNotMatch(
+    resourcesSource,
+    /href:\s*"\/conductive-antistatic-compounds"/,
+  );
+});
