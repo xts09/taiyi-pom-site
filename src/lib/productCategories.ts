@@ -26,7 +26,7 @@ const pomCategoryOverview = {
   label: "POM",
   title: "POM Material Grades and Modified Compound Data",
   description:
-    "Browse Taiyi Polymer POM material grades including wear-resistant, high-impact, low-friction, UV-resistant, reinforced, conductive, antistatic, and base POM resin options.",
+    "Compare Taiyi Polymer POM grades by application and grade data. Review wear, impact, friction, UV, reinforced, conductive, antistatic, and base resin options.",
   navSubtitle:
     "Browse modified POM and base resin options by family, grade data, application fit, and documents.",
   applications: [
@@ -159,7 +159,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "PA6 Compound",
     label: "PA6 Compounds",
     description:
-      "Browse PA6 compound options, listed grades, application fit, and technical documents for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+      "Compare PA6 compounds by application and grade data. Review reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled options.",
     navSubtitle:
       "Compare PA6 compound options by reinforcement, toughness, flame rating, wear, heat, and application fit.",
     applications: [
@@ -172,7 +172,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "PA66 Compound",
     label: "PA66 Compounds",
     description:
-      "Browse PA66 compound options, listed grades, application fit, and technical documents for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+      "Compare PA66 compounds by application and grade data. Review reinforced, flame-retardant, wear-related, and dimensionally stable options.",
     navSubtitle:
       "Compare PA66 compound options by reinforcement, flame rating, heat, wear behavior, and application fit.",
     applications: [

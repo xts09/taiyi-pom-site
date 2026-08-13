@@ -98,8 +98,8 @@ export const resourcePages: ResourcePage[] = [
         navLabel: "Molded Part First",
         paragraphs: [
           "A grade name describes a formulation family, not a molded-part outcome. Use it to build a candidate set after the initial screen; suitability still depends on the part geometry, mold setup, and operating conditions.",
-          "For an existing component, useful starting information includes the current material type, molding method, part dimensions, wall thickness, assembly method, and any known performance issues. Wear marks, cracking, deformation, noise, static accumulation, discoloration, or unstable molding may indicate different material requirements.",
-          "For a new component, the selection process should begin with the intended operating conditions. A grade that performs well in a lightly loaded internal mechanism may not be suitable for a continuously moving part, an outdoor application, or a component exposed to aggressive chemicals.",
+          "For an existing component, start with the current material, molding method, part dimensions, wall thickness, and assembly method. Record any known performance issues. Wear, cracking, deformation, noise, static, discoloration, or unstable molding may point to different material needs.",
+          "For a new component, start with the intended operating conditions. A grade suited to a lightly loaded internal mechanism may not suit continuous movement, outdoor exposure, or aggressive chemicals.",
           "Material names and market references may support initial screening, but they should not be used as the sole basis for selection. The correct question is not which grade is similar, but which material characteristics are required for this part.",
         ],
       },
@@ -127,7 +127,7 @@ export const resourcePages: ResourcePage[] = [
           "Standard POM may be considered when the part requires a typical balance of stiffness, dimensional consistency, surface quality, and processing performance. It is often the first option for general precision components without demanding wear, impact, electrical, or environmental requirements.",
           "Wear-resistant POM should be reviewed when material loss, surface damage, or reduced service life is the main concern. Typical applications include gears, bushings, rollers, guides, chain components, and repeated-contact mechanisms. The appropriate formulation depends on the mating surface, contact pressure, motion pattern, lubrication conditions, and expected service duration.",
           "Low-friction POM is selected when reducing resistance to movement, operating force, noise, or stick-slip behavior is more important than simply reducing material loss. Wear resistance and low friction are related, but they are not interchangeable. Both should be evaluated under representative contact conditions.",
-          "High-impact POM may be considered for snap-fit parts, clips, latches, assembly components, or mechanisms exposed to sudden loads. Increasing toughness may affect stiffness, surface hardness, dimensional behavior, or other properties, so the required balance should be reviewed against the actual part geometry and failure mode.",
+          "High-impact POM may be considered for snap-fit parts, clips, latches, assembly components, or mechanisms exposed to sudden loads. More toughness may change stiffness, surface hardness, or dimensional behavior. Review that balance against the part geometry and failure mode.",
         ],
       },
       {
@@ -136,8 +136,8 @@ export const resourcePages: ResourcePage[] = [
         paragraphs: [
           "Glass fiber reinforced POM may be considered when higher stiffness, improved load-bearing capability, or reduced deformation is required. It can be relevant for structural parts, support components, precision mechanisms, and applications where standard POM does not provide sufficient rigidity.",
           "Reinforcement does not automatically make a material better for every component. Glass fiber can affect mold flow, surface appearance, anisotropic shrinkage, dimensional behavior, and wear against mating surfaces. For tight-tolerance parts, engineers should review gate position, flow path, weld lines, wall thickness, and fiber orientation.",
-          "Carbon fiber reinforced POM may be considered where high stiffness, lower deformation, electrical conductivity, or reduced weight relative to some highly filled systems is required. It may also offer different friction and wear behavior from glass fiber reinforced grades.",
-          "The choice between unfilled, glass fiber reinforced, carbon fiber reinforced, and other modified directions should be based on the complete performance balance, not only on the highest stiffness value.",
+          "Carbon fiber reinforced POM may be considered for high stiffness, lower deformation, electrical conductivity, or lower weight than some highly filled systems. Its friction and wear behavior may also differ from glass fiber reinforced grades.",
+          "Choose among unfilled, glass fiber reinforced, carbon fiber reinforced, and other modified POM by the full performance balance. Do not decide on stiffness alone.",
         ],
       },
       {
@@ -154,7 +154,7 @@ export const resourcePages: ResourcePage[] = [
         navLabel: "Reading TDS",
         paragraphs: [
           "A technical data sheet is useful for comparing materials, but it should not be read as a direct prediction of molded-part performance. TDS values are generally obtained under controlled test conditions using defined specimen geometries, conditioning procedures, and test methods.",
-          "Mechanical values such as tensile strength, flexural modulus, impact performance, and elongation help describe the material, but they do not fully represent a complex component. Wall thickness, weld lines, fiber orientation, internal stress, molding conditions, and part design can produce different results.",
+          "Tensile strength, flexural modulus, impact performance, and elongation help describe a material. They do not fully predict a complex component. Wall thickness, weld lines, fiber orientation, internal stress, molding conditions, and part design can change the result.",
           "Flow data should also be reviewed cautiously. A higher or lower melt flow value does not independently determine whether a material will fill a mold successfully. Gate size, flow length, wall thickness, venting, tool temperature, machine capability, and the additive system all influence processing behavior.",
           "Wear and friction data require particular care because they depend strongly on the mating material, surface roughness, load, speed, lubrication, temperature, and test method. A single laboratory value cannot represent every moving component.",
         ],
@@ -350,14 +350,14 @@ export const resourcePages: ResourcePage[] = [
     description:
       "A controlled method for comparing an alternative POM grade through documents, molding behavior, dimensions, function, compliance, and release evidence.",
     intro:
-      "Similar TDS values do not establish that two POM grades are interchangeable. Polymer type, molecular-weight or flow family, additives, reinforcement, color package, test method, specimen conditioning, shrinkage response, processing window, weld lines, surface quality, wear behavior, and document status can all differ. An alternative grade should be qualified for the exact part, mold, process, application, and approval requirements. This guide separates the work into four gates: document review, process and mold trial, molded-part validation, and controlled production release.",
+      "Similar TDS values do not make two POM grades interchangeable. Polymer type, flow family, additives, reinforcement, color, and test conditions can differ. So can shrinkage, processing, weld lines, surface quality, wear, and document status. Qualify an alternative for the exact part, mold, process, application, and approval requirements. This guide uses four gates: document review, process and mold trial, molded-part validation, and controlled production release.",
     articleSections: [
       {
         title: "Define What Equivalent Means for This Project",
         navLabel: "Project Equivalence",
         paragraphs: [
           "Start by defining the reason for the change and the boundary that must remain unchanged. The project may involve supply continuity, regional sourcing, cost, a discontinued grade, a performance issue, or a new document requirement. Record the exact current grade, color, supplier, manufacturing scope, approved specification, mold, process, application, and any customer or regulatory approvals attached to it.",
-          "Equivalence is application-specific. One candidate may mold and assemble correctly but fail a wear test; another may meet mechanical targets but change shrinkage, color, emissions, or document status. Separate mandatory requirements from preferred improvements and state the test, conditioning, sample basis, and acceptance limit for each requirement before requesting or trialing a substitute.",
+          "Equivalence is application-specific. One candidate may mold and assemble correctly but fail a wear test. Another may meet mechanical targets but change shrinkage, color, emissions, or document status. Separate mandatory requirements from preferred improvements. Define the test, conditioning, sample basis, and acceptance limit before trialing a substitute.",
         ],
         points: [
           "Reason for change and deadline without assuming immediate interchangeability",
@@ -370,7 +370,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Compare Documents on the Same Basis",
         navLabel: "Document Basis",
         paragraphs: [
-          "Confirm whether each material is POM homopolymer or copolymer and identify the flow family, impact modification, lubricant or wear package, reinforcement or filler, electrical modification, UV package, color, and other declared features. Similar material-family names can hide formulation differences that affect molding and service behavior.",
+          "Confirm whether each material is POM homopolymer or copolymer. Identify its flow family, impact or wear package, reinforcement, electrical or UV modification, color, and other declared features. Similar family names can hide formulation differences that affect molding and service behavior.",
           "Compare TDS values only when the units, test standards, specimen geometry, direction, temperature, conditioning, and test load are compatible. MFR or MVR values require the same test temperature and load. Tensile, flexural, impact, HDT, shrinkage, electrical, and tribology results may not be directly comparable when methods differ. Treat typical TDS values as screening information, not lot-release limits or finished-part guarantees.",
         ],
         points: [
@@ -385,14 +385,14 @@ export const resourcePages: ResourcePage[] = [
         navLabel: "Risk Comparison",
         paragraphs: [
           "Translate every material difference into a part or production risk. Flow behavior may affect filling, pressure, weld lines, flash, appearance, or cycle stability. Shrinkage and crystallization response may affect dimensions, warpage, bore fit, sealing, gear mesh, or cavity balance. Toughness, stiffness, creep, fatigue, friction, wear, electrical behavior, UV or chemical resistance may affect the service requirement in different ways.",
-          "Include risks outside the headline performance table. Review material handling, contamination and purging, color matching, odor or emission requirements, regrind policy, hot-runner behavior, tooling or screw wear for filled grades, bonding or marking, mating-part wear, packaging, traceability, and required documents. A candidate should proceed only when each critical difference has a defined trial or evidence route.",
+          "Include risks outside the headline performance table. Review handling, contamination, purging, color, emissions, regrind policy, and hot-runner behavior. Also check tooling wear, bonding or marking, mating-part wear, packaging, traceability, and documents. Proceed only when each critical difference has a defined trial or evidence route.",
         ],
       },
       {
         title: "Run a Controlled Baseline and Candidate Molding Trial",
         navLabel: "Controlled Trial",
         paragraphs: [
-          "Use the intended production mold and a suitable machine. First document a stable incumbent-material baseline, including material condition, process settings, fill time, transfer position, peak pressure, cushion, part weight, cycle components, mold-surface temperatures, cavity balance, scrap and visible defects. Preserve cavity-marked reference parts and the current process record.",
+          "Use the intended production mold and a suitable machine. First document a stable incumbent baseline. Record material condition, key process settings, fill and transfer data, pressure, cushion, part weight, cycle, mold-surface temperatures, cavity balance, scrap, and visible defects. Preserve cavity-marked reference parts and the current process record.",
           "Before introducing the candidate, follow approved cleaning and purging procedures and prevent material mixing. Start within the candidate supplier's current processing guidance; do not assume the incumbent settings are automatically correct. Establish a stable candidate window while recording the same outputs as the baseline. Change one variable family at a time, identify every sample, and record any safety, degradation, deposit, odor, or process-stability concern.",
         ],
         points: [
@@ -406,8 +406,8 @@ export const resourcePages: ResourcePage[] = [
         title: "Validate Molded Parts, Not Only Test Specimens",
         navLabel: "Part Validation",
         paragraphs: [
-          "Measure dimensions after defined conditioning intervals and use the same datum, fixture, temperature and method for both materials. Compare appearance, color, surface, part weight, shrinkage, warpage, cavity variation, assembly force, retention, sealing, noise, torque, and other functional outputs that matter to the component. A candidate that requires an impractically narrow process window should not be treated as equivalent simply because selected parts pass inspection.",
-          "Run the environmental and durability tests that represent the application: sustained load, cycling, impact, temperature, chemicals, moisture, UV, wear, friction, electrical function, or other project-specific conditions. Test the intended assembly and mating materials. Investigate the failure location and mode rather than reporting only pass or fail, and compare the result with the incumbent baseline and the pre-agreed acceptance criteria.",
+          "Measure dimensions after defined conditioning intervals. Use the same datum, fixture, temperature, and method for both materials. Compare appearance, part weight, shrinkage, warpage, cavity variation, assembly, sealing, noise, torque, and other relevant outputs. Do not treat a candidate as equivalent if it needs an impractically narrow process window.",
+          "Run environmental and durability tests that represent the application. These may cover load, cycling, impact, temperature, chemicals, moisture, UV, wear, friction, or electrical function. Test the intended assembly and mating materials. Record the failure location and mode, then compare them with the incumbent baseline and agreed criteria.",
         ],
       },
       {
@@ -503,7 +503,7 @@ export const resourcePages: ResourcePage[] = [
     description:
       "A practical guide to selecting wear-resistant and low-friction POM for gears, bushings, rollers, sliders, guides, and valve moving parts.",
     intro:
-      "Selecting POM for a moving component is not simply a matter of choosing the grade described as having the lowest friction or highest wear resistance. A gear, bushing, roller, slider, guide part, or moving valve component operates as part of a tribological system. Its performance depends on the molded material, mating surface, contact pressure, movement pattern, speed, lubrication, temperature, surface finish, and dimensional stability of the assembly.",
+      "Do not select POM for a moving component by the lowest friction or highest wear rating alone. A gear, bushing, roller, slider, guide, or moving valve works as part of a tribological system. Performance also depends on the mating surface, pressure, movement, speed, lubrication, temperature, finish, and assembly dimensions.",
     articleSections: [
       {
         title: "Wear Resistance and Low Friction Are Not the Same Requirement",
@@ -548,7 +548,7 @@ export const resourcePages: ResourcePage[] = [
         paragraphs: [
           "Different wear and lubrication additives influence POM through different mechanisms. They should be selected according to the operating system rather than treated as equivalent methods of achieving self-lubrication.",
           "PTFE-filled POM is commonly considered where reduced friction, smoother sliding, or lower operating force is required. Taiyi POM EPTL402 represents a PTFE-filled direction. POM EGH20-TF combines PTFE with glass fiber and may be considered where the application requires a balance of lubrication and additional stiffness.",
-          "MoS2-filled POM, represented by POM EMS162, may be considered for high wear-resistant applications where its solid-lubricant system is appropriate. POM ES0162 represents a silicone-oil-modified high-lubricity direction and may be considered where smooth movement, reduced friction, lower operating force, or improved running feel is important.",
+          "MoS2-filled POM, represented by POM EMS162, may be considered for high-wear applications where its solid-lubricant system is appropriate. POM ES0162 is a silicone-oil-modified, high-lubricity direction. Consider it when smooth movement, lower friction, less operating force, or improved running feel matters.",
           "POM ENM1040 uses a special wear-resistant additive direction, while POM EDM-111 is positioned as a high wear-resistant direction. These options may be relevant where a customer requires a different balance from conventional PTFE-, MoS2-, or silicone-modified systems.",
         ],
         points: [
@@ -610,7 +610,7 @@ export const resourcePages: ResourcePage[] = [
         navLabel: "Review Inputs",
         paragraphs: [
           "A grade recommendation should not be based only on the statement that the customer needs wear-resistant POM or low-friction POM. More complete application information helps distinguish between EDM-111, EGH20-TF, EMS162, ENM1040, EPTL402, ES0162, aramid-filled directions, or another material approach.",
-          "Based on this information, a suitable material direction may be considered. The initial recommendation should then be confirmed by reviewing the applicable TDS, molding representative components, and testing the parts under actual or closely simulated operating conditions.",
+          "Use this information to choose a material direction. Then review the applicable TDS, mold representative parts, and test them under actual or closely simulated operating conditions.",
         ],
         points: [
           "Part name, drawing, photo, and main function",
@@ -1522,14 +1522,14 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Compare reinforced PA6 and PA66 by conditioning state, temperature, stiffness, impact, dimensional behavior, molding risk, and grade-specific data.",
     intro:
-      "PA6 and PA66 are related polyamides, but they should not be treated as interchangeable names for reinforced nylon. Their melting behavior, moisture uptake, conditioned properties, processing window, dimensional response, toughness, stiffness, and available modification packages can lead to different results in the same mold or application. This guide provides a project-based comparison and uses Taiyi Polymer EAG130 PA6 GF30 and EAG230 PA66 GF30 only as grade-specific examples—not as universal values for every PA6 or PA66 compound.",
+      "PA6 and PA66 are related polyamides, but they are not interchangeable reinforced nylons. Differences in melting, moisture, conditioning, processing, dimensions, toughness, and stiffness can change the result in one mold or application. This guide compares them by project need. Taiyi Polymer EAG130 PA6 GF30 and EAG230 PA66 GF30 are grade-specific examples, not universal PA6 or PA66 values.",
     articleSections: [
       {
         title: "Start With the Finished-Part Requirement",
         navLabel: "Part Requirement",
         paragraphs: [
-          "Define the load, duration, temperature, humidity, chemicals, electrical function, impact events, dimensional limits, appearance, expected life, and required standards before choosing between PA6 and PA66. Also record the part geometry, wall thickness, weld lines, gate and flow direction, inserts, fasteners, assembly loads, and the intended molding process.",
-          "Rank the requirements instead of requesting the material with the highest headline strength. A housing may be governed by flatness and screw-boss retention; a bracket by creep and fatigue; a connector by conditioned dimensions, electrical performance, and flame requirements. The relevant comparison is the property balance of exact grades at the actual service and conditioning state.",
+          "Before choosing PA6 or PA66, define the load, temperature, humidity, chemicals, electrical function, impact, dimensions, life, and required standards. Also record the part geometry, wall thickness, weld lines, flow direction, inserts, assembly loads, and molding process.",
+          "Rank the requirements instead of choosing the highest headline strength. A housing may depend on flatness and screw-boss retention. A bracket may depend on creep and fatigue; a connector on conditioned dimensions, electrical performance, and flame requirements. Compare exact grades at the actual service and conditioning state.",
         ],
       },
       {
@@ -1537,7 +1537,7 @@ export const resourcePages: ResourcePage[] = [
         navLabel: "Material State",
         paragraphs: [
           "Polyamides absorb moisture from their environment. Moisture can change dimensions and mechanical response, so a dry-as-molded value and a conditioned value are not interchangeable. The rate and equilibrium level also depend on grade, reinforcement, part thickness, temperature, relative humidity, and exposure time.",
-          "Define the state for every comparison: dry material for processing control, a specified conditioning state for inspection or assembly, and the expected range during service. Record conditioning method, time, temperature, humidity, storage and measurement timing. Do not compare a dry PA66 value with a conditioned PA6 value or release a tight-tolerance part before its dimensional state is understood.",
+          "Define the state for every comparison. Use dry material for processing control, a specified state for inspection or assembly, and the expected service range. Record the conditioning method, time, temperature, humidity, storage, and measurement timing. Do not compare dry PA66 with conditioned PA6.",
         ],
         points: [
           "Granulate moisture limit and drying instruction for the exact grade",
@@ -1550,7 +1550,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Compare Temperature, Load and Toughness Together",
         navLabel: "Temperature / Load / Toughness",
         paragraphs: [
-          "PA66 often provides a higher melting and heat-performance direction than a comparable PA6 formulation, but the finished-part decision still depends on reinforcement, heat stabilization, moisture state, load, duration, and the exact test method. HDT is a comparative short-term test and should not be used as a universal continuous-use temperature or as a substitute for creep and heat-aging validation.",
+          "PA66 often offers a higher melting and heat-performance direction than comparable PA6. The part decision still depends on reinforcement, stabilization, moisture, load, duration, and test method. HDT is a short-term comparative test. It is not a universal continuous-use temperature or a substitute for creep and heat-aging validation.",
           "Stiffness, strength, elongation, impact and fatigue must be reviewed as a balance. Glass fiber can increase stiffness and load response while changing impact behavior, weld-line sensitivity and directional properties. Moisture may reduce stiffness while improving some toughness behavior. Use temperature- and condition-relevant grade data, then test the molded part under its actual load and failure mode.",
         ],
       },
@@ -1558,8 +1558,8 @@ export const resourcePages: ResourcePage[] = [
         title: "Review Molding and Dimensional Risk",
         navLabel: "Molding Risk",
         paragraphs: [
-          "A change between PA6 and PA66 requires a fresh processing review. Confirm drying, material handling, residence control, barrel and mold guidance, hot-runner suitability, venting, gate capacity, fill and pack behavior, cooling, ejection and approved shutdown procedures from the exact grade documentation. Do not transfer one grade's settings without review.",
-          "For glass-fiber compounds, flow controls fiber orientation and therefore directional stiffness and shrinkage. Gate position, wall changes, ribs, bosses, weld lines and cooling balance can influence warpage and critical dimensions. Establish the molding window and measure cavity-marked parts at a defined conditioning state before deciding that one material family is dimensionally better for the application.",
+          "A change between PA6 and PA66 requires a fresh processing review. Use exact grade documents to confirm drying, handling, residence control, machine and mold guidance, hot runners, venting, gating, filling, cooling, ejection, and shutdown. Do not transfer one grade's settings without review.",
+          "For glass-fiber compounds, flow controls fiber orientation, directional stiffness, and shrinkage. Gate position, wall changes, ribs, bosses, weld lines, and cooling can affect warpage and dimensions. Establish the molding window and measure cavity-marked parts at a defined condition. Then compare dimensional performance.",
         ],
       },
       {
@@ -1822,14 +1822,14 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Compare PPA and PA66 by high-temperature load, moisture response, dimensional stability, chemicals, processing requirements, and grade data.",
     intro:
-      "PPA should not be specified only because a project requests a 'higher-performance nylon.' It is most useful when a defined temperature, conditioned mechanical, dimensional, chemical, electrical, or process requirement cannot be met reliably by the selected PA66 direction. The additional performance can also bring a different molding window, drying requirement, tooling demand, cost structure, and validation scope. This guide frames the upgrade decision and uses Taiyi Polymer EAG630H PPA GF30 and EAG230 PA66 GF30 as grade-specific catalogue examples.",
+      "A request for a 'higher-performance nylon' does not justify PPA. Consider PPA when PA66 cannot meet a defined thermal, mechanical, dimensional, chemical, electrical, or process need. PPA can also change molding, drying, tooling, cost, and validation. This guide frames that decision using EAG630H PPA GF30 and EAG230 PA66 GF30 as grade-specific examples.",
     articleSections: [
       {
         title: "Prove the Performance Gap in the PA66 Baseline",
         navLabel: "PA66 Baseline",
         paragraphs: [
-          "Document the exact PA66 grade, color, conditioning state, mold, process and measured failure before screening PPA. The gap may involve loss of stiffness under load at temperature, creep, dimensional movement with humidity, chemical exposure, hydrolysis, electrical performance, reflow or other thermal processing, or an application-specific durability target.",
-          "State the baseline, target, test method and acceptance limit. If the problem is caused by unfavorable geometry, fiber orientation, a weld line, cooling imbalance, moisture control or an unstable molding process, changing the polymer family may add cost without correcting the root cause. Close design and process issues before treating PPA as the solution.",
+          "Before screening PPA, document the exact PA66 grade, color, condition, mold, process, and measured failure. The gap may involve hot-load stiffness, creep, humidity movement, chemicals, hydrolysis, electrical performance, thermal processing, or durability.",
+          "State the baseline, target, test method, and acceptance limit. Geometry, fiber orientation, weld lines, cooling, moisture, or an unstable process may be the root cause. Changing the polymer family may only add cost. Close design and process issues before treating PPA as the solution.",
         ],
         points: [
           "Exact PA66 grade, conditioning state and current TDS revision",
@@ -1842,7 +1842,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Compare Elevated-Temperature and Conditioned Performance",
         navLabel: "Elevated Temperature",
         paragraphs: [
-          "Partially aromatic PPA compounds are commonly screened when mechanics and dimensions must remain more stable at elevated temperature or under humid conditions than the current aliphatic PA66 grade can provide. The useful comparison is not a room-temperature dry tensile value alone. Review stiffness, strength, creep, fatigue, thermal aging and dimensional retention at the expected load, temperature and moisture state.",
+          "Partially aromatic PPA is often screened when PA66 cannot maintain mechanics or dimensions at higher temperature or humidity. Do not compare only dry tensile values at room temperature. Review stiffness, strength, creep, fatigue, thermal aging, and dimensions at the expected load, temperature, and moisture state.",
           "Melting point and HDT help locate a grade direction, but neither establishes continuous-use life. Polymer chemistry, heat stabilization, reinforcement, stress, time, air or fluid exposure and failure criterion all matter. Use temperature-dependent and conditioned grade data where available, then validate the finished part over the required duration.",
         ],
       },
@@ -1850,7 +1850,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Define Moisture, Chemical and Electrical Requirements Precisely",
         navLabel: "Environment & Electrical",
         paragraphs: [
-          "PPA generally offers a lower-moisture, higher-dimensional-stability direction than conventional PA6 or PA66, but the exact result depends on PPA chemistry, reinforcement, thickness, conditioning and service environment. Specify equilibrium or transient moisture state, dimensional datums, temperature, exposure time and the mechanical or electrical property that must be retained.",
+          "PPA generally offers lower moisture uptake and higher dimensional stability than conventional PA6 or PA66. Results still depend on chemistry, reinforcement, thickness, conditioning, and service. Specify the moisture state, dimensional datums, temperature, exposure time, and property that must be retained.",
           "Chemical and electrical suitability are grade- and test-specific. List every coolant, oil, fuel, salt solution, cleaning agent or other medium with concentration, temperature and exposure mode. For electrical parts, define voltage, resistance or dielectric requirement, humidity, wall thickness, flame rating, tracking or other applicable test and required approval. Do not infer compliance from the PPA family name.",
         ],
       },
@@ -1858,8 +1858,8 @@ export const resourcePages: ResourcePage[] = [
         title: "Review the PPA Molding System Before Material Approval",
         navLabel: "PPA Molding",
         paragraphs: [
-          "PPA and PA66 require separate grade-specific processing reviews. Confirm packaging, storage, drying and moisture measurement, machine temperature capability, screw and barrel suitability, residence control, nozzle and hot-runner guidance, mold-temperature control, runner and gate sizing, venting, cooling, ejection and approved startup, purge and shutdown procedures.",
-          "The higher-temperature processing direction of many PPA grades can expose limitations in heaters, controls, hot runners, seals, tooling, mold cooling or changeover practice. Glass-fiber orientation and weld lines remain important. Complete a mold and machine feasibility review before ordering a production trial or assuming an existing PA66 tool can run the PPA candidate without changes.",
+          "PPA and PA66 need separate, grade-specific processing reviews. Confirm packaging, storage, drying, moisture measurement, machine capability, screw and barrel suitability, residence control, and hot-runner guidance. Also check mold temperature, runner and gate sizing, venting, cooling, ejection, startup, purging, and shutdown.",
+          "Many PPA grades process at higher temperatures. This can expose limits in heaters, controls, hot runners, seals, tooling, cooling, or changeover practice. Fiber orientation and weld lines remain important. Review mold and machine feasibility before ordering a production trial or using an existing PA66 tool.",
         ],
         points: [
           "Drying and moisture verification for the exact grade and packaging history",
@@ -1984,14 +1984,14 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Control PA6 and PA66 moisture by separating pellet drying, dry-as-molded parts, conditioning, service exposure, measurement, and validation.",
     intro:
-      "Moisture plays two different roles in PA6 and PA66 projects. Excess moisture in granules can disrupt melt processing and part quality, while controlled moisture absorption after molding changes the dimensions and mechanical state of the finished polyamide part. Drying and conditioning are therefore not interchangeable operations. This guide separates pellet preparation, dry-as-molded inspection, accelerated conditioning, storage and service exposure so engineers can define a repeatable state for molding, measurement, assembly and performance validation.",
+      "Moisture has two roles in PA6 and PA66 projects. Too much moisture in granules can disrupt processing and part quality. Controlled absorption after molding changes part dimensions and mechanical state. Drying and conditioning are therefore different operations. This guide separates pellet preparation, inspection, conditioning, storage, and service exposure so each validation state can be repeated.",
     articleSections: [
       {
         title: "Separate Four Moisture States",
         navLabel: "Moisture States",
         paragraphs: [
           "Pellet moisture is a processing-control variable. Dry-as-molded describes the part shortly after molding from correctly prepared material. Conditioned describes a part brought toward a defined moisture state by an agreed procedure. In-service state describes the moisture distribution that develops under actual humidity, temperature, time, thickness and exposure. These states should not be treated as equivalent.",
-          "Specify which state applies to each requirement. A molding trial may use dry granules, dimensional release may require a fixed interval or conditioning method, assembly may occur at another state, and service validation may require humidity cycling or fluid exposure. Record state, method and timing beside every reported dimension or mechanical result.",
+          "Specify which state applies to each requirement. Molding may use dry granules. Dimensional release may use a fixed interval or conditioning method; assembly may use another state. Service validation may require humidity cycling or fluid exposure. Record the state, method, and timing with every result.",
         ],
         points: [
           "Granule moisture condition before and during processing",
@@ -2018,7 +2018,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Do Not Diagnose Moisture From Surface Appearance Alone",
         navLabel: "Diagnose Moisture",
         paragraphs: [
-          "Excess melt moisture can contribute to processing instability, surface defects and loss of material quality, but similar symptoms can also result from contamination, excessive residence, degradation, poor venting, shear, cold material, gate restrictions or machine problems. Investigate evidence instead of assigning every streak or weak part to inadequate drying.",
+          "Excess melt moisture can cause unstable processing, surface defects, and material damage. Similar symptoms may come from contamination, long residence, degradation, poor venting, shear, cold material, gate restrictions, or machine problems. Investigate the evidence instead of blaming every streak or weak part on drying.",
           "Compare moisture measurements with fill time, pressure, cushion, part weight, surface, deposits, odor or degradation signs, material history and purge condition. Preserve good and bad samples with their records. If a drying change improves appearance, confirm that dimensions, weld lines, impact and functional performance also remain acceptable.",
         ],
       },
@@ -2040,7 +2040,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Use Catalogue Moisture Values as Grade References",
         navLabel: "Catalogue Moisture",
         paragraphs: [
-          "Taiyi Polymer catalogue fields allow a controlled first comparison of selected reinforced PA6 and PA66 grades at the stated 23°C and 50% RH condition under ISO 62. The values show that polymer matrix and reinforcement level both matter. They are not universal equilibrium values for every geometry or a drying specification for pellets.",
+          "Taiyi Polymer catalogue data supports an initial comparison of selected reinforced PA6 and PA66 grades. The stated condition is 23°C and 50% RH under ISO 62. The values show that matrix and reinforcement both matter. They are not universal equilibrium values or pellet-drying specifications.",
           "Confirm the latest grade TDS, exact specimen definition and conditioning basis before calculation or specification. A finished part can absorb moisture at a different rate from a standard specimen, and local thickness or reinforcement orientation can affect dimensional response.",
         ],
       },
@@ -2125,14 +2125,14 @@ export const resourcePages: ResourcePage[] = [
     description:
       "Select CNT or carbon-fiber PA6, PA66 and PPA compounds by electrical method, target band, grounding, geometry, conditioning, molding, and validation.",
     intro:
-      "A conductive or antistatic polymer specification must define more than a power-of-ten range. Surface resistance, surface resistivity, volume resistance, volume resistivity and static decay describe different measurements, while part thickness, electrode geometry, conditioning, humidity, flow orientation, weld lines and grounding can change the observed result. Taiyi Polymer lists CNT and carbon-fiber directions across PA6, PA66 and PPA matrices. This guide explains how to choose a matrix and technology, interpret the catalogue bands cautiously, and qualify the finished part.",
+      "A conductive or antistatic polymer specification needs more than a power-of-ten range. Surface, volume, and static-decay measurements are different. Part thickness, electrodes, conditioning, humidity, flow, weld lines, and grounding can change results. Taiyi Polymer lists CNT and carbon-fiber directions for PA6, PA66, and PPA. This guide helps define the requirement, screen the technology, and qualify the finished part.",
     articleSections: [
       {
         title: "Define the Electrical Function and Measurement Basis",
         navLabel: "Electrical Basis",
         paragraphs: [
-          "First define why charge must be controlled. The requirement may involve limiting triboelectric charging, dissipating charge within a time, providing a conductive path to ground, protecting an ESD-sensitive device, reducing dust attraction, or supporting another application-specific function. Terms such as antistatic, static-dissipative and conductive can use different boundaries in different customer or industry specifications.",
-          "Name the measured quantity, test method, units, applied voltage, electrode arrangement, specimen or finished-part geometry, thickness, conditioning, temperature and humidity, measurement locations, target range and acceptable production variation. Surface and volume results are not interchangeable, and a resistance reading should not be relabeled as resistivity without the required geometry conversion.",
+          "First define why charge must be controlled. The need may be charge limitation, timed dissipation, grounding, ESD protection, dust control, or another specific function. Antistatic, static-dissipative, and conductive can have different boundaries across customer and industry specifications.",
+          "Name the measured quantity, method, units, voltage, electrode arrangement, geometry, thickness, conditioning, environment, locations, target, and production variation. Surface and volume results are not interchangeable. Do not relabel resistance as resistivity without the required geometry conversion.",
         ],
         points: [
           "Electrical function, failure risk and required grounding path",
@@ -2153,7 +2153,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Compare CNT and Carbon-Fiber Directions",
         navLabel: "CNT vs Carbon Fiber",
         paragraphs: [
-          "Taiyi Polymer positions the CNT series as a permanent static-control direction and the carbon-fiber series as a controlled-conductivity direction with a separate thermal-conductive review path. CNT and carbon fiber form conductive networks differently and can create different balances of electrical response, density, stiffness, impact, flow, surface, wear, color and cost.",
+          "Taiyi Polymer positions the CNT series for permanent static control. The carbon-fiber series targets controlled conductivity, with a separate thermal-conductive review path. CNT and carbon fiber form different networks. Their electrical, density, stiffness, impact, flow, surface, wear, color, and cost balances can differ.",
           "Carbon fiber can introduce mechanical reinforcement and directional electrical or dimensional behavior as fibers align with molded flow. CNT performance depends on the dispersed network and its survival through compounding and molding. Neither technology should be selected only from a generic label. Compare the exact grade, matrix, target band, mechanical data, processing guidance and finished-part evidence.",
         ],
         points: [
@@ -2168,7 +2168,7 @@ export const resourcePages: ResourcePage[] = [
         navLabel: "Catalogue Bands",
         paragraphs: [
           "The current Taiyi conductive catalogue provides target-band labels for PA6, PA66 and PPA CNT and carbon-fiber grades. It does not state in each entry whether the label is a surface or volume quantity, its units, specimen thickness, conditioning or test method. The band can therefore be used to shortlist a grade direction but must not be published as a complete electrical specification by itself.",
-          "Before trial, obtain the grade-specific electrical basis and agree how the catalogue band maps to the project test. Confirm whether limits apply to a standard plaque or finished part, which surfaces and flow directions are measured, and whether the requirement is an initial value, an allowed range or a retained value after environmental exposure.",
+          "Before trial, obtain the grade-specific electrical basis. Agree how the catalogue band maps to the project test. Confirm whether limits apply to a standard plaque or finished part. Define the measured surfaces and flow directions, and whether the target is initial, allowed, or retained after exposure.",
         ],
       },
       {
@@ -2183,8 +2183,8 @@ export const resourcePages: ResourcePage[] = [
         title: "Control Molding Variables That Affect Electrical Results",
         navLabel: "Molding Variables",
         paragraphs: [
-          "Dispersion, filler or fiber orientation, shear history, residence, gate and runner design, weld lines, packing, part thickness, surface formation and regrind can influence the conductive network. Establish grade-specific material handling and a stable molding window rather than copying an unfilled PA or PPA process sheet.",
-          "Record lot, material moisture, regrind, machine and screw, temperatures, fill time, transfer, pressure, cushion, part weight, cavity balance, surface and weld lines with every electrical sample. Test cavity-marked parts at defined locations and conditioning. If electrical results move with process changes, investigate the molding/network interaction instead of widening the specification without evidence.",
+          "Dispersion, orientation, shear, residence, gates, runners, weld lines, packing, thickness, surface formation, and regrind can affect the conductive network. Establish grade-specific handling and a stable molding window. Do not copy an unfilled PA or PPA process sheet.",
+          "For every electrical sample, record lot, moisture, regrind, machine, temperatures, fill and transfer data, pressure, cushion, part weight, cavity balance, and surface condition. Test cavity-marked parts at defined locations and conditioning. If results move with the process, investigate the molding and network interaction.",
         ],
       },
       {
@@ -2219,7 +2219,7 @@ export const resourcePages: ResourcePage[] = [
         sectionTitle: "Design the Part, Conductive Network and Ground Together",
         title: "Electrical function follows the complete assembly",
         description:
-          "Representative electrical-part geometries only. Grounding path, wall thickness, flow orientation, inserts, contacts, and test method must be verified on the actual part; the images do not imply conductivity or a grade.",
+          "These are representative electrical-part geometries only. Verify grounding, wall thickness, flow, inserts, contacts, and test method on the actual part. The images do not imply conductivity or a grade.",
         items: [
           {
             src: "/applications/parts/transparent/electronics-control-box-cover-v2.png",
