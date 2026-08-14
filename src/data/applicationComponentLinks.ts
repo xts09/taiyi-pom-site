@@ -18,6 +18,18 @@ export const applicationComponentLinks: ApplicationComponentLink[] = [
     href: "/components/bushings-and-sleeves",
     label: "Bushings & Sleeves Guide",
   },
+  {
+    applicationSlug: "conveyor-automation",
+    partLabel: "Mini Conveyor Chain Plate",
+    href: "/components/conveyor-chain-components",
+    label: "Conveyor Chain Components Guide",
+  },
+  {
+    applicationSlug: "water-control",
+    partLabel: "Valve Spool Assembly",
+    href: "/components/valve-spools-and-cartridges",
+    label: "Valve Spools & Cartridges Guide",
+  },
 ];
 
 export const getApplicationComponentLink = (

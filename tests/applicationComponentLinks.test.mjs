@@ -6,7 +6,7 @@ import {
   getApplicationComponentLinks,
 } from "../src/data/applicationComponentLinks.ts";
 
-test("publishes only the first two reviewed Motion Component guides", () => {
+test("publishes the reviewed Batch D1 and D2 component guides", () => {
   assert.deepEqual(applicationComponentLinks, [
     {
       applicationSlug: "motion-components",
@@ -19,6 +19,18 @@ test("publishes only the first two reviewed Motion Component guides", () => {
       partLabel: "Bushing",
       href: "/components/bushings-and-sleeves",
       label: "Bushings & Sleeves Guide",
+    },
+    {
+      applicationSlug: "conveyor-automation",
+      partLabel: "Mini Conveyor Chain Plate",
+      href: "/components/conveyor-chain-components",
+      label: "Conveyor Chain Components Guide",
+    },
+    {
+      applicationSlug: "water-control",
+      partLabel: "Valve Spool Assembly",
+      href: "/components/valve-spools-and-cartridges",
+      label: "Valve Spools & Cartridges Guide",
     },
   ]);
   assert.equal(
@@ -35,7 +47,19 @@ test("publishes only the first two reviewed Motion Component guides", () => {
   );
   assert.deepEqual(
     getApplicationComponentLinks("motion-components"),
-    applicationComponentLinks,
+    applicationComponentLinks.slice(0, 2),
+  );
+  assert.equal(
+    getApplicationComponentLink(
+      "conveyor-automation",
+      "Mini Conveyor Chain Plate",
+    )?.href,
+    "/components/conveyor-chain-components",
+  );
+  assert.equal(
+    getApplicationComponentLink("water-control", "Valve Spool Assembly")
+      ?.href,
+    "/components/valve-spools-and-cartridges",
   );
   assert.deepEqual(getApplicationComponentLinks("automotive"), []);
 });
