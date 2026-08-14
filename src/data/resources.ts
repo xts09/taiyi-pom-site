@@ -896,6 +896,10 @@ export const resourcePages: ResourcePage[] = [
         href: "/resources/wear-resistant-low-friction-pom-selection-guide",
       },
       {
+        label: "Precision Plastic Gear Component Guide",
+        href: "/components/precision-plastic-gears",
+      },
+      {
         label: "Application Review by Part Function",
         href: "/resources/application-notes",
       },
@@ -1498,8 +1502,8 @@ export const resourcePages: ResourcePage[] = [
         href: "/products/categories/glass-fiber-reinforced-pom-compound",
       },
       {
-        label: "Browse POM Materials",
-        href: "/products/categories/pom",
+        label: "Carbon Fiber Reinforced POM Grades",
+        href: "/products/categories/carbon-fiber-reinforced-pom-compound",
       },
       {
         label: "Select Glass-Fiber-Reinforced PA6 or PA66",
