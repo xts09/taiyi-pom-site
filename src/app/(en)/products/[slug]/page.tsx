@@ -26,6 +26,7 @@ import {
   pomSubcategoryLabels,
 } from "@/lib/productCategories";
 import { getPublicCoreProperties } from "@/lib/productPropertyVisibility";
+import { selectRelatedGrades } from "@/lib/relatedGrades";
 import {
   createBreadcrumbJsonLd,
   createEngineeringTdsPageMetadata,
@@ -254,21 +255,14 @@ function EngineeringProductDetailPage({
       : "Grade-specific document support for review",
     "Final selection should be confirmed against part design and molding conditions",
   ];
-  const relatedDocuments = engineeringTdsDocuments
-    .filter(
-      (item) =>
-        item.grade !== document.grade &&
-        item.family === document.family &&
-        item.category === document.category
-    )
-    .slice(0, 3);
-  const fallbackDocuments = engineeringTdsDocuments
-    .filter(
-      (item) => item.grade !== document.grade && item.family === document.family
-    )
-    .slice(0, 3);
-  const documentsToShow =
-    relatedDocuments.length > 0 ? relatedDocuments : fallbackDocuments;
+  const documentsToShow = selectRelatedGrades({
+    items: engineeringTdsDocuments,
+    current: document,
+    getId: createEngineeringTdsSlug,
+    isPrimaryPeer: (item, current) =>
+      item.family === current.family && item.category === current.category,
+    isFallbackPeer: (item, current) => item.family === current.family,
+  });
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
@@ -663,19 +657,13 @@ export default async function ProductDetailPage({
       })
     : "/technical-data-sheets";
 
-  const relatedProducts = products
-    .filter(
-      (item) =>
-        item.slug !== product.slug && item.category === product.category
-    )
-    .slice(0, 3);
-
-  const fallbackProducts = products
-    .filter((item) => item.slug !== product.slug)
-    .slice(0, 3);
-
-  const productsToShow =
-    relatedProducts.length > 0 ? relatedProducts : fallbackProducts;
+  const productsToShow = selectRelatedGrades({
+    items: products,
+    current: product,
+    getId: (item) => item.slug,
+    isPrimaryPeer: (item, current) => item.category === current.category,
+    isFallbackPeer: () => true,
+  });
 
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },

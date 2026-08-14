@@ -3849,6 +3849,23 @@
     width: min(calc(100% - 2rem), 88rem);
   }
 
+  .product-detail-related .related-product-row {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    column-gap: var(--ds-space-3);
+    row-gap: var(--ds-space-3);
+    align-items: start;
+  }
+
+  .product-detail-related .related-product-main,
+  .product-detail-related .related-product-row dl {
+    min-width: 0;
+  }
+
+  .product-detail-related .related-product-row dl {
+    grid-column: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .product-detail-snapshot-grid,
   .product-detail-support-section {
     grid-template-columns: 1fr;
