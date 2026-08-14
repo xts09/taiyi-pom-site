@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { createContactHref } from "@/lib/contactContext";
+import { getApplicationComponentLinks } from "@/data/applicationComponentLinks";
 import {
   applications,
   getApplicationBySlug,
@@ -327,12 +328,12 @@ const getApplicationUseCards = (
   application: ApplicationItem,
 ): ApplicationUseCardData[] =>
   application.parts.map((part, index) => ({
-    key: `${part.label}-${index}`,
-    description: part.description,
-    image: part.image,
-    index,
-    title: part.label,
-  }));
+      key: `${part.label}-${index}`,
+      description: part.description,
+      image: part.image,
+      index,
+      title: part.label,
+    }));
 
 function ApplicationUseCard({
   description,
@@ -490,6 +491,7 @@ export default async function ApplicationDetailPage({
     visualConfig,
   );
   const applicationUseCards = getApplicationUseCards(application);
+  const componentGuides = getApplicationComponentLinks(application.slug);
   const featuredApplicationUseCards = applicationUseCards.slice(0, 4);
   const remainingApplicationUseCards = applicationUseCards.slice(4);
   const featuredMaterialDirectionCards = materialDirectionCards.slice(0, 3);
@@ -749,6 +751,35 @@ export default async function ApplicationDetailPage({
               </details>
             ) : null}
           </div>
+
+          {componentGuides.length > 0 ? (
+            <aside
+              className="application-component-guides"
+              aria-labelledby="application-component-guides-heading"
+            >
+              <div className="application-component-guides-intro">
+                <p className="section-kicker">Component Guides</p>
+                <h3 id="application-component-guides-heading">
+                  Dedicated reviews available for these parts.
+                </h3>
+              </div>
+              <div className="application-component-guide-links">
+                {componentGuides.map((guide) => (
+                  <Link
+                    className="application-component-guide-link"
+                    href={guide.href}
+                    key={guide.href}
+                  >
+                    <span className="application-component-guide-part">
+                      {guide.partLabel}
+                    </span>
+                    <strong>{guide.label}</strong>
+                    <span aria-hidden="true">↗</span>
+                  </Link>
+                ))}
+              </div>
+            </aside>
+          ) : null}
         </section>
 
         <section
