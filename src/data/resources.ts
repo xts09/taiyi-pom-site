@@ -486,6 +486,10 @@ export const resourcePages: ResourcePage[] = [
         label: "Review the POM Material Selection Framework",
         href: "/resources/material-selection-guide",
       },
+      {
+        label: "Review Modified POM Manufacturing Capabilities",
+        href: "/about#manufacturing",
+      },
       { label: "Discuss an Alternative Grade", href: "/contact" },
     ],
   },

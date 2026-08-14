@@ -105,11 +105,11 @@ export const productCategoryData: ProductCategoryData[] = [
   },
   {
     category: "Carbon Fiber Reinforced POM Compound",
-    label: "Carbon Fiber Reinforced POM",
+    label: "Carbon Fiber Reinforced POM Compound",
     description:
-      "Browse Taiyi Polymer carbon fiber reinforced POM grades for high stiffness, controlled conductivity, dimensional stability, and document support.",
+      "Browse Taiyi Polymer carbon fiber reinforced POM compound grades for high stiffness, controlled conductivity, dimensional stability, and document support.",
     navSubtitle:
-      "Review carbon fiber reinforced POM by stiffness, conductivity target, dimensional control, and documents.",
+      "Review carbon fiber reinforced POM compound grades by stiffness, conductivity target, dimensional control, and documents.",
     applications: [
       "High-stiffness precision parts",
       "Components requiring reinforcement and controlled conductivity",
