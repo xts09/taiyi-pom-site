@@ -45,7 +45,6 @@ test("product side entrances retain their product stylesheet", () => {
   const productSideEntrances = [
     "src/app/(en)/conductive-antistatic-pom/page.tsx",
     "src/app/(en)/modified-pom-compounds/page.tsx",
-    "src/app/(en)/pom-grade-cross-reference/page.tsx",
     "src/app/(en)/technical-data-sheets/page.tsx",
     "src/app/(en)/wear-resistant-low-friction-pom/page.tsx",
   ];
@@ -56,6 +55,15 @@ test("product side entrances retain their product stylesheet", () => {
       path,
     );
   }
+});
+
+test("grade cross-reference workspace keeps its route-local stylesheet", () => {
+  const workspacePage = readProjectFile(
+    "src/app/(en)/pom-grade-cross-reference/page.tsx",
+  );
+
+  assert.ok(workspacePage.includes('import styles from "./page.module.css";'));
+  assert.doesNotMatch(workspacePage, /styles\/products\.css/);
 });
 
 test("contact layout stays locally owned without override escalation", () => {

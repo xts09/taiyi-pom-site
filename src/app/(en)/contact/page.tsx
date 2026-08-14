@@ -84,11 +84,22 @@ export default async function ContactPage({ searchParams }: ContactPageProps) {
     ]
       .filter(Boolean)
       .join(" / ")}`,
+    contactContext.reference
+      ? `Reference grade: ${contactContext.reference}`
+      : undefined,
+    contactContext.candidates
+      ? `Candidate shortlist: ${contactContext.candidates}`
+      : undefined,
+    contactContext.requirement
+      ? `Priority requirement: ${contactContext.requirement}`
+      : undefined,
     "Key requirements:",
     "Document needs:",
     "",
     "Regards,",
-  ].join("\r\n");
+  ]
+    .filter((value): value is string => value !== undefined)
+    .join("\r\n");
   const directEmailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(
     "Material Requirement Request"
   )}&body=${encodeURIComponent(directEmailBody)}`;

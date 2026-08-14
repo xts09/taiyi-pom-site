@@ -49,3 +49,39 @@ test("creates an editable message for grade-specific intents", () => {
     "Grade of interest: ETM750\nInquiry intent: Sample request"
   );
 });
+
+test("carries a selection workspace shortlist into the contact form", () => {
+  const href = createContactHref({
+    application: "Precision gear",
+    candidates: "XT-100, EGH502H",
+    intent: "grade-evaluation",
+    material: "POM",
+    reference: "DURACON® M90-44",
+    requirement: "Stable dimensions in an existing tool",
+    source: "POM grade cross-reference workspace",
+  });
+
+  const query = href.slice(href.indexOf("?") + 1);
+  const context = parseContactContext(
+    Object.fromEntries(new URLSearchParams(query)),
+  );
+
+  assert.deepEqual(context, {
+    application: "Precision gear",
+    candidates: "XT-100, EGH502H",
+    intent: "grade-evaluation",
+    material: "POM",
+    reference: "DURACON® M90-44",
+    requirement: "Stable dimensions in an existing tool",
+    source: "POM grade cross-reference workspace",
+  });
+  assert.equal(
+    getContactContextMessage(context),
+    [
+      "Reference grade: DURACON® M90-44",
+      "Candidate shortlist: XT-100, EGH502H",
+      "Priority requirement: Stable dimensions in an existing tool",
+      "Inquiry intent: Grade evaluation",
+    ].join("\n"),
+  );
+});

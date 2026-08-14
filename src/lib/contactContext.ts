@@ -2,9 +2,12 @@ export type ContactIntent = "sample" | "grade-evaluation";
 
 export type ContactContext = {
   application?: string;
+  candidates?: string;
   grade?: string;
   intent?: ContactIntent;
   material?: string;
+  reference?: string;
+  requirement?: string;
   source?: string;
 };
 
@@ -18,6 +21,9 @@ const contextKeys = [
   "material",
   "application",
   "grade",
+  "reference",
+  "candidates",
+  "requirement",
 ] as const;
 const allowedIntents = new Set<ContactIntent>(["sample", "grade-evaluation"]);
 
@@ -73,9 +79,13 @@ export function createContactHref(context: ContactContext) {
 }
 
 export function getContactContextLabel(context: ContactContext) {
-  const details = [context.application, context.material, context.grade].filter(
-    (value): value is string => Boolean(value)
-  );
+  const details = [
+    context.application,
+    context.material,
+    context.grade,
+    context.reference,
+    context.candidates,
+  ].filter((value): value is string => Boolean(value));
 
   return details.length > 0 ? details.join(" / ") : context.source;
 }
@@ -90,6 +100,13 @@ export function getContactContextMessage(context: ContactContext) {
 
   return [
     context.grade ? `Grade of interest: ${context.grade}` : undefined,
+    context.reference ? `Reference grade: ${context.reference}` : undefined,
+    context.candidates
+      ? `Candidate shortlist: ${context.candidates}`
+      : undefined,
+    context.requirement
+      ? `Priority requirement: ${context.requirement}`
+      : undefined,
     intentLabel ? `Inquiry intent: ${intentLabel}` : undefined,
   ]
     .filter((value): value is string => Boolean(value))
