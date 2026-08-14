@@ -6,7 +6,7 @@ import {
   getApplicationComponentLinks,
 } from "../src/data/applicationComponentLinks.ts";
 
-test("publishes the reviewed Batch D1 and D2 component guides", () => {
+test("publishes the reviewed Batch D1 through D3 component guides", () => {
   assert.deepEqual(applicationComponentLinks, [
     {
       applicationSlug: "motion-components",
@@ -31,6 +31,18 @@ test("publishes the reviewed Batch D1 and D2 component guides", () => {
       partLabel: "Valve Spool Assembly",
       href: "/components/valve-spools-and-cartridges",
       label: "Valve Spools & Cartridges Guide",
+    },
+    {
+      applicationSlug: "textile-machinery",
+      partLabel: "Yarn Guide",
+      href: "/components/textile-guide-components",
+      label: "Textile Guide Components Guide",
+    },
+    {
+      applicationSlug: "electronics",
+      partLabel: "IC Handling Tray",
+      href: "/components/ic-handling-trays",
+      label: "IC Handling Trays Guide",
     },
   ]);
   assert.equal(
@@ -60,6 +72,14 @@ test("publishes the reviewed Batch D1 and D2 component guides", () => {
     getApplicationComponentLink("water-control", "Valve Spool Assembly")
       ?.href,
     "/components/valve-spools-and-cartridges",
+  );
+  assert.equal(
+    getApplicationComponentLink("textile-machinery", "Yarn Guide")?.href,
+    "/components/textile-guide-components",
+  );
+  assert.equal(
+    getApplicationComponentLink("electronics", "IC Handling Tray")?.href,
+    "/components/ic-handling-trays",
   );
   assert.deepEqual(getApplicationComponentLinks("automotive"), []);
 });

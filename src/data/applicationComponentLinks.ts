@@ -30,6 +30,18 @@ export const applicationComponentLinks: ApplicationComponentLink[] = [
     href: "/components/valve-spools-and-cartridges",
     label: "Valve Spools & Cartridges Guide",
   },
+  {
+    applicationSlug: "textile-machinery",
+    partLabel: "Yarn Guide",
+    href: "/components/textile-guide-components",
+    label: "Textile Guide Components Guide",
+  },
+  {
+    applicationSlug: "electronics",
+    partLabel: "IC Handling Tray",
+    href: "/components/ic-handling-trays",
+    label: "IC Handling Trays Guide",
+  },
 ];
 
 export const getApplicationComponentLink = (
