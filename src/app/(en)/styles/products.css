@@ -1604,12 +1604,6 @@
 
   .products-motion-root
     .product-family-row[data-slot="directory-row"]
-    > span:first-child {
-    white-space: nowrap;
-  }
-
-  .products-motion-root
-    .product-family-row[data-slot="directory-row"]
     > span:last-child {
     align-self: center;
   }
