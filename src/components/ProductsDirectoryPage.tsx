@@ -92,10 +92,12 @@ export function ProductsDirectoryPage({
 }: ProductsDirectoryPageProps) {
   const productFamilies = familyDefinitions.map((definition, index) => ({
     ...definition,
+    href: getLocalizedHref(definition.href, localeSegment),
     ...messages.families.items[index],
   }));
   const requirementPaths = requirementDefinitions.map((definition, index) => ({
     ...definition,
+    href: getLocalizedHref(definition.href, localeSegment),
     ...messages.selection.paths[index],
   }));
   const productDirectoryContactHref = getLocalizedHref(
@@ -182,7 +184,10 @@ export function ProductsDirectoryPage({
                   variant="productHeroSecondary"
                 >
                   <Link
-                    href="/technical-data-sheets"
+                    href={getLocalizedHref(
+                      "/technical-data-sheets",
+                      localeSegment,
+                    )}
                     style={{ "--item-index": 1 } as CSSProperties}
                   >
                     {messages.hero.dataSheetsAction}

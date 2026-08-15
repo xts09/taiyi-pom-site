@@ -217,7 +217,10 @@ export const createProductJsonLd = ({
   };
 };
 
-export const createProductPageMetadata = (product: Product): Metadata => {
+export const createProductPageMetadata = (
+  product: Product,
+  languageAlternates?: Record<string, string>,
+): Metadata => {
   const title = product.seo?.title ?? `${product.title} | ${siteName}`;
   const description =
     product.seo?.description ??
@@ -230,6 +233,7 @@ export const createProductPageMetadata = (product: Product): Metadata => {
     image: product.seo?.image,
     imageAlt: `${product.title} from ${siteName}`,
     indexable: product.seo?.indexable !== false,
+    languageAlternates,
   });
 };
 

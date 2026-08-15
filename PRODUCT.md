@@ -55,6 +55,15 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Within these released pages, Home, Products, and Contact links remain in the current locale. Applications, Resources, About, product categories, grade pages, technical-data search, previews, dynamic search parameters, and legal pages continue to use their existing English routes until separately reviewed.
 - Publishing a locale shell is still not sufficient: each future route requires complete translated copy, factual and linguistic review, responsive rendered acceptance, reciprocal SEO signals, and explicit release-manifest inclusion.
 
+### Multilingual Product Decision Pilot (2026-08-15)
+
+- Batch 3A extends the public `de`, `fr`, and `pt-br` funnel to `/products/categories/base-pom-resin`, `/products/xt-100-base-pom-resin`, and `/technical-data-sheets` under each locale prefix.
+- The localized category, XT-100 evidence page, technical-data entry, and Contact handoff form one reviewed path. Product values, units, methods, and document status continue to come from the shared product source; server-only dictionaries localize interface and evaluation copy without duplicating technical records.
+- The English source pages and all three localized versions emit reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates, self-canonicals, language-switcher destinations, and unique sitemap entries.
+- Unreleased localized product aliases remain unavailable. Localized technical-data query variants are `noindex, follow` and canonicalize to the clean language landing page; dynamic search results are not part of this release.
+- Category rows without a reviewed localized grade page route to the localized project-review form instead of exposing English fallback copy on a localized URL.
+- The next expansion should follow the same gate for priority POM categories and reviewed cross-reference grades before translating Resources, Applications, and Components linked from those grades.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.

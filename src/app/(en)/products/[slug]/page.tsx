@@ -16,6 +16,7 @@ import {
 } from "@/data/engineeringTds";
 import { products, type ProductProperty } from "@/data/products";
 import { availableDocuments } from "@/data/company";
+import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
 import {
   getProductListDescriptor,
   getProductListTitle,
@@ -224,7 +225,10 @@ export async function generateMetadata({
     };
   }
 
-  return createProductPageMetadata(product);
+  return createProductPageMetadata(
+    product,
+    getLanguageAlternatesForPath(`/products/${product.slug}`),
+  );
 }
 
 function EngineeringProductDetailPage({

@@ -12,7 +12,15 @@ import de from "../src/i18n/messages/de.ts";
 import en from "../src/i18n/messages/en.ts";
 import fr from "../src/i18n/messages/fr.ts";
 import ptBR from "../src/i18n/messages/pt-BR.ts";
+import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
+import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
+import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
 import {
+  basePomGradeSlugs,
+  xt100FeaturedPropertyLabels,
+} from "../src/i18n/productFunnelTypes.ts";
+import {
+  getLanguageAlternates,
   getLocalizedHref,
   getLocalizedContactPath,
   getLocalizedHomePath,
@@ -105,7 +113,7 @@ test("all localized dictionaries match the complete English message shape", () =
   assert.notEqual(ptBR.Products.hero.title, en.Products.hero.title);
 });
 
-test("the release manifest publishes only the approved core funnel pages", () => {
+test("the release manifest publishes only the approved conversion funnel pages", () => {
   assert.deepEqual(localizedReleaseManifest.home, {
     sourcePath: "/",
     status: "public",
@@ -116,6 +124,30 @@ test("the release manifest publishes only the approved core funnel pages", () =>
   });
   assert.deepEqual(localizedReleaseManifest.products, {
     sourcePath: "/products",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.basePomCategory, {
+    sourcePath: "/products/categories/base-pom-resin",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.xt100Grade, {
+    sourcePath: "/products/xt-100-base-pom-resin",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.technicalDataSheets, {
+    sourcePath: "/technical-data-sheets",
     status: "public",
     indexable: true,
     publicNavigation: true,
@@ -192,8 +224,30 @@ test("the release manifest publishes only the approved core funnel pages", () =>
       `/${locale.urlSegment}/contact?source=home`,
     );
     assert.equal(
+      getLocalizedHref(
+        "/products/categories/base-pom-resin",
+        locale.urlSegment,
+      ),
+      `/${locale.urlSegment}/products/categories/base-pom-resin`,
+    );
+    assert.equal(
+      getLocalizedHref(
+        "/products/xt-100-base-pom-resin",
+        locale.urlSegment,
+      ),
+      `/${locale.urlSegment}/products/xt-100-base-pom-resin`,
+    );
+    assert.equal(
+      getLocalizedHref("/technical-data-sheets", locale.urlSegment),
+      `/${locale.urlSegment}/technical-data-sheets`,
+    );
+    assert.equal(
       getLocalizedHref("/applications", locale.urlSegment),
       "/applications",
+    );
+    assert.equal(
+      getLocalizedHref("/products/xt-100", locale.urlSegment),
+      "/products/xt-100",
     );
   }
 
@@ -210,8 +264,58 @@ test("the release manifest publishes only the approved core funnel pages", () =>
   );
   assert.equal(isLocalizedReleaseIndexable("/"), true);
   assert.equal(isLocalizedReleaseIndexable("/products"), true);
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/categories/base-pom-resin"),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/xt-100-base-pom-resin"),
+    true,
+  );
+  assert.equal(isLocalizedReleaseIndexable("/technical-data-sheets"), true);
   assert.equal(isLocalizedReleaseIndexable("/contact"), true);
   assert.equal(isLocalizedReleaseIndexable("/about"), false);
+
+  assert.deepEqual(
+    getLanguageAlternates("/products/xt-100-base-pom-resin"),
+    {
+      en: "/products/xt-100-base-pom-resin",
+      de: "/de/products/xt-100-base-pom-resin",
+      fr: "/fr/products/xt-100-base-pom-resin",
+      "pt-BR": "/pt-br/products/xt-100-base-pom-resin",
+      "x-default": "/products/xt-100-base-pom-resin",
+    },
+  );
+});
+
+test("deep product funnel dictionaries are complete and language-specific", () => {
+  const expectedShape = shapeOf(deProductFunnel);
+
+  for (const messages of [
+    deProductFunnel,
+    frProductFunnel,
+    ptBRProductFunnel,
+  ]) {
+    assert.deepEqual(shapeOf(messages), expectedShape);
+    assert.deepEqual(
+      Object.keys(messages.category.directory.summaries).sort(),
+      [...basePomGradeSlugs].sort(),
+    );
+    assert.deepEqual(
+      Object.keys(messages.grade.properties.labels).sort(),
+      [...xt100FeaturedPropertyLabels].sort(),
+    );
+    assert.equal(messages.grade.features.length, 4);
+    assert.equal(messages.grade.applications.length, 4);
+    assert.equal(messages.grade.evaluation.steps.length, 3);
+    assert.equal(messages.technicalData.scopeItems.length, 3);
+  }
+
+  assert.notEqual(deProductFunnel.category.hero.title, frProductFunnel.category.hero.title);
+  assert.notEqual(frProductFunnel.grade.positioning, ptBRProductFunnel.grade.positioning);
+  assert.match(deProductFunnel.grade.properties.labels.Density, /Dichte/);
+  assert.match(frProductFunnel.grade.properties.labels.Density, /volumique/);
+  assert.match(ptBRProductFunnel.grade.properties.labels.Density, /Densidade/);
 });
 
 test("release surfaces fail closed when status or indexability changes", () => {
@@ -249,11 +353,20 @@ test("release surfaces fail closed when status or indexability changes", () => {
   );
 });
 
-test("localized Home, Products, and Contact are public with reciprocal SEO signals", () => {
+test("localized funnel pages are public with reciprocal SEO signals", () => {
   const localizedLayout = readProjectFile("src/app/[locale]/layout.tsx");
   const localizedHome = readProjectFile("src/app/[locale]/page.tsx");
   const localizedProducts = readProjectFile("src/app/[locale]/products/page.tsx");
   const localizedContact = readProjectFile("src/app/[locale]/contact/page.tsx");
+  const localizedCategory = readProjectFile(
+    "src/app/[locale]/products/categories/[category]/page.tsx",
+  );
+  const localizedGrade = readProjectFile(
+    "src/app/[locale]/products/[slug]/page.tsx",
+  );
+  const localizedTechnicalData = readProjectFile(
+    "src/app/[locale]/technical-data-sheets/page.tsx",
+  );
   const englishHome = readProjectFile("src/app/(en)/page.tsx");
   const englishProducts = readProjectFile("src/app/(en)/products/page.tsx");
   const englishContact = readProjectFile("src/app/(en)/contact/page.tsx");
@@ -269,12 +382,19 @@ test("localized Home, Products, and Contact are public with reciprocal SEO signa
   assert.doesNotMatch(localizedHome, /indexable:\s*false/);
   assert.doesNotMatch(localizedProducts, /indexable:\s*false/);
   assert.doesNotMatch(localizedContact, /indexable:\s*false/);
+  assert.doesNotMatch(localizedCategory, /indexable:\s*false/);
+  assert.doesNotMatch(localizedGrade, /indexable:\s*false/);
+  assert.doesNotMatch(localizedTechnicalData, /indexable:\s*false/);
   assert.match(localizedHome, /getLocalizedHomePath/);
   assert.match(localizedProducts, /getLocalizedProductsPath/);
   assert.match(localizedContact, /getLocalizedContactPath/);
   assert.match(localizedHome, /homeLanguageAlternates/);
   assert.match(localizedProducts, /productsLanguageAlternates/);
   assert.match(localizedContact, /contactLanguageAlternates/);
+  assert.match(localizedCategory, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(localizedGrade, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(localizedTechnicalData, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(localizedTechnicalData, /!hasSearchIntent/);
   assert.match(localizedHome, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(localizedProducts, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(localizedContact, /indexable:\s*isLocalizedReleaseIndexable/);
@@ -284,9 +404,12 @@ test("localized Home, Products, and Contact are public with reciprocal SEO signa
   assert.match(englishContact, /contactLanguageAlternates/);
   assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
-  assert.match(sitemap, /homeSitemapLanguageOptions/);
-  assert.match(sitemap, /productsSitemapLanguageOptions/);
-  assert.match(sitemap, /contactSitemapLanguageOptions/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/xt-100-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/technical-data-sheets"/);
+  assert.match(sitemap, /getSitemapLanguageOptions\(sourcePath\)/);
+  assert.match(sitemap, /isReleasedSourcePath\(entry\.path\)/);
+  assert.match(sitemap, /isReleasedSourcePath\(`\/products\/\$\{product\.slug\}`\)/);
   assert.match(sitemap, /alternates:\s*\{[\s\S]*languages:/);
   assert.match(header, /getLanguageOptions/);
   assert.match(header, /language-switcher--/);

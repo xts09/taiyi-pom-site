@@ -34,6 +34,18 @@ export const localizedReleaseManifest = {
     sourcePath: "/products",
     ...publicRelease,
   },
+  basePomCategory: {
+    sourcePath: "/products/categories/base-pom-resin",
+    ...publicRelease,
+  },
+  xt100Grade: {
+    sourcePath: "/products/xt-100-base-pom-resin",
+    ...publicRelease,
+  },
+  technicalDataSheets: {
+    sourcePath: "/technical-data-sheets",
+    ...publicRelease,
+  },
   contact: {
     sourcePath: "/contact",
     ...publicRelease,
@@ -86,7 +98,9 @@ const releasedSourcePaths = Object.values(localizedReleaseManifest).map(
 
 const releaseEntries = Object.values(localizedReleaseManifest);
 
-const isReleasedSourcePath = (sourcePath: string): sourcePath is ReleasedSourcePath =>
+export const isReleasedSourcePath = (
+  sourcePath: string,
+): sourcePath is ReleasedSourcePath =>
   releasedSourcePaths.includes(sourcePath as ReleasedSourcePath);
 
 const getReleaseEntry = (sourcePath: string) =>
@@ -166,6 +180,11 @@ export const getLanguageAlternates = (
     "x-default": sourcePath,
   } satisfies Record<string, string>;
 };
+
+export const getLanguageAlternatesForPath = (
+  sourcePath: string,
+): Record<string, string> =>
+  isReleasedSourcePath(sourcePath) ? getLanguageAlternates(sourcePath) : {};
 
 export const homeLanguageOptions = getLanguageOptions("/");
 export const productsLanguageOptions = getLanguageOptions("/products");

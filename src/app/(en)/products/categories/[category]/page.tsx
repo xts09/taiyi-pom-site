@@ -16,6 +16,7 @@ import {
   getEngineeringTdsByProductCategory,
 } from "@/data/engineeringTds";
 import { products } from "@/data/products";
+import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
 import {
   findCategoryBySlug,
   getCategoryApplicationSlugs,
@@ -105,6 +106,7 @@ export async function generateMetadata({
     title: `${getCategoryMetadataTitle(entry.category)} | Taiyi Polymer`,
     description: getCategoryDescription(entry.category),
     path: entry.path,
+    languageAlternates: getLanguageAlternatesForPath(entry.path),
     ...socialMedia,
   });
 }

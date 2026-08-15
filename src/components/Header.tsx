@@ -505,7 +505,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                         {productCategoryLinks.map((item) => (
                           <Link
                             key={`${item.labelKey}-${item.href}`}
-                            href={item.href}
+                            href={localizedHref(item.href)}
                             prefetch={false}
                             className="mega-category-link"
                             onClick={closeMega}
@@ -681,7 +681,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             ) : null}
 
             <Link
-              href="/technical-data-sheets"
+              href={localizedHref("/technical-data-sheets")}
               prefetch={false}
               className="nav-search-button inline-flex items-center justify-center"
               aria-label={messages.searchLabel}
@@ -749,7 +749,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 {productCategoryLinks.map((category) => (
                   <Link
                     key={`${category.labelKey}-${category.href}`}
-                    href={category.href}
+                    href={localizedHref(category.href)}
                     prefetch={false}
                     className="mobile-menu-sub-link block py-2"
                     aria-current={
@@ -852,7 +852,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             </Link>
 
             <Link
-              href="/technical-data-sheets"
+              href={localizedHref("/technical-data-sheets")}
               prefetch={false}
               className="mobile-menu-primary-link mobile-menu-search-link py-3"
               aria-current={

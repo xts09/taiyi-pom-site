@@ -15,6 +15,7 @@ import {
 } from "@/data/conductiveCompounds";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
+import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
 import { matchesTechnicalQuery } from "@/lib/mfiSearch";
 import {
   createBreadcrumbJsonLd,
@@ -33,6 +34,7 @@ const technicalDataSheetsMetadata: Metadata = createPageMetadata({
   path: "/technical-data-sheets",
   image: "/generated/pom-workbench-hero.webp",
   imageAlt: "Taiyi Polymer technical data and grade search",
+  languageAlternates: getLanguageAlternatesForPath("/technical-data-sheets"),
 });
 
 const getSearchValue = (value: string | string[] | undefined) =>

@@ -14,12 +14,10 @@ import {
 } from "@/data/resourceNavigation";
 import { resourcePages } from "@/data/resources";
 import {
-  contactLanguageAlternates,
-  contactSitemapLanguageOptions,
-  homeLanguageAlternates,
-  homeSitemapLanguageOptions,
-  productsLanguageAlternates,
-  productsSitemapLanguageOptions,
+  getLanguageAlternates,
+  getSitemapLanguageOptions,
+  isReleasedSourcePath,
+  type ReleasedSourcePath,
 } from "@/i18n/releaseManifest";
 import { productCategoryEntries } from "@/lib/productCategories";
 import { absoluteUrl, siteUrl } from "@/lib/seo";
@@ -39,44 +37,65 @@ const createUrlEntry = (
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedLanguageRoutes = [
     {
-      options: homeSitemapLanguageOptions,
-      alternates: homeLanguageAlternates,
+      sourcePath: "/",
       priority: 1,
       changeFrequency: "weekly" as const,
     },
     {
-      options: productsSitemapLanguageOptions,
-      alternates: productsLanguageAlternates,
+      sourcePath: "/products",
       priority: 0.9,
       changeFrequency: "weekly" as const,
     },
     {
-      options: contactSitemapLanguageOptions,
-      alternates: contactLanguageAlternates,
+      sourcePath: "/products/categories/base-pom-resin",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/products/xt-100-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/technical-data-sheets",
+      priority: 0.8,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/contact",
       priority: 0.6,
       changeFrequency: "monthly" as const,
     },
-  ].flatMap(({ options, alternates, priority, changeFrequency }) => {
-    const absoluteAlternates = Object.fromEntries(
-      Object.entries(alternates).map(([language, path]) => [
-        language,
-        absoluteUrl(path),
-      ]),
-    );
+  ] satisfies ReadonlyArray<{
+    sourcePath: ReleasedSourcePath;
+    priority: number;
+    changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  }>;
 
-    return options.map(({ href }) => ({
-      ...createUrlEntry(href, priority, changeFrequency),
-      alternates: {
-        languages: absoluteAlternates,
-      },
-    }));
-  });
+  const localizedRoutes = localizedLanguageRoutes.flatMap(
+    ({ sourcePath, priority, changeFrequency }) => {
+      const options = getSitemapLanguageOptions(sourcePath);
+      const alternates = getLanguageAlternates(sourcePath);
+      const absoluteAlternates = Object.fromEntries(
+        Object.entries(alternates).map(([language, path]) => [
+          language,
+          absoluteUrl(path),
+        ]),
+      );
+
+      return options.map(({ href }) => ({
+        ...createUrlEntry(href, priority, changeFrequency),
+        alternates: {
+          languages: absoluteAlternates,
+        },
+      }));
+    },
+  );
 
   const staticRoutes = [
     createUrlEntry("/applications", 0.9, "weekly"),
     createUrlEntry("/components", 0.8, "weekly"),
     createUrlEntry("/resources", 0.85, "weekly"),
-    createUrlEntry("/technical-data-sheets", 0.8, "weekly"),
     createUrlEntry("/about", 0.6, "monthly"),
     {
       ...createUrlEntry("/privacy", 0.2, "yearly"),
@@ -84,9 +103,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const categoryRoutes = productCategoryEntries.map((entry) => ({
-    ...createUrlEntry(entry.path, 0.75, "weekly"),
-  }));
+  const categoryRoutes = productCategoryEntries
+    .filter((entry) => !isReleasedSourcePath(entry.path))
+    .map((entry) => ({
+      ...createUrlEntry(entry.path, 0.75, "weekly"),
+    }));
 
   const applicationRoutes = applications.map((application) => ({
     ...createUrlEntry(`/applications/${application.slug}`, 0.7, "monthly"),
@@ -98,6 +119,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const productRoutes = catalogProducts
     .filter(isCatalogRecordIndexable)
+    .filter((product) => !isReleasedSourcePath(`/products/${product.slug}`))
     .map((product) => createUrlEntry(`/products/${product.slug}`, 0.65, "monthly"));
 
   const engineeringTdsRoutes = catalogEngineeringTds
@@ -120,7 +142,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
-    ...localizedLanguageRoutes,
+    ...localizedRoutes,
     ...categoryRoutes,
     ...productRoutes,
     ...engineeringTdsRoutes,
