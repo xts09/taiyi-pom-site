@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { ComponentSolution } from "@/data/componentSolutions";
 import type { ComponentSolutionDetail } from "@/data/componentSolutionDetails";
+import { createContactHref } from "@/lib/contactContext";
 import styles from "../ComponentSolutions.module.css";
 
 const designContract = `<!--
@@ -33,6 +34,11 @@ export function DetailedComponentSolution({
   detail,
   solution,
 }: DetailedComponentSolutionProps) {
+  const contactHref = createContactHref({
+    application: solution.title,
+    source: "Component solution",
+  });
+
   return (
     <main className={`${styles.page} ${styles.detailPage}`}>
       <span
@@ -80,7 +86,7 @@ export function DetailedComponentSolution({
               <p className={styles.gearHeroScope}>{detail.hero.scope}</p>
               <div className={styles.gearHeroActions}>
                 <Button asChild size="applicationHero" variant="applicationHeroPrimary">
-                  <Link href="/contact">Discuss Your Application</Link>
+                  <Link href={contactHref}>Discuss Your Application</Link>
                 </Button>
                 <Button asChild size="applicationHero" variant="applicationHeroSecondary">
                   <Link href="/modified-pom-compounds">Browse POM Compounds</Link>
@@ -320,7 +326,7 @@ export function DetailedComponentSolution({
             variant="evidence"
             action={
               <Button asChild size="form" variant="inverse">
-                <Link href="/contact">Discuss Your Application</Link>
+                <Link href={contactHref}>Discuss Your Application</Link>
               </Button>
             }
           >

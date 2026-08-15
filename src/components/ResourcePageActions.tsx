@@ -4,16 +4,23 @@ import { DirectoryRow } from "@/components/DirectoryRow";
 import { SectionIntro } from "@/components/SectionIntro";
 import { Button } from "@/components/ui/button";
 import type { ResourcePage } from "@/data/resources";
+import { createContactHref } from "@/lib/contactContext";
 
 type ResourcePageActionsProps = {
+  pageTitle: string;
   relatedLinks: ResourcePage["relatedLinks"];
   variant?: "default" | "article";
 };
 
 export function ResourcePageActions({
+  pageTitle,
   relatedLinks,
   variant = "default",
 }: ResourcePageActionsProps) {
+  const contactHref = createContactHref({
+    source: `Technical resource: ${pageTitle}`,
+  });
+
   if (variant === "article") {
     const supportingLinks = relatedLinks.filter((link) => link.href !== "/contact");
 
@@ -51,7 +58,7 @@ export function ResourcePageActions({
               size="resourceArticleAction"
               variant="resourceArticleInverse"
             >
-              <Link href="/contact">Discuss Your Application</Link>
+              <Link href={contactHref}>Discuss Your Application</Link>
             </Button>
           }
         >
@@ -74,7 +81,10 @@ export function ResourcePageActions({
         <h2>Related Next Steps</h2>
         <div className="stagger-list">
           {relatedLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link
+              key={link.href}
+              href={link.href === "/contact" ? contactHref : link.href}
+            >
               {link.label}
             </Link>
           ))}
@@ -94,7 +104,7 @@ export function ResourcePageActions({
             variant="inverse"
             className="h-auto px-7 py-3 text-sm"
           >
-            <Link href="/contact">Discuss Your Application</Link>
+            <Link href={contactHref}>Discuss Your Application</Link>
           </Button>
         }
       >

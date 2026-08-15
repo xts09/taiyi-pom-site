@@ -12,7 +12,10 @@ export function GoogleTag() {
   }
 
   const configCalls = googleTagConfigIds
-    .map((id) => `gtag("config", "${id}");`)
+    .map(
+      (id) =>
+        `gtag("config", "${id}", { page_location: cleanPageLocation, page_path: window.location.pathname });`,
+    )
     .join("\n");
 
   return (
@@ -35,6 +38,7 @@ gtag("consent", "update", {
   ad_personalization: "denied"
 });
 gtag("js", new Date());
+const cleanPageLocation = window.location.origin + window.location.pathname;
 ${configCalls}
           `.trim(),
         }}

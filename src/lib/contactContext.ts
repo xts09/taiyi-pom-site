@@ -16,14 +16,13 @@ export type ContactContextSearchParams = Record<
   string | string[] | undefined
 >;
 
-const contextKeys = [
+const urlContextKeys = [
   "source",
   "material",
   "application",
   "grade",
   "reference",
   "candidates",
-  "requirement",
 ] as const;
 const allowedIntents = new Set<ContactIntent>(["sample", "grade-evaluation"]);
 
@@ -48,7 +47,7 @@ export function parseContactContext(
   searchParams: ContactContextSearchParams
 ): ContactContext {
   const context = Object.fromEntries(
-    contextKeys.flatMap((key) => {
+    urlContextKeys.flatMap((key) => {
       const value = normalizeContextValue(searchParams[key]);
       return value ? [[key, value]] : [];
     })
@@ -62,10 +61,13 @@ export function parseContactContext(
   return context;
 }
 
-export function createContactHref(context: ContactContext) {
+export function createContactHref(
+  context: ContactContext,
+  contactPath = "/contact",
+) {
   const searchParams = new URLSearchParams();
 
-  for (const key of contextKeys) {
+  for (const key of urlContextKeys) {
     const value = normalizeContextValue(context[key]);
     if (value) searchParams.set(key, value);
   }
@@ -75,7 +77,7 @@ export function createContactHref(context: ContactContext) {
   }
 
   const query = searchParams.toString();
-  return query ? `/contact?${query}` : "/contact";
+  return query ? `${contactPath}?${query}` : contactPath;
 }
 
 export function getContactContextLabel(context: ContactContext) {

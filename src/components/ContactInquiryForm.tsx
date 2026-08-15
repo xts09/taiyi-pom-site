@@ -1,12 +1,21 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import {
   trackInquiryFallback,
   trackInquirySubmitted,
 } from "@/lib/conversionEvents";
 import { pomSubcategoryLabels, productCategoryOrder } from "@/lib/productCategories";
 import { contactEmail } from "@/lib/seo";
+import {
+  clearContactRequirement,
+  readContactRequirement,
+} from "@/lib/contactRequirementStorage";
+import {
+  clampInquiryMessage,
+  inquiryClientTimeoutMs,
+  inquiryMessageMaxLength,
+} from "@/lib/inquiryLimits";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -33,7 +42,9 @@ type ContactInquiryFormProps = {
   initialApplication?: string;
   initialMaterial?: string;
   initialMessage?: string;
+  loadStoredRequirement?: boolean;
   messages: ContactFormMessages;
+  requirementLabel?: string;
 };
 
 const readField = (
@@ -67,27 +78,64 @@ export function ContactInquiryForm({
   initialApplication = "",
   initialMaterial = "",
   initialMessage = "",
+  loadStoredRequirement = false,
   messages,
+  requirementLabel = "Priority requirement",
 }: ContactInquiryFormProps) {
+  const safeInitialMessage = clampInquiryMessage(initialMessage);
   const [status, setStatus] = useState<
     "idle" | "submitting" | "sent" | "fallback"
   >("idle");
   const [application, setApplication] = useState(initialApplication);
   const [material, setMaterial] = useState(initialMaterial);
-  const [message, setMessage] = useState(initialMessage);
+  const [message, setMessage] = useState(safeInitialMessage);
+  const [prefilledMessage, setPrefilledMessage] = useState(safeInitialMessage);
   const [showContext, setShowContext] = useState(Boolean(contextLabel));
   const selectableMaterialOptions =
     initialMaterial && !materialOptions.includes(initialMaterial)
       ? [initialMaterial, ...materialOptions]
       : materialOptions;
 
+  useEffect(() => {
+    if (!loadStoredRequirement) return;
+
+    const frame = window.requestAnimationFrame(() => {
+      const requirement = readContactRequirement();
+      if (!requirement) return;
+
+      const nextPrefilledMessage = clampInquiryMessage(
+        [initialMessage, `${requirementLabel}: ${requirement}`]
+          .filter(Boolean)
+          .join("\n"),
+      );
+
+      setPrefilledMessage(nextPrefilledMessage);
+      setMessage((value) =>
+        value === safeInitialMessage ? nextPrefilledMessage : value,
+      );
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [initialMessage, loadStoredRequirement, requirementLabel, safeInitialMessage]);
+
+  useEffect(() => {
+    if (!window.location.search) return;
+
+    window.history.replaceState(
+      window.history.state,
+      "",
+      `${window.location.pathname}${window.location.hash}`,
+    );
+  }, []);
+
   const clearContext = () => {
+    if (loadStoredRequirement) clearContactRequirement();
     setShowContext(false);
     setApplication((value) =>
       value === initialApplication ? "" : value
     );
     setMaterial((value) => (value === initialMaterial ? "" : value));
-    setMessage((value) => (value === initialMessage ? "" : value));
+    setMessage((value) => (value === prefilledMessage ? "" : value));
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -106,6 +154,12 @@ export function ContactInquiryForm({
 
     setStatus("submitting");
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(
+      () => controller.abort(),
+      inquiryClientTimeoutMs,
+    );
+
     try {
       const response = await fetch("/api/inquiry", {
         method: "POST",
@@ -120,6 +174,7 @@ export function ContactInquiryForm({
           message: readField(formData, "message"),
           website: String(formData.get("website") ?? ""),
         }),
+        signal: controller.signal,
       });
       const result = (await response.json()) as {
         delivered?: boolean;
@@ -134,10 +189,13 @@ export function ContactInquiryForm({
         setMaterial("");
         setMessage("");
         setShowContext(false);
+        clearContactRequirement();
         return;
       }
     } catch {
       // Keep the fallback path below available for local and offline cases.
+    } finally {
+      window.clearTimeout(timeoutId);
     }
 
     try {
@@ -249,14 +307,21 @@ export function ContactInquiryForm({
       </div>
 
       <label className="contact-field contact-message">
-        <span>{messages.detailsLabel}</span>
+        <span className={styles.messageLabel}>
+          <span>{messages.detailsLabel}</span>
+          <span className={styles.characterCount} id="contact-message-count">
+            {message.length} / {inquiryMessageMaxLength}
+          </span>
+        </span>
         <Textarea
           name="message"
           rows={5}
           autoComplete="off"
+          aria-describedby="contact-message-count"
+          maxLength={inquiryMessageMaxLength}
           placeholder={messages.detailsPlaceholder}
           value={message}
-          onChange={(event) => setMessage(event.target.value)}
+          onChange={(event) => setMessage(clampInquiryMessage(event.target.value))}
         />
       </label>
 

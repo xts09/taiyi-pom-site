@@ -33,6 +33,7 @@ export function setupSecondarySectionNavMotion({
   let sectionNavHeight = sectionNav.offsetHeight;
   let stickyFrame = 0;
   let activeFrame = 0;
+  let alignmentTimeout = 0;
 
   const readSectionNavTop = () => {
     const navStickyTop = Number.parseFloat(
@@ -105,6 +106,36 @@ export function setupSecondarySectionNavMotion({
     activeFrame = window.requestAnimationFrame(updateActiveSection);
   };
 
+  const scheduleTargetAlignment = (
+    target: HTMLElement,
+    behavior: ScrollBehavior,
+  ) => {
+    if (alignmentTimeout !== 0) {
+      window.clearTimeout(alignmentTimeout);
+    }
+
+    // Let sticky-nav transitions and content-visibility rows settle before
+    // applying the exact offset for the final pinned layout.
+    alignmentTimeout = window.setTimeout(() => {
+      alignmentTimeout = 0;
+      updateStickyState();
+      syncSectionNavHeight();
+
+      const targetTop =
+        window.scrollY +
+        target.getBoundingClientRect().top -
+        readSectionNavTop() -
+        sectionNavHeight -
+        10;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior,
+      });
+      requestActiveSection();
+    }, 220);
+  };
+
   const handleSectionLinkClick = (event: MouseEvent) => {
     const link = event.currentTarget as HTMLAnchorElement;
     const target = document.getElementById(link.hash.slice(1));
@@ -114,22 +145,9 @@ export function setupSecondarySectionNavMotion({
     }
 
     event.preventDefault();
-    syncSectionNavHeight();
-    updateStickyState();
-
-    const targetTop =
-      window.scrollY +
-      target.getBoundingClientRect().top -
-      readSectionNavTop() -
-      sectionNavHeight -
-      10;
-
     window.history.pushState(null, "", link.hash);
-    window.scrollTo({
-      top: Math.max(0, targetTop),
-      behavior: reduceMotion ? "auto" : "smooth",
-    });
-    requestActiveSection();
+    target.scrollIntoView({ behavior: "auto", block: "start" });
+    scheduleTargetAlignment(target, reduceMotion ? "auto" : "smooth");
   };
 
   sectionLinks.forEach((link) => {
@@ -138,6 +156,15 @@ export function setupSecondarySectionNavMotion({
 
   updateStickyState();
   updateActiveSection();
+
+  const initialTarget = sectionTargets.find(
+    ({ link }) => link.hash === window.location.hash,
+  )?.target;
+  if (initialTarget) {
+    initialTarget.scrollIntoView({ behavior: "auto", block: "start" });
+    scheduleTargetAlignment(initialTarget, "auto");
+  }
+
   window.addEventListener("scroll", requestStickyState, { passive: true });
   window.addEventListener("scroll", requestActiveSection, { passive: true });
   window.addEventListener("resize", requestStickyState);
@@ -151,6 +178,9 @@ export function setupSecondarySectionNavMotion({
     }
     if (activeFrame !== 0) {
       window.cancelAnimationFrame(activeFrame);
+    }
+    if (alignmentTimeout !== 0) {
+      window.clearTimeout(alignmentTimeout);
     }
 
     window.removeEventListener("scroll", requestStickyState);

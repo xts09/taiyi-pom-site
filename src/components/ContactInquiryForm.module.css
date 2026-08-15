@@ -62,6 +62,22 @@
   outline-offset: 2px;
 }
 
+.messageLabel {
+  display: flex;
+  gap: var(--ds-space-3);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.characterCount {
+  flex: 0 0 auto;
+  color: var(--ds-foreground-muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
 @media (max-width: 39.999rem) {
   .context {
     align-items: flex-start;

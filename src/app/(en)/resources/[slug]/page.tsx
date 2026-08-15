@@ -223,7 +223,10 @@ export default async function ResourceDetailPage({
         )}
 
         {!usesArticleLayout ? (
-          <ResourcePageActions relatedLinks={page.relatedLinks} />
+          <ResourcePageActions
+            pageTitle={page.title}
+            relatedLinks={page.relatedLinks}
+          />
         ) : null}
       </section>
     </main>

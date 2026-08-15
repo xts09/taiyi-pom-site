@@ -32,7 +32,11 @@ export function ResourceArticleLayout({ page }: ResourceArticleLayoutProps) {
         features={page.articleFeatures}
       />
       <div id="resource-article-end" className="h-px" aria-hidden="true" />
-      <ResourcePageActions relatedLinks={page.relatedLinks} variant="article" />
+      <ResourcePageActions
+        pageTitle={page.title}
+        relatedLinks={page.relatedLinks}
+        variant="article"
+      />
     </ResourceDocumentFrame>
   );
 }

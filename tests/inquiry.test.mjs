@@ -2,6 +2,10 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { createInquiryHandler } from "../src/lib/inquiry.ts";
+import {
+  clampInquiryMessage,
+  inquiryMessageMaxLength,
+} from "../src/lib/inquiryLimits.ts";
 
 const endpoint = "https://www.taiyipolymer.com/api/inquiry";
 const validPayload = {
@@ -88,6 +92,29 @@ test("validates required inquiry fields before delivery", async () => {
 
   assert.equal(response.status, 400);
   assert.match((await response.json()).message, /application/);
+});
+
+test("rejects requirement details above the shared length limit", async () => {
+  const handler = createInquiryHandler({
+    contactEmail: "sales@example.com",
+  });
+  const response = await handler(
+    createRequest({
+      ...validPayload,
+      message: "x".repeat(inquiryMessageMaxLength + 1),
+    }),
+  );
+
+  assert.equal(response.status, 400);
+  assert.match((await response.json()).message, /2000 characters or fewer/);
+});
+
+test("clamps client-side requirement details to the shared length limit", () => {
+  assert.equal(
+    clampInquiryMessage("x".repeat(inquiryMessageMaxLength + 1)).length,
+    inquiryMessageMaxLength,
+  );
+  assert.equal(clampInquiryMessage("short requirement"), "short requirement");
 });
 
 test("silently accepts honeypot submissions without sending email", async () => {

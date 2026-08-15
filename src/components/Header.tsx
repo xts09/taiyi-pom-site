@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { Search } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import {
+  Suspense,
   useCallback,
   useEffect,
   useRef,
@@ -36,6 +37,10 @@ import type {
   ResourceTaxonomyKey,
   TaxonomyMessages,
 } from "@/i18n/types";
+import {
+  createContactHref,
+  parseContactContext,
+} from "@/lib/contactContext";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const productCategoryLinks = [
@@ -91,10 +96,11 @@ type LanguageSwitcherProps = {
   label: string;
   options: ReadonlyArray<LanguageOption>;
   currentLocaleKey: LanguageOption["localeKey"];
+  preserveContactContext?: boolean;
   variant: "desktop" | "mobile";
 };
 
-function LanguageSwitcher({
+function LanguageSwitcherLinks({
   label,
   options,
   currentLocaleKey,
@@ -129,6 +135,58 @@ function LanguageSwitcher({
         ))}
       </div>
     </div>
+  );
+}
+
+function ContextualLanguageSwitcher({
+  preserveContactContext = false,
+  ...props
+}: LanguageSwitcherProps) {
+  const searchParams = useSearchParams();
+  const searchParamString = searchParams.toString();
+  const currentContactContext = preserveContactContext
+    ? parseContactContext(Object.fromEntries(searchParams.entries()))
+    : {};
+  const hasCurrentContactContext =
+    Object.keys(currentContactContext).length > 0;
+  const [preservedContactContext, setPreservedContactContext] = useState(
+    currentContactContext,
+  );
+
+  useEffect(() => {
+    window.queueMicrotask(() => {
+      const nextContactContext = preserveContactContext
+        ? parseContactContext(
+            Object.fromEntries(new URLSearchParams(searchParamString)),
+          )
+        : {};
+
+      if (Object.keys(nextContactContext).length > 0) {
+        setPreservedContactContext(nextContactContext);
+      } else if (!preserveContactContext) {
+        setPreservedContactContext({});
+      }
+    });
+  }, [preserveContactContext, searchParamString]);
+
+  const contactContext = hasCurrentContactContext
+    ? currentContactContext
+    : preservedContactContext;
+  const options = Object.keys(contactContext).length > 0
+    ? props.options.map((option) => ({
+        ...option,
+        href: createContactHref(contactContext, option.href),
+      }))
+    : props.options;
+
+  return <LanguageSwitcherLinks {...props} options={options} />;
+}
+
+function LanguageSwitcher(props: LanguageSwitcherProps) {
+  return (
+    <Suspense fallback={<LanguageSwitcherLinks {...props} />}>
+      <ContextualLanguageSwitcher {...props} />
+    </Suspense>
   );
 }
 
@@ -617,6 +675,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 label={messages.languageSwitcherLabel}
                 options={languageOptions}
                 currentLocaleKey={currentLocaleKey}
+                preserveContactContext={logicalPathname === "/contact"}
                 variant="desktop"
               />
             ) : null}
@@ -664,6 +723,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 label={messages.languageSwitcherLabel}
                 options={languageOptions}
                 currentLocaleKey={currentLocaleKey}
+                preserveContactContext={logicalPathname === "/contact"}
                 variant="mobile"
               />
             ) : null}

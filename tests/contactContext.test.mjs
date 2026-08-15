@@ -21,6 +21,20 @@ test("builds an encoded contact handoff and preserves useful context", () => {
   );
 });
 
+test("rebuilds a localized contact handoff from sanitized context", () => {
+  const context = parseContactContext({
+    intent: "sample",
+    requirement: "private free text",
+    source: "  Resource\narticle  ",
+    unsupported: "must not propagate",
+  });
+
+  assert.equal(
+    createContactHref(context, "/fr/contact"),
+    "/fr/contact?source=Resource+article&intent=sample",
+  );
+});
+
 test("normalizes inbound values and ignores unsupported intents", () => {
   const context = parseContactContext({
     application: ["  Automotive\nparts  ", "ignored"],
@@ -50,7 +64,7 @@ test("creates an editable message for grade-specific intents", () => {
   );
 });
 
-test("carries a selection workspace shortlist into the contact form", () => {
+test("keeps workspace free text out of the contact URL", () => {
   const href = createContactHref({
     application: "Precision gear",
     candidates: "XT-100, EGH502H",
@@ -72,11 +86,14 @@ test("carries a selection workspace shortlist into the contact form", () => {
     intent: "grade-evaluation",
     material: "POM",
     reference: "DURACON® M90-44",
-    requirement: "Stable dimensions in an existing tool",
     source: "POM grade cross-reference workspace",
   });
+  assert.equal(href.includes("requirement="), false);
   assert.equal(
-    getContactContextMessage(context),
+    getContactContextMessage({
+      ...context,
+      requirement: "Stable dimensions in an existing tool",
+    }),
     [
       "Reference grade: DURACON® M90-44",
       "Candidate shortlist: XT-100, EGH502H",

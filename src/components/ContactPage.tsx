@@ -9,6 +9,7 @@ import {
   parseContactContext,
   type ContactContextSearchParams,
 } from "@/lib/contactContext";
+import { selectionWorkspaceContactSource } from "@/lib/contactRequirementStorage";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
   absoluteUrl,
@@ -54,9 +55,6 @@ export async function ContactPage({
       : undefined,
     contactContext.candidates
       ? `${messages.directEmail.candidates}: ${contactContext.candidates}`
-      : undefined,
-    contactContext.requirement
-      ? `${messages.directEmail.requirement}: ${contactContext.requirement}`
       : undefined,
     messages.directEmail.keyRequirements,
     messages.directEmail.documentNeeds,
@@ -150,7 +148,11 @@ export async function ContactPage({
                 initialApplication={contactContext.application}
                 initialMaterial={contactContext.material}
                 initialMessage={initialMessage}
+                loadStoredRequirement={
+                  contactContext.source === selectionWorkspaceContactSource
+                }
                 messages={messages.form}
+                requirementLabel={messages.context.requirement}
               />
             </section>
           </Card>

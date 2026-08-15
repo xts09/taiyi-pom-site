@@ -9,6 +9,11 @@ import {
   type GradeCrossReferenceRecord,
 } from "@/data/gradeCrossReferences";
 import { createContactHref } from "@/lib/contactContext";
+import {
+  clearContactRequirement,
+  selectionWorkspaceContactSource,
+  storeContactRequirement,
+} from "@/lib/contactRequirementStorage";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -225,7 +230,7 @@ export function GradeCrossReferenceWorkspace({
     grade: submittedQuery.trim(),
     intent: "grade-evaluation",
     material: "POM",
-    source: "POM grade cross-reference workspace",
+    source: selectionWorkspaceContactSource,
   });
   const handoffHref = createContactHref({
     application,
@@ -233,8 +238,7 @@ export function GradeCrossReferenceWorkspace({
     intent: "grade-evaluation",
     material: "POM",
     reference: referenceLabel,
-    requirement,
-    source: "POM grade cross-reference workspace",
+    source: selectionWorkspaceContactSource,
   });
 
   useEffect(() => {
@@ -502,7 +506,12 @@ export function GradeCrossReferenceWorkspace({
                   test conditions and application before suggesting candidates.
                 </p>
                 <Button asChild variant="secondary" size="form">
-                  <Link href={manualReviewHref}>Request a manual grade review</Link>
+                  <Link
+                    href={manualReviewHref}
+                    onClick={clearContactRequirement}
+                  >
+                    Request a manual grade review
+                  </Link>
                 </Button>
               </div>
             )}
@@ -717,7 +726,10 @@ export function GradeCrossReferenceWorkspace({
 
               {handoffPrepared ? (
                 <Button asChild variant="inverse" size="form">
-                  <Link href={handoffHref}>
+                  <Link
+                    href={handoffHref}
+                    onClick={() => storeContactRequirement(requirement)}
+                  >
                     Open Contact with this context
                     <ArrowRight aria-hidden="true" />
                   </Link>

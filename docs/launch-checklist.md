@@ -12,6 +12,11 @@
 - Verify the `CONTACT_FROM_EMAIL` domain in Resend and publish the required
   SPF/DKIM DNS records before sending a real inquiry.
 - Set Google measurement, Ads, and site-verification variables when available.
+- Before enabling a production rate limit, obtain approval for Vercel's metered
+  WAF usage. Create an `Inquiry endpoint rate limit` rule with `Request Path`
+  equal to `/api/inquiry`, a fixed 10-minute window, a limit of 5 requests per
+  IP, and a final `429` action. Start with Vercel's recommended Log-only
+  observation pass, review live traffic, then publish the blocking rule.
 - Keep `.env*`, local logs, browser state, and verification screenshots out of Git.
 
 ## Production Verification
@@ -24,6 +29,8 @@
   and failure state.
 - Confirm the inquiry endpoint returns `503` when delivery configuration is
   absent and `502` when the email provider rejects a request.
+- Confirm the Vercel Firewall records `/api/inquiry` traffic and returns `429`
+  only after the approved production threshold is exceeded.
 - Confirm product aliases return `308` to their canonical grade URL.
 
 ## Search Launch

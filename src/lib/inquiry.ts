@@ -1,3 +1,5 @@
+import { inquiryMessageMaxLength } from "./inquiryLimits.ts";
+
 const maxRequestBodyBytes = 32 * 1024;
 const rateLimitWindowMs = 10 * 60 * 1000;
 const maxRequestsPerWindow = 5;
@@ -64,7 +66,7 @@ export const createInquiryBody = (payload: InquiryPayload) =>
     `Application / Part: ${cleanText(payload.application)}`,
     "",
     "Requirement Details:",
-    cleanText(payload.message, "Not specified", 2000),
+    cleanText(payload.message, "Not specified", inquiryMessageMaxLength),
   ].join("\n");
 
 export const createInquiryHandler = ({
@@ -205,6 +207,19 @@ export const createInquiryHandler = ({
           delivered: false,
           fallback: true,
           message: `Missing required fields: ${missingFields.join(", ")}.`,
+        },
+        400,
+      );
+    }
+
+    const message = String(payload.message ?? "");
+
+    if (message.length > inquiryMessageMaxLength) {
+      return jsonResponse(
+        {
+          delivered: false,
+          fallback: true,
+          message: `Requirement details must be ${inquiryMessageMaxLength} characters or fewer.`,
         },
         400,
       );
