@@ -90,24 +90,47 @@ export function getContactContextLabel(context: ContactContext) {
   return details.length > 0 ? details.join(" / ") : context.source;
 }
 
-export function getContactContextMessage(context: ContactContext) {
+type ContactContextMessageLabels = {
+  grade: string;
+  reference: string;
+  candidates: string;
+  requirement: string;
+  intent: string;
+  sampleIntent: string;
+  evaluationIntent: string;
+};
+
+const defaultContextMessageLabels: ContactContextMessageLabels = {
+  grade: "Grade of interest",
+  reference: "Reference grade",
+  candidates: "Candidate shortlist",
+  requirement: "Priority requirement",
+  intent: "Inquiry intent",
+  sampleIntent: "Sample request",
+  evaluationIntent: "Grade evaluation",
+};
+
+export function getContactContextMessage(
+  context: ContactContext,
+  labels: ContactContextMessageLabels = defaultContextMessageLabels,
+) {
   const intentLabel =
     context.intent === "sample"
-      ? "Sample request"
+      ? labels.sampleIntent
       : context.intent === "grade-evaluation"
-        ? "Grade evaluation"
+        ? labels.evaluationIntent
         : undefined;
 
   return [
-    context.grade ? `Grade of interest: ${context.grade}` : undefined,
-    context.reference ? `Reference grade: ${context.reference}` : undefined,
+    context.grade ? `${labels.grade}: ${context.grade}` : undefined,
+    context.reference ? `${labels.reference}: ${context.reference}` : undefined,
     context.candidates
-      ? `Candidate shortlist: ${context.candidates}`
+      ? `${labels.candidates}: ${context.candidates}`
       : undefined,
     context.requirement
-      ? `Priority requirement: ${context.requirement}`
+      ? `${labels.requirement}: ${context.requirement}`
       : undefined,
-    intentLabel ? `Inquiry intent: ${intentLabel}` : undefined,
+    intentLabel ? `${labels.intent}: ${intentLabel}` : undefined,
   ]
     .filter((value): value is string => Boolean(value))
     .join("\n");

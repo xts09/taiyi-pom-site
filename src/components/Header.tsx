@@ -26,8 +26,8 @@ import {
 } from "@/i18n/config";
 import {
   getLocalizedHref,
-  getProductsLanguageOptions,
-  type ProductsLanguageOption,
+  getLanguageOptions,
+  type LanguageOption,
 } from "@/i18n/releaseManifest";
 import type {
   HeaderMessages,
@@ -89,8 +89,8 @@ const isNodeTarget = (target: EventTarget | null): target is Node =>
 
 type LanguageSwitcherProps = {
   label: string;
-  options: ReadonlyArray<ProductsLanguageOption>;
-  currentLocaleKey: ProductsLanguageOption["localeKey"];
+  options: ReadonlyArray<LanguageOption>;
+  currentLocaleKey: LanguageOption["localeKey"];
   variant: "desktop" | "mobile";
 };
 
@@ -141,7 +141,7 @@ type HeaderProps = {
 export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   const pathname = usePathname();
   const logicalPathname = stripLocalizedPrefix(pathname, localeSegment);
-  const languageOptions = getProductsLanguageOptions(logicalPathname);
+  const languageOptions = getLanguageOptions(logicalPathname);
   const currentLocaleKey = localeSegment ?? "en";
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeSegment);
@@ -378,7 +378,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
       />
       <div className="site-container flex items-center justify-between py-3">
         <Link
-          href="/"
+          href={localizedHref("/")}
           prefetch={false}
           className="brand-mark group inline-flex"
           aria-label={messages.brandHomeLabel}
@@ -402,6 +402,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
 
         <div className="hidden items-center justify-end gap-7 lg:flex xl:gap-8">
           <NavigationMenu.Root
+            aria-label={messages.navigationAria}
             value={megaValue}
             onValueChange={updateMegaValue}
             delayDuration={110}
@@ -595,7 +596,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 <NavigationMenu.Item key={item.href}>
                   <NavigationMenu.Link asChild>
                     <Link
-                      href={item.href}
+                      href={localizedHref(item.href)}
                       prefetch={false}
                       className="nav-link nav-trigger transition"
                       aria-current={
@@ -805,7 +806,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             {navItems.map((item) => (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localizedHref(item.href)}
                 prefetch={false}
                 className="mobile-menu-primary-link py-3"
                 aria-current={
@@ -817,7 +818,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             ))}
 
             <Link
-              href="/contact"
+              href={localizedHref("/contact")}
               prefetch={false}
               className="cta-primary mt-4 px-4 py-3 text-center text-sm"
             >

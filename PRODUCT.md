@@ -47,6 +47,14 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Codex owns linguistic, technical, factual, SEO, and rendered review. User confirmation is required only when the approved English source does not establish an underlying business fact.
 - Future localized pages require the same reviewed release gate. A locale URL must not expose English fallback content or become indexable before its full translated page passes review.
 
+### Multilingual Core Funnel Release (2026-08-14)
+
+- ML1 extends the reviewed public language group to Home and Contact at `/de`, `/fr`, `/pt-br`, `/de/contact`, `/fr/contact`, and `/pt-br/contact` while preserving the existing English routes.
+- Home, Products, and Contact now share reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates, self-canonicals, language-switcher destinations, and sitemap inclusion.
+- Localized Home and Contact use typed, complete page dictionaries. Contact field labels, material options, prefilled context, progress, success, fallback, and email-draft copy must not fall back to English.
+- Within these released pages, Home, Products, and Contact links remain in the current locale. Applications, Resources, About, product categories, grade pages, technical-data search, previews, dynamic search parameters, and legal pages continue to use their existing English routes until separately reviewed.
+- Publishing a locale shell is still not sufficient: each future route requires complete translated copy, factual and linguistic review, responsive rendered acceptance, reciprocal SEO signals, and explicit release-manifest inclusion.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.

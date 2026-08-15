@@ -1,6 +1,8 @@
 import type { SiteMessages } from "@/i18n/types";
+import coreMessages from "./de-core.ts";
 
 const messages = {
+  ...coreMessages,
   Taxonomy: {
     products: {
       pom: "POM-Compounds",
@@ -45,6 +47,7 @@ const messages = {
   },
   Header: {
     brandHomeLabel: "Startseite von Taiyi Polymer",
+    navigationAria: "Hauptnavigation",
     products: "Produkte",
     productCategories: "Produktkategorien",
     productDescription:
@@ -69,6 +72,7 @@ const messages = {
   },
   Footer: {
     brandRelation: "Taiyi Polymer · PLATFORM® Technische Werkstoffe",
+    logoAlt: "Eingetragene Marke PLATFORM",
     pitchTitle: "Werkstoffentscheidungen, ausgehend vom Bauteil.",
     pitchCopy:
       "Beschreiben Sie Ihr Bauteil, die Einsatzbedingungen und Leistungsziele. Wir grenzen passende Typen ein und klären verfügbare Muster sowie technische Unterlagen für Ihre Bewertung.",

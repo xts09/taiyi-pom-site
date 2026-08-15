@@ -45,6 +45,7 @@ const messages = {
   },
   Header: {
     brandHomeLabel: "Taiyi Polymer home",
+    navigationAria: "Primary navigation",
     products: "Products",
     productCategories: "Product Categories",
     productDescription:
@@ -69,6 +70,7 @@ const messages = {
   },
   Footer: {
     brandRelation: "Taiyi Polymer · PLATFORM® Engineering Materials",
+    logoAlt: "PLATFORM registered trademark",
     pitchTitle: "Material decisions, grounded in the part.",
     pitchCopy:
       "Tell us about your part, operating conditions and performance targets. We'll help shortlist relevant grades and confirm the samples and technical documents available for evaluation.",
@@ -118,6 +120,246 @@ const messages = {
     accept: "Accept analytics",
     continueWithout: "Continue without analytics",
     settings: "Cookie Settings",
+  },
+  Home: {
+    metadata: {
+      title: "Modified POM Compounds for Industrial Parts | Taiyi Polymer",
+      description:
+        "Taiyi Polymer manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compound support.",
+      imageAlt: "Taiyi Polymer modified POM compound manufacturing",
+    },
+    hero: {
+      eyebrowDesktop: "PLATFORM® engineering materials · Taiyi Polymer",
+      eyebrowMobile: "PLATFORM® · Taiyi Polymer",
+      title: "Modified POM Compounds for Precision Molded Parts.",
+      body:
+        "Taiyi Polymer manufactures modified POM compounds at our Yancheng facility for molded parts requiring wear resistance, low friction, reinforcement or static control. Grade options, samples and technical documents are confirmed by project.",
+      exploreAction: "Explore Material Range",
+      contactAction: "Discuss Your Application",
+    },
+    metrics: [
+      { label: "Annual Compound Capacity", note: "Metric tons per year" },
+      { label: "Years in Operation", note: "Manufacturing since 2003" },
+      { label: "Twin-Screw Lines", note: "In-house extrusion lines" },
+      { label: "Facility Area", note: "Square metres" },
+      { label: "Test Equipment", note: "In-house units" },
+    ],
+    materials: {
+      title: "Material Range",
+      body:
+        "Start with modified POM, our core product line. We also review selected PA6, PA66 and PPA compounds when a part needs a different balance of stiffness, heat resistance or processing behavior.",
+      documentSupport: "Document support by grade and project",
+      dataSheetsAction: "Find Grade Data & TDS",
+      coreLabel: "Core product line",
+      coreDirectionsAria: "POM compound directions",
+      coreDirections: [
+        "Wear resistance",
+        "Low friction",
+        "Reinforcement",
+        "Conductive / antistatic",
+      ],
+      allFamiliesAction: "View All Material Families",
+      additionalFamiliesAria: "Additional material families",
+      items: [
+        {
+          title: "POM Compounds",
+          description:
+            "Core product line for molded parts requiring wear resistance, low friction, reinforcement, conductivity or antistatic performance.",
+          action: "Browse POM Compounds",
+          specs: [
+            ["Role", "Core Product Line"],
+            ["Directions", "Wear / Friction / Reinforced"],
+            ["Fit", "Precision Molded Parts"],
+            ["Data", "Grade-Level TDS"],
+          ],
+        },
+        {
+          title: "PA6 Compounds",
+          description:
+            "Selected PA6 compounds for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+          action: "Browse PA6 Compounds",
+          specs: [
+            ["Role", "Additional Material Family"],
+            ["Material", "PA6"],
+            ["Fit", "Reinforced / Impact Parts"],
+            ["Scope", "Project-Based"],
+          ],
+        },
+        {
+          title: "PA66 Compounds",
+          description:
+            "Selected PA66 compounds for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+          action: "Browse PA66 Compounds",
+          specs: [
+            ["Role", "Additional Material Family"],
+            ["Material", "PA66"],
+            ["Fit", "Stiffness / Heat Parts"],
+            ["Scope", "Project-Based"],
+          ],
+        },
+        {
+          title: "PPA Compounds",
+          description:
+            "Project-based PPA compound support for higher-temperature molded parts requiring stiffness and dimensional stability.",
+          action: "Browse PPA Compounds",
+          specs: [
+            ["Role", "Additional Material Family"],
+            ["Material", "PPA"],
+            ["Fit", "High-Temperature Parts"],
+            ["Scope", "Project-Based"],
+          ],
+        },
+        {
+          title: "Base POM Resin",
+          description:
+            "Available as a supplementary sourcing line when customers require selected POM resin supply alongside compound support.",
+          action: "View Resin Grades",
+          specs: [
+            ["Role", "Supplementary Line"],
+            ["Use", "Selected Sourcing"],
+            ["Fit", "Base Resin Needs"],
+            ["Color", "Natural"],
+          ],
+        },
+      ],
+    },
+    qualification: {
+      title: "How We Shortlist a Grade",
+      intro:
+        "We compare the part, mold, operating conditions and document needs to narrow candidate grades for TDS review, samples and molding trials.",
+      applicationAction: "Explore Application Paths",
+      figureAlt:
+        "Black engineering-plastic pellets arranged in a laboratory dish.",
+      figureLabel: "Review evidence",
+      figureCaption:
+        "Candidate materials are checked against part, processing and document constraints.",
+      stepsAria: "Grade qualification stages",
+      steps: [
+        {
+          stage: "Input",
+          title: "Part and Tooling",
+          description:
+            "Part type, mold stage, cavity count, gate, movement mode and assembly environment.",
+        },
+        {
+          stage: "Processing",
+          title: "Processing and Dimensional Control",
+          description:
+            "Flowability, multi-cavity filling, shrinkage, warpage, dimensional stability and color requirements.",
+        },
+        {
+          stage: "Performance",
+          title: "Performance Targets",
+          description:
+            "Wear, friction, stiffness, impact, conductivity, antistatic behavior and working temperature.",
+        },
+        {
+          stage: "Decision",
+          title: "Grade Shortlist",
+          description:
+            "Candidate grades are compared before document availability and sample-trial needs are confirmed.",
+        },
+      ],
+    },
+    quality: {
+      title: "Credentials for Supplier Qualification",
+      body:
+        "Enterprise recognition and management-system certificates for Jiangsu Taiyi Nano Technology Co., Ltd., together with material-document support, give procurement teams a faster route to supplier review.",
+      panelAria: "Company credentials and material-document support",
+      qualifications: [
+        {
+          category: "Enterprise recognition",
+          title: "National High-Tech Enterprise",
+        },
+        {
+          category: "Provincial designation",
+          title: "Jiangsu Provincial Specialized and Innovative SME",
+        },
+        {
+          category: "Intellectual property",
+          title: "29 Granted Patents",
+        },
+      ],
+      documentSupportTitle: "Document support",
+      documentSupportBody: "Availability confirmed by grade and project.",
+      documentListAria: "Material documents available by grade and project",
+      documentNames: {
+        TDS: "Technical Data Sheet",
+        SDS: "Safety Data Sheet",
+        COA: "Certificate of Analysis",
+        REACH:
+          "Registration, Evaluation, Authorisation and Restriction of Chemicals",
+        RoHS: "Restriction of Hazardous Substances",
+      },
+      certifications: [
+        {
+          system: "Automotive Quality Management",
+          scope:
+            "Manufacture of plastic granules, excluding product design under clause 8.3.",
+        },
+        {
+          system: "Quality Management",
+          scope: "Production of nano-polymer materials (plastic particles).",
+        },
+        {
+          system: "Environmental Management",
+          scope:
+            "Environmental management in sales-related areas of nano-polymer materials (plastic particles).",
+        },
+        {
+          system: "Occupational Health & Safety",
+          scope:
+            "Occupational health and safety management in sales-related areas of nano-polymer materials (plastic particles).",
+        },
+      ],
+      featuredDescription: "Automotive Quality Management System",
+      certificateAvailable: "Certificate PDF available for review",
+      certifiedScope: "Certified scope",
+      openCertificate: "Open certificate PDF",
+      openCertificateAria: "Open {standard} certificate PDF",
+      scopePrefix: "Scope:",
+      openPdf: "Open PDF",
+    },
+    exportNetwork: {
+      eyebrow: "SUPPLY NETWORK",
+      title: "Export Routes",
+      description:
+        "Project routes connect the Yancheng production base with destinations across Central Asia, Europe, East Asia and the Americas.",
+      mapAlt:
+        "World map showing Taiyi production and export regions across Central Asia, Europe, East Asia, and the Americas.",
+      legendAria: "Map legend",
+      productionBase: "Production base",
+      exportRegion: "Export region",
+      regionsTitle: "Project regions",
+      regionsBody: "Select a region to focus the routes shown on the map.",
+      factsAria: "Export network facts",
+      productionBaseValue: "Yancheng, Jiangsu, China",
+      listedDestinations: "Listed destinations",
+      listedDestinationsValue: "9 destinations shown",
+      routes: [
+        { region: "Central Asia", coverage: "Uzbekistan and Kazakhstan" },
+        { region: "Europe", coverage: "Poland and Turkey" },
+        { region: "East Asia", coverage: "South Korea and Japan" },
+        {
+          region: "Americas",
+          coverage: "Mexico, Brazil, and Argentina",
+        },
+      ],
+    },
+    inquiry: {
+      eyebrow: "START A REVIEW",
+      title: "Send the project inputs for an initial grade review.",
+      body:
+        "Known details are enough to begin. Mark uncertain items and include any current grade, drawing or failure sample available.",
+      checklistLabel: "PROJECT INPUTS",
+      checklist: [
+        "Part function and movement mode",
+        "Mold status and processing constraints",
+        "Priority performance targets",
+        "Current material, failure evidence and timing",
+      ],
+      action: "Discuss Your Application",
+    },
   },
   Products: {
     metadata: {
@@ -230,6 +472,122 @@ const messages = {
       body:
         "Share the application, mold stage, cavity count, shrinkage or warpage concern, key performance requirements, current material reference, color, document requirements, and estimated volume. These inputs identify the relevant material family and establish the grade data, document, and sample follow-up for the project.",
       contactSource: "Product directory",
+    },
+  },
+  Contact: {
+    metadata: {
+      title: "Discuss a Material Requirement | Taiyi Polymer",
+      description:
+        "Contact Jiangsu Taiyi Nano Technology Co., Ltd. for modified POM, engineering plastic compounds, POM resin, material recommendations, documents, samples, and project evaluation.",
+      imageAlt: "Taiyi Polymer engineering-plastic production line",
+    },
+    breadcrumbHome: "Home",
+    breadcrumbContact: "Contact",
+    hero: {
+      title: "Request a Material Review",
+      description:
+        "Tell us the part function, operating conditions and target requirements. We will identify relevant material families, confirm available documents and outline the next sample or evaluation step.",
+    },
+    formPanel: {
+      title: "Start with the essentials",
+      body:
+        "Company, email, and application are enough to start. Add technical details only if you already have them.",
+      requiredBefore: "Fields marked",
+      requiredAfter: "are required.",
+    },
+    sales: {
+      title: "Sales Contact",
+      contactPerson: "Contact Person",
+      role: "Sales Manager",
+      company: "Company",
+      email: "Email",
+      whatsapp: "WhatsApp",
+      location: "Location",
+      locationValue: "Yancheng, Jiangsu, China",
+      reviewTitle: "What We Can Review",
+      reviewItems: [
+        "Relevant material families and candidate grades",
+        "Available technical documents and sample needs",
+      ],
+      emailDirectly: "Email Directly",
+    },
+    directEmail: {
+      greeting: "Dear Ethan,",
+      application: "Application or part",
+      material: "Material or current grade",
+      reference: "Reference grade",
+      candidates: "Candidate shortlist",
+      requirement: "Priority requirement",
+      keyRequirements: "Key requirements:",
+      documentNeeds: "Document needs:",
+      closing: "Regards,",
+      subject: "Material Requirement Request",
+    },
+    context: {
+      grade: "Grade of interest",
+      reference: "Reference grade",
+      candidates: "Candidate shortlist",
+      requirement: "Priority requirement",
+      intent: "Inquiry intent",
+      sampleIntent: "Sample request",
+      evaluationIntent: "Grade evaluation",
+    },
+    form: {
+      contextFrom: "From",
+      contextPrefilled:
+        "These details are prefilled. You can edit any field below.",
+      clearContext: "Clear context",
+      companyLabel: "Company",
+      companyPlaceholder: "Company name",
+      emailLabel: "Email",
+      materialLabel: "Material Family (optional)",
+      materialPlaceholder: "Choose a material family",
+      materialOptionLabels: {
+        "Modified POM Compounds": "Modified POM Compounds",
+        "Wear-Resistant & Low-Friction POM":
+          "Wear-Resistant & Low-Friction POM",
+        "High-Impact POM": "High-Impact POM",
+        "UV-Resistant POM": "UV-Resistant POM",
+        "Glass Fiber Reinforced POM": "Glass Fiber Reinforced POM",
+        "Glass Bead Filled POM": "Glass Bead Filled POM",
+        "Carbon Fiber Reinforced POM Compound":
+          "Carbon Fiber Reinforced POM Compound",
+        "Conductive / Antistatic POM": "Conductive / Antistatic POM",
+        "Base POM Resin": "Base POM Resin",
+        "Ultra-High Flow POM": "Ultra-High Flow POM",
+        "PA6 Compounds": "PA6 Compounds",
+        "PA66 Compounds": "PA66 Compounds",
+        "PPA Compounds": "PPA Compounds",
+        "Conductive & Antistatic Compounds":
+          "Conductive & Antistatic Compounds",
+        "Other Engineering Plastic Compound":
+          "Other Engineering Plastic Compound",
+      },
+      applicationLabel: "Application / Part",
+      applicationPlaceholder: "Gear, clip, housing…",
+      detailsLabel: "Requirement Details (optional)",
+      detailsPlaceholder:
+        "Current grade, operating conditions, target properties, annual volume, or document needs.",
+      sending: "Sending…",
+      submit: "Submit Project Requirements",
+      fallbackNote:
+        "If direct delivery is unavailable, an email draft will open instead.",
+      sentStatus:
+        "Submitted. We will review your requirement and reply by email.",
+      fallbackStatus:
+        "An email draft was prepared, and the inquiry text was copied when possible.",
+      emailDraft: {
+        notSpecified: "Not specified",
+        greeting: "Dear Ethan,",
+        intro: "Please review the following material requirement:",
+        company: "Company",
+        email: "Email",
+        material: "Material Interest",
+        application: "Application / Part",
+        details: "Requirement Details:",
+        closing: "Regards,",
+        subjectPrefix: "Material Requirement Request",
+      },
     },
   },
 } satisfies SiteMessages;

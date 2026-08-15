@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { ProductsDirectoryPage } from "@/components/ProductsDirectoryPage";
-import {
-  getLocalizedLocale,
-  localizedLocales,
-} from "@/i18n/config";
+import { HomePage } from "@/components/HomePage";
+import { getLocalizedLocale, localizedLocales } from "@/i18n/config";
 import { loadMessages } from "@/i18n/messages";
 import {
-  getLocalizedProductsPath,
-  productsLanguageAlternates,
+  getLocalizedHomePath,
+  homeLanguageAlternates,
 } from "@/i18n/releaseManifest";
 import { createPageMetadata } from "@/lib/seo";
+import "../(en)/styles/home.css";
 
-type LocalizedProductsPageProps = {
+type LocalizedHomePageProps = {
   params: Promise<{ locale: string }>;
 };
 
@@ -23,7 +21,7 @@ export function generateStaticParams() {
   return localizedLocales.map(({ urlSegment }) => ({ locale: urlSegment }));
 }
 
-const resolveLocale = async (params: LocalizedProductsPageProps["params"]) => {
+const resolveLocale = async (params: LocalizedHomePageProps["params"]) => {
   const { locale } = await params;
   const localeConfig = getLocalizedLocale(locale);
 
@@ -36,32 +34,31 @@ const resolveLocale = async (params: LocalizedProductsPageProps["params"]) => {
 
 export async function generateMetadata({
   params,
-}: LocalizedProductsPageProps): Promise<Metadata> {
+}: LocalizedHomePageProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
   const messages = await loadMessages(localeConfig.locale);
 
   return createPageMetadata({
-    title: messages.Products.metadata.title,
-    description: messages.Products.metadata.description,
-    path: getLocalizedProductsPath(localeConfig.urlSegment),
-    image: "/generated/pom-material-hero.webp",
-    imageAlt: messages.Products.metadata.imageAlt,
+    title: messages.Home.metadata.title,
+    description: messages.Home.metadata.description,
+    path: getLocalizedHomePath(localeConfig.urlSegment),
+    image: "/factory-hero-95b-loop-v6-poster.webp",
+    imageAlt: messages.Home.metadata.imageAlt,
     openGraphLocale: localeConfig.openGraphLocale,
-    languageAlternates: productsLanguageAlternates,
+    languageAlternates: homeLanguageAlternates,
   });
 }
 
-export default async function LocalizedProductsPage({
+export default async function LocalizedHomePage({
   params,
-}: LocalizedProductsPageProps) {
+}: LocalizedHomePageProps) {
   const localeConfig = await resolveLocale(params);
   setRequestLocale(localeConfig.htmlLang);
   const messages = await loadMessages(localeConfig.locale);
 
   return (
-    <ProductsDirectoryPage
-      messages={messages.Products}
-      pagePath={getLocalizedProductsPath(localeConfig.urlSegment)}
+    <HomePage
+      messages={messages.Home}
       inLanguage={localeConfig.htmlLang}
       localeSegment={localeConfig.urlSegment}
     />

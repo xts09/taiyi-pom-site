@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import type { ContactFormMessages } from "@/i18n/types";
 import styles from "./ContactInquiryForm.module.css";
 
 const materialOptions = Array.from(
@@ -32,26 +33,33 @@ type ContactInquiryFormProps = {
   initialApplication?: string;
   initialMaterial?: string;
   initialMessage?: string;
+  messages: ContactFormMessages;
 };
 
-const readField = (formData: FormData, name: string) =>
-  String(formData.get(name) ?? "").trim() || "Not specified";
+const readField = (
+  formData: FormData,
+  name: string,
+  fallback = "Not specified",
+) => String(formData.get(name) ?? "").trim() || fallback;
 
-const buildInquiryMessage = (formData: FormData) =>
+const buildInquiryMessage = (
+  formData: FormData,
+  messages: ContactFormMessages["emailDraft"],
+) =>
   [
-    "Dear Ethan,",
+    messages.greeting,
     "",
-    "Please review the following material requirement:",
+    messages.intro,
     "",
-    `Company: ${readField(formData, "company")}`,
-    `Email: ${readField(formData, "email")}`,
-    `Material Interest: ${readField(formData, "material")}`,
-    `Application / Part: ${readField(formData, "application")}`,
+    `${messages.company}: ${readField(formData, "company", messages.notSpecified)}`,
+    `${messages.email}: ${readField(formData, "email", messages.notSpecified)}`,
+    `${messages.material}: ${readField(formData, "material", messages.notSpecified)}`,
+    `${messages.application}: ${readField(formData, "application", messages.notSpecified)}`,
     "",
-    "Requirement Details:",
-    readField(formData, "message"),
+    messages.details,
+    readField(formData, "message", messages.notSpecified),
     "",
-    "Regards,",
+    messages.closing,
   ].join("\n");
 
 export function ContactInquiryForm({
@@ -59,6 +67,7 @@ export function ContactInquiryForm({
   initialApplication = "",
   initialMaterial = "",
   initialMessage = "",
+  messages,
 }: ContactInquiryFormProps) {
   const [status, setStatus] = useState<
     "idle" | "submitting" | "sent" | "fallback"
@@ -86,8 +95,8 @@ export function ContactInquiryForm({
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const body = buildInquiryMessage(formData);
-    const subject = `Material Requirement Request - ${readField(
+    const body = buildInquiryMessage(formData, messages.emailDraft);
+    const subject = `${messages.emailDraft.subjectPrefix} - ${readField(
       formData,
       "company"
     )}`;
@@ -155,16 +164,16 @@ export function ContactInquiryForm({
       {showContext && contextLabel ? (
         <div className={styles.context}>
           <div className={styles.contextCopy}>
-            <span className={styles.contextEyebrow}>From</span>
+            <span className={styles.contextEyebrow}>{messages.contextFrom}</span>
             <strong>{contextLabel}</strong>
-            <p>These details are prefilled. You can edit any field below.</p>
+            <p>{messages.contextPrefilled}</p>
           </div>
           <button
             className={styles.contextClear}
             type="button"
             onClick={clearContext}
           >
-            Clear context
+            {messages.clearContext}
           </button>
         </div>
       ) : null}
@@ -172,7 +181,7 @@ export function ContactInquiryForm({
       <div className="contact-form-grid">
         <label className="contact-field">
           <span>
-            Company{" "}
+            {messages.companyLabel}{" "}
             <span aria-hidden="true" className="contact-required-marker">
               *
             </span>
@@ -180,14 +189,14 @@ export function ContactInquiryForm({
           <Input
             name="company"
             autoComplete="organization"
-            placeholder="Company name"
+            placeholder={messages.companyPlaceholder}
             required
           />
         </label>
 
         <label className="contact-field">
           <span>
-            Email{" "}
+            {messages.emailLabel}{" "}
             <span aria-hidden="true" className="contact-required-marker">
               *
             </span>
@@ -203,18 +212,18 @@ export function ContactInquiryForm({
         </label>
 
         <label className="contact-field">
-          <span>Material Family (optional)</span>
+          <span>{messages.materialLabel}</span>
           <Select
             name="material"
             value={material}
             onChange={(event) => setMaterial(event.target.value)}
           >
             <option value="" disabled>
-              Choose a material family
+              {messages.materialPlaceholder}
             </option>
             {selectableMaterialOptions.map((option) => (
               <option key={option} value={option}>
-                {option}
+                {messages.materialOptionLabels[option] ?? option}
               </option>
             ))}
           </Select>
@@ -222,7 +231,7 @@ export function ContactInquiryForm({
 
         <label className="contact-field">
           <span>
-            Application / Part{" "}
+            {messages.applicationLabel}{" "}
             <span aria-hidden="true" className="contact-required-marker">
               *
             </span>
@@ -230,7 +239,7 @@ export function ContactInquiryForm({
           <Input
             name="application"
             autoComplete="off"
-            placeholder={"Gear, clip, housing\u2026"}
+            placeholder={messages.applicationPlaceholder}
             value={application}
             onChange={(event) => setApplication(event.target.value)}
             required
@@ -240,12 +249,12 @@ export function ContactInquiryForm({
       </div>
 
       <label className="contact-field contact-message">
-        <span>Requirement Details (optional)</span>
+        <span>{messages.detailsLabel}</span>
         <Textarea
           name="message"
           rows={5}
           autoComplete="off"
-          placeholder="Current grade, operating conditions, target properties, annual volume, or document needs."
+          placeholder={messages.detailsPlaceholder}
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
@@ -259,11 +268,9 @@ export function ContactInquiryForm({
           disabled={status === "submitting"}
           aria-busy={status === "submitting"}
         >
-          {status === "submitting" ? "Sending\u2026" : "Submit Project Requirements"}
+          {status === "submitting" ? messages.sending : messages.submit}
         </Button>
-        <p>
-          If direct delivery is unavailable, an email draft will open instead.
-        </p>
+        <p>{messages.fallbackNote}</p>
       </div>
 
       <p
@@ -272,9 +279,9 @@ export function ContactInquiryForm({
         aria-live="polite"
       >
         {status === "sent"
-          ? "Submitted. We will review your requirement and reply by email."
+          ? messages.sentStatus
           : status === "fallback"
-            ? "An email draft was prepared, and the inquiry text was copied when possible."
+            ? messages.fallbackStatus
             : ""}
       </p>
     </form>

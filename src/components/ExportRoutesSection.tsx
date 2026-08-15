@@ -6,13 +6,16 @@ import { exportRoutes, type ExportRoute } from "@/data/exportRoutes";
 import { ExportMarketsMap, type ExportRegionId } from "@/components/ExportMarketsMap";
 import { SectionIntro } from "@/components/SectionIntro";
 import { Card } from "@/components/ui/card";
+import type { HomeMessages } from "@/i18n/types";
 
 type ExportRoutesSectionProps = {
   routes?: ReadonlyArray<ExportRoute>;
+  messages: HomeMessages["exportNetwork"];
 };
 
 export function ExportRoutesSection({
   routes = exportRoutes,
+  messages,
 }: ExportRoutesSectionProps) {
   const [activeRegion, setActiveRegion] = useState<ExportRegionId | null>(null);
 
@@ -28,29 +31,32 @@ export function ExportRoutesSection({
             <div className="supply-map-shell">
               <SectionIntro
                 className="export-routes-intro"
-                description="Project routes connect the Yancheng production base with destinations across Central Asia, Europe, East Asia and the Americas."
-                eyebrow="SUPPLY NETWORK"
+                description={messages.description}
+                eyebrow={messages.eyebrow}
                 layout="stacked"
-                title="Export Routes"
+                title={messages.title}
                 titleId="export-routes-title"
               />
-              <ExportMarketsMap activeRegion={activeRegion} />
-              <div className="supply-map-legend" aria-label="Map legend">
+              <ExportMarketsMap
+                activeRegion={activeRegion}
+                imageAlt={messages.mapAlt}
+              />
+              <div className="supply-map-legend" aria-label={messages.legendAria}>
                 <span>
                   <i className="supply-map-legend-mark supply-map-legend-mark-origin" />
-                  Production base
+                  {messages.productionBase}
                 </span>
                 <span>
                   <i className="supply-map-legend-mark supply-map-legend-mark-region" />
-                  Export region
+                  {messages.exportRegion}
                 </span>
               </div>
             </div>
 
             <aside className="export-market-panel" aria-labelledby="export-market-title">
               <div className="export-market-panel-head">
-                <h3 id="export-market-title">Project regions</h3>
-                <p>Select a region to focus the routes shown on the map.</p>
+                <h3 id="export-market-title">{messages.regionsTitle}</h3>
+                <p>{messages.regionsBody}</p>
               </div>
               <ul className="export-market-summary">
                 {routes.map((route, index) => (
@@ -85,14 +91,14 @@ export function ExportRoutesSection({
 
             </aside>
 
-            <div className="export-network-facts" aria-label="Export network facts">
+            <div className="export-network-facts" aria-label={messages.factsAria}>
               <p>
-                <span>Production base</span>
-                <strong>Yancheng, Jiangsu, China</strong>
+                <span>{messages.productionBase}</span>
+                <strong>{messages.productionBaseValue}</strong>
               </p>
               <p>
-                <span>Listed destinations</span>
-                <strong>9 destinations shown</strong>
+                <span>{messages.listedDestinations}</span>
+                <strong>{messages.listedDestinationsValue}</strong>
               </p>
             </div>
           </Card>

@@ -3114,6 +3114,11 @@
     line-height: 0.98;
   }
 
+  html:lang(de) .home-redesign .home-hero .hero-motion-title {
+    font-size: clamp(2rem, 8.65vw, 2.65rem);
+    overflow-wrap: anywhere;
+  }
+
   .home-redesign .home-stage {
     padding: clamp(4rem, 15vw, 5.5rem) 0;
   }

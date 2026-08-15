@@ -13,6 +13,10 @@ import {
 } from "@/data/resourceNavigation";
 import { resourcePages } from "@/data/resources";
 import {
+  contactLanguageAlternates,
+  contactLanguageOptions,
+  homeLanguageAlternates,
+  homeLanguageOptions,
   productsLanguageAlternates,
   productsLanguageOptions,
 } from "@/i18n/releaseManifest";
@@ -32,28 +36,47 @@ const createUrlEntry = (
 });
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const productAlternates = Object.fromEntries(
-    Object.entries(productsLanguageAlternates).map(([language, path]) => [
-      language,
-      absoluteUrl(path),
-    ]),
-  );
-
-  const productLanguageRoutes = productsLanguageOptions.map(({ href }) => ({
-    ...createUrlEntry(href, 0.9, "weekly"),
-    alternates: {
-      languages: productAlternates,
+  const localizedLanguageRoutes = [
+    {
+      options: homeLanguageOptions,
+      alternates: homeLanguageAlternates,
+      priority: 1,
+      changeFrequency: "weekly" as const,
     },
-  }));
+    {
+      options: productsLanguageOptions,
+      alternates: productsLanguageAlternates,
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      options: contactLanguageOptions,
+      alternates: contactLanguageAlternates,
+      priority: 0.6,
+      changeFrequency: "monthly" as const,
+    },
+  ].flatMap(({ options, alternates, priority, changeFrequency }) => {
+    const absoluteAlternates = Object.fromEntries(
+      Object.entries(alternates).map(([language, path]) => [
+        language,
+        absoluteUrl(path),
+      ]),
+    );
+
+    return options.map(({ href }) => ({
+      ...createUrlEntry(href, priority, changeFrequency),
+      alternates: {
+        languages: absoluteAlternates,
+      },
+    }));
+  });
 
   const staticRoutes = [
-    createUrlEntry("", 1, "weekly"),
     createUrlEntry("/applications", 0.9, "weekly"),
     createUrlEntry("/components", 0.8, "weekly"),
     createUrlEntry("/resources", 0.85, "weekly"),
     createUrlEntry("/technical-data-sheets", 0.8, "weekly"),
     createUrlEntry("/about", 0.6, "monthly"),
-    createUrlEntry("/contact", 0.6, "monthly"),
   ];
 
   const categoryRoutes = productCategoryEntries.map((entry) => ({
@@ -92,7 +115,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticRoutes,
-    ...productLanguageRoutes,
+    ...localizedLanguageRoutes,
     ...categoryRoutes,
     ...productRoutes,
     ...engineeringTdsRoutes,

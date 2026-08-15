@@ -19,10 +19,12 @@ type MaterialDirection = {
 
 type MaterialRangeAccordionProps = {
   directions: MaterialDirection[];
+  ariaLabel: string;
 };
 
 export function MaterialRangeAccordion({
   directions,
+  ariaLabel,
 }: MaterialRangeAccordionProps) {
   const defaultValue = directions[0]?.title;
 
@@ -36,7 +38,7 @@ export function MaterialRangeAccordion({
       defaultValue={defaultValue}
       collapsible={false}
       className="product-stream"
-      aria-label="Additional material families"
+      aria-label={ariaLabel}
     >
       {directions.map((direction, index) => (
         <AccordionItem

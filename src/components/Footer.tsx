@@ -176,7 +176,7 @@ export function Footer({
             <span className="site-footer-logo">
               <Image
                 src="/platform-wordmark-white.png"
-                alt="PLATFORM registered trademark"
+                alt={messages.logoAlt}
                 width={1400}
                 height={217}
               />
@@ -191,7 +191,10 @@ export function Footer({
           <div className="site-footer-pitch">
             <h2>{messages.pitchTitle}</h2>
             <p className="site-footer-pitch-copy">{messages.pitchCopy}</p>
-            <Link className="site-footer-pitch-action" href="/contact">
+            <Link
+              className="site-footer-pitch-action"
+              href={localizedHref("/contact")}
+            >
               {messages.discussApplication}
               <ArrowUpRight aria-hidden="true" size={19} strokeWidth={1.8} />
             </Link>

@@ -2,30 +2,22 @@ import Image from "next/image";
 
 import { DocumentCard } from "@/components/DocumentCard";
 import type { Certification, CompanyQualification } from "@/data/company";
+import type { HomeMessages } from "@/i18n/types";
 import { publicPath } from "@/lib/paths";
 import styles from "./QualitySystemsSection.module.css";
-
-const certificateHolder = "Jiangsu Taiyi Nano Technology Co., Ltd.";
-
-const documentNames: Readonly<Record<string, string>> = {
-  TDS: "Technical Data Sheet",
-  SDS: "Safety Data Sheet",
-  COA: "Certificate of Analysis",
-  REACH:
-    "Registration, Evaluation, Authorisation and Restriction of Chemicals",
-  RoHS: "Restriction of Hazardous Substances",
-};
 
 type QualitySystemsSectionProps = {
   availableDocuments: ReadonlyArray<string>;
   certifications: ReadonlyArray<Certification>;
   qualifications: ReadonlyArray<CompanyQualification>;
+  messages: HomeMessages["quality"];
 };
 
 export function QualitySystemsSection({
   availableDocuments,
   certifications,
   qualifications,
+  messages,
 }: QualitySystemsSectionProps) {
   const featuredCertificate =
     certifications.find((certificate) =>
@@ -45,25 +37,18 @@ export function QualitySystemsSection({
           <header className={styles.sectionHeader}>
             <div className={styles.introCopy}>
               <h2 id="home-credentials-title">
-                Credentials for Supplier Qualification
+                {messages.title}
               </h2>
-              <p>
-                Enterprise recognition and management-system certificates for{" "}
-                {certificateHolder}, together with material-document support,
-                give procurement teams a faster route to supplier review.
-              </p>
+              <p>{messages.body}</p>
             </div>
 
             <div
               className={styles.qualificationPanel}
-              aria-label="Company credentials and material-document support"
+              aria-label={messages.panelAria}
             >
               <div className={styles.qualificationRegister}>
                 {qualifications.map((qualification) => {
-                  const patentMatch =
-                    qualification.category === "Intellectual property"
-                      ? qualification.title.match(/^(\d+)\s+(.+)$/)
-                      : null;
+                  const patentMatch = qualification.title.match(/^(\d+)\s+(.+)$/);
 
                   return (
                     <div key={qualification.title}>
@@ -83,17 +68,17 @@ export function QualitySystemsSection({
 
               <div className={styles.documentReadiness}>
                 <div className={styles.documentReadinessCopy}>
-                  <h3>Document support</h3>
-                  <p>Availability confirmed by grade and project.</p>
+                  <h3>{messages.documentSupportTitle}</h3>
+                  <p>{messages.documentSupportBody}</p>
                 </div>
                 <ul
                   className={styles.documentList}
-                  aria-label="Material documents available by grade and project"
+                  aria-label={messages.documentListAria}
                 >
                   {availableDocuments.map((item) => (
                     <li key={item}>
-                      {documentNames[item] ? (
-                        <abbr title={documentNames[item]}>{item}</abbr>
+                      {messages.documentNames[item] ? (
+                        <abbr title={messages.documentNames[item]}>{item}</abbr>
                       ) : (
                         item
                       )}
@@ -111,27 +96,30 @@ export function QualitySystemsSection({
                 variant="certificate"
                 href={publicPath(featuredCertificate.documentHref)}
                 external
-                previewAriaLabel={`Open ${featuredCertificate.standard} certificate PDF`}
+                previewAriaLabel={messages.openCertificateAria.replace(
+                  "{standard}",
+                  featuredCertificate.standard,
+                )}
                 previewClassName={styles.primaryPreview}
                 bodyClassName={styles.primaryBody}
                 eyebrow={featuredCertificate.system}
                 eyebrowClassName={styles.primaryEyebrow}
                 title={featuredCertificate.standard}
                 titleClassName={styles.primaryTitle}
-                description="Automotive Quality Management System"
+                description={messages.featuredDescription}
                 descriptionClassName={styles.primaryDescription}
                 metaClassName={styles.primaryMeta}
                 meta={
                   <>
                     <p className={styles.pdfStatus}>
-                      Certificate PDF available for review
+                      {messages.certificateAvailable}
                     </p>
                     <div className={styles.scopeFact}>
-                      <h3>Certified scope</h3>
+                      <h3>{messages.certifiedScope}</h3>
                       <p>{featuredCertificate.scope}</p>
                     </div>
                     <span className={styles.documentAction}>
-                      Open certificate PDF{" "}
+                      {messages.openCertificate}{" "}
                       <span aria-hidden="true">&#8599;</span>
                     </span>
                   </>
@@ -156,7 +144,10 @@ export function QualitySystemsSection({
                   variant="certificate"
                   href={publicPath(certificate.documentHref)}
                   external
-                  previewAriaLabel={`Open ${certificate.standard} certificate PDF`}
+                  previewAriaLabel={messages.openCertificateAria.replace(
+                    "{standard}",
+                    certificate.standard,
+                  )}
                   previewClassName={styles.isoPreview}
                   bodyClassName={styles.isoBody}
                   eyebrow={certificate.system}
@@ -165,7 +156,9 @@ export function QualitySystemsSection({
                   titleClassName={styles.isoTitle}
                   description={
                     <>
-                      <span className={styles.scopePrefix}>Scope:</span>{" "}
+                      <span className={styles.scopePrefix}>
+                        {messages.scopePrefix}
+                      </span>{" "}
                       {certificate.scope}
                     </>
                   }
@@ -173,7 +166,7 @@ export function QualitySystemsSection({
                   metaClassName={styles.isoMeta}
                   meta={
                     <span className={styles.documentAction}>
-                      Open PDF <span aria-hidden="true">&#8599;</span>
+                      {messages.openPdf} <span aria-hidden="true">&#8599;</span>
                     </span>
                   }
                   preview={

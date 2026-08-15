@@ -41,6 +41,7 @@ export type TaxonomyMessages = {
 
 export type HeaderMessages = {
   brandHomeLabel: string;
+  navigationAria: string;
   products: string;
   productCategories: string;
   productDescription: string;
@@ -64,6 +65,7 @@ export type HeaderMessages = {
 
 export type FooterMessages = {
   brandRelation: string;
+  logoAlt: string;
   pitchTitle: string;
   pitchCopy: string;
   discussApplication: string;
@@ -166,11 +168,207 @@ export type ProductsMessages = {
   };
 };
 
+export type HomeMetricMessage = {
+  label: string;
+  note: string;
+};
+
+export type HomeMaterialDirectionMessage = {
+  title: string;
+  description: string;
+  action: string;
+  specs: ReadonlyArray<readonly [string, string]>;
+};
+
+export type HomeMessages = {
+  metadata: {
+    title: string;
+    description: string;
+    imageAlt: string;
+  };
+  hero: {
+    eyebrowDesktop: string;
+    eyebrowMobile: string;
+    title: string;
+    body: string;
+    exploreAction: string;
+    contactAction: string;
+  };
+  metrics: ReadonlyArray<HomeMetricMessage>;
+  materials: {
+    title: string;
+    body: string;
+    documentSupport: string;
+    dataSheetsAction: string;
+    coreLabel: string;
+    coreDirectionsAria: string;
+    coreDirections: readonly string[];
+    allFamiliesAction: string;
+    additionalFamiliesAria: string;
+    items: ReadonlyArray<HomeMaterialDirectionMessage>;
+  };
+  qualification: {
+    title: string;
+    intro: string;
+    applicationAction: string;
+    figureAlt: string;
+    figureLabel: string;
+    figureCaption: string;
+    stepsAria: string;
+    steps: ReadonlyArray<{
+      stage: string;
+      title: string;
+      description: string;
+    }>;
+  };
+  quality: {
+    title: string;
+    body: string;
+    panelAria: string;
+    qualifications: ReadonlyArray<{
+      category: string;
+      title: string;
+    }>;
+    documentSupportTitle: string;
+    documentSupportBody: string;
+    documentListAria: string;
+    documentNames: Record<string, string>;
+    certifications: ReadonlyArray<{
+      system: string;
+      scope: string;
+    }>;
+    featuredDescription: string;
+    certificateAvailable: string;
+    certifiedScope: string;
+    openCertificate: string;
+    openCertificateAria: string;
+    scopePrefix: string;
+    openPdf: string;
+  };
+  exportNetwork: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    mapAlt: string;
+    legendAria: string;
+    productionBase: string;
+    exportRegion: string;
+    regionsTitle: string;
+    regionsBody: string;
+    factsAria: string;
+    productionBaseValue: string;
+    listedDestinations: string;
+    listedDestinationsValue: string;
+    routes: ReadonlyArray<{
+      region: string;
+      coverage: string;
+    }>;
+  };
+  inquiry: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    checklistLabel: string;
+    checklist: readonly string[];
+    action: string;
+  };
+};
+
+export type ContactFormMessages = {
+  contextFrom: string;
+  contextPrefilled: string;
+  clearContext: string;
+  companyLabel: string;
+  companyPlaceholder: string;
+  emailLabel: string;
+  materialLabel: string;
+  materialPlaceholder: string;
+  materialOptionLabels: Readonly<Record<string, string>>;
+  applicationLabel: string;
+  applicationPlaceholder: string;
+  detailsLabel: string;
+  detailsPlaceholder: string;
+  sending: string;
+  submit: string;
+  fallbackNote: string;
+  sentStatus: string;
+  fallbackStatus: string;
+  emailDraft: {
+    notSpecified: string;
+    greeting: string;
+    intro: string;
+    company: string;
+    email: string;
+    material: string;
+    application: string;
+    details: string;
+    closing: string;
+    subjectPrefix: string;
+  };
+};
+
+export type ContactMessages = {
+  metadata: {
+    title: string;
+    description: string;
+    imageAlt: string;
+  };
+  breadcrumbHome: string;
+  breadcrumbContact: string;
+  hero: {
+    title: string;
+    description: string;
+  };
+  formPanel: {
+    title: string;
+    body: string;
+    requiredBefore: string;
+    requiredAfter: string;
+  };
+  sales: {
+    title: string;
+    contactPerson: string;
+    role: string;
+    company: string;
+    email: string;
+    whatsapp: string;
+    location: string;
+    locationValue: string;
+    reviewTitle: string;
+    reviewItems: readonly string[];
+    emailDirectly: string;
+  };
+  directEmail: {
+    greeting: string;
+    application: string;
+    material: string;
+    reference: string;
+    candidates: string;
+    requirement: string;
+    keyRequirements: string;
+    documentNeeds: string;
+    closing: string;
+    subject: string;
+  };
+  context: {
+    grade: string;
+    reference: string;
+    candidates: string;
+    requirement: string;
+    intent: string;
+    sampleIntent: string;
+    evaluationIntent: string;
+  };
+  form: ContactFormMessages;
+};
+
 export type SiteMessages = {
   Taxonomy: TaxonomyMessages;
   Header: HeaderMessages;
   Footer: FooterMessages;
   FloatingContact: FloatingContactMessages;
   Analytics: AnalyticsMessages;
+  Home: HomeMessages;
   Products: ProductsMessages;
+  Contact: ContactMessages;
 };

@@ -8,6 +8,8 @@ import { conductiveCompounds } from "@/data/conductiveCompounds";
 import { engineeringTdsDocuments } from "@/data/engineeringTds";
 import { products } from "@/data/products";
 import type { ProductsMessages } from "@/i18n/types";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -79,12 +81,14 @@ type ProductsDirectoryPageProps = {
   messages: ProductsMessages;
   pagePath: string;
   inLanguage: string;
+  localeSegment?: LocalizedUrlSegment;
 };
 
 export function ProductsDirectoryPage({
   messages,
   pagePath,
   inLanguage,
+  localeSegment,
 }: ProductsDirectoryPageProps) {
   const productFamilies = familyDefinitions.map((definition, index) => ({
     ...definition,
@@ -94,12 +98,15 @@ export function ProductsDirectoryPage({
     ...definition,
     ...messages.selection.paths[index],
   }));
-  const productDirectoryContactHref = createContactHref({
-    source: messages.inquiry.contactSource,
-  });
+  const productDirectoryContactHref = getLocalizedHref(
+    createContactHref({
+      source: messages.inquiry.contactSource,
+    }),
+    localeSegment,
+  );
   const productDirectoryJsonLd = [
     createBreadcrumbJsonLd([
-      { name: messages.breadcrumbHome, path: "/" },
+      { name: messages.breadcrumbHome, path: getLocalizedHref("/", localeSegment) },
       { name: messages.breadcrumbProducts, path: pagePath },
     ]),
     createCollectionPageJsonLd({

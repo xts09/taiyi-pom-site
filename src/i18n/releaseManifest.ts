@@ -1,76 +1,125 @@
 import type { LocalizedUrlSegment } from "@/i18n/config";
 
+const publicRelease = {
+  status: "public",
+  indexable: true,
+  publicNavigation: true,
+  includeInSitemap: true,
+  includeInAlternates: true,
+} as const;
+
 export const localizedReleaseManifest = {
+  home: {
+    sourcePath: "/",
+    ...publicRelease,
+  },
   products: {
     sourcePath: "/products",
-    status: "public",
-    indexable: true,
-    publicNavigation: true,
-    includeInSitemap: true,
-    includeInAlternates: true,
+    ...publicRelease,
+  },
+  contact: {
+    sourcePath: "/contact",
+    ...publicRelease,
   },
 } as const;
 
-const localizedLanguageLabels = {
-  de: {
-    shortLabel: "DE",
-    nativeLabel: "Deutsch",
-  },
-  fr: {
-    shortLabel: "FR",
-    nativeLabel: "Français",
-  },
-  "pt-br": {
-    shortLabel: "PT",
-    nativeLabel: "Português",
-  },
-} satisfies Record<
-  LocalizedUrlSegment,
-  { shortLabel: string; nativeLabel: string }
->;
+export type ReleasedSourcePath =
+  (typeof localizedReleaseManifest)[keyof typeof localizedReleaseManifest]["sourcePath"];
 
-export const productsLanguageOptions = [
+const languageDefinitions = [
   {
     localeKey: "en",
     hreflang: "en",
-    href: "/products",
+    urlSegment: undefined,
     shortLabel: "EN",
     nativeLabel: "English",
   },
   {
     localeKey: "de",
     hreflang: "de",
-    href: "/de/products",
-    ...localizedLanguageLabels.de,
+    urlSegment: "de",
+    shortLabel: "DE",
+    nativeLabel: "Deutsch",
   },
   {
     localeKey: "fr",
     hreflang: "fr",
-    href: "/fr/products",
-    ...localizedLanguageLabels.fr,
+    urlSegment: "fr",
+    shortLabel: "FR",
+    nativeLabel: "Français",
   },
   {
     localeKey: "pt-br",
     hreflang: "pt-BR",
-    href: "/pt-br/products",
-    ...localizedLanguageLabels["pt-br"],
+    urlSegment: "pt-br",
+    shortLabel: "PT",
+    nativeLabel: "Português",
   },
-] as const;
-
-export type ProductsLanguageOption =
-  (typeof productsLanguageOptions)[number];
-
-export const productsLanguageAlternates = {
-  en: "/products",
-  de: "/de/products",
-  fr: "/fr/products",
-  "pt-BR": "/pt-br/products",
-  "x-default": "/products",
-} satisfies Record<string, string>;
+] as const satisfies ReadonlyArray<{
+  localeKey: "en" | LocalizedUrlSegment;
+  hreflang: string;
+  urlSegment?: LocalizedUrlSegment;
+  shortLabel: string;
+  nativeLabel: string;
+}>;
 
 const releasedSourcePaths = Object.values(localizedReleaseManifest).map(
   ({ sourcePath }) => sourcePath,
 );
+
+const isReleasedSourcePath = (sourcePath: string): sourcePath is ReleasedSourcePath =>
+  releasedSourcePaths.includes(sourcePath as ReleasedSourcePath);
+
+const createLocalizedPath = (
+  sourcePath: ReleasedSourcePath,
+  localeSegment: LocalizedUrlSegment,
+) => (sourcePath === "/" ? `/${localeSegment}` : `/${localeSegment}${sourcePath}`);
+
+export const getLanguageOptions = (sourcePath: string) => {
+  if (!isReleasedSourcePath(sourcePath)) {
+    return [];
+  }
+
+  const release = Object.values(localizedReleaseManifest).find(
+    (entry) => entry.sourcePath === sourcePath,
+  );
+
+  if (!release?.publicNavigation) {
+    return [];
+  }
+
+  return languageDefinitions.map((definition) => ({
+    localeKey: definition.localeKey,
+    hreflang: definition.hreflang,
+    href: definition.urlSegment
+      ? createLocalizedPath(sourcePath, definition.urlSegment)
+      : sourcePath,
+    shortLabel: definition.shortLabel,
+    nativeLabel: definition.nativeLabel,
+  }));
+};
+
+export type LanguageOption = ReturnType<typeof getLanguageOptions>[number];
+export type ProductsLanguageOption = LanguageOption;
+
+export const getLanguageAlternates = (sourcePath: ReleasedSourcePath) => {
+  const options = getLanguageOptions(sourcePath);
+
+  return {
+    ...Object.fromEntries(
+      options.map(({ hreflang, href }) => [hreflang, href]),
+    ),
+    "x-default": sourcePath,
+  } satisfies Record<string, string>;
+};
+
+export const homeLanguageOptions = getLanguageOptions("/");
+export const productsLanguageOptions = getLanguageOptions("/products");
+export const contactLanguageOptions = getLanguageOptions("/contact");
+
+export const homeLanguageAlternates = getLanguageAlternates("/");
+export const productsLanguageAlternates = getLanguageAlternates("/products");
+export const contactLanguageAlternates = getLanguageAlternates("/contact");
 
 export const getLocalizedHref = (
   href: string,
@@ -84,19 +133,22 @@ export const getLocalizedHref = (
   const sourcePath = suffixIndex === -1 ? href : href.slice(0, suffixIndex);
   const suffix = suffixIndex === -1 ? "" : href.slice(suffixIndex);
 
-  if (!releasedSourcePaths.includes(sourcePath as "/products")) {
+  if (!isReleasedSourcePath(sourcePath)) {
     return href;
   }
 
-  return `/${localeSegment}${sourcePath}${suffix}`;
+  return `${createLocalizedPath(sourcePath, localeSegment)}${suffix}`;
 };
+
+export const getLocalizedHomePath = (localeSegment: LocalizedUrlSegment) =>
+  getLocalizedHref("/", localeSegment);
 
 export const getLocalizedProductsPath = (
   localeSegment: LocalizedUrlSegment,
 ) => getLocalizedHref("/products", localeSegment);
 
-export const getProductsLanguageOptions = (sourcePath: string) =>
-  sourcePath === localizedReleaseManifest.products.sourcePath &&
-  localizedReleaseManifest.products.publicNavigation
-    ? productsLanguageOptions
-    : [];
+export const getLocalizedContactPath = (
+  localeSegment: LocalizedUrlSegment,
+) => getLocalizedHref("/contact", localeSegment);
+
+export const getProductsLanguageOptions = getLanguageOptions;

@@ -3,12 +3,17 @@ import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import type { HomeMessages } from "@/i18n/types";
 
 type HomeInquirySectionProps = {
-  checklist: ReadonlyArray<string>;
+  messages: HomeMessages["inquiry"];
+  contactHref: string;
 };
 
-export function HomeInquirySection({ checklist }: HomeInquirySectionProps) {
+export function HomeInquirySection({
+  messages,
+  contactHref,
+}: HomeInquirySectionProps) {
   return (
     <section
       id="material-review"
@@ -17,17 +22,14 @@ export function HomeInquirySection({ checklist }: HomeInquirySectionProps) {
     >
       <div className="site-container home-inquiry-inner">
         <div className="home-inquiry-copy">
-          <p className="home-inquiry-kicker">START A REVIEW</p>
-          <h2>Send the project inputs for an initial grade review.</h2>
-          <span>
-            Known details are enough to begin. Mark uncertain items and include
-            any current grade, drawing or failure sample available.
-          </span>
+          <p className="home-inquiry-kicker">{messages.eyebrow}</p>
+          <h2>{messages.title}</h2>
+          <span>{messages.body}</span>
         </div>
         <Card className="home-inquiry-panel gap-0 border-0 py-0 shadow-none">
-          <p className="home-inquiry-panel-label">PROJECT INPUTS</p>
+          <p className="home-inquiry-panel-label">{messages.checklistLabel}</p>
           <ul className="home-inquiry-checklist">
-            {checklist.map((item) => (
+            {messages.checklist.map((item) => (
               <li key={item}>{item}</li>
             ))}
           </ul>
@@ -37,8 +39,8 @@ export function HomeInquirySection({ checklist }: HomeInquirySectionProps) {
             variant="primary"
             className="home-inquiry-action h-auto"
           >
-            <Link href="/contact">
-              Discuss Your Application
+            <Link href={contactHref}>
+              {messages.action}
               <ArrowRight aria-hidden="true" size={16} />
             </Link>
           </Button>

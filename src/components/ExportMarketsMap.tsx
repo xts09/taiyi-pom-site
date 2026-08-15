@@ -49,10 +49,12 @@ const routePaths: ReadonlyArray<RoutePath> = markers.map((marker) => {
 
 type ExportMarketsMapProps = {
   activeRegion: ExportRegionId | null;
+  imageAlt: string;
 };
 
 export function ExportMarketsMap({
   activeRegion,
+  imageAlt,
 }: ExportMarketsMapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +93,7 @@ export function ExportMarketsMap({
       <Image
         className="export-map-image"
         src={publicPath("/generated/landing/export-routes-map-v5.png")}
-        alt="World map showing Taiyi production and export regions across Central Asia, Europe, East Asia, and the Americas."
+        alt={imageAlt}
         width={1983}
         height={793}
         sizes="(min-width: 1024px) 76vw, 100vw"

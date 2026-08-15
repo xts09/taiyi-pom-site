@@ -20,7 +20,10 @@ type FloatingContactProps = {
   localeSegment?: LocalizedUrlSegment;
 };
 
-function FloatingContactShell({ messages }: FloatingContactProps) {
+function FloatingContactShell({
+  messages,
+  localeSegment,
+}: FloatingContactProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -55,7 +58,7 @@ function FloatingContactShell({ messages }: FloatingContactProps) {
   useEffect(() => {
     const localInquiryAction = Array.from(
       document.querySelectorAll<HTMLAnchorElement>(
-        'main a[href^="/contact"]',
+        `main a[href^="${localeSegment ? `/${localeSegment}/contact` : "/contact"}"]`,
       ),
     ).find((action) => {
       const rect = action.getBoundingClientRect();
@@ -90,7 +93,7 @@ function FloatingContactShell({ messages }: FloatingContactProps) {
       window.cancelAnimationFrame(frame);
       observer.disconnect();
     };
-  }, []);
+  }, [localeSegment]);
 
   useEffect(() => {
     const mobileNavigation = window.matchMedia("(max-width: 63.999rem)");
@@ -215,7 +218,10 @@ function FloatingContactShell({ messages }: FloatingContactProps) {
           variant="primary"
           size="form"
         >
-          <Link href="/contact" onClick={() => closePanel()}>
+          <Link
+            href={localeSegment ? `/${localeSegment}/contact` : "/contact"}
+            onClick={() => closePanel()}
+          >
             {messages.title}
             <ArrowUpRight aria-hidden="true" size={16} />
           </Link>

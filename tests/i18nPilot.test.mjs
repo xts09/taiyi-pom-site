@@ -14,7 +14,12 @@ import fr from "../src/i18n/messages/fr.ts";
 import ptBR from "../src/i18n/messages/pt-BR.ts";
 import {
   getLocalizedHref,
+  getLocalizedContactPath,
+  getLocalizedHomePath,
   getLocalizedProductsPath,
+  getLanguageOptions,
+  contactLanguageAlternates,
+  homeLanguageAlternates,
   localizedReleaseManifest,
   productsLanguageAlternates,
   productsLanguageOptions,
@@ -77,16 +82,32 @@ test("all localized dictionaries match the complete English message shape", () =
 
   for (const messages of [de, fr, ptBR]) {
     assert.deepEqual(shapeOf(messages), expectedShape);
+    assert.equal(messages.Home.materials.items.length, 5);
+    assert.equal(messages.Home.qualification.steps.length, 4);
+    assert.equal(messages.Home.quality.certifications.length, 4);
+    assert.equal(messages.Home.exportNetwork.routes.length, 4);
+    assert.equal(messages.Contact.form.materialOptionLabels["Base POM Resin"].length > 0, true);
     assert.equal(messages.Products.selection.paths.length, 4);
     assert.equal(messages.Products.families.items.length, 6);
   }
 
+  assert.notEqual(de.Home.hero.title, en.Home.hero.title);
+  assert.notEqual(fr.Contact.hero.title, en.Contact.hero.title);
+  assert.notEqual(ptBR.Contact.form.submit, en.Contact.form.submit);
   assert.notEqual(de.Products.hero.title, en.Products.hero.title);
   assert.notEqual(fr.Products.hero.title, en.Products.hero.title);
   assert.notEqual(ptBR.Products.hero.title, en.Products.hero.title);
 });
 
-test("the release manifest publishes only the approved Products entry", () => {
+test("the release manifest publishes only the approved core funnel pages", () => {
+  assert.deepEqual(localizedReleaseManifest.home, {
+    sourcePath: "/",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
   assert.deepEqual(localizedReleaseManifest.products, {
     sourcePath: "/products",
     status: "public",
@@ -95,13 +116,35 @@ test("the release manifest publishes only the approved Products entry", () => {
     includeInSitemap: true,
     includeInAlternates: true,
   });
+  assert.deepEqual(localizedReleaseManifest.contact, {
+    sourcePath: "/contact",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
 
+  assert.deepEqual(homeLanguageAlternates, {
+    en: "/",
+    de: "/de",
+    fr: "/fr",
+    "pt-BR": "/pt-br",
+    "x-default": "/",
+  });
   assert.deepEqual(productsLanguageAlternates, {
     en: "/products",
     de: "/de/products",
     fr: "/fr/products",
     "pt-BR": "/pt-br/products",
     "x-default": "/products",
+  });
+  assert.deepEqual(contactLanguageAlternates, {
+    en: "/contact",
+    de: "/de/contact",
+    fr: "/fr/contact",
+    "pt-BR": "/pt-br/contact",
+    "x-default": "/contact",
   });
   assert.deepEqual(
     productsLanguageOptions.map(({ localeKey, hreflang, href }) => ({
@@ -123,6 +166,10 @@ test("the release manifest publishes only the approved Products entry", () => {
 
   for (const locale of localizedLocales) {
     assert.equal(
+      getLocalizedHomePath(locale.urlSegment),
+      `/${locale.urlSegment}`,
+    );
+    assert.equal(
       getLocalizedProductsPath(locale.urlSegment),
       `/${locale.urlSegment}/products`,
     );
@@ -131,15 +178,29 @@ test("the release manifest publishes only the approved Products entry", () => {
       `/${locale.urlSegment}/products#product-families`,
     );
     assert.equal(
+      getLocalizedContactPath(locale.urlSegment),
+      `/${locale.urlSegment}/contact`,
+    );
+    assert.equal(
+      getLocalizedHref("/contact?source=home", locale.urlSegment),
+      `/${locale.urlSegment}/contact?source=home`,
+    );
+    assert.equal(
       getLocalizedHref("/applications", locale.urlSegment),
       "/applications",
     );
   }
+
+  assert.deepEqual(getLanguageOptions("/about"), []);
 });
 
-test("localized Products is public with reciprocal SEO signals", () => {
+test("localized Home, Products, and Contact are public with reciprocal SEO signals", () => {
   const localizedLayout = readProjectFile("src/app/[locale]/layout.tsx");
-  const localizedPage = readProjectFile("src/app/[locale]/products/page.tsx");
+  const localizedHome = readProjectFile("src/app/[locale]/page.tsx");
+  const localizedProducts = readProjectFile("src/app/[locale]/products/page.tsx");
+  const localizedContact = readProjectFile("src/app/[locale]/contact/page.tsx");
+  const englishHome = readProjectFile("src/app/(en)/page.tsx");
+  const englishContact = readProjectFile("src/app/(en)/contact/page.tsx");
   const englishLayout = readProjectFile("src/app/(en)/layout.tsx");
   const sitemap = readProjectFile("src/app/sitemap.ts");
   const header = readProjectFile("src/components/Header.tsx");
@@ -149,14 +210,23 @@ test("localized Products is public with reciprocal SEO signals", () => {
   assert.match(englishLayout, /htmlLang="en"/);
   assert.match(localizedLayout, /htmlLang=\{localeConfig\.htmlLang\}/);
   assert.match(localizedLayout, /index:\s*true/);
-  assert.doesNotMatch(localizedPage, /indexable:\s*false/);
-  assert.match(localizedPage, /getLocalizedProductsPath/);
-  assert.match(localizedPage, /openGraphLocale:/);
-  assert.match(localizedPage, /productsLanguageAlternates/);
+  assert.doesNotMatch(localizedHome, /indexable:\s*false/);
+  assert.doesNotMatch(localizedProducts, /indexable:\s*false/);
+  assert.doesNotMatch(localizedContact, /indexable:\s*false/);
+  assert.match(localizedHome, /getLocalizedHomePath/);
+  assert.match(localizedProducts, /getLocalizedProductsPath/);
+  assert.match(localizedContact, /getLocalizedContactPath/);
+  assert.match(localizedHome, /homeLanguageAlternates/);
+  assert.match(localizedProducts, /productsLanguageAlternates/);
+  assert.match(localizedContact, /contactLanguageAlternates/);
+  assert.match(englishHome, /homeLanguageAlternates/);
+  assert.match(englishContact, /contactLanguageAlternates/);
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
+  assert.match(sitemap, /homeLanguageOptions/);
   assert.match(sitemap, /productsLanguageOptions/);
+  assert.match(sitemap, /contactLanguageOptions/);
   assert.match(sitemap, /alternates:\s*\{[\s\S]*languages:/);
-  assert.match(header, /getProductsLanguageOptions/);
+  assert.match(header, /getLanguageOptions/);
   assert.match(header, /language-switcher--/);
   assert.doesNotMatch(header, /i18n-preview/);
   assert.doesNotMatch(footer, /i18n-preview/);
