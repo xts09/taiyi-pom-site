@@ -75,12 +75,6 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
       "Compare charge-control POM options for electrical, ESD-sensitive, and functional molded parts.",
   },
   {
-    href: "/pom-grade-cross-reference",
-    label: "POM Grade Cross-Reference",
-    description:
-      "Use a preliminary cross-reference path to discuss current grades and application needs with Taiyi Polymer.",
-  },
-  {
     href: "/products/conductive-antistatic-compounds",
     label: "Cross-Material Conductive and Antistatic Compounds",
     description:
@@ -88,9 +82,7 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
   },
 ];
 
-export const publicTechnicalLandingLinks = technicalLandingLinks.filter(
-  (link) => link.href !== "/pom-grade-cross-reference",
-);
+export const publicTechnicalLandingLinks = technicalLandingLinks;
 
 export const pomLandingPages = {
   modifiedPomCompounds: {
@@ -370,7 +362,7 @@ export const pomLandingPages = {
       "Color and document needs",
     ],
     relatedLinks: [
-      technicalLandingLinks[4],
+      technicalLandingLinks[3],
       { href: "/products/categories/conductive-antistatic-pom-compound", label: "Conductive / Antistatic POM Grades", description: "Browse listed charge-control POM grades." },
       { href: "/applications/electronics", label: "Electronics Applications", description: "See electrical and electronic molded-component requirements." },
     ],
@@ -384,122 +376,6 @@ export const pomLandingPages = {
         question: "Can electrical performance affect mechanical properties?",
         answer:
           "Yes. Fillers or modifiers used for charge-control behavior may affect color, flow, impact, stiffness, wear, and surface quality. Compare the complete property balance before approval.",
-      },
-    ],
-  },
-  pomGradeCrossReference: {
-    slug: "pom-grade-cross-reference",
-    title: "POM Grade Cross-Reference",
-    metaTitle: "POM Grade Cross-Reference and Comparison | Taiyi Polymer",
-    metaDescription:
-      "Compare a current POM grade with Taiyi Polymer options using property requirements, application conditions, documents, and sample trials.",
-    eyebrow: "Preliminary Material Screening",
-    intro:
-      "Compare a current POM grade with Taiyi Polymer options by property requirements and application conditions. The public catalogue does not claim direct equivalence to third-party grades, and similar data points do not confirm replacement.",
-    primaryActionLabel: "Send a Current Grade for Comparison",
-    metrics: [
-      { label: "Use case", value: "Grade comparison" },
-      { label: "Basis", value: "TDS + application" },
-      { label: "Output", value: "Candidate shortlist" },
-      { label: "Validation", value: "Customer trial" },
-    ],
-    sections: [
-      {
-        title: "Build a Comparable Requirement",
-        body: "Start with the current grade and the reason for change, then compare the properties and conditions that must be retained.",
-        points: [
-          "Share the current grade, TDS, color, and application",
-          "Define the target improvement or supply problem",
-          "Compare the full property balance, not only one value",
-          "Confirm final selection through sample and molded-part testing",
-        ],
-      },
-      {
-        title: "What Cross-Reference Does Not Mean",
-        body: "A cross-reference is not a legal, commercial, or engineering guarantee that two materials are identical.",
-        points: [
-          "It does not replace customer approval or qualification",
-          "It does not confirm regulatory status for a specific grade or color",
-          "It does not predict every molding, warpage, or assembly result",
-          "It provides a starting point for controlled material comparison",
-        ],
-      },
-    ],
-    catalogEvidence: {
-      title: "What We Can Confirm From The Public Catalogue",
-      note:
-        "The public catalogue confirms Taiyi Polymer material families and listed properties. A specific replacement still requires the current grade, application, documents, and representative trials.",
-      items: [
-        {
-          label: "POM flow ranges",
-          detail:
-            "ETM series grades are listed from standard to ultra-high flow with MFI values.",
-        },
-        {
-          label: "Wear and friction modifications",
-          detail:
-            "PTFE, MoS2, aramid, silicone-oil, glass-fiber, and special wear-additive options are listed.",
-        },
-        {
-          label: "Conductive modifications",
-          detail:
-            "Carbon-nanotube, carbon-fiber, and conductive black POM options are listed.",
-        },
-        {
-          label: "Application areas",
-          detail:
-            "Automotive, valve, electrical, industrial, and electronics applications are listed as screening areas.",
-        },
-      ],
-    },
-    reviewInputs: [
-      "Current grade and supplier",
-      "Current TDS or property requirements",
-      "Application and molded-part function",
-      "Reason for replacement or second sourcing",
-      "Required documents and annual volume",
-    ],
-    crossReferenceRows: [
-      {
-        reference: "Current standard POM grade",
-        materialType: "POM",
-        reviewDirection: "Compare flow, strength, shrinkage, color, and required documents",
-        taiyiPath: "/products/categories/pom",
-      },
-      {
-        reference: "Current wear or low-friction POM grade",
-        materialType: "Modified POM",
-        reviewDirection: "Compare motion, mating material, wear, friction, and noise targets",
-        taiyiPath: "/wear-resistant-low-friction-pom",
-      },
-      {
-        reference: "Current conductive or antistatic POM grade",
-        materialType: "Charge-control POM",
-        reviewDirection: "Compare resistivity, test method, color, and molded-part function",
-        taiyiPath: "/conductive-antistatic-pom",
-      },
-      {
-        reference: "Current reinforced POM grade",
-        materialType: "Filled or reinforced POM",
-        reviewDirection: "Compare stiffness, flow-related shrinkage, warpage, weld lines, and surface needs",
-        taiyiPath: "/products/categories/pom",
-      },
-    ],
-    relatedLinks: [
-      technicalLandingLinks[0],
-      technicalLandingLinks[1],
-      { href: "/technical-data-sheets", label: "Data / TDS Search", description: "Search listed grade data, TDS paths, and resources." },
-    ],
-    faqs: [
-      {
-        question: "Does cross-reference mean equivalent replacement?",
-        answer:
-          "No. Cross-reference information is a preliminary screening aid. Final suitability depends on part design, processing, test method, working conditions, and customer validation.",
-      },
-      {
-        question: "What should be sent for a grade comparison?",
-        answer:
-          "Send the current grade, TDS, application, target properties, color, document requirements, annual volume, and the reason for replacement or second sourcing.",
       },
     ],
   },

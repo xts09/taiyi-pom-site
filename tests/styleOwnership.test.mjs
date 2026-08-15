@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -57,13 +57,25 @@ test("product side entrances retain their product stylesheet", () => {
   }
 });
 
-test("grade cross-reference workspace keeps its route-local stylesheet", () => {
-  const workspacePage = readProjectFile(
+test("retired grade cross-reference route is absent while technical search remains", () => {
+  const retiredFiles = [
     "src/app/(en)/pom-grade-cross-reference/page.tsx",
+    "src/app/(en)/pom-grade-cross-reference/GradeCrossReferenceWorkspace.tsx",
+    "src/app/(en)/pom-grade-cross-reference/page.module.css",
+  ];
+  const technicalSearchPage = readProjectFile(
+    "src/app/(en)/technical-data-sheets/page.tsx",
   );
 
-  assert.ok(workspacePage.includes('import styles from "./page.module.css";'));
-  assert.doesNotMatch(workspacePage, /styles\/products\.css/);
+  for (const path of retiredFiles) {
+    assert.equal(existsSync(resolve(projectRoot, path)), false, path);
+  }
+  assert.ok(
+    technicalSearchPage.includes(
+      'import { findGradeCrossReference } from "@/data/gradeCrossReferences";',
+    ),
+  );
+  assert.ok(technicalSearchPage.includes('eyebrow="Suggested PLATFORM grade"'));
 });
 
 test("contact layout stays locally owned without override escalation", () => {

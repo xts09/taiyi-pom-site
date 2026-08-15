@@ -480,7 +480,6 @@ export const resourcePages: ResourcePage[] = [
       },
     ],
     relatedLinks: [
-      { label: "POM Grade Cross-Reference", href: "/pom-grade-cross-reference" },
       { label: "Find Grade Data & TDS", href: "/technical-data-sheets" },
       {
         label: "Review the POM Material Selection Framework",

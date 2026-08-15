@@ -13,6 +13,7 @@ import {
   conductiveCompounds,
   conductiveSeries,
 } from "@/data/conductiveCompounds";
+import { findGradeCrossReference } from "@/data/gradeCrossReferences";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
@@ -326,6 +327,28 @@ export default async function TechnicalDataSheetsPage({
         );
       })
     : [];
+  const crossReferenceMatch =
+    query && productResourceAllowed && (!activeFamily || activeFamily === "POM")
+      ? findGradeCrossReference(query)
+      : undefined;
+  const suggestedProducts = crossReferenceMatch
+    ? crossReferenceMatch.record.candidateGrades.flatMap((grade) => {
+        const product = products.find((item) => item.grade === grade);
+        if (!product) return [];
+
+        const matchesDirection =
+          !activeDirectionFilter?.categories ||
+          activeDirectionFilter.categories.includes(product.category);
+
+        return matchesDirection ? [product] : [];
+      })
+    : [];
+  const suggestedProductSlugs = new Set(
+    suggestedProducts.map((product) => product.slug),
+  );
+  const directProductResults = searchableProducts.filter(
+    (product) => !suggestedProductSlugs.has(product.slug),
+  );
   const searchableResources =
     activeFamily || activeDirection
       ? []
@@ -359,7 +382,8 @@ export default async function TechnicalDataSheetsPage({
           return matchesQuery && matchesResource;
         });
   const totalResults =
-    searchableProducts.length +
+    suggestedProducts.length +
+    directProductResults.length +
     searchableResources.length +
     searchableEngineeringTds.length +
     searchableConductiveCompounds.length;
@@ -685,7 +709,29 @@ export default async function TechnicalDataSheetsPage({
                 );
               })}
 
-              {searchableProducts.map((product) => (
+              {suggestedProducts.map((product) => (
+                <DocumentCard
+                  key={`suggested-${product.slug}`}
+                  variant="compact-link"
+                  titleLevel={2}
+                  linkTitle
+                  eyebrow="Suggested PLATFORM grade"
+                  title={`${product.grade} ${product.category}`}
+                  href={`/products/${product.slug}`}
+                  description={product.description}
+                  meta={
+                    <>
+                      <span>Preliminary material screening candidate</span>
+                      <span>Compare current TDS and application requirements</span>
+                      <span>
+                        Documents: {product.documents.slice(0, 5).join(", ")}
+                      </span>
+                    </>
+                  }
+                />
+              ))}
+
+              {directProductResults.map((product) => (
                 <DocumentCard
                   key={product.slug}
                   variant="compact-link"

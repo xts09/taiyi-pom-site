@@ -72,6 +72,13 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Each released grade language group emits self-canonicals and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. The sitemap contains 196 unique URLs, including all six new localized grade URLs without duplicates.
 - Technical-data query variants remain `noindex, follow`. Competitor-grade mappings whose evidence status is still `screening-seed` remain internal and must not be published as static comparison pages or equivalence claims.
 
+### Unified Grade Alternative Search (2026-08-15)
+
+- The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.
+- Candidate wording remains preliminary screening language and directs users to compare current TDS data, application requirements, documents, and customer validation; it must not claim equivalence or direct replacement.
+- Reference matching stays server-side. The former public `/pom-grade-cross-reference` route, workspace component, dedicated styles, sitemap exposure, and internal entry points are removed rather than maintained as a separate tool.
+- The retired route was public for only one day and intentionally returns 404 after removal. The unified technical-data search is the sole public entry for current-grade lookup.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
