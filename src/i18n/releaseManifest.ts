@@ -1,5 +1,22 @@
 import type { LocalizedUrlSegment } from "@/i18n/config";
 
+export type LocalizedReleaseStatus = "public" | "preview" | "disabled";
+
+export type LocalizedReleaseEntry = {
+  sourcePath: string;
+  status: LocalizedReleaseStatus;
+  indexable: boolean;
+  publicNavigation: boolean;
+  includeInSitemap: boolean;
+  includeInAlternates: boolean;
+};
+
+export type LocalizedReleaseSurface =
+  | "indexable"
+  | "publicNavigation"
+  | "includeInSitemap"
+  | "includeInAlternates";
+
 const publicRelease = {
   status: "public",
   indexable: true,
@@ -21,7 +38,7 @@ export const localizedReleaseManifest = {
     sourcePath: "/contact",
     ...publicRelease,
   },
-} as const;
+} as const satisfies Record<string, LocalizedReleaseEntry>;
 
 export type ReleasedSourcePath =
   (typeof localizedReleaseManifest)[keyof typeof localizedReleaseManifest]["sourcePath"];
@@ -67,24 +84,46 @@ const releasedSourcePaths = Object.values(localizedReleaseManifest).map(
   ({ sourcePath }) => sourcePath,
 );
 
+const releaseEntries = Object.values(localizedReleaseManifest);
+
 const isReleasedSourcePath = (sourcePath: string): sourcePath is ReleasedSourcePath =>
   releasedSourcePaths.includes(sourcePath as ReleasedSourcePath);
+
+const getReleaseEntry = (sourcePath: string) =>
+  releaseEntries.find((entry) => entry.sourcePath === sourcePath);
+
+export const isReleaseSurfaceEnabled = (
+  release: LocalizedReleaseEntry | undefined,
+  surface: LocalizedReleaseSurface,
+) => {
+  if (release?.status !== "public" || !release[surface]) {
+    return false;
+  }
+
+  if (surface === "includeInSitemap" || surface === "includeInAlternates") {
+    return release.indexable;
+  }
+
+  return true;
+};
+
+export const isLocalizedReleaseIndexable = (sourcePath: string) =>
+  isReleaseSurfaceEnabled(getReleaseEntry(sourcePath), "indexable");
 
 const createLocalizedPath = (
   sourcePath: ReleasedSourcePath,
   localeSegment: LocalizedUrlSegment,
 ) => (sourcePath === "/" ? `/${localeSegment}` : `/${localeSegment}${sourcePath}`);
 
-export const getLanguageOptions = (sourcePath: string) => {
+const getLanguageOptionsForSurface = (
+  sourcePath: string,
+  surface: LocalizedReleaseSurface,
+) => {
   if (!isReleasedSourcePath(sourcePath)) {
     return [];
   }
 
-  const release = Object.values(localizedReleaseManifest).find(
-    (entry) => entry.sourcePath === sourcePath,
-  );
-
-  if (!release?.publicNavigation) {
+  if (!isReleaseSurfaceEnabled(getReleaseEntry(sourcePath), surface)) {
     return [];
   }
 
@@ -99,11 +138,26 @@ export const getLanguageOptions = (sourcePath: string) => {
   }));
 };
 
+export const getLanguageOptions = (sourcePath: string) =>
+  getLanguageOptionsForSurface(sourcePath, "publicNavigation");
+
+export const getSitemapLanguageOptions = (sourcePath: string) =>
+  getLanguageOptionsForSurface(sourcePath, "includeInSitemap");
+
 export type LanguageOption = ReturnType<typeof getLanguageOptions>[number];
 export type ProductsLanguageOption = LanguageOption;
 
-export const getLanguageAlternates = (sourcePath: ReleasedSourcePath) => {
-  const options = getLanguageOptions(sourcePath);
+export const getLanguageAlternates = (
+  sourcePath: ReleasedSourcePath,
+): Record<string, string> => {
+  const options = getLanguageOptionsForSurface(
+    sourcePath,
+    "includeInAlternates",
+  );
+
+  if (options.length === 0) {
+    return {} satisfies Record<string, string>;
+  }
 
   return {
     ...Object.fromEntries(
@@ -116,6 +170,12 @@ export const getLanguageAlternates = (sourcePath: ReleasedSourcePath) => {
 export const homeLanguageOptions = getLanguageOptions("/");
 export const productsLanguageOptions = getLanguageOptions("/products");
 export const contactLanguageOptions = getLanguageOptions("/contact");
+
+export const homeSitemapLanguageOptions = getSitemapLanguageOptions("/");
+export const productsSitemapLanguageOptions =
+  getSitemapLanguageOptions("/products");
+export const contactSitemapLanguageOptions =
+  getSitemapLanguageOptions("/contact");
 
 export const homeLanguageAlternates = getLanguageAlternates("/");
 export const productsLanguageAlternates = getLanguageAlternates("/products");
@@ -133,7 +193,10 @@ export const getLocalizedHref = (
   const sourcePath = suffixIndex === -1 ? href : href.slice(0, suffixIndex);
   const suffix = suffixIndex === -1 ? "" : href.slice(suffixIndex);
 
-  if (!isReleasedSourcePath(sourcePath)) {
+  if (
+    !isReleasedSourcePath(sourcePath) ||
+    getReleaseEntry(sourcePath)?.status !== "public"
+  ) {
     return href;
   }
 

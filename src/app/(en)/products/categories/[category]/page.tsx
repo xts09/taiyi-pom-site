@@ -18,10 +18,12 @@ import {
 import { products } from "@/data/products";
 import {
   findCategoryBySlug,
+  getCategoryApplicationSlugs,
   getCategoryDescription,
   getCategoryFaqs,
   getCategoryMetadataTitle,
   getCategoryNavSubtitle,
+  getCategorySelectionLinks,
   getCategoryTitle,
   getLegacyCategoryRedirect,
   getProductsByCategory,
@@ -126,6 +128,13 @@ export default async function ProductCategoryPage({
   const categoryProducts = getProductsByCategory(products, entry.category);
   const engineeringGrades = getEngineeringTdsByProductCategory(entry.category);
   const categoryFaqs = getCategoryFaqs(entry.category);
+  const relevantApplications = getCategoryApplicationSlugs(entry.category)
+    .map((slug) => applications.find((application) => application.slug === slug))
+    .filter(
+      (application): application is (typeof applications)[number] =>
+        Boolean(application),
+    );
+  const categorySelectionLinks = getCategorySelectionLinks(entry.category);
   const isPomCategory = entry.category === "POM";
   const isPomSubcategory = productCategoryOrder.includes(entry.category);
   const hasEngineeringGrades = engineeringGrades.length > 0;
@@ -310,10 +319,34 @@ export default async function ProductCategoryPage({
         >
           <div className="product-application-directory-head">
             <p className="section-kicker mb-3">Applications</p>
+            <h2>Relevant application paths</h2>
+            <p>
+              Start with the routes where this material direction is most often
+              screened. Final selection remains grade- and project-specific.
+            </p>
+            <div className="mt-5 flex flex-col items-start gap-3">
+              {categorySelectionLinks.map((link) => (
+                <Button
+                  key={link.href}
+                  asChild
+                  variant="link"
+                  className="h-auto justify-start p-0 text-left font-bold whitespace-normal"
+                >
+                  <Link href={link.href}>{link.label} &rarr;</Link>
+                </Button>
+              ))}
+              <Button
+                asChild
+                variant="link"
+                className="h-auto justify-start p-0 text-left font-bold"
+              >
+                <Link href="/applications">View all applications &rarr;</Link>
+              </Button>
+            </div>
           </div>
 
           <div className="product-application-list">
-            {applications.map((application, index) => (
+            {relevantApplications.map((application, index) => (
               <Link
                 key={application.slug}
                 href={`/applications/${application.slug}`}

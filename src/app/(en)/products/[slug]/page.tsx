@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -30,6 +31,7 @@ import { selectRelatedGrades } from "@/lib/relatedGrades";
 import {
   createBreadcrumbJsonLd,
   createEngineeringTdsPageMetadata,
+  createProductJsonLd,
   createProductPageMetadata,
   getEngineeringTdsTitle,
 } from "@/lib/seo";
@@ -267,8 +269,16 @@ function EngineeringProductDetailPage({
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
     { name: category, path: categoryUrl },
-    { name: title, path: `/products/${slug}` },
+    { name: document.grade, path: `/products/${slug}` },
   ]);
+  const productJsonLd = createProductJsonLd({
+    name: title,
+    grade: document.grade,
+    description: document.description,
+    category,
+    path: `/products/${slug}`,
+    properties,
+  });
   const snapshotItems = [
     {
       label: "Specific gravity",
@@ -313,10 +323,18 @@ function EngineeringProductDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(breadcrumbJsonLd),
+          __html: serializeJsonLd([breadcrumbJsonLd, productJsonLd]),
         }}
       />
       <section className="product-detail-shell">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Products", href: "/products" },
+            { label: category, href: categoryUrl },
+            { label: document.grade },
+          ]}
+        />
         <div className="product-detail-hero">
           <div className="product-detail-hero-card reveal-up">
             <div className="product-detail-heading-row">
@@ -669,8 +687,17 @@ export default async function ProductDetailPage({
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
     { name: product.category, path: categoryUrl },
-    { name: product.title, path: `/products/${product.slug}` },
+    { name: product.grade, path: `/products/${product.slug}` },
   ]);
+  const productJsonLd = createProductJsonLd({
+    name: product.title,
+    grade: product.grade,
+    description: product.description,
+    category: product.category,
+    path: `/products/${product.slug}`,
+    color: product.color,
+    properties: product.properties,
+  });
   const getProperty = (label: string) =>
     product.properties.find((property) => property.label === label);
   const coreProperties = getPublicCoreProperties(product.properties);
@@ -719,10 +746,18 @@ export default async function ProductDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(breadcrumbJsonLd),
+          __html: serializeJsonLd([breadcrumbJsonLd, productJsonLd]),
         }}
       />
       <section className="product-detail-shell">
+        <Breadcrumbs
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Products", href: "/products" },
+            { label: product.category, href: categoryUrl },
+            { label: product.grade },
+          ]}
+        />
         <div className="product-detail-hero">
           <div className="product-detail-hero-card reveal-up">
             <div className="product-detail-heading-row">

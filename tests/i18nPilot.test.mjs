@@ -18,11 +18,17 @@ import {
   getLocalizedHomePath,
   getLocalizedProductsPath,
   getLanguageOptions,
+  getSitemapLanguageOptions,
   contactLanguageAlternates,
+  contactSitemapLanguageOptions,
   homeLanguageAlternates,
+  homeSitemapLanguageOptions,
+  isLocalizedReleaseIndexable,
+  isReleaseSurfaceEnabled,
   localizedReleaseManifest,
   productsLanguageAlternates,
   productsLanguageOptions,
+  productsSitemapLanguageOptions,
 } from "../src/i18n/releaseManifest.ts";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -192,6 +198,55 @@ test("the release manifest publishes only the approved core funnel pages", () =>
   }
 
   assert.deepEqual(getLanguageOptions("/about"), []);
+  assert.deepEqual(getSitemapLanguageOptions("/about"), []);
+  assert.deepEqual(homeSitemapLanguageOptions, getLanguageOptions("/"));
+  assert.deepEqual(
+    productsSitemapLanguageOptions,
+    productsLanguageOptions,
+  );
+  assert.deepEqual(
+    contactSitemapLanguageOptions,
+    getLanguageOptions("/contact"),
+  );
+  assert.equal(isLocalizedReleaseIndexable("/"), true);
+  assert.equal(isLocalizedReleaseIndexable("/products"), true);
+  assert.equal(isLocalizedReleaseIndexable("/contact"), true);
+  assert.equal(isLocalizedReleaseIndexable("/about"), false);
+});
+
+test("release surfaces fail closed when status or indexability changes", () => {
+  const release = { ...localizedReleaseManifest.home };
+  const surfaces = [
+    "indexable",
+    "publicNavigation",
+    "includeInSitemap",
+    "includeInAlternates",
+  ];
+
+  for (const surface of surfaces) {
+    assert.equal(
+      isReleaseSurfaceEnabled({ ...release, [surface]: false }, surface),
+      false,
+    );
+    assert.equal(
+      isReleaseSurfaceEnabled({ ...release, status: "preview" }, surface),
+      false,
+    );
+  }
+
+  const noindexRelease = { ...release, indexable: false };
+  assert.equal(
+    isReleaseSurfaceEnabled(noindexRelease, "includeInSitemap"),
+    false,
+  );
+  assert.equal(
+    isReleaseSurfaceEnabled(noindexRelease, "includeInAlternates"),
+    false,
+  );
+  assert.equal(
+    isReleaseSurfaceEnabled(noindexRelease, "publicNavigation"),
+    true,
+  );
 });
 
 test("localized Home, Products, and Contact are public with reciprocal SEO signals", () => {
@@ -200,6 +255,7 @@ test("localized Home, Products, and Contact are public with reciprocal SEO signa
   const localizedProducts = readProjectFile("src/app/[locale]/products/page.tsx");
   const localizedContact = readProjectFile("src/app/[locale]/contact/page.tsx");
   const englishHome = readProjectFile("src/app/(en)/page.tsx");
+  const englishProducts = readProjectFile("src/app/(en)/products/page.tsx");
   const englishContact = readProjectFile("src/app/(en)/contact/page.tsx");
   const englishLayout = readProjectFile("src/app/(en)/layout.tsx");
   const sitemap = readProjectFile("src/app/sitemap.ts");
@@ -219,12 +275,18 @@ test("localized Home, Products, and Contact are public with reciprocal SEO signa
   assert.match(localizedHome, /homeLanguageAlternates/);
   assert.match(localizedProducts, /productsLanguageAlternates/);
   assert.match(localizedContact, /contactLanguageAlternates/);
+  assert.match(localizedHome, /indexable:\s*isLocalizedReleaseIndexable/);
+  assert.match(localizedProducts, /indexable:\s*isLocalizedReleaseIndexable/);
+  assert.match(localizedContact, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(englishHome, /homeLanguageAlternates/);
+  assert.match(englishHome, /indexable:\s*isLocalizedReleaseIndexable/);
+  assert.match(englishProducts, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(englishContact, /contactLanguageAlternates/);
+  assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
-  assert.match(sitemap, /homeLanguageOptions/);
-  assert.match(sitemap, /productsLanguageOptions/);
-  assert.match(sitemap, /contactLanguageOptions/);
+  assert.match(sitemap, /homeSitemapLanguageOptions/);
+  assert.match(sitemap, /productsSitemapLanguageOptions/);
+  assert.match(sitemap, /contactSitemapLanguageOptions/);
   assert.match(sitemap, /alternates:\s*\{[\s\S]*languages:/);
   assert.match(header, /getLanguageOptions/);
   assert.match(header, /language-switcher--/);

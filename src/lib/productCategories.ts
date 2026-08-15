@@ -6,6 +6,11 @@ type ProductCategoryData = {
   description: string;
   navSubtitle: string;
   applications: string[];
+  applicationSlugs: string[];
+  selectionLinks?: Array<{
+    label: string;
+    href: string;
+  }>;
   sourceCategories?: string[];
 };
 
@@ -34,6 +39,12 @@ const pomCategoryOverview = {
     "Gears, bushings, rollers, and sliding parts",
     "Automotive, electrical, and mechanical functional components",
   ],
+  applicationSlugs: [
+    "automotive",
+    "motion-components",
+    "electronics",
+    "conveyor-automation",
+  ],
 };
 
 export const productCategoryData: ProductCategoryData[] = [
@@ -49,6 +60,12 @@ export const productCategoryData: ProductCategoryData[] = [
       "Bushings, rollers, guide rails, and sliding parts",
       "Molded components requiring wear-life or friction review",
     ],
+    applicationSlugs: [
+      "motion-components",
+      "conveyor-automation",
+      "textile-machinery",
+      "water-control",
+    ],
     sourceCategories: wearAndLowFrictionSourceCategories,
   },
   {
@@ -63,6 +80,11 @@ export const productCategoryData: ProductCategoryData[] = [
       "Automotive, electrical, sanitary, and industrial components",
       "Functional parts requiring improved impact toughness",
     ],
+    applicationSlugs: [
+      "automotive",
+      "outdoor-equipment",
+      "washing-machine-components",
+    ],
   },
   {
     category: "UV-Resistant POM Compound",
@@ -76,6 +98,7 @@ export const productCategoryData: ProductCategoryData[] = [
       "Automotive and consumer components exposed to UV conditions",
       "Applications requiring more stable appearance retention",
     ],
+    applicationSlugs: ["outdoor-equipment", "automotive"],
   },
   {
     category: "Glass Fiber Reinforced POM Compound",
@@ -88,6 +111,18 @@ export const productCategoryData: ProductCategoryData[] = [
       "Structural molded parts requiring higher stiffness",
       "Precision parts with dimensional stability requirements",
       "Mechanical housings, brackets, and reinforced components",
+    ],
+    applicationSlugs: [
+      "automotive",
+      "motion-components",
+      "water-control",
+      "textile-machinery",
+    ],
+    selectionLinks: [
+      {
+        label: "PPA glass-fiber / mineral option: EAX645",
+        href: "/products/eax645-ppa-gf-mineral-reinforced",
+      },
     ],
   },
   {
@@ -102,6 +137,12 @@ export const productCategoryData: ProductCategoryData[] = [
       "Automotive, electrical, sanitary, and industrial components",
       "Parts requiring project-specific dimensional and thermal evaluation",
     ],
+    applicationSlugs: [
+      "automotive",
+      "electronics",
+      "water-control",
+      "washing-machine-components",
+    ],
   },
   {
     category: "Carbon Fiber Reinforced POM Compound",
@@ -114,6 +155,13 @@ export const productCategoryData: ProductCategoryData[] = [
       "High-stiffness precision parts",
       "Components requiring reinforcement and controlled conductivity",
       "Mechanical parts where dimensional stability is important",
+    ],
+    applicationSlugs: ["electronics", "motion-components"],
+    selectionLinks: [
+      {
+        label: "PA6 carbon-fiber option: EAC115C",
+        href: "/products/eac115c-pa6-carbon-fiber-reinforced",
+      },
     ],
   },
   {
@@ -128,6 +176,7 @@ export const productCategoryData: ProductCategoryData[] = [
       "Parts requiring antistatic or conductive performance",
       "Functional components where charge control is required",
     ],
+    applicationSlugs: ["electronics", "conveyor-automation"],
   },
   {
     category: "Base POM Resin",
@@ -140,6 +189,17 @@ export const productCategoryData: ProductCategoryData[] = [
       "General injection molded POM parts",
       "Customers sourcing selected POM resin with document support",
       "Projects requiring baseline POM resin comparison",
+    ],
+    applicationSlugs: [
+      "washing-machine-components",
+      "motion-components",
+      "water-control",
+    ],
+    selectionLinks: [
+      {
+        label: "Ultra-high-flow POM for thin-wall filling",
+        href: "/products/categories/ultra-high-flow-pom",
+      },
     ],
   },
   {
@@ -154,6 +214,7 @@ export const productCategoryData: ProductCategoryData[] = [
       "Flow-sensitive molds with longer flow paths",
       "Projects requiring easier filling and stable processability",
     ],
+    applicationSlugs: ["electronics", "automotive"],
   },
   {
     category: "PA6 Compound",
@@ -167,6 +228,7 @@ export const productCategoryData: ProductCategoryData[] = [
       "Reinforced or impact-modified nylon components",
       "Projects requiring practical PA6 compound data before material review",
     ],
+    applicationSlugs: ["automotive", "electronics", "motion-components"],
   },
   {
     category: "PA66 Compound",
@@ -180,6 +242,7 @@ export const productCategoryData: ProductCategoryData[] = [
       "Glass fiber reinforced or flame-retardant nylon parts",
       "Projects requiring PA66 stiffness, heat performance, or wear review",
     ],
+    applicationSlugs: ["automotive", "electronics", "motion-components"],
   },
   {
     category: "PPA Compound",
@@ -193,6 +256,7 @@ export const productCategoryData: ProductCategoryData[] = [
       "Reinforced precision molded components",
       "Projects requiring stiffness and dimensional stability beyond standard nylon",
     ],
+    applicationSlugs: ["automotive", "electronics"],
   },
 ];
 
@@ -340,6 +404,23 @@ export const getCategoryApplications = (category: string) => {
   }
 
   return getCategoryData(category)?.applications ?? pomCategoryOverview.applications;
+};
+
+export const getCategoryApplicationSlugs = (category: string) => {
+  if (category === pomCategoryOverview.category) {
+    return pomCategoryOverview.applicationSlugs;
+  }
+
+  return (
+    getCategoryData(category)?.applicationSlugs ??
+    pomCategoryOverview.applicationSlugs
+  );
+};
+
+export const getCategorySelectionLinks = (category: string) => {
+  if (category === pomCategoryOverview.category) return [];
+
+  return getCategoryData(category)?.selectionLinks ?? [];
 };
 
 export const getCategoryFaqs = (category: string) => {

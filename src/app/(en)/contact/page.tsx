@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { ContactPage } from "@/components/ContactPage";
 import messages from "@/i18n/messages/en";
-import { contactLanguageAlternates } from "@/i18n/releaseManifest";
+import {
+  contactLanguageAlternates,
+  isLocalizedReleaseIndexable,
+} from "@/i18n/releaseManifest";
 import type { ContactContextSearchParams } from "@/lib/contactContext";
 import { createPageMetadata } from "@/lib/seo";
 
@@ -11,6 +14,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/contact",
   image: "/factory-extrusion.webp",
   imageAlt: messages.Contact.metadata.imageAlt,
+  indexable: isLocalizedReleaseIndexable("/contact"),
   languageAlternates: contactLanguageAlternates,
 });
 

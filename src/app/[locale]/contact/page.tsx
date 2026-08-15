@@ -7,6 +7,7 @@ import { loadMessages } from "@/i18n/messages";
 import {
   contactLanguageAlternates,
   getLocalizedContactPath,
+  isLocalizedReleaseIndexable,
 } from "@/i18n/releaseManifest";
 import type { ContactContextSearchParams } from "@/lib/contactContext";
 import { createPageMetadata } from "@/lib/seo";
@@ -45,6 +46,7 @@ export async function generateMetadata({
     path: getLocalizedContactPath(localeConfig.urlSegment),
     image: "/factory-extrusion.webp",
     imageAlt: messages.Contact.metadata.imageAlt,
+    indexable: isLocalizedReleaseIndexable("/contact"),
     openGraphLocale: localeConfig.openGraphLocale,
     languageAlternates: contactLanguageAlternates,
   });

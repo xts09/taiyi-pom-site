@@ -3,11 +3,18 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import {
   findCategoryBySlug,
+  getCategoryApplicationSlugs,
   getCategoryMetadataTitle,
+  getCategorySelectionLinks,
+  productCategoryEntries,
 } from "../src/lib/productCategories.ts";
 
 const resourcesSource = readFileSync(
   new URL("../src/data/resources.ts", import.meta.url),
+  "utf8",
+);
+const applicationsSource = readFileSync(
+  new URL("../src/data/applications.ts", import.meta.url),
   "utf8",
 );
 
@@ -39,4 +46,40 @@ test("connects alternative-grade validation to the ranked manufacturing owner", 
     guideSource,
     /label: "Review Modified POM Manufacturing Capabilities",\s+href: "\/about#manufacturing"/,
   );
+});
+
+test("keeps category application routes focused and valid", () => {
+  const validApplicationSlugs = new Set(
+    [...applicationsSource.matchAll(/^\s{4}slug: "([^"]+)",$/gm)].map(
+      (match) => match[1],
+    ),
+  );
+
+  assert.equal(validApplicationSlugs.size, 8);
+
+  for (const category of productCategoryEntries) {
+    const slugs = getCategoryApplicationSlugs(category.category);
+
+    assert.ok(slugs.length >= 2, category.category);
+    assert.ok(slugs.length <= 4, category.category);
+    assert.equal(new Set(slugs).size, slugs.length, category.category);
+    assert.ok(
+      slugs.every((slug) => validApplicationSlugs.has(slug)),
+      category.category,
+    );
+  }
+});
+
+test("adds distinct editorial inlinks to the three low-inbound routes", () => {
+  const links = [
+    ...getCategorySelectionLinks("Base POM Resin"),
+    ...getCategorySelectionLinks("Carbon Fiber Reinforced POM Compound"),
+    ...getCategorySelectionLinks("Glass Fiber Reinforced POM Compound"),
+  ].map((link) => link.href);
+
+  assert.deepEqual(new Set(links), new Set([
+    "/products/categories/ultra-high-flow-pom",
+    "/products/eac115c-pa6-carbon-fiber-reinforced",
+    "/products/eax645-ppa-gf-mineral-reinforced",
+  ]));
 });

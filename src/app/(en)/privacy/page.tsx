@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { privacyPolicyRelease } from "@/data/legal";
 import { contactEmail } from "@/lib/seo";
 import styles from "./PrivacyPage.module.css";
 
@@ -11,8 +12,6 @@ export const metadata: Metadata = {
   },
 };
 
-const updatedDate = "August 8, 2026";
-
 export default function PrivacyPolicyPage() {
   return (
     <main className={styles.page}>
@@ -24,7 +23,9 @@ export default function PrivacyPolicyPage() {
             handles information submitted through the PLATFORM website and
             information generated when the site is used.
           </p>
-          <span className={styles.updated}>Last updated {updatedDate}</span>
+          <span className={styles.updated}>
+            Last updated {privacyPolicyRelease.lastUpdatedLabel}
+          </span>
         </div>
       </section>
 

@@ -9,6 +9,7 @@ import {
 import { loadMessages } from "@/i18n/messages";
 import {
   getLocalizedProductsPath,
+  isLocalizedReleaseIndexable,
   productsLanguageAlternates,
 } from "@/i18n/releaseManifest";
 import { createPageMetadata } from "@/lib/seo";
@@ -46,6 +47,7 @@ export async function generateMetadata({
     path: getLocalizedProductsPath(localeConfig.urlSegment),
     image: "/generated/pom-material-hero.webp",
     imageAlt: messages.Products.metadata.imageAlt,
+    indexable: isLocalizedReleaseIndexable("/products"),
     openGraphLocale: localeConfig.openGraphLocale,
     languageAlternates: productsLanguageAlternates,
   });

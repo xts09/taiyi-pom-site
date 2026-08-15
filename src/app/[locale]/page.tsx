@@ -7,6 +7,7 @@ import { loadMessages } from "@/i18n/messages";
 import {
   getLocalizedHomePath,
   homeLanguageAlternates,
+  isLocalizedReleaseIndexable,
 } from "@/i18n/releaseManifest";
 import { createPageMetadata } from "@/lib/seo";
 import "../(en)/styles/home.css";
@@ -44,6 +45,7 @@ export async function generateMetadata({
     path: getLocalizedHomePath(localeConfig.urlSegment),
     image: "/factory-hero-95b-loop-v6-poster.webp",
     imageAlt: messages.Home.metadata.imageAlt,
+    indexable: isLocalizedReleaseIndexable("/"),
     openGraphLocale: localeConfig.openGraphLocale,
     languageAlternates: homeLanguageAlternates,
   });

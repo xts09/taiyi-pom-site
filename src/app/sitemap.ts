@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { applications } from "@/data/applications";
 import { componentSolutionDetails } from "@/data/componentSolutionDetails";
+import { privacyPolicyRelease } from "@/data/legal";
 import {
   catalogEngineeringTds,
   catalogProducts,
@@ -14,11 +15,11 @@ import {
 import { resourcePages } from "@/data/resources";
 import {
   contactLanguageAlternates,
-  contactLanguageOptions,
+  contactSitemapLanguageOptions,
   homeLanguageAlternates,
-  homeLanguageOptions,
+  homeSitemapLanguageOptions,
   productsLanguageAlternates,
-  productsLanguageOptions,
+  productsSitemapLanguageOptions,
 } from "@/i18n/releaseManifest";
 import { productCategoryEntries } from "@/lib/productCategories";
 import { absoluteUrl, siteUrl } from "@/lib/seo";
@@ -38,19 +39,19 @@ const createUrlEntry = (
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedLanguageRoutes = [
     {
-      options: homeLanguageOptions,
+      options: homeSitemapLanguageOptions,
       alternates: homeLanguageAlternates,
       priority: 1,
       changeFrequency: "weekly" as const,
     },
     {
-      options: productsLanguageOptions,
+      options: productsSitemapLanguageOptions,
       alternates: productsLanguageAlternates,
       priority: 0.9,
       changeFrequency: "weekly" as const,
     },
     {
-      options: contactLanguageOptions,
+      options: contactSitemapLanguageOptions,
       alternates: contactLanguageAlternates,
       priority: 0.6,
       changeFrequency: "monthly" as const,
@@ -77,6 +78,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     createUrlEntry("/resources", 0.85, "weekly"),
     createUrlEntry("/technical-data-sheets", 0.8, "weekly"),
     createUrlEntry("/about", 0.6, "monthly"),
+    {
+      ...createUrlEntry("/privacy", 0.2, "yearly"),
+      lastModified: privacyPolicyRelease.lastModified,
+    },
   ];
 
   const categoryRoutes = productCategoryEntries.map((entry) => ({

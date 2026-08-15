@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { ProductsDirectoryPage } from "@/components/ProductsDirectoryPage";
 import messages from "@/i18n/messages/en";
-import { productsLanguageAlternates } from "@/i18n/releaseManifest";
+import {
+  isLocalizedReleaseIndexable,
+  productsLanguageAlternates,
+} from "@/i18n/releaseManifest";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
@@ -10,6 +13,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/products",
   image: "/generated/pom-material-hero.webp",
   imageAlt: messages.Products.metadata.imageAlt,
+  indexable: isLocalizedReleaseIndexable("/products"),
   languageAlternates: productsLanguageAlternates,
 });
 
