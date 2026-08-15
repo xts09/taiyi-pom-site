@@ -8,8 +8,8 @@ const messages = {
     technicalData: "Dados técnicos",
     contact: "Contato",
     contactSourceCategory: "Categoria de resina POM base",
-    contactSourceGrade: "Página do produto XT-100",
-    contactSourceTechnicalData: "Dados técnicos do XT-100",
+    contactSourceGrade: "Página localizada de grade POM",
+    contactSourceTechnicalData: "Dados técnicos de POM localizados",
   },
   category: {
     metadata: {
@@ -220,6 +220,100 @@ const messages = {
       action: "Solicitar avaliação do XT-100",
     },
   },
+  gradeProfiles: {
+    "etm450-base-pom-resin": {
+      metadata: {
+        title: "ETM450 POM de alta fluidez para precisão | Taiyi Polymer",
+        description:
+          "Avalie o ETM450, grade POM de alta fluidez para injeção de precisão, por MFI, tração, impacto e HDT e solicite uma amostra para avaliação.",
+        imageAlt: "Grânulos naturais de POM ETM450 da Taiyi Polymer",
+      },
+      breadcrumb: "ETM450",
+      eyebrow: "POM de alta fluidez · Moldagem por injeção",
+      positioning:
+        "Um grade candidato para peças injetadas de precisão quando preenchimento e perfil mecânico precisam ser avaliados em conjunto.",
+      summary:
+        "Os valores publicados apoiam a seleção inicial. A adequação deve ser confirmada com a geometria real, o molde, a janela de processo e as condições de uso.",
+      sampleAction: "Solicitar amostra de ETM450",
+      snapshot: {
+        aria: "Resumo de dados do ETM450",
+        title: "Perfil de triagem do ETM450",
+        body:
+          "Analise primeiro fluidez, tração, HDT e cor; depois valide a peça e o processo.",
+        flowNote: "Perfil de alta fluidez para injeção de precisão",
+      },
+      sectionNavAria: "Seções da página do produto ETM450",
+      features: [
+        "Alta fluidez",
+        "Direção para injeção de precisão",
+        "Indicado para moldagem por injeção",
+        "Cor natural",
+      ],
+      applications: [
+        "Peças moldadas de precisão",
+        "Componentes automotivos",
+        "Peças elétricas e eletrônicas",
+        "Conexões sanitárias",
+      ],
+      evaluationBody:
+        "ETM450 é oferecido como grade candidato para avaliação. A aprovação final deve seguir teste no molde do cliente e nas condições reais de uso.",
+      notesBody:
+        "Esta página apoia a triagem preliminar do ETM450. Projeto da peça, molde, processamento, metas de desempenho e requisitos do cliente podem alterar o resultado. Solicite os documentos atuais e confirme o grade por amostragem e testes de aplicação.",
+      inquiry: {
+        eyebrow: "Avaliação de projeto ETM450",
+        title: "Avaliar ETM450 para a sua peça moldada?",
+        body:
+          "Envie aplicação, processo, material atual, propriedades desejadas, cor, volume estimado e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+        action: "Solicitar avaliação do ETM450",
+      },
+    },
+    "etm750-base-pom-resin": {
+      metadata: {
+        title: "ETM750 POM de alta fluidez para parede fina | Taiyi Polymer",
+        description:
+          "Avalie o ETM750, grade POM de fluidez muito alta para peças de parede fina ou preenchimento crítico, e solicite dados ou uma amostra.",
+        imageAlt: "Grânulos naturais de POM ETM750 da Taiyi Polymer",
+      },
+      breadcrumb: "ETM750",
+      eyebrow: "POM de fluidez muito alta · Moldagem por injeção",
+      positioning:
+        "Um grade candidato para peças de parede fina ou preenchimento crítico quando caminho de fluxo e desempenho mecânico precisam ser avaliados em conjunto.",
+      summary:
+        "Os valores publicados apoiam a seleção inicial. A adequação deve ser confirmada com a geometria real, o molde, a janela de processo e as condições de uso.",
+      sampleAction: "Solicitar amostra de ETM750",
+      snapshot: {
+        aria: "Resumo de dados do ETM750",
+        title: "Perfil de triagem do ETM750",
+        body:
+          "Analise primeiro fluidez, tração, HDT e cor; depois valide preenchimento, peça e processo.",
+        flowNote: "Perfil de fluidez muito alta para peças de parede fina",
+      },
+      sectionNavAria: "Seções da página do produto ETM750",
+      features: [
+        "Fluidez muito alta",
+        "Direção para peças de parede fina",
+        "Indicado para moldagem por injeção",
+        "Cor natural",
+      ],
+      applications: [
+        "Peças moldadas de parede fina",
+        "Componentes automotivos",
+        "Peças elétricas e eletrônicas",
+        "Peças industriais moldadas por injeção",
+      ],
+      evaluationBody:
+        "ETM750 é oferecido como grade candidato para avaliação. A aprovação final deve seguir testes de preenchimento e da peça no molde do cliente e nas condições reais de uso.",
+      notesBody:
+        "Esta página apoia a triagem preliminar do ETM750. Caminho de fluxo, espessura, ponto de injeção, molde, processamento e metas de desempenho podem alterar o resultado. Solicite os documentos atuais e confirme o grade por amostragem e testes de aplicação.",
+      inquiry: {
+        eyebrow: "Avaliação de projeto ETM750",
+        title: "Avaliar ETM750 para a sua peça de parede fina?",
+        body:
+          "Envie espessura, caminho de fluxo, ponto de injeção, condição do molde, material atual, metas, cor, volume e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+        action: "Solicitar avaliação do ETM750",
+      },
+    },
+  },
   technicalData: {
     metadata: {
       title: "Dados técnicos e TDS de POM | Taiyi Polymer",
@@ -233,12 +327,12 @@ const messages = {
       "Esta versão publica apenas grades cuja página técnica e explicações foram totalmente revisadas. Cada valor deve ser lido com sua unidade, norma e condição de ensaio.",
     evidenceTitle: "Dados de grade liberados",
     evidenceBody:
-      "XT-100 é o primeiro conjunto de dados totalmente localizado desta etapa. Outros grades serão adicionados somente após a mesma revisão técnica e linguística.",
+      "ETM450, ETM750 e XT-100 formam o primeiro grupo de dados totalmente localizado. Outros grades serão adicionados somente após a mesma revisão técnica e linguística.",
     gradeLabel: "Grade",
     materialLabel: "Material",
     statusLabel: "Status dos dados",
     statusValue: "Dados web disponíveis · PDF a confirmar mediante solicitação",
-    viewAction: "Abrir dados do XT-100",
+    viewAction: "Abrir dados do grade",
     requestAction: "Solicitar TDS atual",
     scopeTitle: "O que verificar antes da aprovação",
     scopeItems: [

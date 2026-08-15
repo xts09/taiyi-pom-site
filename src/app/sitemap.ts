@@ -52,6 +52,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      sourcePath: "/products/etm450-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/etm750-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
       sourcePath: "/products/xt-100-base-pom-resin",
       priority: 0.65,
       changeFrequency: "monthly" as const,

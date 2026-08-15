@@ -38,6 +38,14 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/categories/base-pom-resin",
     ...publicRelease,
   },
+  etm450Grade: {
+    sourcePath: "/products/etm450-base-pom-resin",
+    ...publicRelease,
+  },
+  etm750Grade: {
+    sourcePath: "/products/etm750-base-pom-resin",
+    ...publicRelease,
+  },
   xt100Grade: {
     sourcePath: "/products/xt-100-base-pom-resin",
     ...publicRelease,

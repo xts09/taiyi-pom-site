@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { LocalizedXt100ProductPage } from "@/components/localized/LocalizedXt100ProductPage";
+import { LocalizedProductGradePage } from "@/components/localized/LocalizedXt100ProductPage";
 import { products } from "@/data/products";
 import { getLocalizedLocale } from "@/i18n/config";
 import { loadProductFunnelMessages } from "@/i18n/productFunnelMessages";
 import {
+  getLocalizedGradeMessages,
+  isLocalizedBasePomGradeSlug,
+  localizedBasePomGradeSlugs,
+} from "@/i18n/productFunnelTypes";
+import {
   getLanguageAlternates,
   getLocalizedHref,
   isLocalizedReleaseIndexable,
+  type ReleasedSourcePath,
 } from "@/i18n/releaseManifest";
 import { createPageMetadata } from "@/lib/seo";
-
-const productSlug = "xt-100-base-pom-resin";
-const sourcePath = `/products/${productSlug}` as const;
-const product = products.find((item) => item.slug === productSlug);
 
 type LocalizedProductPageProps = {
   params: Promise<{ locale: string; slug: string }>;
@@ -23,8 +25,9 @@ type LocalizedProductPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return [{ slug: productSlug }];
+  return localizedBasePomGradeSlugs.map((slug) => ({ slug }));
 }
+
 const resolveRoute = async (params: LocalizedProductPageProps["params"]) => {
   const { locale, slug } = await params;
   const localeConfig = getLocalizedLocale(locale);
@@ -32,27 +35,38 @@ const resolveRoute = async (params: LocalizedProductPageProps["params"]) => {
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    slug !== productSlug ||
-    !product
+    !isLocalizedBasePomGradeSlug(slug)
   ) {
     notFound();
   }
 
-  return localeConfig;
+  const product = products.find((item) => item.slug === slug);
+
+  if (!product) {
+    notFound();
+  }
+
+  return {
+    localeConfig,
+    product,
+    slug,
+    sourcePath: `/products/${slug}` as ReleasedSourcePath,
+  };
 };
 
 export async function generateMetadata({
   params,
 }: LocalizedProductPageProps): Promise<Metadata> {
-  const localeConfig = await resolveRoute(params);
+  const { localeConfig, slug, sourcePath } = await resolveRoute(params);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
+  const copy = getLocalizedGradeMessages(messages, slug);
 
   return createPageMetadata({
-    title: messages.grade.metadata.title,
-    description: messages.grade.metadata.description,
+    title: copy.metadata.title,
+    description: copy.metadata.description,
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
     image: "/generated/pom-material-hero.webp",
-    imageAlt: messages.grade.metadata.imageAlt,
+    imageAlt: copy.metadata.imageAlt,
     indexable: isLocalizedReleaseIndexable(sourcePath),
     openGraphLocale: localeConfig.openGraphLocale,
     languageAlternates: getLanguageAlternates(sourcePath),
@@ -62,19 +76,18 @@ export async function generateMetadata({
 export default async function LocalizedProductPage({
   params,
 }: LocalizedProductPageProps) {
-  const localeConfig = await resolveRoute(params);
+  const { localeConfig, product, slug, sourcePath } = await resolveRoute(params);
   setRequestLocale(localeConfig.htmlLang);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
-
-  if (!product) {
-    notFound();
-  }
+  const copy = getLocalizedGradeMessages(messages, slug);
 
   return (
-    <LocalizedXt100ProductPage
+    <LocalizedProductGradePage
       product={product}
+      copy={copy}
       messages={messages}
       localeSegment={localeConfig.urlSegment}
+      sourcePath={sourcePath}
     />
   );
 }

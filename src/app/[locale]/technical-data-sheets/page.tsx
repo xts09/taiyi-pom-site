@@ -5,6 +5,7 @@ import { LocalizedTechnicalDataPage } from "@/components/localized/LocalizedTech
 import { products } from "@/data/products";
 import { getLocalizedLocale } from "@/i18n/config";
 import { loadProductFunnelMessages } from "@/i18n/productFunnelMessages";
+import { localizedBasePomGradeSlugs } from "@/i18n/productFunnelTypes";
 import {
   getLanguageAlternates,
   getLocalizedHref,
@@ -13,7 +14,10 @@ import {
 import { createPageMetadata } from "@/lib/seo";
 
 const sourcePath = "/technical-data-sheets" as const;
-const product = products.find((item) => item.slug === "xt-100-base-pom-resin");
+const localizedProducts = localizedBasePomGradeSlugs.flatMap((slug) => {
+  const product = products.find((item) => item.slug === slug);
+  return product ? [product] : [];
+});
 
 type LocalizedTechnicalDataPageRouteProps = {
   params: Promise<{ locale: string }>;
@@ -26,7 +30,11 @@ const resolveLocale = async (
   const { locale } = await params;
   const localeConfig = getLocalizedLocale(locale);
 
-  if (!localeConfig || localeConfig.urlSegment !== locale || !product) {
+  if (
+    !localeConfig ||
+    localeConfig.urlSegment !== locale ||
+    localizedProducts.length !== localizedBasePomGradeSlugs.length
+  ) {
     notFound();
   }
 
@@ -64,13 +72,9 @@ export default async function LocalizedTechnicalDataPageRoute({
   setRequestLocale(localeConfig.htmlLang);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
 
-  if (!product) {
-    notFound();
-  }
-
   return (
     <LocalizedTechnicalDataPage
-      product={product}
+      products={localizedProducts}
       messages={messages}
       localeSegment={localeConfig.urlSegment}
       inLanguage={localeConfig.htmlLang}

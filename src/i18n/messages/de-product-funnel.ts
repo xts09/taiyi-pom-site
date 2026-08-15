@@ -8,8 +8,8 @@ const messages = {
     technicalData: "Technische Daten",
     contact: "Kontakt",
     contactSourceCategory: "POM-Basisharz-Kategorie",
-    contactSourceGrade: "XT-100 Produktseite",
-    contactSourceTechnicalData: "Technische Daten XT-100",
+    contactSourceGrade: "Lokalisierte POM-Typseite",
+    contactSourceTechnicalData: "Lokalisierte technische POM-Daten",
   },
   category: {
     metadata: {
@@ -220,6 +220,100 @@ const messages = {
       action: "XT-100 Prüfung anfragen",
     },
   },
+  gradeProfiles: {
+    "etm450-base-pom-resin": {
+      metadata: {
+        title: "ETM450 hochfließendes POM für Präzisionsteile | Taiyi Polymer",
+        description:
+          "Prüfen Sie ETM450 als hochfließenden POM-Typ für Präzisionsspritzguss anhand von MFI, Zug-, Schlag- und Wärmedaten und fordern Sie ein Muster an.",
+        imageAlt: "Naturfarbenes ETM450 POM-Granulat von Taiyi Polymer",
+      },
+      breadcrumb: "ETM450",
+      eyebrow: "Hochfließendes POM · Spritzguss",
+      positioning:
+        "Ein Kandidat für Präzisionsspritzgussteile, bei denen gute Formfüllung und ein belastbares mechanisches Profil gemeinsam geprüft werden.",
+      summary:
+        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+      sampleAction: "ETM450 Muster anfragen",
+      snapshot: {
+        aria: "ETM450 Kennwertübersicht",
+        title: "ETM450 Auswahlprofil",
+        body:
+          "Prüfen Sie zuerst Fließfähigkeit, Zugfestigkeit, Wärmeformbeständigkeit und Farbe; danach folgen Bauteil- und Prozessvalidierung.",
+        flowNote: "Hochfließendes Profil für Präzisionsspritzguss",
+      },
+      sectionNavAria: "Abschnitte der ETM450 Produktseite",
+      features: [
+        "Hohe Fließfähigkeit",
+        "Für Präzisionsspritzguss ausgerichtet",
+        "Für Spritzguss vorgesehen",
+        "Naturfarbe",
+      ],
+      applications: [
+        "Präzisionsformteile",
+        "Automobilkomponenten",
+        "Elektro- und Elektronikteile",
+        "Sanitärarmaturen",
+      ],
+      evaluationBody:
+        "ETM450 wird als Kandidat zur technischen Bewertung angeboten. Die endgültige Freigabe erfolgt nach Prüfung im Kundenwerkzeug und in der realen Anwendung.",
+      notesBody:
+        "Diese Seite unterstützt die vorläufige Auswahl von ETM450. Bauteildesign, Werkzeug, Verarbeitung, Leistungsziele und kundenspezifische Anforderungen können das Ergebnis verändern. Fordern Sie die aktuellen Unterlagen an und bestätigen Sie den Typ durch Musterung und Anwendungstests.",
+      inquiry: {
+        eyebrow: "ETM450 Projektprüfung",
+        title: "ETM450 für Ihr Formteil prüfen?",
+        body:
+          "Senden Sie Anwendung, Verarbeitungsverfahren, aktuellen Werkstoff, Zielwerte, Farbe, geschätztes Volumen und benötigte Unterlagen. Wir bereiten die Typ- und Musterprüfung vor.",
+        action: "ETM450 Prüfung anfragen",
+      },
+    },
+    "etm750-base-pom-resin": {
+      metadata: {
+        title: "ETM750 hochfließendes POM für Dünnwandteile | Taiyi Polymer",
+        description:
+          "Prüfen Sie ETM750 als sehr hochfließenden POM-Typ für dünnwandige und füllkritische Spritzgussteile und fordern Sie Daten oder ein Muster an.",
+        imageAlt: "Naturfarbenes ETM750 POM-Granulat von Taiyi Polymer",
+      },
+      breadcrumb: "ETM750",
+      eyebrow: "Sehr hochfließendes POM · Spritzguss",
+      positioning:
+        "Ein Kandidat für dünnwandige und füllkritische Spritzgussteile, bei denen lange Fließwege und die mechanische Leistung gemeinsam geprüft werden.",
+      summary:
+        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+      sampleAction: "ETM750 Muster anfragen",
+      snapshot: {
+        aria: "ETM750 Kennwertübersicht",
+        title: "ETM750 Auswahlprofil",
+        body:
+          "Prüfen Sie zuerst Fließfähigkeit, Zugfestigkeit, Wärmeformbeständigkeit und Farbe; danach folgen Füll-, Bauteil- und Prozessvalidierung.",
+        flowNote: "Sehr hochfließendes Profil für dünnwandige Formteile",
+      },
+      sectionNavAria: "Abschnitte der ETM750 Produktseite",
+      features: [
+        "Sehr hohe Fließfähigkeit",
+        "Ausrichtung auf dünnwandige Formteile",
+        "Für Spritzguss vorgesehen",
+        "Naturfarbe",
+      ],
+      applications: [
+        "Dünnwandige Formteile",
+        "Automobilkomponenten",
+        "Elektro- und Elektronikteile",
+        "Industrielle Spritzgussteile",
+      ],
+      evaluationBody:
+        "ETM750 wird als Kandidat zur technischen Bewertung angeboten. Die endgültige Freigabe erfolgt nach Füll- und Bauteilprüfung im Kundenwerkzeug und in der realen Anwendung.",
+      notesBody:
+        "Diese Seite unterstützt die vorläufige Auswahl von ETM750. Fließweg, Wanddicke, Anschnitt, Werkzeug, Verarbeitung und Leistungsziele können das Ergebnis verändern. Fordern Sie die aktuellen Unterlagen an und bestätigen Sie den Typ durch Musterung und Anwendungstests.",
+      inquiry: {
+        eyebrow: "ETM750 Projektprüfung",
+        title: "ETM750 für Ihr dünnwandiges Formteil prüfen?",
+        body:
+          "Senden Sie Wanddicke, Fließweg, Anschnitt, Werkzeugstand, aktuellen Werkstoff, Zielwerte, Farbe, Volumen und benötigte Unterlagen. Wir bereiten die Typ- und Musterprüfung vor.",
+        action: "ETM750 Prüfung anfragen",
+      },
+    },
+  },
   technicalData: {
     metadata: {
       title: "Technische Daten und TDS für POM | Taiyi Polymer",
@@ -233,12 +327,12 @@ const messages = {
       "Diese Sprachversion veröffentlicht nur Typen, deren technische Seite und Erklärtexte vollständig geprüft wurden. Werte sind zusammen mit Einheit, Norm und Prüfbedingung zu lesen.",
     evidenceTitle: "Freigegebene Typdaten",
     evidenceBody:
-      "XT-100 ist der erste vollständig lokalisierte Datensatz dieser Ausbaustufe. Weitere Typen werden erst nach derselben technischen und sprachlichen Prüfung ergänzt.",
+      "ETM450, ETM750 und XT-100 bilden die erste vollständig lokalisierte Datengruppe. Weitere Typen werden erst nach derselben technischen und sprachlichen Prüfung ergänzt.",
     gradeLabel: "Typ",
     materialLabel: "Werkstoff",
     statusLabel: "Datenstatus",
     statusValue: "Webdaten verfügbar · PDF nach Anfrage bestätigen",
-    viewAction: "XT-100 Daten öffnen",
+    viewAction: "Typdaten öffnen",
     requestAction: "Aktuelle TDS anfragen",
     scopeTitle: "Was vor einer Freigabe zu prüfen ist",
     scopeItems: [

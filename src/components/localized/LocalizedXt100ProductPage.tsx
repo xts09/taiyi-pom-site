@@ -9,7 +9,10 @@ import type { Product } from "@/data/products";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import type { ProductFunnelMessages } from "@/i18n/productFunnelTypes";
 import { xt100FeaturedPropertyLabels } from "@/i18n/productFunnelTypes";
-import { getLocalizedHref } from "@/i18n/releaseManifest";
+import {
+  getLocalizedHref,
+  type ReleasedSourcePath,
+} from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -17,21 +20,23 @@ import {
   createProductJsonLd,
 } from "@/lib/seo";
 
-const sourcePath = "/products/xt-100-base-pom-resin";
 const categorySourcePath = "/products/categories/base-pom-resin";
 
-type LocalizedXt100ProductPageProps = {
+type LocalizedProductGradePageProps = {
   product: Product;
+  copy: ProductFunnelMessages["grade"];
   messages: ProductFunnelMessages;
   localeSegment: LocalizedUrlSegment;
+  sourcePath: ReleasedSourcePath;
 };
 
-export function LocalizedXt100ProductPage({
+export function LocalizedProductGradePage({
   product,
+  copy,
   messages,
   localeSegment,
-}: LocalizedXt100ProductPageProps) {
-  const copy = messages.grade;
+  sourcePath,
+}: LocalizedProductGradePageProps) {
   const localizedPath = (path: string) => getLocalizedHref(path, localeSegment);
   const productPath = localizedPath(sourcePath);
   const categoryPath = localizedPath(categorySourcePath);

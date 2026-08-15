@@ -16,7 +16,10 @@ import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
 import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
 import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
 import {
+  additionalLocalizedBasePomGradeSlugs,
   basePomGradeSlugs,
+  getLocalizedGradeMessages,
+  localizedBasePomGradeSlugs,
   xt100FeaturedPropertyLabels,
 } from "../src/i18n/productFunnelTypes.ts";
 import {
@@ -138,6 +141,22 @@ test("the release manifest publishes only the approved conversion funnel pages",
     includeInSitemap: true,
     includeInAlternates: true,
   });
+  assert.deepEqual(localizedReleaseManifest.etm450Grade, {
+    sourcePath: "/products/etm450-base-pom-resin",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.etm750Grade, {
+    sourcePath: "/products/etm750-base-pom-resin",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
   assert.deepEqual(localizedReleaseManifest.xt100Grade, {
     sourcePath: "/products/xt-100-base-pom-resin",
     status: "public",
@@ -230,13 +249,12 @@ test("the release manifest publishes only the approved conversion funnel pages",
       ),
       `/${locale.urlSegment}/products/categories/base-pom-resin`,
     );
-    assert.equal(
-      getLocalizedHref(
-        "/products/xt-100-base-pom-resin",
-        locale.urlSegment,
-      ),
-      `/${locale.urlSegment}/products/xt-100-base-pom-resin`,
-    );
+    for (const slug of localizedBasePomGradeSlugs) {
+      assert.equal(
+        getLocalizedHref(`/products/${slug}`, locale.urlSegment),
+        `/${locale.urlSegment}/products/${slug}`,
+      );
+    }
     assert.equal(
       getLocalizedHref("/technical-data-sheets", locale.urlSegment),
       `/${locale.urlSegment}/technical-data-sheets`,
@@ -272,6 +290,14 @@ test("the release manifest publishes only the approved conversion funnel pages",
     isLocalizedReleaseIndexable("/products/xt-100-base-pom-resin"),
     true,
   );
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/etm450-base-pom-resin"),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/etm750-base-pom-resin"),
+    true,
+  );
   assert.equal(isLocalizedReleaseIndexable("/technical-data-sheets"), true);
   assert.equal(isLocalizedReleaseIndexable("/contact"), true);
   assert.equal(isLocalizedReleaseIndexable("/about"), false);
@@ -286,6 +312,16 @@ test("the release manifest publishes only the approved conversion funnel pages",
       "x-default": "/products/xt-100-base-pom-resin",
     },
   );
+
+  for (const slug of additionalLocalizedBasePomGradeSlugs) {
+    assert.deepEqual(getLanguageAlternates(`/products/${slug}`), {
+      en: `/products/${slug}`,
+      de: `/de/products/${slug}`,
+      fr: `/fr/products/${slug}`,
+      "pt-BR": `/pt-br/products/${slug}`,
+      "x-default": `/products/${slug}`,
+    });
+  }
 });
 
 test("deep product funnel dictionaries are complete and language-specific", () => {
@@ -305,10 +341,22 @@ test("deep product funnel dictionaries are complete and language-specific", () =
       Object.keys(messages.grade.properties.labels).sort(),
       [...xt100FeaturedPropertyLabels].sort(),
     );
+    assert.deepEqual(
+      Object.keys(messages.gradeProfiles).sort(),
+      [...additionalLocalizedBasePomGradeSlugs].sort(),
+    );
     assert.equal(messages.grade.features.length, 4);
     assert.equal(messages.grade.applications.length, 4);
     assert.equal(messages.grade.evaluation.steps.length, 3);
     assert.equal(messages.technicalData.scopeItems.length, 3);
+
+    for (const slug of localizedBasePomGradeSlugs) {
+      const grade = getLocalizedGradeMessages(messages, slug);
+      assert.equal(grade.features.length, 4);
+      assert.equal(grade.applications.length, 4);
+      assert.equal(grade.evaluation.steps.length, 3);
+      assert.match(grade.breadcrumb, /^(ETM450|ETM750|XT-100)$/);
+    }
   }
 
   assert.notEqual(deProductFunnel.category.hero.title, frProductFunnel.category.hero.title);
@@ -405,6 +453,8 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/etm450-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/etm750-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/xt-100-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/technical-data-sheets"/);
   assert.match(sitemap, /getSitemapLanguageOptions\(sourcePath\)/);

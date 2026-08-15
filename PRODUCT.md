@@ -64,6 +64,14 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Category rows without a reviewed localized grade page route to the localized project-review form instead of exposing English fallback copy on a localized URL.
 - The next expansion should follow the same gate for priority POM categories and reviewed cross-reference grades before translating Resources, Applications, and Components linked from those grades.
 
+### Multilingual Product Decision Expansion (2026-08-15)
+
+- Batch 3B first slice adds reviewed ETM450 and ETM750 grade pages under `de`, `fr`, and `pt-br`, creating six additional localized product URLs while retaining the existing unprefixed English source pages.
+- The localized Base POM Resin category now links ETM450, ETM750, and XT-100 to released grade pages. The localized technical-data page presents the same three reviewed grades and preserves locale and grade context when handing off to Contact.
+- Product values, units, methods, and document status remain sourced from the shared catalog. Localized grade profiles explain selection focus, application fit, processing limits, and validation boundaries without duplicating or overstating technical records.
+- Each released grade language group emits self-canonicals and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. The sitemap contains 196 unique URLs, including all six new localized grade URLs without duplicates.
+- Technical-data query variants remain `noindex, follow`. Competitor-grade mappings whose evidence status is still `screening-seed` remain internal and must not be published as static comparison pages or equivalence claims.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.

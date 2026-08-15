@@ -11,6 +11,23 @@ export const basePomGradeSlugs = [
 
 export type BasePomGradeSlug = (typeof basePomGradeSlugs)[number];
 
+export const localizedBasePomGradeSlugs = [
+  "etm450-base-pom-resin",
+  "etm750-base-pom-resin",
+  "xt-100-base-pom-resin",
+] as const;
+
+export type LocalizedBasePomGradeSlug =
+  (typeof localizedBasePomGradeSlugs)[number];
+
+export const additionalLocalizedBasePomGradeSlugs = [
+  "etm450-base-pom-resin",
+  "etm750-base-pom-resin",
+] as const;
+
+export type AdditionalLocalizedBasePomGradeSlug =
+  (typeof additionalLocalizedBasePomGradeSlugs)[number];
+
 export const xt100FeaturedPropertyLabels = [
   "Density",
   "Melt Flow Rate (MFI)",
@@ -37,6 +54,32 @@ type MetadataMessages = {
   title: string;
   description: string;
   imageAlt: string;
+};
+
+type AdditionalGradeProfileMessages = {
+  metadata: MetadataMessages;
+  breadcrumb: string;
+  eyebrow: string;
+  positioning: string;
+  summary: string;
+  sampleAction: string;
+  snapshot: {
+    aria: string;
+    title: string;
+    body: string;
+    flowNote: string;
+  };
+  sectionNavAria: string;
+  features: readonly string[];
+  applications: readonly string[];
+  evaluationBody: string;
+  notesBody: string;
+  inquiry: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    action: string;
+  };
 };
 
 export type ProductFunnelMessages = {
@@ -163,6 +206,10 @@ export type ProductFunnelMessages = {
       action: string;
     };
   };
+  gradeProfiles: Record<
+    AdditionalLocalizedBasePomGradeSlug,
+    AdditionalGradeProfileMessages
+  >;
   technicalData: {
     metadata: MetadataMessages;
     eyebrow: string;
@@ -182,5 +229,42 @@ export type ProductFunnelMessages = {
     inquiryTitle: string;
     inquiryBody: string;
     inquiryAction: string;
+  };
+};
+
+export const isLocalizedBasePomGradeSlug = (
+  slug: string,
+): slug is LocalizedBasePomGradeSlug =>
+  localizedBasePomGradeSlugs.includes(slug as LocalizedBasePomGradeSlug);
+
+export const getLocalizedGradeMessages = (
+  messages: ProductFunnelMessages,
+  slug: LocalizedBasePomGradeSlug,
+): ProductFunnelMessages["grade"] => {
+  if (slug === "xt-100-base-pom-resin") {
+    return messages.grade;
+  }
+
+  const profile = messages.gradeProfiles[slug];
+
+  return {
+    ...messages.grade,
+    ...profile,
+    snapshot: {
+      ...messages.grade.snapshot,
+      ...profile.snapshot,
+    },
+    sectionNav: {
+      ...messages.grade.sectionNav,
+      aria: profile.sectionNavAria,
+    },
+    evaluation: {
+      ...messages.grade.evaluation,
+      body: profile.evaluationBody,
+    },
+    notes: {
+      ...messages.grade.notes,
+      body: profile.notesBody,
+    },
   };
 };

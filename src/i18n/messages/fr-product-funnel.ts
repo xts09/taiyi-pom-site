@@ -8,8 +8,8 @@ const messages = {
     technicalData: "Données techniques",
     contact: "Contact",
     contactSourceCategory: "Catégorie résine POM de base",
-    contactSourceGrade: "Page produit XT-100",
-    contactSourceTechnicalData: "Données techniques XT-100",
+    contactSourceGrade: "Page localisée d'un grade POM",
+    contactSourceTechnicalData: "Données techniques POM localisées",
   },
   category: {
     metadata: {
@@ -220,6 +220,100 @@ const messages = {
       action: "Demander l'évaluation XT-100",
     },
   },
+  gradeProfiles: {
+    "etm450-base-pom-resin": {
+      metadata: {
+        title: "ETM450 POM haute fluidité pour précision | Taiyi Polymer",
+        description:
+          "Évaluez ETM450, grade POM haute fluidité pour l'injection de précision, puis consultez les données techniques et demandez un échantillon.",
+        imageAlt: "Granulés naturels de POM ETM450 de Taiyi Polymer",
+      },
+      breadcrumb: "ETM450",
+      eyebrow: "POM haute fluidité · Injection",
+      positioning:
+        "Un grade candidat pour pièces injectées de précision lorsque le remplissage et le profil mécanique doivent être examinés ensemble.",
+      summary:
+        "Les valeurs publiées servent à la sélection initiale. L'aptitude doit être confirmée avec la géométrie réelle, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+      sampleAction: "Demander un échantillon ETM450",
+      snapshot: {
+        aria: "Synthèse des données ETM450",
+        title: "Profil de présélection ETM450",
+        body:
+          "Examinez d'abord la fluidité, la traction, la tenue thermique et la couleur, puis validez la pièce et le procédé.",
+        flowNote: "Profil haute fluidité pour l'injection de précision",
+      },
+      sectionNavAria: "Sections de la page produit ETM450",
+      features: [
+        "Haute fluidité",
+        "Orientation injection de précision",
+        "Prévu pour le moulage par injection",
+        "Couleur naturelle",
+      ],
+      applications: [
+        "Pièces injectées de précision",
+        "Composants automobiles",
+        "Pièces électriques et électroniques",
+        "Raccords sanitaires",
+      ],
+      evaluationBody:
+        "ETM450 est proposé comme grade candidat à évaluer. La validation finale doit suivre un essai dans le moule du client et dans les conditions réelles d'utilisation.",
+      notesBody:
+        "Cette page facilite la présélection d'ETM450. La conception, le moule, le procédé, les objectifs de performance et les exigences propres au client peuvent modifier le résultat. Demandez les documents à jour et confirmez le grade par échantillonnage et essais d'application.",
+      inquiry: {
+        eyebrow: "Étude projet ETM450",
+        title: "Évaluer ETM450 pour votre pièce moulée ?",
+        body:
+          "Envoyez l'application, le procédé, la matière actuelle, les propriétés visées, la couleur, le volume estimé et les documents requis. Nous préparerons l'étude du grade et de l'échantillon.",
+        action: "Demander l'évaluation ETM450",
+      },
+    },
+    "etm750-base-pom-resin": {
+      metadata: {
+        title: "ETM750 POM très fluide pour parois minces | Taiyi Polymer",
+        description:
+          "Évaluez ETM750, un grade POM à très haute fluidité pour pièces injectées à paroi mince ou difficiles à remplir, puis demandez les données ou un échantillon.",
+        imageAlt: "Granulés naturels de POM ETM750 de Taiyi Polymer",
+      },
+      breadcrumb: "ETM750",
+      eyebrow: "POM à très haute fluidité · Injection",
+      positioning:
+        "Un grade candidat pour pièces à paroi mince ou difficiles à remplir lorsque le parcours d'écoulement et les performances mécaniques doivent être examinés ensemble.",
+      summary:
+        "Les valeurs publiées servent à la sélection initiale. L'aptitude doit être confirmée avec la géométrie réelle, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+      sampleAction: "Demander un échantillon ETM750",
+      snapshot: {
+        aria: "Synthèse des données ETM750",
+        title: "Profil de présélection ETM750",
+        body:
+          "Examinez d'abord la fluidité, la traction, la tenue thermique et la couleur, puis validez le remplissage, la pièce et le procédé.",
+        flowNote: "Profil à très haute fluidité pour pièces à paroi mince",
+      },
+      sectionNavAria: "Sections de la page produit ETM750",
+      features: [
+        "Très haute fluidité",
+        "Orientation pièces à paroi mince",
+        "Prévu pour le moulage par injection",
+        "Couleur naturelle",
+      ],
+      applications: [
+        "Pièces injectées à paroi mince",
+        "Composants automobiles",
+        "Pièces électriques et électroniques",
+        "Pièces injectées industrielles",
+      ],
+      evaluationBody:
+        "ETM750 est proposé comme grade candidat à évaluer. La validation finale doit suivre des essais de remplissage et de pièce dans le moule du client et dans les conditions réelles d'utilisation.",
+      notesBody:
+        "Cette page facilite la présélection d'ETM750. Le parcours d'écoulement, l'épaisseur, le point d'injection, le moule, le procédé et les objectifs de performance peuvent modifier le résultat. Demandez les documents à jour et confirmez le grade par échantillonnage et essais d'application.",
+      inquiry: {
+        eyebrow: "Étude projet ETM750",
+        title: "Évaluer ETM750 pour votre pièce à paroi mince ?",
+        body:
+          "Envoyez l'épaisseur, le parcours d'écoulement, le point d'injection, l'état du moule, la matière actuelle, les objectifs, la couleur, le volume et les documents requis. Nous préparerons l'étude du grade et de l'échantillon.",
+        action: "Demander l'évaluation ETM750",
+      },
+    },
+  },
   technicalData: {
     metadata: {
       title: "Données techniques et TDS POM | Taiyi Polymer",
@@ -233,12 +327,12 @@ const messages = {
       "Cette version linguistique ne publie que les grades dont la page technique et les explications ont été entièrement vérifiées. Chaque valeur doit être lue avec son unité, sa norme et sa condition d'essai.",
     evidenceTitle: "Données de grade validées",
     evidenceBody:
-      "XT-100 est le premier jeu de données entièrement localisé de cette étape. D'autres grades seront ajoutés après le même contrôle technique et linguistique.",
+      "ETM450, ETM750 et XT-100 forment le premier groupe de données entièrement localisé. D'autres grades seront ajoutés après le même contrôle technique et linguistique.",
     gradeLabel: "Grade",
     materialLabel: "Matière",
     statusLabel: "État des données",
     statusValue: "Données web disponibles · PDF à confirmer sur demande",
-    viewAction: "Ouvrir les données XT-100",
+    viewAction: "Ouvrir les données du grade",
     requestAction: "Demander la TDS à jour",
     scopeTitle: "Points à vérifier avant validation",
     scopeItems: [

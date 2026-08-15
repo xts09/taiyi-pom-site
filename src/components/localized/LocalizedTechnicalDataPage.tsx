@@ -7,7 +7,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import type { Product } from "@/data/products";
 import type { LocalizedUrlSegment } from "@/i18n/config";
-import type { ProductFunnelMessages } from "@/i18n/productFunnelTypes";
+import {
+  getLocalizedGradeMessages,
+  isLocalizedBasePomGradeSlug,
+  type ProductFunnelMessages,
+} from "@/i18n/productFunnelTypes";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
@@ -17,17 +21,16 @@ import {
 } from "@/lib/seo";
 
 const sourcePath = "/technical-data-sheets";
-const gradeSourcePath = "/products/xt-100-base-pom-resin";
 
 type LocalizedTechnicalDataPageProps = {
-  product: Product;
+  products: readonly Product[];
   messages: ProductFunnelMessages;
   localeSegment: LocalizedUrlSegment;
   inLanguage: string;
 };
 
 export function LocalizedTechnicalDataPage({
-  product,
+  products,
   messages,
   localeSegment,
   inLanguage,
@@ -35,10 +38,8 @@ export function LocalizedTechnicalDataPage({
   const copy = messages.technicalData;
   const localizedPath = (path: string) => getLocalizedHref(path, localeSegment);
   const pagePath = localizedPath(sourcePath);
-  const gradePath = localizedPath(gradeSourcePath);
   const requestHref = localizedPath(
     createContactHref({
-      grade: product.grade,
       intent: "grade-evaluation",
       material: messages.common.category,
       source: messages.common.contactSourceTechnicalData,
@@ -91,43 +92,69 @@ export function LocalizedTechnicalDataPage({
               <p>{copy.evidenceBody}</p>
             </div>
 
-            <Card asChild variant="evidence">
-              <article className="product-detail-resource-panel">
-                <div className="product-detail-resource-copy">
-                  <strong>{product.grade}</strong>
-                  <p>{messages.grade.positioning}</p>
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    <Button asChild variant="default">
-                      <Link href={gradePath}>{copy.viewAction}</Link>
-                    </Button>
-                    <Button asChild variant="outline">
-                      <Link href={requestHref}>{copy.requestAction}</Link>
-                    </Button>
-                  </div>
-                </div>
+            <div className="space-y-5">
+              {products.map((product) => {
+                if (!isLocalizedBasePomGradeSlug(product.slug)) {
+                  return null;
+                }
 
-                <dl className="product-detail-snapshot-grid">
-                  <div>
-                    <dt>{copy.gradeLabel}</dt>
-                    <dd>{product.grade}</dd>
-                  </div>
-                  <div>
-                    <dt>{copy.materialLabel}</dt>
-                    <dd>POM</dd>
-                  </div>
-                  <div>
-                    <dt>MFI</dt>
-                    <dd>
-                      <ValueText value={product.mfi} />
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>{copy.statusLabel}</dt>
-                    <dd>{copy.statusValue}</dd>
-                  </div>
-                </dl>
-              </article>
-            </Card>
+                const gradeCopy = getLocalizedGradeMessages(
+                  messages,
+                  product.slug,
+                );
+                const gradePath = localizedPath(`/products/${product.slug}`);
+                const gradeRequestHref = localizedPath(
+                  createContactHref({
+                    grade: product.grade,
+                    intent: "grade-evaluation",
+                    material: messages.common.category,
+                    source: messages.common.contactSourceTechnicalData,
+                  }),
+                );
+
+                return (
+                  <Card key={product.slug} asChild variant="evidence">
+                    <article className="product-detail-resource-panel">
+                      <div className="product-detail-resource-copy">
+                        <strong>{product.grade}</strong>
+                        <p>{gradeCopy.positioning}</p>
+                        <div className="mt-5 flex flex-wrap gap-3">
+                          <Button asChild variant="default">
+                            <Link href={gradePath}>{copy.viewAction}</Link>
+                          </Button>
+                          <Button asChild variant="outline">
+                            <Link href={gradeRequestHref}>
+                              {copy.requestAction}
+                            </Link>
+                          </Button>
+                        </div>
+                      </div>
+
+                      <dl className="product-detail-snapshot-grid">
+                        <div>
+                          <dt>{copy.gradeLabel}</dt>
+                          <dd>{product.grade}</dd>
+                        </div>
+                        <div>
+                          <dt>{copy.materialLabel}</dt>
+                          <dd>POM</dd>
+                        </div>
+                        <div>
+                          <dt>MFI</dt>
+                          <dd>
+                            <ValueText value={product.mfi} />
+                          </dd>
+                        </div>
+                        <div>
+                          <dt>{copy.statusLabel}</dt>
+                          <dd>{copy.statusValue}</dd>
+                        </div>
+                      </dl>
+                    </article>
+                  </Card>
+                );
+              })}
+            </div>
           </section>
 
           <section className="evaluation-note products-motion-secondary mt-12">
