@@ -89,6 +89,14 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Each category language group uses a self-canonical and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. All six clean category URLs are indexable and included in sitemap.
 - The generated sitemap now contains 208 unique URLs. Dynamic technical-data queries, aliases, and internal preview pages remain outside this localized release.
 
+### Multilingual High-Impact POM Expansion (2026-08-16)
+
+- Batch 3E publishes the High-Impact POM category and the reviewed EHI402T and EDR180 grade pages under `de`, `fr`, and `pt-br`, adding nine localized URLs.
+- The category presents all six catalogued high-impact grades. EHI402T and EDR180 link to their reviewed current-language pages; unreleased grade rows hand off to localized Contact with category and grade context instead of exposing incomplete localized detail pages.
+- Shared catalog records continue to own values, units, methods, applications, and document status. Localized copy explains impact, low-temperature, elongation, flow, geometry, notch, processing, and part-validation boundaries without claiming automatic suitability.
+- Each released category and grade language group uses a self-canonical and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. The nine clean localized URLs are indexable and included in sitemap.
+- The generated sitemap now contains 217 unique URLs. Dynamic technical-data queries, aliases, unreviewed grades, and internal preview pages remain outside this release.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.

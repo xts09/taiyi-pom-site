@@ -46,6 +46,10 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/categories/glass-fiber-reinforced-pom-compound",
     ...publicRelease,
   },
+  highImpactPomCategory: {
+    sourcePath: "/products/categories/high-impact-pom-compound",
+    ...publicRelease,
+  },
   etm450Grade: {
     sourcePath: "/products/etm450-base-pom-resin",
     ...publicRelease,
@@ -64,6 +68,14 @@ export const localizedReleaseManifest = {
   },
   egh502hGrade: {
     sourcePath: "/products/egh502h-glass-fiber-pom",
+    ...publicRelease,
+  },
+  ehi402tGrade: {
+    sourcePath: "/products/ehi402t-high-impact-pom",
+    ...publicRelease,
+  },
+  edr180Grade: {
+    sourcePath: "/products/edr180-high-impact-pom",
     ...publicRelease,
   },
   technicalDataSheets: {

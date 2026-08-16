@@ -163,6 +163,14 @@ test("the release manifest publishes only the approved conversion funnel pages",
     includeInSitemap: true,
     includeInAlternates: true,
   });
+  assert.deepEqual(localizedReleaseManifest.highImpactPomCategory, {
+    sourcePath: "/products/categories/high-impact-pom-compound",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
   assert.deepEqual(localizedReleaseManifest.etm450Grade, {
     sourcePath: "/products/etm450-base-pom-resin",
     status: "public",
@@ -197,6 +205,22 @@ test("the release manifest publishes only the approved conversion funnel pages",
   });
   assert.deepEqual(localizedReleaseManifest.egh502hGrade, {
     sourcePath: "/products/egh502h-glass-fiber-pom",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.ehi402tGrade, {
+    sourcePath: "/products/ehi402t-high-impact-pom",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.edr180Grade, {
+    sourcePath: "/products/edr180-high-impact-pom",
     status: "public",
     indexable: true,
     publicNavigation: true,
@@ -321,6 +345,18 @@ test("the release manifest publishes only the approved conversion funnel pages",
       ),
       `/${locale.urlSegment}/products/categories/glass-fiber-reinforced-pom-compound`,
     );
+    for (const slug of [
+      "ehi402t-high-impact-pom",
+      "edr180-high-impact-pom",
+    ]) {
+      assert.equal(
+        getLocalizedHref(
+          getLocalizedGradeCategorySourcePath(slug),
+          locale.urlSegment,
+        ),
+        `/${locale.urlSegment}/products/categories/high-impact-pom-compound`,
+      );
+    }
   }
 
   assert.deepEqual(getLanguageOptions("/about"), []);
@@ -353,6 +389,12 @@ test("the release manifest publishes only the approved conversion funnel pages",
     true,
   );
   assert.equal(
+    isLocalizedReleaseIndexable(
+      "/products/categories/high-impact-pom-compound",
+    ),
+    true,
+  );
+  assert.equal(
     isLocalizedReleaseIndexable("/products/xt-100-base-pom-resin"),
     true,
   );
@@ -362,6 +404,14 @@ test("the release manifest publishes only the approved conversion funnel pages",
   );
   assert.equal(
     isLocalizedReleaseIndexable("/products/etm750-base-pom-resin"),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/ehi402t-high-impact-pom"),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/edr180-high-impact-pom"),
     true,
   );
   assert.equal(isLocalizedReleaseIndexable("/technical-data-sheets"), true);
@@ -438,7 +488,10 @@ test("deep product funnel dictionaries are complete and language-specific", () =
       assert.equal(grade.features.length, 4);
       assert.equal(grade.applications.length, 4);
       assert.equal(grade.evaluation.steps.length, 3);
-      assert.match(grade.breadcrumb, /^(ETM450|ETM750|XT-100|EGB25|EGH502H)$/);
+      assert.match(
+        grade.breadcrumb,
+        /^(ETM450|ETM750|XT-100|EGB25|EGH502H|EHI402T|EDR180)$/,
+      );
     }
 
     for (const slug of localizedProductCategorySlugs) {
@@ -477,6 +530,22 @@ test("deep product funnel dictionaries are complete and language-specific", () =
         "egh602t-glass-fiber-pom",
       ],
     );
+    assert.deepEqual(
+      Object.keys(
+        getLocalizedCategoryMessages(
+          messages,
+          "high-impact-pom-compound",
+        ).directory.summaries,
+      ).sort(),
+      [
+        "edr100-high-impact-pom",
+        "edr180-high-impact-pom",
+        "ehi100st-high-impact-pom",
+        "ehi202t-high-impact-pom",
+        "ehi402t-high-impact-pom",
+        "ehi602t-high-impact-pom",
+      ],
+    );
 
     assert.notEqual(
       getLocalizedGradeCategoryLabel(messages, "egb25-glass-bead-pom"),
@@ -484,6 +553,14 @@ test("deep product funnel dictionaries are complete and language-specific", () =
     );
     assert.notEqual(
       getLocalizedGradeCategoryLabel(messages, "egh502h-glass-fiber-pom"),
+      messages.common.category,
+    );
+    assert.notEqual(
+      getLocalizedGradeCategoryLabel(messages, "ehi402t-high-impact-pom"),
+      messages.common.category,
+    );
+    assert.notEqual(
+      getLocalizedGradeCategoryLabel(messages, "edr180-high-impact-pom"),
       messages.common.category,
     );
   }
@@ -584,11 +661,14 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/glass-bead-filled-pom-compound"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/glass-fiber-reinforced-pom-compound"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/high-impact-pom-compound"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm450-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm750-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/xt-100-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/egb25-glass-bead-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/egh502h-glass-fiber-pom"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/ehi402t-high-impact-pom"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/edr180-high-impact-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/technical-data-sheets"/);
   assert.match(sitemap, /getSitemapLanguageOptions\(sourcePath\)/);
   assert.match(sitemap, /isReleasedSourcePath\(entry\.path\)/);

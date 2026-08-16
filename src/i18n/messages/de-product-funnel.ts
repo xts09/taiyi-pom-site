@@ -235,6 +235,71 @@ const messages = {
         steps: ["Last und Steifigkeit", "Werkzeug und Faserfluss", "Unterlagen und Muster"],
       },
     },
+    "high-impact-pom-compound": {
+      categoryLabel: "Schlagzähmodifiziertes POM",
+      metadata: {
+        title: "Schlagzähes POM: Typen und Daten | Taiyi Polymer",
+        description:
+          "Vergleichen Sie schlagzähmodifizierte POM-Typen nach Schlagzähigkeit, Tieftemperaturverhalten, Dehnung, Fließfähigkeit und Projektrisiko.",
+        imageAlt: "Naturfarbenes schlagzähmodifiziertes POM von Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Werkstoffverzeichnis",
+        title: "Schlagzähmodifiziertes POM",
+        description:
+          "Vergleichen Sie sechs POM-Typen für erhöhte Schlagzähigkeit und Tieftemperaturanforderungen anhand von Fließfähigkeit, Dehnung, Festigkeit und Wärmeprofil.",
+        overviewLabel: "Auswahlrahmen",
+        overview:
+          "Schlagzähigkeit muss zusammen mit Steifigkeit, Dehnung, Wanddicke, Kerben, Lastfall und Einsatztemperatur bewertet werden. Die endgültige Auswahl erfolgt am realen Formteil.",
+      },
+      navigation: {
+        aria: "Abschnittsnavigation schlagzähmodifiziertes POM",
+        title: "Schlagzähmodifiziertes POM",
+        subtitle: "Schlagzähigkeit, Dehnung, Fließfähigkeit und Tieftemperaturanforderungen vergleichen",
+      },
+      directory: {
+        kicker: "Typenauswahl",
+        title: "Schlagzähmodifizierte POM-Typen vergleichen",
+        body:
+          "EHI402T und EDR180 besitzen vollständig geprüfte Sprachseiten. Bei den übrigen Typen führt der nächste Schritt zur projektbezogenen Daten- und Musterprüfung.",
+        summaries: {
+          "edr100-high-impact-pom": "Schlagzähes POM für funktionale Formteile mit verbesserter Zähigkeit.",
+          "edr180-high-impact-pom": "Schlagzähes POM mit Tieftemperaturausrichtung und hoher Bruchdehnung.",
+          "ehi100st-high-impact-pom": "Ausgewogenes Verhältnis von Steifigkeit und Zähigkeit für Formteile.",
+          "ehi202t-high-impact-pom": "Schlagzähes POM für Automobil-, Elektro-, Sanitär- und Industriebauteile.",
+          "ehi402t-high-impact-pom": "Verbesserte Zähigkeit mit ausgewogenem Verarbeitungsprofil.",
+          "ehi602t-high-impact-pom": "Stärkere Schlagzähigkeit und Dehnung für beanspruchte Formteile.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Fragen zur Schlagzähmodifizierung",
+        items: [
+          {
+            question: "Wie wird ein schlagzäher POM-Typ vorausgewählt?",
+            answer:
+              "Lastfall, Kerben, Wanddicke, Einsatztemperatur, gewünschte Dehnung, Steifigkeit und Fließweg müssen gemeinsam bewertet werden. Ein einzelner Schlagwert reicht nicht für die Freigabe.",
+          },
+          {
+            question: "Bedeutet schlagzäh automatisch tieftemperaturgeeignet?",
+            answer:
+              "Nein. Die Typen sind auf Schlagzähigkeit und Tieftemperaturverhalten ausgerichtet, doch reale Temperatur, Lastdauer, Geometrie und Prüfbedingung müssen projektbezogen bestätigt werden.",
+          },
+          {
+            question: "Sind alle sechs Typen bereits vollständig lokalisiert?",
+            answer:
+              "Nein. EHI402T und EDR180 besitzen derzeit vollständig geprüfte Sprachseiten. Andere Typen werden zunächst über die projektbezogene Prüfung geführt.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Projektprüfung",
+        title: "Einen schlagzähen POM-Typ eingrenzen",
+        body:
+          "Senden Sie Lastfall, Einsatztemperatur, Bauteilgeometrie, Wanddicke, aktuellen Werkstoff, Bruchbild, Zielwerte, Farbe und Dokumentenbedarf. Daraus bereiten wir eine Typen-Shortlist und den Musterweg vor.",
+        steps: ["Last und Temperatur", "Geometrie und Bruchrisiko", "Unterlagen und Muster"],
+      },
+    },
   },
   grade: {
     metadata: {
@@ -539,6 +604,100 @@ const messages = {
         action: "EGH502H Prüfung anfragen",
       },
     },
+    "ehi402t-high-impact-pom": {
+      categoryLabel: "Schlagzähmodifiziertes POM",
+      metadata: {
+        title: "EHI402T schlagzähes POM | Taiyi Polymer",
+        description:
+          "Prüfen Sie EHI402T anhand von Schlagzähigkeit, Tieftemperaturausrichtung, Dehnung, Fließfähigkeit sowie Zug- und Wärmedaten und fordern Sie ein Muster an.",
+        imageAlt: "Naturfarbenes EHI402T POM-Granulat von Taiyi Polymer",
+      },
+      breadcrumb: "EHI402T",
+      eyebrow: "Schlagzähmodifiziertes POM · Ausgewogene Verarbeitung",
+      positioning:
+        "Ein Kandidat für funktionale Formteile, bei denen verbesserte Zähigkeit, Tieftemperaturverhalten und ein ausgewogenes Verarbeitungsprofil gemeinsam geprüft werden.",
+      summary:
+        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur bestätigt werden.",
+      sampleAction: "EHI402T Muster anfragen",
+      snapshot: {
+        aria: "EHI402T Kennwertübersicht",
+        title: "EHI402T Auswahlprofil",
+        body:
+          "Prüfen Sie zuerst Schlagkennwerte, Dehnung, Fließfähigkeit, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil- und Tieftemperaturtests.",
+        flowNote: "Schlagzähes Profil mit ausgewogener Verarbeitungsrichtung",
+      },
+      sectionNavAria: "Abschnitte der EHI402T Produktseite",
+      features: [
+        "Ausrichtung auf hohe Schlagzähigkeit",
+        "Ausrichtung auf Tieftemperaturbeständigkeit",
+        "Ausgewogenes Verarbeitungsprofil",
+        "Naturfarbe",
+      ],
+      applications: [
+        "Automobilkomponenten",
+        "Elektro- und Elektronikteile",
+        "Sanitärkomponenten",
+        "Industrielle Spritzgussteile",
+      ],
+      evaluationBody:
+        "EHI402T wird als Kandidat zur technischen Bewertung angeboten. Die endgültige Freigabe erfolgt nach Bauteil-, Schlag- und Tieftemperaturprüfung im Kundenwerkzeug und in der realen Anwendung.",
+      notesBody:
+        "Diese Seite unterstützt die vorläufige Auswahl von EHI402T. Kerben, Wanddicke, Fließrichtung, Schweißnähte, Belastungsdauer, Temperatur, Werkzeug und Prüfbedingungen können das reale Schlagverhalten verändern. Fordern Sie die aktuellen Unterlagen an und bestätigen Sie den Typ durch Musterung und Anwendungstests.",
+      inquiry: {
+        eyebrow: "EHI402T Projektprüfung",
+        title: "EHI402T für Ihr schlagbeanspruchtes Formteil prüfen?",
+        body:
+          "Senden Sie Lastfall, Einsatztemperatur, Bauteilgeometrie, Wanddicke, aktuellen Werkstoff, Bruchbild, Zielwerte, Farbe, Volumen und benötigte Unterlagen. Wir bereiten die Typ- und Musterprüfung vor.",
+        action: "EHI402T Prüfung anfragen",
+      },
+    },
+    "edr180-high-impact-pom": {
+      categoryLabel: "Schlagzähmodifiziertes POM",
+      metadata: {
+        title: "EDR180 schlagzähes POM mit hoher Dehnung | Taiyi Polymer",
+        description:
+          "Prüfen Sie EDR180 anhand von Schlagzähigkeit, Tieftemperaturausrichtung, hoher Bruchdehnung, Fließfähigkeit sowie Zug- und Wärmedaten.",
+        imageAlt: "Naturfarbenes EDR180 POM-Granulat von Taiyi Polymer",
+      },
+      breadcrumb: "EDR180",
+      eyebrow: "Schlagzähmodifiziertes POM · Hohe Bruchdehnung",
+      positioning:
+        "Ein Kandidat für funktionale Formteile, bei denen Schlagzähigkeit, Tieftemperaturverhalten und eine hohe Dehnungsreserve gemeinsam bewertet werden.",
+      summary:
+        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur bestätigt werden.",
+      sampleAction: "EDR180 Muster anfragen",
+      snapshot: {
+        aria: "EDR180 Kennwertübersicht",
+        title: "EDR180 Auswahlprofil",
+        body:
+          "Prüfen Sie zuerst Schlagkennwerte, Bruchdehnung, Fließfähigkeit, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil- und Tieftemperaturtests.",
+        flowNote: "Schlagzähes Profil mit hoher Dehnungsrichtung",
+      },
+      sectionNavAria: "Abschnitte der EDR180 Produktseite",
+      features: [
+        "Ausrichtung auf hohe Schlagzähigkeit",
+        "Ausrichtung auf Tieftemperaturbeständigkeit",
+        "Hohe Bruchdehnung",
+        "Naturfarbe",
+      ],
+      applications: [
+        "Automobilkomponenten",
+        "Elektro- und Elektronikteile",
+        "Sanitärkomponenten",
+        "Industrielle Spritzgussteile",
+      ],
+      evaluationBody:
+        "EDR180 wird als Kandidat zur technischen Bewertung angeboten. Die endgültige Freigabe erfolgt nach Bauteil-, Schlag-, Dehnungs- und Tieftemperaturprüfung im Kundenwerkzeug und in der realen Anwendung.",
+      notesBody:
+        "Diese Seite unterstützt die vorläufige Auswahl von EDR180. Kerben, Wanddicke, Fließrichtung, Schweißnähte, Belastungsdauer, Temperatur, Werkzeug und Prüfbedingungen können Dehnung und Schlagverhalten verändern. Fordern Sie die aktuellen Unterlagen an und bestätigen Sie den Typ durch Musterung und Anwendungstests.",
+      inquiry: {
+        eyebrow: "EDR180 Projektprüfung",
+        title: "EDR180 für Ihr schlagbeanspruchtes Formteil prüfen?",
+        body:
+          "Senden Sie Lastfall, Einsatztemperatur, Bauteilgeometrie, Wanddicke, aktuellen Werkstoff, Bruchbild, Dehnungsziel, Farbe, Volumen und benötigte Unterlagen. Wir bereiten die Typ- und Musterprüfung vor.",
+        action: "EDR180 Prüfung anfragen",
+      },
+    },
   },
   technicalData: {
     metadata: {
@@ -553,7 +712,7 @@ const messages = {
       "Diese Sprachversion veröffentlicht nur Typen, deren technische Seite und Erklärtexte vollständig geprüft wurden. Werte sind zusammen mit Einheit, Norm und Prüfbedingung zu lesen.",
     evidenceTitle: "Freigegebene Typdaten",
     evidenceBody:
-      "ETM450, ETM750, XT-100, EGB25 und EGH502H bilden die vollständig lokalisierte Datengruppe. Weitere Typen werden erst nach derselben technischen und sprachlichen Prüfung ergänzt.",
+      "ETM450, ETM750, XT-100, EGB25, EGH502H, EHI402T und EDR180 bilden die vollständig lokalisierte Datengruppe. Weitere Typen werden erst nach derselben technischen und sprachlichen Prüfung ergänzt.",
     gradeLabel: "Typ",
     materialLabel: "Werkstoff",
     statusLabel: "Datenstatus",

@@ -15,6 +15,7 @@ export const localizedProductCategorySlugs = [
   "base-pom-resin",
   "glass-bead-filled-pom-compound",
   "glass-fiber-reinforced-pom-compound",
+  "high-impact-pom-compound",
 ] as const;
 
 export type LocalizedProductCategorySlug =
@@ -23,6 +24,7 @@ export type LocalizedProductCategorySlug =
 export const localizedCategoryProfileSlugs = [
   "glass-bead-filled-pom-compound",
   "glass-fiber-reinforced-pom-compound",
+  "high-impact-pom-compound",
 ] as const;
 
 export type LocalizedCategoryProfileSlug =
@@ -34,6 +36,7 @@ const localizedCategorySourcePaths = {
     "/products/categories/glass-bead-filled-pom-compound",
   "glass-fiber-reinforced-pom-compound":
     "/products/categories/glass-fiber-reinforced-pom-compound",
+  "high-impact-pom-compound": "/products/categories/high-impact-pom-compound",
 } as const satisfies Record<LocalizedProductCategorySlug, string>;
 
 export const localizedProductGradeSlugs = [
@@ -42,6 +45,8 @@ export const localizedProductGradeSlugs = [
   "xt-100-base-pom-resin",
   "egb25-glass-bead-pom",
   "egh502h-glass-fiber-pom",
+  "ehi402t-high-impact-pom",
+  "edr180-high-impact-pom",
 ] as const;
 
 export type LocalizedProductGradeSlug =
@@ -52,6 +57,8 @@ export const localizedGradeProfileSlugs = [
   "etm750-base-pom-resin",
   "egb25-glass-bead-pom",
   "egh502h-glass-fiber-pom",
+  "ehi402t-high-impact-pom",
+  "edr180-high-impact-pom",
 ] as const;
 
 export type LocalizedGradeProfileSlug =
@@ -68,6 +75,8 @@ const localizedGradeCategorySourcePaths: Record<
     "/products/categories/glass-bead-filled-pom-compound",
   "egh502h-glass-fiber-pom":
     "/products/categories/glass-fiber-reinforced-pom-compound",
+  "ehi402t-high-impact-pom": "/products/categories/high-impact-pom-compound",
+  "edr180-high-impact-pom": "/products/categories/high-impact-pom-compound",
 };
 
 export const xt100FeaturedPropertyLabels = [

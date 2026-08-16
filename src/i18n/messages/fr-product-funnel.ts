@@ -235,6 +235,71 @@ const messages = {
         steps: ["Charge et rigidité", "Moule et flux des fibres", "Documents et échantillon"],
       },
     },
+    "high-impact-pom-compound": {
+      categoryLabel: "POM haute résistance aux chocs",
+      metadata: {
+        title: "POM haute résistance aux chocs | Taiyi Polymer",
+        description:
+          "Comparez les grades POM modifiés choc selon la résistance aux chocs, le comportement à basse température, l’allongement, la fluidité et le risque projet.",
+        imageAlt: "POM naturel haute résistance aux chocs de Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Répertoire matériaux",
+        title: "POM haute résistance aux chocs",
+        description:
+          "Comparez six grades POM destinés à une meilleure résistance aux chocs et aux besoins à basse température selon la fluidité, l’allongement, la résistance et le profil thermique.",
+        overviewLabel: "Cadre de sélection",
+        overview:
+          "La résistance aux chocs doit être évaluée avec la rigidité, l’allongement, l’épaisseur, les entailles, le cas de charge et la température d’utilisation. Le choix final se confirme sur la pièce réelle.",
+      },
+      navigation: {
+        aria: "Navigation des sections du POM haute résistance aux chocs",
+        title: "POM haute résistance aux chocs",
+        subtitle: "Comparer choc, allongement, fluidité et exigences à basse température",
+      },
+      directory: {
+        kicker: "Sélection du grade",
+        title: "Comparer les grades POM haute résistance aux chocs",
+        body:
+          "EHI402T et EDR180 disposent de pages entièrement révisées dans cette langue. Pour les autres grades, l’étape suivante mène à l’évaluation des données et de l’échantillon liée au projet.",
+        summaries: {
+          "edr100-high-impact-pom": "POM modifié choc pour pièces fonctionnelles demandant une meilleure ténacité.",
+          "edr180-high-impact-pom": "POM modifié choc orienté basse température et fort allongement à la rupture.",
+          "ehi100st-high-impact-pom": "Équilibre entre rigidité et ténacité pour pièces moulées.",
+          "ehi202t-high-impact-pom": "POM modifié choc pour composants automobiles, électriques, sanitaires et industriels.",
+          "ehi402t-high-impact-pom": "Ténacité améliorée avec un profil de transformation équilibré.",
+          "ehi602t-high-impact-pom": "Résistance aux chocs et allongement renforcés pour pièces sollicitées.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Questions sur la modification choc",
+        items: [
+          {
+            question: "Comment présélectionner un grade POM résistant aux chocs ?",
+            answer:
+              "Le cas de charge, les entailles, l’épaisseur, la température d’utilisation, l’allongement visé, la rigidité et la longueur d’écoulement doivent être évalués ensemble. Une seule valeur d’impact ne suffit pas à l’approbation.",
+          },
+          {
+            question: "Un grade résistant aux chocs convient-il automatiquement au froid ?",
+            answer:
+              "Non. Ces grades visent le choc et le comportement à basse température, mais la température réelle, la durée de charge, la géométrie et les conditions d’essai doivent être confirmées pour le projet.",
+          },
+          {
+            question: "Les six grades sont-ils déjà entièrement localisés ?",
+            answer:
+              "Non. EHI402T et EDR180 disposent actuellement de pages linguistiques entièrement révisées. Les autres grades passent d’abord par une évaluation liée au projet.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Évaluation du projet",
+        title: "Présélectionner un POM haute résistance aux chocs",
+        body:
+          "Transmettez le cas de charge, la température d’utilisation, la géométrie, l’épaisseur, le matériau actuel, le mode de rupture, les valeurs cibles, la couleur et les documents requis. Nous préparerons une liste de grades et le parcours d’échantillonnage.",
+        steps: ["Charge et température", "Géométrie et risque de rupture", "Documents et échantillon"],
+      },
+    },
   },
   grade: {
     metadata: {
@@ -536,7 +601,101 @@ const messages = {
         title: "Évaluer EGH502H pour votre pièce rigide ?",
         body:
           "Envoyez la géométrie, les objectifs de charge et de rigidité, le point d'injection, l'état du moule, la matière actuelle, la couleur, le volume et les documents requis. Nous préparerons l'étude du grade et de l'échantillon.",
-        action: "Demander l'évaluation EGH502H",
+        action: "Demander l’évaluation EGH502H",
+      },
+    },
+    "ehi402t-high-impact-pom": {
+      categoryLabel: "POM haute résistance aux chocs",
+      metadata: {
+        title: "EHI402T POM haute résistance aux chocs | Taiyi Polymer",
+        description:
+          "Évaluez EHI402T selon la résistance aux chocs, le comportement à basse température, l’allongement, la fluidité et les données mécaniques et thermiques.",
+        imageAlt: "Granulés naturels de POM EHI402T de Taiyi Polymer",
+      },
+      breadcrumb: "EHI402T",
+      eyebrow: "POM modifié choc · Transformation équilibrée",
+      positioning:
+        "Un candidat pour les pièces fonctionnelles où la ténacité améliorée, le comportement à basse température et un profil de transformation équilibré doivent être évalués ensemble.",
+      summary:
+        "Les valeurs publiées servent à la présélection. L’adéquation doit être confirmée avec la géométrie réelle, les entailles, le cas de charge, le moule, la fenêtre de procédé et la température d’utilisation.",
+      sampleAction: "Demander un échantillon EHI402T",
+      snapshot: {
+        aria: "Synthèse des données EHI402T",
+        title: "Profil de sélection EHI402T",
+        body:
+          "Examinez d’abord les données de choc, l’allongement, la fluidité, la résistance en traction et la HDT, puis validez la pièce et le comportement à basse température.",
+        flowNote: "Profil résistant aux chocs avec transformation équilibrée",
+      },
+      sectionNavAria: "Sections de la page produit EHI402T",
+      features: [
+        "Orientation haute résistance aux chocs",
+        "Orientation basse température",
+        "Profil de transformation équilibré",
+        "Couleur naturelle",
+      ],
+      applications: [
+        "Composants automobiles",
+        "Pièces électriques et électroniques",
+        "Composants sanitaires",
+        "Pièces industrielles injectées",
+      ],
+      evaluationBody:
+        "EHI402T est proposé comme candidat à l’évaluation technique. L’approbation finale suit les essais de pièce, de choc et de basse température dans le moule du client et les conditions réelles d’utilisation.",
+      notesBody:
+        "Cette page soutient la présélection d’EHI402T. Les entailles, l’épaisseur, le sens d’écoulement, les lignes de soudure, la durée de charge, la température, le moule et les conditions d’essai peuvent modifier le comportement réel au choc. Demandez les documents à jour et confirmez le grade par échantillonnage et essais d’application.",
+      inquiry: {
+        eyebrow: "Évaluation du projet EHI402T",
+        title: "Évaluer EHI402T pour votre pièce sollicitée aux chocs ?",
+        body:
+          "Transmettez le cas de charge, la température d’utilisation, la géométrie, l’épaisseur, le matériau actuel, le mode de rupture, les valeurs cibles, la couleur, le volume et les documents requis. Nous préparerons l’évaluation du grade et de l’échantillon.",
+        action: "Demander l’évaluation EHI402T",
+      },
+    },
+    "edr180-high-impact-pom": {
+      categoryLabel: "POM haute résistance aux chocs",
+      metadata: {
+        title: "EDR180 POM choc à fort allongement | Taiyi Polymer",
+        description:
+          "Évaluez EDR180 selon la résistance aux chocs, le comportement à basse température, le fort allongement à la rupture, la fluidité et les données techniques.",
+        imageAlt: "Granulés naturels de POM EDR180 de Taiyi Polymer",
+      },
+      breadcrumb: "EDR180",
+      eyebrow: "POM modifié choc · Fort allongement à la rupture",
+      positioning:
+        "Un candidat pour les pièces fonctionnelles où la résistance aux chocs, le comportement à basse température et une réserve d’allongement élevée doivent être évalués ensemble.",
+      summary:
+        "Les valeurs publiées servent à la présélection. L’adéquation doit être confirmée avec la géométrie réelle, les entailles, le cas de charge, le moule, la fenêtre de procédé et la température d’utilisation.",
+      sampleAction: "Demander un échantillon EDR180",
+      snapshot: {
+        aria: "Synthèse des données EDR180",
+        title: "Profil de sélection EDR180",
+        body:
+          "Examinez d’abord les données de choc, l’allongement à la rupture, la fluidité, la résistance en traction et la HDT, puis validez la pièce et le comportement à basse température.",
+        flowNote: "Profil résistant aux chocs avec fort allongement",
+      },
+      sectionNavAria: "Sections de la page produit EDR180",
+      features: [
+        "Orientation haute résistance aux chocs",
+        "Orientation basse température",
+        "Fort allongement à la rupture",
+        "Couleur naturelle",
+      ],
+      applications: [
+        "Composants automobiles",
+        "Pièces électriques et électroniques",
+        "Composants sanitaires",
+        "Pièces industrielles injectées",
+      ],
+      evaluationBody:
+        "EDR180 est proposé comme candidat à l’évaluation technique. L’approbation finale suit les essais de pièce, de choc, d’allongement et de basse température dans le moule du client et les conditions réelles d’utilisation.",
+      notesBody:
+        "Cette page soutient la présélection d’EDR180. Les entailles, l’épaisseur, le sens d’écoulement, les lignes de soudure, la durée de charge, la température, le moule et les conditions d’essai peuvent modifier l’allongement et le comportement au choc. Demandez les documents à jour et confirmez le grade par échantillonnage et essais d’application.",
+      inquiry: {
+        eyebrow: "Évaluation du projet EDR180",
+        title: "Évaluer EDR180 pour votre pièce sollicitée aux chocs ?",
+        body:
+          "Transmettez le cas de charge, la température d’utilisation, la géométrie, l’épaisseur, le matériau actuel, le mode de rupture, l’allongement visé, la couleur, le volume et les documents requis. Nous préparerons l’évaluation du grade et de l’échantillon.",
+        action: "Demander l’évaluation EDR180",
       },
     },
   },
@@ -553,7 +712,7 @@ const messages = {
       "Cette version linguistique ne publie que les grades dont la page technique et les explications ont été entièrement vérifiées. Chaque valeur doit être lue avec son unité, sa norme et sa condition d'essai.",
     evidenceTitle: "Données de grade validées",
     evidenceBody:
-      "ETM450, ETM750, XT-100, EGB25 et EGH502H forment le groupe de données entièrement localisé. D'autres grades seront ajoutés après le même contrôle technique et linguistique.",
+      "ETM450, ETM750, XT-100, EGB25, EGH502H, EHI402T et EDR180 forment le groupe de données entièrement localisé. D'autres grades seront ajoutés après le même contrôle technique et linguistique.",
     gradeLabel: "Grade",
     materialLabel: "Matière",
     statusLabel: "État des données",

@@ -62,6 +62,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      sourcePath: "/products/categories/high-impact-pom-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
       sourcePath: "/products/etm450-base-pom-resin",
       priority: 0.65,
       changeFrequency: "monthly" as const,
@@ -83,6 +88,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       sourcePath: "/products/egh502h-glass-fiber-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/ehi402t-high-impact-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/edr180-high-impact-pom",
       priority: 0.65,
       changeFrequency: "monthly" as const,
     },

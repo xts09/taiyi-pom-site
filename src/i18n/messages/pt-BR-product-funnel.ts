@@ -235,6 +235,71 @@ const messages = {
         steps: ["Carga e rigidez", "Molde e fluxo das fibras", "Documentos e amostra"],
       },
     },
+    "high-impact-pom-compound": {
+      categoryLabel: "POM de alto impacto",
+      metadata: {
+        title: "POM de alto impacto: grades e dados | Taiyi Polymer",
+        description:
+          "Compare grades de POM modificado para impacto por resistência ao impacto, baixa temperatura, alongamento, fluidez e risco do projeto.",
+        imageAlt: "POM natural de alto impacto da Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Diretório de materiais",
+        title: "POM de alto impacto",
+        description:
+          "Compare seis grades de POM voltados a maior resistência ao impacto e requisitos de baixa temperatura por fluidez, alongamento, resistência e perfil térmico.",
+        overviewLabel: "Estrutura de seleção",
+        overview:
+          "A resistência ao impacto deve ser avaliada junto com rigidez, alongamento, espessura, entalhes, condição de carga e temperatura de uso. A escolha final precisa ser confirmada na peça real.",
+      },
+      navigation: {
+        aria: "Navegação das seções de POM de alto impacto",
+        title: "POM de alto impacto",
+        subtitle: "Compare impacto, alongamento, fluidez e requisitos de baixa temperatura",
+      },
+      directory: {
+        kicker: "Seleção de grade",
+        title: "Compare grades de POM de alto impacto",
+        body:
+          "EHI402T e EDR180 possuem páginas integralmente revisadas neste idioma. Para os demais grades, a próxima etapa leva à avaliação de dados e amostra vinculada ao projeto.",
+        summaries: {
+          "edr100-high-impact-pom": "POM modificado para impacto em peças funcionais que exigem maior tenacidade.",
+          "edr180-high-impact-pom": "POM modificado para impacto com foco em baixa temperatura e alto alongamento na ruptura.",
+          "ehi100st-high-impact-pom": "Equilíbrio entre rigidez e tenacidade para peças moldadas.",
+          "ehi202t-high-impact-pom": "POM modificado para impacto em componentes automotivos, elétricos, sanitários e industriais.",
+          "ehi402t-high-impact-pom": "Tenacidade melhorada com perfil de processamento equilibrado.",
+          "ehi602t-high-impact-pom": "Maior resistência ao impacto e alongamento para peças solicitadas.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Dúvidas sobre modificação para impacto",
+        items: [
+          {
+            question: "Como fazer a triagem de um grade de POM de alto impacto?",
+            answer:
+              "Condição de carga, entalhes, espessura, temperatura de uso, alongamento desejado, rigidez e comprimento de fluxo devem ser avaliados em conjunto. Um único valor de impacto não basta para aprovação.",
+          },
+          {
+            question: "Alto impacto significa aprovação automática em baixa temperatura?",
+            answer:
+              "Não. Esses grades são voltados a impacto e baixa temperatura, mas temperatura real, duração da carga, geometria e condição de ensaio precisam ser confirmadas para o projeto.",
+          },
+          {
+            question: "Todos os seis grades já estão integralmente localizados?",
+            answer:
+              "Não. EHI402T e EDR180 possuem atualmente páginas no idioma integralmente revisadas. Os demais grades passam primeiro por avaliação vinculada ao projeto.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Avaliação do projeto",
+        title: "Defina um POM de alto impacto",
+        body:
+          "Envie condição de carga, temperatura de uso, geometria, espessura, material atual, modo de falha, valores-alvo, cor e documentos necessários. Prepararemos uma lista de grades e a etapa de amostragem.",
+        steps: ["Carga e temperatura", "Geometria e risco de falha", "Documentos e amostra"],
+      },
+    },
   },
   grade: {
     metadata: {
@@ -539,6 +604,100 @@ const messages = {
         action: "Solicitar avaliação do EGH502H",
       },
     },
+    "ehi402t-high-impact-pom": {
+      categoryLabel: "POM de alto impacto",
+      metadata: {
+        title: "EHI402T POM de alto impacto | Taiyi Polymer",
+        description:
+          "Avalie o EHI402T por resistência ao impacto, comportamento em baixa temperatura, alongamento, fluidez e dados mecânicos e térmicos.",
+        imageAlt: "Grânulos naturais de POM EHI402T da Taiyi Polymer",
+      },
+      breadcrumb: "EHI402T",
+      eyebrow: "POM modificado para impacto · Processamento equilibrado",
+      positioning:
+        "Um grade candidato para peças funcionais em que tenacidade melhorada, comportamento em baixa temperatura e um perfil de processamento equilibrado precisam ser avaliados em conjunto.",
+      summary:
+        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, entalhes, caso de carga, molde, janela de processo e temperatura de uso.",
+      sampleAction: "Solicitar amostra de EHI402T",
+      snapshot: {
+        aria: "Resumo de propriedades do EHI402T",
+        title: "Perfil de seleção do EHI402T",
+        body:
+          "Verifique primeiro impacto, alongamento, fluidez, resistência à tração e HDT; depois valide a peça e o comportamento em baixa temperatura.",
+        flowNote: "Perfil resistente ao impacto com processamento equilibrado",
+      },
+      sectionNavAria: "Seções da página do produto EHI402T",
+      features: [
+        "Direção de alta resistência ao impacto",
+        "Direção de baixa temperatura",
+        "Perfil de processamento equilibrado",
+        "Cor natural",
+      ],
+      applications: [
+        "Componentes automotivos",
+        "Peças elétricas e eletrônicas",
+        "Componentes sanitários",
+        "Peças industriais moldadas por injeção",
+      ],
+      evaluationBody:
+        "EHI402T é oferecido como grade candidato para avaliação técnica. A aprovação final deve seguir testes da peça, de impacto e de baixa temperatura no molde do cliente e nas condições reais de uso.",
+      notesBody:
+        "Esta página apoia a triagem preliminar do EHI402T. Entalhes, espessura, direção de fluxo, linhas de solda, duração da carga, temperatura, molde e condições de ensaio podem alterar o comportamento real ao impacto. Solicite os documentos atuais e confirme o grade por amostragem e testes de aplicação.",
+      inquiry: {
+        eyebrow: "Avaliação de projeto EHI402T",
+        title: "Avaliar EHI402T para a sua peça sujeita a impacto?",
+        body:
+          "Envie o caso de carga, temperatura de uso, geometria, espessura, material atual, modo de falha, metas de desempenho, cor, volume e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+        action: "Solicitar avaliação do EHI402T",
+      },
+    },
+    "edr180-high-impact-pom": {
+      categoryLabel: "POM de alto impacto",
+      metadata: {
+        title: "EDR180 POM de alto impacto e alto alongamento | Taiyi Polymer",
+        description:
+          "Avalie o EDR180 por resistência ao impacto, comportamento em baixa temperatura, alto alongamento na ruptura, fluidez e dados técnicos.",
+        imageAlt: "Grânulos naturais de POM EDR180 da Taiyi Polymer",
+      },
+      breadcrumb: "EDR180",
+      eyebrow: "POM modificado para impacto · Alto alongamento na ruptura",
+      positioning:
+        "Um grade candidato para peças funcionais em que resistência ao impacto, comportamento em baixa temperatura e uma reserva elevada de alongamento precisam ser avaliados em conjunto.",
+      summary:
+        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, entalhes, caso de carga, molde, janela de processo e temperatura de uso.",
+      sampleAction: "Solicitar amostra de EDR180",
+      snapshot: {
+        aria: "Resumo de propriedades do EDR180",
+        title: "Perfil de seleção do EDR180",
+        body:
+          "Verifique primeiro impacto, alongamento na ruptura, fluidez, resistência à tração e HDT; depois valide a peça e o comportamento em baixa temperatura.",
+        flowNote: "Perfil resistente ao impacto com alto alongamento",
+      },
+      sectionNavAria: "Seções da página do produto EDR180",
+      features: [
+        "Direção de alta resistência ao impacto",
+        "Direção de baixa temperatura",
+        "Alto alongamento na ruptura",
+        "Cor natural",
+      ],
+      applications: [
+        "Componentes automotivos",
+        "Peças elétricas e eletrônicas",
+        "Componentes sanitários",
+        "Peças industriais moldadas por injeção",
+      ],
+      evaluationBody:
+        "EDR180 é oferecido como grade candidato para avaliação técnica. A aprovação final deve seguir testes da peça, de impacto, alongamento e baixa temperatura no molde do cliente e nas condições reais de uso.",
+      notesBody:
+        "Esta página apoia a triagem preliminar do EDR180. Entalhes, espessura, direção de fluxo, linhas de solda, duração da carga, temperatura, molde e condições de ensaio podem alterar o alongamento e o comportamento ao impacto. Solicite os documentos atuais e confirme o grade por amostragem e testes de aplicação.",
+      inquiry: {
+        eyebrow: "Avaliação de projeto EDR180",
+        title: "Avaliar EDR180 para a sua peça sujeita a impacto?",
+        body:
+          "Envie o caso de carga, temperatura de uso, geometria, espessura, material atual, modo de falha, meta de alongamento, cor, volume e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+        action: "Solicitar avaliação do EDR180",
+      },
+    },
   },
   technicalData: {
     metadata: {
@@ -553,7 +712,7 @@ const messages = {
       "Esta versão publica apenas grades cuja página técnica e explicações foram totalmente revisadas. Cada valor deve ser lido com sua unidade, norma e condição de ensaio.",
     evidenceTitle: "Dados de grade liberados",
     evidenceBody:
-      "ETM450, ETM750, XT-100, EGB25 e EGH502H formam o grupo de dados totalmente localizado. Outros grades serão adicionados somente após a mesma revisão técnica e linguística.",
+      "ETM450, ETM750, XT-100, EGB25, EGH502H, EHI402T e EDR180 formam o grupo de dados totalmente localizado. Outros grades serão adicionados somente após a mesma revisão técnica e linguística.",
     gradeLabel: "Grade",
     materialLabel: "Material",
     statusLabel: "Status dos dados",
