@@ -81,6 +81,14 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - The generated sitemap now contains 202 unique URLs, including the six new localized grade URLs without duplicate `<loc>` entries.
 - Public wording describes independent PLATFORM candidates for technical evaluation. It does not expose a competitor matrix or claim equivalence, direct replacement, or automatic application approval.
 
+### Multilingual Reinforced POM Category Expansion (2026-08-16)
+
+- Batch 3D publishes the Glass Bead Filled POM and Glass Fiber Reinforced POM category pages under `de`, `fr`, and `pt-br`, adding six reviewed localized category URLs.
+- The glass-bead category links the released EGB25 page in the current language. The glass-fiber category links the released EGH502H page in the current language; unreleased grade rows hand off to the localized Contact route with category and grade context instead of exposing incomplete localized detail pages.
+- Category copy explains shrinkage, fiber orientation, stiffness, tooling, processing, documents, and project-validation boundaries without duplicating technical values from the shared catalog or making automatic suitability claims.
+- Each category language group uses a self-canonical and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. All six clean category URLs are indexable and included in sitemap.
+- The generated sitemap now contains 208 unique URLs. Dynamic technical-data queries, aliases, and internal preview pages remain outside this localized release.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.

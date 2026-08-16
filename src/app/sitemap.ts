@@ -52,6 +52,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      sourcePath: "/products/categories/glass-bead-filled-pom-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/products/categories/glass-fiber-reinforced-pom-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
       sourcePath: "/products/etm450-base-pom-resin",
       priority: 0.65,
       changeFrequency: "monthly" as const,

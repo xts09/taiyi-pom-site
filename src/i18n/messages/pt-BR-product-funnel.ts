@@ -7,7 +7,7 @@ const messages = {
     category: "Resina POM base",
     technicalData: "Dados técnicos",
     contact: "Contato",
-    contactSourceCategory: "Categoria de resina POM base",
+    contactSourceCategory: "Categoria de produto",
     contactSourceGrade: "Página localizada de grade POM",
     contactSourceTechnicalData: "Dados técnicos de POM localizados",
   },
@@ -102,6 +102,138 @@ const messages = {
         "Envie a função da peça, espessura, caminho de fluxo, estágio do molde, material atual, metas, cor, documentos necessários e volume estimado. Esses dados orientam as próximas etapas de dados, amostras e testes.",
       action: "Enviar dados do projeto",
       steps: ["Geometria da peça", "Processo e molde", "Documentos e amostras"],
+    },
+  },
+  categoryProfiles: {
+    "glass-bead-filled-pom-compound": {
+      categoryLabel: "POM com microesferas de vidro",
+      metadata: {
+        title: "POM com microesferas de vidro | Taiyi Polymer",
+        description:
+          "Avalie POM com microesferas de vidro por contração, perfil térmico, requisitos da peça e documentos disponíveis.",
+        imageAlt: "POM natural com microesferas de vidro da Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Diretório de materiais",
+        title: "POM com microesferas de vidro",
+        description:
+          "Avalie o EGB25, com 25% de microesferas de vidro, por fluidez, contração longitudinal e transversal, perfil térmico e requisitos da peça moldada.",
+        overviewLabel: "Estrutura de seleção",
+        overview:
+          "As microesferas de vidro podem influenciar o equilíbrio da contração e a estabilidade dimensional. Por isso, a triagem deve considerar molde, ponto de injeção, espessura e geometria real.",
+      },
+      navigation: {
+        aria: "Navegação das seções de POM com microesferas de vidro",
+        title: "POM com microesferas de vidro",
+        subtitle: "Compare contração, perfil térmico e requisitos da peça",
+      },
+      directory: {
+        kicker: "Seleção de grade",
+        title: "Avalie o grade de POM com microesferas de vidro",
+        body:
+          "O EGB25 está integralmente revisado neste idioma. Os dados apoiam a triagem; a aprovação final deve ocorrer no molde e na aplicação do cliente.",
+        summaries: {
+          "egb25-glass-bead-pom":
+            "POM com 25% de microesferas de vidro para avaliar o equilíbrio entre contração longitudinal e transversal.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Dúvidas sobre microesferas de vidro",
+        items: [
+          {
+            question: "Por que comparar a contração longitudinal e transversal?",
+            answer:
+              "As microesferas de vidro podem favorecer um perfil de contração mais equilibrado, mas geometria, ponto de injeção, espessura e processo continuam influenciando a peça real.",
+          },
+          {
+            question: "O EGB25 pode ser aprovado sem teste no molde?",
+            answer:
+              "Não. Os valores da ficha técnica apoiam a triagem. Dimensões, empenamento, superfície e desempenho devem ser confirmados no molde e no processo previstos.",
+          },
+          {
+            question: "Quais documentos podem ser solicitados?",
+            answer:
+              "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada conforme o grade, o mercado de destino e o projeto.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Avaliação de projeto EGB25",
+        title: "Avalie o EGB25 para suas metas dimensionais",
+        body:
+          "Envie geometria, espessura, ponto de injeção, estágio do molde, contrações atuais, tolerâncias, cor e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+        steps: ["Geometria e injeção", "Contração e tolerância", "Documentos e amostra"],
+      },
+    },
+    "glass-fiber-reinforced-pom-compound": {
+      categoryLabel: "POM reforçado com fibra de vidro",
+      metadata: {
+        title: "POM com fibra de vidro: grades | Taiyi Polymer",
+        description:
+          "Compare POM com 10% a 30% de fibra de vidro por rigidez, contração, perfil térmico e requisitos do projeto.",
+        imageAlt: "POM natural reforçado com fibra de vidro da Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Diretório de materiais",
+        title: "POM reforçado com fibra de vidro",
+        description:
+          "Compare grades de POM com 10% a 30% de fibra de vidro por fluidez, rigidez, contração, perfil térmico e requisitos da peça.",
+        overviewLabel: "Estrutura de seleção",
+        overview:
+          "Teor e orientação das fibras, ponto de injeção e geometria determinam a rigidez, a contração e a tendência real de empenamento. Os dados devem ser avaliados junto com o conceito do molde.",
+      },
+      navigation: {
+        aria: "Navegação das seções de POM reforçado com fibra de vidro",
+        title: "POM reforçado com fibra de vidro",
+        subtitle: "Compare teor de fibra, rigidez, contração e processamento",
+      },
+      directory: {
+        kicker: "Seleção de grade",
+        title: "Compare grades de POM reforçado com fibra de vidro",
+        body:
+          "O EGH502H tem uma página integralmente revisada neste idioma. Para os demais grades, a próxima etapa leva à avaliação do projeto até que suas páginas técnicas atinjam o mesmo nível de liberação.",
+        summaries: {
+          "egh202h-glass-fiber-pom": "10% de fibra de vidro para aumento moderado de rigidez.",
+          "egh302h-glass-fiber-pom": "15% de fibra de vidro para maior resistência e rigidez.",
+          "egh402h-glass-fiber-pom": "20% de fibra de vidro, alta rigidez e menor contração.",
+          "egh402t-glass-fiber-pom": "20% de fibra de vidro com fluidez e controle dimensional equilibrados.",
+          "egh502h-glass-fiber-pom": "25% de fibra de vidro para alta rigidez, resistência à fluência e baixa contração.",
+          "egh502t-glass-fiber-pom": "25% de fibra de vidro para rigidez e fluidez de processamento controlada.",
+          "egh580h-glass-fiber-pom": "25% de fibra de vidro para alta resistência à flexão e controle dimensional.",
+          "egh580t-glass-fiber-pom": "25% de fibra de vidro com impacto e fluidez equilibrados.",
+          "egh602h-glass-fiber-pom": "30% de fibra de vidro para alta rigidez e estabilidade dimensional.",
+          "egh602t-glass-fiber-pom": "30% de fibra de vidro para menor contração e processamento estável.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Dúvidas sobre reforço com fibra de vidro",
+        items: [
+          {
+            question: "Como escolher o teor de fibra de vidro?",
+            answer:
+              "Rigidez, carga, espessura, contração, empenamento, comprimento de fluxo e acabamento devem ser avaliados em conjunto. Mais fibra não é automaticamente melhor para toda peça.",
+          },
+          {
+            question: "Por que a orientação das fibras é importante?",
+            answer:
+              "As fibras se orientam com o fluxo do fundido. Ponto de injeção, direção do fluxo e geometria podem alterar significativamente propriedades, contração e empenamento na peça real.",
+          },
+          {
+            question: "Todos os grades listados já estão integralmente localizados?",
+            answer:
+              "Não. Atualmente, o EGH502H possui a página no idioma integralmente revisada. Os demais grades passam primeiro por avaliação de dados e amostra vinculada ao projeto.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Avaliação do projeto",
+        title: "Defina um grade de POM reforçado com fibra de vidro",
+        body:
+          "Envie metas de carga e rigidez, geometria, espessura, ponto de injeção, estágio do molde, contração ou empenamento atual, cor e documentos necessários. Prepararemos uma lista de grades e a etapa de amostragem.",
+        steps: ["Carga e rigidez", "Molde e fluxo das fibras", "Documentos e amostra"],
+      },
     },
   },
   grade: {

@@ -38,6 +38,14 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/categories/base-pom-resin",
     ...publicRelease,
   },
+  glassBeadPomCategory: {
+    sourcePath: "/products/categories/glass-bead-filled-pom-compound",
+    ...publicRelease,
+  },
+  glassFiberPomCategory: {
+    sourcePath: "/products/categories/glass-fiber-reinforced-pom-compound",
+    ...publicRelease,
+  },
   etm450Grade: {
     sourcePath: "/products/etm450-base-pom-resin",
     ...publicRelease,

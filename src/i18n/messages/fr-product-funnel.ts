@@ -7,7 +7,7 @@ const messages = {
     category: "Résine POM de base",
     technicalData: "Données techniques",
     contact: "Contact",
-    contactSourceCategory: "Catégorie résine POM de base",
+    contactSourceCategory: "Catégorie de produit",
     contactSourceGrade: "Page localisée d'un grade POM",
     contactSourceTechnicalData: "Données techniques POM localisées",
   },
@@ -102,6 +102,138 @@ const messages = {
         "Transmettez la fonction de la pièce, l'épaisseur, le parcours d'écoulement, l'état du moule, la matière actuelle, les objectifs, la couleur, les documents requis et le volume estimé. Ces éléments cadrent les données, échantillons et essais suivants.",
       action: "Envoyer les données du projet",
       steps: ["Géométrie de la pièce", "Procédé et moule", "Documents et échantillons"],
+    },
+  },
+  categoryProfiles: {
+    "glass-bead-filled-pom-compound": {
+      categoryLabel: "POM chargé de billes de verre",
+      metadata: {
+        title: "POM à billes de verre : grades | Taiyi Polymer",
+        description:
+          "Évaluez le POM chargé de billes de verre selon le retrait, le profil thermique, les exigences de la pièce et les documents disponibles.",
+        imageAlt: "POM naturel chargé de billes de verre de Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Répertoire matériaux",
+        title: "POM chargé de billes de verre",
+        description:
+          "Évaluez EGB25, chargé de 25 % de billes de verre, selon la fluidité, les retraits longitudinal et transversal, le profil thermique et les exigences de la pièce moulée.",
+        overviewLabel: "Cadre de sélection",
+        overview:
+          "Les billes de verre peuvent agir sur l’équilibre du retrait et la stabilité dimensionnelle. La présélection doit donc intégrer le moule, le point d’injection, l’épaisseur et la géométrie réelle.",
+      },
+      navigation: {
+        aria: "Navigation des sections du POM chargé de billes de verre",
+        title: "POM chargé de billes de verre",
+        subtitle: "Comparer retrait, profil thermique et exigences de la pièce",
+      },
+      directory: {
+        kicker: "Sélection du grade",
+        title: "Évaluer le grade POM chargé de billes de verre",
+        body:
+          "EGB25 est entièrement révisé dans cette langue. Les données servent à la présélection ; l’approbation finale doit être obtenue dans le moule et l’application du client.",
+        summaries: {
+          "egb25-glass-bead-pom":
+            "POM chargé de 25 % de billes de verre pour évaluer l’équilibre des retraits longitudinal et transversal.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Questions sur la charge de billes de verre",
+        items: [
+          {
+            question: "Pourquoi comparer les retraits longitudinal et transversal ?",
+            answer:
+              "Les billes de verre peuvent favoriser un profil de retrait plus équilibré, mais la géométrie, le point d’injection, l’épaisseur et le procédé continuent d’influencer la pièce réelle.",
+          },
+          {
+            question: "EGB25 peut-il être approuvé sans essai dans le moule ?",
+            answer:
+              "Non. Les valeurs de fiche technique servent à la présélection. Les dimensions, le gauchissement, l’état de surface et les performances doivent être confirmés dans le moule et le procédé prévus.",
+          },
+          {
+            question: "Quels documents peuvent être demandés ?",
+            answer:
+              "La disponibilité des TDS, SDS, COA, REACH et RoHS est confirmée selon le grade, le marché cible et le projet.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Évaluation du projet EGB25",
+        title: "Évaluer EGB25 pour vos objectifs dimensionnels",
+        body:
+          "Transmettez la géométrie, l’épaisseur, le point d’injection, l’état du moule, les retraits actuels, les tolérances, la couleur et les documents requis. Nous préparerons l’évaluation du grade et de l’échantillon.",
+        steps: ["Géométrie et injection", "Retrait et tolérances", "Documents et échantillon"],
+      },
+    },
+    "glass-fiber-reinforced-pom-compound": {
+      categoryLabel: "POM renforcé de fibres de verre",
+      metadata: {
+        title: "POM renforcé de fibres de verre | Taiyi Polymer",
+        description:
+          "Comparez les POM renforcés de 10 à 30 % de fibres de verre selon la rigidité, le retrait, le profil thermique et le projet.",
+        imageAlt: "POM naturel renforcé de fibres de verre de Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Répertoire matériaux",
+        title: "POM renforcé de fibres de verre",
+        description:
+          "Comparez les grades POM renforcés de 10 à 30 % de fibres de verre selon la fluidité, la rigidité, le retrait, le profil thermique et les exigences de la pièce.",
+        overviewLabel: "Cadre de sélection",
+        overview:
+          "La teneur et l’orientation des fibres, le point d’injection et la géométrie déterminent la rigidité, le retrait et le risque de gauchissement réels. Les données doivent donc être lues avec le concept de moule.",
+      },
+      navigation: {
+        aria: "Navigation des sections du POM renforcé de fibres de verre",
+        title: "POM renforcé de fibres de verre",
+        subtitle: "Comparer teneur en fibres, rigidité, retrait et mise en œuvre",
+      },
+      directory: {
+        kicker: "Sélection du grade",
+        title: "Comparer les grades POM renforcés de fibres de verre",
+        body:
+          "EGH502H dispose d’une page entièrement révisée dans cette langue. Pour les autres grades, l’étape suivante mène à une évaluation de projet jusqu’à ce que leur page technique atteigne le même niveau de validation.",
+        summaries: {
+          "egh202h-glass-fiber-pom": "10 % de fibres de verre pour une hausse modérée de la rigidité.",
+          "egh302h-glass-fiber-pom": "15 % de fibres de verre pour davantage de résistance et de rigidité.",
+          "egh402h-glass-fiber-pom": "20 % de fibres de verre, forte rigidité et retrait réduit.",
+          "egh402t-glass-fiber-pom": "20 % de fibres de verre avec fluidité et maîtrise dimensionnelle équilibrées.",
+          "egh502h-glass-fiber-pom": "25 % de fibres de verre pour forte rigidité, tenue au fluage et faible retrait.",
+          "egh502t-glass-fiber-pom": "25 % de fibres de verre pour rigidité et fluidité de transformation maîtrisée.",
+          "egh580h-glass-fiber-pom": "25 % de fibres de verre pour forte résistance en flexion et maîtrise dimensionnelle.",
+          "egh580t-glass-fiber-pom": "25 % de fibres de verre avec impact et fluidité équilibrés.",
+          "egh602h-glass-fiber-pom": "30 % de fibres de verre pour forte rigidité et stabilité dimensionnelle.",
+          "egh602t-glass-fiber-pom": "30 % de fibres de verre pour faible retrait et transformation stable.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Questions sur le renforcement en fibres de verre",
+        items: [
+          {
+            question: "Comment choisir la teneur en fibres de verre ?",
+            answer:
+              "La rigidité, la charge, l’épaisseur, le retrait, le gauchissement, la longueur d’écoulement et l’aspect doivent être évalués ensemble. Une teneur supérieure n’est pas automatiquement préférable pour chaque pièce.",
+          },
+          {
+            question: "Pourquoi l’orientation des fibres est-elle importante ?",
+            answer:
+              "Les fibres s’orientent avec l’écoulement de la matière. Le point d’injection, le sens d’écoulement et la géométrie peuvent donc modifier sensiblement les propriétés, le retrait et le gauchissement de la pièce.",
+          },
+          {
+            question: "Tous les grades listés sont-ils déjà entièrement localisés ?",
+            answer:
+              "Non. EGH502H dispose actuellement de la page linguistique entièrement révisée. Les autres grades passent d’abord par une évaluation de données et d’échantillon liée au projet.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Évaluation du projet",
+        title: "Présélectionner un POM renforcé de fibres de verre",
+        body:
+          "Transmettez la charge et la rigidité visées, la géométrie, l’épaisseur, le point d’injection, l’état du moule, le retrait ou gauchissement actuel, la couleur et les documents requis. Nous préparerons une liste de grades et le parcours d’échantillonnage.",
+        steps: ["Charge et rigidité", "Moule et flux des fibres", "Documents et échantillon"],
+      },
     },
   },
   grade: {

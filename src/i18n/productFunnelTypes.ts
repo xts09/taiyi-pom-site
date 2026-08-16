@@ -11,6 +11,31 @@ export const basePomGradeSlugs = [
 
 export type BasePomGradeSlug = (typeof basePomGradeSlugs)[number];
 
+export const localizedProductCategorySlugs = [
+  "base-pom-resin",
+  "glass-bead-filled-pom-compound",
+  "glass-fiber-reinforced-pom-compound",
+] as const;
+
+export type LocalizedProductCategorySlug =
+  (typeof localizedProductCategorySlugs)[number];
+
+export const localizedCategoryProfileSlugs = [
+  "glass-bead-filled-pom-compound",
+  "glass-fiber-reinforced-pom-compound",
+] as const;
+
+export type LocalizedCategoryProfileSlug =
+  (typeof localizedCategoryProfileSlugs)[number];
+
+const localizedCategorySourcePaths = {
+  "base-pom-resin": "/products/categories/base-pom-resin",
+  "glass-bead-filled-pom-compound":
+    "/products/categories/glass-bead-filled-pom-compound",
+  "glass-fiber-reinforced-pom-compound":
+    "/products/categories/glass-fiber-reinforced-pom-compound",
+} as const satisfies Record<LocalizedProductCategorySlug, string>;
+
 export const localizedProductGradeSlugs = [
   "etm450-base-pom-resin",
   "etm750-base-pom-resin",
@@ -100,6 +125,40 @@ type LocalizedGradeProfileMessages = {
   };
 };
 
+type LocalizedCategoryProfileMessages = {
+  categoryLabel: string;
+  metadata: MetadataMessages;
+  hero: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    overviewLabel: string;
+    overview: string;
+  };
+  navigation: {
+    aria: string;
+    title: string;
+    subtitle: string;
+  };
+  directory: {
+    kicker: string;
+    title: string;
+    body: string;
+    summaries: Record<string, string>;
+  };
+  faq: {
+    kicker: string;
+    title: string;
+    items: ReadonlyArray<{ question: string; answer: string }>;
+  };
+  inquiry: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    steps: readonly string[];
+  };
+};
+
 export type ProductFunnelMessages = {
   common: {
     home: string;
@@ -146,7 +205,7 @@ export type ProductFunnelMessages = {
       natural: string;
       detailAction: string;
       reviewAction: string;
-      summaries: Record<BasePomGradeSlug, string>;
+      summaries: Record<string, string>;
     };
     faq: {
       kicker: string;
@@ -161,6 +220,10 @@ export type ProductFunnelMessages = {
       steps: readonly string[];
     };
   };
+  categoryProfiles: Record<
+    LocalizedCategoryProfileSlug,
+    LocalizedCategoryProfileMessages
+  >;
   grade: {
     metadata: MetadataMessages;
     breadcrumb: string;
@@ -254,6 +317,59 @@ export const isLocalizedProductGradeSlug = (
   slug: string,
 ): slug is LocalizedProductGradeSlug =>
   localizedProductGradeSlugs.includes(slug as LocalizedProductGradeSlug);
+
+export const isLocalizedProductCategorySlug = (
+  slug: string,
+): slug is LocalizedProductCategorySlug =>
+  localizedProductCategorySlugs.includes(slug as LocalizedProductCategorySlug);
+
+export const getLocalizedCategoryMessages = (
+  messages: ProductFunnelMessages,
+  slug: LocalizedProductCategorySlug,
+): ProductFunnelMessages["category"] => {
+  if (slug === "base-pom-resin") {
+    return messages.category;
+  }
+
+  const profile = messages.categoryProfiles[slug];
+
+  return {
+    ...messages.category,
+    ...profile,
+    hero: {
+      ...messages.category.hero,
+      ...profile.hero,
+    },
+    navigation: {
+      ...messages.category.navigation,
+      ...profile.navigation,
+    },
+    directory: {
+      ...messages.category.directory,
+      ...profile.directory,
+    },
+    faq: {
+      ...messages.category.faq,
+      ...profile.faq,
+    },
+    inquiry: {
+      ...messages.category.inquiry,
+      ...profile.inquiry,
+    },
+  };
+};
+
+export const getLocalizedCategoryLabel = (
+  messages: ProductFunnelMessages,
+  slug: LocalizedProductCategorySlug,
+) =>
+  slug === "base-pom-resin"
+    ? messages.common.category
+    : messages.categoryProfiles[slug].categoryLabel;
+
+export const getLocalizedCategorySourcePath = (
+  slug: LocalizedProductCategorySlug,
+) => localizedCategorySourcePaths[slug];
 
 export const getLocalizedGradeMessages = (
   messages: ProductFunnelMessages,

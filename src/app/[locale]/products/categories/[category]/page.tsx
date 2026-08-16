@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
-import { LocalizedBasePomCategoryPage } from "@/components/localized/LocalizedBasePomCategoryPage";
+import { LocalizedProductCategoryContent } from "@/components/localized/LocalizedBasePomCategoryPage";
 import { getLocalizedLocale } from "@/i18n/config";
 import { loadProductFunnelMessages } from "@/i18n/productFunnelMessages";
+import {
+  getLocalizedCategoryMessages,
+  getLocalizedCategorySourcePath,
+  isLocalizedProductCategorySlug,
+  localizedProductCategorySlugs,
+} from "@/i18n/productFunnelTypes";
 import {
   getLanguageAlternates,
   getLocalizedHref,
   isLocalizedReleaseIndexable,
 } from "@/i18n/releaseManifest";
 import { createPageMetadata } from "@/lib/seo";
-
-const categorySlug = "base-pom-resin";
-const sourcePath = `/products/categories/${categorySlug}` as const;
 
 type LocalizedProductCategoryPageProps = {
   params: Promise<{ locale: string; category: string }>;
@@ -21,7 +24,7 @@ type LocalizedProductCategoryPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return [{ category: categorySlug }];
+  return localizedProductCategorySlugs.map((category) => ({ category }));
 }
 const resolveRoute = async (
   params: LocalizedProductCategoryPageProps["params"],
@@ -32,26 +35,28 @@ const resolveRoute = async (
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    category !== categorySlug
+    !isLocalizedProductCategorySlug(category)
   ) {
     notFound();
   }
 
-  return localeConfig;
+  return { localeConfig, category };
 };
 
 export async function generateMetadata({
   params,
 }: LocalizedProductCategoryPageProps): Promise<Metadata> {
-  const localeConfig = await resolveRoute(params);
+  const { localeConfig, category } = await resolveRoute(params);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
+  const copy = getLocalizedCategoryMessages(messages, category);
+  const sourcePath = getLocalizedCategorySourcePath(category);
 
   return createPageMetadata({
-    title: messages.category.metadata.title,
-    description: messages.category.metadata.description,
+    title: copy.metadata.title,
+    description: copy.metadata.description,
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
     image: "/generated/pom-material-hero.webp",
-    imageAlt: messages.category.metadata.imageAlt,
+    imageAlt: copy.metadata.imageAlt,
     indexable: isLocalizedReleaseIndexable(sourcePath),
     openGraphLocale: localeConfig.openGraphLocale,
     languageAlternates: getLanguageAlternates(sourcePath),
@@ -61,12 +66,13 @@ export async function generateMetadata({
 export default async function LocalizedProductCategoryPage({
   params,
 }: LocalizedProductCategoryPageProps) {
-  const localeConfig = await resolveRoute(params);
+  const { localeConfig, category } = await resolveRoute(params);
   setRequestLocale(localeConfig.htmlLang);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
 
   return (
-    <LocalizedBasePomCategoryPage
+    <LocalizedProductCategoryContent
+      categorySlug={category}
       messages={messages}
       localeSegment={localeConfig.urlSegment}
       inLanguage={localeConfig.htmlLang}

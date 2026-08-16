@@ -17,10 +17,14 @@ import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
 import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
 import {
   basePomGradeSlugs,
+  getLocalizedCategoryLabel,
+  getLocalizedCategoryMessages,
   getLocalizedGradeCategoryLabel,
   getLocalizedGradeCategorySourcePath,
   getLocalizedGradeMessages,
+  localizedCategoryProfileSlugs,
   localizedGradeProfileSlugs,
+  localizedProductCategorySlugs,
   localizedProductGradeSlugs,
   xt100FeaturedPropertyLabels,
 } from "../src/i18n/productFunnelTypes.ts";
@@ -137,6 +141,22 @@ test("the release manifest publishes only the approved conversion funnel pages",
   });
   assert.deepEqual(localizedReleaseManifest.basePomCategory, {
     sourcePath: "/products/categories/base-pom-resin",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.glassBeadPomCategory, {
+    sourcePath: "/products/categories/glass-bead-filled-pom-compound",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.glassFiberPomCategory, {
+    sourcePath: "/products/categories/glass-fiber-reinforced-pom-compound",
     status: "public",
     indexable: true,
     publicNavigation: true,
@@ -260,13 +280,15 @@ test("the release manifest publishes only the approved conversion funnel pages",
       getLocalizedHref("/contact?source=home", locale.urlSegment),
       `/${locale.urlSegment}/contact?source=home`,
     );
-    assert.equal(
-      getLocalizedHref(
-        "/products/categories/base-pom-resin",
-        locale.urlSegment,
-      ),
-      `/${locale.urlSegment}/products/categories/base-pom-resin`,
-    );
+    for (const categorySlug of localizedProductCategorySlugs) {
+      assert.equal(
+        getLocalizedHref(
+          `/products/categories/${categorySlug}`,
+          locale.urlSegment,
+        ),
+        `/${locale.urlSegment}/products/categories/${categorySlug}`,
+      );
+    }
     for (const slug of localizedProductGradeSlugs) {
       assert.equal(
         getLocalizedHref(`/products/${slug}`, locale.urlSegment),
@@ -290,14 +312,14 @@ test("the release manifest publishes only the approved conversion funnel pages",
         getLocalizedGradeCategorySourcePath("egb25-glass-bead-pom"),
         locale.urlSegment,
       ),
-      "/products/categories/glass-bead-filled-pom-compound",
+      `/${locale.urlSegment}/products/categories/glass-bead-filled-pom-compound`,
     );
     assert.equal(
       getLocalizedHref(
         getLocalizedGradeCategorySourcePath("egh502h-glass-fiber-pom"),
         locale.urlSegment,
       ),
-      "/products/categories/glass-fiber-reinforced-pom-compound",
+      `/${locale.urlSegment}/products/categories/glass-fiber-reinforced-pom-compound`,
     );
   }
 
@@ -316,6 +338,18 @@ test("the release manifest publishes only the approved conversion funnel pages",
   assert.equal(isLocalizedReleaseIndexable("/products"), true);
   assert.equal(
     isLocalizedReleaseIndexable("/products/categories/base-pom-resin"),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable(
+      "/products/categories/glass-bead-filled-pom-compound",
+    ),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable(
+      "/products/categories/glass-fiber-reinforced-pom-compound",
+    ),
     true,
   );
   assert.equal(
@@ -354,6 +388,19 @@ test("the release manifest publishes only the approved conversion funnel pages",
       "x-default": `/products/${slug}`,
     });
   }
+
+  for (const slug of localizedProductCategorySlugs) {
+    assert.deepEqual(
+      getLanguageAlternates(`/products/categories/${slug}`),
+      {
+        en: `/products/categories/${slug}`,
+        de: `/de/products/categories/${slug}`,
+        fr: `/fr/products/categories/${slug}`,
+        "pt-BR": `/pt-br/products/categories/${slug}`,
+        "x-default": `/products/categories/${slug}`,
+      },
+    );
+  }
 });
 
 test("deep product funnel dictionaries are complete and language-specific", () => {
@@ -377,6 +424,10 @@ test("deep product funnel dictionaries are complete and language-specific", () =
       Object.keys(messages.gradeProfiles).sort(),
       [...localizedGradeProfileSlugs].sort(),
     );
+    assert.deepEqual(
+      Object.keys(messages.categoryProfiles).sort(),
+      [...localizedCategoryProfileSlugs].sort(),
+    );
     assert.equal(messages.grade.features.length, 4);
     assert.equal(messages.grade.applications.length, 4);
     assert.equal(messages.grade.evaluation.steps.length, 3);
@@ -389,6 +440,43 @@ test("deep product funnel dictionaries are complete and language-specific", () =
       assert.equal(grade.evaluation.steps.length, 3);
       assert.match(grade.breadcrumb, /^(ETM450|ETM750|XT-100|EGB25|EGH502H)$/);
     }
+
+    for (const slug of localizedProductCategorySlugs) {
+      const category = getLocalizedCategoryMessages(messages, slug);
+      assert.equal(category.faq.items.length, 3);
+      assert.equal(category.inquiry.steps.length, 3);
+      assert.equal(getLocalizedCategoryLabel(messages, slug).length > 0, true);
+    }
+
+    assert.deepEqual(
+      Object.keys(
+        getLocalizedCategoryMessages(
+          messages,
+          "glass-bead-filled-pom-compound",
+        ).directory.summaries,
+      ),
+      ["egb25-glass-bead-pom"],
+    );
+    assert.deepEqual(
+      Object.keys(
+        getLocalizedCategoryMessages(
+          messages,
+          "glass-fiber-reinforced-pom-compound",
+        ).directory.summaries,
+      ).sort(),
+      [
+        "egh202h-glass-fiber-pom",
+        "egh302h-glass-fiber-pom",
+        "egh402h-glass-fiber-pom",
+        "egh402t-glass-fiber-pom",
+        "egh502h-glass-fiber-pom",
+        "egh502t-glass-fiber-pom",
+        "egh580h-glass-fiber-pom",
+        "egh580t-glass-fiber-pom",
+        "egh602h-glass-fiber-pom",
+        "egh602t-glass-fiber-pom",
+      ],
+    );
 
     assert.notEqual(
       getLocalizedGradeCategoryLabel(messages, "egb25-glass-bead-pom"),
@@ -494,6 +582,8 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/glass-bead-filled-pom-compound"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/glass-fiber-reinforced-pom-compound"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm450-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm750-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/xt-100-base-pom-resin"/);

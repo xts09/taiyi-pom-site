@@ -7,7 +7,7 @@ const messages = {
     category: "POM-Basisharz",
     technicalData: "Technische Daten",
     contact: "Kontakt",
-    contactSourceCategory: "POM-Basisharz-Kategorie",
+    contactSourceCategory: "Produktkategorie",
     contactSourceGrade: "Lokalisierte POM-Typseite",
     contactSourceTechnicalData: "Lokalisierte technische POM-Daten",
   },
@@ -102,6 +102,138 @@ const messages = {
         "Senden Sie Bauteilfunktion, Wanddicke, Fließweg, Werkzeugstand, aktuellen Werkstoff, Zielwerte, Farbe, Dokumentenbedarf und geschätztes Volumen. Daraus lässt sich die nächste Daten-, Muster- und Prüfphase ableiten.",
       action: "Projektangaben senden",
       steps: ["Bauteilgeometrie", "Prozess und Werkzeug", "Unterlagen und Muster"],
+    },
+  },
+  categoryProfiles: {
+    "glass-bead-filled-pom-compound": {
+      categoryLabel: "Glaskugelgefülltes POM",
+      metadata: {
+        title: "Glaskugel-POM: Typen und Daten | Taiyi Polymer",
+        description:
+          "Prüfen Sie glaskugelgefülltes POM nach Schwindung, Wärmeprofil, Formteilanforderungen und verfügbaren Unterlagen.",
+        imageAlt: "Naturfarbenes glaskugelgefülltes POM von Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Werkstoffverzeichnis",
+        title: "Glaskugelgefülltes POM",
+        description:
+          "Bewerten Sie EGB25 mit 25 % Glaskugeln anhand von Fließfähigkeit, Längs- und Querschwindung, Wärmeprofil und den Anforderungen des Formteils.",
+        overviewLabel: "Auswahlrahmen",
+        overview:
+          "Glaskugeln können die Schwindungsrichtung und Maßhaltigkeit beeinflussen. Die Vorauswahl muss deshalb Werkzeug, Anschnitt, Wanddicke und reale Bauteilgeometrie einbeziehen.",
+      },
+      navigation: {
+        aria: "Abschnittsnavigation glaskugelgefülltes POM",
+        title: "Glaskugelgefülltes POM",
+        subtitle: "Schwindung, Wärmeprofil und Bauteilanforderungen vergleichen",
+      },
+      directory: {
+        kicker: "Typenauswahl",
+        title: "Glaskugelgefüllten POM-Typ prüfen",
+        body:
+          "EGB25 ist in dieser Sprachversion vollständig geprüft. Kennwerte unterstützen die Vorauswahl; die endgültige Freigabe erfolgt im Kundenwerkzeug und in der realen Anwendung.",
+        summaries: {
+          "egb25-glass-bead-pom":
+            "POM mit 25 % Glaskugeln zur Bewertung ausgewogener Längs- und Querschwindung.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Fragen zur Glaskugel-Füllung",
+        items: [
+          {
+            question: "Warum werden Längs- und Querschwindung gemeinsam geprüft?",
+            answer:
+              "Glaskugeln können ein ausgewogeneres Schwindungsprofil unterstützen, doch Geometrie, Anschnitt, Wanddicke und Prozessbedingungen beeinflussen das reale Formteil weiterhin.",
+          },
+          {
+            question: "Ist EGB25 ohne Werkzeugversuch freigabefähig?",
+            answer:
+              "Nein. Datenblattwerte dienen der technischen Vorauswahl. Maße, Verzug, Oberfläche und Bauteilleistung müssen im vorgesehenen Werkzeug und Prozess bestätigt werden.",
+          },
+          {
+            question: "Welche Unterlagen können angefragt werden?",
+            answer:
+              "Die Verfügbarkeit von TDS, SDS, COA, REACH- und RoHS-Unterlagen wird typ-, zielmarkt- und projektbezogen bestätigt.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "EGB25 Projektprüfung",
+        title: "EGB25 für Ihre Maßhaltigkeitsziele prüfen",
+        body:
+          "Senden Sie Bauteilgeometrie, Wanddicke, Anschnitt, Werkzeugstand, aktuelle Schwindungswerte, Toleranzen, Farbe und Dokumentenbedarf. Daraus bereiten wir die Typ- und Musterprüfung vor.",
+        steps: ["Geometrie und Anschnitt", "Schwindung und Toleranz", "Unterlagen und Muster"],
+      },
+    },
+    "glass-fiber-reinforced-pom-compound": {
+      categoryLabel: "Glasfaserverstärktes POM",
+      metadata: {
+        title: "Glasfaser-POM: Typen und Daten | Taiyi Polymer",
+        description:
+          "Vergleichen Sie POM mit 10 bis 30 % Glasfaser nach Steifigkeit, Schwindung, Wärmeprofil und Projektanforderungen.",
+        imageAlt: "Naturfarbenes glasfaserverstärktes POM von Taiyi Polymer",
+      },
+      hero: {
+        eyebrow: "Werkstoffverzeichnis",
+        title: "Glasfaserverstärktes POM",
+        description:
+          "Vergleichen Sie POM-Typen mit 10 bis 30 % Glasfaser anhand von Fließfähigkeit, Steifigkeit, Schwindung, Wärmeprofil und Anforderungen an das Formteil.",
+        overviewLabel: "Auswahlrahmen",
+        overview:
+          "Fasergehalt, Faserorientierung, Anschnitt und Bauteilgeometrie bestimmen die reale Steifigkeit, Schwindung und Verzugstendenz. Die Daten sind deshalb gemeinsam mit dem Werkzeugkonzept zu bewerten.",
+      },
+      navigation: {
+        aria: "Abschnittsnavigation glasfaserverstärktes POM",
+        title: "Glasfaserverstärktes POM",
+        subtitle: "Fasergehalt, Steifigkeit, Schwindung und Verarbeitung vergleichen",
+      },
+      directory: {
+        kicker: "Typenauswahl",
+        title: "Glasfaserverstärkte POM-Typen vergleichen",
+        body:
+          "EGH502H besitzt eine vollständig geprüfte Sprachseite. Bei den übrigen Typen führt der nächste Schritt zur projektbezogenen Prüfung, bis ihre technischen Seiten denselben Freigabestand erreicht haben.",
+        summaries: {
+          "egh202h-glass-fiber-pom": "10 % Glasfaser für eine moderate Steifigkeitssteigerung.",
+          "egh302h-glass-fiber-pom": "15 % Glasfaser für höhere Festigkeit und Steifigkeit.",
+          "egh402h-glass-fiber-pom": "20 % Glasfaser mit hoher Steifigkeit und geringerer Schwindung.",
+          "egh402t-glass-fiber-pom": "20 % Glasfaser mit ausgewogener Fließfähigkeit und Maßkontrolle.",
+          "egh502h-glass-fiber-pom": "25 % Glasfaser für hohe Steifigkeit, Kriechbeständigkeit und geringe Schwindung.",
+          "egh502t-glass-fiber-pom": "25 % Glasfaser für Steifigkeit und kontrollierte Verarbeitungsfließfähigkeit.",
+          "egh580h-glass-fiber-pom": "25 % Glasfaser für hohe Biegefestigkeit und Maßkontrolle.",
+          "egh580t-glass-fiber-pom": "25 % Glasfaser mit ausgewogener Schlagzähigkeit und Fließfähigkeit.",
+          "egh602h-glass-fiber-pom": "30 % Glasfaser für hohe Steifigkeit und Maßstabilität.",
+          "egh602t-glass-fiber-pom": "30 % Glasfaser für geringere Schwindung und stabile Verarbeitung.",
+        },
+      },
+      faq: {
+        kicker: "FAQ",
+        title: "Fragen zur Glasfaserverstärkung",
+        items: [
+          {
+            question: "Wie wird der passende Glasfasergehalt gewählt?",
+            answer:
+              "Steifigkeit, Last, Wanddicke, Schwindung, Verzug, Fließweg und Oberflächenanforderung müssen gemeinsam bewertet werden. Mehr Glasfaser ist nicht für jedes Formteil automatisch besser.",
+          },
+          {
+            question: "Warum ist die Faserorientierung wichtig?",
+            answer:
+              "Fasern richten sich mit der Schmelzeströmung aus. Anschnitt, Fließrichtung und Geometrie können deshalb Kennwerte, Schwindung und Verzug im realen Formteil deutlich verändern.",
+          },
+          {
+            question: "Sind alle gelisteten Typen bereits vollständig lokalisiert?",
+            answer:
+              "Nein. EGH502H besitzt derzeit die vollständig geprüfte Sprachseite. Andere Typen werden zunächst über eine projektbezogene Daten- und Musterprüfung geführt.",
+          },
+        ],
+      },
+      inquiry: {
+        eyebrow: "Projektprüfung",
+        title: "Einen glasfaserverstärkten POM-Typ eingrenzen",
+        body:
+          "Senden Sie Last- und Steifigkeitsziel, Bauteilgeometrie, Wanddicke, Anschnitt, Werkzeugstand, aktuelle Schwindung oder Verzug, Farbe und Dokumentenbedarf. Daraus bereiten wir eine Typen-Shortlist und den Musterweg vor.",
+        steps: ["Last und Steifigkeit", "Werkzeug und Faserfluss", "Unterlagen und Muster"],
+      },
     },
   },
   grade: {

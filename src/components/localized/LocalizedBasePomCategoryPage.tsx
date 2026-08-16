@@ -9,8 +9,13 @@ import { Button } from "@/components/ui/button";
 import { availableDocuments } from "@/data/company";
 import { products, type Product } from "@/data/products";
 import type { LocalizedUrlSegment } from "@/i18n/config";
-import type { ProductFunnelMessages } from "@/i18n/productFunnelTypes";
-import { basePomGradeSlugs } from "@/i18n/productFunnelTypes";
+import {
+  getLocalizedCategoryLabel,
+  getLocalizedCategoryMessages,
+  getLocalizedCategorySourcePath,
+  type LocalizedProductCategorySlug,
+  type ProductFunnelMessages,
+} from "@/i18n/productFunnelTypes";
 import {
   getLocalizedHref,
   isLocalizedReleaseIndexable,
@@ -21,45 +26,54 @@ import {
   createBreadcrumbJsonLd,
   createCollectionPageJsonLd,
 } from "@/lib/seo";
-
-const sourcePath = "/products/categories/base-pom-resin";
-
-const basePomProducts = basePomGradeSlugs
-  .map((slug) => products.find((product) => product.slug === slug))
-  .filter((product): product is Product => Boolean(product));
+import {
+  findCategoryBySlug,
+  getProductsByCategory,
+} from "@/lib/productCategories";
 
 const readProperty = (product: Product, label: string) =>
   product.properties.find((property) => property.label === label);
 
-type LocalizedBasePomCategoryPageProps = {
+type LocalizedProductCategoryPageProps = {
+  categorySlug: LocalizedProductCategorySlug;
   messages: ProductFunnelMessages;
   localeSegment: LocalizedUrlSegment;
   inLanguage: string;
 };
 
-export function LocalizedBasePomCategoryPage({
+export function LocalizedProductCategoryContent({
+  categorySlug,
   messages,
   localeSegment,
   inLanguage,
-}: LocalizedBasePomCategoryPageProps) {
-  const copy = messages.category;
+}: LocalizedProductCategoryPageProps) {
+  const entry = findCategoryBySlug(categorySlug);
+
+  if (!entry) {
+    throw new Error(`Missing localized product category: ${categorySlug}`);
+  }
+
+  const copy = getLocalizedCategoryMessages(messages, categorySlug);
+  const categoryLabel = getLocalizedCategoryLabel(messages, categorySlug);
+  const sourcePath = getLocalizedCategorySourcePath(categorySlug);
+  const categoryProducts = getProductsByCategory(products, entry.category);
   const localizedPath = (path: string) => getLocalizedHref(path, localeSegment);
   const categoryPath = localizedPath(sourcePath);
   const contactHref = localizedPath(
     createContactHref({
-      material: messages.common.category,
+      material: categoryLabel,
       source: messages.common.contactSourceCategory,
     }),
   );
   const technicalDataHref = localizedPath("/technical-data-sheets");
-  const releasedProducts = basePomProducts.filter((product) =>
+  const releasedProducts = categoryProducts.filter((product) =>
     isLocalizedReleaseIndexable(`/products/${product.slug}`),
   );
   const jsonLd = [
     createBreadcrumbJsonLd([
       { name: messages.common.home, path: localizedPath("/") },
       { name: messages.common.products, path: localizedPath("/products") },
-      { name: messages.common.category, path: categoryPath },
+      { name: categoryLabel, path: categoryPath },
     ]),
     createCollectionPageJsonLd({
       title: copy.metadata.title,
@@ -98,11 +112,13 @@ export function LocalizedBasePomCategoryPage({
 
       <ProductPageMotion>
         <section className="product-category-shell mesh-surface">
-          <div className="product-index-hero product-category-hero products-motion-hero product-category-hero-base-pom-resin">
+          <div
+            className={`product-index-hero product-category-hero products-motion-hero product-category-hero-${categorySlug}`}
+          >
             <Breadcrumbs
               items={[
                 { href: localizedPath("/products"), label: messages.common.products },
-                { label: messages.common.category },
+                { label: categoryLabel },
               ]}
               variant="hero"
             />
@@ -165,7 +181,7 @@ export function LocalizedBasePomCategoryPage({
                 <p>{copy.directory.body}</p>
               </div>
               <span className="product-directory-count">
-                {basePomProducts.length} {copy.directory.countSuffix}
+                {categoryProducts.length} {copy.directory.countSuffix}
               </span>
             </div>
 
@@ -176,7 +192,7 @@ export function LocalizedBasePomCategoryPage({
                 <span>{copy.directory.route}</span>
               </div>
 
-              {basePomProducts.map((product, index) => {
+              {categoryProducts.map((product, index) => {
                 const tensile = readProperty(product, "Tensile Strength");
                 const hdt = readProperty(product, "Heat Deflection Temperature");
                 const productPath = `/products/${product.slug}`;
@@ -186,7 +202,7 @@ export function LocalizedBasePomCategoryPage({
                   : localizedPath(
                       createContactHref({
                         grade: product.grade,
-                        material: messages.common.category,
+                        material: categoryLabel,
                         intent: "grade-evaluation",
                         source: messages.common.contactSourceCategory,
                       }),
