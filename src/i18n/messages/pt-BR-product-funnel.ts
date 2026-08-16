@@ -313,6 +313,100 @@ const messages = {
         action: "Solicitar avaliação do ETM750",
       },
     },
+    "egb25-glass-bead-pom": {
+      categoryLabel: "POM com microesferas de vidro",
+      metadata: {
+        title: "EGB25 POM com 25% de microesferas | Taiyi Polymer",
+        description:
+          "Avalie o EGB25, um POM com 25% de microesferas de vidro, por contração e dados térmicos e mecânicos, e solicite documentos ou uma amostra.",
+        imageAlt: "Grânulos naturais de POM EGB25 da Taiyi Polymer",
+      },
+      breadcrumb: "EGB25",
+      eyebrow: "POM com 25% de microesferas de vidro · Injeção",
+      positioning:
+        "Um grade candidato para peças injetadas que exigem avaliação conjunta da contração longitudinal e transversal e do perfil térmico.",
+      summary:
+        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, o molde, a janela de processo e as condições de uso.",
+      sampleAction: "Solicitar amostra de EGB25",
+      snapshot: {
+        aria: "Resumo de propriedades do EGB25",
+        title: "Perfil de seleção do EGB25",
+        body:
+          "Verifique primeiro contração, fluidez, resistência à tração e desempenho térmico; depois valide a peça e o processo.",
+        flowNote: "MFI 8,5 g/10 min a 195 °C/2,16 kg",
+      },
+      sectionNavAria: "Seções da página do produto EGB25",
+      features: [
+        "25% de microesferas de vidro",
+        "Direção equilibrada de contração longitudinal e transversal",
+        "Temperatura de deflexão térmica de 110 °C a 1,8 MPa",
+        "Cor natural",
+      ],
+      applications: [
+        "Componentes automotivos",
+        "Peças elétricas e eletrônicas",
+        "Componentes sanitários",
+        "Peças industriais moldadas por injeção",
+      ],
+      evaluationBody:
+        "EGB25 é oferecido como grade candidato para avaliação. A aprovação final deve seguir a verificação de contração, dimensões e desempenho no molde do cliente e nas condições reais de uso.",
+      notesBody:
+        "Esta página apoia a triagem preliminar do EGB25. Geometria, espessura, ponto de injeção, molde, processamento e condições de ensaio podem alterar o resultado. Solicite os documentos atuais e confirme o grade por amostragem e testes de aplicação.",
+      inquiry: {
+        eyebrow: "Avaliação de projeto EGB25",
+        title: "Avaliar EGB25 para a sua peça injetada?",
+        body:
+          "Envie geometria, meta de contração, condição do molde, material atual, metas de desempenho, cor, volume e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+        action: "Solicitar avaliação do EGB25",
+      },
+    },
+    "egh502h-glass-fiber-pom": {
+      categoryLabel: "POM reforçado com fibra de vidro",
+      metadata: {
+        title: "EGH502H POM com 25% de fibra de vidro | Taiyi Polymer",
+        description:
+          "Avalie o EGH502H, um POM com 25% de fibra de vidro, por rigidez, contração e dados térmicos e mecânicos, e solicite uma amostra.",
+        imageAlt: "Grânulos naturais de POM EGH502H da Taiyi Polymer",
+      },
+      breadcrumb: "EGH502H",
+      eyebrow: "POM com 25% de fibra de vidro · Alta rigidez",
+      positioning:
+        "Um grade candidato para peças moldadas que exigem avaliação conjunta de alta rigidez, baixa contração e perfil térmico.",
+      summary:
+        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, a orientação das fibras, o molde, a janela de processo e as condições de uso.",
+      sampleAction: "Solicitar amostra de EGH502H",
+      snapshot: {
+        aria: "Resumo de propriedades do EGH502H",
+        title: "Perfil de seleção do EGH502H",
+        body:
+          "Verifique primeiro rigidez, contração, resistência à tração e desempenho térmico; depois valide a peça, o molde e o processo.",
+        flowNote: "MFI 8,5 g/10 min a 195 °C/2,16 kg",
+      },
+      sectionNavAria: "Seções da página do produto EGH502H",
+      features: [
+        "25% de fibra de vidro",
+        "Alta rigidez",
+        "Direção de resistência à fluência",
+        "Baixa contração de moldagem",
+      ],
+      applications: [
+        "Componentes automotivos",
+        "Peças elétricas",
+        "Peças eletrônicas",
+        "Peças industriais moldadas por injeção",
+      ],
+      evaluationBody:
+        "EGH502H é oferecido como grade candidato para avaliação. A aprovação final deve seguir a verificação da orientação das fibras, das dimensões e do desempenho no molde do cliente e nas condições reais de uso.",
+      notesBody:
+        "Esta página apoia a triagem preliminar do EGH502H. Direção de fluxo, ponto de injeção, linhas de solda, espessura, molde e condições de ensaio podem alterar rigidez, contração e comportamento da peça. Solicite os documentos atuais e confirme o grade por amostragem e testes de aplicação.",
+      inquiry: {
+        eyebrow: "Avaliação de projeto EGH502H",
+        title: "Avaliar EGH502H para a sua peça rígida?",
+        body:
+          "Envie geometria, metas de carga e rigidez, ponto de injeção, condição do molde, material atual, cor, volume e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+        action: "Solicitar avaliação do EGH502H",
+      },
+    },
   },
   technicalData: {
     metadata: {
@@ -327,7 +421,7 @@ const messages = {
       "Esta versão publica apenas grades cuja página técnica e explicações foram totalmente revisadas. Cada valor deve ser lido com sua unidade, norma e condição de ensaio.",
     evidenceTitle: "Dados de grade liberados",
     evidenceBody:
-      "ETM450, ETM750 e XT-100 formam o primeiro grupo de dados totalmente localizado. Outros grades serão adicionados somente após a mesma revisão técnica e linguística.",
+      "ETM450, ETM750, XT-100, EGB25 e EGH502H formam o grupo de dados totalmente localizado. Outros grades serão adicionados somente após a mesma revisão técnica e linguística.",
     gradeLabel: "Grade",
     materialLabel: "Material",
     statusLabel: "Status dos dados",

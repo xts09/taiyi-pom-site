@@ -67,6 +67,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
     },
     {
+      sourcePath: "/products/egb25-glass-bead-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/egh502h-glass-fiber-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
       sourcePath: "/technical-data-sheets",
       priority: 0.8,
       changeFrequency: "weekly" as const,

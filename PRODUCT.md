@@ -72,6 +72,15 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Each released grade language group emits self-canonicals and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. The sitemap contains 196 unique URLs, including all six new localized grade URLs without duplicates.
 - Technical-data query variants remain `noindex, follow`. Competitor-grade mappings whose evidence status is still `screening-seed` remain internal and must not be published as static comparison pages or equivalence claims.
 
+### Multilingual Reviewed Grade Expansion (2026-08-16)
+
+- Batch 3C adds reviewed EGB25 and EGH502H grade pages under `de`, `fr`, and `pt-br`, extending the public product-decision funnel with six localized grade URLs.
+- EGB25 remains identified as 25% glass-bead-filled POM; EGH502H remains identified as 25% glass-fiber-reinforced POM. Shared catalog records continue to own all values, units, methods, applications, and document status.
+- The localized technical-data entry lists the two grades only after their full page copy is reviewed. Their category breadcrumb labels are localized, while unreleased category destinations continue to use the existing English URL instead of exposing an incomplete localized category page.
+- Each grade language group uses a self-canonical and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. Clean grade URLs are indexable and included in sitemap; technical-data query variants remain `noindex, follow`.
+- The generated sitemap now contains 202 unique URLs, including the six new localized grade URLs without duplicate `<loc>` entries.
+- Public wording describes independent PLATFORM candidates for technical evaluation. It does not expose a competitor matrix or claim equivalence, direct replacement, or automatic application approval.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.

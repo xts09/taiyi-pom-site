@@ -16,10 +16,12 @@ import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
 import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
 import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
 import {
-  additionalLocalizedBasePomGradeSlugs,
   basePomGradeSlugs,
+  getLocalizedGradeCategoryLabel,
+  getLocalizedGradeCategorySourcePath,
   getLocalizedGradeMessages,
-  localizedBasePomGradeSlugs,
+  localizedGradeProfileSlugs,
+  localizedProductGradeSlugs,
   xt100FeaturedPropertyLabels,
 } from "../src/i18n/productFunnelTypes.ts";
 import {
@@ -165,6 +167,22 @@ test("the release manifest publishes only the approved conversion funnel pages",
     includeInSitemap: true,
     includeInAlternates: true,
   });
+  assert.deepEqual(localizedReleaseManifest.egb25Grade, {
+    sourcePath: "/products/egb25-glass-bead-pom",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
+  assert.deepEqual(localizedReleaseManifest.egh502hGrade, {
+    sourcePath: "/products/egh502h-glass-fiber-pom",
+    status: "public",
+    indexable: true,
+    publicNavigation: true,
+    includeInSitemap: true,
+    includeInAlternates: true,
+  });
   assert.deepEqual(localizedReleaseManifest.technicalDataSheets, {
     sourcePath: "/technical-data-sheets",
     status: "public",
@@ -249,7 +267,7 @@ test("the release manifest publishes only the approved conversion funnel pages",
       ),
       `/${locale.urlSegment}/products/categories/base-pom-resin`,
     );
-    for (const slug of localizedBasePomGradeSlugs) {
+    for (const slug of localizedProductGradeSlugs) {
       assert.equal(
         getLocalizedHref(`/products/${slug}`, locale.urlSegment),
         `/${locale.urlSegment}/products/${slug}`,
@@ -266,6 +284,20 @@ test("the release manifest publishes only the approved conversion funnel pages",
     assert.equal(
       getLocalizedHref("/products/xt-100", locale.urlSegment),
       "/products/xt-100",
+    );
+    assert.equal(
+      getLocalizedHref(
+        getLocalizedGradeCategorySourcePath("egb25-glass-bead-pom"),
+        locale.urlSegment,
+      ),
+      "/products/categories/glass-bead-filled-pom-compound",
+    );
+    assert.equal(
+      getLocalizedHref(
+        getLocalizedGradeCategorySourcePath("egh502h-glass-fiber-pom"),
+        locale.urlSegment,
+      ),
+      "/products/categories/glass-fiber-reinforced-pom-compound",
     );
   }
 
@@ -313,7 +345,7 @@ test("the release manifest publishes only the approved conversion funnel pages",
     },
   );
 
-  for (const slug of additionalLocalizedBasePomGradeSlugs) {
+  for (const slug of localizedGradeProfileSlugs) {
     assert.deepEqual(getLanguageAlternates(`/products/${slug}`), {
       en: `/products/${slug}`,
       de: `/de/products/${slug}`,
@@ -343,20 +375,29 @@ test("deep product funnel dictionaries are complete and language-specific", () =
     );
     assert.deepEqual(
       Object.keys(messages.gradeProfiles).sort(),
-      [...additionalLocalizedBasePomGradeSlugs].sort(),
+      [...localizedGradeProfileSlugs].sort(),
     );
     assert.equal(messages.grade.features.length, 4);
     assert.equal(messages.grade.applications.length, 4);
     assert.equal(messages.grade.evaluation.steps.length, 3);
     assert.equal(messages.technicalData.scopeItems.length, 3);
 
-    for (const slug of localizedBasePomGradeSlugs) {
+    for (const slug of localizedProductGradeSlugs) {
       const grade = getLocalizedGradeMessages(messages, slug);
       assert.equal(grade.features.length, 4);
       assert.equal(grade.applications.length, 4);
       assert.equal(grade.evaluation.steps.length, 3);
-      assert.match(grade.breadcrumb, /^(ETM450|ETM750|XT-100)$/);
+      assert.match(grade.breadcrumb, /^(ETM450|ETM750|XT-100|EGB25|EGH502H)$/);
     }
+
+    assert.notEqual(
+      getLocalizedGradeCategoryLabel(messages, "egb25-glass-bead-pom"),
+      messages.common.category,
+    );
+    assert.notEqual(
+      getLocalizedGradeCategoryLabel(messages, "egh502h-glass-fiber-pom"),
+      messages.common.category,
+    );
   }
 
   assert.notEqual(deProductFunnel.category.hero.title, frProductFunnel.category.hero.title);
@@ -456,6 +497,8 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm450-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm750-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/xt-100-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/egb25-glass-bead-pom"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/egh502h-glass-fiber-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/technical-data-sheets"/);
   assert.match(sitemap, /getSitemapLanguageOptions\(sourcePath\)/);
   assert.match(sitemap, /isReleasedSourcePath\(entry\.path\)/);

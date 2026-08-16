@@ -20,11 +20,11 @@ import {
   createProductJsonLd,
 } from "@/lib/seo";
 
-const categorySourcePath = "/products/categories/base-pom-resin";
-
 type LocalizedProductGradePageProps = {
   product: Product;
   copy: ProductFunnelMessages["grade"];
+  categoryLabel: string;
+  categorySourcePath: string;
   messages: ProductFunnelMessages;
   localeSegment: LocalizedUrlSegment;
   sourcePath: ReleasedSourcePath;
@@ -33,6 +33,8 @@ type LocalizedProductGradePageProps = {
 export function LocalizedProductGradePage({
   product,
   copy,
+  categoryLabel,
+  categorySourcePath,
   messages,
   localeSegment,
   sourcePath,
@@ -45,7 +47,7 @@ export function LocalizedProductGradePage({
     createContactHref({
       grade: product.grade,
       intent: "sample",
-      material: messages.common.category,
+      material: categoryLabel,
       source: messages.common.contactSourceGrade,
     }),
   );
@@ -53,7 +55,7 @@ export function LocalizedProductGradePage({
     createContactHref({
       grade: product.grade,
       intent: "grade-evaluation",
-      material: messages.common.category,
+      material: categoryLabel,
       source: messages.common.contactSourceGrade,
     }),
   );
@@ -110,14 +112,14 @@ export function LocalizedProductGradePage({
     createBreadcrumbJsonLd([
       { name: messages.common.home, path: localizedPath("/") },
       { name: messages.common.products, path: localizedPath("/products") },
-      { name: messages.common.category, path: categoryPath },
+      { name: categoryLabel, path: categoryPath },
       { name: product.grade, path: productPath },
     ]),
     createProductJsonLd({
-      name: `${product.grade} ${messages.common.category}`,
+      name: `${product.grade} ${categoryLabel}`,
       grade: product.grade,
       description: copy.metadata.description,
-      category: messages.common.category,
+      category: categoryLabel,
       path: productPath,
       color: copy.snapshot.colorValue,
       properties: localizedProperties,
@@ -136,7 +138,7 @@ export function LocalizedProductGradePage({
           items={[
             { label: messages.common.home, href: localizedPath("/") },
             { label: messages.common.products, href: localizedPath("/products") },
-            { label: messages.common.category, href: categoryPath },
+            { label: categoryLabel, href: categoryPath },
             { label: copy.breadcrumb },
           ]}
         />

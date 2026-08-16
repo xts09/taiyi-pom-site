@@ -11,22 +11,39 @@ export const basePomGradeSlugs = [
 
 export type BasePomGradeSlug = (typeof basePomGradeSlugs)[number];
 
-export const localizedBasePomGradeSlugs = [
+export const localizedProductGradeSlugs = [
   "etm450-base-pom-resin",
   "etm750-base-pom-resin",
   "xt-100-base-pom-resin",
+  "egb25-glass-bead-pom",
+  "egh502h-glass-fiber-pom",
 ] as const;
 
-export type LocalizedBasePomGradeSlug =
-  (typeof localizedBasePomGradeSlugs)[number];
+export type LocalizedProductGradeSlug =
+  (typeof localizedProductGradeSlugs)[number];
 
-export const additionalLocalizedBasePomGradeSlugs = [
+export const localizedGradeProfileSlugs = [
   "etm450-base-pom-resin",
   "etm750-base-pom-resin",
+  "egb25-glass-bead-pom",
+  "egh502h-glass-fiber-pom",
 ] as const;
 
-export type AdditionalLocalizedBasePomGradeSlug =
-  (typeof additionalLocalizedBasePomGradeSlugs)[number];
+export type LocalizedGradeProfileSlug =
+  (typeof localizedGradeProfileSlugs)[number];
+
+const localizedGradeCategorySourcePaths: Record<
+  LocalizedProductGradeSlug,
+  string
+> = {
+  "etm450-base-pom-resin": "/products/categories/base-pom-resin",
+  "etm750-base-pom-resin": "/products/categories/base-pom-resin",
+  "xt-100-base-pom-resin": "/products/categories/base-pom-resin",
+  "egb25-glass-bead-pom":
+    "/products/categories/glass-bead-filled-pom-compound",
+  "egh502h-glass-fiber-pom":
+    "/products/categories/glass-fiber-reinforced-pom-compound",
+};
 
 export const xt100FeaturedPropertyLabels = [
   "Density",
@@ -56,7 +73,8 @@ type MetadataMessages = {
   imageAlt: string;
 };
 
-type AdditionalGradeProfileMessages = {
+type LocalizedGradeProfileMessages = {
+  categoryLabel?: string;
   metadata: MetadataMessages;
   breadcrumb: string;
   eyebrow: string;
@@ -207,8 +225,8 @@ export type ProductFunnelMessages = {
     };
   };
   gradeProfiles: Record<
-    AdditionalLocalizedBasePomGradeSlug,
-    AdditionalGradeProfileMessages
+    LocalizedGradeProfileSlug,
+    LocalizedGradeProfileMessages
   >;
   technicalData: {
     metadata: MetadataMessages;
@@ -232,14 +250,14 @@ export type ProductFunnelMessages = {
   };
 };
 
-export const isLocalizedBasePomGradeSlug = (
+export const isLocalizedProductGradeSlug = (
   slug: string,
-): slug is LocalizedBasePomGradeSlug =>
-  localizedBasePomGradeSlugs.includes(slug as LocalizedBasePomGradeSlug);
+): slug is LocalizedProductGradeSlug =>
+  localizedProductGradeSlugs.includes(slug as LocalizedProductGradeSlug);
 
 export const getLocalizedGradeMessages = (
   messages: ProductFunnelMessages,
-  slug: LocalizedBasePomGradeSlug,
+  slug: LocalizedProductGradeSlug,
 ): ProductFunnelMessages["grade"] => {
   if (slug === "xt-100-base-pom-resin") {
     return messages.grade;
@@ -268,3 +286,15 @@ export const getLocalizedGradeMessages = (
     },
   };
 };
+
+export const getLocalizedGradeCategoryLabel = (
+  messages: ProductFunnelMessages,
+  slug: LocalizedProductGradeSlug,
+) =>
+  slug === "xt-100-base-pom-resin"
+    ? messages.common.category
+    : messages.gradeProfiles[slug].categoryLabel ?? messages.common.category;
+
+export const getLocalizedGradeCategorySourcePath = (
+  slug: LocalizedProductGradeSlug,
+) => localizedGradeCategorySourcePaths[slug];

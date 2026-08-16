@@ -8,8 +8,9 @@ import { Card } from "@/components/ui/card";
 import type { Product } from "@/data/products";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import {
+  getLocalizedGradeCategoryLabel,
   getLocalizedGradeMessages,
-  isLocalizedBasePomGradeSlug,
+  isLocalizedProductGradeSlug,
   type ProductFunnelMessages,
 } from "@/i18n/productFunnelTypes";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
@@ -41,7 +42,7 @@ export function LocalizedTechnicalDataPage({
   const requestHref = localizedPath(
     createContactHref({
       intent: "grade-evaluation",
-      material: messages.common.category,
+      material: "POM",
       source: messages.common.contactSourceTechnicalData,
     }),
   );
@@ -94,11 +95,15 @@ export function LocalizedTechnicalDataPage({
 
             <div className="space-y-5">
               {products.map((product) => {
-                if (!isLocalizedBasePomGradeSlug(product.slug)) {
+                if (!isLocalizedProductGradeSlug(product.slug)) {
                   return null;
                 }
 
                 const gradeCopy = getLocalizedGradeMessages(
+                  messages,
+                  product.slug,
+                );
+                const categoryLabel = getLocalizedGradeCategoryLabel(
                   messages,
                   product.slug,
                 );
@@ -107,7 +112,7 @@ export function LocalizedTechnicalDataPage({
                   createContactHref({
                     grade: product.grade,
                     intent: "grade-evaluation",
-                    material: messages.common.category,
+                    material: categoryLabel,
                     source: messages.common.contactSourceTechnicalData,
                   }),
                 );

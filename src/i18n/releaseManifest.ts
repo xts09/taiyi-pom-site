@@ -50,6 +50,14 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/xt-100-base-pom-resin",
     ...publicRelease,
   },
+  egb25Grade: {
+    sourcePath: "/products/egb25-glass-bead-pom",
+    ...publicRelease,
+  },
+  egh502hGrade: {
+    sourcePath: "/products/egh502h-glass-fiber-pom",
+    ...publicRelease,
+  },
   technicalDataSheets: {
     sourcePath: "/technical-data-sheets",
     ...publicRelease,

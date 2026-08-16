@@ -6,9 +6,11 @@ import { products } from "@/data/products";
 import { getLocalizedLocale } from "@/i18n/config";
 import { loadProductFunnelMessages } from "@/i18n/productFunnelMessages";
 import {
+  getLocalizedGradeCategoryLabel,
+  getLocalizedGradeCategorySourcePath,
   getLocalizedGradeMessages,
-  isLocalizedBasePomGradeSlug,
-  localizedBasePomGradeSlugs,
+  isLocalizedProductGradeSlug,
+  localizedProductGradeSlugs,
 } from "@/i18n/productFunnelTypes";
 import {
   getLanguageAlternates,
@@ -25,7 +27,7 @@ type LocalizedProductPageProps = {
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return localizedBasePomGradeSlugs.map((slug) => ({ slug }));
+  return localizedProductGradeSlugs.map((slug) => ({ slug }));
 }
 
 const resolveRoute = async (params: LocalizedProductPageProps["params"]) => {
@@ -35,7 +37,7 @@ const resolveRoute = async (params: LocalizedProductPageProps["params"]) => {
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    !isLocalizedBasePomGradeSlug(slug)
+    !isLocalizedProductGradeSlug(slug)
   ) {
     notFound();
   }
@@ -85,6 +87,8 @@ export default async function LocalizedProductPage({
     <LocalizedProductGradePage
       product={product}
       copy={copy}
+      categoryLabel={getLocalizedGradeCategoryLabel(messages, slug)}
+      categorySourcePath={getLocalizedGradeCategorySourcePath(slug)}
       messages={messages}
       localeSegment={localeConfig.urlSegment}
       sourcePath={sourcePath}

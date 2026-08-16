@@ -313,6 +313,100 @@ const messages = {
         action: "Demander l'évaluation ETM750",
       },
     },
+    "egb25-glass-bead-pom": {
+      categoryLabel: "POM chargé de billes de verre",
+      metadata: {
+        title: "EGB25 POM à 25 % de billes de verre | Taiyi Polymer",
+        description:
+          "Évaluez EGB25, un POM chargé de 25 % de billes de verre, selon le retrait, les données thermiques et mécaniques, puis demandez des documents ou un échantillon.",
+        imageAlt: "Granulés POM EGB25 naturels de Taiyi Polymer",
+      },
+      breadcrumb: "EGB25",
+      eyebrow: "POM à 25 % de billes de verre · Injection",
+      positioning:
+        "Un grade candidat pour les pièces injectées nécessitant une étude conjointe du retrait longitudinal et transversal ainsi que du profil thermique.",
+      summary:
+        "Les valeurs publiées servent à la présélection. L'adéquation doit être confirmée avec la géométrie réelle, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+      sampleAction: "Demander un échantillon EGB25",
+      snapshot: {
+        aria: "Synthèse des propriétés EGB25",
+        title: "Profil de sélection EGB25",
+        body:
+          "Vérifiez d'abord le retrait, la fluidité, la résistance à la traction et la tenue thermique, puis validez la pièce et le procédé.",
+        flowNote: "MFI 8,5 g/10 min à 195 °C/2,16 kg",
+      },
+      sectionNavAria: "Sections de la page produit EGB25",
+      features: [
+        "25 % de billes de verre",
+        "Orientation équilibrée du retrait longitudinal et transversal",
+        "Température de fléchissement sous charge de 110 °C à 1,8 MPa",
+        "Couleur naturelle",
+      ],
+      applications: [
+        "Composants automobiles",
+        "Pièces électriques et électroniques",
+        "Composants sanitaires",
+        "Pièces injectées industrielles",
+      ],
+      evaluationBody:
+        "EGB25 est proposé comme grade candidat à évaluer. La validation finale doit suivre l'étude du retrait, des dimensions et des performances dans le moule du client et dans les conditions réelles d'utilisation.",
+      notesBody:
+        "Cette page facilite la présélection d'EGB25. La géométrie, l'épaisseur, le point d'injection, le moule, le procédé et les conditions d'essai peuvent modifier le résultat. Demandez les documents à jour et confirmez le grade par échantillonnage et essais d'application.",
+      inquiry: {
+        eyebrow: "Étude projet EGB25",
+        title: "Évaluer EGB25 pour votre pièce injectée ?",
+        body:
+          "Envoyez la géométrie, l'objectif de retrait, l'état du moule, la matière actuelle, les performances visées, la couleur, le volume et les documents requis. Nous préparerons l'étude du grade et de l'échantillon.",
+        action: "Demander l'évaluation EGB25",
+      },
+    },
+    "egh502h-glass-fiber-pom": {
+      categoryLabel: "POM renforcé de fibres de verre",
+      metadata: {
+        title: "EGH502H POM à 25 % de fibre de verre | Taiyi Polymer",
+        description:
+          "Évaluez EGH502H, un POM renforcé de 25 % de fibre de verre, selon la rigidité, le retrait et les données thermiques et mécaniques, puis demandez un échantillon.",
+        imageAlt: "Granulés POM EGH502H naturels de Taiyi Polymer",
+      },
+      breadcrumb: "EGH502H",
+      eyebrow: "POM à 25 % de fibre de verre · Haute rigidité",
+      positioning:
+        "Un grade candidat pour les pièces moulées nécessitant une étude conjointe de la rigidité élevée, du faible retrait et du profil thermique.",
+      summary:
+        "Les valeurs publiées servent à la présélection. L'adéquation doit être confirmée avec la géométrie réelle, l'orientation des fibres, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+      sampleAction: "Demander un échantillon EGH502H",
+      snapshot: {
+        aria: "Synthèse des propriétés EGH502H",
+        title: "Profil de sélection EGH502H",
+        body:
+          "Vérifiez d'abord la rigidité, le retrait, la résistance à la traction et la tenue thermique, puis validez la pièce, le moule et le procédé.",
+        flowNote: "MFI 8,5 g/10 min à 195 °C/2,16 kg",
+      },
+      sectionNavAria: "Sections de la page produit EGH502H",
+      features: [
+        "25 % de fibre de verre",
+        "Rigidité élevée",
+        "Orientation résistance au fluage",
+        "Faible retrait au moulage",
+      ],
+      applications: [
+        "Composants automobiles",
+        "Pièces électriques",
+        "Pièces électroniques",
+        "Pièces injectées industrielles",
+      ],
+      evaluationBody:
+        "EGH502H est proposé comme grade candidat à évaluer. La validation finale doit suivre l'étude de l'orientation des fibres, des dimensions et des performances dans le moule du client et dans les conditions réelles d'utilisation.",
+      notesBody:
+        "Cette page facilite la présélection d'EGH502H. Le sens d'écoulement, le point d'injection, les lignes de soudure, l'épaisseur, le moule et les conditions d'essai peuvent modifier la rigidité, le retrait et le comportement de la pièce. Demandez les documents à jour et confirmez le grade par échantillonnage et essais d'application.",
+      inquiry: {
+        eyebrow: "Étude projet EGH502H",
+        title: "Évaluer EGH502H pour votre pièce rigide ?",
+        body:
+          "Envoyez la géométrie, les objectifs de charge et de rigidité, le point d'injection, l'état du moule, la matière actuelle, la couleur, le volume et les documents requis. Nous préparerons l'étude du grade et de l'échantillon.",
+        action: "Demander l'évaluation EGH502H",
+      },
+    },
   },
   technicalData: {
     metadata: {
@@ -327,7 +421,7 @@ const messages = {
       "Cette version linguistique ne publie que les grades dont la page technique et les explications ont été entièrement vérifiées. Chaque valeur doit être lue avec son unité, sa norme et sa condition d'essai.",
     evidenceTitle: "Données de grade validées",
     evidenceBody:
-      "ETM450, ETM750 et XT-100 forment le premier groupe de données entièrement localisé. D'autres grades seront ajoutés après le même contrôle technique et linguistique.",
+      "ETM450, ETM750, XT-100, EGB25 et EGH502H forment le groupe de données entièrement localisé. D'autres grades seront ajoutés après le même contrôle technique et linguistique.",
     gradeLabel: "Grade",
     materialLabel: "Matière",
     statusLabel: "État des données",

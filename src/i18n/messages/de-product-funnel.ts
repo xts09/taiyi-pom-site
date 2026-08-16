@@ -313,6 +313,100 @@ const messages = {
         action: "ETM750 Prüfung anfragen",
       },
     },
+    "egb25-glass-bead-pom": {
+      categoryLabel: "Glaskugelgefülltes POM",
+      metadata: {
+        title: "EGB25 POM mit 25 % Glaskugeln | Taiyi Polymer",
+        description:
+          "Prüfen Sie EGB25, ein POM mit 25 % Glaskugeln, anhand von Schwindung, Wärme- und mechanischen Daten und fordern Sie Unterlagen oder ein Muster an.",
+        imageAlt: "Naturfarbenes EGB25 POM-Granulat von Taiyi Polymer",
+      },
+      breadcrumb: "EGB25",
+      eyebrow: "POM mit 25 % Glaskugeln · Spritzguss",
+      positioning:
+        "Ein Kandidat für Spritzgussteile, bei denen Längs- und Querschwindung sowie das thermische Profil gemeinsam geprüft werden müssen.",
+      summary:
+        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+      sampleAction: "EGB25 Muster anfragen",
+      snapshot: {
+        aria: "EGB25 Kennwertübersicht",
+        title: "EGB25 Auswahlprofil",
+        body:
+          "Prüfen Sie zuerst Schwindung, Fließfähigkeit, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil- und Prozessvalidierung.",
+        flowNote: "MFI 8,5 g/10 min bei 195 °C/2,16 kg",
+      },
+      sectionNavAria: "Abschnitte der EGB25 Produktseite",
+      features: [
+        "25 % Glaskugelanteil",
+        "Ausgewogene Längs- und Querschwindungsrichtung",
+        "Wärmeformbeständigkeit 110 °C bei 1,8 MPa",
+        "Naturfarbe",
+      ],
+      applications: [
+        "Automobilkomponenten",
+        "Elektrische und elektronische Bauteile",
+        "Sanitärkomponenten",
+        "Industrielle Spritzgussteile",
+      ],
+      evaluationBody:
+        "EGB25 wird als Kandidat zur technischen Bewertung angeboten. Die endgültige Freigabe erfolgt nach Prüfung von Schwindung, Abmessungen und Leistung im Kundenwerkzeug und in der realen Anwendung.",
+      notesBody:
+        "Diese Seite unterstützt die vorläufige Auswahl von EGB25. Bauteilgeometrie, Wanddicke, Anschnitt, Werkzeug, Verarbeitung und Prüfbedingungen können das Ergebnis verändern. Fordern Sie die aktuellen Unterlagen an und bestätigen Sie den Typ durch Musterung und Anwendungstests.",
+      inquiry: {
+        eyebrow: "EGB25 Projektprüfung",
+        title: "EGB25 für Ihr Spritzgussteil prüfen?",
+        body:
+          "Senden Sie Bauteilgeometrie, Schwindungsziel, Werkzeugstand, aktuellen Werkstoff, Leistungsziele, Farbe, Volumen und benötigte Unterlagen. Wir bereiten die Typ- und Musterprüfung vor.",
+        action: "EGB25 Prüfung anfragen",
+      },
+    },
+    "egh502h-glass-fiber-pom": {
+      categoryLabel: "Glasfaserverstärktes POM",
+      metadata: {
+        title: "EGH502H POM mit 25 % Glasfaser | Taiyi Polymer",
+        description:
+          "Prüfen Sie EGH502H, ein POM mit 25 % Glasfaser, anhand von Steifigkeit, Schwindung, Wärme- und mechanischen Daten und fordern Sie ein Muster an.",
+        imageAlt: "Naturfarbenes EGH502H POM-Granulat von Taiyi Polymer",
+      },
+      breadcrumb: "EGH502H",
+      eyebrow: "POM mit 25 % Glasfaser · Hohe Steifigkeit",
+      positioning:
+        "Ein Kandidat für Formteile, bei denen hohe Steifigkeit, geringe Schwindung und das thermische Profil gemeinsam geprüft werden.",
+      summary:
+        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Faserorientierung, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+      sampleAction: "EGH502H Muster anfragen",
+      snapshot: {
+        aria: "EGH502H Kennwertübersicht",
+        title: "EGH502H Auswahlprofil",
+        body:
+          "Prüfen Sie zuerst Steifigkeit, Schwindung, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil-, Werkzeug- und Prozessvalidierung.",
+        flowNote: "MFI 8,5 g/10 min bei 195 °C/2,16 kg",
+      },
+      sectionNavAria: "Abschnitte der EGH502H Produktseite",
+      features: [
+        "25 % Glasfaseranteil",
+        "Hohe Steifigkeit",
+        "Ausrichtung auf Kriechbeständigkeit",
+        "Geringe Formschwindung",
+      ],
+      applications: [
+        "Automobilkomponenten",
+        "Elektrische Bauteile",
+        "Elektronische Bauteile",
+        "Industrielle Spritzgussteile",
+      ],
+      evaluationBody:
+        "EGH502H wird als Kandidat zur technischen Bewertung angeboten. Die endgültige Freigabe erfolgt nach Prüfung von Faserorientierung, Abmessungen und Leistung im Kundenwerkzeug und in der realen Anwendung.",
+      notesBody:
+        "Diese Seite unterstützt die vorläufige Auswahl von EGH502H. Fließrichtung, Anschnitt, Schweißnähte, Wanddicke, Werkzeug und Prüfbedingungen können Steifigkeit, Schwindung und Bauteilverhalten verändern. Fordern Sie die aktuellen Unterlagen an und bestätigen Sie den Typ durch Musterung und Anwendungstests.",
+      inquiry: {
+        eyebrow: "EGH502H Projektprüfung",
+        title: "EGH502H für Ihr steifes Formteil prüfen?",
+        body:
+          "Senden Sie Bauteilgeometrie, Last- und Steifigkeitsziel, Anschnitt, Werkzeugstand, aktuellen Werkstoff, Farbe, Volumen und benötigte Unterlagen. Wir bereiten die Typ- und Musterprüfung vor.",
+        action: "EGH502H Prüfung anfragen",
+      },
+    },
   },
   technicalData: {
     metadata: {
@@ -327,7 +421,7 @@ const messages = {
       "Diese Sprachversion veröffentlicht nur Typen, deren technische Seite und Erklärtexte vollständig geprüft wurden. Werte sind zusammen mit Einheit, Norm und Prüfbedingung zu lesen.",
     evidenceTitle: "Freigegebene Typdaten",
     evidenceBody:
-      "ETM450, ETM750 und XT-100 bilden die erste vollständig lokalisierte Datengruppe. Weitere Typen werden erst nach derselben technischen und sprachlichen Prüfung ergänzt.",
+      "ETM450, ETM750, XT-100, EGB25 und EGH502H bilden die vollständig lokalisierte Datengruppe. Weitere Typen werden erst nach derselben technischen und sprachlichen Prüfung ergänzt.",
     gradeLabel: "Typ",
     materialLabel: "Werkstoff",
     statusLabel: "Datenstatus",
