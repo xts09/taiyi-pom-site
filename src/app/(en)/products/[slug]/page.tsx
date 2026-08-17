@@ -99,6 +99,56 @@ type GradeCampaignProfile = {
   screeningCopy: string;
 };
 
+type GradeDecisionLink = {
+  href: string;
+  label: string;
+};
+
+const gradeDecisionLinks: Partial<
+  Record<string, GradeDecisionLink[]>
+> = {
+  "ems162-high-wear-resistant-pom": [
+    {
+      href: "/resources/wear-resistant-low-friction-pom-selection-guide",
+      label: "MoS2 and wear-resistant POM selection guide",
+    },
+    {
+      href: "/products/categories/wear-resistant-low-friction-pom-compound",
+      label: "wear-resistant and low-friction POM grades",
+    },
+  ],
+  "eptl402-high-wear-resistant-pom": [
+    {
+      href: "/resources/wear-resistant-low-friction-pom-selection-guide",
+      label: "PTFE and low-friction POM selection guide",
+    },
+    {
+      href: "/products/categories/wear-resistant-low-friction-pom-compound",
+      label: "wear-resistant and low-friction POM grades",
+    },
+  ],
+  "ecn1003b-conductive-pom": [
+    {
+      href: "/conductive-antistatic-pom",
+      label: "conductive and antistatic POM selection overview",
+    },
+    {
+      href: "/products/conductive-antistatic-compounds",
+      label: "cross-material conductive compound directory",
+    },
+  ],
+  "egh25cn-conductive-antistatic-pom": [
+    {
+      href: "/conductive-antistatic-pom",
+      label: "conductive and antistatic POM selection overview",
+    },
+    {
+      href: "/products/conductive-antistatic-compounds",
+      label: "cross-material conductive compound directory",
+    },
+  ],
+};
+
 const gradeCampaignProfiles: Record<string, GradeCampaignProfile> = {
   "etm750-base-pom-resin": {
     eyebrow: "Very High-Flow POM · Injection Molding",
@@ -653,6 +703,7 @@ export default async function ProductDetailPage({
   }
 
   const campaignProfile = gradeCampaignProfiles[product.slug];
+  const decisionLinks = gradeDecisionLinks[product.slug] ?? [];
   const categoryUrl = getCategoryPath(product.category);
   const contactMaterial =
     pomSubcategoryLabels[getCanonicalProductCategory(product.category)] ??
@@ -1053,6 +1104,24 @@ export default async function ProductDetailPage({
                 ? `This page supports preliminary ${product.grade} screening. Suitability is not automatic: part design, mold construction, processing conditions, performance targets, and customer certification can change the result. Request the current technical documents and confirm the grade through sampling and application testing.`
                 : "This product page is for preliminary material selection. For project evaluation, please confirm the application, processing method, mold development stage, cavity count, target shrinkage or dimensional requirement, target performance requirements, current reference grade, document requirements, and estimated volume."}
             </p>
+
+            {decisionLinks.length > 0 ? (
+              <p className="mt-3 text-sm leading-6 text-slate-700">
+                Continue the comparison with the{" "}
+                {decisionLinks.map((link, index) => (
+                  <span key={link.href}>
+                    {index > 0 ? " or the " : ""}
+                    <Link
+                      href={link.href}
+                      className="font-bold text-blue-700 underline decoration-blue-300 underline-offset-4 hover:text-blue-800"
+                    >
+                      {link.label}
+                    </Link>
+                  </span>
+                ))}
+                .
+              </p>
+            ) : null}
           </section>
 
           <ActionPanel

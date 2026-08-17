@@ -83,3 +83,23 @@ test("adds distinct editorial inlinks to the three low-inbound routes", () => {
     "/products/eax645-ppa-gf-mineral-reinforced",
   ]));
 });
+
+test("keeps POM and conductive selection links on their intended owners", () => {
+  assert.deepEqual(
+    getCategorySelectionLinks("POM").map((link) => link.href),
+    [
+      "/products/ems162-high-wear-resistant-pom",
+      "/products/eptl402-high-wear-resistant-pom",
+      "/resources/wear-resistant-low-friction-pom-selection-guide",
+    ],
+  );
+  assert.deepEqual(
+    getCategorySelectionLinks("Conductive / Antistatic POM Compound").map(
+      (link) => link.href,
+    ),
+    [
+      "/conductive-antistatic-pom",
+      "/products/conductive-antistatic-compounds",
+    ],
+  );
+});

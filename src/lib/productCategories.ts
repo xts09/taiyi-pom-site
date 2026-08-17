@@ -45,6 +45,20 @@ const pomCategoryOverview = {
     "electronics",
     "conveyor-automation",
   ],
+  selectionLinks: [
+    {
+      label: "MoS2-filled POM grade data: EMS162",
+      href: "/products/ems162-high-wear-resistant-pom",
+    },
+    {
+      label: "PTFE-filled POM grade data: EPTL402",
+      href: "/products/eptl402-high-wear-resistant-pom",
+    },
+    {
+      label: "Wear and low-friction POM selection guide",
+      href: "/resources/wear-resistant-low-friction-pom-selection-guide",
+    },
+  ],
 };
 
 export const productCategoryData: ProductCategoryData[] = [
@@ -177,6 +191,16 @@ export const productCategoryData: ProductCategoryData[] = [
       "Functional components where charge control is required",
     ],
     applicationSlugs: ["electronics", "conveyor-automation"],
+    selectionLinks: [
+      {
+        label: "Conductive and antistatic POM selection overview",
+        href: "/conductive-antistatic-pom",
+      },
+      {
+        label: "Cross-material conductive and antistatic compounds",
+        href: "/products/conductive-antistatic-compounds",
+      },
+    ],
   },
   {
     category: "Base POM Resin",
@@ -418,7 +442,9 @@ export const getCategoryApplicationSlugs = (category: string) => {
 };
 
 export const getCategorySelectionLinks = (category: string) => {
-  if (category === pomCategoryOverview.category) return [];
+  if (category === pomCategoryOverview.category) {
+    return pomCategoryOverview.selectionLinks;
+  }
 
   return getCategoryData(category)?.selectionLinks ?? [];
 };
