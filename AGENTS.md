@@ -75,6 +75,7 @@ components, verify representative consumers from each affected route family.
 ## Stable Session Protocol
 
 - Keep work in short, verifiable steps. Avoid combining broad analysis, large edits, build, browser automation, and screenshots in one long chain.
+- Store every generated deliverable, export, preview, audit record, and task artifact for this project under `F:\Projects\taiyi-pom-site\outputs\`. Use a task-specific subdirectory when practical. Do not write outputs to `C:\Users\xts10\Documents\Codex\outputs`, the Windows desktop, downloads, or any other C-drive location unless the user explicitly requests that exact destination. User-provided source files on C: remain source files and must not be moved unless explicitly requested.
 - Prefer targeted searches and file reads. Do not scan large generated folders such as `.next`, `node_modules`, `dist`, `build`, `coverage`, cache, or media-heavy folders unless explicitly needed.
 - Use the in-app browser only when visual verification is needed, and perform one browser action at a time.
 - Keep tool output compact: summarize errors and results instead of dumping long logs, DOM snapshots, JSON, screenshots, or generated files into chat.
