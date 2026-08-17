@@ -1,4 +1,7 @@
 .page {
+  --about-mobile-section-space: 4.5rem;
+  --about-mobile-heading-body-gap: 1.25rem;
+  --about-mobile-content-visual-gap: 2.25rem;
   overflow: clip;
   color: var(--ds-text-primary);
   background: var(--ds-background-canvas);
@@ -93,6 +96,10 @@
   line-height: 1.7;
 }
 
+.heroSummaryMobile {
+  display: none;
+}
+
 .heroActions {
   display: flex;
   flex-wrap: wrap;
@@ -176,13 +183,14 @@
 }
 
 .identityCopy {
-  grid-column: 1 / span 5;
+  grid-column: 1 / span 6;
+  max-width: 33rem;
 }
 
 .prose {
   display: grid;
   gap: 1.25rem;
-  max-width: 38rem;
+  max-width: 33rem;
   margin-top: 2rem;
   color: var(--ds-text-secondary);
   font-size: 1.06rem;
@@ -231,24 +239,49 @@
 }
 
 .timeline {
+  position: relative;
   grid-column: 7 / -1;
   list-style: none;
   border-top: 1px solid var(--ds-border-default);
 }
 
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 2.55rem;
+  bottom: 2.55rem;
+  left: 0.3rem;
+  width: 1px;
+  background: rgb(11 95 184 / 38%);
+}
+
 .timeline li {
+  position: relative;
   display: grid;
   grid-template-columns: 7rem 1fr;
   gap: 1.5rem;
-  padding-block: 2rem;
+  padding: 2rem 0 2rem 2rem;
   border-bottom: 1px solid var(--ds-border-default);
 }
 
 .timeline li > span {
+  position: relative;
   color: var(--ds-color-cobalt-600);
   font-family: var(--ds-font-display);
   font-size: 1.35rem;
   font-weight: 700;
+}
+
+.timeline li > span::before {
+  content: "";
+  position: absolute;
+  top: 0.42rem;
+  left: -2.02rem;
+  width: 0.625rem;
+  height: 0.625rem;
+  border: 3px solid var(--ds-background-canvas);
+  border-radius: 50%;
+  background: var(--ds-color-cobalt-600);
 }
 
 .timeline h3,
@@ -793,13 +826,21 @@
   }
 
   .hero h1 {
-    max-width: 12ch;
+    max-width: none;
     font-size: clamp(2.75rem, 12vw, 4rem);
   }
 
   .heroCopy > p:not(.heroEyebrow) {
-    font-size: 0.96rem;
+    font-size: 0.9375rem;
     line-height: 1.65;
+  }
+
+  .heroSummaryDesktop {
+    display: none;
+  }
+
+  .heroSummaryMobile {
+    display: inline;
   }
 
   .heroActions {
@@ -821,7 +862,28 @@
   .people,
   .credentials,
   .global {
-    padding-block: 4.5rem;
+    padding-block: var(--about-mobile-section-space);
+  }
+
+  .focus,
+  .finalCta {
+    padding-block: var(--about-mobile-section-space);
+  }
+
+  .eyebrow,
+  .heroEyebrow {
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+
+  .eyebrow {
+    margin-bottom: 1rem !important;
+  }
+
+  .sectionHeading > p:last-child:not(.eyebrow) {
+    margin-top: var(--about-mobile-heading-body-gap);
+    font-size: 0.9375rem;
+    line-height: 1.72;
   }
 
   .sectionHeading h2,
@@ -839,25 +901,47 @@
 
   .identityMedia {
     aspect-ratio: 1.12;
-    margin-top: 2.5rem;
+    margin-top: var(--about-mobile-content-visual-gap);
   }
 
   .timeline,
   .workflowList,
   .routeList {
-    margin-top: 3rem;
+    margin-top: var(--about-mobile-content-visual-gap);
   }
 
   .timeline li {
-    grid-template-columns: 5rem 1fr;
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+    padding: 1.6rem 0 1.75rem 2rem;
   }
 
-  .focus {
-    padding-block: 4.5rem;
+  .timeline::before {
+    top: 2.1rem;
+    bottom: 2.2rem;
+  }
+
+  .timeline li > span {
+    font-size: 1.125rem;
+  }
+
+  .timeline li > span::before {
+    top: 0.3rem;
+  }
+
+  .timeline p,
+  .workflowList p {
+    font-size: 0.9375rem;
+    line-height: 1.72;
+  }
+
+  .timeline h3,
+  .workflowList h3 {
+    font-size: 1.125rem;
   }
 
   .focus .sectionHeading {
-    margin-bottom: 2.5rem;
+    margin-bottom: var(--about-mobile-content-visual-gap);
   }
 
   .focusRow {
@@ -872,6 +956,13 @@
 
   .focusDescription {
     grid-column: 2 / -1;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  .focusIndex,
+  .focusLabel {
+    font-size: 0.75rem;
   }
 
   .rowArrow {
@@ -916,6 +1007,13 @@
     gap: 1rem;
   }
 
+  .prose {
+    gap: 1rem;
+    margin-top: var(--about-mobile-heading-body-gap);
+    font-size: 0.9375rem;
+    line-height: 1.75;
+  }
+
   .peopleCopy {
     padding-right: 0;
   }
@@ -923,11 +1021,12 @@
   .labMedia,
   .peopleMedia {
     min-height: 23rem;
-    margin-top: 3rem;
+    margin-top: var(--about-mobile-content-visual-gap);
   }
 
   .peopleCopy ul {
     grid-template-columns: 1fr;
+    margin-top: var(--about-mobile-content-visual-gap);
   }
 
   .peopleCopy li:nth-child(odd) {
@@ -935,12 +1034,16 @@
   }
 
   .documentTags {
-    margin-top: 2rem;
+    margin-top: var(--about-mobile-content-visual-gap);
+  }
+
+  .documentTags span {
+    font-size: 0.75rem;
   }
 
   .credentialGrid {
     grid-template-columns: 1fr;
-    margin-top: 2.5rem;
+    margin-top: var(--about-mobile-content-visual-gap);
   }
 
   .credentialGrid article {
@@ -951,13 +1054,33 @@
     margin-bottom: 2.5rem;
   }
 
+  .credentialGrid article > p {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    letter-spacing: 0.07em;
+  }
+
+  .systemsCard a {
+    font-size: 0.875rem;
+  }
+
   .routeList > div {
     grid-template-columns: 1fr;
     gap: 0.6rem;
   }
 
+  .routeList dt,
+  .routeList dd {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .routeList dt span {
+    font-size: 0.75rem;
+  }
+
   .finalCta {
-    padding-block: 4.5rem;
+    padding-block: var(--about-mobile-section-space);
   }
 
   .finalCtaGrid {
@@ -968,6 +1091,12 @@
     margin-top: 2rem;
   }
 
+  .finalCta h2 + p,
+  .finalCta li {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
   .finalCtaActions {
     display: grid;
     grid-template-columns: 1fr;
@@ -976,6 +1105,13 @@
 
   .finalCtaActions a {
     width: 100%;
+  }
+
+  .identityMedia figcaption,
+  .labMedia figcaption,
+  .manufacturingMedia figcaption {
+    font-size: 0.8125rem;
+    line-height: 1.35;
   }
 }
 

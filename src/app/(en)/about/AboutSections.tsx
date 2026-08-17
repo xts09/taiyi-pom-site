@@ -123,8 +123,9 @@ export function AboutPageContent({
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>About Taiyi Polymer</p>
             <h1 id="about-title">An engineering materials manufacturer built around the part.</h1>
-            <p>
-              Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd., a manufacturer in Yancheng, Jiangsu, China. Manufacturing since 2003, we focus on modified POM, with selected PA6, PA66 and PPA compounds for projects that require another material family.
+            <p className={styles.heroSummary}>
+              <span className={styles.heroSummaryDesktop}>Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd., a manufacturer in Yancheng, Jiangsu, China. With manufacturing roots dating to 2003, we focus on modified POM, with selected PA6, PA66 and PPA compounds for projects that require another material family.</span>
+              <span className={styles.heroSummaryMobile}>Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd. Based in Yancheng, with manufacturing roots dating to 2003, we focus on modified POM and selected engineering compounds.</span>
             </p>
             <div className={styles.heroActions}>
               <Button asChild variant="inverse" size="form"><Link href="/products">Explore Our Materials</Link></Button>
@@ -138,9 +139,9 @@ export function AboutPageContent({
       <section className={styles.identity} aria-labelledby="who-we-are-title">
         <div className={`site-container ${styles.identityGrid}`}>
           <div className={styles.identityCopy}>
-            <SectionHeading eyebrow="Who we are" id="who-we-are-title" title="One manufacturer. A clear public brand." />
+            <SectionHeading eyebrow="Who we are" id="who-we-are-title" title="One manufacturer. A focused material business." />
             <div className={styles.prose}>
-              <p>Taiyi Polymer is how international customers meet our material portfolio and engineering support. Jiangsu Taiyi Nano Technology Co., Ltd. is the legal entity operating the manufacturing site.</p>
+              <p>From the Yancheng manufacturing site, Taiyi Polymer connects international customers with our material portfolio and engineering support.</p>
               <p>Our role is practical: understand what a molded part must do, identify a credible material direction, support evaluation and coordinate repeat supply after the grade is confirmed.</p>
             </div>
           </div>
@@ -153,9 +154,9 @@ export function AboutPageContent({
 
       <section className={styles.story} aria-labelledby="story-title">
         <div className={`site-container ${styles.storyGrid}`}>
-          <SectionHeading eyebrow="Our story" id="story-title" title="Built for industrial material work, not a broad catalogue." description="The verified timeline is intentionally concise: a manufacturing beginning, and the focused material business operating today." />
+          <SectionHeading eyebrow="Our story" id="story-title" title="Built for industrial material work, not a broad catalogue." description="Our story stays concise: manufacturing roots in 2003 and the focused material business operating today." />
           <ol className={styles.timeline}>
-            <li><span>2003</span><div><h3>Manufacturing begins</h3><p>Jiangsu Taiyi begins manufacturing operations in Yancheng, Jiangsu.</p></div></li>
+            <li><span>2003</span><div><h3>Manufacturing roots</h3><p>The manufacturing operation traces its roots to 2003 in Yancheng, Jiangsu.</p></div></li>
             <li><span>Today</span><div><h3>Modified POM remains the core</h3><p>Taiyi Polymer presents the company&apos;s modified POM focus and selected engineering compounds to international projects.</p></div></li>
           </ol>
         </div>
@@ -201,7 +202,7 @@ export function AboutPageContent({
         <div className={`site-container ${styles.peopleGrid}`}>
           {peopleImage ? <figure className={styles.peopleMedia}><Image src={publicPath(peopleImage.src)} alt={peopleImage.alt} fill sizes="(min-width: 1024px) 42vw, 100vw" className={styles.coverImage} /></figure> : null}
           <div className={styles.peopleCopy}>
-            <SectionHeading eyebrow="People behind the material" id="people-title" title="Engineering communication stays connected to production." description="A material decision moves through technical communication, laboratory review, production coordination and quality documentation—not an isolated sales form." />
+            <SectionHeading eyebrow="Engineering support" id="people-title" title="Engineering communication stays connected to production." description="A material decision moves through technical communication, laboratory review, production coordination and quality documentation—not an isolated sales form." />
             <ul>{peopleRoles.map((role) => <li key={role}>{role}</li>)}</ul>
           </div>
           <figure className={styles.labMedia}>
@@ -229,7 +230,7 @@ export function AboutPageContent({
 
       <section className={styles.global} aria-labelledby="global-title">
         <div className={`site-container ${styles.globalGrid}`}>
-          <SectionHeading eyebrow="Global cooperation" id="global-title" title="Material support for international projects." description="Current export routes connect the Yancheng operation with customers and projects across the regions listed here." />
+          <SectionHeading eyebrow="Global cooperation" id="global-title" title="Material support for international projects." description="International projects and market activity connect the Yancheng operation with the regions listed here." />
           <dl className={styles.routeList}>{exportRoutes.map((route, index) => <div key={route.id}><dt><span>0{index + 1}</span>{route.region}</dt><dd>{route.coverage}</dd></div>)}</dl>
         </div>
       </section>
