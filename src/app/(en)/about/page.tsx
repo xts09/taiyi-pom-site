@@ -1,39 +1,33 @@
 import type { Metadata } from "next";
-import { serializeJsonLd } from "@/lib/jsonLd";
-import {
-  AboutCompanySnapshot,
-  AboutCredentials,
-  AboutIdentityPlate,
-  AboutOverviewHero,
-  AboutOverviewInquiry,
-  FactoryProofRows,
-} from "@/app/(en)/about/AboutSections";
+import { AboutPageContent } from "@/app/(en)/about/AboutSections";
 import {
   availableDocuments,
   certifications,
   companyFigures,
   companyQualifications,
   factoryImages,
-  factoryProofRows,
 } from "@/data/company";
+import { exportRoutes } from "@/data/exportRoutes";
+import { serializeJsonLd } from "@/lib/jsonLd";
 import {
   companyName,
   createBreadcrumbJsonLd,
   createPageMetadata,
   createWebPageJsonLd,
-  siteUrl,
+  organizationJsonLd,
+  siteName,
 } from "@/lib/seo";
 import styles from "./AboutPage.module.css";
 
 const aboutDescription =
-  "Taiyi Polymer is the public brand of Jiangsu Taiyi Nano Technology Co., Ltd., a Yancheng manufacturer focused on modified POM and selected PA6, PA66, and PPA compounds.";
+  "Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd., a Yancheng manufacturer focused on modified POM and selected engineering plastic compounds.";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Engineering Plastic Compound Manufacturer | Taiyi Polymer",
   description: aboutDescription,
   path: "/about",
-  image: "/company-profile.webp",
-  imageAlt: "Jiangsu Taiyi Nano factory and engineering plastic compounding operations",
+  image: "/factory-exterior.webp",
+  imageAlt: "Taiyi Polymer factory in Yancheng, Jiangsu, China",
 });
 
 const aboutJsonLd = [
@@ -42,13 +36,23 @@ const aboutJsonLd = [
       title: "Engineering Plastic Compound Manufacturer | Taiyi Polymer",
       description: aboutDescription,
       path: "/about",
-      image: "/company-profile.webp",
+      image: "/factory-exterior.webp",
     }),
     "@type": "AboutPage",
     about: {
-      "@type": "Organization",
-      name: companyName,
-      url: siteUrl,
+      "@type": organizationJsonLd["@type"],
+      name: siteName,
+      legalName: companyName,
+      alternateName: companyName,
+      url: organizationJsonLd.url,
+      logo: organizationJsonLd.logo,
+      brand: organizationJsonLd.brand,
+      foundingDate: organizationJsonLd.foundingDate,
+      address: organizationJsonLd.address,
+      email: organizationJsonLd.email,
+      contactPoint: organizationJsonLd.contactPoint,
+      knowsAbout: organizationJsonLd.knowsAbout,
+      sameAs: ["https://www.linkedin.com/company/taiyi-nano-technology/"],
     },
   },
   createBreadcrumbJsonLd([
@@ -57,69 +61,33 @@ const aboutJsonLd = [
   ]),
 ];
 
-const heroImage =
-  factoryImages.find((image) => image.placement === "hero") ?? factoryImages[0];
-
-const manufacturingProofRows = [...factoryProofRows].sort((a, b) => {
-  const order: Record<string, number> = {
-    "In-House Compounding": 0,
-    "Material Testing & Documents": 1,
-    "Repeat Production & Batch Records": 2,
-  };
-
-  return order[a.title] - order[b.title];
-});
+function imageFor(placement: "hero" | "story" | "gallery" | "testing") {
+  return factoryImages.find((image) => image.placement === placement);
+}
 
 export default function AboutPage() {
+  const heroImage = imageFor("hero") ?? factoryImages[0];
+  const storyImage = imageFor("story") ?? heroImage;
+  const manufacturingImage = imageFor("gallery") ?? storyImage;
+  const laboratoryImage = imageFor("testing") ?? manufacturingImage;
+
   return (
-    <main className={`${styles.page} ${styles.pageLight} ${styles.overviewPage}`}>
+    <main className={styles.page}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(aboutJsonLd),
-        }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(aboutJsonLd) }}
       />
-
-      <AboutOverviewHero heroImage={heroImage} />
-
-      <AboutIdentityPlate
-        label="Yancheng, Jiangsu · Manufacturing since 2003"
-        title="The manufacturer behind Taiyi Polymer."
-        description="Taiyi Polymer is the public brand of Jiangsu Taiyi Nano Technology Co., Ltd., the legal entity operating the Yancheng facility."
+      <AboutPageContent
+        availableDocuments={availableDocuments}
+        certifications={certifications}
+        exportRoutes={exportRoutes}
+        figures={companyFigures}
+        heroImage={heroImage}
+        laboratoryImage={laboratoryImage}
+        manufacturingImage={manufacturingImage}
+        qualifications={companyQualifications}
+        storyImage={storyImage}
       />
-
-      <div className={styles.overviewCanvas}>
-        <AboutCompanySnapshot figures={companyFigures} />
-
-        <section
-          id="manufacturing"
-          className={styles.manufacturingEvidence}
-          aria-labelledby="manufacturing-evidence-title"
-        >
-          <div className="site-container">
-            <header className={styles.overviewSectionHeader}>
-              <h2 id="manufacturing-evidence-title">
-                From trial batch to repeat production.
-              </h2>
-              <p>
-                The same site prepares trial compounds, compares candidate
-                materials and handles repeat production after a grade is
-                confirmed.
-              </p>
-            </header>
-            <FactoryProofRows rows={manufacturingProofRows} />
-          </div>
-        </section>
-
-        <div className={`site-container ${styles.overviewRail}`}>
-          <AboutCredentials
-            availableDocuments={availableDocuments}
-            certifications={certifications}
-            qualifications={companyQualifications}
-          />
-          <AboutOverviewInquiry />
-        </div>
-      </div>
     </main>
   );
 }
