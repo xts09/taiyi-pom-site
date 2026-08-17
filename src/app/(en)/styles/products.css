@@ -640,17 +640,30 @@
 
 @media (max-width: 47.999rem) {
   .products-motion-root .product-directory-shell .product-index-hero {
+    --product-directory-mobile-media-height: clamp(12.5rem, 36vw, 14.5rem);
+
     min-height: 0;
+    background: var(--ds-background-canvas);
+    padding: calc(var(--product-directory-mobile-media-height) - var(--ds-space-4))
+      max(0px, calc((100% - var(--site-rail-width)) / 2)) 0;
+  }
+
+  .products-motion-root .product-directory-shell .product-index-hero::before {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 0;
+    display: block;
+    height: var(--product-directory-mobile-media-height);
     background:
       linear-gradient(
         180deg,
-        transparent 0 9.5rem,
-        var(--ds-background-canvas) 13rem
+        transparent 0 68%,
+        var(--ds-background-canvas) 100%
       ),
-      url("/generated/pom-white-pellets-hero-v2.webp") top right / auto 13rem
-        no-repeat,
-      var(--ds-background-canvas);
-    padding: 11rem max(0px, calc((100% - var(--site-rail-width)) / 2)) 0;
+      url("/generated/pom-white-pellets-hero-v2.webp") right 58% / 170% auto
+        no-repeat;
+    content: "";
+    pointer-events: none;
   }
 
   .products-motion-root .product-directory-shell .product-hero-card {
