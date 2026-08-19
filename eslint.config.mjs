@@ -16,6 +16,9 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     ".codex-run/**",
     ".gitnexus/**",
+    "output/**",
+    "outputs/**",
+    "tmp/**",
     // Generated promo/demo artifacts are not part of the Next.js app lint surface.
     "taiyi-pom-promo/**",
     "taiyi-pom-wear-promo/**",
