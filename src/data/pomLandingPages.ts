@@ -1,3 +1,9 @@
+import { catalogProducts } from "@/data/catalog";
+import {
+  conductiveCompounds,
+  conductiveSeries,
+} from "@/data/conductiveCompounds";
+
 export type LandingMetric = {
   label: string;
   value: string;
@@ -12,6 +18,12 @@ export type LandingSection = {
 export type CatalogEvidenceItem = {
   label: string;
   detail: string;
+};
+
+export type GradeEvidenceItem = {
+  grade: string;
+  modification: string;
+  electricalDirection: string;
 };
 
 export type LandingRelatedLink = {
@@ -35,6 +47,8 @@ export type PomLandingPageData = {
   eyebrow: string;
   intro: string;
   primaryActionLabel: string;
+  secondaryActionLabel?: string;
+  heroProof?: string;
   heroImage?: {
     src: string;
     alt: string;
@@ -45,6 +59,10 @@ export type PomLandingPageData = {
     title: string;
     note: string;
     items: CatalogEvidenceItem[];
+  };
+  gradeEvidence?: {
+    title: string;
+    items: GradeEvidenceItem[];
   };
   reviewInputs: string[];
   relatedLinks: LandingRelatedLink[];
@@ -84,17 +102,68 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
 
 export const publicTechnicalLandingLinks = technicalLandingLinks;
 
+const listedPomGradeCount = catalogProducts.filter(
+  (product) => product.polymer === "POM",
+).length;
+
+const conductivePomDirectoryEvidence = (["cnt", "cf"] as const).flatMap(
+  (technology) => {
+    const entries = conductiveCompounds.filter(
+      (compound) =>
+        compound.matrix === "POM" && compound.technology === technology,
+    );
+
+    if (!entries.length) {
+      return [];
+    }
+
+    return [
+      {
+        grade: entries.map((entry) => entry.grade).join(" / "),
+        modification: conductiveSeries[technology].shortLabel,
+        electricalDirection: entries
+          .map((entry) => entry.rangeLabel)
+          .join(" / "),
+      },
+    ];
+  },
+);
+
+const conductivePomProductEvidence = catalogProducts
+  .filter(
+    (product) =>
+      product.polymer === "POM" &&
+      product.category === "Conductive / Antistatic POM Compound",
+  )
+  .slice(0, 3)
+  .map((product) => ({
+    grade: `POM ${product.grade}`,
+    modification: product.category,
+    electricalDirection:
+      product.features.find((feature) =>
+        /conductive|antistatic|resistivity/i.test(feature),
+      ) ?? product.description,
+  }));
+
+const conductivePomGradeEvidence = [
+  ...conductivePomDirectoryEvidence,
+  ...conductivePomProductEvidence,
+] satisfies GradeEvidenceItem[];
+
 export const pomLandingPages = {
   modifiedPomCompounds: {
     slug: "modified-pom-compounds",
-    title: "Modified POM Technical Overview",
-    metaTitle: "Modified POM Technical Overview | Taiyi Polymer",
+    title: "Modified POM Compounds & Grade Selection",
+    metaTitle: "Modified POM Compounds & Grade Data | Taiyi Polymer",
     metaDescription:
-      "Compare Taiyi Polymer modified POM options for wear-resistant, low-friction, reinforced, conductive, antistatic, impact, UV, low-odor, and high-flow molded parts.",
-    eyebrow: "Technical Screening Page",
+      "Compare modified POM grades for wear, low friction, reinforcement, conductivity, impact and flow. Review grade data, TDS support and sample options.",
+    eyebrow: "Modified POM Portfolio",
     intro:
-      "Compare catalog-listed modified POM options by the job the molded part must perform, then narrow the list for TDS review, samples, and molding trials.",
+      "Compare catalog-listed modified POM grades for wear, low friction, reinforcement, conductivity, impact and flow, then narrow candidates for TDS review, samples and molding trials.",
     primaryActionLabel: "Request a POM Grade Recommendation",
+    secondaryActionLabel: "Browse POM Grade Data",
+    heroProof:
+      `Factory compounder · ${listedPomGradeCount} listed POM grades · Grade-specific technical documents · Samples for evaluation`,
     metrics: [
       { label: "Material family", value: "POM" },
       { label: "Selection basis", value: "Molded part" },
@@ -290,11 +359,12 @@ export const pomLandingPages = {
     title: "Conductive and Antistatic POM",
     metaTitle: "Conductive and Antistatic POM Compound | Taiyi Polymer",
     metaDescription:
-      "Compare Taiyi Polymer conductive and antistatic POM options for charge-control molded parts, electrical components, and functional precision applications.",
+      "Compare conductive and antistatic POM grades by resistivity target, filler system and part requirements. Review grade data, documents and sample options.",
     eyebrow: "Charge-Control POM",
     intro:
       "Select conductive or antistatic POM by the required electrical measurement, part function, color, retained mechanical properties, and finished-part test method.",
-    primaryActionLabel: "Compare an Electrical Requirement",
+    primaryActionLabel: "Request a Conductive POM Grade Review",
+    secondaryActionLabel: "View Conductive POM Grade Data",
     heroImage: {
       src: "/generated/landing/conductive-antistatic-pom-functional-components.png",
       alt: "Illustrative black precision-molded functional component forms",
@@ -305,6 +375,10 @@ export const pomLandingPages = {
       { label: "Selection data", value: "Resistivity" },
       { label: "Fit", value: "Functional parts" },
     ],
+    gradeEvidence: {
+      title: "Available POM Charge-Control Grades",
+      items: conductivePomGradeEvidence,
+    },
     sections: [
       {
         title: "Electrical Target First",
@@ -327,33 +401,6 @@ export const pomLandingPages = {
         ],
       },
     ],
-    catalogEvidence: {
-      title: "Charge-Control Grades in the Catalogue",
-      note:
-        "The catalogue lists charge-control POM grades. Confirm the electrical target with the required surface or volume method on the molded part.",
-      items: [
-        {
-          label: "POM E-CF3 / E-CN3",
-          detail:
-            "Carbon-nanotube conductive POM described as lightweight, permanent, and non-blooming.",
-        },
-        {
-          label: "POM GP3 / GP8",
-          detail:
-            "Carbon-fiber conductive POM listed with a 10^6-10^8 range and a thermal-conductive note.",
-        },
-        {
-          label: "POM EGH25CN / ECN1003B",
-          detail:
-            "Black conductive and antistatic POM grades with controlled resistivity data for electrical and industrial molded parts.",
-        },
-        {
-          label: "Cross-material antistatic series",
-          detail:
-            "The catalogue also lists carbon-nanotube antistatic grades across ABS, ASA, PA6, PA66, PBT, PC, PC/ABS, PPA, PPO, and other polymers in R35 or R610 target bands.",
-        },
-      ],
-    },
     reviewInputs: [
       "Required resistivity range",
       "Surface or volume measurement method",

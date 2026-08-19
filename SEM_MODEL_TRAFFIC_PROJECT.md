@@ -49,7 +49,7 @@ These third-party directions are internal only. They must not appear in public l
 - Keep a technical evidence pack per grade: TDS, SDS, testing conditions/standards, sample results, available REACH/RoHS evidence, and application records.
 - Current commercial baseline: the selected grades are stocked, samples can be arranged, and customization is available. Confirm the specific sample dispatch time and customization scope for each inquiry.
 - REACH and RoHS must not be presented as automatically available for every grade. State that supporting documents can be requested and are confirmed or applied for according to the grade and project requirement.
-- EGB25 currently uses supplied table data and is marked `data-only`; obtain a dated, controlled TDS before public release. Verify the listed `Suggested Max Moisture: 5%` processing value in that TDS.
+- EGB25 uses supplied table data and is marked `data-only` because its formal TDS is provided through the Request TDS workflow rather than a repository-hosted PDF. The formal TDS is ready for external customer use. Verify the listed `Suggested Max Moisture: 5%` processing value against the controlled TDS.
 - Capture current material, application, processing, key targets, color, annual volume, required certifications, and current problem in every inquiry.
 - Sales and technical teams review together; send samples and support molding trials before any replacement commitment.
 

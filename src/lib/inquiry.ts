@@ -9,9 +9,13 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export type InquiryPayload = {
   company?: string;
   email?: string;
+  grade?: string;
+  inquiryType?: string;
+  intent?: string;
   material?: string;
   application?: string;
   message?: string;
+  source?: string;
   website?: string;
 };
 
@@ -62,8 +66,12 @@ export const createInquiryBody = (payload: InquiryPayload) =>
     "",
     `Company: ${cleanText(payload.company)}`,
     `Email: ${cleanText(payload.email, "Not specified", 254)}`,
+    `Inquiry Type: ${cleanText(payload.inquiryType)}`,
+    `CTA Intent: ${cleanText(payload.intent)}`,
     `Material Interest: ${cleanText(payload.material)}`,
     `Application / Part: ${cleanText(payload.application)}`,
+    `Grade: ${cleanText(payload.grade)}`,
+    `Source: ${cleanText(payload.source)}`,
     "",
     "Requirement Details:",
     cleanText(payload.message, "Not specified", inquiryMessageMaxLength),

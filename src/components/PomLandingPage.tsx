@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { createContactHref } from "@/lib/contactContext";
+import {
+  createContactHref,
+  type ContactIntent,
+} from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { ActionPanel } from "@/components/ActionPanel";
 import { MetricGroup } from "@/components/MetricGroup";
@@ -14,12 +17,20 @@ const landingMaterialBySlug: Partial<Record<PomLandingPageData["slug"], string>>
   "wear-resistant-low-friction-pom": "Wear-Resistant & Low-Friction POM",
 };
 
+const landingIntentBySlug: Partial<
+  Record<PomLandingPageData["slug"], ContactIntent>
+> = {
+  "conductive-antistatic-pom": "grade-evaluation",
+  "modified-pom-compounds": "grade-evaluation",
+};
+
 export function PomLandingPage({ page }: { page: PomLandingPageData }) {
   const hasImageHero = Boolean(page.heroImage);
   const heroClassName = hasImageHero
     ? "pom-landing-hero pom-landing-hero-image"
     : "pom-landing-hero pom-landing-hero-plain";
   const contactHref = createContactHref({
+    intent: landingIntentBySlug[page.slug],
     material: landingMaterialBySlug[page.slug],
     source: page.title,
   });
@@ -91,11 +102,44 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                 size="form"
                 className="pom-landing-secondary-action"
               >
-                <Link href="/technical-data-sheets">Find Technical Data</Link>
+                <Link href="/technical-data-sheets">
+                  {page.secondaryActionLabel ?? "Find Technical Data"}
+                </Link>
               </Button>
             </div>
+
+            {page.heroProof ? (
+              <p className="pom-landing-proof-strip">{page.heroProof}</p>
+            ) : null}
           </div>
         </div>
+
+        {page.gradeEvidence ? (
+          <section className="pom-landing-grade-evidence">
+            <div className="pom-landing-section-head">
+              <p className="section-kicker">Grade Evidence</p>
+              <h2>{page.gradeEvidence.title}</h2>
+            </div>
+            <div className="pom-landing-grade-evidence-list">
+              {page.gradeEvidence.items.map((item) => (
+                <article key={item.grade}>
+                  <div>
+                    <span>Grade / family</span>
+                    <strong>{item.grade}</strong>
+                  </div>
+                  <div>
+                    <span>Modification direction</span>
+                    <p>{item.modification}</p>
+                  </div>
+                  <div>
+                    <span>Published electrical direction</span>
+                    <p>{item.electricalDirection}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <MetricGroup
           className="pom-landing-metrics"

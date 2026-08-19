@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { contactEmail, contactPhoneSchema } from "@/lib/contactDetails";
 import {
   createEngineeringTdsSlug,
   type EngineeringTdsDocument,
@@ -17,7 +18,7 @@ export const brandName = "PLATFORM";
 
 export const companyName = "Jiangsu Taiyi Nano Technology Co., Ltd.";
 
-export const contactEmail = "xiatianshi@jstynm.com";
+export { contactEmail };
 
 export const defaultDescription =
   "Taiyi Polymer manufactures modified POM, PA6, PA66, and PPA compounds for wear, low-friction, reinforced, conductive, and functional molded parts.";
@@ -283,7 +284,7 @@ export const organizationJsonLd = {
       "@type": "ContactPoint",
       contactType: "sales",
       email: contactEmail,
-      telephone: "+86-18796418919",
+      telephone: contactPhoneSchema,
       availableLanguage: ["en", "zh"],
     },
   ],

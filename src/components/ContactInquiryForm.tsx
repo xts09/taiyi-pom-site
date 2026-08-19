@@ -5,8 +5,8 @@ import {
   trackInquiryFallback,
   trackInquirySubmitted,
 } from "@/lib/conversionEvents";
+import { contactEmail } from "@/lib/contactDetails";
 import { pomSubcategoryLabels, productCategoryOrder } from "@/lib/productCategories";
-import { contactEmail } from "@/lib/seo";
 import {
   clearContactRequirement,
   readContactRequirement,
@@ -16,6 +16,7 @@ import {
   inquiryClientTimeoutMs,
   inquiryMessageMaxLength,
 } from "@/lib/inquiryLimits";
+import type { ContactIntent } from "@/lib/contactContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -40,12 +41,17 @@ const materialOptions = Array.from(
 type ContactInquiryFormProps = {
   contextLabel?: string;
   initialApplication?: string;
+  initialGrade?: string;
+  initialIntent?: ContactIntent;
   initialMaterial?: string;
   initialMessage?: string;
+  initialSource?: string;
   loadStoredRequirement?: boolean;
   messages: ContactFormMessages;
   requirementLabel?: string;
 };
+
+type InquiryType = ContactIntent | "quote-supply";
 
 const readField = (
   formData: FormData,
@@ -66,6 +72,9 @@ const buildInquiryMessage = (
     `${messages.email}: ${readField(formData, "email", messages.notSpecified)}`,
     `${messages.material}: ${readField(formData, "material", messages.notSpecified)}`,
     `${messages.application}: ${readField(formData, "application", messages.notSpecified)}`,
+    `${messages.inquiryType}: ${readField(formData, "inquiryType", messages.notSpecified)}`,
+    `${messages.grade}: ${readField(formData, "grade", messages.notSpecified)}`,
+    `${messages.source}: ${readField(formData, "source", messages.notSpecified)}`,
     "",
     messages.details,
     readField(formData, "message", messages.notSpecified),
@@ -76,8 +85,11 @@ const buildInquiryMessage = (
 export function ContactInquiryForm({
   contextLabel,
   initialApplication = "",
+  initialGrade = "",
+  initialIntent,
   initialMaterial = "",
   initialMessage = "",
+  initialSource = "",
   loadStoredRequirement = false,
   messages,
   requirementLabel = "Priority requirement",
@@ -87,9 +99,14 @@ export function ContactInquiryForm({
     "idle" | "submitting" | "sent" | "fallback"
   >("idle");
   const [application, setApplication] = useState(initialApplication);
+  const [grade, setGrade] = useState(initialGrade);
+  const [inquiryType, setInquiryType] = useState<InquiryType | "">(
+    initialIntent ?? "",
+  );
   const [material, setMaterial] = useState(initialMaterial);
   const [message, setMessage] = useState(safeInitialMessage);
   const [prefilledMessage, setPrefilledMessage] = useState(safeInitialMessage);
+  const [source, setSource] = useState(initialSource);
   const [showContext, setShowContext] = useState(Boolean(contextLabel));
   const selectableMaterialOptions =
     initialMaterial && !materialOptions.includes(initialMaterial)
@@ -136,6 +153,9 @@ export function ContactInquiryForm({
     );
     setMaterial((value) => (value === initialMaterial ? "" : value));
     setMessage((value) => (value === prefilledMessage ? "" : value));
+    setGrade("");
+    setInquiryType("");
+    setSource("");
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -169,9 +189,13 @@ export function ContactInquiryForm({
         body: JSON.stringify({
           company: readField(formData, "company"),
           email: readField(formData, "email"),
+          grade: readField(formData, "grade", ""),
+          inquiryType: readField(formData, "inquiryType", ""),
+          intent: readField(formData, "intent", ""),
           material: readField(formData, "material"),
           application: readField(formData, "application"),
           message: readField(formData, "message"),
+          source: readField(formData, "source", ""),
           website: String(formData.get("website") ?? ""),
         }),
         signal: controller.signal,
@@ -186,8 +210,11 @@ export function ContactInquiryForm({
         setStatus("sent");
         form.reset();
         setApplication("");
+        setGrade("");
+        setInquiryType("");
         setMaterial("");
         setMessage("");
+        setSource("");
         setShowContext(false);
         clearContactRequirement();
         return;
@@ -218,6 +245,14 @@ export function ContactInquiryForm({
         autoComplete="off"
         aria-hidden="true"
       />
+      <input name="grade" type="hidden" value={grade} readOnly />
+      <input
+        name="inquiryType"
+        type="hidden"
+        value={inquiryType ? messages.inquiryTypeOptions[inquiryType] : ""}
+        readOnly
+      />
+      <input name="source" type="hidden" value={source} readOnly />
 
       {showContext && contextLabel ? (
         <div className={styles.context}>
@@ -237,6 +272,26 @@ export function ContactInquiryForm({
       ) : null}
 
       <div className="contact-form-grid">
+        <label className="contact-field">
+          <span>{messages.inquiryTypeLabel}</span>
+          <Select
+            name="intent"
+            value={inquiryType}
+            onChange={(event) =>
+              setInquiryType(event.target.value as InquiryType | "")
+            }
+          >
+            <option value="" disabled>
+              {messages.inquiryTypePlaceholder}
+            </option>
+            {Object.entries(messages.inquiryTypeOptions).map(([value, label]) => (
+              <option key={value} value={value}>
+                {label}
+              </option>
+            ))}
+          </Select>
+        </label>
+
         <label className="contact-field">
           <span>
             {messages.companyLabel}{" "}

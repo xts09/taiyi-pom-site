@@ -8,12 +8,14 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import type { FloatingContactMessages } from "@/i18n/types";
-import { contactEmail } from "@/lib/seo";
+import {
+  contactEmail,
+  contactPhoneDisplay,
+  contactTelephoneHref,
+  contactWhatsAppUrl,
+} from "@/lib/contactDetails";
 
 import styles from "./FloatingContact.module.css";
-
-const contactPhoneDisplay = "+86 187 9641 8919";
-const contactPhoneDigits = "8618796418919";
 
 type FloatingContactProps = {
   messages: FloatingContactMessages;
@@ -38,14 +40,14 @@ function FloatingContactShell({
       external: false,
     },
     {
-      href: `https://wa.me/${contactPhoneDigits}`,
+      href: contactWhatsAppUrl,
       label: messages.whatsapp,
       detail: contactPhoneDisplay,
       icon: MessageCircle,
       external: true,
     },
     {
-      href: `tel:+${contactPhoneDigits}`,
+      href: contactTelephoneHref,
       label: messages.call,
       detail: contactPhoneDisplay,
       icon: Phone,

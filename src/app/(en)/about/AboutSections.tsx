@@ -122,10 +122,9 @@ export function AboutPageContent({
         <div className={`site-container ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>About Taiyi Polymer</p>
-            <h1 id="about-title">An engineering materials manufacturer built around the part.</h1>
+            <h1 id="about-title">A Focused Engineering Materials Manufacturer.</h1>
             <p className={styles.heroSummary}>
-              <span className={styles.heroSummaryDesktop}>Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd., a manufacturer in Yancheng, Jiangsu, China. With manufacturing roots dating to 2003, we focus on modified POM, with selected PA6, PA66 and PPA compounds for projects that require another material family.</span>
-              <span className={styles.heroSummaryMobile}>Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd. Based in Yancheng, with manufacturing roots dating to 2003, we focus on modified POM and selected engineering compounds.</span>
+              Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd., focused on modified POM and selected engineering compounds from our Yancheng manufacturing site.
             </p>
             <div className={styles.heroActions}>
               <Button asChild variant="inverse" size="form"><Link href="/products">Explore Our Materials</Link></Button>
@@ -139,10 +138,9 @@ export function AboutPageContent({
       <section className={styles.identity} aria-labelledby="who-we-are-title">
         <div className={`site-container ${styles.identityGrid}`}>
           <div className={styles.identityCopy}>
-            <SectionHeading eyebrow="Who we are" id="who-we-are-title" title="One manufacturer. A focused material business." />
+            <SectionHeading eyebrow="Who we are" id="who-we-are-title" title="From Material Requirement to Grade Evaluation." />
             <div className={styles.prose}>
-              <p>From the Yancheng manufacturing site, Taiyi Polymer connects international customers with our material portfolio and engineering support.</p>
-              <p>Our role is practical: understand what a molded part must do, identify a credible material direction, support evaluation and coordinate repeat supply after the grade is confirmed.</p>
+              <p>We work from part requirements, processing conditions and target properties to narrow suitable material directions, review grade data and support sample-based validation.</p>
             </div>
           </div>
           <figure className={styles.identityMedia}>
@@ -235,7 +233,11 @@ export function AboutPageContent({
         </div>
       </section>
 
-      <section className={styles.finalCta} aria-labelledby="about-cta-title">
+      <section
+        className={styles.finalCta}
+        aria-labelledby="about-cta-title"
+        data-footer-adjacent="true"
+      >
         <div className={`site-container ${styles.finalCtaGrid}`}>
           <div><p className={styles.eyebrow}>Start a technical conversation</p><h2 id="about-cta-title">Talk to Taiyi Polymer.</h2><p>Share the part, operating conditions, target properties or current grade. We&apos;ll help identify the next practical step.</p></div>
           <ul>{inquirySituations.map((situation) => <li key={situation}>{situation}</li>)}</ul>

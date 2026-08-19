@@ -15,8 +15,13 @@ import type {
   ResourceTaxonomyKey,
   TaxonomyMessages,
 } from "@/i18n/types";
+import {
+  contactEmail,
+  contactPhoneDisplay,
+  contactTelephoneHref,
+  contactWhatsAppUrl,
+} from "@/lib/contactDetails";
 import { getCategoryPath } from "@/lib/productCategories";
-import { contactEmail } from "@/lib/seo";
 
 function LinkedInMark({
   size = 20,
@@ -151,17 +156,17 @@ export function Footer({
       external: false,
     },
     {
-      href: "tel:+8618796418919",
+      href: contactTelephoneHref,
       label: messages.call,
-      detail: "+86 187 9641 8919",
+      detail: contactPhoneDisplay,
       icon: Phone,
       ariaLabel: messages.callAria,
       external: false,
     },
     {
-      href: "https://wa.me/8618796418919",
+      href: contactWhatsAppUrl,
       label: "WhatsApp",
-      detail: "+86 187 9641 8919",
+      detail: contactPhoneDisplay,
       icon: WhatsAppMark,
       ariaLabel: messages.whatsappAria,
       external: true,
@@ -181,14 +186,14 @@ export function Footer({
                 height={217}
               />
             </span>
-            <div className="site-footer-brand-body">
+            <div className="site-footer-brand-body" data-nosnippet>
               <p className="site-footer-brand-relation">
                 {messages.brandRelation}
               </p>
             </div>
           </div>
 
-          <div className="site-footer-pitch">
+          <div className="site-footer-pitch" data-nosnippet>
             <h2>{messages.pitchTitle}</h2>
             <p className="site-footer-pitch-copy">{messages.pitchCopy}</p>
             <Link
@@ -203,6 +208,7 @@ export function Footer({
           <div
             className="site-footer-contact-actions"
             aria-label={messages.contactActionsAria}
+            data-nosnippet
           >
             {contactActions.map((item) => (
               <a

@@ -54,6 +54,16 @@ test("normalizes inbound values and ignores unsupported intents", () => {
   );
 });
 
+test("leaves a direct contact visit without an inferred intent", () => {
+  assert.deepEqual(parseContactContext({}), {});
+});
+
+test("keeps each recognized intent distinct in contact context", () => {
+  for (const intent of ["tds", "sample", "grade-evaluation"]) {
+    assert.equal(parseContactContext({ intent }).intent, intent);
+  }
+});
+
 test("creates an editable message for grade-specific intents", () => {
   assert.equal(
     getContactContextMessage({
@@ -61,6 +71,24 @@ test("creates an editable message for grade-specific intents", () => {
       intent: "sample",
     }),
     "Grade of interest: ETM750\nInquiry intent: Sample request"
+  );
+});
+
+test("preserves the TDS request intent in a contact handoff", () => {
+  const href = createContactHref({
+    grade: "ETM090NC",
+    intent: "tds",
+    material: "Base POM Resin",
+    source: "Product grade",
+  });
+
+  assert.equal(
+    href,
+    "/contact?source=Product+grade&material=Base+POM+Resin&grade=ETM090NC&intent=tds",
+  );
+  assert.equal(
+    getContactContextMessage({ intent: "tds" }),
+    "Inquiry intent: TDS or documents",
   );
 });
 

@@ -96,10 +96,6 @@
   line-height: 1.7;
 }
 
-.heroSummaryMobile {
-  display: none;
-}
-
 .heroActions {
   display: flex;
   flex-wrap: wrap;
@@ -833,14 +829,6 @@
   .heroCopy > p:not(.heroEyebrow) {
     font-size: 0.9375rem;
     line-height: 1.65;
-  }
-
-  .heroSummaryDesktop {
-    display: none;
-  }
-
-  .heroSummaryMobile {
-    display: inline;
   }
 
   .heroActions {

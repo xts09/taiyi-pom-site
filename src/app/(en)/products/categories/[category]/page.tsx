@@ -144,14 +144,20 @@ export default async function ProductCategoryPage({
     isPomCategory
       ? "POM Material Grades"
       : entry.label;
-  const heroTitle = isPomCategory ? "POM Materials" : entry.label;
+  const heroTitle = isPomCategory
+    ? "POM Material Grades & Modified Compounds"
+    : entry.label;
+  const primaryActionLabel = isPomCategory
+    ? "Request a POM Grade Shortlist"
+    : "Discuss Your Application";
   const contactHref = createContactHref({
+    intent: isPomCategory ? "grade-evaluation" : undefined,
     material: isPomCategory ? "Modified POM Compounds" : entry.label,
     source: "Product category",
   });
   const pageDescription =
     isPomCategory
-      ? "A focused directory for Taiyi Polymer modified POM compounds and selected base resin data used in precision molded mechanical parts."
+      ? `Browse ${categoryProducts.length} listed POM grades across wear-resistant and low-friction, high-impact, UV-resistant, glass-fiber reinforced, glass-bead filled, carbon-fiber reinforced, conductive and antistatic, and base resin families.`
       : getCategoryDescription(entry.category);
   const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
     entry.category,
@@ -285,7 +291,7 @@ export default async function ProductCategoryPage({
 
             <div className="product-hero-cta">
               <Button asChild size="productHero" variant="productHeroPrimary">
-                <Link href={contactHref}>Discuss Your Application</Link>
+                <Link href={contactHref}>{primaryActionLabel}</Link>
               </Button>
               <Button asChild size="productHero" variant="productHeroSecondary">
                 <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
@@ -296,7 +302,7 @@ export default async function ProductCategoryPage({
 
         <SecondarySectionNav
           actions={[
-            { href: contactHref, label: "Discuss Your Application" },
+            { href: contactHref, label: primaryActionLabel },
             {
               href: "/technical-data-sheets",
               label: "Find Grade Data & TDS",

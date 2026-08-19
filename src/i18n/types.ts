@@ -278,6 +278,14 @@ export type ContactFormMessages = {
   contextFrom: string;
   contextPrefilled: string;
   clearContext: string;
+  inquiryTypeLabel: string;
+  inquiryTypePlaceholder: string;
+  inquiryTypeOptions: {
+    "grade-evaluation": string;
+    tds: string;
+    sample: string;
+    "quote-supply": string;
+  };
   companyLabel: string;
   companyPlaceholder: string;
   emailLabel: string;
@@ -301,6 +309,9 @@ export type ContactFormMessages = {
     email: string;
     material: string;
     application: string;
+    inquiryType: string;
+    grade: string;
+    source: string;
     details: string;
     closing: string;
     subjectPrefix: string;
@@ -358,6 +369,7 @@ export type ContactMessages = {
     intent: string;
     sampleIntent: string;
     evaluationIntent: string;
+    tdsIntent: string;
   };
   form: ContactFormMessages;
 };

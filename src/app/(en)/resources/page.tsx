@@ -19,11 +19,13 @@ import {
 } from "@/lib/seo";
 
 const resourcesTitle = "Technical Resources | Taiyi Polymer";
+const resourcesMetadataTitle =
+  "Material Selection & Technical Resources | Taiyi Polymer";
 const resourcesDescription =
   "Choose a technical resource path for material selection, processing and troubleshooting, or grade data and validation.";
 
 export const metadata: Metadata = createPageMetadata({
-  title: resourcesTitle,
+  title: resourcesMetadataTitle,
   description: resourcesDescription,
   path: "/resources",
   image: "/og-resources-material-selection.jpg",
@@ -73,12 +75,12 @@ export default function ResourcesPage() {
             <div className="resource-index-hero-content">
               <p className="resource-index-kicker">Technical Resources</p>
               <h1 id="resource-index-title">
-                Start With the Engineering Task
+                Material Selection, Processing & Validation Resources
               </h1>
               <p className="resource-index-description">
-                Choose a path for material selection, molding and
-                troubleshooting, or grade data and validation. Each section
-                keeps the detailed articles in context.
+                Browse practical resources for material selection, POM molding
+                and troubleshooting, grade data, and alternative-grade
+                validation.
               </p>
               <div className="resource-index-actions">
                 <Button

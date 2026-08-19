@@ -11,9 +11,13 @@ const endpoint = "https://www.taiyipolymer.com/api/inquiry";
 const validPayload = {
   company: "Example Plastics",
   email: "engineer@example.com",
+  grade: "ETM090NC",
+  inquiryType: "TDS or documents",
+  intent: "tds",
   material: "Modified POM Compounds",
   application: "Precision gear",
   message: "Please review wear and dimensional stability.",
+  source: "Product grade",
 };
 
 const createRequest = (payload = validPayload, headers = {}) =>
@@ -66,7 +70,65 @@ test("delivers a valid inquiry with reply-to context", async () => {
   assert.equal(body.to, "sales@example.com");
   assert.equal(body.reply_to, validPayload.email);
   assert.match(body.subject, /Example Plastics/);
+  assert.match(body.text, /TDS or documents/);
+  assert.match(body.text, /ETM090NC/);
   assert.match(body.text, /Precision gear/);
+  assert.match(body.text, /Product grade/);
+});
+
+test("accepts a direct inquiry without fabricating an inquiry type", async () => {
+  let resendRequest;
+  const handler = createInquiryHandler({
+    contactEmail: "sales@example.com",
+    resendApiKey: "re_test_key",
+    resendFromEmail: "inquiries@example.com",
+    fetchImpl: async (_input, init) => {
+      resendRequest = init;
+      return new Response(null, { status: 200 });
+    },
+  });
+  const response = await handler(
+    createRequest({
+      ...validPayload,
+      grade: "",
+      inquiryType: "",
+      intent: "",
+      source: "",
+    }),
+  );
+
+  assert.equal(response.status, 200);
+  const body = JSON.parse(resendRequest.body);
+  assert.match(body.text, /Inquiry Type: Not specified/);
+  assert.match(body.text, /CTA Intent: Not specified/);
+  assert.doesNotMatch(body.text, /Grade recommendation/);
+});
+
+test("preserves sample intent and grade context in the submitted inquiry", async () => {
+  let resendRequest;
+  const handler = createInquiryHandler({
+    contactEmail: "sales@example.com",
+    resendApiKey: "re_test_key",
+    resendFromEmail: "inquiries@example.com",
+    fetchImpl: async (_input, init) => {
+      resendRequest = init;
+      return new Response(null, { status: 200 });
+    },
+  });
+  const response = await handler(
+    createRequest({
+      ...validPayload,
+      inquiryType: "Sample",
+      intent: "sample",
+    }),
+  );
+
+  assert.equal(response.status, 200);
+  const body = JSON.parse(resendRequest.body);
+  assert.match(body.text, /Inquiry Type: Sample/);
+  assert.match(body.text, /CTA Intent: sample/);
+  assert.match(body.text, /Grade: ETM090NC/);
+  assert.match(body.text, /Source: Product grade/);
 });
 
 test("returns a gateway error when Resend rejects delivery", async () => {

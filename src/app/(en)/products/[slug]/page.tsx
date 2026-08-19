@@ -290,8 +290,21 @@ function EngineeringProductDetailPage({
   const categoryUrl = getCategoryPath(category);
   const slug = createEngineeringTdsSlug(document);
   const title = getEngineeringTdsTitle(document);
-  const contactHref = createContactHref({
+  const tdsRequestHref = createContactHref({
     grade: document.grade,
+    intent: "tds",
+    material: `${document.family} Compounds`,
+    source: "Product grade",
+  });
+  const sampleRequestHref = createContactHref({
+    grade: document.grade,
+    intent: "sample",
+    material: `${document.family} Compounds`,
+    source: "Product grade",
+  });
+  const gradeEvaluationHref = createContactHref({
+    grade: document.grade,
+    intent: "grade-evaluation",
     material: `${document.family} Compounds`,
     source: "Product grade",
   });
@@ -426,16 +439,14 @@ function EngineeringProductDetailPage({
                         size="productDetailHero"
                         variant="productDetailPrimary"
                       >
-                        <Link href={contactHref}>Discuss Your Application</Link>
+                        <Link href={tdsRequestHref}>Request TDS</Link>
                       </Button>
                       <Button
                         asChild
                         size="productDetailHero"
                         variant="productDetailSecondary"
                       >
-                        <Link href="/technical-data-sheets">
-                          Find Grade Data & TDS
-                        </Link>
+                        <Link href={sampleRequestHref}>Request Sample</Link>
                       </Button>
                     </div>
                   </div>
@@ -540,7 +551,7 @@ function EngineeringProductDetailPage({
                 processing, impact, electrical, and project-specific data are
                 provided through TDS or project review.
               </p>
-              <Link href={contactHref}>Request Full TDS</Link>
+              <Link href={tdsRequestHref}>Request Full TDS</Link>
             </div>
           </section>
 
@@ -608,7 +619,9 @@ function EngineeringProductDetailPage({
                 variant="inverse"
                 className="h-auto px-5 py-3 text-sm"
               >
-                <Link href={contactHref}>Discuss Your Application</Link>
+                <Link href={gradeEvaluationHref}>
+                  Request Grade Evaluation
+                </Link>
               </Button>
             }
           >
@@ -708,27 +721,24 @@ export default async function ProductDetailPage({
   const contactMaterial =
     pomSubcategoryLabels[getCanonicalProductCategory(product.category)] ??
     product.category;
-  const productContactHref = createContactHref({
+  const tdsRequestHref = createContactHref({
     grade: product.grade,
+    intent: "tds",
     material: contactMaterial,
     source: "Product grade",
   });
-  const sampleRequestHref = campaignProfile
-    ? createContactHref({
-        grade: product.grade,
-        intent: "sample",
-        material: contactMaterial,
-        source: "Product grade",
-      })
-    : productContactHref;
-  const gradeEvaluationHref = campaignProfile
-    ? createContactHref({
-        grade: product.grade,
-        intent: "grade-evaluation",
-        material: contactMaterial,
-        source: "Product grade",
-      })
-    : "/technical-data-sheets";
+  const sampleRequestHref = createContactHref({
+    grade: product.grade,
+    intent: "sample",
+    material: contactMaterial,
+    source: "Product grade",
+  });
+  const gradeEvaluationHref = createContactHref({
+    grade: product.grade,
+    intent: "grade-evaluation",
+    material: contactMaterial,
+    source: "Product grade",
+  });
 
   const productsToShow = selectRelatedGrades({
     items: products,
@@ -867,10 +877,12 @@ export default async function ProductDetailPage({
                     size="productDetailHero"
                     variant="productDetailPrimary"
                   >
-                    <Link href={sampleRequestHref}>
+                    <Link
+                      href={campaignProfile ? sampleRequestHref : tdsRequestHref}
+                    >
                       {campaignProfile
                         ? `Request an ${product.grade} Sample`
-                        : "Discuss Your Application"}
+                        : "Request TDS"}
                     </Link>
                   </Button>
                   <Button
@@ -878,10 +890,12 @@ export default async function ProductDetailPage({
                     size="productDetailHero"
                     variant="productDetailSecondary"
                   >
-                    <Link href={gradeEvaluationHref}>
+                    <Link
+                      href={campaignProfile ? gradeEvaluationHref : sampleRequestHref}
+                    >
                       {campaignProfile
                         ? "Ask for Grade Evaluation"
-                        : "Find Grade Data & TDS"}
+                        : "Request Sample"}
                     </Link>
                   </Button>
                 </div>
@@ -998,7 +1012,7 @@ export default async function ProductDetailPage({
                   processing, impact, electrical, and project-specific data are
                   provided through TDS or project review.
                 </p>
-                <Link href={productContactHref}>Request Full TDS</Link>
+                <Link href={tdsRequestHref}>Request Full TDS</Link>
               </div>
             </section>
           ) : (
@@ -1145,11 +1159,11 @@ export default async function ProductDetailPage({
                 className="h-auto px-5 py-3 text-sm"
               >
                 <Link
-                  href={campaignProfile ? gradeEvaluationHref : productContactHref}
+                  href={gradeEvaluationHref}
                 >
                   {campaignProfile
                     ? `Ask for ${product.grade} Evaluation`
-                    : "Discuss Your Application"}
+                    : "Request Grade Evaluation"}
                 </Link>
               </Button>
             }

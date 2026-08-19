@@ -9,11 +9,16 @@ import {
   parseContactContext,
   type ContactContextSearchParams,
 } from "@/lib/contactContext";
+import {
+  contactEmail,
+  contactPhoneCompactDisplay,
+  contactPhoneSchema,
+  contactWhatsAppUrl,
+} from "@/lib/contactDetails";
 import { selectionWorkspaceContactSource } from "@/lib/contactRequirementStorage";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
   absoluteUrl,
-  contactEmail,
   companyName,
   createBreadcrumbJsonLd,
   createWebPageJsonLd,
@@ -89,13 +94,13 @@ export async function ContactPage({
         name: companyName,
         url: siteUrl,
         email: contactEmail,
-        telephone: "+86-18796418919",
+        telephone: contactPhoneSchema,
         contactPoint: [
           {
             "@type": "ContactPoint",
             contactType: "sales",
             email: contactEmail,
-            telephone: "+86-18796418919",
+            telephone: contactPhoneSchema,
             availableLanguage: ["en", "zh"],
           },
         ],
@@ -142,12 +147,18 @@ export async function ContactPage({
                   contextLabel,
                   contactContext.application,
                   contactContext.material,
+                  contactContext.grade,
+                  contactContext.intent,
+                  contactContext.source,
                   initialMessage,
                 ].join("|")}
                 contextLabel={contextLabel}
                 initialApplication={contactContext.application}
+                initialGrade={contactContext.grade}
+                initialIntent={contactContext.intent}
                 initialMaterial={contactContext.material}
                 initialMessage={initialMessage}
+                initialSource={contactContext.source}
                 loadStoredRequirement={
                   contactContext.source === selectionWorkspaceContactSource
                 }
@@ -194,11 +205,11 @@ export async function ContactPage({
                     {messages.sales.whatsapp}
                   </p>
                   <a
-                    href="https://wa.me/8618796418919"
+                    href={contactWhatsAppUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    +86 18796418919
+                    {contactPhoneCompactDisplay}
                   </a>
                 </div>
 
