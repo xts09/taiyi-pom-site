@@ -57,9 +57,9 @@ export const companyFigures: CompanyFigure[] = [
     note: "Metric tons per year",
   },
   {
-    label: "Years in Operation",
-    value: "23+",
-    note: "Manufacturing since 2003",
+    label: "Manufacturing Roots",
+    value: "2003",
+    note: "Engineering plastics manufacturing heritage",
   },
   {
     label: "Twin-Screw Lines",

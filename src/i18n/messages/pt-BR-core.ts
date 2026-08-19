@@ -19,7 +19,7 @@ const messages = {
     },
     metrics: [
       { label: "Capacidade anual de compostos", note: "Toneladas métricas por ano" },
-      { label: "Anos de operação", note: "Fabricação desde 2003" },
+      { label: "Raízes industriais", note: "Tradição na fabricação de plásticos de engenharia" },
       { label: "Linhas de dupla rosca", note: "Linhas internas de extrusão" },
       { label: "Área da unidade", note: "Metros quadrados" },
       { label: "Equipamentos de ensaio", note: "Unidades internas" },

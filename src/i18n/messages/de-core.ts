@@ -19,7 +19,7 @@ const messages = {
     },
     metrics: [
       { label: "Jährliche Compound-Kapazität", note: "Tonnen pro Jahr" },
-      { label: "Jahre in Betrieb", note: "Fertigung seit 2003" },
+      { label: "Wurzeln der Fertigung", note: "Tradition in der Herstellung technischer Kunststoffe" },
       { label: "Doppelschneckenlinien", note: "Eigene Extrusionslinien" },
       { label: "Betriebsfläche", note: "Quadratmeter" },
       { label: "Prüfgeräte", note: "Eigene Einheiten" },

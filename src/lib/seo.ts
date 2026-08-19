@@ -27,26 +27,8 @@ export const defaultOgImage = "/factory-hero-no-machine-poster.jpg";
 
 export const organizationLogo = "/platform-wordmark.png";
 
-const formatMetadataDescription = (description: string, maxLength = 160) => {
-  const normalized = description.replace(/\s+/g, " ").trim();
-  const ellipsis = "...";
-
-  if (normalized.length <= maxLength) {
-    return normalized;
-  }
-
-  if (maxLength <= ellipsis.length) {
-    return normalized.slice(0, maxLength);
-  }
-
-  const candidate = normalized.slice(0, maxLength - ellipsis.length);
-  const lastWordBoundary = candidate.lastIndexOf(" ");
-  const trimmed = candidate
-    .slice(0, lastWordBoundary > maxLength * 0.7 ? lastWordBoundary : undefined)
-    .replace(/[,:;.\-\s]+$/, "");
-
-  return `${trimmed || candidate}${ellipsis}`;
-};
+const formatMetadataDescription = (description: string) =>
+  description.replace(/\s+/g, " ").trim();
 
 export const absoluteUrl = (path = "/") =>
   path.startsWith("http")
@@ -271,7 +253,6 @@ export const organizationJsonLd = {
     "@type": "Brand",
     name: brandName,
   },
-  foundingDate: "2003-06-18",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Yancheng",

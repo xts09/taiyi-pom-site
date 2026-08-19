@@ -20,7 +20,7 @@ import {
 import styles from "./AboutPage.module.css";
 
 const aboutDescription =
-  "Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd., a Yancheng manufacturer focused on modified POM and selected engineering plastic compounds.";
+  "Taiyi Polymer is the international materials brand of Jiangsu Taiyi Nano Technology Co., Ltd., focused on modified POM and selected engineering compounds.";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Engineering Plastic Compound Manufacturer | Taiyi Polymer",
@@ -41,13 +41,12 @@ const aboutJsonLd = [
     "@type": "AboutPage",
     about: {
       "@type": organizationJsonLd["@type"],
-      name: siteName,
+      name: companyName,
       legalName: companyName,
-      alternateName: companyName,
+      alternateName: siteName,
       url: organizationJsonLd.url,
       logo: organizationJsonLd.logo,
       brand: organizationJsonLd.brand,
-      foundingDate: organizationJsonLd.foundingDate,
       address: organizationJsonLd.address,
       email: organizationJsonLd.email,
       contactPoint: organizationJsonLd.contactPoint,

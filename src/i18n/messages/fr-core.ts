@@ -19,7 +19,7 @@ const messages = {
     },
     metrics: [
       { label: "Capacité annuelle de compounds", note: "Tonnes par an" },
-      { label: "Années d'activité", note: "Production depuis 2003" },
+      { label: "Racines industrielles", note: "Héritage dans la fabrication de plastiques techniques" },
       { label: "Lignes bivis", note: "Lignes d'extrusion internes" },
       { label: "Surface du site", note: "Mètres carrés" },
       { label: "Équipements d'essai", note: "Unités internes" },

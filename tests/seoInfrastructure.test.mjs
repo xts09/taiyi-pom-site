@@ -64,6 +64,30 @@ test("retired or misleading SEO markers stay removed", () => {
   assert.match(seoSource, /^\s*knowsAbout:\s*\[/m);
 });
 
+test("metadata descriptions remain complete and company history stays distinct from legal founding", () => {
+  const seoSource = readFileSync(resolve(projectRoot, "src/lib/seo.ts"), "utf8");
+  const companySource = readFileSync(
+    resolve(projectRoot, "src/data/company.ts"),
+    "utf8",
+  );
+  const aboutSource = readFileSync(
+    resolve(projectRoot, "src/app/(en)/about/page.tsx"),
+    "utf8",
+  );
+
+  assert.doesNotMatch(seoSource, /const ellipsis\s*=|foundingDate/);
+  assert.match(
+    seoSource,
+    /formatMetadataDescription = \(description: string\) =>\s*description\.replace/,
+  );
+  assert.match(companySource, /label: "Manufacturing Roots"/);
+  assert.match(companySource, /value: "2003"/);
+  assert.doesNotMatch(companySource, /Years in Operation|Manufacturing since 2003/);
+  assert.doesNotMatch(aboutSource, /foundingDate/);
+  assert.match(aboutSource, /name: companyName/);
+  assert.match(aboutSource, /alternateName: siteName/);
+});
+
 test("product grade pages expose truthful Product JSON-LD and visible breadcrumbs", () => {
   const seoSource = readFileSync(resolve(projectRoot, "src/lib/seo.ts"), "utf8");
   const productPageSource = readFileSync(
