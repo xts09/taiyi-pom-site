@@ -94,9 +94,7 @@ const formatReferenceFacts = (facts: string[]) => {
 
 type GradeCampaignProfile = {
   eyebrow: string;
-  positioning: string;
   mfiNote: string;
-  screeningCopy: string;
 };
 
 type GradeDecisionLink = {
@@ -160,83 +158,43 @@ const gradeDecisionLinks: Partial<
 const gradeCampaignProfiles: Record<string, GradeCampaignProfile> = {
   "etm750-base-pom-resin": {
     eyebrow: "Very High-Flow POM · Injection Molding",
-    positioning:
-      "Thin-wall and flow-sensitive parts, screened with published grade data and confirmed through sample molding.",
     mfiNote: "Very high-flow profile",
-    screeningCopy:
-      "Start with the published values, then review the part, process, and document requirements before sampling.",
   },
   "xt-100-base-pom-resin": {
     eyebrow: "Low-Density High-Impact POM · Injection Molding",
-    positioning:
-      "A low-density, high-impact POM screening direction for precision and general injection-molded parts.",
     mfiNote: "Low-density high-impact profile",
-    screeningCopy:
-      "Start with the published density and impact data, then review part geometry, process conditions, and document requirements before sampling.",
   },
   "egb25-glass-bead-pom": {
     eyebrow: "25% Glass Bead Filled POM · Injection Molding",
-    positioning:
-      "A glass-bead-filled POM screening direction for injection-molded parts requiring balanced longitudinal and transverse shrinkage review.",
     mfiNote: "Glass-bead-filled profile",
-    screeningCopy:
-      "Start with the published shrinkage data, then review part geometry, molding orientation, process conditions, and document requirements before sampling.",
   },
   "egh502h-glass-fiber-pom": {
     eyebrow: "25% Glass Fiber Reinforced POM · Injection Molding",
-    positioning:
-      "A glass-fiber-reinforced POM screening direction for molded parts requiring high rigidity, creep-resistance, and low-shrinkage review.",
     mfiNote: "Reinforced flow profile",
-    screeningCopy:
-      "Start with the published rigidity, shrinkage, and thermal data, then review part geometry, load condition, process conditions, and document requirements before sampling.",
   },
   "ehi402t-high-impact-pom": {
     eyebrow: "High-Impact POM · Injection Molding",
-    positioning:
-      "A high-impact POM screening direction for functional injection-molded parts requiring toughness and low-temperature performance review.",
     mfiNote: "Toughness-focused flow profile",
-    screeningCopy:
-      "Start with the published grade data, then review part geometry, impact target, process conditions, and document requirements before sampling.",
   },
   "edr180-high-impact-pom": {
     eyebrow: "High-Impact POM · Injection Molding",
-    positioning:
-      "A high-impact POM screening direction for functional injection-molded parts requiring toughness and low-temperature performance review.",
     mfiNote: "High-impact flow profile",
-    screeningCopy:
-      "Start with the published grade data, then review part geometry, impact target, process conditions, and document requirements before sampling.",
   },
   "ecn1003b-conductive-pom": {
     eyebrow: "Conductive POM · Injection Molding",
-    positioning:
-      "A conductive POM screening direction for injection-molded parts requiring resistivity and charge-control performance review.",
     mfiNote: "Conductive flow profile",
-    screeningCopy:
-      "Start with the published resistivity data, then review part geometry, electrical target, process conditions, and document requirements before sampling.",
   },
   "etm450-base-pom-resin": {
     eyebrow: "High-Flow POM · Injection Molding",
-    positioning:
-      "A high-flow POM screening direction for precision injection-molded parts requiring flow and mechanical-profile review.",
     mfiNote: "High-flow profile",
-    screeningCopy:
-      "Start with the published flow and mechanical data, then review part geometry, process conditions, and document requirements before sampling.",
   },
   "epaf100a-high-wear-resistant-pom": {
     eyebrow: "Wear-Resistant POM · Injection Molding",
-    positioning:
-      "An aramid-fiber-modified POM screening direction for injection-molded parts requiring wear, stiffness, and thermal-profile review.",
     mfiNote: "Wear-focused flow profile",
-    screeningCopy:
-      "Start with the published wear, stiffness, and thermal data, then review the mating surface, load, speed, process conditions, and document requirements before sampling.",
   },
   "etm090u-uv-resistant-pom": {
     eyebrow: "UV-Resistant POM · Injection Molding",
-    positioning:
-      "A UV-resistant POM screening direction for molded parts requiring material, color, and exposure-condition review.",
     mfiNote: "UV-resistant flow profile",
-    screeningCopy:
-      "Start with the published grade data, then review the exposure condition, color, part geometry, process conditions, and document requirements before sampling.",
   },
 };
 
@@ -447,7 +405,7 @@ function EngineeringProductDetailPage({
                         size="productDetailHero"
                         variant="productDetailPrimary"
                       >
-                        <Link href={tdsRequestHref}>Request TDS</Link>
+                        <Link href={tdsRequestHref}>Request Full TDS</Link>
                       </Button>
                       <Button
                         asChild
@@ -841,19 +799,12 @@ export default async function ProductDetailPage({
 
                 <h1>{product.grade}</h1>
 
-                {campaignProfile ? (
-                  <p className="product-detail-positioning">
-                    {campaignProfile.positioning}
-                  </p>
-                ) : null}
-
                 <p className="product-detail-summary">
                   {campaignProfile ? (
                     <>
-                      {product.description} The recorded profile lists{" "}
-                      {gradeProfile}. Use these values for early screening, then
-                      confirm suitability with the actual part, tooling, and
-                      processing conditions.
+                      {product.description} Published screening values include{" "}
+                      {gradeProfile}. Confirm the final choice with the actual
+                      part, tooling, and processing conditions.
                     </>
                   ) : (
                     <>
@@ -890,7 +841,7 @@ export default async function ProductDetailPage({
                     >
                       {campaignProfile
                         ? `Request an ${product.grade} Sample`
-                        : "Request TDS"}
+                        : "Request Full TDS"}
                     </Link>
                   </Button>
                   <Button
@@ -932,7 +883,9 @@ export default async function ProductDetailPage({
                   : "Grade Snapshot"}
               </strong>
               <p>
-                {campaignProfile?.screeningCopy ??
+                {campaignProfile
+                  ? "Published reference values and test methods for initial grade comparison."
+                  :
                   "Check the core values and review sections before confirming this material for a molded part."}
               </p>
             </div>

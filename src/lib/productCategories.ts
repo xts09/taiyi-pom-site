@@ -47,8 +47,8 @@ const pomCategoryOverview = {
   ],
   selectionLinks: [
     {
-      label: "Compare modified POM compounds and grades",
-      href: "/modified-pom-compounds",
+      label: "Choose modified POM by part requirement",
+      href: "/modified-pom-compounds#part-requirement-map",
     },
     {
       label: "MoS2-filled POM grade data: EMS162",

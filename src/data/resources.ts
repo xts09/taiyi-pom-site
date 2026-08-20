@@ -486,8 +486,8 @@ export const resourcePages: ResourcePage[] = [
         href: "/resources/material-selection-guide",
       },
       {
-        label: "Compare Modified POM Grades",
-        href: "/modified-pom-compounds",
+        label: "Re-screen by Part Requirement",
+        href: "/modified-pom-compounds#part-requirement-map",
       },
       { label: "Discuss an Alternative Grade", href: "/contact" },
     ],
@@ -1139,8 +1139,8 @@ export const resourcePages: ResourcePage[] = [
     relatedLinks: [
       { label: "POM Processing Guide", href: "/resources/processing-guide" },
       {
-        label: "Review Modified POM Grade Directions",
-        href: "/modified-pom-compounds",
+        label: "Review Dimensional-Control POM Directions",
+        href: "/modified-pom-compounds#reinforcement-dimensional-control",
       },
       {
         label: "Application Review by Part Function",

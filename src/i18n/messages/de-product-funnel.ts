@@ -19,13 +19,13 @@ const messages = {
       imageAlt: "Naturfarbenes POM-Basisharz von Taiyi Polymer",
     },
     hero: {
-      eyebrow: "Werkstoffverzeichnis",
+      eyebrow: "Modifizierte POM-Familie",
       title: "POM-Basisharz",
       description:
         "Vergleichen Sie Basistypen für Präzisions- und allgemeine Spritzgussteile anhand von Fließfähigkeit, mechanischem Profil, Wärmeformbeständigkeit und Bauteilgeometrie.",
-      overviewLabel: "Auswahlrahmen",
+      overviewLabel: "Auswahlweg",
       overview:
-        "Die Vorauswahl beginnt mit Fließweg, Wanddicke, Werkzeugzustand und den geforderten Bauteileigenschaften. Die endgültige Freigabe erfolgt nach Musterung im Kundenprozess.",
+        "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
       documentsTitle: "Unterlagen nach Typ und Projekt",
       documentsBody:
         "TDS, SDS, COA, REACH und RoHS werden nach Typ, Zielmarkt und Projektstand bestätigt.",
@@ -114,13 +114,13 @@ const messages = {
         imageAlt: "Naturfarbenes glaskugelgefülltes POM von Taiyi Polymer",
       },
       hero: {
-        eyebrow: "Werkstoffverzeichnis",
+        eyebrow: "Modifizierte POM-Familie",
         title: "Glaskugelgefülltes POM",
         description:
           "Bewerten Sie EGB25 mit 25 % Glaskugeln anhand von Fließfähigkeit, Längs- und Querschwindung, Wärmeprofil und den Anforderungen des Formteils.",
-        overviewLabel: "Auswahlrahmen",
+        overviewLabel: "Auswahlweg",
         overview:
-          "Glaskugeln können die Schwindungsrichtung und Maßhaltigkeit beeinflussen. Die Vorauswahl muss deshalb Werkzeug, Anschnitt, Wanddicke und reale Bauteilgeometrie einbeziehen.",
+          "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
       },
       navigation: {
         aria: "Abschnittsnavigation glaskugelgefülltes POM",
@@ -175,13 +175,13 @@ const messages = {
         imageAlt: "Naturfarbenes glasfaserverstärktes POM von Taiyi Polymer",
       },
       hero: {
-        eyebrow: "Werkstoffverzeichnis",
+        eyebrow: "Modifizierte POM-Familie",
         title: "Glasfaserverstärktes POM",
         description:
           "Vergleichen Sie POM-Typen mit 10 bis 30 % Glasfaser anhand von Fließfähigkeit, Steifigkeit, Schwindung, Wärmeprofil und Anforderungen an das Formteil.",
-        overviewLabel: "Auswahlrahmen",
+        overviewLabel: "Auswahlweg",
         overview:
-          "Fasergehalt, Faserorientierung, Anschnitt und Bauteilgeometrie bestimmen die reale Steifigkeit, Schwindung und Verzugstendenz. Die Daten sind deshalb gemeinsam mit dem Werkzeugkonzept zu bewerten.",
+          "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
       },
       navigation: {
         aria: "Abschnittsnavigation glasfaserverstärktes POM",
@@ -244,13 +244,13 @@ const messages = {
         imageAlt: "Naturfarbenes schlagzähmodifiziertes POM von Taiyi Polymer",
       },
       hero: {
-        eyebrow: "Werkstoffverzeichnis",
+        eyebrow: "Modifizierte POM-Familie",
         title: "Schlagzähmodifiziertes POM",
         description:
           "Vergleichen Sie sechs POM-Typen für erhöhte Schlagzähigkeit und Tieftemperaturanforderungen anhand von Fließfähigkeit, Dehnung, Festigkeit und Wärmeprofil.",
-        overviewLabel: "Auswahlrahmen",
+        overviewLabel: "Auswahlweg",
         overview:
-          "Schlagzähigkeit muss zusammen mit Steifigkeit, Dehnung, Wanddicke, Kerben, Lastfall und Einsatztemperatur bewertet werden. Die endgültige Auswahl erfolgt am realen Formteil.",
+          "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
       },
       navigation: {
         aria: "Abschnittsnavigation schlagzähmodifiziertes POM",
@@ -310,10 +310,8 @@ const messages = {
     },
     breadcrumb: "XT-100",
     eyebrow: "POM mit niedriger Dichte und hoher Schlagzähigkeitsrichtung · Spritzguss",
-    positioning:
-      "Ein Kandidat für Präzisions- und allgemeine Spritzgussteile, bei denen Dichte, Schlagzähigkeit und ein ausgewogenes Fließprofil gemeinsam geprüft werden.",
     summary:
-      "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+      "XT-100 ist ein Kandidat für Präzisions- und allgemeine Spritzgussteile, bei denen Dichte, Schlagzähigkeit und ein ausgewogenes Fließprofil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
     documentSupport: "Dokumentenunterstützung",
     documentNote: "Verfügbarkeit wird nach Typ, Zielmarkt und Projekt bestätigt.",
     sampleAction: "XT-100 Muster anfragen",
@@ -323,7 +321,7 @@ const messages = {
       aria: "XT-100 Kennwertübersicht",
       title: "XT-100 Auswahlprofil",
       body:
-        "Prüfen Sie zuerst Fließfähigkeit, Zugfestigkeit, Wärmeformbeständigkeit und Farbe; danach folgen Bauteil- und Prozessvalidierung.",
+        "Veröffentlichte Referenzwerte und Prüfverfahren für den ersten Typenvergleich.",
       mfi: "MFI",
       tensile: "Zugfestigkeit",
       hdt: "HDT",
@@ -427,16 +425,14 @@ const messages = {
       },
       breadcrumb: "ETM450",
       eyebrow: "Hochfließendes POM · Spritzguss",
-      positioning:
-        "Ein Kandidat für Präzisionsspritzgussteile, bei denen gute Formfüllung und ein belastbares mechanisches Profil gemeinsam geprüft werden.",
       summary:
-        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+        "ETM450 ist ein Kandidat für Präzisionsspritzgussteile, bei denen gute Formfüllung und ein belastbares mechanisches Profil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
       sampleAction: "ETM450 Muster anfragen",
       snapshot: {
         aria: "ETM450 Kennwertübersicht",
         title: "ETM450 Auswahlprofil",
         body:
-          "Prüfen Sie zuerst Fließfähigkeit, Zugfestigkeit, Wärmeformbeständigkeit und Farbe; danach folgen Bauteil- und Prozessvalidierung.",
+          "Veröffentlichte Referenzwerte und Prüfverfahren für den ersten Typenvergleich.",
         flowNote: "Hochfließendes Profil für Präzisionsspritzguss",
       },
       sectionNavAria: "Abschnitte der ETM450 Produktseite",
@@ -473,16 +469,14 @@ const messages = {
       },
       breadcrumb: "ETM750",
       eyebrow: "Sehr hochfließendes POM · Spritzguss",
-      positioning:
-        "Ein Kandidat für dünnwandige und füllkritische Spritzgussteile, bei denen lange Fließwege und die mechanische Leistung gemeinsam geprüft werden.",
       summary:
-        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+        "ETM750 ist ein Kandidat für dünnwandige und füllkritische Spritzgussteile, bei denen lange Fließwege und die mechanische Leistung gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
       sampleAction: "ETM750 Muster anfragen",
       snapshot: {
         aria: "ETM750 Kennwertübersicht",
         title: "ETM750 Auswahlprofil",
         body:
-          "Prüfen Sie zuerst Fließfähigkeit, Zugfestigkeit, Wärmeformbeständigkeit und Farbe; danach folgen Füll-, Bauteil- und Prozessvalidierung.",
+          "Veröffentlichte Referenzwerte und Prüfverfahren für den ersten Typenvergleich.",
         flowNote: "Sehr hochfließendes Profil für dünnwandige Formteile",
       },
       sectionNavAria: "Abschnitte der ETM750 Produktseite",
@@ -520,16 +514,14 @@ const messages = {
       },
       breadcrumb: "EGB25",
       eyebrow: "POM mit 25 % Glaskugeln · Spritzguss",
-      positioning:
-        "Ein Kandidat für Spritzgussteile, bei denen Längs- und Querschwindung sowie das thermische Profil gemeinsam geprüft werden müssen.",
       summary:
-        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+        "EGB25 ist ein Kandidat für Spritzgussteile, bei denen Längs- und Querschwindung sowie das thermische Profil gemeinsam geprüft werden müssen. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
       sampleAction: "EGB25 Muster anfragen",
       snapshot: {
         aria: "EGB25 Kennwertübersicht",
         title: "EGB25 Auswahlprofil",
         body:
-          "Prüfen Sie zuerst Schwindung, Fließfähigkeit, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil- und Prozessvalidierung.",
+          "Veröffentlichte Referenzwerte und Prüfverfahren für den ersten Typenvergleich.",
         flowNote: "MFI 8,5 g/10 min bei 195 °C/2,16 kg",
       },
       sectionNavAria: "Abschnitte der EGB25 Produktseite",
@@ -567,16 +559,14 @@ const messages = {
       },
       breadcrumb: "EGH502H",
       eyebrow: "POM mit 25 % Glasfaser · Hohe Steifigkeit",
-      positioning:
-        "Ein Kandidat für Formteile, bei denen hohe Steifigkeit, geringe Schwindung und das thermische Profil gemeinsam geprüft werden.",
       summary:
-        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Bauteilgeometrie, Faserorientierung, Werkzeug, Prozessfenster und Einsatzbedingungen bestätigt werden.",
+        "EGH502H ist ein Kandidat für Formteile, bei denen hohe Steifigkeit, geringe Schwindung und das thermische Profil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Faserorientierung, Werkzeug, Prozessfenster und Einsatzbedingungen.",
       sampleAction: "EGH502H Muster anfragen",
       snapshot: {
         aria: "EGH502H Kennwertübersicht",
         title: "EGH502H Auswahlprofil",
         body:
-          "Prüfen Sie zuerst Steifigkeit, Schwindung, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil-, Werkzeug- und Prozessvalidierung.",
+          "Veröffentlichte Referenzwerte und Prüfverfahren für den ersten Typenvergleich.",
         flowNote: "MFI 8,5 g/10 min bei 195 °C/2,16 kg",
       },
       sectionNavAria: "Abschnitte der EGH502H Produktseite",
@@ -614,16 +604,14 @@ const messages = {
       },
       breadcrumb: "EHI402T",
       eyebrow: "Schlagzähmodifiziertes POM · Ausgewogene Verarbeitung",
-      positioning:
-        "Ein Kandidat für funktionale Formteile, bei denen verbesserte Zähigkeit, Tieftemperaturverhalten und ein ausgewogenes Verarbeitungsprofil gemeinsam geprüft werden.",
       summary:
-        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur bestätigt werden.",
+        "EHI402T ist ein Kandidat für funktionale Formteile, bei denen verbesserte Zähigkeit, Tieftemperaturverhalten und ein ausgewogenes Verarbeitungsprofil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur.",
       sampleAction: "EHI402T Muster anfragen",
       snapshot: {
         aria: "EHI402T Kennwertübersicht",
         title: "EHI402T Auswahlprofil",
         body:
-          "Prüfen Sie zuerst Schlagkennwerte, Dehnung, Fließfähigkeit, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil- und Tieftemperaturtests.",
+          "Veröffentlichte Referenzwerte und Prüfverfahren für den ersten Typenvergleich.",
         flowNote: "Schlagzähes Profil mit ausgewogener Verarbeitungsrichtung",
       },
       sectionNavAria: "Abschnitte der EHI402T Produktseite",
@@ -661,16 +649,14 @@ const messages = {
       },
       breadcrumb: "EDR180",
       eyebrow: "Schlagzähmodifiziertes POM · Hohe Bruchdehnung",
-      positioning:
-        "Ein Kandidat für funktionale Formteile, bei denen Schlagzähigkeit, Tieftemperaturverhalten und eine hohe Dehnungsreserve gemeinsam bewertet werden.",
       summary:
-        "Die veröffentlichten Werte dienen der frühen Werkstoffauswahl. Die Eignung muss mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur bestätigt werden.",
+        "EDR180 ist ein Kandidat für funktionale Formteile, bei denen Schlagzähigkeit, Tieftemperaturverhalten und eine hohe Dehnungsreserve gemeinsam bewertet werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur.",
       sampleAction: "EDR180 Muster anfragen",
       snapshot: {
         aria: "EDR180 Kennwertübersicht",
         title: "EDR180 Auswahlprofil",
         body:
-          "Prüfen Sie zuerst Schlagkennwerte, Bruchdehnung, Fließfähigkeit, Zugfestigkeit und Wärmeformbeständigkeit; danach folgen Bauteil- und Tieftemperaturtests.",
+          "Veröffentlichte Referenzwerte und Prüfverfahren für den ersten Typenvergleich.",
         flowNote: "Schlagzähes Profil mit hoher Dehnungsrichtung",
       },
       sectionNavAria: "Abschnitte der EDR180 Produktseite",

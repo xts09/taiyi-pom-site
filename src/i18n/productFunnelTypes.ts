@@ -112,7 +112,6 @@ type LocalizedGradeProfileMessages = {
   metadata: MetadataMessages;
   breadcrumb: string;
   eyebrow: string;
-  positioning: string;
   summary: string;
   sampleAction: string;
   snapshot: {
@@ -237,7 +236,6 @@ export type ProductFunnelMessages = {
     metadata: MetadataMessages;
     breadcrumb: string;
     eyebrow: string;
-    positioning: string;
     summary: string;
     documentSupport: string;
     documentNote: string;

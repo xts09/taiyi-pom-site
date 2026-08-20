@@ -17,7 +17,16 @@ export type LandingSection = {
 
 export type CatalogEvidenceItem = {
   label: string;
+  mobileLabel?: string;
   detail: string;
+  href?: string;
+};
+
+export type CatalogEvidenceGroup = {
+  id: string;
+  title: string;
+  description: string;
+  itemLabels: string[];
 };
 
 export type GradeEvidenceItem = {
@@ -47,18 +56,25 @@ export type PomLandingPageData = {
   eyebrow: string;
   intro: string;
   primaryActionLabel: string;
+  primaryActionHref?: string;
   secondaryActionLabel?: string;
+  secondaryActionHref?: string;
   heroProof?: string;
   heroImage?: {
     src: string;
     alt: string;
   };
-  metrics: LandingMetric[];
+  metrics?: LandingMetric[];
   sections: LandingSection[];
+  sectionsVariant?: "steps";
   catalogEvidence?: {
+    kicker?: string;
+    variant?: "directory";
+    position?: "afterHero";
     title: string;
     note: string;
     items: CatalogEvidenceItem[];
+    groups?: CatalogEvidenceGroup[];
   };
   gradeEvidence?: {
     title: string;
@@ -66,6 +82,7 @@ export type PomLandingPageData = {
   };
   reviewInputs: string[];
   relatedLinks: LandingRelatedLink[];
+  showReviewSection?: boolean;
   faqs: Array<{
     question: string;
     answer: string;
@@ -76,9 +93,9 @@ export type PomLandingPageData = {
 export const technicalLandingLinks: LandingRelatedLink[] = [
   {
     href: "/modified-pom-compounds",
-    label: "Modified POM Compounds & Grade Selection",
+    label: "Modified POM Directions by Part Requirement",
     description:
-      "Compare modified POM grades by performance direction before reviewing grade data, documents, and sample options.",
+      "Identify which modification direction deserves review before opening the POM family and grade directories.",
   },
   {
     href: "/wear-resistant-low-friction-pom",
@@ -101,10 +118,6 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
 ];
 
 export const publicTechnicalLandingLinks = technicalLandingLinks;
-
-const listedPomGradeCount = catalogProducts.filter(
-  (product) => product.polymer === "POM",
-).length;
 
 const conductivePomDirectoryEvidence = (["cnt", "cf"] as const).flatMap(
   (technology) => {
@@ -153,69 +166,146 @@ const conductivePomGradeEvidence = [
 export const pomLandingPages = {
   modifiedPomCompounds: {
     slug: "modified-pom-compounds",
-    title: "Modified POM Compounds & Grade Selection",
-    metaTitle: "Modified POM Compounds & Grade Data | Taiyi Polymer",
+    title: "Choose a POM Family by Part Need",
+    metaTitle: "Modified POM Directions by Part Requirement | Taiyi Polymer",
     metaDescription:
-      "Compare modified POM grades for wear, low friction, reinforcement, conductivity, impact and flow. Review grade data, TDS support and sample options.",
-    eyebrow: "Modified POM Portfolio",
+      "Understand which modified POM direction may address wear, friction, impact, stiffness, flow, UV exposure, or electrical control before comparing families and grades.",
+    eyebrow: "",
     intro:
-      "Compare catalog-listed modified POM grades for wear, low friction, reinforcement, conductivity, impact and flow, then narrow candidates for TDS review, samples and molding trials.",
-    primaryActionLabel: "Request a POM Grade Recommendation",
-    secondaryActionLabel: "Browse POM Grade Data",
-    heroProof:
-      `Factory compounder · ${listedPomGradeCount} listed POM grades · Grade-specific technical documents · Samples for evaluation`,
-    metrics: [
-      { label: "Material family", value: "POM" },
-      { label: "Selection basis", value: "Molded part" },
-      { label: "Documents", value: "TDS / SDS / COA" },
-      { label: "Supply role", value: "Factory compounder" },
-    ],
+      "Choose the performance gap that controls the part, then open the relevant PLATFORM POM family to compare listed grades and published data.",
+    heroImage: {
+      src: "/generated/landing/modified-pom-material-landscape-v1.webp",
+      alt: "Dark technical composition of polymer pellets and molded parts",
+    },
+    primaryActionLabel: "Choose by Part Requirement",
+    primaryActionHref: "#part-requirement-map",
+    secondaryActionLabel: "Browse POM Families & Grades",
+    secondaryActionHref: "/products/categories/pom",
     sections: [
       {
-        title: "Choose by the Part Requirement",
-        body: "Start with the performance gap in the molded part, then compare the modification family most likely to address it.",
-        points: [
-          "Flow and mold filling for thin or complex parts",
-          "Wear, friction, noise, or stick-slip in moving assemblies",
-          "Stiffness and dimensional control with reinforcement",
-          "Electrical charge control for functional components",
-        ],
+        title: "Define the governing gap",
+        body: "Start with the part function, failure mode, geometry, environment, and processing constraint that matters most.",
+        points: [],
       },
       {
-        title: "Inputs for a Grade Shortlist",
-        body: "Part duty and mold conditions determine which catalog-listed grades deserve closer comparison.",
-        points: [
-          "Application, current material, and target improvement",
-          "Mold stage, cavity count, gate and flow path, shrinkage concern",
-          "Load, speed, friction, wear, temperature, and assembly condition",
-          "Required documents, color, annual volume, and destination market",
-        ],
+        title: "Open the relevant family",
+        body: "Use the map above to narrow the catalogue to the modification direction that matches that governing gap.",
+        points: [],
+      },
+      {
+        title: "Validate the exact grade",
+        body: "Check current TDS data, molding conditions, samples, and representative part trials before release.",
+        points: [],
       },
     ],
+    sectionsVariant: "steps",
     catalogEvidence: {
-      title: "POM Options Listed in the Catalogue",
+      variant: "directory",
+      position: "afterHero",
+      title: "What must the molded part improve?",
       note:
-        "Based on Taiyi Polymer's 2026 modified POM product catalogue. These are screening options, not complete TDS claims.",
+        "Start with the governing performance gap. Each path opens the relevant family page for grade, application, and document review.",
       items: [
         {
-          label: "Base and high-flow POM",
+          label: "Base POM Resin",
+          mobileLabel: "Base POM",
           detail:
-            "ETM090NC, ETM130, ETM270, ETM450, ETM750, ETM1500, and ETM1800 cover listed MFI-based flow ranges.",
+            "Start here when standard POM behavior fits and the project needs a baseline grade comparison.",
+          href: "/products/categories/base-pom-resin",
         },
         {
-          label: "Wear-resistant / low-friction POM",
+          label: "Ultra-High Flow POM",
+          mobileLabel: "Ultra-high flow",
           detail:
-            "EDM-111, EGH20-TF, EMS162, ENM1040, EP-AF100A, EPAF100A, EPAF96A, EPTL402, ES0162, and ETM270H use listed wear, PTFE, MoS2, aramid, silicone-oil, or lubricant modifications.",
+            "Review for thin-wall or long-flow molded parts where mold filling is the primary screening concern.",
+          href: "/products/categories/ultra-high-flow-pom",
         },
         {
-          label: "Reinforced POM",
+          label: "Wear-Resistant & Low-Friction POM",
+          mobileLabel: "Wear & low friction",
           detail:
-            "EGH402H, EGH502H, EGH602H, ECF200, ECF300, and ECF400 are listed with glass-fiber or carbon-fiber reinforcement.",
+            "For sliding, rotating, or repeated-motion parts where friction, wear, noise, or stick-slip is the main performance gap.",
+          href: "/products/categories/wear-resistant-low-friction-pom-compound",
         },
         {
-          label: "Conductive / antistatic POM",
+          label: "High-Impact POM",
+          mobileLabel: "High impact",
           detail:
-            "E-CF3, E-CN3, GP3, GP8, and ECN1003B are listed for conductive or antistatic POM applications.",
+            "For parts that need greater impact resistance, elongation, or low-temperature toughness than standard POM.",
+          href: "/products/categories/high-impact-pom-compound",
+        },
+        {
+          label: "UV-Resistant POM",
+          mobileLabel: "UV resistant",
+          detail:
+            "For outdoor or light-exposed parts where UV resistance must be screened and confirmed at the grade level.",
+          href: "/products/categories/uv-resistant-pom-compound",
+        },
+        {
+          label: "Glass Fiber Reinforced POM",
+          mobileLabel: "Glass fiber",
+          detail:
+            "For molded parts where higher stiffness, load response, and dimensional control drive material selection.",
+          href: "/products/categories/glass-fiber-reinforced-pom-compound",
+        },
+        {
+          label: "Glass Bead Filled POM",
+          mobileLabel: "Glass bead",
+          detail:
+            "Review when shrinkage behavior, dimensional stability, or surface requirements are central to the project.",
+          href: "/products/categories/glass-bead-filled-pom-compound",
+        },
+        {
+          label: "Carbon Fiber Reinforced POM",
+          mobileLabel: "Carbon fiber",
+          detail:
+            "For high-stiffness or electrically functional parts requiring a carbon-fiber POM direction.",
+          href: "/products/categories/carbon-fiber-reinforced-pom-compound",
+        },
+        {
+          label: "Conductive / Antistatic POM",
+          mobileLabel: "Conductive / antistatic",
+          detail:
+            "For charge-control parts where the target resistance range, test method, and operating environment must be defined before grade selection.",
+          href: "/products/categories/conductive-antistatic-pom-compound",
+        },
+      ],
+      groups: [
+        {
+          id: "processing-flow",
+          title: "Processing and baseline behavior",
+          description:
+            "For standard POM comparison, thin walls, long flow paths, or filling limits.",
+          itemLabels: ["Base POM Resin", "Ultra-High Flow POM"],
+        },
+        {
+          id: "wear-impact-weathering",
+          title: "Durability and environment",
+          description:
+            "For moving interfaces, toughness requirements, or light-exposed parts.",
+          itemLabels: [
+            "Wear-Resistant & Low-Friction POM",
+            "High-Impact POM",
+            "UV-Resistant POM",
+          ],
+        },
+        {
+          id: "reinforcement-dimensional-control",
+          title: "Stiffness and dimensional control",
+          description:
+            "For load response, shrinkage behavior, stability, or reinforced-part requirements.",
+          itemLabels: [
+            "Glass Fiber Reinforced POM",
+            "Glass Bead Filled POM",
+            "Carbon Fiber Reinforced POM",
+          ],
+        },
+        {
+          id: "electrical-control",
+          title: "Electrical charge control",
+          description:
+            "For conductive or antistatic parts defined by resistance range and finished-part testing.",
+          itemLabels: ["Conductive / Antistatic POM"],
         },
       ],
     },
@@ -227,15 +317,21 @@ export const pomLandingPages = {
       "Document and compliance needs",
     ],
     relatedLinks: [
+      { href: "/products/categories/pom", label: "POM Material Families", description: "Compare the family options, then open a category to review its listed grades." },
       technicalLandingLinks[1],
       technicalLandingLinks[2],
-      { href: "/products/categories/pom", label: "POM Material Families", description: "Browse POM material families before opening specific grade data." },
     ],
+    showReviewSection: false,
     faqs: [
       {
         question: "What does modified POM mean?",
         answer:
           "Modified POM means a POM compound adjusted with selected additives, fillers, reinforcements, lubricants, impact modifiers, or electrical modifiers. Final suitability depends on the exact grade and application conditions.",
+      },
+      {
+        question: "How is this page different from the POM material-family directory?",
+        answer:
+          "This page helps identify the relevant modification direction from the part requirement. The POM material-family directory lists the available families and grades, while the technical-data search provides grade-level data and document paths.",
       },
       {
         question: "Can Taiyi Polymer shortlist a grade from an application requirement?",
@@ -339,7 +435,12 @@ export const pomLandingPages = {
         description: "Browse listed POM grades for wear and friction comparison.",
       },
       { href: "/applications/motion-components", label: "Motion Components", description: "Compare gears, bushings, sliders, and moving parts." },
-      technicalLandingLinks[0],
+      {
+        href: "/modified-pom-compounds#wear-impact-weathering",
+        label: "Broaden the Modified POM Review",
+        description:
+          "Compare wear, impact, weathering, reinforced, and functional POM directions from the part requirement.",
+      },
     ],
     faqs: [
       {

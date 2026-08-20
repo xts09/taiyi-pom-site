@@ -138,9 +138,9 @@ const messages = {
       title: "Technische Kunststoff-Compounds",
       subtitle: "Modifiziertes POM als Kernsortiment",
       body:
-        "Beginnen Sie mit der Aufgabe des Bauteils, wählen Sie die nächstliegende Werkstofffamilie und vergleichen Sie anschließend gelistete Typen, Verarbeitungsgrenzen und verfügbare Unterlagen.",
-      startAction: "Mit Bauteilanforderungen starten",
-      dataSheetsAction: "Technische Datenblätter finden",
+        "Durchsuchen Sie modifiziertes POM als Kernsortiment sowie POM-Basisharz und ausgewählte PA6-, PA66-, PPA-, leitfähige und antistatische Optionen, wenn die Anwendung ein anderes Eigenschaftsprofil erfordert.",
+      startAction: "Nach Bauteilanforderung auswählen",
+      dataSheetsAction: "Typendaten & TDS finden",
     },
     selection: {
       kicker: "Anforderung zuerst",

@@ -138,9 +138,9 @@ const messages = {
       title: "Compounds de plastiques techniques",
       subtitle: "Le POM modifié au cœur de la gamme",
       body:
-        "Partez de la fonction attendue de la pièce, choisissez la famille de matériaux la plus proche, puis comparez les grades répertoriés, les contraintes de mise en œuvre et les documents disponibles.",
-      startAction: "Partir des exigences de la pièce",
-      dataSheetsAction: "Trouver les fiches techniques",
+        "Parcourez le POM modifié comme gamme principale, avec la résine POM de base et des options PA6, PA66, PPA, conductrices et antistatiques sélectionnées lorsque l’application exige un autre équilibre de propriétés.",
+      startAction: "Choisir selon les exigences de la pièce",
+      dataSheetsAction: "Trouver les données grade et TDS",
     },
     selection: {
       kicker: "Les exigences d'abord",

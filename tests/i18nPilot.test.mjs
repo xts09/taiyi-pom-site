@@ -566,7 +566,7 @@ test("deep product funnel dictionaries are complete and language-specific", () =
   }
 
   assert.notEqual(deProductFunnel.category.hero.title, frProductFunnel.category.hero.title);
-  assert.notEqual(frProductFunnel.grade.positioning, ptBRProductFunnel.grade.positioning);
+  assert.notEqual(frProductFunnel.grade.summary, ptBRProductFunnel.grade.summary);
   assert.match(deProductFunnel.grade.properties.labels.Density, /Dichte/);
   assert.match(frProductFunnel.grade.properties.labels.Density, /volumique/);
   assert.match(ptBRProductFunnel.grade.properties.labels.Density, /Densidade/);

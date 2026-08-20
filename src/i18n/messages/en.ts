@@ -376,9 +376,9 @@ const messages = {
       title: "Engineering Plastic Compounds",
       subtitle: "Modified POM as the core product line",
       body:
-        "Start with what the part must do, choose the closest material family, then compare listed grades, processing constraints and available documents.",
-      startAction: "Start with Part Requirements",
-      dataSheetsAction: "Find Technical Data Sheets",
+        "Browse modified POM as the core range, with base POM resin and selected PA6, PA66, PPA, conductive, and antistatic options when the application requires a different property balance.",
+      startAction: "Choose by Part Requirement",
+      dataSheetsAction: "Find Grade Data & TDS",
     },
     selection: {
       kicker: "Requirement First",

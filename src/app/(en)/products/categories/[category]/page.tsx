@@ -142,14 +142,17 @@ export default async function ProductCategoryPage({
   const hasEngineeringGrades = engineeringGrades.length > 0;
   const pageTitle =
     isPomCategory
-      ? "POM Material Grades"
+      ? "POM Material Families"
       : entry.label;
   const heroTitle = isPomCategory
-    ? "POM Material Grades & Modified Compounds"
+    ? "Modified POM Compounds by Material Family"
     : entry.label;
-  const primaryActionLabel = isPomCategory
-    ? "Request a POM Grade Shortlist"
-    : "Discuss Your Application";
+  const heroEyebrow = isPomCategory
+    ? "POM Material Portfolio"
+    : isPomSubcategory
+      ? "Modified POM Family"
+      : "Engineering Plastic Family";
+  const primaryActionLabel = "Discuss Your Application";
   const contactHref = createContactHref({
     intent: isPomCategory ? "grade-evaluation" : undefined,
     material: isPomCategory ? "Modified POM Compounds" : entry.label,
@@ -157,7 +160,7 @@ export default async function ProductCategoryPage({
   });
   const pageDescription =
     isPomCategory
-      ? `Browse ${categoryProducts.length} listed POM grades across wear-resistant and low-friction, high-impact, UV-resistant, glass-fiber reinforced, glass-bead filled, carbon-fiber reinforced, conductive and antistatic, and base resin families.`
+      ? "Explore PLATFORM POM options for wear and low friction, impact, UV resistance, reinforcement, electrical control, and base-resin applications. Start with the part requirement, then compare candidate grades and available technical data."
       : getCategoryDescription(entry.category);
   const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
     entry.category,
@@ -256,7 +259,7 @@ export default async function ProductCategoryPage({
           />
 
           <div className="product-hero-card">
-            <p className="product-hero-eyebrow">Material Directory</p>
+            <p className="product-hero-eyebrow">{heroEyebrow}</p>
 
             <h1 className="text-4xl font-black tracking-tight">{heroTitle}</h1>
 
@@ -266,16 +269,17 @@ export default async function ProductCategoryPage({
 
             <div className="products-motion-data product-hero-data">
               <div className="product-hero-summary">
-                <p className="section-kicker mb-2">Overview</p>
+                <p className="section-kicker mb-2">Selection Path</p>
                 {isPomCategory ? (
                   <p>
-                    Compare grade-level properties, mold behavior, color options,
-                    application fit, and documents against the part requirements.
+                    Choose a material family first, then open its category page
+                    to compare listed grades and published data.
                   </p>
                 ) : (
                   <p>
-                    Compare matching grades by properties, mold stage, shrinkage
-                    behavior, color, application fit, and document availability.
+                    Shortlist from the listed grades, then open a grade page to
+                    review published values, application notes, and document
+                    status.
                   </p>
                 )}
               </div>

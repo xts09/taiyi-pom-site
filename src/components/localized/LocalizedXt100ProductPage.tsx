@@ -149,7 +149,6 @@ export function LocalizedProductGradePage({
               <div className="product-detail-main-copy stagger-list">
                 <p className="product-detail-eyebrow">{copy.eyebrow}</p>
                 <h1>{product.grade}</h1>
-                <p className="product-detail-positioning">{copy.positioning}</p>
                 <p className="product-detail-summary">{copy.summary}</p>
 
                 <div className="product-detail-hero-bottom-row stagger-list">

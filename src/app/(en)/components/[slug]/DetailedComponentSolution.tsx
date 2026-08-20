@@ -38,6 +38,10 @@ export function DetailedComponentSolution({
     application: solution.title,
     source: "Component solution",
   });
+  const modifiedPomPath =
+    solution.slug === "ic-handling-trays"
+      ? "/modified-pom-compounds#electrical-control"
+      : "/modified-pom-compounds#wear-impact-weathering";
 
   return (
     <main className={`${styles.page} ${styles.detailPage}`}>
@@ -89,7 +93,7 @@ export function DetailedComponentSolution({
                   <Link href={contactHref}>Discuss Your Application</Link>
                 </Button>
                 <Button asChild size="applicationHero" variant="applicationHeroSecondary">
-                  <Link href="/modified-pom-compounds">Compare Modified POM Grades</Link>
+                  <Link href={modifiedPomPath}>Review Relevant POM Families</Link>
                 </Button>
               </div>
             </div>

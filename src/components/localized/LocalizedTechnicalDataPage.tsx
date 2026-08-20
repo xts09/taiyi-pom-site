@@ -122,7 +122,7 @@ export function LocalizedTechnicalDataPage({
                     <article className="product-detail-resource-panel">
                       <div className="product-detail-resource-copy">
                         <strong>{product.grade}</strong>
-                        <p>{gradeCopy.positioning}</p>
+                        <p>{gradeCopy.summary}</p>
                         <div className="mt-5 flex flex-wrap gap-3">
                           <Button asChild variant="default">
                             <Link href={gradePath}>{copy.viewAction}</Link>

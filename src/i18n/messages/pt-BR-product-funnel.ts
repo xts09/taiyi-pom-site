@@ -19,13 +19,13 @@ const messages = {
       imageAlt: "Resina POM base natural da Taiyi Polymer",
     },
     hero: {
-      eyebrow: "Diretório de materiais",
+      eyebrow: "Família de POM modificado",
       title: "Resina POM base",
       description:
         "Compare grades base para peças injetadas de precisão ou uso geral considerando fluidez, perfil mecânico, HDT e geometria da peça.",
-      overviewLabel: "Critérios de seleção",
+      overviewLabel: "Caminho de seleção",
       overview:
-        "A triagem começa pelo caminho de fluxo, espessura, condição do molde e desempenho exigido. A aprovação final depende de teste no processo real do cliente.",
+        "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
       documentsTitle: "Documentos por grade e projeto",
       documentsBody:
         "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada conforme o grade, o mercado de destino e a etapa do projeto.",
@@ -114,13 +114,13 @@ const messages = {
         imageAlt: "POM natural com microesferas de vidro da Taiyi Polymer",
       },
       hero: {
-        eyebrow: "Diretório de materiais",
+        eyebrow: "Família de POM modificado",
         title: "POM com microesferas de vidro",
         description:
           "Avalie o EGB25, com 25% de microesferas de vidro, por fluidez, contração longitudinal e transversal, perfil térmico e requisitos da peça moldada.",
-        overviewLabel: "Estrutura de seleção",
+        overviewLabel: "Caminho de seleção",
         overview:
-          "As microesferas de vidro podem influenciar o equilíbrio da contração e a estabilidade dimensional. Por isso, a triagem deve considerar molde, ponto de injeção, espessura e geometria real.",
+          "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
       },
       navigation: {
         aria: "Navegação das seções de POM com microesferas de vidro",
@@ -175,13 +175,13 @@ const messages = {
         imageAlt: "POM natural reforçado com fibra de vidro da Taiyi Polymer",
       },
       hero: {
-        eyebrow: "Diretório de materiais",
+        eyebrow: "Família de POM modificado",
         title: "POM reforçado com fibra de vidro",
         description:
           "Compare grades de POM com 10% a 30% de fibra de vidro por fluidez, rigidez, contração, perfil térmico e requisitos da peça.",
-        overviewLabel: "Estrutura de seleção",
+        overviewLabel: "Caminho de seleção",
         overview:
-          "Teor e orientação das fibras, ponto de injeção e geometria determinam a rigidez, a contração e a tendência real de empenamento. Os dados devem ser avaliados junto com o conceito do molde.",
+          "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
       },
       navigation: {
         aria: "Navegação das seções de POM reforçado com fibra de vidro",
@@ -244,13 +244,13 @@ const messages = {
         imageAlt: "POM natural de alto impacto da Taiyi Polymer",
       },
       hero: {
-        eyebrow: "Diretório de materiais",
+        eyebrow: "Família de POM modificado",
         title: "POM de alto impacto",
         description:
           "Compare seis grades de POM voltados a maior resistência ao impacto e requisitos de baixa temperatura por fluidez, alongamento, resistência e perfil térmico.",
-        overviewLabel: "Estrutura de seleção",
+        overviewLabel: "Caminho de seleção",
         overview:
-          "A resistência ao impacto deve ser avaliada junto com rigidez, alongamento, espessura, entalhes, condição de carga e temperatura de uso. A escolha final precisa ser confirmada na peça real.",
+          "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
       },
       navigation: {
         aria: "Navegação das seções de POM de alto impacto",
@@ -310,10 +310,8 @@ const messages = {
     },
     breadcrumb: "XT-100",
     eyebrow: "POM de baixa densidade e direção de alto impacto · Moldagem por injeção",
-    positioning:
-      "Um grade candidato para peças injetadas de precisão ou uso geral quando densidade, impacto e um perfil equilibrado de fluxo precisam ser avaliados em conjunto.",
     summary:
-      "Os valores publicados apoiam a seleção inicial. A adequação deve ser confirmada com a geometria real, o molde, a janela de processo e as condições de uso.",
+      "XT-100 é um grade candidato para peças injetadas de precisão ou uso geral quando densidade, resistência ao impacto e um perfil equilibrado de fluxo precisam ser avaliados em conjunto. Os valores publicados apoiam a seleção inicial; confirme a adequação com a geometria real, o molde, a janela de processo e as condições de uso.",
     documentSupport: "Suporte documental",
     documentNote: "Disponibilidade confirmada por grade, mercado de destino e projeto.",
     sampleAction: "Solicitar amostra de XT-100",
@@ -323,7 +321,7 @@ const messages = {
       aria: "Resumo de dados do XT-100",
       title: "Perfil de triagem do XT-100",
       body:
-        "Analise primeiro fluidez, tração, HDT e cor; depois valide a peça e o processo.",
+        "Valores de referência e métodos de ensaio publicados para a comparação inicial de grades.",
       mfi: "MFI",
       tensile: "Tração",
       hdt: "HDT",
@@ -427,16 +425,14 @@ const messages = {
       },
       breadcrumb: "ETM450",
       eyebrow: "POM de alta fluidez · Moldagem por injeção",
-      positioning:
-        "Um grade candidato para peças injetadas de precisão quando preenchimento e perfil mecânico precisam ser avaliados em conjunto.",
       summary:
-        "Os valores publicados apoiam a seleção inicial. A adequação deve ser confirmada com a geometria real, o molde, a janela de processo e as condições de uso.",
+        "ETM450 é um grade candidato para peças injetadas de precisão quando preenchimento e perfil mecânico precisam ser avaliados em conjunto. Os valores publicados apoiam a seleção inicial; confirme a adequação com a geometria real, o molde, a janela de processo e as condições de uso.",
       sampleAction: "Solicitar amostra de ETM450",
       snapshot: {
         aria: "Resumo de dados do ETM450",
         title: "Perfil de triagem do ETM450",
         body:
-          "Analise primeiro fluidez, tração, HDT e cor; depois valide a peça e o processo.",
+          "Valores de referência e métodos de ensaio publicados para a comparação inicial de grades.",
         flowNote: "Perfil de alta fluidez para injeção de precisão",
       },
       sectionNavAria: "Seções da página do produto ETM450",
@@ -473,16 +469,14 @@ const messages = {
       },
       breadcrumb: "ETM750",
       eyebrow: "POM de fluidez muito alta · Moldagem por injeção",
-      positioning:
-        "Um grade candidato para peças de parede fina ou preenchimento crítico quando caminho de fluxo e desempenho mecânico precisam ser avaliados em conjunto.",
       summary:
-        "Os valores publicados apoiam a seleção inicial. A adequação deve ser confirmada com a geometria real, o molde, a janela de processo e as condições de uso.",
+        "ETM750 é um grade candidato para peças de parede fina ou preenchimento crítico quando caminho de fluxo e desempenho mecânico precisam ser avaliados em conjunto. Os valores publicados apoiam a seleção inicial; confirme a adequação com a geometria real, o molde, a janela de processo e as condições de uso.",
       sampleAction: "Solicitar amostra de ETM750",
       snapshot: {
         aria: "Resumo de dados do ETM750",
         title: "Perfil de triagem do ETM750",
         body:
-          "Analise primeiro fluidez, tração, HDT e cor; depois valide preenchimento, peça e processo.",
+          "Valores de referência e métodos de ensaio publicados para a comparação inicial de grades.",
         flowNote: "Perfil de fluidez muito alta para peças de parede fina",
       },
       sectionNavAria: "Seções da página do produto ETM750",
@@ -520,16 +514,14 @@ const messages = {
       },
       breadcrumb: "EGB25",
       eyebrow: "POM com 25% de microesferas de vidro · Injeção",
-      positioning:
-        "Um grade candidato para peças injetadas que exigem avaliação conjunta da contração longitudinal e transversal e do perfil térmico.",
       summary:
-        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, o molde, a janela de processo e as condições de uso.",
+        "EGB25 é um grade candidato para peças injetadas que exigem avaliação conjunta da contração longitudinal e transversal e do perfil térmico. Os valores publicados apoiam a triagem inicial; confirme a adequação com a geometria real, o molde, a janela de processo e as condições de uso.",
       sampleAction: "Solicitar amostra de EGB25",
       snapshot: {
         aria: "Resumo de propriedades do EGB25",
         title: "Perfil de seleção do EGB25",
         body:
-          "Verifique primeiro contração, fluidez, resistência à tração e desempenho térmico; depois valide a peça e o processo.",
+          "Valores de referência e métodos de ensaio publicados para a comparação inicial de grades.",
         flowNote: "MFI 8,5 g/10 min a 195 °C/2,16 kg",
       },
       sectionNavAria: "Seções da página do produto EGB25",
@@ -567,16 +559,14 @@ const messages = {
       },
       breadcrumb: "EGH502H",
       eyebrow: "POM com 25% de fibra de vidro · Alta rigidez",
-      positioning:
-        "Um grade candidato para peças moldadas que exigem avaliação conjunta de alta rigidez, baixa contração e perfil térmico.",
       summary:
-        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, a orientação das fibras, o molde, a janela de processo e as condições de uso.",
+        "EGH502H é um grade candidato para peças moldadas que exigem avaliação conjunta de alta rigidez, baixa contração e perfil térmico. Os valores publicados apoiam a triagem inicial; confirme a adequação com a geometria real, a orientação das fibras, o molde, a janela de processo e as condições de uso.",
       sampleAction: "Solicitar amostra de EGH502H",
       snapshot: {
         aria: "Resumo de propriedades do EGH502H",
         title: "Perfil de seleção do EGH502H",
         body:
-          "Verifique primeiro rigidez, contração, resistência à tração e desempenho térmico; depois valide a peça, o molde e o processo.",
+          "Valores de referência e métodos de ensaio publicados para a comparação inicial de grades.",
         flowNote: "MFI 8,5 g/10 min a 195 °C/2,16 kg",
       },
       sectionNavAria: "Seções da página do produto EGH502H",
@@ -614,16 +604,14 @@ const messages = {
       },
       breadcrumb: "EHI402T",
       eyebrow: "POM modificado para impacto · Processamento equilibrado",
-      positioning:
-        "Um grade candidato para peças funcionais em que tenacidade melhorada, comportamento em baixa temperatura e um perfil de processamento equilibrado precisam ser avaliados em conjunto.",
       summary:
-        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, entalhes, caso de carga, molde, janela de processo e temperatura de uso.",
+        "EHI402T é um grade candidato para peças funcionais em que tenacidade melhorada, comportamento em baixa temperatura e um perfil de processamento equilibrado precisam ser avaliados em conjunto. Os valores publicados apoiam a triagem inicial; confirme a adequação com a geometria real, entalhes, caso de carga, molde, janela de processo e temperatura de uso.",
       sampleAction: "Solicitar amostra de EHI402T",
       snapshot: {
         aria: "Resumo de propriedades do EHI402T",
         title: "Perfil de seleção do EHI402T",
         body:
-          "Verifique primeiro impacto, alongamento, fluidez, resistência à tração e HDT; depois valide a peça e o comportamento em baixa temperatura.",
+          "Valores de referência e métodos de ensaio publicados para a comparação inicial de grades.",
         flowNote: "Perfil resistente ao impacto com processamento equilibrado",
       },
       sectionNavAria: "Seções da página do produto EHI402T",
@@ -661,16 +649,14 @@ const messages = {
       },
       breadcrumb: "EDR180",
       eyebrow: "POM modificado para impacto · Alto alongamento na ruptura",
-      positioning:
-        "Um grade candidato para peças funcionais em que resistência ao impacto, comportamento em baixa temperatura e uma reserva elevada de alongamento precisam ser avaliados em conjunto.",
       summary:
-        "Os valores publicados apoiam a triagem inicial. A adequação deve ser confirmada com a geometria real, entalhes, caso de carga, molde, janela de processo e temperatura de uso.",
+        "EDR180 é um grade candidato para peças funcionais em que resistência ao impacto, comportamento em baixa temperatura e uma reserva elevada de alongamento precisam ser avaliados em conjunto. Os valores publicados apoiam a triagem inicial; confirme a adequação com a geometria real, entalhes, caso de carga, molde, janela de processo e temperatura de uso.",
       sampleAction: "Solicitar amostra de EDR180",
       snapshot: {
         aria: "Resumo de propriedades do EDR180",
         title: "Perfil de seleção do EDR180",
         body:
-          "Verifique primeiro impacto, alongamento na ruptura, fluidez, resistência à tração e HDT; depois valide a peça e o comportamento em baixa temperatura.",
+          "Valores de referência e métodos de ensaio publicados para a comparação inicial de grades.",
         flowNote: "Perfil resistente ao impacto com alto alongamento",
       },
       sectionNavAria: "Seções da página do produto EDR180",

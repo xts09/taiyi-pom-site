@@ -138,9 +138,9 @@ const messages = {
       title: "Compostos de plásticos de engenharia",
       subtitle: "POM modificado como linha principal",
       body:
-        "Comece pelo que a peça precisa fazer, escolha a família de materiais mais próxima e depois compare os grades listados, as restrições de processamento e os documentos disponíveis.",
-      startAction: "Começar pelos requisitos da peça",
-      dataSheetsAction: "Localizar fichas técnicas",
+        "Explore o POM modificado como linha principal, com resina POM base e opções selecionadas de PA6, PA66, PPA, condutivas e antiestáticas quando a aplicação exige outro equilíbrio de propriedades.",
+      startAction: "Escolher pelos requisitos da peça",
+      dataSheetsAction: "Encontrar dados de grades e TDS",
     },
     selection: {
       kicker: "Requisitos primeiro",

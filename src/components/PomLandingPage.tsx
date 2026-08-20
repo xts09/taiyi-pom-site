@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import {
   createContactHref,
   type ContactIntent,
@@ -26,9 +27,11 @@ const landingIntentBySlug: Partial<
 
 export function PomLandingPage({ page }: { page: PomLandingPageData }) {
   const hasImageHero = Boolean(page.heroImage);
-  const heroClassName = hasImageHero
-    ? "pom-landing-hero pom-landing-hero-image"
-    : "pom-landing-hero pom-landing-hero-plain";
+  const heroClassName = [
+    "pom-landing-hero",
+    hasImageHero ? "pom-landing-hero-image" : "pom-landing-hero-plain",
+    `pom-landing-hero-${page.slug}`,
+  ].join(" ");
   const contactHref = createContactHref({
     intent: landingIntentBySlug[page.slug],
     material: landingMaterialBySlug[page.slug],
@@ -60,8 +63,115 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
     },
   ];
 
+  const catalogEvidenceSection = page.catalogEvidence ? (
+    <section
+      id={
+        page.catalogEvidence.position === "afterHero"
+          ? "part-requirement-map"
+          : undefined
+      }
+      className={[
+        "pom-landing-evidence",
+        page.catalogEvidence.variant === "directory"
+          ? "pom-landing-evidence-directory"
+          : "",
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
+      <div className="pom-landing-section-head">
+        {page.catalogEvidence.kicker ? (
+          <p className="section-kicker">{page.catalogEvidence.kicker}</p>
+        ) : null}
+        <h2>{page.catalogEvidence.title}</h2>
+        <p>{page.catalogEvidence.note}</p>
+      </div>
+
+      {page.catalogEvidence.groups ? (
+        <div className="pom-landing-path-groups">
+          {page.catalogEvidence.groups.map((group) => {
+            const groupItems = page.catalogEvidence?.items.filter((item) =>
+              group.itemLabels.includes(item.label),
+            );
+
+            return (
+              <section
+                key={group.id}
+                id={group.id}
+                className="pom-landing-path-group"
+              >
+                <div className="pom-landing-path-group-intro">
+                  <h3>{group.title}</h3>
+                  <p>{group.description}</p>
+                </div>
+                <div
+                  className="pom-landing-path-links"
+                  data-count={groupItems?.length ?? 1}
+                >
+                  {groupItems?.map((item) => (
+                    <Link
+                      key={item.label}
+                      href={item.href ?? "#"}
+                      className="pom-landing-path-link"
+                      aria-label={`${item.label}: ${item.detail}`}
+                    >
+                      <span>
+                        <strong>
+                          <span className="pom-landing-path-label-full">
+                            {item.label}
+                          </span>
+                          {item.mobileLabel ? (
+                            <span className="pom-landing-path-label-mobile">
+                              {item.mobileLabel}
+                            </span>
+                          ) : null}
+                        </strong>
+                        <span className="pom-landing-path-detail">
+                          {item.detail}
+                        </span>
+                      </span>
+                      <ArrowUpRight aria-hidden="true" size={18} />
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      ) : (
+        <div className="pom-landing-evidence-list">
+          {page.catalogEvidence.items.map((item) =>
+            item.href ? (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="pom-landing-evidence-link"
+              >
+                <div>
+                  <h3>{item.label}</h3>
+                  <p>{item.detail}</p>
+                </div>
+                <span className="pom-landing-evidence-action">
+                  Open family
+                  <ArrowUpRight aria-hidden="true" size={17} />
+                </span>
+              </Link>
+            ) : (
+              <article key={item.label}>
+                <h3>{item.label}</h3>
+                <p>{item.detail}</p>
+              </article>
+            ),
+          )}
+        </div>
+      )}
+    </section>
+  ) : null;
+
   return (
-    <main className="pom-landing-page">
+    <main
+      className={`pom-landing-page pom-landing-page-${page.slug}`}
+    >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -72,7 +182,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
       <section className="pom-landing-shell">
         <div className={heroClassName}>
           {page.heroImage ? (
-            <>
+            <div className="pom-landing-hero-visual">
               <Image
                 src={page.heroImage.src}
                 alt={page.heroImage.alt}
@@ -82,17 +192,22 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                 className="pom-landing-hero-media"
               />
               <div className="pom-landing-hero-scrim" />
-            </>
+            </div>
           ) : null}
 
           <div className="pom-landing-hero-copy">
-            <p className="pom-landing-eyebrow">{page.eyebrow}</p>
+            {page.eyebrow ? (
+              <p className="pom-landing-eyebrow">{page.eyebrow}</p>
+            ) : null}
             <h1>{page.title}</h1>
             <p>{page.intro}</p>
 
             <div className="pom-landing-actions">
               <Button asChild variant="primary" size="form">
-                <Link href={contactHref} className="pom-landing-action">
+                <Link
+                  href={page.primaryActionHref ?? contactHref}
+                  className="pom-landing-action"
+                >
                   {page.primaryActionLabel}
                 </Link>
               </Button>
@@ -102,7 +217,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                 size="form"
                 className="pom-landing-secondary-action"
               >
-                <Link href="/technical-data-sheets">
+                <Link href={page.secondaryActionHref ?? "/technical-data-sheets"}>
                   {page.secondaryActionLabel ?? "Find Technical Data"}
                 </Link>
               </Button>
@@ -113,6 +228,10 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
             ) : null}
           </div>
         </div>
+
+        {page.catalogEvidence?.position === "afterHero"
+          ? catalogEvidenceSection
+          : null}
 
         {page.gradeEvidence ? (
           <section className="pom-landing-grade-evidence">
@@ -141,44 +260,45 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
           </section>
         ) : null}
 
-        <MetricGroup
-          className="pom-landing-metrics"
-          aria-label="Material selection summary"
-          items={page.metrics}
-          variant="rail"
-        />
+        {page.metrics ? (
+          <MetricGroup
+            className="pom-landing-metrics"
+            aria-label="Material selection summary"
+            items={page.metrics}
+            variant="rail"
+          />
+        ) : null}
 
-        <section className="pom-landing-section-grid">
-          {page.sections.map((section) => (
-            <article key={section.title} className="pom-landing-panel">
-              <h2>{section.title}</h2>
-              <p>{section.body}</p>
-              <ul>
-                {section.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </section>
-
-        {page.catalogEvidence ? (
-          <section className="pom-landing-evidence">
-            <div className="pom-landing-section-head">
-              <p className="section-kicker">Catalogue Evidence</p>
-              <h2>{page.catalogEvidence.title}</h2>
-              <p>{page.catalogEvidence.note}</p>
-            </div>
-            <div className="pom-landing-evidence-list">
-              {page.catalogEvidence.items.map((item) => (
-                <article key={item.label}>
-                  <h3>{item.label}</h3>
-                  <p>{item.detail}</p>
-                </article>
-              ))}
-            </div>
+        {page.sections.length ? (
+          <section
+            className={[
+              "pom-landing-section-grid",
+              page.sectionsVariant === "steps"
+                ? "pom-landing-section-grid-steps"
+                : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            {page.sections.map((section) => (
+              <article key={section.title} className="pom-landing-panel">
+                <h2>{section.title}</h2>
+                <p>{section.body}</p>
+                {section.points.length ? (
+                  <ul>
+                    {section.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                ) : null}
+              </article>
+            ))}
           </section>
         ) : null}
+
+        {page.catalogEvidence?.position !== "afterHero"
+          ? catalogEvidenceSection
+          : null}
 
         {page.crossReferenceRows ? (
           <section className="pom-landing-cross-reference">
@@ -221,7 +341,8 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
           </section>
         ) : null}
 
-        <section className="pom-landing-review-grid">
+        {page.showReviewSection !== false ? (
+          <section className="pom-landing-review-grid">
           <div className="pom-landing-panel">
             <p className="section-kicker">Inquiry Inputs</p>
             <h2>Send These Details</h2>
@@ -247,7 +368,8 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
               ))}
             </div>
           </div>
-        </section>
+          </section>
+        ) : null}
 
         <section className="pom-landing-faq" aria-labelledby="pom-landing-faq-title">
           <div className="pom-landing-section-head">
