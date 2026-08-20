@@ -486,8 +486,8 @@ export const resourcePages: ResourcePage[] = [
         href: "/resources/material-selection-guide",
       },
       {
-        label: "Review Modified POM Manufacturing Capabilities",
-        href: "/about#manufacturing",
+        label: "Compare Modified POM Grades",
+        href: "/modified-pom-compounds",
       },
       { label: "Discuss an Alternative Grade", href: "/contact" },
     ],
@@ -711,7 +711,7 @@ export const resourcePages: ResourcePage[] = [
     modules: [],
     relatedLinks: [
       {
-        label: "Wear-Resistant POM Page",
+        label: "Wear-Resistant & Low-Friction POM Solutions",
         href: "/wear-resistant-low-friction-pom",
       },
       {
@@ -1138,6 +1138,10 @@ export const resourcePages: ResourcePage[] = [
     ],
     relatedLinks: [
       { label: "POM Processing Guide", href: "/resources/processing-guide" },
+      {
+        label: "Review Modified POM Grade Directions",
+        href: "/modified-pom-compounds",
+      },
       {
         label: "Application Review by Part Function",
         href: "/resources/application-notes",

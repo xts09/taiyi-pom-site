@@ -47,6 +47,10 @@ const pomCategoryOverview = {
   ],
   selectionLinks: [
     {
+      label: "Compare modified POM compounds and grades",
+      href: "/modified-pom-compounds",
+    },
+    {
       label: "MoS2-filled POM grade data: EMS162",
       href: "/products/ems162-high-wear-resistant-pom",
     },
@@ -81,6 +85,12 @@ export const productCategoryData: ProductCategoryData[] = [
       "water-control",
     ],
     sourceCategories: wearAndLowFrictionSourceCategories,
+    selectionLinks: [
+      {
+        label: "Review wear and low-friction POM solutions",
+        href: "/wear-resistant-low-friction-pom",
+      },
+    ],
   },
   {
     category: "High-Impact POM Compound",

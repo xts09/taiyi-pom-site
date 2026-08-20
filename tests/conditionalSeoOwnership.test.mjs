@@ -31,7 +31,7 @@ test("assigns the generic carbon-fiber POM compound phrase to the category", () 
   );
 });
 
-test("connects alternative-grade validation to the ranked manufacturing owner", () => {
+test("connects alternative-grade validation to the modified POM commercial owner", () => {
   const guideStart = resourcesSource.indexOf(
     'slug: "alternative-pom-grade-validation"',
   );
@@ -44,7 +44,7 @@ test("connects alternative-grade validation to the ranked manufacturing owner", 
   assert.notEqual(guideStart, -1);
   assert.match(
     guideSource,
-    /label: "Review Modified POM Manufacturing Capabilities",\s+href: "\/about#manufacturing"/,
+    /label: "Compare Modified POM Grades",\s+href: "\/modified-pom-compounds"/,
   );
 });
 
@@ -84,14 +84,21 @@ test("adds distinct editorial inlinks to the three low-inbound routes", () => {
   ]));
 });
 
-test("keeps POM and conductive selection links on their intended owners", () => {
+test("keeps POM, wear, and conductive selection links on their intended owners", () => {
   assert.deepEqual(
     getCategorySelectionLinks("POM").map((link) => link.href),
     [
+      "/modified-pom-compounds",
       "/products/ems162-high-wear-resistant-pom",
       "/products/eptl402-high-wear-resistant-pom",
       "/resources/wear-resistant-low-friction-pom-selection-guide",
     ],
+  );
+  assert.deepEqual(
+    getCategorySelectionLinks("Wear-Resistant Low-Friction POM Compound").map(
+      (link) => link.href,
+    ),
+    ["/wear-resistant-low-friction-pom"],
   );
   assert.deepEqual(
     getCategorySelectionLinks("Conductive / Antistatic POM Compound").map(

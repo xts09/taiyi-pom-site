@@ -116,6 +116,10 @@ const gradeDecisionLinks: Partial<
       href: "/products/categories/wear-resistant-low-friction-pom-compound",
       label: "wear-resistant and low-friction POM grades",
     },
+    {
+      href: "/wear-resistant-low-friction-pom",
+      label: "wear-resistant POM compound options",
+    },
   ],
   "eptl402-high-wear-resistant-pom": [
     {
@@ -125,6 +129,10 @@ const gradeDecisionLinks: Partial<
     {
       href: "/products/categories/wear-resistant-low-friction-pom-compound",
       label: "wear-resistant and low-friction POM grades",
+    },
+    {
+      href: "/wear-resistant-low-friction-pom",
+      label: "low-friction POM solution options",
     },
   ],
   "ecn1003b-conductive-pom": [

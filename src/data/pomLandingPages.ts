@@ -76,9 +76,9 @@ export type PomLandingPageData = {
 export const technicalLandingLinks: LandingRelatedLink[] = [
   {
     href: "/modified-pom-compounds",
-    label: "Modified POM Technical Overview",
+    label: "Modified POM Compounds & Grade Selection",
     description:
-      "Use a technical overview to compare Taiyi Polymer POM options before reviewing listed grades and TDS documents.",
+      "Compare modified POM grades by performance direction before reviewing grade data, documents, and sample options.",
   },
   {
     href: "/wear-resistant-low-friction-pom",

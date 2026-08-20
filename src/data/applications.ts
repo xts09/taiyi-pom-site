@@ -563,7 +563,10 @@ export const applications: ApplicationItem[] = [
     description:
       "Gears, rollers, bushings, sleeves, and sliding parts for transmission, guidance, and low-friction movement.",
     materialDirections: [
-      materialDirection("Wear-Resistant POM Compound"),
+      {
+        ...materialDirection("Wear-Resistant POM Compound"),
+        href: "/wear-resistant-low-friction-pom",
+      },
       materialDirection("Low-Friction POM Compound"),
       materialDirection(
         "High-Impact POM Compound",

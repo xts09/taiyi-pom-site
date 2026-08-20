@@ -89,7 +89,7 @@ export function DetailedComponentSolution({
                   <Link href={contactHref}>Discuss Your Application</Link>
                 </Button>
                 <Button asChild size="applicationHero" variant="applicationHeroSecondary">
-                  <Link href="/modified-pom-compounds">Browse POM Compounds</Link>
+                  <Link href="/modified-pom-compounds">Compare Modified POM Grades</Link>
                 </Button>
               </div>
             </div>

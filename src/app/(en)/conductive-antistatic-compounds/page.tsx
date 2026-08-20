@@ -261,7 +261,7 @@ export function ConductiveAntistaticCompoundsContent({
               href="/conductive-antistatic-pom"
               className={styles.lightSecondaryAction}
             >
-              View POM-Specific Page
+              View Conductive &amp; Antistatic POM
             </Link>
           </div>
         </div>
