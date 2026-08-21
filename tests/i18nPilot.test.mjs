@@ -17,12 +17,18 @@ import zhCNProductFunnel from "../src/i18n/messages/zh-CN-product-funnel.ts";
 import zhCNApplications from "../src/i18n/messages/zh-CN-applications.ts";
 import zhCNApplicationDetailsA from "../src/i18n/messages/zh-CN-application-details-a.ts";
 import zhCNApplicationDetailsB from "../src/i18n/messages/zh-CN-application-details-b.ts";
+import zhCNResources from "../src/i18n/messages/zh-CN-resources.ts";
 import {
   applicationIndexComponentSlugs,
   localizedApplicationDetailSliceASlugs,
   localizedApplicationDetailSliceBSlugs,
   localizedApplicationSlugs,
 } from "../src/i18n/applicationTypes.ts";
+import {
+  localizedResourceArticleSlugs,
+  localizedResourceGroupIds,
+  localizedResourceLinkPaths,
+} from "../src/i18n/resourceTypes.ts";
 import {
   basePomGradeSlugs,
   getLocalizedCategoryLabel,
@@ -801,6 +807,63 @@ test("the second Simplified Chinese application detail slice matches source cont
       /Typical Parts|Performance Needs|Material Direction|Review sliding|Screen assembly/,
     );
     assert.doesNotMatch(visibleCopy, /保证适用|直接替代|完全等同/);
+  }
+});
+
+test("the Simplified Chinese resource directory copy matches the source taxonomy", () => {
+  const navigationSource = readProjectFile("src/data/resourceNavigation.ts");
+  const resourcesSource = readProjectFile("src/data/resources.ts");
+
+  assert.deepEqual(
+    Object.keys(zhCNResources.groups).sort(),
+    [...localizedResourceGroupIds].sort(),
+  );
+  assert.deepEqual(
+    Object.keys(zhCNResources.entries).sort(),
+    [...localizedResourceLinkPaths].sort(),
+  );
+
+  const groupedPaths = localizedResourceGroupIds.flatMap(
+    (groupId) => zhCNResources.groups[groupId].entryPaths,
+  );
+  assert.equal(groupedPaths.length, 16);
+  assert.equal(new Set(groupedPaths).size, groupedPaths.length);
+  assert.deepEqual(
+    [...groupedPaths].sort(),
+    [...localizedResourceLinkPaths].sort(),
+  );
+
+  for (const groupId of localizedResourceGroupIds) {
+    assert.match(navigationSource, new RegExp(`id: "${groupId}"`));
+  }
+  for (const path of localizedResourceLinkPaths) {
+    assert.match(navigationSource, new RegExp(`href: "${path}"`));
+  }
+  for (const slug of localizedResourceArticleSlugs) {
+    assert.match(resourcesSource, new RegExp(`slug: "${slug}"`));
+  }
+
+  assert.equal(localizedResourceArticleSlugs.length, 14);
+  assert.equal(
+    localizedResourceLinkPaths.filter((path) => path.startsWith("/resources/"))
+      .length,
+    14,
+  );
+
+  const visibleCopy = JSON.stringify(zhCNResources);
+  assert.match(visibleCopy, /[\u3400-\u9fff]/);
+  assert.doesNotMatch(
+    visibleCopy,
+    /Browse Technical Resources|Material Selection, Processing|Resources in this section|Search Technical FAQ/,
+  );
+  assert.doesNotMatch(
+    visibleCopy,
+    /保证适用|直接替代|完全等同|自动批准|无需验证/,
+  );
+
+  for (const entry of Object.values(zhCNResources.entries)) {
+    assert.match(entry.label, /[\u3400-\u9fff]/);
+    assert.match(entry.description, /[\u3400-\u9fff]/);
   }
 });
 
