@@ -37,8 +37,15 @@
   border-left: 1px solid rgba(53, 151, 228, 0.9);
   border-radius: 0;
   background:
-    linear-gradient(90deg, rgba(7, 17, 31, 0.98) 0%, rgba(7, 17, 31, 0.82) 58%, rgba(7, 17, 31, 0.3) 100%),
-    url("/generated/landing/home-dark-satin-wave-v1.webp") center 58% / cover no-repeat,
+    linear-gradient(
+      90deg,
+      rgba(7, 17, 31, 0.98) 0%,
+      rgba(7, 17, 31, 0.93) 52%,
+      rgba(7, 17, 31, 0.64) 74%,
+      rgba(7, 17, 31, 0.42) 100%
+    ),
+    url("/factory-laboratory-testing-documentary-v4.webp") 58% 52% / cover
+      no-repeat,
     var(--contact-night);
   box-shadow: none;
   padding: clamp(2rem, 4.5vw, 4rem) clamp(1.25rem, 4.5vw, 4.5rem);
@@ -185,6 +192,11 @@
   .hero {
     min-height: 22rem;
     justify-content: center;
+    background:
+      linear-gradient(rgba(7, 17, 31, 0.91), rgba(7, 17, 31, 0.94)),
+      url("/factory-laboratory-testing-documentary-v4.webp") 38% center / cover
+        no-repeat,
+      var(--contact-night);
     padding: 2rem 1.25rem;
   }
 

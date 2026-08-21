@@ -3977,6 +3977,20 @@
     clamp(1.85rem, 3.6vw, 2.75rem);
 }
 
+.pom-landing-hero-wear-resistant-low-friction-pom {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(248, 250, 252, 0.99) 0%,
+      rgba(248, 250, 252, 0.96) 48%,
+      rgba(248, 250, 252, 0.7) 66%,
+      rgba(248, 250, 252, 0.12) 100%
+    ),
+    url("/applications/parts/bushings-rollers-sliding-parts-wide.webp") 72%
+      center / cover no-repeat,
+    #f8fafc;
+}
+
 .pom-landing-hero-plain .pom-landing-hero-copy {
   max-width: 50rem;
 }
@@ -4734,6 +4748,14 @@
   .pom-landing-hero-image {
     min-height: auto;
     padding: 1.35rem;
+  }
+
+  .pom-landing-hero-wear-resistant-low-friction-pom {
+    background:
+      linear-gradient(rgba(248, 250, 252, 0.91), rgba(248, 250, 252, 0.95)),
+      url("/applications/parts/bushings-rollers-sliding-parts-wide.webp") 68%
+        center / cover no-repeat,
+      #f8fafc;
   }
 
   .pom-landing-hero-modified-pom-compounds {
