@@ -68,6 +68,20 @@ export type LocalizedResourceArticleSliceB1Messages = Record<
   ResourcePage
 >;
 
+export const localizedResourceArticleSliceB2Slugs = [
+  "application-notes",
+  "faq",
+  "reinforcement-materials-overview",
+] as const satisfies readonly LocalizedResourceArticleSlug[];
+
+export type LocalizedResourceArticleSliceB2Slug =
+  (typeof localizedResourceArticleSliceB2Slugs)[number];
+
+export type LocalizedResourceArticleSliceB2Messages = Record<
+  LocalizedResourceArticleSliceB2Slug,
+  ResourcePage
+>;
+
 export const localizedResourceLinkPaths = [
   "/resources/material-selection-guide",
   "/resources/wear-resistant-low-friction-pom-selection-guide",

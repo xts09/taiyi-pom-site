@@ -21,6 +21,7 @@ import zhCNResources from "../src/i18n/messages/zh-CN-resources.ts";
 import zhCNResourceArticlesA1 from "../src/i18n/messages/zh-CN-resource-articles-a1.ts";
 import zhCNResourceArticlesA2 from "../src/i18n/messages/zh-CN-resource-articles-a2.ts";
 import zhCNResourceArticlesB1 from "../src/i18n/messages/zh-CN-resource-articles-b1.ts";
+import zhCNResourceArticlesB2 from "../src/i18n/messages/zh-CN-resource-articles-b2.ts";
 import {
   applicationIndexComponentSlugs,
   localizedApplicationDetailSliceASlugs,
@@ -32,6 +33,7 @@ import {
   localizedResourceArticleSliceA1Slugs,
   localizedResourceArticleSliceA2Slugs,
   localizedResourceArticleSliceB1Slugs,
+  localizedResourceArticleSliceB2Slugs,
   localizedResourceGroupIds,
   localizedResourceLinkPaths,
 } from "../src/i18n/resourceTypes.ts";
@@ -1034,6 +1036,77 @@ test("the third Simplified Chinese resource article slice matches source structu
     assert.doesNotMatch(
       visibleCopy,
       /保证适用|直接替代|完全等同|自动批准|无需验证|固定通用温度/,
+    );
+  }
+});
+
+test("the fourth Simplified Chinese resource article slice matches source structure", () => {
+  const resourcesSource = readProjectFile("src/data/resources.ts");
+  const expectedCounts = {
+    "application-notes": {
+      sections: 0,
+      features: 0,
+      modules: 6,
+      faqItems: 0,
+      relatedLinks: 2,
+    },
+    faq: {
+      sections: 0,
+      features: 0,
+      modules: 4,
+      faqItems: 18,
+      relatedLinks: 2,
+    },
+    "reinforcement-materials-overview": {
+      sections: 4,
+      features: 2,
+      modules: 3,
+      faqItems: 0,
+      relatedLinks: 4,
+    },
+  };
+
+  assert.deepEqual(
+    Object.keys(zhCNResourceArticlesB2).sort(),
+    [...localizedResourceArticleSliceB2Slugs].sort(),
+  );
+
+  for (const slug of localizedResourceArticleSliceB2Slugs) {
+    const localized = zhCNResourceArticlesB2[slug];
+    const counts = expectedCounts[slug];
+
+    assert.equal(localized.slug, slug);
+    assert.match(resourcesSource, new RegExp(`slug: "${slug}"`));
+    assert.equal(localized.articleSections?.length ?? 0, counts.sections);
+    assert.equal(localized.articleFeatures?.length ?? 0, counts.features);
+    assert.equal(localized.modules.length, counts.modules);
+    assert.equal(
+      localized.modules.reduce(
+        (total, module) => total + (module.faqItems?.length ?? 0),
+        0,
+      ),
+      counts.faqItems,
+    );
+    assert.equal(localized.relatedLinks.length, counts.relatedLinks);
+
+    const sectionTitles = new Set(
+      localized.articleSections?.map((section) => section.title),
+    );
+    for (const feature of localized.articleFeatures ?? []) {
+      if (feature.position === "after-section") {
+        assert.equal(sectionTitles.has(feature.sectionTitle), true);
+      }
+    }
+
+    const visibleCopy = JSON.stringify(localized);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /Moving Contact: Gears|What is modified POM|Reading POM TDS|Define the Performance Gap|Release the Molded Part/,
+    );
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|自动批准|无需验证|普遍适用/,
     );
   }
 });
