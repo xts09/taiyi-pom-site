@@ -95,6 +95,20 @@ export type LocalizedResourceArticleSliceC1Messages = Record<
   ResourcePage
 >;
 
+export const localizedResourceArticleSliceC2Slugs = [
+  "ppa-vs-pa66-material-selection",
+  "pa6-pa66-moisture-drying-conditioning-guide",
+  "conductive-antistatic-pa6-pa66-ppa-selection-guide",
+] as const satisfies readonly LocalizedResourceArticleSlug[];
+
+export type LocalizedResourceArticleSliceC2Slug =
+  (typeof localizedResourceArticleSliceC2Slugs)[number];
+
+export type LocalizedResourceArticleSliceC2Messages = Record<
+  LocalizedResourceArticleSliceC2Slug,
+  ResourcePage
+>;
+
 export const localizedResourceLinkPaths = [
   "/resources/material-selection-guide",
   "/resources/wear-resistant-low-friction-pom-selection-guide",
