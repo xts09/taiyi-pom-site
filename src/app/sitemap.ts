@@ -155,6 +155,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       changeFrequency: "monthly" as const,
     },
+    {
+      sourcePath: "/resources",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
+    ...resourceNavigationGroups.map((group) => ({
+      sourcePath: getResourceNavigationGroupPath(group) as ReleasedSourcePath,
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    })),
+    ...resourcePages.map((page) => ({
+      sourcePath: `/resources/${page.slug}` as ReleasedSourcePath,
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    })),
   ] satisfies ReadonlyArray<{
     sourcePath: ReleasedSourcePath;
     priority: number;
@@ -183,7 +198,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes = [
     createUrlEntry("/components", 0.8, "weekly"),
-    createUrlEntry("/resources", 0.85, "weekly"),
     createUrlEntry("/about", 0.6, "monthly"),
     {
       ...createUrlEntry("/privacy", 0.2, "yearly"),
@@ -214,13 +228,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       createUrlEntry(`/products/${document.slug}`, 0.65, "monthly"),
     );
 
-  const resourceRoutes = resourcePages.map((page) =>
-    createUrlEntry(`/resources/${page.slug}`, 0.65, "monthly"),
-  );
+  const resourceRoutes = resourcePages
+    .filter((page) => !isReleasedSourcePath(`/resources/${page.slug}`))
+    .map((page) =>
+      createUrlEntry(`/resources/${page.slug}`, 0.65, "monthly"),
+    );
 
-  const resourceCategoryRoutes = resourceNavigationGroups.map((group) => ({
-    ...createUrlEntry(getResourceNavigationGroupPath(group), 0.75, "weekly"),
-  }));
+  const resourceCategoryRoutes = resourceNavigationGroups
+    .filter(
+      (group) => !isReleasedSourcePath(getResourceNavigationGroupPath(group)),
+    )
+    .map((group) => ({
+      ...createUrlEntry(getResourceNavigationGroupPath(group), 0.75, "weekly"),
+    }));
 
   const technicalLandingRoutes = publicTechnicalLandingLinks.map((page) =>
     createUrlEntry(page.href, 0.75, "weekly"),

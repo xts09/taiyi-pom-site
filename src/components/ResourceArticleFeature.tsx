@@ -4,10 +4,18 @@ import type { ResourceArticleFeature as ResourceArticleFeatureData } from "@/dat
 
 type ResourceArticleFeatureProps = {
   feature: ResourceArticleFeatureData;
+  ariaLabels?: {
+    mediaLabels: string;
+    comparison: string;
+  };
 };
 
 export function ResourceArticleFeature({
   feature,
+  ariaLabels = {
+    mediaLabels: "Tribological system inputs",
+    comparison: "Selection distinction",
+  },
 }: ResourceArticleFeatureProps) {
   if (feature.type === "media") {
     return (
@@ -25,7 +33,7 @@ export function ResourceArticleFeature({
           <strong>{feature.title}</strong>
           <div className={styles.mediaCaptionBody}>
             <p>{feature.description}</p>
-            <ul aria-label="Tribological system inputs">
+            <ul aria-label={ariaLabels.mediaLabels}>
               {feature.labels.map((label) => (
                 <li key={label}>{label}</li>
               ))}
@@ -38,7 +46,7 @@ export function ResourceArticleFeature({
 
   if (feature.type === "comparison") {
     return (
-      <section className={styles.comparison} aria-label="Selection distinction">
+      <section className={styles.comparison} aria-label={ariaLabels.comparison}>
         <div>
           <strong>{feature.items[0]?.title}</strong>
           <p>{feature.items[0]?.description}</p>

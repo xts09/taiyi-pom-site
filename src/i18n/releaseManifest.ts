@@ -125,6 +125,82 @@ export const localizedReleaseManifest = {
     sourcePath: "/applications/textile-machinery",
     ...chineseOnlyPublicRelease,
   },
+  resources: {
+    sourcePath: "/resources",
+    ...chineseOnlyPublicRelease,
+  },
+  materialSelectionResources: {
+    sourcePath: "/resources/material-selection",
+    ...chineseOnlyPublicRelease,
+  },
+  processingTroubleshootingResources: {
+    sourcePath: "/resources/processing-troubleshooting",
+    ...chineseOnlyPublicRelease,
+  },
+  dataValidationResources: {
+    sourcePath: "/resources/data-validation",
+    ...chineseOnlyPublicRelease,
+  },
+  materialSelectionGuideResource: {
+    sourcePath: "/resources/material-selection-guide",
+    ...chineseOnlyPublicRelease,
+  },
+  alternativePomGradeValidationResource: {
+    sourcePath: "/resources/alternative-pom-grade-validation",
+    ...chineseOnlyPublicRelease,
+  },
+  wearResistantLowFrictionPomSelectionGuideResource: {
+    sourcePath:
+      "/resources/wear-resistant-low-friction-pom-selection-guide",
+    ...chineseOnlyPublicRelease,
+  },
+  pomGearMaterialSelectionResource: {
+    sourcePath: "/resources/pom-gear-material-selection",
+    ...chineseOnlyPublicRelease,
+  },
+  processingGuideResource: {
+    sourcePath: "/resources/processing-guide",
+    ...chineseOnlyPublicRelease,
+  },
+  pomWarpageTroubleshootingResource: {
+    sourcePath: "/resources/pom-warpage-troubleshooting",
+    ...chineseOnlyPublicRelease,
+  },
+  applicationNotesResource: {
+    sourcePath: "/resources/application-notes",
+    ...chineseOnlyPublicRelease,
+  },
+  faqResource: {
+    sourcePath: "/resources/faq",
+    ...chineseOnlyPublicRelease,
+  },
+  reinforcementMaterialsOverviewResource: {
+    sourcePath: "/resources/reinforcement-materials-overview",
+    ...chineseOnlyPublicRelease,
+  },
+  pa6VsPa66ReinforcedPartsResource: {
+    sourcePath: "/resources/pa6-vs-pa66-reinforced-parts",
+    ...chineseOnlyPublicRelease,
+  },
+  glassFiberReinforcedPa6Pa66SelectionGuideResource: {
+    sourcePath:
+      "/resources/glass-fiber-reinforced-pa6-pa66-selection-guide",
+    ...chineseOnlyPublicRelease,
+  },
+  ppaVsPa66MaterialSelectionResource: {
+    sourcePath: "/resources/ppa-vs-pa66-material-selection",
+    ...chineseOnlyPublicRelease,
+  },
+  pa6Pa66MoistureDryingConditioningGuideResource: {
+    sourcePath:
+      "/resources/pa6-pa66-moisture-drying-conditioning-guide",
+    ...chineseOnlyPublicRelease,
+  },
+  conductiveAntistaticPa6Pa66PpaSelectionGuideResource: {
+    sourcePath:
+      "/resources/conductive-antistatic-pa6-pa66-ppa-selection-guide",
+    ...chineseOnlyPublicRelease,
+  },
 } as const satisfies Record<string, LocalizedReleaseEntry>;
 
 export type ReleasedSourcePath =

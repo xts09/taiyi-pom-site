@@ -5,20 +5,35 @@ import { Search } from "lucide-react";
 import { ResourceFaqAccordion } from "@/components/ResourceFaqAccordion";
 import { Input } from "@/components/ui/input";
 import type { ResourceModule } from "@/data/resources";
+import type { ResourceIndexMessages } from "@/i18n/resourceTypes";
+import { toResourceSectionId } from "@/lib/resource-page";
 
 type ResourceFaqExplorerProps = {
   modules: ResourceModule[];
+  messages?: ResourceIndexMessages["faqExplorer"];
 };
 
-const toSectionId = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
+const defaultMessages = {
+  ariaLabel: "FAQ explorer",
+  searchTitle: "Search Technical FAQ",
+  searchDescription:
+    "Search material comparison, modification direction, TDS interpretation, documents, and validation inputs.",
+  searchLabel: "Search questions",
+  searchPlaceholder: "Try: shrinkage, HDT, conductive, TDS…",
+  topicsAria: "FAQ topics",
+  emptyTitle: "No matching questions",
+  emptyDescription:
+    "Try a broader term such as POM, wear, shrinkage, document, or grade selection.",
+  questionsAriaSuffix: "questions",
+};
 
 const normalize = (value: string) => value.trim().toLowerCase();
 
-export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
+export function ResourceFaqExplorer({
+  modules,
+  messages,
+}: ResourceFaqExplorerProps) {
+  const copy = messages ?? defaultMessages;
   const [query, setQuery] = useState("");
   const [activeTitle, setActiveTitle] = useState(modules[0]?.title ?? "");
   const normalizedQuery = normalize(query);
@@ -52,22 +67,19 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
   return (
     <section
       className="resource-faq-explorer stagger-list"
-      aria-label="FAQ explorer"
+      aria-label={copy.ariaLabel}
     >
       <div className="resource-faq-finder stagger-list">
         <div className="resource-faq-finder-copy stagger-list">
-          <strong>Search Technical FAQ</strong>
-          <p>
-            Search material comparison, modification direction, TDS
-            interpretation, documents, and validation inputs.
-          </p>
+          <strong>{copy.searchTitle}</strong>
+          <p>{copy.searchDescription}</p>
         </div>
 
         <label
           className="resource-faq-search-label"
           htmlFor="resource-faq-search"
         >
-          <span>Search questions</span>
+          <span>{copy.searchLabel}</span>
           <span className="resource-faq-search-control">
             <Search
               aria-hidden="true"
@@ -80,21 +92,24 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
               type="search"
               autoComplete="off"
               value={query}
-              placeholder={"Try: shrinkage, HDT, conductive, TDS\u2026"}
+              placeholder={copy.searchPlaceholder}
               onChange={(event) => setQuery(event.target.value)}
               className="resource-faq-search-input"
             />
           </span>
         </label>
 
-        <section className="resource-faq-topic-panel" aria-label="FAQ topics">
+        <section
+          className="resource-faq-topic-panel"
+          aria-label={copy.topicsAria}
+        >
           <div className="resource-faq-topic-list stagger-list">
             {topicModules.map((module) => (
               <button
                 key={module.title}
                 type="button"
                 aria-pressed={module.title === activeModule?.title}
-                aria-controls={`panel-${toSectionId(module.title)}`}
+                aria-controls={`panel-${toResourceSectionId(module.title)}`}
                 onClick={() => setActiveTitle(module.title)}
               >
                 <span>{module.navLabel ?? module.title}</span>
@@ -107,7 +122,7 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
       <div className="resource-faq-content stagger-list">
         {activeModule ? (
           <section
-            id={`panel-${toSectionId(activeModule.title)}`}
+            id={`panel-${toResourceSectionId(activeModule.title)}`}
             className="resource-faq-section stagger-list"
           >
             <div className="resource-faq-section-head">
@@ -121,15 +136,13 @@ export function ResourceFaqExplorer({ modules }: ResourceFaqExplorerProps) {
               )}
               moduleTitle={activeModule.title}
               items={activeModule.faqItems ?? []}
+              questionsAriaSuffix={copy.questionsAriaSuffix}
             />
           </section>
         ) : (
           <div className="resource-faq-empty" role="status">
-            <strong>No matching questions</strong>
-            <p>
-              Try a broader term such as POM, wear, shrinkage, document, or
-              grade selection.
-            </p>
+            <strong>{copy.emptyTitle}</strong>
+            <p>{copy.emptyDescription}</p>
           </div>
         )}
       </div>

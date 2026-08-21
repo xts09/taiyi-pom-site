@@ -9,6 +9,11 @@ export const localizedResourceGroupIds = [
 export type LocalizedResourceGroupId =
   (typeof localizedResourceGroupIds)[number];
 
+export const isLocalizedResourceGroupId = (
+  value: string,
+): value is LocalizedResourceGroupId =>
+  localizedResourceGroupIds.includes(value as LocalizedResourceGroupId);
+
 export const localizedResourceArticleSlugs = [
   "material-selection-guide",
   "alternative-pom-grade-validation",
@@ -28,6 +33,11 @@ export const localizedResourceArticleSlugs = [
 
 export type LocalizedResourceArticleSlug =
   (typeof localizedResourceArticleSlugs)[number];
+
+export const isLocalizedResourceArticleSlug = (
+  value: string,
+): value is LocalizedResourceArticleSlug =>
+  localizedResourceArticleSlugs.includes(value as LocalizedResourceArticleSlug);
 
 export const localizedResourceArticleSliceA1Slugs = [
   "material-selection-guide",
@@ -212,6 +222,12 @@ export type ResourceIndexMessages = {
     reviewDescription: string;
     reviewAction: string;
     contactSourcePrefix: string;
+    sidebarLabel: string;
+    sidebarAria: string;
+    tableOfContentsAria: string;
+    mediaLabelsAria: string;
+    comparisonAria: string;
+    englishDestinationLabel: string;
   };
   faqExplorer: {
     ariaLabel: string;

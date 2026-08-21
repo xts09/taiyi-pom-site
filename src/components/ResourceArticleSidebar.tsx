@@ -13,9 +13,17 @@ type ResourceArticleSidebarProps = {
     id: string;
     title: string;
   }>;
+  label?: string;
+  sidebarAria?: string;
+  tableOfContentsAria?: string;
 };
 
-export function ResourceArticleSidebar({ sections }: ResourceArticleSidebarProps) {
+export function ResourceArticleSidebar({
+  sections,
+  label = "On this page",
+  sidebarAria = "Article sections",
+  tableOfContentsAria = "Article table of contents",
+}: ResourceArticleSidebarProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileTocValue, setMobileTocValue] = useState("");
 
@@ -100,12 +108,12 @@ export function ResourceArticleSidebar({ sections }: ResourceArticleSidebarProps
   );
 
   return (
-    <aside className="h-full" aria-label="Article sections">
+    <aside className="h-full" aria-label={sidebarAria}>
       <div className="hidden lg:sticky lg:top-[calc(var(--site-header-height)+2rem)] lg:block">
         <p className="mb-4 text-xs font-semibold tracking-[0.08em] text-slate-500 uppercase">
-          On this page
+          {label}
         </p>
-        <nav aria-label="Article table of contents">{sectionLinks()}</nav>
+        <nav aria-label={tableOfContentsAria}>{sectionLinks()}</nav>
       </div>
 
       <div className="border-b border-slate-200 bg-white px-5 py-3 sm:px-8 lg:hidden">
@@ -117,10 +125,10 @@ export function ResourceArticleSidebar({ sections }: ResourceArticleSidebarProps
         >
           <AccordionItem value="article-sections" className="border-0">
             <AccordionTrigger className="py-2 text-sm font-semibold text-slate-800 hover:no-underline">
-              On this page
+              {label}
             </AccordionTrigger>
             <AccordionContent className="pt-2 pb-2">
-              <nav aria-label="Article table of contents">
+              <nav aria-label={tableOfContentsAria}>
                 {sectionLinks(true)}
               </nav>
             </AccordionContent>

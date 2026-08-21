@@ -327,11 +327,13 @@ export const createTechArticleJsonLd = ({
   description,
   path,
   image,
+  inLanguage = "en",
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
+  inLanguage?: string;
 }) => ({
   "@context": "https://schema.org",
   "@type": "TechArticle",
@@ -339,7 +341,7 @@ export const createTechArticleJsonLd = ({
   description: formatMetadataDescription(description),
   url: absoluteUrl(path),
   mainEntityOfPage: absoluteUrl(path),
-  inLanguage: "en",
+  inLanguage,
   isPartOf: {
     "@type": "WebSite",
     name: siteName,

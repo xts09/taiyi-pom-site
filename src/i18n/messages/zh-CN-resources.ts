@@ -215,6 +215,12 @@ const messages = {
       "请提供零部件、使用工况、目标性能、当前材料、模具阶段和资料需求。我们可协助确定适合比较的材料系列与所需数据。",
     reviewAction: "讨论您的应用",
     contactSourcePrefix: "技术资料",
+    sidebarLabel: "本页内容",
+    sidebarAria: "文章章节",
+    tableOfContentsAria: "文章目录",
+    mediaLabelsAria: "摩擦学系统输入",
+    comparisonAria: "选型差异",
+    englishDestinationLabel: "英文内容",
   },
   faqExplorer: {
     ariaLabel: "常见问题浏览器",

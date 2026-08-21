@@ -615,7 +615,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                           <span>{messages.technicalResources}</span>
                         </div>
                         <Link
-                          href="/resources"
+                          href={localizedHref("/resources")}
                           prefetch={false}
                           className="mega-menu-all-link"
                           onClick={closeMega}
@@ -630,7 +630,9 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                         {resourceNavigationGroups.map((group) => (
                           <Link
                             key={group.id}
-                            href={getResourceNavigationGroupPath(group)}
+                            href={localizedHref(
+                              getResourceNavigationGroupPath(group),
+                            )}
                             prefetch={false}
                             className="mega-simple-link"
                             onClick={closeMega}
@@ -827,7 +829,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
 
               <div className="mt-3 space-y-1 pl-4">
                 <Link
-                  href="/resources"
+                  href={localizedHref("/resources")}
                   prefetch={false}
                   className="mobile-product-list mb-2 flex items-center justify-between gap-3 py-1"
                   aria-current={
@@ -847,7 +849,9 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                       }
                     </span>
                     <Link
-                      href={getResourceNavigationGroupPath(group)}
+                      href={localizedHref(
+                        getResourceNavigationGroupPath(group),
+                      )}
                       prefetch={false}
                       className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
                       aria-current={

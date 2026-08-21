@@ -17,6 +17,7 @@ import {
   createCollectionPageJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
+import { getLanguageAlternates } from "@/i18n/releaseManifest";
 
 const resourcesTitle = "Technical Resources | Taiyi Polymer";
 const resourcesMetadataTitle =
@@ -30,6 +31,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/resources",
   image: "/og-resources-material-selection.jpg",
   imageAlt: "Taiyi Polymer technical resources and material selection",
+  languageAlternates: getLanguageAlternates("/resources"),
 });
 
 const resourcesJsonLd = [

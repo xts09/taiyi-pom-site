@@ -11,6 +11,11 @@ type ResourceArticleContentProps = {
   intro: string;
   sections: ResourceArticleSection[];
   features?: ResourceArticleFeatureData[];
+  articleKicker?: string;
+  featureAriaLabels?: {
+    mediaLabels: string;
+    comparison: string;
+  };
 };
 
 export function ResourceArticleContent({
@@ -18,6 +23,8 @@ export function ResourceArticleContent({
   intro,
   sections,
   features = [],
+  articleKicker = "Technical guide",
+  featureAriaLabels,
 }: ResourceArticleContentProps) {
   const introFeatures = features.filter(
     (feature) => feature.position === "after-intro",
@@ -33,7 +40,7 @@ export function ResourceArticleContent({
   return (
     <>
       <header className="stagger-list pb-1">
-        <p className="resource-article-kicker">Technical guide</p>
+        <p className="resource-article-kicker">{articleKicker}</p>
         <h1 className="resource-article-title mt-4 w-full">
           {title}
         </h1>
@@ -45,6 +52,7 @@ export function ResourceArticleContent({
       {introFeatures.map((feature) => (
         <ResourceArticleFeature
           feature={feature}
+          ariaLabels={featureAriaLabels}
           key={`${feature.type}-${feature.position}`}
         />
       ))}
@@ -70,6 +78,7 @@ export function ResourceArticleContent({
             {sectionFeatures(section.title).map((feature) => (
               <ResourceArticleFeature
                 feature={feature}
+                ariaLabels={featureAriaLabels}
                 key={`${feature.type}-${feature.position}-${section.title}`}
               />
             ))}

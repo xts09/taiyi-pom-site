@@ -7,6 +7,7 @@ type ResourceFaqAccordionProps = {
   moduleIndex: number;
   moduleTitle: string;
   items: ResourceFaqItem[];
+  questionsAriaSuffix?: string;
 };
 
 const toAnchorId = (value: string) =>
@@ -19,6 +20,7 @@ export function ResourceFaqAccordion({
   moduleIndex,
   moduleTitle,
   items,
+  questionsAriaSuffix = "questions",
 }: ResourceFaqAccordionProps) {
   const itemIds = useMemo(
     () =>
@@ -45,7 +47,10 @@ export function ResourceFaqAccordion({
   };
 
   return (
-    <div className="resource-faq-list" aria-label={`${moduleTitle} questions`}>
+    <div
+      className="resource-faq-list"
+      aria-label={`${moduleTitle} ${questionsAriaSuffix}`}
+    >
       {items.map((item, index) => {
         const itemId = itemIds[index];
         const buttonId = `${itemId}-button`;

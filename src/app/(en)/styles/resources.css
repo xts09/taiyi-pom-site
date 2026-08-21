@@ -797,6 +797,10 @@
     scroll-snap-align: start;
   }
 
+  .resource-faq-topic-list button {
+    min-height: 2.75rem;
+  }
+
   .resource-page-shell.mesh-surface:not(.resource-article-shell)
     .resource-directory-section {
     grid-template-columns: minmax(0, 1fr);

@@ -24,6 +24,10 @@ import {
   createPageMetadata,
   createTechArticleJsonLd,
 } from "@/lib/seo";
+import {
+  getLanguageAlternates,
+  type ReleasedSourcePath,
+} from "@/i18n/releaseManifest";
 
 type ResourcePageProps = {
   params: Promise<{
@@ -55,12 +59,17 @@ export async function generateMetadata({
   const group = getResourceNavigationGroup(slug);
 
   if (group) {
+    const sourcePath = getResourceNavigationGroupPath(
+      group,
+    ) as ReleasedSourcePath;
+
     return createPageMetadata({
       title: `${group.title} Resources | Taiyi Polymer`,
       description: group.description,
-      path: getResourceNavigationGroupPath(group),
+      path: sourcePath,
       image: group.image,
       imageAlt: group.imageAlt,
+      languageAlternates: getLanguageAlternates(sourcePath),
     });
   }
 
@@ -71,13 +80,15 @@ export async function generateMetadata({
   }
 
   const primaryMedia = getPrimaryArticleMedia(page);
+  const sourcePath = `/resources/${page.slug}` as ReleasedSourcePath;
 
   return createPageMetadata({
     title: `${page.metadataTitle ?? page.title} | Taiyi Polymer`,
     description: page.description,
-    path: `/resources/${page.slug}`,
+    path: sourcePath,
     image: primaryMedia?.src,
     imageAlt: primaryMedia?.alt,
+    languageAlternates: getLanguageAlternates(sourcePath),
   });
 }
 

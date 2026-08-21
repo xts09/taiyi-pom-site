@@ -1246,6 +1246,84 @@ test("the final Simplified Chinese resource article slice matches source structu
   );
 });
 
+test("publishes the complete Simplified Chinese resource route family atomically", () => {
+  const resourceSourcePaths = [
+    "/resources",
+    ...localizedResourceGroupIds.map((id) => `/resources/${id}`),
+    ...localizedResourceArticleSlugs.map((slug) => `/resources/${slug}`),
+  ];
+  const releaseEntries = Object.values(localizedReleaseManifest);
+
+  assert.equal(resourceSourcePaths.length, 18);
+  assert.equal(new Set(resourceSourcePaths).size, resourceSourcePaths.length);
+
+  for (const sourcePath of resourceSourcePaths) {
+    const release = releaseEntries.find(
+      (entry) => entry.sourcePath === sourcePath,
+    );
+
+    assert.deepEqual(release, {
+      sourcePath,
+      status: "public",
+      indexable: true,
+      publicNavigation: true,
+      includeInSitemap: true,
+      includeInAlternates: true,
+      localizedSegments: ["zh"],
+    });
+    assert.equal(getLocalizedHref(sourcePath, "zh"), `/zh${sourcePath}`);
+    assert.equal(getLocalizedHref(sourcePath, "de"), sourcePath);
+    assert.equal(isEnglishFallbackHref(sourcePath, "zh"), false);
+    assert.equal(isEnglishFallbackHref(sourcePath, "de"), true);
+    assert.equal(isLocalizedReleaseIndexable(sourcePath, "zh"), true);
+    assert.equal(isLocalizedReleaseIndexable(sourcePath, "de"), false);
+    assert.deepEqual(getLanguageAlternates(sourcePath), {
+      en: sourcePath,
+      "zh-CN": `/zh${sourcePath}`,
+      "x-default": sourcePath,
+    });
+  }
+
+  const localizedIndex = readProjectFile(
+    "src/app/[locale]/resources/page.tsx",
+  );
+  const localizedDetail = readProjectFile(
+    "src/app/[locale]/resources/[slug]/page.tsx",
+  );
+  const englishIndex = readProjectFile("src/app/(en)/resources/page.tsx");
+  const englishDetail = readProjectFile(
+    "src/app/(en)/resources/[slug]/page.tsx",
+  );
+  const sitemap = readProjectFile("src/app/sitemap.ts");
+  const header = readProjectFile("src/components/Header.tsx");
+  const sectionIdHelper = readProjectFile("src/lib/resource-page.ts");
+
+  assert.match(localizedIndex, /localeConfig\.locale !== "zh-CN"/);
+  assert.match(localizedIndex, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(localizedIndex, /chineseResourceNavigationGroups/);
+  assert.match(localizedDetail, /localeConfig\.locale !== "zh-CN"/);
+  assert.match(localizedDetail, /localizedResourceArticleSlugs/);
+  assert.match(localizedDetail, /localizedResourceGroupIds/);
+  assert.match(localizedDetail, /locale:\s*"zh",\s*slug/);
+  assert.match(localizedDetail, /getLanguageAlternates\(route\.sourcePath\)/);
+  assert.match(localizedDetail, /messages=\{messages\.articleUi\}/);
+  assert.doesNotMatch(
+    `${localizedIndex}\n${localizedDetail}`,
+    />\s*(Technical Resources|Related Next Steps|On this page)\s*</,
+  );
+  assert.match(englishIndex, /getLanguageAlternates\("\/resources"\)/);
+  assert.match(englishDetail, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(sitemap, /sourcePath:\s*"\/resources"/);
+  assert.match(sitemap, /\.\.\.resourceNavigationGroups\.map/);
+  assert.match(sitemap, /\.\.\.resourcePages\.map/);
+  assert.match(
+    header,
+    /href=\{localizedHref\("\/resources"\)\}/,
+  );
+  assert.doesNotMatch(header, /href="\/resources"/);
+  assert.match(sectionIdHelper, /\\p\{Letter\}/);
+});
+
 test("release surfaces fail closed when status or indexability changes", () => {
   const release = { ...localizedReleaseManifest.home };
   const surfaces = [
