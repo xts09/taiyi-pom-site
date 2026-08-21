@@ -983,8 +983,8 @@
 }
 
 .nav-search-button {
-  width: 2.38rem;
-  height: 2.38rem;
+  width: var(--ds-touch-target-min);
+  height: var(--ds-touch-target-min);
   border: 1px solid rgba(17, 24, 39, 0.105);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.62);

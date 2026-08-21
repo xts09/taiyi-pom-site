@@ -130,13 +130,9 @@
   --ds-button-product-hero-font-weight: var(--ds-font-weight-bold);
   --ds-button-product-hero-primary-padding-inline: 2rem;
   --ds-button-product-hero-secondary-padding-inline: 1.7rem;
-  --ds-button-product-detail-primary-bg: var(--ds-color-product-blue-border);
-  --ds-button-product-detail-primary-bg-hover: var(
-    --ds-color-product-detail-blue-hover
-  );
-  --ds-button-product-detail-primary-border: var(
-    --ds-color-product-blue-border
-  );
+  --ds-button-product-detail-primary-bg: var(--ds-color-product-blue-600);
+  --ds-button-product-detail-primary-bg-hover: var(--ds-color-product-blue-700);
+  --ds-button-product-detail-primary-border: var(--ds-color-product-blue-600);
   --ds-button-product-detail-primary-fg: var(--ds-foreground-on-dark);
   --ds-button-product-detail-secondary-bg: rgba(246, 249, 252, 0.86);
   --ds-button-product-detail-secondary-border: rgba(47, 95, 158, 0.28);
