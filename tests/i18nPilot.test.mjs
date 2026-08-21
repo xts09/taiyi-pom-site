@@ -17,6 +17,10 @@ import zhCNProductFunnel from "../src/i18n/messages/zh-CN-product-funnel.ts";
 import zhCNApplications from "../src/i18n/messages/zh-CN-applications.ts";
 import zhCNApplicationDetailsA from "../src/i18n/messages/zh-CN-application-details-a.ts";
 import zhCNApplicationDetailsB from "../src/i18n/messages/zh-CN-application-details-b.ts";
+import {
+  chinesePomLandingPages,
+  chinesePomLandingUi,
+} from "../src/i18n/messages/zh-CN-pom-landings.ts";
 import zhCNResources from "../src/i18n/messages/zh-CN-resources.ts";
 import zhCNResourceArticlesA1 from "../src/i18n/messages/zh-CN-resource-articles-a1.ts";
 import zhCNResourceArticlesA2 from "../src/i18n/messages/zh-CN-resource-articles-a2.ts";
@@ -299,6 +303,9 @@ test("the release manifest publishes only the approved localized page groups", (
 
   const chineseAboutAndComponentReleases = {
     about: "/about",
+    modifiedPomCompounds: "/modified-pom-compounds",
+    wearResistantLowFrictionPom: "/wear-resistant-low-friction-pom",
+    conductiveAntistaticPom: "/conductive-antistatic-pom",
     components: "/components",
     precisionPlasticGearsComponent:
       "/components/precision-plastic-gears",
@@ -449,6 +456,16 @@ test("the release manifest publishes only the approved localized page groups", (
           : `/components/${slug}`,
       );
     }
+    for (const sourcePath of Object.keys(chinesePomLandingPages).map(
+      (slug) => `/${slug}`,
+    )) {
+      assert.equal(
+        getLocalizedHref(sourcePath, locale.urlSegment),
+        locale.urlSegment === "zh"
+          ? `/zh${sourcePath}`
+          : sourcePath,
+      );
+    }
     assert.equal(
       getLocalizedHref("/products/xt-100", locale.urlSegment),
       "/products/xt-100",
@@ -555,6 +572,14 @@ test("the release manifest publishes only the approved localized page groups", (
   assert.equal(isLocalizedReleaseIndexable("/about", "de"), false);
   assert.equal(isLocalizedReleaseIndexable("/components", "zh"), true);
   assert.equal(isLocalizedReleaseIndexable("/components", "de"), false);
+  assert.equal(
+    isLocalizedReleaseIndexable("/modified-pom-compounds", "zh"),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable("/modified-pom-compounds", "de"),
+    false,
+  );
 
   assert.deepEqual(getLanguageAlternates("/applications"), {
     en: "/applications",
@@ -573,6 +598,13 @@ test("the release manifest publishes only the approved localized page groups", (
       en: `/components/${slug}`,
       "zh-CN": `/zh/components/${slug}`,
       "x-default": `/components/${slug}`,
+    });
+  }
+  for (const slug of Object.keys(chinesePomLandingPages)) {
+    assert.deepEqual(getLanguageAlternates(`/${slug}`), {
+      en: `/${slug}`,
+      "zh-CN": `/zh/${slug}`,
+      "x-default": `/${slug}`,
     });
   }
 
@@ -608,6 +640,35 @@ test("the release manifest publishes only the approved localized page groups", (
   }
 
   assert.equal(isEnglishFallbackHref("/applications"), false);
+});
+
+test("the Simplified Chinese POM solution family is complete and localized", () => {
+  assert.deepEqual(Object.keys(chinesePomLandingPages).sort(), [
+    "conductive-antistatic-pom",
+    "modified-pom-compounds",
+    "wear-resistant-low-friction-pom",
+  ]);
+  assert.equal(chinesePomLandingUi.homeBreadcrumb, "首页");
+  assert.equal(chinesePomLandingUi.englishDestinationLabel, "英文内容");
+  assert.equal(
+    getLocalizedHref(
+      "/modified-pom-compounds#electrical-control",
+      "zh",
+    ),
+    "/zh/modified-pom-compounds#electrical-control",
+  );
+
+  for (const [slug, page] of Object.entries(chinesePomLandingPages)) {
+    assert.equal(page.slug, slug);
+    assert.ok(page.title.length > 4);
+    assert.ok(page.metaTitle.includes("Taiyi Polymer"));
+    assert.ok(page.metaDescription.length > 30);
+    assert.ok(page.sections.length > 0);
+    assert.ok(page.reviewInputs.length > 0);
+    assert.ok(page.relatedLinks.length > 0);
+    assert.ok(page.faqs.length > 0);
+    assert.ok(!page.primaryActionLabel.includes("Request"));
+  }
 });
 
 test("deep product funnel dictionaries are complete and language-specific", () => {

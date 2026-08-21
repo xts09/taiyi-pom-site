@@ -54,7 +54,7 @@ export const chineseAboutMessages = {
         title: "POM 改性材料",
         description:
           "面向注塑零部件的耐磨、低摩擦、增强、导电及其他功能型 POM 改性材料。",
-        href: "/products",
+      href: "/modified-pom-compounds",
       },
       {
         index: "02",

@@ -112,11 +112,11 @@ export function DetailedComponentSolution({
     application: solution.title,
     source: ui.contactSource,
   }));
-  const modifiedPomPath = localeSegment
-    ? localizedHref("/products")
-    : solution.slug === "ic-handling-trays"
+  const modifiedPomPath = localizedHref(
+    solution.slug === "ic-handling-trays"
       ? "/modified-pom-compounds#electrical-control"
-      : "/modified-pom-compounds#wear-impact-weathering";
+      : "/modified-pom-compounds#wear-impact-weathering",
+  );
 
   return (
     <main className={`${styles.page} ${styles.detailPage}`}>

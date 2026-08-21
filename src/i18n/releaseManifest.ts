@@ -93,6 +93,18 @@ export const localizedReleaseManifest = {
     sourcePath: "/about",
     ...chineseOnlyPublicRelease,
   },
+  modifiedPomCompounds: {
+    sourcePath: "/modified-pom-compounds",
+    ...chineseOnlyPublicRelease,
+  },
+  wearResistantLowFrictionPom: {
+    sourcePath: "/wear-resistant-low-friction-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  conductiveAntistaticPom: {
+    sourcePath: "/conductive-antistatic-pom",
+    ...chineseOnlyPublicRelease,
+  },
   applications: {
     sourcePath: "/applications",
     ...chineseOnlyPublicRelease,

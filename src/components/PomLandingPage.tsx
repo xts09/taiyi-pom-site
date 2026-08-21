@@ -7,9 +7,15 @@ import {
 } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { ActionPanel } from "@/components/ActionPanel";
+import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { MetricGroup } from "@/components/MetricGroup";
 import { Button } from "@/components/ui/button";
 import type { PomLandingPageData } from "@/data/pomLandingPages";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import {
+  getLocalizedHref,
+  isEnglishFallbackHref,
+} from "@/i18n/releaseManifest";
 import { createBreadcrumbJsonLd, siteUrl } from "@/lib/seo";
 
 const landingMaterialBySlug: Partial<Record<PomLandingPageData["slug"], string>> = {
@@ -25,22 +31,100 @@ const landingIntentBySlug: Partial<
   "modified-pom-compounds": "grade-evaluation",
 };
 
-export function PomLandingPage({ page }: { page: PomLandingPageData }) {
+export type PomLandingPageUi = {
+  homeBreadcrumb: string;
+  openFamilyAction: string;
+  gradeEvidenceKicker: string;
+  gradeFamilyLabel: string;
+  modificationDirectionLabel: string;
+  electricalDirectionLabel: string;
+  materialSelectionSummaryAria: string;
+  defaultSecondaryAction: string;
+  comparisonKicker: string;
+  comparisonTitle: string;
+  referenceGradeLabel: string;
+  materialTypeLabel: string;
+  comparisonBasisLabel: string;
+  taiyiPathLabel: string;
+  openMaterialPathAction: string;
+  comparisonNote: string;
+  inquiryKicker: string;
+  inquiryTitle: string;
+  relatedKicker: string;
+  relatedTitle: string;
+  faqTitle: string;
+  finalTitle: string;
+  finalEyebrow: string;
+  finalDescription: string;
+  englishDestinationLabel: string;
+};
+
+const englishUi: PomLandingPageUi = {
+  homeBreadcrumb: "Home",
+  openFamilyAction: "Open family",
+  gradeEvidenceKicker: "Grade Evidence",
+  gradeFamilyLabel: "Grade / family",
+  modificationDirectionLabel: "Modification direction",
+  electricalDirectionLabel: "Published electrical direction",
+  materialSelectionSummaryAria: "Material selection summary",
+  defaultSecondaryAction: "Find Technical Data",
+  comparisonKicker: "Grade Comparison",
+  comparisonTitle: "Preliminary Comparison Table",
+  referenceGradeLabel: "Reference grade",
+  materialTypeLabel: "Material type",
+  comparisonBasisLabel: "Comparison basis",
+  taiyiPathLabel: "Taiyi path",
+  openMaterialPathAction: "Open material path",
+  comparisonNote:
+    "Cross-reference information is provided for preliminary material selection only. Final suitability should be confirmed through testing under the customer's actual processing and application conditions.",
+  inquiryKicker: "Inquiry Inputs",
+  inquiryTitle: "Send These Details",
+  relatedKicker: "Related Paths",
+  relatedTitle: "Continue Material Selection",
+  faqTitle: "Frequently Asked Questions",
+  finalTitle: "Need Help Shortlisting a Grade?",
+  finalEyebrow: "Grade Selection",
+  finalDescription:
+    "Share the current material, application, target properties, mold stage, document requirements, and estimated volume. Taiyi Polymer can shortlist relevant grades and confirm the next sample or TDS step.",
+  englishDestinationLabel: "English content",
+};
+
+type PomLandingPageProps = {
+  page: PomLandingPageData;
+  localeSegment?: LocalizedUrlSegment;
+  ui?: PomLandingPageUi;
+};
+
+export function PomLandingPage({
+  page,
+  localeSegment,
+  ui = englishUi,
+}: PomLandingPageProps) {
+  const localizedHref = (href: string) =>
+    href.startsWith("#") ? href : getLocalizedHref(href, localeSegment);
+  const englishDestinationBadge = (href: string) =>
+    isEnglishFallbackHref(href, localeSegment) ? (
+      <EnglishDestinationBadge label={ui.englishDestinationLabel} />
+    ) : null;
+  const pagePath = localizedHref(`/${page.slug}`);
   const hasImageHero = Boolean(page.heroImage);
   const heroClassName = [
     "pom-landing-hero",
     hasImageHero ? "pom-landing-hero-image" : "pom-landing-hero-plain",
     `pom-landing-hero-${page.slug}`,
   ].join(" ");
-  const contactHref = createContactHref({
-    intent: landingIntentBySlug[page.slug],
-    material: landingMaterialBySlug[page.slug],
-    source: page.title,
-  });
+  const contactHref = createContactHref(
+    {
+      intent: landingIntentBySlug[page.slug],
+      material: landingMaterialBySlug[page.slug],
+      source: page.title,
+    },
+    localizedHref("/contact"),
+  );
   const jsonLd = [
     createBreadcrumbJsonLd([
-      { name: "Home", path: "/" },
-      { name: page.title, path: `/${page.slug}` },
+      { name: ui.homeBreadcrumb, path: localizedHref("/") },
+      { name: page.title, path: pagePath },
     ]),
     {
       "@context": "https://schema.org",
@@ -59,7 +143,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
       "@type": "WebPage",
       name: page.title,
       description: page.metaDescription,
-      url: `${siteUrl}/${page.slug}`,
+      url: `${siteUrl}${pagePath}`,
     },
   ];
 
@@ -111,7 +195,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                   {groupItems?.map((item) => (
                     <Link
                       key={item.label}
-                      href={item.href ?? "#"}
+                      href={localizedHref(item.href ?? "#")}
                       className="pom-landing-path-link"
                       aria-label={`${item.label}: ${item.detail}`}
                     >
@@ -125,6 +209,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                               {item.mobileLabel}
                             </span>
                           ) : null}
+                          {item.href ? englishDestinationBadge(item.href) : null}
                         </strong>
                         <span className="pom-landing-path-detail">
                           {item.detail}
@@ -144,15 +229,18 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
             item.href ? (
               <Link
                 key={item.label}
-                href={item.href}
+                href={localizedHref(item.href)}
                 className="pom-landing-evidence-link"
               >
                 <div>
-                  <h3>{item.label}</h3>
+                  <h3>
+                    {item.label}
+                    {englishDestinationBadge(item.href)}
+                  </h3>
                   <p>{item.detail}</p>
                 </div>
                 <span className="pom-landing-evidence-action">
-                  Open family
+                  {ui.openFamilyAction}
                   <ArrowUpRight aria-hidden="true" size={17} />
                 </span>
               </Link>
@@ -205,7 +293,11 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
             <div className="pom-landing-actions">
               <Button asChild variant="primary" size="form">
                 <Link
-                  href={page.primaryActionHref ?? contactHref}
+                  href={
+                    page.primaryActionHref
+                      ? localizedHref(page.primaryActionHref)
+                      : contactHref
+                  }
                   className="pom-landing-action"
                 >
                   {page.primaryActionLabel}
@@ -217,8 +309,15 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                 size="form"
                 className="pom-landing-secondary-action"
               >
-                <Link href={page.secondaryActionHref ?? "/technical-data-sheets"}>
-                  {page.secondaryActionLabel ?? "Find Technical Data"}
+                <Link
+                  href={localizedHref(
+                    page.secondaryActionHref ?? "/technical-data-sheets",
+                  )}
+                >
+                  {page.secondaryActionLabel ?? ui.defaultSecondaryAction}
+                  {englishDestinationBadge(
+                    page.secondaryActionHref ?? "/technical-data-sheets",
+                  )}
                 </Link>
               </Button>
             </div>
@@ -236,22 +335,22 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         {page.gradeEvidence ? (
           <section className="pom-landing-grade-evidence">
             <div className="pom-landing-section-head">
-              <p className="section-kicker">Grade Evidence</p>
+              <p className="section-kicker">{ui.gradeEvidenceKicker}</p>
               <h2>{page.gradeEvidence.title}</h2>
             </div>
             <div className="pom-landing-grade-evidence-list">
               {page.gradeEvidence.items.map((item) => (
                 <article key={item.grade}>
                   <div>
-                    <span>Grade / family</span>
+                    <span>{ui.gradeFamilyLabel}</span>
                     <strong>{item.grade}</strong>
                   </div>
                   <div>
-                    <span>Modification direction</span>
+                    <span>{ui.modificationDirectionLabel}</span>
                     <p>{item.modification}</p>
                   </div>
                   <div>
-                    <span>Published electrical direction</span>
+                    <span>{ui.electricalDirectionLabel}</span>
                     <p>{item.electricalDirection}</p>
                   </div>
                 </article>
@@ -263,7 +362,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         {page.metrics ? (
           <MetricGroup
             className="pom-landing-metrics"
-            aria-label="Material selection summary"
+            aria-label={ui.materialSelectionSummaryAria}
             items={page.metrics}
             variant="rail"
           />
@@ -303,17 +402,17 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         {page.crossReferenceRows ? (
           <section className="pom-landing-cross-reference">
             <div className="pom-landing-section-head">
-              <p className="section-kicker">Grade Comparison</p>
-              <h2>Preliminary Comparison Table</h2>
+              <p className="section-kicker">{ui.comparisonKicker}</p>
+              <h2>{ui.comparisonTitle}</h2>
             </div>
             <div className="pom-landing-table-wrap">
               <table>
                 <thead>
                   <tr>
-                    <th>Reference grade</th>
-                    <th>Material type</th>
-                    <th>Comparison basis</th>
-                    <th>Taiyi path</th>
+                    <th>{ui.referenceGradeLabel}</th>
+                    <th>{ui.materialTypeLabel}</th>
+                    <th>{ui.comparisonBasisLabel}</th>
+                    <th>{ui.taiyiPathLabel}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -323,8 +422,9 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
                       <td>{row.materialType}</td>
                       <td>{row.reviewDirection}</td>
                       <td>
-                        <Link href={row.taiyiPath}>
-                          Open material path
+                        <Link href={localizedHref(row.taiyiPath)}>
+                          {ui.openMaterialPathAction}
+                          {englishDestinationBadge(row.taiyiPath)}
                         </Link>
                       </td>
                     </tr>
@@ -333,10 +433,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
               </table>
             </div>
             <p className="pom-landing-note">
-              Cross-reference information is provided for preliminary material
-              selection only. Final suitability should be confirmed through
-              testing under the customer&apos;s actual processing and application
-              conditions.
+              {ui.comparisonNote}
             </p>
           </section>
         ) : null}
@@ -344,8 +441,8 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         {page.showReviewSection !== false ? (
           <section className="pom-landing-review-grid">
           <div className="pom-landing-panel">
-            <p className="section-kicker">Inquiry Inputs</p>
-            <h2>Send These Details</h2>
+            <p className="section-kicker">{ui.inquiryKicker}</p>
+            <h2>{ui.inquiryTitle}</h2>
             <ul>
               {page.reviewInputs.map((input) => (
                 <li key={input}>{input}</li>
@@ -354,15 +451,18 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
           </div>
 
           <div className="pom-landing-panel">
-            <p className="section-kicker">Related Paths</p>
-            <h2>Continue Material Selection</h2>
+            <p className="section-kicker">{ui.relatedKicker}</p>
+            <h2>{ui.relatedTitle}</h2>
             <div className="pom-landing-related-list">
               {page.relatedLinks.map((link) => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={localizedHref(link.href)}
                 >
-                  <strong>{link.label}</strong>
+                  <strong>
+                    {link.label}
+                    {englishDestinationBadge(link.href)}
+                  </strong>
                   <span>{link.description}</span>
                 </Link>
               ))}
@@ -373,7 +473,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
 
         <section className="pom-landing-faq" aria-labelledby="pom-landing-faq-title">
           <div className="pom-landing-section-head">
-            <h2 id="pom-landing-faq-title">Frequently Asked Questions</h2>
+            <h2 id="pom-landing-faq-title">{ui.faqTitle}</h2>
           </div>
           <dl>
             {page.faqs.map((item) => (
@@ -388,9 +488,9 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
         <ActionPanel
           footerAdjacent
           variant="recommendation"
-          title="Need Help Shortlisting a Grade?"
+          title={ui.finalTitle}
           className="selection-support-band resource-cta pom-landing-cta"
-          eyebrow="Grade Selection"
+          eyebrow={ui.finalEyebrow}
           eyebrowClassName="section-kicker mb-3"
           action={
             <Button
@@ -402,12 +502,7 @@ export function PomLandingPage({ page }: { page: PomLandingPageData }) {
             </Button>
           }
         >
-          <p>
-            Share the current material, application, target properties, mold
-            stage, document requirements, and estimated volume. Taiyi Polymer
-            can shortlist relevant grades and confirm the next sample or TDS
-            step.
-          </p>
+          <p>{ui.finalDescription}</p>
         </ActionPanel>
       </section>
     </main>
