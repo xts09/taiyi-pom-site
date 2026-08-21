@@ -82,6 +82,19 @@ export type LocalizedResourceArticleSliceB2Messages = Record<
   ResourcePage
 >;
 
+export const localizedResourceArticleSliceC1Slugs = [
+  "pa6-vs-pa66-reinforced-parts",
+  "glass-fiber-reinforced-pa6-pa66-selection-guide",
+] as const satisfies readonly LocalizedResourceArticleSlug[];
+
+export type LocalizedResourceArticleSliceC1Slug =
+  (typeof localizedResourceArticleSliceC1Slugs)[number];
+
+export type LocalizedResourceArticleSliceC1Messages = Record<
+  LocalizedResourceArticleSliceC1Slug,
+  ResourcePage
+>;
+
 export const localizedResourceLinkPaths = [
   "/resources/material-selection-guide",
   "/resources/wear-resistant-low-friction-pom-selection-guide",

@@ -22,6 +22,7 @@ import zhCNResourceArticlesA1 from "../src/i18n/messages/zh-CN-resource-articles
 import zhCNResourceArticlesA2 from "../src/i18n/messages/zh-CN-resource-articles-a2.ts";
 import zhCNResourceArticlesB1 from "../src/i18n/messages/zh-CN-resource-articles-b1.ts";
 import zhCNResourceArticlesB2 from "../src/i18n/messages/zh-CN-resource-articles-b2.ts";
+import zhCNResourceArticlesC1 from "../src/i18n/messages/zh-CN-resource-articles-c1.ts";
 import {
   applicationIndexComponentSlugs,
   localizedApplicationDetailSliceASlugs,
@@ -34,6 +35,7 @@ import {
   localizedResourceArticleSliceA2Slugs,
   localizedResourceArticleSliceB1Slugs,
   localizedResourceArticleSliceB2Slugs,
+  localizedResourceArticleSliceC1Slugs,
   localizedResourceGroupIds,
   localizedResourceLinkPaths,
 } from "../src/i18n/resourceTypes.ts";
@@ -1107,6 +1109,61 @@ test("the fourth Simplified Chinese resource article slice matches source struct
     assert.doesNotMatch(
       visibleCopy,
       /保证适用|直接替代|完全等同|自动批准|无需验证|普遍适用/,
+    );
+  }
+});
+
+test("the fifth Simplified Chinese resource article slice matches source structure", () => {
+  const resourcesSource = readProjectFile("src/data/resources.ts");
+  const expectedCounts = {
+    "pa6-vs-pa66-reinforced-parts": {
+      sections: 6,
+      features: 2,
+      modules: 3,
+      relatedLinks: 5,
+    },
+    "glass-fiber-reinforced-pa6-pa66-selection-guide": {
+      sections: 7,
+      features: 2,
+      modules: 3,
+      relatedLinks: 5,
+    },
+  };
+
+  assert.deepEqual(
+    Object.keys(zhCNResourceArticlesC1).sort(),
+    [...localizedResourceArticleSliceC1Slugs].sort(),
+  );
+
+  for (const slug of localizedResourceArticleSliceC1Slugs) {
+    const localized = zhCNResourceArticlesC1[slug];
+    const counts = expectedCounts[slug];
+
+    assert.equal(localized.slug, slug);
+    assert.match(resourcesSource, new RegExp(`slug: "${slug}"`));
+    assert.equal(localized.articleSections?.length, counts.sections);
+    assert.equal(localized.articleFeatures?.length, counts.features);
+    assert.equal(localized.modules.length, counts.modules);
+    assert.equal(localized.relatedLinks.length, counts.relatedLinks);
+
+    const sectionTitles = new Set(
+      localized.articleSections?.map((section) => section.title),
+    );
+    for (const feature of localized.articleFeatures ?? []) {
+      if (feature.position === "after-section") {
+        assert.equal(sectionTitles.has(feature.sectionTitle), true);
+      }
+    }
+
+    const visibleCopy = JSON.stringify(localized);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /Start With the Finished-Part|Specify Dry, Conditioned|Define the Load Case|Use the Catalogue Ladder/,
+    );
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|自动批准|无需验证/,
     );
   }
 });
