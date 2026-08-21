@@ -1,3 +1,5 @@
+import type { ResourcePage } from "@/data/resources";
+
 export const localizedResourceGroupIds = [
   "material-selection",
   "processing-troubleshooting",
@@ -26,6 +28,19 @@ export const localizedResourceArticleSlugs = [
 
 export type LocalizedResourceArticleSlug =
   (typeof localizedResourceArticleSlugs)[number];
+
+export const localizedResourceArticleSliceA1Slugs = [
+  "material-selection-guide",
+  "alternative-pom-grade-validation",
+] as const satisfies readonly LocalizedResourceArticleSlug[];
+
+export type LocalizedResourceArticleSliceA1Slug =
+  (typeof localizedResourceArticleSliceA1Slugs)[number];
+
+export type LocalizedResourceArticleSliceA1Messages = Record<
+  LocalizedResourceArticleSliceA1Slug,
+  ResourcePage
+>;
 
 export const localizedResourceLinkPaths = [
   "/resources/material-selection-guide",

@@ -18,6 +18,7 @@ import zhCNApplications from "../src/i18n/messages/zh-CN-applications.ts";
 import zhCNApplicationDetailsA from "../src/i18n/messages/zh-CN-application-details-a.ts";
 import zhCNApplicationDetailsB from "../src/i18n/messages/zh-CN-application-details-b.ts";
 import zhCNResources from "../src/i18n/messages/zh-CN-resources.ts";
+import zhCNResourceArticlesA1 from "../src/i18n/messages/zh-CN-resource-articles-a1.ts";
 import {
   applicationIndexComponentSlugs,
   localizedApplicationDetailSliceASlugs,
@@ -26,6 +27,7 @@ import {
 } from "../src/i18n/applicationTypes.ts";
 import {
   localizedResourceArticleSlugs,
+  localizedResourceArticleSliceA1Slugs,
   localizedResourceGroupIds,
   localizedResourceLinkPaths,
 } from "../src/i18n/resourceTypes.ts";
@@ -864,6 +866,61 @@ test("the Simplified Chinese resource directory copy matches the source taxonomy
   for (const entry of Object.values(zhCNResources.entries)) {
     assert.match(entry.label, /[\u3400-\u9fff]/);
     assert.match(entry.description, /[\u3400-\u9fff]/);
+  }
+});
+
+test("the first Simplified Chinese resource article slice matches source structure", () => {
+  const resourcesSource = readProjectFile("src/data/resources.ts");
+  const expectedCounts = {
+    "material-selection-guide": {
+      sections: 8,
+      features: 4,
+      modules: 5,
+      relatedLinks: 4,
+    },
+    "alternative-pom-grade-validation": {
+      sections: 6,
+      features: 2,
+      modules: 3,
+      relatedLinks: 4,
+    },
+  };
+
+  assert.deepEqual(
+    Object.keys(zhCNResourceArticlesA1).sort(),
+    [...localizedResourceArticleSliceA1Slugs].sort(),
+  );
+
+  for (const slug of localizedResourceArticleSliceA1Slugs) {
+    const localized = zhCNResourceArticlesA1[slug];
+    const counts = expectedCounts[slug];
+
+    assert.equal(localized.slug, slug);
+    assert.match(resourcesSource, new RegExp(`slug: "${slug}"`));
+    assert.equal(localized.articleSections?.length, counts.sections);
+    assert.equal(localized.articleFeatures?.length, counts.features);
+    assert.equal(localized.modules.length, counts.modules);
+    assert.equal(localized.relatedLinks.length, counts.relatedLinks);
+
+    const sectionTitles = new Set(
+      localized.articleSections?.map((section) => section.title),
+    );
+    for (const feature of localized.articleFeatures ?? []) {
+      if (feature.position === "after-section") {
+        assert.equal(sectionTitles.has(feature.sectionTitle), true);
+      }
+    }
+
+    const visibleCopy = JSON.stringify(localized);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /Start with the Molded Part|Define What Equivalent Means|Controlled Baseline|Quick Selection Logic/,
+    );
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|自动批准|无需验证/,
+    );
   }
 });
 
