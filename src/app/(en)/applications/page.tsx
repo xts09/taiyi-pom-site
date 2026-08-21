@@ -14,6 +14,7 @@ import {
   createCollectionPageJsonLd,
   createPageMetadata,
 } from "@/lib/seo";
+import { getLanguageAlternates } from "@/i18n/releaseManifest";
 import componentStyles from "@/app/(en)/components/ComponentSolutions.module.css";
 
 const applicationsTitle = "Engineering Plastic Applications | Taiyi Polymer";
@@ -26,6 +27,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/applications",
   image: "/applications/parts/washing-machine-components-hero.png",
   imageAlt: "Taiyi Polymer application engineering for washing machine components",
+  languageAlternates: getLanguageAlternates("/applications"),
 });
 
 const applicationsJsonLd = [

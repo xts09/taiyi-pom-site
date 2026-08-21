@@ -13,8 +13,10 @@ type SecondarySectionNavAction = {
 type SecondarySectionNavProps = {
   actions?: SecondarySectionNavAction[];
   ariaLabel: string;
+  mobileMenuLabel?: string;
   subtitle: string;
   tabs: SecondarySectionNavTab[];
+  tabsAriaLabel?: string;
   title: string;
   variant: "application" | "product";
 };
@@ -27,8 +29,10 @@ const defaultActions: SecondarySectionNavAction[] = [
 export function SecondarySectionNav({
   actions = defaultActions,
   ariaLabel,
+  mobileMenuLabel = "On this page",
   subtitle,
   tabs,
+  tabsAriaLabel = "Page sections",
   title,
   variant,
 }: SecondarySectionNavProps) {
@@ -89,7 +93,7 @@ export function SecondarySectionNav({
 
       <nav
         className={`${prefix}-section-tabs`}
-        aria-label="Page sections"
+        aria-label={tabsAriaLabel}
         data-slot="secondary-section-tabs"
       >
         {tabs.map((tab) => (
@@ -105,7 +109,7 @@ export function SecondarySectionNav({
 
       {variant === "application" ? (
         <details className="application-section-mobile-menu">
-          <summary>On this page</summary>
+          <summary>{mobileMenuLabel}</summary>
           <div className="application-section-mobile-menu-panel">
             {tabs.map((tab) => (
               <a key={tab.href} href={tab.href}>

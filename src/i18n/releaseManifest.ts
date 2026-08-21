@@ -23,6 +23,11 @@ const publicRelease = {
   includeInAlternates: true,
 } as const;
 
+const chineseOnlyPublicRelease = {
+  ...publicRelease,
+  localizedSegments: ["zh"],
+} as const;
+
 export const localizedReleaseManifest = {
   home: {
     sourcePath: "/",
@@ -83,6 +88,42 @@ export const localizedReleaseManifest = {
   contact: {
     sourcePath: "/contact",
     ...publicRelease,
+  },
+  applications: {
+    sourcePath: "/applications",
+    ...chineseOnlyPublicRelease,
+  },
+  automotiveApplication: {
+    sourcePath: "/applications/automotive",
+    ...chineseOnlyPublicRelease,
+  },
+  electronicsApplication: {
+    sourcePath: "/applications/electronics",
+    ...chineseOnlyPublicRelease,
+  },
+  conveyorAutomationApplication: {
+    sourcePath: "/applications/conveyor-automation",
+    ...chineseOnlyPublicRelease,
+  },
+  motionComponentsApplication: {
+    sourcePath: "/applications/motion-components",
+    ...chineseOnlyPublicRelease,
+  },
+  waterControlApplication: {
+    sourcePath: "/applications/water-control",
+    ...chineseOnlyPublicRelease,
+  },
+  washingMachineComponentsApplication: {
+    sourcePath: "/applications/washing-machine-components",
+    ...chineseOnlyPublicRelease,
+  },
+  outdoorEquipmentApplication: {
+    sourcePath: "/applications/outdoor-equipment",
+    ...chineseOnlyPublicRelease,
+  },
+  textileMachineryApplication: {
+    sourcePath: "/applications/textile-machinery",
+    ...chineseOnlyPublicRelease,
   },
 } as const satisfies Record<string, LocalizedReleaseEntry>;
 

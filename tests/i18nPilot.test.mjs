@@ -144,7 +144,7 @@ test("all localized dictionaries match the complete English message shape", () =
   assert.notEqual(zhCN.Contact.form.submit, en.Contact.form.submit);
 });
 
-test("the release manifest publishes only the approved conversion funnel pages", () => {
+test("the release manifest publishes only the approved localized page groups", () => {
   assert.deepEqual(localizedReleaseManifest.home, {
     sourcePath: "/",
     status: "public",
@@ -266,6 +266,31 @@ test("the release manifest publishes only the approved conversion funnel pages",
     includeInAlternates: true,
   });
 
+  const chineseApplicationReleases = {
+    applications: "/applications",
+    automotiveApplication: "/applications/automotive",
+    electronicsApplication: "/applications/electronics",
+    conveyorAutomationApplication: "/applications/conveyor-automation",
+    motionComponentsApplication: "/applications/motion-components",
+    waterControlApplication: "/applications/water-control",
+    washingMachineComponentsApplication:
+      "/applications/washing-machine-components",
+    outdoorEquipmentApplication: "/applications/outdoor-equipment",
+    textileMachineryApplication: "/applications/textile-machinery",
+  };
+
+  for (const [key, sourcePath] of Object.entries(chineseApplicationReleases)) {
+    assert.deepEqual(localizedReleaseManifest[key], {
+      sourcePath,
+      status: "public",
+      indexable: true,
+      publicNavigation: true,
+      includeInSitemap: true,
+      includeInAlternates: true,
+      localizedSegments: ["zh"],
+    });
+  }
+
   assert.deepEqual(homeLanguageAlternates, {
     en: "/",
     de: "/de",
@@ -357,14 +382,24 @@ test("the release manifest publishes only the approved conversion funnel pages",
       isEnglishFallbackHref("/technical-data-sheets", locale.urlSegment),
       false,
     );
+    const applicationHref =
+      locale.urlSegment === "zh" ? "/zh/applications" : "/applications";
     assert.equal(
       getLocalizedHref("/applications", locale.urlSegment),
-      "/applications",
+      applicationHref,
     );
     assert.equal(
       isEnglishFallbackHref("/applications", locale.urlSegment),
-      true,
+      locale.urlSegment !== "zh",
     );
+    for (const slug of localizedApplicationSlugs) {
+      assert.equal(
+        getLocalizedHref(`/applications/${slug}`, locale.urlSegment),
+        locale.urlSegment === "zh"
+          ? `/zh/applications/${slug}`
+          : `/applications/${slug}`,
+      );
+    }
     assert.equal(
       getLocalizedHref("/products/xt-100", locale.urlSegment),
       "/products/xt-100",
@@ -448,7 +483,22 @@ test("the release manifest publishes only the approved conversion funnel pages",
   );
   assert.equal(isLocalizedReleaseIndexable("/technical-data-sheets"), true);
   assert.equal(isLocalizedReleaseIndexable("/contact"), true);
+  assert.equal(isLocalizedReleaseIndexable("/applications", "zh"), true);
+  assert.equal(isLocalizedReleaseIndexable("/applications", "de"), false);
   assert.equal(isLocalizedReleaseIndexable("/about"), false);
+
+  assert.deepEqual(getLanguageAlternates("/applications"), {
+    en: "/applications",
+    "zh-CN": "/zh/applications",
+    "x-default": "/applications",
+  });
+  for (const slug of localizedApplicationSlugs) {
+    assert.deepEqual(getLanguageAlternates(`/applications/${slug}`), {
+      en: `/applications/${slug}`,
+      "zh-CN": `/zh/applications/${slug}`,
+      "x-default": `/applications/${slug}`,
+    });
+  }
 
   assert.deepEqual(getLanguageAlternates("/products/xt-100-base-pom-resin"), {
     en: "/products/xt-100-base-pom-resin",
@@ -817,9 +867,21 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   const localizedTechnicalData = readProjectFile(
     "src/app/[locale]/technical-data-sheets/page.tsx",
   );
+  const localizedApplications = readProjectFile(
+    "src/app/[locale]/applications/page.tsx",
+  );
+  const localizedApplicationDetail = readProjectFile(
+    "src/app/[locale]/applications/[slug]/page.tsx",
+  );
   const englishHome = readProjectFile("src/app/(en)/page.tsx");
   const englishProducts = readProjectFile("src/app/(en)/products/page.tsx");
   const englishContact = readProjectFile("src/app/(en)/contact/page.tsx");
+  const englishApplications = readProjectFile(
+    "src/app/(en)/applications/page.tsx",
+  );
+  const englishApplicationDetail = readProjectFile(
+    "src/app/(en)/applications/[slug]/page.tsx",
+  );
   const englishLayout = readProjectFile("src/app/(en)/layout.tsx");
   const sitemap = readProjectFile("src/app/sitemap.ts");
   const header = readProjectFile("src/components/Header.tsx");
@@ -835,6 +897,8 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.doesNotMatch(localizedCategory, /indexable:\s*false/);
   assert.doesNotMatch(localizedGrade, /indexable:\s*false/);
   assert.doesNotMatch(localizedTechnicalData, /indexable:\s*false/);
+  assert.doesNotMatch(localizedApplications, /indexable:\s*false/);
+  assert.doesNotMatch(localizedApplicationDetail, /indexable:\s*false/);
   assert.match(localizedHome, /getLocalizedHomePath/);
   assert.match(localizedProducts, /getLocalizedProductsPath/);
   assert.match(localizedContact, /getLocalizedContactPath/);
@@ -844,6 +908,13 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(localizedCategory, /getLanguageAlternates\(sourcePath\)/);
   assert.match(localizedGrade, /getLanguageAlternates\(sourcePath\)/);
   assert.match(localizedTechnicalData, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(localizedApplications, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(
+    localizedApplicationDetail,
+    /getLanguageAlternates\(sourcePath\)/,
+  );
+  assert.match(localizedApplications, /localeConfig\.locale !== "zh-CN"/);
+  assert.match(localizedApplicationDetail, /localeConfig\.locale !== "zh-CN"/);
   assert.match(localizedTechnicalData, /!hasSearchIntent/);
   assert.match(localizedHome, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(localizedProducts, /indexable:\s*isLocalizedReleaseIndexable/);
@@ -853,6 +924,14 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(englishProducts, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(englishContact, /contactLanguageAlternates/);
   assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
+  assert.match(
+    englishApplications,
+    /getLanguageAlternates\("\/applications"\)/,
+  );
+  assert.match(
+    englishApplicationDetail,
+    /getLanguageAlternates\([\s\S]*`\/applications\/\$\{application\.slug\}`/,
+  );
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
   assert.match(
     sitemap,
@@ -878,6 +957,9 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(sitemap, /sourcePath:\s*"\/products\/ehi402t-high-impact-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/edr180-high-impact-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/technical-data-sheets"/);
+  assert.match(sitemap, /sourcePath:\s*"\/applications"/);
+  assert.match(sitemap, /sourcePath:\s*"\/applications\/automotive"/);
+  assert.match(sitemap, /sourcePath:\s*"\/applications\/textile-machinery"/);
   assert.match(sitemap, /getSitemapLanguageOptions\(sourcePath\)/);
   assert.match(sitemap, /isReleasedSourcePath\(entry\.path\)/);
   assert.match(
@@ -886,6 +968,8 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   );
   assert.match(sitemap, /alternates:\s*\{[\s\S]*languages:/);
   assert.match(header, /getLanguageOptions/);
+  assert.match(header, /href=\{localizedHref\("\/applications"\)\}/);
+  assert.match(header, /href=\{localizedHref\(item\.href\)\}/);
   assert.match(header, /language-switcher--/);
   assert.doesNotMatch(header, /i18n-preview/);
   assert.doesNotMatch(footer, /i18n-preview/);

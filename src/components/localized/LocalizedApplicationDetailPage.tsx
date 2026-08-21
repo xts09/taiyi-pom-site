@@ -1,41 +1,33 @@
-import type { CSSProperties } from "react";
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { notFound, permanentRedirect } from "next/navigation";
-import { serializeJsonLd } from "@/lib/jsonLd";
-import { createContactHref } from "@/lib/contactContext";
-import { getApplicationComponentLinks } from "@/data/applicationComponentLinks";
-import {
-  applications,
-  getApplicationBySlug,
-  selectionBasis,
-  type ApplicationEngineeringGroup,
-  type ApplicationImage,
-  type ApplicationItem,
-} from "@/data/applications";
+import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
+import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { MediaFigure } from "@/components/MediaFigure";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { publicPath } from "@/lib/paths";
+import { getApplicationComponentLinks } from "@/data/applicationComponentLinks";
+import type {
+  ApplicationEngineeringGroup,
+  ApplicationImage,
+  ApplicationItem,
+} from "@/data/applications";
+import type {
+  ApplicationDetailUiMessages,
+  ApplicationIndexComponentSlug,
+  ApplicationIndexMessages,
+} from "@/i18n/applicationTypes";
+import type { LocalizedUrlSegment } from "@/i18n/config";
 import {
-  createBreadcrumbJsonLd,
-  createPageMetadata,
-  createWebPageJsonLd,
-} from "@/lib/seo";
-import {
-  getLanguageAlternates,
-  type ReleasedSourcePath,
+  getLocalizedHref,
+  isEnglishFallbackHref,
 } from "@/i18n/releaseManifest";
-
-type ApplicationDetailPageProps = {
-  params: Promise<{
-    slug: string;
-  }>;
-};
+import { createContactHref } from "@/lib/contactContext";
+import { serializeJsonLd } from "@/lib/jsonLd";
+import { publicPath } from "@/lib/paths";
+import { createBreadcrumbJsonLd, createWebPageJsonLd } from "@/lib/seo";
 
 type ApplicationVisualAssets = {
   scene: string;
@@ -47,8 +39,6 @@ type ApplicationVisualAssets = {
 
 type ApplicationVisualConfig = {
   assets: ApplicationVisualAssets;
-  primaryDirectionIndex?: number;
-  reviewFocus?: readonly string[];
 };
 
 type SceneKeyword = {
@@ -62,9 +52,6 @@ type MaterialDirectionCardData = {
   directionName: string;
   href?: string;
   image?: ApplicationImage;
-  isPrimaryDirection: boolean;
-  part: string;
-  reviewFocus?: string;
 };
 
 type ApplicationUseCardData = {
@@ -78,19 +65,15 @@ type ApplicationUseCardData = {
   title: string;
 };
 
-const applicationSectionTabs = [
-  { href: "#application-scene", label: "Parts & Conditions" },
-  { href: "#material-match", label: "Typical Parts" },
-  { href: "#review-checklist", label: "Candidate Materials" },
-  { href: "#material-evaluation", label: "Material Evaluation" },
-];
-
-const reviewCardTitles = [
-  "Mold Stage",
-  "Flow Consistency",
-  "Dimensional Target",
-  "Movement & Documents",
-];
+type LocalizedApplicationDetailPageProps = {
+  application: ApplicationItem;
+  componentMessages: ApplicationIndexMessages["componentSolutions"];
+  inLanguage: string;
+  localeSegment: LocalizedUrlSegment;
+  messages: ApplicationDetailUiMessages;
+  pagePath: string;
+  selectionItems: readonly string[];
+};
 
 const automotiveVisualAssets: ApplicationVisualAssets = {
   scene: "/generated/applications/automotive/automotive-application-scene.webp",
@@ -119,44 +102,22 @@ const createApplicationVisualAssets = (
 });
 
 const materialCardImages = {
-  natural: "/generated/pom-natural-pellets-dish-square.webp",
-  naturalWide: "/generated/pom-natural-pellets-hero-wide.webp",
   naturalMacro: "/generated/pom-natural-pellets-macro-texture.webp",
-  wearNatural: "/generated/pom-wear-natural-pellets-dish-square.webp",
-  wearNaturalMacro: "/generated/pom-wear-natural-pellets-macro-texture.webp",
-  glassFiber: "/generated/pom-glass-fiber-pellets-dish-square.webp",
+  white: "/generated/pom-white-pellets-dish-square.webp",
   black: "/generated/pom-black-pellets-card-crop.webp",
   uvBlack: "/generated/pom-uv-black-pellets-dish-square.webp",
-  white: "/generated/pom-white-pellets-dish-square.webp",
 } as const;
-
-const automotiveReviewFocus = [
-  "Impact response | tolerance control",
-  "Wear path | friction stability",
-  "Mold shrinkage | fit consistency",
-  "Warpage control | tooling validation",
-];
-
-const electronicsReviewFocus = [
-  "Resistance target | test method",
-  "Stiffness | grounding path",
-  "Part geometry | processing",
-];
 
 const applicationVisualConfigs: Partial<
   Record<string, ApplicationVisualConfig>
 > = {
   automotive: {
     assets: automotiveVisualAssets,
-    primaryDirectionIndex: 0,
-    reviewFocus: automotiveReviewFocus,
   },
   electronics: {
     assets: createApplicationVisualAssets(
       "/applications/parts/electronic-electrical-components-wide.webp",
     ),
-    primaryDirectionIndex: 0,
-    reviewFocus: electronicsReviewFocus,
   },
   "conveyor-automation": {
     assets: createApplicationVisualAssets(
@@ -190,14 +151,6 @@ const applicationVisualConfigs: Partial<
   },
 };
 
-const directionLabelQualifierPattern =
-  /^(.*?)(\s+(?:for|where|based on)\s+.+)$/i;
-const performanceGroupTitlePattern = /performance|material review|fit/i;
-const sceneKeywords: SceneKeyword[] = selectionBasis.map((item, index) => ({
-  title: reviewCardTitles[index] ?? "Review Point",
-  value: item,
-}));
-
 const cx = (...classes: Array<string | false | null | undefined>) =>
   classes.filter(Boolean).join(" ");
 
@@ -211,40 +164,24 @@ const getApplicationHeroStyle = (
 ): CSSProperties =>
   ({
     "--application-hero-image": `url(${publicPath(heroImageSrc)})`,
-    ...(heroImageSize
-      ? {
-          "--application-hero-size": heroImageSize,
-        }
-      : {}),
+    ...(heroImageSize ? { "--application-hero-size": heroImageSize } : {}),
     ...(cadImageSrc
-      ? {
-          "--application-cad-image": `url(${publicPath(cadImageSrc)})`,
-        }
+      ? { "--application-cad-image": `url(${publicPath(cadImageSrc)})` }
       : {}),
   }) as CSSProperties;
 
 const getMaterialCardImage = (card: MaterialDirectionCardData): string => {
   const text = `${card.directionName} ${card.condition}`.toLowerCase();
 
-  if (/uv|light-exposed|outdoor/.test(text)) {
+  if (/uv|紫外|户外|光照/.test(text)) {
     return materialCardImages.uvBlack;
   }
 
-  if (/carbon|conductive|antistatic|esd/.test(text)) {
+  if (/carbon|conductive|antistatic|esd|碳纤维|导电|抗静电/.test(text)) {
     return materialCardImages.black;
   }
 
-  if (
-    /wear|low-friction|friction|sliding|lubricat|high-impact|impact/.test(text)
-  ) {
-    return materialCardImages.white;
-  }
-
-  if (/glass|fiber|reinforced/.test(text)) {
-    return materialCardImages.white;
-  }
-
-  if (/base|natural|standard/.test(text)) {
+  if (/base|natural|standard|基础|本色|标准/.test(text)) {
     return materialCardImages.naturalMacro;
   }
 
@@ -262,30 +199,11 @@ const getApplicationHeroClassName = (application: ApplicationItem) =>
 
 const getEngineeringGroups = (
   application: ApplicationItem,
-): ApplicationEngineeringGroup[] =>
-  application.engineeringFit ?? [
-    {
-      title: "Typical Parts",
-      items: application.images.map((image) => image.label),
-    },
-    {
-      title: "Material Review Focus",
-      items: selectionBasis,
-    },
-    {
-      title: "Candidate Material Families",
-      items: application.materialDirections.map((direction) => direction.label),
-    },
-  ];
+): ApplicationEngineeringGroup[] => application.engineeringFit ?? [];
 
 const getPerformanceItems = (
   engineeringGroups: readonly ApplicationEngineeringGroup[],
-) =>
-  (
-    engineeringGroups.find((group) =>
-      performanceGroupTitlePattern.test(group.title),
-    ) ?? engineeringGroups[1]
-  )?.items ?? [];
+) => engineeringGroups[1]?.items ?? [];
 
 const getApplicationVisualContext = (application: ApplicationItem) => {
   const visualConfig = applicationVisualConfigs[application.slug];
@@ -293,58 +211,39 @@ const getApplicationVisualContext = (application: ApplicationItem) => {
     ? (visualConfig?.assets ?? commonApplicationVisualAssets)
     : undefined;
 
-  return {
-    visualAssets,
-    visualConfig,
-  };
-};
-
-const splitDirectionLabel = (label: string) => {
-  const match = label.match(directionLabelQualifierPattern);
-
-  return {
-    name: match?.[1] ?? label,
-    note: match?.[2]?.trim() ?? "",
-  };
+  return { visualAssets };
 };
 
 const getMaterialDirectionCards = (
   application: ApplicationItem,
-  visualConfig?: ApplicationVisualConfig,
 ): MaterialDirectionCardData[] =>
-  application.materialDirections.map((direction, index) => {
-    const directionLabel = splitDirectionLabel(direction.label);
-
-    return {
-      key: direction.label,
-      condition: direction.keyUse,
-      directionName: directionLabel.name,
-      href: direction.href,
-      image: getCyclicItem(application.images, index),
-      isPrimaryDirection: visualConfig?.primaryDirectionIndex === index,
-      part:
-        getCyclicItem(application.images, index)?.label ?? application.title,
-      reviewFocus: getCyclicItem(visualConfig?.reviewFocus, index),
-    };
-  });
+  application.materialDirections.map((direction, index) => ({
+    key: direction.label,
+    condition: direction.keyUse,
+    directionName:
+      direction.shortLabel ?? direction.label.split("—")[0]?.trim(),
+    href: direction.href,
+    image: getCyclicItem(application.images, index),
+  }));
 
 const getApplicationUseCards = (
   application: ApplicationItem,
 ): ApplicationUseCardData[] =>
   application.parts.map((part, index) => ({
-      key: `${part.label}-${index}`,
-      description: part.description,
-      image: part.image,
-      index,
-      title: part.label,
-    }));
+    key: `${part.label}-${index}`,
+    description: part.description,
+    image: part.image,
+    index,
+    title: part.label,
+  }));
 
 function ApplicationUseCard({
+  cardLabel,
   description,
   image,
   index,
   title,
-}: ApplicationUseCardData) {
+}: ApplicationUseCardData & { cardLabel: string }) {
   return (
     <Card asChild variant="standard">
       <article
@@ -361,11 +260,11 @@ function ApplicationUseCard({
             className="application-use-card-media"
             media={
               <Image
-              src={publicPath(image.src)}
-              alt={image.alt}
-              fill
-              sizes="(min-width: 1280px) 310px, (min-width: 768px) 42vw, 92vw"
-              className="object-contain"
+                src={publicPath(image.src)}
+                alt={image.alt}
+                fill
+                sizes="(min-width: 1280px) 310px, (min-width: 768px) 42vw, 92vw"
+                className="object-contain"
               />
             }
           />
@@ -373,7 +272,7 @@ function ApplicationUseCard({
 
         <CardContent className="application-use-card-body">
           <div className="application-use-card-meta">
-            <span>Typical part</span>
+            <span>{cardLabel}</span>
             <span>{String(index + 1).padStart(2, "0")}</span>
           </div>
           <h3>{title}</h3>
@@ -386,17 +285,29 @@ function ApplicationUseCard({
 
 function ProductInfoCard({
   card,
+  englishDestinationLabel,
   image,
+  localeSegment,
+  messages,
   materialImageSrc,
 }: {
   card: MaterialDirectionCardData;
+  englishDestinationLabel: string;
   image?: ApplicationImage;
+  localeSegment: LocalizedUrlSegment;
+  messages: ApplicationDetailUiMessages["materials"];
   materialImageSrc?: string;
 }) {
   const mediaSrc = materialImageSrc ?? image?.src;
   const mediaAlt = materialImageSrc
-    ? `${card.directionName} material pellets`
+    ? `${card.directionName}${messages.imageAltSuffix}`
     : image?.alt;
+  const href = card.href
+    ? getLocalizedHref(card.href, localeSegment)
+    : undefined;
+  const showEnglishBadge = card.href
+    ? isEnglishFallbackHref(card.href, localeSegment)
+    : false;
 
   const productContent = (
     <>
@@ -417,8 +328,13 @@ function ProductInfoCard({
         </div>
       ) : null}
       <div className="application-product-card-body">
-        <h3>{card.directionName}</h3>
-        <small>Key use</small>
+        <h3>
+          {card.directionName}{" "}
+          {showEnglishBadge ? (
+            <EnglishDestinationBadge label={englishDestinationLabel} />
+          ) : null}
+        </h3>
+        <small>{messages.keyUseLabel}</small>
         <p>{card.condition}</p>
       </div>
     </>
@@ -426,107 +342,79 @@ function ProductInfoCard({
 
   return (
     <article className="application-product-card" data-application-motion-item>
-      {card.href ? (
-        <Link href={card.href}>{productContent}</Link>
-      ) : (
-        productContent
-      )}
+      {href ? <Link href={href}>{productContent}</Link> : productContent}
     </article>
   );
 }
 
-export function generateStaticParams() {
-  return applications.map((application) => ({
-    slug: application.slug,
-  }));
-}
-
-export async function generateMetadata({
-  params,
-}: ApplicationDetailPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const application = getApplicationBySlug(slug);
-
-  if (!application) {
-    return {
-      title: "Page Not Found | Taiyi Polymer",
-      robots: {
-        index: false,
-        follow: false,
-      },
-    };
-  }
-
-  const titleSubject =
-    application.slug === "washing-machine-components"
-      ? "Washing Machine"
-      : application.title;
-
-  return createPageMetadata({
-    title: `${titleSubject} Engineering Plastics | Taiyi Polymer`,
-    description: `${application.description} Review candidate material directions, typical parts, and application selection factors.`,
-    path: `/applications/${application.slug}`,
-    image: application.heroImage?.src,
-    imageAlt: application.heroImage?.alt,
-    languageAlternates: getLanguageAlternates(
-      `/applications/${application.slug}` as ReleasedSourcePath,
-    ),
-  });
-}
-
-export default async function ApplicationDetailPage({
-  params,
-}: ApplicationDetailPageProps) {
-  const { slug } = await params;
-  const application = getApplicationBySlug(slug);
-
-  if (!application) {
-    notFound();
-  }
-
-  if (slug !== application.slug) {
-    permanentRedirect(`/applications/${application.slug}`);
-  }
-
+export function LocalizedApplicationDetailPage({
+  application,
+  componentMessages,
+  inLanguage,
+  localeSegment,
+  messages,
+  pagePath,
+  selectionItems,
+}: LocalizedApplicationDetailPageProps) {
   const engineeringGroups = getEngineeringGroups(application);
   const partFitItems = getPerformanceItems(engineeringGroups);
-  const { visualAssets, visualConfig } =
-    getApplicationVisualContext(application);
+  const { visualAssets } = getApplicationVisualContext(application);
   const detailHeroImage = application.detailHeroImage ?? application.heroImage;
-  const materialDirectionCards = getMaterialDirectionCards(
-    application,
-    visualConfig,
-  );
+  const materialDirectionCards = getMaterialDirectionCards(application);
   const applicationUseCards = getApplicationUseCards(application);
   const componentGuides = getApplicationComponentLinks(application.slug);
   const featuredApplicationUseCards = applicationUseCards.slice(0, 4);
   const remainingApplicationUseCards = applicationUseCards.slice(4);
   const featuredMaterialDirectionCards = materialDirectionCards.slice(0, 3);
   const remainingMaterialDirectionCards = materialDirectionCards.slice(3);
-  const pagePath = `/applications/${application.slug}`;
-  const contactHref = createContactHref({
-    application: application.title,
-    source: "Application detail",
-  });
-  const breadcrumbJsonLd = createBreadcrumbJsonLd([
-    { name: "Home", path: "/" },
-    { name: "Applications", path: "/applications" },
-    { name: application.title, path: pagePath },
-  ]);
-  const webPageJsonLd = createWebPageJsonLd({
-    title: application.title,
-    description: application.description,
-    path: pagePath,
-    image: application.heroImage?.src,
-  });
+  const contactHref = createContactHref(
+    {
+      application: application.title,
+      source: messages.contactSource,
+    },
+    getLocalizedHref("/contact", localeSegment),
+  );
+  const technicalDataHref = getLocalizedHref(
+    "/technical-data-sheets",
+    localeSegment,
+  );
+  const sectionTabs = [
+    { href: "#application-scene", label: messages.navigation.scene },
+    { href: "#material-match", label: messages.navigation.parts },
+    { href: "#review-checklist", label: messages.navigation.materials },
+    { href: "#material-evaluation", label: messages.navigation.evaluation },
+  ];
+  const sceneKeywords: SceneKeyword[] = selectionItems.map((item, index) => ({
+    title:
+      messages.scene.reviewTitles[index] ?? messages.scene.reviewPointFallback,
+    value: item,
+  }));
+  const jsonLd = [
+    createBreadcrumbJsonLd([
+      {
+        name: messages.breadcrumb.home,
+        path: getLocalizedHref("/", localeSegment),
+      },
+      {
+        name: messages.breadcrumb.applications,
+        path: getLocalizedHref("/applications", localeSegment),
+      },
+      { name: application.title, path: pagePath },
+    ]),
+    createWebPageJsonLd({
+      title: application.title,
+      description: application.description,
+      path: pagePath,
+      image: application.heroImage?.src,
+      inLanguage,
+    }),
+  ];
 
   return (
     <main className="application-detail-page min-h-screen text-slate-900">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd([breadcrumbJsonLd, webPageJsonLd]),
-        }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <ApplicationAnimeMotion />
       <section
@@ -545,12 +433,10 @@ export default async function ApplicationDetailPage({
           }
         >
           <div className="application-hero-card">
-            <p className="application-hero-kicker">Application & Part Review</p>
-
+            <p className="application-hero-kicker">{messages.hero.eyebrow}</p>
             <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
               {application.title}
             </h1>
-
             <p className="mt-5 max-w-3xl text-lg leading-8 text-slate-200">
               {application.description}
             </p>
@@ -561,14 +447,16 @@ export default async function ApplicationDetailPage({
                 size="applicationHero"
                 variant="applicationHeroPrimary"
               >
-                <Link href={contactHref}>Discuss Your Application</Link>
+                <Link href={contactHref}>{messages.hero.primaryAction}</Link>
               </Button>
               <Button
                 asChild
                 size="applicationHero"
                 variant="applicationHeroSecondary"
               >
-                <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
+                <Link href={technicalDataHref}>
+                  {messages.hero.secondaryAction}
+                </Link>
               </Button>
             </div>
           </div>
@@ -577,15 +465,14 @@ export default async function ApplicationDetailPage({
         {application.heroImage ? (
           <SecondarySectionNav
             actions={[
-              { href: contactHref, label: "Discuss Your Application" },
-              {
-                href: "/technical-data-sheets",
-                label: "Find Grade Data & TDS",
-              },
+              { href: contactHref, label: messages.hero.primaryAction },
+              { href: technicalDataHref, label: messages.hero.secondaryAction },
             ]}
-            ariaLabel="Application sections"
+            ariaLabel={messages.navigation.ariaLabel}
+            mobileMenuLabel={messages.navigation.mobileMenuLabel}
             subtitle={application.description}
-            tabs={applicationSectionTabs}
+            tabs={sectionTabs}
+            tabsAriaLabel={messages.navigation.tabsAriaLabel}
             title={application.title}
             variant="application"
           />
@@ -601,46 +488,36 @@ export default async function ApplicationDetailPage({
           data-application-motion
         >
           {visualAssets ? (
-            <>
-              <div className="application-scene-visual">
-                <Image
-                  src={publicPath(visualAssets.scene)}
-                  alt={`${application.title} application scene for engineering plastic material review`}
-                  fill
-                  sizes="100vw"
-                  priority
-                  className={cx(
-                    "object-cover",
-                    application.slug === "motion-components" &&
-                      "application-scene-image-motion-components",
-                  )}
-                />
+            <div className="application-scene-visual">
+              <Image
+                src={publicPath(visualAssets.scene)}
+                alt={`${application.title}${messages.scene.imageAltSuffix}`}
+                fill
+                sizes="100vw"
+                priority
+                className={cx(
+                  "object-cover",
+                  application.slug === "motion-components" &&
+                    "application-scene-image-motion-components",
+                )}
+              />
 
-                <div className="application-scene-copy application-scene-copy-overlay">
-                  <p className="section-kicker mb-3">Parts & Conditions</p>
-                  <h2>Start with the part and working condition.</h2>
-                  <p>
-                    The material choice should follow the actual mechanism,
-                    movement, assembly fit, and dimensional target before a
-                    grade is screened.
-                  </p>
-                </div>
+              <div className="application-scene-copy application-scene-copy-overlay">
+                <p className="section-kicker mb-3">{messages.scene.eyebrow}</p>
+                <h2>{messages.scene.title}</h2>
+                <p>{messages.scene.visualDescription}</p>
               </div>
-            </>
+            </div>
           ) : (
             <>
               <div className="application-scene-copy">
-                <p className="section-kicker mb-3">Parts & Conditions</p>
-                <h2>Start with the part and working condition.</h2>
-                <p>
-                  Start with the part function, working condition, dimensional
-                  target, and document needs before moving into a modified POM
-                  grade direction.
-                </p>
+                <p className="section-kicker mb-3">{messages.scene.eyebrow}</p>
+                <h2>{messages.scene.title}</h2>
+                <p>{messages.scene.basicDescription}</p>
 
                 <ul
                   className="application-scene-keywords"
-                  aria-label="Engineering keywords"
+                  aria-label={messages.scene.keywordsAria}
                 >
                   {sceneKeywords.map((item) => (
                     <li key={item.title} data-application-motion-item>
@@ -653,7 +530,7 @@ export default async function ApplicationDetailPage({
 
               <div
                 className="application-scene-gallery"
-                aria-label="Typical parts"
+                aria-label={messages.scene.galleryAria}
               >
                 {application.images.map((image, index) => (
                   <figure
@@ -702,26 +579,24 @@ export default async function ApplicationDetailPage({
         >
           <div className="application-use-head">
             <div>
-              <p className="section-kicker">Typical Parts</p>
+              <p className="section-kicker">{messages.parts.eyebrow}</p>
               <h2>
-                Representative parts for {application.title.toLowerCase()}.
+                {application.title}
+                {messages.parts.titleSuffix}
               </h2>
             </div>
-            <p>
-              Use the part geometry, load, movement, and environment as the
-              starting point. Final material selection remains grade- and
-              project-specific.
-            </p>
+            <p>{messages.parts.description}</p>
           </div>
 
           <div className="application-use-grid application-use-grid-desktop">
             {applicationUseCards.map((card) => (
               <ApplicationUseCard
                 key={card.key}
+                cardLabel={messages.parts.cardLabel}
+                description={card.description}
                 image={card.image}
                 index={card.index}
                 title={card.title}
-                description={card.description}
               />
             ))}
           </div>
@@ -731,10 +606,11 @@ export default async function ApplicationDetailPage({
               {featuredApplicationUseCards.map((card) => (
                 <ApplicationUseCard
                   key={card.key}
+                  cardLabel={messages.parts.cardLabel}
+                  description={card.description}
                   image={card.image}
                   index={card.index}
                   title={card.title}
-                  description={card.description}
                 />
               ))}
             </div>
@@ -742,16 +618,19 @@ export default async function ApplicationDetailPage({
             {remainingApplicationUseCards.length > 0 ? (
               <details className="application-mobile-disclosure">
                 <summary>
-                  Show {remainingApplicationUseCards.length} more parts
+                  {messages.parts.showMorePrefix}{" "}
+                  {remainingApplicationUseCards.length}{" "}
+                  {messages.parts.showMoreSuffix}
                 </summary>
                 <div className="application-mobile-disclosure-grid application-use-grid">
                   {remainingApplicationUseCards.map((card) => (
                     <ApplicationUseCard
                       key={card.key}
+                      cardLabel={messages.parts.cardLabel}
+                      description={card.description}
                       image={card.image}
                       index={card.index}
                       title={card.title}
-                      description={card.description}
                     />
                   ))}
                 </div>
@@ -765,25 +644,40 @@ export default async function ApplicationDetailPage({
               aria-labelledby="application-component-guides-heading"
             >
               <div className="application-component-guides-intro">
-                <p className="section-kicker">Component Guides</p>
+                <p className="section-kicker">
+                  {messages.parts.componentEyebrow}
+                </p>
                 <h3 id="application-component-guides-heading">
-                  Dedicated reviews available for these parts.
+                  {messages.parts.componentTitle}
                 </h3>
               </div>
               <div className="application-component-guide-links">
-                {componentGuides.map((guide) => (
-                  <Link
-                    className="application-component-guide-link"
-                    href={guide.href}
-                    key={guide.href}
-                  >
-                    <span className="application-component-guide-part">
-                      {guide.partLabel}
-                    </span>
-                    <strong>{guide.label}</strong>
-                    <span aria-hidden="true">↗</span>
-                  </Link>
-                ))}
+                {componentGuides.map((guide) => {
+                  const componentSlug = guide.href.split("/").at(-1) as
+                    ApplicationIndexComponentSlug | undefined;
+                  const componentLabel = componentSlug
+                    ? componentMessages.labels[componentSlug]
+                    : guide.partLabel;
+
+                  return (
+                    <Link
+                      className="application-component-guide-link"
+                      href={guide.href}
+                      key={guide.href}
+                    >
+                      <span className="application-component-guide-part">
+                        {componentLabel}
+                      </span>
+                      <strong>
+                        {componentLabel}选材指南{" "}
+                        <EnglishDestinationBadge
+                          label={componentMessages.englishDestinationLabel}
+                        />
+                      </strong>
+                      <span aria-hidden="true">↗</span>
+                    </Link>
+                  );
+                })}
               </div>
             </aside>
           ) : null}
@@ -799,12 +693,9 @@ export default async function ApplicationDetailPage({
           data-application-motion
         >
           <div className="application-notes-head">
-            <p className="section-kicker mb-3">Candidate Materials</p>
-            <h2>Material options for the parts above.</h2>
-            <p>
-              Review the candidate POM material directions commonly screened
-              against the part function and working conditions above.
-            </p>
+            <p className="section-kicker mb-3">{messages.materials.eyebrow}</p>
+            <h2>{messages.materials.title}</h2>
+            <p>{messages.materials.description}</p>
           </div>
 
           <div className="application-notes-grid application-notes-grid-desktop">
@@ -812,8 +703,13 @@ export default async function ApplicationDetailPage({
               <ProductInfoCard
                 key={card.key}
                 card={card}
+                englishDestinationLabel={
+                  componentMessages.englishDestinationLabel
+                }
                 image={getCyclicItem(application.images, index)}
+                localeSegment={localeSegment}
                 materialImageSrc={getMaterialCardImage(card)}
+                messages={messages.materials}
               />
             ))}
           </div>
@@ -824,8 +720,13 @@ export default async function ApplicationDetailPage({
                 <ProductInfoCard
                   key={card.key}
                   card={card}
+                  englishDestinationLabel={
+                    componentMessages.englishDestinationLabel
+                  }
                   image={getCyclicItem(application.images, index)}
+                  localeSegment={localeSegment}
                   materialImageSrc={getMaterialCardImage(card)}
+                  messages={messages.materials}
                 />
               ))}
             </div>
@@ -833,8 +734,9 @@ export default async function ApplicationDetailPage({
             {remainingMaterialDirectionCards.length > 0 ? (
               <details className="application-mobile-disclosure">
                 <summary>
-                  Show {remainingMaterialDirectionCards.length} more material
-                  options
+                  {messages.materials.showMorePrefix}{" "}
+                  {remainingMaterialDirectionCards.length}{" "}
+                  {messages.materials.showMoreSuffix}
                 </summary>
                 <div className="application-mobile-disclosure-grid application-notes-grid">
                   {remainingMaterialDirectionCards.map((card, index) => {
@@ -845,8 +747,13 @@ export default async function ApplicationDetailPage({
                       <ProductInfoCard
                         key={card.key}
                         card={card}
+                        englishDestinationLabel={
+                          componentMessages.englishDestinationLabel
+                        }
                         image={getCyclicItem(application.images, materialIndex)}
+                        localeSegment={localeSegment}
                         materialImageSrc={getMaterialCardImage(card)}
+                        messages={messages.materials}
                       />
                     );
                   })}
@@ -860,13 +767,13 @@ export default async function ApplicationDetailPage({
           footerAdjacent
           id="material-evaluation"
           variant="recommendation"
-          title="Ready to shortlist a grade?"
+          title={messages.evaluation.title}
           className={
             visualAssets
               ? "application-review-cta application-brief-cta"
               : "application-review-cta"
           }
-          eyebrow="Material Evaluation"
+          eyebrow={messages.evaluation.eyebrow}
           eyebrowClassName="section-kicker mb-3"
           action={
             <Button
@@ -874,15 +781,12 @@ export default async function ApplicationDetailPage({
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href={contactHref}>Discuss Your Application</Link>
+              <Link href={contactHref}>{messages.evaluation.action}</Link>
             </Button>
           }
           data-application-motion
         >
-          <p>
-            Share the part, condition, and target. We will help screen the
-            candidate material direction for project-specific review.
-          </p>
+          <p>{messages.evaluation.description}</p>
         </ActionPanel>
       </section>
     </main>

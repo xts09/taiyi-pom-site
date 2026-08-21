@@ -102,8 +102,15 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Simplified Chinese is a peer public language at `/zh`, using `zh-CN` for the HTML language and `hreflang`, `zh_CN` for Open Graph, and `ZH` / `简体中文` in the shared language switcher.
 - The release is intentionally limited to the same 15 reviewed core-funnel paths already published in German, French, and Brazilian Portuguese: Home, Products, four POM category pages, seven grade pages, Technical Data, and Contact.
 - Every released Chinese route has complete reviewed page copy, a self-canonical, reciprocal `en`, `de`, `fr`, `pt-BR`, `zh-CN`, and `x-default` alternates, and a unique sitemap entry. Shared technical values, units, methods, and document status remain catalogue-owned.
-- Applications, Resources, About, legal pages, Components, and other unreleased product routes continue to use their existing English destinations with the visible `EN — 英文内容` boundary marker. Do not create a public `/zh` URL for those families until their complete translated content and responsive rendering pass the same release gate.
-- The internal `/zh/i18n-preview` route remains `noindex` and excluded from public navigation, alternates, and sitemap. Unreleased `/zh/applications` and `/zh/about` routes intentionally return 404.
+- Resources, About, legal pages, Components, and other unreleased product routes continue to use their existing English destinations with the visible `EN — 英文内容` boundary marker. Do not create a public `/zh` URL for those families until their complete translated content and responsive rendering pass the same release gate.
+- The internal `/zh/i18n-preview` route remains `noindex` and excluded from public navigation, alternates, and sitemap. Unreleased `/zh/about` routes intentionally return 404.
+
+### Simplified Chinese Applications Release (2026-08-21)
+
+- The Applications directory and all eight reviewed application-detail routes are published as one atomic Simplified Chinese family at `/zh/applications/**`; German, French, and Brazilian Portuguese application URLs remain unavailable.
+- Chinese application pages retain the established part-first layout and reuse shared source records for imagery, material links, and technical structure. Localized profiles own visible titles, descriptions, image alternatives, parts, engineering review groups, and cautious candidate-material wording.
+- Each English/Chinese application pair emits a self-canonical and reciprocal `en`, `zh-CN`, and `x-default` language group. All nine Chinese URLs are indexable sitemap entries and appear in the contextual language switcher.
+- Links from Chinese application pages to unreleased Components or product families continue to use the existing English URL with the visible `EN — 英文内容` boundary marker. Contact, released POM categories, and Technical Data remain in Chinese.
 
 ### Unified Grade Alternative Search (2026-08-15)
 

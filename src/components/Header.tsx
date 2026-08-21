@@ -559,7 +559,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                           <p>{messages.applicationDescription}</p>
                         </div>
                         <Link
-                          href="/applications"
+                          href={localizedHref("/applications")}
                           prefetch={false}
                           className="mega-menu-all-link"
                           onClick={closeMega}
@@ -574,7 +574,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                         {applicationLinks.map((item) => (
                           <Link
                             key={item.href}
-                            href={item.href}
+                            href={localizedHref(item.href)}
                             prefetch={false}
                             className="mega-simple-link"
                             onClick={closeMega}
@@ -791,7 +791,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
 
               <div className="mt-3 space-y-1 pl-4">
                 <Link
-                  href="/applications"
+                  href={localizedHref("/applications")}
                   prefetch={false}
                   className="mobile-product-list mb-2 flex items-center justify-between gap-3 py-1"
                   aria-current={
@@ -805,7 +805,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 {applicationLinks.map((item) => (
                   <Link
                     key={item.href}
-                    href={item.href}
+                    href={localizedHref(item.href)}
                     prefetch={false}
                     className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
                     aria-current={

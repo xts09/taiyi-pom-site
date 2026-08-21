@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { applications } from "@/data/applications";
 import { componentSolutionDetails } from "@/data/componentSolutionDetails";
 import { privacyPolicyRelease } from "@/data/legal";
 import {
@@ -111,6 +110,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
       changeFrequency: "monthly" as const,
     },
+    {
+      sourcePath: "/applications",
+      priority: 0.9,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/applications/automotive",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/applications/electronics",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/applications/conveyor-automation",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/applications/motion-components",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/applications/water-control",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/applications/washing-machine-components",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/applications/outdoor-equipment",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/applications/textile-machinery",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
   ] satisfies ReadonlyArray<{
     sourcePath: ReleasedSourcePath;
     priority: number;
@@ -138,7 +182,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   );
 
   const staticRoutes = [
-    createUrlEntry("/applications", 0.9, "weekly"),
     createUrlEntry("/components", 0.8, "weekly"),
     createUrlEntry("/resources", 0.85, "weekly"),
     createUrlEntry("/about", 0.6, "monthly"),
@@ -154,10 +197,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...createUrlEntry(entry.path, 0.75, "weekly"),
     }));
 
-  const applicationRoutes = applications.map((application) => ({
-    ...createUrlEntry(`/applications/${application.slug}`, 0.7, "monthly"),
-  }));
-
   const componentSolutionRoutes = componentSolutionDetails.map((solution) =>
     createUrlEntry(`/components/${solution.slug}`, 0.7, "monthly"),
   );
@@ -165,7 +204,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const productRoutes = catalogProducts
     .filter(isCatalogRecordIndexable)
     .filter((product) => !isReleasedSourcePath(`/products/${product.slug}`))
-    .map((product) => createUrlEntry(`/products/${product.slug}`, 0.65, "monthly"));
+    .map((product) =>
+      createUrlEntry(`/products/${product.slug}`, 0.65, "monthly"),
+    );
 
   const engineeringTdsRoutes = catalogEngineeringTds
     .filter(isCatalogRecordIndexable)
@@ -191,7 +232,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...categoryRoutes,
     ...productRoutes,
     ...engineeringTdsRoutes,
-    ...applicationRoutes,
     ...componentSolutionRoutes,
     ...resourceCategoryRoutes,
     ...resourceRoutes,

@@ -41,7 +41,7 @@ const messages = {
     description:
       "选择与设计最接近的注塑零部件系列，比较其工况输入、主要失效模式与验证需求。",
     allAction: "查看全部零部件解决方案",
-    englishDestinationLabel: "EN — 英文内容",
+    englishDestinationLabel: "英文内容",
     labels: {
       "precision-plastic-gears": "精密塑料齿轮",
       "bushings-and-sleeves": "轴套与套筒",
@@ -69,6 +69,72 @@ const messages = {
     description:
       "请提供应用、模具阶段、模穴数量、收缩或翘曲关注点、当前材料参考、颜色、资料要求与预计用量。我们将据此准备改性材料候选清单，并确认下一步资料或样品安排。",
     action: "讨论您的应用",
+  },
+  detail: {
+    metadata: {
+      titleSuffix: "工程塑料选型 | Taiyi Polymer",
+      descriptionSuffix: "查看候选材料方向、典型部件与应用选型因素。",
+    },
+    breadcrumb: {
+      home: "首页",
+      applications: "应用",
+    },
+    contactSource: "应用详情",
+    navigation: {
+      ariaLabel: "应用页面章节",
+      tabsAriaLabel: "页面章节",
+      mobileMenuLabel: "本页内容",
+      scene: "部件与工况",
+      parts: "典型部件",
+      materials: "候选材料",
+      evaluation: "材料评估",
+    },
+    hero: {
+      eyebrow: "应用与部件审核",
+      primaryAction: "讨论您的应用",
+      secondaryAction: "查找牌号数据与 TDS",
+    },
+    scene: {
+      eyebrow: "部件与工况",
+      title: "从部件与实际工况开始。",
+      visualDescription:
+        "筛选牌号前，应先审核实际机构、运动方式、装配配合与尺寸目标。",
+      basicDescription:
+        "先明确部件功能、使用工况、尺寸目标与资料需求，再进入改性 POM 牌号方向的比较。",
+      imageAltSuffix: "应用场景，用于工程塑料材料审核",
+      keywordsAria: "工程审核关键词",
+      galleryAria: "典型部件",
+      reviewPointFallback: "审核要点",
+      reviewTitles: ["模具阶段", "流动一致性", "尺寸目标", "运动与资料"],
+    },
+    parts: {
+      eyebrow: "典型部件",
+      titleSuffix: "的代表性部件。",
+      description:
+        "以部件几何、载荷、运动方式与使用环境为起点；最终材料选择仍需结合具体牌号和项目验证。",
+      cardLabel: "典型部件",
+      showMorePrefix: "查看更多",
+      showMoreSuffix: "个部件",
+      componentEyebrow: "零部件指南",
+      componentTitle: "以下部件可进一步查看专项审核指南。",
+    },
+    materials: {
+      eyebrow: "候选材料",
+      title: "适用于上述部件审核的材料方向。",
+      description:
+        "结合上述部件功能与工况，比较通常进入初筛的 POM 候选材料方向。",
+      keyUseLabel: "主要审核方向",
+      imageAltSuffix: "材料颗粒",
+      showMorePrefix: "查看更多",
+      showMoreSuffix: "个材料方向",
+    },
+    evaluation: {
+      eyebrow: "材料评估",
+      title: "准备建立候选牌号清单？",
+      description:
+        "请提供部件、工况与目标要求，我们可协助筛查候选材料方向，供项目进一步评估。",
+      action: "讨论您的应用",
+    },
   },
   cards: {
     automotive: {

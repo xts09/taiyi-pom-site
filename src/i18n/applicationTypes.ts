@@ -14,6 +14,11 @@ export const localizedApplicationSlugs = [
 export type LocalizedApplicationSlug =
   (typeof localizedApplicationSlugs)[number];
 
+export const isLocalizedApplicationSlug = (
+  value: string,
+): value is LocalizedApplicationSlug =>
+  localizedApplicationSlugs.includes(value as LocalizedApplicationSlug);
+
 export const applicationIndexComponentSlugs = [
   "precision-plastic-gears",
   "bushings-and-sleeves",
@@ -76,6 +81,11 @@ export type LocalizedApplicationProfileMessages = {
   engineeringFit: readonly LocalizedApplicationEngineeringGroupMessages[];
 };
 
+export type LocalizedApplicationProfileMap = Record<
+  LocalizedApplicationSlug,
+  LocalizedApplicationProfileMessages
+>;
+
 export type LocalizedApplicationDetailSliceAMessages = Record<
   LocalizedApplicationDetailSliceASlug,
   LocalizedApplicationProfileMessages
@@ -95,6 +105,68 @@ export type LocalizedApplicationDetailSliceBMessages = Record<
   LocalizedApplicationDetailSliceBSlug,
   LocalizedApplicationProfileMessages
 >;
+
+export type ApplicationDetailUiMessages = {
+  metadata: {
+    titleSuffix: string;
+    descriptionSuffix: string;
+  };
+  breadcrumb: {
+    home: string;
+    applications: string;
+  };
+  contactSource: string;
+  navigation: {
+    ariaLabel: string;
+    tabsAriaLabel: string;
+    mobileMenuLabel: string;
+    scene: string;
+    parts: string;
+    materials: string;
+    evaluation: string;
+  };
+  hero: {
+    eyebrow: string;
+    primaryAction: string;
+    secondaryAction: string;
+  };
+  scene: {
+    eyebrow: string;
+    title: string;
+    visualDescription: string;
+    basicDescription: string;
+    imageAltSuffix: string;
+    keywordsAria: string;
+    galleryAria: string;
+    reviewPointFallback: string;
+    reviewTitles: readonly string[];
+  };
+  parts: {
+    eyebrow: string;
+    titleSuffix: string;
+    description: string;
+    cardLabel: string;
+    showMorePrefix: string;
+    showMoreSuffix: string;
+    componentEyebrow: string;
+    componentTitle: string;
+  };
+  materials: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    keyUseLabel: string;
+    imageAltSuffix: string;
+    showMorePrefix: string;
+    showMoreSuffix: string;
+  };
+  evaluation: {
+    eyebrow: string;
+    title: string;
+    description: string;
+    action: string;
+  };
+};
 
 export type ApplicationIndexMessages = {
   metadata: {
@@ -147,5 +219,6 @@ export type ApplicationIndexMessages = {
     description: string;
     action: string;
   };
+  detail: ApplicationDetailUiMessages;
   cards: Record<LocalizedApplicationSlug, ApplicationDirectoryCardMessages>;
 };
