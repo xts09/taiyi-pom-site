@@ -13,6 +13,8 @@ import {
 import { Button } from "@/components/ui/button";
 import type { ComponentSolution } from "@/data/componentSolutions";
 import type { ComponentSolutionDetail } from "@/data/componentSolutionDetails";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import styles from "../ComponentSolutions.module.css";
 
@@ -28,18 +30,91 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 type DetailedComponentSolutionProps = {
   detail: ComponentSolutionDetail;
   solution: ComponentSolution;
+  localeSegment?: LocalizedUrlSegment;
+  ui?: ComponentDetailUi;
+};
+
+export type ComponentDetailUi = {
+  breadcrumbs: {
+    applications: string;
+    components: string;
+  };
+  primaryAction: string;
+  familyAction: string;
+  problemEyebrow: string;
+  observedProblemLabel: string;
+  checkFirstLabel: string;
+  materialResponseLabel: string;
+  materialsEyebrow: string;
+  materialsTitle: string;
+  cautionLabel: string;
+  pomBoundaryLabel: string;
+  materialGuideAction: string;
+  inquiryEyebrow: string;
+  inquiryTitle: string;
+  inquiryDescription: string;
+  processEyebrow: string;
+  processTitle: string;
+  expectedOutputLabel: string;
+  gradeDataAction: string;
+  technicalEyebrow: string;
+  technicalTitle: string;
+  technicalDescription: string;
+  relatedEyebrow: string;
+  relatedTitle: string;
+  finalAction: string;
+  contactSource: string;
+};
+
+const englishUi: ComponentDetailUi = {
+  breadcrumbs: {
+    applications: "Applications",
+    components: "Component Solutions",
+  },
+  primaryAction: "Discuss Your Application",
+  familyAction: "Review Relevant POM Families",
+  problemEyebrow: "Start with the problem",
+  observedProblemLabel: "Observed problem",
+  checkFirstLabel: "Check first",
+  materialResponseLabel: "Material response",
+  materialsEyebrow: "Candidate materials",
+  materialsTitle: "Compare the material response, not just the resin name.",
+  cautionLabel: "Project caution",
+  pomBoundaryLabel: "When POM may not fit",
+  materialGuideAction: "Open the material selection guide",
+  inquiryEyebrow: "Minimum project input",
+  inquiryTitle: "Send what you know. Mark what is still unknown.",
+  inquiryDescription:
+    "A drawing plus the operating conditions already available is enough to start. Mark unknown items as not yet confirmed and add them after the first response.",
+  processEyebrow: "After contact",
+  processTitle: "Know what the first response should produce.",
+  expectedOutputLabel: "Expected output",
+  gradeDataAction: "Find Grade Data & TDS",
+  technicalEyebrow: "Technical depth",
+  technicalTitle: "Open the detail when the project needs it.",
+  technicalDescription:
+    "Open the operating criteria, tooling requirements, molded-part tests, and full project checklist as needed.",
+  relatedEyebrow: "Related guidance",
+  relatedTitle: "Open the next technical reference.",
+  finalAction: "Discuss Your Application",
+  contactSource: "Component solution",
 };
 
 export function DetailedComponentSolution({
   detail,
   solution,
+  localeSegment,
+  ui = englishUi,
 }: DetailedComponentSolutionProps) {
-  const contactHref = createContactHref({
+  const localizedHref = (href: string) =>
+    getLocalizedHref(href, localeSegment);
+  const contactHref = localizedHref(createContactHref({
     application: solution.title,
-    source: "Component solution",
-  });
-  const modifiedPomPath =
-    solution.slug === "ic-handling-trays"
+    source: ui.contactSource,
+  }));
+  const modifiedPomPath = localeSegment
+    ? localizedHref("/products")
+    : solution.slug === "ic-handling-trays"
       ? "/modified-pom-compounds#electrical-control"
       : "/modified-pom-compounds#wear-impact-weathering";
 
@@ -55,8 +130,14 @@ export function DetailedComponentSolution({
           <Breadcrumbs
             className={styles.breadcrumbs}
             items={[
-              { label: "Applications", href: "/applications" },
-              { label: "Component Solutions", href: "/components" },
+              {
+                label: ui.breadcrumbs.applications,
+                href: localizedHref("/applications"),
+              },
+              {
+                label: ui.breadcrumbs.components,
+                href: localizedHref("/components"),
+              },
               { label: solution.title },
             ]}
           />
@@ -90,10 +171,10 @@ export function DetailedComponentSolution({
               <p className={styles.gearHeroScope}>{detail.hero.scope}</p>
               <div className={styles.gearHeroActions}>
                 <Button asChild size="applicationHero" variant="applicationHeroPrimary">
-                  <Link href={contactHref}>Discuss Your Application</Link>
+                  <Link href={contactHref}>{ui.primaryAction}</Link>
                 </Button>
                 <Button asChild size="applicationHero" variant="applicationHeroSecondary">
-                  <Link href={modifiedPomPath}>Review Relevant POM Families</Link>
+                  <Link href={modifiedPomPath}>{ui.familyAction}</Link>
                 </Button>
               </div>
             </div>
@@ -117,7 +198,7 @@ export function DetailedComponentSolution({
           >
             <div className={styles.failureHeader}>
               <div>
-                <p className={styles.gearEyebrow}>Start with the problem</p>
+                <p className={styles.gearEyebrow}>{ui.problemEyebrow}</p>
                 <h2 id="failure-review">{detail.copy.problemTitle}</h2>
               </div>
               <p>{detail.copy.problemSummary}</p>
@@ -130,16 +211,20 @@ export function DetailedComponentSolution({
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <span className={styles.decisionLabel}>Observed problem</span>
+                    <span className={styles.decisionLabel}>
+                      {ui.observedProblemLabel}
+                    </span>
                     <h3>{row.symptom}</h3>
                   </div>
                   <div>
-                    <span className={styles.decisionLabel}>Check first</span>
+                    <span className={styles.decisionLabel}>
+                      {ui.checkFirstLabel}
+                    </span>
                     <p>{row.review}</p>
                   </div>
                   <div>
                     <span className={styles.decisionLabel}>
-                      Material response
+                      {ui.materialResponseLabel}
                     </span>
                     <p>{row.direction}</p>
                   </div>
@@ -151,8 +236,8 @@ export function DetailedComponentSolution({
           <section className={styles.gearSection} aria-labelledby="material-directions">
             <div className={styles.gearSectionIntro}>
               <div>
-                <p className={styles.gearEyebrow}>Candidate materials</p>
-                <h2 id="material-directions">Compare the material response, not just the resin name.</h2>
+                <p className={styles.gearEyebrow}>{ui.materialsEyebrow}</p>
+                <h2 id="material-directions">{ui.materialsTitle}</h2>
               </div>
               <p>{detail.copy.materialSummary}</p>
             </div>
@@ -168,20 +253,23 @@ export function DetailedComponentSolution({
                     <p>{direction.summary}</p>
                   </div>
                   <div className={styles.materialDirectionCaution}>
-                    <span>Project caution</span>
+                    <span>{ui.cautionLabel}</span>
                     <p>{direction.caution}</p>
                   </div>
                 </li>
               ))}
             </ol>
 
-            <aside className={styles.materialBoundary} aria-label="When POM may not fit">
+            <aside
+              className={styles.materialBoundary}
+              aria-label={ui.pomBoundaryLabel}
+            >
               <div>
-                <span>When POM may not fit</span>
+                <span>{ui.pomBoundaryLabel}</span>
                 <p>{detail.materialNote}</p>
               </div>
-              <Link href="/resources/material-selection-guide">
-                Open the material selection guide
+              <Link href={localizedHref("/resources/material-selection-guide")}>
+                {ui.materialGuideAction}
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
             </aside>
@@ -193,14 +281,10 @@ export function DetailedComponentSolution({
           >
             <div className={styles.gearSectionHeading}>
               <div>
-                <p className={styles.gearEyebrow}>Minimum project input</p>
-                <h2 id="review-information">Send what you know. Mark what is still unknown.</h2>
+                <p className={styles.gearEyebrow}>{ui.inquiryEyebrow}</p>
+                <h2 id="review-information">{ui.inquiryTitle}</h2>
               </div>
-              <p>
-                A drawing plus the operating conditions already available is enough
-                to start. Mark unknown items as not yet confirmed and add them after
-                the first response.
-              </p>
+              <p>{ui.inquiryDescription}</p>
             </div>
 
             <div className={styles.inquiryGrid}>
@@ -226,8 +310,8 @@ export function DetailedComponentSolution({
           >
             <div className={styles.gearSectionIntro}>
               <div>
-                <p className={styles.gearEyebrow}>After contact</p>
-                <h2 id="after-contact">Know what the first response should produce.</h2>
+                <p className={styles.gearEyebrow}>{ui.processEyebrow}</p>
+                <h2 id="after-contact">{ui.processTitle}</h2>
               </div>
               <p>{detail.copy.processSummary}</p>
             </div>
@@ -244,11 +328,11 @@ export function DetailedComponentSolution({
 
             <div className={styles.processOutcome}>
               <div>
-                <span>Expected output</span>
+                <span>{ui.expectedOutputLabel}</span>
                 <p>{detail.processOutcome}</p>
               </div>
-              <Link href="/technical-data-sheets">
-                Find Grade Data &amp; TDS
+              <Link href={localizedHref("/technical-data-sheets")}>
+                {ui.gradeDataAction}
                 <ArrowRight aria-hidden="true" size={18} />
               </Link>
             </div>
@@ -260,13 +344,10 @@ export function DetailedComponentSolution({
           >
             <div className={styles.gearSectionHeading}>
               <div>
-                <p className={styles.gearEyebrow}>Technical depth</p>
-                <h2 id="technical-detail">Open the detail when the project needs it.</h2>
+                <p className={styles.gearEyebrow}>{ui.technicalEyebrow}</p>
+                <h2 id="technical-detail">{ui.technicalTitle}</h2>
               </div>
-              <p>
-                Open the operating criteria, tooling requirements, molded-part tests,
-                and full project checklist as needed.
-              </p>
+              <p>{ui.technicalDescription}</p>
             </div>
 
             <Accordion className={styles.technicalAccordion} type="multiple">
@@ -305,12 +386,12 @@ export function DetailedComponentSolution({
 
             <div className={styles.relatedCompact} aria-labelledby="related-reading">
               <div className={styles.relatedCompactHeader}>
-                <p className={styles.gearEyebrow}>Related guidance</p>
-                <h3 id="related-reading">Open the next technical reference.</h3>
+                <p className={styles.gearEyebrow}>{ui.relatedEyebrow}</p>
+                <h3 id="related-reading">{ui.relatedTitle}</h3>
               </div>
               <div className={styles.gearRelatedLinks}>
                 {detail.related.map((item) => (
-                  <Link href={item.href} key={item.href}>
+                  <Link href={localizedHref(item.href)} key={item.href}>
                     <span>
                       <strong>{item.label}</strong>
                       <small>{item.description}</small>
@@ -330,7 +411,7 @@ export function DetailedComponentSolution({
             variant="evidence"
             action={
               <Button asChild size="form" variant="inverse">
-                <Link href={contactHref}>Discuss Your Application</Link>
+                <Link href={contactHref}>{ui.finalAction}</Link>
               </Button>
             }
           >

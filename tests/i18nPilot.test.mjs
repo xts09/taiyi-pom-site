@@ -297,7 +297,30 @@ test("the release manifest publishes only the approved localized page groups", (
     textileMachineryApplication: "/applications/textile-machinery",
   };
 
-  for (const [key, sourcePath] of Object.entries(chineseApplicationReleases)) {
+  const chineseAboutAndComponentReleases = {
+    about: "/about",
+    components: "/components",
+    precisionPlasticGearsComponent:
+      "/components/precision-plastic-gears",
+    bushingsAndSleevesComponent: "/components/bushings-and-sleeves",
+    conveyorChainComponentsComponent:
+      "/components/conveyor-chain-components",
+    valveSpoolsAndCartridgesComponent:
+      "/components/valve-spools-and-cartridges",
+    textileGuideComponentsComponent:
+      "/components/textile-guide-components",
+    icHandlingTraysComponent: "/components/ic-handling-trays",
+  };
+  const localizedComponentSlugs = Object.values(
+    chineseAboutAndComponentReleases,
+  )
+    .filter((sourcePath) => sourcePath.startsWith("/components/"))
+    .map((sourcePath) => sourcePath.replace("/components/", ""));
+
+  for (const [key, sourcePath] of Object.entries({
+    ...chineseApplicationReleases,
+    ...chineseAboutAndComponentReleases,
+  })) {
     assert.deepEqual(localizedReleaseManifest[key], {
       sourcePath,
       status: "public",
@@ -418,6 +441,14 @@ test("the release manifest publishes only the approved localized page groups", (
           : `/applications/${slug}`,
       );
     }
+    for (const slug of localizedComponentSlugs) {
+      assert.equal(
+        getLocalizedHref(`/components/${slug}`, locale.urlSegment),
+        locale.urlSegment === "zh"
+          ? `/zh/components/${slug}`
+          : `/components/${slug}`,
+      );
+    }
     assert.equal(
       getLocalizedHref("/products/xt-100", locale.urlSegment),
       "/products/xt-100",
@@ -447,8 +478,25 @@ test("the release manifest publishes only the approved localized page groups", (
     }
   }
 
-  assert.deepEqual(getLanguageOptions("/about"), []);
-  assert.deepEqual(getSitemapLanguageOptions("/about"), []);
+  assert.deepEqual(
+    getLanguageOptions("/about").map(({ localeKey, href }) => ({
+      localeKey,
+      href,
+    })),
+    [
+      { localeKey: "en", href: "/about" },
+      { localeKey: "zh", href: "/zh/about" },
+    ],
+  );
+  assert.deepEqual(
+    getSitemapLanguageOptions("/components").map(
+      ({ localeKey, href }) => ({ localeKey, href }),
+    ),
+    [
+      { localeKey: "en", href: "/components" },
+      { localeKey: "zh", href: "/zh/components" },
+    ],
+  );
   assert.deepEqual(homeSitemapLanguageOptions, getLanguageOptions("/"));
   assert.deepEqual(productsSitemapLanguageOptions, productsLanguageOptions);
   assert.deepEqual(
@@ -503,7 +551,10 @@ test("the release manifest publishes only the approved localized page groups", (
   assert.equal(isLocalizedReleaseIndexable("/contact"), true);
   assert.equal(isLocalizedReleaseIndexable("/applications", "zh"), true);
   assert.equal(isLocalizedReleaseIndexable("/applications", "de"), false);
-  assert.equal(isLocalizedReleaseIndexable("/about"), false);
+  assert.equal(isLocalizedReleaseIndexable("/about", "zh"), true);
+  assert.equal(isLocalizedReleaseIndexable("/about", "de"), false);
+  assert.equal(isLocalizedReleaseIndexable("/components", "zh"), true);
+  assert.equal(isLocalizedReleaseIndexable("/components", "de"), false);
 
   assert.deepEqual(getLanguageAlternates("/applications"), {
     en: "/applications",
@@ -515,6 +566,13 @@ test("the release manifest publishes only the approved localized page groups", (
       en: `/applications/${slug}`,
       "zh-CN": `/zh/applications/${slug}`,
       "x-default": `/applications/${slug}`,
+    });
+  }
+  for (const slug of localizedComponentSlugs) {
+    assert.deepEqual(getLanguageAlternates(`/components/${slug}`), {
+      en: `/components/${slug}`,
+      "zh-CN": `/zh/components/${slug}`,
+      "x-default": `/components/${slug}`,
     });
   }
 

@@ -89,6 +89,10 @@ export const localizedReleaseManifest = {
     sourcePath: "/contact",
     ...publicRelease,
   },
+  about: {
+    sourcePath: "/about",
+    ...chineseOnlyPublicRelease,
+  },
   applications: {
     sourcePath: "/applications",
     ...chineseOnlyPublicRelease,
@@ -123,6 +127,34 @@ export const localizedReleaseManifest = {
   },
   textileMachineryApplication: {
     sourcePath: "/applications/textile-machinery",
+    ...chineseOnlyPublicRelease,
+  },
+  components: {
+    sourcePath: "/components",
+    ...chineseOnlyPublicRelease,
+  },
+  precisionPlasticGearsComponent: {
+    sourcePath: "/components/precision-plastic-gears",
+    ...chineseOnlyPublicRelease,
+  },
+  bushingsAndSleevesComponent: {
+    sourcePath: "/components/bushings-and-sleeves",
+    ...chineseOnlyPublicRelease,
+  },
+  conveyorChainComponentsComponent: {
+    sourcePath: "/components/conveyor-chain-components",
+    ...chineseOnlyPublicRelease,
+  },
+  valveSpoolsAndCartridgesComponent: {
+    sourcePath: "/components/valve-spools-and-cartridges",
+    ...chineseOnlyPublicRelease,
+  },
+  textileGuideComponentsComponent: {
+    sourcePath: "/components/textile-guide-components",
+    ...chineseOnlyPublicRelease,
+  },
+  icHandlingTraysComponent: {
+    sourcePath: "/components/ic-handling-trays",
     ...chineseOnlyPublicRelease,
   },
   resources: {

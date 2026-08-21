@@ -102,23 +102,31 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Simplified Chinese is a peer public language at `/zh`, using `zh-CN` for the HTML language and `hreflang`, `zh_CN` for Open Graph, and `ZH` / `简体中文` in the shared language switcher.
 - The release is intentionally limited to the same 15 reviewed core-funnel paths already published in German, French, and Brazilian Portuguese: Home, Products, four POM category pages, seven grade pages, Technical Data, and Contact.
 - Every released Chinese route has complete reviewed page copy, a self-canonical, reciprocal `en`, `de`, `fr`, `pt-BR`, `zh-CN`, and `x-default` alternates, and a unique sitemap entry. Shared technical values, units, methods, and document status remain catalogue-owned.
-- About, legal pages, Components, and other unreleased product routes continue to use their existing English destinations with the visible `EN — 英文内容` boundary marker. Do not create a public `/zh` URL for those families until their complete translated content and responsive rendering pass the same release gate.
-- The internal `/zh/i18n-preview` route remains `noindex` and excluded from public navigation, alternates, and sitemap. Unreleased `/zh/about` routes intentionally return 404.
+- Legal pages, solution pages, and other unreleased product routes continue to use their existing English destinations with the visible `EN — 英文内容` boundary marker. Do not create a public `/zh` URL for those families until their complete translated content and responsive rendering pass the same release gate.
+- The internal `/zh/i18n-preview` route remains `noindex` and excluded from public navigation, alternates, and sitemap. Any localized route not admitted by the current release manifest intentionally returns 404.
 
 ### Simplified Chinese Applications Release (2026-08-21)
 
 - The Applications directory and all eight reviewed application-detail routes are published as one atomic Simplified Chinese family at `/zh/applications/**`; German, French, and Brazilian Portuguese application URLs remain unavailable.
 - Chinese application pages retain the established part-first layout and reuse shared source records for imagery, material links, and technical structure. Localized profiles own visible titles, descriptions, image alternatives, parts, engineering review groups, and cautious candidate-material wording.
 - Each English/Chinese application pair emits a self-canonical and reciprocal `en`, `zh-CN`, and `x-default` language group. All nine Chinese URLs are indexable sitemap entries and appear in the contextual language switcher.
-- Links from Chinese application pages to unreleased Components or product families continue to use the existing English URL with the visible `EN — 英文内容` boundary marker. Contact, released POM categories, and Technical Data remain in Chinese.
+- Links from Chinese application pages to the released Components family retain `/zh`. Unreleased product families continue to use the existing English URL with the visible `EN — 英文内容` boundary marker; Contact, released POM categories, and Technical Data remain in Chinese.
 
 ### Simplified Chinese Resources Release (2026-08-21)
 
 - The Resources directory, its three task categories, and all 14 reviewed technical articles are published as one atomic Simplified Chinese family at `/zh/resources/**`; German, French, and Brazilian Portuguese resource-detail URLs remain unavailable.
 - Chinese Resources preserve the established directory, category, long-article, guide-explorer, and FAQ-explorer layouts. All visible controls, article navigation, search states, accessibility labels, metadata, and structured-data language signals are localized; Unicode section IDs keep Chinese article and explorer navigation functional.
 - Each English/Chinese resource pair emits a self-canonical and reciprocal `en`, `zh-CN`, and `x-default` language group. All 18 Chinese URLs are indexable sitemap entries and appear in shared Header and Footer navigation only after the family release is complete.
-- Links among released Resources, Applications, Technical Data, Contact, and released product routes retain `/zh`. Links to unreleased Components, solution pages, or product families continue to use the existing English URL with the visible `EN — 英文内容` boundary marker.
+- Links among released Resources, Applications, Components, Technical Data, Contact, and released product routes retain `/zh`. Links to unreleased solution pages or product families continue to use the existing English URL with the visible `EN — 英文内容` boundary marker.
 - Production verification covered the directory, category, long-article, guide search, FAQ search, mobile article navigation, white and dark Header states, and the English Resources regression at `1920x1080` and `390x844`. The production build generated all 17 Chinese resource detail paths; representative Chinese routes returned `200`, while an unreleased German resource detail returned `404`.
+
+### Simplified Chinese About and Components Release (2026-08-21)
+
+- The reviewed About page, Components directory, and all six component-detail routes are published in Simplified Chinese at `/zh/about` and `/zh/components/**`; German, French, and Brazilian Portuguese variants of these families remain unavailable.
+- Chinese Components preserve the established part-first engineering structure. Shared component records continue to own images and technical organization, while complete Chinese profiles localize selection logic, review inputs, process steps, technical accordions, related paths, metadata, and structured-data language signals.
+- Each English/Chinese page pair emits a self-canonical and reciprocal `en`, `zh-CN`, and `x-default` language group. All eight Chinese URLs are indexable sitemap entries and appear in the contextual language switcher only after the complete family release.
+- Links among released About, Components, Applications, Resources, Products, Technical Data, and Contact routes retain `/zh`. The Chinese component material-review CTA uses the released Products directory rather than exposing an untranslated solution page on a localized URL.
+- Rendered verification covered About, the Components directory, a representative component detail, an expanded technical accordion, and the English component regression at `1920x1080` and `390x844`. All 71 tests and the production build passed; unreleased German About and Components routes returned `404` during runtime verification.
 
 ### Unified Grade Alternative Search (2026-08-15)
 
