@@ -37,7 +37,7 @@ export function ResourceArticleSidebar({ sections }: ResourceArticleSidebarProps
       (entries) => {
         const visibleEntry = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          .sort((a, b) => b.boundingClientRect.top - a.boundingClientRect.top)[0];
 
         if (!visibleEntry) {
           return;
