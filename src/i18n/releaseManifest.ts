@@ -12,10 +12,7 @@ export type LocalizedReleaseEntry = {
 };
 
 export type LocalizedReleaseSurface =
-  | "indexable"
-  | "publicNavigation"
-  | "includeInSitemap"
-  | "includeInAlternates";
+  "indexable" | "publicNavigation" | "includeInSitemap" | "includeInAlternates";
 
 const publicRelease = {
   status: "public",
@@ -120,6 +117,13 @@ const languageDefinitions = [
     shortLabel: "PT",
     nativeLabel: "Português",
   },
+  {
+    localeKey: "zh",
+    hreflang: "zh-CN",
+    urlSegment: "zh",
+    shortLabel: "ZH",
+    nativeLabel: "简体中文",
+  },
 ] as const satisfies ReadonlyArray<{
   localeKey: "en" | LocalizedUrlSegment;
   hreflang: string;
@@ -163,7 +167,8 @@ export const isLocalizedReleaseIndexable = (sourcePath: string) =>
 const createLocalizedPath = (
   sourcePath: ReleasedSourcePath,
   localeSegment: LocalizedUrlSegment,
-) => (sourcePath === "/" ? `/${localeSegment}` : `/${localeSegment}${sourcePath}`);
+) =>
+  sourcePath === "/" ? `/${localeSegment}` : `/${localeSegment}${sourcePath}`;
 
 const getLanguageOptionsForSurface = (
   sourcePath: string,
@@ -261,18 +266,15 @@ export const getLocalizedHref = (
 export const isEnglishFallbackHref = (
   href: string,
   localeSegment?: LocalizedUrlSegment,
-) =>
-  Boolean(localeSegment) && getLocalizedHref(href, localeSegment) === href;
+) => Boolean(localeSegment) && getLocalizedHref(href, localeSegment) === href;
 
 export const getLocalizedHomePath = (localeSegment: LocalizedUrlSegment) =>
   getLocalizedHref("/", localeSegment);
 
-export const getLocalizedProductsPath = (
-  localeSegment: LocalizedUrlSegment,
-) => getLocalizedHref("/products", localeSegment);
+export const getLocalizedProductsPath = (localeSegment: LocalizedUrlSegment) =>
+  getLocalizedHref("/products", localeSegment);
 
-export const getLocalizedContactPath = (
-  localeSegment: LocalizedUrlSegment,
-) => getLocalizedHref("/contact", localeSegment);
+export const getLocalizedContactPath = (localeSegment: LocalizedUrlSegment) =>
+  getLocalizedHref("/contact", localeSegment);
 
 export const getProductsLanguageOptions = getLanguageOptions;

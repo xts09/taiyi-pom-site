@@ -9,6 +9,7 @@ const messageLoaders: Record<
   de: () => import("@/i18n/messages/de"),
   fr: () => import("@/i18n/messages/fr"),
   "pt-BR": () => import("@/i18n/messages/pt-BR"),
+  "zh-CN": () => import("@/i18n/messages/zh-CN"),
 };
 
 export const loadMessages = async (locale: MessageLocale) =>

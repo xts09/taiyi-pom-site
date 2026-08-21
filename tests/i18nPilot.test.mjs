@@ -4,17 +4,16 @@ import { dirname, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import {
-  getLocalizedLocale,
-  localizedLocales,
-} from "../src/i18n/config.ts";
+import { getLocalizedLocale, localizedLocales } from "../src/i18n/config.ts";
 import de from "../src/i18n/messages/de.ts";
 import en from "../src/i18n/messages/en.ts";
 import fr from "../src/i18n/messages/fr.ts";
 import ptBR from "../src/i18n/messages/pt-BR.ts";
+import zhCN from "../src/i18n/messages/zh-CN.ts";
 import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
 import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
 import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
+import zhCNProductFunnel from "../src/i18n/messages/zh-CN-product-funnel.ts";
 import {
   basePomGradeSlugs,
   getLocalizedCategoryLabel,
@@ -96,6 +95,12 @@ test("defines only the approved localized routes", () => {
         htmlLang: "pt-BR",
         openGraphLocale: "pt_BR",
       },
+      {
+        locale: "zh-CN",
+        urlSegment: "zh",
+        htmlLang: "zh-CN",
+        openGraphLocale: "zh_CN",
+      },
     ],
   );
   assert.equal(getLocalizedLocale("es"), undefined);
@@ -104,13 +109,16 @@ test("defines only the approved localized routes", () => {
 test("all localized dictionaries match the complete English message shape", () => {
   const expectedShape = shapeOf(en);
 
-  for (const messages of [de, fr, ptBR]) {
+  for (const messages of [de, fr, ptBR, zhCN]) {
     assert.deepEqual(shapeOf(messages), expectedShape);
     assert.equal(messages.Home.materials.items.length, 5);
     assert.equal(messages.Home.qualification.steps.length, 4);
     assert.equal(messages.Home.quality.certifications.length, 4);
     assert.equal(messages.Home.exportNetwork.routes.length, 4);
-    assert.equal(messages.Contact.form.materialOptionLabels["Base POM Resin"].length > 0, true);
+    assert.equal(
+      messages.Contact.form.materialOptionLabels["Base POM Resin"].length > 0,
+      true,
+    );
     assert.equal(messages.Products.selection.paths.length, 4);
     assert.equal(messages.Products.families.items.length, 6);
   }
@@ -121,6 +129,9 @@ test("all localized dictionaries match the complete English message shape", () =
   assert.notEqual(de.Products.hero.title, en.Products.hero.title);
   assert.notEqual(fr.Products.hero.title, en.Products.hero.title);
   assert.notEqual(ptBR.Products.hero.title, en.Products.hero.title);
+  assert.notEqual(zhCN.Home.hero.title, en.Home.hero.title);
+  assert.notEqual(zhCN.Products.hero.title, en.Products.hero.title);
+  assert.notEqual(zhCN.Contact.form.submit, en.Contact.form.submit);
 });
 
 test("the release manifest publishes only the approved conversion funnel pages", () => {
@@ -250,6 +261,7 @@ test("the release manifest publishes only the approved conversion funnel pages",
     de: "/de",
     fr: "/fr",
     "pt-BR": "/pt-br",
+    "zh-CN": "/zh",
     "x-default": "/",
   });
   assert.deepEqual(productsLanguageAlternates, {
@@ -257,6 +269,7 @@ test("the release manifest publishes only the approved conversion funnel pages",
     de: "/de/products",
     fr: "/fr/products",
     "pt-BR": "/pt-br/products",
+    "zh-CN": "/zh/products",
     "x-default": "/products",
   });
   assert.deepEqual(contactLanguageAlternates, {
@@ -264,6 +277,7 @@ test("the release manifest publishes only the approved conversion funnel pages",
     de: "/de/contact",
     fr: "/fr/contact",
     "pt-BR": "/pt-br/contact",
+    "zh-CN": "/zh/contact",
     "x-default": "/contact",
   });
   assert.deepEqual(
@@ -280,6 +294,11 @@ test("the release manifest publishes only the approved conversion funnel pages",
         localeKey: "pt-br",
         hreflang: "pt-BR",
         href: "/pt-br/products",
+      },
+      {
+        localeKey: "zh",
+        hreflang: "zh-CN",
+        href: "/zh/products",
       },
     ],
   );
@@ -354,10 +373,7 @@ test("the release manifest publishes only the approved conversion funnel pages",
       ),
       `/${locale.urlSegment}/products/categories/glass-fiber-reinforced-pom-compound`,
     );
-    for (const slug of [
-      "ehi402t-high-impact-pom",
-      "edr180-high-impact-pom",
-    ]) {
+    for (const slug of ["ehi402t-high-impact-pom", "edr180-high-impact-pom"]) {
       assert.equal(
         getLocalizedHref(
           getLocalizedGradeCategorySourcePath(slug),
@@ -371,10 +387,7 @@ test("the release manifest publishes only the approved conversion funnel pages",
   assert.deepEqual(getLanguageOptions("/about"), []);
   assert.deepEqual(getSitemapLanguageOptions("/about"), []);
   assert.deepEqual(homeSitemapLanguageOptions, getLanguageOptions("/"));
-  assert.deepEqual(
-    productsSitemapLanguageOptions,
-    productsLanguageOptions,
-  );
+  assert.deepEqual(productsSitemapLanguageOptions, productsLanguageOptions);
   assert.deepEqual(
     contactSitemapLanguageOptions,
     getLanguageOptions("/contact"),
@@ -427,16 +440,14 @@ test("the release manifest publishes only the approved conversion funnel pages",
   assert.equal(isLocalizedReleaseIndexable("/contact"), true);
   assert.equal(isLocalizedReleaseIndexable("/about"), false);
 
-  assert.deepEqual(
-    getLanguageAlternates("/products/xt-100-base-pom-resin"),
-    {
-      en: "/products/xt-100-base-pom-resin",
-      de: "/de/products/xt-100-base-pom-resin",
-      fr: "/fr/products/xt-100-base-pom-resin",
-      "pt-BR": "/pt-br/products/xt-100-base-pom-resin",
-      "x-default": "/products/xt-100-base-pom-resin",
-    },
-  );
+  assert.deepEqual(getLanguageAlternates("/products/xt-100-base-pom-resin"), {
+    en: "/products/xt-100-base-pom-resin",
+    de: "/de/products/xt-100-base-pom-resin",
+    fr: "/fr/products/xt-100-base-pom-resin",
+    "pt-BR": "/pt-br/products/xt-100-base-pom-resin",
+    "zh-CN": "/zh/products/xt-100-base-pom-resin",
+    "x-default": "/products/xt-100-base-pom-resin",
+  });
 
   for (const slug of localizedGradeProfileSlugs) {
     assert.deepEqual(getLanguageAlternates(`/products/${slug}`), {
@@ -444,21 +455,20 @@ test("the release manifest publishes only the approved conversion funnel pages",
       de: `/de/products/${slug}`,
       fr: `/fr/products/${slug}`,
       "pt-BR": `/pt-br/products/${slug}`,
+      "zh-CN": `/zh/products/${slug}`,
       "x-default": `/products/${slug}`,
     });
   }
 
   for (const slug of localizedProductCategorySlugs) {
-    assert.deepEqual(
-      getLanguageAlternates(`/products/categories/${slug}`),
-      {
-        en: `/products/categories/${slug}`,
-        de: `/de/products/categories/${slug}`,
-        fr: `/fr/products/categories/${slug}`,
-        "pt-BR": `/pt-br/products/categories/${slug}`,
-        "x-default": `/products/categories/${slug}`,
-      },
-    );
+    assert.deepEqual(getLanguageAlternates(`/products/categories/${slug}`), {
+      en: `/products/categories/${slug}`,
+      de: `/de/products/categories/${slug}`,
+      fr: `/fr/products/categories/${slug}`,
+      "pt-BR": `/pt-br/products/categories/${slug}`,
+      "zh-CN": `/zh/products/categories/${slug}`,
+      "x-default": `/products/categories/${slug}`,
+    });
   }
 
   assert.equal(isEnglishFallbackHref("/applications"), false);
@@ -471,6 +481,7 @@ test("deep product funnel dictionaries are complete and language-specific", () =
     deProductFunnel,
     frProductFunnel,
     ptBRProductFunnel,
+    zhCNProductFunnel,
   ]) {
     assert.deepEqual(shapeOf(messages), expectedShape);
     assert.deepEqual(
@@ -514,10 +525,8 @@ test("deep product funnel dictionaries are complete and language-specific", () =
 
     assert.deepEqual(
       Object.keys(
-        getLocalizedCategoryMessages(
-          messages,
-          "glass-bead-filled-pom-compound",
-        ).directory.summaries,
+        getLocalizedCategoryMessages(messages, "glass-bead-filled-pom-compound")
+          .directory.summaries,
       ),
       ["egb25-glass-bead-pom"],
     );
@@ -543,10 +552,8 @@ test("deep product funnel dictionaries are complete and language-specific", () =
     );
     assert.deepEqual(
       Object.keys(
-        getLocalizedCategoryMessages(
-          messages,
-          "high-impact-pom-compound",
-        ).directory.summaries,
+        getLocalizedCategoryMessages(messages, "high-impact-pom-compound")
+          .directory.summaries,
       ).sort(),
       [
         "edr100-high-impact-pom",
@@ -576,11 +583,18 @@ test("deep product funnel dictionaries are complete and language-specific", () =
     );
   }
 
-  assert.notEqual(deProductFunnel.category.hero.title, frProductFunnel.category.hero.title);
-  assert.notEqual(frProductFunnel.grade.summary, ptBRProductFunnel.grade.summary);
+  assert.notEqual(
+    deProductFunnel.category.hero.title,
+    frProductFunnel.category.hero.title,
+  );
+  assert.notEqual(
+    frProductFunnel.grade.summary,
+    ptBRProductFunnel.grade.summary,
+  );
   assert.match(deProductFunnel.grade.properties.labels.Density, /Dichte/);
   assert.match(frProductFunnel.grade.properties.labels.Density, /volumique/);
   assert.match(ptBRProductFunnel.grade.properties.labels.Density, /Densidade/);
+  assert.match(zhCNProductFunnel.grade.properties.labels.Density, /密度/);
 });
 
 test("release surfaces fail closed when status or indexability changes", () => {
@@ -621,7 +635,9 @@ test("release surfaces fail closed when status or indexability changes", () => {
 test("localized funnel pages are public with reciprocal SEO signals", () => {
   const localizedLayout = readProjectFile("src/app/[locale]/layout.tsx");
   const localizedHome = readProjectFile("src/app/[locale]/page.tsx");
-  const localizedProducts = readProjectFile("src/app/[locale]/products/page.tsx");
+  const localizedProducts = readProjectFile(
+    "src/app/[locale]/products/page.tsx",
+  );
   const localizedContact = readProjectFile("src/app/[locale]/contact/page.tsx");
   const localizedCategory = readProjectFile(
     "src/app/[locale]/products/categories/[category]/page.tsx",
@@ -669,10 +685,22 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(englishContact, /contactLanguageAlternates/);
   assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
-  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/base-pom-resin"/);
-  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/glass-bead-filled-pom-compound"/);
-  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/glass-fiber-reinforced-pom-compound"/);
-  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/high-impact-pom-compound"/);
+  assert.match(
+    sitemap,
+    /sourcePath:\s*"\/products\/categories\/base-pom-resin"/,
+  );
+  assert.match(
+    sitemap,
+    /sourcePath:\s*"\/products\/categories\/glass-bead-filled-pom-compound"/,
+  );
+  assert.match(
+    sitemap,
+    /sourcePath:\s*"\/products\/categories\/glass-fiber-reinforced-pom-compound"/,
+  );
+  assert.match(
+    sitemap,
+    /sourcePath:\s*"\/products\/categories\/high-impact-pom-compound"/,
+  );
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm450-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm750-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/xt-100-base-pom-resin"/);
@@ -683,7 +711,10 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(sitemap, /sourcePath:\s*"\/technical-data-sheets"/);
   assert.match(sitemap, /getSitemapLanguageOptions\(sourcePath\)/);
   assert.match(sitemap, /isReleasedSourcePath\(entry\.path\)/);
-  assert.match(sitemap, /isReleasedSourcePath\(`\/products\/\$\{product\.slug\}`\)/);
+  assert.match(
+    sitemap,
+    /isReleasedSourcePath\(`\/products\/\$\{product\.slug\}`\)/,
+  );
   assert.match(sitemap, /alternates:\s*\{[\s\S]*languages:/);
   assert.match(header, /getLanguageOptions/);
   assert.match(header, /language-switcher--/);

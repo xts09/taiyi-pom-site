@@ -25,6 +25,13 @@ const previewCopy = {
     message:
       "Esta página não indexável verifica a configuração brasileira de URL, idioma e metadados. Ela não faz parte da navegação pública.",
   },
+  "zh-CN": {
+    title: "多语言路由预览 | Taiyi Polymer",
+    description: "用于检查简体中文语言和 URL 配置的非索引预览。",
+    heading: "多语言路由预览",
+    message:
+      "此非索引页面用于检查简体中文 URL、语言和 metadata 配置，不属于公共导航。",
+  },
 } as const;
 
 export const i18nPreviewLocales = localizedLocales.map((locale) => ({

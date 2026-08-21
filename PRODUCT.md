@@ -97,6 +97,14 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Each released category and grade language group uses a self-canonical and reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates. The nine clean localized URLs are indexable and included in sitemap.
 - The generated sitemap now contains 217 unique URLs. Dynamic technical-data queries, aliases, unreviewed grades, and internal preview pages remain outside this release.
 
+### Simplified Chinese Core Funnel Release (2026-08-21)
+
+- Simplified Chinese is a peer public language at `/zh`, using `zh-CN` for the HTML language and `hreflang`, `zh_CN` for Open Graph, and `ZH` / `简体中文` in the shared language switcher.
+- The release is intentionally limited to the same 15 reviewed core-funnel paths already published in German, French, and Brazilian Portuguese: Home, Products, four POM category pages, seven grade pages, Technical Data, and Contact.
+- Every released Chinese route has complete reviewed page copy, a self-canonical, reciprocal `en`, `de`, `fr`, `pt-BR`, `zh-CN`, and `x-default` alternates, and a unique sitemap entry. Shared technical values, units, methods, and document status remain catalogue-owned.
+- Applications, Resources, About, legal pages, Components, and other unreleased product routes continue to use their existing English destinations with the visible `EN — 英文内容` boundary marker. Do not create a public `/zh` URL for those families until their complete translated content and responsive rendering pass the same release gate.
+- The internal `/zh/i18n-preview` route remains `noindex` and excluded from public navigation, alternates, and sitemap. Unreleased `/zh/applications` and `/zh/about` routes intentionally return 404.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.

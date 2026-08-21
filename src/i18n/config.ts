@@ -17,6 +17,12 @@ export const localizedLocales = [
     htmlLang: "pt-BR",
     openGraphLocale: "pt_BR",
   },
+  {
+    locale: "zh-CN",
+    urlSegment: "zh",
+    htmlLang: "zh-CN",
+    openGraphLocale: "zh_CN",
+  },
 ] as const;
 
 export type LocalizedLocale = (typeof localizedLocales)[number];

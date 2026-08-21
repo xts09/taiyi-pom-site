@@ -7,6 +7,13 @@ import type { LocalizedUrlSegment } from "@/i18n/config";
 import type { SiteMessages } from "@/i18n/types";
 import { googleTagId } from "@/lib/googleTracking";
 
+const skipLinkLabels: Record<string, string> = {
+  de: "Zum Hauptinhalt springen",
+  fr: "Aller au contenu principal",
+  "pt-BR": "Ir para o conteúdo principal",
+  "zh-CN": "跳至主要内容",
+};
+
 type SiteDocumentProps = Readonly<{
   children: React.ReactNode;
   htmlLang: string;
@@ -27,13 +34,7 @@ export function SiteDocument({
       <body className="page-aura min-h-full flex flex-col text-slate-900">
         {consentDefaultScript}
         <a className="skip-link" href="#main-content">
-          {htmlLang === "de"
-            ? "Zum Hauptinhalt springen"
-            : htmlLang === "fr"
-              ? "Aller au contenu principal"
-              : htmlLang === "pt-BR"
-                ? "Ir para o conteúdo principal"
-                : "Skip to main content"}
+          {skipLinkLabels[htmlLang] ?? "Skip to main content"}
         </a>
         <Header
           messages={messages.Header}
