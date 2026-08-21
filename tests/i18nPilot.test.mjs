@@ -20,6 +20,7 @@ import zhCNApplicationDetailsB from "../src/i18n/messages/zh-CN-application-deta
 import zhCNResources from "../src/i18n/messages/zh-CN-resources.ts";
 import zhCNResourceArticlesA1 from "../src/i18n/messages/zh-CN-resource-articles-a1.ts";
 import zhCNResourceArticlesA2 from "../src/i18n/messages/zh-CN-resource-articles-a2.ts";
+import zhCNResourceArticlesB1 from "../src/i18n/messages/zh-CN-resource-articles-b1.ts";
 import {
   applicationIndexComponentSlugs,
   localizedApplicationDetailSliceASlugs,
@@ -30,6 +31,7 @@ import {
   localizedResourceArticleSlugs,
   localizedResourceArticleSliceA1Slugs,
   localizedResourceArticleSliceA2Slugs,
+  localizedResourceArticleSliceB1Slugs,
   localizedResourceGroupIds,
   localizedResourceLinkPaths,
 } from "../src/i18n/resourceTypes.ts";
@@ -977,6 +979,61 @@ test("the second Simplified Chinese resource article slice matches source struct
     assert.doesNotMatch(
       visibleCopy,
       /保证适用|直接替代|完全等同|自动批准|无需验证/,
+    );
+  }
+});
+
+test("the third Simplified Chinese resource article slice matches source structure", () => {
+  const resourcesSource = readProjectFile("src/data/resources.ts");
+  const expectedCounts = {
+    "processing-guide": {
+      sections: 0,
+      features: 0,
+      modules: 5,
+      relatedLinks: 2,
+    },
+    "pom-warpage-troubleshooting": {
+      sections: 6,
+      features: 2,
+      modules: 3,
+      relatedLinks: 5,
+    },
+  };
+
+  assert.deepEqual(
+    Object.keys(zhCNResourceArticlesB1).sort(),
+    [...localizedResourceArticleSliceB1Slugs].sort(),
+  );
+
+  for (const slug of localizedResourceArticleSliceB1Slugs) {
+    const localized = zhCNResourceArticlesB1[slug];
+    const counts = expectedCounts[slug];
+
+    assert.equal(localized.slug, slug);
+    assert.match(resourcesSource, new RegExp(`slug: "${slug}"`));
+    assert.equal(localized.articleSections?.length ?? 0, counts.sections);
+    assert.equal(localized.articleFeatures?.length ?? 0, counts.features);
+    assert.equal(localized.modules.length, counts.modules);
+    assert.equal(localized.relatedLinks.length, counts.relatedLinks);
+
+    const sectionTitles = new Set(
+      localized.articleSections?.map((section) => section.title),
+    );
+    for (const feature of localized.articleFeatures ?? []) {
+      if (feature.position === "after-section") {
+        assert.equal(sectionTitles.has(feature.sectionTitle), true);
+      }
+    }
+
+    const visibleCopy = JSON.stringify(localized);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /Before Molding Trial|Injection Molding Review|Measure the Warpage|Treat Fiber-Reinforced POM/,
+    );
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|自动批准|无需验证|固定通用温度/,
     );
   }
 });
