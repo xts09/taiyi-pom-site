@@ -65,6 +65,7 @@ export default async function LocalizedProductsPage({
       messages={messages.Products}
       pagePath={getLocalizedProductsPath(localeConfig.urlSegment)}
       inLanguage={localeConfig.htmlLang}
+      englishDestinationLabel={messages.Header.englishDestinationLabel}
       localeSegment={localeConfig.urlSegment}
     />
   );

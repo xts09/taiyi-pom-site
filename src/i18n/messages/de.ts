@@ -65,6 +65,7 @@ const messages = {
     contact: "Kontakt",
     searchLabel: "Technische Datenblätter und Ressourcen durchsuchen",
     languageSwitcherLabel: "Sprache",
+    englishDestinationLabel: "Inhalt auf Englisch",
     menu: "Menü",
     close: "Schließen",
     findGradeData: "Werkstoffdaten und TDS finden",

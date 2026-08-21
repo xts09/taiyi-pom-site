@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { DirectoryRow } from "@/components/DirectoryRow";
+import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { Button } from "@/components/ui/button";
 import { conductiveCompounds } from "@/data/conductiveCompounds";
@@ -9,7 +10,10 @@ import { engineeringTdsDocuments } from "@/data/engineeringTds";
 import { products } from "@/data/products";
 import type { ProductsMessages } from "@/i18n/types";
 import type { LocalizedUrlSegment } from "@/i18n/config";
-import { getLocalizedHref } from "@/i18n/releaseManifest";
+import {
+  getLocalizedHref,
+  isEnglishFallbackHref,
+} from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -81,6 +85,7 @@ type ProductsDirectoryPageProps = {
   messages: ProductsMessages;
   pagePath: string;
   inLanguage: string;
+  englishDestinationLabel: string;
   localeSegment?: LocalizedUrlSegment;
 };
 
@@ -88,16 +93,25 @@ export function ProductsDirectoryPage({
   messages,
   pagePath,
   inLanguage,
+  englishDestinationLabel,
   localeSegment,
 }: ProductsDirectoryPageProps) {
   const productFamilies = familyDefinitions.map((definition, index) => ({
     ...definition,
     href: getLocalizedHref(definition.href, localeSegment),
+    isEnglishDestination: isEnglishFallbackHref(
+      definition.href,
+      localeSegment,
+    ),
     ...messages.families.items[index],
   }));
   const requirementPaths = requirementDefinitions.map((definition, index) => ({
     ...definition,
     href: getLocalizedHref(definition.href, localeSegment),
+    isEnglishDestination: isEnglishFallbackHref(
+      definition.href,
+      localeSegment,
+    ),
     ...messages.selection.paths[index],
   }));
   const productDirectoryContactHref = getLocalizedHref(
@@ -229,7 +243,12 @@ export function ProductsDirectoryPage({
                     <span>{path.description}</span>
                   </span>
                   <span className="product-workbench-label">
-                    {path.label}
+                    <span>{path.label}</span>
+                    {path.isEnglishDestination ? (
+                      <EnglishDestinationBadge
+                        label={englishDestinationLabel}
+                      />
+                    ) : null}
                     <span aria-hidden="true">&rarr;</span>
                   </span>
                 </Link>
@@ -264,7 +283,16 @@ export function ProductsDirectoryPage({
                   className="product-family-row"
                   emphasized={family.number === "01"}
                   eyebrow={`${family.number} / ${family.label}`}
-                  label={family.title}
+                  label={
+                    <span className="inline-flex min-w-0 flex-wrap items-center gap-2">
+                      <span>{family.title}</span>
+                      {family.isEnglishDestination ? (
+                        <EnglishDestinationBadge
+                          label={englishDestinationLabel}
+                        />
+                      ) : null}
+                    </span>
+                  }
                   description={`${family.metricValue} ${family.metricLabel} | ${family.description}`}
                   variant="data"
                 />

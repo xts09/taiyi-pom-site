@@ -57,6 +57,7 @@ export type HeaderMessages = {
   contact: string;
   searchLabel: string;
   languageSwitcherLabel: string;
+  englishDestinationLabel: string;
   menu: string;
   close: string;
   findGradeData: string;

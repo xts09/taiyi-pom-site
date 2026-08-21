@@ -17,6 +17,7 @@ import {
   type PointerEvent,
 } from "react";
 import { applications } from "@/data/applications";
+import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
@@ -28,6 +29,7 @@ import {
 import {
   getLocalizedHref,
   getLanguageOptions,
+  isEnglishFallbackHref,
   type LanguageOption,
 } from "@/i18n/releaseManifest";
 import type {
@@ -203,6 +205,10 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   const currentLocaleKey = localeSegment ?? "en";
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeSegment);
+  const englishDestinationBadge = (href: string) =>
+    isEnglishFallbackHref(href, localeSegment) ? (
+      <EnglishDestinationBadge label={messages.englishDestinationLabel} />
+    ) : null;
   const isHome = logicalPathname === "/";
   const isAbout =
     logicalPathname === "/about" || logicalPathname.startsWith("/about/");
@@ -513,8 +519,11 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                             <span className="mega-category-eyebrow">
                               {taxonomy.productEyebrows[item.eyebrowKey]}
                             </span>
-                            <span className="mega-category-title mega-nav-label">
-                              {taxonomy.products[item.labelKey]}
+                            <span className="flex min-w-0 items-center gap-2">
+                              <span className="mega-category-title mega-nav-label">
+                                {taxonomy.products[item.labelKey]}
+                              </span>
+                              {englishDestinationBadge(item.href)}
                             </span>
                           </Link>
                         ))}
@@ -556,6 +565,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                           onClick={closeMega}
                         >
                           {messages.allApplications}{" "}
+                          {englishDestinationBadge("/applications")}
                           <span aria-hidden="true">&rarr;</span>
                         </Link>
                       </div>
@@ -569,8 +579,11 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                             className="mega-simple-link"
                             onClick={closeMega}
                           >
-                            <span className="mega-simple-title mega-nav-label">
-                              {item.label}
+                            <span className="flex min-w-0 items-center gap-2">
+                              <span className="mega-simple-title mega-nav-label">
+                                {item.label}
+                              </span>
+                              {englishDestinationBadge(item.href)}
                             </span>
                           </Link>
                         ))}
@@ -608,6 +621,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                           onClick={closeMega}
                         >
                           {messages.allResources}{" "}
+                          {englishDestinationBadge("/resources")}
                           <span aria-hidden="true">&rarr;</span>
                         </Link>
                       </div>
@@ -621,12 +635,17 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                             className="mega-simple-link"
                             onClick={closeMega}
                           >
-                            <span className="mega-simple-title mega-nav-label">
-                              {
-                                taxonomy.resources[
-                                  group.id as ResourceTaxonomyKey
-                                ].title
-                              }
+                            <span className="flex min-w-0 items-center gap-2">
+                              <span className="mega-simple-title mega-nav-label">
+                                {
+                                  taxonomy.resources[
+                                    group.id as ResourceTaxonomyKey
+                                  ].title
+                                }
+                              </span>
+                              {englishDestinationBadge(
+                                getResourceNavigationGroupPath(group),
+                              )}
                             </span>
                           </Link>
                         ))}
@@ -645,7 +664,8 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                     aria-current={isCurrentSection("/about") ? "page" : undefined}
                     onClick={closeMega}
                   >
-                    {messages.aboutUs}
+                    <span>{messages.aboutUs}</span>
+                    {englishDestinationBadge("/about")}
                   </Link>
                 </NavigationMenu.Link>
               </NavigationMenu.Item>
@@ -751,12 +771,13 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                     key={`${category.labelKey}-${category.href}`}
                     href={localizedHref(category.href)}
                     prefetch={false}
-                    className="mobile-menu-sub-link block py-2"
+                    className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
                     aria-current={
                       logicalPathname === category.href ? "page" : undefined
                     }
                   >
-                    {taxonomy.products[category.labelKey]}
+                    <span>{taxonomy.products[category.labelKey]}</span>
+                    {englishDestinationBadge(category.href)}
                   </Link>
                 ))}
               </div>
@@ -772,12 +793,13 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 <Link
                   href="/applications"
                   prefetch={false}
-                  className="mobile-product-list mb-2 block py-1"
+                  className="mobile-product-list mb-2 flex items-center justify-between gap-3 py-1"
                   aria-current={
                     logicalPathname === "/applications" ? "page" : undefined
                   }
                 >
-                  {messages.allApplications}
+                  <span>{messages.allApplications}</span>
+                  {englishDestinationBadge("/applications")}
                 </Link>
 
                 {applicationLinks.map((item) => (
@@ -785,12 +807,13 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                     key={item.href}
                     href={item.href}
                     prefetch={false}
-                    className="mobile-menu-sub-link block py-2"
+                    className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
                     aria-current={
                       logicalPathname === item.href ? "page" : undefined
                     }
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    {englishDestinationBadge(item.href)}
                   </Link>
                 ))}
               </div>
@@ -806,12 +829,13 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 <Link
                   href="/resources"
                   prefetch={false}
-                  className="mobile-product-list mb-2 block py-1"
+                  className="mobile-product-list mb-2 flex items-center justify-between gap-3 py-1"
                   aria-current={
                     logicalPathname === "/resources" ? "page" : undefined
                   }
                 >
-                  {messages.allResources}
+                  <span>{messages.allResources}</span>
+                  {englishDestinationBadge("/resources")}
                 </Link>
 
                 {resourceNavigationGroups.map((group) => (
@@ -825,17 +849,22 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                     <Link
                       href={getResourceNavigationGroupPath(group)}
                       prefetch={false}
-                      className="mobile-menu-sub-link block py-2"
+                      className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
                       aria-current={
                         logicalPathname === getResourceNavigationGroupPath(group)
                           ? "page"
                           : undefined
                       }
                     >
-                      {
-                        taxonomy.resources[group.id as ResourceTaxonomyKey]
-                          .title
-                      }
+                      <span>
+                        {
+                          taxonomy.resources[group.id as ResourceTaxonomyKey]
+                            .title
+                        }
+                      </span>
+                      {englishDestinationBadge(
+                        getResourceNavigationGroupPath(group),
+                      )}
                     </Link>
                   </div>
                 ))}
@@ -845,10 +874,11 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             <Link
               href="/about"
               prefetch={false}
-              className="mobile-menu-primary-link py-3"
+              className="mobile-menu-primary-link flex items-center justify-between gap-3 py-3"
               aria-current={isCurrentSection("/about") ? "page" : undefined}
             >
-              {messages.aboutUs}
+              <span>{messages.aboutUs}</span>
+              {englishDestinationBadge("/about")}
             </Link>
 
             <Link

@@ -1,0 +1,29 @@
+.root {
+  display: inline-flex;
+  min-width: 1.7rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, currentColor 32%, transparent);
+  border-radius: var(--ds-radius-tight);
+  background: color-mix(in srgb, currentColor 7%, transparent);
+  padding: 0.18rem 0.28rem 0.15rem;
+  color: currentColor;
+  font-family: var(--ds-font-body);
+  font-size: var(--ds-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  vertical-align: 0.08em;
+}
+
+.assistive {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

@@ -23,6 +23,7 @@ export default function ProductsPage() {
       messages={messages.Products}
       pagePath="/products"
       inLanguage="en"
+      englishDestinationLabel={messages.Header.englishDestinationLabel}
     />
   );
 }

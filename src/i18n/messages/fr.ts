@@ -65,6 +65,7 @@ const messages = {
     contact: "Contact",
     searchLabel: "Rechercher des fiches techniques et des ressources",
     languageSwitcherLabel: "Langue",
+    englishDestinationLabel: "Contenu en anglais",
     menu: "Menu",
     close: "Fermer",
     findGradeData: "Trouver les données grades et TDS",

@@ -258,6 +258,12 @@ export const getLocalizedHref = (
   return `${createLocalizedPath(sourcePath, localeSegment)}${suffix}`;
 };
 
+export const isEnglishFallbackHref = (
+  href: string,
+  localeSegment?: LocalizedUrlSegment,
+) =>
+  Boolean(localeSegment) && getLocalizedHref(href, localeSegment) === href;
+
 export const getLocalizedHomePath = (localeSegment: LocalizedUrlSegment) =>
   getLocalizedHref("/", localeSegment);
 

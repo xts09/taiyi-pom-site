@@ -40,6 +40,7 @@ import {
   contactSitemapLanguageOptions,
   homeLanguageAlternates,
   homeSitemapLanguageOptions,
+  isEnglishFallbackHref,
   isLocalizedReleaseIndexable,
   isReleaseSurfaceEnabled,
   localizedReleaseManifest,
@@ -324,8 +325,16 @@ test("the release manifest publishes only the approved conversion funnel pages",
       `/${locale.urlSegment}/technical-data-sheets`,
     );
     assert.equal(
+      isEnglishFallbackHref("/technical-data-sheets", locale.urlSegment),
+      false,
+    );
+    assert.equal(
       getLocalizedHref("/applications", locale.urlSegment),
       "/applications",
+    );
+    assert.equal(
+      isEnglishFallbackHref("/applications", locale.urlSegment),
+      true,
     );
     assert.equal(
       getLocalizedHref("/products/xt-100", locale.urlSegment),
@@ -451,6 +460,8 @@ test("the release manifest publishes only the approved conversion funnel pages",
       },
     );
   }
+
+  assert.equal(isEnglishFallbackHref("/applications"), false);
 });
 
 test("deep product funnel dictionaries are complete and language-specific", () => {

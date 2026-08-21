@@ -63,6 +63,7 @@ const messages = {
     contact: "Contact",
     searchLabel: "Search technical data sheets and resources",
     languageSwitcherLabel: "Language",
+    englishDestinationLabel: "Content in English",
     menu: "Menu",
     close: "Close",
     findGradeData: "Find Grade Data & TDS",
