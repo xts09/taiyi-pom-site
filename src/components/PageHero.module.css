@@ -47,8 +47,10 @@
   font-family: var(--ds-font-display);
   font-size: var(--ds-page-hero-title-size);
   font-weight: 700;
+  hyphens: auto;
   letter-spacing: -0.035em;
   line-height: 0.98;
+  overflow-wrap: anywhere;
   text-wrap: balance;
 }
 
