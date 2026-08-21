@@ -32,6 +32,55 @@ export type ApplicationDirectoryCardMessages = {
   imageAlt: string;
 };
 
+export const localizedApplicationDetailSliceASlugs = [
+  "automotive",
+  "electronics",
+  "conveyor-automation",
+  "motion-components",
+] as const satisfies readonly LocalizedApplicationSlug[];
+
+export type LocalizedApplicationDetailSliceASlug =
+  (typeof localizedApplicationDetailSliceASlugs)[number];
+
+export type LocalizedApplicationDirectionMessages = {
+  label: string;
+  keyUse: string;
+  shortLabel: string;
+};
+
+export type LocalizedApplicationImageMessages = {
+  alt: string;
+  label: string;
+  description?: string;
+};
+
+export type LocalizedApplicationPartMessages = {
+  label: string;
+  description: string;
+  imageAlt?: string;
+};
+
+export type LocalizedApplicationEngineeringGroupMessages = {
+  title: string;
+  items: readonly string[];
+};
+
+export type LocalizedApplicationProfileMessages = {
+  title: string;
+  description: string;
+  heroImageAlt?: string;
+  detailHeroImageAlt?: string;
+  materialDirections: readonly LocalizedApplicationDirectionMessages[];
+  images: readonly LocalizedApplicationImageMessages[];
+  parts: readonly LocalizedApplicationPartMessages[];
+  engineeringFit: readonly LocalizedApplicationEngineeringGroupMessages[];
+};
+
+export type LocalizedApplicationDetailSliceAMessages = Record<
+  LocalizedApplicationDetailSliceASlug,
+  LocalizedApplicationProfileMessages
+>;
+
 export type ApplicationIndexMessages = {
   metadata: {
     title: string;

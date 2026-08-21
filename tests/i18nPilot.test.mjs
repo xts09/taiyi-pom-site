@@ -15,8 +15,10 @@ import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
 import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
 import zhCNProductFunnel from "../src/i18n/messages/zh-CN-product-funnel.ts";
 import zhCNApplications from "../src/i18n/messages/zh-CN-applications.ts";
+import zhCNApplicationDetailsA from "../src/i18n/messages/zh-CN-application-details-a.ts";
 import {
   applicationIndexComponentSlugs,
+  localizedApplicationDetailSliceASlugs,
   localizedApplicationSlugs,
 } from "../src/i18n/applicationTypes.ts";
 import {
@@ -626,6 +628,58 @@ test("the Simplified Chinese application directory copy is complete and cautious
     assert.match(card.title, /[\u3400-\u9fff]/);
     assert.match(card.description, /[\u3400-\u9fff]/);
     assert.match(card.imageAlt, /[\u3400-\u9fff]/);
+  }
+});
+
+test("the first Simplified Chinese application detail slice matches source content", () => {
+  const source = readProjectFile("src/data/applications.ts");
+  const expectedCounts = {
+    automotive: { directions: 4, images: 3, parts: 12, groupItems: [4, 4, 4] },
+    electronics: { directions: 5, images: 3, parts: 8, groupItems: [4, 4, 4] },
+    "conveyor-automation": {
+      directions: 4,
+      images: 3,
+      parts: 8,
+      groupItems: [4, 4, 4],
+    },
+    "motion-components": {
+      directions: 4,
+      images: 3,
+      parts: 8,
+      groupItems: [4, 4, 4],
+    },
+  };
+
+  assert.deepEqual(
+    Object.keys(zhCNApplicationDetailsA).sort(),
+    [...localizedApplicationDetailSliceASlugs].sort(),
+  );
+
+  for (const slug of localizedApplicationDetailSliceASlugs) {
+    const localized = zhCNApplicationDetailsA[slug];
+    const counts = expectedCounts[slug];
+
+    assert.match(source, new RegExp(`slug: "${slug}"`));
+    assert.equal(localized.materialDirections.length, counts.directions);
+    assert.equal(localized.images.length, counts.images);
+    assert.equal(localized.parts.length, counts.parts);
+    assert.equal(localized.engineeringFit.length, counts.groupItems.length);
+
+    localized.engineeringFit.forEach((group, index) => {
+      assert.equal(group.items.length, counts.groupItems[index]);
+    });
+    assert.equal(
+      localized.parts.every((part) => Boolean(part.imageAlt)),
+      true,
+    );
+
+    const visibleCopy = JSON.stringify(localized);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /Typical Parts|Performance Needs|Material Direction|Review dimensional|Screen low-friction/,
+    );
+    assert.doesNotMatch(visibleCopy, /保证适用|直接替代|完全等同/);
   }
 });
 
