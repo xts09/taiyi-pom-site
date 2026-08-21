@@ -81,6 +81,21 @@ export type LocalizedApplicationDetailSliceAMessages = Record<
   LocalizedApplicationProfileMessages
 >;
 
+export const localizedApplicationDetailSliceBSlugs = [
+  "water-control",
+  "washing-machine-components",
+  "outdoor-equipment",
+  "textile-machinery",
+] as const satisfies readonly LocalizedApplicationSlug[];
+
+export type LocalizedApplicationDetailSliceBSlug =
+  (typeof localizedApplicationDetailSliceBSlugs)[number];
+
+export type LocalizedApplicationDetailSliceBMessages = Record<
+  LocalizedApplicationDetailSliceBSlug,
+  LocalizedApplicationProfileMessages
+>;
+
 export type ApplicationIndexMessages = {
   metadata: {
     title: string;
