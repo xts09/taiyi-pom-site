@@ -524,8 +524,11 @@
 }
 
 .credentials {
-  scroll-margin-top: 5rem;
   background: var(--ds-background-surface);
+}
+
+.credentials h2 {
+  scroll-margin-top: calc(var(--site-header-height) + var(--ds-space-4));
 }
 
 .credentialsIntro {
