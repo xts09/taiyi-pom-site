@@ -14,6 +14,11 @@ import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
 import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
 import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
 import zhCNProductFunnel from "../src/i18n/messages/zh-CN-product-funnel.ts";
+import zhCNApplications from "../src/i18n/messages/zh-CN-applications.ts";
+import {
+  applicationIndexComponentSlugs,
+  localizedApplicationSlugs,
+} from "../src/i18n/applicationTypes.ts";
 import {
   basePomGradeSlugs,
   getLocalizedCategoryLabel,
@@ -596,6 +601,32 @@ test("deep product funnel dictionaries are complete and language-specific", () =
   assert.match(frProductFunnel.grade.properties.labels.Density, /volumique/);
   assert.match(ptBRProductFunnel.grade.properties.labels.Density, /Densidade/);
   assert.match(zhCNProductFunnel.grade.properties.labels.Density, /密度/);
+});
+
+test("the Simplified Chinese application directory copy is complete and cautious", () => {
+  assert.deepEqual(
+    Object.keys(zhCNApplications.cards).sort(),
+    [...localizedApplicationSlugs].sort(),
+  );
+  assert.deepEqual(
+    Object.keys(zhCNApplications.componentSolutions.labels).sort(),
+    [...applicationIndexComponentSlugs].sort(),
+  );
+  assert.equal(zhCNApplications.selection.items.length, 4);
+
+  const visibleCopy = JSON.stringify(zhCNApplications);
+  assert.match(visibleCopy, /[\u3400-\u9fff]/);
+  assert.doesNotMatch(
+    visibleCopy,
+    /Application Engineering|Browse by Industry|View application|Need Help Shortlisting/,
+  );
+  assert.doesNotMatch(visibleCopy, /保证适用|直接替代|完全等同/);
+
+  for (const card of Object.values(zhCNApplications.cards)) {
+    assert.match(card.title, /[\u3400-\u9fff]/);
+    assert.match(card.description, /[\u3400-\u9fff]/);
+    assert.match(card.imageAlt, /[\u3400-\u9fff]/);
+  }
 });
 
 test("release surfaces fail closed when status or indexability changes", () => {
