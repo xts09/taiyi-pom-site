@@ -40,6 +40,7 @@ import {
   homeLanguageAlternates,
   homeSitemapLanguageOptions,
   isEnglishFallbackHref,
+  isReleaseLocaleEnabled,
   isLocalizedReleaseIndexable,
   isReleaseSurfaceEnabled,
   localizedReleaseManifest,
@@ -630,6 +631,18 @@ test("release surfaces fail closed when status or indexability changes", () => {
     isReleaseSurfaceEnabled(noindexRelease, "publicNavigation"),
     true,
   );
+
+  const chineseOnlyRelease = {
+    ...release,
+    localizedSegments: ["zh"],
+  };
+  assert.equal(isReleaseLocaleEnabled(chineseOnlyRelease, "zh"), true);
+  assert.equal(isReleaseLocaleEnabled(chineseOnlyRelease, "de"), false);
+  assert.equal(
+    isReleaseLocaleEnabled({ ...chineseOnlyRelease, status: "preview" }, "zh"),
+    false,
+  );
+  assert.equal(isReleaseLocaleEnabled(release, "pt-br"), true);
 });
 
 test("localized funnel pages are public with reciprocal SEO signals", () => {

@@ -9,6 +9,7 @@ export type LocalizedReleaseEntry = {
   publicNavigation: boolean;
   includeInSitemap: boolean;
   includeInAlternates: boolean;
+  localizedSegments?: readonly LocalizedUrlSegment[];
 };
 
 export type LocalizedReleaseSurface =
@@ -161,8 +162,25 @@ export const isReleaseSurfaceEnabled = (
   return true;
 };
 
-export const isLocalizedReleaseIndexable = (sourcePath: string) =>
-  isReleaseSurfaceEnabled(getReleaseEntry(sourcePath), "indexable");
+export const isReleaseLocaleEnabled = (
+  release: LocalizedReleaseEntry | undefined,
+  localeSegment: LocalizedUrlSegment,
+) =>
+  release?.status === "public" &&
+  (release.localizedSegments === undefined ||
+    release.localizedSegments.includes(localeSegment));
+
+export const isLocalizedReleaseIndexable = (
+  sourcePath: string,
+  localeSegment?: LocalizedUrlSegment,
+) => {
+  const release = getReleaseEntry(sourcePath);
+
+  return (
+    isReleaseSurfaceEnabled(release, "indexable") &&
+    (!localeSegment || isReleaseLocaleEnabled(release, localeSegment))
+  );
+};
 
 const createLocalizedPath = (
   sourcePath: ReleasedSourcePath,
@@ -182,15 +200,23 @@ const getLanguageOptionsForSurface = (
     return [];
   }
 
-  return languageDefinitions.map((definition) => ({
-    localeKey: definition.localeKey,
-    hreflang: definition.hreflang,
-    href: definition.urlSegment
-      ? createLocalizedPath(sourcePath, definition.urlSegment)
-      : sourcePath,
-    shortLabel: definition.shortLabel,
-    nativeLabel: definition.nativeLabel,
-  }));
+  const release = getReleaseEntry(sourcePath);
+
+  return languageDefinitions
+    .filter(
+      (definition) =>
+        !definition.urlSegment ||
+        isReleaseLocaleEnabled(release, definition.urlSegment),
+    )
+    .map((definition) => ({
+      localeKey: definition.localeKey,
+      hreflang: definition.hreflang,
+      href: definition.urlSegment
+        ? createLocalizedPath(sourcePath, definition.urlSegment)
+        : sourcePath,
+      shortLabel: definition.shortLabel,
+      nativeLabel: definition.nativeLabel,
+    }));
 };
 
 export const getLanguageOptions = (sourcePath: string) =>
@@ -252,10 +278,11 @@ export const getLocalizedHref = (
   const suffixIndex = href.search(/[?#]/);
   const sourcePath = suffixIndex === -1 ? href : href.slice(0, suffixIndex);
   const suffix = suffixIndex === -1 ? "" : href.slice(suffixIndex);
+  const release = getReleaseEntry(sourcePath);
 
   if (
     !isReleasedSourcePath(sourcePath) ||
-    getReleaseEntry(sourcePath)?.status !== "public"
+    !isReleaseLocaleEnabled(release, localeSegment)
   ) {
     return href;
   }
