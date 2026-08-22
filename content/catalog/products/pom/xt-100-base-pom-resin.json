@@ -50,6 +50,12 @@
       "method": "ISO 1133, 195 °C/2.16 kg"
     },
     {
+      "label": "Ash Content",
+      "value": "0",
+      "unit": "%",
+      "method": "Internal Method"
+    },
+    {
       "label": "Molding Shrinkage",
       "value": "1.8-2.0",
       "unit": "%",
@@ -57,19 +63,19 @@
     },
     {
       "label": "Water Absorption",
-      "value": "0.2",
+      "value": "0.1",
       "unit": "%",
       "method": "ISO 62"
     },
     {
       "label": "Tensile Strength",
-      "value": "57",
+      "value": "58",
       "unit": "MPa",
       "method": "ISO 527"
     },
     {
       "label": "Tensile Strain at Break",
-      "value": "38",
+      "value": "35",
       "unit": "%",
       "method": "ISO 527"
     },
@@ -87,19 +93,19 @@
     },
     {
       "label": "Charpy Notched Impact Strength",
-      "value": "8.3",
+      "value": "8.5",
       "unit": "kJ/m2",
       "method": "ISO 179/1eA"
     },
     {
       "label": "Izod Notched Impact Strength",
-      "value": "7.5",
+      "value": "7.8",
       "unit": "kJ/m2",
       "method": "ISO 180/1A"
     },
     {
       "label": "Melting Temperature",
-      "value": "160",
+      "value": "165",
       "unit": "degC",
       "method": "ISO 11357"
     },
@@ -111,7 +117,7 @@
     },
     {
       "label": "Coefficient of Linear Thermal Expansion, CLTE",
-      "value": "12",
+      "value": "9",
       "unit": "10^-5/degC",
       "method": "ISO 11359"
     },
@@ -141,14 +147,8 @@
     },
     {
       "label": "Drying Time",
-      "value": "2",
+      "value": "4",
       "unit": "h",
-      "method": "Injection Molding"
-    },
-    {
-      "label": "Suggested Max Moisture",
-      "value": "5",
-      "unit": "%",
       "method": "Injection Molding"
     },
     {
@@ -189,7 +189,7 @@
     },
     {
       "label": "Mold Temperature",
-      "value": "30-60",
+      "value": "50-70",
       "unit": "degC",
       "method": "Injection Molding"
     }

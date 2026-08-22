@@ -241,7 +241,7 @@ const messages = {
       core: {
         eyebrow: "核心产品",
         title: "改性 POM，是我们的核心材料线",
-        body: "面向齿轮、轴套、滑动件、结构件和电气功能零部件，提供基础与高流动、耐磨低摩擦、增强、抗冲击、耐候以及导电抗静电等材料方向。",
+        body: "面向齿轮、轴套、滑动件、结构件和电气功能零部件，提供基础与高流动、耐磨低摩擦、增强、抗冲击、耐候以及导电与抗静电等材料方向。",
         action: "查看 POM 材料族",
         materialImageAlt: "用于改性 POM 配混与牌号开发的本色 POM 原料颗粒。",
         materialImageCaption: "POM 原料颗粒",

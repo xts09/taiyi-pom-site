@@ -147,12 +147,6 @@
       "method": "Injection Molding"
     },
     {
-      "label": "Suggested Max Moisture",
-      "value": "5",
-      "unit": "%",
-      "method": "Injection Molding"
-    },
-    {
       "label": "Hopper Temperature",
       "value": "95",
       "unit": "degC",

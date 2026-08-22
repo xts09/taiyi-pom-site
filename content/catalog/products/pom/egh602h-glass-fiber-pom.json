@@ -10,8 +10,8 @@
   "family": "Glass Fiber Reinforced POM Compound",
   "category": "Glass Fiber Reinforced POM Compound",
   "mfi": {
-    "value": 6,
-    "display": "6 g/10 min"
+    "value": 8.5,
+    "display": "8.5 g/10 min"
   },
   "colors": [
     "Natural"
@@ -37,19 +37,19 @@
   "properties": [
     {
       "label": "Density",
-      "value": "1.59",
+      "value": "1.62",
       "unit": "g/cm3",
       "method": "ISO 1183"
     },
     {
       "label": "Melt Flow Rate (MFI)",
-      "value": "6",
+      "value": "8.5",
       "unit": "g/10 min",
       "method": "ISO 1133, 195 °C/2.16 kg"
     },
     {
       "label": "Molding Shrinkage",
-      "value": "0.5-0.8",
+      "value": "0.5-0.7",
       "unit": "%",
       "method": "Internal Method"
     },
@@ -61,37 +61,37 @@
     },
     {
       "label": "Tensile Strength",
-      "value": "110",
+      "value": "125",
       "unit": "MPa",
       "method": "ISO 527"
     },
     {
       "label": "Tensile Strain at Break",
-      "value": "2",
+      "value": "8.5",
       "unit": "%",
       "method": "ISO 527"
     },
     {
       "label": "Flexural Strength",
-      "value": "145",
+      "value": "180",
       "unit": "MPa",
       "method": "ISO 178"
     },
     {
       "label": "Flexural Modulus",
-      "value": "6500",
+      "value": "7800",
       "unit": "MPa",
       "method": "ISO 178"
     },
     {
       "label": "Charpy Notched Impact Strength",
-      "value": "4.5",
+      "value": "6",
       "unit": "kJ/m2",
       "method": "ISO 179/1eA"
     },
     {
       "label": "Izod Notched Impact Strength",
-      "value": "5",
+      "value": "5.5",
       "unit": "kJ/m2",
       "method": "ISO 180/1A"
     },
@@ -103,7 +103,7 @@
     },
     {
       "label": "Heat Deflection Temperature",
-      "value": "160",
+      "value": "165",
       "unit": "degC",
       "method": "ISO 75-2, 1.8 MPa"
     },
@@ -141,12 +141,6 @@
       "label": "Drying Time",
       "value": "4",
       "unit": "h",
-      "method": "Injection Molding"
-    },
-    {
-      "label": "Suggested Max Moisture",
-      "value": "5",
-      "unit": "%",
       "method": "Injection Molding"
     },
     {

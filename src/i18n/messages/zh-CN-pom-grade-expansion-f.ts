@@ -13,7 +13,7 @@ export const chinesePomGradeExpansionF = {
     metadataTitle: "EGH25CN 受控电阻率 POM | 台益",
     metadataDescription:
       "评估 EGH25CN 黑色 POM 的受控电阻率、刚度、收缩与热性能方向，并申请资料或样品。",
-    imageAlt: "台益 EGH25CN 黑色导电抗静电 POM 粒子",
+    imageAlt: "台益 EGH25CN 黑色受控电阻率 POM 粒子",
     eyebrow: "导电与抗静电 POM · 受控电阻率方向",
     summary:
       "EGH25CN 是面向汽车、电子电气、卫浴和工业注塑件受控电阻率需求的黑色 POM 候选牌号。最终适用性需先定义目标电阻范围、测试方法、环境和测量位置，再结合零部件几何、模具与力学要求验证。",

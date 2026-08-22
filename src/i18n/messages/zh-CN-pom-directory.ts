@@ -2,7 +2,7 @@ export const chinesePomDirectoryMessages = {
   metadata: {
     title: "POM 牌号目录与改性材料家族 | 台益",
     description:
-      "按耐磨低摩擦、增韧、耐候、增强、导电抗静电、高流动与基础树脂方向，比较台益的 POM 材料家族、已列牌号和技术资料入口。",
+      "按耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动与基础树脂方向，比较台益的 POM 材料家族、已列牌号和技术资料入口。",
     imageAlt: "台益 POM 材料家族与牌号目录",
   },
   hero: {

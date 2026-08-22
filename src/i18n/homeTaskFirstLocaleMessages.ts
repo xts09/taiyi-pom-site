@@ -7,7 +7,7 @@ export const homeTaskFirstLocaleMessages = {
     entry: {
       eyebrow: "Start with your task",
       title: "Material selection usually starts with the part conditions",
-      body: "Gears bring the friction pair, wear and noise into focus. Structural parts depend more on stiffness, shrinkage and dimensional stability. Electrical parts first require a defined resistance range and operating environment. A material name or single property can support an initial screen, but it rarely establishes application fit on its own.",
+      body: "Gears bring the mating surfaces, wear and noise into focus. Structural parts depend more on stiffness, shrinkage and dimensional stability. Electrical parts first require a defined resistance range and operating environment. A material name or single property can support an initial screen, but it rarely establishes suitability for the application on its own.",
       ariaLabel: "Choose a path based on your current material-selection task",
       items: [
         {
@@ -22,7 +22,7 @@ export const homeTaskFirstLocaleMessages = {
           title: "I need to solve a performance problem",
           description:
             "Start from wear, low friction, reinforcement, impact, weathering, conductivity or antistatic requirements.",
-          action: "Explore material directions",
+          action: "Explore material options",
         },
         {
           label: "Grade & data",
@@ -36,38 +36,38 @@ export const homeTaskFirstLocaleMessages = {
     core: {
       eyebrow: "Core product",
       title: "Modified POM is our core material line",
-      body: "For gears, bushings, sliding parts, structural parts and electrical-function components, we offer base and high-flow, wear and low-friction, reinforced, impact-modified, weather-resistant, conductive and antistatic material directions.",
+      body: "For gears, bushings, sliding parts, structural parts and electrical-function components, we offer base and high-flow POM, wear-resistant and low-friction POM, reinforced, impact-modified, weather-resistant, conductive and antistatic compound options.",
       action: "Browse POM material families",
       materialImageAlt:
         "Natural POM resin pellets used in modified POM compounding and grade development.",
       materialImageCaption: "POM resin pellets",
-      directionsAria: "Modified POM directions and material families",
+      directionsAria: "Modified POM options and material families",
       groups: [
         {
           title: "Wear & low friction",
           description:
-            "Compare sliding-material directions against the friction pair, load, speed, lubrication and target wear behavior.",
+            "Compare wear-resistant and low-friction POM options against the mating surfaces, load, speed, lubrication and target wear behavior.",
           action: "Wear & low-friction POM",
           relatedLinks: [],
         },
         {
           title: "Reinforcement & dimensional control",
           description:
-            "Compare reinforced and filled directions using stiffness, shrinkage, warpage, fiber orientation and dimensional requirements.",
+            "Compare reinforced and filled options using stiffness, shrinkage, warpage, fiber orientation and dimensional requirements.",
           action: "Glass-fiber POM",
           relatedLinks: ["Carbon-fiber POM", "Glass-bead-filled POM"],
         },
         {
           title: "Impact & weather resistance",
           description:
-            "Review specific grades around impact, low-temperature toughness, assembly stress or light exposure.",
+            "Screen specific grades for impact, low-temperature toughness, assembly stress or light exposure.",
           action: "High-impact POM",
           relatedLinks: ["Weather-resistant POM"],
         },
         {
           title: "Conductive & antistatic",
           description:
-            "Define the resistance range, test method, grounding, color and environment before comparing material directions.",
+            "Define the resistance range, test method, grounding, color and environment before comparing conductive and antistatic options.",
           action: "Conductive & antistatic POM",
           relatedLinks: ["Static control across polymers"],
         },
@@ -81,7 +81,7 @@ export const homeTaskFirstLocaleMessages = {
     applications: {
       eyebrow: "Component solutions",
       title: "Different parts bring different priorities",
-      body: "Start with the actual part, define the governing conditions, then connect them to material directions, grade data and validation requirements.",
+      body: "Start with the actual part, define the governing conditions, then connect them to candidate material families, grade data and validation requirements.",
       action: "View all component paths",
       items: [
         {
@@ -94,7 +94,7 @@ export const homeTaskFirstLocaleMessages = {
         {
           title: "Bushings & sleeves",
           description:
-            "Load, sliding speed, shaft and housing materials, clearance, lubrication and environment determine the candidate direction.",
+            "Load, sliding speed, shaft and housing materials, clearance, lubrication and environment determine the candidate range.",
           imageAlt:
             "Engineering-plastic bushings, sleeves and sliding guides used to explain material selection.",
         },
@@ -142,7 +142,7 @@ export const homeTaskFirstLocaleMessages = {
         {
           title: "Narrow the material range",
           description:
-            "Use material directions and available grade data to build a candidate list for further evaluation.",
+            "Use candidate material families and available grade data to build a grade shortlist for further evaluation.",
         },
         {
           title: "Move into project validation",

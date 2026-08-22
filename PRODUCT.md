@@ -290,6 +290,11 @@ Use proof points such as factory scale, production lines, testing equipment, ava
 
 The voice is professional, restrained, technical, and helpful.
 
+Chinese and English engineering-plastics terminology is governed by
+`docs/content/zh-en-engineering-plastics-terminology.md`. Use that glossary to
+separate market-entry aliases from preferred technical terms and from claims
+that require grade- or project-specific evidence.
+
 Use:
 
 - Direct engineering language.

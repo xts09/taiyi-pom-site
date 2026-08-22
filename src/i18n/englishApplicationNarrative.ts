@@ -9,8 +9,11 @@ const dictionary: Record<string, string> = {
 
 const normalizeEngineeringTerms = (value: string) =>
   value
-    .replace(/\bmaterial orientations\b/gi, "material directions")
-    .replace(/\bmaterial orientation\b/gi, "material direction")
+    .replace(/\bmaterials direction\b/gi, "material options")
+    .replace(/\bmaterial directions\b/gi, "material options")
+    .replace(/\bmaterial direction\b/gi, "material option")
+    .replace(/\bmaterial orientations\b/gi, "material options")
+    .replace(/\bmaterial orientation\b/gi, "material option")
     .replace(/\bwaterway\b/gi, "water circuit")
     .replace(/\bfailure phenomena\b/gi, "failure modes")
     .replace(/\binsertion and unplug cycles\b/gi, "mating cycles")
