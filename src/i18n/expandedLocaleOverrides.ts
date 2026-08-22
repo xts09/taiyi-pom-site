@@ -31,7 +31,7 @@ export const expandedLocaleOverrides: Partial<
       "Zentrale Nachweise für die Lieferantenqualifizierung",
     为国际项目提供材料支持:
       "Werkstoffunterstützung für internationale Projekte",
-    "与 Taiyi Polymer 沟通": "Mit Taiyi Polymer sprechen",
+    与台益沟通: "Mit Taiyi Polymer sprechen",
     下一步: "Nächster Schritt",
     运动与耐久: "Bewegung und Dauerhaltbarkeit",
     "摩擦、冲击与环境暴露": "Reibung, Schlagbeanspruchung und Umweltexposition",
@@ -41,9 +41,9 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Funktion und Verarbeitungsbasis",
     "电气表现、基础树脂与流动窗口":
       "Elektrisches Verhalten, Basisharz und Fließfenster",
-    "POM 牌号目录与改性材料家族 | Taiyi Polymer":
+    "POM 牌号目录与改性材料家族 | 台益":
       "POM-Typenkatalog und modifizierte Werkstofffamilien | Taiyi Polymer",
-    "Taiyi Polymer POM 材料家族与牌号目录":
+    "台益 POM 材料家族与牌号目录":
       "Taiyi Polymer POM-Werkstofffamilien und Typenkatalog",
     "POM 材料组合": "POM-Werkstoffauswahl",
     "POM 材料家族与牌号目录": "POM-Werkstofffamilien und Typenkatalog",
@@ -104,7 +104,7 @@ export const expandedLocaleOverrides: Partial<
       "Les preuves essentielles pour la qualification fournisseur",
     为国际项目提供材料支持:
       "Un support matériaux pour les projets internationaux",
-    "与 Taiyi Polymer 沟通": "Échanger avec Taiyi Polymer",
+    与台益沟通: "Échanger avec Taiyi Polymer",
     下一步: "Étape suivante",
     运动与耐久: "Mouvement et durabilité",
     "摩擦、冲击与环境暴露": "Frottement, impact et exposition environnementale",
@@ -163,7 +163,7 @@ export const expandedLocaleOverrides: Partial<
       "Evidências essenciais para a qualificação de fornecedores",
     为国际项目提供材料支持:
       "Suporte de materiais para projetos internacionais",
-    "与 Taiyi Polymer 沟通": "Fale com a Taiyi Polymer",
+    与台益沟通: "Fale com a Taiyi Polymer",
     下一步: "Próxima etapa",
     运动与耐久: "Movimento e durabilidade",
     "摩擦、冲击与环境暴露": "Atrito, impacto e exposição ambiental",
@@ -173,7 +173,7 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Funções e base de processamento",
     "电气表现、基础树脂与流动窗口":
       "Comportamento elétrico, resina base e janela de fluxo",
-    "按材料选型、加工与问题排查、牌号数据与验证任务浏览 Taiyi Polymer 技术资料。":
+    "按材料选型、加工与问题排查、牌号数据与验证任务浏览台益技术资料。":
       "Explore os recursos técnicos da Taiyi Polymer por seleção de materiais, processamento e solução de problemas, dados de graus e tarefas de validação.",
     "材料选型、加工与验证资料":
       "Seleção de materiais, processamento e recursos de validação",

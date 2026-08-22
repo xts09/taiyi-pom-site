@@ -151,6 +151,29 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    collaboration: {
+      eyebrow: "Project collaboration",
+      title: "A practical path from requirements to validation",
+      body: "A complete material specification is not required to begin. Start with the part's operating conditions, an existing performance issue or a reference grade, then narrow the candidate materials step by step.",
+      itemsAria: "How Taiyi Polymer supports project collaboration",
+      items: [
+        {
+          title: "Direct project communication",
+          description:
+            "Commercial, technical and production requirements stay aligned around the same part requirements, reducing repeated handoffs.",
+        },
+        {
+          title: "Flexible pilot validation",
+          description:
+            "Samples, pilot quantities and molding trials can be used to assess candidate materials before moving to repeat supply.",
+        },
+        {
+          title: "Project-based customization",
+          description:
+            "When technical targets, validation conditions and expected production volumes are clear, formulation adjustments or custom-grade development can be evaluated.",
+        },
+      ],
+    },
     proof: {
       eyebrow: "Manufacturing & validation evidence",
       title: "A practical basis for engineering and supplier evaluation",
@@ -322,6 +345,29 @@ export const homeTaskFirstLocaleMessages = {
           title: "Projektvalidierung beginnen",
           description:
             "TDS- und Dokumentverfügbarkeit sowie bei Bedarf Muster und Spritzgießversuche abstimmen.",
+        },
+      ],
+    },
+    collaboration: {
+      eyebrow: "Projektzusammenarbeit",
+      title: "Ein praxisnaher Weg von der Anforderung zur Validierung",
+      body: "Für den Einstieg ist keine vollständig definierte Werkstoffspezifikation erforderlich. Die Einsatzbedingungen des Bauteils, ein aktuelles Fehlerbild oder ein Referenztyp genügen, um die Werkstoffauswahl schrittweise einzugrenzen.",
+      itemsAria: "Arbeitsweise von Taiyi Polymer in der Projektzusammenarbeit",
+      items: [
+        {
+          title: "Direkte Projektabstimmung",
+          description:
+            "Kommerzielle, werkstofftechnische und fertigungstechnische Anforderungen werden gemeinsam im selben Projektkontext abgestimmt, ohne Informationen mehrfach weiterzugeben.",
+        },
+        {
+          title: "Flexible Bemusterung und Kleinserienvalidierung",
+          description:
+            "Muster, Versuchsmengen und Spritzgießversuche ermöglichen die Bewertung der Werkstoffauswahl, bevor die Serienbelieferung abgestimmt wird.",
+        },
+        {
+          title: "Projektbezogene Rezepturanpassung",
+          description:
+            "Sind technische Ziele, Validierungsbedingungen und der erwartete Serienbedarf klar, können Rezepturanpassungen oder eine kundenspezifische Materialentwicklung bewertet werden.",
         },
       ],
     },
@@ -499,6 +545,29 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    collaboration: {
+      eyebrow: "Collaboration projet",
+      title: "Une démarche concrète, des exigences de la pièce à la validation",
+      body: "Il n'est pas nécessaire de disposer d'une spécification matière complète pour commencer. Les conditions d'utilisation de la pièce, un mode de défaillance observé ou un grade de référence suffisent pour réduire progressivement le nombre de matières candidates.",
+      itemsAria: "Mode de collaboration de Taiyi Polymer sur les projets",
+      items: [
+        {
+          title: "Des échanges projet directs",
+          description:
+            "Les exigences commerciales, techniques et de production sont alignées sur les mêmes besoins de la pièce, sans multiplier les relais d'information.",
+        },
+        {
+          title: "Une validation flexible en petite série",
+          description:
+            "Échantillons, lots pilotes et essais de moulage permettent d'évaluer les matières candidates avant de passer à un approvisionnement régulier.",
+        },
+        {
+          title: "Des ajustements de formulation par projet",
+          description:
+            "Lorsque les objectifs techniques, les conditions de validation et les volumes de production prévus sont clairs, un ajustement de formulation ou un développement matière spécifique peut être étudié.",
+        },
+      ],
+    },
     proof: {
       eyebrow: "Fabrication & éléments de validation",
       title: "Une base concrète pour l'ingénierie et l'évaluation fournisseur",
@@ -670,6 +739,29 @@ export const homeTaskFirstLocaleMessages = {
           title: "Avance para a validação do projeto",
           description:
             "Confirme a disponibilidade de TDS e documentos e, quando necessário, amostras e testes de moldagem.",
+        },
+      ],
+    },
+    collaboration: {
+      eyebrow: "Colaboração de projeto",
+      title: "Um caminho prático dos requisitos à validação",
+      body: "Não é necessário ter uma especificação completa do material para começar. As condições de uso da peça, um modo de falha atual ou um grade de referência permitem restringir gradualmente as opções de material.",
+      itemsAria: "Formas de colaboração da Taiyi Polymer em projetos",
+      items: [
+        {
+          title: "Comunicação direta no projeto",
+          description:
+            "Os requisitos comerciais, técnicos e de produção ficam alinhados em torno das mesmas condições da peça, sem sucessivos repasses de informação.",
+        },
+        {
+          title: "Validação flexível em pequenos lotes",
+          description:
+            "Amostras, lotes-piloto e testes de moldagem permitem avaliar as opções de material antes de avançar para o fornecimento regular.",
+        },
+        {
+          title: "Ajustes de formulação por projeto",
+          description:
+            "Quando as metas técnicas, as condições de validação e o volume previsto de produção estão claros, podem ser avaliados ajustes de formulação ou o desenvolvimento de um grade específico.",
         },
       ],
     },

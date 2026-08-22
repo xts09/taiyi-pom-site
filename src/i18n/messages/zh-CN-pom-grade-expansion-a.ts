@@ -6,10 +6,10 @@ import type {
 export const chinesePomGradeExpansionA = {
   "etm090nc-base-pom-resin": {
     metadata: {
-      title: "ETM090NC 标准基础 POM 树脂 | Taiyi Polymer",
+      title: "ETM090NC 标准基础 POM 树脂 | 台益",
       description:
         "根据流动性、强度、收缩与热性能数据评估 ETM090NC 标准基础 POM 树脂，并申请资料或样品。",
-      imageAlt: "Taiyi Polymer 本色 ETM090NC POM 粒子",
+      imageAlt: "台益本色 ETM090NC POM 粒子",
     },
     breadcrumb: "ETM090NC",
     eyebrow: "标准基础 POM · 注塑",
@@ -43,10 +43,10 @@ export const chinesePomGradeExpansionA = {
   },
   "etm130-base-pom-resin": {
     metadata: {
-      title: "ETM130 中等流动基础 POM 树脂 | Taiyi Polymer",
+      title: "ETM130 中等流动基础 POM 树脂 | 台益",
       description:
         "根据流动性、力学性能、收缩与热性能数据评估 ETM130 基础 POM 树脂，并申请资料或样品。",
-      imageAlt: "Taiyi Polymer 本色 ETM130 POM 粒子",
+      imageAlt: "台益本色 ETM130 POM 粒子",
     },
     breadcrumb: "ETM130",
     eyebrow: "中等流动基础 POM · 注塑",
@@ -80,10 +80,10 @@ export const chinesePomGradeExpansionA = {
   },
   "etm270-base-pom-resin": {
     metadata: {
-      title: "ETM270 薄壁精密件用高流动 POM | Taiyi Polymer",
+      title: "ETM270 薄壁精密件用高流动 POM | 台益",
       description:
         "根据流动性、强度、冲击与热性能数据评估 ETM270 薄壁精密注塑用高流动 POM，并申请样品。",
-      imageAlt: "Taiyi Polymer 本色 ETM270 POM 粒子",
+      imageAlt: "台益本色 ETM270 POM 粒子",
     },
     breadcrumb: "ETM270",
     eyebrow: "高流动基础 POM · 薄壁与精密注塑",
@@ -117,10 +117,10 @@ export const chinesePomGradeExpansionA = {
   },
   "etm1500-base-pom-resin": {
     metadata: {
-      title: "ETM1500 超高流动 POM 树脂 | Taiyi Polymer",
+      title: "ETM1500 超高流动 POM 树脂 | 台益",
       description:
         "根据流动性、强度、冲击与热性能数据评估 ETM1500 超高流动 POM 是否适合填充敏感注塑件。",
-      imageAlt: "Taiyi Polymer 本色 ETM1500 POM 粒子",
+      imageAlt: "台益本色 ETM1500 POM 粒子",
     },
     breadcrumb: "ETM1500",
     eyebrow: "超高流动基础 POM · 填充敏感零部件",
@@ -154,10 +154,10 @@ export const chinesePomGradeExpansionA = {
   },
   "etm1800-base-pom-resin": {
     metadata: {
-      title: "ETM1800 最高流动方向 POM 树脂 | Taiyi Polymer",
+      title: "ETM1800 最高流动方向 POM 树脂 | 台益",
       description:
         "根据流动性、强度、冲击与热性能数据评估 ETM1800 是否适合流长要求更高的注塑项目。",
-      imageAlt: "Taiyi Polymer 本色 ETM1800 POM 粒子",
+      imageAlt: "台益本色 ETM1800 POM 粒子",
     },
     breadcrumb: "ETM1800",
     eyebrow: "超高流动基础 POM · 更高流长要求",

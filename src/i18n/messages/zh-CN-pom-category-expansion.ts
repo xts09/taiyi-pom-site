@@ -7,10 +7,10 @@ export const chinesePomCategoryExpansion = {
   "wear-resistant-low-friction-pom-compound": {
     categoryLabel: "耐磨与低摩擦 POM",
     metadata: {
-      title: "耐磨与低摩擦 POM 牌号目录 | Taiyi Polymer",
+      title: "耐磨与低摩擦 POM 牌号目录 | 台益",
       description:
-        "按摩擦副、运动方式、MFI、强度、热性能与项目条件，比较 Taiyi Polymer 耐磨与低摩擦 POM 牌号。",
-      imageAlt: "Taiyi Polymer 耐磨与低摩擦 POM 粒子",
+        "按摩擦副、运动方式、MFI、强度、热性能与项目条件，比较台益耐磨与低摩擦 POM 牌号。",
+      imageAlt: "台益耐磨与低摩擦 POM 粒子",
     },
     hero: {
       eyebrow: "POM 改性材料系列",
@@ -78,10 +78,10 @@ export const chinesePomCategoryExpansion = {
   "uv-resistant-pom-compound": {
     categoryLabel: "耐候 POM",
     metadata: {
-      title: "耐候 POM 牌号与数据 | Taiyi Polymer",
+      title: "耐候 POM 牌号与数据 | 台益",
       description:
-        "根据颜色、光照环境、冲击方向、流动性与项目验证要求，比较 Taiyi Polymer 耐候 POM 牌号。",
-      imageAlt: "Taiyi Polymer 耐候 POM 粒子",
+        "根据颜色、光照环境、冲击方向、流动性与项目验证要求，比较台益耐候 POM 牌号。",
+      imageAlt: "台益耐候 POM 粒子",
     },
     hero: {
       eyebrow: "POM 改性材料系列",
@@ -145,10 +145,10 @@ export const chinesePomCategoryExpansion = {
   "carbon-fiber-reinforced-pom-compound": {
     categoryLabel: "碳纤维增强 POM",
     metadata: {
-      title: "碳纤维增强 POM 牌号与数据 | Taiyi Polymer",
+      title: "碳纤维增强 POM 牌号与数据 | 台益",
       description:
-        "按碳纤维含量、刚度、收缩、热性能、导电方向与项目要求比较 Taiyi Polymer 碳纤维增强 POM。",
-      imageAlt: "Taiyi Polymer 黑色碳纤维增强 POM 粒子",
+        "按碳纤维含量、刚度、收缩、热性能、导电方向与项目要求比较台益碳纤维增强 POM。",
+      imageAlt: "台益黑色碳纤维增强 POM 粒子",
     },
     hero: {
       eyebrow: "POM 改性材料系列",
@@ -210,10 +210,10 @@ export const chinesePomCategoryExpansion = {
   "conductive-antistatic-pom-compound": {
     categoryLabel: "导电与抗静电 POM",
     metadata: {
-      title: "导电与抗静电 POM 牌号目录 | Taiyi Polymer",
+      title: "导电与抗静电 POM 牌号目录 | 台益",
       description:
-        "按表面与体积电阻率目标、测试方法、颜色、零件几何与工况比较 Taiyi Polymer 导电与抗静电 POM。",
-      imageAlt: "Taiyi Polymer 黑色导电与抗静电 POM 粒子",
+        "按表面与体积电阻率目标、测试方法、颜色、零件几何与工况比较台益导电与抗静电 POM。",
+      imageAlt: "台益黑色导电与抗静电 POM 粒子",
     },
     hero: {
       eyebrow: "POM 功能材料系列",
@@ -273,10 +273,10 @@ export const chinesePomCategoryExpansion = {
   "ultra-high-flow-pom": {
     categoryLabel: "极高流动 POM",
     metadata: {
-      title: "极高流动 POM 牌号与数据 | Taiyi Polymer",
+      title: "极高流动 POM 牌号与数据 | 台益",
       description:
-        "按 MFI、薄壁、流长、浇口、模穴与力学性能要求，比较 Taiyi Polymer 极高流动 POM 牌号。",
-      imageAlt: "Taiyi Polymer 本色极高流动 POM 粒子",
+        "按 MFI、薄壁、流长、浇口、模穴与力学性能要求，比较台益极高流动 POM 牌号。",
+      imageAlt: "台益本色极高流动 POM 粒子",
     },
     hero: {
       eyebrow: "POM 加工方向",

@@ -19,10 +19,10 @@ export const chinesePomGradeExpansionE = {
   "egh202h-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH202H",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH202H 10% 玻纤增强 POM | Taiyi Polymer",
+    metadataTitle: "EGH202H 10% 玻纤增强 POM | 台益",
     metadataDescription:
       "评估 EGH202H 10% 玻纤增强 POM 的刚度、强度、收缩与热性能方向，并申请资料或样品。",
-    imageAlt: "Taiyi Polymer EGH202H 玻纤增强 POM 粒子",
+    imageAlt: "台益 EGH202H 玻纤增强 POM 粒子",
     eyebrow: "10% 玻纤增强 POM · 标准增强方向",
     summary:
       "EGH202H 是采用 10% 玻璃纤维增强的标准 POM 候选牌号，用于汽车、电子电气、卫浴和工业零件的刚度、强度、收缩与热性能初筛。最终适用性需结合纤维取向、零部件几何、模具与载荷条件确认。",
@@ -37,10 +37,10 @@ export const chinesePomGradeExpansionE = {
   "egh302h-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH302H",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH302H 15% 玻纤增强 POM | Taiyi Polymer",
+    metadataTitle: "EGH302H 15% 玻纤增强 POM | 台益",
     metadataDescription:
       "评估 EGH302H 15% 玻纤增强 POM 的强度、刚度、收缩与热性能方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EGH302H 玻纤增强 POM 粒子",
+    imageAlt: "台益 EGH302H 玻纤增强 POM 粒子",
     eyebrow: "15% 玻纤增强 POM · 中等增强方向",
     summary:
       "EGH302H 是采用 15% 玻璃纤维增强的 POM 候选牌号，用于在标准与更高增强方向之间评估强度、刚度、收缩和加工表现。最终适用性需结合纤维取向、熔接线、零部件几何、模具和载荷确认。",
@@ -55,10 +55,10 @@ export const chinesePomGradeExpansionE = {
   "egh402h-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH402H",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH402H 20% 高刚度玻纤 POM | Taiyi Polymer",
+    metadataTitle: "EGH402H 20% 高刚度玻纤 POM | 台益",
     metadataDescription:
       "评估 EGH402H 20% 玻纤增强 POM 的高刚度、低收缩与耐热方向，并申请资料或样品。",
-    imageAlt: "Taiyi Polymer EGH402H 高刚度玻纤 POM 粒子",
+    imageAlt: "台益 EGH402H 高刚度玻纤 POM 粒子",
     eyebrow: "20% 玻纤增强 POM · 高刚度低收缩方向",
     summary:
       "EGH402H 是采用 20% 玻璃纤维增强的 POM 候选牌号，面向需要较高刚度、较低注塑收缩和耐热评估的功能与结构零件。最终适用性需结合纤维取向、载荷、尺寸公差、模具和使用温度确认。",
@@ -73,10 +73,10 @@ export const chinesePomGradeExpansionE = {
   "egh402t-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH402T",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH402T 20% 玻纤平衡流动 POM | Taiyi Polymer",
+    metadataTitle: "EGH402T 20% 玻纤平衡流动 POM | 台益",
     metadataDescription:
       "评估 EGH402T 20% 玻纤增强 POM 的流动、刚度与尺寸控制方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EGH402T 玻纤增强 POM 粒子",
+    imageAlt: "台益 EGH402T 玻纤增强 POM 粒子",
     eyebrow: "20% 玻纤增强 POM · 平衡流动方向",
     summary:
       "EGH402T 是采用 20% 玻璃纤维增强的 POM 候选牌号，用于兼顾注塑流动、刚度和尺寸控制的项目评估。最终适用性需结合流长、壁厚、浇口、纤维取向、熔接线和实际载荷确认。",
@@ -91,10 +91,10 @@ export const chinesePomGradeExpansionE = {
   "egh502t-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH502T",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH502T 25% 玻纤增强 POM | Taiyi Polymer",
+    metadataTitle: "EGH502T 25% 玻纤增强 POM | 台益",
     metadataDescription:
       "评估 EGH502T 25% 玻纤增强 POM 的刚度、低收缩与受控流动方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EGH502T 玻纤增强 POM 粒子",
+    imageAlt: "台益 EGH502T 玻纤增强 POM 粒子",
     eyebrow: "25% 玻纤增强 POM · 受控流动方向",
     summary:
       "EGH502T 是采用 25% 玻璃纤维增强的 POM 候选牌号，用于需要较高刚度、较低收缩与受控加工流动性的注塑项目。最终适用性需结合零部件方向性、浇口、熔接线、尺寸公差和载荷确认。",
@@ -109,10 +109,10 @@ export const chinesePomGradeExpansionE = {
   "egh580h-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH580H",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH580H 25% 高弯曲玻纤 POM | Taiyi Polymer",
+    metadataTitle: "EGH580H 25% 高弯曲玻纤 POM | 台益",
     metadataDescription:
       "评估 EGH580H 25% 玻纤增强 POM 的弯曲、刚度、收缩与尺寸控制方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EGH580H 玻纤增强 POM 粒子",
+    imageAlt: "台益 EGH580H 玻纤增强 POM 粒子",
     eyebrow: "25% 玻纤增强 POM · 高弯曲性能方向",
     summary:
       "EGH580H 是采用 25% 玻璃纤维增强的 POM 候选牌号，用于需要较高弯曲表现、刚度和尺寸控制的零部件初筛。最终适用性需结合流向、载荷方向、壁厚、熔接线、模具和使用温度确认。",
@@ -127,10 +127,10 @@ export const chinesePomGradeExpansionE = {
   "egh580t-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH580T",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH580T 25% 玻纤刚韧平衡 POM | Taiyi Polymer",
+    metadataTitle: "EGH580T 25% 玻纤刚韧平衡 POM | 台益",
     metadataDescription:
       "评估 EGH580T 25% 玻纤增强 POM 的刚度、冲击、流动与尺寸方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EGH580T 玻纤增强 POM 粒子",
+    imageAlt: "台益 EGH580T 玻纤增强 POM 粒子",
     eyebrow: "25% 玻纤增强 POM · 刚度与冲击平衡方向",
     summary:
       "EGH580T 是采用 25% 玻璃纤维增强的 POM 候选牌号，用于兼顾高刚度、冲击表现与加工流动性的项目评估。最终适用性需结合缺口、纤维取向、熔接线、载荷、壁厚和使用温度确认。",
@@ -145,10 +145,10 @@ export const chinesePomGradeExpansionE = {
   "egh602h-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH602H",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH602H 30% 高刚度玻纤 POM | Taiyi Polymer",
+    metadataTitle: "EGH602H 30% 高刚度玻纤 POM | 台益",
     metadataDescription:
       "评估 EGH602H 30% 玻纤增强 POM 的高刚度、尺寸稳定与低收缩方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EGH602H 高刚度玻纤 POM 粒子",
+    imageAlt: "台益 EGH602H 高刚度玻纤 POM 粒子",
     eyebrow: "30% 玻纤增强 POM · 高刚度尺寸稳定方向",
     summary:
       "EGH602H 是采用 30% 玻璃纤维增强的 POM 候选牌号，面向需要更高刚度、尺寸稳定与较低收缩的功能和精密零件。最终适用性需结合方向性、载荷、尺寸公差、浇口、模具和使用温度确认。",
@@ -163,10 +163,10 @@ export const chinesePomGradeExpansionE = {
   "egh602t-glass-fiber-pom": createChinesePomGradeProfile({
     grade: "EGH602T",
     categoryLabel: glassCategory,
-    metadataTitle: "EGH602T 30% 玻纤稳定加工 POM | Taiyi Polymer",
+    metadataTitle: "EGH602T 30% 玻纤稳定加工 POM | 台益",
     metadataDescription:
       "评估 EGH602T 30% 玻纤增强 POM 的低收缩、刚度与稳定加工方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EGH602T 玻纤增强 POM 粒子",
+    imageAlt: "台益 EGH602T 玻纤增强 POM 粒子",
     eyebrow: "30% 玻纤增强 POM · 低收缩稳定加工方向",
     summary:
       "EGH602T 是采用 30% 玻璃纤维增强的 POM 候选牌号，用于需要较低注塑收缩、增强刚度和稳定加工方向的零部件评估。最终适用性需结合纤维取向、流长、壁厚、浇口、保压与尺寸公差确认。",
@@ -181,10 +181,10 @@ export const chinesePomGradeExpansionE = {
   "ecf200-carbon-fiber-pom": createChinesePomGradeProfile({
     grade: "ECF200",
     categoryLabel: carbonCategory,
-    metadataTitle: "ECF200 20% 碳纤增强导电 POM | Taiyi Polymer",
+    metadataTitle: "ECF200 20% 碳纤增强导电 POM | 台益",
     metadataDescription:
       "评估 ECF200 20% 碳纤增强 POM 的刚度、低收缩、尺寸稳定与导电方向。",
-    imageAlt: "Taiyi Polymer ECF200 碳纤增强黑色 POM 粒子",
+    imageAlt: "台益 ECF200 碳纤增强黑色 POM 粒子",
     eyebrow: "20% 碳纤增强 POM · 刚度与导电方向",
     summary:
       "ECF200 是采用 20% 碳纤维增强的黑色 POM 候选牌号，用于评估刚度、低收缩、尺寸稳定与导电方向。最终适用性需结合纤维取向、零部件几何、载荷、电阻目标、测试方法和环境确认。",
@@ -202,10 +202,10 @@ export const chinesePomGradeExpansionE = {
   "ecf300-carbon-fiber-pom": createChinesePomGradeProfile({
     grade: "ECF300",
     categoryLabel: carbonCategory,
-    metadataTitle: "ECF300 30% 碳纤增强导电 POM | Taiyi Polymer",
+    metadataTitle: "ECF300 30% 碳纤增强导电 POM | 台益",
     metadataDescription:
       "评估 ECF300 30% 碳纤增强 POM 的高刚度、低收缩、尺寸稳定与导电方向。",
-    imageAlt: "Taiyi Polymer ECF300 碳纤增强黑色 POM 粒子",
+    imageAlt: "台益 ECF300 碳纤增强黑色 POM 粒子",
     eyebrow: "30% 碳纤增强 POM · 高刚度导电方向",
     summary:
       "ECF300 是采用 30% 碳纤维增强的黑色 POM 候选牌号，用于需要高刚度、低收缩、尺寸稳定与导电方向的项目初筛。最终适用性需结合加工流动、纤维取向、载荷、电阻目标、测试方法和环境确认。",
@@ -223,10 +223,10 @@ export const chinesePomGradeExpansionE = {
   "ecf400-carbon-fiber-pom": createChinesePomGradeProfile({
     grade: "ECF400",
     categoryLabel: carbonCategory,
-    metadataTitle: "ECF400 40% 碳纤增强导电 POM | Taiyi Polymer",
+    metadataTitle: "ECF400 40% 碳纤增强导电 POM | 台益",
     metadataDescription:
       "评估 ECF400 40% 碳纤增强 POM 的更高刚度、尺寸稳定与导电黑色材料方向。",
-    imageAlt: "Taiyi Polymer ECF400 碳纤增强黑色 POM 粒子",
+    imageAlt: "台益 ECF400 碳纤增强黑色 POM 粒子",
     eyebrow: "40% 碳纤增强 POM · 更高刚度导电方向",
     summary:
       "ECF400 是采用 40% 碳纤维增强的黑色 POM 候选牌号，用于更高刚度、尺寸稳定与导电方向的项目评估。最终适用性需重点结合加工流动、纤维取向、表面、熔接线、载荷、电阻目标和测试环境确认。",

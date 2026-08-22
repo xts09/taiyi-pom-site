@@ -288,6 +288,40 @@ export function TaskFirstHomeNarrative({
         </div>
       </section>
 
+      <section
+        className="home-collaboration home-task-section"
+        aria-labelledby="home-collaboration-title"
+      >
+        <div className="site-container">
+          <header className="home-task-intro home-collaboration-intro">
+            <div>
+              <p className="home-task-eyebrow">
+                {messages.collaboration.eyebrow}
+              </p>
+              <h2 id="home-collaboration-title">
+                {messages.collaboration.title}
+              </h2>
+            </div>
+            <p>{messages.collaboration.body}</p>
+          </header>
+
+          <ul
+            className="home-collaboration-principles"
+            aria-label={messages.collaboration.itemsAria}
+          >
+            {messages.collaboration.items.map((item) => (
+              <li key={item.title}>
+                <span aria-hidden="true" />
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="home-proof home-task-section">
         <div className="site-container">
           <header className="home-task-intro home-proof-intro">

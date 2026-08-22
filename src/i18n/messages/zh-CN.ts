@@ -46,7 +46,7 @@ const messages = {
     },
   },
   Header: {
-    brandHomeLabel: "Taiyi Polymer 首页",
+    brandHomeLabel: "台益首页",
     navigationAria: "主导航",
     products: "产品",
     productCategories: "产品分类",
@@ -70,7 +70,7 @@ const messages = {
     discussApplication: "讨论您的应用",
   },
   Footer: {
-    brandRelation: "Taiyi Polymer · PLATFORM® 工程材料",
+    brandRelation: "台益 · PLATFORM® 工程材料",
     logoAlt: "PLATFORM 注册商标",
     pitchTitle: "从零部件需求出发，做材料决策",
     pitchCopy:
@@ -87,9 +87,9 @@ const messages = {
     manufacturing: "生产制造",
     email: "邮箱",
     call: "电话",
-    emailAria: "向 Taiyi Polymer 发送邮件",
-    callAria: "致电 Taiyi Polymer",
-    whatsappAria: "通过 WhatsApp 联系 Taiyi Polymer",
+    emailAria: "向台益发送邮件",
+    callAria: "致电台益",
+    whatsappAria: "通过 WhatsApp 联系台益",
     contactActionsAria: "页脚联系选项",
     navigationAria: "页脚导航",
     location: "中国江苏盐城",
@@ -123,10 +123,10 @@ const messages = {
   },
   Products: {
     metadata: {
-      title: "工程塑料改性材料 | Taiyi Polymer",
+      title: "工程塑料改性材料 | 台益",
       description:
-        "查看 Taiyi Polymer 的 POM 改性材料、基础 POM 树脂、精选 PA6、PA66 与 PPA 系列，以及导电和抗静电改性材料。",
-      imageAlt: "Taiyi Polymer POM 材料与工程塑料产品目录",
+        "查看台益的 POM 改性材料、基础 POM 树脂、精选 PA6、PA66 与 PPA 系列，以及导电和抗静电改性材料。",
+      imageAlt: "台益 POM 材料与工程塑料产品目录",
     },
     breadcrumbHome: "首页",
     breadcrumbProducts: "产品",

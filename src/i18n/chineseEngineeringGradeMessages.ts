@@ -129,9 +129,9 @@ export const createChineseEngineeringGradeCopy = (
     categorySourcePath: family.categoryPath,
     directionLabel: direction.label,
     metadata: {
-      title: `${document.grade} ${document.family} ${direction.label}牌号 | Taiyi Polymer`,
+      title: `${document.grade} ${document.family} ${direction.label}牌号 | 台益`,
       description: `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。`,
-      imageAlt: `Taiyi Polymer ${document.grade} ${document.family} ${direction.label}材料`,
+      imageAlt: `台益 ${document.grade} ${document.family} ${direction.label}材料`,
     },
     eyebrow: `${document.family} · ${direction.label}`,
     summary,

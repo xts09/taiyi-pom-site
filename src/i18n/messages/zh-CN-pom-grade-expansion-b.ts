@@ -7,10 +7,10 @@ export const chinesePomGradeExpansionB = {
   "edr100-high-impact-pom": {
     categoryLabel: "高抗冲 POM",
     metadata: {
-      title: "EDR100 高抗冲耐低温 POM | Taiyi Polymer",
+      title: "EDR100 高抗冲耐低温 POM | 台益",
       description:
         "根据冲击、伸长率、流动性、拉伸与热性能数据评估 EDR100 高抗冲耐低温 POM，并申请样品。",
-      imageAlt: "Taiyi Polymer 本色 EDR100 高抗冲 POM 粒子",
+      imageAlt: "台益本色 EDR100 高抗冲 POM 粒子",
     },
     breadcrumb: "EDR100",
     eyebrow: "高抗冲 POM · 韧性提升方向",
@@ -45,10 +45,10 @@ export const chinesePomGradeExpansionB = {
   "ehi100st-high-impact-pom": {
     categoryLabel: "高抗冲 POM",
     metadata: {
-      title: "EHI100ST 刚韧平衡高抗冲 POM | Taiyi Polymer",
+      title: "EHI100ST 刚韧平衡高抗冲 POM | 台益",
       description:
         "根据冲击、刚性、伸长率、流动性与热性能数据评估 EHI100ST 刚韧平衡高抗冲 POM。",
-      imageAlt: "Taiyi Polymer 本色 EHI100ST 高抗冲 POM 粒子",
+      imageAlt: "台益本色 EHI100ST 高抗冲 POM 粒子",
     },
     breadcrumb: "EHI100ST",
     eyebrow: "高抗冲 POM · 刚韧平衡方向",
@@ -83,10 +83,10 @@ export const chinesePomGradeExpansionB = {
   "ehi202t-high-impact-pom": {
     categoryLabel: "高抗冲 POM",
     metadata: {
-      title: "EHI202T 通用高抗冲耐低温 POM | Taiyi Polymer",
+      title: "EHI202T 通用高抗冲耐低温 POM | 台益",
       description:
         "根据冲击、伸长率、流动性、拉伸与热性能数据评估 EHI202T 汽车、电气、卫浴和工业注塑应用。",
-      imageAlt: "Taiyi Polymer 本色 EHI202T 高抗冲 POM 粒子",
+      imageAlt: "台益本色 EHI202T 高抗冲 POM 粒子",
     },
     breadcrumb: "EHI202T",
     eyebrow: "高抗冲 POM · 通用功能注塑方向",
@@ -121,10 +121,10 @@ export const chinesePomGradeExpansionB = {
   "ehi602t-high-impact-pom": {
     categoryLabel: "高抗冲 POM",
     metadata: {
-      title: "EHI602T 高冲击高伸长方向 POM | Taiyi Polymer",
+      title: "EHI602T 高冲击高伸长方向 POM | 台益",
       description:
         "根据冲击、断裂伸长率、流动性、拉伸与热性能数据评估 EHI602T 高抗冲耐低温 POM，并申请样品。",
-      imageAlt: "Taiyi Polymer 本色 EHI602T 高抗冲 POM 粒子",
+      imageAlt: "台益本色 EHI602T 高抗冲 POM 粒子",
     },
     breadcrumb: "EHI602T",
     eyebrow: "高抗冲 POM · 更高冲击与伸长方向",

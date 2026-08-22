@@ -259,6 +259,6 @@ export const chineseBushingsAndSleevesDetail = {
     eyebrow: "项目信息",
     title: "评估完整滑动界面",
     body:
-      "请提供衬套图纸，以及现有轴、载荷、运动、壳体配合、间隙、润滑、环境、目标寿命和失效信息。Taiyi Polymer 可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出装配后衬套评估计划。",
+      "请提供衬套图纸，以及现有轴、载荷、运动、壳体配合、间隙、润滑、环境、目标寿命和失效信息。台益可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出装配后衬套评估计划。",
   },
 } as const satisfies ComponentSolutionDetail;

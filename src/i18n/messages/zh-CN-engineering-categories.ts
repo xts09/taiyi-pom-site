@@ -142,10 +142,10 @@ export const chineseEngineeringCategoryProfiles = {
     sourceCategory: "PA6 Compound",
     categoryLabel: "PA6 改性材料",
     metadata: {
-      title: "PA6 改性材料牌号与技术数据 | Taiyi Polymer",
+      title: "PA6 改性材料牌号与技术数据 | 台益",
       description:
-        "比较 Taiyi Polymer PA6 玻纤增强、抗冲、阻燃、碳纤维增强、矿物填充与易脱模牌号及关键数据。",
-      imageAlt: "Taiyi Polymer PA6 改性材料",
+        "比较台益 PA6 玻纤增强、抗冲、阻燃、碳纤维增强、矿物填充与易脱模牌号及关键数据。",
+      imageAlt: "台益 PA6 改性材料",
     },
     hero: {
       eyebrow: "工程塑料材料系列",
@@ -223,10 +223,10 @@ export const chineseEngineeringCategoryProfiles = {
     sourceCategory: "PA66 Compound",
     categoryLabel: "PA66 改性材料",
     metadata: {
-      title: "PA66 改性材料牌号与技术数据 | Taiyi Polymer",
+      title: "PA66 改性材料牌号与技术数据 | 台益",
       description:
-        "比较 Taiyi Polymer PA66 玻纤增强、阻燃、耐磨、碳纤维增强、矿物填充与抗冲牌号及关键数据。",
-      imageAlt: "Taiyi Polymer PA66 改性材料",
+        "比较台益 PA66 玻纤增强、阻燃、耐磨、碳纤维增强、矿物填充与抗冲牌号及关键数据。",
+      imageAlt: "台益 PA66 改性材料",
     },
     hero: {
       eyebrow: "工程塑料材料系列",
@@ -304,10 +304,10 @@ export const chineseEngineeringCategoryProfiles = {
     sourceCategory: "PPA Compound",
     categoryLabel: "PPA 改性材料",
     metadata: {
-      title: "PPA 改性材料牌号与技术数据 | Taiyi Polymer",
+      title: "PPA 改性材料牌号与技术数据 | 台益",
       description:
-        "比较 Taiyi Polymer PPA 玻纤增强、玻纤矿物复合增强及耐磨低摩擦牌号与关键数据。",
-      imageAlt: "Taiyi Polymer PPA 改性材料",
+        "比较台益 PPA 玻纤增强、玻纤矿物复合增强及耐磨低摩擦牌号与关键数据。",
+      imageAlt: "台益 PPA 改性材料",
     },
     hero: {
       eyebrow: "高温工程塑料系列",

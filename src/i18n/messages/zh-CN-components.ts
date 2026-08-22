@@ -3,7 +3,7 @@ import type { ComponentSolution } from "@/data/componentSolutions";
 
 export const chineseComponentIndexMessages = {
   metadata: {
-    title: "POM 改性材料零部件方案 | Taiyi Polymer",
+    title: "POM 改性材料零部件方案 | 台益",
     description:
       "比较齿轮、轴套、输送链部件、阀芯、纺织导向件及 IC 周转托盘的材料选型指南。",
     imageAlt: "雨刮电机齿轮总成 CAD 可视化图",
@@ -415,6 +415,6 @@ export const chinesePrecisionPlasticGearsDetail = {
     eyebrow: "项目信息",
     title: "申请样品前先建立齿轮候选清单",
     body:
-      "请提供齿轮图纸，以及现有载荷、转速、配对件、润滑、精度、环境、目标寿命和失效信息。Taiyi Polymer 可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出注塑齿轮评估计划。",
+      "请提供齿轮图纸，以及现有载荷、转速、配对件、润滑、精度、环境、目标寿命和失效信息。台益可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出注塑齿轮评估计划。",
   },
 } as const satisfies ComponentSolutionDetail;

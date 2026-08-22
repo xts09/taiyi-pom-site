@@ -224,6 +224,7 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - German, French, and Brazilian Portuguese application details remain derived from the same Chinese profiles and static locale dictionaries. The shared component-guide links retain the active locale whenever that destination is released, and English-destination markers appear only for a real fallback. The navigation label for `下一步` is explicitly owned as `Nächster Schritt`, `Étape suivante`, and `Próxima etapa` rather than accepting the generated English residue.
 - IATF 16949:2016 evidence remains limited to the automotive application profile and is described as quality-management-system evidence for plastic-granule manufacturing. It is not propagated to unrelated application domains and does not imply certification of a material or molded automotive component.
 - Validation covered the complete five-language homepage message contract, all eight English application profiles, the seven generated German/French/Portuguese application narratives, English automotive and motion-component rendering, German home, Brazilian Portuguese home, and French water-control rendering. Inspected desktop and mobile states had four application inputs where required, no Chinese fallback, no known ambiguous engineering terms, and no document-level horizontal overflow. Targeted ESLint, TypeScript, the 27-test i18n pilot suite, and the application-narrative locale audit passed.
+- The five-language homepage now adds one restrained collaboration section between the three-step project flow and manufacturing proof. It describes direct project communication, sample and pilot-quantity validation, and formulation work only where technical targets, validation conditions, and expected production demand are clear. The section makes no fixed response-time, MOQ, delivery, or development-success promise and does not change homepage metadata or route ownership.
 
 ### Unified Grade Alternative Search (2026-08-15)
 
@@ -294,7 +295,7 @@ Use:
 - Direct engineering language.
 - Short explanations that clarify tradeoffs.
 - Grade-specific or project-specific framing.
-- Use `Taiyi Polymer` as the public company name, `PLATFORM` as the material brand, and `Jiangsu Taiyi Nano Technology Co., Ltd.` where the legal entity is required.
+- Use `Taiyi Polymer` as the public company name outside Simplified Chinese. In Simplified Chinese, use `台益` as the public company name and `江苏台益纳米科技有限公司` where the legal entity is required. Use `PLATFORM` as the material brand and `Jiangsu Taiyi Nano Technology Co., Ltd.` where the English legal entity is required.
 - Use `Discuss Your Application` for a general inquiry, `Submit Project Requirements` for form submission, and `Find Grade Data & TDS` for technical-data entry points.
 - Name the expected result when possible: candidate material families, a grade shortlist, available documents, or a sample-evaluation step.
 

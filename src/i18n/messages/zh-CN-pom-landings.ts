@@ -29,14 +29,14 @@ export const chinesePomLandingUi: PomLandingPageUi = {
   finalTitle: "需要协助筛选牌号？",
   finalEyebrow: "牌号选择",
   finalDescription:
-    "请提供当前材料、应用、目标性能、模具阶段、文件要求和预计用量。Taiyi Polymer 可据此筛选相关牌号，并确认下一步样品或 TDS 路径。",
+    "请提供当前材料、应用、目标性能、模具阶段、文件要求和预计用量。台益可据此筛选相关牌号，并确认下一步样品或 TDS 路径。",
   englishDestinationLabel: "英文内容",
 };
 
 export const chineseModifiedPomLanding: PomLandingPageData = {
   slug: "modified-pom-compounds",
   title: "按零件需求选择 POM 材料家族",
-  metaTitle: "按零件要求选择改性 POM 方向 | Taiyi Polymer",
+  metaTitle: "按零件要求选择改性 POM 方向 | 台益",
   metaDescription:
     "先按耐磨、摩擦、冲击、刚性、流动性、耐候性或电性能控制要求判断改性 POM 方向，再对比材料家族与牌号。",
   eyebrow: "",
@@ -217,7 +217,7 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
         "本页从零件要求出发，帮助判断相关改性方向；POM 材料家族目录负责列出可用家族与牌号，技术数据搜索则提供牌号级数据和文件路径。",
     },
     {
-      question: "Taiyi Polymer 能否根据应用要求筛选牌号？",
+      question: "台益能否根据应用要求筛选牌号？",
       answer:
         "可以。请提供零件、当前材料、目标性能、模具信息、文件要求和预计用量，以便筛选相关牌号。",
     },
@@ -227,9 +227,9 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
 export const chineseWearLowFrictionPomLanding: PomLandingPageData = {
   slug: "wear-resistant-low-friction-pom",
   title: "耐磨与低摩擦 POM",
-  metaTitle: "耐磨低摩擦 POM 配混料 | Taiyi Polymer",
+  metaTitle: "耐磨低摩擦 POM 配混料 | 台益",
   metaDescription:
-    "对比 Taiyi Polymer 面向齿轮、衬套、滚轮、滑动零件和运动部件的耐磨与低摩擦 POM 选项。",
+    "对比台益面向齿轮、衬套、滚轮、滑动零件和运动部件的耐磨与低摩擦 POM 选项。",
   eyebrow: "运动部件",
   intro:
     "针对存在材料损耗、滑动阻力、噪声、黏滑或对偶件磨损的注塑零件，对比耐磨与低摩擦 POM。",
@@ -343,7 +343,7 @@ export const chineseWearLowFrictionPomLanding: PomLandingPageData = {
 export const chineseConductiveAntistaticPomLanding: PomLandingPageData = {
   slug: "conductive-antistatic-pom",
   title: "导电与抗静电 POM",
-  metaTitle: "导电与抗静电 POM 配混料 | Taiyi Polymer",
+  metaTitle: "导电与抗静电 POM 配混料 | 台益",
   metaDescription:
     "按目标电阻率、填料体系和零件要求对比导电与抗静电 POM 牌号，并审查牌号数据、文件和样品选项。",
   eyebrow: "电荷控制 POM",

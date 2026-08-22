@@ -8,10 +8,10 @@ export const chinesePomGradeExpansionC = {
   "etm270h-wear-resistant-pom": {
     categoryLabel: "耐磨与低摩擦 POM",
     metadata: {
-      title: "ETM270H 耐磨高流动 POM | Taiyi Polymer",
+      title: "ETM270H 耐磨高流动 POM | 台益",
       description:
         "根据强度、刚度、收缩与热性能数据评估 ETM270H 耐磨 POM 是否适合齿轮、滑动件和轴套。",
-      imageAlt: "Taiyi Polymer ETM270H 耐磨 POM 粒子",
+      imageAlt: "台益 ETM270H 耐磨 POM 粒子",
     },
     breadcrumb: "ETM270H",
     eyebrow: "耐磨 POM · 滑动与运动零件",
@@ -41,10 +41,10 @@ export const chinesePomGradeExpansionC = {
   "epaf100a-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "EPAF100A",
     categoryLabel: "耐磨与低摩擦 POM",
-    metadataTitle: "EPAF100A 芳纶纤维耐磨 POM | Taiyi Polymer",
+    metadataTitle: "EPAF100A 芳纶纤维耐磨 POM | 台益",
     metadataDescription:
       "评估 EPAF100A 芳纶纤维改性耐磨 POM 的刚度、耐磨与热性能方向，并申请资料或样品。",
-    imageAlt: "Taiyi Polymer EPAF100A 芳纶纤维耐磨 POM 粒子",
+    imageAlt: "台益 EPAF100A 芳纶纤维耐磨 POM 粒子",
     eyebrow: "芳纶纤维改性 POM · 高耐磨方向",
     summary:
       "EPAF100A 是采用芳纶纤维改性的高耐磨 POM 候选牌号，用于同时评估刚度、磨耗、尺寸与耐热表现。已发布数据支持前期筛选；实际耐磨寿命仍需结合纤维取向、摩擦副、载荷、速度、润滑和温度验证。",
@@ -62,10 +62,10 @@ export const chinesePomGradeExpansionC = {
   "eptl402-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "EPTL402",
     categoryLabel: "耐磨与低摩擦 POM",
-    metadataTitle: "EPTL402 PTFE 填充低摩擦 POM | Taiyi Polymer",
+    metadataTitle: "EPTL402 PTFE 填充低摩擦 POM | 台益",
     metadataDescription:
       "评估 EPTL402 PTFE 填充耐磨 POM 是否适合滑动件、轴套、齿轮和低摩擦应用。",
-    imageAlt: "Taiyi Polymer EPTL402 PTFE 填充耐磨 POM 粒子",
+    imageAlt: "台益 EPTL402 PTFE 填充耐磨 POM 粒子",
     eyebrow: "PTFE 填充 POM · 低摩擦滑动方向",
     summary:
       "EPTL402 是面向滑动件、轴套、齿轮和运动组件的 PTFE 填充高耐磨 POM 候选牌号，用于审核低摩擦与磨耗方向。最终适用性需结合目标摩擦副、表面状态、载荷、速度、润滑、温度和噪声要求确认。",
@@ -83,10 +83,10 @@ export const chinesePomGradeExpansionC = {
   "enm1040-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "ENM1040",
     categoryLabel: "耐磨与低摩擦 POM",
-    metadataTitle: "ENM1040 特殊添加剂耐磨 POM | Taiyi Polymer",
+    metadataTitle: "ENM1040 特殊添加剂耐磨 POM | 台益",
     metadataDescription:
       "评估 ENM1040 特殊耐磨添加剂 POM 的磨耗、流动、强度与热性能方向，并申请样品。",
-    imageAlt: "Taiyi Polymer ENM1040 耐磨 POM 粒子",
+    imageAlt: "台益 ENM1040 耐磨 POM 粒子",
     eyebrow: "特殊添加剂 POM · 均衡耐磨方向",
     summary:
       "ENM1040 是采用特殊耐磨添加剂体系的 POM 候选牌号，用于滑动件、齿轮和功能注塑件的耐磨与加工平衡评估。最终适用性需结合目标摩擦副、载荷、速度、润滑、温度和零部件几何确认。",
@@ -104,10 +104,10 @@ export const chinesePomGradeExpansionC = {
   "edm-111-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "EDM-111",
     categoryLabel: "耐磨与低摩擦 POM",
-    metadataTitle: "EDM-111 高耐磨 POM | Taiyi Polymer",
+    metadataTitle: "EDM-111 高耐磨 POM | 台益",
     metadataDescription:
       "评估 EDM-111 高耐磨 POM 的加工、尺寸、力学与热性能方向，并申请项目资料或样品。",
-    imageAlt: "Taiyi Polymer EDM-111 本色高耐磨 POM 粒子",
+    imageAlt: "台益 EDM-111 本色高耐磨 POM 粒子",
     eyebrow: "高耐磨 POM · 稳定注塑方向",
     summary:
       "EDM-111 是面向汽车、电子电气、卫浴和工业注塑应用的高耐磨 POM 候选牌号，用于评估耐磨方向与稳定注塑表现。最终适用性需结合零部件几何、摩擦副、载荷、速度、温度和模具条件确认。",
@@ -125,10 +125,10 @@ export const chinesePomGradeExpansionC = {
   "ems162-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "EMS162",
     categoryLabel: "耐磨与低摩擦 POM",
-    metadataTitle: "EMS162 MoS2 填充黑色耐磨 POM | Taiyi Polymer",
+    metadataTitle: "EMS162 MoS2 填充黑色耐磨 POM | 台益",
     metadataDescription:
       "评估 EMS162 MoS2 填充黑色耐磨 POM 的磨耗、力学、尺寸与热性能方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EMS162 MoS2 填充黑色耐磨 POM 粒子",
+    imageAlt: "台益 EMS162 MoS2 填充黑色耐磨 POM 粒子",
     eyebrow: "MoS2 填充 POM · 黑色耐磨方向",
     summary:
       "EMS162 是采用 MoS2 填充的黑色高耐磨 POM 候选牌号，用于滑动件、汽车功能件和工业注塑件的耐磨与稳定力学表现评估。最终适用性需结合摩擦副、载荷、速度、润滑、温度和外观要求确认。",

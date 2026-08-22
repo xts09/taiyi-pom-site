@@ -14,7 +14,7 @@ const messages = {
       eyebrowMobile: "COMPOUNDAGE POM",
       title: "Fabricant de compounds POM modifiés pour pièces moulées de précision",
       body:
-        "De l'usure et du faible frottement au renforcement et au contrôle électrostatique, réduisez le champ matière selon les conditions de la pièce, puis examinez données grade, échantillons et essais de moulage.",
+        "Taiyi Polymer est un compoundeur de plastiques techniques basé à Yancheng, en Chine, avec le POM modifié comme gamme principale. Nous resserrons les pistes matière à partir des conditions de la pièce, puis examinons données grade, échantillons et essais de moulage.",
       exploreAction: "Trouver par type de pièce",
       contactAction: "Trouver grades & TDS",
     },

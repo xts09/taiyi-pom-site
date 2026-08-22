@@ -2898,7 +2898,7 @@
   color: var(--home-color-night);
 }
 
-/* Task-first homepage narrative. Currently enabled by the Chinese homepage. */
+/* Five-language task-first homepage narrative. */
 .home-task-first .home-hero-content {
   max-width: min(100%, 78rem);
 }
@@ -2916,6 +2916,7 @@
 .home-task-entry,
 .home-core-line,
 .home-application-paths,
+.home-collaboration,
 .home-proof {
   padding: clamp(4.5rem, 7vw, 7.5rem) 0;
 }
@@ -3377,6 +3378,58 @@
   line-height: 1.6;
 }
 
+.home-collaboration {
+  background: var(--home-color-paper-blue);
+  color: var(--home-color-ink);
+}
+
+.home-collaboration-intro {
+  align-items: start;
+}
+
+.home-collaboration-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.75rem, 3.5vw, 4rem);
+  margin: clamp(2rem, 4vw, 3.5rem) 0 0;
+  border-radius: var(--ds-radius-panel);
+  background: var(--home-color-white);
+  padding: clamp(1.5rem, 3vw, 3rem);
+  list-style: none;
+}
+
+.home-collaboration-principles li {
+  display: grid;
+  grid-template-columns: 0.5rem minmax(0, 1fr);
+  gap: var(--home-space-sm);
+  min-width: 0;
+  align-items: start;
+}
+
+.home-collaboration-principles li > span {
+  width: 0.5rem;
+  height: 2.5rem;
+  border-radius: var(--ds-radius-tight);
+  background: var(--home-color-accent);
+}
+
+.home-collaboration-principles h3 {
+  margin: 0;
+  font-family: var(--home-font-display);
+  font-size: clamp(1.25rem, 1.5vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  text-wrap: pretty;
+}
+
+.home-collaboration-principles p {
+  margin: var(--home-space-sm) 0 0;
+  color: var(--home-color-ink-muted);
+  font-size: var(--home-text-sm);
+  line-height: 1.65;
+}
+
 .home-proof {
   background: var(--home-color-white);
   color: var(--home-color-ink);
@@ -3575,6 +3628,7 @@
   .home-task-deck,
   .home-core-directions,
   .home-application-grid,
+  .home-collaboration-principles,
   .home-proof-metrics,
   .home-proof-certificate-grid {
     grid-template-columns: minmax(0, 1fr);
@@ -3598,6 +3652,7 @@
   .home-task-entry,
   .home-core-line,
   .home-application-paths,
+  .home-collaboration,
   .home-proof,
   .home-process {
     padding: clamp(3.75rem, 14vw, 5rem) 0;
@@ -3617,6 +3672,11 @@
   .home-core-direction,
   .home-process-steps li,
   .home-proof-metrics > div {
+    padding: var(--home-space-md);
+  }
+
+  .home-collaboration-principles {
+    gap: var(--home-space-lg);
     padding: var(--home-space-md);
   }
 

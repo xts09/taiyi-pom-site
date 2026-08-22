@@ -11,10 +11,10 @@ export const chinesePomGradeExpansionD = {
   "etm090u-uv-resistant-pom": createChinesePomGradeProfile({
     grade: "ETM090U",
     categoryLabel,
-    metadataTitle: "ETM090U 中等流动耐候 POM | Taiyi Polymer",
+    metadataTitle: "ETM090U 中等流动耐候 POM | 台益",
     metadataDescription:
       "评估 ETM090U 中等流动耐候 POM 的力学、收缩、热性能与颜色方向，并申请资料或样品。",
-    imageAlt: "Taiyi Polymer ETM090U 耐候 POM 粒子",
+    imageAlt: "台益 ETM090U 耐候 POM 粒子",
     eyebrow: "耐候 POM · 中等流动方向",
     summary:
       "ETM090U 是面向汽车、电子电气、卫浴和精密注塑件的中等流动耐候 POM 候选牌号。已发布数据支持材料初筛；耐候适用性必须结合目标光源、暴露周期、温度、颜色变化与实际使用环境确认。",
@@ -32,10 +32,10 @@ export const chinesePomGradeExpansionD = {
   "etm100pu-uv-resistant-pom": createChinesePomGradeProfile({
     grade: "ETM100PU",
     categoryLabel,
-    metadataTitle: "ETM100PU 高流动耐候 POM | Taiyi Polymer",
+    metadataTitle: "ETM100PU 高流动耐候 POM | 台益",
     metadataDescription:
       "评估 ETM100PU 高流动耐候 POM 的充模、力学、热性能与耐候方向，并申请样品。",
-    imageAlt: "Taiyi Polymer ETM100PU 耐候 POM 粒子",
+    imageAlt: "台益 ETM100PU 耐候 POM 粒子",
     eyebrow: "耐候 POM · 高流动注塑方向",
     summary:
       "ETM100PU 是面向汽车、电子电气、卫浴和工业注塑件的高流动耐候 POM 候选牌号，用于同时审核充模和光照环境下的材料方向。最终适用性需结合实际流长、壁厚、模具、光源、暴露周期、颜色和使用温度确认。",
@@ -53,10 +53,10 @@ export const chinesePomGradeExpansionD = {
   "edr180u-uv-resistant-pom": createChinesePomGradeProfile({
     grade: "EDR180U",
     categoryLabel,
-    metadataTitle: "EDR180U 高抗冲哑光耐候 POM | Taiyi Polymer",
+    metadataTitle: "EDR180U 高抗冲哑光耐候 POM | 台益",
     metadataDescription:
       "评估 EDR180U 高抗冲哑光耐候 POM 的冲击、外观、流动与热性能方向，并申请样品。",
-    imageAlt: "Taiyi Polymer EDR180U 哑光耐候 POM 粒子",
+    imageAlt: "台益 EDR180U 哑光耐候 POM 粒子",
     eyebrow: "耐候 POM · 高抗冲哑光方向",
     summary:
       "EDR180U 是面向需要同时评估冲击韧性、哑光外观和耐候方向零件的 POM 候选牌号。最终适用性需结合零部件缺口与壁厚、载荷、光源、暴露周期、颜色和实际使用温度确认。",
@@ -74,10 +74,10 @@ export const chinesePomGradeExpansionD = {
   "edr2000zd-uv-resistant-pom": createChinesePomGradeProfile({
     grade: "EDR2000ZD-UV",
     categoryLabel,
-    metadataTitle: "EDR2000ZD-UV 高抗冲耐老化 POM | Taiyi Polymer",
+    metadataTitle: "EDR2000ZD-UV 高抗冲耐老化 POM | 台益",
     metadataDescription:
       "评估 EDR2000ZD-UV 高抗冲、耐紫外与耐老化 POM 的外观和性能保持方向。",
-    imageAlt: "Taiyi Polymer EDR2000ZD-UV 耐候 POM 粒子",
+    imageAlt: "台益 EDR2000ZD-UV 耐候 POM 粒子",
     eyebrow: "耐候 POM · 高抗冲与耐老化方向",
     summary:
       "EDR2000ZD-UV 是面向光照环境下外观与性能保持评估的高抗冲、耐紫外和耐老化 POM 候选牌号。最终适用性需结合光源、辐照强度、暴露周期、温湿度、颜色、载荷和零部件几何确认。",

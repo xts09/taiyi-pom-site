@@ -2,11 +2,11 @@ import type { ResourceIndexMessages } from "@/i18n/resourceTypes";
 
 const messages = {
   metadata: {
-    title: "技术资料 | Taiyi Polymer",
-    collectionTitle: "材料选型与技术资料 | Taiyi Polymer",
+    title: "技术资料 | 台益",
+    collectionTitle: "材料选型与技术资料 | 台益",
     description:
-      "按材料选型、加工与问题排查、牌号数据与验证任务浏览 Taiyi Polymer 技术资料。",
-    imageAlt: "Taiyi Polymer 技术资料与材料选型指南",
+      "按材料选型、加工与问题排查、牌号数据与验证任务浏览台益技术资料。",
+    imageAlt: "台益技术资料与材料选型指南",
   },
   breadcrumb: {
     home: "首页",
@@ -47,7 +47,7 @@ const messages = {
       navigationLabel: "选择材料",
       description:
         "先明确零部件功能、主要失效风险、使用工况和所需验证资料，再缩小材料系列或牌号方向。",
-      imageAlt: "Taiyi Polymer 材料选型技术资料",
+      imageAlt: "台益材料选型技术资料",
       entryPaths: [
         "/resources/material-selection-guide",
         "/resources/wear-resistant-low-friction-pom-selection-guide",
@@ -65,7 +65,7 @@ const messages = {
       navigationLabel: "加工与排查",
       description:
         "为注塑试模做好准备，控制材料状态，并依据可追溯的数据排查尺寸与加工问题。",
-      imageAlt: "Taiyi Polymer 加工与问题排查技术资料",
+      imageAlt: "台益加工与问题排查技术资料",
       entryPaths: [
         "/resources/processing-guide",
         "/resources/pom-warpage-troubleshooting",
@@ -77,7 +77,7 @@ const messages = {
       navigationLabel: "查找数据并验证",
       description:
         "比较牌号依据、查找技术数据、准备替代材料试验，并确认生产放行所需的资料与验证步骤。",
-      imageAlt: "Taiyi Polymer 数据与验证技术资料",
+      imageAlt: "台益数据与验证技术资料",
       entryPaths: [
         "/resources/alternative-pom-grade-validation",
         "/technical-data-sheets",

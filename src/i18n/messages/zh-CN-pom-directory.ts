@@ -1,9 +1,9 @@
 export const chinesePomDirectoryMessages = {
   metadata: {
-    title: "POM 牌号目录与改性材料家族 | Taiyi Polymer",
+    title: "POM 牌号目录与改性材料家族 | 台益",
     description:
-      "按耐磨低摩擦、增韧、耐候、增强、导电抗静电、高流动与基础树脂方向，比较 Taiyi Polymer 的 POM 材料家族、已列牌号和技术资料入口。",
-    imageAlt: "Taiyi Polymer POM 材料家族与牌号目录",
+      "按耐磨低摩擦、增韧、耐候、增强、导电抗静电、高流动与基础树脂方向，比较台益的 POM 材料家族、已列牌号和技术资料入口。",
+    imageAlt: "台益 POM 材料家族与牌号目录",
   },
   hero: {
     eyebrow: "POM 材料组合",
@@ -246,7 +246,7 @@ export const chinesePomDirectoryMessages = {
       {
         question: "可以根据具体应用调整材料方向吗？",
         answer:
-          "可以提供当前材料、零件信息、工作条件、目标性能、预计用量和所需文件，Taiyi Polymer 可据此建立候选牌号清单并确认样品或文件支持。",
+          "可以提供当前材料、零件信息、工作条件、目标性能、预计用量和所需文件，台益可据此建立候选牌号清单并确认样品或文件支持。",
       },
     ],
   },

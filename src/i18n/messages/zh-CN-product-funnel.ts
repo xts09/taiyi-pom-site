@@ -13,10 +13,10 @@ const common = {
 
 const category = {
   metadata: {
-    title: "精密注塑用基础 POM 树脂 | Taiyi Polymer",
+    title: "精密注塑用基础 POM 树脂 | 台益",
     description:
-      "按流动性、拉伸强度、热变形温度与项目要求比较 Taiyi Polymer 基础 POM 树脂。",
-    imageAlt: "Taiyi Polymer 本色基础 POM 树脂",
+      "按流动性、拉伸强度、热变形温度与项目要求比较台益基础 POM 树脂。",
+    imageAlt: "台益本色基础 POM 树脂",
   },
   hero: {
     eyebrow: "POM 材料系列",
@@ -100,10 +100,10 @@ const categoryProfiles = {
   "glass-bead-filled-pom-compound": {
     categoryLabel: "玻璃微珠填充 POM",
     metadata: {
-      title: "玻璃微珠填充 POM 牌号与数据 | Taiyi Polymer",
+      title: "玻璃微珠填充 POM 牌号与数据 | 台益",
       description:
         "根据收缩、热性能、注塑件要求和资料可用性评估玻璃微珠填充 POM。",
-      imageAlt: "Taiyi Polymer 本色玻璃微珠填充 POM",
+      imageAlt: "台益本色玻璃微珠填充 POM",
     },
     hero: {
       eyebrow: "POM 改性材料系列",
@@ -159,10 +159,10 @@ const categoryProfiles = {
   "glass-fiber-reinforced-pom-compound": {
     categoryLabel: "玻璃纤维增强 POM",
     metadata: {
-      title: "玻璃纤维增强 POM 牌号与数据 | Taiyi Polymer",
+      title: "玻璃纤维增强 POM 牌号与数据 | 台益",
       description:
         "按刚性、收缩、热性能与项目要求比较含 10% 至 30% 玻璃纤维的 POM。",
-      imageAlt: "Taiyi Polymer 本色玻璃纤维增强 POM",
+      imageAlt: "台益本色玻璃纤维增强 POM",
     },
     hero: {
       eyebrow: "POM 改性材料系列",
@@ -226,10 +226,10 @@ const categoryProfiles = {
   "high-impact-pom-compound": {
     categoryLabel: "高抗冲 POM",
     metadata: {
-      title: "高抗冲 POM 牌号与数据 | Taiyi Polymer",
+      title: "高抗冲 POM 牌号与数据 | 台益",
       description:
         "按冲击性能、低温表现、伸长率、流动性与项目风险比较高抗冲 POM 牌号。",
-      imageAlt: "Taiyi Polymer 本色高抗冲 POM",
+      imageAlt: "台益本色高抗冲 POM",
     },
     hero: {
       eyebrow: "POM 改性材料系列",
@@ -293,10 +293,10 @@ const categoryProfiles = {
 
 const grade = {
   metadata: {
-    title: "XT-100 低密度高抗冲 POM | Taiyi Polymer",
+    title: "XT-100 低密度高抗冲 POM | 台益",
     description:
       "根据密度、MFI、拉伸、冲击和热性能数据评估 XT-100 POM，并申请技术资料或样品用于技术验证。",
-    imageAlt: "Taiyi Polymer 本色 XT-100 POM 粒子",
+    imageAlt: "台益本色 XT-100 POM 粒子",
   },
   breadcrumb: "XT-100",
   eyebrow: "低密度高抗冲方向 POM · 注塑",
@@ -398,10 +398,10 @@ const grade = {
 const gradeProfiles = {
   "etm450-base-pom-resin": {
     metadata: {
-      title: "精密零件用 ETM450 高流动 POM | Taiyi Polymer",
+      title: "精密零件用 ETM450 高流动 POM | 台益",
       description:
         "根据 MFI、拉伸、冲击和热性能数据评估 ETM450 精密注塑用高流动 POM，并申请样品。",
-      imageAlt: "Taiyi Polymer 本色 ETM450 POM 粒子",
+      imageAlt: "台益本色 ETM450 POM 粒子",
     },
     breadcrumb: "ETM450",
     eyebrow: "高流动 POM · 注塑",
@@ -430,10 +430,10 @@ const gradeProfiles = {
   },
   "etm750-base-pom-resin": {
     metadata: {
-      title: "薄壁零件用 ETM750 高流动 POM | Taiyi Polymer",
+      title: "薄壁零件用 ETM750 高流动 POM | 台益",
       description:
         "评估 ETM750 极高流动 POM 是否适用于薄壁和填充困难的注塑件，并申请数据或样品。",
-      imageAlt: "Taiyi Polymer 本色 ETM750 POM 粒子",
+      imageAlt: "台益本色 ETM750 POM 粒子",
     },
     breadcrumb: "ETM750",
     eyebrow: "极高流动 POM · 注塑",
@@ -468,10 +468,10 @@ const gradeProfiles = {
   "egb25-glass-bead-pom": {
     categoryLabel: "玻璃微珠填充 POM",
     metadata: {
-      title: "含 25% 玻璃微珠的 EGB25 POM | Taiyi Polymer",
+      title: "含 25% 玻璃微珠的 EGB25 POM | 台益",
       description:
         "根据收缩、热性能和力学数据评估含 25% 玻璃微珠的 EGB25 POM，并申请资料或样品。",
-      imageAlt: "Taiyi Polymer 本色 EGB25 POM 粒子",
+      imageAlt: "台益本色 EGB25 POM 粒子",
     },
     breadcrumb: "EGB25",
     eyebrow: "含 25% 玻璃微珠的 POM · 注塑",
@@ -511,10 +511,10 @@ const gradeProfiles = {
   "egh502h-glass-fiber-pom": {
     categoryLabel: "玻璃纤维增强 POM",
     metadata: {
-      title: "含 25% 玻璃纤维的 EGH502H POM | Taiyi Polymer",
+      title: "含 25% 玻璃纤维的 EGH502H POM | 台益",
       description:
         "根据刚性、收缩、热性能和力学数据评估含 25% 玻璃纤维的 EGH502H POM，并申请样品。",
-      imageAlt: "Taiyi Polymer 本色 EGH502H POM 粒子",
+      imageAlt: "台益本色 EGH502H POM 粒子",
     },
     breadcrumb: "EGH502H",
     eyebrow: "含 25% 玻璃纤维的 POM · 高刚性",
@@ -544,10 +544,10 @@ const gradeProfiles = {
   "ehi402t-high-impact-pom": {
     categoryLabel: "高抗冲 POM",
     metadata: {
-      title: "EHI402T 高抗冲 POM | Taiyi Polymer",
+      title: "EHI402T 高抗冲 POM | 台益",
       description:
         "根据冲击性能、低温方向、伸长率、流动性、拉伸与热性能数据评估 EHI402T，并申请样品。",
-      imageAlt: "Taiyi Polymer 本色 EHI402T POM 粒子",
+      imageAlt: "台益本色 EHI402T POM 粒子",
     },
     breadcrumb: "EHI402T",
     eyebrow: "高抗冲 POM · 均衡加工",
@@ -582,10 +582,10 @@ const gradeProfiles = {
   "edr180-high-impact-pom": {
     categoryLabel: "高抗冲 POM",
     metadata: {
-      title: "高伸长率 EDR180 高抗冲 POM | Taiyi Polymer",
+      title: "高伸长率 EDR180 高抗冲 POM | 台益",
       description:
         "根据冲击性能、低温方向、高断裂伸长率、流动性、拉伸与热性能数据评估 EDR180。",
-      imageAlt: "Taiyi Polymer 本色 EDR180 POM 粒子",
+      imageAlt: "台益本色 EDR180 POM 粒子",
     },
     breadcrumb: "EDR180",
     eyebrow: "高抗冲 POM · 高断裂伸长率",
@@ -621,10 +621,10 @@ const gradeProfiles = {
 
 const technicalData = {
   metadata: {
-    title: "POM 技术数据与 TDS | Taiyi Polymer",
+    title: "POM 技术数据与 TDS | 台益",
     description:
       "查看包含单位、标准与测试条件的已审核 POM 牌号数据，并申请最新 TDS 和项目资料。",
-    imageAlt: "Taiyi Polymer POM 技术数据与 TDS 审核",
+    imageAlt: "台益 POM 技术数据与 TDS 审核",
   },
   eyebrow: "数据与依据",
   title: "用于材料评估的技术数据",

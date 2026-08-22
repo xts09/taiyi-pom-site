@@ -7,16 +7,16 @@ import type { ExportRoute } from "@/data/exportRoutes";
 
 export const chineseAboutMessages = {
   metadata: {
-    title: "工程塑料改性材料制造商 | Taiyi Polymer",
+    title: "工程塑料改性材料制造商 | 台益",
     description:
-      "Taiyi Polymer 是江苏泰亿纳米科技有限公司面向国际市场的材料品牌，专注于 POM 改性材料及精选工程塑料改性材料。",
-    imageAlt: "位于中国江苏盐城的 Taiyi Polymer 工厂",
+      "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌，专注于 POM 改性材料及精选工程塑料改性材料。",
+    imageAlt: "位于中国江苏盐城的台益工厂",
   },
   hero: {
-    eyebrow: "关于 Taiyi Polymer",
+    eyebrow: "关于台益",
     title: "专注于工程塑料改性材料的制造商",
     summary:
-      "Taiyi Polymer 是江苏泰亿纳米科技有限公司面向国际市场的品牌，依托盐城制造基地，专注于 POM 改性材料及精选工程塑料改性材料。",
+      "台益是江苏台益纳米科技有限公司面向国际市场的品牌，依托盐城制造基地，专注于 POM 改性材料及精选工程塑料改性材料。",
     materialsAction: "查看材料范围",
     manufacturingAction: "查看制造能力",
     location: "盐城",
@@ -40,7 +40,7 @@ export const chineseAboutMessages = {
       {
         date: "至今",
         title: "POM 改性材料仍是核心",
-        body: "Taiyi Polymer 面向国际项目呈现公司的 POM 改性材料重点及精选工程塑料改性材料。",
+        body: "台益面向国际项目呈现公司的 POM 改性材料重点及精选工程塑料改性材料。",
       },
     ],
   },
@@ -139,7 +139,7 @@ export const chineseAboutMessages = {
   },
   finalCta: {
     eyebrow: "开始技术沟通",
-    title: "与 Taiyi Polymer 沟通",
+    title: "与台益沟通",
     body: "请提供零部件、使用条件、目标性能或当前牌号。我们将协助明确下一项可执行工作。",
     situations: [
       "供应商准入",
@@ -176,31 +176,31 @@ export const chineseExportRoutes: ExportRoute[] = [
 export const chineseFactoryImages: FactoryImage[] = [
   {
     src: "/factory-exterior.webp",
-    alt: "位于中国江苏盐城的 Taiyi Polymer 工厂外景",
+    alt: "位于中国江苏盐城的台益工厂外景",
     label: "工厂外景",
     placement: "hero",
   },
   {
     src: "/factory-warehouse.webp",
-    alt: "Taiyi Polymer 生产与仓储区域",
+    alt: "台益生产与仓储区域",
     label: "改性生产车间",
     placement: "story",
   },
   {
     src: "/factory-extrusion.webp",
-    alt: "Taiyi Polymer 双螺杆挤出生产线",
+    alt: "台益双螺杆挤出生产线",
     label: "挤出生产线",
     placement: "gallery",
   },
   {
     src: "/factory-machine.webp",
-    alt: "Taiyi Polymer 挤出机及生产设备",
+    alt: "台益挤出机及生产设备",
     label: "生产设备",
     placement: "gallery",
   },
   {
     src: "/factory-laboratory-testing-documentary-v4.webp",
-    alt: "Taiyi Polymer 材料检测实验室及评估设备",
+    alt: "台益材料检测实验室及评估设备",
     label: "材料检测实验室",
     placement: "testing",
   },

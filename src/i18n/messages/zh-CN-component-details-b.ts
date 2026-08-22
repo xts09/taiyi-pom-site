@@ -268,7 +268,7 @@ export const chineseConveyorChainComponentsDetail = {
     eyebrow: "项目信息",
     title: "把链条作为完整输送系统评估",
     body:
-      "请提供链条图纸，以及现有载荷、速度、销轴、链轮、耐磨条、布局、润滑、环境、目标寿命和失效信息。Taiyi Polymer 可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出组装链条评估计划。",
+      "请提供链条图纸，以及现有载荷、速度、销轴、链轮、耐磨条、布局、润滑、环境、目标寿命和失效信息。台益可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出组装链条评估计划。",
   },
 } as const satisfies ComponentSolutionDetail;
 
@@ -541,6 +541,6 @@ export const chineseValveSpoolsAndCartridgesDetail = {
     eyebrow: "项目信息",
     title: "选择聚合物之前先定义流体系统",
     body:
-      "请提供零部件图纸，以及现有压力、介质、温度、配合阀孔、间隙、密封、执行、流量目标和失效信息。Taiyi Polymer 可判断 PLATFORM POM 方向是否值得申请样品，确认可用牌号数据或资料路径，并提出整阀评估计划。",
+      "请提供零部件图纸，以及现有压力、介质、温度、配合阀孔、间隙、密封、执行、流量目标和失效信息。台益可判断 PLATFORM POM 方向是否值得申请样品，确认可用牌号数据或资料路径，并提出整阀评估计划。",
   },
 } as const satisfies ComponentSolutionDetail;

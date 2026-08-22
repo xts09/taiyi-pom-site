@@ -19,17 +19,17 @@ type LocalizedPrivacyPageProps = {
 const sourcePath = "/privacy" as const;
 const chinesePrivacyMessages = {
   metadata: {
-    title: "隐私政策 | Taiyi Polymer",
+    title: "隐私政策",
     description:
-      "了解江苏泰亿纳米科技有限公司如何收集、使用和保护通过 PLATFORM 网站提交的信息。",
+      "了解江苏台益纳米科技有限公司如何收集、使用和保护通过 PLATFORM 网站提交的信息。",
   },
   hero: {
     title: "隐私政策",
-    body: "本政策说明江苏泰亿纳米科技有限公司如何处理通过 PLATFORM 网站提交的信息，以及您使用网站时产生的信息。",
+    body: "本政策说明江苏台益纳米科技有限公司如何处理通过 PLATFORM 网站提交的信息，以及您使用网站时产生的信息。",
     updated: "最后更新",
   },
   intro:
-    "江苏泰亿纳米科技有限公司负责本政策所述个人信息的处理。本通知适用于本网站、询价表单及相关沟通。",
+    "江苏台益纳米科技有限公司负责本政策所述个人信息的处理。本通知适用于本网站、询价表单及相关沟通。",
   collection: {
     title: "我们收集的信息",
     items: [
@@ -77,7 +77,7 @@ const chinesePrivacyMessages = {
       title: "联系我们",
       bodyBeforeLink: "如有隐私问题或请求，请发送邮件至",
       bodyAfterLink:
-        "您也可以联系位于中国江苏盐城的江苏泰亿纳米科技有限公司。",
+        "您也可以联系位于中国江苏盐城的江苏台益纳米科技有限公司。",
     },
   },
 } as const;
@@ -105,9 +105,11 @@ export async function generateMetadata({
     chinesePrivacyMessages,
     localeConfig.urlSegment,
   );
+  const publicCompanyName =
+    localeConfig.urlSegment === "zh" ? "台益" : "Taiyi Polymer";
 
   return createPageMetadata({
-    title: messages.metadata.title,
+    title: `${messages.metadata.title} | ${publicCompanyName}`,
     description: messages.metadata.description,
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
     indexable: true,

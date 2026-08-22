@@ -130,10 +130,12 @@ export async function generateMetadata({
     route.sourcePath,
     route.localeConfig.urlSegment,
   );
+  const publicCompanyName =
+    route.localeConfig.urlSegment === "zh" ? "台益" : "Taiyi Polymer";
 
   if (route.kind === "group") {
     return createPageMetadata({
-      title: `${route.group.title}${route.messages.category.context} | Taiyi Polymer`,
+      title: `${route.group.title}${route.messages.category.context} | ${publicCompanyName}`,
       description: route.group.description,
       path,
       image: route.group.image,
@@ -150,7 +152,7 @@ export async function generateMetadata({
   const primaryMedia = getPrimaryArticleMedia(route.page);
 
   return createPageMetadata({
-    title: `${route.page.metadataTitle ?? route.page.title} | Taiyi Polymer`,
+    title: `${route.page.metadataTitle ?? route.page.title} | ${publicCompanyName}`,
     description: route.page.description,
     path,
     image: primaryMedia?.src,

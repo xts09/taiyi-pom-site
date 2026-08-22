@@ -46,12 +46,14 @@ export async function generateMetadata({
     chineseConductiveAntistaticCompoundsMessages,
     localeConfig.urlSegment,
   );
+  const publicCompanyName =
+    localeConfig.urlSegment === "zh" ? "台益" : "Taiyi Polymer";
 
   return createPageMetadata({
-    title: translateExpandedContent(
-      "导电与抗静电改性材料 | Taiyi Polymer",
+    title: `${translateExpandedContent(
+      "导电与抗静电改性材料",
       localeConfig.urlSegment,
-    ),
+    )} | ${publicCompanyName}`,
     description: messages.schemaDescription,
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
     image: conductiveAntistaticCompoundsHeroImage,

@@ -227,6 +227,16 @@ export type HomeTaskFirstMessages = {
       description: string;
     }>;
   };
+  collaboration: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    itemsAria: string;
+    items: ReadonlyArray<{
+      title: string;
+      description: string;
+    }>;
+  };
   proof: {
     eyebrow: string;
     title: string;

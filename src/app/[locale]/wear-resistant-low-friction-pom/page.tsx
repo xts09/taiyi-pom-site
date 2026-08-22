@@ -52,7 +52,7 @@ export async function generateMetadata({
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
     image: "/generated/pom-wear-natural-pellets-hero-wide.webp",
     imageAlt: translateExpandedContent(
-      "Taiyi Polymer 耐磨与低摩擦 POM 材料",
+      "台益耐磨与低摩擦 POM 材料",
       localeConfig.urlSegment,
     ),
     indexable: isLocalizedReleaseIndexable(

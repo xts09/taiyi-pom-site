@@ -262,11 +262,40 @@ test("all localized dictionaries match the complete shared English message shape
     assert.equal(messages.Home.taskFirst?.core.groups.length, 4);
     assert.equal(messages.Home.taskFirst?.applications.items.length, 6);
     assert.equal(messages.Home.taskFirst?.process.steps.length, 3);
+    assert.equal(messages.Home.taskFirst?.collaboration.items.length, 3);
+    assert.doesNotMatch(
+      JSON.stringify(messages.Home.taskFirst?.collaboration),
+      /24[- ]hour|fastest|guaranteed|low MOQ|small MOQ/i,
+    );
+  }
+  for (const messages of [de, fr, ptBR, zhCN]) {
+    assert.notEqual(
+      messages.Home.taskFirst?.collaboration.title,
+      en.Home.taskFirst?.collaboration.title,
+    );
   }
   assert.equal(zhCN.Home.taskFirst?.applications.items.length, 6);
   assert.deepEqual(
     zhCN.Home.taskFirst?.applications.items.map(({ title }) => title),
     chineseComponentSolutions.map(({ title }) => title),
+  );
+});
+
+test("uses the approved Simplified Chinese public and legal company names", () => {
+  assert.match(zhCN.Home.hero.body, /^台益是一家/);
+  assert.equal(zhCN.Header.brandHomeLabel, "台益首页");
+  assert.equal(zhCN.Footer.brandRelation, "台益 · PLATFORM® 工程材料");
+  assert.match(
+    chineseAboutMessages.metadata.description,
+    /江苏台益纳米科技有限公司/,
+  );
+  assert.doesNotMatch(
+    JSON.stringify(chineseAboutMessages),
+    /江苏泰亿纳米科技有限公司/,
+  );
+  assert.equal(
+    Object.keys(deExpanded).some((key) => key.includes("江苏泰亿")),
+    false,
   );
 });
 
@@ -890,7 +919,7 @@ test("the Simplified Chinese POM solution family is complete and localized", () 
   for (const [slug, page] of Object.entries(chinesePomLandingPages)) {
     assert.equal(page.slug, slug);
     assert.ok(page.title.length > 4);
-    assert.ok(page.metaTitle.includes("Taiyi Polymer"));
+    assert.ok(page.metaTitle.includes("台益"));
     assert.ok(page.metaDescription.length > 30);
     assert.ok(page.sections.length > 0);
     assert.ok(page.reviewInputs.length > 0);

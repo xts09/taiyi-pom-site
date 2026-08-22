@@ -14,7 +14,7 @@ const messages = {
       eyebrowMobile: "POM-COMPOUNDIERUNG",
       title: "Hersteller modifizierter POM-Compounds für Präzisionsformteile",
       body:
-        "Von Verschleiß und geringer Reibung bis zu Verstärkung und Elektrostatik: Werkstoffbereiche anhand der Bauteilbedingungen eingrenzen und anschließend Typendaten, Muster und Spritzgießversuche klären.",
+        "Taiyi Polymer ist ein Compoundeur für technische Kunststoffe mit Sitz in Yancheng, China; modifiziertes POM bildet unsere Kernmateriallinie. Wir grenzen Werkstoffrichtungen anhand der Bauteilbedingungen ein und klären anschließend Typendaten, Muster und Spritzgießversuche.",
       exploreAction: "Werkstoff nach Bauteil finden",
       contactAction: "Typen & TDS finden",
     },

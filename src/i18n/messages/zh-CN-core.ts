@@ -3,16 +3,16 @@ import type { SiteMessages } from "@/i18n/types";
 const messages = {
   Home: {
     metadata: {
-      title: "工业零部件用 POM 改性材料 | Taiyi Polymer",
+      title: "工业零部件用 POM 改性材料 | 台益",
       description:
-        "Taiyi Polymer 生产适用于耐磨、低摩擦、增强、导电及抗静电精密注塑件的 POM 改性材料，并提供精选 PA6、PA66 与 PPA 改性材料。",
-      imageAlt: "Taiyi Polymer POM 改性材料生产现场",
+        "台益生产适用于耐磨、低摩擦、增强、导电及抗静电精密注塑件的 POM 改性材料，并提供精选 PA6、PA66 与 PPA 改性材料。",
+      imageAlt: "台益 POM 改性材料生产现场",
     },
     hero: {
       eyebrowDesktop: "POM COMPOUNDING · MATERIAL SUPPORT",
       eyebrowMobile: "POM COMPOUNDING",
       title: "面向精密注塑零部件的改性 POM 制造商",
-      body: "从耐磨、低摩擦到增强与静电控制，根据零部件工况缩小材料范围，并进一步查看牌号数据、样品与试模评估条件。",
+      body: "台益是一家位于中国盐城的工程塑料改性材料制造商，以改性 POM 为核心材料线。我们根据零部件工况协助缩小材料范围，并进一步确认牌号数据、样品与试模评估条件。",
       exploreAction: "按零部件找材料",
       contactAction: "查找牌号与 TDS",
     },
@@ -130,7 +130,7 @@ const messages = {
     },
     quality: {
       title: "供应商准入所需资质",
-      body: "江苏泰亿纳米科技有限公司的企业资质、管理体系证书及按材料提供的资料，可支持采购方开展供应商审核。",
+      body: "江苏台益纳米科技有限公司的企业资质、管理体系证书及按材料提供的资料，可支持采购方开展供应商审核。",
       panelAria: "企业资质与材料资料",
       qualifications: [
         { category: "企业资质", title: "国家高新技术企业" },
@@ -346,13 +346,36 @@ const messages = {
           },
         ],
       },
+      collaboration: {
+        eyebrow: "项目协作",
+        title: "让材料验证更容易开始",
+        body: "不必等到所有材料规格都已经确定。可以从零部件工况、当前失效现象或参考牌号开始，逐步缩小材料范围。",
+        itemsAria: "台益的三种项目协作方式",
+        items: [
+          {
+            title: "响应与沟通更直接",
+            description:
+              "从零部件工况和材料目标开始，让商务、材料技术和生产团队围绕同一项目要求协同。",
+          },
+          {
+            title: "小批量验证更灵活",
+            description:
+              "支持样品、小批量验证和试模阶段的材料评估，再根据实际结果讨论稳定供货。",
+          },
+          {
+            title: "项目型配方定制",
+            description:
+              "对于技术目标、验证条件和合理量产需求明确的项目，可进一步评估配方调整与定制开发。",
+          },
+        ],
+      },
       proof: {
         eyebrow: "制造与验证依据",
         title: "让工程评估和采购审核都有依据",
         body: "自有生产、厂内检测和按牌号确认的材料资料，为候选材料审核与后续供应沟通提供基础。",
-        factoryImageAlt: "Taiyi Polymer 盐城生产基地内的双螺杆挤出生产线。",
+        factoryImageAlt: "台益盐城生产基地内的双螺杆挤出生产线。",
         factoryImageCaption: "盐城生产基地 · 双螺杆挤出车间",
-        metricsAria: "Taiyi Polymer 制造与检测数据",
+        metricsAria: "台益制造与检测数据",
         metricLabels: ["年改性材料产能", "自有双螺杆生产线", "厂内检测设备"],
         metricNotes: ["吨/年", "条", "台"],
         documentsTitle: "项目资料",
@@ -368,10 +391,10 @@ const messages = {
   },
   Contact: {
     metadata: {
-      title: "提交材料需求 | Taiyi Polymer",
+      title: "提交材料需求 | 台益",
       description:
-        "联系江苏泰亿纳米科技有限公司，咨询 POM 改性材料、工程塑料改性材料、POM 树脂、材料建议、技术资料、样品及项目评估。",
-      imageAlt: "Taiyi Polymer 工程塑料生产线",
+        "联系江苏台益纳米科技有限公司，咨询 POM 改性材料、工程塑料改性材料、POM 树脂、材料建议、技术资料、样品及项目评估。",
+      imageAlt: "台益工程塑料生产线",
     },
     breadcrumbHome: "首页",
     breadcrumbContact: "联系我们",

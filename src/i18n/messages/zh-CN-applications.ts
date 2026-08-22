@@ -2,10 +2,10 @@ import type { ApplicationIndexMessages } from "@/i18n/applicationTypes";
 
 const messages = {
   metadata: {
-    title: "工程塑料应用与材料选型 | Taiyi Polymer",
+    title: "工程塑料应用与材料选型 | 台益",
     description:
       "浏览改性 POM 及精选工程塑料改性材料在汽车、电子电气、输送自动化、运动部件、水路控制、洗衣机、户外设备与纺织机械中的材料评估路径。",
-    imageAlt: "Taiyi Polymer 洗衣机部件应用工程评估",
+    imageAlt: "台益洗衣机部件应用工程评估",
   },
   breadcrumb: {
     home: "首页",
@@ -72,7 +72,7 @@ const messages = {
   },
   detail: {
     metadata: {
-      titleSuffix: "工程塑料选型 | Taiyi Polymer",
+      titleSuffix: "工程塑料选型 | 台益",
       descriptionSuffix: "查看候选材料方向、典型部件与应用选型因素。",
     },
     breadcrumb: {
