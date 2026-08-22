@@ -87,7 +87,9 @@ export function ResourceArticleSidebar({
             <a
               href={`#${section.id}`}
               aria-current={isActive ? "location" : undefined}
-              className={`block rounded-md border-l px-3 py-2 text-sm leading-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2 ${
+              className={`block rounded-md border-l px-3 text-sm leading-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2 ${
+                mobile ? "min-h-11 py-3" : "py-2"
+              } ${
                 isActive
                   ? "border-sky-600 bg-sky-50 font-semibold text-sky-800"
                   : "border-transparent text-slate-600 hover:border-slate-300 hover:bg-white hover:text-slate-950"
@@ -124,7 +126,7 @@ export function ResourceArticleSidebar({
           onValueChange={setMobileTocValue}
         >
           <AccordionItem value="article-sections" className="border-0">
-            <AccordionTrigger className="py-2 text-sm font-semibold text-slate-800 hover:no-underline">
+            <AccordionTrigger className="min-h-11 py-2 text-sm font-semibold text-slate-800 hover:no-underline">
               {label}
             </AccordionTrigger>
             <AccordionContent className="pt-2 pb-2">

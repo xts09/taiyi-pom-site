@@ -14,7 +14,7 @@ export const chineseAboutMessages = {
   },
   hero: {
     eyebrow: "关于 Taiyi Polymer",
-    title: "专注于工程塑料改性材料的制造商。",
+    title: "专注于工程塑料改性材料的制造商",
     summary:
       "Taiyi Polymer 是江苏泰亿纳米科技有限公司面向国际市场的品牌，依托盐城制造基地，专注于 POM 改性材料及精选工程塑料改性材料。",
     materialsAction: "查看材料范围",
@@ -23,12 +23,12 @@ export const chineseAboutMessages = {
   },
   identity: {
     eyebrow: "我们是谁",
-    title: "从零部件需求到候选牌号评估。",
+    title: "从零部件需求到候选牌号评估",
     body: "我们从零部件功能、加工条件和目标性能出发，缩小材料方向，审核牌号数据，并支持以样品为基础的验证。",
   },
   story: {
     eyebrow: "发展历程",
-    title: "服务工业材料项目，而不是追求宽泛目录。",
+    title: "服务工业材料项目，而不是追求宽泛目录",
     description:
       "我们的发展脉络保持清晰：制造业务始于 2003 年，今天继续围绕明确的材料方向开展工作。",
     entries: [
@@ -46,7 +46,7 @@ export const chineseAboutMessages = {
   },
   focus: {
     eyebrow: "我们的重点",
-    title: "聚焦更明确的材料范围，同时连接完整决策过程。",
+    title: "聚焦更明确的材料范围，同时连接完整决策过程",
     areas: [
       {
         index: "01",
@@ -84,14 +84,14 @@ export const chineseAboutMessages = {
   },
   manufacturing: {
     eyebrow: "制造依据",
-    title: "支撑试制批次与重复订单的生产规模。",
+    title: "支撑试制批次与重复订单的生产规模",
     description: "改性造粒、材料检测和批次资料均在盐城基地协调。",
     action: "讨论生产要求",
     facilityLabel: "盐城制造基地",
   },
   workflow: {
     eyebrow: "我们的工作方式",
-    title: "从零部件需求到重复供货。",
+    title: "从零部件需求到重复供货",
     description: "整个过程围绕应用要求，以及批准材料所需的证据展开。",
     steps: [
       [
@@ -118,14 +118,14 @@ export const chineseAboutMessages = {
   },
   people: {
     eyebrow: "工程支持",
-    title: "工程沟通始终与生产保持连接。",
+    title: "工程沟通始终与生产保持连接",
     description:
       "材料决策会经过技术沟通、实验室审核、生产协调和质量资料确认，而不是停留在孤立的销售表单中。",
     roles: ["技术沟通", "实验室审核", "生产协调", "质量资料"],
   },
   credentials: {
     eyebrow: "质量与合规",
-    title: "用于供应商准入的关键证据。",
+    title: "用于供应商准入的关键证据",
     description:
       "企业资质、管理体系证书及材料资料可用于项目审核和供应商准入。",
     documentsAria: "可提供的材料资料",
@@ -134,12 +134,12 @@ export const chineseAboutMessages = {
   },
   global: {
     eyebrow: "全球合作",
-    title: "为国际项目提供材料支持。",
+    title: "为国际项目提供材料支持",
     description: "国际项目与市场合作将盐城制造基地连接至下列区域。",
   },
   finalCta: {
     eyebrow: "开始技术沟通",
-    title: "与 Taiyi Polymer 沟通。",
+    title: "与 Taiyi Polymer 沟通",
     body: "请提供零部件、使用条件、目标性能或当前牌号。我们将协助明确下一项可执行工作。",
     situations: [
       "供应商准入",

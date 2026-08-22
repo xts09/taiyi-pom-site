@@ -4,7 +4,8 @@ import { setRequestLocale } from "next-intl/server";
 import styles from "@/app/(en)/about/AboutPage.module.css";
 import { LocalizedAboutPage } from "@/components/localized/LocalizedAboutPage";
 import { getLocalizedLocale } from "@/i18n/config";
-import { chineseAboutMessages as messages } from "@/i18n/messages/zh-CN-about";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
+import { chineseAboutMessages } from "@/i18n/messages/zh-CN-about";
 import {
   getLanguageAlternates,
   getLocalizedHref,
@@ -33,7 +34,7 @@ const resolveLocale = async (params: LocalizedAboutRouteProps["params"]) => {
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN"
+    !isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)
   ) {
     notFound();
   }
@@ -45,6 +46,10 @@ export async function generateMetadata({
   params,
 }: LocalizedAboutRouteProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
+  const messages = translateExpandedContent(
+    chineseAboutMessages,
+    localeConfig.urlSegment,
+  );
 
   return createPageMetadata({
     title: messages.metadata.title,
@@ -65,6 +70,10 @@ export default async function LocalizedAboutRoute({
   params,
 }: LocalizedAboutRouteProps) {
   const localeConfig = await resolveLocale(params);
+  const messages = translateExpandedContent(
+    chineseAboutMessages,
+    localeConfig.urlSegment,
+  );
   setRequestLocale(localeConfig.htmlLang);
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
   const aboutJsonLd = [
@@ -93,8 +102,14 @@ export default async function LocalizedAboutRoute({
       },
     },
     createBreadcrumbJsonLd([
-      { name: "首页", path: getLocalizedHref("/", localeConfig.urlSegment) },
-      { name: "关于我们", path: pagePath },
+      {
+        name: translateExpandedContent("首页", localeConfig.urlSegment),
+        path: getLocalizedHref("/", localeConfig.urlSegment),
+      },
+      {
+        name: translateExpandedContent("关于我们", localeConfig.urlSegment),
+        path: pagePath,
+      },
     ]),
   ];
 

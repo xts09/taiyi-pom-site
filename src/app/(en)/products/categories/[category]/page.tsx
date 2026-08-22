@@ -325,18 +325,60 @@ export default async function ProductCategoryPage({
           showFamilies={entry.category === "POM"}
         />
 
-        <section
-          id="category-applications"
-          className="product-application-directory products-motion-secondary mt-12"
-        >
-          <div className="product-application-directory-head">
-            <p className="section-kicker mb-3">Applications</p>
-            <h2>Relevant application paths</h2>
-            <p>
-              Start with the routes where this material direction is most often
-              screened. Final selection remains grade- and project-specific.
-            </p>
-            <div className="mt-5 flex flex-col items-start gap-3">
+        {isPomCategory ? (
+          <section
+            id="category-applications"
+            className="product-application-directory product-application-directory-rich products-motion-secondary mt-12"
+          >
+            <div className="product-application-directory-head">
+              <div className="product-application-directory-heading">
+                <p className="section-kicker mb-3">Applications</p>
+                <h2>Relevant application paths</h2>
+              </div>
+              <div className="product-application-directory-intro">
+                <p>
+                  Start with the routes where this material direction is most
+                  often screened. Final selection remains grade- and
+                  project-specific.
+                </p>
+                <Button
+                  asChild
+                  variant="link"
+                  className="product-application-all-action h-auto justify-start p-0 text-left font-bold"
+                >
+                  <Link href="/applications">View all applications &rarr;</Link>
+                </Button>
+              </div>
+            </div>
+
+            <div className="product-application-list">
+              {relevantApplications.map((application, index) => (
+                <Link
+                  key={application.slug}
+                  href={`/applications/${application.slug}`}
+                  className="product-application-list-item"
+                >
+                  <span className="product-application-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="product-application-list-copy">
+                    <strong>{application.title}</strong>
+                    <span>{application.description}</span>
+                  </span>
+                  <span
+                    className="product-application-entry-arrow"
+                    aria-hidden="true"
+                  >
+                    &rarr;
+                  </span>
+                </Link>
+              ))}
+            </div>
+
+            <nav
+              className="product-application-support-links"
+              aria-label="Related material paths"
+            >
               {categorySelectionLinks.map((link) => (
                 <Button
                   key={link.href}
@@ -347,31 +389,57 @@ export default async function ProductCategoryPage({
                   <Link href={link.href}>{link.label} &rarr;</Link>
                 </Button>
               ))}
-              <Button
-                asChild
-                variant="link"
-                className="h-auto justify-start p-0 text-left font-bold"
-              >
-                <Link href="/applications">View all applications &rarr;</Link>
-              </Button>
+            </nav>
+          </section>
+        ) : (
+          <section
+            id="category-applications"
+            className="product-application-directory products-motion-secondary mt-12"
+          >
+            <div className="product-application-directory-head">
+              <p className="section-kicker mb-3">Applications</p>
+              <h2>Relevant application paths</h2>
+              <p>
+                Start with the routes where this material direction is most often
+                screened. Final selection remains grade- and project-specific.
+              </p>
+              <div className="mt-5 flex flex-col items-start gap-3">
+                {categorySelectionLinks.map((link) => (
+                  <Button
+                    key={link.href}
+                    asChild
+                    variant="link"
+                    className="h-auto justify-start p-0 text-left font-bold whitespace-normal"
+                  >
+                    <Link href={link.href}>{link.label} &rarr;</Link>
+                  </Button>
+                ))}
+                <Button
+                  asChild
+                  variant="link"
+                  className="h-auto justify-start p-0 text-left font-bold"
+                >
+                  <Link href="/applications">View all applications &rarr;</Link>
+                </Button>
+              </div>
             </div>
-          </div>
 
-          <div className="product-application-list">
-            {relevantApplications.map((application, index) => (
-              <Link
-                key={application.slug}
-                href={`/applications/${application.slug}`}
-                className="product-application-list-item"
-              >
-                <span className="product-application-number">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <strong>{application.title}</strong>
-              </Link>
-            ))}
-          </div>
-        </section>
+            <div className="product-application-list">
+              {relevantApplications.map((application, index) => (
+                <Link
+                  key={application.slug}
+                  href={`/applications/${application.slug}`}
+                  className="product-application-list-item"
+                >
+                  <span className="product-application-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <strong>{application.title}</strong>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="products-motion-secondary mt-12">
           <div id="category-faq" className="evaluation-note">

@@ -3,7 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { createContactHref } from "@/lib/contactContext";
-import { ConductiveCompoundsExplorer } from "@/components/ConductiveCompoundsExplorer";
+import {
+  ConductiveCompoundsExplorer,
+  defaultConductiveCompoundsExplorerMessages,
+  type ConductiveCompoundsExplorerMessages,
+} from "@/components/ConductiveCompoundsExplorer";
 import {
   conductiveCompounds,
   conductiveMatrices,
@@ -14,6 +18,8 @@ import {
   createPageMetadata,
   siteUrl,
 } from "@/lib/seo";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
 import styles from "@/components/ConductiveCompounds.module.css";
 
 const path = "/conductive-antistatic-compounds";
@@ -38,19 +44,146 @@ const cfGradeCount = conductiveCompounds.filter(
   (compound) => compound.technology === "cf",
 ).length;
 
-const createJsonLd = (pagePath: string) => [
+export type ConductiveAntistaticCompoundsMessages = {
+  home: string;
+  products: string;
+  breadcrumb: string;
+  schemaName: string;
+  schemaDescription: string;
+  contactMaterial: string;
+  contactSource: string;
+  heroAlt: string;
+  heroKicker: string;
+  heroTitle: string;
+  heroDescription: string;
+  exploreAction: string;
+  contactAction: string;
+  metricsAria: string;
+  materialMatrices: string;
+  cntDirections: string;
+  cfDirections: string;
+  modificationSystems: string;
+  overviewKicker: string;
+  overviewTitle: string;
+  overviewBody: string;
+  cntTag: string;
+  cntTitle: string;
+  cntDescription: string;
+  cntBullets: readonly string[];
+  cfTag: string;
+  cfTitle: string;
+  cfDescription: string;
+  cfBullets: readonly string[];
+  namingKicker: string;
+  namingTitle: string;
+  namingBody: string;
+  namingAria: string;
+  polymerMatrix: string;
+  carbonNanotube: string;
+  targetBand: string;
+  explorer: ConductiveCompoundsExplorerMessages;
+  reviewKicker: string;
+  reviewTitle: string;
+  reviewItems: ReadonlyArray<{ title: string; body: string }>;
+  ctaKicker: string;
+  ctaTitle: string;
+  ctaBody: string;
+  pomAction: string;
+};
+
+const defaultMessages: ConductiveAntistaticCompoundsMessages = {
+  home: "Home",
+  products: "Products",
+  breadcrumb: "Conductive and Antistatic Compounds",
+  schemaName: "Conductive and Antistatic Plastic Compounds",
+  schemaDescription:
+    "Cross-material directory of carbon-nanotube antistatic and carbon-fiber conductive compound options.",
+  contactMaterial: "Conductive & Antistatic Compounds",
+  contactSource: "Conductive and antistatic directory",
+  heroAlt: "Black precision molded functional plastic components",
+  heroKicker: "Static-Control Engineering Plastics",
+  heroTitle: "Conductive and Antistatic Plastic Compounds",
+  heroDescription:
+    "Compare carbon-nanotube permanent antistatic and carbon-fiber conductive directions across multiple engineering-plastic matrices before requesting grade data or samples.",
+  exploreAction: "Explore Grades",
+  contactAction: "Discuss Your Application",
+  metricsAria: "Series summary",
+  materialMatrices: "Material matrices",
+  cntDirections: "CNT directions",
+  cfDirections: "Carbon-fiber directions",
+  modificationSystems: "Modification systems",
+  overviewKicker: "Series Architecture",
+  overviewTitle: "One directory, two material technologies",
+  overviewBody:
+    "Start with the electrical target and polymer matrix. Final selection still requires the specified test method, molded-part geometry, conditioning, and mechanical-property review.",
+  cntTag: "CNT / Permanent Antistatic",
+  cntTitle: conductiveSeries.cnt.title,
+  cntDescription: conductiveSeries.cnt.description,
+  cntBullets: [
+    "Non-blooming and non-migrating modification direction",
+    "Low-specific-gravity catalogue positioning",
+    "R35 and R610 target bands",
+  ],
+  cfTag: "CF / Conductive",
+  cfTitle: conductiveSeries.cf.title,
+  cfDescription: conductiveSeries.cf.description,
+  cfBullets: [
+    "Carbon-fiber conductive modification direction",
+    "Thermal-conductive review path",
+    "R35 and R68 target bands",
+  ],
+  namingKicker: "CNT Grade Naming",
+  namingTitle: "Read the new code in three parts",
+  namingBody:
+    "Descriptive CNT grade codes identify the polymer matrix, modification system, and catalogue target band.",
+  namingAria: "POM CNT R35 code anatomy",
+  polymerMatrix: "Polymer matrix",
+  carbonNanotube: "Carbon nanotube",
+  targetBand: "10^3-10^5 band",
+  explorer: defaultConductiveCompoundsExplorerMessages,
+  reviewKicker: "Selection Inputs",
+  reviewTitle: "Define the electrical requirement before the grade",
+  reviewItems: [
+    {
+      title: "Measurement basis",
+      body: "Surface or volume method, units, conditioning, and limits",
+    },
+    {
+      title: "Part environment",
+      body: "Humidity, grounding, geometry, contact area, and service conditions",
+    },
+    {
+      title: "Property balance",
+      body: "Flow, impact, stiffness, color, dimensional control, and surface quality",
+    },
+  ],
+  ctaKicker: "Material Review",
+  ctaTitle: "Need a cross-material recommendation?",
+  ctaBody:
+    "Send the current resin, electrical target, molded-part function, test method, mechanical requirements, and expected volume.",
+  pomAction: "View Conductive & Antistatic POM",
+};
+
+const createJsonLd = (
+  pagePath: string,
+  messages: ConductiveAntistaticCompoundsMessages,
+  inLanguage?: string,
+) => [
   createBreadcrumbJsonLd([
-    { name: "Home", path: "/" },
-    { name: "Products", path: "/products" },
-    { name: "Conductive and Antistatic Compounds", path: pagePath },
+    { name: messages.home, path: pagePath.startsWith("/zh/") ? "/zh" : "/" },
+    {
+      name: messages.products,
+      path: pagePath.startsWith("/zh/") ? "/zh/products" : "/products",
+    },
+    { name: messages.breadcrumb, path: pagePath },
   ]),
   {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Conductive and Antistatic Plastic Compounds",
-    description:
-      "Cross-material directory of carbon-nanotube antistatic and carbon-fiber conductive compound options.",
+    name: messages.schemaName,
+    description: messages.schemaDescription,
     url: `${siteUrl}${pagePath}`,
+    ...(inLanguage ? { inLanguage } : {}),
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: conductiveCompounds.length,
@@ -67,18 +200,27 @@ type ConductiveAntistaticCompoundsContentProps = {
   groupByMatrix?: boolean;
   pagePath?: string;
   showAllByDefault?: boolean;
+  localeSegment?: LocalizedUrlSegment;
+  inLanguage?: string;
+  messages?: ConductiveAntistaticCompoundsMessages;
 };
 
 export function ConductiveAntistaticCompoundsContent({
   groupByMatrix = false,
   pagePath = path,
   showAllByDefault = false,
+  localeSegment,
+  inLanguage,
+  messages = defaultMessages,
 }: ConductiveAntistaticCompoundsContentProps) {
-  const jsonLd = createJsonLd(pagePath);
-  const contactHref = createContactHref({
-    material: "Conductive & Antistatic Compounds",
-    source: "Conductive and antistatic directory",
-  });
+  const jsonLd = createJsonLd(pagePath, messages, inLanguage);
+  const contactHref = getLocalizedHref(
+    createContactHref({
+      material: messages.contactMaterial,
+      source: messages.contactSource,
+    }),
+    localeSegment,
+  );
 
   return (
     <main className={styles.page}>
@@ -92,7 +234,7 @@ export function ConductiveAntistaticCompoundsContent({
       <section className={styles.hero}>
         <Image
           src={conductiveAntistaticCompoundsHeroImage}
-          alt="Black precision molded functional plastic components"
+          alt={messages.heroAlt}
           fill
           priority
           sizes="100vw"
@@ -103,43 +245,39 @@ export function ConductiveAntistaticCompoundsContent({
         <div className={`${styles.rail} ${styles.heroRail}`}>
           <div className={styles.heroCopy}>
             <p className={styles.heroKicker}>
-              Static-Control Engineering Plastics
+              {messages.heroKicker}
             </p>
-            <h1>Conductive and Antistatic Plastic Compounds</h1>
-            <p>
-              Compare carbon-nanotube permanent antistatic and carbon-fiber
-              conductive directions across multiple engineering-plastic
-              matrices before requesting grade data or samples.
-            </p>
+            <h1>{messages.heroTitle}</h1>
+            <p>{messages.heroDescription}</p>
             <div className={styles.heroActions}>
               <Link href="#grade-explorer" className={styles.primaryAction}>
-                Explore Grades
+                {messages.exploreAction}
               </Link>
               <Link href={contactHref} className={styles.secondaryAction}>
-                Discuss Your Application
+                {messages.contactAction}
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className={styles.metricsBand} aria-label="Series summary">
+      <section className={styles.metricsBand} aria-label={messages.metricsAria}>
         <div className={`${styles.rail} ${styles.metricsGrid}`}>
           <div>
             <strong>{conductiveMatrices.length}</strong>
-            <span>Material matrices</span>
+            <span>{messages.materialMatrices}</span>
           </div>
           <div>
             <strong>{cntGradeCount}</strong>
-            <span>CNT directions</span>
+            <span>{messages.cntDirections}</span>
           </div>
           <div>
             <strong>{cfGradeCount}</strong>
-            <span>Carbon-fiber directions</span>
+            <span>{messages.cfDirections}</span>
           </div>
           <div>
             <strong>2</strong>
-            <span>Modification systems</span>
+            <span>{messages.modificationSystems}</span>
           </div>
         </div>
       </section>
@@ -148,38 +286,30 @@ export function ConductiveAntistaticCompoundsContent({
         <div className={styles.rail}>
           <div className={styles.sectionHeading}>
             <div>
-              <p className={styles.kicker}>Series Architecture</p>
-              <h2>One directory, two material technologies</h2>
+              <p className={styles.kicker}>{messages.overviewKicker}</p>
+              <h2>{messages.overviewTitle}</h2>
             </div>
-            <p>
-              Start with the electrical target and polymer matrix. Final
-              selection still requires the specified test method, molded-part
-              geometry, conditioning, and mechanical-property review.
-            </p>
+            <p>{messages.overviewBody}</p>
           </div>
 
           <div className={styles.seriesGrid}>
             <article>
               <span className={styles.seriesNumber}>01</span>
-              <p className={styles.seriesTag}>CNT / Permanent Antistatic</p>
-              <h3>{conductiveSeries.cnt.title}</h3>
-              <p>{conductiveSeries.cnt.description}</p>
+              <p className={styles.seriesTag}>{messages.cntTag}</p>
+              <h3>{messages.cntTitle}</h3>
+              <p>{messages.cntDescription}</p>
               <ul>
-                <li>Non-blooming and non-migrating modification direction</li>
-                <li>Low-specific-gravity catalogue positioning</li>
-                <li>R35 and R610 target bands</li>
+                {messages.cntBullets.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
 
             <article>
               <span className={styles.seriesNumber}>02</span>
-              <p className={styles.seriesTag}>CF / Conductive</p>
-              <h3>{conductiveSeries.cf.title}</h3>
-              <p>{conductiveSeries.cf.description}</p>
+              <p className={styles.seriesTag}>{messages.cfTag}</p>
+              <h3>{messages.cfTitle}</h3>
+              <p>{messages.cfDescription}</p>
               <ul>
-                <li>Carbon-fiber conductive modification direction</li>
-                <li>Thermal-conductive review path</li>
-                <li>R35 and R68 target bands</li>
+                {messages.cfBullets.map((item) => <li key={item}>{item}</li>)}
               </ul>
             </article>
           </div>
@@ -189,27 +319,24 @@ export function ConductiveAntistaticCompoundsContent({
       <section className={styles.namingBand}>
         <div className={`${styles.rail} ${styles.namingLayout}`}>
           <div>
-            <p className={styles.kicker}>CNT Grade Naming</p>
-            <h2>Read the new code in three parts</h2>
-            <p>
-              Descriptive CNT grade codes identify the polymer matrix,
-              modification system, and catalogue target band.
-            </p>
+            <p className={styles.kicker}>{messages.namingKicker}</p>
+            <h2>{messages.namingTitle}</h2>
+            <p>{messages.namingBody}</p>
           </div>
-          <div className={styles.codeAnatomy} aria-label="POM CNT R35 code anatomy">
+          <div className={styles.codeAnatomy} aria-label={messages.namingAria}>
             <div>
               <strong>POM</strong>
-              <span>Polymer matrix</span>
+              <span>{messages.polymerMatrix}</span>
             </div>
             <span aria-hidden="true">-&gt;</span>
             <div>
               <strong>CNT</strong>
-              <span>Carbon nanotube</span>
+              <span>{messages.carbonNanotube}</span>
             </div>
             <span aria-hidden="true">-&gt;</span>
             <div>
               <strong>R35</strong>
-              <span>10^3-10^5 band</span>
+              <span>{messages.targetBand}</span>
             </div>
           </div>
         </div>
@@ -218,27 +345,23 @@ export function ConductiveAntistaticCompoundsContent({
       <ConductiveCompoundsExplorer
         defaultTechnology={showAllByDefault ? "all" : "cnt"}
         groupByMatrix={groupByMatrix}
+        localeSegment={localeSegment}
+        messages={messages.explorer}
       />
 
       <section className={styles.reviewBand}>
         <div className={`${styles.rail} ${styles.reviewLayout}`}>
           <div>
-            <p className={styles.kicker}>Selection Inputs</p>
-            <h2>Define the electrical requirement before the grade</h2>
+            <p className={styles.kicker}>{messages.reviewKicker}</p>
+            <h2>{messages.reviewTitle}</h2>
           </div>
           <div className={styles.reviewList}>
-            <div>
-              <strong>Measurement basis</strong>
-              <span>Surface or volume method, units, conditioning, and limits</span>
-            </div>
-            <div>
-              <strong>Part environment</strong>
-              <span>Humidity, grounding, geometry, contact area, and service conditions</span>
-            </div>
-            <div>
-              <strong>Property balance</strong>
-              <span>Flow, impact, stiffness, color, dimensional control, and surface quality</span>
-            </div>
+            {messages.reviewItems.map((item) => (
+              <div key={item.title}>
+                <strong>{item.title}</strong>
+                <span>{item.body}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -246,22 +369,19 @@ export function ConductiveAntistaticCompoundsContent({
       <section className={styles.ctaBand} data-footer-adjacent="true">
         <div className={`${styles.rail} ${styles.ctaLayout}`}>
           <div>
-            <p className={styles.kicker}>Material Review</p>
-            <h2>Need a cross-material recommendation?</h2>
-            <p>
-              Send the current resin, electrical target, molded-part function,
-              test method, mechanical requirements, and expected volume.
-            </p>
+            <p className={styles.kicker}>{messages.ctaKicker}</p>
+            <h2>{messages.ctaTitle}</h2>
+            <p>{messages.ctaBody}</p>
           </div>
           <div className={styles.ctaActions}>
             <Link href={contactHref} className={styles.primaryAction}>
-              Discuss Your Application
+              {messages.contactAction}
             </Link>
             <Link
-              href="/conductive-antistatic-pom"
+              href={getLocalizedHref("/conductive-antistatic-pom", localeSegment)}
               className={styles.lightSecondaryAction}
             >
-              View Conductive &amp; Antistatic POM
+              {messages.pomAction}
             </Link>
           </div>
         </div>

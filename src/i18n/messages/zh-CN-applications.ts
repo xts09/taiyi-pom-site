@@ -96,7 +96,7 @@ const messages = {
     },
     scene: {
       eyebrow: "部件与工况",
-      title: "从部件与实际工况开始。",
+      title: "从部件与实际工况开始",
       visualDescription:
         "筛选牌号前，应先审核实际机构、运动方式、装配配合与尺寸目标。",
       basicDescription:
@@ -109,18 +109,18 @@ const messages = {
     },
     parts: {
       eyebrow: "典型部件",
-      titleSuffix: "的代表性部件。",
+      titleSuffix: "的代表性部件",
       description:
         "以部件几何、载荷、运动方式与使用环境为起点；最终材料选择仍需结合具体牌号和项目验证。",
       cardLabel: "典型部件",
       showMorePrefix: "查看更多",
       showMoreSuffix: "个部件",
       componentEyebrow: "零部件指南",
-      componentTitle: "以下部件可进一步查看专项审核指南。",
+      componentTitle: "以下部件可进一步查看专项审核指南",
     },
     materials: {
       eyebrow: "候选材料",
-      title: "适用于上述部件审核的材料方向。",
+      title: "适用于上述部件审核的材料方向",
       description:
         "结合上述部件功能与工况，比较通常进入初筛的 POM 候选材料方向。",
       keyUseLabel: "主要审核方向",

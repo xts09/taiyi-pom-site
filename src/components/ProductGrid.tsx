@@ -12,6 +12,7 @@ import {
   type EngineeringTdsDocument,
 } from "@/data/engineeringTds";
 import type { Product } from "@/data/products";
+import { PomFamilyMap } from "@/components/PomFamilyMap";
 import { ValueText, ValueWithUnit } from "@/components/UnitText";
 import {
   getProductListDescriptor,
@@ -46,6 +47,24 @@ const engineeringDirectionSummary: Record<string, string> = {
   "V0 Flame Retardant": "V-0 review for electrical and structural parts.",
   "Wear Low Friction": "Sliding parts needing wear and friction review.",
 };
+
+const pomFamilyGroupCopy = [
+  {
+    id: "movement-durability",
+    title: "Movement & Durability",
+    description: "Friction, impact, and environmental exposure",
+  },
+  {
+    id: "stiffness-dimensions",
+    title: "Stiffness & Dimensional Control",
+    description: "Reinforcement, shrinkage, and molding stability",
+  },
+  {
+    id: "function-processing",
+    title: "Function & Processing Baseline",
+    description: "Electrical behavior, base resin, and flow window",
+  },
+] as const;
 
 export function ProductGrid({
   products,
@@ -111,10 +130,20 @@ export function ProductGrid({
   const readProperty = (product: Product, label: string) =>
     product.properties.find((item) => item.label === label);
 
-  const familyItems = pomProductCategoryData.map((item, index) => ({
+  const familyItems = pomProductCategoryData.map((item) => ({
     ...item,
     count: getProductsByCategory(products, item.category).length,
-    number: String(index + 1).padStart(2, "0"),
+  }));
+  const pomFamilyGroups = pomFamilyGroupCopy.map((group, index) => ({
+    ...group,
+    items: familyItems.slice(index * 3, index * 3 + 3).map((item) => ({
+      id: item.category,
+      href: getCategoryPath(item.category),
+      title: item.label,
+      description: item.applications[0],
+      countLabel: `${item.count} Grade${item.count === 1 ? "" : "s"}`,
+      active: selectedCategory === item.category,
+    })),
   }));
   const engineeringDirectionItems = engineeringGrades.map((document) => document.category)
     .filter((category, index, list) => list.indexOf(category) === index)
@@ -145,34 +174,11 @@ export function ProductGrid({
   return (
     <div className="product-grade-section">
       {showPomSubcategories ? (
-        <div id="material-families" className="product-filter-bar products-motion-filter">
-          <div className="product-filter-intro">
-            <span className="product-filter-label">Choose a POM Material Family</span>
-            <p>
-              Choose the performance family closest to the part. Its category
-              page provides the related grade data, processing fit, and property
-              context.
-            </p>
-          </div>
-          <div className="product-filter-rail">
-            {familyItems.map((item) => (
-              <Link
-                key={item.category}
-                href={getCategoryPath(item.category)}
-                className={`product-filter-link ${
-                  selectedCategory === item.category ? "is-active" : ""
-                }`}
-              >
-                <span className="product-filter-number">{item.number}</span>
-                <span className="product-filter-name">{item.label}</span>
-                <span className="product-filter-use">{item.applications[0]}</span>
-                <span className="product-filter-count">
-                  {item.count} Grade{item.count === 1 ? "" : "s"}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <PomFamilyMap
+          title="Choose a POM Material Family"
+          description="Choose the performance family closest to the part. Each path opens a focused directory with related grade data, processing fit, and property context."
+          groups={pomFamilyGroups}
+        />
       ) : null}
 
       {!showPomSubcategories && engineeringDirectionItems.length > 0 ? (

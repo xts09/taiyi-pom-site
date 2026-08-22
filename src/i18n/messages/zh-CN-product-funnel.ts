@@ -42,7 +42,7 @@ const category = {
   directory: {
     kicker: "牌号选择",
     title: "比较基础 POM 牌号",
-    body: "数据用于技术初筛。尚未发布完整中文牌号页的产品会直接进入项目评估。",
+    body: "8 个基础 POM 牌号均已发布完整中文详情页。数据用于技术初筛，最终认可仍需结合客户模具和实际应用完成。",
     countSuffix: "个已列牌号",
     grade: "牌号",
     keyData: "关键数据",
@@ -52,6 +52,7 @@ const category = {
     hdt: "HDT",
     color: "颜色",
     natural: "本色",
+    black: "黑色",
     detailAction: "查看牌号详情",
     reviewAction: "申请项目评估",
     summaries: {
@@ -247,7 +248,7 @@ const categoryProfiles = {
     directory: {
       kicker: "牌号选择",
       title: "比较高抗冲 POM 牌号",
-      body: "EHI402T 与 EDR180 已发布完整中文牌号页。其他牌号将先进入项目数据与样品评估。",
+      body: "6 个高抗冲 POM 牌号均已发布完整中文详情页。数据用于技术初筛，最终认可仍需结合客户模具和实际应用完成。",
       summaries: {
         "edr100-high-impact-pom": "用于提高功能注塑件韧性的高抗冲 POM。",
         "edr180-high-impact-pom":
@@ -277,7 +278,7 @@ const categoryProfiles = {
         {
           question: "六个牌号都完成中文发布了吗？",
           answer:
-            "没有。目前 EHI402T 与 EDR180 已发布完整中文牌号页，其他牌号先进入项目评估。",
+            "是。六个牌号均可打开完整中文详情页；最终选择仍需结合项目数据、样品和实际零部件验证。",
         },
       ],
     },
@@ -631,7 +632,7 @@ const technicalData = {
     "本语言版本只发布已完成技术页和说明文案审核的牌号。每项数值都应结合单位、标准和测试条件阅读。",
   evidenceTitle: "已发布牌号数据",
   evidenceBody:
-    "ETM450、ETM750、XT-100、EGB25、EGH502H、EHI402T 和 EDR180 构成当前完整中文数据组。其他牌号将在完成同等技术与语言审核后加入。",
+    "POM 目录中的 40 个牌号均已发布完整中文数据页，可按材料家族、关键性能与应用方向进行初筛。",
   gradeLabel: "牌号",
   materialLabel: "材料",
   statusLabel: "数据状态",

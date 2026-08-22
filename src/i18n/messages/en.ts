@@ -1,4 +1,5 @@
 import type { SiteMessages } from "@/i18n/types";
+import { homeTaskFirstLocaleMessages } from "../homeTaskFirstLocaleMessages.ts";
 
 const messages = {
   Taxonomy: {
@@ -130,13 +131,13 @@ const messages = {
       imageAlt: "Taiyi Polymer modified POM compound manufacturing",
     },
     hero: {
-      eyebrowDesktop: "PLATFORM® engineering materials · Taiyi Polymer",
-      eyebrowMobile: "PLATFORM® · Taiyi Polymer",
-      title: "Modified POM Compounds for Precision Molded Parts.",
+      eyebrowDesktop: "POM COMPOUNDING · MATERIAL SUPPORT",
+      eyebrowMobile: "POM COMPOUNDING",
+      title: "Modified POM Manufacturer for Precision Molded Parts",
       body:
-        "Taiyi Polymer manufactures modified POM compounds at our Yancheng facility for molded parts requiring wear resistance, low friction, reinforcement or static control. Grade options, samples and technical documents are confirmed by project.",
-      exploreAction: "Explore Material Range",
-      contactAction: "Discuss Your Application",
+        "From wear and low friction to reinforcement and static control, narrow the material range around the part conditions, then review grade data, samples and molding-trial requirements.",
+      exploreAction: "Find Material by Part",
+      contactAction: "Find Grades & TDS",
     },
     metrics: [
       { label: "Annual Compound Capacity", note: "Metric tons per year" },
@@ -348,11 +349,11 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "START A REVIEW",
-      title: "Send the project inputs for an initial grade review.",
+      eyebrow: "Start with what you know",
+      title: "Start with known part requirements and narrow the material range step by step",
       body:
-        "Known details are enough to begin. Mark uncertain items and include any current grade, drawing or failure sample available.",
-      checklistLabel: "PROJECT INPUTS",
+        "A complete specification is not required. Share the known part function, operating conditions, current material or failure mode; uncertain items can remain open.",
+      checklistLabel: "Useful starting points",
       checklist: [
         "Part function and movement mode",
         "Mold status and processing constraints",
@@ -361,6 +362,7 @@ const messages = {
       ],
       action: "Discuss Your Application",
     },
+    taskFirst: homeTaskFirstLocaleMessages.en,
   },
   Products: {
     metadata: {

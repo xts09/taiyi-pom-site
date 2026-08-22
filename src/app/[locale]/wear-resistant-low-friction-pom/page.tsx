@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { PomLandingPage } from "@/components/PomLandingPage";
 import { getLocalizedLocale } from "@/i18n/config";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 import {
-  chinesePomLandingUi as ui,
-  chineseWearLowFrictionPomLanding as page,
+  chinesePomLandingUi,
+  chineseWearLowFrictionPomLanding,
 } from "@/i18n/messages/zh-CN-pom-landings";
 import {
   getLanguageAlternates,
@@ -28,7 +29,7 @@ const resolveLocale = async (params: LocalizedWearPomRouteProps["params"]) => {
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN"
+    !isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)
   ) {
     notFound();
   }
@@ -40,13 +41,20 @@ export async function generateMetadata({
   params,
 }: LocalizedWearPomRouteProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
+  const page = translateExpandedContent(
+    chineseWearLowFrictionPomLanding,
+    localeConfig.urlSegment,
+  );
 
   return createPageMetadata({
     title: page.metaTitle,
     description: page.metaDescription,
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
     image: "/generated/pom-wear-natural-pellets-hero-wide.webp",
-    imageAlt: "Taiyi Polymer 耐磨与低摩擦 POM 材料",
+    imageAlt: translateExpandedContent(
+      "Taiyi Polymer 耐磨与低摩擦 POM 材料",
+      localeConfig.urlSegment,
+    ),
     indexable: isLocalizedReleaseIndexable(
       sourcePath,
       localeConfig.urlSegment,
@@ -60,6 +68,10 @@ export default async function LocalizedWearPomRoute({
   params,
 }: LocalizedWearPomRouteProps) {
   const localeConfig = await resolveLocale(params);
+  const { page, ui } = translateExpandedContent(
+    { page: chineseWearLowFrictionPomLanding, ui: chinesePomLandingUi },
+    localeConfig.urlSegment,
+  );
   setRequestLocale(localeConfig.htmlLang);
 
   return (

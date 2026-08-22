@@ -3572,6 +3572,10 @@ body {
     gap: 0.65rem;
   }
 
+  .site-footer-contact-actions a {
+    min-height: var(--ds-touch-target-min);
+  }
+
   .site-footer-menu {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 2.5rem;
@@ -3656,6 +3660,9 @@ body {
   }
 
   .site-footer-mobile-menu a {
+    display: flex;
+    min-height: var(--ds-touch-target-min);
+    align-items: center;
     color: rgba(233, 241, 247, 0.9);
     font-size: 0.9rem;
     font-weight: 500;
@@ -3703,6 +3710,13 @@ body {
     align-items: flex-start;
     gap: 0.35rem;
     order: 2;
+  }
+
+  .site-footer-bottom-link,
+  .site-footer-legal a {
+    display: inline-flex;
+    min-height: var(--ds-touch-target-min);
+    align-items: center;
   }
 }
 
@@ -4951,6 +4965,12 @@ body {
 
   .application-scene-gallery {
     gap: 0.85rem;
+  }
+
+  .application-hero-cta > [data-slot="button"] {
+    min-width: 0;
+    max-width: 100%;
+    text-align: center;
   }
 
   .application-review-cta [data-slot="button"][data-variant="inverse"] {

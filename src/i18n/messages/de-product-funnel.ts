@@ -53,6 +53,7 @@ const messages = {
       hdt: "HDT",
       color: "Farbe",
       natural: "Natur",
+      black: "Schwarz",
       detailAction: "Typdetails",
       reviewAction: "Projektprüfung",
       summaries: {

@@ -1,10 +1,5 @@
 export type ProductTaxonomyKey =
-  | "pom"
-  | "pa6"
-  | "pa66"
-  | "ppa"
-  | "pomResin"
-  | "conductiveAntistatic";
+  "pom" | "pa6" | "pa66" | "ppa" | "pomResin" | "conductiveAntistatic";
 
 export type ProductEyebrowKey =
   | "coreLine"
@@ -24,9 +19,7 @@ export type ApplicationTaxonomyKey =
   | "textile-machinery";
 
 export type ResourceTaxonomyKey =
-  | "material-selection"
-  | "processing-troubleshooting"
-  | "data-validation";
+  "material-selection" | "processing-troubleshooting" | "data-validation";
 
 export type TaxonomyMessages = {
   products: Record<ProductTaxonomyKey, string>;
@@ -181,6 +174,79 @@ export type HomeMaterialDirectionMessage = {
   specs: ReadonlyArray<readonly [string, string]>;
 };
 
+export type HomeTaskFirstMessages = {
+  entry: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    ariaLabel: string;
+    items: ReadonlyArray<{
+      label: string;
+      title: string;
+      description: string;
+      action: string;
+    }>;
+  };
+  core: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    action: string;
+    materialImageAlt: string;
+    materialImageCaption: string;
+    directionsAria: string;
+    groups: ReadonlyArray<{
+      title: string;
+      description: string;
+      action: string;
+      relatedLinks: readonly string[];
+    }>;
+    supportingTitle: string;
+    supportingBody: string;
+    supportingLinks: readonly string[];
+    allFamiliesAction: string;
+  };
+  applications: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    action: string;
+    items: ReadonlyArray<{
+      title: string;
+      description: string;
+      imageAlt: string;
+    }>;
+  };
+  process: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    stepsAria: string;
+    steps: ReadonlyArray<{
+      title: string;
+      description: string;
+    }>;
+  };
+  proof: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    factoryImageAlt: string;
+    factoryImageCaption: string;
+    metricsAria: string;
+    metricLabels: readonly string[];
+    metricNotes: readonly string[];
+    documentsTitle: string;
+    documentsBody: string;
+    documentsAria: string;
+    certificatesTitle: string;
+    certificateAction: string;
+    certificateOpenAction: string;
+    internationalLabel: string;
+    internationalBody: string;
+  };
+};
+
 export type HomeMessages = {
   metadata: {
     title: string;
@@ -273,6 +339,7 @@ export type HomeMessages = {
     checklist: readonly string[];
     action: string;
   };
+  taskFirst?: HomeTaskFirstMessages;
 };
 
 export type ContactFormMessages = {

@@ -6,6 +6,8 @@ import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
 import {
   conductiveCompounds,
   conductiveMatrices,
@@ -22,6 +24,34 @@ type RangeFilter = "all" | ConductiveRange;
 type ConductiveCompoundsExplorerProps = {
   defaultTechnology?: TechnologyFilter;
   groupByMatrix?: boolean;
+  localeSegment?: LocalizedUrlSegment;
+  messages?: ConductiveCompoundsExplorerMessages;
+};
+
+export type ConductiveCompoundsExplorerMessages = {
+  technologyLabels: Record<TechnologyFilter, string>;
+  allDescription: string;
+  seriesDescriptions: Record<ConductiveTechnology, string>;
+  grade: string;
+  material: string;
+  technology: string;
+  targetRange: string;
+  nextStep: string;
+  requestData: string;
+  kicker: string;
+  title: string;
+  technologyAria: string;
+  materialMatrix: string;
+  allMaterials: string;
+  allRanges: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+  matchingGrades: string;
+  rangeNote: string;
+  matrixGroupLabel: string;
+  matrixGroupTitle: string;
+  listedGrades: string;
+  empty: string;
 };
 
 const matrixGroupPriority = [
@@ -37,14 +67,42 @@ const matrixGroupPriority = [
   "TPU",
 ] as const;
 
-const technologyOptions: Array<{
-  value: TechnologyFilter;
-  label: string;
-}> = [
-  { value: "cnt", label: "CNT Antistatic" },
-  { value: "cf", label: "Carbon Fiber Conductive" },
-  { value: "all", label: "All Series" },
-];
+const technologyOptions: TechnologyFilter[] = ["cnt", "cf", "all"];
+
+export const defaultConductiveCompoundsExplorerMessages: ConductiveCompoundsExplorerMessages = {
+  technologyLabels: {
+    cnt: "CNT Antistatic",
+    cf: "Carbon Fiber Conductive",
+    all: "All Series",
+  },
+  allDescription:
+    "Compare both modification systems, then narrow the list by polymer matrix and target range.",
+  seriesDescriptions: {
+    cnt: conductiveSeries.cnt.description,
+    cf: conductiveSeries.cf.description,
+  },
+  grade: "Grade",
+  material: "Material",
+  technology: "Technology",
+  targetRange: "Target range",
+  nextStep: "Next step",
+  requestData: "Request data",
+  kicker: "Cross-Material Grade Directory",
+  title: "Find a charge-control direction",
+  technologyAria: "Compound technology",
+  materialMatrix: "Material matrix",
+  allMaterials: "All materials",
+  allRanges: "All ranges",
+  searchLabel: "Search grade or material",
+  searchPlaceholder: "e.g. POM or CNT-R35",
+  matchingGrades: "matching grades",
+  rangeNote:
+    "R35, R68, and R610 describe catalogue target bands. Confirm the test method, units, and molded-part result before approval.",
+  matrixGroupLabel: "Material Matrix",
+  matrixGroupTitle: "Conductive & Antistatic",
+  listedGrades: "listed grades",
+  empty: "No grade matches these filters. Try another material or target range.",
+};
 
 const rangeLabels: Record<ConductiveRange, string> = {
   r35: "10³–10⁵",
@@ -64,6 +122,8 @@ const rangeOptionsByTechnology: Record<
 export function ConductiveCompoundsExplorer({
   defaultTechnology = "cnt",
   groupByMatrix = false,
+  localeSegment,
+  messages = defaultConductiveCompoundsExplorerMessages,
 }: ConductiveCompoundsExplorerProps) {
   const [technology, setTechnology] =
     useState<TechnologyFilter>(defaultTechnology);
@@ -119,8 +179,8 @@ export function ConductiveCompoundsExplorer({
 
   const activeDescription =
     technology === "all"
-      ? "Compare both modification systems, then narrow the list by polymer matrix and target range."
-      : conductiveSeries[technology].description;
+      ? messages.allDescription
+      : messages.seriesDescriptions[technology];
 
   const changeTechnology = (nextTechnology: TechnologyFilter) => {
     setTechnology(nextTechnology);
@@ -136,11 +196,11 @@ export function ConductiveCompoundsExplorer({
   const renderRows = (compounds: ConductiveCompound[]) =>
     compounds.map((compound) => (
       <tr key={`${compound.technology}-${compound.grade}`}>
-        <td data-label="Grade">
+        <td data-label={messages.grade}>
           <strong>{compound.grade}</strong>
         </td>
-        <td data-label="Material">{compound.matrix}</td>
-        <td data-label="Technology">
+        <td data-label={messages.material}>{compound.matrix}</td>
+        <td data-label={messages.technology}>
           <span
             className={
               compound.technology === "cnt" ? styles.cntBadge : styles.cfBadge
@@ -149,16 +209,23 @@ export function ConductiveCompoundsExplorer({
             {conductiveSeries[compound.technology].shortLabel}
           </span>
         </td>
-        <td data-label="Target range">{compound.rangeLabel}</td>
-        <td data-label="Next step">
+        <td data-label={messages.targetRange}>{compound.rangeLabel}</td>
+        <td data-label={messages.nextStep}>
           <Link
-            href={createContactHref({
-              grade: compound.grade,
-              material: `${compound.matrix} conductive / antistatic compound`,
-              source: "Conductive grade directory",
-            })}
+            href={getLocalizedHref(
+              createContactHref({
+                grade: compound.grade,
+                material: localeSegment
+                  ? `${compound.matrix} 导电／抗静电改性材料`
+                  : `${compound.matrix} conductive / antistatic compound`,
+                source: localeSegment
+                  ? "中文跨材料导电牌号目录"
+                  : "Conductive grade directory",
+              }),
+              localeSegment,
+            )}
           >
-            Request data
+            {messages.requestData}
           </Link>
         </td>
       </tr>
@@ -169,11 +236,11 @@ export function ConductiveCompoundsExplorer({
       <table>
         <thead>
           <tr>
-            <th>Grade</th>
-            <th>Material</th>
-            <th>Technology</th>
-            <th>Target range</th>
-            <th>Next step</th>
+            <th>{messages.grade}</th>
+            <th>{messages.material}</th>
+            <th>{messages.technology}</th>
+            <th>{messages.targetRange}</th>
+            <th>{messages.nextStep}</th>
           </tr>
         </thead>
         <tbody>{renderRows(compounds)}</tbody>
@@ -190,8 +257,8 @@ export function ConductiveCompoundsExplorer({
       <div className={styles.rail}>
         <div className={styles.explorerHeading}>
           <div>
-            <p className={styles.kicker}>Cross-Material Grade Directory</p>
-            <h2 id="grade-explorer-title">Find a charge-control direction</h2>
+            <p className={styles.kicker}>{messages.kicker}</p>
+            <h2 id="grade-explorer-title">{messages.title}</h2>
           </div>
           <p>{activeDescription}</p>
         </div>
@@ -200,29 +267,29 @@ export function ConductiveCompoundsExplorer({
           <div
             className={styles.segmentedControl}
             role="group"
-            aria-label="Compound technology"
+            aria-label={messages.technologyAria}
           >
             {technologyOptions.map((option) => (
               <button
-                key={option.value}
+                key={option}
                 type="button"
-                aria-pressed={technology === option.value}
-                onClick={() => changeTechnology(option.value)}
+                aria-pressed={technology === option}
+                onClick={() => changeTechnology(option)}
               >
-                {option.label}
+                {messages.technologyLabels[option]}
               </button>
             ))}
           </div>
 
           <div className={styles.filters}>
             <label>
-              <span>Material matrix</span>
+              <span>{messages.materialMatrix}</span>
               <Select
                 value={matrix}
                 onChange={(event) => setMatrix(event.target.value)}
                 className={`${styles.filterControl} ${styles.filterSelect}`}
               >
-                <option value="all">All materials</option>
+                <option value="all">{messages.allMaterials}</option>
                 {conductiveMatrices.map((item) => (
                   <option key={item} value={item}>
                     {item}
@@ -232,7 +299,7 @@ export function ConductiveCompoundsExplorer({
             </label>
 
             <label>
-              <span>Target range</span>
+              <span>{messages.targetRange}</span>
               <Select
                 value={range}
                 onChange={(event) =>
@@ -240,7 +307,7 @@ export function ConductiveCompoundsExplorer({
                 }
                 className={`${styles.filterControl} ${styles.filterSelect}`}
               >
-                <option value="all">All ranges</option>
+                <option value="all">{messages.allRanges}</option>
                 {rangeOptionsByTechnology[technology].map((item) => (
                   <option key={item} value={item}>
                     {rangeLabels[item]}
@@ -250,13 +317,13 @@ export function ConductiveCompoundsExplorer({
             </label>
 
             <label className={styles.searchField}>
-              <span>Search grade or material</span>
+              <span>{messages.searchLabel}</span>
               <span className={styles.searchInput}>
                 <Search aria-hidden="true" size={17} strokeWidth={2} />
                 <Input
                   type="search"
                   value={query}
-                  placeholder="e.g. POM or CNT-R35"
+                  placeholder={messages.searchPlaceholder}
                   onChange={(event) => setQuery(event.target.value)}
                   className={`${styles.filterControl} ${styles.searchControl}`}
                 />
@@ -266,11 +333,8 @@ export function ConductiveCompoundsExplorer({
         </div>
 
         <div className={styles.resultsMeta} aria-live="polite">
-          <strong>{filteredCompounds.length}</strong> matching grades
-          <span>
-            R35, R68, and R610 describe catalogue target bands. Confirm the
-            test method, units, and molded-part result before approval.
-          </span>
+          <strong>{filteredCompounds.length}</strong> {messages.matchingGrades}
+          <span>{messages.rangeNote}</span>
         </div>
 
         {filteredCompounds.length ? (
@@ -280,14 +344,14 @@ export function ConductiveCompoundsExplorer({
                 <section
                   key={group.matrix}
                   className={styles.matrixGroup}
-                  aria-label={`Conductive and antistatic ${group.matrix} grades`}
+                  aria-label={`${group.matrix} ${messages.matrixGroupTitle}`}
                 >
                   <div className={styles.matrixGroupHeader}>
                     <div>
-                      <p>Material Matrix</p>
-                      <h3>Conductive &amp; Antistatic {group.matrix}</h3>
+                      <p>{messages.matrixGroupLabel}</p>
+                      <h3>{messages.matrixGroupTitle} {group.matrix}</h3>
                     </div>
-                    <span>{group.compounds.length} listed grades</span>
+                    <span>{group.compounds.length} {messages.listedGrades}</span>
                   </div>
                   {renderTable(group.compounds)}
                 </section>
@@ -297,10 +361,7 @@ export function ConductiveCompoundsExplorer({
             renderTable(filteredCompounds)
           )
         ) : (
-          <div className={styles.emptyState}>
-            No grade matches these filters. Try another material or target
-            range.
-          </div>
+          <div className={styles.emptyState}>{messages.empty}</div>
         )}
       </div>
     </section>

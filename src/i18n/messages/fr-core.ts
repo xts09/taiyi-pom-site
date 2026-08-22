@@ -1,4 +1,5 @@
 import type { SiteMessages } from "@/i18n/types";
+import { homeTaskFirstLocaleMessages } from "../homeTaskFirstLocaleMessages.ts";
 
 const messages = {
   Home: {
@@ -9,13 +10,13 @@ const messages = {
       imageAlt: "Fabrication de compounds POM modifiés chez Taiyi Polymer",
     },
     hero: {
-      eyebrowDesktop: "Matériaux techniques PLATFORM® · Taiyi Polymer",
-      eyebrowMobile: "PLATFORM® · Taiyi Polymer",
-      title: "Compounds POM modifiés pour pièces moulées de précision.",
+      eyebrowDesktop: "COMPOUNDAGE POM · SUPPORT MATIÈRE",
+      eyebrowMobile: "COMPOUNDAGE POM",
+      title: "Fabricant de compounds POM modifiés pour pièces moulées de précision",
       body:
-        "Taiyi Polymer fabrique sur son site de Yancheng des compounds POM modifiés pour les pièces exigeant résistance à l'usure, faible frottement, renforcement ou contrôle électrostatique. Les grades, échantillons et documents techniques sont confirmés selon le projet.",
-      exploreAction: "Explorer la gamme de matériaux",
-      contactAction: "Parler de votre application",
+        "De l'usure et du faible frottement au renforcement et au contrôle électrostatique, réduisez le champ matière selon les conditions de la pièce, puis examinez données grade, échantillons et essais de moulage.",
+      exploreAction: "Trouver par type de pièce",
+      contactAction: "Trouver grades & TDS",
     },
     metrics: [
       { label: "Capacité annuelle de compounds", note: "Tonnes par an" },
@@ -216,11 +217,11 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "LANCER UNE ÉTUDE",
-      title: "Transmettez les données du projet pour une première étude de grade.",
+      eyebrow: "Partir des éléments connus",
+      title: "Commencer par les exigences connues de la pièce et réduire progressivement le champ matière",
       body:
-        "Les informations déjà connues suffisent pour commencer. Signalez les points incertains et joignez tout grade actuel, plan ou échantillon défaillant disponible.",
-      checklistLabel: "DONNÉES DU PROJET",
+        "Une spécification complète n'est pas nécessaire. Indiquez la fonction de la pièce, les conditions d'utilisation, la matière actuelle ou le mode de défaillance; les inconnues peuvent rester à confirmer.",
+      checklistLabel: "Éléments utiles au départ",
       checklist: [
         "Fonction de la pièce et type de mouvement",
         "État du moule et contraintes de mise en œuvre",
@@ -229,6 +230,7 @@ const messages = {
       ],
       action: "Parler de votre application",
     },
+    taskFirst: homeTaskFirstLocaleMessages.fr,
   },
   Contact: {
     metadata: {

@@ -70,6 +70,21 @@ export type LocalizedApplicationEngineeringGroupMessages = {
   items: readonly string[];
 };
 
+export type LocalizedApplicationQualityEvidenceMessages = {
+  standard: string;
+  system: string;
+  scope: string;
+  action: string;
+  href: string;
+};
+
+export type LocalizedApplicationDetailUiOverrides = Partial<
+  Pick<
+    ApplicationDetailUiMessages,
+    "navigation" | "hero" | "scene" | "parts" | "materials" | "evaluation"
+  >
+>;
+
 export type LocalizedApplicationProfileMessages = {
   title: string;
   description: string;
@@ -79,6 +94,10 @@ export type LocalizedApplicationProfileMessages = {
   images: readonly LocalizedApplicationImageMessages[];
   parts: readonly LocalizedApplicationPartMessages[];
   engineeringFit: readonly LocalizedApplicationEngineeringGroupMessages[];
+  detailUi?: LocalizedApplicationDetailUiOverrides;
+  selectionItems?: readonly string[];
+  showSelectionInputs?: boolean;
+  qualityEvidence?: LocalizedApplicationQualityEvidenceMessages;
 };
 
 export type LocalizedApplicationProfileMap = Record<

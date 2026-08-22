@@ -29,7 +29,7 @@ export const chineseConveyorChainComponentsDetail = {
   },
   copy: {
     reviewInputsLabel: "输送链材料比较所需输入",
-    problemTitle: "先从输送系统的问题开始。",
+    problemTitle: "先从输送系统的问题开始",
     problemSummary:
       "同一现象可能来自材料表现、链条拉力、铰接几何、导轨状态、链轮匹配、污染或清洁介质接触。更换材料前，应先诊断整条线体。",
     materialSummary:
@@ -165,7 +165,7 @@ export const chineseConveyorChainComponentsDetail = {
     {
       value: "conveyor-review",
       title: "输送系统使用判据",
-      summary: "定义可信链条材料比较的系统变量。",
+      summary: "定义可信链条材料比较的系统变量",
       groups: [
         {
           title: "链条拉力与铰接",
@@ -186,7 +186,7 @@ export const chineseConveyorChainComponentsDetail = {
     {
       value: "chain-tooling",
       title: "链节设计、模具与注塑",
-      summary: "保护节距、铰接、平面度和转动功能的几何与工艺控制。",
+      summary: "保护节距、铰接、平面度和转动功能的几何与工艺控制",
       groups: [
         {
           title: "功能几何",
@@ -207,7 +207,7 @@ export const chineseConveyorChainComponentsDetail = {
     {
       value: "chain-validation",
       title: "组装链条验证",
-      summary: "把注塑链节数据连接到完整输送系统表现的检查。",
+      summary: "把注塑链节数据连接到完整输送系统表现的检查",
       groups: [
         {
           title: "注塑链节检查",
@@ -228,7 +228,7 @@ export const chineseConveyorChainComponentsDetail = {
     {
       value: "chain-checklist",
       title: "完整项目清单",
-      summary: "用于材料比较与输送系统验证的完整项目输入。",
+      summary: "用于材料比较与输送系统验证的完整项目输入",
       groups: [
         {
           title: "零部件与输送系统",
@@ -266,7 +266,7 @@ export const chineseConveyorChainComponentsDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "把链条作为完整输送系统评估。",
+    title: "把链条作为完整输送系统评估",
     body:
       "请提供链条图纸，以及现有载荷、速度、销轴、链轮、耐磨条、布局、润滑、环境、目标寿命和失效信息。Taiyi Polymer 可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出组装链条评估计划。",
   },
@@ -301,7 +301,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
   },
   copy: {
     reviewInputsLabel: "阀门部件材料比较所需输入",
-    problemTitle: "先从阀门功能问题开始。",
+    problemTitle: "先从阀门功能问题开始",
     problemSummary:
       "卡滞、泄漏、划伤或流量波动可能来自压力作用力、间隙、密封、污染、流体化学、模具或材料。更换聚合物前，应先诊断整阀。",
     materialSummary:
@@ -438,7 +438,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
     {
       value: "valve-review",
       title: "阀门使用判据",
-      summary: "定义材料适用性的压力、流体、间隙和执行输入。",
+      summary: "定义材料适用性的压力、流体、间隙和执行输入",
       groups: [
         {
           title: "压力与运动",
@@ -459,7 +459,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
     {
       value: "valve-tooling",
       title: "阀门设计、模具与注塑",
-      summary: "保护圆柱台肩、孔、阀口、密封和计量结构的控制。",
+      summary: "保护圆柱台肩、孔、阀口、密封和计量结构的控制",
       groups: [
         {
           title: "功能几何",
@@ -480,7 +480,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
     {
       value: "valve-validation",
       title: "完整阀门验证",
-      summary: "把注塑件数据连接到切换、密封和计量表现的检查。",
+      summary: "把注塑件数据连接到切换、密封和计量表现的检查",
       groups: [
         {
           title: "注塑件检查",
@@ -501,7 +501,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
     {
       value: "valve-checklist",
       title: "完整项目清单",
-      summary: "用于材料比较与阀门认证的完整项目输入。",
+      summary: "用于材料比较与阀门认证的完整项目输入",
       groups: [
         {
           title: "零部件与工作系统",
@@ -539,7 +539,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "选择聚合物之前先定义流体系统。",
+    title: "选择聚合物之前先定义流体系统",
     body:
       "请提供零部件图纸，以及现有压力、介质、温度、配合阀孔、间隙、密封、执行、流量目标和失效信息。Taiyi Polymer 可判断 PLATFORM POM 方向是否值得申请样品，确认可用牌号数据或资料路径，并提出整阀评估计划。",
   },

@@ -9,12 +9,12 @@ const messages = {
       imageAlt: "Taiyi Polymer POM 改性材料生产现场",
     },
     hero: {
-      eyebrowDesktop: "PLATFORM® 工程材料 · Taiyi Polymer",
-      eyebrowMobile: "PLATFORM® · Taiyi Polymer",
-      title: "面向精密注塑件的 POM 改性材料。",
-      body: "Taiyi Polymer 在盐城工厂生产 POM 改性材料，服务于需要耐磨、低摩擦、增强或静电控制的注塑零部件。具体牌号、样品与技术资料将根据项目确认。",
-      exploreAction: "查看材料范围",
-      contactAction: "讨论您的应用",
+      eyebrowDesktop: "POM COMPOUNDING · MATERIAL SUPPORT",
+      eyebrowMobile: "POM COMPOUNDING",
+      title: "面向精密注塑零部件的改性 POM 制造商",
+      body: "从耐磨、低摩擦到增强与静电控制，根据零部件工况缩小材料范围，并进一步查看牌号数据、样品与试模评估条件。",
+      exploreAction: "按零部件找材料",
+      contactAction: "查找牌号与 TDS",
     },
     metrics: [
       { label: "年改性材料产能", note: "吨/年" },
@@ -196,17 +196,174 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "开始评估",
-      title: "提交项目信息，开始初步牌号评估。",
-      body: "先提供已知信息即可。请标注不确定项，并附上现有参考牌号、图纸或失效现象。",
-      checklistLabel: "项目信息",
+      eyebrow: "从现有信息开始",
+      title: "从已知的零部件要求开始，逐步缩小材料范围",
+      body: "无需先准备完整规格。提供已知的零部件功能、使用条件、当前材料或失效现象即可；不确定项可以标注待确认。",
+      checklistLabel: "可先提供",
       checklist: [
         "零部件功能与运动方式",
         "模具阶段与加工限制",
         "优先性能目标",
-        "当前材料、失效情况与项目时间",
+        "当前材料、失效现象与项目时间",
       ],
       action: "讨论您的应用",
+    },
+    taskFirst: {
+      entry: {
+        eyebrow: "从您的任务开始",
+        title: "材料选择，通常从零部件工况开始",
+        body: "齿轮关注摩擦副、磨损与噪音；结构件关注刚性、收缩与尺寸稳定；电气零部件则需要先明确电阻范围与使用环境。材料名称或单一参数可以帮助初筛，但通常不足以判断实际适用性。",
+        ariaLabel: "按当前选材任务进入相关页面",
+        items: [
+          {
+            label: "零部件",
+            title: "我正在为零部件选材",
+            description:
+              "从零部件功能、运动方式、负载、装配环境和模具阶段进入相应的材料筛选路径。",
+            action: "浏览零部件路径",
+          },
+          {
+            label: "性能问题",
+            title: "我需要解决性能问题",
+            description:
+              "从耐磨、低摩擦、增强、抗冲击、耐候、导电或抗静电要求进入材料方向。",
+            action: "查看材料方向",
+          },
+          {
+            label: "牌号与资料",
+            title: "我已经有参考牌号",
+            description:
+              "通过材料类型、牌号或性能关键词，查找现有数据和可用于进一步审核的技术资料。",
+            action: "查找牌号与 TDS",
+          },
+        ],
+      },
+      core: {
+        eyebrow: "核心产品",
+        title: "改性 POM，是我们的核心材料线",
+        body: "面向齿轮、轴套、滑动件、结构件和电气功能零部件，提供基础与高流动、耐磨低摩擦、增强、抗冲击、耐候以及导电抗静电等材料方向。",
+        action: "查看 POM 材料族",
+        materialImageAlt: "用于改性 POM 配混与牌号开发的本色 POM 原料颗粒。",
+        materialImageCaption: "POM 原料颗粒",
+        directionsAria: "改性 POM 材料方向与具体材料族",
+        groups: [
+          {
+            title: "耐磨与低摩擦",
+            description:
+              "结合摩擦副、载荷、速度、润滑与目标磨损表现筛选滑动材料方向。",
+            action: "耐磨与低摩擦 POM",
+            relatedLinks: [],
+          },
+          {
+            title: "增强与尺寸控制",
+            description:
+              "根据刚性、收缩、翘曲、纤维取向与尺寸要求比较增强和填充方向。",
+            action: "玻纤增强 POM",
+            relatedLinks: ["碳纤增强 POM", "微珠填充 POM"],
+          },
+          {
+            title: "抗冲击与耐候",
+            description: "围绕冲击、低温韧性、装配应力或光照条件审核具体牌号。",
+            action: "高抗冲 POM",
+            relatedLinks: ["耐候 POM"],
+          },
+          {
+            title: "导电与抗静电",
+            description:
+              "先定义电阻范围、测试方法、接地、颜色和使用环境，再比较材料方向。",
+            action: "导电与抗静电 POM",
+            relatedLinks: ["跨基材静电控制"],
+          },
+        ],
+        supportingTitle: "当 POM 不是唯一答案",
+        supportingBody:
+          "当零部件需要不同的刚性、耐热性、吸湿或加工性能平衡时，也可进一步评估基础 POM 树脂及精选 PA6、PA66 与 PPA 材料。",
+        supportingLinks: ["基础 POM 树脂", "PA6", "PA66", "PPA"],
+        allFamiliesAction: "查看全部材料系列",
+      },
+      applications: {
+        eyebrow: "零部件方案",
+        title: "不同零部件，关注点不同",
+        body: "从真实零部件进入，先明确主导工况，再连接到相应的材料方向、牌号数据和验证条件。",
+        action: "查看全部零部件路径",
+        items: [
+          {
+            title: "精密塑料齿轮",
+            description:
+              "扭矩、齿形、转速、配对材料、润滑和精度目标共同决定候选范围。",
+            imageAlt: "用于材料筛选说明的精密塑料齿轮和运动部件。",
+          },
+          {
+            title: "衬套与轴套",
+            description:
+              "载荷、滑动速度、轴与壳体、间隙配合、润滑和环境共同决定候选方向。",
+            imageAlt: "用于材料筛选说明的工程塑料衬套、轴套和滑动导向件。",
+          },
+          {
+            title: "输送链部件",
+            description:
+              "链条拉力、铰接磨损、导轨摩擦、节距、静电目标和环境需要一并评估。",
+            imageAlt: "用于材料筛选说明的塑料输送链板、链节和自动化组件。",
+          },
+          {
+            title: "阀芯与阀筒",
+            description:
+              "压力、介质、密封、阀芯间隙、运动循环和流量功能先定义应用边界。",
+            imageAlt: "用于材料筛选说明的注塑阀芯、阀筒和流体控制内部件。",
+          },
+          {
+            title: "纺织导向部件",
+            description:
+              "纱线、速度、张力、接触几何、表面质量、磨损和静电行为共同影响选材。",
+            imageAlt: "用于材料筛选说明的纺织机械纱线导向部件。",
+          },
+          {
+            title: "IC 周转托盘",
+            description:
+              "ESD 等级、工艺温度、平面度、槽位几何、洁净度和搬运条件需要同时定义。",
+            imageAlt: "用于材料筛选说明的 IC 周转托盘和精密槽位。",
+          },
+        ],
+      },
+      process: {
+        eyebrow: "合作流程",
+        title: "从零部件要求到候选牌号，三步开始",
+        body: "先从已有信息形成初步材料范围，再逐步确认数据、资料和项目验证条件。",
+        stepsAria: "从零部件要求到候选牌号的三个步骤",
+        steps: [
+          {
+            title: "说明零部件",
+            description: "提供功能、工况、模具阶段和当前最重要的性能目标。",
+          },
+          {
+            title: "缩小材料范围",
+            description:
+              "结合材料方向和现有牌号数据，形成可进一步审核的候选清单。",
+          },
+          {
+            title: "进入项目验证",
+            description: "确认 TDS、资料可用性，以及样品和试模的后续安排。",
+          },
+        ],
+      },
+      proof: {
+        eyebrow: "制造与验证依据",
+        title: "让工程评估和采购审核都有依据",
+        body: "自有生产、厂内检测和按牌号确认的材料资料，为候选材料审核与后续供应沟通提供基础。",
+        factoryImageAlt: "Taiyi Polymer 盐城生产基地内的双螺杆挤出生产线。",
+        factoryImageCaption: "盐城生产基地 · 双螺杆挤出车间",
+        metricsAria: "Taiyi Polymer 制造与检测数据",
+        metricLabels: ["年改性材料产能", "自有双螺杆生产线", "厂内检测设备"],
+        metricNotes: ["吨/年", "条", "台"],
+        documentsTitle: "项目资料",
+        documentsBody: "TDS、SDS、COA、REACH、RoHS 的可用性按牌号与项目确认。",
+        documentsAria: "可按牌号与项目确认的资料类型",
+        certificatesTitle: "质量管理体系证书",
+        certificateAction: "查看全部证书与认证范围",
+        certificateOpenAction: "查看证书",
+        internationalLabel: "国际项目支持",
+        internationalBody: "可为国际项目提供材料资料与出口交付协同。",
+      },
     },
   },
   Contact: {

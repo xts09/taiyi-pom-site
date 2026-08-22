@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { PomLandingPage } from "@/components/PomLandingPage";
 import { getLocalizedLocale } from "@/i18n/config";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 import {
-  chineseConductiveAntistaticPomLanding as page,
-  chinesePomLandingUi as ui,
+  chineseConductiveAntistaticPomLanding,
+  chinesePomLandingUi,
 } from "@/i18n/messages/zh-CN-pom-landings";
 import {
   getLanguageAlternates,
@@ -30,7 +31,7 @@ const resolveLocale = async (
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN"
+    !isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)
   ) {
     notFound();
   }
@@ -42,6 +43,10 @@ export async function generateMetadata({
   params,
 }: LocalizedConductivePomRouteProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
+  const page = translateExpandedContent(
+    chineseConductiveAntistaticPomLanding,
+    localeConfig.urlSegment,
+  );
 
   return createPageMetadata({
     title: page.metaTitle,
@@ -62,6 +67,10 @@ export default async function LocalizedConductivePomRoute({
   params,
 }: LocalizedConductivePomRouteProps) {
   const localeConfig = await resolveLocale(params);
+  const { page, ui } = translateExpandedContent(
+    { page: chineseConductiveAntistaticPomLanding, ui: chinesePomLandingUi },
+    localeConfig.urlSegment,
+  );
   setRequestLocale(localeConfig.htmlLang);
 
   return (

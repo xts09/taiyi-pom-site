@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { LocalizedUrlSegment } from "@/i18n/config";
 import type { AnalyticsMessages } from "@/i18n/types";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
 import {
   clearGoogleAnalyticsCookies,
   GOOGLE_ANALYTICS_CONSENT_CHANGE_EVENT,
@@ -18,11 +20,13 @@ import styles from "./AnalyticsConsent.module.css";
 type AnalyticsConsentProps = {
   enabled: boolean;
   messages: AnalyticsMessages;
+  localeSegment?: LocalizedUrlSegment;
 };
 
 export function AnalyticsConsent({
   enabled,
   messages,
+  localeSegment,
 }: AnalyticsConsentProps) {
   const choice = useGoogleAnalyticsConsent();
   const [isManuallyOpen, setIsManuallyOpen] = useState(false);
@@ -79,7 +83,9 @@ export function AnalyticsConsent({
         <h2 id="analytics-consent-title">{messages.title}</h2>
         <p id="analytics-consent-description">
           {messages.descriptionBeforeLink}{" "}
-          <Link href="/privacy">{messages.privacyPolicy}</Link>.
+          <Link href={getLocalizedHref("/privacy", localeSegment)}>
+            {messages.privacyPolicy}
+          </Link>.
         </p>
         {choice !== null ? (
           <span className={styles.currentChoice}>

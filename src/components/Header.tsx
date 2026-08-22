@@ -660,7 +660,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               <NavigationMenu.Item>
                 <NavigationMenu.Link asChild>
                   <Link
-                    href="/about"
+                    href={localizedHref("/about")}
                     prefetch={false}
                     className="nav-link transition"
                     aria-current={isCurrentSection("/about") ? "page" : undefined}
@@ -876,7 +876,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             </details>
 
             <Link
-              href="/about"
+              href={localizedHref("/about")}
               prefetch={false}
               className="mobile-menu-primary-link flex items-center justify-between gap-3 py-3"
               aria-current={isCurrentSection("/about") ? "page" : undefined}

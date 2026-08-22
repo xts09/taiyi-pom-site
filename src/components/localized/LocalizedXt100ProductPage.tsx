@@ -264,16 +264,28 @@ export function LocalizedProductGradePage({
                 <tbody className="divide-y divide-slate-200/80">
                   {localizedProperties.map((property) => (
                     <tr key={property.label} className="hover:bg-cyan-50/60">
-                      <td className="px-5 py-3 font-bold text-slate-950">
+                      <td
+                        className="px-5 py-3 font-bold text-slate-950"
+                        data-label={copy.properties.property}
+                      >
                         {property.label}
                       </td>
-                      <td className="px-5 py-3 font-black text-blue-700">
+                      <td
+                        className="px-5 py-3 font-black text-blue-700"
+                        data-label={copy.properties.value}
+                      >
                         <ValueText value={property.value} />
                       </td>
-                      <td className="px-5 py-3 text-slate-700">
+                      <td
+                        className="px-5 py-3 text-slate-700"
+                        data-label={copy.properties.unit}
+                      >
                         <UnitText unit={property.unit} />
                       </td>
-                      <td className="px-5 py-3 text-slate-600">
+                      <td
+                        className="px-5 py-3 text-slate-600"
+                        data-label={copy.properties.method}
+                      >
                         {property.method}
                       </td>
                     </tr>

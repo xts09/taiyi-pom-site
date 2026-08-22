@@ -46,6 +46,82 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      sourcePath: "/privacy",
+      priority: 0.2,
+      changeFrequency: "yearly" as const,
+      lastModified: privacyPolicyRelease.lastModified,
+    },
+    {
+      sourcePath: "/products/conductive-antistatic-compounds",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/about",
+      priority: 0.6,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/modified-pom-compounds",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/wear-resistant-low-friction-pom",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/conductive-antistatic-pom",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/components",
+      priority: 0.8,
+      changeFrequency: "weekly" as const,
+    },
+    ...componentSolutionDetails
+      .map((solution) => `/components/${solution.slug}`)
+      .filter(isReleasedSourcePath)
+      .map((sourcePath) => ({
+        sourcePath,
+        priority: 0.7,
+        changeFrequency: "monthly" as const,
+      })),
+    {
+      sourcePath: "/products/categories/pom",
+      priority: 0.85,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath:
+        "/products/categories/wear-resistant-low-friction-pom-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/products/categories/uv-resistant-pom-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath:
+        "/products/categories/carbon-fiber-reinforced-pom-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/products/categories/conductive-antistatic-pom-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
+      sourcePath: "/products/categories/ultra-high-flow-pom",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
       sourcePath: "/products/categories/base-pom-resin",
       priority: 0.75,
       changeFrequency: "weekly" as const,
@@ -66,12 +142,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      sourcePath: "/products/etm090nc-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/etm130-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/etm270-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
       sourcePath: "/products/etm450-base-pom-resin",
       priority: 0.65,
       changeFrequency: "monthly" as const,
     },
     {
       sourcePath: "/products/etm750-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/etm1500-base-pom-resin",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/etm1800-base-pom-resin",
       priority: 0.65,
       changeFrequency: "monthly" as const,
     },
@@ -91,7 +192,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
     },
     {
+      sourcePath: "/products/edr100-high-impact-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/ehi100st-high-impact-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/ehi202t-high-impact-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
       sourcePath: "/products/ehi402t-high-impact-pom",
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
+    {
+      sourcePath: "/products/ehi602t-high-impact-pom",
       priority: 0.65,
       changeFrequency: "monthly" as const,
     },
@@ -100,6 +221,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.65,
       changeFrequency: "monthly" as const,
     },
+    ...productCategoryEntries
+      .map((entry) => entry.path)
+      .filter(isReleasedSourcePath)
+      .map((sourcePath) => ({
+        sourcePath,
+        priority: 0.75,
+        changeFrequency: "weekly" as const,
+      })),
+    ...catalogProducts
+      .filter(isCatalogRecordIndexable)
+      .map((product) => `/products/${product.slug}`)
+      .filter(isReleasedSourcePath)
+      .map((sourcePath) => ({
+        sourcePath,
+        priority: 0.65,
+        changeFrequency: "monthly" as const,
+      })),
+    ...catalogEngineeringTds
+      .filter(isCatalogRecordIndexable)
+      .map((document) => `/products/${document.slug}`)
+      .filter(isReleasedSourcePath)
+      .map((sourcePath) => ({
+        sourcePath,
+        priority: 0.65,
+        changeFrequency: "monthly" as const,
+      })),
     {
       sourcePath: "/technical-data-sheets",
       priority: 0.8,
@@ -174,10 +321,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     sourcePath: ReleasedSourcePath;
     priority: number;
     changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+    lastModified?: string;
   }>;
 
-  const localizedRoutes = localizedLanguageRoutes.flatMap(
-    ({ sourcePath, priority, changeFrequency }) => {
+  const uniqueLocalizedLanguageRoutes = [
+    ...new Map(
+      localizedLanguageRoutes.map((route) => [route.sourcePath, route]),
+    ).values(),
+  ];
+
+  const localizedRoutes = uniqueLocalizedLanguageRoutes.flatMap(
+    (route) => {
+      const { sourcePath, priority, changeFrequency } = route;
+      const lastModified =
+        "lastModified" in route ? route.lastModified : undefined;
       const options = getSitemapLanguageOptions(sourcePath);
       const alternates = getLanguageAlternates(sourcePath);
       const absoluteAlternates = Object.fromEntries(
@@ -189,6 +346,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
       return options.map(({ href }) => ({
         ...createUrlEntry(href, priority, changeFrequency),
+        ...(lastModified ? { lastModified } : {}),
         alternates: {
           languages: absoluteAlternates,
         },
@@ -196,24 +354,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   );
 
-  const staticRoutes = [
-    createUrlEntry("/components", 0.8, "weekly"),
-    createUrlEntry("/about", 0.6, "monthly"),
-    {
-      ...createUrlEntry("/privacy", 0.2, "yearly"),
-      lastModified: privacyPolicyRelease.lastModified,
-    },
-  ];
-
   const categoryRoutes = productCategoryEntries
     .filter((entry) => !isReleasedSourcePath(entry.path))
     .map((entry) => ({
       ...createUrlEntry(entry.path, 0.75, "weekly"),
     }));
 
-  const componentSolutionRoutes = componentSolutionDetails.map((solution) =>
-    createUrlEntry(`/components/${solution.slug}`, 0.7, "monthly"),
-  );
+  const componentSolutionRoutes = componentSolutionDetails
+    .map((solution) => `/components/${solution.slug}`)
+    .filter((path) => !isReleasedSourcePath(path))
+    .map((path) => createUrlEntry(path, 0.7, "monthly"));
 
   const productRoutes = catalogProducts
     .filter(isCatalogRecordIndexable)
@@ -224,6 +374,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const engineeringTdsRoutes = catalogEngineeringTds
     .filter(isCatalogRecordIndexable)
+    .filter((document) => !isReleasedSourcePath(`/products/${document.slug}`))
     .map((document) =>
       createUrlEntry(`/products/${document.slug}`, 0.65, "monthly"),
     );
@@ -242,12 +393,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...createUrlEntry(getResourceNavigationGroupPath(group), 0.75, "weekly"),
     }));
 
-  const technicalLandingRoutes = publicTechnicalLandingLinks.map((page) =>
-    createUrlEntry(page.href, 0.75, "weekly"),
-  );
+  const technicalLandingRoutes = publicTechnicalLandingLinks
+    .filter((page) => !isReleasedSourcePath(page.href))
+    .map((page) => createUrlEntry(page.href, 0.75, "weekly"));
 
   return [
-    ...staticRoutes,
     ...localizedRoutes,
     ...categoryRoutes,
     ...productRoutes,

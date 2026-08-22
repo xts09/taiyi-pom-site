@@ -6,20 +6,51 @@ import type {
   LocalizedApplicationProfileMap,
   LocalizedApplicationProfileMessages,
 } from "@/i18n/applicationTypes";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { translateEnglishApplicationContent } from "@/i18n/englishApplicationNarrative";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 
-export const loadChineseApplicationIndexMessages = async () =>
-  (await import("@/i18n/messages/zh-CN-applications")).default;
+export const loadApplicationIndexMessages = async (
+  localeSegment: LocalizedUrlSegment,
+) =>
+  translateExpandedContent(
+    (await import("@/i18n/messages/zh-CN-applications")).default,
+    localeSegment,
+  );
 
-export const loadChineseApplicationProfiles = async () => {
+export const loadApplicationProfiles = async (
+  localeSegment: LocalizedUrlSegment,
+) => {
   const [sliceA, sliceB] = await Promise.all([
     import("@/i18n/messages/zh-CN-application-details-a"),
     import("@/i18n/messages/zh-CN-application-details-b"),
   ]);
 
-  return {
+  return translateExpandedContent(
+    {
+      ...sliceA.default,
+      ...sliceB.default,
+    } satisfies LocalizedApplicationProfileMap,
+    localeSegment,
+  );
+};
+
+export const loadChineseApplicationIndexMessages = () =>
+  loadApplicationIndexMessages("zh");
+
+export const loadChineseApplicationProfiles = () =>
+  loadApplicationProfiles("zh");
+
+export const loadEnglishApplicationProfiles = async () => {
+  const [sliceA, sliceB] = await Promise.all([
+    import("@/i18n/messages/zh-CN-application-details-a"),
+    import("@/i18n/messages/zh-CN-application-details-b"),
+  ]);
+
+  return translateEnglishApplicationContent({
     ...sliceA.default,
     ...sliceB.default,
-  } satisfies LocalizedApplicationProfileMap;
+  } satisfies LocalizedApplicationProfileMap);
 };
 
 export const localizeApplication = (

@@ -11,8 +11,8 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { getLocalizedLocale } from "@/i18n/config";
 import {
-  chineseResourceIndexMessages as messages,
-  chineseResourceNavigationGroups,
+  getLocalizedResourceIndexMessages,
+  getLocalizedResourceNavigationGroups,
 } from "@/i18n/resourceMessages";
 import {
   getLanguageAlternates,
@@ -42,7 +42,7 @@ const resolveLocale = async (
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN"
+    !isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)
   ) {
     notFound();
   }
@@ -54,6 +54,9 @@ export async function generateMetadata({
   params,
 }: LocalizedResourcesPageProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
+  const messages = getLocalizedResourceIndexMessages(
+    localeConfig.urlSegment,
+  );
 
   return createPageMetadata({
     title: messages.metadata.collectionTitle,
@@ -74,6 +77,12 @@ export default async function LocalizedResourcesPage({
   params,
 }: LocalizedResourcesPageProps) {
   const localeConfig = await resolveLocale(params);
+  const messages = getLocalizedResourceIndexMessages(
+    localeConfig.urlSegment,
+  );
+  const navigationGroups = getLocalizedResourceNavigationGroups(
+    localeConfig.urlSegment,
+  );
   setRequestLocale(localeConfig.htmlLang);
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
   const localizedHref = (href: string) =>
@@ -92,7 +101,7 @@ export default async function LocalizedResourcesPage({
       description: messages.metadata.description,
       path: pagePath,
       inLanguage: localeConfig.htmlLang,
-      items: chineseResourceNavigationGroups.map((group) => ({
+      items: navigationGroups.map((group) => ({
         name: group.title,
         path: localizedHref(`/resources/${group.id}`),
       })),
@@ -148,7 +157,7 @@ export default async function LocalizedResourcesPage({
                   {messages.hero.pathsLabel}
                 </p>
                 <div className="resource-index-path-list">
-                  {chineseResourceNavigationGroups.map((group) => (
+                  {navigationGroups.map((group) => (
                     <Card key={group.id} asChild variant="interactive">
                       <Link
                         href={localizedHref(`/resources/${group.id}`)}
@@ -180,7 +189,7 @@ export default async function LocalizedResourcesPage({
             />
 
             <div className="resource-index-directory-groups">
-              {chineseResourceNavigationGroups.map((group) => (
+              {navigationGroups.map((group) => (
                 <section
                   key={`directory-${group.id}`}
                   className="resource-index-directory-group"

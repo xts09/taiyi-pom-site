@@ -5,7 +5,9 @@ import { LocalizedTechnicalDataPage } from "@/components/localized/LocalizedTech
 import { products } from "@/data/products";
 import { getLocalizedLocale } from "@/i18n/config";
 import { loadProductFunnelMessages } from "@/i18n/productFunnelMessages";
-import { localizedProductGradeSlugs } from "@/i18n/productFunnelTypes";
+import {
+  localizedProductGradeRouteSlugs,
+} from "@/i18n/productFunnelTypes";
 import {
   getLanguageAlternates,
   getLocalizedHref,
@@ -14,10 +16,12 @@ import {
 import { createPageMetadata } from "@/lib/seo";
 
 const sourcePath = "/technical-data-sheets" as const;
-const localizedProducts = localizedProductGradeSlugs.flatMap((slug) => {
-  const product = products.find((item) => item.slug === slug);
-  return product ? [product] : [];
-});
+const getLocalizedProducts = () => {
+  return localizedProductGradeRouteSlugs.flatMap((slug) => {
+    const product = products.find((item) => item.slug === slug);
+    return product ? [product] : [];
+  });
+};
 
 type LocalizedTechnicalDataPageRouteProps = {
   params: Promise<{ locale: string }>;
@@ -32,20 +36,26 @@ const resolveLocale = async (
 
   if (
     !localeConfig ||
-    localeConfig.urlSegment !== locale ||
-    localizedProducts.length !== localizedProductGradeSlugs.length
+    localeConfig.urlSegment !== locale
   ) {
     notFound();
   }
 
-  return localeConfig;
+  const localizedProducts = getLocalizedProducts();
+  const expectedProductCount = localizedProductGradeRouteSlugs.length;
+
+  if (localizedProducts.length !== expectedProductCount) {
+    notFound();
+  }
+
+  return { localeConfig, localizedProducts };
 };
 
 export async function generateMetadata({
   params,
   searchParams,
 }: LocalizedTechnicalDataPageRouteProps): Promise<Metadata> {
-  const localeConfig = await resolveLocale(params);
+  const { localeConfig } = await resolveLocale(params);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
   const query = searchParams ? await searchParams : {};
   const hasSearchIntent = Object.values(query).some((value) =>
@@ -59,7 +69,8 @@ export async function generateMetadata({
     image: "/generated/pom-workbench-hero.webp",
     imageAlt: messages.technicalData.metadata.imageAlt,
     indexable:
-      isLocalizedReleaseIndexable(sourcePath) && !hasSearchIntent,
+      isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment) &&
+      !hasSearchIntent,
     openGraphLocale: localeConfig.openGraphLocale,
     languageAlternates: getLanguageAlternates(sourcePath),
   });
@@ -68,7 +79,7 @@ export async function generateMetadata({
 export default async function LocalizedTechnicalDataPageRoute({
   params,
 }: LocalizedTechnicalDataPageRouteProps) {
-  const localeConfig = await resolveLocale(params);
+  const { localeConfig, localizedProducts } = await resolveLocale(params);
   setRequestLocale(localeConfig.htmlLang);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
 

@@ -18,8 +18,10 @@ import type {
   ApplicationDetailUiMessages,
   ApplicationIndexComponentSlug,
   ApplicationIndexMessages,
+  LocalizedApplicationQualityEvidenceMessages,
 } from "@/i18n/applicationTypes";
 import type { LocalizedUrlSegment } from "@/i18n/config";
+import { translateExpandedText } from "@/i18n/expandedLocaleContent";
 import {
   getLocalizedHref,
   isEnglishFallbackHref,
@@ -69,10 +71,12 @@ type LocalizedApplicationDetailPageProps = {
   application: ApplicationItem;
   componentMessages: ApplicationIndexMessages["componentSolutions"];
   inLanguage: string;
-  localeSegment: LocalizedUrlSegment;
+  localeSegment?: LocalizedUrlSegment;
   messages: ApplicationDetailUiMessages;
   pagePath: string;
+  qualityEvidence?: LocalizedApplicationQualityEvidenceMessages;
   selectionItems: readonly string[];
+  showSelectionInputs?: boolean;
 };
 
 const automotiveVisualAssets: ApplicationVisualAssets = {
@@ -294,7 +298,7 @@ function ProductInfoCard({
   card: MaterialDirectionCardData;
   englishDestinationLabel: string;
   image?: ApplicationImage;
-  localeSegment: LocalizedUrlSegment;
+  localeSegment?: LocalizedUrlSegment;
   messages: ApplicationDetailUiMessages["materials"];
   materialImageSrc?: string;
 }) {
@@ -354,7 +358,9 @@ export function LocalizedApplicationDetailPage({
   localeSegment,
   messages,
   pagePath,
+  qualityEvidence,
   selectionItems,
+  showSelectionInputs = false,
 }: LocalizedApplicationDetailPageProps) {
   const engineeringGroups = getEngineeringGroups(application);
   const partFitItems = getPerformanceItems(engineeringGroups);
@@ -566,6 +572,20 @@ export function LocalizedApplicationDetailPage({
               </div>
             </>
           )}
+
+          {visualAssets && showSelectionInputs ? (
+            <ul
+              className="application-condition-strip"
+              aria-label={messages.scene.keywordsAria}
+            >
+              {sceneKeywords.map((item) => (
+                <li key={item.title} data-application-motion-item>
+                  <strong>{item.title}</strong>
+                  <span>{item.value}</span>
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </section>
 
         <section
@@ -582,6 +602,7 @@ export function LocalizedApplicationDetailPage({
               <p className="section-kicker">{messages.parts.eyebrow}</p>
               <h2>
                 {application.title}
+                {inLanguage.startsWith("zh") ? "" : " — "}
                 {messages.parts.titleSuffix}
               </h2>
             </div>
@@ -658,21 +679,34 @@ export function LocalizedApplicationDetailPage({
                   const componentLabel = componentSlug
                     ? componentMessages.labels[componentSlug]
                     : guide.partLabel;
+                  const componentHref = getLocalizedHref(
+                    guide.href,
+                    localeSegment,
+                  );
+                  const showEnglishBadge = isEnglishFallbackHref(
+                    guide.href,
+                    localeSegment,
+                  );
 
                   return (
                     <Link
                       className="application-component-guide-link"
-                      href={guide.href}
+                      href={componentHref}
                       key={guide.href}
                     >
                       <span className="application-component-guide-part">
                         {componentLabel}
                       </span>
                       <strong>
-                        {componentLabel}选材指南{" "}
-                        <EnglishDestinationBadge
-                          label={componentMessages.englishDestinationLabel}
-                        />
+                        {componentLabel}{" "}
+                        {localeSegment
+                          ? translateExpandedText("选材指南", localeSegment)
+                          : "Material Selection Guide"}{" "}
+                        {showEnglishBadge ? (
+                          <EnglishDestinationBadge
+                            label={componentMessages.englishDestinationLabel}
+                          />
+                        ) : null}
                       </strong>
                       <span aria-hidden="true">↗</span>
                     </Link>
@@ -775,6 +809,27 @@ export function LocalizedApplicationDetailPage({
           }
           eyebrow={messages.evaluation.eyebrow}
           eyebrowClassName="section-kicker mb-3"
+          aside={
+            qualityEvidence ? (
+              <div className="space-y-2 text-sm leading-6 text-slate-200">
+                <strong className="block text-base text-white">
+                  {qualityEvidence.standard}
+                </strong>
+                <span className="block font-semibold text-slate-100">
+                  {qualityEvidence.system}
+                </span>
+                <span className="block text-slate-300">
+                  {qualityEvidence.scope}
+                </span>
+                <Link
+                  className="inline-flex font-semibold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
+                  href={qualityEvidence.href}
+                >
+                  {qualityEvidence.action}
+                </Link>
+              </div>
+            ) : undefined
+          }
           action={
             <Button
               asChild

@@ -1,5 +1,7 @@
 import type { ComponentSolutionDetail } from "@/data/componentSolutionDetails";
 import type { ComponentSolution } from "@/data/componentSolutions";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 import { chineseBushingsAndSleevesDetail } from "@/i18n/messages/zh-CN-component-details-a";
 import {
   chineseConveyorChainComponentsDetail,
@@ -45,6 +47,12 @@ export const getChineseComponentDetail = (
   slug: LocalizedComponentSlug,
 ): ComponentSolutionDetail => chineseDetails[slug];
 
+export const getLocalizedComponentDetail = (
+  slug: LocalizedComponentSlug,
+  localeSegment: LocalizedUrlSegment,
+): ComponentSolutionDetail =>
+  translateExpandedContent(chineseDetails[slug], localeSegment);
+
 export const getChineseComponentSolution = (
   slug: LocalizedComponentSlug,
 ): ComponentSolution => {
@@ -54,6 +62,32 @@ export const getChineseComponentSolution = (
 
   if (!solution) {
     throw new Error(`Missing Chinese component solution: ${slug}`);
+  }
+
+  return solution;
+};
+
+export const getLocalizedComponentIndexMessages = (
+  localeSegment: LocalizedUrlSegment,
+) => translateExpandedContent(chineseComponentIndexMessages, localeSegment);
+
+export const getLocalizedComponentSolutions = (
+  localeSegment: LocalizedUrlSegment,
+): readonly ComponentSolution[] =>
+  translateExpandedContent(chineseComponentSolutions, localeSegment);
+
+export const getLocalizedComponentSolution = (
+  slug: LocalizedComponentSlug,
+  localeSegment: LocalizedUrlSegment,
+): ComponentSolution => {
+  const solution = getLocalizedComponentSolutions(localeSegment).find(
+    (candidate) => candidate.slug === slug,
+  );
+
+  if (!solution) {
+    throw new Error(
+      `Missing ${localeSegment} component solution: ${slug}`,
+    );
   }
 
   return solution;

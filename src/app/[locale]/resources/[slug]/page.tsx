@@ -8,12 +8,12 @@ import { ResourceGuideExplorer } from "@/components/ResourceGuideExplorer";
 import { ResourceHero } from "@/components/ResourceHero";
 import { ResourcePageActions } from "@/components/ResourcePageActions";
 import type { ResourcePage } from "@/data/resources";
-import { getLocalizedLocale } from "@/i18n/config";
+import { getLocalizedLocale, localizedLocales } from "@/i18n/config";
 import {
-  chineseResourceIndexMessages as messages,
-  chineseResourceNavigationGroups,
-  getChineseResourceNavigationGroup,
-  getChineseResourcePage,
+  getLocalizedResourceIndexMessages,
+  getLocalizedResourceNavigationGroup,
+  getLocalizedResourceNavigationGroups,
+  getLocalizedResourcePage,
 } from "@/i18n/resourceMessages";
 import {
   isLocalizedResourceArticleSlug,
@@ -43,13 +43,10 @@ export const dynamic = "force-static";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return [
-    ...localizedResourceGroupIds.map((slug) => ({ locale: "zh", slug })),
-    ...localizedResourceArticleSlugs.map((slug) => ({
-      locale: "zh",
-      slug,
-    })),
-  ];
+  return localizedLocales.flatMap(({ urlSegment: locale }) => [
+    ...localizedResourceGroupIds.map((slug) => ({ locale, slug })),
+    ...localizedResourceArticleSlugs.map((slug) => ({ locale, slug })),
+  ]);
 }
 
 const getPrimaryArticleMedia = (page: ResourcePage) => {
@@ -68,24 +65,38 @@ const resolveRoute = async (
 
   if (
     !localeConfig ||
-    localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN"
+    localeConfig.urlSegment !== locale
   ) {
     notFound();
   }
 
   if (isLocalizedResourceGroupId(slug)) {
-    const group = getChineseResourceNavigationGroup(slug);
+    const sourcePath = `/resources/${slug}` as ReleasedSourcePath;
 
-    if (!group) {
+    if (!isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)) {
       notFound();
     }
+
+    const messages = getLocalizedResourceIndexMessages(
+      localeConfig.urlSegment,
+    );
+    const navigationGroups = getLocalizedResourceNavigationGroups(
+      localeConfig.urlSegment,
+    );
+    const group = getLocalizedResourceNavigationGroup(
+      slug,
+      localeConfig.urlSegment,
+    );
+
+    if (!group) notFound();
 
     return {
       kind: "group" as const,
       localeConfig,
       group,
-      sourcePath: `/resources/${slug}` as ReleasedSourcePath,
+      messages,
+      navigationGroups,
+      sourcePath,
     };
   }
 
@@ -93,11 +104,21 @@ const resolveRoute = async (
     notFound();
   }
 
+  const sourcePath = `/resources/${slug}` as ReleasedSourcePath;
+
+  if (!isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)) {
+    notFound();
+  }
+
   return {
     kind: "article" as const,
     localeConfig,
-    page: getChineseResourcePage(slug),
-    sourcePath: `/resources/${slug}` as ReleasedSourcePath,
+    messages: getLocalizedResourceIndexMessages(localeConfig.urlSegment),
+    navigationGroups: getLocalizedResourceNavigationGroups(
+      localeConfig.urlSegment,
+    ),
+    page: getLocalizedResourcePage(slug, localeConfig.urlSegment),
+    sourcePath,
   };
 };
 
@@ -112,7 +133,7 @@ export async function generateMetadata({
 
   if (route.kind === "group") {
     return createPageMetadata({
-      title: `${route.group.title}${messages.category.context} | Taiyi Polymer`,
+      title: `${route.group.title}${route.messages.category.context} | Taiyi Polymer`,
       description: route.group.description,
       path,
       image: route.group.image,
@@ -153,19 +174,19 @@ export default async function LocalizedResourceDetailPage({
     return (
       <ResourceCategoryPage
         group={route.group}
-        navigationGroups={chineseResourceNavigationGroups}
+        navigationGroups={route.navigationGroups}
         localeSegment={route.localeConfig.urlSegment}
         inLanguage={route.localeConfig.htmlLang}
-        messages={messages}
+        messages={route.messages}
       />
     );
   }
 
-  const { localeConfig, page, sourcePath } = route;
+  const { localeConfig, messages, navigationGroups, page, sourcePath } = route;
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeConfig.urlSegment);
-  const pageGroup = chineseResourceNavigationGroups.find((group) =>
+  const pageGroup = navigationGroups.find((group) =>
     group.links.some((link) => link.href === sourcePath),
   );
   const breadcrumbJsonLd = createBreadcrumbJsonLd([

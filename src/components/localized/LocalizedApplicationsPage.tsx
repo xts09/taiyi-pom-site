@@ -267,38 +267,53 @@ export function LocalizedApplicationsPage({
           </div>
 
           <div className={componentStyles.applicationEntryGrid}>
-            {componentSolutions.map((solution, index) => (
-              <Link
-                key={solution.slug}
-                href={`/components/${solution.slug}`}
-                className={componentStyles.applicationEntryLink}
-              >
-                <span className={componentStyles.applicationEntryIndex}>
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className={componentStyles.applicationEntryTitle}>
-                  {messages.componentSolutions.labels[solution.slug]}
-                  <EnglishDestinationBadge
-                    label={messages.componentSolutions.englishDestinationLabel}
-                  />
-                </span>
-                <span
-                  className={componentStyles.applicationEntryArrow}
-                  aria-hidden="true"
+            {componentSolutions.map((solution, index) => {
+              const sourceHref = `/components/${solution.slug}`;
+              const href = getLocalizedHref(sourceHref, localeSegment);
+              const showEnglishBadge = isEnglishFallbackHref(
+                sourceHref,
+                localeSegment,
+              );
+
+              return (
+                <Link
+                  key={solution.slug}
+                  href={href}
+                  className={componentStyles.applicationEntryLink}
                 >
-                  &rarr;
-                </span>
-              </Link>
-            ))}
+                  <span className={componentStyles.applicationEntryIndex}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className={componentStyles.applicationEntryTitle}>
+                    {messages.componentSolutions.labels[solution.slug]}
+                    {showEnglishBadge ? (
+                      <EnglishDestinationBadge
+                        label={
+                          messages.componentSolutions.englishDestinationLabel
+                        }
+                      />
+                    ) : null}
+                  </span>
+                  <span
+                    className={componentStyles.applicationEntryArrow}
+                    aria-hidden="true"
+                  >
+                    &rarr;
+                  </span>
+                </Link>
+              );
+            })}
           </div>
 
           <div className={componentStyles.applicationEntryFooter}>
             <Button asChild variant="secondary" size="form">
-              <Link href="/components">
+              <Link href={getLocalizedHref("/components", localeSegment)}>
                 {messages.componentSolutions.allAction}{" "}
-                <EnglishDestinationBadge
-                  label={messages.componentSolutions.englishDestinationLabel}
-                />
+                {isEnglishFallbackHref("/components", localeSegment) ? (
+                  <EnglishDestinationBadge
+                    label={messages.componentSolutions.englishDestinationLabel}
+                  />
+                ) : null}
               </Link>
             </Button>
           </div>

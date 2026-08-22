@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { LocalizedApplicationsPage } from "@/components/localized/LocalizedApplicationsPage";
-import { loadChineseApplicationIndexMessages } from "@/i18n/applicationMessages";
+import { loadApplicationIndexMessages } from "@/i18n/applicationMessages";
 import { getLocalizedLocale } from "@/i18n/config";
 import {
   getLanguageAlternates,
@@ -26,7 +26,7 @@ const resolveLocale = async (
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN"
+    !isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)
   ) {
     notFound();
   }
@@ -38,7 +38,9 @@ export async function generateMetadata({
   params,
 }: LocalizedApplicationsPageProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
-  const messages = await loadChineseApplicationIndexMessages();
+  const messages = await loadApplicationIndexMessages(
+    localeConfig.urlSegment,
+  );
 
   return createPageMetadata({
     title: messages.metadata.title,
@@ -57,7 +59,9 @@ export default async function LocalizedApplicationsRoute({
 }: LocalizedApplicationsPageProps) {
   const localeConfig = await resolveLocale(params);
   setRequestLocale(localeConfig.htmlLang);
-  const messages = await loadChineseApplicationIndexMessages();
+  const messages = await loadApplicationIndexMessages(
+    localeConfig.urlSegment,
+  );
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
 
   return (

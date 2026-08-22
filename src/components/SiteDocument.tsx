@@ -57,6 +57,7 @@ export function SiteDocument({
         <AnalyticsConsent
           enabled={Boolean(googleTagId)}
           messages={messages.Analytics}
+          localeSegment={localeSegment}
         />
         <GoogleTag />
       </body>

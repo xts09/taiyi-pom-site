@@ -1,4 +1,6 @@
 import type { LocalizedUrlSegment } from "@/i18n/config";
+import generatedCatalog from "../generated/catalog.json" with { type: "json" };
+import type { CatalogEngineeringTdsRecord } from "../data/catalog/types.ts";
 
 export type LocalizedReleaseStatus = "public" | "preview" | "disabled";
 
@@ -25,8 +27,19 @@ const publicRelease = {
 
 const chineseOnlyPublicRelease = {
   ...publicRelease,
-  localizedSegments: ["zh"],
+  localizedSegments: ["de", "fr", "pt-br", "zh"],
 } as const;
+
+export const chineseEngineeringGradeReleaseEntries: readonly LocalizedReleaseEntry[] =
+  (generatedCatalog as CatalogEngineeringTdsRecord[])
+    .filter(
+      (record): record is CatalogEngineeringTdsRecord =>
+        record.kind === "engineering-tds" && record.seo?.indexable !== false,
+    )
+    .map((document) => ({
+      sourcePath: `/products/${document.slug}`,
+      ...chineseOnlyPublicRelease,
+    }));
 
 export const localizedReleaseManifest = {
   home: {
@@ -36,6 +49,39 @@ export const localizedReleaseManifest = {
   products: {
     sourcePath: "/products",
     ...publicRelease,
+  },
+  privacy: {
+    sourcePath: "/privacy",
+    ...chineseOnlyPublicRelease,
+  },
+  conductiveAntistaticCompounds: {
+    sourcePath: "/products/conductive-antistatic-compounds",
+    ...chineseOnlyPublicRelease,
+  },
+  pomDirectory: {
+    sourcePath: "/products/categories/pom",
+    ...chineseOnlyPublicRelease,
+  },
+  wearResistantLowFrictionPomCategory: {
+    sourcePath:
+      "/products/categories/wear-resistant-low-friction-pom-compound",
+    ...chineseOnlyPublicRelease,
+  },
+  uvResistantPomCategory: {
+    sourcePath: "/products/categories/uv-resistant-pom-compound",
+    ...chineseOnlyPublicRelease,
+  },
+  carbonFiberReinforcedPomCategory: {
+    sourcePath: "/products/categories/carbon-fiber-reinforced-pom-compound",
+    ...chineseOnlyPublicRelease,
+  },
+  conductiveAntistaticPomCategory: {
+    sourcePath: "/products/categories/conductive-antistatic-pom-compound",
+    ...chineseOnlyPublicRelease,
+  },
+  ultraHighFlowPomCategory: {
+    sourcePath: "/products/categories/ultra-high-flow-pom",
+    ...chineseOnlyPublicRelease,
   },
   basePomCategory: {
     sourcePath: "/products/categories/base-pom-resin",
@@ -53,6 +99,30 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/categories/high-impact-pom-compound",
     ...publicRelease,
   },
+  pa6CompoundCategory: {
+    sourcePath: "/products/categories/pa6-compound",
+    ...chineseOnlyPublicRelease,
+  },
+  pa66CompoundCategory: {
+    sourcePath: "/products/categories/pa66-compound",
+    ...chineseOnlyPublicRelease,
+  },
+  ppaCompoundCategory: {
+    sourcePath: "/products/categories/ppa-compound",
+    ...chineseOnlyPublicRelease,
+  },
+  etm090ncGrade: {
+    sourcePath: "/products/etm090nc-base-pom-resin",
+    ...chineseOnlyPublicRelease,
+  },
+  etm130Grade: {
+    sourcePath: "/products/etm130-base-pom-resin",
+    ...chineseOnlyPublicRelease,
+  },
+  etm270Grade: {
+    sourcePath: "/products/etm270-base-pom-resin",
+    ...chineseOnlyPublicRelease,
+  },
   etm450Grade: {
     sourcePath: "/products/etm450-base-pom-resin",
     ...publicRelease,
@@ -60,6 +130,14 @@ export const localizedReleaseManifest = {
   etm750Grade: {
     sourcePath: "/products/etm750-base-pom-resin",
     ...publicRelease,
+  },
+  etm1500Grade: {
+    sourcePath: "/products/etm1500-base-pom-resin",
+    ...chineseOnlyPublicRelease,
+  },
+  etm1800Grade: {
+    sourcePath: "/products/etm1800-base-pom-resin",
+    ...chineseOnlyPublicRelease,
   },
   xt100Grade: {
     sourcePath: "/products/xt-100-base-pom-resin",
@@ -73,13 +151,125 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/egh502h-glass-fiber-pom",
     ...publicRelease,
   },
+  edr100Grade: {
+    sourcePath: "/products/edr100-high-impact-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  ehi100stGrade: {
+    sourcePath: "/products/ehi100st-high-impact-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  ehi202tGrade: {
+    sourcePath: "/products/ehi202t-high-impact-pom",
+    ...chineseOnlyPublicRelease,
+  },
   ehi402tGrade: {
     sourcePath: "/products/ehi402t-high-impact-pom",
     ...publicRelease,
   },
+  ehi602tGrade: {
+    sourcePath: "/products/ehi602t-high-impact-pom",
+    ...chineseOnlyPublicRelease,
+  },
   edr180Grade: {
     sourcePath: "/products/edr180-high-impact-pom",
     ...publicRelease,
+  },
+  etm270hGrade: {
+    sourcePath: "/products/etm270h-wear-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  epaf100aGrade: {
+    sourcePath: "/products/epaf100a-high-wear-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  eptl402Grade: {
+    sourcePath: "/products/eptl402-high-wear-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  enm1040Grade: {
+    sourcePath: "/products/enm1040-high-wear-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  edm111Grade: {
+    sourcePath: "/products/edm-111-high-wear-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  ems162Grade: {
+    sourcePath: "/products/ems162-high-wear-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  etm090uGrade: {
+    sourcePath: "/products/etm090u-uv-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  etm100puGrade: {
+    sourcePath: "/products/etm100pu-uv-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  edr180uGrade: {
+    sourcePath: "/products/edr180u-uv-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  edr2000zdUvGrade: {
+    sourcePath: "/products/edr2000zd-uv-resistant-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh202hGrade: {
+    sourcePath: "/products/egh202h-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh302hGrade: {
+    sourcePath: "/products/egh302h-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh402hGrade: {
+    sourcePath: "/products/egh402h-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh402tGrade: {
+    sourcePath: "/products/egh402t-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh502tGrade: {
+    sourcePath: "/products/egh502t-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh580hGrade: {
+    sourcePath: "/products/egh580h-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh580tGrade: {
+    sourcePath: "/products/egh580t-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh602hGrade: {
+    sourcePath: "/products/egh602h-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh602tGrade: {
+    sourcePath: "/products/egh602t-glass-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  ecf200Grade: {
+    sourcePath: "/products/ecf200-carbon-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  ecf300Grade: {
+    sourcePath: "/products/ecf300-carbon-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  ecf400Grade: {
+    sourcePath: "/products/ecf400-carbon-fiber-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  egh25cnGrade: {
+    sourcePath: "/products/egh25cn-conductive-antistatic-pom",
+    ...chineseOnlyPublicRelease,
+  },
+  ecn1003bGrade: {
+    sourcePath: "/products/ecn1003b-conductive-pom",
+    ...chineseOnlyPublicRelease,
   },
   technicalDataSheets: {
     sourcePath: "/technical-data-sheets",
@@ -248,7 +438,8 @@ export const localizedReleaseManifest = {
 } as const satisfies Record<string, LocalizedReleaseEntry>;
 
 export type ReleasedSourcePath =
-  (typeof localizedReleaseManifest)[keyof typeof localizedReleaseManifest]["sourcePath"];
+  | (typeof localizedReleaseManifest)[keyof typeof localizedReleaseManifest]["sourcePath"]
+  | `/products/${string}`;
 
 const languageDefinitions = [
   {
@@ -294,11 +485,14 @@ const languageDefinitions = [
   nativeLabel: string;
 }>;
 
-const releasedSourcePaths = Object.values(localizedReleaseManifest).map(
+const releaseEntries: readonly LocalizedReleaseEntry[] = [
+  ...Object.values(localizedReleaseManifest),
+  ...chineseEngineeringGradeReleaseEntries,
+];
+
+const releasedSourcePaths = releaseEntries.map(
   ({ sourcePath }) => sourcePath,
 );
-
-const releaseEntries = Object.values(localizedReleaseManifest);
 
 export const isReleasedSourcePath = (
   sourcePath: string,

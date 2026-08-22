@@ -44,6 +44,10 @@ const pomCategoryOverview = {
     "motion-components",
     "electronics",
     "conveyor-automation",
+    "water-control",
+    "textile-machinery",
+    "washing-machine-components",
+    "outdoor-equipment",
   ],
   selectionLinks: [
     {

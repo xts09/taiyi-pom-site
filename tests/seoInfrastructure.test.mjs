@@ -128,7 +128,10 @@ test("keeps the indexable Privacy page in sitemap with its real revision date", 
 
   assert.match(privacyPolicyRelease.lastModified, /^\d{4}-\d{2}-\d{2}$/);
   assert.equal(privacyPolicyRelease.lastModified, "2026-08-08");
-  assert.match(sitemapSource, /createUrlEntry\("\/privacy", 0\.2, "yearly"\)/);
+  assert.match(
+    sitemapSource,
+    /sourcePath:\s*"\/privacy",[\s\S]*?priority:\s*0\.2,[\s\S]*?changeFrequency:\s*"yearly"/,
+  );
   assert.match(
     sitemapSource,
     /lastModified:\s*privacyPolicyRelease\.lastModified/,

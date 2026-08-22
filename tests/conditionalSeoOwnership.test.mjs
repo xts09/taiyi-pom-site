@@ -61,7 +61,11 @@ test("keeps category application routes focused and valid", () => {
     const slugs = getCategoryApplicationSlugs(category.category);
 
     assert.ok(slugs.length >= 2, category.category);
-    assert.ok(slugs.length <= 4, category.category);
+    if (category.category === "POM") {
+      assert.equal(slugs.length, validApplicationSlugs.size, category.category);
+    } else {
+      assert.ok(slugs.length <= 4, category.category);
+    }
     assert.equal(new Set(slugs).size, slugs.length, category.category);
     assert.ok(
       slugs.every((slug) => validApplicationSlugs.has(slug)),

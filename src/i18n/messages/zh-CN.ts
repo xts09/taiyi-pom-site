@@ -72,7 +72,7 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · PLATFORM® 工程材料",
     logoAlt: "PLATFORM 注册商标",
-    pitchTitle: "从零部件需求出发，做材料决策。",
+    pitchTitle: "从零部件需求出发，做材料决策",
     pitchCopy:
       "请告诉我们零部件、使用条件和目标性能。我们将协助缩小候选牌号范围，并确认可用于评估的样品和技术资料。",
     discussApplication: "讨论您的应用",

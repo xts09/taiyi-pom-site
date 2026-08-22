@@ -6,8 +6,9 @@ import { ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { availableDocuments, certifications } from "@/data/company";
 import type { LocalizedUrlSegment } from "@/i18n/config";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 import {
-  chineseAboutMessages as messages,
+  chineseAboutMessages,
   chineseCompanyFigures,
   chineseCompanyQualifications,
   chineseExportRoutes,
@@ -19,10 +20,6 @@ import { publicPath } from "@/lib/paths";
 type LocalizedAboutPageProps = {
   localeSegment: LocalizedUrlSegment;
 };
-
-function imageFor(placement: "hero" | "story" | "gallery" | "testing") {
-  return chineseFactoryImages.find((image) => image.placement === placement);
-}
 
 function SectionHeading({
   eyebrow,
@@ -47,7 +44,27 @@ function SectionHeading({
 export function LocalizedAboutPage({
   localeSegment,
 }: LocalizedAboutPageProps) {
-  const heroImage = imageFor("hero") ?? chineseFactoryImages[0];
+  const localizedContent = translateExpandedContent(
+    {
+      messages: chineseAboutMessages,
+      companyFigures: chineseCompanyFigures,
+      companyQualifications: chineseCompanyQualifications,
+      exportRoutes: chineseExportRoutes,
+      factoryImages: chineseFactoryImages,
+    },
+    localeSegment,
+  );
+  const {
+    messages,
+    companyFigures,
+    companyQualifications,
+    exportRoutes,
+    factoryImages,
+  } = localizedContent;
+  const imageFor = (
+    placement: "hero" | "story" | "gallery" | "testing",
+  ) => factoryImages.find((image) => image.placement === placement);
+  const heroImage = imageFor("hero") ?? factoryImages[0];
   const storyImage = imageFor("story") ?? heroImage;
   const manufacturingImage = imageFor("gallery") ?? storyImage;
   const laboratoryImage = imageFor("testing") ?? manufacturingImage;
@@ -197,7 +214,7 @@ export function LocalizedAboutPage({
             variant="rail"
             tone="light"
             className={styles.metricRail}
-            items={chineseCompanyFigures}
+            items={companyFigures}
             renderValue={(figure) => (
               <ValueText value={String(figure.value)} />
             )}
@@ -290,7 +307,7 @@ export function LocalizedAboutPage({
             </div>
           </div>
           <div className={styles.credentialGrid}>
-            {chineseCompanyQualifications.map((qualification, index) => (
+            {companyQualifications.map((qualification, index) => (
               <article key={qualification.title}>
                 <span>0{index + 1}</span>
                 <p>{qualification.category}</p>
@@ -329,7 +346,7 @@ export function LocalizedAboutPage({
             description={messages.global.description}
           />
           <dl className={styles.routeList}>
-            {chineseExportRoutes.map((route, index) => (
+            {exportRoutes.map((route, index) => (
               <div key={route.id}>
                 <dt>
                   <span>0{index + 1}</span>

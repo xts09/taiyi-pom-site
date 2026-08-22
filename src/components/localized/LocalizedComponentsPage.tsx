@@ -9,9 +9,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import {
-  chineseComponentIndexMessages as messages,
-  chineseComponentSolutions,
-  getChineseComponentDetail,
+  getLocalizedComponentDetail,
+  getLocalizedComponentIndexMessages,
+  getLocalizedComponentSolutions,
   isLocalizedComponentSlug,
 } from "@/i18n/componentMessages";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
@@ -59,6 +59,8 @@ type LocalizedComponentsPageProps = {
 export function LocalizedComponentsPage({
   localeSegment,
 }: LocalizedComponentsPageProps) {
+  const messages = getLocalizedComponentIndexMessages(localeSegment);
+  const componentSolutions = getLocalizedComponentSolutions(localeSegment);
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeSegment);
 
@@ -120,12 +122,15 @@ export function LocalizedComponentsPage({
             />
 
             <div className={styles.directory}>
-              {chineseComponentSolutions.map((solution, index) => {
+              {componentSolutions.map((solution, index) => {
                 if (!isLocalizedComponentSlug(solution.slug)) {
                   return null;
                 }
 
-                const detail = getChineseComponentDetail(solution.slug);
+                const detail = getLocalizedComponentDetail(
+                  solution.slug,
+                  localeSegment,
+                );
                 const directoryImage = componentDirectoryImages[solution.slug];
                 const imagePosition =
                   directoryImage?.position ??

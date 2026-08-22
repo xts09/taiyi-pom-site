@@ -7,10 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import type { Product } from "@/data/products";
 import type { LocalizedUrlSegment } from "@/i18n/config";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
+import { chinesePomGradeProfiles } from "@/i18n/pomGradeMessages";
 import {
   getLocalizedGradeCategoryLabel,
   getLocalizedGradeMessages,
-  isLocalizedProductGradeSlug,
+  isChineseOnlyProductGradeSlug,
+  isLocalizedProductGradeRouteSlug,
+  mergeLocalizedGradeProfile,
   type ProductFunnelMessages,
 } from "@/i18n/productFunnelTypes";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
@@ -95,18 +99,31 @@ export function LocalizedTechnicalDataPage({
 
             <div className="space-y-5">
               {products.map((product) => {
-                if (!isLocalizedProductGradeSlug(product.slug)) {
+                if (!isLocalizedProductGradeRouteSlug(product.slug)) {
                   return null;
                 }
 
-                const gradeCopy = getLocalizedGradeMessages(
-                  messages,
-                  product.slug,
-                );
-                const categoryLabel = getLocalizedGradeCategoryLabel(
-                  messages,
-                  product.slug,
-                );
+                let gradeCopy;
+                let categoryLabel;
+
+                if (isChineseOnlyProductGradeSlug(product.slug)) {
+                  const expandedProfile = translateExpandedContent(
+                    chinesePomGradeProfiles[product.slug],
+                    localeSegment,
+                  );
+                  gradeCopy = mergeLocalizedGradeProfile(
+                    messages,
+                    expandedProfile,
+                  );
+                  categoryLabel =
+                    expandedProfile.categoryLabel ?? messages.common.category;
+                } else {
+                  gradeCopy = getLocalizedGradeMessages(messages, product.slug);
+                  categoryLabel = getLocalizedGradeCategoryLabel(
+                    messages,
+                    product.slug,
+                  );
+                }
                 const gradePath = localizedPath(`/products/${product.slug}`);
                 const gradeRequestHref = localizedPath(
                   createContactHref({

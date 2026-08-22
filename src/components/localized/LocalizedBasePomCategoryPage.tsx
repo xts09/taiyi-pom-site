@@ -10,10 +10,7 @@ import { availableDocuments } from "@/data/company";
 import { products, type Product } from "@/data/products";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import {
-  getLocalizedCategoryLabel,
-  getLocalizedCategoryMessages,
-  getLocalizedCategorySourcePath,
-  type LocalizedProductCategorySlug,
+  type LocalizedProductCategoryRouteSlug,
   type ProductFunnelMessages,
 } from "@/i18n/productFunnelTypes";
 import {
@@ -35,7 +32,10 @@ const readProperty = (product: Product, label: string) =>
   product.properties.find((property) => property.label === label);
 
 type LocalizedProductCategoryPageProps = {
-  categorySlug: LocalizedProductCategorySlug;
+  categorySlug: LocalizedProductCategoryRouteSlug;
+  categoryLabel: string;
+  copy: ProductFunnelMessages["category"];
+  sourcePath: string;
   messages: ProductFunnelMessages;
   localeSegment: LocalizedUrlSegment;
   inLanguage: string;
@@ -43,6 +43,9 @@ type LocalizedProductCategoryPageProps = {
 
 export function LocalizedProductCategoryContent({
   categorySlug,
+  categoryLabel,
+  copy,
+  sourcePath,
   messages,
   localeSegment,
   inLanguage,
@@ -53,9 +56,6 @@ export function LocalizedProductCategoryContent({
     throw new Error(`Missing localized product category: ${categorySlug}`);
   }
 
-  const copy = getLocalizedCategoryMessages(messages, categorySlug);
-  const categoryLabel = getLocalizedCategoryLabel(messages, categorySlug);
-  const sourcePath = getLocalizedCategorySourcePath(categorySlug);
   const categoryProducts = getProductsByCategory(products, entry.category);
   const localizedPath = (path: string) => getLocalizedHref(path, localeSegment);
   const categoryPath = localizedPath(sourcePath);
@@ -67,7 +67,7 @@ export function LocalizedProductCategoryContent({
   );
   const technicalDataHref = localizedPath("/technical-data-sheets");
   const releasedProducts = categoryProducts.filter((product) =>
-    isLocalizedReleaseIndexable(`/products/${product.slug}`),
+    isLocalizedReleaseIndexable(`/products/${product.slug}`, localeSegment),
   );
   const jsonLd = [
     createBreadcrumbJsonLd([
@@ -196,7 +196,10 @@ export function LocalizedProductCategoryContent({
                 const tensile = readProperty(product, "Tensile Strength");
                 const hdt = readProperty(product, "Heat Deflection Temperature");
                 const productPath = `/products/${product.slug}`;
-                const hasLocalizedDetail = isLocalizedReleaseIndexable(productPath);
+                const hasLocalizedDetail = isLocalizedReleaseIndexable(
+                  productPath,
+                  localeSegment,
+                );
                 const href = hasLocalizedDetail
                   ? localizedPath(productPath)
                   : localizedPath(
@@ -263,7 +266,11 @@ export function LocalizedProductCategoryContent({
                       </div>
                       <div>
                         <dt>{copy.directory.color}</dt>
-                        <dd>{copy.directory.natural}</dd>
+                        <dd>
+                          {product.color === "Black"
+                            ? copy.directory.black ?? product.color
+                            : copy.directory.natural}
+                        </dd>
                       </div>
                     </dl>
 

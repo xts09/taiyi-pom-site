@@ -8,6 +8,7 @@ import { HomeMotion } from "@/components/HomeMotion";
 import { HomeStageHeader } from "@/components/HomeStageHeader";
 import { MaterialRangeAccordion } from "@/components/MaterialRangeAccordion";
 import { QualitySystemsSection } from "@/components/QualitySystemsSection";
+import { TaskFirstHomeNarrative } from "@/components/TaskFirstHomeNarrative";
 import { Button } from "@/components/ui/button";
 import {
   availableDocuments,
@@ -74,8 +75,8 @@ export function HomePage({
   inLanguage,
   localeSegment,
 }: HomePageProps) {
-  const localizedHref = (href: string) =>
-    getLocalizedHref(href, localeSegment);
+  const localizedHref = (href: string) => getLocalizedHref(href, localeSegment);
+  const taskFirstMessages = messages.taskFirst;
   const localizedFigures = companyFigures.map((figure, index) => ({
     ...figure,
     ...messages.metrics[index],
@@ -84,7 +85,7 @@ export function HomePage({
   const supportingFigures = localizedFigures.slice(1);
   const materialDirections = messages.materials.items.map((item, index) => ({
     ...item,
-    href: materialPaths[index],
+    href: localizedHref(materialPaths[index]),
     specs: item.specs.map(([label, value]) => [label, value]),
   }));
   const localizedQualifications = companyQualifications.map(
@@ -104,7 +105,9 @@ export function HomePage({
 
   return (
     <HomeMotion>
-      <main className="home-cinema home-redesign min-h-screen overflow-hidden text-white">
+      <main
+        className={`home-cinema home-redesign min-h-screen overflow-hidden text-white${taskFirstMessages ? " home-task-first" : ""}`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -161,10 +164,16 @@ export function HomePage({
                     size="lg"
                     className="cta-primary hero-cta-primary h-auto"
                   >
-                    <Link href="#materials">{messages.hero.exploreAction}</Link>
+                    <Link
+                      href={taskFirstMessages ? "#entry-points" : "#materials"}
+                    >
+                      {messages.hero.exploreAction}
+                    </Link>
                   </Button>
                   <Link
-                    href={localizedHref("/contact")}
+                    href={localizedHref(
+                      taskFirstMessages ? "/technical-data-sheets" : "/contact",
+                    )}
                     className="hero-cta-secondary inline-flex min-h-11 items-center gap-2"
                   >
                     {messages.hero.contactAction}
@@ -176,136 +185,154 @@ export function HomePage({
           </div>
         </section>
 
-        <CompanyMetrics
-          annualCapacity={annualCapacity}
-          supportingFigures={supportingFigures}
-        />
+        {taskFirstMessages ? (
+          <TaskFirstHomeNarrative
+            certifications={localizedCertifications}
+            messages={taskFirstMessages}
+            localizedHref={localizedHref}
+          />
+        ) : (
+          <>
+            <CompanyMetrics
+              annualCapacity={annualCapacity}
+              supportingFigures={supportingFigures}
+            />
 
-        <section className="home-stage product-current">
-          <span id="materials" className="home-section-anchor" aria-hidden="true" />
-          <div className="site-container">
-            <HomeStageHeader
-              title={messages.materials.title}
-              className="product-current-head"
-            >
-              <p>{messages.materials.body}</p>
-              <div className="document-support">
-                <span className="document-support-label">
-                  {messages.materials.documentSupport}
-                </span>
-                <Button
-                  asChild
-                  variant="link"
-                  size="sm"
-                  className="document-support-link h-auto"
-                >
-                  <Link href="/technical-data-sheets">
-                    {messages.materials.dataSheetsAction}
-                    <ArrowRight aria-hidden="true" size={14} />
-                  </Link>
-                </Button>
-              </div>
-            </HomeStageHeader>
-
-            <div className="product-catalogue">
-              <article className="product-core">
-                <p>{messages.materials.coreLabel}</p>
-                <h3>{materialDirections[0].title}</h3>
-                <p>{materialDirections[0].description}</p>
-                <ul aria-label={messages.materials.coreDirectionsAria}>
-                  {messages.materials.coreDirections.map((direction) => (
-                    <li key={direction}>{direction}</li>
-                  ))}
-                </ul>
-                <div>
-                  <Button
-                    asChild
-                    className="catalogue-primary-link h-auto rounded-sm"
-                  >
-                    <Link href={materialDirections[0].href}>
-                      {materialDirections[0].action} &rarr;
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="link"
-                    className="catalogue-secondary-link h-auto"
-                  >
-                    <Link href={localizedHref("/products")}>
-                      {messages.materials.allFamiliesAction}
-                    </Link>
-                  </Button>
-                </div>
-              </article>
-
-              <MaterialRangeAccordion
-                directions={materialDirections.slice(1)}
-                ariaLabel={messages.materials.additionalFamiliesAria}
+            <section className="home-stage product-current">
+              <span
+                id="materials"
+                className="home-section-anchor"
+                aria-hidden="true"
               />
-            </div>
-          </div>
-        </section>
-
-        <div className="qualification-evidence-continuum">
-          <section
-            id="grade-review"
-            className="home-stage qualification-sequence overflow-clip text-white"
-          >
-            <div className="site-container">
-              <div className="qualification-layout">
-                <div className="qualification-feature-panel flex min-w-0 flex-col">
-                  <header className="qualification-heading">
-                    <div className="stage-heading-main">
-                      <h2>{messages.qualification.title}</h2>
-                    </div>
-                    <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
-                      <p className="qualification-intro">
-                        {messages.qualification.intro}
-                      </p>
-                      <Link
-                        href="/applications"
-                        className="qualification-link inline-flex min-h-11 items-center justify-self-start"
-                      >
-                        {messages.qualification.applicationAction} &rarr;
+              <div className="site-container">
+                <HomeStageHeader
+                  title={messages.materials.title}
+                  className="product-current-head"
+                >
+                  <p>{messages.materials.body}</p>
+                  <div className="document-support">
+                    <span className="document-support-label">
+                      {messages.materials.documentSupport}
+                    </span>
+                    <Button
+                      asChild
+                      variant="link"
+                      size="sm"
+                      className="document-support-link h-auto"
+                    >
+                      <Link href={localizedHref("/technical-data-sheets")}>
+                        {messages.materials.dataSheetsAction}
+                        <ArrowRight aria-hidden="true" size={14} />
                       </Link>
-                    </div>
-                  </header>
+                    </Button>
+                  </div>
+                </HomeStageHeader>
 
-                  <div className="qualification-path flex min-w-0 flex-1 flex-col">
-                    <figure className="qualification-visual">
-                      <Image
-                        fill
-                        src={publicPath("/generated/pom-black-pellets-lab-hero.webp")}
-                        alt={messages.qualification.figureAlt}
-                        sizes="(min-width: 1280px) 38vw, (min-width: 768px) 80vw, 100vw"
-                      />
-                      <figcaption>
-                        <span>{messages.qualification.figureLabel}</span>
-                        <strong>{messages.qualification.figureCaption}</strong>
-                      </figcaption>
-                    </figure>
-                    <QualificationSteps
-                      steps={messages.qualification.steps}
-                      ariaLabel={messages.qualification.stepsAria}
-                    />
+                <div className="product-catalogue">
+                  <article className="product-core">
+                    <p>{messages.materials.coreLabel}</p>
+                    <h3>{materialDirections[0].title}</h3>
+                    <p>{materialDirections[0].description}</p>
+                    <ul aria-label={messages.materials.coreDirectionsAria}>
+                      {messages.materials.coreDirections.map((direction) => (
+                        <li key={direction}>{direction}</li>
+                      ))}
+                    </ul>
+                    <div>
+                      <Button
+                        asChild
+                        className="catalogue-primary-link h-auto rounded-sm"
+                      >
+                        <Link href={materialDirections[0].href}>
+                          {materialDirections[0].action} &rarr;
+                        </Link>
+                      </Button>
+                      <Button
+                        asChild
+                        variant="link"
+                        className="catalogue-secondary-link h-auto"
+                      >
+                        <Link href={localizedHref("/products")}>
+                          {messages.materials.allFamiliesAction}
+                        </Link>
+                      </Button>
+                    </div>
+                  </article>
+
+                  <MaterialRangeAccordion
+                    directions={materialDirections.slice(1)}
+                    ariaLabel={messages.materials.additionalFamiliesAria}
+                  />
+                </div>
+              </div>
+            </section>
+
+            <div className="qualification-evidence-continuum">
+              <section
+                id="grade-review"
+                className="home-stage qualification-sequence overflow-clip text-white"
+              >
+                <div className="site-container">
+                  <div className="qualification-layout">
+                    <div className="qualification-feature-panel flex min-w-0 flex-col">
+                      <header className="qualification-heading">
+                        <div className="stage-heading-main">
+                          <h2>{messages.qualification.title}</h2>
+                        </div>
+                        <div className="qualification-heading-copy grid max-w-[44rem] gap-4">
+                          <p className="qualification-intro">
+                            {messages.qualification.intro}
+                          </p>
+                          <Link
+                            href={localizedHref("/applications")}
+                            className="qualification-link inline-flex min-h-11 items-center justify-self-start"
+                          >
+                            {messages.qualification.applicationAction} &rarr;
+                          </Link>
+                        </div>
+                      </header>
+
+                      <div className="qualification-path flex min-w-0 flex-1 flex-col">
+                        <figure className="qualification-visual">
+                          <Image
+                            fill
+                            src={publicPath(
+                              "/generated/pom-black-pellets-lab-hero.webp",
+                            )}
+                            alt={messages.qualification.figureAlt}
+                            sizes="(min-width: 1280px) 38vw, (min-width: 768px) 80vw, 100vw"
+                          />
+                          <figcaption>
+                            <span>{messages.qualification.figureLabel}</span>
+                            <strong>
+                              {messages.qualification.figureCaption}
+                            </strong>
+                          </figcaption>
+                        </figure>
+                        <QualificationSteps
+                          steps={messages.qualification.steps}
+                          ariaLabel={messages.qualification.stepsAria}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </section>
+
+              <QualitySystemsSection
+                availableDocuments={availableDocuments}
+                certifications={localizedCertifications}
+                qualifications={localizedQualifications}
+                messages={messages.quality}
+              />
             </div>
-          </section>
 
-          <QualitySystemsSection
-            availableDocuments={availableDocuments}
-            certifications={localizedCertifications}
-            qualifications={localizedQualifications}
-            messages={messages.quality}
-          />
-        </div>
-
-        <ExportRoutesSection
-          routes={localizedExportRoutes}
-          messages={messages.exportNetwork}
-        />
+            <ExportRoutesSection
+              routes={localizedExportRoutes}
+              messages={messages.exportNetwork}
+            />
+          </>
+        )}
 
         <HomeInquirySection
           messages={messages.inquiry}

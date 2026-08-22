@@ -38,24 +38,24 @@ export const chineseComponentIndexMessages = {
     checkFirstLabel: "优先检查",
     materialResponseLabel: "材料应对方向",
     materialsEyebrow: "候选材料",
-    materialsTitle: "比较材料应对方向，而不只是树脂名称。",
+    materialsTitle: "比较材料应对方向，而不只是树脂名称",
     cautionLabel: "项目注意事项",
     pomBoundaryLabel: "POM 可能不适用的情况",
     materialGuideAction: "打开材料选型指南",
     inquiryEyebrow: "最少项目信息",
-    inquiryTitle: "先提供已知信息，并标注尚未确认的内容。",
+    inquiryTitle: "先提供已知信息，并标注尚未确认的内容",
     inquiryDescription:
       "图纸加上现有使用条件即可开始。请将未知项标记为尚未确认，并在首次反馈后补充。",
     processEyebrow: "联系之后",
-    processTitle: "明确首次反馈应形成什么结果。",
+    processTitle: "明确首次反馈应形成什么结果",
     expectedOutputLabel: "预期输出",
     gradeDataAction: "查找牌号数据与 TDS",
     technicalEyebrow: "技术深度",
-    technicalTitle: "项目需要时再展开详细内容。",
+    technicalTitle: "项目需要时再展开详细内容",
     technicalDescription:
       "可按需展开使用判据、模具要求、注塑件测试及完整项目清单。",
     relatedEyebrow: "相关指南",
-    relatedTitle: "打开下一项技术参考。",
+    relatedTitle: "打开下一项技术参考",
     finalAction: "讨论您的应用",
     contactSource: "零部件方案",
   },
@@ -183,7 +183,7 @@ export const chinesePrecisionPlasticGearsDetail = {
   },
   copy: {
     reviewInputsLabel: "齿轮材料比较所需输入",
-    problemTitle: "先从齿轮问题开始。",
+    problemTitle: "先从齿轮问题开始",
     problemSummary:
       "同一现象可能来自材料、几何、模具、装配或使用条件。比较材料之前，应先从实际观察到的问题出发。",
     materialSummary:
@@ -295,7 +295,7 @@ export const chinesePrecisionPlasticGearsDetail = {
     {
       value: "material-review",
       title: "材料选型判据",
-      summary: "定义可信齿轮材料比较的六类使用条件。",
+      summary: "定义可信齿轮材料比较的六类使用条件",
       groups: [
         {
           title: "载荷与疲劳",
@@ -330,7 +330,7 @@ export const chinesePrecisionPlasticGearsDetail = {
     {
       value: "tooling-molding",
       title: "模具与注塑",
-      summary: "可能主导注塑齿轮精度的几何与工艺检查。",
+      summary: "可能主导注塑齿轮精度的几何与工艺检查",
       groups: [
         {
           title: "注塑结构",
@@ -352,7 +352,7 @@ export const chinesePrecisionPlasticGearsDetail = {
     {
       value: "validation",
       title: "注塑齿轮验证",
-      summary: "完成数据表初筛后所需的零部件与总成检查。",
+      summary: "完成数据表初筛后所需的零部件与总成检查",
       groups: [
         {
           title: "注塑件检查",
@@ -373,7 +373,7 @@ export const chinesePrecisionPlasticGearsDetail = {
     {
       value: "project-checklist",
       title: "完整项目清单",
-      summary: "用于材料比较与零部件验证的完整项目输入。",
+      summary: "用于材料比较与零部件验证的完整项目输入",
       groups: [
         {
           title: "零部件与机构",
@@ -413,7 +413,7 @@ export const chinesePrecisionPlasticGearsDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "申请样品前先建立齿轮候选清单。",
+    title: "申请样品前先建立齿轮候选清单",
     body:
       "请提供齿轮图纸，以及现有载荷、转速、配对件、润滑、精度、环境、目标寿命和失效信息。Taiyi Polymer 可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出注塑齿轮评估计划。",
   },

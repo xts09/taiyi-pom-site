@@ -293,7 +293,7 @@ export function Footer({
               &copy; 2026 Jiangsu Taiyi Nano Technology Co., Ltd.{" "}
               {messages.rightsReserved}
             </p>
-            <Link href="/privacy">{messages.privacyPolicy}</Link>
+            <Link href={localizedHref("/privacy")}>{messages.privacyPolicy}</Link>
             <AnalyticsSettingsButton messages={analyticsMessages} />
           </div>
         </div>

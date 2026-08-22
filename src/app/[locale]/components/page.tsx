@@ -3,10 +3,11 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { LocalizedComponentsPage } from "@/components/localized/LocalizedComponentsPage";
 import {
-  chineseComponentIndexMessages as messages,
-  chineseComponentSolutions,
+  getLocalizedComponentIndexMessages,
+  getLocalizedComponentSolutions,
 } from "@/i18n/componentMessages";
 import { getLocalizedLocale } from "@/i18n/config";
+import { translateExpandedText } from "@/i18n/expandedLocaleContent";
 import {
   getLanguageAlternates,
   getLocalizedHref,
@@ -34,7 +35,7 @@ const resolveLocale = async (
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN"
+    !isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)
   ) {
     notFound();
   }
@@ -46,6 +47,9 @@ export async function generateMetadata({
   params,
 }: LocalizedComponentsRouteProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
+  const messages = getLocalizedComponentIndexMessages(
+    localeConfig.urlSegment,
+  );
 
   return createPageMetadata({
     title: messages.metadata.title,
@@ -66,22 +70,31 @@ export default async function LocalizedComponentsRoute({
   params,
 }: LocalizedComponentsRouteProps) {
   const localeConfig = await resolveLocale(params);
+  const messages = getLocalizedComponentIndexMessages(
+    localeConfig.urlSegment,
+  );
+  const componentSolutions = getLocalizedComponentSolutions(
+    localeConfig.urlSegment,
+  );
   setRequestLocale(localeConfig.htmlLang);
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
   const pageJsonLd = [
     createBreadcrumbJsonLd([
-      { name: "首页", path: getLocalizedHref("/", localeConfig.urlSegment) },
       {
-        name: "应用领域",
+        name: translateExpandedText("首页", localeConfig.urlSegment),
+        path: getLocalizedHref("/", localeConfig.urlSegment),
+      },
+      {
+        name: messages.detailUi.breadcrumbs.applications,
         path: getLocalizedHref("/applications", localeConfig.urlSegment),
       },
-      { name: "零部件方案", path: pagePath },
+      { name: messages.detailUi.breadcrumbs.components, path: pagePath },
     ]),
     createCollectionPageJsonLd({
       title: messages.metadata.title,
       description: messages.metadata.description,
       path: pagePath,
-      items: chineseComponentSolutions.map((solution) => ({
+      items: componentSolutions.map((solution) => ({
         name: solution.title,
         path: getLocalizedHref(
           `/components/${solution.slug}`,

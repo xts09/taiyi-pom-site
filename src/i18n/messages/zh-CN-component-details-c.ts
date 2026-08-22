@@ -29,7 +29,7 @@ export const chineseTextileGuideComponentsDetail = {
   },
   copy: {
     reviewInputsLabel: "纺织导向件材料比较所需输入",
-    problemTitle: "先从纱线路径的问题开始。",
+    problemTitle: "先从纱线路径的问题开始",
     problemSummary:
       "张力、断纱、磨损或静电现象可能来自纱线结构、接触几何、导向件对中、表面缺陷、沉积、环境或材料表现。应先检查实际纱线路径。",
     materialSummary:
@@ -166,7 +166,7 @@ export const chineseTextileGuideComponentsDetail = {
     {
       value: "textile-review",
       title: "纱线接触判据",
-      summary: "主导导向件表现的纱线、运动、几何、表面和环境输入。",
+      summary: "主导导向件表现的纱线、运动、几何、表面和环境输入",
       groups: [
         {
           title: "纱线与运行曲线",
@@ -187,7 +187,7 @@ export const chineseTextileGuideComponentsDetail = {
     {
       value: "textile-tooling",
       title: "导向件设计、模具与注塑",
-      summary: "保护纱线接触面、半径、槽、对中及模穴一致性的控制。",
+      summary: "保护纱线接触面、半径、槽、对中及模穴一致性的控制",
       groups: [
         {
           title: "接触面控制",
@@ -208,7 +208,7 @@ export const chineseTextileGuideComponentsDetail = {
     {
       value: "textile-validation",
       title: "使用量产纱线验证",
-      summary: "把注塑表面连接到稳定纱线质量和设备运行的检查。",
+      summary: "把注塑表面连接到稳定纱线质量和设备运行的检查",
       groups: [
         {
           title: "受控比较",
@@ -229,7 +229,7 @@ export const chineseTextileGuideComponentsDetail = {
     {
       value: "textile-checklist",
       title: "完整项目清单",
-      summary: "用于材料比较与纺织设备验证的完整项目输入。",
+      summary: "用于材料比较与纺织设备验证的完整项目输入",
       groups: [
         {
           title: "导向件、纱线与设备",
@@ -267,7 +267,7 @@ export const chineseTextileGuideComponentsDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "让导向材料匹配纱线与设备。",
+    title: "让导向材料匹配纱线与设备",
     body:
       "请提供导向件图纸，以及现有纱线、速度、张力、接触几何、表面、环境、静电、目标寿命和失效信息。Taiyi Polymer 可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出量产纱线评估计划。",
   },
@@ -302,7 +302,7 @@ export const chineseIcHandlingTraysDetail = {
   },
   copy: {
     reviewInputsLabel: "IC 托盘材料比较所需输入",
-    problemTitle: "先从周转工艺的问题开始。",
+    problemTitle: "先从周转工艺的问题开始",
     problemSummary:
       "拾取故障、器件移动、ESD 失效、颗粒或翘曲可能来自托盘几何、注塑、调节、自动化、搬运或材料表现。应先诊断完整工艺。",
     materialSummary:
@@ -439,7 +439,7 @@ export const chineseIcHandlingTraysDetail = {
     {
       value: "tray-review",
       title: "IC 托盘认证判据",
-      summary: "主导托盘适用性的电气、热、尺寸、洁净度和搬运输入。",
+      summary: "主导托盘适用性的电气、热、尺寸、洁净度和搬运输入",
       groups: [
         {
           title: "ESD 与工艺条件",
@@ -460,7 +460,7 @@ export const chineseIcHandlingTraysDetail = {
     {
       value: "tray-tooling",
       title: "托盘设计、模具与注塑",
-      summary: "保护平面度、槽位位置、ESD 表现、洁净度和堆叠的控制。",
+      summary: "保护平面度、槽位位置、ESD 表现、洁净度和堆叠的控制",
       groups: [
         {
           title: "托盘结构",
@@ -481,7 +481,7 @@ export const chineseIcHandlingTraysDetail = {
     {
       value: "tray-validation",
       title: "注塑托盘验证",
-      summary: "把材料数据连接到器件保护和自动周转的检查。",
+      summary: "把材料数据连接到器件保护和自动周转的检查",
       groups: [
         {
           title: "注塑托盘检查",
@@ -502,7 +502,7 @@ export const chineseIcHandlingTraysDetail = {
     {
       value: "tray-checklist",
       title: "完整项目清单",
-      summary: "用于材料比较与 IC 托盘认证的完整项目输入。",
+      summary: "用于材料比较与 IC 托盘认证的完整项目输入",
       groups: [
         {
           title: "器件、托盘与工艺",
@@ -540,7 +540,7 @@ export const chineseIcHandlingTraysDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "选择托盘材料之前先定义周转工艺。",
+    title: "选择托盘材料之前先定义周转工艺",
     body:
       "请提供封装图纸，以及现有托盘标准、ESD 要求、工艺温度、槽位几何、平面度、自动化、洁净度、复用和失效信息。Taiyi Polymer 可判断 PLATFORM POM 或其他聚合物是否值得试模，确认可用牌号数据或资料路径，并提出托盘认证计划。",
   },

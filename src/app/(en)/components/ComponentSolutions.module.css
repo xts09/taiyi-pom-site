@@ -81,9 +81,19 @@
   overflow: hidden;
   border-right: var(--ds-rule-thin) solid var(--ds-panel-border);
   background:
-    var(--ds-media-bg)
-    url("/applications/parts/generated/components-directory-industrial-stage-v1.webp")
-    center / cover no-repeat;
+    radial-gradient(
+      ellipse at 50% 42%,
+      rgba(255, 255, 255, 0.72) 0%,
+      rgba(255, 255, 255, 0.18) 52%,
+      transparent 76%
+    ),
+    linear-gradient(
+      180deg,
+      var(--ds-color-paper-50) 0%,
+      var(--ds-color-paper-100) 62%,
+      var(--ds-color-paper-200) 100%
+    );
+  box-shadow: inset 0 -1.75rem 2.5rem -2.5rem rgba(7, 17, 31, 0.28);
 }
 
 .cardMedia img {
@@ -441,6 +451,8 @@
   position: relative;
   z-index: 2;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
   width: min(54rem, 64%);
   align-content: center;
   gap: var(--ds-application-hero-eyebrow-gap);
@@ -1184,6 +1196,8 @@
 
   .gearHero h1 {
     max-width: none;
+    overflow-wrap: anywhere;
+    hyphens: auto;
   }
 
   .gearHeroActions,

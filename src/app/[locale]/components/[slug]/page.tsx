@@ -3,13 +3,14 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { DetailedComponentSolution } from "@/app/(en)/components/[slug]/DetailedComponentSolution";
 import {
-  chineseComponentIndexMessages,
-  getChineseComponentDetail,
-  getChineseComponentSolution,
+  getLocalizedComponentDetail,
+  getLocalizedComponentIndexMessages,
+  getLocalizedComponentSolution,
   isLocalizedComponentSlug,
   localizedComponentSlugs,
 } from "@/i18n/componentMessages";
 import { getLocalizedLocale } from "@/i18n/config";
+import { translateExpandedText } from "@/i18n/expandedLocaleContent";
 import {
   getLanguageAlternates,
   getLocalizedHref,
@@ -29,14 +30,8 @@ type LocalizedComponentDetailRouteProps = {
 
 export const dynamicParams = false;
 
-export function generateStaticParams({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  return params.locale === "zh"
-    ? localizedComponentSlugs.map((slug) => ({ slug }))
-    : [];
+export function generateStaticParams() {
+  return localizedComponentSlugs.map((slug) => ({ slug }));
 }
 
 const resolveRoute = async (
@@ -48,17 +43,23 @@ const resolveRoute = async (
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN" ||
     !isLocalizedComponentSlug(slug)
   ) {
     notFound();
   }
 
+  const sourcePath = `/components/${slug}` as ReleasedSourcePath;
+
+  if (!isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)) {
+    notFound();
+  }
+
   return {
     localeConfig,
-    detail: getChineseComponentDetail(slug),
-    solution: getChineseComponentSolution(slug),
-    sourcePath: `/components/${slug}` as ReleasedSourcePath,
+    detail: getLocalizedComponentDetail(slug, localeConfig.urlSegment),
+    messages: getLocalizedComponentIndexMessages(localeConfig.urlSegment),
+    solution: getLocalizedComponentSolution(slug, localeConfig.urlSegment),
+    sourcePath,
   };
 };
 
@@ -85,19 +86,22 @@ export async function generateMetadata({
 export default async function LocalizedComponentDetailRoute({
   params,
 }: LocalizedComponentDetailRouteProps) {
-  const { localeConfig, detail, solution, sourcePath } =
+  const { localeConfig, detail, messages, solution, sourcePath } =
     await resolveRoute(params);
   setRequestLocale(localeConfig.htmlLang);
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
   const detailJsonLd = [
     createBreadcrumbJsonLd([
-      { name: "首页", path: getLocalizedHref("/", localeConfig.urlSegment) },
       {
-        name: chineseComponentIndexMessages.detailUi.breadcrumbs.applications,
+        name: translateExpandedText("首页", localeConfig.urlSegment),
+        path: getLocalizedHref("/", localeConfig.urlSegment),
+      },
+      {
+        name: messages.detailUi.breadcrumbs.applications,
         path: getLocalizedHref("/applications", localeConfig.urlSegment),
       },
       {
-        name: chineseComponentIndexMessages.detailUi.breadcrumbs.components,
+        name: messages.detailUi.breadcrumbs.components,
         path: getLocalizedHref("/components", localeConfig.urlSegment),
       },
       { name: solution.title, path: pagePath },
@@ -123,7 +127,7 @@ export default async function LocalizedComponentDetailRoute({
         detail={detail}
         solution={solution}
         localeSegment={localeConfig.urlSegment}
-        ui={chineseComponentIndexMessages.detailUi}
+        ui={messages.detailUi}
       />
     </>
   );

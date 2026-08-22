@@ -1,4 +1,5 @@
 import type { SiteMessages } from "@/i18n/types";
+import { homeTaskFirstLocaleMessages } from "../homeTaskFirstLocaleMessages.ts";
 
 const messages = {
   Home: {
@@ -9,13 +10,13 @@ const messages = {
       imageAlt: "Fertigung modifizierter POM-Compounds bei Taiyi Polymer",
     },
     hero: {
-      eyebrowDesktop: "PLATFORM® Engineering Materials · Taiyi Polymer",
-      eyebrowMobile: "PLATFORM® · Taiyi Polymer",
-      title: "Modifizierte POM-Compounds für Präzisionsformteile.",
+      eyebrowDesktop: "POM-COMPOUNDIERUNG · WERKSTOFFUNTERSTÜTZUNG",
+      eyebrowMobile: "POM-COMPOUNDIERUNG",
+      title: "Hersteller modifizierter POM-Compounds für Präzisionsformteile",
       body:
-        "Taiyi Polymer fertigt am Standort Yancheng modifizierte POM-Compounds für Formteile, die Verschleißfestigkeit, geringe Reibung, Verstärkung oder kontrollierte Ableitfähigkeit erfordern. Typen, Muster und technische Unterlagen werden projektbezogen bestätigt.",
-      exploreAction: "Werkstoffspektrum ansehen",
-      contactAction: "Anwendung besprechen",
+        "Von Verschleiß und geringer Reibung bis zu Verstärkung und Elektrostatik: Werkstoffbereiche anhand der Bauteilbedingungen eingrenzen und anschließend Typendaten, Muster und Spritzgießversuche klären.",
+      exploreAction: "Werkstoff nach Bauteil finden",
+      contactAction: "Typen & TDS finden",
     },
     metrics: [
       { label: "Jährliche Compound-Kapazität", note: "Tonnen pro Jahr" },
@@ -216,11 +217,11 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "PRÜFUNG STARTEN",
-      title: "Senden Sie die Projektdaten für eine erste Typenprüfung.",
+      eyebrow: "Mit Bekanntem beginnen",
+      title: "Mit bekannten Bauteilanforderungen beginnen und den Werkstoffbereich schrittweise eingrenzen",
       body:
-        "Die bekannten Angaben genügen für den Start. Kennzeichnen Sie Unsicherheiten und fügen Sie vorhandene Referenztypen, Zeichnungen oder Schadensmuster bei.",
-      checklistLabel: "PROJEKTDATEN",
+        "Eine vollständige Spezifikation ist nicht erforderlich. Nennen Sie bekannte Bauteilfunktion, Einsatzbedingungen, aktuellen Werkstoff oder Schadensbild; offene Punkte können als ungeklärt markiert bleiben.",
+      checklistLabel: "Hilfreiche Ausgangsdaten",
       checklist: [
         "Bauteilfunktion und Bewegungsart",
         "Werkzeugstand und Verarbeitungsgrenzen",
@@ -229,6 +230,7 @@ const messages = {
       ],
       action: "Anwendung besprechen",
     },
+    taskFirst: homeTaskFirstLocaleMessages.de,
   },
   Contact: {
     metadata: {

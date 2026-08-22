@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -10,17 +10,66 @@ import en from "../src/i18n/messages/en.ts";
 import fr from "../src/i18n/messages/fr.ts";
 import ptBR from "../src/i18n/messages/pt-BR.ts";
 import zhCN from "../src/i18n/messages/zh-CN.ts";
+import deExpanded from "../src/i18n/generated/de.json" with { type: "json" };
+import frExpanded from "../src/i18n/generated/fr.json" with { type: "json" };
+import ptBRExpanded from "../src/i18n/generated/pt-BR.json" with { type: "json" };
+import {
+  hasExpandedLocaleDictionary,
+  translateExpandedText,
+} from "../src/i18n/expandedLocaleContent.ts";
 import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
 import frProductFunnel from "../src/i18n/messages/fr-product-funnel.ts";
 import ptBRProductFunnel from "../src/i18n/messages/pt-BR-product-funnel.ts";
 import zhCNProductFunnel from "../src/i18n/messages/zh-CN-product-funnel.ts";
 import zhCNApplications from "../src/i18n/messages/zh-CN-applications.ts";
+import {
+  chineseComponentIndexMessages,
+  chineseComponentSolutions,
+  chinesePrecisionPlasticGearsDetail,
+} from "../src/i18n/messages/zh-CN-components.ts";
+import { chineseBushingsAndSleevesDetail } from "../src/i18n/messages/zh-CN-component-details-a.ts";
+import {
+  chineseConveyorChainComponentsDetail,
+  chineseValveSpoolsAndCartridgesDetail,
+} from "../src/i18n/messages/zh-CN-component-details-b.ts";
+import {
+  chineseIcHandlingTraysDetail,
+  chineseTextileGuideComponentsDetail,
+} from "../src/i18n/messages/zh-CN-component-details-c.ts";
+import {
+  chineseAboutMessages,
+  chineseCompanyFigures,
+  chineseCompanyQualifications,
+  chineseExportRoutes,
+  chineseFactoryImages,
+} from "../src/i18n/messages/zh-CN-about.ts";
 import zhCNApplicationDetailsA from "../src/i18n/messages/zh-CN-application-details-a.ts";
 import zhCNApplicationDetailsB from "../src/i18n/messages/zh-CN-application-details-b.ts";
 import {
   chinesePomLandingPages,
   chinesePomLandingUi,
 } from "../src/i18n/messages/zh-CN-pom-landings.ts";
+import { chinesePomDirectoryMessages } from "../src/i18n/messages/zh-CN-pom-directory.ts";
+import { chinesePomCategoryExpansion } from "../src/i18n/messages/zh-CN-pom-category-expansion.ts";
+import {
+  chineseEngineeringCategoryProfiles,
+  chineseEngineeringProductCategorySlugs,
+} from "../src/i18n/messages/zh-CN-engineering-categories.ts";
+import {
+  createChineseEngineeringGradeCopy,
+  localizeEngineeringProperty,
+} from "../src/i18n/chineseEngineeringGradeMessages.ts";
+import { chineseConductiveAntistaticCompoundsMessages } from "../src/i18n/messages/zh-CN-conductive-compounds.ts";
+import { chinesePomGradeExpansionA } from "../src/i18n/messages/zh-CN-pom-grade-expansion-a.ts";
+import { chinesePomGradeExpansionB } from "../src/i18n/messages/zh-CN-pom-grade-expansion-b.ts";
+import { chinesePomGradeExpansionC } from "../src/i18n/messages/zh-CN-pom-grade-expansion-c.ts";
+import { chinesePomGradeExpansionD } from "../src/i18n/messages/zh-CN-pom-grade-expansion-d.ts";
+import { chinesePomGradeExpansionE } from "../src/i18n/messages/zh-CN-pom-grade-expansion-e.ts";
+import { chinesePomGradeExpansionF } from "../src/i18n/messages/zh-CN-pom-grade-expansion-f.ts";
+import {
+  chinesePomGradeProfiles,
+  getChinesePomGradeCategoryLabel,
+} from "../src/i18n/pomGradeMessages.ts";
 import zhCNResources from "../src/i18n/messages/zh-CN-resources.ts";
 import zhCNResourceArticlesA1 from "../src/i18n/messages/zh-CN-resource-articles-a1.ts";
 import zhCNResourceArticlesA2 from "../src/i18n/messages/zh-CN-resource-articles-a2.ts";
@@ -47,6 +96,14 @@ import {
 } from "../src/i18n/resourceTypes.ts";
 import {
   basePomGradeSlugs,
+  chineseOnlyProductCategorySlugs,
+  chineseOnlyProductGradeSlugs,
+  chineseOnlyProductGradeSliceASlugs,
+  chineseOnlyProductGradeSliceBSlugs,
+  chineseOnlyProductGradeSliceCSlugs,
+  chineseOnlyProductGradeSliceDSlugs,
+  chineseOnlyProductGradeSliceESlugs,
+  chineseOnlyProductGradeSliceFSlugs,
   getLocalizedCategoryLabel,
   getLocalizedCategoryMessages,
   getLocalizedGradeCategoryLabel,
@@ -55,7 +112,10 @@ import {
   localizedCategoryProfileSlugs,
   localizedGradeProfileSlugs,
   localizedProductCategorySlugs,
+  localizedProductCategoryRouteSlugs,
   localizedProductGradeSlugs,
+  localizedProductGradeRouteSlugs,
+  mergeLocalizedGradeProfile,
   xt100FeaturedPropertyLabels,
 } from "../src/i18n/productFunnelTypes.ts";
 import {
@@ -74,6 +134,7 @@ import {
   isReleaseLocaleEnabled,
   isLocalizedReleaseIndexable,
   isReleaseSurfaceEnabled,
+  chineseEngineeringGradeReleaseEntries,
   localizedReleaseManifest,
   productsLanguageAlternates,
   productsLanguageOptions,
@@ -83,6 +144,15 @@ import {
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readProjectFile = (path) =>
   readFileSync(resolve(projectRoot, path), "utf8");
+const allLocalizedSegments = ["de", "fr", "pt-br", "zh"];
+const expectedLocalizedAlternates = (sourcePath) => ({
+  en: sourcePath,
+  de: `/de${sourcePath}`,
+  fr: `/fr${sourcePath}`,
+  "pt-BR": `/pt-br${sourcePath}`,
+  "zh-CN": `/zh${sourcePath}`,
+  "x-default": sourcePath,
+});
 
 const shapeOf = (value) => {
   if (Array.isArray(value)) {
@@ -96,6 +166,20 @@ const shapeOf = (value) => {
   }
 
   return typeof value;
+};
+
+const collectUniqueStrings = (value, strings = new Set()) => {
+  if (typeof value === "string") {
+    strings.add(value);
+  } else if (Array.isArray(value)) {
+    value.forEach((item) => collectUniqueStrings(item, strings));
+  } else if (value && typeof value === "object") {
+    Object.values(value).forEach((item) =>
+      collectUniqueStrings(item, strings),
+    );
+  }
+
+  return strings;
 };
 
 test("defines only the approved localized routes", () => {
@@ -138,11 +222,20 @@ test("defines only the approved localized routes", () => {
   assert.equal(getLocalizedLocale("es"), undefined);
 });
 
-test("all localized dictionaries match the complete English message shape", () => {
-  const expectedShape = shapeOf(en);
+test("all localized dictionaries match the complete shared English message shape", () => {
+  const sharedHome = (messages) =>
+    Object.fromEntries(
+      Object.entries(messages.Home).filter(([key]) => key !== "taskFirst"),
+    );
+  const englishHome = sharedHome(en);
+  const expectedShape = shapeOf({ ...en, Home: englishHome });
 
   for (const messages of [de, fr, ptBR, zhCN]) {
-    assert.deepEqual(shapeOf(messages), expectedShape);
+    const localizedHome = sharedHome(messages);
+    assert.deepEqual(
+      shapeOf({ ...messages, Home: localizedHome }),
+      expectedShape,
+    );
     assert.equal(messages.Home.materials.items.length, 5);
     assert.equal(messages.Home.qualification.steps.length, 4);
     assert.equal(messages.Home.quality.certifications.length, 4);
@@ -164,6 +257,111 @@ test("all localized dictionaries match the complete English message shape", () =
   assert.notEqual(zhCN.Home.hero.title, en.Home.hero.title);
   assert.notEqual(zhCN.Products.hero.title, en.Products.hero.title);
   assert.notEqual(zhCN.Contact.form.submit, en.Contact.form.submit);
+  for (const messages of [en, de, fr, ptBR, zhCN]) {
+    assert.equal(messages.Home.taskFirst?.entry.items.length, 3);
+    assert.equal(messages.Home.taskFirst?.core.groups.length, 4);
+    assert.equal(messages.Home.taskFirst?.applications.items.length, 6);
+    assert.equal(messages.Home.taskFirst?.process.steps.length, 3);
+  }
+  assert.equal(zhCN.Home.taskFirst?.applications.items.length, 6);
+  assert.deepEqual(
+    zhCN.Home.taskFirst?.applications.items.map(({ title }) => title),
+    chineseComponentSolutions.map(({ title }) => title),
+  );
+});
+
+test("expanded locale dictionaries are complete and do not expose Chinese fallback copy", () => {
+  const dictionaries = {
+    de: deExpanded,
+    fr: frExpanded,
+    "pt-br": ptBRExpanded,
+  };
+  const expectedKeys = Object.keys(deExpanded).sort();
+
+  assert.equal(expectedKeys.length, 4376);
+  for (const [localeSegment, dictionary] of Object.entries(dictionaries)) {
+    assert.equal(hasExpandedLocaleDictionary(localeSegment), true);
+    assert.deepEqual(Object.keys(dictionary).sort(), expectedKeys);
+    assert.equal(
+      Object.values(dictionary).every(
+        (value) => value.trim().length > 0 && !/[\u3400-\u9fff]/.test(value),
+      ),
+      true,
+    );
+    assert.doesNotMatch(
+      translateExpandedText("查看中文牌号页", localeSegment),
+      /中文|Chinese|chinois|chinês|chinesisch/i,
+    );
+    assert.doesNotMatch(
+      translateExpandedText("PA6 牌号详情是否已有中文？", localeSegment),
+      /中文|Chinese|chinois|chinês|chinesisch/i,
+    );
+  }
+});
+
+test("every expanded multilingual content source has complete translations", () => {
+  const engineeringTdsDocuments = JSON.parse(
+    readProjectFile("src/generated/catalog.json"),
+  ).filter((record) => record.kind === "engineering-tds");
+  const sources = {
+    about: {
+      chineseAboutMessages,
+      chineseCompanyFigures,
+      chineseCompanyQualifications,
+      chineseExportRoutes,
+      chineseFactoryImages,
+    },
+    components: {
+      chineseComponentIndexMessages,
+      chineseComponentSolutions,
+      chinesePrecisionPlasticGearsDetail,
+      chineseBushingsAndSleevesDetail,
+      chineseConveyorChainComponentsDetail,
+      chineseValveSpoolsAndCartridgesDetail,
+      chineseTextileGuideComponentsDetail,
+      chineseIcHandlingTraysDetail,
+    },
+    applications: {
+      zhCNApplications,
+      zhCNApplicationDetailsA,
+      zhCNApplicationDetailsB,
+    },
+    resources: {
+      zhCNResources,
+      zhCNResourceArticlesA1,
+      zhCNResourceArticlesA2,
+      zhCNResourceArticlesB1,
+      zhCNResourceArticlesB2,
+      zhCNResourceArticlesC1,
+      zhCNResourceArticlesC2,
+    },
+    products: {
+      chinesePomLandingPages,
+      chinesePomLandingUi,
+      chinesePomDirectoryMessages,
+      chinesePomCategoryExpansion,
+      chineseEngineeringCategoryProfiles,
+      chineseConductiveAntistaticCompoundsMessages,
+      chinesePomGradeProfiles,
+      engineeringGrades: engineeringTdsDocuments.map(
+        createChineseEngineeringGradeCopy,
+      ),
+    },
+  };
+
+  for (const [area, source] of Object.entries(sources)) {
+    for (const localeSegment of ["de", "fr", "pt-br"]) {
+      for (const value of collectUniqueStrings(source)) {
+        const translated = translateExpandedText(value, localeSegment);
+
+        assert.doesNotMatch(
+          translated,
+          /[\u3400-\u9fff]/,
+          `${area}/${localeSegment} exposes Chinese fallback for: ${value}`,
+        );
+      }
+    }
+  }
 });
 
 test("the release manifest publishes only the approved localized page groups", () => {
@@ -303,19 +501,30 @@ test("the release manifest publishes only the approved localized page groups", (
 
   const chineseAboutAndComponentReleases = {
     about: "/about",
+    privacy: "/privacy",
+    conductiveAntistaticCompounds: "/products/conductive-antistatic-compounds",
+    pomDirectory: "/products/categories/pom",
+    pa6CompoundCategory: "/products/categories/pa6-compound",
+    pa66CompoundCategory: "/products/categories/pa66-compound",
+    ppaCompoundCategory: "/products/categories/ppa-compound",
+    wearResistantLowFrictionPomCategory:
+      "/products/categories/wear-resistant-low-friction-pom-compound",
+    uvResistantPomCategory: "/products/categories/uv-resistant-pom-compound",
+    carbonFiberReinforcedPomCategory:
+      "/products/categories/carbon-fiber-reinforced-pom-compound",
+    conductiveAntistaticPomCategory:
+      "/products/categories/conductive-antistatic-pom-compound",
+    ultraHighFlowPomCategory: "/products/categories/ultra-high-flow-pom",
     modifiedPomCompounds: "/modified-pom-compounds",
     wearResistantLowFrictionPom: "/wear-resistant-low-friction-pom",
     conductiveAntistaticPom: "/conductive-antistatic-pom",
     components: "/components",
-    precisionPlasticGearsComponent:
-      "/components/precision-plastic-gears",
+    precisionPlasticGearsComponent: "/components/precision-plastic-gears",
     bushingsAndSleevesComponent: "/components/bushings-and-sleeves",
-    conveyorChainComponentsComponent:
-      "/components/conveyor-chain-components",
+    conveyorChainComponentsComponent: "/components/conveyor-chain-components",
     valveSpoolsAndCartridgesComponent:
       "/components/valve-spools-and-cartridges",
-    textileGuideComponentsComponent:
-      "/components/textile-guide-components",
+    textileGuideComponentsComponent: "/components/textile-guide-components",
     icHandlingTraysComponent: "/components/ic-handling-trays",
   };
   const localizedComponentSlugs = Object.values(
@@ -335,7 +544,7 @@ test("the release manifest publishes only the approved localized page groups", (
       publicNavigation: true,
       includeInSitemap: true,
       includeInAlternates: true,
-      localizedSegments: ["zh"],
+      localizedSegments: allLocalizedSegments,
     });
   }
 
@@ -416,7 +625,22 @@ test("the release manifest publishes only the approved localized page groups", (
         `/${locale.urlSegment}/products/categories/${categorySlug}`,
       );
     }
+    for (const categorySlug of chineseOnlyProductCategorySlugs) {
+      assert.equal(
+        getLocalizedHref(
+          `/products/categories/${categorySlug}`,
+          locale.urlSegment,
+        ),
+        `/${locale.urlSegment}/products/categories/${categorySlug}`,
+      );
+    }
     for (const slug of localizedProductGradeSlugs) {
+      assert.equal(
+        getLocalizedHref(`/products/${slug}`, locale.urlSegment),
+        `/${locale.urlSegment}/products/${slug}`,
+      );
+    }
+    for (const slug of chineseOnlyProductGradeSlugs) {
       assert.equal(
         getLocalizedHref(`/products/${slug}`, locale.urlSegment),
         `/${locale.urlSegment}/products/${slug}`,
@@ -430,30 +654,24 @@ test("the release manifest publishes only the approved localized page groups", (
       isEnglishFallbackHref("/technical-data-sheets", locale.urlSegment),
       false,
     );
-    const applicationHref =
-      locale.urlSegment === "zh" ? "/zh/applications" : "/applications";
     assert.equal(
       getLocalizedHref("/applications", locale.urlSegment),
-      applicationHref,
+      `/${locale.urlSegment}/applications`,
     );
     assert.equal(
       isEnglishFallbackHref("/applications", locale.urlSegment),
-      locale.urlSegment !== "zh",
+      false,
     );
     for (const slug of localizedApplicationSlugs) {
       assert.equal(
         getLocalizedHref(`/applications/${slug}`, locale.urlSegment),
-        locale.urlSegment === "zh"
-          ? `/zh/applications/${slug}`
-          : `/applications/${slug}`,
+        `/${locale.urlSegment}/applications/${slug}`,
       );
     }
     for (const slug of localizedComponentSlugs) {
       assert.equal(
         getLocalizedHref(`/components/${slug}`, locale.urlSegment),
-        locale.urlSegment === "zh"
-          ? `/zh/components/${slug}`
-          : `/components/${slug}`,
+        `/${locale.urlSegment}/components/${slug}`,
       );
     }
     for (const sourcePath of Object.keys(chinesePomLandingPages).map(
@@ -461,9 +679,7 @@ test("the release manifest publishes only the approved localized page groups", (
     )) {
       assert.equal(
         getLocalizedHref(sourcePath, locale.urlSegment),
-        locale.urlSegment === "zh"
-          ? `/zh${sourcePath}`
-          : sourcePath,
+        `/${locale.urlSegment}${sourcePath}`,
       );
     }
     assert.equal(
@@ -502,15 +718,22 @@ test("the release manifest publishes only the approved localized page groups", (
     })),
     [
       { localeKey: "en", href: "/about" },
+      { localeKey: "de", href: "/de/about" },
+      { localeKey: "fr", href: "/fr/about" },
+      { localeKey: "pt-br", href: "/pt-br/about" },
       { localeKey: "zh", href: "/zh/about" },
     ],
   );
   assert.deepEqual(
-    getSitemapLanguageOptions("/components").map(
-      ({ localeKey, href }) => ({ localeKey, href }),
-    ),
+    getSitemapLanguageOptions("/components").map(({ localeKey, href }) => ({
+      localeKey,
+      href,
+    })),
     [
       { localeKey: "en", href: "/components" },
+      { localeKey: "de", href: "/de/components" },
+      { localeKey: "fr", href: "/fr/components" },
+      { localeKey: "pt-br", href: "/pt-br/components" },
       { localeKey: "zh", href: "/zh/components" },
     ],
   );
@@ -567,46 +790,55 @@ test("the release manifest publishes only the approved localized page groups", (
   assert.equal(isLocalizedReleaseIndexable("/technical-data-sheets"), true);
   assert.equal(isLocalizedReleaseIndexable("/contact"), true);
   assert.equal(isLocalizedReleaseIndexable("/applications", "zh"), true);
-  assert.equal(isLocalizedReleaseIndexable("/applications", "de"), false);
+  assert.equal(isLocalizedReleaseIndexable("/applications", "de"), true);
   assert.equal(isLocalizedReleaseIndexable("/about", "zh"), true);
-  assert.equal(isLocalizedReleaseIndexable("/about", "de"), false);
+  assert.equal(isLocalizedReleaseIndexable("/about", "de"), true);
   assert.equal(isLocalizedReleaseIndexable("/components", "zh"), true);
-  assert.equal(isLocalizedReleaseIndexable("/components", "de"), false);
+  assert.equal(isLocalizedReleaseIndexable("/components", "de"), true);
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/categories/pom", "zh"),
+    true,
+  );
+  assert.equal(
+    isLocalizedReleaseIndexable("/products/categories/pom", "de"),
+    true,
+  );
   assert.equal(
     isLocalizedReleaseIndexable("/modified-pom-compounds", "zh"),
     true,
   );
   assert.equal(
     isLocalizedReleaseIndexable("/modified-pom-compounds", "de"),
-    false,
+    true,
   );
 
-  assert.deepEqual(getLanguageAlternates("/applications"), {
-    en: "/applications",
-    "zh-CN": "/zh/applications",
-    "x-default": "/applications",
-  });
+  assert.deepEqual(
+    getLanguageAlternates("/applications"),
+    expectedLocalizedAlternates("/applications"),
+  );
   for (const slug of localizedApplicationSlugs) {
-    assert.deepEqual(getLanguageAlternates(`/applications/${slug}`), {
-      en: `/applications/${slug}`,
-      "zh-CN": `/zh/applications/${slug}`,
-      "x-default": `/applications/${slug}`,
-    });
+    assert.deepEqual(
+      getLanguageAlternates(`/applications/${slug}`),
+      expectedLocalizedAlternates(`/applications/${slug}`),
+    );
   }
   for (const slug of localizedComponentSlugs) {
-    assert.deepEqual(getLanguageAlternates(`/components/${slug}`), {
-      en: `/components/${slug}`,
-      "zh-CN": `/zh/components/${slug}`,
-      "x-default": `/components/${slug}`,
-    });
+    assert.deepEqual(
+      getLanguageAlternates(`/components/${slug}`),
+      expectedLocalizedAlternates(`/components/${slug}`),
+    );
   }
   for (const slug of Object.keys(chinesePomLandingPages)) {
-    assert.deepEqual(getLanguageAlternates(`/${slug}`), {
-      en: `/${slug}`,
-      "zh-CN": `/zh/${slug}`,
-      "x-default": `/${slug}`,
-    });
+    assert.deepEqual(
+      getLanguageAlternates(`/${slug}`),
+      expectedLocalizedAlternates(`/${slug}`),
+    );
   }
+
+  assert.deepEqual(
+    getLanguageAlternates("/products/categories/pom"),
+    expectedLocalizedAlternates("/products/categories/pom"),
+  );
 
   assert.deepEqual(getLanguageAlternates("/products/xt-100-base-pom-resin"), {
     en: "/products/xt-100-base-pom-resin",
@@ -651,10 +883,7 @@ test("the Simplified Chinese POM solution family is complete and localized", () 
   assert.equal(chinesePomLandingUi.homeBreadcrumb, "首页");
   assert.equal(chinesePomLandingUi.englishDestinationLabel, "英文内容");
   assert.equal(
-    getLocalizedHref(
-      "/modified-pom-compounds#electrical-control",
-      "zh",
-    ),
+    getLocalizedHref("/modified-pom-compounds#electrical-control", "zh"),
     "/zh/modified-pom-compounds#electrical-control",
   );
 
@@ -668,6 +897,406 @@ test("the Simplified Chinese POM solution family is complete and localized", () 
     assert.ok(page.relatedLinks.length > 0);
     assert.ok(page.faqs.length > 0);
     assert.ok(!page.primaryActionLabel.includes("Request"));
+  }
+});
+
+test("the Simplified Chinese POM directory covers every listed family and grade", () => {
+  const pomCatalogDirectory = resolve(
+    projectRoot,
+    "content/catalog/products/pom",
+  );
+  const pomCatalogRecords = readdirSync(pomCatalogDirectory)
+    .filter((fileName) => fileName.endsWith(".json"))
+    .map((fileName) =>
+      JSON.parse(readFileSync(resolve(pomCatalogDirectory, fileName), "utf8")),
+    );
+
+  assert.equal(
+    Object.keys(chinesePomDirectoryMessages.families.items).length,
+    9,
+  );
+  assert.equal(
+    Object.keys(chinesePomDirectoryMessages.directory.summaries).length,
+    40,
+  );
+  assert.deepEqual(
+    Object.keys(chinesePomDirectoryMessages.directory.summaries).sort(),
+    pomCatalogRecords.map((record) => record.slug).sort(),
+  );
+
+  const visibleCopy = JSON.stringify(chinesePomDirectoryMessages);
+  assert.match(visibleCopy, /[\u3400-\u9fff]/);
+  assert.doesNotMatch(
+    visibleCopy,
+    /Choose a POM Material Family|All POM Grade Data|Relevant application paths|Buyer Questions/,
+  );
+  assert.doesNotMatch(
+    visibleCopy,
+    /保证适用|直接替代|完全等同|无需验证|普遍适用/,
+  );
+
+  assert.equal(
+    getLocalizedHref("/products/categories/pom", "zh"),
+    "/zh/products/categories/pom",
+  );
+  assert.equal(
+    getLocalizedHref("/products/categories/pom", "de"),
+    "/de/products/categories/pom",
+  );
+});
+
+test("the remaining Simplified Chinese POM category family is complete", () => {
+  const pomCatalogDirectory = resolve(
+    projectRoot,
+    "content/catalog/products/pom",
+  );
+  const pomCatalogRecords = readdirSync(pomCatalogDirectory)
+    .filter((fileName) => fileName.endsWith(".json"))
+    .map((fileName) =>
+      JSON.parse(readFileSync(resolve(pomCatalogDirectory, fileName), "utf8")),
+    );
+  const sourceCategoryBySlug = {
+    "wear-resistant-low-friction-pom-compound": "Wear-Resistant POM Compound",
+    "uv-resistant-pom-compound": "UV-Resistant POM Compound",
+    "carbon-fiber-reinforced-pom-compound":
+      "Carbon Fiber Reinforced POM Compound",
+    "conductive-antistatic-pom-compound":
+      "Conductive / Antistatic POM Compound",
+  };
+
+  assert.deepEqual(
+    Object.keys(chinesePomCategoryExpansion).sort(),
+    [...chineseOnlyProductCategorySlugs].sort(),
+  );
+  assert.equal(localizedProductCategoryRouteSlugs.length, 12);
+
+  for (const slug of chineseOnlyProductCategorySlugs) {
+    const profile = chinesePomCategoryExpansion[slug];
+    const visibleCopy = JSON.stringify(profile);
+
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.ok(profile.directory.summaries);
+    assert.equal(profile.faq.items.length, 3);
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|无需验证|普遍适用/,
+    );
+    assert.equal(
+      getLocalizedHref(`/products/categories/${slug}`, "zh"),
+      `/zh/products/categories/${slug}`,
+    );
+    assert.equal(
+      getLocalizedHref(`/products/categories/${slug}`, "de"),
+      `/de/products/categories/${slug}`,
+    );
+    assert.deepEqual(
+      getLanguageAlternates(`/products/categories/${slug}`),
+      expectedLocalizedAlternates(`/products/categories/${slug}`),
+    );
+
+    const expectedGradeSlugs = pomCatalogRecords
+      .filter((record) =>
+        slug === "ultra-high-flow-pom"
+          ? record.category === "Base POM Resin" && record.mfi.value >= 100
+          : record.category === sourceCategoryBySlug[slug],
+      )
+      .map((record) => record.slug)
+      .sort();
+    assert.deepEqual(
+      Object.keys(profile.directory.summaries).sort(),
+      expectedGradeSlugs,
+    );
+  }
+
+  assert.equal(
+    Object.values(chinesePomCategoryExpansion).reduce(
+      (total, profile) =>
+        total + Object.keys(profile.directory.summaries).length,
+      0,
+    ),
+    17,
+  );
+});
+
+test("the Simplified Chinese engineering-plastic category entries lead into Chinese grade details", () => {
+  const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
+  const expectedCounts = {
+    "pa6-compound": 33,
+    "pa66-compound": 37,
+    "ppa-compound": 5,
+  };
+
+  assert.deepEqual(
+    Object.keys(chineseEngineeringCategoryProfiles).sort(),
+    [...chineseEngineeringProductCategorySlugs].sort(),
+  );
+
+  for (const slug of chineseEngineeringProductCategorySlugs) {
+    const profile = chineseEngineeringCategoryProfiles[slug];
+    const visibleCopy = JSON.stringify(profile);
+    const gradeCount = catalog.filter(
+      (record) =>
+        record.kind === "engineering-tds" &&
+        record.family === profile.sourceCategory.replace(" Compound", ""),
+    ).length;
+
+    assert.equal(gradeCount, expectedCounts[slug]);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.match(profile.directory.detailAction, /中文牌号数据/);
+    assert.doesNotMatch(visibleCopy, /EN · 查看英文牌号数据/);
+    assert.equal(
+      getLocalizedHref(`/products/categories/${slug}`, "zh"),
+      `/zh/products/categories/${slug}`,
+    );
+    assert.equal(
+      getLocalizedHref(`/products/categories/${slug}`, "de"),
+      `/de/products/categories/${slug}`,
+    );
+    assert.deepEqual(
+      getLanguageAlternates(`/products/categories/${slug}`),
+      expectedLocalizedAlternates(`/products/categories/${slug}`),
+    );
+  }
+});
+
+test("all released PA6, PA66 and PPA grades have complete Chinese detail contracts", () => {
+  const expectedCounts = { PA6: 33, PA66: 37, PPA: 5 };
+  const engineeringTdsDocuments = JSON.parse(
+    readProjectFile("src/generated/catalog.json"),
+  ).filter((record) => record.kind === "engineering-tds");
+  const actualCounts = Object.fromEntries(
+    Object.keys(expectedCounts).map((family) => [
+      family,
+      engineeringTdsDocuments.filter((document) => document.family === family)
+        .length,
+    ]),
+  );
+
+  assert.equal(engineeringTdsDocuments.length, 75);
+  assert.deepEqual(actualCounts, expectedCounts);
+  assert.equal(chineseEngineeringGradeReleaseEntries.length, 75);
+
+  for (const document of engineeringTdsDocuments) {
+    const sourcePath = `/products/${document.slug}`;
+    const copy = createChineseEngineeringGradeCopy(document);
+    const visibleCopy = JSON.stringify(copy);
+    const releaseEntry = chineseEngineeringGradeReleaseEntries.find(
+      (entry) => entry.sourcePath === sourcePath,
+    );
+
+    assert.ok(releaseEntry, `missing Chinese release entry for ${sourcePath}`);
+    assert.deepEqual(releaseEntry.localizedSegments, allLocalizedSegments);
+    assert.equal(releaseEntry.indexable, true);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|无需验证|普遍适用/,
+    );
+    assert.equal(copy.properties.items.length, document.properties.length);
+    assert.deepEqual(
+      copy.properties.items,
+      document.properties.map(localizeEngineeringProperty),
+    );
+    assert.ok(copy.applications.length > 0);
+    assert.match(JSON.stringify(copy.applications), /[\u3400-\u9fff]/);
+    assert.equal(getLocalizedHref(sourcePath, "zh"), `/zh${sourcePath}`);
+    assert.equal(getLocalizedHref(sourcePath, "de"), `/de${sourcePath}`);
+    assert.deepEqual(
+      getLanguageAlternates(sourcePath),
+      expectedLocalizedAlternates(sourcePath),
+    );
+  }
+});
+
+test("the Simplified Chinese privacy and cross-material conductive entries are fully routed", () => {
+  const privacyRoute = readProjectFile("src/app/[locale]/privacy/page.tsx");
+  const manufacturingRoute = readProjectFile(
+    "src/app/[locale]/about/manufacturing-capabilities/page.tsx",
+  );
+  const conductiveRoute = readProjectFile(
+    "src/app/[locale]/products/conductive-antistatic-compounds/page.tsx",
+  );
+  const conductiveCopy = JSON.stringify(
+    chineseConductiveAntistaticCompoundsMessages,
+  );
+
+  assert.match(privacyRoute, /我们收集的信息/);
+  assert.match(privacyRoute, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(manufacturingRoute, /#manufacturing/);
+  assert.match(conductiveRoute, /groupByMatrix/);
+  assert.match(conductiveRoute, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(conductiveCopy, /[\u3400-\u9fff]/);
+  assert.match(conductiveCopy, /查找合适的静电控制方向/);
+
+  for (const sourcePath of [
+    "/privacy",
+    "/products/conductive-antistatic-compounds",
+  ]) {
+    assert.equal(getLocalizedHref(sourcePath, "zh"), `/zh${sourcePath}`);
+    assert.equal(getLocalizedHref(sourcePath, "de"), `/de${sourcePath}`);
+    assert.deepEqual(
+      getLanguageAlternates(sourcePath),
+      expectedLocalizedAlternates(sourcePath),
+    );
+  }
+});
+
+test("the first Simplified Chinese POM grade expansion completes base POM", () => {
+  assert.deepEqual(
+    Object.keys(chinesePomGradeExpansionA).sort(),
+    [...chineseOnlyProductGradeSliceASlugs].sort(),
+  );
+
+  const expectedGrades = {
+    "etm090nc-base-pom-resin": "ETM090NC",
+    "etm130-base-pom-resin": "ETM130",
+    "etm270-base-pom-resin": "ETM270",
+    "etm1500-base-pom-resin": "ETM1500",
+    "etm1800-base-pom-resin": "ETM1800",
+  };
+
+  for (const slug of chineseOnlyProductGradeSliceASlugs) {
+    const profile = chinesePomGradeExpansionA[slug];
+    const copy = mergeLocalizedGradeProfile(zhCNProductFunnel, profile);
+    const visibleCopy = JSON.stringify(profile);
+
+    assert.equal(profile.breadcrumb, expectedGrades[slug]);
+    assert.equal(profile.features.length, 4);
+    assert.equal(profile.applications.length, 4);
+    assert.equal(copy.evaluation.steps.length, 3);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|无需验证|普遍适用/,
+    );
+    assert.equal(
+      getLocalizedGradeCategorySourcePath(slug),
+      "/products/categories/base-pom-resin",
+    );
+    assert.equal(
+      getLocalizedHref(`/products/${slug}`, "zh"),
+      `/zh/products/${slug}`,
+    );
+    assert.equal(
+      getLocalizedHref(`/products/${slug}`, "de"),
+      `/de/products/${slug}`,
+    );
+    assert.equal(isLocalizedReleaseIndexable(`/products/${slug}`, "zh"), true);
+    assert.equal(isLocalizedReleaseIndexable(`/products/${slug}`, "de"), true);
+    assert.deepEqual(
+      getLanguageAlternates(`/products/${slug}`),
+      expectedLocalizedAlternates(`/products/${slug}`),
+    );
+  }
+});
+
+test("the second Simplified Chinese POM grade expansion completes high-impact POM", () => {
+  assert.deepEqual(
+    Object.keys(chinesePomGradeExpansionB).sort(),
+    [...chineseOnlyProductGradeSliceBSlugs].sort(),
+  );
+  assert.deepEqual(
+    Object.keys(chinesePomGradeProfiles).sort(),
+    [...chineseOnlyProductGradeSlugs].sort(),
+  );
+  assert.equal(localizedProductGradeRouteSlugs.length, 40);
+
+  const expectedGrades = {
+    "edr100-high-impact-pom": "EDR100",
+    "ehi100st-high-impact-pom": "EHI100ST",
+    "ehi202t-high-impact-pom": "EHI202T",
+    "ehi602t-high-impact-pom": "EHI602T",
+  };
+
+  for (const slug of chineseOnlyProductGradeSliceBSlugs) {
+    const profile = chinesePomGradeExpansionB[slug];
+    const copy = mergeLocalizedGradeProfile(zhCNProductFunnel, profile);
+    const visibleCopy = JSON.stringify(profile);
+
+    assert.equal(profile.breadcrumb, expectedGrades[slug]);
+    assert.equal(profile.categoryLabel, "高抗冲 POM");
+    assert.equal(
+      getChinesePomGradeCategoryLabel(zhCNProductFunnel, slug),
+      "高抗冲 POM",
+    );
+    assert.equal(profile.features.length, 4);
+    assert.equal(profile.applications.length, 4);
+    assert.equal(copy.evaluation.steps.length, 3);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|无需验证|普遍适用/,
+    );
+    assert.equal(
+      getLocalizedGradeCategorySourcePath(slug),
+      "/products/categories/high-impact-pom-compound",
+    );
+    assert.equal(
+      getLocalizedHref(`/products/${slug}`, "zh"),
+      `/zh/products/${slug}`,
+    );
+    assert.equal(
+      getLocalizedHref(`/products/${slug}`, "fr"),
+      `/fr/products/${slug}`,
+    );
+    assert.equal(isLocalizedReleaseIndexable(`/products/${slug}`, "zh"), true);
+    assert.equal(isLocalizedReleaseIndexable(`/products/${slug}`, "fr"), true);
+    assert.deepEqual(
+      getLanguageAlternates(`/products/${slug}`),
+      expectedLocalizedAlternates(`/products/${slug}`),
+    );
+  }
+});
+
+test("the remaining Simplified Chinese POM grade families complete the 40-grade directory", () => {
+  const expansionProfiles = {
+    ...chinesePomGradeExpansionC,
+    ...chinesePomGradeExpansionD,
+    ...chinesePomGradeExpansionE,
+    ...chinesePomGradeExpansionF,
+  };
+  const expansionSlugs = [
+    ...chineseOnlyProductGradeSliceCSlugs,
+    ...chineseOnlyProductGradeSliceDSlugs,
+    ...chineseOnlyProductGradeSliceESlugs,
+    ...chineseOnlyProductGradeSliceFSlugs,
+  ];
+  const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
+  const pomProducts = catalog.filter(
+    (product) => product.kind === "product" && product.polymer === "POM",
+  );
+  const gradeBySlug = Object.fromEntries(
+    pomProducts.map((product) => [product.slug, product.grade]),
+  );
+
+  assert.equal(expansionSlugs.length, 24);
+  assert.deepEqual(
+    Object.keys(expansionProfiles).sort(),
+    [...expansionSlugs].sort(),
+  );
+  assert.equal(localizedProductGradeRouteSlugs.length, pomProducts.length);
+
+  for (const slug of expansionSlugs) {
+    const profile = expansionProfiles[slug];
+    const visibleCopy = JSON.stringify(profile);
+    const sourcePath = `/products/${slug}`;
+
+    assert.equal(profile.breadcrumb, gradeBySlug[slug]);
+    assert.equal(profile.features.length, 4);
+    assert.ok(profile.applications.length >= 3);
+    assert.match(visibleCopy, /[\u3400-\u9fff]/);
+    assert.doesNotMatch(
+      visibleCopy,
+      /保证适用|直接替代|完全等同|无需验证|普遍适用/,
+    );
+    assert.equal(getLocalizedHref(sourcePath, "zh"), `/zh${sourcePath}`);
+    assert.equal(getLocalizedHref(sourcePath, "de"), `/de${sourcePath}`);
+    assert.equal(isLocalizedReleaseIndexable(sourcePath, "zh"), true);
+    assert.equal(isLocalizedReleaseIndexable(sourcePath, "de"), true);
+    assert.deepEqual(
+      getLanguageAlternates(sourcePath),
+      expectedLocalizedAlternates(sourcePath),
+    );
   }
 });
 
@@ -1388,24 +2017,21 @@ test("publishes the complete Simplified Chinese resource route family atomically
       publicNavigation: true,
       includeInSitemap: true,
       includeInAlternates: true,
-      localizedSegments: ["zh"],
+      localizedSegments: allLocalizedSegments,
     });
     assert.equal(getLocalizedHref(sourcePath, "zh"), `/zh${sourcePath}`);
-    assert.equal(getLocalizedHref(sourcePath, "de"), sourcePath);
+    assert.equal(getLocalizedHref(sourcePath, "de"), `/de${sourcePath}`);
     assert.equal(isEnglishFallbackHref(sourcePath, "zh"), false);
-    assert.equal(isEnglishFallbackHref(sourcePath, "de"), true);
+    assert.equal(isEnglishFallbackHref(sourcePath, "de"), false);
     assert.equal(isLocalizedReleaseIndexable(sourcePath, "zh"), true);
-    assert.equal(isLocalizedReleaseIndexable(sourcePath, "de"), false);
-    assert.deepEqual(getLanguageAlternates(sourcePath), {
-      en: sourcePath,
-      "zh-CN": `/zh${sourcePath}`,
-      "x-default": sourcePath,
-    });
+    assert.equal(isLocalizedReleaseIndexable(sourcePath, "de"), true);
+    assert.deepEqual(
+      getLanguageAlternates(sourcePath),
+      expectedLocalizedAlternates(sourcePath),
+    );
   }
 
-  const localizedIndex = readProjectFile(
-    "src/app/[locale]/resources/page.tsx",
-  );
+  const localizedIndex = readProjectFile("src/app/[locale]/resources/page.tsx");
   const localizedDetail = readProjectFile(
     "src/app/[locale]/resources/[slug]/page.tsx",
   );
@@ -1417,13 +2043,13 @@ test("publishes the complete Simplified Chinese resource route family atomically
   const header = readProjectFile("src/components/Header.tsx");
   const sectionIdHelper = readProjectFile("src/lib/resource-page.ts");
 
-  assert.match(localizedIndex, /localeConfig\.locale !== "zh-CN"/);
+  assert.doesNotMatch(localizedIndex, /localeConfig\.locale !== "zh-CN"/);
   assert.match(localizedIndex, /getLanguageAlternates\(sourcePath\)/);
-  assert.match(localizedIndex, /chineseResourceNavigationGroups/);
-  assert.match(localizedDetail, /localeConfig\.locale !== "zh-CN"/);
+  assert.match(localizedIndex, /getLocalizedResourceNavigationGroups/);
+  assert.doesNotMatch(localizedDetail, /localeConfig\.locale !== "zh-CN"/);
   assert.match(localizedDetail, /localizedResourceArticleSlugs/);
   assert.match(localizedDetail, /localizedResourceGroupIds/);
-  assert.match(localizedDetail, /locale:\s*"zh",\s*slug/);
+  assert.match(localizedDetail, /localizedLocales\.flatMap/);
   assert.match(localizedDetail, /getLanguageAlternates\(route\.sourcePath\)/);
   assert.match(localizedDetail, /messages=\{messages\.articleUi\}/);
   assert.doesNotMatch(
@@ -1435,10 +2061,7 @@ test("publishes the complete Simplified Chinese resource route family atomically
   assert.match(sitemap, /sourcePath:\s*"\/resources"/);
   assert.match(sitemap, /\.\.\.resourceNavigationGroups\.map/);
   assert.match(sitemap, /\.\.\.resourcePages\.map/);
-  assert.match(
-    header,
-    /href=\{localizedHref\("\/resources"\)\}/,
-  );
+  assert.match(header, /href=\{localizedHref\("\/resources"\)\}/);
   assert.doesNotMatch(header, /href="\/resources"/);
   assert.match(sectionIdHelper, /\\p\{Letter\}/);
 });
@@ -1500,6 +2123,9 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   const localizedCategory = readProjectFile(
     "src/app/[locale]/products/categories/[category]/page.tsx",
   );
+  const localizedPomDirectory = readProjectFile(
+    "src/app/[locale]/products/categories/pom/page.tsx",
+  );
   const localizedGrade = readProjectFile(
     "src/app/[locale]/products/[slug]/page.tsx",
   );
@@ -1508,6 +2134,9 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   );
   const localizedApplications = readProjectFile(
     "src/app/[locale]/applications/page.tsx",
+  );
+  const localizedApplicationsComponent = readProjectFile(
+    "src/components/localized/LocalizedApplicationsPage.tsx",
   );
   const localizedApplicationDetail = readProjectFile(
     "src/app/[locale]/applications/[slug]/page.tsx",
@@ -1534,6 +2163,7 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.doesNotMatch(localizedProducts, /indexable:\s*false/);
   assert.doesNotMatch(localizedContact, /indexable:\s*false/);
   assert.doesNotMatch(localizedCategory, /indexable:\s*false/);
+  assert.doesNotMatch(localizedPomDirectory, /indexable:\s*false/);
   assert.doesNotMatch(localizedGrade, /indexable:\s*false/);
   assert.doesNotMatch(localizedTechnicalData, /indexable:\s*false/);
   assert.doesNotMatch(localizedApplications, /indexable:\s*false/);
@@ -1545,6 +2175,12 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(localizedProducts, /productsLanguageAlternates/);
   assert.match(localizedContact, /contactLanguageAlternates/);
   assert.match(localizedCategory, /getLanguageAlternates\(sourcePath\)/);
+  assert.match(localizedPomDirectory, /getLanguageAlternates\(sourcePath\)/);
+  assert.doesNotMatch(
+    localizedPomDirectory,
+    /localeConfig\.locale !== "zh-CN"/,
+  );
+  assert.match(localizedPomDirectory, /translateExpandedContent/);
   assert.match(localizedGrade, /getLanguageAlternates\(sourcePath\)/);
   assert.match(localizedTechnicalData, /getLanguageAlternates\(sourcePath\)/);
   assert.match(localizedApplications, /getLanguageAlternates\(sourcePath\)/);
@@ -1552,8 +2188,26 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
     localizedApplicationDetail,
     /getLanguageAlternates\(sourcePath\)/,
   );
-  assert.match(localizedApplications, /localeConfig\.locale !== "zh-CN"/);
-  assert.match(localizedApplicationDetail, /localeConfig\.locale !== "zh-CN"/);
+  assert.doesNotMatch(
+    localizedApplications,
+    /localeConfig\.locale !== "zh-CN"/,
+  );
+  assert.doesNotMatch(
+    localizedApplicationDetail,
+    /localeConfig\.locale !== "zh-CN"/,
+  );
+  assert.doesNotMatch(
+    localizedApplicationsComponent,
+    /href=(?:"\/components"|\{`\/components)/,
+  );
+  assert.match(
+    localizedApplicationsComponent,
+    /getLocalizedHref\(sourceHref, localeSegment\)/,
+  );
+  assert.match(
+    localizedApplicationsComponent,
+    /getLocalizedHref\("\/components", localeSegment\)/,
+  );
   assert.match(localizedTechnicalData, /!hasSearchIntent/);
   assert.match(localizedHome, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(localizedProducts, /indexable:\s*isLocalizedReleaseIndexable/);
@@ -1563,15 +2217,26 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(englishProducts, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.match(englishContact, /contactLanguageAlternates/);
   assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
+  assert.doesNotMatch(header, /href="\/about"/);
+  assert.match(header, /href=\{localizedHref\("\/about"\)\}/);
   assert.match(
     englishApplications,
     /getLanguageAlternates\("\/applications"\)/,
   );
   assert.match(
     englishApplicationDetail,
-    /getLanguageAlternates\([\s\S]*`\/applications\/\$\{application\.slug\}`/,
+    /getLanguageAlternates\(sourcePath\)/,
   );
   assert.doesNotMatch(nextConfig, /X-Robots-Tag/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/categories\/pom"/);
+  assert.match(
+    sitemap,
+    /sourcePath:\s*"\/products\/categories\/wear-resistant-low-friction-pom-compound"/,
+  );
+  assert.match(
+    sitemap,
+    /sourcePath:\s*"\/products\/categories\/conductive-antistatic-pom-compound"/,
+  );
   assert.match(
     sitemap,
     /sourcePath:\s*"\/products\/categories\/base-pom-resin"/,
@@ -1590,10 +2255,19 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   );
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm450-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/etm750-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/etm090nc-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/etm130-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/etm270-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/etm1500-base-pom-resin"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/etm1800-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/xt-100-base-pom-resin"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/egb25-glass-bead-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/egh502h-glass-fiber-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/ehi402t-high-impact-pom"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/edr100-high-impact-pom"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/ehi100st-high-impact-pom"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/ehi202t-high-impact-pom"/);
+  assert.match(sitemap, /sourcePath:\s*"\/products\/ehi602t-high-impact-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/products\/edr180-high-impact-pom"/);
   assert.match(sitemap, /sourcePath:\s*"\/technical-data-sheets"/);
   assert.match(sitemap, /sourcePath:\s*"\/applications"/);

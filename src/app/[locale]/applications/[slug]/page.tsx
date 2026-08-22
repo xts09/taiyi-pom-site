@@ -4,13 +4,14 @@ import { setRequestLocale } from "next-intl/server";
 import { LocalizedApplicationDetailPage } from "@/components/localized/LocalizedApplicationDetailPage";
 import { getApplicationBySlug } from "@/data/applications";
 import {
-  loadChineseApplicationIndexMessages,
-  loadChineseApplicationProfiles,
+  loadApplicationIndexMessages,
+  loadApplicationProfiles,
   localizeApplication,
 } from "@/i18n/applicationMessages";
 import {
   isLocalizedApplicationSlug,
   localizedApplicationSlugs,
+  type LocalizedApplicationProfileMessages,
 } from "@/i18n/applicationTypes";
 import { getLocalizedLocale } from "@/i18n/config";
 import {
@@ -27,14 +28,8 @@ type LocalizedApplicationDetailRouteProps = {
 
 export const dynamicParams = false;
 
-export function generateStaticParams({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  return params.locale === "zh"
-    ? localizedApplicationSlugs.map((slug) => ({ slug }))
-    : [];
+export function generateStaticParams() {
+  return localizedApplicationSlugs.map((slug) => ({ slug }));
 }
 
 const resolveRoute = async (
@@ -46,15 +41,18 @@ const resolveRoute = async (
   if (
     !localeConfig ||
     localeConfig.urlSegment !== locale ||
-    localeConfig.locale !== "zh-CN" ||
     !isLocalizedApplicationSlug(slug)
   ) {
     notFound();
   }
 
   const sourceApplication = getApplicationBySlug(slug);
+  const sourcePath = `/applications/${slug}` as ReleasedSourcePath;
 
-  if (!sourceApplication) {
+  if (
+    !sourceApplication ||
+    !isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment)
+  ) {
     notFound();
   }
 
@@ -62,7 +60,7 @@ const resolveRoute = async (
     localeConfig,
     slug,
     sourceApplication,
-    sourcePath: `/applications/${slug}` as ReleasedSourcePath,
+    sourcePath,
   };
 };
 
@@ -72,10 +70,10 @@ export async function generateMetadata({
   const { localeConfig, slug, sourceApplication, sourcePath } =
     await resolveRoute(params);
   const [messages, profiles] = await Promise.all([
-    loadChineseApplicationIndexMessages(),
-    loadChineseApplicationProfiles(),
+    loadApplicationIndexMessages(localeConfig.urlSegment),
+    loadApplicationProfiles(localeConfig.urlSegment),
   ]);
-  const profile = profiles[slug];
+  const profile: LocalizedApplicationProfileMessages = profiles[slug];
 
   return createPageMetadata({
     title: `${profile.title} ${messages.detail.metadata.titleSuffix}`,
@@ -96,10 +94,15 @@ export default async function LocalizedApplicationDetailRoute({
     await resolveRoute(params);
   setRequestLocale(localeConfig.htmlLang);
   const [messages, profiles] = await Promise.all([
-    loadChineseApplicationIndexMessages(),
-    loadChineseApplicationProfiles(),
+    loadApplicationIndexMessages(localeConfig.urlSegment),
+    loadApplicationProfiles(localeConfig.urlSegment),
   ]);
-  const application = localizeApplication(sourceApplication, profiles[slug]);
+  const profile: LocalizedApplicationProfileMessages = profiles[slug];
+  const application = localizeApplication(sourceApplication, profile);
+  const detailMessages = {
+    ...messages.detail,
+    ...profile.detailUi,
+  };
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
 
   return (
@@ -108,9 +111,11 @@ export default async function LocalizedApplicationDetailRoute({
       componentMessages={messages.componentSolutions}
       inLanguage={localeConfig.htmlLang}
       localeSegment={localeConfig.urlSegment}
-      messages={messages.detail}
+      messages={detailMessages}
       pagePath={pagePath}
-      selectionItems={messages.selection.items}
+      qualityEvidence={profile.qualityEvidence}
+      selectionItems={profile.selectionItems ?? messages.selection.items}
+      showSelectionInputs={profile.showSelectionInputs}
     />
   );
 }

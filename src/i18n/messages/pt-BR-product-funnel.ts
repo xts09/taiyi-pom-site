@@ -53,6 +53,7 @@ const messages = {
       hdt: "HDT",
       color: "Cor",
       natural: "Natural",
+      black: "Preto",
       detailAction: "Detalhes do grade",
       reviewAction: "Avaliação do projeto",
       summaries: {

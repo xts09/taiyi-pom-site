@@ -3,6 +3,8 @@ import type {
   ResourceNavigationLink,
 } from "@/data/resourceNavigation";
 import type { ResourcePage } from "@/data/resources";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 import resourceNavigation from "@/i18n/messages/zh-CN-resources";
 import resourceArticlesA1 from "@/i18n/messages/zh-CN-resource-articles-a1";
 import resourceArticlesA2 from "@/i18n/messages/zh-CN-resource-articles-a2";
@@ -52,6 +54,21 @@ export const getChineseResourcePage = (
   slug: LocalizedResourceArticleSlug,
 ) => chineseResourcePages[slug];
 
+export const getLocalizedResourceIndexMessages = (
+  localeSegment: LocalizedUrlSegment,
+): ResourceIndexMessages =>
+  translateExpandedContent(chineseResourceIndexMessages, localeSegment);
+
+export const getLocalizedResourcePages = (
+  localeSegment: LocalizedUrlSegment,
+): Record<LocalizedResourceArticleSlug, ResourcePage> =>
+  translateExpandedContent(chineseResourcePages, localeSegment);
+
+export const getLocalizedResourcePage = (
+  slug: LocalizedResourceArticleSlug,
+  localeSegment: LocalizedUrlSegment,
+) => getLocalizedResourcePages(localeSegment)[slug];
+
 export const chineseResourceNavigationGroups = localizedResourceGroupIds.map(
   (id): LocalizedResourceNavigationGroup => {
     const sourceGroup = resourceNavigationGroups.find(
@@ -87,3 +104,49 @@ export const chineseResourceNavigationGroups = localizedResourceGroupIds.map(
 export const getChineseResourceNavigationGroup = (
   id: LocalizedResourceGroupId,
 ) => chineseResourceNavigationGroups.find((group) => group.id === id);
+
+export const getLocalizedResourceNavigationGroups = (
+  localeSegment: LocalizedUrlSegment,
+): LocalizedResourceNavigationGroup[] => {
+  const messages = getLocalizedResourceIndexMessages(localeSegment);
+
+  return localizedResourceGroupIds.map(
+    (id): LocalizedResourceNavigationGroup => {
+      const sourceGroup = resourceNavigationGroups.find(
+        (group) => group.id === id,
+      );
+      const groupMessages = messages.groups[id];
+
+      if (!sourceGroup) {
+        throw new Error(`Missing source resource group: ${id}`);
+      }
+
+      return {
+        id,
+        title: groupMessages.title,
+        navigationLabel: groupMessages.navigationLabel,
+        description: groupMessages.description,
+        image: sourceGroup.image,
+        imageAlt: groupMessages.imageAlt,
+        links: groupMessages.entryPaths.map((href) => {
+          const entry = messages.entries[href];
+
+          return {
+            href,
+            label: entry.label,
+            description: entry.description,
+            type: messages.linkTypeLabels[entry.type],
+          };
+        }),
+      };
+    },
+  );
+};
+
+export const getLocalizedResourceNavigationGroup = (
+  id: LocalizedResourceGroupId,
+  localeSegment: LocalizedUrlSegment,
+) =>
+  getLocalizedResourceNavigationGroups(localeSegment).find(
+    (group) => group.id === id,
+  );

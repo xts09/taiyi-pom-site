@@ -493,16 +493,28 @@ function EngineeringProductDetailPage({
                 <tbody className="divide-y divide-slate-200/80">
                   {coreProperties.map((property) => (
                     <tr key={property.label} className="hover:bg-cyan-50/60">
-                      <td className="px-5 py-3 font-bold text-slate-950">
+                      <td
+                        className="px-5 py-3 font-bold text-slate-950"
+                        data-label="Property"
+                      >
                         {property.label}
                       </td>
-                      <td className="px-5 py-3 font-black text-blue-700">
+                      <td
+                        className="px-5 py-3 font-black text-blue-700"
+                        data-label="Value"
+                      >
                         <ValueText value={property.value} />
                       </td>
-                      <td className="px-5 py-3 text-slate-700">
+                      <td
+                        className="px-5 py-3 text-slate-700"
+                        data-label="Unit"
+                      >
                         <UnitText unit={property.unit} />
                       </td>
-                      <td className="px-5 py-3 text-slate-600">
+                      <td
+                        className="px-5 py-3 text-slate-600"
+                        data-label="Test Method"
+                      >
                         {property.method}
                       </td>
                     </tr>
@@ -949,16 +961,28 @@ export default async function ProductDetailPage({
                   <tbody className="divide-y divide-slate-200/80">
                     {coreProperties.map((property) => (
                       <tr key={property.label} className="hover:bg-cyan-50/60">
-                        <td className="px-5 py-3 font-bold text-slate-950">
+                        <td
+                          className="px-5 py-3 font-bold text-slate-950"
+                          data-label="Property"
+                        >
                           {property.label}
                         </td>
-                        <td className="px-5 py-3 font-black text-blue-700">
+                        <td
+                          className="px-5 py-3 font-black text-blue-700"
+                          data-label="Value"
+                        >
                           <ValueText value={property.value} />
                         </td>
-                        <td className="px-5 py-3 text-slate-700">
+                        <td
+                          className="px-5 py-3 text-slate-700"
+                          data-label="Unit"
+                        >
                           <UnitText unit={property.unit} />
                         </td>
-                        <td className="px-5 py-3 text-slate-600">
+                        <td
+                          className="px-5 py-3 text-slate-600"
+                          data-label="Test Method"
+                        >
                           {property.method}
                         </td>
                       </tr>

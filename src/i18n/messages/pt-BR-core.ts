@@ -1,4 +1,5 @@
 import type { SiteMessages } from "@/i18n/types";
+import { homeTaskFirstLocaleMessages } from "../homeTaskFirstLocaleMessages.ts";
 
 const messages = {
   Home: {
@@ -9,13 +10,13 @@ const messages = {
       imageAlt: "Fabricação de compostos de POM modificado na Taiyi Polymer",
     },
     hero: {
-      eyebrowDesktop: "Materiais de engenharia PLATFORM® · Taiyi Polymer",
-      eyebrowMobile: "PLATFORM® · Taiyi Polymer",
-      title: "Compostos de POM modificado para peças moldadas de precisão.",
+      eyebrowDesktop: "COMPOSIÇÃO DE POM · SUPORTE DE MATERIAIS",
+      eyebrowMobile: "COMPOSIÇÃO DE POM",
+      title: "Fabricante de POM modificado para peças moldadas de precisão",
       body:
-        "A Taiyi Polymer fabrica compostos de POM modificado em sua unidade de Yancheng para peças que exigem resistência ao desgaste, baixo atrito, reforço ou controle eletrostático. Grades, amostras e documentos técnicos são confirmados conforme o projeto.",
-      exploreAction: "Explorar a linha de materiais",
-      contactAction: "Fale sobre sua aplicação",
+        "De desgaste e baixo atrito a reforço e controle eletrostático, reduza a faixa de materiais conforme as condições da peça e depois avalie dados de grade, amostras e requisitos de teste de moldagem.",
+      exploreAction: "Encontrar material por peça",
+      contactAction: "Encontrar grades & TDS",
     },
     metrics: [
       { label: "Capacidade anual de compostos", note: "Toneladas métricas por ano" },
@@ -216,11 +217,11 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "INICIAR UMA ANÁLISE",
-      title: "Envie os dados do projeto para uma análise inicial de grades.",
+      eyebrow: "Comece pelo que você já sabe",
+      title: "Comece pelos requisitos conhecidos da peça e reduza a faixa de materiais passo a passo",
       body:
-        "As informações já conhecidas são suficientes para começar. Sinalize as incertezas e inclua, se disponível, a grade atual, o desenho ou uma amostra com falha.",
-      checklistLabel: "DADOS DO PROJETO",
+        "Não é necessário ter uma especificação completa. Informe a função da peça, as condições de uso, o material atual ou o modo de falha; pontos incertos podem ficar para confirmação.",
+      checklistLabel: "Informações úteis para começar",
       checklist: [
         "Função da peça e modo de movimento",
         "Status do molde e restrições de processamento",
@@ -229,6 +230,7 @@ const messages = {
       ],
       action: "Fale sobre sua aplicação",
     },
+    taskFirst: homeTaskFirstLocaleMessages["pt-br"],
   },
   Contact: {
     metadata: {

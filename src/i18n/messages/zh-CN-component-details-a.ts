@@ -29,7 +29,7 @@ export const chineseBushingsAndSleevesDetail = {
   },
   copy: {
     reviewInputsLabel: "衬套材料比较所需输入",
-    problemTitle: "先从滑动系统的问题开始。",
+    problemTitle: "先从滑动系统的问题开始",
     problemSummary:
       "磨损、噪声、卡滞或间隙变化可能来自材料、轴、配合、对中、污染或工作循环。更换材料前，应先诊断完整接触界面。",
     materialSummary:
@@ -156,7 +156,7 @@ export const chineseBushingsAndSleevesDetail = {
     {
       value: "sliding-system",
       title: "滑动系统判据",
-      summary: "定义可信衬套比较的使用变量。",
+      summary: "定义可信衬套比较的使用变量",
       groups: [
         {
           title: "载荷、速度与运动",
@@ -177,7 +177,7 @@ export const chineseBushingsAndSleevesDetail = {
     {
       value: "fit-tooling",
       title: "配合、模具与注塑",
-      summary: "决定功能性装配后孔径的几何与工艺控制。",
+      summary: "决定功能性装配后孔径的几何与工艺控制",
       groups: [
         {
           title: "装配后尺寸",
@@ -198,7 +198,7 @@ export const chineseBushingsAndSleevesDetail = {
     {
       value: "bushing-validation",
       title: "注塑衬套验证",
-      summary: "把材料初筛连接到接近量产总成的检查。",
+      summary: "把材料初筛连接到接近量产总成的检查",
       groups: [
         {
           title: "零部件与总成检查",
@@ -219,7 +219,7 @@ export const chineseBushingsAndSleevesDetail = {
     {
       value: "bushing-checklist",
       title: "完整项目清单",
-      summary: "用于材料比较与衬套验证的完整项目输入。",
+      summary: "用于材料比较与衬套验证的完整项目输入",
       groups: [
         {
           title: "零部件与界面",
@@ -257,7 +257,7 @@ export const chineseBushingsAndSleevesDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "评估完整滑动界面。",
+    title: "评估完整滑动界面",
     body:
       "请提供衬套图纸，以及现有轴、载荷、运动、壳体配合、间隙、润滑、环境、目标寿命和失效信息。Taiyi Polymer 可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出装配后衬套评估计划。",
   },
