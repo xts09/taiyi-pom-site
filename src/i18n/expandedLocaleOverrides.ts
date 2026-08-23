@@ -12,6 +12,7 @@ export const expandedLocaleOverrides: Partial<
     ...automotiveExpandedLocaleOverrides.de,
     ...applicationNarrativeLocaleOverrides.de,
     ...componentDetailLocaleOverrides.de,
+    "IC 周转托盘": "IC-Handling-Trays",
     精密塑料齿轮: "Präzisionszahnräder aus Kunststoff",
     专注于工程塑料改性材料的制造商:
       "Hersteller für modifizierte technische Kunststoffe",
@@ -88,6 +89,7 @@ export const expandedLocaleOverrides: Partial<
     ...automotiveExpandedLocaleOverrides.fr,
     ...applicationNarrativeLocaleOverrides.fr,
     ...componentDetailLocaleOverrides.fr,
+    "IC 周转托盘": "Plateaux de manutention pour circuits intégrés",
     专注于工程塑料改性材料的制造商:
       "Fabricant spécialisé dans la modification des plastiques techniques",
     从零部件需求到候选牌号评估:
@@ -149,6 +151,7 @@ export const expandedLocaleOverrides: Partial<
     ...automotiveExpandedLocaleOverrides["pt-br"],
     ...applicationNarrativeLocaleOverrides["pt-br"],
     ...componentDetailLocaleOverrides["pt-br"],
+    "IC 周转托盘": "Bandejas para manuseio de CIs",
     专注于工程塑料改性材料的制造商:
       "Fabricante especializado em compostos de plásticos de engenharia",
     从零部件需求到候选牌号评估:

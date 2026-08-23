@@ -9,7 +9,24 @@ export type ProductFamilyComponentRelation = {
 // Shared semantic relationships only. Labels and locale-aware URLs are
 // resolved from the existing Product Family and Component owners at render time.
 export const productFamilyComponentRelations: readonly ProductFamilyComponentRelation[] =
-  [];
+  [
+    {
+      productFamilySlug: "conductive-antistatic-pom-compound",
+      componentSlug: "ic-handling-trays",
+    },
+    {
+      productFamilySlug: "wear-resistant-low-friction-pom-compound",
+      componentSlug: "bushings-and-sleeves",
+    },
+    {
+      productFamilySlug: "wear-resistant-low-friction-pom-compound",
+      componentSlug: "precision-plastic-gears",
+    },
+    {
+      productFamilySlug: "glass-bead-filled-pom-compound",
+      componentSlug: "ic-handling-trays",
+    },
+  ];
 
 export const getProductFamilyComponentRelations = (productFamilySlug: string) =>
   productFamilyComponentRelations.filter(
@@ -33,6 +50,20 @@ export const validateProductFamilyComponentRelations = (
 
   return {
     semanticEdges: productFamilyComponentRelations.length,
+    participatingProductFamilySlugs: [
+      ...new Set(
+        productFamilyComponentRelations.map(
+          (relation) => relation.productFamilySlug,
+        ),
+      ),
+    ],
+    receivingComponentSlugs: [
+      ...new Set(
+        productFamilyComponentRelations.map(
+          (relation) => relation.componentSlug,
+        ),
+      ),
+    ],
     duplicateRelationKeys: relationKeys.filter(
       (key, index) => relationKeys.indexOf(key) !== index,
     ),
