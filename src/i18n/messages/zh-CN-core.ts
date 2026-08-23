@@ -443,6 +443,7 @@ const messages = {
       sampleIntent: "样品申请",
       evaluationIntent: "牌号评估",
       tdsIntent: "TDS 或技术资料",
+      quoteSupplyIntent: "报价或供货沟通",
     },
     form: {
       contextFrom: "来源",

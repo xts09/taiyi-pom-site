@@ -1,4 +1,8 @@
-export type ContactIntent = "sample" | "grade-evaluation" | "tds";
+export type ContactIntent =
+  | "sample"
+  | "grade-evaluation"
+  | "tds"
+  | "quote-supply";
 
 export type ContactContext = {
   application?: string;
@@ -28,6 +32,7 @@ const allowedIntents = new Set<ContactIntent>([
   "sample",
   "grade-evaluation",
   "tds",
+  "quote-supply",
 ]);
 
 const normalizeContextValue = (
@@ -105,6 +110,7 @@ type ContactContextMessageLabels = {
   sampleIntent: string;
   evaluationIntent: string;
   tdsIntent: string;
+  quoteSupplyIntent: string;
 };
 
 const defaultContextMessageLabels: ContactContextMessageLabels = {
@@ -116,6 +122,7 @@ const defaultContextMessageLabels: ContactContextMessageLabels = {
   sampleIntent: "Sample request",
   evaluationIntent: "Grade evaluation",
   tdsIntent: "TDS or documents",
+  quoteSupplyIntent: "Quote or supply discussion",
 };
 
 export function getContactContextMessage(
@@ -129,7 +136,9 @@ export function getContactContextMessage(
         ? labels.evaluationIntent
         : context.intent === "tds"
           ? labels.tdsIntent
-        : undefined;
+          : context.intent === "quote-supply"
+            ? labels.quoteSupplyIntent
+            : undefined;
 
   return [
     context.grade ? `${labels.grade}: ${context.grade}` : undefined,

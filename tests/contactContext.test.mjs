@@ -7,6 +7,11 @@ import {
   getContactContextMessage,
   parseContactContext,
 } from "../src/lib/contactContext.ts";
+import de from "../src/i18n/messages/de-core.ts";
+import en from "../src/i18n/messages/en.ts";
+import fr from "../src/i18n/messages/fr-core.ts";
+import ptBR from "../src/i18n/messages/pt-BR-core.ts";
+import zhCN from "../src/i18n/messages/zh-CN-core.ts";
 
 test("builds an encoded contact handoff and preserves useful context", () => {
   const href = createContactHref({
@@ -59,8 +64,44 @@ test("leaves a direct contact visit without an inferred intent", () => {
 });
 
 test("keeps each recognized intent distinct in contact context", () => {
-  for (const intent of ["tds", "sample", "grade-evaluation"]) {
+  for (const intent of ["tds", "sample", "grade-evaluation", "quote-supply"]) {
     assert.equal(parseContactContext({ intent }).intent, intent);
+  }
+});
+
+test("round-trips quote and supply context through a localized contact URL", () => {
+  const href = createContactHref(
+    {
+      intent: "quote-supply",
+      source: "About manufacturing",
+    },
+    "/de/contact",
+  );
+  const query = href.slice(href.indexOf("?") + 1);
+
+  assert.equal(
+    href,
+    "/de/contact?source=About+manufacturing&intent=quote-supply",
+  );
+  assert.deepEqual(
+    parseContactContext(Object.fromEntries(new URLSearchParams(query))),
+    {
+      intent: "quote-supply",
+      source: "About manufacturing",
+    },
+  );
+});
+
+test("uses the form's localized quote and supply label in contact context", () => {
+  for (const messages of [en, zhCN, de, fr, ptBR]) {
+    const context = messages.Contact.context;
+    const option = messages.Contact.form.inquiryTypeOptions["quote-supply"];
+
+    assert.equal(context.quoteSupplyIntent, option);
+    assert.equal(
+      getContactContextMessage({ intent: "quote-supply" }, context),
+      `${context.intent}: ${option}`,
+    );
   }
 });
 

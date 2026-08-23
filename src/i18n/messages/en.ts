@@ -535,6 +535,7 @@ const messages = {
       sampleIntent: "Sample request",
       evaluationIntent: "Grade evaluation",
       tdsIntent: "TDS or documents",
+      quoteSupplyIntent: "Quote or supply discussion",
     },
     form: {
       contextFrom: "From",

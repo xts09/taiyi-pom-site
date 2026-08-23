@@ -448,6 +448,7 @@ export type ContactMessages = {
     sampleIntent: string;
     evaluationIntent: string;
     tdsIntent: string;
+    quoteSupplyIntent: string;
   };
   form: ContactFormMessages;
 };

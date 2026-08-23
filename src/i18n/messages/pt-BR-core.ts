@@ -290,6 +290,7 @@ const messages = {
       sampleIntent: "Solicitação de amostra",
       evaluationIntent: "Avaliação de grade",
       tdsIntent: "TDS ou documentos",
+      quoteSupplyIntent: "Cotação ou conversa sobre fornecimento",
     },
     form: {
       contextFrom: "Contexto",
