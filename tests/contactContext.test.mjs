@@ -12,6 +12,14 @@ import en from "../src/i18n/messages/en.ts";
 import fr from "../src/i18n/messages/fr-core.ts";
 import ptBR from "../src/i18n/messages/pt-BR-core.ts";
 import zhCN from "../src/i18n/messages/zh-CN-core.ts";
+import { getLocalizedHref } from "../src/i18n/releaseManifest.ts";
+
+const canonicalContactIntents = [
+  "sample",
+  "tds",
+  "grade-evaluation",
+  "quote-supply",
+];
 
 test("builds an encoded contact handoff and preserves useful context", () => {
   const href = createContactHref({
@@ -64,8 +72,39 @@ test("leaves a direct contact visit without an inferred intent", () => {
 });
 
 test("keeps each recognized intent distinct in contact context", () => {
-  for (const intent of ["tds", "sample", "grade-evaluation", "quote-supply"]) {
+  for (const intent of canonicalContactIntents) {
     assert.equal(parseContactContext({ intent }).intent, intent);
+  }
+});
+
+test("keeps the canonical intent set aligned across every localized form", () => {
+  const expected = [...canonicalContactIntents].sort();
+
+  for (const messages of [en, zhCN, de, fr, ptBR]) {
+    assert.deepEqual(
+      Object.keys(messages.Contact.form.inquiryTypeOptions).sort(),
+      expected,
+    );
+  }
+});
+
+test("preserves every recognized intent across contact locale paths", () => {
+  const localeSegments = [undefined, "de", "fr", "pt-br", "zh"];
+
+  for (const intent of canonicalContactIntents) {
+    for (const localeSegment of localeSegments) {
+      const href = getLocalizedHref(
+        createContactHref({ intent, source: "intent-contract" }),
+        localeSegment,
+      );
+      const query = href.slice(href.indexOf("?") + 1);
+
+      assert.equal(
+        parseContactContext(Object.fromEntries(new URLSearchParams(query))).intent,
+        intent,
+        `${intent} was lost for ${localeSegment ?? "en"}`,
+      );
+    }
   }
 });
 
