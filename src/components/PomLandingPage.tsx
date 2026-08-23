@@ -498,7 +498,9 @@ export function PomLandingPage({
               variant="inverse"
               className="h-auto px-7 py-3 text-sm"
             >
-              <Link href={contactHref}>{page.primaryActionLabel}</Link>
+              <Link href={contactHref}>
+                {page.finalActionLabel ?? page.primaryActionLabel}
+              </Link>
             </Button>
           }
         >

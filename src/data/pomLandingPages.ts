@@ -57,6 +57,7 @@ export type PomLandingPageData = {
   intro: string;
   primaryActionLabel: string;
   primaryActionHref?: string;
+  finalActionLabel?: string;
   secondaryActionLabel?: string;
   secondaryActionHref?: string;
   heroProof?: string;
@@ -179,6 +180,7 @@ export const pomLandingPages = {
     },
     primaryActionLabel: "Choose by Part Requirement",
     primaryActionHref: "#part-requirement-map",
+    finalActionLabel: "Request a POM Grade Review",
     secondaryActionLabel: "Browse POM Families & Grades",
     secondaryActionHref: "/products/categories/pom",
     sections: [
