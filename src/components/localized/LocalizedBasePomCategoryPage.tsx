@@ -7,8 +7,12 @@ import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { availableDocuments } from "@/data/company";
+import { getProductFamilyComponentRelations } from "@/data/productFamilyComponentRelations";
 import { products, type Product } from "@/data/products";
+import { getLocalizedComponentSolution } from "@/i18n/componentMessages";
 import type { LocalizedUrlSegment } from "@/i18n/config";
+import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
+import { chinesePomDirectoryMessages } from "@/i18n/messages/zh-CN-pom-directory";
 import {
   type LocalizedProductCategoryRouteSlug,
   type ProductFunnelMessages,
@@ -25,6 +29,7 @@ import {
 } from "@/lib/seo";
 import {
   findCategoryBySlug,
+  getCategoryApplicationSlugs,
   getProductsByCategory,
 } from "@/lib/productCategories";
 
@@ -66,6 +71,24 @@ export function LocalizedProductCategoryContent({
     }),
   );
   const technicalDataHref = localizedPath("/technical-data-sheets");
+  const relatedPathMessages = translateExpandedContent(
+    chinesePomDirectoryMessages,
+    localeSegment,
+  ).applications;
+  const relatedApplicationItems = getCategoryApplicationSlugs(
+    entry.category,
+  ).map((slug) => ({
+    slug,
+    title:
+      relatedPathMessages.items[
+        slug as keyof typeof relatedPathMessages.items
+      ] ?? slug,
+  }));
+  const relatedComponentSolutions = getProductFamilyComponentRelations(
+    categorySlug,
+  ).map((relation) =>
+    getLocalizedComponentSolution(relation.componentSlug, localeSegment),
+  );
   const releasedProducts = categoryProducts.filter((product) =>
     isLocalizedReleaseIndexable(`/products/${product.slug}`, localeSegment),
   );
@@ -100,6 +123,14 @@ export function LocalizedProductCategoryContent({
   ];
   const sectionTabs = [
     { href: "#pom-grades", label: copy.navigation.grades },
+    ...(relatedComponentSolutions.length > 0
+      ? [
+          {
+            href: "#category-applications",
+            label: relatedPathMessages.kicker,
+          },
+        ]
+      : []),
     { href: "#category-faq", label: copy.navigation.faq },
   ];
 
@@ -284,6 +315,61 @@ export function LocalizedProductCategoryContent({
               })}
             </div>
           </section>
+
+          {relatedComponentSolutions.length > 0 ? (
+            <section
+              id="category-applications"
+              className="product-application-directory products-motion-secondary mt-12"
+            >
+              <div className="product-application-directory-head">
+                <p className="section-kicker mb-3">
+                  {relatedPathMessages.kicker}
+                </p>
+                <h2>{relatedPathMessages.title}</h2>
+                <p>{relatedPathMessages.body}</p>
+                <div className="mt-5 flex flex-col items-start gap-3">
+                  <Button
+                    asChild
+                    variant="link"
+                    className="h-auto justify-start p-0 text-left font-bold"
+                  >
+                    <Link href={localizedPath("/applications")}>
+                      {relatedPathMessages.allAction} &rarr;
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+
+              <div className="product-application-list">
+                {relatedApplicationItems.map((application, index) => (
+                  <Link
+                    key={application.slug}
+                    href={localizedPath(`/applications/${application.slug}`)}
+                    className="product-application-list-item"
+                  >
+                    <span className="product-application-number">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <strong>{application.title}</strong>
+                  </Link>
+                ))}
+                {relatedComponentSolutions.map((solution, index) => (
+                  <Link
+                    key={solution.slug}
+                    href={localizedPath(`/components/${solution.slug}`)}
+                    className="product-application-list-item"
+                  >
+                    <span className="product-application-number">
+                      {String(
+                        relatedApplicationItems.length + index + 1,
+                      ).padStart(2, "0")}
+                    </span>
+                    <strong>{solution.title}</strong>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <section className="products-motion-secondary mt-12">
             <div id="category-faq" className="evaluation-note">

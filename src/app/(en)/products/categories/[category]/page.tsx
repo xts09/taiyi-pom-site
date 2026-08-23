@@ -16,6 +16,10 @@ import {
   getEngineeringTdsByProductCategory,
 } from "@/data/engineeringTds";
 import { products } from "@/data/products";
+import {
+  getProductFamilyComponentRelations,
+} from "@/data/productFamilyComponentRelations";
+import { getComponentSolutionBySlug } from "@/data/componentSolutions";
 import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
 import {
   findCategoryBySlug,
@@ -137,6 +141,13 @@ export default async function ProductCategoryPage({
         Boolean(application),
     );
   const categorySelectionLinks = getCategorySelectionLinks(entry.category);
+  const relatedComponentSolutions = getProductFamilyComponentRelations(
+    entry.slug,
+  )
+    .map((relation) => getComponentSolutionBySlug(relation.componentSlug))
+    .filter(
+      (solution): solution is NonNullable<typeof solution> => Boolean(solution),
+    );
   const isPomCategory = entry.category === "POM";
   const isPomSubcategory = productCategoryOrder.includes(entry.category);
   const hasEngineeringGrades = engineeringGrades.length > 0;
@@ -435,6 +446,21 @@ export default async function ProductCategoryPage({
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <strong>{application.title}</strong>
+                </Link>
+              ))}
+              {relatedComponentSolutions.map((solution, index) => (
+                <Link
+                  key={solution.slug}
+                  href={`/components/${solution.slug}`}
+                  className="product-application-list-item"
+                >
+                  <span className="product-application-number">
+                    {String(relevantApplications.length + index + 1).padStart(
+                      2,
+                      "0",
+                    )}
+                  </span>
+                  <strong>{solution.title}</strong>
                 </Link>
               ))}
             </div>
