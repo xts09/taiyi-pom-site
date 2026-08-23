@@ -89,6 +89,18 @@ export const englishApplicationNarrativeOverrides: Record<string, string> = {
     "Connectors, trays, drive gears and antistatic precision parts perform different electrical and mechanical functions. Define whether the part requires insulation, static dissipation or conductivity, then establish the resistance range, test conditions, grounding path, dimensions and motion requirements before building the candidate range.",
   "端子间距、保持力、薄壁充模、插拔次数和电气要求决定尺寸、加工与材料方向。":
     "Terminal spacing, retention force, thin-wall filling, mating cycles and electrical requirements shape the dimensional, processing and material-selection priorities.",
+  "卡扣、紧固件或受冲击部件需要更高韧性时进入候选；仍需结合缺口、温度、载荷和实际部件确认。":
+    "Consider high-impact POM for clips, fasteners or impact-loaded parts that need greater toughness. Confirm the direction against notch geometry, temperature, load and the actual component.",
+  "启动阻力、粘滑、摩擦噪声或配合表面顺畅性影响机构表现时进入候选。":
+    "Consider low-friction options when breakaway resistance, stick-slip, friction noise or mating-surface movement limits mechanism performance.",
+  "滑动、旋转或配合界面需要降低摩擦、噪声或粘滑时进入候选，并结合电气要求判断。":
+    "Consider low-friction options for sliding, rotating or mating interfaces when friction, noise or stick-slip must be reduced. Evaluate them alongside the electrical requirements.",
+  "现有方向无法同时满足电气、机械、颜色或加工目标时再讨论调整；若阻燃、高温或法规要求主导，应先确认 POM 是否仍适合作为候选。":
+    "Discuss formulation adjustments when existing options cannot meet the electrical, mechanical, color and processing targets together. If flame retardancy, high temperature or regulatory requirements dominate, first confirm whether POM remains an appropriate candidate.",
+  "部件存在持续或周期性日照，并已明确暴露时长、颜色、外观或性能保持目标时进入候选，仍需按牌号与测试条件确认。":
+    "Consider UV-resistant POM for parts exposed to continuous or periodic sunlight when exposure duration and color, appearance or performance-retention targets are defined. Confirm the direction using grade-specific data and test conditions.",
+  "当暴露、颜色、冲击、磨损、介质和尺寸要求同时存在时，根据明确的优先级建立定制方向；若阻燃或高温是主导条件，应先判断是否仍适合 POM。":
+    "When exposure, color, impact, wear, medium and dimensional requirements overlap, define which constraints take priority before reviewing a custom formulation. If flame retardancy or high temperature dominates, first confirm whether POM remains an appropriate candidate.",
   "户外部件的材料方向由暴露位置、温度循环、冲击载荷、水尘介质、运动方式和尺寸要求共同决定。先找到接近的部件，再明确需要优先控制的失效现象。":
     "For outdoor components, exposure location, temperature cycling, impact load, water and dust exposure, motion and dimensional requirements shape the candidate material range. Start with the closest part type, then identify the failure risk that must be controlled first.",
   "根据试装和运行结果收窄牌号，并保留待确认的现场变量":

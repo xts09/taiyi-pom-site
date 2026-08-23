@@ -772,8 +772,7 @@
 }
 
 .application-section-mobile-menu,
-.application-use-mobile-content,
-.application-notes-mobile-content {
+.application-expandable-toggle {
   display: none;
 }
 
@@ -782,9 +781,7 @@
     --application-section-nav-height: 9rem;
   }
 
-  .application-detail-shell.mesh-surface .application-section-tabs,
-  .application-detail-shell.mesh-surface .application-use-grid-desktop,
-  .application-detail-shell.mesh-surface .application-notes-grid-desktop {
+  .application-detail-shell.mesh-surface .application-section-tabs {
     display: none;
   }
 
@@ -823,8 +820,7 @@
     list-style: none;
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu summary::-webkit-details-marker,
-  .application-detail-shell.mesh-surface .application-mobile-disclosure summary::-webkit-details-marker {
+  .application-detail-shell.mesh-surface .application-section-mobile-menu summary::-webkit-details-marker {
     display: none;
   }
 
@@ -861,9 +857,9 @@
 
   .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a:focus-visible,
   .application-detail-shell.mesh-surface .application-section-mobile-menu summary:focus-visible,
-  .application-detail-shell.mesh-surface .application-mobile-disclosure summary:focus-visible {
-    outline: 2px solid rgba(0, 184, 217, 0.82);
-    outline-offset: 0.2rem;
+  .application-detail-shell.mesh-surface .application-expandable-toggle:focus-visible {
+    outline: var(--ds-rule-strong) solid var(--ds-focus-ring);
+    outline-offset: var(--ds-space-1);
   }
 
   .application-detail-shell.mesh-surface .application-section-mobile-menu-action {
@@ -872,44 +868,34 @@
     font-weight: 700 !important;
   }
 
-  .application-detail-shell.mesh-surface .application-use-mobile-content,
-  .application-detail-shell.mesh-surface .application-notes-mobile-content {
-    display: block;
-  }
-
-  .application-detail-shell.mesh-surface .application-mobile-disclosure {
-    display: block;
-    width: var(--site-rail-width);
-    margin: 0.9rem auto 0;
-    border-top: 1px solid rgba(15, 23, 42, 0.12);
-  }
-
-  .application-detail-shell.mesh-surface .application-mobile-disclosure summary {
+  .application-detail-shell.mesh-surface .application-expandable-toggle {
     display: flex;
+    grid-column: 1 / -1;
     min-height: 3.1rem;
     align-items: center;
     justify-content: space-between;
+    margin-top: -0.1rem;
+    padding: 0;
+    border: 0;
+    border-top: var(--ds-rule-thin) solid var(--ds-border-subtle);
+    background: transparent;
     cursor: pointer;
-    color: #0b5fb8;
-    font-size: 0.92rem;
-    font-weight: 700;
-    list-style: none;
+    color: var(--ds-action-primary);
+    font-size: var(--ds-text-sm);
+    font-weight: var(--ds-font-weight-bold);
+    text-align: left;
   }
 
-  .application-detail-shell.mesh-surface .application-mobile-disclosure summary::after {
-    color: #0b5fb8;
-    content: "+";
-    font-size: 1.2rem;
-    font-weight: 500;
+  .application-detail-shell.mesh-surface
+    .application-expandable-grid:not(.is-expanded)
+    .application-expandable-toggle
+    ~ * {
+    display: none;
   }
 
-  .application-detail-shell.mesh-surface .application-mobile-disclosure[open] summary::after {
-    content: "−";
-  }
-
-  .application-detail-shell.mesh-surface .application-mobile-disclosure-grid {
-    gap: 0.9rem;
-    padding-bottom: 0.9rem;
+  .application-detail-shell.mesh-surface .application-expandable-toggle > :last-child {
+    font-size: var(--ds-text-lg);
+    font-weight: var(--ds-font-weight-regular);
   }
 
   .application-detail-shell.mesh-surface .application-use-card-body {

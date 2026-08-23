@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
+import { ApplicationExpandableGrid } from "@/components/ApplicationExpandableGrid";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { MediaFigure } from "@/components/MediaFigure";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
@@ -369,10 +370,6 @@ export function LocalizedApplicationDetailPage({
   const materialDirectionCards = getMaterialDirectionCards(application);
   const applicationUseCards = getApplicationUseCards(application);
   const componentGuides = getApplicationComponentLinks(application.slug);
-  const featuredApplicationUseCards = applicationUseCards.slice(0, 4);
-  const remainingApplicationUseCards = applicationUseCards.slice(4);
-  const featuredMaterialDirectionCards = materialDirectionCards.slice(0, 3);
-  const remainingMaterialDirectionCards = materialDirectionCards.slice(3);
   const contactHref = createContactHref(
     {
       application: application.title,
@@ -609,7 +606,15 @@ export function LocalizedApplicationDetailPage({
             <p>{messages.parts.description}</p>
           </div>
 
-          <div className="application-use-grid application-use-grid-desktop">
+          <ApplicationExpandableGrid
+            className="application-use-grid"
+            id="application-part-examples"
+            initialVisibleCount={4}
+            showMoreLabel={`${messages.parts.showMorePrefix} ${Math.max(
+              applicationUseCards.length - 4,
+              0,
+            )} ${messages.parts.showMoreSuffix}`}
+          >
             {applicationUseCards.map((card) => (
               <ApplicationUseCard
                 key={card.key}
@@ -620,44 +625,7 @@ export function LocalizedApplicationDetailPage({
                 title={card.title}
               />
             ))}
-          </div>
-
-          <div className="application-use-mobile-content">
-            <div className="application-use-grid">
-              {featuredApplicationUseCards.map((card) => (
-                <ApplicationUseCard
-                  key={card.key}
-                  cardLabel={messages.parts.cardLabel}
-                  description={card.description}
-                  image={card.image}
-                  index={card.index}
-                  title={card.title}
-                />
-              ))}
-            </div>
-
-            {remainingApplicationUseCards.length > 0 ? (
-              <details className="application-mobile-disclosure">
-                <summary>
-                  {messages.parts.showMorePrefix}{" "}
-                  {remainingApplicationUseCards.length}{" "}
-                  {messages.parts.showMoreSuffix}
-                </summary>
-                <div className="application-mobile-disclosure-grid application-use-grid">
-                  {remainingApplicationUseCards.map((card) => (
-                    <ApplicationUseCard
-                      key={card.key}
-                      cardLabel={messages.parts.cardLabel}
-                      description={card.description}
-                      image={card.image}
-                      index={card.index}
-                      title={card.title}
-                    />
-                  ))}
-                </div>
-              </details>
-            ) : null}
-          </div>
+          </ApplicationExpandableGrid>
 
           {componentGuides.length > 0 ? (
             <aside
@@ -732,7 +700,15 @@ export function LocalizedApplicationDetailPage({
             <p>{messages.materials.description}</p>
           </div>
 
-          <div className="application-notes-grid application-notes-grid-desktop">
+          <ApplicationExpandableGrid
+            className="application-notes-grid"
+            id="application-material-directions"
+            initialVisibleCount={3}
+            showMoreLabel={`${messages.materials.showMorePrefix} ${Math.max(
+              materialDirectionCards.length - 3,
+              0,
+            )} ${messages.materials.showMoreSuffix}`}
+          >
             {materialDirectionCards.map((card, index) => (
               <ProductInfoCard
                 key={card.key}
@@ -746,55 +722,7 @@ export function LocalizedApplicationDetailPage({
                 messages={messages.materials}
               />
             ))}
-          </div>
-
-          <div className="application-notes-mobile-content">
-            <div className="application-notes-grid">
-              {featuredMaterialDirectionCards.map((card, index) => (
-                <ProductInfoCard
-                  key={card.key}
-                  card={card}
-                  englishDestinationLabel={
-                    componentMessages.englishDestinationLabel
-                  }
-                  image={getCyclicItem(application.images, index)}
-                  localeSegment={localeSegment}
-                  materialImageSrc={getMaterialCardImage(card)}
-                  messages={messages.materials}
-                />
-              ))}
-            </div>
-
-            {remainingMaterialDirectionCards.length > 0 ? (
-              <details className="application-mobile-disclosure">
-                <summary>
-                  {messages.materials.showMorePrefix}{" "}
-                  {remainingMaterialDirectionCards.length}{" "}
-                  {messages.materials.showMoreSuffix}
-                </summary>
-                <div className="application-mobile-disclosure-grid application-notes-grid">
-                  {remainingMaterialDirectionCards.map((card, index) => {
-                    const materialIndex =
-                      index + featuredMaterialDirectionCards.length;
-
-                    return (
-                      <ProductInfoCard
-                        key={card.key}
-                        card={card}
-                        englishDestinationLabel={
-                          componentMessages.englishDestinationLabel
-                        }
-                        image={getCyclicItem(application.images, materialIndex)}
-                        localeSegment={localeSegment}
-                        materialImageSrc={getMaterialCardImage(card)}
-                        messages={messages.materials}
-                      />
-                    );
-                  })}
-                </div>
-              </details>
-            ) : null}
-          </div>
+          </ApplicationExpandableGrid>
         </section>
 
         <ActionPanel
