@@ -2,6 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { DetailedComponentSolution } from "@/app/(en)/components/[slug]/DetailedComponentSolution";
+import { applications } from "@/data/applications";
+import { resolveComponentApplicationReferences } from "@/data/applicationComponentRelations";
+import {
+  loadApplicationProfiles,
+  localizeApplication,
+} from "@/i18n/applicationMessages";
+import { isLocalizedApplicationSlug } from "@/i18n/applicationTypes";
 import {
   getLocalizedComponentDetail,
   getLocalizedComponentIndexMessages,
@@ -89,6 +96,23 @@ export default async function LocalizedComponentDetailRoute({
   const { localeConfig, detail, messages, solution, sourcePath } =
     await resolveRoute(params);
   setRequestLocale(localeConfig.htmlLang);
+  const applicationProfiles = await loadApplicationProfiles(
+    localeConfig.urlSegment,
+  );
+  const localizedApplications = applications.map((application) => {
+    if (!isLocalizedApplicationSlug(application.slug)) {
+      throw new Error(`Missing application profile: ${application.slug}`);
+    }
+
+    return localizeApplication(
+      application,
+      applicationProfiles[application.slug],
+    );
+  });
+  const applicationReferences = resolveComponentApplicationReferences(
+    solution.slug,
+    localizedApplications,
+  );
   const pagePath = getLocalizedHref(sourcePath, localeConfig.urlSegment);
   const detailJsonLd = [
     createBreadcrumbJsonLd([
@@ -124,6 +148,7 @@ export default async function LocalizedComponentDetailRoute({
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(detailJsonLd) }}
       />
       <DetailedComponentSolution
+        applicationReferences={applicationReferences}
         detail={detail}
         solution={solution}
         localeSegment={localeConfig.urlSegment}

@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { ComponentSolution } from "@/data/componentSolutions";
 import type { ComponentSolutionDetail } from "@/data/componentSolutionDetails";
+import type { ComponentApplicationReference } from "@/data/applicationComponentRelations";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
@@ -32,6 +33,7 @@ type DetailedComponentSolutionProps = {
   solution: ComponentSolution;
   localeSegment?: LocalizedUrlSegment;
   ui?: ComponentDetailUi;
+  applicationReferences: readonly ComponentApplicationReference[];
 };
 
 export type ComponentDetailUi = {
@@ -62,6 +64,9 @@ export type ComponentDetailUi = {
   technicalDescription: string;
   relatedEyebrow: string;
   relatedTitle: string;
+  applicationContextTitle: string;
+  applicationContextDescription: string;
+  partExampleLabel: string;
   finalAction: string;
   contactSource: string;
 };
@@ -96,6 +101,10 @@ const englishUi: ComponentDetailUi = {
     "Open the operating criteria, tooling requirements, molded-part tests, and full project checklist as needed.",
   relatedEyebrow: "Related guidance",
   relatedTitle: "Open the next technical reference.",
+  applicationContextTitle: "Where this component appears",
+  applicationContextDescription:
+    "Open the relevant application path to review operating conditions, selection priorities, and candidate material directions in context.",
+  partExampleLabel: "Part example",
   finalAction: "Discuss Your Application",
   contactSource: "Component solution",
 };
@@ -105,6 +114,7 @@ export function DetailedComponentSolution({
   solution,
   localeSegment,
   ui = englishUi,
+  applicationReferences,
 }: DetailedComponentSolutionProps) {
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeSegment);
@@ -190,6 +200,39 @@ export function DetailedComponentSolution({
                 </div>
               ))}
             </dl>
+          </section>
+
+          <section
+            className={`${styles.gearSection} ${styles.applicationContextSection}`}
+            aria-labelledby="component-application-context"
+          >
+            <div className={styles.applicationContextIntro}>
+              <h2 id="component-application-context">
+                {ui.applicationContextTitle}
+              </h2>
+              <p>{ui.applicationContextDescription}</p>
+            </div>
+            <nav
+              className={styles.applicationContextLinks}
+              aria-label={ui.applicationContextTitle}
+            >
+              {applicationReferences.map((reference) => (
+                <Link
+                  href={localizedHref(reference.href)}
+                  key={reference.applicationSlug}
+                >
+                  <span>
+                    <strong>{reference.applicationTitle}</strong>
+                    {reference.partExamples.map((part) => (
+                      <small key={part.id}>
+                        {ui.partExampleLabel}: {part.label}
+                      </small>
+                    ))}
+                  </span>
+                  <ArrowRight aria-hidden="true" size={19} />
+                </Link>
+              ))}
+            </nav>
           </section>
 
           <section

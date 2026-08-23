@@ -1,4 +1,7 @@
-import { getCategoryPath, pomSubcategoryLabels } from "@/lib/productCategories";
+import {
+  getCategoryPath,
+  pomSubcategoryLabels,
+} from "../lib/productCategories.ts";
 
 export type ApplicationDirection = {
   label: string;
@@ -15,6 +18,9 @@ export type ApplicationImage = {
 };
 
 export type ApplicationPart = {
+  // Stable relationship key.
+  // Do not rename when labels, translations, images, or ordering change.
+  id: string;
   label: string;
   description: string;
   image?: {
@@ -131,6 +137,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "fuel-pump-assembly",
         label: "Fuel Pump Assembly",
         description:
           "Review dimensional fit, fuel-system movement, and repeatable assembly conditions.",
@@ -140,6 +147,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "window-regulator",
         label: "Window Regulator",
         description:
           "Screen low-friction movement, gear wear, and stable guide engagement.",
@@ -149,6 +157,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "automotive-clips-and-fasteners",
         label: "Automotive Clips & Fasteners",
         description:
           "Check retention force, snap-fit consistency, and low-warpage assembly fit.",
@@ -158,6 +167,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "safety-latch",
         label: "Safety Latch",
         description:
           "Review release geometry, retention force, and repeatable assembly fit.",
@@ -167,6 +177,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "wiper-motor-gear",
         label: "Wiper Motor Gear",
         description:
           "Screen tooth wear, torque transfer, and smooth repeated movement.",
@@ -176,6 +187,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "seat-guide-ring",
         label: "Seat Guide Ring",
         description:
           "Evaluate sliding contact, guide accuracy, and resistance to repeated wear.",
@@ -185,6 +197,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "gear-shift-seat",
         label: "Gear Shift Seat",
         description:
           "Review controlled movement, assembly fit, and low-noise operation.",
@@ -194,6 +207,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "interior-rearview-mirror-base",
         label: "Interior Rearview Mirror Base",
         description:
           "Review molded fit, mounting geometry, and stable support around the interior rearview mirror.",
@@ -203,6 +217,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "wiper-arm-components",
         label: "Wiper Arm Components",
         description:
           "Review connector fit, retention geometry, and repeatable assembly around the windshield wiper arm.",
@@ -212,6 +227,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "fuel-filter-element",
         label: "Fuel Filter Element",
         description:
           "Review sealing fit, retention geometry, and repeatable assembly around the fuel filter module.",
@@ -221,6 +237,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "fuel-cap-assembly",
         label: "Fuel Cap Assembly",
         description:
           "Review sealing fit, thread engagement, and repeatable assembly around the fuel filler cap.",
@@ -230,6 +247,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "ev-brake-component",
         label: "EV Brake Component",
         description:
           "Review gear engagement, torque transfer, and dimensional stability for electric brake actuator assemblies.",
@@ -313,6 +331,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "connector-housing",
         label: "Connector Housing",
         description:
           "Review terminal alignment, fine-feature fill, and repeatable connector fit.",
@@ -322,6 +341,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "terminal-housing",
         label: "Terminal Housing",
         description:
           "Check retention geometry, dimensional consistency, and stable assembly clearance.",
@@ -331,6 +351,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "copier-drive-gear",
         label: "Copier Drive Gear",
         description:
           "Review tooth engagement, rotational accuracy, and repeatable power transfer in copier drive assemblies.",
@@ -340,6 +361,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "toner-cartridge-drive-components",
         label: "Toner Cartridge Drive Components",
         description:
           "Review gear support, shaft alignment, and repeatable movement within toner-cartridge drive assemblies.",
@@ -349,6 +371,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "ic-handling-tray",
         label: "IC Handling Tray",
         description:
           "Review tray flatness, pocket geometry, handling durability, and the required ESD target and test method.",
@@ -358,6 +381,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "panel-mount-signal-connector",
         label: "Panel-Mount Signal Connector",
         description:
           "Review connector retention, strain relief, and stable cable routing at equipment interfaces.",
@@ -367,6 +391,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "robotic-joint-gearbox",
         label: "Robotic Joint Gearbox",
         description:
           "Review molded gear engagement, bearing support, wear, and dimensional stability in robotic joint assemblies.",
@@ -376,6 +401,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "antistatic-precision-component",
         label: "Antistatic Precision Component",
         description:
           "Define the resistance target and test method alongside dimensional and processing requirements.",
@@ -455,6 +481,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "mini-conveyor-chain-plate",
         label: "Mini Conveyor Chain Plate",
         description:
           "Review link fit, repeated articulation, and wear across moving chain surfaces.",
@@ -464,6 +491,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "high-load-conveyor-chain",
         label: "High-Load Conveyor Chain",
         description:
           "Review pivot fit, repeated articulation, and load transfer between links.",
@@ -473,6 +501,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "conveyor-segment",
         label: "Conveyor Segment",
         description:
           "Screen segment geometry, edge engagement, and repeatable conveyor movement.",
@@ -482,6 +511,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "antistatic-anti-slip-conveyor-chain-plate",
         label: "Antistatic Anti-Slip Conveyor Chain Plate",
         description:
           "Review surface grip, static-dissipative performance, and repeatable link engagement in automated conveyor lines.",
@@ -491,6 +521,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "conveyor-panel",
         label: "Conveyor Panel",
         description:
           "Review panel alignment, load distribution, and dimensional consistency.",
@@ -500,6 +531,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "conveyor-roller",
         label: "Conveyor Roller",
         description:
           "Review roller diameter, shaft fit, rolling contact, and wear under repeated conveyor movement.",
@@ -509,6 +541,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "conveyor-chain-plate-bracket",
         label: "Conveyor Chain Plate Bracket",
         description:
           "Review fastening geometry, support stiffness, and repeatable alignment at the chain-plate interface.",
@@ -518,6 +551,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "conductive-conveyor-chain-plate",
         label: "Conductive Conveyor Chain Plate",
         description:
           "Review static-dissipative material direction, link engagement, and repeatable movement in charge-sensitive conveyor lines.",
@@ -600,6 +634,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "precision-gear",
         label: "Precision Gear",
         description:
           "Review tooth accuracy, torque transfer, and repeatable dimensional control.",
@@ -609,6 +644,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "worm-gear",
         label: "Worm Gear",
         description:
           "Screen sliding tooth contact, wear, and smooth reduction movement.",
@@ -618,6 +654,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "roller",
         label: "Roller",
         description:
           "Evaluate rolling contact, shaft fit, and stability under repeated cycles.",
@@ -627,6 +664,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "bushing",
         label: "Bushing",
         description:
           "Review clearance, friction, and wear at rotating support interfaces.",
@@ -636,6 +674,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "sleeve",
         label: "Sleeve",
         description:
           "Check concentricity, surface contact, and repeatable press or sliding fit.",
@@ -645,6 +684,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "guide-ring",
         label: "Guide Ring",
         description:
           "Screen guide accuracy, low-friction movement, and dimensional stability.",
@@ -654,6 +694,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "sliding-block",
         label: "Sliding Block",
         description:
           "Review load distribution, guide clearance, and repeated sliding wear.",
@@ -663,6 +704,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "cam",
         label: "Cam",
         description:
           "Evaluate profile accuracy, contact stress, and controlled actuation movement.",
@@ -751,6 +793,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "valve-spool-assembly",
         label: "Valve Spool Assembly",
         description:
           "Review sliding clearance, dimensional stability, and repeated valve movement.",
@@ -760,6 +803,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "valve-cartridge",
         label: "Valve Cartridge",
         description:
           "Screen assembly fit, internal movement, and sealing-adjacent geometry.",
@@ -769,6 +813,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "valve-internal-parts",
         label: "Valve Internal Parts",
         description:
           "Review molded accuracy, mating fit, and repeatable internal movement.",
@@ -778,6 +823,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "valve-component",
         label: "Valve Component",
         description:
           "Check structural fit, sliding geometry, and compatibility with the project medium.",
@@ -787,6 +833,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "thermostatic-valve-body",
         label: "Thermostatic Valve Body",
         description:
           "Evaluate stable actuation, assembly tolerance, and temperature-cycle conditions.",
@@ -796,6 +843,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "guide-wheel",
         label: "Guide Wheel",
         description:
           "Screen rolling contact, dimensional consistency, and low-friction movement.",
@@ -805,6 +853,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "valve-housing-component",
         label: "Valve Housing Component",
         description:
           "Review stiffness, shrinkage control, and stable housing assembly fit.",
@@ -814,6 +863,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "pump-impeller",
         label: "Pump Impeller",
         description:
           "Review balance, stiffness, and dimensional control during repeated rotation.",
@@ -907,6 +957,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "drum-drive-gear",
         label: "Drum Drive Gear",
         description:
           "Review torque transfer, tooth wear, and dimensional consistency for repeated drum rotation.",
@@ -916,6 +967,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "water-guide-pipe",
         label: "Water Guide Pipe",
         description:
           "Review port alignment, seal-seat geometry, drainage clearance, and repeatable assembly fit.",
@@ -925,6 +977,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "transmission-wheel",
         label: "Transmission Wheel",
         description:
           "Review hub concentricity, shaft engagement, radial stiffness, and repeatable torque transfer through the drum drive.",
@@ -934,6 +987,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "reduction-gear-assembly",
         label: "Reduction Gear Assembly",
         description:
           "Review gear-stage alignment, hub concentricity, shaft engagement, and stable torque reduction through the drum drive.",
@@ -943,6 +997,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "drain-pump-housing",
         label: "Drain Pump Housing",
         description:
           "Review inlet and outlet fit, seal-seat geometry, pump-chamber rigidity, and stable drainage-path assembly.",
@@ -952,6 +1007,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "inlet-valve-connecting-pipe",
         label: "Inlet Valve Connecting Pipe",
         description:
           "Review hose-barb retention, port alignment, bend clearance, and stable water-path sealing at the inlet valve.",
@@ -961,6 +1017,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "drain-control-valve",
         label: "Drain Control Valve",
         description:
           "Review valve-seat fit, actuator travel, port alignment, and repeatable opening and closing in the drainage path.",
@@ -970,6 +1027,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "drain-valve-assembly",
         label: "Drain Valve Assembly",
         description:
           "Review seal engagement, thread fit, actuator travel, and repeatable closure in the washing-machine drainage path.",
@@ -1046,6 +1104,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "sprinkler-head",
         label: "Sprinkler Head",
         description:
           "Review repeated rotation, outdoor exposure, and stable flow geometry.",
@@ -1055,6 +1114,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "lawn-mower-gear",
         label: "Lawn Mower Gear",
         description:
           "Screen tooth wear, torque transfer, and impact response under repeated outdoor service.",
@@ -1064,6 +1124,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "trimmer-spool",
         label: "Trimmer Spool",
         description:
           "Evaluate rotational balance, impact conditions, and dimensional stability.",
@@ -1073,6 +1134,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "recoil-starter-assembly",
         label: "Recoil Starter Assembly",
         description:
           "Review cord routing, spring-housing stiffness, mounting geometry, and reliable repeated starting.",
@@ -1082,6 +1144,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "irrigation-connector",
         label: "Irrigation Connector",
         description:
           "Review connection geometry, assembly repeatability, and outdoor media exposure.",
@@ -1091,6 +1154,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "irrigation-pulsator-wheel",
         label: "Irrigation Pulsator Wheel",
         description:
           "Review drive-paddle geometry, torque transfer, water exposure, and wear under repeated irrigation cycles.",
@@ -1100,6 +1164,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "trimmer-drive-head",
         label: "Trimmer Drive Head",
         description:
           "Review drive engagement, fastener retention, line-feed clearance, and impact resistance during repeated trimming.",
@@ -1109,6 +1174,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "weather-resistant-housing-clip",
         label: "Weather-Resistant Housing Clip",
         description:
           "Review snap-fit retention, dimensional stability, and project-specific outdoor exposure conditions.",
@@ -1188,6 +1254,7 @@ export const applications: ApplicationItem[] = [
     ],
     parts: [
       {
+        id: "yarn-guide",
         label: "Yarn Guide",
         description:
           "Review smooth contact, guide accuracy, and wear against moving yarn.",
@@ -1197,6 +1264,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "heddle-wire-bundle",
         label: "Heddle Wire Bundle",
         description:
           "Review eyelet consistency, straightness, wear resistance, and reliable warp-yarn separation.",
@@ -1206,6 +1274,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "heddle-lifter",
         label: "Heddle Lifter",
         description:
           "Review pivot fit, lift-arm stiffness, repeated actuation, and reliable heddle-frame movement.",
@@ -1215,6 +1284,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "air-spinning-guide",
         label: "Air-Spinning Guide",
         description:
           "Review fibre-channel geometry, airflow compatibility, smooth contact, and repeatable yarn guidance.",
@@ -1224,6 +1294,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "textile-guide-wheel",
         label: "Textile Guide Wheel",
         description:
           "Review groove profile, bearing fit, smooth yarn contact, and stable rotation during continuous running.",
@@ -1233,6 +1304,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "bobbin-holder",
         label: "Bobbin Holder",
         description:
           "Screen retention geometry, repeated loading, and stable rotational support.",
@@ -1242,6 +1314,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "textile-spindle-support",
         label: "Textile Spindle Support",
         description:
           "Review flange seating, sleeve alignment, shaft clearance, and stable support under repeated rotation.",
@@ -1251,6 +1324,7 @@ export const applications: ApplicationItem[] = [
         },
       },
       {
+        id: "textile-sliding-block",
         label: "Textile Sliding Block",
         description:
           "Review guide clearance, repeated sliding wear, and assembly accuracy.",

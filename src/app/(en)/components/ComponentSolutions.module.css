@@ -551,6 +551,88 @@
   padding-top: 0;
 }
 
+.applicationContextSection {
+  display: grid;
+  grid-template-columns: minmax(16rem, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+.applicationContextSection + .failureSection {
+  margin-top: 0;
+}
+
+.applicationContextIntro {
+  display: grid;
+  gap: var(--ds-space-4);
+}
+
+.applicationContextIntro h2 {
+  margin: 0;
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-section-intro-title-size);
+  font-weight: var(--ds-font-weight-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+
+.applicationContextIntro p {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-base);
+  line-height: 1.65;
+}
+
+.applicationContextLinks {
+  overflow: hidden;
+  border-radius: var(--ds-radius-panel);
+  background: var(--ds-background-surface);
+}
+
+.applicationContextLinks a {
+  display: flex;
+  min-height: 5.25rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-space-6);
+  padding: var(--ds-space-4) var(--ds-space-6);
+  color: var(--ds-foreground-primary);
+  transition: background-color var(--ds-duration-short) ease;
+}
+
+.applicationContextLinks a + a {
+  border-top: var(--ds-rule-thin) solid var(--ds-border-subtle);
+}
+
+.applicationContextLinks a:hover,
+.applicationContextLinks a:focus-visible {
+  background: var(--ds-panel-bg-soft);
+}
+
+.applicationContextLinks a > span {
+  display: grid;
+  gap: var(--ds-space-2);
+}
+
+.applicationContextLinks strong {
+  font-family: var(--ds-font-display);
+  font-size: var(--ds-text-lg);
+  line-height: 1.25;
+}
+
+.applicationContextLinks small {
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-sm);
+  line-height: 1.45;
+}
+
+.applicationContextLinks svg {
+  flex: 0 0 auto;
+  color: var(--ds-action-primary);
+}
+
 .gearSectionIntro,
 .gearSectionHeading,
 .failureHeader {
@@ -1063,7 +1145,8 @@
   .gearSectionIntro,
   .gearSectionHeading,
   .failureHeader,
-  .relatedCompact {
+  .relatedCompact,
+  .applicationContextSection {
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1227,8 +1310,19 @@
 
   .gearSectionIntro h2,
   .gearSectionHeading h2,
-  .failureHeader h2 {
+  .failureHeader h2,
+  .applicationContextIntro h2 {
     font-size: clamp(var(--ds-text-xl), 8vw, 2rem);
+  }
+
+  .applicationContextSection {
+    gap: var(--ds-space-6);
+  }
+
+  .applicationContextLinks a {
+    min-height: auto;
+    align-items: flex-start;
+    padding: var(--ds-space-5) var(--ds-space-6);
   }
 
   .decisionList article {
@@ -1356,7 +1450,8 @@
 @media (prefers-reduced-motion: reduce) {
   .cardMedia img,
   .applicationEntryArrow,
-  .gearRelatedLinks a {
+  .gearRelatedLinks a,
+  .applicationContextLinks a {
     transition: none;
   }
 }

@@ -7,6 +7,24 @@ type TranslationRow = readonly [
 
 const componentDetailTranslationRows = [
   [
+    "该零部件的应用场景",
+    "Anwendungsbereiche dieses Bauteils",
+    "Où ce composant est utilisé",
+    "Onde este componente é utilizado",
+  ],
+  [
+    "从对应应用页面继续查看零部件工况、选型重点与候选材料方向。",
+    "Im passenden Anwendungsbereich finden Sie Einsatzbedingungen, Auswahlkriterien und mögliche Werkstoffrichtungen im Zusammenhang.",
+    "Consultez l’application correspondante pour examiner les conditions d’utilisation, les critères de sélection et les orientations matériaux possibles.",
+    "Abra a aplicação correspondente para revisar as condições de operação, os critérios de seleção e as possíveis direções de materiais.",
+  ],
+  [
+    "零部件示例",
+    "Bauteilbeispiel",
+    "Exemple de pièce",
+    "Exemplo de peça",
+  ],
+  [
     "比较材料应对方向，而不只是树脂名称",
     "Werkstoffrichtungen vergleichen, nicht nur Harznamen",
     "Comparer les orientations matériaux, pas seulement les noms de résine",

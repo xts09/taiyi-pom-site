@@ -10,7 +10,14 @@ import {
   componentSolutions,
   getComponentSolutionBySlug,
 } from "@/data/componentSolutions";
+import { applications } from "@/data/applications";
+import { resolveComponentApplicationReferences } from "@/data/applicationComponentRelations";
 import { getComponentSolutionDetailBySlug } from "@/data/componentSolutionDetails";
+import {
+  loadEnglishApplicationProfiles,
+  localizeApplication,
+} from "@/i18n/applicationMessages";
+import { isLocalizedApplicationSlug } from "@/i18n/applicationTypes";
 import {
   createBreadcrumbJsonLd,
   createPageMetadata,
@@ -64,6 +71,21 @@ export default async function ComponentSolutionPage({
   }
 
   if (detail) {
+    const applicationProfiles = await loadEnglishApplicationProfiles();
+    const localizedApplications = applications.map((application) => {
+      if (!isLocalizedApplicationSlug(application.slug)) {
+        throw new Error(`Missing application profile: ${application.slug}`);
+      }
+
+      return localizeApplication(
+        application,
+        applicationProfiles[application.slug],
+      );
+    });
+    const applicationReferences = resolveComponentApplicationReferences(
+      solution.slug,
+      localizedApplications,
+    );
     const pagePath = `/components/${solution.slug}`;
     const detailJsonLd = [
       createBreadcrumbJsonLd([
@@ -88,7 +110,11 @@ export default async function ComponentSolutionPage({
             __html: serializeJsonLd(detailJsonLd),
           }}
         />
-        <DetailedComponentSolution detail={detail} solution={solution} />
+        <DetailedComponentSolution
+          applicationReferences={applicationReferences}
+          detail={detail}
+          solution={solution}
+        />
       </>
     );
   }

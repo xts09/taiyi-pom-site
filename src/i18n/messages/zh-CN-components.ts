@@ -56,6 +56,10 @@ export const chineseComponentIndexMessages = {
       "可按需展开使用判据、模具要求、注塑件测试及完整项目清单。",
     relatedEyebrow: "相关指南",
     relatedTitle: "打开下一项技术参考",
+    applicationContextTitle: "该零部件的应用场景",
+    applicationContextDescription:
+      "从对应应用页面继续查看零部件工况、选型重点与候选材料方向。",
+    partExampleLabel: "零部件示例",
     finalAction: "讨论您的应用",
     contactSource: "零部件方案",
   },
