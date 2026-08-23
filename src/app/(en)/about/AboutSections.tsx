@@ -10,6 +10,7 @@ import type {
   FactoryImage,
 } from "@/data/company";
 import type { ExportRoute } from "@/data/exportRoutes";
+import { createContactHref } from "@/lib/contactContext";
 import { publicPath } from "@/lib/paths";
 import styles from "./AboutPage.module.css";
 
@@ -177,7 +178,7 @@ export function AboutPageContent({
         <div className="site-container">
           <div className={styles.manufacturingIntro}>
             <SectionHeading eyebrow="Manufacturing proof" id="manufacturing-title" title="The scale behind trial batches and repeat orders." description="Compounding, material testing and batch documentation are coordinated at the Yancheng facility." />
-            <Link href="/contact?source=about&intent=manufacturing-review">Discuss production requirements <span aria-hidden="true">→</span></Link>
+            <Link href={createContactHref({ intent: "quote-supply", source: "about" })}>Discuss production requirements <span aria-hidden="true">→</span></Link>
           </div>
           <MetricGroup variant="rail" tone="light" className={styles.metricRail} items={figures} renderValue={(figure) => <ValueText value={String(figure.value)} />} />
           <figure className={styles.manufacturingMedia}>
@@ -242,7 +243,7 @@ export function AboutPageContent({
           <div><p className={styles.eyebrow}>Start a technical conversation</p><h2 id="about-cta-title">Talk to Taiyi Polymer.</h2><p>Share the part, operating conditions, target properties or current grade. We&apos;ll help identify the next practical step.</p></div>
           <ul>{inquirySituations.map((situation) => <li key={situation}>{situation}</li>)}</ul>
           <div className={styles.finalCtaActions}>
-            <Button asChild variant="inverse" size="form"><Link href="/contact?source=about&intent=material-requirement">Discuss a Material Requirement</Link></Button>
+            <Button asChild variant="inverse" size="form"><Link href={createContactHref({ source: "about" })}>Discuss a Material Requirement</Link></Button>
             <Button asChild variant="secondary" size="form"><Link href="/contact">Contact Sales</Link></Button>
           </div>
         </div>

@@ -15,6 +15,7 @@ import {
   chineseFactoryImages,
 } from "@/i18n/messages/zh-CN-about";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
+import { createContactHref } from "@/lib/contactContext";
 import { publicPath } from "@/lib/paths";
 
 type LocalizedAboutPageProps = {
@@ -203,7 +204,10 @@ export function LocalizedAboutPage({
             />
             <Link
               href={localizedHref(
-                "/contact?source=about&intent=manufacturing-review",
+                createContactHref({
+                  intent: "quote-supply",
+                  source: "about",
+                }),
               )}
             >
               {messages.manufacturing.action}{" "}
@@ -379,7 +383,7 @@ export function LocalizedAboutPage({
             <Button asChild variant="inverse" size="form">
               <Link
                 href={localizedHref(
-                  "/contact?source=about&intent=material-requirement",
+                  createContactHref({ source: "about" }),
                 )}
               >
                 {messages.finalCta.primaryAction}

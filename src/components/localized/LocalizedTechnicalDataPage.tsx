@@ -45,7 +45,7 @@ export function LocalizedTechnicalDataPage({
   const pagePath = localizedPath(sourcePath);
   const requestHref = localizedPath(
     createContactHref({
-      intent: "grade-evaluation",
+      intent: "tds",
       material: "POM",
       source: messages.common.contactSourceTechnicalData,
     }),
@@ -128,7 +128,7 @@ export function LocalizedTechnicalDataPage({
                 const gradeRequestHref = localizedPath(
                   createContactHref({
                     grade: product.grade,
-                    intent: "grade-evaluation",
+                    intent: "tds",
                     material: categoryLabel,
                     source: messages.common.contactSourceTechnicalData,
                   }),
