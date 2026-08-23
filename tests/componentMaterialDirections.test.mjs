@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 import {
   componentMaterialDirectionRelations,
@@ -7,7 +8,12 @@ import {
   validateComponentMaterialDirections,
 } from "../src/data/componentMaterialDirections.ts";
 import { componentSolutionDetails } from "../src/data/componentSolutionDetails.ts";
+import { createComponentMaterialOwnerLabels } from "../src/i18n/componentMaterialOwnerLabels.ts";
 import { translateExpandedContent } from "../src/i18n/expandedLocaleContent.ts";
+import germanMessages from "../src/i18n/messages/de.ts";
+import frenchMessages from "../src/i18n/messages/fr.ts";
+import portugueseMessages from "../src/i18n/messages/pt-BR.ts";
+import chineseMessages from "../src/i18n/messages/zh-CN.ts";
 import { chineseBushingsAndSleevesDetail } from "../src/i18n/messages/zh-CN-component-details-a.ts";
 import {
   chineseConveyorChainComponentsDetail,
@@ -18,6 +24,7 @@ import {
   chineseTextileGuideComponentsDetail,
 } from "../src/i18n/messages/zh-CN-component-details-c.ts";
 import { chinesePrecisionPlasticGearsDetail } from "../src/i18n/messages/zh-CN-components.ts";
+import { getLocalizedHref } from "../src/i18n/releaseManifest.ts";
 
 const chineseDetails = [
   chinesePrecisionPlasticGearsDetail,
@@ -155,4 +162,88 @@ test("resolves every B1 target to existing family or directory owners", () => {
       owners: ["ppa-compound"],
     },
   ]);
+});
+
+test("renders B2 targets as family or directory links without grade URLs", () => {
+  const targetRows = componentMaterialDirectionRelations.map((relation) => ({
+    relation,
+    owners: resolveMaterialDirectionOwners(relation.target),
+  }));
+  const owners = targetRows.flatMap((row) => row.owners);
+
+  assert.equal(targetRows.length, 22);
+  assert.equal(owners.length, 25);
+  assert.equal(targetRows.every((row) => row.owners.length > 0), true);
+  assert.equal(
+    owners.every(
+      (owner) =>
+        owner.path.startsWith("/products/categories/") ||
+        owner.path === "/products/conductive-antistatic-compounds",
+    ),
+    true,
+  );
+  assert.equal(
+    owners.some(
+      (owner) =>
+        owner.path.startsWith("/products/") &&
+        !owner.path.startsWith("/products/categories/") &&
+        owner.path !== "/products/conductive-antistatic-compounds",
+    ),
+    false,
+  );
+  assert.equal(
+    targetRows
+      .filter((row) => row.relation.target.type === "directory")
+      .every((row) => row.owners.every((owner) => owner.type === "directory")),
+    true,
+  );
+});
+
+test("uses reviewed localized owner names and locale-aware destinations", () => {
+  const localeCases = [
+    ["de", germanMessages],
+    ["fr", frenchMessages],
+    ["pt-br", portugueseMessages],
+    ["zh", chineseMessages],
+  ];
+  const owners = Array.from(
+    new Map(
+      componentMaterialDirectionRelations.flatMap((relation) =>
+        resolveMaterialDirectionOwners(relation.target).map((owner) => [
+          owner.id,
+          owner,
+        ]),
+      ),
+    ).values(),
+  );
+
+  for (const [locale, messages] of localeCases) {
+    const labels = createComponentMaterialOwnerLabels(messages);
+
+    for (const owner of owners) {
+      assert.equal(labels[owner.id]?.trim().length > 0, true, `${locale}:${owner.id}`);
+      assert.equal(
+        getLocalizedHref(owner.path, locale).startsWith(`/${locale}/`),
+        true,
+        `${locale}:${owner.path}`,
+      );
+    }
+  }
+});
+
+test("keeps every B2 owner set inside its existing direction block", () => {
+  const source = readFileSync(
+    new URL(
+      "../src/app/(en)/components/[slug]/DetailedComponentSolution.tsx",
+      import.meta.url,
+    ),
+    "utf8",
+  );
+
+  assert.match(
+    source,
+    /materialDirectionRows\.map\(\(\{ direction, owners \}, index\) => \([\s\S]*?<li key=\{direction\.id\}>[\s\S]*?owners\.map\(\(owner\) => \(/,
+  );
+  assert.match(source, /data-material-owner-type=\{owner\.type\}/);
+  assert.doesNotMatch(source, /Recommended Materials/);
 });

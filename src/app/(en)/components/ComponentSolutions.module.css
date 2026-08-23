@@ -839,6 +839,44 @@
   line-height: 1.62;
 }
 
+.materialDirectionOwners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--ds-space-4);
+  margin: var(--ds-space-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.materialDirectionOwners li {
+  display: flex;
+  max-width: 100%;
+}
+
+.materialDirectionOwners a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  max-width: 100%;
+  align-items: center;
+  gap: var(--ds-space-2);
+  color: var(--ds-action-primary);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-font-weight-semibold);
+  line-height: 1.35;
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+}
+
+.materialDirectionOwners a:hover,
+.materialDirectionOwners a:focus-visible {
+  color: var(--ds-action-primary-hover);
+  text-decoration: underline;
+}
+
+.materialDirectionOwners svg {
+  flex: 0 0 auto;
+}
+
 .materialDirectionCaution > span,
 .materialBoundary span,
 .processOutcome span {

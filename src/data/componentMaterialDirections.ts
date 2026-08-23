@@ -35,7 +35,7 @@ type ComponentDirectionSource = {
 const materialDirectionDirectories = [
   {
     id: "conductive-antistatic-compounds",
-    label: "Cross-material conductive and antistatic compounds",
+    label: "Conductive and Antistatic Plastic Compounds",
     path: localizedReleaseManifest.conductiveAntistaticCompounds.sourcePath,
     groupIds: ["pom", "pa6", "pa66", "ppa"],
   },

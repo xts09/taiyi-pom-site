@@ -17,7 +17,9 @@ import {
   localizedComponentSlugs,
 } from "@/i18n/componentMessages";
 import { getLocalizedLocale } from "@/i18n/config";
+import { createComponentMaterialOwnerLabels } from "@/i18n/componentMaterialOwnerLabels";
 import { translateExpandedText } from "@/i18n/expandedLocaleContent";
+import { loadMessages } from "@/i18n/messages";
 import {
   getLanguageAlternates,
   getLocalizedHref,
@@ -96,9 +98,10 @@ export default async function LocalizedComponentDetailRoute({
   const { localeConfig, detail, messages, solution, sourcePath } =
     await resolveRoute(params);
   setRequestLocale(localeConfig.htmlLang);
-  const applicationProfiles = await loadApplicationProfiles(
-    localeConfig.urlSegment,
-  );
+  const [applicationProfiles, siteMessages] = await Promise.all([
+    loadApplicationProfiles(localeConfig.urlSegment),
+    loadMessages(localeConfig.locale),
+  ]);
   const localizedApplications = applications.map((application) => {
     if (!isLocalizedApplicationSlug(application.slug)) {
       throw new Error(`Missing application profile: ${application.slug}`);
@@ -152,6 +155,7 @@ export default async function LocalizedComponentDetailRoute({
         detail={detail}
         solution={solution}
         localeSegment={localeConfig.urlSegment}
+        materialOwnerLabels={createComponentMaterialOwnerLabels(siteMessages)}
         ui={messages.detailUi}
       />
     </>

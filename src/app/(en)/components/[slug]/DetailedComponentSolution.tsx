@@ -14,6 +14,11 @@ import { Button } from "@/components/ui/button";
 import type { ComponentSolution } from "@/data/componentSolutions";
 import type { ComponentSolutionDetail } from "@/data/componentSolutionDetails";
 import type { ComponentApplicationReference } from "@/data/applicationComponentRelations";
+import {
+  getComponentMaterialDirectionRelations,
+  resolveMaterialDirectionOwners,
+  type ComponentMaterialDirectionRelation,
+} from "@/data/componentMaterialDirections";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
@@ -34,6 +39,7 @@ type DetailedComponentSolutionProps = {
   localeSegment?: LocalizedUrlSegment;
   ui?: ComponentDetailUi;
   applicationReferences: readonly ComponentApplicationReference[];
+  materialOwnerLabels?: Readonly<Record<string, string>>;
 };
 
 export type ComponentDetailUi = {
@@ -115,6 +121,7 @@ export function DetailedComponentSolution({
   localeSegment,
   ui = englishUi,
   applicationReferences,
+  materialOwnerLabels,
 }: DetailedComponentSolutionProps) {
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeSegment);
@@ -127,6 +134,35 @@ export function DetailedComponentSolution({
       ? "/modified-pom-compounds#electrical-control"
       : "/modified-pom-compounds#wear-impact-weathering",
   );
+  const materialDirectionRelationById = new Map<
+    string,
+    ComponentMaterialDirectionRelation
+  >(
+    getComponentMaterialDirectionRelations(solution.slug).map((relation) => [
+      relation.id,
+      relation,
+    ]),
+  );
+  const materialDirectionRows = detail.materialDirections.map((direction) => {
+    const relation = materialDirectionRelationById.get(direction.id);
+
+    if (!relation) {
+      throw new Error(`Missing material-direction target: ${direction.id}`);
+    }
+
+    const owners = resolveMaterialDirectionOwners(relation.target).map(
+      (owner) => ({
+        ...owner,
+        label: materialOwnerLabels?.[owner.id] ?? owner.label,
+      }),
+    );
+
+    if (owners.length === 0) {
+      throw new Error(`Unresolved material-direction target: ${direction.id}`);
+    }
+
+    return { direction, owners };
+  });
 
   return (
     <main className={`${styles.page} ${styles.detailPage}`}>
@@ -286,14 +322,27 @@ export function DetailedComponentSolution({
             </div>
 
             <ol className={styles.materialDirectionList}>
-              {detail.materialDirections.map((direction, index) => (
-                <li key={direction.title}>
+              {materialDirectionRows.map(({ direction, owners }, index) => (
+                <li key={direction.id}>
                   <span className={styles.materialDirectionIndex}>
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
                     <h3>{direction.title}</h3>
                     <p>{direction.summary}</p>
+                    <ul className={styles.materialDirectionOwners}>
+                      {owners.map((owner) => (
+                        <li key={owner.id}>
+                          <Link
+                            data-material-owner-type={owner.type}
+                            href={localizedHref(owner.path)}
+                          >
+                            <span>{owner.label}</span>
+                            <ArrowRight aria-hidden="true" size={15} />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                   <div className={styles.materialDirectionCaution}>
                     <span>{ui.cautionLabel}</span>
