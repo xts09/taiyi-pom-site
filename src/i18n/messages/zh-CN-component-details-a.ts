@@ -69,6 +69,7 @@ export const chineseBushingsAndSleevesDetail = {
   ],
   materialDirections: [
     {
+      id: "bushings-and-sleeves-balanced-unfilled-pom",
       title: "平衡型 / 未填充 POM",
       summary:
         "适用于需要尺寸稳定、成型性、适当刚韧平衡和稳定滑动表现的精密注塑轴套，可作为基准 POM 方向。",
@@ -76,6 +77,7 @@ export const chineseBushingsAndSleevesDetail = {
         "仍需将量产轴、装配间隙、载荷、速度、温度、润滑剂和目标寿命一起验证。",
     },
     {
+      id: "bushings-and-sleeves-wear-low-friction-pom",
       title: "耐磨或低摩擦 POM",
       summary:
         "当实测磨损、启动摩擦、粘滑、噪声或界面温度限制了其他方面合理的衬套系统时可考虑。",
@@ -83,6 +85,7 @@ export const chineseBushingsAndSleevesDetail = {
         "较低的公开摩擦系数不等于较低磨损。应在实际运动与污染条件下同时检查衬套和轴。",
     },
     {
+      id: "bushings-and-sleeves-reinforced-pom",
       title: "增强型 POM",
       summary:
         "当刚性、蠕变、壳体支撑或载荷引起的变形比降低摩擦学复杂性更重要时可考虑。",

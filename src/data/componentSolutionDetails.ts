@@ -33,6 +33,11 @@ export type ComponentSolutionDetail = {
     direction: string;
   }[];
   materialDirections: readonly {
+    /**
+     * Stable relationship key.
+     * Do not rename when labels, translations, images, or ordering change.
+     */
+    id: string;
     title: string;
     summary: string;
     caution: string;
@@ -138,6 +143,7 @@ export const componentSolutionDetails = [
     ],
     materialDirections: [
       {
+        id: "precision-plastic-gears-balanced-unfilled-pom",
         title: "Balanced / unfilled POM",
         summary:
           "A balanced POM option when stiffness, fatigue capability, dimensional control, moldability, and sliding behavior all matter.",
@@ -145,6 +151,7 @@ export const componentSolutionDetails = [
           "It still requires validation at the actual torque, speed, temperature, lubrication condition, and target life.",
       },
       {
+        id: "precision-plastic-gears-wear-low-friction-pom",
         title: "Wear-resistant or low-friction POM",
         summary:
           "Relevant when dry running, flank wear, stick-slip, frictional heat, or noise has been confirmed as the limiting mechanism.",
@@ -152,6 +159,7 @@ export const componentSolutionDetails = [
           "A generic friction result does not predict gearbox life; screen it with the actual mating gear and lubricant.",
       },
       {
+        id: "precision-plastic-gears-reinforced-pom",
         title: "Reinforced POM",
         summary:
           "Relevant when tooth or hub deflection, creep, or structural stiffness is more limiting than surface wear.",
@@ -429,6 +437,7 @@ export const componentSolutionDetails = [
     ],
     materialDirections: [
       {
+        id: "bushings-and-sleeves-balanced-unfilled-pom",
         title: "Balanced / unfilled POM",
         summary:
           "A baseline POM option for precision molded sleeves needing dimensional stability, moldability, useful stiffness and toughness, and stable sliding behavior.",
@@ -436,6 +445,7 @@ export const componentSolutionDetails = [
           "It still requires the production shaft, installed clearance, load, speed, temperature, lubricant, and target life to be tested together.",
       },
       {
+        id: "bushings-and-sleeves-wear-low-friction-pom",
         title: "Wear-resistant or low-friction POM",
         summary:
           "A candidate when measured wear, startup friction, stick-slip, noise, or interface temperature limits an otherwise sound bushing system.",
@@ -443,6 +453,7 @@ export const componentSolutionDetails = [
           "Lower published friction does not guarantee lower wear. Compare both bushing and shaft condition under the real motion and contamination profile.",
       },
       {
+        id: "bushings-and-sleeves-reinforced-pom",
         title: "Reinforced POM",
         summary:
           "A reinforced option when stiffness, creep, housing support, or load-induced deformation matters more than minimizing tribological complexity.",
@@ -702,6 +713,7 @@ export const componentSolutionDetails = [
     ],
     materialDirections: [
       {
+        id: "conveyor-chain-components-balanced-unfilled-pom",
         title: "Balanced / unfilled POM",
         summary:
           "A baseline for many molded links needing strength, stiffness, dimensional stability, moldability, articulation, and useful sliding behavior.",
@@ -709,6 +721,7 @@ export const componentSolutionDetails = [
           "Validate chain pull, pitch, hinge durability, track wear, sprocket engagement, impact, and service temperature in the real layout.",
       },
       {
+        id: "conveyor-chain-components-wear-low-friction-pom",
         title: "Wear-resistant or low-friction POM",
         summary:
           "A candidate for dry-running, higher-cycle, side-flexing, or higher-speed systems where guide friction, dust, heat, or wear is demonstrated.",
@@ -716,6 +729,7 @@ export const componentSolutionDetails = [
           "Test against the actual wear-strip and corner-track materials; a damaged or contaminated guide can overwhelm a compound change.",
       },
       {
+        id: "conveyor-chain-components-reinforced-pom",
         title: "Reinforced POM",
         summary:
           "A reinforced option when stiffness, creep, or load-induced deformation limits a chain component.",
@@ -723,6 +737,7 @@ export const componentSolutionDetails = [
           "Fiber orientation can change pitch shrinkage, impact behavior, hinge durability, flatness, and counterface wear.",
       },
       {
+        id: "conveyor-chain-components-static-control-compounds",
         title: "Conductive or static-dissipative compounds",
         summary:
           "A project-specific electrically modified option when conveyed products require a defined electrical classification and grounded handling path.",
@@ -982,6 +997,7 @@ export const componentSolutionDetails = [
     ],
     materialDirections: [
       {
+        id: "valve-spools-and-cartridges-balanced-unfilled-pom",
         title: "Balanced / unfilled POM",
         summary:
           "A baseline for selected moving pistons, guides, cartridges, and valve internals needing dimensional stability, stiffness, moldability, and sliding behavior.",
@@ -989,6 +1005,7 @@ export const componentSolutionDetails = [
           "Approval still requires the real pressure, leakage, fluid, seal, temperature, wear, and cycle-life conditions.",
       },
       {
+        id: "valve-spools-and-cartridges-wear-low-friction-pom",
         title: "Wear-resistant or low-friction POM",
         summary:
           "A candidate when repeatable testing shows friction, wear, stick-slip, or unstable actuation force is a genuine material limitation.",
@@ -996,6 +1013,7 @@ export const componentSolutionDetails = [
           "A lower friction value cannot correct excessive seal compression, sharp port edges, contamination, or an inadequate spool-to-bore clearance.",
       },
       {
+        id: "valve-spools-and-cartridges-reinforced-pom",
         title: "Reinforced POM",
         summary:
           "A reinforced option for selected cartridge cages, carriers, or guides where stiffness and deformation control dominate.",
@@ -1003,6 +1021,7 @@ export const componentSolutionDetails = [
           "Fiber orientation can affect roundness, shrinkage, and seal or bore interaction, so it is not an automatic choice for precision spool lands.",
       },
       {
+        id: "valve-spools-and-cartridges-pa-ppa-structural-option",
         title: "PA or PPA structural option",
         summary:
           "A separate project path when a valve component needs a different hot, wet, or structural balance than the validated POM window can provide.",
@@ -1262,6 +1281,7 @@ export const componentSolutionDetails = [
     ],
     materialDirections: [
       {
+        id: "textile-guide-components-balanced-unfilled-pom",
         title: "Balanced / unfilled POM",
         summary:
           "A baseline for molded guide bodies and selected contact features needing dimensional stability, low moisture sensitivity, moldability, and useful sliding behavior.",
@@ -1269,6 +1289,7 @@ export const componentSolutionDetails = [
           "Test with the production yarn, finish, tension, speed, geometry, environment, and expected service life.",
       },
       {
+        id: "textile-guide-components-wear-low-friction-pom",
         title: "Wear-resistant or low-friction POM",
         summary:
           "A candidate when testing shows yarn drag, polymer wear, noise, or friction-related instability limits a sound guide design.",
@@ -1276,6 +1297,7 @@ export const componentSolutionDetails = [
           "A compound optimized against metal does not automatically perform the same way against every yarn construction or finish.",
       },
       {
+        id: "textile-guide-components-reinforced-pom-carriers",
         title: "Reinforced POM for carriers",
         summary:
           "A reinforced option for guide bodies, brackets, or mounting arms where stiffness and alignment matter more than direct contact-surface behavior.",
@@ -1283,6 +1305,7 @@ export const componentSolutionDetails = [
           "Fiber orientation can change warpage, guide alignment, surface evolution, and yarn damage if reinforcement lies on the active path.",
       },
       {
+        id: "textile-guide-components-static-control-compounds",
         title: "Conductive or static-dissipative compounds",
         summary:
           "A project-specific electrically modified option when yarn attraction, lint buildup, or process instability is linked to a defined electrostatic requirement.",
@@ -1542,6 +1565,7 @@ export const componentSolutionDetails = [
     ],
     materialDirections: [
       {
+        id: "ic-handling-trays-static-control-pom",
         title: "Conductive or static-dissipative POM",
         summary:
           "The primary POM option for trays that directly handle ESD-sensitive devices when its validated thermal window suits the process.",
@@ -1549,6 +1573,7 @@ export const componentSolutionDetails = [
           "Resistance, charge behavior, filler cleanliness, flow, shrinkage, flatness, pocket dimensions, wear, and reuse stability require molded-tray qualification.",
       },
       {
+        id: "ic-handling-trays-dimensionally-controlled-reinforced-pom",
         title: "Dimensionally controlled or reinforced POM",
         summary:
           "A reinforced option when tray stiffness or long-span deformation limits an otherwise suitable lower-temperature POM system.",
@@ -1556,6 +1581,7 @@ export const componentSolutionDetails = [
           "Flow orientation can create directional shrinkage and warpage and can change ESD behavior or the surface exposed to the semiconductor.",
       },
       {
+        id: "ic-handling-trays-unfilled-pom-non-esds-fixtures",
         title: "Unfilled POM for non-ESDS fixtures",
         summary:
           "An option for mechanical dividers, alignment parts, or associated handling components that do not directly require ESD control.",
@@ -1563,6 +1589,7 @@ export const componentSolutionDetails = [
           "Conventional unfilled POM is not a default ESD-tray material; direct ESDS handling requires a verified electrical specification.",
       },
       {
+        id: "ic-handling-trays-ppa-high-temperature-option",
         title: "PPA or another high-temperature option",
         summary:
           "A separate path when process temperature, duration, loading, or reuse exceeds the validated POM window.",

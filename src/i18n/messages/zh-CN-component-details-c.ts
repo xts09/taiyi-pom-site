@@ -69,6 +69,7 @@ export const chineseTextileGuideComponentsDetail = {
   ],
   materialDirections: [
     {
+      id: "textile-guide-components-balanced-unfilled-pom",
       title: "平衡型 / 未填充 POM",
       summary:
         "可作为注塑导向件本体和特定接触结构的基准方向，兼顾尺寸稳定、较低吸湿敏感性、成型性和适当滑动表现。",
@@ -76,6 +77,7 @@ export const chineseTextileGuideComponentsDetail = {
         "应使用量产纱线、油剂、张力、速度、几何、环境和预期寿命进行测试。",
     },
     {
+      id: "textile-guide-components-wear-low-friction-pom",
       title: "耐磨或低摩擦 POM",
       summary:
         "当测试表明纱线阻力、聚合物磨损、噪声或摩擦相关波动限制了合理导向设计时可考虑。",
@@ -83,6 +85,7 @@ export const chineseTextileGuideComponentsDetail = {
         "针对金属优化的材料，不会自动对所有纱线结构或油剂表现相同。",
     },
     {
+      id: "textile-guide-components-reinforced-pom-carriers",
       title: "用于载体的增强型 POM",
       summary:
         "适用于刚性和对中比直接接触面表现更重要的导向件本体、支架或安装臂。",
@@ -90,6 +93,7 @@ export const chineseTextileGuideComponentsDetail = {
         "纤维取向可能改变翘曲、导向对中和表面演变；增强材料位于工作路径时还可能损伤纱线。",
     },
     {
+      id: "textile-guide-components-static-control-compounds",
       title: "导电或静电耗散材料",
       summary:
         "当纱线吸附、飞花堆积或工艺波动与明确静电要求相关时，可按项目评估电气改性材料。",
@@ -342,6 +346,7 @@ export const chineseIcHandlingTraysDetail = {
   ],
   materialDirections: [
     {
+      id: "ic-handling-trays-static-control-pom",
       title: "导电或静电耗散 POM",
       summary:
         "当经验证的温度窗口适合工艺时，可作为直接接触 ESD 敏感器件托盘的主要 POM 方向。",
@@ -349,6 +354,7 @@ export const chineseIcHandlingTraysDetail = {
         "电阻、电荷表现、填料洁净度、流动、收缩、平面度、槽位尺寸、磨损和复用稳定性都需要通过注塑托盘认证。",
     },
     {
+      id: "ic-handling-trays-dimensionally-controlled-reinforced-pom",
       title: "尺寸控制型或增强型 POM",
       summary:
         "当托盘刚性或大跨度变形限制了其他方面合适的低温 POM 系统时可考虑。",
@@ -356,6 +362,7 @@ export const chineseIcHandlingTraysDetail = {
         "流动取向可能产生方向性收缩与翘曲，也可能改变 ESD 表现或暴露给半导体的表面。",
     },
     {
+      id: "ic-handling-trays-unfilled-pom-non-esds-fixtures",
       title: "用于非 ESDS 夹具的未填充 POM",
       summary:
         "可用于不直接要求 ESD 控制的机械分隔件、对齐件或相关周转部件。",
@@ -363,6 +370,7 @@ export const chineseIcHandlingTraysDetail = {
         "常规未填充 POM 不是默认的 ESD 托盘材料；直接接触静电放电敏感器件需要经验证的电气规格。",
     },
     {
+      id: "ic-handling-trays-ppa-high-temperature-option",
       title: "PPA 或其他高温材料方向",
       summary:
         "当工艺温度、时长、装载或复用超出经验证的 POM 窗口时，应进入独立材料路径。",

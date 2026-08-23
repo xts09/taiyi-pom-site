@@ -227,6 +227,7 @@ export const chinesePrecisionPlasticGearsDetail = {
   ],
   materialDirections: [
     {
+      id: "precision-plastic-gears-balanced-unfilled-pom",
       title: "平衡型 / 未填充 POM",
       summary:
         "适用于刚性、疲劳能力、尺寸控制、成型性和滑动表现都需要兼顾的平衡型 POM 方向。",
@@ -234,6 +235,7 @@ export const chinesePrecisionPlasticGearsDetail = {
         "仍需在实际扭矩、转速、温度、润滑条件和目标寿命下验证。",
     },
     {
+      id: "precision-plastic-gears-wear-low-friction-pom",
       title: "耐磨或低摩擦 POM",
       summary:
         "当干摩擦、齿面磨损、粘滑、摩擦发热或噪声已确认是限制机制时适用。",
@@ -241,6 +243,7 @@ export const chinesePrecisionPlasticGearsDetail = {
         "通用摩擦测试不能预测齿轮箱寿命；应使用实际配对齿轮和润滑剂筛选。",
     },
     {
+      id: "precision-plastic-gears-reinforced-pom",
       title: "增强型 POM",
       summary:
         "当齿部或轮毂挠曲、蠕变或结构刚性比表面磨损更受限制时可考虑。",

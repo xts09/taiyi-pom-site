@@ -69,6 +69,7 @@ export const chineseConveyorChainComponentsDetail = {
   ],
   materialDirections: [
     {
+      id: "conveyor-chain-components-balanced-unfilled-pom",
       title: "平衡型 / 未填充 POM",
       summary:
         "可作为多类注塑链节的基准方向，兼顾强度、刚性、尺寸稳定、成型性、铰接和适当的滑动表现。",
@@ -76,6 +77,7 @@ export const chineseConveyorChainComponentsDetail = {
         "应在实际布局中验证链条拉力、节距、铰接耐久、轨道磨损、链轮啮合、冲击和使用温度。",
     },
     {
+      id: "conveyor-chain-components-wear-low-friction-pom",
       title: "耐磨或低摩擦 POM",
       summary:
         "适用于已确认存在导轨摩擦、粉尘、发热或磨损的干运行、高循环、侧弯或高速系统。",
@@ -83,12 +85,14 @@ export const chineseConveyorChainComponentsDetail = {
         "应使用实际耐磨条和转弯轨道材料测试；受损或污染的导轨可能使材料更换失去作用。",
     },
     {
+      id: "conveyor-chain-components-reinforced-pom",
       title: "增强型 POM",
       summary: "当刚性、蠕变或载荷引起的变形限制链条部件时可考虑。",
       caution:
         "纤维取向可能改变节距收缩、冲击表现、铰接耐久、平面度和对偶面磨损。",
     },
     {
+      id: "conveyor-chain-components-static-control-compounds",
       title: "导电或静电耗散材料",
       summary:
         "当被输送产品需要明确电气等级和接地搬运路径时，可按项目评估电气改性材料。",
@@ -341,6 +345,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
   ],
   materialDirections: [
     {
+      id: "valve-spools-and-cartridges-balanced-unfilled-pom",
       title: "平衡型 / 未填充 POM",
       summary:
         "可作为特定运动活塞、导向件、阀筒和阀门内部件的基准方向，兼顾尺寸稳定、刚性、成型性和滑动表现。",
@@ -348,6 +353,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
         "批准仍需覆盖实际压力、泄漏、流体、密封、温度、磨损和循环寿命条件。",
     },
     {
+      id: "valve-spools-and-cartridges-wear-low-friction-pom",
       title: "耐磨或低摩擦 POM",
       summary:
         "当重复测试表明摩擦、磨损、粘滑或动作力不稳定确属材料限制时可考虑。",
@@ -355,6 +361,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
         "较低摩擦系数不能修正密封过度压缩、尖锐阀口边缘、污染或不合理的阀芯—阀孔间隙。",
     },
     {
+      id: "valve-spools-and-cartridges-reinforced-pom",
       title: "增强型 POM",
       summary:
         "适用于刚性与变形控制占主导的特定阀筒保持架、载体或导向件。",
@@ -362,6 +369,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
         "纤维取向可能影响圆度、收缩及密封或阀孔配合，因此不能自动用于精密阀芯台肩。",
     },
     {
+      id: "valve-spools-and-cartridges-pa-ppa-structural-option",
       title: "PA 或 PPA 结构材料方向",
       summary:
         "当阀门部件所需的高温、高湿或结构平衡超出经验证的 POM 窗口时，应进入独立项目路径。",
