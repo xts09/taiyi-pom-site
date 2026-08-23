@@ -233,6 +233,11 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Reference matching stays server-side. The former public `/pom-grade-cross-reference` route, workspace component, dedicated styles, sitemap exposure, and internal entry points are removed rather than maintained as a separate tool.
 - The retired route was public for only one day and intentionally returns 404 after removal. The unified technical-data search is the sole public entry for current-grade lookup.
 
+### B2B Grade Structured Data Boundary (2026-08-23)
+
+- All 115 grade-detail routes in each released language retain visible breadcrumbs and valid `BreadcrumbList` JSON-LD. They do not emit Google `Product` rich-result markup while the site has no public price offer, visible product review, or aggregate rating.
+- Do not add fabricated `offers`, zero prices, availability, reviews, or ratings to satisfy a rich-result validator. Grade URLs, metadata, sitemap inclusion, technical properties, internal links, and visible page content remain unchanged by this structured-data correction.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.

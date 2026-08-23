@@ -21,10 +21,7 @@ import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { selectRelatedGrades } from "@/lib/relatedGrades";
-import {
-  createBreadcrumbJsonLd,
-  createProductJsonLd,
-} from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/seo";
 
 type LocalizedEngineeringGradePageProps = {
   document: EngineeringTdsDocument;
@@ -73,28 +70,18 @@ export function LocalizedEngineeringGradePage({
       item.family === current.family && item.category === current.category,
     isFallbackPeer: (item, current) => item.family === current.family,
   });
-  const jsonLd = [
-    createBreadcrumbJsonLd([
-      { name: translateExpandedText("首页", localeSegment), path: localizedPath("/") },
-      { name: translateExpandedText("产品", localeSegment), path: localizedPath("/products") },
-      { name: copy.categoryLabel, path: categoryPath },
-      { name: document.grade, path: productPath },
-    ]),
-    createProductJsonLd({
-      name: `${document.grade} ${document.family} ${copy.directionLabel}`,
-      grade: document.grade,
-      description: copy.metadata.description,
-      category: copy.categoryLabel,
-      path: productPath,
-      properties: copy.properties.items,
-    }),
-  ];
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: translateExpandedText("首页", localeSegment), path: localizedPath("/") },
+    { name: translateExpandedText("产品", localeSegment), path: localizedPath("/products") },
+    { name: copy.categoryLabel, path: categoryPath },
+    { name: document.grade, path: productPath },
+  ]);
 
   return (
     <main className="product-detail-page product-detail-page--campaign-grade min-h-screen text-slate-900">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
       <section className="product-detail-shell">

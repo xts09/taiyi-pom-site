@@ -15,10 +15,7 @@ import {
 } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
-import {
-  createBreadcrumbJsonLd,
-  createProductJsonLd,
-} from "@/lib/seo";
+import { createBreadcrumbJsonLd } from "@/lib/seo";
 
 type LocalizedProductGradePageProps = {
   product: Product;
@@ -108,29 +105,18 @@ export function LocalizedProductGradePage({
       note: copy.snapshot.colorValue,
     },
   ].filter((item) => item.value);
-  const jsonLd = [
-    createBreadcrumbJsonLd([
-      { name: messages.common.home, path: localizedPath("/") },
-      { name: messages.common.products, path: localizedPath("/products") },
-      { name: categoryLabel, path: categoryPath },
-      { name: product.grade, path: productPath },
-    ]),
-    createProductJsonLd({
-      name: `${product.grade} ${categoryLabel}`,
-      grade: product.grade,
-      description: copy.metadata.description,
-      category: categoryLabel,
-      path: productPath,
-      color: copy.snapshot.colorValue,
-      properties: localizedProperties,
-    }),
-  ];
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: messages.common.home, path: localizedPath("/") },
+    { name: messages.common.products, path: localizedPath("/products") },
+    { name: categoryLabel, path: categoryPath },
+    { name: product.grade, path: productPath },
+  ]);
 
   return (
     <main className="product-detail-page product-detail-page--campaign-grade min-h-screen text-slate-900">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(breadcrumbJsonLd) }}
       />
 
       <section className="product-detail-shell">

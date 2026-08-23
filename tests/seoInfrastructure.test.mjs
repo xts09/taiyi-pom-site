@@ -88,29 +88,30 @@ test("metadata descriptions remain complete and company history stays distinct f
   assert.match(aboutSource, /alternateName: siteName/);
 });
 
-test("product grade pages expose truthful Product JSON-LD and visible breadcrumbs", () => {
+test("grade pages keep breadcrumb JSON-LD without ineligible Product rich-result markup", () => {
   const seoSource = readFileSync(resolve(projectRoot, "src/lib/seo.ts"), "utf8");
   const productPageSource = readFileSync(
     resolve(projectRoot, "src/app/(en)/products/[slug]/page.tsx"),
     "utf8",
   );
-  const productHelperSource = seoSource.slice(
-    seoSource.indexOf("export const createProductJsonLd"),
-    seoSource.indexOf("export const createProductPageMetadata"),
-  );
+  const localizedProductSources = [
+    "src/components/localized/LocalizedEngineeringGradePage.tsx",
+    "src/components/localized/LocalizedXt100ProductPage.tsx",
+  ].map((path) => readFileSync(resolve(projectRoot, path), "utf8"));
 
-  assert.match(productHelperSource, /"@type":\s*"Product"/);
-  assert.match(productHelperSource, /model:\s*grade/);
-  assert.match(productHelperSource, /name:\s*brandName/);
-  assert.match(productHelperSource, /name:\s*companyName/);
-  assert.match(productHelperSource, /additionalProperty/);
-  assert.match(productHelperSource, /unitText/);
-  assert.match(productHelperSource, /measurementMethod/);
-  assert.doesNotMatch(productHelperSource, /offers|price|availability/);
+  assert.doesNotMatch(seoSource, /createProductJsonLd|ProductJsonLdProperty/);
+
+  for (const source of [productPageSource, ...localizedProductSources]) {
+    assert.doesNotMatch(
+      source,
+      /createProductJsonLd|productJsonLd|"@type":\s*"Product"/,
+    );
+    assert.match(source, /createBreadcrumbJsonLd/);
+    assert.match(source, /serializeJsonLd\(breadcrumbJsonLd\)/);
+  }
 
   assert.equal(
-    productPageSource.match(/serializeJsonLd\(\[breadcrumbJsonLd, productJsonLd\]\)/g)
-      ?.length,
+    productPageSource.match(/serializeJsonLd\(breadcrumbJsonLd\)/g)?.length,
     2,
   );
   assert.equal(productPageSource.match(/<Breadcrumbs/g)?.length, 2);

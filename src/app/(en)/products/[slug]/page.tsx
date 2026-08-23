@@ -32,9 +32,7 @@ import { selectRelatedGrades } from "@/lib/relatedGrades";
 import {
   createBreadcrumbJsonLd,
   createEngineeringTdsPageMetadata,
-  createProductJsonLd,
   createProductPageMetadata,
-  getEngineeringTdsTitle,
 } from "@/lib/seo";
 
 type ProductDetailPageProps = {
@@ -255,7 +253,6 @@ function EngineeringProductDetailPage({
   const category = getEngineeringCategory(document);
   const categoryUrl = getCategoryPath(category);
   const slug = createEngineeringTdsSlug(document);
-  const title = getEngineeringTdsTitle(document);
   const tdsRequestHref = createContactHref({
     grade: document.grade,
     intent: "tds",
@@ -304,14 +301,6 @@ function EngineeringProductDetailPage({
     { name: category, path: categoryUrl },
     { name: document.grade, path: `/products/${slug}` },
   ]);
-  const productJsonLd = createProductJsonLd({
-    name: title,
-    grade: document.grade,
-    description: document.description,
-    category,
-    path: `/products/${slug}`,
-    properties,
-  });
   const snapshotItems = [
     {
       label: "Specific gravity",
@@ -356,7 +345,7 @@ function EngineeringProductDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd([breadcrumbJsonLd, productJsonLd]),
+          __html: serializeJsonLd(breadcrumbJsonLd),
         }}
       />
       <section className="product-detail-shell">
@@ -732,15 +721,6 @@ export default async function ProductDetailPage({
     { name: product.category, path: categoryUrl },
     { name: product.grade, path: `/products/${product.slug}` },
   ]);
-  const productJsonLd = createProductJsonLd({
-    name: product.title,
-    grade: product.grade,
-    description: product.description,
-    category: product.category,
-    path: `/products/${product.slug}`,
-    color: product.color,
-    properties: product.properties,
-  });
   const getProperty = (label: string) =>
     product.properties.find((property) => property.label === label);
   const coreProperties = getPublicCoreProperties(product.properties);
@@ -789,7 +769,7 @@ export default async function ProductDetailPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd([breadcrumbJsonLd, productJsonLd]),
+          __html: serializeJsonLd(breadcrumbJsonLd),
         }}
       />
       <section className="product-detail-shell">
