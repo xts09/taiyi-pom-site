@@ -208,6 +208,14 @@ const messages = {
         label: "塑料齿轮用 POM 选型",
         href: "/resources/pom-gear-material-selection",
       },
+      {
+        label: "衬套与轴套选材指南",
+        href: "/components/bushings-and-sleeves",
+      },
+      {
+        label: "阀芯与阀筒选材指南",
+        href: "/components/valve-spools-and-cartridges",
+      },
       { label: "讨论您的应用", href: "/contact" },
     ],
   },

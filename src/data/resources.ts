@@ -325,6 +325,10 @@ export const resourcePages: ResourcePage[] = [
     ],
     relatedLinks: [
       { label: "View POM Material Families", href: "/products/categories/pom" },
+      {
+        label: "Browse Component Material Selection Guides",
+        href: "/components",
+      },
       { label: "Find Grade Data & TDS", href: "/technical-data-sheets" },
       {
         label: "Compare Wear-Resistant and Low-Friction POM",
@@ -721,6 +725,14 @@ export const resourcePages: ResourcePage[] = [
       {
         label: "Select POM for Plastic Gears",
         href: "/resources/pom-gear-material-selection",
+      },
+      {
+        label: "Plastic Bushings & Sleeves Material Selection",
+        href: "/components/bushings-and-sleeves",
+      },
+      {
+        label: "Valve Spools & Cartridges Material Selection",
+        href: "/components/valve-spools-and-cartridges",
       },
       { label: "Discuss Your Application", href: "/contact" },
     ],
@@ -1245,6 +1257,10 @@ export const resourcePages: ResourcePage[] = [
       },
     ],
     relatedLinks: [
+      {
+        label: "Browse Component Material Selection Guides",
+        href: "/components",
+      },
       { label: "Browse Applications", href: "/applications" },
       { label: "Discuss Your Application", href: "/contact" },
     ],

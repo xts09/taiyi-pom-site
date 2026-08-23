@@ -307,7 +307,7 @@ test("expanded locale dictionaries are complete and do not expose Chinese fallba
   };
   const expectedKeys = Object.keys(deExpanded).sort();
 
-  assert.equal(expectedKeys.length, 4376);
+  assert.equal(expectedKeys.length, 4379);
   for (const [localeSegment, dictionary] of Object.entries(dictionaries)) {
     assert.equal(hasExpandedLocaleDictionary(localeSegment), true);
     assert.deepEqual(Object.keys(dictionary).sort(), expectedKeys);
@@ -1663,7 +1663,7 @@ test("the first Simplified Chinese resource article slice matches source structu
       sections: 8,
       features: 4,
       modules: 5,
-      relatedLinks: 4,
+      relatedLinks: 5,
     },
     "alternative-pom-grade-validation": {
       sections: 6,
@@ -1718,7 +1718,7 @@ test("the second Simplified Chinese resource article slice matches source struct
       sections: 8,
       features: 4,
       modules: 0,
-      relatedLinks: 4,
+      relatedLinks: 6,
     },
     "pom-gear-material-selection": {
       sections: 6,
@@ -1829,7 +1829,7 @@ test("the fourth Simplified Chinese resource article slice matches source struct
       features: 0,
       modules: 6,
       faqItems: 0,
-      relatedLinks: 2,
+      relatedLinks: 3,
     },
     faq: {
       sections: 0,
@@ -1890,6 +1890,50 @@ test("the fourth Simplified Chinese resource article slice matches source struct
       /保证适用|直接替代|完全等同|自动批准|无需验证|普遍适用/,
     );
   }
+});
+
+test("B3 resource backlinks stay limited to the reviewed Component targets", () => {
+  const resourcesSource = readProjectFile("src/data/resources.ts");
+  const reviewedTargets = [
+    "/components",
+    "/components",
+    "/components/bushings-and-sleeves",
+    "/components/precision-plastic-gears",
+    "/components/valve-spools-and-cartridges",
+  ].sort();
+  const englishTargets = [
+    ...resourcesSource.matchAll(/href: "(\/components(?:\/[^"]*)?)"/g),
+  ]
+    .map((match) => match[1])
+    .sort();
+  const localizedPages = {
+    ...zhCNResourceArticlesA1,
+    ...zhCNResourceArticlesA2,
+    ...zhCNResourceArticlesB1,
+    ...zhCNResourceArticlesB2,
+    ...zhCNResourceArticlesC1,
+    ...zhCNResourceArticlesC2,
+  };
+  const localizedTargets = Object.values(localizedPages)
+    .flatMap((page) => {
+      const hrefs = page.relatedLinks.map((link) => link.href);
+
+      assert.equal(
+        new Set(hrefs).size,
+        hrefs.length,
+        `${page.slug} contains duplicate related links`,
+      );
+
+      return hrefs.filter((href) => href.startsWith("/components"));
+    })
+    .sort();
+
+  assert.deepEqual(englishTargets, reviewedTargets);
+  assert.deepEqual(localizedTargets, reviewedTargets);
+  assert.equal(
+    englishTargets.some((href) => href.includes("/grades/")),
+    false,
+  );
 });
 
 test("the fifth Simplified Chinese resource article slice matches source structure", () => {

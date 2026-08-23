@@ -90,6 +90,10 @@ const messages = {
       },
     ],
     relatedLinks: [
+      {
+        label: "浏览零部件选材指南",
+        href: "/components",
+      },
       { label: "浏览应用", href: "/applications" },
       { label: "讨论您的应用", href: "/contact" },
     ],

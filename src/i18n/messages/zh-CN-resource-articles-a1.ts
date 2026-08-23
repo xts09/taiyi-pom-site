@@ -235,6 +235,10 @@ const messages = {
     ],
     relatedLinks: [
       { label: "查看 POM 材料族", href: "/products/categories/pom" },
+      {
+        label: "浏览零部件选材指南",
+        href: "/components",
+      },
       { label: "查找牌号数据与 TDS", href: "/technical-data-sheets" },
       {
         label: "比较耐磨与低摩擦 POM",
