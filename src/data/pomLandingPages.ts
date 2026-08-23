@@ -194,7 +194,7 @@ export const pomLandingPages = {
       },
       {
         title: "Validate the exact grade",
-        body: "Check current TDS data, molding conditions, samples, and representative part trials before release.",
+        body: "When a listed grade remains viable after the initial screen, confirm TDS, molding conditions, samples, and representative-part trials before discussing repeat supply. If none remains viable, formulation adjustment or custom-grade development is considered only with clear technical targets, validation conditions, and expected production volume.",
         points: [],
       },
     ],

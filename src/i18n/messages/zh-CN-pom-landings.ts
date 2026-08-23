@@ -66,7 +66,7 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
     {
       title: "验证具体牌号",
       body:
-        "放行前核对最新 TDS 数据、成型条件与样品，并进行有代表性的零件试模。",
+        "现有牌号符合初筛方向时，结合 TDS、成型条件、样品和代表性零件试模完成验证，再讨论重复供货。若均不符合，仅在技术目标、验证条件和预期生产用量明确时，评估配方调整或定制牌号开发。",
       points: [],
     },
   ],
