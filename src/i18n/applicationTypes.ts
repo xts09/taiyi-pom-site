@@ -223,6 +223,9 @@ export type ApplicationIndexMessages = {
     title: string;
     description: string;
     allAction: string;
+    relatedTitle: string;
+    relevantPartsLabel: string;
+    viewAction: string;
     englishDestinationLabel: string;
     labels: Record<ApplicationIndexComponentSlug, string>;
   };

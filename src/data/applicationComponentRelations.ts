@@ -13,70 +13,108 @@ export type IndustryContextRelation = {
 };
 
 export type ApplicationComponentRelation =
-  | PartExampleRelation
-  | IndustryContextRelation;
+  PartExampleRelation | IndustryContextRelation;
 
 export const applicationComponentRelations = [
   {
     applicationSlug: "motion-components",
     componentSlug: "precision-plastic-gears",
     relationType: "part-example",
-    partIds: ["precision-gear"],
+    partIds: ["precision-gear", "worm-gear"],
+  },
+  {
+    applicationSlug: "washing-machine-components",
+    componentSlug: "precision-plastic-gears",
+    relationType: "part-example",
+    partIds: ["drum-drive-gear", "reduction-gear-assembly"],
+  },
+  {
+    applicationSlug: "automotive",
+    componentSlug: "precision-plastic-gears",
+    relationType: "part-example",
+    partIds: ["wiper-motor-gear"],
+  },
+  {
+    applicationSlug: "electronics",
+    componentSlug: "precision-plastic-gears",
+    relationType: "part-example",
+    partIds: ["copier-drive-gear"],
+  },
+  {
+    applicationSlug: "outdoor-equipment",
+    componentSlug: "precision-plastic-gears",
+    relationType: "part-example",
+    partIds: ["lawn-mower-gear"],
   },
   {
     applicationSlug: "motion-components",
     componentSlug: "bushings-and-sleeves",
     relationType: "part-example",
-    partIds: ["bushing"],
+    partIds: ["bushing", "sleeve", "guide-ring", "sliding-block"],
+  },
+  {
+    applicationSlug: "automotive",
+    componentSlug: "bushings-and-sleeves",
+    relationType: "part-example",
+    partIds: ["seat-guide-ring"],
   },
   {
     applicationSlug: "conveyor-automation",
     componentSlug: "conveyor-chain-components",
     relationType: "part-example",
-    partIds: ["mini-conveyor-chain-plate"],
+    partIds: [
+      "mini-conveyor-chain-plate",
+      "high-load-conveyor-chain",
+      "conveyor-segment",
+      "antistatic-anti-slip-conveyor-chain-plate",
+      "conveyor-roller",
+      "conveyor-chain-plate-bracket",
+      "conductive-conveyor-chain-plate",
+    ],
+  },
+  {
+    applicationSlug: "electronics",
+    componentSlug: "conveyor-chain-components",
+    relationType: "industry-context",
   },
   {
     applicationSlug: "water-control",
     componentSlug: "valve-spools-and-cartridges",
     relationType: "part-example",
-    partIds: ["valve-spool-assembly"],
+    partIds: [
+      "valve-spool-assembly",
+      "valve-cartridge",
+      "valve-internal-parts",
+      "guide-wheel",
+    ],
+  },
+  {
+    applicationSlug: "washing-machine-components",
+    componentSlug: "valve-spools-and-cartridges",
+    relationType: "industry-context",
   },
   {
     applicationSlug: "textile-machinery",
     componentSlug: "textile-guide-components",
     relationType: "part-example",
-    partIds: ["yarn-guide"],
+    partIds: [
+      "yarn-guide",
+      "heddle-lifter",
+      "air-spinning-guide",
+      "textile-guide-wheel",
+      "textile-spindle-support",
+    ],
+  },
+  {
+    applicationSlug: "motion-components",
+    componentSlug: "textile-guide-components",
+    relationType: "industry-context",
   },
   {
     applicationSlug: "electronics",
     componentSlug: "ic-handling-trays",
     relationType: "part-example",
     partIds: ["ic-handling-tray"],
-  },
-  {
-    applicationSlug: "washing-machine-components",
-    componentSlug: "precision-plastic-gears",
-    relationType: "industry-context",
-  },
-  {
-    applicationSlug: "automotive",
-    componentSlug: "bushings-and-sleeves",
-    relationType: "industry-context",
-  },
-  {
-    applicationSlug: "electronics",
-    componentSlug: "conveyor-chain-components",
-    relationType: "industry-context",
-  },
-  {
-    applicationSlug: "washing-machine-components",
-    componentSlug: "valve-spools-and-cartridges",
-    relationType: "industry-context",
-  },
-  {
-    applicationSlug: "motion-components",
-    componentSlug: "textile-guide-components",
-    relationType: "industry-context",
   },
   {
     applicationSlug: "conveyor-automation",
@@ -99,6 +137,15 @@ export type ComponentApplicationReference = {
   applicationTitle: string;
   href: string;
   relationType: ApplicationComponentRelation["relationType"];
+  partExamples: readonly {
+    id: string;
+    label: string;
+  }[];
+};
+
+export type ApplicationComponentOwnerReference = {
+  componentSlug: string;
+  href: string;
   partExamples: readonly {
     id: string;
     label: string;
@@ -200,6 +247,13 @@ export const validateApplicationComponentRelations = (
       getRelationKey(relation.applicationSlug, relation.componentSlug),
     );
   const registryPairKeys = new Set(relationKeys);
+  const exactOwnerPairKeys = new Set(
+    applicationComponentRelations
+      .filter((relation) => relation.relationType === "part-example")
+      .map((relation) =>
+        getRelationKey(relation.applicationSlug, relation.componentSlug),
+      ),
+  );
   const legacyPairKeys = new Set(
     components.flatMap((component) =>
       component.relatedApplications.map((application) =>
@@ -236,6 +290,8 @@ export const validateApplicationComponentRelations = (
           : 0),
       0,
     ),
+    uniqueExactOwnerPairs: exactOwnerPairKeys.size,
+    combinedSemanticPairs: registryPairKeys.size,
     duplicateRelationKeys,
     brokenApplicationSlugs,
     brokenComponentSlugs,
@@ -256,6 +312,40 @@ export const getComponentApplicationRelations = (componentSlug: string) =>
   applicationComponentRelations.filter(
     (relation) => relation.componentSlug === componentSlug,
   );
+
+export const resolveApplicationComponentOwnerReferences = (
+  application: ApplicationRecord,
+): readonly ApplicationComponentOwnerReference[] =>
+  getApplicationComponentRelations(application.slug).flatMap((relation) => {
+    if (relation.relationType !== "part-example") {
+      return [];
+    }
+
+    const partExamples = relation.partIds.map((partId) => {
+      const part = application.parts.find(
+        (candidate) => candidate.id === partId,
+      );
+
+      if (!part?.label) {
+        throw new Error(
+          `Missing part content for application relation: ${application.slug}::${partId}`,
+        );
+      }
+
+      return {
+        id: part.id,
+        label: part.label,
+      };
+    });
+
+    return [
+      {
+        componentSlug: relation.componentSlug,
+        href: `/components/${relation.componentSlug}`,
+        partExamples,
+      },
+    ];
+  });
 
 export const resolveComponentApplicationReferences = (
   componentSlug: string,

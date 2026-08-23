@@ -9,7 +9,7 @@ import { MediaFigure } from "@/components/MediaFigure";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { getApplicationComponentLinks } from "@/data/applicationComponentLinks";
+import { resolveApplicationComponentOwnerReferences } from "@/data/applicationComponentRelations";
 import type {
   ApplicationEngineeringGroup,
   ApplicationImage,
@@ -22,7 +22,6 @@ import type {
   LocalizedApplicationQualityEvidenceMessages,
 } from "@/i18n/applicationTypes";
 import type { LocalizedUrlSegment } from "@/i18n/config";
-import { translateExpandedText } from "@/i18n/expandedLocaleContent";
 import {
   getLocalizedHref,
   isEnglishFallbackHref,
@@ -369,7 +368,8 @@ export function LocalizedApplicationDetailPage({
   const detailHeroImage = application.detailHeroImage ?? application.heroImage;
   const materialDirectionCards = getMaterialDirectionCards(application);
   const applicationUseCards = getApplicationUseCards(application);
-  const componentGuides = getApplicationComponentLinks(application.slug);
+  const componentOwners =
+    resolveApplicationComponentOwnerReferences(application);
   const contactHref = createContactHref(
     {
       application: application.title,
@@ -627,7 +627,7 @@ export function LocalizedApplicationDetailPage({
             ))}
           </ApplicationExpandableGrid>
 
-          {componentGuides.length > 0 ? (
+          {componentOwners.length > 0 ? (
             <aside
               className="application-component-guides"
               aria-labelledby="application-component-guides-heading"
@@ -637,50 +637,58 @@ export function LocalizedApplicationDetailPage({
                   {messages.parts.componentEyebrow}
                 </p>
                 <h3 id="application-component-guides-heading">
-                  {messages.parts.componentTitle}
+                  {componentMessages.relatedTitle}
                 </h3>
               </div>
-              <div className="application-component-guide-links">
-                {componentGuides.map((guide) => {
-                  const componentSlug = guide.href.split("/").at(-1) as
-                    ApplicationIndexComponentSlug | undefined;
-                  const componentLabel = componentSlug
-                    ? componentMessages.labels[componentSlug]
-                    : guide.partLabel;
+              <nav
+                className="application-component-owner-list"
+                aria-label={componentMessages.relatedTitle}
+              >
+                {componentOwners.map((owner) => {
+                  const componentSlug =
+                    owner.componentSlug as ApplicationIndexComponentSlug;
+                  const componentLabel =
+                    componentMessages.labels[componentSlug];
                   const componentHref = getLocalizedHref(
-                    guide.href,
+                    owner.href,
                     localeSegment,
                   );
                   const showEnglishBadge = isEnglishFallbackHref(
-                    guide.href,
+                    owner.href,
                     localeSegment,
                   );
 
                   return (
                     <Link
-                      className="application-component-guide-link"
+                      className="application-component-owner-link"
+                      data-component-owner={componentSlug}
                       href={componentHref}
-                      key={guide.href}
+                      key={componentSlug}
                     >
-                      <span className="application-component-guide-part">
+                      <strong className="application-component-owner-title">
                         {componentLabel}
-                      </span>
-                      <strong>
-                        {componentLabel}{" "}
-                        {localeSegment
-                          ? translateExpandedText("选材指南", localeSegment)
-                          : "Material Selection Guide"}{" "}
+                      </strong>
+                      <div className="application-component-owner-parts">
+                        <span>{componentMessages.relevantPartsLabel}</span>
+                        <ul>
+                          {owner.partExamples.map((part) => (
+                            <li key={part.id}>{part.label}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <span className="application-component-owner-action">
+                        {componentMessages.viewAction}
                         {showEnglishBadge ? (
                           <EnglishDestinationBadge
                             label={componentMessages.englishDestinationLabel}
                           />
                         ) : null}
-                      </strong>
-                      <span aria-hidden="true">↗</span>
+                        <span aria-hidden="true">→</span>
+                      </span>
                     </Link>
                   );
                 })}
-              </div>
+              </nav>
             </aside>
           ) : null}
         </section>

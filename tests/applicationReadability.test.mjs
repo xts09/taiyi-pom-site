@@ -16,9 +16,7 @@ test("application detail renders each part and material card from one semantic l
   const expandableSource = readProjectFile(
     "src/components/ApplicationExpandableGrid.tsx",
   );
-  const styleSource = readProjectFile(
-    "src/app/(en)/styles/applications.css",
-  );
+  const styleSource = readProjectFile("src/app/(en)/styles/applications.css");
 
   assert.equal(pageSource.match(/applicationUseCards\.map/g)?.length, 1);
   assert.equal(pageSource.match(/materialDirectionCards\.map/g)?.length, 1);
@@ -61,4 +59,42 @@ test("reviewed English application overrides remove confirmed machine phrasing",
   );
   assert.match(reviewedCopy, /stick-slip/);
   assert.match(reviewedCopy, /appropriate candidate/);
+});
+
+test("A3 exact relationships use canonical English component terms", () => {
+  const expectedTerms = new Map([
+    ["雨刮电机齿轮", "Wiper Motor Gear"],
+    ["复印机传动齿轮", "Copier Drive Gear"],
+    ["精密齿轮", "Precision Gear"],
+    ["蜗轮", "Worm Gear"],
+    ["滚筒传动齿轮", "Drum Drive Gear"],
+    ["减速齿轮总成", "Reduction Gear Assembly"],
+    ["割草机齿轮", "Lawn Mower Gear"],
+    ["轴套", "Bushing"],
+    ["套筒", "Sleeve"],
+    ["导向环", "Guide Ring"],
+    ["滑块", "Sliding Block"],
+    ["座椅导向环", "Seat Guide Ring"],
+    ["小型输送链板", "Mini Conveyor Chain Plate"],
+    ["高载荷输送链", "High-Load Conveyor Chain"],
+    ["输送带分段模块", "Conveyor Segment"],
+    ["抗静电防滑输送链板", "Antistatic Anti-Slip Conveyor Chain Plate"],
+    ["输送滚轮", "Conveyor Roller"],
+    ["输送链板支架", "Conveyor Chain Plate Bracket"],
+    ["导电输送链板", "Conductive Conveyor Chain Plate"],
+    ["阀芯总成", "Valve Spool Assembly"],
+    ["阀筒", "Valve Cartridge"],
+    ["阀门内部部件", "Valve Internal Parts"],
+    ["导向轮", "Guide Wheel"],
+    ["导纱器", "Yarn Guide"],
+    ["提综器", "Heddle Lifter"],
+    ["气流纺导向件", "Air-Spinning Guide"],
+    ["纺织导向轮", "Textile Guide Wheel"],
+    ["纺锭支撑件", "Textile Spindle Support"],
+    ["IC 搬运托盘", "IC Handling Tray"],
+  ]);
+
+  for (const [source, expected] of expectedTerms) {
+    assert.equal(translateEnglishApplicationText(source), expected);
+  }
 });

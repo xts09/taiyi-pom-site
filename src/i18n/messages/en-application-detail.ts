@@ -82,6 +82,9 @@ export const englishApplicationComponentMessages = {
   description:
     "Choose the molded-part family closest to your design to compare operating inputs, failure modes and validation needs.",
   allAction: "View all component solutions",
+  relatedTitle: "Related component solutions",
+  relevantPartsLabel: "Relevant parts",
+  viewAction: "View component solution",
   englishDestinationLabel: "English content",
   labels: {
     "precision-plastic-gears": "Precision plastic gears",

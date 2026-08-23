@@ -8,12 +8,13 @@ import {
 } from "../src/data/applicationComponentLinks.ts";
 import {
   applicationComponentRelations,
+  resolveApplicationComponentOwnerReferences,
   resolveComponentApplicationReferences,
   validateApplicationComponentRelations,
 } from "../src/data/applicationComponentRelations.ts";
 import { componentSolutions } from "../src/data/componentSolutions.ts";
 
-test("normalizes the A1 application-component relationship foundation", () => {
+test("validates the reviewed A3 application-component relationships", () => {
   const validation = validateApplicationComponentRelations(
     applications,
     componentSolutions,
@@ -24,10 +25,12 @@ test("normalizes the A1 application-component relationship foundation", () => {
   assert.equal(validation.applicationPartsTotal, 68);
   assert.equal(validation.stablePartIds, 68);
   assert.deepEqual(validation.duplicatePartIds, []);
-  assert.equal(validation.registryRecords, 12);
-  assert.equal(validation.partExampleRecords, 6);
-  assert.equal(validation.industryContextRecords, 6);
-  assert.equal(validation.exactPartCoverage, 6);
+  assert.equal(validation.registryRecords, 15);
+  assert.equal(validation.partExampleRecords, 11);
+  assert.equal(validation.industryContextRecords, 4);
+  assert.equal(validation.exactPartCoverage, 29);
+  assert.equal(validation.uniqueExactOwnerPairs, 11);
+  assert.equal(validation.combinedSemanticPairs, 15);
   assert.deepEqual(validation.duplicateRelationKeys, []);
   assert.deepEqual(validation.brokenApplicationSlugs, []);
   assert.deepEqual(validation.brokenComponentSlugs, []);
@@ -35,20 +38,23 @@ test("normalizes the A1 application-component relationship foundation", () => {
   assert.deepEqual(validation.invalidRelationShapes, []);
   assert.deepEqual(validation.orphanRelationKeys, []);
   assert.deepEqual(validation.missingLegacyPairKeys, []);
-  assert.deepEqual(validation.registryPairsMissingFromLegacy, []);
+  assert.deepEqual(validation.registryPairsMissingFromLegacy, [
+    "automotive::precision-plastic-gears",
+    "electronics::precision-plastic-gears",
+    "outdoor-equipment::precision-plastic-gears",
+  ]);
 
   assert.equal(
     new Set(
       applicationComponentRelations.map(
-        (relation) =>
-          `${relation.applicationSlug}::${relation.componentSlug}`,
+        (relation) => `${relation.applicationSlug}::${relation.componentSlug}`,
       ),
     ).size,
     applicationComponentRelations.length,
   );
 });
 
-test("resolves the reviewed A2 component-to-application lists", () => {
+test("resolves the reviewed A3 component-to-application lists", () => {
   const resolved = Object.fromEntries(
     componentSolutions.map((component) => [
       component.slug,
@@ -67,31 +73,54 @@ test("resolves the reviewed A2 component-to-application lists", () => {
       {
         application: "Motion Components",
         href: "/applications/motion-components",
-        parts: ["Precision Gear"],
+        parts: ["Precision Gear", "Worm Gear"],
       },
       {
         application: "Washing Machine Components",
         href: "/applications/washing-machine-components",
-        parts: [],
+        parts: ["Drum Drive Gear", "Reduction Gear Assembly"],
+      },
+      {
+        application: "Automotive",
+        href: "/applications/automotive",
+        parts: ["Wiper Motor Gear"],
+      },
+      {
+        application: "Electronics",
+        href: "/applications/electronics",
+        parts: ["Copier Drive Gear"],
+      },
+      {
+        application: "Outdoor Equipment",
+        href: "/applications/outdoor-equipment",
+        parts: ["Lawn Mower Gear"],
       },
     ],
     "bushings-and-sleeves": [
       {
         application: "Motion Components",
         href: "/applications/motion-components",
-        parts: ["Bushing"],
+        parts: ["Bushing", "Sleeve", "Guide Ring", "Sliding Block"],
       },
       {
         application: "Automotive",
         href: "/applications/automotive",
-        parts: [],
+        parts: ["Seat Guide Ring"],
       },
     ],
     "conveyor-chain-components": [
       {
         application: "Conveyor Automation",
         href: "/applications/conveyor-automation",
-        parts: ["Mini Conveyor Chain Plate"],
+        parts: [
+          "Mini Conveyor Chain Plate",
+          "High-Load Conveyor Chain",
+          "Conveyor Segment",
+          "Antistatic Anti-Slip Conveyor Chain Plate",
+          "Conveyor Roller",
+          "Conveyor Chain Plate Bracket",
+          "Conductive Conveyor Chain Plate",
+        ],
       },
       {
         application: "Electronics",
@@ -103,7 +132,12 @@ test("resolves the reviewed A2 component-to-application lists", () => {
       {
         application: "Water Control",
         href: "/applications/water-control",
-        parts: ["Valve Spool Assembly"],
+        parts: [
+          "Valve Spool Assembly",
+          "Valve Cartridge",
+          "Valve Internal Parts",
+          "Guide Wheel",
+        ],
       },
       {
         application: "Washing Machine Components",
@@ -115,7 +149,13 @@ test("resolves the reviewed A2 component-to-application lists", () => {
       {
         application: "Textile Machinery",
         href: "/applications/textile-machinery",
-        parts: ["Yarn Guide"],
+        parts: [
+          "Yarn Guide",
+          "Heddle Lifter",
+          "Air-Spinning Guide",
+          "Textile Guide Wheel",
+          "Textile Spindle Support",
+        ],
       },
       {
         application: "Motion Components",
@@ -138,47 +178,113 @@ test("resolves the reviewed A2 component-to-application lists", () => {
   });
 });
 
-test("publishes the reviewed Batch D1 through D3 component guides", () => {
-  assert.deepEqual(applicationComponentLinks, [
-    {
-      applicationSlug: "motion-components",
-      partLabel: "Precision Gear",
-      href: "/components/precision-plastic-gears",
-      label: "Precision Plastic Gear Guide",
-    },
-    {
-      applicationSlug: "motion-components",
-      partLabel: "Bushing",
-      href: "/components/bushings-and-sleeves",
-      label: "Bushings & Sleeves Guide",
-    },
-    {
-      applicationSlug: "conveyor-automation",
-      partLabel: "Mini Conveyor Chain Plate",
-      href: "/components/conveyor-chain-components",
-      label: "Conveyor Chain Components Guide",
-    },
-    {
-      applicationSlug: "water-control",
-      partLabel: "Valve Spool Assembly",
-      href: "/components/valve-spools-and-cartridges",
-      label: "Valve Spools & Cartridges Guide",
-    },
-    {
-      applicationSlug: "textile-machinery",
-      partLabel: "Yarn Guide",
-      href: "/components/textile-guide-components",
-      label: "Textile Guide Components Guide",
-    },
-    {
-      applicationSlug: "electronics",
-      partLabel: "IC Handling Tray",
-      href: "/components/ic-handling-trays",
-      label: "IC Handling Trays Guide",
-    },
-  ]);
+test("aggregates the reviewed A3 application-to-component owner lists", () => {
+  const componentTitleBySlug = new Map(
+    componentSolutions.map((component) => [component.slug, component.title]),
+  );
+  const resolved = Object.fromEntries(
+    applications.map((application) => [
+      application.slug,
+      resolveApplicationComponentOwnerReferences(application).map(
+        (reference) => ({
+          owner: componentTitleBySlug.get(reference.componentSlug),
+          parts: reference.partExamples.map((part) => part.label),
+        }),
+      ),
+    ]),
+  );
+
+  assert.deepEqual(resolved, {
+    automotive: [
+      {
+        owner: "Precision Plastic Gears",
+        parts: ["Wiper Motor Gear"],
+      },
+      {
+        owner: "Bushings and Sleeves",
+        parts: ["Seat Guide Ring"],
+      },
+    ],
+    electronics: [
+      {
+        owner: "Precision Plastic Gears",
+        parts: ["Copier Drive Gear"],
+      },
+      {
+        owner: "IC Handling Trays",
+        parts: ["IC Handling Tray"],
+      },
+    ],
+    "conveyor-automation": [
+      {
+        owner: "Conveyor Chain Components",
+        parts: [
+          "Mini Conveyor Chain Plate",
+          "High-Load Conveyor Chain",
+          "Conveyor Segment",
+          "Antistatic Anti-Slip Conveyor Chain Plate",
+          "Conveyor Roller",
+          "Conveyor Chain Plate Bracket",
+          "Conductive Conveyor Chain Plate",
+        ],
+      },
+    ],
+    "motion-components": [
+      {
+        owner: "Precision Plastic Gears",
+        parts: ["Precision Gear", "Worm Gear"],
+      },
+      {
+        owner: "Bushings and Sleeves",
+        parts: ["Bushing", "Sleeve", "Guide Ring", "Sliding Block"],
+      },
+    ],
+    "water-control": [
+      {
+        owner: "Valve Spools and Cartridges",
+        parts: [
+          "Valve Spool Assembly",
+          "Valve Cartridge",
+          "Valve Internal Parts",
+          "Guide Wheel",
+        ],
+      },
+    ],
+    "washing-machine-components": [
+      {
+        owner: "Precision Plastic Gears",
+        parts: ["Drum Drive Gear", "Reduction Gear Assembly"],
+      },
+    ],
+    "outdoor-equipment": [
+      {
+        owner: "Precision Plastic Gears",
+        parts: ["Lawn Mower Gear"],
+      },
+    ],
+    "textile-machinery": [
+      {
+        owner: "Textile Guide Components",
+        parts: [
+          "Yarn Guide",
+          "Heddle Lifter",
+          "Air-Spinning Guide",
+          "Textile Guide Wheel",
+          "Textile Spindle Support",
+        ],
+      },
+    ],
+  });
+});
+
+test("keeps the legacy part lookup derived from all exact A3 mappings", () => {
+  assert.equal(applicationComponentLinks.length, 29);
   assert.equal(
-    new Set(applicationComponentLinks.map((guide) => guide.href)).size,
+    new Set(
+      applicationComponentLinks.map(
+        (guide) => `${guide.applicationSlug}::${guide.partLabel}`,
+      ),
+    ).size,
     applicationComponentLinks.length,
   );
   assert.equal(
@@ -186,12 +292,17 @@ test("publishes the reviewed Batch D1 through D3 component guides", () => {
     "/components/precision-plastic-gears",
   );
   assert.equal(
-    getApplicationComponentLink("motion-components", "Worm Gear"),
-    undefined,
+    getApplicationComponentLink("motion-components", "Worm Gear")?.href,
+    "/components/precision-plastic-gears",
   );
-  assert.deepEqual(
-    getApplicationComponentLinks("motion-components"),
-    applicationComponentLinks.slice(0, 2),
+  assert.equal(getApplicationComponentLinks("motion-components").length, 6);
+  assert.equal(
+    new Set(
+      getApplicationComponentLinks("motion-components").map(
+        (guide) => guide.href,
+      ),
+    ).size,
+    2,
   );
   assert.equal(
     getApplicationComponentLink(
@@ -201,8 +312,7 @@ test("publishes the reviewed Batch D1 through D3 component guides", () => {
     "/components/conveyor-chain-components",
   );
   assert.equal(
-    getApplicationComponentLink("water-control", "Valve Spool Assembly")
-      ?.href,
+    getApplicationComponentLink("water-control", "Valve Spool Assembly")?.href,
     "/components/valve-spools-and-cartridges",
   );
   assert.equal(
@@ -213,5 +323,8 @@ test("publishes the reviewed Batch D1 through D3 component guides", () => {
     getApplicationComponentLink("electronics", "IC Handling Tray")?.href,
     "/components/ic-handling-trays",
   );
-  assert.deepEqual(getApplicationComponentLinks("automotive"), []);
+  assert.deepEqual(
+    getApplicationComponentLinks("automotive").map((guide) => guide.partLabel),
+    ["Wiper Motor Gear", "Seat Guide Ring"],
+  );
 });

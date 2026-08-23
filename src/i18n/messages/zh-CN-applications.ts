@@ -41,6 +41,9 @@ const messages = {
     description:
       "选择与设计最接近的注塑零部件系列，比较其工况输入、主要失效模式与验证需求。",
     allAction: "查看全部零部件解决方案",
+    relatedTitle: "相关零部件方案",
+    relevantPartsLabel: "相关零部件",
+    viewAction: "查看零部件方案",
     englishDestinationLabel: "英文内容",
     labels: {
       "precision-plastic-gears": "精密塑料齿轮",

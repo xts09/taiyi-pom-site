@@ -92,8 +92,8 @@
   min-height: 0;
   gap: 0.72rem;
   border-top: 0;
-  padding: clamp(1.1rem, 1.5vw, 1.35rem)
-    clamp(1.15rem, 1.65vw, 1.45rem) clamp(1.2rem, 1.7vw, 1.5rem);
+  padding: clamp(1.1rem, 1.5vw, 1.35rem) clamp(1.15rem, 1.65vw, 1.45rem)
+    clamp(1.2rem, 1.7vw, 1.5rem);
 }
 
 .application-detail-shell.mesh-surface .application-use-card-body::before {
@@ -153,62 +153,97 @@
   line-height: 1.25;
 }
 
-.application-component-guide-links {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--ds-space-3);
+.application-component-owner-list {
+  border: 1px solid var(--ds-border-subtle);
+  background: rgba(255, 255, 255, 0.68);
 }
 
-.application-component-guide-link {
+.application-component-owner-link {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  row-gap: 0.45rem;
-  min-height: 6.4rem;
-  border: 1px solid var(--ds-border-subtle);
+  grid-template-columns:
+    minmax(11rem, 0.7fr) minmax(18rem, 1.3fr)
+    auto;
+  gap: clamp(1rem, 2vw, 2rem);
+  align-items: center;
+  min-height: 5.5rem;
+  border-bottom: 1px solid var(--ds-border-subtle);
   padding: clamp(1rem, 1.4vw, 1.25rem);
-  background: rgba(255, 255, 255, 0.72);
   color: inherit;
   transition:
-    border-color var(--ds-duration-short) ease,
-    transform var(--ds-duration-short) ease;
+    background-color var(--ds-duration-short) var(--ds-ease-out),
+    color var(--ds-duration-short) var(--ds-ease-out);
 }
 
-.application-component-guide-part {
-  color: #64748b;
+.application-component-owner-link:last-child {
+  border-bottom: 0;
+}
+
+.application-component-owner-title {
+  color: var(--ds-foreground-primary);
+  font-size: clamp(1rem, 1.2vw, 1.16rem);
+  line-height: 1.28;
+}
+
+.application-component-owner-parts {
+  display: grid;
+  min-width: 0;
+  gap: 0.35rem;
+}
+
+.application-component-owner-parts > span {
+  color: var(--ds-foreground-muted);
   font-size: var(--ds-text-xs);
   font-weight: var(--ds-font-weight-semibold);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
-.application-component-guide-link strong {
-  grid-column: 1;
+.application-component-owner-parts ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.38rem;
+  margin: 0;
+  padding: 0;
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-sm);
+  line-height: 1.55;
+  list-style: none;
+}
+
+.application-component-owner-parts li:not(:last-child)::after {
+  content: ",";
+}
+
+.application-component-owner-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--ds-space-2);
   color: var(--ds-action-primary);
   font-size: var(--ds-text-sm);
+  font-weight: var(--ds-font-weight-semibold);
   line-height: 1.35;
+  white-space: nowrap;
 }
 
-.application-component-guide-link > span:last-child {
-  grid-column: 2;
-  grid-row: 1 / span 2;
-  align-self: center;
-  color: var(--ds-action-primary);
-  font-size: 1.15rem;
-  transition: transform var(--ds-duration-short) ease;
+.application-component-owner-action > span[aria-hidden="true"] {
+  font-size: 1rem;
+  transition: transform var(--ds-duration-short) var(--ds-ease-out);
 }
 
-.application-component-guide-link:hover,
-.application-component-guide-link:focus-visible {
-  border-color: rgba(11, 95, 184, 0.32);
-  transform: translateY(-0.12rem);
+.application-component-owner-link:hover,
+.application-component-owner-link:focus-visible {
+  background: var(--ds-color-paper-blue-50);
 }
 
-.application-component-guide-link:hover > span:last-child,
-.application-component-guide-link:focus-visible > span:last-child {
-  transform: translate(0.14rem, -0.14rem);
+.application-component-owner-link:hover
+  .application-component-owner-action
+  > span[aria-hidden="true"],
+.application-component-owner-link:focus-visible
+  .application-component-owner-action
+  > span[aria-hidden="true"] {
+  transform: translateX(0.16rem);
 }
 
-.application-component-guide-link:focus-visible {
+.application-component-owner-link:focus-visible {
   outline: 2px solid var(--ds-focus-ring);
   outline-offset: 0.2rem;
 }
@@ -239,12 +274,16 @@
     font-size: clamp(1.8rem, 8vw, 2.35rem);
   }
 
-  .application-component-guide-links {
+  .application-component-owner-link {
     grid-template-columns: 1fr;
+    gap: var(--ds-space-3);
+    min-height: 0;
+    padding: var(--ds-space-4);
   }
 
-  .application-component-guide-link {
-    min-height: 5.75rem;
+  .application-component-owner-action {
+    justify-content: flex-start;
+    white-space: normal;
   }
 
   .application-detail-shell.mesh-surface .application-use-grid {
@@ -503,7 +542,9 @@
   text-wrap: balance;
 }
 
-.application-index-shell.mesh-surface .application-basis-strip p:not(.section-kicker) {
+.application-index-shell.mesh-surface
+  .application-basis-strip
+  p:not(.section-kicker) {
   max-width: 32rem;
   color: var(--ds-foreground-muted);
   font-size: var(--ds-text-md);
@@ -612,7 +653,11 @@
 .application-directory-media::after {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(3, 16, 29, 0.04), rgba(3, 16, 29, 0.42));
+  background: linear-gradient(
+    180deg,
+    rgba(3, 16, 29, 0.04),
+    rgba(3, 16, 29, 0.42)
+  );
   content: "";
 }
 
@@ -785,13 +830,17 @@
     display: none;
   }
 
-  .application-detail-shell.mesh-surface .application-section-actions
+  .application-detail-shell.mesh-surface
+    .application-section-actions
     a[data-priority="secondary"],
-  .application-detail-shell.mesh-surface .application-hero-cta > :not(:first-child) {
+  .application-detail-shell.mesh-surface
+    .application-hero-cta
+    > :not(:first-child) {
     display: none;
   }
 
-  .application-detail-shell.mesh-surface .application-section-actions
+  .application-detail-shell.mesh-surface
+    .application-section-actions
     a[data-priority="primary"] {
     flex-basis: 100%;
   }
@@ -808,7 +857,9 @@
     border-bottom: 1px solid rgba(15, 23, 42, 0.12);
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu summary {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu
+    summary {
     display: flex;
     min-height: 2.9rem;
     align-items: center;
@@ -820,28 +871,37 @@
     list-style: none;
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu summary::-webkit-details-marker {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu
+    summary::-webkit-details-marker {
     display: none;
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu summary::after {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu
+    summary::after {
     color: #0b5fb8;
     content: "+";
     font-size: 1.2rem;
     font-weight: 500;
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu[open] summary::after {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu[open]
+    summary::after {
     content: "−";
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu-panel {
     display: grid;
     gap: 0;
     padding-bottom: 0.55rem;
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu-panel
+    a {
     display: flex;
     min-height: 2.7rem;
     align-items: center;
@@ -850,19 +910,29 @@
     font-weight: 600;
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a:focus-visible,
-  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a:hover {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu-panel
+    a:focus-visible,
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu-panel
+    a:hover {
     color: #0b5fb8;
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu-panel a:focus-visible,
-  .application-detail-shell.mesh-surface .application-section-mobile-menu summary:focus-visible,
-  .application-detail-shell.mesh-surface .application-expandable-toggle:focus-visible {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu-panel
+    a:focus-visible,
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu
+    summary:focus-visible,
+  .application-detail-shell.mesh-surface
+    .application-expandable-toggle:focus-visible {
     outline: var(--ds-rule-strong) solid var(--ds-focus-ring);
     outline-offset: var(--ds-space-1);
   }
 
-  .application-detail-shell.mesh-surface .application-section-mobile-menu-action {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu-action {
     border-top: 1px solid rgba(15, 23, 42, 0.1);
     color: #0b5fb8 !important;
     font-weight: 700 !important;
@@ -893,7 +963,9 @@
     display: none;
   }
 
-  .application-detail-shell.mesh-surface .application-expandable-toggle > :last-child {
+  .application-detail-shell.mesh-surface
+    .application-expandable-toggle
+    > :last-child {
     font-size: var(--ds-text-lg);
     font-weight: var(--ds-font-weight-regular);
   }
@@ -903,7 +975,9 @@
     padding: 1rem;
   }
 
-  .application-detail-shell.mesh-surface .application-use-card-meta span:first-child {
+  .application-detail-shell.mesh-surface
+    .application-use-card-meta
+    span:first-child {
     display: none;
   }
 }

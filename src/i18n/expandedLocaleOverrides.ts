@@ -32,12 +32,14 @@ export const expandedLocaleOverrides: Partial<
     为国际项目提供材料支持:
       "Werkstoffunterstützung für internationale Projekte",
     与台益沟通: "Mit Taiyi Polymer sprechen",
+    相关零部件方案: "Zugehörige Bauteillösungen",
+    相关零部件: "Relevante Bauteile",
+    查看零部件方案: "Bauteillösung anzeigen",
     下一步: "Nächster Schritt",
     运动与耐久: "Bewegung und Dauerhaltbarkeit",
     "摩擦、冲击与环境暴露": "Reibung, Schlagbeanspruchung und Umweltexposition",
     刚度与尺寸控制: "Steifigkeit und Maßhaltigkeit",
-    "增强、收缩与成型稳定性":
-      "Verstärkung, Schwindung und Formstabilität",
+    "增强、收缩与成型稳定性": "Verstärkung, Schwindung und Formstabilität",
     功能与成型基准: "Funktion und Verarbeitungsbasis",
     "电气表现、基础树脂与流动窗口":
       "Elektrisches Verhalten, Basisharz und Fließfenster",
@@ -105,12 +107,14 @@ export const expandedLocaleOverrides: Partial<
     为国际项目提供材料支持:
       "Un support matériaux pour les projets internationaux",
     与台益沟通: "Échanger avec Taiyi Polymer",
+    相关零部件方案: "Solutions de composants associées",
+    相关零部件: "Pièces concernées",
+    查看零部件方案: "Voir la solution pour ce composant",
     下一步: "Étape suivante",
     运动与耐久: "Mouvement et durabilité",
     "摩擦、冲击与环境暴露": "Frottement, impact et exposition environnementale",
     刚度与尺寸控制: "Rigidité et maîtrise dimensionnelle",
-    "增强、收缩与成型稳定性":
-      "Renforcement, retrait et stabilité au moulage",
+    "增强、收缩与成型稳定性": "Renforcement, retrait et stabilité au moulage",
     功能与成型基准: "Fonctions et base de transformation",
     "电气表现、基础树脂与流动窗口":
       "Comportement électrique, résine de base et fenêtre d’écoulement",
@@ -155,21 +159,21 @@ export const expandedLocaleOverrides: Partial<
       "Um portfólio de materiais mais definido, conectado a todo o processo decisório",
     支撑试制批次与重复订单的生产规模:
       "Capacidade de produção para lotes piloto e pedidos recorrentes",
-    从零部件需求到重复供货:
-      "Dos requisitos da peça ao fornecimento recorrente",
+    从零部件需求到重复供货: "Dos requisitos da peça ao fornecimento recorrente",
     工程沟通始终与生产保持连接:
       "A comunicação de engenharia permanece conectada à produção",
     用于供应商准入的关键证据:
       "Evidências essenciais para a qualificação de fornecedores",
-    为国际项目提供材料支持:
-      "Suporte de materiais para projetos internacionais",
+    为国际项目提供材料支持: "Suporte de materiais para projetos internacionais",
     与台益沟通: "Fale com a Taiyi Polymer",
+    相关零部件方案: "Soluções relacionadas para componentes",
+    相关零部件: "Peças relacionadas",
+    查看零部件方案: "Ver solução para o componente",
     下一步: "Próxima etapa",
     运动与耐久: "Movimento e durabilidade",
     "摩擦、冲击与环境暴露": "Atrito, impacto e exposição ambiental",
     刚度与尺寸控制: "Rigidez e controle dimensional",
-    "增强、收缩与成型稳定性":
-      "Reforço, contração e estabilidade de moldagem",
+    "增强、收缩与成型稳定性": "Reforço, contração e estabilidade de moldagem",
     功能与成型基准: "Funções e base de processamento",
     "电气表现、基础树脂与流动窗口":
       "Comportamento elétrico, resina base e janela de fluxo",
