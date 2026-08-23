@@ -27,6 +27,9 @@ export const expandedLocaleOverrides: Partial<
     从零部件需求到重复供货:
       "Von Bauteilanforderungen zur wiederholten Lieferung",
     "申请 POM 牌号评估": "Bewertung eines POM-Werkstofftyps anfragen",
+    供应商准入: "Lieferantenqualifizierung",
+    查看供应商准入依据:
+      "Nachweise zur Lieferantenqualifizierung prüfen",
     "现有牌号符合初筛方向时，结合 TDS、成型条件、样品和代表性零件试模完成验证，再讨论重复供货。若均不符合，仅在技术目标、验证条件和预期生产用量明确时，评估配方调整或定制牌号开发。":
       "Bleibt ein gelisteter Werkstofftyp nach der Vorauswahl ein geeigneter Kandidat, wird er anhand von TDS-Daten, Spritzgießbedingungen, Mustern und Versuchen mit repräsentativen Bauteilen validiert, bevor die wiederholte Belieferung besprochen wird. Andernfalls werden eine Formulierungsanpassung oder ein kundenspezifischer Werkstofftyp nur bei klaren technischen Zielwerten, Validierungsbedingungen und erwartetem Produktionsvolumen geprüft.",
     工程沟通始终与生产保持连接:
@@ -106,6 +109,9 @@ export const expandedLocaleOverrides: Partial<
     从零部件需求到重复供货:
       "Des exigences de la pièce à l’approvisionnement récurrent",
     "申请 POM 牌号评估": "Demander une étude de grade POM",
+    供应商准入: "Qualification fournisseur",
+    查看供应商准入依据:
+      "Consulter les justificatifs de qualification fournisseur",
     "现有牌号符合初筛方向时，结合 TDS、成型条件、样品和代表性零件试模完成验证，再讨论重复供货。若均不符合，仅在技术目标、验证条件和预期生产用量明确时，评估配方调整或定制牌号开发。":
       "Lorsqu’un grade répertorié reste candidat après la présélection, il est validé à partir des données TDS, des conditions de moulage, des échantillons et d’essais sur des pièces représentatives avant d’aborder l’approvisionnement récurrent. Dans le cas contraire, un ajustement de formulation ou un grade sur mesure n’est envisagé qu’avec des objectifs techniques, des conditions de validation et un volume de production prévu clairement définis.",
     工程沟通始终与生产保持连接:
@@ -170,6 +176,9 @@ export const expandedLocaleOverrides: Partial<
       "Capacidade de produção para lotes piloto e pedidos recorrentes",
     从零部件需求到重复供货: "Dos requisitos da peça ao fornecimento recorrente",
     "申请 POM 牌号评估": "Solicitar avaliação de grau POM",
+    供应商准入: "Qualificação de fornecedores",
+    查看供应商准入依据:
+      "Consultar evidências para qualificação de fornecedores",
     "现有牌号符合初筛方向时，结合 TDS、成型条件、样品和代表性零件试模完成验证，再讨论重复供货。若均不符合，仅在技术目标、验证条件和预期生产用量明确时，评估配方调整或定制牌号开发。":
       "Quando um grau listado permanece como candidato após a triagem inicial, ele é validado com dados TDS, condições de moldagem, amostras e ensaios em peças representativas antes da discussão sobre fornecimento recorrente. Caso contrário, o ajuste da formulação ou um grau personalizado só é avaliado com objetivos técnicos, condições de validação e volume de produção previsto claramente definidos.",
     工程沟通始终与生产保持连接:

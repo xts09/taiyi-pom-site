@@ -49,6 +49,11 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
   primaryActionLabel: "按零件要求选择",
   primaryActionHref: "#part-requirement-map",
   finalActionLabel: "申请 POM 牌号评估",
+  supplierEvidence: {
+    target: "about-qualification",
+    label: "供应商准入",
+    actionLabel: "查看供应商准入依据",
+  },
   secondaryActionLabel: "浏览 POM 家族与牌号",
   secondaryActionHref: "/products",
   sections: [

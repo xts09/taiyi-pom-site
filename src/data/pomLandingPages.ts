@@ -48,6 +48,8 @@ export type CrossReferenceRow = {
   taiyiPath: string;
 };
 
+export type PomLandingEvidenceTarget = "about-qualification";
+
 export type PomLandingPageData = {
   slug: string;
   title: string;
@@ -58,6 +60,11 @@ export type PomLandingPageData = {
   primaryActionLabel: string;
   primaryActionHref?: string;
   finalActionLabel?: string;
+  supplierEvidence?: {
+    target: PomLandingEvidenceTarget;
+    label: string;
+    actionLabel: string;
+  };
   secondaryActionLabel?: string;
   secondaryActionHref?: string;
   heroProof?: string;
@@ -181,6 +188,11 @@ export const pomLandingPages = {
     primaryActionLabel: "Choose by Part Requirement",
     primaryActionHref: "#part-requirement-map",
     finalActionLabel: "Request a POM Grade Review",
+    supplierEvidence: {
+      target: "about-qualification",
+      label: "Supplier qualification",
+      actionLabel: "Review Supplier Qualification Evidence",
+    },
     secondaryActionLabel: "Browse POM Families & Grades",
     secondaryActionHref: "/products/categories/pom",
     sections: [

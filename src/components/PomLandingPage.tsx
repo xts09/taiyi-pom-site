@@ -10,7 +10,10 @@ import { ActionPanel } from "@/components/ActionPanel";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { MetricGroup } from "@/components/MetricGroup";
 import { Button } from "@/components/ui/button";
-import type { PomLandingPageData } from "@/data/pomLandingPages";
+import type {
+  PomLandingEvidenceTarget,
+  PomLandingPageData,
+} from "@/data/pomLandingPages";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import {
   getLocalizedHref,
@@ -29,6 +32,13 @@ const landingIntentBySlug: Partial<
 > = {
   "conductive-antistatic-pom": "grade-evaluation",
   "modified-pom-compounds": "grade-evaluation",
+};
+
+const supplierEvidenceHrefByTarget: Record<
+  PomLandingEvidenceTarget,
+  string
+> = {
+  "about-qualification": "/about#overview-credentials-title",
 };
 
 export type PomLandingPageUi = {
@@ -121,6 +131,10 @@ export function PomLandingPage({
     },
     localizedHref("/contact"),
   );
+  const supplierEvidence = page.supplierEvidence;
+  const supplierEvidenceHref = supplierEvidence
+    ? localizedHref(supplierEvidenceHrefByTarget[supplierEvidence.target])
+    : undefined;
   const jsonLd = [
     createBreadcrumbJsonLd([
       { name: ui.homeBreadcrumb, path: localizedHref("/") },
@@ -492,6 +506,22 @@ export function PomLandingPage({
           className="selection-support-band resource-cta pom-landing-cta"
           eyebrow={ui.finalEyebrow}
           eyebrowClassName="section-kicker mb-3"
+          aside={
+            supplierEvidence && supplierEvidenceHref ? (
+              <div className="space-y-2 text-sm leading-6 text-slate-200">
+                <strong className="block text-base text-white">
+                  {supplierEvidence.label}
+                </strong>
+                <Link
+                  className="inline-flex max-w-full font-semibold text-white underline decoration-white/40 underline-offset-4 transition hover:decoration-white"
+                  href={supplierEvidenceHref}
+                >
+                  {supplierEvidence.actionLabel}
+                </Link>
+              </div>
+            ) : undefined
+          }
+          asideClassName={supplierEvidence ? "!flex-none" : undefined}
           action={
             <Button
               asChild
