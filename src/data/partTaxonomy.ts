@@ -423,10 +423,12 @@ const mappedPart = (
   partIdValue: string,
   primaryComponentId: ComponentId,
   entityKind: PartClassificationBase["entityKind"] = "part",
+  systemId?: ApplicationSystemId,
 ): PartClassification => ({
   applicationId: applicationIdValue,
   partId: partId(partIdValue),
   entityKind,
+  ...(systemId ? { systemId } : {}),
   primaryComponentId,
   classificationStatus: "mapped",
 });
@@ -497,12 +499,15 @@ const d1bMappedPartClassifications: readonly PartClassification[] = [
     applicationIds.washingMachineComponents,
     "drum-drive-gear",
     componentIds.precisionPlasticGears,
+    "part",
+    applicationSystemIds.washingMachineDrumDrive,
   ),
   mappedPart(
     applicationIds.washingMachineComponents,
     "reduction-gear-assembly",
     componentIds.precisionPlasticGears,
     "assembly",
+    applicationSystemIds.washingMachineDrumDrive,
   ),
   mappedPart(
     applicationIds.automotive,
@@ -513,6 +518,8 @@ const d1bMappedPartClassifications: readonly PartClassification[] = [
     applicationIds.electronics,
     "copier-drive-gear",
     componentIds.precisionPlasticGears,
+    "part",
+    applicationSystemIds.electronicsImagingDrive,
   ),
   mappedPart(
     applicationIds.outdoorEquipment,
@@ -584,16 +591,21 @@ const d1bMappedPartClassifications: readonly PartClassification[] = [
     "valve-spool-assembly",
     componentIds.valveSpoolsAndCartridges,
     "assembly",
+    applicationSystemIds.waterControlValveFlowControl,
   ),
   mappedPart(
     applicationIds.waterControl,
     "valve-cartridge",
     componentIds.valveSpoolsAndCartridges,
+    "part",
+    applicationSystemIds.waterControlValveFlowControl,
   ),
   mappedPart(
     applicationIds.waterControl,
     "valve-internal-parts",
     componentIds.valveSpoolsAndCartridges,
+    "part",
+    applicationSystemIds.waterControlValveFlowControl,
   ),
   mappedPart(
     applicationIds.waterControl,

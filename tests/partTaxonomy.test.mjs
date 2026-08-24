@@ -206,6 +206,118 @@ test("keeps approved D1c systems and candidates canonical but non-publishing", (
   assert.deepEqual(validation.unreferencedComponentCandidateIds, []);
 });
 
+test("applies only the reviewer-approved D2b System memberships", () => {
+  const classificationByKey = new Map(
+    partClassifications.map((classification) => [
+      `${classification.applicationId}::${classification.partId}`,
+      classification,
+    ]),
+  );
+  const approvedMemberships = [
+    [
+      "electronics::copier-drive-gear",
+      applicationSystemIds.electronicsImagingDrive,
+    ],
+    [
+      "water-control::valve-spool-assembly",
+      applicationSystemIds.waterControlValveFlowControl,
+    ],
+    [
+      "water-control::valve-cartridge",
+      applicationSystemIds.waterControlValveFlowControl,
+    ],
+    [
+      "water-control::valve-internal-parts",
+      applicationSystemIds.waterControlValveFlowControl,
+    ],
+    [
+      "washing-machine-components::drum-drive-gear",
+      applicationSystemIds.washingMachineDrumDrive,
+    ],
+    [
+      "washing-machine-components::reduction-gear-assembly",
+      applicationSystemIds.washingMachineDrumDrive,
+    ],
+  ];
+
+  for (const [key, expectedSystemId] of approvedMemberships) {
+    assert.equal(classificationByKey.get(key)?.systemId, expectedSystemId);
+  }
+
+  const heldMemberships = [
+    "water-control::guide-wheel",
+    "automotive::wiper-motor-gear",
+    "conveyor-automation::mini-conveyor-chain-plate",
+    "conveyor-automation::high-load-conveyor-chain",
+    "conveyor-automation::conveyor-segment",
+    "conveyor-automation::antistatic-anti-slip-conveyor-chain-plate",
+    "conveyor-automation::conveyor-chain-plate-bracket",
+    "conveyor-automation::conductive-conveyor-chain-plate",
+  ];
+
+  for (const key of heldMemberships) {
+    assert.equal(classificationByKey.get(key)?.systemId, undefined);
+  }
+
+  assert.equal(
+    partClassifications.filter(
+      (classification) => classification.systemId !== undefined,
+    ).length,
+    36,
+  );
+  assert.equal(applicationSystems.length, 17);
+  assert.equal(
+    applicationSystems.every(
+      (system) => system.publicationStatus === "taxonomy-only",
+    ),
+    true,
+  );
+
+  const washingMachineParts = partClassifications.filter(
+    (classification) =>
+      classification.applicationId === applicationIds.washingMachineComponents,
+  );
+  const washingMachineSystemCounts = Object.fromEntries(
+    Object.values(applicationSystemIds)
+      .map((systemId) => [
+        systemId,
+        washingMachineParts.filter(
+          (classification) => classification.systemId === systemId,
+        ).length,
+      ])
+      .filter(([, count]) => count > 0),
+  );
+
+  assert.equal(washingMachineParts.length, 8);
+  assert.equal(
+    washingMachineParts.every(
+      (classification) => classification.systemId !== undefined,
+    ),
+    true,
+  );
+  assert.deepEqual(washingMachineSystemCounts, {
+    [applicationSystemIds.washingMachineFillAndDistribution]: 2,
+    [applicationSystemIds.washingMachineDrumDrive]: 3,
+    [applicationSystemIds.washingMachineDrainage]: 3,
+  });
+
+  assert.equal(
+    partClassifications.filter(
+      (classification) =>
+        classification.applicationId === applicationIds.waterControl &&
+        classification.systemId !== undefined,
+    ).length,
+    7,
+  );
+  assert.equal(
+    partClassifications.filter(
+      (classification) =>
+        classification.systemId === applicationSystemIds.electronicsImagingDrive,
+    ).length,
+    2,
+  );
+});
+
 test("migrates entity kinds without introducing child relationships", () => {
   const assemblies = partClassifications
     .filter((classification) => classification.entityKind === "assembly")
