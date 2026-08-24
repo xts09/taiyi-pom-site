@@ -60,6 +60,7 @@ export type PomLandingPageData = {
   primaryActionLabel: string;
   primaryActionHref?: string;
   finalActionLabel?: string;
+  finalDescription?: string;
   supplierEvidence?: {
     target: PomLandingEvidenceTarget;
     label: string;
@@ -75,6 +76,7 @@ export type PomLandingPageData = {
   metrics?: LandingMetric[];
   sections: LandingSection[];
   sectionsVariant?: "steps";
+  sectionsNote?: string;
   catalogEvidence?: {
     kicker?: string;
     variant?: "directory";
@@ -188,6 +190,8 @@ export const pomLandingPages = {
     primaryActionLabel: "Choose by Part Requirement",
     primaryActionHref: "#part-requirement-map",
     finalActionLabel: "Request a POM Grade Review",
+    finalDescription:
+      "Once a candidate grade is identified, confirm available TDS, molding conditions and representative-part trials before repeat supply. Custom formulation review requires clear technical targets, validation conditions and expected volume.",
     supplierEvidence: {
       target: "about-qualification",
       label: "Supplier qualification",
@@ -195,23 +199,7 @@ export const pomLandingPages = {
     },
     secondaryActionLabel: "Browse POM Families & Grades",
     secondaryActionHref: "/products/categories/pom",
-    sections: [
-      {
-        title: "Define the governing gap",
-        body: "Start with the part function, failure mode, geometry, environment, and processing constraint that matters most.",
-        points: [],
-      },
-      {
-        title: "Open the relevant family",
-        body: "Use the map above to narrow the catalogue to the modification direction that matches that governing gap.",
-        points: [],
-      },
-      {
-        title: "Validate the exact grade",
-        body: "When a listed grade remains viable after the initial screen, confirm TDS, molding conditions, samples, and representative-part trials before discussing repeat supply. If none remains viable, formulation adjustment or custom-grade development is considered only with clear technical targets, validation conditions, and expected production volume.",
-        points: [],
-      },
-    ],
+    sections: [],
     sectionsVariant: "steps",
     catalogEvidence: {
       variant: "directory",
@@ -273,14 +261,14 @@ export const pomLandingPages = {
           label: "Carbon Fiber Reinforced POM",
           mobileLabel: "Carbon fiber",
           detail:
-            "For high-stiffness or electrically functional parts requiring a carbon-fiber POM direction.",
+            "For parts requiring higher stiffness or electrical functionality from carbon-fiber-reinforced POM.",
           href: "/products/categories/carbon-fiber-reinforced-pom-compound",
         },
         {
           label: "Conductive / Antistatic POM",
           mobileLabel: "Conductive / antistatic",
           detail:
-            "For charge-control parts where the target resistance range, test method, and operating environment must be defined before grade selection.",
+            "For charge-control parts where resistance range, test method and operating environment govern grade selection.",
           href: "/products/categories/conductive-antistatic-pom-compound",
         },
       ],
@@ -496,33 +484,29 @@ export const pomLandingPages = {
     },
     sections: [
       {
-        title: "Electrical Target First",
-        body: "Antistatic, static-dissipative, and conductive requirements are different. The target range and test method should be confirmed before a grade is recommended.",
+        title: "Define the electrical target",
+        body: "Start with the required electrical behavior and how it will be measured. Antistatic, static-dissipative and conductive targets should be defined by range and test method rather than by label alone.",
         points: [
-          "Define surface or volume resistivity target and test method",
-          "Confirm whether antistatic, dissipative, or conductive behavior is required",
-          "Check color, filler influence, mechanical properties, and molding risk",
-          "Validate the molded part under the customer's real environment",
+          "Required resistivity range",
+          "Surface or volume resistivity",
+          "Test method",
+          "Required antistatic, static-dissipative or conductive behavior",
         ],
       },
       {
-        title: "Useful Application Inputs",
-        body: "Electrical requirements can change with humidity, surface condition, geometry, and testing setup. A practical inquiry should include the part function and required measurement basis.",
+        title: "Define the part conditions",
+        body: "Add the part and project conditions that can affect grade suitability and retained mechanical performance.",
         points: [
-          "Electrical or ESD-sensitive molded components",
-          "Precision mechanical parts requiring charge-control behavior",
-          "Assemblies where static buildup, dust attraction, or discharge risk matters",
-          "Projects needing TDS, samples, and finished-part electrical testing",
+          "Component function and operating environment",
+          "Mechanical and dimensional requirements",
+          "Color requirements",
+          "TDS, document and sample needs",
         ],
       },
     ],
-    reviewInputs: [
-      "Required resistivity range",
-      "Surface or volume measurement method",
-      "Part function and operating environment",
-      "Mechanical and dimensional requirements",
-      "Color and document needs",
-    ],
+    sectionsNote:
+      "Final electrical performance should be confirmed on the molded part under the agreed test method and operating environment.",
+    reviewInputs: [],
     relatedLinks: [
       technicalLandingLinks[3],
       { href: "/products/categories/conductive-antistatic-pom-compound", label: "Conductive / Antistatic POM Grades", description: "Browse listed charge-control POM grades." },

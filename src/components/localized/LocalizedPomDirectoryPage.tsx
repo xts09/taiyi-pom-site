@@ -10,6 +10,7 @@ import { ValueText, ValueWithUnit } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { availableDocuments } from "@/data/company";
 import { products, type Product } from "@/data/products";
+import { pomFamilyMasterVisuals } from "@/data/pomFamilyVisuals";
 import { loadApplicationProfiles } from "@/i18n/applicationMessages";
 import type { LocalizedApplicationSlug } from "@/i18n/applicationTypes";
 import type { LocalizedUrlSegment } from "@/i18n/config";
@@ -33,10 +34,7 @@ import {
   pomProductCategoryData,
   productCategoryOrder,
 } from "@/lib/productCategories";
-import {
-  createBreadcrumbJsonLd,
-  createCollectionPageJsonLd,
-} from "@/lib/seo";
+import { createBreadcrumbJsonLd, createCollectionPageJsonLd } from "@/lib/seo";
 
 const sourcePath = "/products/categories/pom" as const;
 
@@ -79,8 +77,7 @@ export async function LocalizedPomDirectoryPage({
     chinesePomDirectoryMessages,
     localeSegment,
   );
-  const localizedPath = (path: string) =>
-    getLocalizedHref(path, localeSegment);
+  const localizedPath = (path: string) => getLocalizedHref(path, localeSegment);
   const pagePath = localizedPath(sourcePath);
   const contactHref = localizedPath(
     createContactHref({
@@ -132,6 +129,8 @@ export async function LocalizedPomDirectoryPage({
         ),
         description: item.copy.use,
         countLabel: `${item.count} ${messages.families.countSuffix}`,
+        image: pomFamilyMasterVisuals[item.category],
+        imageAlt: item.copy.label,
       };
     }),
   }));
@@ -147,9 +146,18 @@ export async function LocalizedPomDirectoryPage({
   }));
   const jsonLd = [
     createBreadcrumbJsonLd([
-      { name: translateExpandedText("首页", localeSegment), path: localizedPath("/") },
-      { name: translateExpandedText("产品", localeSegment), path: localizedPath("/products") },
-      { name: translateExpandedText("POM 材料家族", localeSegment), path: pagePath },
+      {
+        name: translateExpandedText("首页", localeSegment),
+        path: localizedPath("/"),
+      },
+      {
+        name: translateExpandedText("产品", localeSegment),
+        path: localizedPath("/products"),
+      },
+      {
+        name: translateExpandedText("POM 材料家族", localeSegment),
+        path: pagePath,
+      },
     ]),
     createCollectionPageJsonLd({
       title: messages.metadata.title,
@@ -188,7 +196,10 @@ export async function LocalizedPomDirectoryPage({
           <div className="product-index-hero product-category-hero products-motion-hero product-category-hero-pom">
             <Breadcrumbs
               items={[
-                { href: localizedPath("/products"), label: translateExpandedText("产品", localeSegment) },
+                {
+                  href: localizedPath("/products"),
+                  label: translateExpandedText("产品", localeSegment),
+                },
                 { label: translateExpandedText("POM 材料家族", localeSegment) },
               ]}
               variant="hero"
@@ -248,7 +259,10 @@ export async function LocalizedPomDirectoryPage({
             ariaLabel={messages.navigation.aria}
             subtitle={messages.navigation.subtitle}
             tabs={[
-              { href: "#material-families", label: messages.navigation.families },
+              {
+                href: "#material-families",
+                label: messages.navigation.families,
+              },
               { href: "#pom-grades", label: messages.navigation.grades },
               {
                 href: "#category-applications",
@@ -421,7 +435,10 @@ export async function LocalizedPomDirectoryPage({
                     <strong>{item.title}</strong>
                     <span>{item.description}</span>
                   </span>
-                  <span className="product-application-entry-arrow" aria-hidden="true">
+                  <span
+                    className="product-application-entry-arrow"
+                    aria-hidden="true"
+                  >
                     &rarr;
                   </span>
                 </Link>
@@ -504,7 +521,11 @@ export async function LocalizedPomDirectoryPage({
               </div>
             }
             action={
-              <Button asChild variant="inverse" className="h-auto px-7 py-3 text-sm">
+              <Button
+                asChild
+                variant="inverse"
+                className="h-auto px-7 py-3 text-sm"
+              >
                 <Link href={contactHref}>{messages.inquiry.action}</Link>
               </Button>
             }

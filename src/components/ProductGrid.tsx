@@ -1,11 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  useEffect,
-  type CSSProperties,
-  type ReactNode,
-} from "react";
+import { useEffect, type CSSProperties, type ReactNode } from "react";
 import {
   createEngineeringTdsSlug,
   getEngineeringTdsByProductCategory,
@@ -27,6 +23,7 @@ import {
   productCategoryGroups,
   productCategoryOrder,
 } from "@/lib/productCategories";
+import { pomFamilyMasterVisuals } from "@/data/pomFamilyVisuals";
 
 type ProductGridProps = {
   products: Product[];
@@ -111,7 +108,8 @@ export function ProductGrid({
     return firstRank - secondRank;
   });
   const filteredProducts = sortedProducts;
-  const engineeringGrades = getEngineeringTdsByProductCategory(effectiveCategory);
+  const engineeringGrades =
+    getEngineeringTdsByProductCategory(effectiveCategory);
   const isCategoryFiltered = effectiveCategory !== "POM";
   const isGroupedCategory = Boolean(selectedCategoryGroup);
   const isEngineeringCategory = engineeringGrades.length > 0;
@@ -119,7 +117,9 @@ export function ProductGrid({
     ? engineeringGrades.length
     : filteredProducts.length;
   const isProjectBasedCategory =
-    isCategoryFiltered && filteredProducts.length === 0 && !isEngineeringCategory;
+    isCategoryFiltered &&
+    filteredProducts.length === 0 &&
+    !isEngineeringCategory;
   const gradeCountLabel = `${visibleGradeCount} Grade${
     visibleGradeCount === 1 ? "" : "s"
   }`;
@@ -142,10 +142,13 @@ export function ProductGrid({
       title: item.label,
       description: item.applications[0],
       countLabel: `${item.count} Grade${item.count === 1 ? "" : "s"}`,
+      image: pomFamilyMasterVisuals[item.category],
+      imageAlt: `${item.label} material family visual`,
       active: selectedCategory === item.category,
     })),
   }));
-  const engineeringDirectionItems = engineeringGrades.map((document) => document.category)
+  const engineeringDirectionItems = engineeringGrades
+    .map((document) => document.category)
     .filter((category, index, list) => list.indexOf(category) === index)
     .map((category, index) => {
       const matchingGrades = engineeringGrades.filter(
@@ -182,7 +185,10 @@ export function ProductGrid({
       ) : null}
 
       {!showPomSubcategories && engineeringDirectionItems.length > 0 ? (
-        <div id="material-families" className="product-filter-bar products-motion-filter">
+        <div
+          id="material-families"
+          className="product-filter-bar products-motion-filter"
+        >
           <div className="product-filter-intro">
             <span className="product-filter-label">
               {engineeringDirectionItems[0]?.family} Options
@@ -214,165 +220,178 @@ export function ProductGrid({
 
       {hideGrades ? null : (
         <>
-      <div id="pom-grades" className="product-directory-head products-motion-head">
-        <div>
-          <h2>
-            {isProjectBasedCategory
-              ? "Project-Based Material Review"
-              : isEngineeringCategory
-              ? `${engineeringGrades[0]?.family} Grades`
-              : selectedCategory === "POM"
-              ? "All POM Grade Data"
-              : `${filteredProducts.length} Available Grade${
-                  filteredProducts.length === 1 ? "" : "s"
-                }`}
-          </h2>
-          <p>
-            {isProjectBasedCategory
-              ? "Share the part requirement, working condition, target property, and document needs so relevant material families can be shortlisted."
-              : isEngineeringCategory
-              ? "Compare listed grade data from selected engineering plastic compound families before discussing the application."
-              : selectedCategory === "POM"
-              ? "Compare all listed POM grades here, or open a material family above for a focused category view."
-              : "Shortlist by properties, tooling fit, shrinkage behavior, then open the grade detail page."}
-          </p>
-          {selectedCategory === "POM" ? (
-            <p className="product-directory-guidance">
-              Not sure which material family fits?{" "}
-              <Link href="/contact">Send project inputs.</Link>
-            </p>
-          ) : null}
-        </div>
+          <div
+            id="pom-grades"
+            className="product-directory-head products-motion-head"
+          >
+            <div>
+              <h2>
+                {isProjectBasedCategory
+                  ? "Project-Based Material Review"
+                  : isEngineeringCategory
+                    ? `${engineeringGrades[0]?.family} Grades`
+                    : selectedCategory === "POM"
+                      ? "All POM Grade Data"
+                      : `${filteredProducts.length} Available Grade${
+                          filteredProducts.length === 1 ? "" : "s"
+                        }`}
+              </h2>
+              <p>
+                {isProjectBasedCategory
+                  ? "Share the part requirement, working condition, target property, and document needs so relevant material families can be shortlisted."
+                  : isEngineeringCategory
+                    ? "Compare listed grade data from selected engineering plastic compound families before discussing the application."
+                    : selectedCategory === "POM"
+                      ? "Compare all listed POM grades here, or open a material family above for a focused category view."
+                      : "Shortlist by properties, tooling fit, shrinkage behavior, then open the grade detail page."}
+              </p>
+              {selectedCategory === "POM" ? (
+                <p className="product-directory-guidance">
+                  Not sure which material family fits?{" "}
+                  <Link href="/contact">Send project inputs.</Link>
+                </p>
+              ) : null}
+            </div>
 
-        <span className="product-directory-count">{directoryCountLabel}</span>
-      </div>
-
-      {isEngineeringCategory ? (
-        <div className="product-directory">
-          <div className="product-directory-labels" aria-hidden="true">
-            <span>Grade</span>
-            <span>Key Data</span>
-              <span>Details</span>
+            <span className="product-directory-count">
+              {directoryCountLabel}
+            </span>
           </div>
 
-          {engineeringGrades.map((document, index) => (
-            <Link
-              key={`${document.family}-${document.grade}`}
-              href={`/products/${createEngineeringTdsSlug(document)}`}
-              className="product-directory-row products-motion-row"
-              style={{ "--item-index": index } as CSSProperties}
-            >
-              <div className="product-directory-main">
-                <span className="product-directory-index">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-
-                <div>
-                  <p className="section-kicker">
-                    {document.family} {document.category}
-                  </p>
-                  <h3>{document.grade}</h3>
-                  <p>{document.description}</p>
-                </div>
+          {isEngineeringCategory ? (
+            <div className="product-directory">
+              <div className="product-directory-labels" aria-hidden="true">
+                <span>Grade</span>
+                <span>Key Data</span>
+                <span>Details</span>
               </div>
 
-              <dl className="product-directory-specs">
-                {getEngineeringSpecs(document).map(([label, value]) => (
-                  <div key={label}>
-                    <dt>{label}</dt>
-                    <dd>
-                      <ValueText value={value} />
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+              {engineeringGrades.map((document, index) => (
+                <Link
+                  key={`${document.family}-${document.grade}`}
+                  href={`/products/${createEngineeringTdsSlug(document)}`}
+                  className="product-directory-row products-motion-row"
+                  style={{ "--item-index": index } as CSSProperties}
+                >
+                  <div className="product-directory-main">
+                    <span className="product-directory-index">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
 
-              <span className="product-directory-action">Grade Details</span>
-            </Link>
-          ))}
-        </div>
-      ) : filteredProducts.length === 0 ? (
-        <div className="product-empty products-motion-row">
-          This material family is reviewed by project rather than displayed as
-          a fixed grade list. Share the application, mold stage, cavity count,
-          shrinkage target, and performance requirements so we can shortlist
-          relevant options.
-        </div>
-      ) : (
-        <div className="product-directory">
-          <div className="product-directory-labels" aria-hidden="true">
-            <span>Grade</span>
-            <span>Key Data</span>
-            <span>Details</span>
-          </div>
-
-          {filteredProducts.map((product, index) => {
-            const tensile = readProperty(product, "Tensile Strength");
-            const hdt = readProperty(product, "Heat Deflection Temperature");
-            const specs: Array<[string, ReactNode]> = [
-              ["MFI", product.mfi],
-              [
-                "Tensile",
-                tensile ? (
-                  <ValueWithUnit value={tensile.value} unit="MPa" />
-                ) : (
-                  product.color
-                ),
-              ],
-              [
-                "HDT",
-                hdt ? (
-                  <ValueWithUnit value={hdt.value} unit="degC" />
-                ) : (
-                  "Project-Based"
-                ),
-              ],
-              ["Color", product.color],
-            ];
-            const eyebrow = isCategoryFiltered && !isGroupedCategory
-              ? getProductListDescriptor(product)
-              : product.category;
-
-            return (
-              <Link
-                key={product.slug}
-                href={`/products/${product.slug}`}
-                className="product-directory-row products-motion-row"
-                style={{ "--item-index": index } as CSSProperties}
-              >
-                <div className="product-directory-main">
-                  <span className="product-directory-index">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-
-                  <div>
-                    <p className="section-kicker">{eyebrow}</p>
-                    <h3>{getProductListTitle(product)}</h3>
-                    <p>{product.description}</p>
-                  </div>
-                </div>
-
-                <dl className="product-directory-specs">
-                  {specs.map(([label, value]) => (
-                    <div key={label}>
-                      <dt>{label}</dt>
-                      <dd>
-                        {typeof value === "string" ? (
-                          <ValueText value={value} />
-                        ) : (
-                          value
-                        )}
-                      </dd>
+                    <div>
+                      <p className="section-kicker">
+                        {document.family} {document.category}
+                      </p>
+                      <h3>{document.grade}</h3>
+                      <p>{document.description}</p>
                     </div>
-                  ))}
-                </dl>
+                  </div>
 
-                <span className="product-directory-action">Grade Details</span>
-              </Link>
-            );
-          })}
-        </div>
-      )}
+                  <dl className="product-directory-specs">
+                    {getEngineeringSpecs(document).map(([label, value]) => (
+                      <div key={label}>
+                        <dt>{label}</dt>
+                        <dd>
+                          <ValueText value={value} />
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <span className="product-directory-action">
+                    Grade Details
+                  </span>
+                </Link>
+              ))}
+            </div>
+          ) : filteredProducts.length === 0 ? (
+            <div className="product-empty products-motion-row">
+              This material family is reviewed by project rather than displayed
+              as a fixed grade list. Share the application, mold stage, cavity
+              count, shrinkage target, and performance requirements so we can
+              shortlist relevant options.
+            </div>
+          ) : (
+            <div className="product-directory">
+              <div className="product-directory-labels" aria-hidden="true">
+                <span>Grade</span>
+                <span>Key Data</span>
+                <span>Details</span>
+              </div>
+
+              {filteredProducts.map((product, index) => {
+                const tensile = readProperty(product, "Tensile Strength");
+                const hdt = readProperty(
+                  product,
+                  "Heat Deflection Temperature",
+                );
+                const specs: Array<[string, ReactNode]> = [
+                  ["MFI", product.mfi],
+                  [
+                    "Tensile",
+                    tensile ? (
+                      <ValueWithUnit value={tensile.value} unit="MPa" />
+                    ) : (
+                      product.color
+                    ),
+                  ],
+                  [
+                    "HDT",
+                    hdt ? (
+                      <ValueWithUnit value={hdt.value} unit="degC" />
+                    ) : (
+                      "Project-Based"
+                    ),
+                  ],
+                  ["Color", product.color],
+                ];
+                const eyebrow =
+                  isCategoryFiltered && !isGroupedCategory
+                    ? getProductListDescriptor(product)
+                    : product.category;
+
+                return (
+                  <Link
+                    key={product.slug}
+                    href={`/products/${product.slug}`}
+                    className="product-directory-row products-motion-row"
+                    style={{ "--item-index": index } as CSSProperties}
+                  >
+                    <div className="product-directory-main">
+                      <span className="product-directory-index">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+
+                      <div>
+                        <p className="section-kicker">{eyebrow}</p>
+                        <h3>{getProductListTitle(product)}</h3>
+                        <p>{product.description}</p>
+                      </div>
+                    </div>
+
+                    <dl className="product-directory-specs">
+                      {specs.map(([label, value]) => (
+                        <div key={label}>
+                          <dt>{label}</dt>
+                          <dd>
+                            {typeof value === "string" ? (
+                              <ValueText value={value} />
+                            ) : (
+                              value
+                            )}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+
+                    <span className="product-directory-action">
+                      Grade Details
+                    </span>
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </>
       )}
     </div>

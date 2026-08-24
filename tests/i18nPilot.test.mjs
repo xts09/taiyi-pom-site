@@ -282,7 +282,7 @@ test("all localized dictionaries match the complete shared English message shape
 });
 
 test("uses the approved Simplified Chinese public and legal company names", () => {
-  assert.match(zhCN.Home.hero.body, /^台益是一家/);
+  assert.match(zhCN.Home.hero.body, /^台益位于江苏盐城/);
   assert.equal(zhCN.Header.brandHomeLabel, "台益首页");
   assert.equal(zhCN.Footer.brandRelation, "台益 · PLATFORM® 工程材料");
   assert.match(

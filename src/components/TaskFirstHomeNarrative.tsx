@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { DocumentCard } from "@/components/DocumentCard";
-import { Button } from "@/components/ui/button";
+import { HomeCoreProductExplorer } from "@/components/HomeCoreProductExplorer";
 import {
   availableDocuments,
   companyFigures,
@@ -126,97 +126,18 @@ export function TaskFirstHomeNarrative({
         </div>
       </section>
 
-      <section className="home-core-line home-task-section">
-        <div className="site-container">
-          <div className="home-core-layout">
-            <header className="home-core-intro">
-              <p className="home-task-eyebrow">{messages.core.eyebrow}</p>
-              <h2>{messages.core.title}</h2>
-              <p>{messages.core.body}</p>
-              <Button asChild className="home-core-action h-auto">
-                <Link href={localizedHref("/products/categories/pom")}>
-                  {messages.core.action}
-                  <ArrowRight aria-hidden="true" size={16} />
-                </Link>
-              </Button>
-              <figure className="home-core-material-figure">
-                <Image
-                  fill
-                  src={publicPath(
-                    "/generated/pom-natural-pellets-hero-wide.webp",
-                  )}
-                  alt={messages.core.materialImageAlt}
-                  sizes="(min-width: 70rem) 34vw, (min-width: 48rem) 52rem, 100vw"
-                />
-                <figcaption>{messages.core.materialImageCaption}</figcaption>
-              </figure>
-            </header>
-
-            <div
-              className="home-core-directions"
-              aria-label={messages.core.directionsAria}
-            >
-              {messages.core.groups.map((group, index) => {
-                const routes = coreGroupRoutes[index];
-
-                return (
-                  <article key={group.title} className="home-core-direction">
-                    <h3>{group.title}</h3>
-                    <p>{group.description}</p>
-                    <div className="home-core-category-actions">
-                      <Button asChild size="sm" variant="secondary">
-                        <Link href={localizedHref(routes.href)}>
-                          {group.action}
-                        </Link>
-                      </Button>
-                      {routes.related.length > 0
-                        ? group.relatedLinks.map((label, linkIndex) => (
-                            <Button
-                              key={label}
-                              asChild
-                              size="sm"
-                              variant="secondary"
-                            >
-                              <Link
-                                href={localizedHref(routes.related[linkIndex])}
-                              >
-                                {label}
-                              </Link>
-                            </Button>
-                          ))
-                        : null}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="home-supporting-materials">
-            <div>
-              <h3>{messages.core.supportingTitle}</h3>
-              <p>{messages.core.supportingBody}</p>
-            </div>
-            <div className="home-supporting-links">
-              {messages.core.supportingLinks.map((label, index) => (
-                <Link
-                  key={label}
-                  href={localizedHref(supportingMaterialRoutes[index])}
-                >
-                  {label}
-                </Link>
-              ))}
-              <Link
-                className="home-supporting-all"
-                href={localizedHref("/products")}
-              >
-                {messages.core.allFamiliesAction}
-                <ArrowRight aria-hidden="true" size={15} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeCoreProductExplorer
+        messages={messages.core}
+        pomHref={localizedHref("/products/categories/pom")}
+        productsHref={localizedHref("/products")}
+        groupHrefs={coreGroupRoutes.map((group) => ({
+          href: localizedHref(group.href),
+          related: group.related.map((href) => localizedHref(href)),
+        }))}
+        supportingHrefs={supportingMaterialRoutes.map((href) =>
+          localizedHref(href),
+        )}
+      />
 
       <section className="home-application-paths home-task-section">
         <div className="site-container">
@@ -269,7 +190,7 @@ export function TaskFirstHomeNarrative({
           <header>
             <p className="home-task-eyebrow">{messages.process.eyebrow}</p>
             <h2>{messages.process.title}</h2>
-            <p>{messages.process.body}</p>
+            {messages.process.body ? <p>{messages.process.body}</p> : null}
           </header>
           <ol
             className="home-process-steps"
@@ -302,7 +223,9 @@ export function TaskFirstHomeNarrative({
                 {messages.collaboration.title}
               </h2>
             </div>
-            <p>{messages.collaboration.body}</p>
+            {messages.collaboration.body ? (
+              <p>{messages.collaboration.body}</p>
+            ) : null}
           </header>
 
           <ul

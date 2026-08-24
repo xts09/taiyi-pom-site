@@ -195,9 +195,16 @@ export type HomeTaskFirstMessages = {
     materialImageAlt: string;
     materialImageCaption: string;
     directionsAria: string;
+    panelLabel: string;
+    reviewLabel: string;
+    materialsLabel: string;
     groups: ReadonlyArray<{
       title: string;
+      summary: string;
+      panelTitle: string;
       description: string;
+      reviewInputs: readonly string[];
+      componentsNote: string;
       action: string;
       relatedLinks: readonly string[];
     }>;

@@ -135,7 +135,7 @@ const messages = {
       eyebrowMobile: "POM COMPOUNDING",
       title: "Modified POM Manufacturer for Precision Molded Parts",
       body:
-        "Taiyi Polymer is an engineering-plastics compounder based in Yancheng, China, with modified POM as its core material line. We help teams narrow material directions around part conditions, then review grade data, samples and molding-trial requirements.",
+        "Taiyi Polymer is based in Yancheng, Jiangsu, with modified POM at its core, supporting part-specific material screening, grade data, samples and molding trials.",
       exploreAction: "Find Material by Part",
       contactAction: "Find Grades & TDS",
     },
@@ -349,10 +349,10 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "Start with what you know",
-      title: "Start with known part requirements and narrow the material range step by step",
+      eyebrow: "Application review",
+      title: "Share your part requirements and find the right material direction",
       body:
-        "A complete specification is not required. Share the known part function, operating conditions, current material or failure mode; uncertain items can remain open.",
+        "Share the details below; we will shortlist material directions and clarify available grade data, documents and samples.",
       checklistLabel: "Useful starting points",
       checklist: [
         "Part function and movement mode",

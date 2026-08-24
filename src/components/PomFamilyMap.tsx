@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import type { PomFamilyMasterVisual } from "@/data/pomFamilyVisuals";
 
 export type PomFamilyMapItem = {
   id: string;
@@ -7,6 +9,8 @@ export type PomFamilyMapItem = {
   title: ReactNode;
   description: string;
   countLabel: string;
+  image: PomFamilyMasterVisual;
+  imageAlt: string;
   active?: boolean;
 };
 
@@ -64,19 +68,30 @@ export function PomFamilyMap({
                     }`}
                     aria-current={item.active ? "page" : undefined}
                   >
-                    <strong className="product-family-direction-title">
-                      {item.title}
-                    </strong>
-                    <span className="product-family-direction-description">
-                      {item.description}
+                    <span className="product-family-direction-media">
+                      <Image
+                        fill
+                        src={item.image.src}
+                        alt={item.imageAlt}
+                        sizes="(min-width: 80rem) 8rem, (min-width: 48rem) 18vw, 7rem"
+                        style={{ objectPosition: item.image.objectPosition }}
+                      />
                     </span>
-                    <span className="product-family-direction-meta">
-                      <span>{item.countLabel}</span>
-                      <span
-                        className="product-family-direction-arrow"
-                        aria-hidden="true"
-                      >
-                        &rarr;
+                    <span className="product-family-direction-copy">
+                      <strong className="product-family-direction-title">
+                        {item.title}
+                      </strong>
+                      <span className="product-family-direction-description">
+                        {item.description}
+                      </span>
+                      <span className="product-family-direction-meta">
+                        <span>{item.countLabel}</span>
+                        <span
+                          className="product-family-direction-arrow"
+                          aria-hidden="true"
+                        >
+                          &rarr;
+                        </span>
                       </span>
                     </span>
                   </Link>

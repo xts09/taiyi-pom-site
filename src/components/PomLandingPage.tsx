@@ -1,15 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import {
-  createContactHref,
-  type ContactIntent,
-} from "@/lib/contactContext";
+import { createContactHref, type ContactIntent } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { ActionPanel } from "@/components/ActionPanel";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { MetricGroup } from "@/components/MetricGroup";
 import { Button } from "@/components/ui/button";
+import { getPomFamilyMasterVisualByHref } from "@/data/pomFamilyVisuals";
 import type {
   PomLandingEvidenceTarget,
   PomLandingPageData,
@@ -21,7 +19,9 @@ import {
 } from "@/i18n/releaseManifest";
 import { createBreadcrumbJsonLd, siteUrl } from "@/lib/seo";
 
-const landingMaterialBySlug: Partial<Record<PomLandingPageData["slug"], string>> = {
+const landingMaterialBySlug: Partial<
+  Record<PomLandingPageData["slug"], string>
+> = {
   "conductive-antistatic-pom": "Conductive / Antistatic POM",
   "modified-pom-compounds": "Modified POM Compounds",
   "wear-resistant-low-friction-pom": "Wear-Resistant & Low-Friction POM",
@@ -34,10 +34,7 @@ const landingIntentBySlug: Partial<
   "modified-pom-compounds": "grade-evaluation",
 };
 
-const supplierEvidenceHrefByTarget: Record<
-  PomLandingEvidenceTarget,
-  string
-> = {
+const supplierEvidenceHrefByTarget: Record<PomLandingEvidenceTarget, string> = {
   "about-qualification": "/about#overview-credentials-title",
 };
 
@@ -206,32 +203,53 @@ export function PomLandingPage({
                   className="pom-landing-path-links"
                   data-count={groupItems?.length ?? 1}
                 >
-                  {groupItems?.map((item) => (
-                    <Link
-                      key={item.label}
-                      href={localizedHref(item.href ?? "#")}
-                      className="pom-landing-path-link"
-                      aria-label={`${item.label}: ${item.detail}`}
-                    >
-                      <span>
-                        <strong>
-                          <span className="pom-landing-path-label-full">
-                            {item.label}
-                          </span>
-                          {item.mobileLabel ? (
-                            <span className="pom-landing-path-label-mobile">
-                              {item.mobileLabel}
+                  {groupItems?.map((item) =>
+                    (() => {
+                      const visual = getPomFamilyMasterVisualByHref(item.href);
+
+                      return (
+                        <Link
+                          key={item.label}
+                          href={localizedHref(item.href ?? "#")}
+                          className="pom-landing-path-link"
+                          aria-label={`${item.label}: ${item.detail}`}
+                        >
+                          {visual ? (
+                            <span className="pom-landing-path-media">
+                              <Image
+                                fill
+                                src={visual.src}
+                                alt=""
+                                sizes="(min-width: 80rem) 10rem, (min-width: 48rem) 18vw, 7rem"
+                                style={{
+                                  objectPosition: visual.objectPosition,
+                                }}
+                              />
                             </span>
                           ) : null}
-                          {item.href ? englishDestinationBadge(item.href) : null}
-                        </strong>
-                        <span className="pom-landing-path-detail">
-                          {item.detail}
-                        </span>
-                      </span>
-                      <ArrowUpRight aria-hidden="true" size={18} />
-                    </Link>
-                  ))}
+                          <span>
+                            <strong>
+                              <span className="pom-landing-path-label-full">
+                                {item.label}
+                              </span>
+                              {item.mobileLabel ? (
+                                <span className="pom-landing-path-label-mobile">
+                                  {item.mobileLabel}
+                                </span>
+                              ) : null}
+                              {item.href
+                                ? englishDestinationBadge(item.href)
+                                : null}
+                            </strong>
+                            <span className="pom-landing-path-detail">
+                              {item.detail}
+                            </span>
+                          </span>
+                          <ArrowUpRight aria-hidden="true" size={18} />
+                        </Link>
+                      );
+                    })(),
+                  )}
                 </div>
               </section>
             );
@@ -271,9 +289,7 @@ export function PomLandingPage({
   ) : null;
 
   return (
-    <main
-      className={`pom-landing-page pom-landing-page-${page.slug}`}
-    >
+    <main className={`pom-landing-page pom-landing-page-${page.slug}`}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -373,7 +389,33 @@ export function PomLandingPage({
           </section>
         ) : null}
 
-        {page.metrics ? (
+        {page.slug === "conductive-antistatic-pom" ? (
+          <figure className="pom-landing-material-figure">
+            <span className="pom-landing-material-media">
+              <Image
+                fill
+                src="/materials/real/pom-black-modified-pellets-real-master.webp"
+                alt="Black modified POM pellets"
+                sizes="(min-width: 80rem) 44rem, (min-width: 48rem) 62vw, calc(100vw - 2rem)"
+              />
+            </span>
+            <figcaption>
+              <strong>{page.eyebrow}</strong>
+              {page.metrics ? (
+                <dl>
+                  {page.metrics.slice(0, 3).map((item) => (
+                    <div key={item.label}>
+                      <dt>{item.label}</dt>
+                      <dd>{item.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              ) : null}
+            </figcaption>
+          </figure>
+        ) : null}
+
+        {page.metrics && page.slug !== "conductive-antistatic-pom" ? (
           <MetricGroup
             className="pom-landing-metrics"
             aria-label={ui.materialSelectionSummaryAria}
@@ -407,6 +449,12 @@ export function PomLandingPage({
               </article>
             ))}
           </section>
+        ) : null}
+
+        {page.sectionsNote ? (
+          <p className="pom-landing-note pom-landing-sections-note">
+            {page.sectionsNote}
+          </p>
         ) : null}
 
         {page.catalogEvidence?.position !== "afterHero"
@@ -446,46 +494,58 @@ export function PomLandingPage({
                 </tbody>
               </table>
             </div>
-            <p className="pom-landing-note">
-              {ui.comparisonNote}
-            </p>
+            <p className="pom-landing-note">{ui.comparisonNote}</p>
           </section>
         ) : null}
 
-        {page.showReviewSection !== false ? (
-          <section className="pom-landing-review-grid">
-          <div className="pom-landing-panel">
-            <p className="section-kicker">{ui.inquiryKicker}</p>
-            <h2>{ui.inquiryTitle}</h2>
-            <ul>
-              {page.reviewInputs.map((input) => (
-                <li key={input}>{input}</li>
-              ))}
-            </ul>
-          </div>
+        {page.showReviewSection !== false &&
+        (page.reviewInputs.length > 0 || page.relatedLinks.length > 0) ? (
+          <section
+            className={[
+              "pom-landing-review-grid",
+              page.reviewInputs.length === 0 || page.relatedLinks.length === 0
+                ? "pom-landing-review-grid-single"
+                : "",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+          >
+            {page.reviewInputs.length > 0 ? (
+              <div className="pom-landing-panel">
+                <p className="section-kicker">{ui.inquiryKicker}</p>
+                <h2>{ui.inquiryTitle}</h2>
+                <ul>
+                  {page.reviewInputs.map((input) => (
+                    <li key={input}>{input}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
-          <div className="pom-landing-panel">
-            <p className="section-kicker">{ui.relatedKicker}</p>
-            <h2>{ui.relatedTitle}</h2>
-            <div className="pom-landing-related-list">
-              {page.relatedLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={localizedHref(link.href)}
-                >
-                  <strong>
-                    {link.label}
-                    {englishDestinationBadge(link.href)}
-                  </strong>
-                  <span>{link.description}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
+            {page.relatedLinks.length > 0 ? (
+              <div className="pom-landing-panel">
+                <p className="section-kicker">{ui.relatedKicker}</p>
+                <h2>{ui.relatedTitle}</h2>
+                <div className="pom-landing-related-list">
+                  {page.relatedLinks.map((link) => (
+                    <Link key={link.href} href={localizedHref(link.href)}>
+                      <strong>
+                        {link.label}
+                        {englishDestinationBadge(link.href)}
+                      </strong>
+                      <span>{link.description}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ) : null}
           </section>
         ) : null}
 
-        <section className="pom-landing-faq" aria-labelledby="pom-landing-faq-title">
+        <section
+          className="pom-landing-faq"
+          aria-labelledby="pom-landing-faq-title"
+        >
           <div className="pom-landing-section-head">
             <h2 id="pom-landing-faq-title">{ui.faqTitle}</h2>
           </div>
@@ -534,7 +594,7 @@ export function PomLandingPage({
             </Button>
           }
         >
-          <p>{ui.finalDescription}</p>
+          <p>{page.finalDescription ?? ui.finalDescription}</p>
         </ActionPanel>
       </section>
     </main>

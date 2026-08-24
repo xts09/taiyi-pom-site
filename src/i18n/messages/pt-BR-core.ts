@@ -14,7 +14,7 @@ const messages = {
       eyebrowMobile: "COMPOSIÇÃO DE POM",
       title: "Fabricante de POM modificado para peças moldadas de precisão",
       body:
-        "A Taiyi Polymer é uma fabricante de compostos de plásticos de engenharia sediada em Yancheng, China, com o POM modificado como linha principal. Ajudamos a reduzir as direções de material conforme as condições da peça e, depois, avaliamos dados de grades, amostras e requisitos de teste de moldagem.",
+        "A Taiyi Polymer está em Yancheng, Jiangsu, e tem o POM modificado como linha principal, com suporte à seleção por aplicação, dados de grades, amostras e testes de moldagem.",
       exploreAction: "Encontrar material por peça",
       contactAction: "Encontrar grades & TDS",
     },
@@ -217,10 +217,10 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "Comece pelo que você já sabe",
-      title: "Comece pelos requisitos conhecidos da peça e reduza a faixa de materiais passo a passo",
+      eyebrow: "Análise da aplicação",
+      title: "Conte o que a peça precisa para definirmos a direção de material",
       body:
-        "Não é necessário ter uma especificação completa. Informe a função da peça, as condições de uso, o material atual ou o modo de falha; pontos incertos podem ficar para confirmação.",
+        "Com as informações abaixo, reduzimos as direções de material e esclarecemos os dados de grades, documentos e amostras disponíveis.",
       checklistLabel: "Informações úteis para começar",
       checklist: [
         "Função da peça e modo de movimento",

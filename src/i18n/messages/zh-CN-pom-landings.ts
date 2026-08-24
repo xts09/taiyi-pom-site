@@ -49,6 +49,8 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
   primaryActionLabel: "按零件要求选择",
   primaryActionHref: "#part-requirement-map",
   finalActionLabel: "申请 POM 牌号评估",
+  finalDescription:
+    "确定候选牌号后，在重复供货前确认可提供的 TDS、成型条件和代表性零件试模。定制配方评估需具备明确的技术目标、验证条件和预计用量。",
   supplierEvidence: {
     target: "about-qualification",
     label: "供应商准入",
@@ -56,26 +58,7 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
   },
   secondaryActionLabel: "浏览 POM 家族与牌号",
   secondaryActionHref: "/products",
-  sections: [
-    {
-      title: "确定主导性能缺口",
-      body:
-        "从最关键的零件功能、失效模式、几何形状、使用环境和加工限制开始。",
-      points: [],
-    },
-    {
-      title: "进入相关材料家族",
-      body:
-        "利用上方路径图，将材料目录缩小到与主导性能缺口相符的改性方向。",
-      points: [],
-    },
-    {
-      title: "验证具体牌号",
-      body:
-        "现有牌号符合初筛方向时，结合 TDS、成型条件、样品和代表性零件试模完成验证，再讨论重复供货。若均不符合，仅在技术目标、验证条件和预期生产用量明确时，评估配方调整或定制牌号开发。",
-      points: [],
-    },
-  ],
+  sections: [],
   sectionsVariant: "steps",
   catalogEvidence: {
     variant: "directory",
@@ -137,14 +120,14 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
         label: "碳纤维增强 POM",
         mobileLabel: "碳纤维增强",
         detail:
-          "适用于需要碳纤维 POM 方向的高刚性或电功能零件。",
+          "适用于需要通过碳纤维增强 POM 获得更高刚性或电功能的零件。",
         href: "/products/categories/carbon-fiber-reinforced-pom-compound",
       },
       {
         label: "导电 / 抗静电 POM",
         mobileLabel: "导电 / 抗静电",
         detail:
-          "适用于电荷控制零件；选牌号前必须明确目标电阻范围、测试方法和工作环境。",
+          "适用于电荷控制零件，其电阻范围、测试方法和工作环境决定牌号选择。",
         href: "/products/categories/conductive-antistatic-pom-compound",
       },
     ],
@@ -394,35 +377,31 @@ export const chineseConductiveAntistaticPomLanding: PomLandingPageData = {
   },
   sections: [
     {
-      title: "先确定电性能目标",
+      title: "定义电性能目标",
       body:
-        "抗静电、静电耗散和导电要求并不相同。推荐牌号前，应先确认目标范围和测试方法。",
+        "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。",
       points: [
-        "明确表面或体积电阻率目标及测试方法",
-        "确认需要抗静电、静电耗散还是导电性能",
-        "检查颜色、填料影响、机械性能和成型风险",
-        "在客户实际使用环境下验证注塑零件",
+        "所需电阻率范围",
+        "表面或体积电阻率",
+        "测试方法",
+        "所需的抗静电、静电耗散或导电性能",
       ],
     },
     {
-      title: "有用的应用输入",
+      title: "定义零件条件",
       body:
-        "电性能会随湿度、表面状态、几何形状和测试设置而变化。有效询盘应包含零件功能和所需测量依据。",
+        "补充可能影响牌号适用性及机械性能保留的零件与项目条件。",
       points: [
-        "电气或 ESD 敏感注塑部件",
-        "需要电荷控制性能的精密机械零件",
-        "关注静电积聚、吸尘或放电风险的总成",
-        "需要 TDS、样品和成品电性能测试的项目",
+        "零件功能与工作环境",
+        "机械与尺寸要求",
+        "颜色要求",
+        "TDS、文件与样品需求",
       ],
     },
   ],
-  reviewInputs: [
-    "所需电阻率范围",
-    "表面或体积测量方法",
-    "零件功能与工作环境",
-    "机械与尺寸要求",
-    "颜色与文件要求",
-  ],
+  sectionsNote:
+    "最终电性能应在约定测试方法和工作环境下，于注塑成品上确认。",
+  reviewInputs: [],
   relatedLinks: [
     {
       href: "/products/conductive-antistatic-compounds",
