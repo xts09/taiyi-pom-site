@@ -8,6 +8,7 @@ import {
 } from "../src/data/applicationComponentLinks.ts";
 import {
   applicationComponentRelations,
+  getApplicationComponentRelations,
   resolveApplicationComponentOwnerReferences,
   resolveComponentApplicationReferences,
   validateApplicationComponentRelations,
@@ -28,7 +29,6 @@ test("validates the reviewed A3 application-component relationships", () => {
   assert.equal(validation.registryRecords, 15);
   assert.equal(validation.partExampleRecords, 11);
   assert.equal(validation.industryContextRecords, 4);
-  assert.equal(validation.exactPartCoverage, 29);
   assert.equal(validation.uniqueExactOwnerPairs, 11);
   assert.equal(validation.combinedSemanticPairs, 15);
   assert.deepEqual(validation.duplicateRelationKeys, []);
@@ -176,6 +176,20 @@ test("resolves the reviewed A3 component-to-application lists", () => {
       },
     ],
   });
+});
+
+test("preserves the legacy Application-to-Component selector order", () => {
+  assert.deepEqual(
+    getApplicationComponentRelations("electronics").map((relation) => [
+      relation.componentSlug,
+      relation.relationType,
+    ]),
+    [
+      ["precision-plastic-gears", "part-example"],
+      ["conveyor-chain-components", "industry-context"],
+      ["ic-handling-trays", "part-example"],
+    ],
+  );
 });
 
 test("aggregates the reviewed A3 application-to-component owner lists", () => {

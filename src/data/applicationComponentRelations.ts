@@ -1,3 +1,13 @@
+import {
+  applicationComponentContextRelations,
+  componentFamilyIdentityRegistry,
+  getApplicationIdentityById,
+  getComponentIdentityById,
+  partClassifications,
+  type ApplicationComponentContextRelation,
+  type PartClassification,
+} from "./partTaxonomy.ts";
+
 export type PartExampleRelation = {
   applicationSlug: string;
   componentSlug: string;
@@ -15,113 +25,110 @@ export type IndustryContextRelation = {
 export type ApplicationComponentRelation =
   PartExampleRelation | IndustryContextRelation;
 
-export const applicationComponentRelations = [
-  {
-    applicationSlug: "motion-components",
-    componentSlug: "precision-plastic-gears",
-    relationType: "part-example",
-    partIds: ["precision-gear", "worm-gear"],
-  },
-  {
-    applicationSlug: "washing-machine-components",
-    componentSlug: "precision-plastic-gears",
-    relationType: "part-example",
-    partIds: ["drum-drive-gear", "reduction-gear-assembly"],
-  },
-  {
-    applicationSlug: "automotive",
-    componentSlug: "precision-plastic-gears",
-    relationType: "part-example",
-    partIds: ["wiper-motor-gear"],
-  },
-  {
-    applicationSlug: "electronics",
-    componentSlug: "precision-plastic-gears",
-    relationType: "part-example",
-    partIds: ["copier-drive-gear"],
-  },
-  {
-    applicationSlug: "outdoor-equipment",
-    componentSlug: "precision-plastic-gears",
-    relationType: "part-example",
-    partIds: ["lawn-mower-gear"],
-  },
-  {
-    applicationSlug: "motion-components",
-    componentSlug: "bushings-and-sleeves",
-    relationType: "part-example",
-    partIds: ["bushing", "sleeve", "guide-ring", "sliding-block"],
-  },
-  {
-    applicationSlug: "automotive",
-    componentSlug: "bushings-and-sleeves",
-    relationType: "part-example",
-    partIds: ["seat-guide-ring"],
-  },
-  {
-    applicationSlug: "conveyor-automation",
-    componentSlug: "conveyor-chain-components",
-    relationType: "part-example",
-    partIds: [
-      "mini-conveyor-chain-plate",
-      "high-load-conveyor-chain",
-      "conveyor-segment",
-      "antistatic-anti-slip-conveyor-chain-plate",
-      "conveyor-roller",
-      "conveyor-chain-plate-bracket",
-      "conductive-conveyor-chain-plate",
-    ],
-  },
-  {
-    applicationSlug: "electronics",
-    componentSlug: "conveyor-chain-components",
-    relationType: "industry-context",
-  },
-  {
-    applicationSlug: "water-control",
-    componentSlug: "valve-spools-and-cartridges",
-    relationType: "part-example",
-    partIds: [
-      "valve-spool-assembly",
-      "valve-cartridge",
-      "valve-internal-parts",
-      "guide-wheel",
-    ],
-  },
-  {
-    applicationSlug: "washing-machine-components",
-    componentSlug: "valve-spools-and-cartridges",
-    relationType: "industry-context",
-  },
-  {
-    applicationSlug: "textile-machinery",
-    componentSlug: "textile-guide-components",
-    relationType: "part-example",
-    partIds: [
-      "yarn-guide",
-      "heddle-lifter",
-      "air-spinning-guide",
-      "textile-guide-wheel",
-      "textile-spindle-support",
-    ],
-  },
-  {
-    applicationSlug: "motion-components",
-    componentSlug: "textile-guide-components",
-    relationType: "industry-context",
-  },
-  {
-    applicationSlug: "electronics",
-    componentSlug: "ic-handling-trays",
-    relationType: "part-example",
-    partIds: ["ic-handling-tray"],
-  },
-  {
-    applicationSlug: "conveyor-automation",
-    componentSlug: "ic-handling-trays",
-    relationType: "industry-context",
-  },
-] as const satisfies readonly ApplicationComponentRelation[];
+const compatibilityRelationKey = (
+  applicationSlug: string,
+  componentSlug: string,
+) => `${applicationSlug}::${componentSlug}`;
+
+export const deriveApplicationComponentRelations = (
+  classifications: readonly PartClassification[],
+  contextRelations: readonly ApplicationComponentContextRelation[],
+): readonly ApplicationComponentRelation[] => {
+  const exactRelationByKey = new Map<
+    string,
+    Omit<PartExampleRelation, "partIds"> & { partIds: string[] }
+  >();
+
+  for (const classification of classifications) {
+    if (classification.classificationStatus !== "mapped") {
+      continue;
+    }
+
+    const application = getApplicationIdentityById(
+      classification.applicationId,
+    );
+    const component = getComponentIdentityById(
+      classification.primaryComponentId,
+    );
+
+    if (!application || !component) {
+      throw new Error(
+        `Broken exact taxonomy relation: ${classification.applicationId}::${classification.primaryComponentId}`,
+      );
+    }
+
+    const key = compatibilityRelationKey(application.slug, component.slug);
+    const existing = exactRelationByKey.get(key);
+
+    if (existing) {
+      existing.partIds.push(classification.partId);
+      continue;
+    }
+
+    exactRelationByKey.set(key, {
+      applicationSlug: application.slug,
+      componentSlug: component.slug,
+      relationType: "part-example",
+      partIds: [classification.partId],
+    });
+  }
+
+  const exactRelations = Array.from(exactRelationByKey.values()).map(
+    (relation): PartExampleRelation => ({
+      ...relation,
+      partIds: relation.partIds as [string, ...string[]],
+    }),
+  );
+  const exactRelationKeys = new Set(
+    exactRelations.map((relation) =>
+      compatibilityRelationKey(
+        relation.applicationSlug,
+        relation.componentSlug,
+      ),
+    ),
+  );
+  const derivedContextRelations = contextRelations.flatMap(
+    (relation): IndustryContextRelation[] => {
+      const application = getApplicationIdentityById(relation.applicationId);
+      const component = getComponentIdentityById(relation.componentId);
+
+      if (!application || !component) {
+        throw new Error(
+          `Broken context taxonomy relation: ${relation.applicationId}::${relation.componentId}`,
+        );
+      }
+
+      const key = compatibilityRelationKey(application.slug, component.slug);
+
+      return exactRelationKeys.has(key)
+        ? []
+        : [
+            {
+              applicationSlug: application.slug,
+              componentSlug: component.slug,
+              relationType: "industry-context",
+            },
+          ];
+    },
+  );
+
+  return componentFamilyIdentityRegistry.flatMap((component) => [
+    ...exactRelations.filter(
+      (relation) => relation.componentSlug === component.slug,
+    ),
+    ...derivedContextRelations.filter(
+      (relation) => relation.componentSlug === component.slug,
+    ),
+  ]);
+};
+
+// Read-only compatibility view for existing page consumers. Exact ownership
+// takes precedence over a context-only record for the same semantic pair.
+export const applicationComponentRelations =
+  deriveApplicationComponentRelations(
+    partClassifications,
+    applicationComponentContextRelations,
+  );
 
 type ApplicationRecord = {
   slug: string;
@@ -218,12 +225,7 @@ export const validateApplicationComponentRelations = (
   const invalidRelationShapes = applicationComponentRelations
     .filter(
       (relation) =>
-        (relation.relationType === "part-example" &&
-          (relation.partIds as readonly string[]).length === 0) ||
-        (relation.relationType === "industry-context" &&
-          "partIds" in relation &&
-          Array.isArray(relation.partIds) &&
-          relation.partIds.length > 0),
+        relation.relationType === "part-example" && relation.partIds.length === 0,
     )
     .map((relation) =>
       getRelationKey(relation.applicationSlug, relation.componentSlug),
