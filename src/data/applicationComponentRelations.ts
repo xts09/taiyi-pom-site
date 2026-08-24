@@ -3,7 +3,7 @@ import {
   componentFamilyIdentityRegistry,
   getApplicationIdentityById,
   getComponentIdentityById,
-  partClassifications,
+  productionCompatibilityPartClassifications,
   type ApplicationComponentContextRelation,
   type PartClassification,
 } from "./partTaxonomy.ts";
@@ -126,7 +126,7 @@ export const deriveApplicationComponentRelations = (
 // takes precedence over a context-only record for the same semantic pair.
 export const applicationComponentRelations =
   deriveApplicationComponentRelations(
-    partClassifications,
+    productionCompatibilityPartClassifications,
     applicationComponentContextRelations,
   );
 

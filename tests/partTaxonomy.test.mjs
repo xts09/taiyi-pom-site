@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { applications } from "../src/data/applications.ts";
 import {
+  applicationComponentRelations,
   deriveApplicationComponentRelations,
 } from "../src/data/applicationComponentRelations.ts";
 import { componentSolutions } from "../src/data/componentSolutions.ts";
@@ -9,54 +10,131 @@ import {
   applicationComponentContextRelations,
   applicationIdentityRegistry,
   applicationIds,
+  applicationSystemIds,
   applicationSystems,
+  componentCandidateIds,
   componentCandidates,
   componentFamilyIdentityRegistry,
   componentIds,
   engineeringContexts,
   partClassifications,
+  productionCompatibilityPartClassifications,
   validatePartTaxonomy,
 } from "../src/data/partTaxonomy.ts";
 
-test("enforces the D1b transitional coverage contract", () => {
+test("enforces the D1c closed-state coverage contract", () => {
   const validation = validatePartTaxonomy(applications, componentSolutions);
 
   assert.equal(validation.knownParts, 68);
-  assert.equal(validation.migratedExactParts, 29);
-  assert.equal(validation.intentionallyUnclassifiedParts, 39);
+  assert.equal(validation.classifiedParts, 68);
+  assert.equal(validation.intentionallyUnclassifiedParts, 0);
   assert.equal(validation.classificationCoverageTotal, 68);
-  assert.equal(
-    validation.migratedExactParts +
-      validation.intentionallyUnclassifiedParts,
-    validation.knownParts,
-  );
+  assert.equal(validation.mappedParts, 36);
+  assert.equal(validation.newOwnerParts, 24);
+  assert.equal(validation.reviewParts, 8);
   assert.deepEqual(validation.duplicateClassificationKeys, []);
   assert.deepEqual(validation.unknownClassificationKeys, []);
-
-  const classifiedKeys = new Set(
-    partClassifications.map(
-      (classification) =>
-        `${classification.applicationId}::${classification.partId}`,
-    ),
-  );
+  assert.deepEqual(validation.intentionallyUnclassifiedPartKeys, []);
+  assert.equal(partClassifications.length, 68);
   assert.equal(
-    validation.intentionallyUnclassifiedPartKeys.some((key) =>
-      classifiedKeys.has(key),
-    ),
-    false,
-  );
-  assert.equal(
-    partClassifications.every(
-      (classification) => classification.classificationStatus === "mapped",
-    ),
+    partClassifications
+      .filter(
+        (classification) => classification.classificationStatus === "mapped",
+      )
+      .every(
+        (classification) =>
+          classification.primaryComponentId !== undefined &&
+          classification.proposedComponentId === undefined,
+      ),
     true,
   );
   assert.equal(
-    partClassifications.some(
-      (classification) => "proposedComponentId" in classification,
-    ),
-    false,
+    partClassifications
+      .filter(
+        (classification) =>
+          classification.classificationStatus === "new-owner",
+      )
+      .every(
+        (classification) =>
+          classification.primaryComponentId === undefined &&
+          classification.proposedComponentId !== undefined,
+      ),
+    true,
   );
+  assert.equal(
+    partClassifications
+      .filter(
+        (classification) => classification.classificationStatus === "review",
+      )
+      .every(
+        (classification) =>
+          classification.primaryComponentId === undefined &&
+          classification.proposedComponentId === undefined,
+      ),
+    true,
+  );
+});
+
+test("preserves the reviewer-approved D1c ownership decisions", () => {
+  const approvedReviewParts = partClassifications
+    .filter(
+      (classification) => classification.classificationStatus === "review",
+    )
+    .map((classification) => classification.partId)
+    .sort();
+  const newMappedOwnership = partClassifications
+    .filter(
+      (classification) =>
+        classification.classificationStatus === "mapped" &&
+        !productionCompatibilityPartClassifications.includes(classification),
+    )
+    .map((classification) => [
+      classification.partId,
+      classification.primaryComponentId,
+    ])
+    .sort(([left], [right]) => left.localeCompare(right));
+  const newOwnerCounts = Object.fromEntries(
+    Object.values(componentCandidateIds)
+      .map((candidateId) => [
+        candidateId,
+        partClassifications.filter(
+          (classification) =>
+            classification.classificationStatus === "new-owner" &&
+            classification.proposedComponentId === candidateId,
+        ).length,
+      ])
+      .sort(([left], [right]) => left.localeCompare(right)),
+  );
+
+  assert.deepEqual(approvedReviewParts, [
+    "antistatic-precision-component",
+    "fuel-filter-element",
+    "fuel-pump-assembly",
+    "interior-rearview-mirror-base",
+    "recoil-starter-assembly",
+    "toner-cartridge-drive-components",
+    "trimmer-drive-head",
+    "window-regulator",
+  ]);
+  assert.deepEqual(newMappedOwnership, [
+    ["conveyor-panel", "conveyor-chain-components"],
+    ["ev-brake-component", "precision-plastic-gears"],
+    ["gear-shift-seat", "bushings-and-sleeves"],
+    ["heddle-wire-bundle", "textile-guide-components"],
+    ["robotic-joint-gearbox", "precision-plastic-gears"],
+    ["textile-sliding-block", "bushings-and-sleeves"],
+    ["valve-component", "valve-spools-and-cartridges"],
+  ]);
+  assert.deepEqual(newOwnerCounts, {
+    "clips-fasteners-retention-components": 3,
+    "closure-latching-components": 2,
+    "connector-interface-components": 3,
+    "fluid-routing-housing-components": 4,
+    "profiled-actuation-components": 1,
+    "rotating-drive-support-components": 4,
+    "rotating-fluid-components": 3,
+    "valve-bodies-actuation-components": 4,
+  });
 });
 
 test("keeps stable identity registries aligned with current source entities", () => {
@@ -72,21 +150,60 @@ test("keeps stable identity registries aligned with current source entities", ()
   assert.deepEqual(validation.brokenClassificationComponentIds, []);
 });
 
-test("keeps D1b systems and candidates as non-publishing skeletons", () => {
+test("keeps approved D1c systems and candidates canonical but non-publishing", () => {
   const validation = validatePartTaxonomy(applications, componentSolutions);
 
-  assert.deepEqual(applicationSystems, []);
-  assert.deepEqual(componentCandidates, []);
-  assert.deepEqual(validation.brokenClassificationSystemIds, []);
-  assert.deepEqual(validation.crossApplicationSystemKeys, []);
-  assert.deepEqual(validation.nonTaxonomyOnlySystemIds, []);
-  assert.deepEqual(validation.brokenProposedComponentIds, []);
+  assert.equal(applicationSystems.length, 17);
+  assert.equal(componentCandidates.length, 8);
+  assert.deepEqual(
+    applicationSystems.map((system) => system.id),
+    Object.values(applicationSystemIds),
+  );
+  assert.deepEqual(
+    componentCandidates.map((candidate) => candidate.id),
+    Object.values(componentCandidateIds),
+  );
   assert.equal(
-    partClassifications.every(
-      (classification) => classification.systemId === undefined,
+    applicationSystems.every(
+      (system) => system.publicationStatus === "taxonomy-only",
     ),
     true,
   );
+  assert.equal(
+    componentCandidates.every((candidate) => candidate.status === "approved"),
+    true,
+  );
+  assert.equal(
+    applicationSystems.some(
+      (system) =>
+        system.id === "textile-machinery-yarn-and-motion-guidance" ||
+        system.id === "textile-machinery-yarn-package-support",
+    ),
+    false,
+  );
+  assert.equal(
+    partClassifications
+      .filter((classification) =>
+        [
+          "heddle-wire-bundle",
+          "bobbin-holder",
+          "textile-sliding-block",
+        ].includes(classification.partId),
+      )
+      .every((classification) => classification.systemId === undefined),
+    true,
+  );
+  assert.deepEqual(validation.brokenClassificationSystemIds, []);
+  assert.deepEqual(validation.crossApplicationSystemKeys, []);
+  assert.deepEqual(validation.nonTaxonomyOnlySystemIds, []);
+  assert.deepEqual(validation.duplicateApplicationSystemIds, []);
+  assert.deepEqual(validation.duplicateApplicationSystemSlugKeys, []);
+  assert.deepEqual(validation.brokenSystemApplicationIds, []);
+  assert.deepEqual(validation.unreferencedApplicationSystemIds, []);
+  assert.deepEqual(validation.brokenProposedComponentIds, []);
+  assert.deepEqual(validation.duplicateComponentCandidateIds, []);
+  assert.deepEqual(validation.nonApprovedComponentCandidateIds, []);
+  assert.deepEqual(validation.unreferencedComponentCandidateIds, []);
 });
 
 test("migrates entity kinds without introducing child relationships", () => {
@@ -96,8 +213,20 @@ test("migrates entity kinds without introducing child relationships", () => {
     .sort();
 
   assert.deepEqual(assemblies, [
+    "drain-control-valve",
+    "drain-valve-assembly",
+    "fuel-cap-assembly",
+    "fuel-filter-element",
+    "fuel-pump-assembly",
+    "heddle-wire-bundle",
+    "panel-mount-signal-connector",
+    "recoil-starter-assembly",
     "reduction-gear-assembly",
+    "robotic-joint-gearbox",
+    "toner-cartridge-drive-components",
+    "trimmer-drive-head",
     "valve-spool-assembly",
+    "window-regulator",
   ]);
   assert.equal(
     partClassifications.every(
@@ -115,7 +244,7 @@ test("migrates entity kinds without introducing child relationships", () => {
   );
 });
 
-test("keeps controlled engineering contexts separate from D1b ownership", () => {
+test("keeps D1c engineering contexts controlled and evidence-scoped", () => {
   const validation = validatePartTaxonomy(applications, componentSolutions);
 
   assert.deepEqual(
@@ -135,11 +264,47 @@ test("keeps controlled engineering contexts separate from D1b ownership", () => 
   assert.deepEqual(validation.brokenEngineeringContextIds, []);
   assert.deepEqual(validation.duplicateEngineeringContextPartKeys, []);
   assert.equal(
-    partClassifications.every(
-      (classification) => classification.relatedContextIds === undefined,
+    partClassifications.filter(
+      (classification) => classification.relatedContextIds !== undefined,
+    ).length,
+    39,
+  );
+  assert.equal(
+    partClassifications.filter((classification) =>
+      classification.relatedContextIds?.includes("precision-guiding"),
+    ).length,
+    13,
+  );
+});
+
+test("keeps the D1 production compatibility view on the 29-record baseline", () => {
+  assert.equal(productionCompatibilityPartClassifications.length, 29);
+  assert.equal(
+    productionCompatibilityPartClassifications.every((classification) =>
+      partClassifications.includes(classification),
     ),
     true,
   );
+
+  const frozenRelations = deriveApplicationComponentRelations(
+    productionCompatibilityPartClassifications,
+    applicationComponentContextRelations,
+  );
+  const fullCanonicalRelations = deriveApplicationComponentRelations(
+    partClassifications,
+    applicationComponentContextRelations,
+  );
+  const exactPartCoverage = (relations) =>
+    relations.reduce(
+      (total, relation) =>
+        total +
+        (relation.relationType === "part-example" ? relation.partIds.length : 0),
+      0,
+    );
+
+  assert.deepEqual(applicationComponentRelations, frozenRelations);
+  assert.equal(exactPartCoverage(applicationComponentRelations), 29);
+  assert.equal(exactPartCoverage(fullCanonicalRelations), 36);
 });
 
 test("preserves four independent context-only source records", () => {
