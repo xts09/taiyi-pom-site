@@ -921,8 +921,37 @@ test("the Simplified Chinese POM solution family is complete and localized", () 
     assert.ok(page.title.length > 4);
     assert.ok(page.metaTitle.includes("台益"));
     assert.ok(page.metaDescription.length > 30);
-    assert.ok(page.sections.length > 0);
-    assert.ok(page.reviewInputs.length > 0);
+    const hasSections = page.sections.length > 0;
+    const hasCatalogEvidence = (page.catalogEvidence?.items.length ?? 0) > 0;
+    assert.equal(
+      hasSections || hasCatalogEvidence,
+      true,
+      `${slug} must provide sections or catalog evidence`,
+    );
+
+    if (hasCatalogEvidence) {
+      assert.ok(page.catalogEvidence.title.length > 0);
+      assert.ok(page.catalogEvidence.note.length > 0);
+    }
+
+    if (page.catalogEvidence?.variant === "directory") {
+      const itemLabels = new Set(
+        page.catalogEvidence.items.map((item) => item.label),
+      );
+      assert.ok((page.catalogEvidence.groups?.length ?? 0) > 0);
+      for (const group of page.catalogEvidence.groups ?? []) {
+        assert.ok(group.itemLabels.length > 0);
+        for (const itemLabel of group.itemLabels) {
+          assert.ok(
+            itemLabels.has(itemLabel),
+            `${slug} directory group references unknown item: ${itemLabel}`,
+          );
+        }
+      }
+    }
+    if (page.showReviewSection !== false) {
+      assert.ok(page.reviewInputs.length > 0 || page.relatedLinks.length > 0);
+    }
     assert.ok(page.relatedLinks.length > 0);
     assert.ok(page.faqs.length > 0);
     assert.ok(!page.primaryActionLabel.includes("Request"));

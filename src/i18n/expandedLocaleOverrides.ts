@@ -86,6 +86,25 @@ export const expandedLocaleOverrides: Partial<
       "Sind Detailseiten für alle PA66-Typen verfügbar?",
     "PPA 牌号详情是否已有中文？":
       "Sind Detailseiten für alle PPA-Typen verfügbar?",
+    "确定候选牌号后，在重复供货前确认可提供的 TDS、成型条件和代表性零件试模。定制配方评估需具备明确的技术目标、验证条件和预计用量。":
+      "Sobald ein Kandidatenwerkstofftyp feststeht, sind vor einer wiederholten Belieferung die verfügbaren TDS, die Spritzgießbedingungen und Versuche mit repräsentativen Bauteilen zu bestätigen. Eine kundenspezifische Formulierungsprüfung setzt klar definierte technische Ziele, Validierungsbedingungen und erwartete Mengen voraus.",
+    "适用于需要通过碳纤维增强 POM 获得更高刚性或电功能的零件。":
+      "Für Bauteile, die durch carbonfaserverstärktes POM eine höhere Steifigkeit oder elektrische Funktion erreichen sollen.",
+    "适用于电荷控制零件，其电阻范围、测试方法和工作环境决定牌号选择。":
+      "Für Bauteile zur Kontrolle elektrostatischer Ladung; Widerstandsbereich, Prüfmethode und Einsatzumgebung bestimmen die Auswahl des Werkstofftyps.",
+    定义电性能目标: "Ziel für das elektrische Verhalten definieren",
+    "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。":
+      "Zunächst sind das geforderte elektrische Verhalten und die Messmethode festzulegen. Antistatische, statisch ableitende und leitfähige Ziele müssen durch Bereiche und Prüfmethoden definiert werden, nicht nur durch Bezeichnungen.",
+    表面或体积电阻率: "Oberflächen- oder Volumenwiderstand",
+    "所需的抗静电、静电耗散或导电性能":
+      "Gefordertes antistatisches, statisch ableitendes oder leitfähiges Verhalten",
+    定义零件条件: "Bauteilbedingungen definieren",
+    "补充可能影响牌号适用性及机械性能保留的零件与项目条件。":
+      "Ergänzen Sie die Bauteil- und Projektbedingungen, die die Eignung des Werkstofftyps und den Erhalt der mechanischen Eigenschaften beeinflussen können.",
+    颜色要求: "Farbanforderungen",
+    "TDS、文件与样品需求": "TDS-, Dokumenten- und Musterbedarf",
+    "最终电性能应在约定测试方法和工作环境下，于注塑成品上确认。":
+      "Das endgültige elektrische Verhalten ist am spritzgegossenen Bauteil nach der vereinbarten Prüfmethode und unter der vorgesehenen Einsatzumgebung zu bestätigen.",
     中文工程塑料分类页: "Deutsche Kategorieseite für technische Kunststoffe",
     中文工程塑料牌号页: "Deutsche Detailseite für technische Kunststoffe",
     中文跨材料导电与抗静电目录:
@@ -154,6 +173,25 @@ export const expandedLocaleOverrides: Partial<
       "Des pages détaillées sont-elles disponibles pour tous les grades PA66 ?",
     "PPA 牌号详情是否已有中文？":
       "Des pages détaillées sont-elles disponibles pour tous les grades PPA ?",
+    "确定候选牌号后，在重复供货前确认可提供的 TDS、成型条件和代表性零件试模。定制配方评估需具备明确的技术目标、验证条件和预计用量。":
+      "Une fois un grade candidat identifié, confirmer avant tout approvisionnement récurrent les TDS disponibles, les conditions de moulage et les essais sur des pièces représentatives. L’étude d’une formulation sur mesure exige des objectifs techniques, des conditions de validation et des volumes prévisionnels clairement définis.",
+    "适用于需要通过碳纤维增强 POM 获得更高刚性或电功能的零件。":
+      "Pour les pièces qui doivent obtenir une rigidité supérieure ou une fonction électrique grâce à un POM renforcé de fibres de carbone.",
+    "适用于电荷控制零件，其电阻范围、测试方法和工作环境决定牌号选择。":
+      "Pour les pièces nécessitant un contrôle électrostatique ; la plage de résistance, la méthode d’essai et l’environnement d’utilisation déterminent le choix du grade.",
+    定义电性能目标: "Définir l’objectif de performance électrique",
+    "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。":
+      "Définir d’abord la performance électrique requise et la méthode de mesure. Les objectifs antistatiques, dissipatifs électrostatiques et conducteurs doivent être exprimés par des plages et des méthodes d’essai, et non par de simples désignations.",
+    表面或体积电阻率: "Résistivité surfacique ou volumique",
+    "所需的抗静电、静电耗散或导电性能":
+      "Performance antistatique, dissipative électrostatique ou conductrice requise",
+    定义零件条件: "Définir les conditions de la pièce",
+    "补充可能影响牌号适用性及机械性能保留的零件与项目条件。":
+      "Préciser les conditions de la pièce et du projet susceptibles d’influencer l’aptitude du grade et le maintien des propriétés mécaniques.",
+    颜色要求: "Exigences de couleur",
+    "TDS、文件与样品需求": "Besoins en TDS, documents et échantillons",
+    "最终电性能应在约定测试方法和工作环境下，于注塑成品上确认。":
+      "La performance électrique finale doit être confirmée sur la pièce injectée, selon la méthode d’essai convenue et dans l’environnement d’utilisation prévu.",
     中文工程塑料分类页: "Page française de catégorie des plastiques techniques",
     中文工程塑料牌号页: "Page française de grade des plastiques techniques",
     中文跨材料导电与抗静电目录:
@@ -228,6 +266,25 @@ export const expandedLocaleOverrides: Partial<
       "Há páginas detalhadas para todos os graus PA66?",
     "PPA 牌号详情是否已有中文？":
       "Há páginas detalhadas para todos os graus PPA?",
+    "确定候选牌号后，在重复供货前确认可提供的 TDS、成型条件和代表性零件试模。定制配方评估需具备明确的技术目标、验证条件和预计用量。":
+      "Após identificar um grau candidato, confirme antes do fornecimento recorrente os TDS disponíveis, as condições de moldagem e os ensaios com peças representativas. A avaliação de uma formulação personalizada exige metas técnicas, condições de validação e volume previsto claramente definidos.",
+    "适用于需要通过碳纤维增强 POM 获得更高刚性或电功能的零件。":
+      "Para peças que precisam obter maior rigidez ou função elétrica com POM reforçado com fibra de carbono.",
+    "适用于电荷控制零件，其电阻范围、测试方法和工作环境决定牌号选择。":
+      "Para peças que exigem controle eletrostático; a faixa de resistência, o método de ensaio e o ambiente de uso determinam a seleção do grau.",
+    定义电性能目标: "Definir a meta de desempenho elétrico",
+    "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。":
+      "Primeiro, defina o desempenho elétrico necessário e o método de medição. As metas antiestáticas, dissipativas eletrostáticas e condutivas devem ser definidas por faixas e métodos de ensaio, não apenas por rótulos.",
+    表面或体积电阻率: "Resistividade superficial ou volumétrica",
+    "所需的抗静电、静电耗散或导电性能":
+      "Desempenho antiestático, dissipativo eletrostático ou condutivo necessário",
+    定义零件条件: "Definir as condições da peça",
+    "补充可能影响牌号适用性及机械性能保留的零件与项目条件。":
+      "Informe as condições da peça e do projeto que podem influenciar a adequação do grau e a retenção das propriedades mecânicas.",
+    颜色要求: "Requisitos de cor",
+    "TDS、文件与样品需求": "Necessidades de TDS, documentos e amostras",
+    "最终电性能应在约定测试方法和工作环境下，于注塑成品上确认。":
+      "O desempenho elétrico final deve ser confirmado na peça moldada por injeção, conforme o método de ensaio acordado e no ambiente de uso previsto.",
     中文工程塑料分类页:
       "Página brasileira de categoria de plásticos de engenharia",
     中文工程塑料牌号页: "Página brasileira de grau de plástico de engenharia",
