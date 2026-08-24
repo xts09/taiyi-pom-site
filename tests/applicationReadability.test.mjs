@@ -18,7 +18,10 @@ test("application detail renders each part and material card from one semantic l
   );
   const styleSource = readProjectFile("src/app/(en)/styles/applications.css");
 
-  assert.equal(pageSource.match(/applicationUseCards\.map/g)?.length, 1);
+  assert.equal(
+    pageSource.match(/\{applicationUseCards\.map\(\(card\) => \(/g)?.length,
+    1,
+  );
   assert.equal(pageSource.match(/materialDirectionCards\.map/g)?.length, 1);
   assert.equal(pageSource.match(/<ApplicationExpandableGrid/g)?.length, 2);
   assert.doesNotMatch(

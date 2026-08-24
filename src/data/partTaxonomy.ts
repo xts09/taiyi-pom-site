@@ -141,7 +141,7 @@ export const applicationSystemIds = {
   ),
 } as const;
 
-// D1c creates taxonomy entities only. None of these records may publish UI.
+// ApplicationSystem lifecycle state governs whether a record may support UI.
 export const applicationSystems = [
   {
     id: applicationSystemIds.automotiveFuelManagement,
@@ -237,7 +237,7 @@ export const applicationSystems = [
     slug: "fill-and-distribution",
     title: "Fill & Distribution",
     summary: "Appliance water admission and routing.",
-    publicationStatus: "taxonomy-only",
+    publicationStatus: "section-only",
   },
   {
     id: applicationSystemIds.washingMachineDrumDrive,
@@ -245,7 +245,7 @@ export const applicationSystems = [
     slug: "drum-drive",
     title: "Drum Drive",
     summary: "Drum and transmission drive context.",
-    publicationStatus: "taxonomy-only",
+    publicationStatus: "section-only",
   },
   {
     id: applicationSystemIds.washingMachineDrainage,
@@ -253,7 +253,7 @@ export const applicationSystems = [
     slug: "drainage",
     title: "Drainage",
     summary: "Drain path, pumping enclosure, and discharge control.",
-    publicationStatus: "taxonomy-only",
+    publicationStatus: "section-only",
   },
   {
     id: applicationSystemIds.outdoorEquipmentIrrigation,

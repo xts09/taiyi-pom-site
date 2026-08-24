@@ -10,6 +10,7 @@ import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { resolveApplicationComponentOwnerReferences } from "@/data/applicationComponentRelations";
+import { resolveApplicationSystemPartGroups } from "@/data/applicationSystemPresentation";
 import type {
   ApplicationEngineeringGroup,
   ApplicationImage,
@@ -21,7 +22,7 @@ import type {
   ApplicationIndexMessages,
   LocalizedApplicationQualityEvidenceMessages,
 } from "@/i18n/applicationTypes";
-import type { LocalizedUrlSegment } from "@/i18n/config";
+import type { LocalizedUrlSegment, MessageLocale } from "@/i18n/config";
 import {
   getLocalizedHref,
   isEnglishFallbackHref,
@@ -64,13 +65,14 @@ type ApplicationUseCardData = {
     alt: string;
   };
   index: number;
+  partId: string;
   title: string;
 };
 
 type LocalizedApplicationDetailPageProps = {
   application: ApplicationItem;
   componentMessages: ApplicationIndexMessages["componentSolutions"];
-  inLanguage: string;
+  inLanguage: MessageLocale;
   localeSegment?: LocalizedUrlSegment;
   messages: ApplicationDetailUiMessages;
   pagePath: string;
@@ -234,20 +236,27 @@ const getApplicationUseCards = (
   application: ApplicationItem,
 ): ApplicationUseCardData[] =>
   application.parts.map((part, index) => ({
-    key: `${part.label}-${index}`,
+    key: part.id,
     description: part.description,
     image: part.image,
     index,
+    partId: part.id,
     title: part.label,
   }));
 
 function ApplicationUseCard({
   cardLabel,
   description,
+  headingLevel = 3,
   image,
   index,
   title,
-}: ApplicationUseCardData & { cardLabel: string }) {
+}: ApplicationUseCardData & {
+  cardLabel: string;
+  headingLevel?: 3 | 4;
+}) {
+  const Heading = headingLevel === 4 ? "h4" : "h3";
+
   return (
     <Card asChild variant="standard">
       <article
@@ -279,7 +288,7 @@ function ApplicationUseCard({
             <span>{cardLabel}</span>
             <span>{String(index + 1).padStart(2, "0")}</span>
           </div>
-          <h3>{title}</h3>
+          <Heading>{title}</Heading>
           <p>{description}</p>
         </CardContent>
       </article>
@@ -368,6 +377,18 @@ export function LocalizedApplicationDetailPage({
   const detailHeroImage = application.detailHeroImage ?? application.heroImage;
   const materialDirectionCards = getMaterialDirectionCards(application);
   const applicationUseCards = getApplicationUseCards(application);
+  const applicationUseCardByPartId = new Map(
+    applicationUseCards.map((card) => [card.partId, card]),
+  );
+  const applicationSystemPartGroups = resolveApplicationSystemPartGroups(
+    application,
+    inLanguage,
+  );
+  const groupedPartOrder = new Map(
+    (applicationSystemPartGroups?.flatMap((group) => group.partIds) ?? []).map(
+      (partId, index) => [partId, index],
+    ),
+  );
   const componentOwners =
     resolveApplicationComponentOwnerReferences(application);
   const contactHref = createContactHref(
@@ -606,26 +627,69 @@ export function LocalizedApplicationDetailPage({
             <p>{messages.parts.description}</p>
           </div>
 
-          <ApplicationExpandableGrid
-            className="application-use-grid"
-            id="application-part-examples"
-            initialVisibleCount={4}
-            showMoreLabel={`${messages.parts.showMorePrefix} ${Math.max(
-              applicationUseCards.length - 4,
-              0,
-            )} ${messages.parts.showMoreSuffix}`}
-          >
-            {applicationUseCards.map((card) => (
-              <ApplicationUseCard
-                key={card.key}
-                cardLabel={messages.parts.cardLabel}
-                description={card.description}
-                image={card.image}
-                index={card.index}
-                title={card.title}
-              />
-            ))}
-          </ApplicationExpandableGrid>
+          {applicationSystemPartGroups ? (
+            <div
+              className="application-system-groups"
+              id="application-part-examples"
+            >
+              {applicationSystemPartGroups.map((group) => (
+                <section
+                  aria-labelledby={`application-system-${group.id}`}
+                  className="application-system-group"
+                  key={group.id}
+                >
+                  <h3
+                    className="application-system-group-title"
+                    id={`application-system-${group.id}`}
+                  >
+                    {group.label}
+                  </h3>
+                  <div className="application-use-grid application-system-part-grid">
+                    {group.partIds.flatMap((partId) => {
+                      const card = applicationUseCardByPartId.get(partId);
+
+                      return card
+                        ? [
+                            <ApplicationUseCard
+                              key={card.key}
+                              cardLabel={messages.parts.cardLabel}
+                              description={card.description}
+                              headingLevel={4}
+                              image={card.image}
+                              index={groupedPartOrder.get(partId) ?? card.index}
+                              partId={card.partId}
+                              title={card.title}
+                            />,
+                          ]
+                        : [];
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <ApplicationExpandableGrid
+              className="application-use-grid"
+              id="application-part-examples"
+              initialVisibleCount={4}
+              showMoreLabel={`${messages.parts.showMorePrefix} ${Math.max(
+                applicationUseCards.length - 4,
+                0,
+              )} ${messages.parts.showMoreSuffix}`}
+            >
+              {applicationUseCards.map((card) => (
+                <ApplicationUseCard
+                  key={card.key}
+                  cardLabel={messages.parts.cardLabel}
+                  description={card.description}
+                  image={card.image}
+                  index={card.index}
+                  partId={card.partId}
+                  title={card.title}
+                />
+              ))}
+            </ApplicationExpandableGrid>
+          )}
 
           {componentOwners.length > 0 ? (
             <aside

@@ -150,8 +150,13 @@ test("keeps stable identity registries aligned with current source entities", ()
   assert.deepEqual(validation.brokenClassificationComponentIds, []);
 });
 
-test("keeps approved D1c systems and candidates canonical but non-publishing", () => {
+test("keeps approved Systems and candidates within their lifecycle boundaries", () => {
   const validation = validatePartTaxonomy(applications, componentSolutions);
+  const sectionOnlySystemIds = [
+    applicationSystemIds.washingMachineFillAndDistribution,
+    applicationSystemIds.washingMachineDrumDrive,
+    applicationSystemIds.washingMachineDrainage,
+  ];
 
   assert.equal(applicationSystems.length, 17);
   assert.equal(componentCandidates.length, 8);
@@ -163,11 +168,23 @@ test("keeps approved D1c systems and candidates canonical but non-publishing", (
     componentCandidates.map((candidate) => candidate.id),
     Object.values(componentCandidateIds),
   );
+  assert.deepEqual(
+    applicationSystems
+      .filter((system) => system.publicationStatus === "section-only")
+      .map((system) => system.id),
+    sectionOnlySystemIds,
+  );
   assert.equal(
-    applicationSystems.every(
+    applicationSystems.filter(
       (system) => system.publicationStatus === "taxonomy-only",
-    ),
-    true,
+    ).length,
+    14,
+  );
+  assert.equal(
+    applicationSystems.filter(
+      (system) => system.publicationStatus === "published",
+    ).length,
+    0,
   );
   assert.equal(
     componentCandidates.every((candidate) => candidate.status === "approved"),
@@ -195,7 +212,7 @@ test("keeps approved D1c systems and candidates canonical but non-publishing", (
   );
   assert.deepEqual(validation.brokenClassificationSystemIds, []);
   assert.deepEqual(validation.crossApplicationSystemKeys, []);
-  assert.deepEqual(validation.nonTaxonomyOnlySystemIds, []);
+  assert.deepEqual(validation.nonTaxonomyOnlySystemIds, sectionOnlySystemIds);
   assert.deepEqual(validation.duplicateApplicationSystemIds, []);
   assert.deepEqual(validation.duplicateApplicationSystemSlugKeys, []);
   assert.deepEqual(validation.brokenSystemApplicationIds, []);
@@ -266,12 +283,6 @@ test("applies only the reviewer-approved D2b System memberships", () => {
     36,
   );
   assert.equal(applicationSystems.length, 17);
-  assert.equal(
-    applicationSystems.every(
-      (system) => system.publicationStatus === "taxonomy-only",
-    ),
-    true,
-  );
 
   const washingMachineParts = partClassifications.filter(
     (classification) =>
