@@ -1,7 +1,7 @@
 .page {
-  --about-mobile-section-space: 4.5rem;
+  --about-mobile-section-space: 3.5rem;
   --about-mobile-heading-body-gap: 1.25rem;
-  --about-mobile-content-visual-gap: 2.25rem;
+  --about-mobile-content-visual-gap: 1.75rem;
   overflow: clip;
   color: var(--ds-text-primary);
   background: var(--ds-background-canvas);
@@ -61,8 +61,8 @@
 }
 
 .heroCopy {
-  grid-column: 1 / span 7;
-  max-width: 52rem;
+  grid-column: 1 / span 9;
+  max-width: 68rem;
 }
 
 .heroEyebrow,
@@ -80,12 +80,12 @@
 }
 
 .hero h1 {
-  max-width: 14ch;
+  max-width: 100%;
   font-family: var(--ds-font-display);
   font-size: clamp(3.3rem, 5.45vw, 5.85rem);
   font-weight: 650;
   line-height: 0.98;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.04em;
 }
 
 .heroCopy > p:not(.heroEyebrow) {
@@ -138,11 +138,11 @@
 .people,
 .credentials,
 .global {
-  padding-block: clamp(5.5rem, 9vw, 9rem);
+  padding-block: clamp(4rem, 6vw, 6rem);
 }
 
 .sectionHeading {
-  max-width: 52rem;
+  max-width: 60rem;
 }
 
 .eyebrow {
@@ -153,10 +153,14 @@
 .sectionHeading h2,
 .finalCta h2 {
   font-family: var(--ds-font-display);
-  font-size: clamp(2.4rem, 4.3vw, 4.75rem);
+  font-size: clamp(2.3rem, 3.6vw, 4rem);
   font-weight: 620;
   line-height: 1.02;
   letter-spacing: -0.045em;
+}
+
+.unbrokenPhrase {
+  white-space: nowrap;
 }
 
 .sectionHeading > p:last-child:not(.eyebrow) {
@@ -180,14 +184,14 @@
 
 .identityCopy {
   grid-column: 1 / span 6;
-  max-width: 33rem;
+  max-width: 40rem;
 }
 
 .prose {
   display: grid;
   gap: 1.25rem;
-  max-width: 33rem;
-  margin-top: 2rem;
+  max-width: 38rem;
+  margin-top: 1.5rem;
   color: var(--ds-text-secondary);
   font-size: 1.06rem;
   line-height: 1.8;
@@ -229,9 +233,12 @@
 }
 
 .storyGrid > .sectionHeading,
-.workflowGrid > .sectionHeading,
-.globalGrid > .sectionHeading {
+.workflowGrid > .sectionHeading {
   grid-column: 1 / span 5;
+}
+
+.globalGrid > .sectionHeading {
+  grid-column: 1 / span 6;
 }
 
 .timeline {
@@ -294,7 +301,7 @@
 }
 
 .focus {
-  padding-block: clamp(5.5rem, 8vw, 8rem);
+  padding-block: clamp(4rem, 6vw, 6rem);
   color: #fff;
   background: #061a2b;
 }
@@ -304,7 +311,7 @@
 }
 
 .focus .sectionHeading {
-  margin-bottom: 3.25rem;
+  margin-bottom: 2.5rem;
 }
 
 .focusList {
@@ -316,7 +323,7 @@
   grid-template-columns: 3.2rem 11.5rem minmax(12rem, 0.75fr) minmax(20rem, 1.25fr) 2rem;
   gap: 1rem;
   align-items: center;
-  min-height: 7.2rem;
+  min-height: 6.25rem;
   color: inherit;
   border-bottom: 1px solid rgb(255 255 255 / 18%);
   text-decoration: none;
@@ -382,7 +389,7 @@
 }
 
 .metricRail {
-  margin-top: 3.5rem;
+  margin-top: 2.75rem;
   border-block: 1px solid var(--ds-border-default);
 }
 
@@ -482,7 +489,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0;
-  margin-top: 3rem;
+  margin-top: 2.25rem;
   padding: 0;
   list-style: none;
   border-top: 1px solid rgb(255 255 255 / 18%);
@@ -502,7 +509,7 @@
 .labMedia,
 .peopleMedia {
   position: relative;
-  min-height: 31rem;
+  min-height: 26rem;
   overflow: hidden;
   background: #061a2b;
 }
@@ -560,13 +567,13 @@
 .credentialGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: 3.5rem;
+  margin-top: 2.75rem;
   border-top: 1px solid var(--ds-border-default);
   border-left: 1px solid var(--ds-border-default);
 }
 
 .credentialGrid article {
-  min-height: 19rem;
+  min-height: 15rem;
   padding: 1.5rem;
   border-right: 1px solid var(--ds-border-default);
   border-bottom: 1px solid var(--ds-border-default);
@@ -575,7 +582,7 @@
 
 .credentialGrid article > span {
   display: block;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   color: var(--ds-color-cobalt-600);
   font-size: 0.72rem;
   font-weight: 750;
@@ -639,7 +646,7 @@
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 1.5rem;
-  padding-block: 1.5rem;
+  padding-block: 1.25rem;
   border-bottom: 1px solid var(--ds-border-default);
 }
 
@@ -658,7 +665,7 @@
 }
 
 .finalCta {
-  padding-block: clamp(4.5rem, 7vw, 7rem);
+  padding-block: clamp(4rem, 5vw, 5.5rem);
   color: #fff;
   background: #061a2b;
 }
@@ -675,7 +682,7 @@
 }
 
 .finalCta h2 {
-  font-size: clamp(2.7rem, 4vw, 4.5rem);
+  font-size: clamp(2.5rem, 3.5vw, 3.75rem);
 }
 
 .finalCta h2 + p {
@@ -879,7 +886,7 @@
 
   .sectionHeading h2,
   .finalCta h2 {
-    font-size: clamp(2.3rem, 10vw, 3.25rem);
+    font-size: clamp(2.1rem, 9vw, 2.75rem);
   }
 
   .identityGrid,
@@ -1011,7 +1018,7 @@
 
   .labMedia,
   .peopleMedia {
-    min-height: 23rem;
+    min-height: 19rem;
     margin-top: var(--about-mobile-content-visual-gap);
   }
 
@@ -1038,11 +1045,11 @@
   }
 
   .credentialGrid article {
-    min-height: 14rem;
+    min-height: 11rem;
   }
 
   .credentialGrid article > span {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
   }
 
   .credentialGrid article > p {

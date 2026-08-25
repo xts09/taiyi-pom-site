@@ -30,57 +30,34 @@ type AboutPageContentProps = {
 const focusAreas = [
   {
     index: "01",
-    label: "Core material family",
+    label: "Core material line",
     title: "Modified POM",
     description:
-      "Wear-resistant, low-friction, reinforced, conductive and other functional POM compounds for molded components.",
+      "Modified POM for molded components that require wear resistance, low friction, reinforcement, conductivity or other functional properties.",
     href: "/products/categories/pom",
   },
   {
     index: "02",
-    label: "Selected supporting families",
-    title: "Engineering compounds",
+    label: "Complementary materials",
+    title: "Modified engineering plastics",
     description:
-      "Selected PA6, PA66 and PPA compounds when the part requires a different balance of temperature, stiffness or toughness.",
+      "Selected PA6, PA66 and PPA compounds for parts that need a different balance of heat resistance, stiffness and toughness.",
     href: "/products#product-families",
   },
-  {
-    index: "03",
-    label: "Before a material is specified",
-    title: "Material evaluation",
-    description:
-      "Grade shortlisting starts with part function, operating conditions, processing constraints and the evidence available for review.",
-    href: "/resources/material-selection",
-  },
-  {
-    index: "04",
-    label: "After a grade is confirmed",
-    title: "Production and repeat supply",
-    description:
-      "Trial compounding, in-house testing, batch documentation and repeat industrial production are coordinated at the Yancheng site.",
-    href: "#manufacturing",
-  },
-] as const;
-
-const workflow = [
-  ["01", "Understand the part", "We begin with function, load, environment, processing method and the current material concern."],
-  ["02", "Shortlist materials", "Candidate grades are narrowed by material family, modification type and the properties that matter to the application."],
-  ["03", "Validate the candidate", "Samples, test conditions and available documents are aligned before a material is approved for the part."],
-  ["04", "Support repeat supply", "Once confirmed, production and batch documentation are coordinated for repeat industrial orders."],
 ] as const;
 
 const peopleRoles = [
-  "Technical communication",
-  "Laboratory review",
+  "Technical coordination",
+  "Laboratory testing",
   "Production coordination",
   "Quality documentation",
 ] as const;
 
 const inquirySituations = [
+  "Material and grade questions",
+  "Samples and technical documents",
+  "Production and supply",
   "Supplier qualification",
-  "Alternative grade evaluation",
-  "New component development",
-  "Sample or TDS request",
 ] as const;
 
 function SectionHeading({
@@ -123,9 +100,9 @@ export function AboutPageContent({
         <div className={`site-container ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>About Taiyi Polymer</p>
-            <h1 id="about-title">A Focused Engineering Materials Manufacturer.</h1>
+            <h1 id="about-title">Modified POM Compound Manufacturer.</h1>
             <p className={styles.heroSummary}>
-              Taiyi Polymer is the international-facing brand of Jiangsu Taiyi Nano Technology Co., Ltd., focused on modified POM and selected engineering compounds from our Yancheng manufacturing site.
+              Taiyi Polymer is the international brand of Jiangsu Taiyi Nano Technology Co., Ltd. At our Yancheng manufacturing site, we produce modified POM and selected engineering plastic compounds.
             </p>
             <div className={styles.heroActions}>
               <Button asChild variant="inverse" size="form"><Link href="/products">Explore Our Materials</Link></Button>
@@ -139,9 +116,9 @@ export function AboutPageContent({
       <section className={styles.identity} aria-labelledby="who-we-are-title">
         <div className={`site-container ${styles.identityGrid}`}>
           <div className={styles.identityCopy}>
-            <SectionHeading eyebrow="Who we are" id="who-we-are-title" title="From Material Requirement to Grade Evaluation." />
+            <SectionHeading eyebrow="Who we are" id="who-we-are-title" title="Modified engineering plastics, made in Yancheng." />
             <div className={styles.prose}>
-              <p>We work from part requirements, processing conditions and target properties to narrow suitable material directions, review grade data and support sample-based validation.</p>
+              <p>The company began manufacturing in Yancheng, Jiangsu, in 2003. Production, laboratory testing and batch documentation are coordinated by teams at the same site.</p>
             </div>
           </div>
           <figure className={styles.identityMedia}>
@@ -151,19 +128,9 @@ export function AboutPageContent({
         </div>
       </section>
 
-      <section className={styles.story} aria-labelledby="story-title">
-        <div className={`site-container ${styles.storyGrid}`}>
-          <SectionHeading eyebrow="Our story" id="story-title" title="Built for industrial material work, not a broad catalogue." description="Our story stays concise: manufacturing roots in 2003 and the focused material business operating today." />
-          <ol className={styles.timeline}>
-            <li><span>2003</span><div><h3>Manufacturing roots</h3><p>The manufacturing operation traces its roots to 2003 in Yancheng, Jiangsu.</p></div></li>
-            <li><span>Today</span><div><h3>Modified POM remains the core</h3><p>Taiyi Polymer presents the company&apos;s modified POM focus and selected engineering compounds to international projects.</p></div></li>
-          </ol>
-        </div>
-      </section>
-
       <section className={styles.focus} aria-labelledby="focus-title">
         <div className="site-container">
-          <SectionHeading eyebrow="What we focus on" id="focus-title" title="A narrower material focus, connected to the full decision." />
+          <SectionHeading eyebrow="Material focus" id="focus-title" title="Modified POM at the core of a focused material range." />
           <div className={styles.focusList}>
             {focusAreas.map((area) => (
               <Link key={area.index} href={area.href} className={styles.focusRow}>
@@ -177,23 +144,14 @@ export function AboutPageContent({
       <section id="manufacturing" className={styles.manufacturing} aria-labelledby="manufacturing-title">
         <div className="site-container">
           <div className={styles.manufacturingIntro}>
-            <SectionHeading eyebrow="Manufacturing proof" id="manufacturing-title" title="The scale behind trial batches and repeat orders." description="Compounding, material testing and batch documentation are coordinated at the Yancheng facility." />
-            <Link href={createContactHref({ intent: "quote-supply", source: "about" })}>Discuss production requirements <span aria-hidden="true">→</span></Link>
+            <SectionHeading eyebrow="Manufacturing" id="manufacturing-title" title="Production capacity for trials and repeat orders." description="Our Yancheng site handles compounding, material testing and batch documentation." />
+            <Link href={createContactHref({ intent: "quote-supply", source: "about" })}>Discuss production and supply <span aria-hidden="true">→</span></Link>
           </div>
           <MetricGroup variant="rail" tone="light" className={styles.metricRail} items={figures} renderValue={(figure) => <ValueText value={String(figure.value)} />} />
           <figure className={styles.manufacturingMedia}>
             <Image src={publicPath(manufacturingImage.src)} alt={manufacturingImage.alt} fill sizes="(min-width: 1024px) 92rem, 100vw" className={styles.coverImage} />
-            <figcaption><span>{manufacturingImage.label}</span><span>Yancheng manufacturing facility</span></figcaption>
+            <figcaption><span>{manufacturingImage.label}</span><span>Yancheng production site</span></figcaption>
           </figure>
-        </div>
-      </section>
-
-      <section className={styles.workflow} aria-labelledby="workflow-title">
-        <div className={`site-container ${styles.workflowGrid}`}>
-          <SectionHeading eyebrow="How we work" id="workflow-title" title="From part requirement to repeat supply." description="The process stays anchored to the application and the evidence needed to approve a material." />
-          <ol className={styles.workflowList}>
-            {workflow.map(([index, title, description]) => <li key={index}><span>{index}</span><div><h3>{title}</h3><p>{description}</p></div></li>)}
-          </ol>
         </div>
       </section>
 
@@ -201,7 +159,7 @@ export function AboutPageContent({
         <div className={`site-container ${styles.peopleGrid}`}>
           {peopleImage ? <figure className={styles.peopleMedia}><Image src={publicPath(peopleImage.src)} alt={peopleImage.alt} fill sizes="(min-width: 1024px) 42vw, 100vw" className={styles.coverImage} /></figure> : null}
           <div className={styles.peopleCopy}>
-            <SectionHeading eyebrow="Engineering support" id="people-title" title="Engineering communication stays connected to production." description="A material decision moves through technical communication, laboratory review, production coordination and quality documentation—not an isolated sales form." />
+            <SectionHeading eyebrow="Engineering support" id="people-title" title="Integrated laboratory, production and quality." description="The Yancheng team coordinates material testing, production planning and quality documentation for customer projects." />
             <ul>{peopleRoles.map((role) => <li key={role}>{role}</li>)}</ul>
           </div>
           <figure className={styles.labMedia}>
@@ -214,13 +172,13 @@ export function AboutPageContent({
       <section className={styles.credentials} aria-labelledby="overview-credentials-title">
         <div className="site-container">
           <div className={styles.credentialsIntro}>
-            <SectionHeading eyebrow="Quality and compliance" id="overview-credentials-title" title="Supplier qualification evidence, kept concise." description="Company recognition, management-system certificates and material documents are available for project and supplier review." />
+            <SectionHeading eyebrow="Quality and compliance" id="overview-credentials-title" title="Documents for project review and supplier qualification." description="Company qualifications, management-system certificates and material documents are available to support project and supplier review." />
             <div className={styles.documentTags} aria-label="Available material documents">{availableDocuments.map((document) => <span key={document}>{document}</span>)}</div>
           </div>
           <div className={styles.credentialGrid}>
             {qualifications.map((qualification, index) => <article key={qualification.title}><span>0{index + 1}</span><p>{qualification.category}</p><h3>{qualification.title}</h3></article>)}
             <article className={styles.systemsCard}>
-              <span>04</span><p>Management systems</p><h3>Certified operating systems</h3>
+              <span>04</span><p>Management systems</p><h3>Certified management systems</h3>
               <ul>{certifications.map((certificate) => <li key={certificate.standard}><a href={publicPath(certificate.documentHref)} target="_blank" rel="noreferrer">{certificate.standard} <span aria-hidden="true">↗</span></a></li>)}</ul>
             </article>
           </div>
@@ -229,7 +187,7 @@ export function AboutPageContent({
 
       <section className={styles.global} aria-labelledby="global-title">
         <div className={`site-container ${styles.globalGrid}`}>
-          <SectionHeading eyebrow="Global cooperation" id="global-title" title="Material support for international projects." description="International projects and market activity connect the Yancheng operation with the regions listed here." />
+          <SectionHeading eyebrow="Global cooperation" id="global-title" title="International support for material projects." description="Our current projects and market partnerships span the regions listed here." />
           <dl className={styles.routeList}>{exportRoutes.map((route, index) => <div key={route.id}><dt><span>0{index + 1}</span>{route.region}</dt><dd>{route.coverage}</dd></div>)}</dl>
         </div>
       </section>
@@ -240,11 +198,10 @@ export function AboutPageContent({
         data-footer-adjacent="true"
       >
         <div className={`site-container ${styles.finalCtaGrid}`}>
-          <div><p className={styles.eyebrow}>Start a technical conversation</p><h2 id="about-cta-title">Talk to Taiyi Polymer.</h2><p>Share the part, operating conditions, target properties or current grade. We&apos;ll help identify the next practical step.</p></div>
+          <div><p className={styles.eyebrow}>Talk to Taiyi Polymer</p><h2 id="about-cta-title">What support does your project need?</h2><p>Tell us what you need, and we&apos;ll connect you with the appropriate team.</p></div>
           <ul>{inquirySituations.map((situation) => <li key={situation}>{situation}</li>)}</ul>
           <div className={styles.finalCtaActions}>
-            <Button asChild variant="inverse" size="form"><Link href={createContactHref({ source: "about" })}>Discuss a Material Requirement</Link></Button>
-            <Button asChild variant="secondary" size="form"><Link href="/contact">Contact Sales</Link></Button>
+            <Button asChild variant="inverse" size="form"><Link href={createContactHref({ source: "about" })}>Discuss Your Application</Link></Button>
           </div>
         </div>
       </section>

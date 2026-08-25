@@ -1,5 +1,6 @@
 import type { LocalizedUrlSegment } from "./config.ts";
 import { applicationNarrativeLocaleOverrides } from "./applicationNarrativeLocaleOverrides.ts";
+import { aboutLocaleOverrides } from "./aboutLocaleOverrides.ts";
 import { automotiveExpandedLocaleOverrides } from "./automotiveExpandedLocaleOverrides.ts";
 import { componentDetailLocaleOverrides } from "./componentDetailLocaleOverrides.ts";
 
@@ -9,13 +10,18 @@ export const expandedLocaleOverrides: Partial<
   Record<LocalizedUrlSegment, TranslationOverrides>
 > = {
   de: {
+    ...aboutLocaleOverrides.de,
     ...automotiveExpandedLocaleOverrides.de,
     ...applicationNarrativeLocaleOverrides.de,
     ...componentDetailLocaleOverrides.de,
     "IC 周转托盘": "IC-Handling-Trays",
     精密塑料齿轮: "Präzisionszahnräder aus Kunststoff",
-    专注于工程塑料改性材料的制造商:
-      "Hersteller für modifizierte technische Kunststoffe",
+    改性工程塑料制造商:
+      "Hersteller modifizierter technischer Kunststoffe",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。依托盐城制造基地，我们生产以改性 POM 为核心的改性工程塑料，并提供材料测试与批次文件支持。":
+      "Taiyi Polymer ist die internationale Werkstoffmarke von Jiangsu Taiyi Nano Technology Co., Ltd. An unserem Standort in Yancheng fertigen wir modifizierte technische Kunststoffe mit Schwerpunkt auf modifiziertem POM und unterstützen Projekte mit Werkstoffprüfungen und Chargendokumentation.",
+    查看材料范围: "Werkstoffe entdecken",
+    查看制造能力: "Fertigung ansehen",
     从零部件需求到候选牌号评估:
       "Von Bauteilanforderungen zur Bewertung von Kandidatenwerkstofftypen",
     "服务工业材料项目，而不是追求宽泛目录":
@@ -25,7 +31,7 @@ export const expandedLocaleOverrides: Partial<
     支撑试制批次与重复订单的生产规模:
       "Produktionskapazität für Versuchschargen und wiederholte Aufträge",
     从零部件需求到重复供货:
-      "Von Bauteilanforderungen zur wiederholten Lieferung",
+      "Vom Bauteil zur Serienbelieferung",
     "申请 POM 牌号评估": "Bewertung eines POM-Werkstofftyps anfragen",
     供应商准入: "Lieferantenqualifizierung",
     查看供应商准入依据:
@@ -111,12 +117,17 @@ export const expandedLocaleOverrides: Partial<
       "Deutscher materialübergreifender Leitfähigkeits- und Antistatik-Katalog",
   },
   fr: {
+    ...aboutLocaleOverrides.fr,
     ...automotiveExpandedLocaleOverrides.fr,
     ...applicationNarrativeLocaleOverrides.fr,
     ...componentDetailLocaleOverrides.fr,
     "IC 周转托盘": "Plateaux de manutention pour circuits intégrés",
-    专注于工程塑料改性材料的制造商:
-      "Fabricant spécialisé dans la modification des plastiques techniques",
+    改性工程塑料制造商:
+      "Fabricant de plastiques techniques modifiés",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。依托盐城制造基地，我们生产以改性 POM 为核心的改性工程塑料，并提供材料测试与批次文件支持。":
+      "Taiyi Polymer est la marque internationale de matériaux de Jiangsu Taiyi Nano Technology Co., Ltd. Sur notre site de Yancheng, nous fabriquons des plastiques techniques modifiés centrés sur les POM modifiés, avec essais matière et documentation des lots à l’appui.",
+    查看材料范围: "Découvrir nos matériaux",
+    查看制造能力: "Voir notre production",
     从零部件需求到候选牌号评估:
       "Des exigences de la pièce à l’évaluation des grades candidats",
     "服务工业材料项目，而不是追求宽泛目录":
@@ -126,7 +137,7 @@ export const expandedLocaleOverrides: Partial<
     支撑试制批次与重复订单的生产规模:
       "Des capacités de production pour les lots d’essai et les commandes récurrentes",
     从零部件需求到重复供货:
-      "Des exigences de la pièce à l’approvisionnement récurrent",
+      "Des exigences de la pièce à la série",
     "申请 POM 牌号评估": "Demander une étude de grade POM",
     供应商准入: "Qualification fournisseur",
     查看供应商准入依据:
@@ -198,12 +209,17 @@ export const expandedLocaleOverrides: Partial<
       "Catalogue français multimatériaux conducteurs et antistatiques",
   },
   "pt-br": {
+    ...aboutLocaleOverrides["pt-br"],
     ...automotiveExpandedLocaleOverrides["pt-br"],
     ...applicationNarrativeLocaleOverrides["pt-br"],
     ...componentDetailLocaleOverrides["pt-br"],
     "IC 周转托盘": "Bandejas para manuseio de CIs",
-    专注于工程塑料改性材料的制造商:
-      "Fabricante especializado em compostos de plásticos de engenharia",
+    改性工程塑料制造商:
+      "Fabricante de plásticos de engenharia modificados",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。依托盐城制造基地，我们生产以改性 POM 为核心的改性工程塑料，并提供材料测试与批次文件支持。":
+      "A Taiyi Polymer é a marca internacional de materiais da Jiangsu Taiyi Nano Technology Co., Ltd. Em nossa unidade de Yancheng, fabricamos plásticos de engenharia modificados com foco em POM modificado e apoiamos projetos com testes de materiais e documentação de lotes.",
+    查看材料范围: "Conheça nossos materiais",
+    查看制造能力: "Ver nossa produção",
     从零部件需求到候选牌号评估:
       "Dos requisitos da peça à avaliação de graus candidatos",
     "服务工业材料项目，而不是追求宽泛目录":

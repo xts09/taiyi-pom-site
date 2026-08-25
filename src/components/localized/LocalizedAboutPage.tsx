@@ -22,6 +22,18 @@ type LocalizedAboutPageProps = {
   localeSegment: LocalizedUrlSegment;
 };
 
+function keepChineseTechnicalTermsTogether(text: string) {
+  return text.split(/(改性|质量)/g).map((part, index) =>
+    part === "改性" || part === "质量" ? (
+      <span className={styles.unbrokenPhrase} key={`${part}-${index}`}>
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 function SectionHeading({
   eyebrow,
   title,
@@ -36,7 +48,7 @@ function SectionHeading({
   return (
     <header className={styles.sectionHeading}>
       <p className={styles.eyebrow}>{eyebrow}</p>
-      <h2 id={id}>{title}</h2>
+      <h2 id={id}>{keepChineseTechnicalTermsTogether(title)}</h2>
       {description ? <p>{description}</p> : null}
     </header>
   );
@@ -87,7 +99,9 @@ export function LocalizedAboutPage({
         <div className={`site-container ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>{messages.hero.eyebrow}</p>
-            <h1 id="about-title">{messages.hero.title}</h1>
+            <h1 id="about-title">
+              {keepChineseTechnicalTermsTogether(messages.hero.title)}
+            </h1>
             <p className={styles.heroSummary}>{messages.hero.summary}</p>
             <div className={styles.heroActions}>
               <Button asChild variant="inverse" size="form">
@@ -138,28 +152,6 @@ export function LocalizedAboutPage({
         </div>
       </section>
 
-      <section className={styles.story} aria-labelledby="story-title">
-        <div className={`site-container ${styles.storyGrid}`}>
-          <SectionHeading
-            eyebrow={messages.story.eyebrow}
-            id="story-title"
-            title={messages.story.title}
-            description={messages.story.description}
-          />
-          <ol className={styles.timeline}>
-            {messages.story.entries.map((entry) => (
-              <li key={entry.date}>
-                <span>{entry.date}</span>
-                <div>
-                  <h3>{entry.title}</h3>
-                  <p>{entry.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
       <section className={styles.focus} aria-labelledby="focus-title">
         <div className="site-container">
           <SectionHeading
@@ -168,7 +160,7 @@ export function LocalizedAboutPage({
             title={messages.focus.title}
           />
           <div className={styles.focusList}>
-            {messages.focus.areas.map((area) => (
+            {messages.focus.areas.slice(0, 2).map((area) => (
               <Link
                 key={area.index}
                 href={localizedHref(area.href)}
@@ -236,28 +228,6 @@ export function LocalizedAboutPage({
               <span>{messages.manufacturing.facilityLabel}</span>
             </figcaption>
           </figure>
-        </div>
-      </section>
-
-      <section className={styles.workflow} aria-labelledby="workflow-title">
-        <div className={`site-container ${styles.workflowGrid}`}>
-          <SectionHeading
-            eyebrow={messages.workflow.eyebrow}
-            id="workflow-title"
-            title={messages.workflow.title}
-            description={messages.workflow.description}
-          />
-          <ol className={styles.workflowList}>
-            {messages.workflow.steps.map(([index, title, description]) => (
-              <li key={index}>
-                <span>{index}</span>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
         </div>
       </section>
 
@@ -371,7 +341,9 @@ export function LocalizedAboutPage({
         <div className={`site-container ${styles.finalCtaGrid}`}>
           <div>
             <p className={styles.eyebrow}>{messages.finalCta.eyebrow}</p>
-            <h2 id="about-cta-title">{messages.finalCta.title}</h2>
+            <h2 id="about-cta-title">
+              {keepChineseTechnicalTermsTogether(messages.finalCta.title)}
+            </h2>
             <p>{messages.finalCta.body}</p>
           </div>
           <ul>
@@ -387,11 +359,6 @@ export function LocalizedAboutPage({
                 )}
               >
                 {messages.finalCta.primaryAction}
-              </Link>
-            </Button>
-            <Button asChild variant="secondary" size="form">
-              <Link href={localizedHref("/contact")}>
-                {messages.finalCta.secondaryAction}
               </Link>
             </Button>
           </div>
