@@ -7,6 +7,12 @@ export const englishApplicationNarrativeOverrides: Record<string, string> = {
   洗衣机部件: "Washing Machine Components",
   户外设备: "Outdoor Equipment",
   纺织机械: "Textile Machinery",
+  负载与节拍: "Load and cycle time",
+  "喷头、割草机齿轮、线盘和壳体卡扣承受的日照、温差、水尘、冲击与重复运动不同。先明确安装位置、暴露时长、温度范围、载荷、介质和寿命目标，再判断抗冲、耐候、耐磨或定制方向。":
+    "Nozzles, lawn-mower gears, line spools and housing clips face different combinations of sunlight, temperature change, water and dust exposure, impact and repeated motion. Define the installation position, exposure duration, temperature range, load, media and service-life target before comparing impact-resistant, weather-resistant, wear-resistant or custom options.",
+  水尘与介质: "Water, dust and media",
+  "水尘或磨粒进入会改变摩擦副、磨损和运动稳定性":
+    "Water, dust or abrasive-particle ingress can change the mating contact, wear and motion stability",
   雨刮电机齿轮: "Wiper Motor Gear",
   复印机传动齿轮: "Copier Drive Gear",
   精密齿轮: "Precision Gear",

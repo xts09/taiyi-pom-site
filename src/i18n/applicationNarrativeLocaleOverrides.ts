@@ -1,6 +1,11 @@
 export const applicationNarrativeLocaleOverrides = {
   de: {
     水路控制: "Wasserkreislauf-Steuerung",
+    负载与节拍: "Last und Taktzeit",
+    "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
+      "Definieren Sie Förderaufgabe, Last, Taktzeit, Kontaktflächen und Einsatzumgebung, bevor Sie POM-Werkstoffrichtungen und konkrete Werkstofftypen vergleichen.",
+    "以下方向用于建立初步候选，不代表对所有输送线通用适用。具体牌号仍需结合负载、节拍、配合、清洁环境和静电目标确认。":
+      "Die folgenden Richtungen dienen zur Bildung einer ersten Kandidatenauswahl und gelten nicht pauschal für alle Förderlinien. Der konkrete Werkstofftyp ist anhand von Last, Taktzeit, Passungsbedingungen, Reinigungsumgebung und elektrostatischem Ziel zu bestätigen.",
     提交运动部件要求: "Anforderungen für Bewegungsbauteile übermitteln",
     提交输送部件要求: "Anforderungen für Fördertechnik-Bauteile übermitteln",
     提交纺织部件要求: "Anforderungen für Textilmaschinen-Bauteile übermitteln",
@@ -12,6 +17,11 @@ export const applicationNarrativeLocaleOverrides = {
   },
   fr: {
     水路控制: "Composants pour circuits d’eau",
+    负载与节拍: "Charge et cadence",
+    "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
+      "Définissez la tâche de convoyage, la charge, la cadence, les interfaces de contact et l’environnement d’utilisation avant de comparer les orientations POM et les grades précis.",
+    "以下方向用于建立初步候选，不代表对所有输送线通用适用。具体牌号仍需结合负载、节拍、配合、清洁环境和静电目标确认。":
+      "Les orientations ci-dessous servent à établir une première sélection et ne sont pas universellement applicables à toutes les lignes de convoyage. Le grade précis doit être confirmé selon la charge, la cadence, les conditions d’ajustement, l’environnement de nettoyage et l’objectif électrostatique.",
     提交运动部件要求: "Transmettre les exigences de la pièce mobile",
     提交输送部件要求: "Transmettre les exigences du composant de convoyage",
     提交纺织部件要求:
@@ -26,6 +36,11 @@ export const applicationNarrativeLocaleOverrides = {
   },
   "pt-br": {
     水路控制: "Controle de circuitos de água",
+    负载与节拍: "Carga e tempo de ciclo",
+    "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
+      "Defina a tarefa de transporte, a carga, o tempo de ciclo, as interfaces de contato e o ambiente de uso antes de comparar as direções de POM e os graus específicos.",
+    "以下方向用于建立初步候选，不代表对所有输送线通用适用。具体牌号仍需结合负载、节拍、配合、清洁环境和静电目标确认。":
+      "As direções abaixo servem para estabelecer uma seleção inicial e não são universalmente aplicáveis a todas as linhas de transporte. O grau específico deve ser confirmado considerando carga, tempo de ciclo, condições de acoplamento, ambiente de limpeza e objetivo eletrostático.",
     提交运动部件要求: "Enviar requisitos do componente móvel",
     提交输送部件要求: "Enviar requisitos do componente de transporte",
     提交纺织部件要求: "Enviar requisitos do componente de máquina têxtil",

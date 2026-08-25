@@ -836,6 +836,10 @@
     font-size: clamp(2.75rem, 12vw, 4rem);
   }
 
+  .hero .chineseHeroTitle {
+    font-size: clamp(2.25rem, 10.5vw, 3.25rem);
+  }
+
   .heroCopy > p:not(.heroEyebrow) {
     font-size: 0.9375rem;
     line-height: 1.65;

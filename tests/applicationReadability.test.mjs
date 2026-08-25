@@ -135,8 +135,17 @@ test("reviewed Application density rollout removes only family-wide repeated fra
   for (const slug of reviewedSlugs) {
     assert.match(pageSource, new RegExp(`"${slug}"`));
   }
-  assert.match(secondaryNavSource, /subtitle\?: string/);
-  assert.match(secondaryNavSource, /\{subtitle \? \(/);
+  assert.match(secondaryNavSource, /subtitle: string/);
+  assert.doesNotMatch(secondaryNavSource, /subtitle\?: string/);
+  assert.match(pageSource, /subtitle=\{application\.description\}/);
+  assert.match(
+    pageSource,
+    /\{ href: contactHref, label: messages\.hero\.primaryAction \}/,
+  );
+  assert.match(
+    pageSource,
+    /href: technicalDataHref,[\s\S]*label: messages\.hero\.secondaryAction/,
+  );
   assert.match(pageSource, /cardLabel\?: string/);
   assert.match(
     pageSource,

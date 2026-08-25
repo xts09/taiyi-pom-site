@@ -6,6 +6,36 @@ export const aboutLocaleOverrides: Partial<
   Record<LocalizedUrlSegment, AboutTranslationOverrides>
 > = {
   de: {
+    从盐城制造走向国际市场:
+      "Von Yancheng in internationale Märkte",
+    在盐城贯通配方测试与生产:
+      "Rezeptur, Prüfung und Fertigung in Yancheng",
+    "公司从盐城起步，持续围绕注塑零部件所需的耐磨、低摩擦、增强与导电等性能开发改性材料。":
+      "Ausgehend von Yancheng entwickelt das Unternehmen modifizierte Werkstoffe für Spritzgussteile mit Anforderungen an Verschleißfestigkeit, geringe Reibung, Verstärkung und Leitfähigkeit.",
+    "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同，让客户无需在多个外部环节之间反复沟通。":
+      "Rezepturentwicklung, Compoundierung, Werkstoffprüfung und Chargendokumentation werden von einem Team am selben Standort koordiniert, sodass Kunden nicht zwischen mehreren externen Stellen vermitteln müssen.",
+    "以改性 POM 为核心拓展材料能力":
+      "Werkstoffkompetenz mit modifiziertem POM im Mittelpunkt",
+    "改性 POM 是台益长期投入的核心材料，覆盖耐磨、低摩擦、增强与导电等功能方向。PA6、PA66 和 PPA 改性材料进一步补充耐热、刚性与韧性需求。":
+      "Modifiziertes POM ist der langjährige Werkstoffschwerpunkt von Taiyi Polymer und deckt Verschleißfestigkeit, geringe Reibung, Verstärkung und Leitfähigkeit ab. Modifizierte PA6-, PA66- und PPA-Werkstoffe ergänzen das Portfolio für Anforderungen an Wärmebeständigkeit, Steifigkeit und Zähigkeit.",
+    把试制成果转化为稳定供货:
+      "Vom Versuch zur stabilen Serienbelieferung",
+    "15 条双螺杆生产线、32 台检测设备和 25,000 平方米厂区构成盐城基地的制造基础。从试制批次到重复订单，生产、检测和批次文件在同一体系内推进，帮助客户更清楚地控制供货与质量要求。":
+      "15 Doppelschneckenlinien, 32 Prüfgeräte und 25.000 Quadratmeter Werksfläche bilden die Fertigungsbasis in Yancheng. Von Versuchschargen bis zu wiederkehrenden Aufträgen laufen Produktion, Prüfung und Chargendokumentation in einem System zusammen und schaffen klare Liefer- und Qualitätsanforderungen.",
+    "让实验室生产与质量围绕同一项目协作":
+      "Labor, Fertigung und Qualität arbeiten am selben Projekt",
+    "项目需求不会停留在销售端。技术、实验室、生产和质量团队共同参与材料测试、生产安排和质量文件，让问题直接到达负责验证与制造的人。":
+      "Projektanforderungen bleiben nicht im Vertrieb hängen. Technik, Labor, Fertigung und Qualität arbeiten gemeinsam an Prüfung, Produktionsplanung und Dokumentation, damit Fragen direkt die Verantwortlichen für Validierung und Fertigung erreichen.",
+    让项目审核与供应商准入有据可查:
+      "Nachweise für Projektprüfung und Lieferantenfreigabe",
+    "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
+      "Für die Lieferantenqualifizierung reichen Produktdaten allein nicht aus. Taiyi Polymer stellt projektbezogen Unternehmensnachweise, Managementsystem-Zertifikate und Werkstoffdokumente als klare, nachvollziehbare Prüfgrundlage bereit.",
+    从盐城服务全球材料项目:
+      "Werkstoffprojekte weltweit aus Yancheng betreuen",
+    "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":
+      "Taiyi Polymer arbeitet mit Kunden in Zentralasien, Europa, Ostasien und Amerika zusammen. Das Team in Yancheng koordiniert Werkstoffe, Dokumente und Belieferung entsprechend den regionalen Projektanforderungen.",
+    "把零部件应用、使用环境、目标性能、当前材料或文件要求告诉我们。台益会安排相应的技术、生产或质量团队直接跟进。":
+      "Nennen Sie uns Bauteilanwendung, Einsatzbedingungen, Zielwerte, aktuellen Werkstoff oder Dokumentenbedarf. Taiyi Polymer bringt Sie direkt mit dem passenden Technik-, Fertigungs- oder Qualitätsteam zusammen.",
     制造基础: "Fertigungsbasis",
     "自 2003 年扎根盐城制造": "Fertigung in Yancheng seit 2003",
     "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同完成。":
@@ -108,11 +138,11 @@ export const aboutLocaleOverrides: Partial<
     "围绕材料选择、验证与稳定供货开展工作":
       "Werkstoffauswahl, Validierung und verlässliche Serienbelieferung aus einer Hand",
     核心材料: "Kernwerkstoff",
-    "提供面向注塑零部件的耐磨、低摩擦、增强、导电等功能型改性 POM。":
-      "Modifiziertes POM für Spritzgussteile, die Verschleißfestigkeit, geringe Reibung, Verstärkung, Leitfähigkeit oder andere funktionale Eigenschaften erfordern.",
+    "围绕耐磨、低摩擦、增强和导电等关键性能，开发面向精密注塑零部件的功能型改性 POM。":
+      "Funktionale POM-Compounds für Präzisionsspritzgussteile, entwickelt für Verschleißfestigkeit, geringe Reibung, Verstärkung und Leitfähigkeit.",
     补充材料: "Ergänzende Werkstoffe",
-    "补充提供 PA6、PA66 与 PPA 改性材料，覆盖不同的耐热、刚性与韧性需求。":
-      "Ergänzend bieten wir modifizierte PA6-, PA66- und PPA-Werkstoffe für unterschiedliche Anforderungen an Wärmebeständigkeit, Steifigkeit und Zähigkeit.",
+    "PA6、PA66 与 PPA 改性材料拓展耐热、刚性与韧性组合，覆盖更广的工业部件需求。":
+      "Modifizierte PA6-, PA66- und PPA-Werkstoffe erweitern die Kombinationen aus Wärmebeständigkeit, Steifigkeit und Zähigkeit für ein breiteres Spektrum industrieller Bauteile.",
     选材阶段: "Werkstoffauswahl",
     "候选牌号筛选始于零部件功能、使用条件、加工限制和验证要求。":
       "Die Auswahl geeigneter Kandidaten beginnt mit Bauteilfunktion, Einsatzbedingungen, Verarbeitungsgrenzen und Validierungsanforderungen.",
@@ -143,6 +173,36 @@ export const aboutLocaleOverrides: Partial<
       "Heute unterstützt Taiyi Polymer internationale Projekte mit modifiziertem POM und ausgewählten technischen Kunststoffcompounds.",
   },
   fr: {
+    从盐城制造走向国际市场:
+      "De Yancheng à l’international",
+    在盐城贯通配方测试与生产:
+      "Formulation, essais et production réunis à Yancheng",
+    "公司从盐城起步，持续围绕注塑零部件所需的耐磨、低摩擦、增强与导电等性能开发改性材料。":
+      "Depuis Yancheng, l’entreprise développe des matériaux modifiés répondant aux besoins des pièces injectées en résistance à l’usure, faible frottement, renforcement et conductivité.",
+    "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同，让客户无需在多个外部环节之间反复沟通。":
+      "Le développement des formulations, le compoundage, les essais matière et la documentation des lots sont coordonnés par une même équipe sur le même site, sans multiplier les interlocuteurs externes.",
+    "以改性 POM 为核心拓展材料能力":
+      "Une expertise matière centrée sur les POM modifiés",
+    "改性 POM 是台益长期投入的核心材料，覆盖耐磨、低摩擦、增强与导电等功能方向。PA6、PA66 和 PPA 改性材料进一步补充耐热、刚性与韧性需求。":
+      "Les POM modifiés sont au cœur de l’expertise développée par Taiyi Polymer dans la durée, pour l’usure, le faible frottement, le renforcement et la conductivité. Les compounds PA6, PA66 et PPA complètent cette gamme pour les besoins de résistance thermique, rigidité et ténacité.",
+    把试制成果转化为稳定供货:
+      "Des essais à l’approvisionnement régulier",
+    "15 条双螺杆生产线、32 台检测设备和 25,000 平方米厂区构成盐城基地的制造基础。从试制批次到重复订单，生产、检测和批次文件在同一体系内推进，帮助客户更清楚地控制供货与质量要求。":
+      "Quinze lignes bivis, 32 équipements d’essai et un site de 25 000 mètres carrés constituent la base industrielle de Yancheng. Des lots d’essai aux commandes récurrentes, production, contrôles et documentation avancent dans un même système pour clarifier les exigences de qualité et d’approvisionnement.",
+    "让实验室生产与质量围绕同一项目协作":
+      "Laboratoire, production et qualité réunis",
+    "项目需求不会停留在销售端。技术、实验室、生产和质量团队共同参与材料测试、生产安排和质量文件，让问题直接到达负责验证与制造的人。":
+      "Les exigences du projet ne s’arrêtent pas au service commercial. Les équipes techniques, laboratoire, production et qualité participent ensemble aux essais, à la planification et aux documents, afin que les questions arrivent directement aux responsables de la validation et de la fabrication.",
+    让项目审核与供应商准入有据可查:
+      "Les preuves pour qualifier un fournisseur",
+    "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
+      "La qualification fournisseur exige plus que des données produit. Taiyi Polymer fournit selon le projet les qualifications de l’entreprise, les certificats de systèmes de management et les documents matière nécessaires à une revue claire et traçable.",
+    从盐城服务全球材料项目:
+      "Des projets matière internationaux servis depuis Yancheng",
+    "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":
+      "Taiyi Polymer travaille avec des clients sur plusieurs marchés d’Asie centrale, d’Europe, d’Asie de l’Est et des Amériques. L’équipe de Yancheng coordonne matériaux, documents et approvisionnement selon les exigences de chaque région.",
+    "把零部件应用、使用环境、目标性能、当前材料或文件要求告诉我们。台益会安排相应的技术、生产或质量团队直接跟进。":
+      "Indiquez l’application de la pièce, son environnement, les performances visées, le matériau actuel ou les documents requis. Taiyi Polymer mobilisera directement l’équipe technique, production ou qualité appropriée.",
     制造基础: "Base de production",
     "自 2003 年扎根盐城制造": "Production à Yancheng depuis 2003",
     "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同完成。":
@@ -151,7 +211,7 @@ export const aboutLocaleOverrides: Partial<
     "以改性 POM 为核心的材料体系":
       "Un portefeuille centré sur les POM modifiés",
     技术沟通直达实验室与生产:
-      "Un échange technique direct avec le laboratoire et la production",
+      "Échange direct avec laboratoire et production",
     "项目需求由技术、实验室、生产和质量团队共同响应。":
       "Les équipes techniques, laboratoire, production et qualité répondent ensemble aux exigences du projet.",
     联系台益: "Contacter Taiyi Polymer",
@@ -246,11 +306,11 @@ export const aboutLocaleOverrides: Partial<
     "围绕材料选择、验证与稳定供货开展工作":
       "Des matériaux ciblés, de la sélection à la série",
     核心材料: "Matériau principal",
-    "提供面向注塑零部件的耐磨、低摩擦、增强、导电等功能型改性 POM。":
-      "Des POM modifiés pour les pièces injectées qui exigent résistance à l’usure, faible frottement, renforcement, conductivité ou autres propriétés fonctionnelles.",
+    "围绕耐磨、低摩擦、增强和导电等关键性能，开发面向精密注塑零部件的功能型改性 POM。":
+      "Des POM fonctionnels développés pour les pièces injectées de précision exigeant résistance à l’usure, faible frottement, renforcement et conductivité.",
     补充材料: "Matériaux complémentaires",
-    "补充提供 PA6、PA66 与 PPA 改性材料，覆盖不同的耐热、刚性与韧性需求。":
-      "Nous proposons également des compounds PA6, PA66 et PPA pour différents besoins de résistance thermique, de rigidité et de ténacité.",
+    "PA6、PA66 与 PPA 改性材料拓展耐热、刚性与韧性组合，覆盖更广的工业部件需求。":
+      "Les compounds PA6, PA66 et PPA élargissent les combinaisons de résistance thermique, de rigidité et de ténacité pour davantage de pièces industrielles.",
     选材阶段: "Sélection du matériau",
     "候选牌号筛选始于零部件功能、使用条件、加工限制和验证要求。":
       "La sélection des candidats commence par la fonction de la pièce, les conditions d’utilisation, les contraintes de transformation et les exigences de validation.",
@@ -281,6 +341,36 @@ export const aboutLocaleOverrides: Partial<
       "Aujourd’hui, Taiyi Polymer accompagne des projets internationaux avec des POM modifiés et une sélection de compounds de plastiques techniques.",
   },
   "pt-br": {
+    从盐城制造走向国际市场:
+      "De Yancheng para os mercados internacionais",
+    在盐城贯通配方测试与生产:
+      "Formulação, testes e produção integrados em Yancheng",
+    "公司从盐城起步，持续围绕注塑零部件所需的耐磨、低摩擦、增强与导电等性能开发改性材料。":
+      "A partir de Yancheng, a empresa desenvolve materiais modificados para peças injetadas que exigem resistência ao desgaste, baixo atrito, reforço e condutividade.",
+    "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同，让客户无需在多个外部环节之间反复沟通。":
+      "Desenvolvimento de formulações, compoundagem, testes de materiais e documentação de lotes são coordenados por uma única equipe na mesma unidade, sem exigir que o cliente articule vários fornecedores externos.",
+    "以改性 POM 为核心拓展材料能力":
+      "Competência em materiais com foco em POM modificado",
+    "改性 POM 是台益长期投入的核心材料，覆盖耐磨、低摩擦、增强与导电等功能方向。PA6、PA66 和 PPA 改性材料进一步补充耐热、刚性与韧性需求。":
+      "O POM modificado é o principal foco de longo prazo da Taiyi Polymer, abrangendo desgaste, baixo atrito, reforço e condutividade. Compostos modificados de PA6, PA66 e PPA complementam o portfólio para requisitos de resistência térmica, rigidez e tenacidade.",
+    把试制成果转化为稳定供货:
+      "Dos testes de produção ao fornecimento estável",
+    "15 条双螺杆生产线、32 台检测设备和 25,000 平方米厂区构成盐城基地的制造基础。从试制批次到重复订单，生产、检测和批次文件在同一体系内推进，帮助客户更清楚地控制供货与质量要求。":
+      "Quinze linhas de dupla rosca, 32 equipamentos de teste e uma área de 25.000 metros quadrados formam a base industrial de Yancheng. Dos lotes piloto aos pedidos recorrentes, produção, testes e documentação avançam no mesmo sistema para tornar claros os requisitos de fornecimento e qualidade.",
+    "让实验室生产与质量围绕同一项目协作":
+      "Laboratório, produção e qualidade no mesmo projeto",
+    "项目需求不会停留在销售端。技术、实验室、生产和质量团队共同参与材料测试、生产安排和质量文件，让问题直接到达负责验证与制造的人。":
+      "Os requisitos do projeto não ficam restritos à equipe comercial. As equipes técnica, de laboratório, produção e qualidade participam dos testes, do planejamento e dos documentos para que as questões cheguem diretamente aos responsáveis pela validação e fabricação.",
+    让项目审核与供应商准入有据可查:
+      "Evidências para qualificar fornecedores",
+    "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
+      "A qualificação de fornecedores exige mais do que dados de produto. A Taiyi Polymer fornece, conforme o projeto, qualificações empresariais, certificados de sistemas de gestão e documentos de materiais para uma análise clara e rastreável.",
+    从盐城服务全球材料项目:
+      "Projetos globais de materiais atendidos a partir de Yancheng",
+    "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":
+      "A Taiyi Polymer trabalha com clientes em mercados da Ásia Central, Europa, Ásia Oriental e Américas. A equipe de Yancheng coordena materiais, documentos e fornecimento conforme os requisitos de cada região.",
+    "把零部件应用、使用环境、目标性能、当前材料或文件要求告诉我们。台益会安排相应的技术、生产或质量团队直接跟进。":
+      "Informe a aplicação da peça, o ambiente de uso, o desempenho desejado, o material atual ou os documentos necessários. A Taiyi Polymer envolverá diretamente a equipe técnica, de produção ou qualidade adequada.",
     制造基础: "Base de produção",
     "自 2003 年扎根盐城制造": "Produção em Yancheng desde 2003",
     "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同完成。":
@@ -384,11 +474,11 @@ export const aboutLocaleOverrides: Partial<
     "围绕材料选择、验证与稳定供货开展工作":
       "Materiais direcionados, da seleção ao fornecimento recorrente",
     核心材料: "Material principal",
-    "提供面向注塑零部件的耐磨、低摩擦、增强、导电等功能型改性 POM。":
-      "POM modificado para peças injetadas que exigem resistência ao desgaste, baixo atrito, reforço, condutividade ou outras propriedades funcionais.",
+    "围绕耐磨、低摩擦、增强和导电等关键性能，开发面向精密注塑零部件的功能型改性 POM。":
+      "Compostos funcionais de POM desenvolvidos para peças injetadas de precisão que exigem resistência ao desgaste, baixo atrito, reforço e condutividade.",
     补充材料: "Materiais complementares",
-    "补充提供 PA6、PA66 与 PPA 改性材料，覆盖不同的耐热、刚性与韧性需求。":
-      "Também oferecemos compostos modificados de PA6, PA66 e PPA para diferentes requisitos de resistência térmica, rigidez e tenacidade.",
+    "PA6、PA66 与 PPA 改性材料拓展耐热、刚性与韧性组合，覆盖更广的工业部件需求。":
+      "Compostos modificados de PA6, PA66 e PPA ampliam as combinações de resistência térmica, rigidez e tenacidade para uma variedade maior de peças industriais.",
     选材阶段: "Seleção do material",
     "候选牌号筛选始于零部件功能、使用条件、加工限制和验证要求。":
       "A seleção dos candidatos começa pela função da peça, pelas condições de uso, pelas restrições de processamento e pelos requisitos de validação.",

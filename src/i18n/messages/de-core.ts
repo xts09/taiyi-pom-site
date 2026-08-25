@@ -218,7 +218,7 @@ const messages = {
     },
     inquiry: {
       eyebrow: "Anwendungsprüfung",
-      title: "Bauteilanforderungen teilen und die passende Werkstoffrichtung finden",
+      title: "Teilen Sie uns Ihre Bauteilanforderungen mit",
       body:
         "Mit den folgenden Angaben grenzen wir Werkstoffrichtungen ein und klären verfügbare Typendaten, Dokumente und Muster.",
       checklistLabel: "Hilfreiche Ausgangsdaten",

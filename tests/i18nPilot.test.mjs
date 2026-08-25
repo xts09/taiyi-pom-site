@@ -10,9 +10,11 @@ import en from "../src/i18n/messages/en.ts";
 import fr from "../src/i18n/messages/fr.ts";
 import ptBR from "../src/i18n/messages/pt-BR.ts";
 import zhCN from "../src/i18n/messages/zh-CN.ts";
+import englishApplicationNarrative from "../src/i18n/generated/application-narrative-en.json" with { type: "json" };
 import deExpanded from "../src/i18n/generated/de.json" with { type: "json" };
 import frExpanded from "../src/i18n/generated/fr.json" with { type: "json" };
 import ptBRExpanded from "../src/i18n/generated/pt-BR.json" with { type: "json" };
+import { translateEnglishApplicationText } from "../src/i18n/englishApplicationNarrative.ts";
 import {
   hasExpandedLocaleDictionary,
   translateExpandedText,
@@ -144,6 +146,11 @@ import {
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const readProjectFile = (path) =>
   readFileSync(resolve(projectRoot, path), "utf8");
+const catalogGradeIdentifiers = new Set(
+  JSON.parse(readProjectFile("src/generated/catalog.json"))
+    .map(({ grade }) => grade)
+    .filter(Boolean),
+);
 const allLocalizedSegments = ["de", "fr", "pt-br", "zh"];
 const expectedLocalizedAlternates = (sourcePath) => ({
   en: sourcePath,
@@ -181,6 +188,11 @@ const collectUniqueStrings = (value, strings = new Set()) => {
 
   return strings;
 };
+
+const collectTechnicalIdentifiers = (value) =>
+  (value.match(/\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*\b/g) ?? [])
+    .filter((identifier) => catalogGradeIdentifiers.has(identifier))
+    .sort();
 
 test("defines only the approved localized routes", () => {
   assert.deepEqual(
@@ -260,7 +272,8 @@ test("all localized dictionaries match the complete shared English message shape
   for (const messages of [en, de, fr, ptBR, zhCN]) {
     assert.equal(messages.Home.taskFirst?.entry.items.length, 3);
     assert.equal(messages.Home.taskFirst?.core.groups.length, 4);
-    assert.equal(messages.Home.taskFirst?.applications.items.length, 6);
+    assert.equal(messages.Home.taskFirst?.components.items.length, 6);
+    assert.equal(messages.Home.taskFirst?.applications.items.length, 8);
     assert.equal(messages.Home.taskFirst?.process.steps.length, 3);
     assert.equal(messages.Home.taskFirst?.collaboration.items.length, 3);
     assert.doesNotMatch(
@@ -274,10 +287,23 @@ test("all localized dictionaries match the complete shared English message shape
       en.Home.taskFirst?.collaboration.title,
     );
   }
-  assert.equal(zhCN.Home.taskFirst?.applications.items.length, 6);
+  assert.deepEqual(
+    zhCN.Home.taskFirst?.components.items.map(({ title }) => title),
+    chineseComponentSolutions.map(({ title }) => title),
+  );
+  assert.equal(zhCN.Home.taskFirst?.applications.items.length, 8);
   assert.deepEqual(
     zhCN.Home.taskFirst?.applications.items.map(({ title }) => title),
-    chineseComponentSolutions.map(({ title }) => title),
+    [
+      "汽车",
+      "电子电气",
+      "输送与自动化",
+      "运动",
+      "水路控制",
+      "洗衣机",
+      "户外设备",
+      "纺织机械",
+    ],
   );
 });
 
@@ -325,6 +351,110 @@ test("expanded locale dictionaries are complete and do not expose Chinese fallba
       translateExpandedText("PA6 牌号详情是否已有中文？", localeSegment),
       /中文|Chinese|chinois|chinês|chinesisch/i,
     );
+  }
+});
+
+test("expanded translations preserve high-risk engineering meaning", () => {
+  const expandedSources = [
+    ...new Set([
+      ...Object.keys(deExpanded),
+      ...Object.keys(englishApplicationNarrative),
+    ]),
+  ];
+  const localeChecks = {
+    de: {
+      waterDust: /Wasser[\s\S]*Staub/i,
+      pitchErrors: /Tonhöhe|Tonlage|Neigung|Steigung|Pech/i,
+      flameRatingError: /Werkstofftyp[^.]{0,30}Flamm/i,
+    },
+    fr: {
+      waterDust: /eau[\s\S]*poussière/i,
+      pitchErrors: /\bpoix\b/i,
+      flameRatingError: /grade (?:de )?(?:flamme|ignifuge)/i,
+    },
+    "pt-br": {
+      waterDust: /água[\s\S]*poeira/i,
+      pitchErrors: /inclinação|\bpitch\b/i,
+      flameRatingError: /grau (?:de )?(?:chama|retardante de chama)/i,
+    },
+  };
+
+  for (const [localeSegment, checks] of Object.entries(localeChecks)) {
+    for (const source of expandedSources) {
+      const translated = translateExpandedText(source, localeSegment);
+
+      assert.deepEqual(
+        collectTechnicalIdentifiers(translated),
+        collectTechnicalIdentifiers(source),
+        `${localeSegment} changed a technical identifier in: ${source}`,
+      );
+
+      if (source.includes("PLATFORM")) {
+        assert.match(
+          translated,
+          /\bPLATFORM\b/,
+          `${localeSegment} translated the PLATFORM brand in: ${source}`,
+        );
+      }
+
+      if (source.includes("当前失效")) {
+        assert.doesNotMatch(
+          translated,
+          /Stromausfall|défaillance de courant|falha de corrente/i,
+          `${localeSegment} turned a current failure mode into an electrical failure: ${source}`,
+        );
+      }
+
+      if (source.includes("水尘")) {
+        assert.match(
+          translated,
+          checks.waterDust,
+          `${localeSegment} dropped water or dust exposure from: ${source}`,
+        );
+      }
+
+      if (source.includes("节距")) {
+        assert.doesNotMatch(
+          translated,
+          checks.pitchErrors,
+          `${localeSegment} mistranslated mechanical pitch in: ${source}`,
+        );
+      }
+
+      if (source.includes("阻燃等级")) {
+        assert.doesNotMatch(
+          translated,
+          checks.flameRatingError,
+          `${localeSegment} conflated a flame rating with a material grade: ${source}`,
+        );
+      }
+    }
+  }
+
+  for (const source of Object.keys(englishApplicationNarrative)) {
+    const translated = translateEnglishApplicationText(source);
+
+    assert.deepEqual(
+      collectTechnicalIdentifiers(translated),
+      collectTechnicalIdentifiers(source),
+      `English changed a technical identifier in: ${source}`,
+    );
+
+    if (source.includes("水尘")) {
+      assert.match(
+        translated,
+        /water[\s\S]*dust/i,
+        `English dropped water or dust exposure from: ${source}`,
+      );
+    }
+
+    if (source.includes("节拍")) {
+      assert.doesNotMatch(
+        translated,
+        /\bbeat\b/i,
+        `English mistranslated production cycle time in: ${source}`,
+      );
+    }
   }
 });
 

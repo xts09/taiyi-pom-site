@@ -197,7 +197,7 @@ const messages = {
     },
     inquiry: {
       eyebrow: "应用评估",
-      title: "告诉我们零件需求，一起确定材料方向",
+      title: "告诉我们零部件需求",
       body: "提供以下信息，我们会据此筛选材料方向，并说明可提供的牌号数据、文件和样品。",
       checklistLabel: "可先提供",
       checklist: [
@@ -234,19 +234,36 @@ const messages = {
             title: "我已经有参考牌号",
             description:
               "从参考牌号、材料类型或性能关键词开始，查找已列牌号、TDS 和技术文件。",
-            action: "查找牌号与 TDS",
+            action: "查找牌号数据与 TDS",
           },
         ],
       },
       core: {
-        eyebrow: "核心产品",
+        eyebrow: "产品",
         title: "改性 POM，面向精密零部件的核心材料",
-        body: "提供基础与高流动、耐磨低摩擦、增强、抗冲、耐候、导电与抗静电 POM，面向齿轮、轴套、滑动件、结构件和电气功能件。",
-        action: "查看 POM 材料族",
+        body: "POM 兼具均衡的机械性能、耐磨性、自润滑性与尺寸稳定性。它最早被商业化用于替代齿轮、螺钉和轴承等原本由金属制造的机械部件。今天，它的应用已从拉链、牙刷等日常用品，延伸至车门锁与锁扣、安全带锁止机构和燃油系统部件等汽车组件。PLATFORM® 通过改性把这款成熟材料继续向前推进——面向那些不容许性能波动的零件，也面向那些希望从首次试模到规模量产始终保持精度与稳定的制造者。",
+        action: "了解更多",
         materialImageAlt: "用于改性 POM 配混与牌号开发的本色 POM 原料颗粒。",
         materialImageCaption: "POM 原料颗粒",
         directionsAria: "改性 POM 材料方向与具体材料族",
         panelLabel: "选材重点",
+        technicalTitle: "POM 技术资料",
+        technicalLinks: [
+          {
+            title: "标准成型条件",
+            description: "查看材料处理、试模准备和具体牌号的加工要点。",
+          },
+          {
+            title: "成型技术",
+            description: "进入注塑、工艺控制与问题排查资料。",
+          },
+          {
+            title: "牌号组成与目录",
+            description: "查看 POM 材料族与当前已收录牌号。",
+          },
+        ],
+        gradeNote: "未找到所需牌号？可查询当前牌号数据，或与我们讨论具体需求。",
+        contactAction: "讨论您的应用",
         reviewLabel: "先确认",
         materialsLabel: "材料入口",
         groups: [
@@ -313,16 +330,15 @@ const messages = {
         supportingLinks: ["基础 POM 树脂", "PA6", "PA66", "PPA"],
         allFamiliesAction: "查看全部材料系列",
       },
-      applications: {
-        eyebrow: "零部件方案",
-        title: "从零部件出发，更快找到材料方向",
+      components: {
+        eyebrow: "零部件解决方案",
+        title: "为每个零部件找到合适材料",
         body: "按零部件查看关键工况和选材重点。",
-        action: "查看全部零部件路径",
+        action: "查看全部部件",
         items: [
           {
             title: "精密塑料齿轮",
-            description:
-              "按扭矩、齿形、转速、配对材料、润滑和精度目标筛选。",
+            description: "按扭矩、齿形、转速、配对材料、润滑和精度目标筛选。",
             imageAlt: "用于材料筛选说明的精密塑料齿轮和运动部件。",
           },
           {
@@ -357,6 +373,62 @@ const messages = {
           },
         ],
       },
+      applications: {
+        eyebrow: "应用领域",
+        title: "按应用场景查看材料方向",
+        body: "按使用场景查看材料方向和选材重点。",
+        action: "查看全部应用",
+        items: [
+          {
+            title: "汽车",
+            description:
+              "面向车门、座椅、燃油系统、雨刮器、控制盒及车内机构的功能性注塑零部件。",
+            imageAlt: "包含汽车功能模块的整车装配线",
+          },
+          {
+            title: "电子电气",
+            description:
+              "面向电气连接、绝缘、控制与执行机构的精密注塑零部件。",
+            imageAlt: "包含功能性电气模块的电子装配工位",
+          },
+          {
+            title: "输送与自动化",
+            description:
+              "用于洁净自动化输送的塑料链板、输送导轨、滚轮及搬运部件。",
+            imageAlt: "采用模块化链板的洁净自动化输送线",
+          },
+          {
+            title: "运动",
+            description:
+              "用于传动、导向与低摩擦运动的齿轮、滚轮、轴套、套筒及滑动部件。",
+            imageAlt: "包含齿轮和注塑运动部件的工业运动模块",
+          },
+          {
+            title: "水路控制",
+            description:
+              "用于阀门、卫浴、泵及水路控制系统的注塑部件。",
+            imageAlt: "包含阀门与流路模块的洁净水路控制装配线",
+          },
+          {
+            title: "洗衣机",
+            description:
+              "用于洗衣机滚筒传动、水路、排水、阀门及低摩擦运动机构的功能性注塑部件。",
+            imageAlt: "包含注塑传动、排水与门锁部件的滚筒洗衣机机构",
+          },
+          {
+            title: "户外设备",
+            description:
+              "用于园林设备、喷灌装置、户外机构及耐用设备总成的户外暴露注塑部件。",
+            imageAlt: "包含园林机械模块的户外设备装配线",
+          },
+          {
+            title: "纺织机械",
+            description:
+              "用于纺织机械以及纱线或织物输送系统的耐磨导向、运动与低收缩注塑部件。",
+            imageAlt: "包含纱线输送与导向部件的纺织机械生产线",
+          },
+        ],
+      },
       process: {
         eyebrow: "合作流程",
         title: "三步缩小候选牌号",
@@ -369,8 +441,7 @@ const messages = {
           },
           {
             title: "缩小材料范围",
-            description:
-              "结合材料方向和牌号数据，形成候选清单。",
+            description: "结合材料方向和牌号数据，形成候选清单。",
           },
           {
             title: "进入项目验证",
@@ -380,7 +451,7 @@ const messages = {
       },
       collaboration: {
         eyebrow: "项目协作",
-        title: "从选材到试料，项目协作更直接",
+        title: "从选材到试料的直接支持",
         body: "",
         itemsAria: "台益的三种项目协作方式",
         items: [
@@ -400,8 +471,8 @@ const messages = {
         ],
       },
       proof: {
-        eyebrow: "制造与验证依据",
-        title: "制造与验证，让选材更有依据",
+        eyebrow: "制造与验证",
+        title: "为每一次材料决策提供依据",
         body: "自有生产、厂内检测和公开管理体系证书。",
         factoryImageAlt: "台益盐城生产基地内的双螺杆挤出生产线。",
         factoryImageCaption: "盐城生产基地 · 双螺杆挤出车间",

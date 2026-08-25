@@ -196,6 +196,13 @@ export type HomeTaskFirstMessages = {
     materialImageCaption: string;
     directionsAria: string;
     panelLabel: string;
+    technicalTitle: string;
+    technicalLinks: ReadonlyArray<{
+      title: string;
+      description: string;
+    }>;
+    gradeNote: string;
+    contactAction: string;
     reviewLabel: string;
     materialsLabel: string;
     groups: ReadonlyArray<{
@@ -212,6 +219,17 @@ export type HomeTaskFirstMessages = {
     supportingBody: string;
     supportingLinks: readonly string[];
     allFamiliesAction: string;
+  };
+  components: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    action: string;
+    items: ReadonlyArray<{
+      title: string;
+      description: string;
+      imageAlt: string;
+    }>;
   };
   applications: {
     eyebrow: string;

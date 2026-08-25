@@ -130,7 +130,7 @@ export function AboutPageContent({
 
       <section className={styles.focus} aria-labelledby="focus-title">
         <div className="site-container">
-          <SectionHeading eyebrow="Material focus" id="focus-title" title="Modified POM at the core of a focused material range." />
+          <SectionHeading eyebrow="Material focus" id="focus-title" title="Modified POM at the core of a focused material range." description="We concentrate on modified POM, supported by selected PA6, PA66 and PPA compounds for higher heat, stiffness and toughness requirements. Our range stays focused on performance that matters in industrial components." />
           <div className={styles.focusList}>
             {focusAreas.map((area) => (
               <Link key={area.index} href={area.href} className={styles.focusRow}>

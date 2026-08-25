@@ -23,8 +23,13 @@ type LocalizedAboutPageProps = {
 };
 
 function keepChineseTechnicalTermsTogether(text: string) {
-  return text.split(/(改性|质量)/g).map((part, index) =>
-    part === "改性" || part === "质量" ? (
+  const protectedTerms =
+    /(供应商准入|材料测试|稳定生产|批次文件|制造体系|配方测试|重复供货|质量文件|工程塑料|改性|质量)/g;
+  const isProtectedTerm =
+    /^(供应商准入|材料测试|稳定生产|批次文件|制造体系|配方测试|重复供货|质量文件|工程塑料|改性|质量)$/;
+
+  return text.split(protectedTerms).map((part, index) =>
+    isProtectedTerm.test(part) ? (
       <span className={styles.unbrokenPhrase} key={`${part}-${index}`}>
         {part}
       </span>
@@ -32,6 +37,23 @@ function keepChineseTechnicalTermsTogether(text: string) {
       part
     ),
   );
+}
+
+function renderHeroTitle(text: string, localeSegment: LocalizedUrlSegment) {
+  if (
+    localeSegment === "zh" &&
+    text === "聚焦改性 POM 的工程塑料制造商"
+  ) {
+    return (
+      <>
+        <span className={styles.unbrokenPhrase}>聚焦改性 POM 的</span>
+        <wbr />
+        <span className={styles.unbrokenPhrase}>工程塑料制造商</span>
+      </>
+    );
+  }
+
+  return keepChineseTechnicalTermsTogether(text);
 }
 
 function SectionHeading({
@@ -99,10 +121,15 @@ export function LocalizedAboutPage({
         <div className={`site-container ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>{messages.hero.eyebrow}</p>
-            <h1 id="about-title">
-              {keepChineseTechnicalTermsTogether(messages.hero.title)}
+            <h1
+              className={localeSegment === "zh" ? styles.chineseHeroTitle : undefined}
+              id="about-title"
+            >
+              {renderHeroTitle(messages.hero.title, localeSegment)}
             </h1>
-            <p className={styles.heroSummary}>{messages.hero.summary}</p>
+            <p className={styles.heroSummary}>
+              {keepChineseTechnicalTermsTogether(messages.hero.summary)}
+            </p>
             <div className={styles.heroActions}>
               <Button asChild variant="inverse" size="form">
                 <Link href={localizedHref("/products")}>
@@ -137,6 +164,7 @@ export function LocalizedAboutPage({
             />
             <div className={styles.prose}>
               <p>{messages.identity.body}</p>
+              <p>{messages.identity.bodySecondary}</p>
             </div>
           </div>
           <figure className={styles.identityMedia}>
@@ -158,6 +186,7 @@ export function LocalizedAboutPage({
             eyebrow={messages.focus.eyebrow}
             id="focus-title"
             title={messages.focus.title}
+            description={messages.focus.description}
           />
           <div className={styles.focusList}>
             {messages.focus.areas.slice(0, 2).map((area) => (

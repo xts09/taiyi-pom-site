@@ -607,29 +607,16 @@ export function LocalizedApplicationDetailPage({
 
         {application.heroImage ? (
           <SecondarySectionNav
-            actions={
-              usesReviewedApplicationDensity
-                ? [
-                    {
-                      href: technicalDataHref,
-                      label: messages.hero.secondaryAction,
-                    },
-                  ]
-                : [
-                    { href: contactHref, label: messages.hero.primaryAction },
-                    {
-                      href: technicalDataHref,
-                      label: messages.hero.secondaryAction,
-                    },
-                  ]
-            }
+            actions={[
+              { href: contactHref, label: messages.hero.primaryAction },
+              {
+                href: technicalDataHref,
+                label: messages.hero.secondaryAction,
+              },
+            ]}
             ariaLabel={messages.navigation.ariaLabel}
             mobileMenuLabel={messages.navigation.mobileMenuLabel}
-            subtitle={
-              usesReviewedApplicationDensity
-                ? undefined
-                : application.description
-            }
+            subtitle={application.description}
             tabs={sectionTabs}
             tabsAriaLabel={messages.navigation.tabsAriaLabel}
             title={application.title}

@@ -16,10 +16,10 @@ export const expandedLocaleOverrides: Partial<
     ...componentDetailLocaleOverrides.de,
     "IC 周转托盘": "IC-Handling-Trays",
     精密塑料齿轮: "Präzisionszahnräder aus Kunststoff",
-    改性工程塑料制造商:
-      "Hersteller modifizierter technischer Kunststoffe",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。依托盐城制造基地，我们生产以改性 POM 为核心的改性工程塑料，并提供材料测试与批次文件支持。":
-      "Taiyi Polymer ist die internationale Werkstoffmarke von Jiangsu Taiyi Nano Technology Co., Ltd. An unserem Standort in Yancheng fertigen wir modifizierte technische Kunststoffe mit Schwerpunkt auf modifiziertem POM und unterstützen Projekte mit Werkstoffprüfungen und Chargendokumentation.",
+    "聚焦改性 POM 的工程塑料制造商":
+      "Hersteller für modifiziertes POM",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造以改性 POM 为核心的工程塑料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "Taiyi Polymer ist die internationale Werkstoffmarke von Jiangsu Taiyi Nano Technology Co., Ltd. Seit 2003 entwickeln und fertigen wir in Yancheng technische Kunststoffe mit Schwerpunkt auf modifiziertem POM und bündeln Werkstoffprüfung, stabile Produktion und Chargendokumentation in einem Fertigungssystem.",
     查看材料范围: "Werkstoffe entdecken",
     查看制造能力: "Fertigung ansehen",
     从零部件需求到候选牌号评估:
@@ -122,10 +122,16 @@ export const expandedLocaleOverrides: Partial<
     ...applicationNarrativeLocaleOverrides.fr,
     ...componentDetailLocaleOverrides.fr,
     "IC 周转托盘": "Plateaux de manutention pour circuits intégrés",
-    改性工程塑料制造商:
-      "Fabricant de plastiques techniques modifiés",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。依托盐城制造基地，我们生产以改性 POM 为核心的改性工程塑料，并提供材料测试与批次文件支持。":
-      "Taiyi Polymer est la marque internationale de matériaux de Jiangsu Taiyi Nano Technology Co., Ltd. Sur notre site de Yancheng, nous fabriquons des plastiques techniques modifiés centrés sur les POM modifiés, avec essais matière et documentation des lots à l’appui.",
+    "准备 EAG108U 牌号评估": "Préparer l’évaluation du grade EAG108U",
+    "准备 EAG130H 牌号评估": "Préparer l’évaluation du grade EAG130H",
+    "准备 EAG140U 牌号评估": "Préparer l’évaluation du grade EAG140U",
+    "准备 EAG230 牌号评估": "Préparer l’évaluation du grade EAG230",
+    "准备 EAI120 牌号评估": "Préparer l’évaluation du grade EAI120",
+    "准备 EAM140A 牌号评估": "Préparer l’évaluation du grade EAM140A",
+    "聚焦改性 POM 的工程塑料制造商":
+      "Fabricant de POM modifiés",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造以改性 POM 为核心的工程塑料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "Taiyi Polymer est la marque internationale de matériaux de Jiangsu Taiyi Nano Technology Co., Ltd. Depuis 2003, nous développons et fabriquons à Yancheng des plastiques techniques centrés sur les POM modifiés, en intégrant essais matière, production stable et documentation des lots dans un même système industriel.",
     查看材料范围: "Découvrir nos matériaux",
     查看制造能力: "Voir notre production",
     从零部件需求到候选牌号评估:
@@ -214,10 +220,12 @@ export const expandedLocaleOverrides: Partial<
     ...applicationNarrativeLocaleOverrides["pt-br"],
     ...componentDetailLocaleOverrides["pt-br"],
     "IC 周转托盘": "Bandejas para manuseio de CIs",
-    改性工程塑料制造商:
-      "Fabricante de plásticos de engenharia modificados",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。依托盐城制造基地，我们生产以改性 POM 为核心的改性工程塑料，并提供材料测试与批次文件支持。":
-      "A Taiyi Polymer é a marca internacional de materiais da Jiangsu Taiyi Nano Technology Co., Ltd. Em nossa unidade de Yancheng, fabricamos plásticos de engenharia modificados com foco em POM modificado e apoiamos projetos com testes de materiais e documentação de lotes.",
+    "准备 EAI250 牌号评估": "Preparar a avaliação do grau EAI250",
+    "准备 EAR210 牌号评估": "Preparar a avaliação do grau EAR210",
+    "聚焦改性 POM 的工程塑料制造商":
+      "Fabricante de POM modificado",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造以改性 POM 为核心的工程塑料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "A Taiyi Polymer é a marca internacional de materiais da Jiangsu Taiyi Nano Technology Co., Ltd. Desde 2003, desenvolvemos e fabricamos em Yancheng plásticos de engenharia com foco em POM modificado, integrando testes de materiais, produção estável e documentação de lotes ao mesmo sistema de fabricação.",
     查看材料范围: "Conheça nossos materiais",
     查看制造能力: "Ver nossa produção",
     从零部件需求到候选牌号评估:

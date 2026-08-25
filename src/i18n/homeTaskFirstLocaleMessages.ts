@@ -29,20 +29,41 @@ export const homeTaskFirstLocaleMessages = {
           title: "I already have a reference grade",
           description:
             "Start with a reference grade, material type or performance keyword to locate listed grades, TDS and technical documents.",
-          action: "Find grades & TDS",
+          action: "Find Grade Data & TDS",
         },
       ],
     },
     core: {
-      eyebrow: "Core product",
-      title: "Modified POM, our core material for precision parts",
-      body: "Base and high-flow, wear-resistant, low-friction, reinforced, impact-modified, weather-resistant, conductive and antistatic POM serve gears, bushings, sliding parts, structures and electrical components.",
-      action: "Browse POM material families",
+      eyebrow: "Products",
+      title: "Modified POM, Our Core Material for Precision Parts",
+      body: "POM combines well-balanced mechanical properties with wear resistance, self-lubrication and dimensional stability. It was first commercialized to replace machinery components such as gears, screws and bearings that had traditionally been made of metal. Today, its applications range from everyday goods such as zippers and toothbrushes to automotive components including door locks and latches, seat-belt locking mechanisms and fuel-system parts. PLATFORM® takes this proven material further through modification—engineered for parts that cannot afford inconsistency, and for manufacturers who expect precision to hold from the first trial to full-scale production.",
+      action: "Learn more",
       materialImageAlt:
         "Natural POM resin pellets used in modified POM compounding and grade development.",
       materialImageCaption: "POM resin pellets",
       directionsAria: "Modified POM options and material families",
       panelLabel: "Selection priorities",
+      technicalTitle: "POM technical information",
+      technicalLinks: [
+        {
+          title: "Standard molding conditions",
+          description:
+            "Review handling, trial setup and grade-specific processing points.",
+        },
+        {
+          title: "Molding technology",
+          description:
+            "Open molding, process-control and troubleshooting resources.",
+        },
+        {
+          title: "Grade compositions & catalogue",
+          description:
+            "Browse POM material families and current listed grades.",
+        },
+      ],
+      gradeNote:
+        "Can't find the grade you need? Search current grade data or discuss the requirement with us.",
+      contactAction: "Discuss Your Application",
       reviewLabel: "Confirm first",
       materialsLabel: "Material routes",
       groups: [
@@ -114,49 +135,49 @@ export const homeTaskFirstLocaleMessages = {
       supportingLinks: ["Base POM resin", "PA6", "PA66", "PPA"],
       allFamiliesAction: "View all material families",
     },
-    applications: {
-      eyebrow: "Component solutions",
-      title: "Start with the part to find the right material direction faster",
+    components: {
+      eyebrow: "Component Solutions",
+      title: "Find the Right Material for Each Part",
       body: "Review the key operating conditions and material priorities for each part.",
-      action: "View all component paths",
+      action: "View all components",
       items: [
         {
-          title: "Precision plastic gears",
+          title: "Precision Plastic Gears",
           description:
             "Screen by torque, tooth geometry, speed, mating material, lubrication and accuracy targets.",
           imageAlt:
             "Precision plastic gears and motion components used to explain material selection.",
         },
         {
-          title: "Bushings & sleeves",
+          title: "Bushings and Sleeves",
           description:
             "Screen by load, sliding speed, shaft and housing materials, clearance, lubrication and operating environment.",
           imageAlt:
             "Engineering-plastic bushings, sleeves and sliding guides used to explain material selection.",
         },
         {
-          title: "Conveyor chain components",
+          title: "Conveyor Chain Components",
           description:
             "Check chain tension, joint wear, guide-rail friction, pitch, static-control targets and operating environment.",
           imageAlt:
             "Plastic conveyor plates, links and automation components used to explain material selection.",
         },
         {
-          title: "Valve spools & cartridges",
+          title: "Valve Spools and Cartridges",
           description:
             "Define pressure, media, sealing conditions, spool clearance, motion cycles and flow function.",
           imageAlt:
             "Molded valve spools, cartridges and internal flow-control parts used to explain material selection.",
         },
         {
-          title: "Textile guide components",
+          title: "Textile Guide Components",
           description:
             "Check yarn, speed, tension, contact geometry, surface quality, wear and static behavior.",
           imageAlt:
             "Yarn-guide components for textile machinery used to explain material selection.",
         },
         {
-          title: "IC handling trays",
+          title: "IC Handling Trays",
           description:
             "Define ESD class, process temperature, flatness, pocket geometry, cleanliness and handling conditions.",
           imageAlt:
@@ -164,55 +185,119 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    applications: {
+      eyebrow: "Applications",
+      title: "Explore Materials by Application",
+      body: "Review material directions for each operating context.",
+      action: "View all applications",
+      items: [
+        {
+          title: "Automotive",
+          description:
+            "Functional molded parts for vehicle doors, seats, fuel systems, wipers, control boxes, and interior mechanisms.",
+          imageAlt:
+            "Vehicle assembly line with automotive functional modules.",
+        },
+        {
+          title: "Electronics",
+          description:
+            "Precision molded parts for electrical connection, insulation, control, and actuation.",
+          imageAlt:
+            "Electronics assembly station with functional electrical modules.",
+        },
+        {
+          title: "Conveyor Automation",
+          description:
+            "Plastic chain plates, conveyor guides, rollers, and handling components for clean automated movement.",
+          imageAlt:
+            "Clean automated conveyor line with modular chain plates.",
+        },
+        {
+          title: "Motion",
+          description:
+            "Gears, rollers, bushings, sleeves, and sliding parts for transmission, guidance, and low-friction movement.",
+          imageAlt:
+            "Industrial motion module with gears and molded moving parts.",
+        },
+        {
+          title: "Water Control",
+          description:
+            "Valve, sanitary, pump, and water-control molded parts for clean movement and stable assembly.",
+          imageAlt:
+            "Clean water-control assembly line with valve and flow modules.",
+        },
+        {
+          title: "Washing Machine",
+          description:
+            "Functional molded components for drum drive, water routing, drainage, valves, and moving assemblies.",
+          imageAlt:
+            "Washing-machine mechanism with molded drive, drainage and door-lock components.",
+        },
+        {
+          title: "Outdoor Equipment",
+          description:
+            "Weather-exposed molded parts for garden equipment, sprinklers, outdoor mechanisms, and durable assemblies.",
+          imageAlt:
+            "Outdoor-equipment assembly line with garden-machinery modules.",
+        },
+        {
+          title: "Textile Machinery",
+          description:
+            "Wear-resistant guide, motion, and low-shrinkage molded parts for textile and fabric-handling systems.",
+          imageAlt:
+            "Textile-machinery production line with yarn-handling and guide components.",
+        },
+      ],
+    },
     process: {
-      eyebrow: "Working process",
-      title: "Three steps to a focused grade shortlist",
+      eyebrow: "Working Process",
+      title: "Three Steps to a Focused Grade Shortlist",
       body: "",
       stepsAria: "Three steps to a focused grade shortlist",
       steps: [
         {
-          title: "Describe the part",
+          title: "Describe the Part",
           description:
             "Share its function, operating conditions, tooling stage and most important performance target.",
         },
         {
-          title: "Narrow the material range",
+          title: "Narrow the Material Range",
           description:
             "Use material families and grade data to build a candidate shortlist.",
         },
         {
-          title: "Move into project validation",
+          title: "Move into Project Validation",
           description:
             "Confirm technical documents, samples and molding-trial arrangements.",
         },
       ],
     },
     collaboration: {
-      eyebrow: "Project collaboration",
-      title: "From material selection to trials, with direct project support",
+      eyebrow: "Project Collaboration",
+      title: "Direct Support from Material Selection to Trials",
       body: "",
       itemsAria: "How Taiyi Polymer supports project collaboration",
       items: [
         {
-          title: "Work directly around project requirements",
+          title: "Work Directly Around Project Requirements",
           description:
             "Commercial, technical and production teams work from the same part requirements.",
         },
         {
-          title: "Flexible samples and pilot quantities",
+          title: "Flexible Samples and Pilot Quantities",
           description:
             "Compare candidates through samples, pilot quantities and molding trials.",
         },
         {
-          title: "Project-based formulation review",
+          title: "Project-Based Formulation Review",
           description:
             "Once technical targets, validation conditions and production demand are clear, formulation changes or custom development can be reviewed.",
         },
       ],
     },
     proof: {
-      eyebrow: "Manufacturing & validation evidence",
-      title: "Manufacturing and validation for better material decisions",
+      eyebrow: "Manufacturing & Validation",
+      title: "Evidence Behind Every Material Decision",
       body: "In-house production, testing and public management-system certificates.",
       factoryImageAlt:
         "Twin-screw extrusion lines at the Taiyi Polymer manufacturing site in Yancheng.",
@@ -220,20 +305,20 @@ export const homeTaskFirstLocaleMessages = {
         "Yancheng manufacturing site · twin-screw extrusion workshop",
       metricsAria: "Taiyi Polymer manufacturing and testing figures",
       metricLabels: [
-        "Annual compound capacity",
-        "In-house twin-screw lines",
-        "In-house test equipment",
+        "Annual Compound Capacity",
+        "In-House Twin-Screw Lines",
+        "In-House Test Equipment",
       ],
       metricNotes: ["metric tons/year", "lines", "units"],
-      documentsTitle: "Project documents",
+      documentsTitle: "Project Documents",
       documentsBody:
         "TDS, SDS, COA, REACH and RoHS availability is confirmed by grade and project.",
       documentsAria:
         "Document types available for confirmation by grade and project",
-      certificatesTitle: "Quality-management system certificates",
+      certificatesTitle: "Quality-Management System Certificates",
       certificateAction: "View all certificates and certified scopes",
       certificateOpenAction: "View certificate",
-      internationalLabel: "International project support",
+      internationalLabel: "International Project Support",
       internationalBody:
         "Material documentation and export-delivery coordination are available for international projects.",
     },
@@ -264,20 +349,41 @@ export const homeTaskFirstLocaleMessages = {
           title: "Ich habe bereits einen Referenztyp",
           description:
             "Suchen Sie mit Referenztyp, Werkstoffart oder Leistungsmerkmal nach gelisteten Typen, TDS und technischen Unterlagen.",
-          action: "Typen & TDS finden",
+          action: "Typendaten & TDS finden",
         },
       ],
     },
     core: {
-      eyebrow: "Kernprodukt",
+      eyebrow: "Produkte",
       title: "Modifiziertes POM – unser Kernwerkstoff für Präzisionsteile",
-      body: "Basis- und Hochfließtypen sowie verschleißfeste, reibungsarme, verstärkte, schlagzähmodifizierte, witterungsbeständige, leitfähige und antistatische POM-Typen dienen Zahnrädern, Buchsen, Gleitteilen, Strukturen und elektrischen Bauteilen.",
-      action: "POM-Werkstofffamilien ansehen",
+      body: "POM verbindet ausgewogene mechanische Eigenschaften mit Verschleißfestigkeit, Selbstschmierung und hoher Maßhaltigkeit. Der Werkstoff wurde ursprünglich kommerziell eingesetzt, um zuvor aus Metall gefertigte Maschinenteile wie Zahnräder, Schrauben und Lager zu ersetzen. Heute reicht sein Anwendungsspektrum von Alltagsprodukten wie Reißverschlüssen und Zahnbürsten bis zu Fahrzeugkomponenten wie Türschlössern und Verriegelungen, Sicherheitsgurtmechanismen und Teilen von Kraftstoffsystemen. PLATFORM® führt diesen bewährten Werkstoff durch gezielte Modifizierung weiter – für Bauteile, die keine Schwankungen verzeihen, und für Hersteller, die vom ersten Werkzeugversuch bis zur Serienproduktion auf Präzision und Beständigkeit angewiesen sind.",
+      action: "Mehr erfahren",
       materialImageAlt:
         "Naturfarbenes POM-Granulat für die Compoundierung und Typenentwicklung.",
       materialImageCaption: "POM-Rohstoffgranulat",
       directionsAria: "Richtungen und Werkstofffamilien für modifiziertes POM",
       panelLabel: "Auswahlkriterien",
+      technicalTitle: "Technische POM-Informationen",
+      technicalLinks: [
+        {
+          title: "Standard-Verarbeitungsbedingungen",
+          description:
+            "Hinweise zu Handhabung, Versuchsvorbereitung und typspezifischer Verarbeitung.",
+        },
+        {
+          title: "Spritzgießtechnik",
+          description:
+            "Ressourcen zu Formgebung, Prozesskontrolle und Fehleranalyse.",
+        },
+        {
+          title: "Typenzusammensetzung & Katalog",
+          description:
+            "POM-Werkstofffamilien und aktuell gelistete Typen ansehen.",
+        },
+      ],
+      gradeNote:
+        "Gesuchten Typ nicht gefunden? Durchsuchen Sie die aktuellen Typendaten oder besprechen Sie die Anforderung mit uns.",
+      contactAction: "Anwendung besprechen",
       reviewLabel: "Zuerst klären",
       materialsLabel: "Werkstoffpfade",
       groups: [
@@ -349,11 +455,11 @@ export const homeTaskFirstLocaleMessages = {
       supportingLinks: ["POM-Basisharz", "PA6", "PA66", "PPA"],
       allFamiliesAction: "Alle Werkstofffamilien ansehen",
     },
-    applications: {
+    components: {
       eyebrow: "Bauteillösungen",
-      title: "Vom Bauteil schneller zur passenden Werkstoffrichtung",
+      title: "Der passende Werkstoff für jedes Bauteil",
       body: "Sehen Sie die wichtigsten Einsatzbedingungen und Auswahlkriterien je Bauteil.",
-      action: "Alle Bauteilpfade ansehen",
+      action: "Alle Bauteile ansehen",
       items: [
         {
           title: "Präzisionszahnräder aus Kunststoff",
@@ -399,6 +505,70 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    applications: {
+      eyebrow: "Anwendungen",
+      title: "Werkstoffe nach Anwendung erkunden",
+      body: "Werkstoffrichtungen für den jeweiligen Einsatzkontext prüfen.",
+      action: "Alle Anwendungen ansehen",
+      items: [
+        {
+          title: "Automobil",
+          description:
+            "Funktionelle Spritzgussteile für Türen, Sitze, Kraftstoffsysteme, Scheibenwischer, Steuerkästen und Innenmechanismen.",
+          imageAlt:
+            "Fahrzeugmontagelinie einschließlich Automobil-Funktionsmodule",
+        },
+        {
+          title: "Elektronik und Elektrik",
+          description:
+            "Präzisionsspritzgussteile für elektrische Verbindungen, Isolierungen, Steuerungen und Aktoren.",
+          imageAlt:
+            "Elektronische Montagestation einschließlich funktionaler elektrischer Module",
+        },
+        {
+          title: "Förderer und Automatisierung",
+          description:
+            "Kunststoffkettenplatten, Förderschienen, Rollen und Handhabungskomponenten für sauberen automatisierten Transport.",
+          imageAlt:
+            "Saubere automatisierte Förderlinien mit modularen Kettenplatten",
+        },
+        {
+          title: "Bewegung",
+          description:
+            "Zahnräder, Rollen, Buchsen, Hülsen und Gleitteile für Übertragung, Führung und reibungsarme Bewegung.",
+          imageAlt:
+            "Industrielle Bewegungsmodule einschließlich Zahnrädern und spritzgegossenen beweglichen Teilen",
+        },
+        {
+          title: "Wasserkreislauf-Steuerung",
+          description:
+            "Spritzgussteile für Ventile, Sanitärartikel, Pumpen und Wasserstraßenkontrollsysteme.",
+          imageAlt:
+            "Montagelinie für saubere Wasserstraßensteuerung einschließlich Ventilen und Durchflussmodulen",
+        },
+        {
+          title: "Waschmaschine",
+          description:
+            "Funktionelle Spritzgussteile für Trommelantrieb, Wasserwege, Entwässerung, Ventile und reibungsarme Bewegungsmechanismen.",
+          imageAlt:
+            "Taumelwaschmaschinenmechanismus einschließlich Spritzgussgetriebe, Entwässerung und Türverriegelung Komponenten",
+        },
+        {
+          title: "Außenausrüstung",
+          description:
+            "Freiliegende Spritzgussteile für Gartengeräte, Sprinkleranlagen, Außenmechanismen und langlebige Gerätebaugruppen.",
+          imageAlt:
+            "Montagelinie für Outdoor-Ausrüstung einschließlich Gartenmaschinenmodule",
+        },
+        {
+          title: "Textilmaschinen",
+          description:
+            "Verschleißfeste Führungen, Bewegungs- und schrumpfungsarme Spritzgussteile für Textilmaschinen und Fördersysteme.",
+          imageAlt:
+            "Textilmaschinen-Produktionslinie einschließlich Garnförder- und Führungskomponenten",
+        },
+      ],
+    },
     process: {
       eyebrow: "Zusammenarbeit",
       title: "In drei Schritten zur engeren Typenauswahl",
@@ -424,7 +594,7 @@ export const homeTaskFirstLocaleMessages = {
     },
     collaboration: {
       eyebrow: "Projektzusammenarbeit",
-      title: "Von der Werkstoffauswahl zum Versuch – direkte Projektunterstützung",
+      title: "Direkte Unterstützung von der Werkstoffauswahl bis zum Versuch",
       body: "",
       itemsAria: "Arbeitsweise von Taiyi Polymer in der Projektzusammenarbeit",
       items: [
@@ -446,8 +616,8 @@ export const homeTaskFirstLocaleMessages = {
       ],
     },
     proof: {
-      eyebrow: "Fertigung & Validierungsgrundlage",
-      title: "Fertigung und Prüfung für fundierte Werkstoffentscheidungen",
+      eyebrow: "Fertigung & Validierung",
+      title: "Grundlagen für jede Werkstoffentscheidung",
       body: "Eigene Fertigung, interne Prüfungen und öffentliche Managementsystem-Zertifikate.",
       factoryImageAlt:
         "Doppelschnecken-Extrusionslinien am Taiyi-Polymer-Produktionsstandort in Yancheng.",
@@ -499,20 +669,41 @@ export const homeTaskFirstLocaleMessages = {
           title: "J'ai déjà un grade de référence",
           description:
             "Partez d'un grade de référence, d'un type de matière ou d'un mot-clé de performance pour trouver les grades répertoriés, les TDS et les documents techniques.",
-          action: "Trouver grades & TDS",
+          action: "Trouver les données de grade & TDS",
         },
       ],
     },
     core: {
-      eyebrow: "Produit principal",
+      eyebrow: "Produits",
       title: "Le POM modifié, notre matière clé pour les pièces de précision",
-      body: "Les POM de base, haute fluidité, anti-usure, faible frottement, renforcés, modifiés choc, résistants aux intempéries, conducteurs et antistatiques répondent aux besoins des engrenages, bagues, pièces coulissantes, structures et composants électriques.",
-      action: "Voir les familles POM",
+      body: "Le POM associe des propriétés mécaniques équilibrées à une excellente résistance à l’usure, une autolubrification et une grande stabilité dimensionnelle. Il a d’abord été commercialisé pour remplacer des composants mécaniques jusque-là fabriqués en métal, tels que les engrenages, les vis et les paliers. Aujourd’hui, ses applications vont des produits du quotidien, comme les fermetures à glissière et les brosses à dents, aux composants automobiles tels que les serrures et loquets de porte, les mécanismes de verrouillage de ceinture et les pièces de circuit carburant. PLATFORM® pousse plus loin cette matière éprouvée grâce à la modification — pour les pièces qui ne tolèrent aucune variation et pour les industriels qui exigent précision et constance, du premier essai à la production en série.",
+      action: "En savoir plus",
       materialImageAlt:
         "Granulés de résine POM naturelle utilisés pour le compoundage et le développement de grades.",
       materialImageCaption: "Granulés de résine POM",
       directionsAria: "Orientations et familles de POM modifié",
       panelLabel: "Priorités de sélection",
+      technicalTitle: "Informations techniques POM",
+      technicalLinks: [
+        {
+          title: "Conditions standard de moulage",
+          description:
+            "Consultez la manutention, la préparation des essais et les points de mise en œuvre propres au grade.",
+        },
+        {
+          title: "Technologie de moulage",
+          description:
+            "Accédez aux ressources sur le moulage, la maîtrise du procédé et le dépannage.",
+        },
+        {
+          title: "Composition des grades & catalogue",
+          description:
+            "Parcourez les familles POM et les grades actuellement répertoriés.",
+        },
+      ],
+      gradeNote:
+        "Vous ne trouvez pas le grade recherché ? Consultez les données actuelles ou échangez avec nous sur votre besoin.",
+      contactAction: "Discuter de votre application",
       reviewLabel: "À confirmer d'abord",
       materialsLabel: "Parcours matière",
       groups: [
@@ -553,8 +744,7 @@ export const homeTaskFirstLocaleMessages = {
         {
           title: "Choc & tenue aux intempéries",
           summary: "Ténacité, assemblage & lumière",
-          panelTitle:
-            "Renforcer la ténacité pour l'assemblage et l'extérieur",
+          panelTitle: "Renforcer la ténacité pour l'assemblage et l'extérieur",
           description: "",
           reviewInputs: [
             "Température de choc et condition d'entaille",
@@ -589,12 +779,11 @@ export const homeTaskFirstLocaleMessages = {
       supportingLinks: ["Résine POM", "PA6", "PA66", "PPA"],
       allFamiliesAction: "Voir toutes les familles matière",
     },
-    applications: {
-      eyebrow: "Solutions par composant",
-      title:
-        "Partez de la pièce pour trouver plus vite la bonne orientation matière",
+    components: {
+      eyebrow: "Solutions pour composants",
+      title: "Le bon matériau pour chaque pièce",
       body: "Consultez les conditions clés et les priorités matière de chaque pièce.",
-      action: "Voir tous les parcours composants",
+      action: "Voir tous les composants",
       items: [
         {
           title: "Engrenages plastiques de précision",
@@ -640,6 +829,70 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    applications: {
+      eyebrow: "Applications",
+      title: "Explorer les matériaux par application",
+      body: "Examiner les orientations matière selon chaque contexte d’usage.",
+      action: "Voir toutes les applications",
+      items: [
+        {
+          title: "Automobile",
+          description:
+            "Pièces fonctionnelles moulées par injection pour portes, sièges, systèmes de carburant, essuie-glaces et mécanismes intérieurs.",
+          imageAlt:
+            "Ligne d'assemblage de véhicules comprenant des modules fonctionnels automobiles",
+        },
+        {
+          title: "Électronique et électrique",
+          description:
+            "Pièces moulées de précision pour les connexions électriques, l'isolation, les commandes et les actionneurs.",
+          imageAlt:
+            "Station d'assemblage électronique comprenant des modules électriques fonctionnels",
+        },
+        {
+          title: "Convoyeur et automatisation",
+          description:
+            "Plaques à chaîne, rails de guidage, rouleaux et composants de manutention pour un transport automatisé propre.",
+          imageAlt:
+            "Ligne de convoyage automatisée propre avec plaques de chaîne modulaires",
+        },
+        {
+          title: "Mouvement",
+          description:
+            "Engrenages, rouleaux, bagues, douilles et pièces coulissantes pour transmission et mouvement à faible friction.",
+          imageAlt:
+            "Module de mouvement industriel comprenant des engrenages et des pièces mobiles moulées par injection",
+        },
+        {
+          title: "Composants pour circuits d’eau",
+          description:
+            "Pièces moulées par injection utilisées dans les vannes, les appareils sanitaires, les pompes et les circuits d’eau.",
+          imageAlt:
+            "Ligne d'assemblage de contrôle des circuits d’eau comprenant des vannes et des modules de débit",
+        },
+        {
+          title: "Machine à laver",
+          description:
+            "Pièces fonctionnelles moulées pour la transmission du tambour, les circuits d’eau, le drainage, les vannes et les mécanismes mobiles.",
+          imageAlt:
+            "Mécanisme de machine à laver comprenant transmission moulée, drainage et verrouillage de porte",
+        },
+        {
+          title: "Équipement extérieur",
+          description:
+            "Pièces moulées exposées à l’extérieur pour équipements de jardin, arrosage et mécanismes durables.",
+          imageAlt:
+            "Ligne d'assemblage d'équipements extérieurs comprenant des modules de machines de jardin",
+        },
+        {
+          title: "Machines textiles",
+          description:
+            "Guides résistants à l'usure et pièces moulées à faible retrait pour machines textiles et systèmes de transport.",
+          imageAlt:
+            "Ligne de production de machines textiles avec composants de transport et de guidage du fil",
+        },
+      ],
+    },
     process: {
       eyebrow: "Démarche",
       title: "Trois étapes pour resserrer la sélection de grades",
@@ -665,7 +918,7 @@ export const homeTaskFirstLocaleMessages = {
     },
     collaboration: {
       eyebrow: "Collaboration projet",
-      title: "De la sélection aux essais, une collaboration projet directe",
+      title: "Un accompagnement direct, de la sélection aux essais",
       body: "",
       itemsAria: "Mode de collaboration de Taiyi Polymer sur les projets",
       items: [
@@ -687,8 +940,8 @@ export const homeTaskFirstLocaleMessages = {
       ],
     },
     proof: {
-      eyebrow: "Fabrication & éléments de validation",
-      title: "Fabrication et validation pour mieux décider",
+      eyebrow: "Fabrication & validation",
+      title: "Des preuves derrière chaque décision matière",
       body: "Production intégrée, essais internes et certificats publics des systèmes de management.",
       factoryImageAlt:
         "Lignes d'extrusion bivis du site de production Taiyi Polymer à Yancheng.",
@@ -740,20 +993,41 @@ export const homeTaskFirstLocaleMessages = {
           title: "Já tenho um grade de referência",
           description:
             "Comece por um grade de referência, tipo de material ou palavra-chave de desempenho para localizar grades listados, TDS e documentos técnicos.",
-          action: "Encontrar grades & TDS",
+          action: "Encontrar dados de grade e TDS",
         },
       ],
     },
     core: {
-      eyebrow: "Produto principal",
+      eyebrow: "Produtos",
       title: "POM modificado, nosso material principal para peças de precisão",
-      body: "As opções de POM base, de alto fluxo, resistentes ao desgaste, de baixo atrito, reforçadas, modificadas para impacto, resistentes às intempéries, condutivas e antiestáticas atendem engrenagens, buchas, peças deslizantes, estruturas e componentes elétricos.",
-      action: "Ver famílias de POM",
+      body: "O POM combina propriedades mecânicas equilibradas com resistência ao desgaste, autolubrificação e estabilidade dimensional. O material foi inicialmente comercializado para substituir componentes de máquinas, como engrenagens, parafusos e rolamentos, que antes eram fabricados em metal. Hoje, suas aplicações vão de produtos cotidianos, como zíperes e escovas de dentes, a componentes automotivos, incluindo fechaduras e travas de portas, mecanismos de travamento de cintos de segurança e peças de sistemas de combustível. A PLATFORM® leva esse material comprovado além por meio da modificação — para peças que não admitem variação e para fabricantes que exigem precisão e consistência, do primeiro teste à produção em escala.",
+      action: "Saiba mais",
       materialImageAlt:
         "Grânulos de resina POM natural usados na composição e no desenvolvimento de grades.",
       materialImageCaption: "Grânulos de resina POM",
       directionsAria: "Direções e famílias de POM modificado",
       panelLabel: "Prioridades de seleção",
+      technicalTitle: "Informações técnicas de POM",
+      technicalLinks: [
+        {
+          title: "Condições padrão de moldagem",
+          description:
+            "Consulte manuseio, preparação de testes e pontos de processo específicos do grade.",
+        },
+        {
+          title: "Tecnologia de moldagem",
+          description:
+            "Acesse recursos de moldagem, controle de processo e solução de problemas.",
+        },
+        {
+          title: "Composição dos grades & catálogo",
+          description:
+            "Veja as famílias de POM e os grades atualmente listados.",
+        },
+      ],
+      gradeNote:
+        "Não encontrou o grade necessário? Consulte os dados atuais ou converse conosco sobre o requisito.",
+      contactAction: "Discutir sua aplicação",
       reviewLabel: "Confirme primeiro",
       materialsLabel: "Rotas de material",
       groups: [
@@ -829,12 +1103,11 @@ export const homeTaskFirstLocaleMessages = {
       supportingLinks: ["Resina POM base", "PA6", "PA66", "PPA"],
       allFamiliesAction: "Ver todas as famílias de materiais",
     },
-    applications: {
-      eyebrow: "Soluções por componente",
-      title:
-        "Comece pela peça para encontrar a direção de material mais rápido",
+    components: {
+      eyebrow: "Soluções para componentes",
+      title: "O material certo para cada peça",
       body: "Veja as condições principais e as prioridades de material de cada peça.",
-      action: "Ver todos os caminhos por componente",
+      action: "Ver todos os componentes",
       items: [
         {
           title: "Engrenagens plásticas de precisão",
@@ -880,6 +1153,70 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    applications: {
+      eyebrow: "Aplicações",
+      title: "Explore materiais por aplicação",
+      body: "Avalie direções de material para cada contexto de uso.",
+      action: "Ver todas as aplicações",
+      items: [
+        {
+          title: "Automotivo",
+          description:
+            "Peças funcionais moldadas para portas, assentos, sistemas de combustível, limpadores e mecanismos internos.",
+          imageAlt:
+            "Linha de montagem de veículos com módulos funcionais automotivos",
+        },
+        {
+          title: "Eletrônico e elétrico",
+          description:
+            "Peças moldadas de precisão para conexões elétricas, isolamento, controle e atuação.",
+          imageAlt:
+            "Estação de montagem eletrônica com módulos elétricos funcionais",
+        },
+        {
+          title: "Transportador e automação",
+          description:
+            "Placas de corrente plásticas, guias, rolos e componentes de manuseio para transporte automatizado limpo.",
+          imageAlt:
+            "Linha transportadora automatizada com placas de corrente modulares",
+        },
+        {
+          title: "Movimento",
+          description:
+            "Engrenagens, rolos, buchas, mangas e peças deslizantes para transmissão e movimento de baixo atrito.",
+          imageAlt:
+            "Módulo de movimento industrial com engrenagens e peças móveis moldadas",
+        },
+        {
+          title: "Controle de circuitos de água",
+          description:
+            "Peças injetadas para válvulas, aplicações sanitárias, bombas e sistemas de controle de água.",
+          imageAlt:
+            "Linha de montagem de controle de água com válvulas e módulos de fluxo",
+        },
+        {
+          title: "Máquina de lavar",
+          description:
+            "Peças funcionais para transmissão do tambor, circulação de água, drenagem, válvulas e mecanismos móveis.",
+          imageAlt:
+            "Mecanismo de máquina de lavar com transmissão moldada, drenagem e trava de porta",
+        },
+        {
+          title: "Equipamentos externos",
+          description:
+            "Peças moldadas expostas ao tempo para equipamentos de jardim, irrigação e mecanismos externos duráveis.",
+          imageAlt:
+            "Linha de montagem de equipamentos externos com módulos de máquinas de jardim",
+        },
+        {
+          title: "Máquinas têxteis",
+          description:
+            "Guias resistentes ao desgaste e peças de baixo encolhimento para máquinas têxteis e transporte de fios.",
+          imageAlt:
+            "Linha de produção de máquinas têxteis com componentes de transporte e guia de fios",
+        },
+      ],
+    },
     process: {
       eyebrow: "Processo de trabalho",
       title: "Três etapas para reduzir a lista de grades",
@@ -905,7 +1242,7 @@ export const homeTaskFirstLocaleMessages = {
     },
     collaboration: {
       eyebrow: "Colaboração de projeto",
-      title: "Da seleção aos testes, com colaboração direta no projeto",
+      title: "Suporte direto da seleção aos testes",
       body: "",
       itemsAria: "Formas de colaboração da Taiyi Polymer em projetos",
       items: [
@@ -927,8 +1264,8 @@ export const homeTaskFirstLocaleMessages = {
       ],
     },
     proof: {
-      eyebrow: "Fabricação & evidências de validação",
-      title: "Fabricação e validação para melhores decisões de material",
+      eyebrow: "Fabricação & validação",
+      title: "Evidências para cada decisão de material",
       body: "Produção própria, ensaios internos e certificados públicos dos sistemas de gestão.",
       factoryImageAlt:
         "Linhas de extrusão de dupla rosca na unidade de fabricação da Taiyi Polymer em Yancheng.",

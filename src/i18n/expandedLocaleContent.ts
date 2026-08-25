@@ -115,17 +115,112 @@ const sourceAwareTerminologyReplacements: ReadonlyArray<{
     },
   },
   {
-    sourceIncludes: "当前失效现象",
+    sourceIncludes: "PLATFORM",
     replacements: {
-      de: [[/Stromausfallphänomene/g, "aktuelle Ausfallerscheinungen"]],
+      de: [[/PLATTFORM/g, "PLATFORM"]],
+      fr: [[/PLATEFORME/g, "PLATFORM"]],
+      "pt-br": [[/PLATAFORMA/g, "PLATFORM"]],
+    },
+  },
+  {
+    sourceIncludes: "当前失效",
+    replacements: {
+      de: [
+        [/Stromausfallphänomene/g, "aktuelle Ausfallerscheinungen"],
+        [/Stromausfallphänomen/g, "aktuelle Ausfallerscheinung"],
+        [/Stromausfall/g, "aktuelles Fehlerbild"],
+      ],
       fr: [
         [
           /phénomènes de défaillance du courant/g,
           "phénomènes de défaillance actuels",
         ],
+        [
+          /phénomène de défaillance du courant/g,
+          "phénomène de défaillance actuel",
+        ],
+        [
+          /modes de défaillance du courant/g,
+          "modes de défaillance actuels",
+        ],
+        [/défaillance de courant/g, "défaillance actuelle"],
       ],
       "pt-br": [
+        [/modos de falha de corrente/g, "modos de falha atuais"],
         [/(?:fenômenos|condições) de falha de corrente/g, "falhas atuais"],
+        [/fenômeno de falha de corrente/g, "falha atual"],
+        [/falha de corrente/g, "falha atual"],
+      ],
+    },
+  },
+  {
+    sourceIncludes: "水尘",
+    replacements: {
+      de: [[/(?<!Wasser und )Staub/g, "Wasser und Staub"]],
+      fr: [
+        [/(?<!Eau et )Poussière/g, "Eau et poussière"],
+        [/(?<!eau et )poussière/g, "eau et poussière"],
+      ],
+      "pt-br": [
+        [/(?<!Água e )Poeira/g, "Água e poeira"],
+        [/(?<!água e )poeira/g, "água e poeira"],
+      ],
+    },
+  },
+  {
+    sourceIncludes: "节距",
+    replacements: {
+      de: [
+        [/Pechwachstum/g, "Teilungszunahme"],
+        [/Verbindungssteigung/g, "Teilung"],
+        [/Tonhöhe|Tonlage|Neigung|Steigung|Pech/g, "Teilung"],
+        [/Abstand/g, "Teilung"],
+      ],
+      fr: [
+        [/croissance du poix/gi, "augmentation du pas"],
+        [/\bpoix\b/gi, "pas"],
+      ],
+      "pt-br": [
+        [/crescimento do pitch/gi, "aumento do passo"],
+        [/inclinação|\bpitch\b/gi, "passo"],
+      ],
+    },
+  },
+  {
+    sourceIncludes: "阻燃等级",
+    replacements: {
+      fr: [
+        [
+          /grade (?:de )?(?:flamme|ignifuge)/gi,
+          "classement de réaction au feu",
+        ],
+      ],
+      "pt-br": [
+        [
+          /grau (?:de )?(?:chama|retardante de chama|inflamabilidade)/gi,
+          "classificação de flamabilidade",
+        ],
+      ],
+    },
+  },
+  {
+    sourceIncludes: "冲击",
+    replacements: {
+      de: [
+        [/Temperatur und Auswirkungen/g, "Temperatur und Schlagbeanspruchung"],
+        [/Wirkungs-/g, "Schlagzähigkeits-"],
+        [/Auswirkungen/g, "Schlagbeanspruchung"],
+        [/Kälteeinwirkung/g, "Kälteschlagzähigkeit"],
+      ],
+    },
+  },
+  {
+    sourceIncludes: "对比材料家族选项，再进入相应类别查看已列牌号。",
+    replacements: {
+      fr: [[/grades répertoriées/g, "grades répertoriés"]],
+      "pt-br": [
+        [/grau correspondente/g, "categoria correspondente"],
+        [/graus listadas/g, "graus listados"],
       ],
     },
   },

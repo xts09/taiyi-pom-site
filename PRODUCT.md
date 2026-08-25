@@ -226,6 +226,25 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Validation covered the complete five-language homepage message contract, all eight English application profiles, the seven generated German/French/Portuguese application narratives, English automotive and motion-component rendering, German home, Brazilian Portuguese home, and French water-control rendering. Inspected desktop and mobile states had four application inputs where required, no Chinese fallback, no known ambiguous engineering terms, and no document-level horizontal overflow. Targeted ESLint, TypeScript, the 27-test i18n pilot suite, and the application-narrative locale audit passed.
 - The five-language homepage now adds one restrained collaboration section between the three-step project flow and manufacturing proof. It describes direct project communication, sample and pilot-quantity validation, and formulation work only where technical targets, validation conditions, and expected production demand are clear. The section makes no fixed response-time, MOQ, delivery, or development-success promise and does not change homepage metadata or route ownership.
 
+### Homepage Material-Family Entry Simplification (2026-08-25)
+
+- The shared five-language homepage no longer asks visitors to choose among three project-starting states before they have established product fit. The Hero now leads directly to one material-family section with four explicit entries: POM, PA6, PA66, and PPA.
+- POM is the dominant core-material entrance and links to the POM family directory. PA6, PA66, and PPA remain visible as supporting engineering-plastic families with direct category links. The former four-direction POM tab explorer is removed from the homepage; detailed POM segmentation remains owned by the POM family pages.
+- Part-first discovery remains available as a quieter fallback to `/components` below the four material entrances. Component solutions, project flow, collaboration, manufacturing proof, certificates, international-project support, and the final inquiry handoff retain their existing order and ownership.
+- Rendered acceptance covered English at `1920x1080` and `390x844`, Simplified Chinese at `1920x1080`, and Brazilian Portuguese at `390x844`. The four localized family links remained visible without horizontal overflow, the Hero and manufacturing-proof section remained intact, and the browser reported no console errors. Targeted ESLint, TypeScript, the 30-test i18n pilot suite, and the production build passed; the build generated 928 static pages.
+
+### Homepage POM Technical Directory Alignment (2026-08-25)
+
+- The active POM area below the four material-family entrances now exposes the buyer information types used by the current product catalogue flow: grade-specific molding-condition guidance, molding technology and troubleshooting resources, the POM grade-family catalogue, POM-filtered grade/TDS search, and a contact path when the required grade is not listed.
+- The homepage does not publish universal temperature, pressure, speed, or timing values. Exact processing conditions remain grade-specific and must be checked against the selected grade TDS and validated on the intended machine and mold.
+- English rendered acceptance covered the material directory at `1920x1080` and `390x844`, plus the unchanged Hero and manufacturing-evidence section at `1920x1080`; no horizontal overflow or console errors were found. The five-language message contract, targeted ESLint, TypeScript, and the 31-test i18n pilot suite passed. Simplified Chinese source content is complete, but the already-running local dev server retained the pre-change Chinese message module and requires a controlled restart before Chinese rendered acceptance can be claimed.
+
+### Homepage POM Material Intro Distillation (2026-08-25)
+
+- The homepage material module now follows one simple product-story pattern: the four POM, PA6, PA66, and PPA entrances sit above a single POM feature with real material imagery on the left, a concise material introduction on the right, and one `Learn more` path to the POM family page.
+- Processing guides, troubleshooting resources, grade/TDS search, contact prompts, and part-path guidance are no longer repeated inside this homepage module. They remain available on the product, Resources, Technical Data, Contact, and Components routes that own those tasks.
+- At desktop the POM feature is a balanced left-image/right-copy composition. Below 64rem it stacks into one reading column while retaining the four family entrances without horizontal overflow.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.

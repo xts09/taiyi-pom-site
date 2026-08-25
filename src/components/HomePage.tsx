@@ -167,7 +167,9 @@ export function HomePage({
                     <Link
                       href={taskFirstMessages ? "#entry-points" : "#materials"}
                     >
-                      {messages.hero.exploreAction}
+                      {taskFirstMessages
+                        ? taskFirstMessages.core.allFamiliesAction
+                        : messages.hero.exploreAction}
                     </Link>
                   </Button>
                   <Link

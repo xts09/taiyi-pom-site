@@ -22,9 +22,8 @@ export function HomeInquirySection({
     >
       <div className="site-container home-inquiry-inner">
         <div className="home-inquiry-copy">
-          <p className="home-inquiry-kicker">{messages.eyebrow}</p>
-          <h2>{messages.title}</h2>
-          <span>{messages.body}</span>
+          <h2>{messages.eyebrow}</h2>
+          <span>{messages.title}</span>
         </div>
         <Card className="home-inquiry-panel gap-0 border-0 py-0 shadow-none">
           <p className="home-inquiry-panel-label">{messages.checklistLabel}</p>

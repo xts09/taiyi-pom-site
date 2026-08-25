@@ -349,8 +349,8 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "Application review",
-      title: "Share your part requirements and find the right material direction",
+      eyebrow: "Application Review",
+      title: "Share Your Part Requirements",
       body:
         "Share the details below; we will shortlist material directions and clarify available grade data, documents and samples.",
       checklistLabel: "Useful starting points",

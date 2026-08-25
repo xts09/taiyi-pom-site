@@ -218,7 +218,7 @@ const messages = {
     },
     inquiry: {
       eyebrow: "Revue de l'application",
-      title: "Partagez les besoins de la pièce pour définir la bonne orientation matière",
+      title: "Partagez les exigences de votre pièce",
       body:
         "À partir des éléments ci-dessous, nous resserrons les orientations matière et précisons les données de grades, les documents et les échantillons disponibles.",
       checklistLabel: "Éléments utiles au départ",

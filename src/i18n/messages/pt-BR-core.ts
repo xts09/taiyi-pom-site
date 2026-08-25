@@ -218,7 +218,7 @@ const messages = {
     },
     inquiry: {
       eyebrow: "Análise da aplicação",
-      title: "Conte o que a peça precisa para definirmos a direção de material",
+      title: "Compartilhe os requisitos da sua peça",
       body:
         "Com as informações abaixo, reduzimos as direções de material e esclarecemos os dados de grades, documentos e amostras disponíveis.",
       checklistLabel: "Informações úteis para começar",
