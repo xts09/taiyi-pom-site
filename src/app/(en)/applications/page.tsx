@@ -19,7 +19,7 @@ import componentStyles from "@/app/(en)/components/ComponentSolutions.module.css
 
 const applicationsTitle = "Engineering Plastic Applications | Taiyi Polymer";
 const applicationsDescription =
-  "Explore application areas for modified POM and selected engineering plastic compounds, including automotive, electronics, automation, motion components, water control, washing-machine components, outdoor equipment, and textile machinery.";
+  "Explore application areas for modified POM and selected engineering plastic compounds, including automotive, electronics, automation, motion components, water control, washing machines, outdoor equipment, and textile machinery.";
 
 export const metadata: Metadata = createPageMetadata({
   title: applicationsTitle,

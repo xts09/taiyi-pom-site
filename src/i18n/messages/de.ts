@@ -25,7 +25,7 @@ const messages = {
       "conveyor-automation": "Fördertechnik und Automation",
       "motion-components": "Bewegungskomponenten",
       "water-control": "Wassertechnik",
-      "washing-machine-components": "Waschmaschinen-Komponenten",
+      "washing-machine-components": "Waschmaschine",
       "outdoor-equipment": "Outdoor-Geräte",
       "textile-machinery": "Textilmaschinen",
     },

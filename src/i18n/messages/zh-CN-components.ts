@@ -78,7 +78,7 @@ export const chineseComponentSolutions = [
     relatedApplications: [
       { label: "运动部件", href: "/applications/motion-components" },
       {
-        label: "洗衣机部件",
+        label: "洗衣机",
         href: "/applications/washing-machine-components",
       },
     ],
@@ -123,7 +123,7 @@ export const chineseComponentSolutions = [
     relatedApplications: [
       { label: "水路控制", href: "/applications/water-control" },
       {
-        label: "洗衣机部件",
+        label: "洗衣机",
         href: "/applications/washing-machine-components",
       },
     ],

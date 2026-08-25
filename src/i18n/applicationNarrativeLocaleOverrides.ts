@@ -1,6 +1,7 @@
 export const applicationNarrativeLocaleOverrides = {
   de: {
     水路控制: "Wasserkreislauf-Steuerung",
+    洗衣机: "Waschmaschine",
     负载与节拍: "Last und Taktzeit",
     "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
       "Definieren Sie Förderaufgabe, Last, Taktzeit, Kontaktflächen und Einsatzumgebung, bevor Sie POM-Werkstoffrichtungen und konkrete Werkstofftypen vergleichen.",
@@ -17,6 +18,7 @@ export const applicationNarrativeLocaleOverrides = {
   },
   fr: {
     水路控制: "Composants pour circuits d’eau",
+    洗衣机: "Machine à laver",
     负载与节拍: "Charge et cadence",
     "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
       "Définissez la tâche de convoyage, la charge, la cadence, les interfaces de contact et l’environnement d’utilisation avant de comparer les orientations POM et les grades précis.",
@@ -36,6 +38,7 @@ export const applicationNarrativeLocaleOverrides = {
   },
   "pt-br": {
     水路控制: "Controle de circuitos de água",
+    洗衣机: "Máquina de lavar",
     负载与节拍: "Carga e tempo de ciclo",
     "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
       "Defina a tarefa de transporte, a carga, o tempo de ciclo, as interfaces de contato e o ambiente de uso antes de comparar as direções de POM e os graus específicos.",

@@ -25,7 +25,7 @@ const messages = {
       "conveyor-automation": "Transportadores e automação",
       "motion-components": "Componentes de movimento",
       "water-control": "Controle de água",
-      "washing-machine-components": "Componentes de lavadoras",
+      "washing-machine-components": "Máquina de lavar",
       "outdoor-equipment": "Equipamentos externos",
       "textile-machinery": "Máquinas têxteis",
     },

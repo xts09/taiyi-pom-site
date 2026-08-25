@@ -4,6 +4,7 @@ export const englishApplicationNarrativeOverrides: Record<string, string> = {
   输送与自动化: "Conveyor & Automation",
   运动部件: "Motion Components",
   水路控制: "Water Control",
+  洗衣机: "Washing Machine",
   洗衣机部件: "Washing Machine Components",
   户外设备: "Outdoor Equipment",
   纺织机械: "Textile Machinery",

@@ -170,7 +170,7 @@ const messages = {
       imageAlt: "包含阀门与流路模块的洁净水路控制装配线",
     },
     "washing-machine-components": {
-      title: "洗衣机部件",
+      title: "洗衣机",
       description:
         "用于洗衣机滚筒传动、水路、排水、阀门及低摩擦运动机构的功能性注塑部件。",
       imageAlt: "包含注塑传动、排水与门锁部件的滚筒洗衣机机构",

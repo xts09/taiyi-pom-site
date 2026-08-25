@@ -25,7 +25,7 @@ const messages = {
       "conveyor-automation": "输送与自动化",
       "motion-components": "运动部件",
       "water-control": "水路控制",
-      "washing-machine-components": "洗衣机部件",
+      "washing-machine-components": "洗衣机",
       "outdoor-equipment": "户外设备",
       "textile-machinery": "纺织机械",
     },

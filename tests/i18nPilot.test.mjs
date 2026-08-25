@@ -269,6 +269,46 @@ test("all localized dictionaries match the complete shared English message shape
   assert.notEqual(zhCN.Home.hero.title, en.Home.hero.title);
   assert.notEqual(zhCN.Products.hero.title, en.Products.hero.title);
   assert.notEqual(zhCN.Contact.form.submit, en.Contact.form.submit);
+  assert.deepEqual(
+    [en, de, fr, ptBR, zhCN].map(
+      (messages) =>
+        messages.Taxonomy.applications["washing-machine-components"],
+    ),
+    [
+      "Washing Machine",
+      "Waschmaschine",
+      "Machine à laver",
+      "Máquina de lavar",
+      "洗衣机",
+    ],
+  );
+  assert.deepEqual(
+    [
+      translateEnglishApplicationText(
+        zhCNApplications.cards["washing-machine-components"].title,
+      ),
+      translateExpandedText(
+        zhCNApplications.cards["washing-machine-components"].title,
+        "de",
+      ),
+      translateExpandedText(
+        zhCNApplications.cards["washing-machine-components"].title,
+        "fr",
+      ),
+      translateExpandedText(
+        zhCNApplications.cards["washing-machine-components"].title,
+        "pt-br",
+      ),
+      zhCNApplications.cards["washing-machine-components"].title,
+    ],
+    [
+      "Washing Machine",
+      "Waschmaschine",
+      "Machine à laver",
+      "Máquina de lavar",
+      "洗衣机",
+    ],
+  );
   for (const messages of [en, de, fr, ptBR, zhCN]) {
     assert.equal(messages.Home.taskFirst?.entry.items.length, 3);
     assert.equal(messages.Home.taskFirst?.core.groups.length, 4);
@@ -287,6 +327,30 @@ test("all localized dictionaries match the complete shared English message shape
       en.Home.taskFirst?.collaboration.title,
     );
   }
+  assert.deepEqual(
+    [en, de, fr, ptBR, zhCN].map(
+      (messages) => messages.Home.taskFirst?.core.materialImageCaption,
+    ),
+    [
+      "Carbon Fiber Reinforced POM",
+      "Kohlenfaserverstärktes POM",
+      "POM renforcé de fibres de carbone",
+      "POM reforçado com fibra de carbono",
+      "碳纤维增强 POM",
+    ],
+  );
+  assert.deepEqual(
+    [en, de, fr, ptBR, zhCN].map(
+      (messages) => messages.Home.taskFirst?.core.action,
+    ),
+    [
+      "Explore the POM Compound Series",
+      "Modifizierte POM-Reihe entdecken",
+      "Découvrir la gamme POM modifié",
+      "Conheça a linha de POM modificado",
+      "了解改性 POM 系列",
+    ],
+  );
   assert.deepEqual(
     zhCN.Home.taskFirst?.components.items.map(({ title }) => title),
     chineseComponentSolutions.map(({ title }) => title),

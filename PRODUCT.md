@@ -122,11 +122,17 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 ### Application Narrative Rollout (2026-08-22)
 
 - The seven remaining Simplified Chinese application details now follow the automotive pilot's explicit task chain: define the part duty and operating conditions, compare component-specific concerns, narrow candidate material directions, and pass the known requirements into grade-data, sample, or project-validation work. The covered routes are motion components, conveyor automation, textile machinery, water control, washing-machine components, electronics, and outdoor equipment.
+
 - Each route owns four domain-specific starting inputs and a domain-specific next step. Generic `audit`, `review`, and `screening` language has been removed from these seven visible Chinese profiles; source imagery, route URLs, Chinese H1 labels, Hero structure, and application-page layout remain unchanged. IATF 16949:2016 evidence remains automotive-only and was not propagated to unrelated application domains.
 - English and Simplified Chinese remain the manually maintained source languages. German, French, and Brazilian Portuguese receive statically generated application-narrative dictionaries, then pass through source-aware engineering terminology corrections and compact human overrides for CTAs and ambiguous terms such as grade, water circuit, motion, and current failure. Next.js owns locale routing and static rendering; it is not treated as a translation engine, and runtime pages do not wait on a third-party translation service.
 - Strict locale auditing covers 753 visible strings per generated language across the seven routes. German, French, and Brazilian Portuguese each report zero Chinese fallback, zero known ambiguous machine terms, and zero invalid grade terminology. The shared locale dictionaries still fail closed when a generated or reviewed translation is absent.
 - The application-detail Hero action now caps its mobile width without forcing short labels to become full-width. This allows long Portuguese CTAs to wrap inside the Hero card at `390x844` while preserving a single-line desktop action at `1920x1080`.
 - Rendered acceptance covered representative Chinese routes for motion, conveyor automation, water control, electronics, and outdoor equipment; German electronics, French water control, Brazilian Portuguese outdoor equipment, and the Chinese automotive regression. Inspected states had four starting inputs, no generic audit wording, no horizontal overflow, no Chinese fallback in generated locales, and no browser warnings or errors. TypeScript and all 27 i18n pilot tests passed.
+
+### Washing Machine Application Label Simplification (2026-08-26)
+
+- The public application name is `Washing Machine`, `Waschmaschine`, `Machine à laver`, `Máquina de lavar`, and `洗衣机` across the five released languages. Homepage, navigation, application directories, related-application links, and localized detail-page titles use this short application-level label.
+- The stable route remains `/applications/washing-machine-components` in every language. References to washing-machine components remain valid inside technical descriptions, part lists, image alternatives, and selection guidance where the copy is describing physical molded parts rather than naming the application category.
 
 ### Simplified Chinese Resources Release (2026-08-21)
 
@@ -241,7 +247,8 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 
 ### Homepage POM Material Intro Distillation (2026-08-25)
 
-- The homepage material module now follows one simple product-story pattern: the four POM, PA6, PA66, and PPA entrances sit above a single POM feature with real material imagery on the left, a concise material introduction on the right, and one `Learn more` path to the POM family page.
+- The homepage material module now follows one simple product-story pattern: the four POM, PA6, PA66, and PPA entrances sit above a single POM feature with real material imagery on the left, a concise material introduction on the right, and one localized CTA that explicitly leads visitors to the modified POM range.
+- The black pellet image is identified consistently across all five languages with the complete localized material name for carbon-fiber-reinforced POM; the compact caption sits above the existing large `POM` label.
 - Processing guides, troubleshooting resources, grade/TDS search, contact prompts, and part-path guidance are no longer repeated inside this homepage module. They remain available on the product, Resources, Technical Data, Contact, and Components routes that own those tasks.
 - At desktop the POM feature is a balanced left-image/right-copy composition. Below 64rem it stacks into one reading column while retaining the four family entrances without horizontal overflow.
 

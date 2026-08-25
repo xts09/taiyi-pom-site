@@ -22,7 +22,7 @@ export const componentSolutions = [
     reviewAreas: ["Load and speed", "Wear and friction", "Noise target", "Tooth accuracy"],
     relatedApplications: [
       { label: "Motion Components", href: "/applications/motion-components" },
-      { label: "Washing Machine Components", href: "/applications/washing-machine-components" },
+      { label: "Washing Machine", href: "/applications/washing-machine-components" },
     ],
   },
   {
@@ -61,7 +61,7 @@ export const componentSolutions = [
     reviewAreas: ["Fluid exposure", "Seal interface", "Movement cycle", "Dimensional stability"],
     relatedApplications: [
       { label: "Water Control", href: "/applications/water-control" },
-      { label: "Washing Machine Components", href: "/applications/washing-machine-components" },
+      { label: "Washing Machine", href: "/applications/washing-machine-components" },
     ],
   },
   {

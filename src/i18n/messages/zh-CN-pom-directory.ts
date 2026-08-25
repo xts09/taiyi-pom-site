@@ -215,7 +215,7 @@ export const chinesePomDirectoryMessages = {
       "conveyor-automation": "输送与自动化",
       "water-control": "水路控制",
       "textile-machinery": "纺织机械",
-      "washing-machine-components": "洗衣机部件",
+      "washing-machine-components": "洗衣机",
       "outdoor-equipment": "户外设备",
     },
     selectionLinks: {

@@ -76,7 +76,7 @@ test("resolves the reviewed A3 component-to-application lists", () => {
         parts: ["Precision Gear", "Worm Gear"],
       },
       {
-        application: "Washing Machine Components",
+        application: "Washing Machine",
         href: "/applications/washing-machine-components",
         parts: ["Drum Drive Gear", "Reduction Gear Assembly"],
       },
@@ -140,7 +140,7 @@ test("resolves the reviewed A3 component-to-application lists", () => {
         ],
       },
       {
-        application: "Washing Machine Components",
+        application: "Washing Machine",
         href: "/applications/washing-machine-components",
         parts: [],
       },

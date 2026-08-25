@@ -905,7 +905,7 @@ export const applications: ApplicationItem[] = [
   },
   {
     slug: "washing-machine-components",
-    title: "Washing Machine Components",
+    title: "Washing Machine",
     description:
       "Functional molded components for washing-machine drum drive, water routing, drainage, valves, and low-friction moving assemblies.",
     materialDirections: [
