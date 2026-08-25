@@ -66,15 +66,15 @@ test("retired grade cross-reference route is absent while technical search remai
   const technicalSearchPage = readProjectFile(
     "src/app/(en)/technical-data-sheets/page.tsx",
   );
+  const technicalSearchSelector = readProjectFile(
+    "src/data/technicalDataSearch.ts",
+  );
 
   for (const path of retiredFiles) {
     assert.equal(existsSync(resolve(projectRoot, path)), false, path);
   }
-  assert.ok(
-    technicalSearchPage.includes(
-      'import { findGradeCrossReference } from "@/data/gradeCrossReferences";',
-    ),
-  );
+  assert.ok(technicalSearchPage.includes("selectTechnicalDataSearch"));
+  assert.ok(technicalSearchSelector.includes("findGradeCrossReference"));
   assert.ok(technicalSearchPage.includes('eyebrow="Suggested PLATFORM grade"'));
 });
 

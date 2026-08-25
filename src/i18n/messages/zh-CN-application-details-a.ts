@@ -18,7 +18,7 @@ const messages = {
       },
       hero: {
         eyebrow: "汽车零部件选材",
-        primaryAction: "提交汽车零部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -60,7 +60,7 @@ const messages = {
         title: "从已知的汽车零部件要求开始",
         description:
           "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。",
-        action: "提交汽车零部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [
@@ -236,7 +236,7 @@ const messages = {
       },
       hero: {
         eyebrow: "电子电气部件选材",
-        primaryAction: "提交电子电气部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -278,7 +278,7 @@ const messages = {
         title: "从已知的电气与零部件要求开始",
         description:
           "提供部件功能、目标电阻、测试电压与调节条件、接地方式、机械载荷、关键尺寸、使用环境和当前材料。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。",
-        action: "提交电子电气部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [
@@ -432,7 +432,7 @@ const messages = {
       },
       hero: {
         eyebrow: "输送与自动化选材",
-        primaryAction: "提交输送部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -474,7 +474,7 @@ const messages = {
         title: "从已知的输送条件开始",
         description:
           "提供输送物、单件或累计负载、线速、启停频率、接触材料、清洁环境、静电目标和当前失效现象。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。",
-        action: "提交输送部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [
@@ -621,7 +621,7 @@ const messages = {
       },
       hero: {
         eyebrow: "运动部件选材",
-        primaryAction: "提交运动部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -668,7 +668,7 @@ const messages = {
         title: "从已知的运动条件开始",
         description:
           "提供部件功能、摩擦副、载荷、速度、循环次数、润滑状态、关键尺寸和当前失效现象。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。",
-        action: "提交运动部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [

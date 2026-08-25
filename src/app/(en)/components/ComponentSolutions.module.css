@@ -698,6 +698,34 @@
   background: rgba(255, 255, 255, 0.07);
 }
 
+.decisionMatrixHeader {
+  display: none;
+}
+
+@media (min-width: 64.001rem) {
+  .decisionMatrixHeader {
+    display: grid;
+    grid-template-columns: 2.25rem minmax(12rem, 3fr) minmax(0, 4fr) minmax(0, 4fr);
+    gap: var(--ds-space-6);
+    margin-top: var(--ds-space-8);
+    padding: 0 var(--ds-space-8) var(--ds-space-3);
+    color: var(--ds-color-cyan-bright);
+    font-size: var(--ds-text-xs);
+    font-weight: var(--ds-font-weight-semibold);
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
+
+  .decisionListWithHeader {
+    margin-top: 0;
+  }
+
+  .pilotDecisionLabel {
+    display: none;
+  }
+}
+
 .decisionList article {
   display: grid;
   grid-template-columns: 2.25rem minmax(12rem, 3fr) minmax(0, 4fr) minmax(0, 4fr);
@@ -905,6 +933,10 @@
   background: var(--ds-panel-bg-soft);
 }
 
+.materialValidationBoundary + .materialDirectionList {
+  margin-top: var(--ds-space-4);
+}
+
 .materialBoundary p {
   max-width: 72rem;
   margin: var(--ds-space-3) 0 0;
@@ -983,6 +1015,18 @@
   font-size: var(--ds-text-base);
   font-weight: var(--ds-font-weight-medium);
   line-height: 1.6;
+}
+
+.processOutcome .processBoundary {
+  margin-top: var(--ds-space-2);
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-font-weight-regular);
+}
+
+.processBoundary strong {
+  color: var(--ds-foreground-primary);
+  font-weight: var(--ds-font-weight-semibold);
 }
 
 .technicalAccordion {

@@ -56,6 +56,7 @@ export type ComponentDetailUi = {
   materialsEyebrow: string;
   materialsTitle: string;
   cautionLabel: string;
+  validationBoundaryLabel: string;
   pomBoundaryLabel: string;
   materialGuideAction: string;
   inquiryEyebrow: string;
@@ -91,6 +92,7 @@ const englishUi: ComponentDetailUi = {
   materialsEyebrow: "Candidate materials",
   materialsTitle: "Compare the material response, not just the resin name.",
   cautionLabel: "Project caution",
+  validationBoundaryLabel: "Validation boundary",
   pomBoundaryLabel: "When POM may not fit",
   materialGuideAction: "Open the material selection guide",
   inquiryEyebrow: "Minimum project input",
@@ -114,6 +116,76 @@ const englishUi: ComponentDetailUi = {
   finalAction: "Discuss Your Application",
   contactSource: "Component solution",
 };
+
+type ComponentDensityCapability = {
+  compactApplicationRelations?: boolean;
+  compactProblemFraming?: boolean;
+  sharedDecisionHeader?: boolean;
+  validationBoundaryDirectionId?: string;
+  inlineProcessOutcome?: boolean;
+  compactTechnicalFraming?: boolean;
+  compactResourceFraming?: boolean;
+};
+
+const componentDensityCapabilities = {
+  "valve-spools-and-cartridges": {
+    compactApplicationRelations: true,
+    compactProblemFraming: true,
+    sharedDecisionHeader: true,
+    validationBoundaryDirectionId:
+      "valve-spools-and-cartridges-balanced-unfilled-pom",
+    inlineProcessOutcome: true,
+    compactTechnicalFraming: true,
+    compactResourceFraming: true,
+  },
+  "precision-plastic-gears": {
+    compactApplicationRelations: true,
+    compactProblemFraming: true,
+    sharedDecisionHeader: true,
+    validationBoundaryDirectionId:
+      "precision-plastic-gears-balanced-unfilled-pom",
+    inlineProcessOutcome: true,
+    compactTechnicalFraming: true,
+    compactResourceFraming: true,
+  },
+  "bushings-and-sleeves": {
+    compactApplicationRelations: true,
+    compactProblemFraming: true,
+    sharedDecisionHeader: true,
+    validationBoundaryDirectionId:
+      "bushings-and-sleeves-balanced-unfilled-pom",
+    inlineProcessOutcome: true,
+    compactTechnicalFraming: true,
+    compactResourceFraming: true,
+  },
+  "conveyor-chain-components": {
+    compactApplicationRelations: true,
+    compactProblemFraming: true,
+    sharedDecisionHeader: true,
+    validationBoundaryDirectionId:
+      "conveyor-chain-components-balanced-unfilled-pom",
+    inlineProcessOutcome: true,
+    compactTechnicalFraming: true,
+    compactResourceFraming: true,
+  },
+  "textile-guide-components": {
+    compactApplicationRelations: true,
+    compactProblemFraming: true,
+    sharedDecisionHeader: true,
+    validationBoundaryDirectionId:
+      "textile-guide-components-balanced-unfilled-pom",
+    inlineProcessOutcome: true,
+    compactTechnicalFraming: true,
+    compactResourceFraming: true,
+  },
+  "ic-handling-trays": {
+    compactApplicationRelations: true,
+    compactProblemFraming: true,
+    sharedDecisionHeader: true,
+    compactTechnicalFraming: true,
+    compactResourceFraming: true,
+  },
+} as const satisfies Readonly<Record<string, ComponentDensityCapability>>;
 
 export function DetailedComponentSolution({
   detail,
@@ -163,6 +235,16 @@ export function DetailedComponentSolution({
 
     return { direction, owners };
   });
+  const densityCapability: ComponentDensityCapability | undefined =
+    componentDensityCapabilities[
+      solution.slug as keyof typeof componentDensityCapabilities
+    ];
+  const validationBoundary = densityCapability?.validationBoundaryDirectionId
+    ? materialDirectionRows.find(
+        ({ direction }) =>
+          direction.id === densityCapability.validationBoundaryDirectionId,
+      )?.direction.caution
+    : undefined;
 
   return (
     <main className={`${styles.page} ${styles.detailPage}`}>
@@ -246,7 +328,9 @@ export function DetailedComponentSolution({
               <h2 id="component-application-context">
                 {ui.applicationContextTitle}
               </h2>
-              <p>{ui.applicationContextDescription}</p>
+              {densityCapability?.compactApplicationRelations ? null : (
+                <p>{ui.applicationContextDescription}</p>
+              )}
             </div>
             <nav
               className={styles.applicationContextLinks}
@@ -259,11 +343,21 @@ export function DetailedComponentSolution({
                 >
                   <span>
                     <strong>{reference.applicationTitle}</strong>
-                    {reference.partExamples.map((part) => (
-                      <small key={part.id}>
-                        {ui.partExampleLabel}: {part.label}
+                    {densityCapability?.compactApplicationRelations &&
+                    reference.partExamples.length > 0 ? (
+                      <small>
+                        {ui.partExampleLabel}:{" "}
+                        {reference.partExamples
+                          .map((part) => part.label)
+                          .join(", ")}
                       </small>
-                    ))}
+                    ) : (
+                      reference.partExamples.map((part) => (
+                        <small key={part.id}>
+                          {ui.partExampleLabel}: {part.label}
+                        </small>
+                      ))
+                    )}
                   </span>
                   <ArrowRight aria-hidden="true" size={19} />
                 </Link>
@@ -277,32 +371,67 @@ export function DetailedComponentSolution({
           >
             <div className={styles.failureHeader}>
               <div>
-                <p className={styles.gearEyebrow}>{ui.problemEyebrow}</p>
+                {densityCapability?.compactProblemFraming ? null : (
+                  <p className={styles.gearEyebrow}>{ui.problemEyebrow}</p>
+                )}
                 <h2 id="failure-review">{detail.copy.problemTitle}</h2>
               </div>
               <p>{detail.copy.problemSummary}</p>
             </div>
 
-            <div className={styles.decisionList}>
+            {densityCapability?.sharedDecisionHeader ? (
+              <div className={styles.decisionMatrixHeader} aria-hidden="true">
+                <span />
+                <span>{ui.observedProblemLabel}</span>
+                <span>{ui.checkFirstLabel}</span>
+                <span>{ui.materialResponseLabel}</span>
+              </div>
+            ) : null}
+
+            <div
+              className={`${styles.decisionList} ${
+                densityCapability?.sharedDecisionHeader
+                  ? styles.decisionListWithHeader
+                  : ""
+              }`}
+            >
               {detail.decisionRows.map((row, index) => (
                 <article key={row.symptom}>
                   <span className={styles.decisionIndex}>
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <span className={styles.decisionLabel}>
+                    <span
+                      className={`${styles.decisionLabel} ${
+                        densityCapability?.sharedDecisionHeader
+                          ? styles.pilotDecisionLabel
+                          : ""
+                      }`}
+                    >
                       {ui.observedProblemLabel}
                     </span>
                     <h3>{row.symptom}</h3>
                   </div>
                   <div>
-                    <span className={styles.decisionLabel}>
+                    <span
+                      className={`${styles.decisionLabel} ${
+                        densityCapability?.sharedDecisionHeader
+                          ? styles.pilotDecisionLabel
+                          : ""
+                      }`}
+                    >
                       {ui.checkFirstLabel}
                     </span>
                     <p>{row.review}</p>
                   </div>
                   <div>
-                    <span className={styles.decisionLabel}>
+                    <span
+                      className={`${styles.decisionLabel} ${
+                        densityCapability?.sharedDecisionHeader
+                          ? styles.pilotDecisionLabel
+                          : ""
+                      }`}
+                    >
                       {ui.materialResponseLabel}
                     </span>
                     <p>{row.direction}</p>
@@ -320,6 +449,18 @@ export function DetailedComponentSolution({
               </div>
               <p>{detail.copy.materialSummary}</p>
             </div>
+
+            {validationBoundary ? (
+              <aside
+                aria-label={ui.validationBoundaryLabel}
+                className={`${styles.materialBoundary} ${styles.materialValidationBoundary}`}
+              >
+                <div>
+                  <span>{ui.validationBoundaryLabel}</span>
+                  <p>{validationBoundary}</p>
+                </div>
+              </aside>
+            ) : null}
 
             <ol className={styles.materialDirectionList}>
               {materialDirectionRows.map(({ direction, owners }, index) => (
@@ -344,10 +485,13 @@ export function DetailedComponentSolution({
                       ))}
                     </ul>
                   </div>
-                  <div className={styles.materialDirectionCaution}>
-                    <span>{ui.cautionLabel}</span>
-                    <p>{direction.caution}</p>
-                  </div>
+                  {direction.id ===
+                  densityCapability?.validationBoundaryDirectionId ? null : (
+                    <div className={styles.materialDirectionCaution}>
+                      <span>{ui.cautionLabel}</span>
+                      <p>{direction.caution}</p>
+                    </div>
+                  )}
                 </li>
               ))}
             </ol>
@@ -394,41 +538,62 @@ export function DetailedComponentSolution({
                 </article>
               ))}
             </div>
+
+            {densityCapability?.inlineProcessOutcome ? (
+              <div className={styles.processOutcome}>
+                <div>
+                  <span>{ui.expectedOutputLabel}</span>
+                  <p>{detail.processOutcome}</p>
+                  {detail.copy.processBoundary ? (
+                    <p className={styles.processBoundary}>
+                      <strong>{ui.validationBoundaryLabel}:</strong>{" "}
+                      {detail.copy.processBoundary}
+                    </p>
+                  ) : null}
+                </div>
+                <Link href={localizedHref("/technical-data-sheets")}>
+                  {ui.gradeDataAction}
+                  <ArrowRight aria-hidden="true" size={18} />
+                </Link>
+              </div>
+            ) : null}
           </section>
 
-          <section
-            className={`${styles.gearSection} ${styles.processSection}`}
-            aria-labelledby="after-contact"
-          >
-            <div className={styles.gearSectionIntro}>
-              <div>
-                <p className={styles.gearEyebrow}>{ui.processEyebrow}</p>
-                <h2 id="after-contact">{ui.processTitle}</h2>
+          {densityCapability?.inlineProcessOutcome ? null : (
+            <section
+              className={`${styles.gearSection} ${styles.processSection}`}
+              aria-labelledby="after-contact"
+            >
+              <div className={styles.gearSectionIntro}>
+                <div>
+                  <p className={styles.gearEyebrow}>{ui.processEyebrow}</p>
+                  <h2 id="after-contact">{ui.processTitle}</h2>
+                </div>
+                <p>{detail.copy.processSummary}</p>
               </div>
-              <p>{detail.copy.processSummary}</p>
-            </div>
 
-            <ol className={styles.processSteps}>
-              {detail.processSteps.map((step, index) => (
-                <li key={step.title}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <h3>{step.title}</h3>
-                  <p>{step.body}</p>
-                </li>
-              ))}
-            </ol>
+              <ol className={styles.processSteps}>
+                {detail.processSteps.map((step, index) => (
+                  <li key={step.title}>
+                    <span>{String(index + 1).padStart(2, "0")}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.body}</p>
+                  </li>
+                ))}
+              </ol>
 
-            <div className={styles.processOutcome}>
-              <div>
-                <span>{ui.expectedOutputLabel}</span>
-                <p>{detail.processOutcome}</p>
+              <div className={styles.processOutcome}>
+                <div>
+                  <span>{ui.expectedOutputLabel}</span>
+                  <p>{detail.processOutcome}</p>
+                </div>
+                <Link href={localizedHref("/technical-data-sheets")}>
+                  {ui.gradeDataAction}
+                  <ArrowRight aria-hidden="true" size={18} />
+                </Link>
               </div>
-              <Link href={localizedHref("/technical-data-sheets")}>
-                {ui.gradeDataAction}
-                <ArrowRight aria-hidden="true" size={18} />
-              </Link>
-            </div>
-          </section>
+            </section>
+          )}
 
           <section
             className={`${styles.gearSection} ${styles.technicalSection}`}
@@ -436,10 +601,14 @@ export function DetailedComponentSolution({
           >
             <div className={styles.gearSectionHeading}>
               <div>
-                <p className={styles.gearEyebrow}>{ui.technicalEyebrow}</p>
+                {densityCapability?.compactTechnicalFraming ? null : (
+                  <p className={styles.gearEyebrow}>{ui.technicalEyebrow}</p>
+                )}
                 <h2 id="technical-detail">{ui.technicalTitle}</h2>
               </div>
-              <p>{ui.technicalDescription}</p>
+              {densityCapability?.compactTechnicalFraming ? null : (
+                <p>{ui.technicalDescription}</p>
+              )}
             </div>
 
             <Accordion className={styles.technicalAccordion} type="multiple">
@@ -478,7 +647,9 @@ export function DetailedComponentSolution({
 
             <div className={styles.relatedCompact} aria-labelledby="related-reading">
               <div className={styles.relatedCompactHeader}>
-                <p className={styles.gearEyebrow}>{ui.relatedEyebrow}</p>
+                {densityCapability?.compactResourceFraming ? null : (
+                  <p className={styles.gearEyebrow}>{ui.relatedEyebrow}</p>
+                )}
                 <h3 id="related-reading">{ui.relatedTitle}</h3>
               </div>
               <div className={styles.gearRelatedLinks}>

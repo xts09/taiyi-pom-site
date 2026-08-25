@@ -36,6 +36,7 @@ export const chineseTextileGuideComponentsDetail = {
       "应结合纱线结构、接触几何、速度、张力、表面质量、环境和目标寿命比较以下方向。",
     processSummary:
       "首次反馈应缩小接触材料与载体材料范围，并明确张力、纱线损伤、磨损、静电和耐久测试。生产批准仍取决于实际纱线与设备。",
+    processBoundary: "生产批准仍取决于实际纱线与设备。",
   },
   decisionRows: [
     {
@@ -273,7 +274,7 @@ export const chineseTextileGuideComponentsDetail = {
     eyebrow: "项目信息",
     title: "让导向材料匹配纱线与设备",
     body:
-      "请提供导向件图纸，以及现有纱线、速度、张力、接触几何、表面、环境、静电、目标寿命和失效信息。台益可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出量产纱线评估计划。",
+      "请提供图纸及现有纱线、速度、张力、接触面、环境、静电和失效数据。台益可比较相关 PLATFORM POM 方向、确认可用牌号数据，并提出量产纱线评估计划。",
   },
 } as const satisfies ComponentSolutionDetail;
 
@@ -550,6 +551,6 @@ export const chineseIcHandlingTraysDetail = {
     eyebrow: "项目信息",
     title: "选择托盘材料之前先定义周转工艺",
     body:
-      "请提供封装图纸，以及现有托盘标准、ESD 要求、工艺温度、槽位几何、平面度、自动化、洁净度、复用和失效信息。台益可判断 PLATFORM POM 或其他聚合物是否值得试模，确认可用牌号数据或资料路径，并提出托盘认证计划。",
+      "请提供封装图纸及现有托盘标准、ESD、温度、槽位、自动化、洁净度和失效数据。台益可判断 PLATFORM POM 或其他聚合物是否值得试模、确认可用牌号数据，并提出托盘认证计划。",
   },
 } as const satisfies ComponentSolutionDetail;

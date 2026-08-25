@@ -31,6 +31,12 @@ const componentDetailTranslationRows = [
     "Compare direções de materiais, não apenas nomes de resinas",
   ],
   [
+    "验证边界",
+    "Validierungsgrenze",
+    "Limite de validation",
+    "Limite de validação",
+  ],
+  [
     "先提供已知信息，并标注尚未确认的内容",
     "Zuerst bekannte Angaben bereitstellen und offene Punkte kennzeichnen",
     "Fournir d’abord les informations connues et signaler les points à confirmer",
@@ -85,10 +91,22 @@ const componentDetailTranslationRows = [
     "Conjunto completo de dados do projeto para comparação de materiais e validação da peça",
   ],
   [
+    "生产批准仍取决于完整传动系统中的代表性验证。",
+    "Die Produktionsfreigabe hängt weiterhin von einer repräsentativen Validierung im vollständigen Getriebe ab.",
+    "L’autorisation de production dépend toujours d’une validation représentative dans la transmission complète.",
+    "A aprovação para produção ainda depende de uma validação representativa na transmissão completa.",
+  ],
+  [
     "申请样品前先建立齿轮候选清单",
     "Vor der Bemusterung eine Kandidatenauswahl für das Zahnrad erstellen",
     "Établir une liste restreinte pour l’engrenage avant l’échantillonnage",
     "Monte uma lista de candidatos para a engrenagem antes de solicitar amostras",
+  ],
+  [
+    "使用上面的项目简报来比较材料方向、可用牌号数据和注塑齿轮验证计划。",
+    "Verwenden Sie die obige Projektübersicht, um Werkstoffrichtungen, verfügbare Sortendaten und einen Validierungsplan für das Spritzgusszahnrad zu vergleichen.",
+    "Utilisez le dossier projet ci-dessus pour comparer les orientations matériaux, les données de grades disponibles et un plan de validation de l’engrenage moulé.",
+    "Use o resumo do projeto acima para comparar direções de materiais, dados de graus disponíveis e um plano de validação da engrenagem moldada.",
   ],
   [
     "先从滑动系统的问题开始",
@@ -199,6 +217,18 @@ const componentDetailTranslationRows = [
     "Defina o sistema de fluido antes de selecionar o polímero",
   ],
   [
+    "缩小阀门材料候选范围",
+    "Werkstoffkandidaten für das Ventil eingrenzen",
+    "Réduire la liste des matériaux candidats pour la vanne",
+    "Reduza a lista de materiais candidatos para a válvula",
+  ],
+  [
+    "使用上面的项目简报来比较材料方向、可用牌号数据和整阀验证计划。",
+    "Nutzen Sie die obige Projektübersicht, um Werkstoffrichtungen, verfügbare Werkstoffdaten und einen Validierungsplan für das vollständige Ventil zu vergleichen.",
+    "Utilisez le dossier projet ci-dessus pour comparer les orientations matériaux, les données de grades disponibles et un plan de validation de la vanne complète.",
+    "Use o resumo do projeto acima para comparar direções de materiais, dados de graus disponíveis e um plano de validação da válvula completa.",
+  ],
+  [
     "先从纱线路径的问题开始",
     "Mit dem Problem des Garnlaufs beginnen",
     "Commencer par le problème du chemin du fil",
@@ -269,6 +299,48 @@ const componentDetailTranslationRows = [
     "Den Handhabungsprozess definieren, bevor der Tray-Werkstoff ausgewählt wird",
     "Définir le processus de manutention avant de sélectionner le matériau du plateau",
     "Defina o processo de manuseio antes de selecionar o material da bandeja",
+  ],
+  [
+    "生产批准仍取决于完整滑动总成。",
+    "Die Produktionsfreigabe hängt weiterhin von der vollständigen Gleitbaugruppe ab.",
+    "L’approbation de production dépend toujours de l’ensemble coulissant complet.",
+    "A aprovação para produção ainda depende do conjunto deslizante completo.",
+  ],
+  [
+    "生产批准仍取决于完整输送系统。",
+    "Die Produktionsfreigabe hängt weiterhin vom vollständigen Fördersystem ab.",
+    "L’approbation de production dépend toujours du système de convoyage complet.",
+    "A aprovação para produção ainda depende do sistema transportador completo.",
+  ],
+  [
+    "生产批准仍取决于实际纱线与设备。",
+    "Die Produktionsfreigabe hängt weiterhin vom tatsächlichen Garn und von der Maschine ab.",
+    "L’approbation de production dépend toujours du fil réel et de la machine.",
+    "A aprovação para produção ainda depende do fio real e da máquina.",
+  ],
+  [
+    "请提供图纸及现有轴、配合、运动、环境、目标寿命和失效数据。台益可比较相关 PLATFORM POM 方向、确认可用牌号数据，并提出装配后衬套评估计划。",
+    "Senden Sie die Zeichnung und verfügbare Daten zu Welle, Passung, Bewegung, Umgebung, Ziellebensdauer und Ausfallbild. Taiyi Polymer kann geeignete PLATFORM-POM-Werkstoffrichtungen vergleichen, verfügbare Sortendaten ermitteln und einen Bewertungsplan für die eingebaute Buchse vorschlagen.",
+    "Envoyez le plan et les données disponibles sur l’arbre, l’ajustement, le mouvement, l’environnement, la durée de vie cible et la défaillance. Taiyi Polymer peut comparer les orientations PLATFORM POM pertinentes, identifier les données de grades disponibles et proposer un plan d’évaluation de la bague montée.",
+    "Envie o desenho e os dados disponíveis de eixo, ajuste, movimento, ambiente, vida útil alvo e falha. A Taiyi Polymer pode comparar direções relevantes de PLATFORM POM, identificar dados de graus disponíveis e propor um plano de avaliação da bucha instalada.",
+  ],
+  [
+    "请提供图纸及现有载荷、销轴、链轮、布局、环境、目标寿命和失效数据。台益可比较相关 PLATFORM POM 方向、确认可用牌号数据，并提出组装链条评估计划。",
+    "Senden Sie die Zeichnung und verfügbare Daten zu Last, Bolzen, Kettenrädern, Layout, Umgebung, Ziellebensdauer und Ausfallbild. Taiyi Polymer kann geeignete PLATFORM-POM-Werkstoffrichtungen vergleichen, verfügbare Sortendaten ermitteln und einen Bewertungsplan für die montierte Kette vorschlagen.",
+    "Envoyez le plan et les données disponibles sur la charge, les axes, les pignons, l’implantation, l’environnement, la durée de vie cible et la défaillance. Taiyi Polymer peut comparer les orientations PLATFORM POM pertinentes, identifier les données de grades disponibles et proposer un plan d’évaluation de la chaîne assemblée.",
+    "Envie o desenho e os dados disponíveis de carga, pinos, rodas dentadas, layout, ambiente, vida útil alvo e falha. A Taiyi Polymer pode comparar direções relevantes de PLATFORM POM, identificar dados de graus disponíveis e propor um plano de avaliação da corrente montada.",
+  ],
+  [
+    "请提供图纸及现有纱线、速度、张力、接触面、环境、静电和失效数据。台益可比较相关 PLATFORM POM 方向、确认可用牌号数据，并提出量产纱线评估计划。",
+    "Senden Sie die Zeichnung und verfügbare Daten zu Garn, Geschwindigkeit, Spannung, Kontaktfläche, Umgebung, Statik und Ausfallbild. Taiyi Polymer kann geeignete PLATFORM-POM-Werkstoffrichtungen vergleichen, verfügbare Sortendaten ermitteln und einen Bewertungsplan mit Produktionsgarn vorschlagen.",
+    "Envoyez le plan et les données disponibles sur le fil, la vitesse, la tension, la surface de contact, l’environnement, l’électricité statique et la défaillance. Taiyi Polymer peut comparer les orientations PLATFORM POM pertinentes, identifier les données de grades disponibles et proposer un plan d’évaluation avec le fil de production.",
+    "Envie o desenho e os dados disponíveis de fio, velocidade, tensão, superfície de contato, ambiente, estática e falha. A Taiyi Polymer pode comparar direções relevantes de PLATFORM POM, identificar dados de graus disponíveis e propor um plano de avaliação com o fio de produção.",
+  ],
+  [
+    "请提供封装图纸及现有托盘标准、ESD、温度、槽位、自动化、洁净度和失效数据。台益可判断 PLATFORM POM 或其他聚合物是否值得试模、确认可用牌号数据，并提出托盘认证计划。",
+    "Senden Sie die Gehäusezeichnung und verfügbare Daten zu Tray-Standard, ESD, Temperatur, Taschen, Automatisierung, Sauberkeit und Ausfallbild. Taiyi Polymer kann beurteilen, ob PLATFORM POM oder ein anderes Polymer einen Formversuch rechtfertigt, verfügbare Sortendaten ermitteln und einen Tray-Qualifizierungsplan vorschlagen.",
+    "Envoyez le plan du boîtier et les données disponibles sur le standard du plateau, l’ESD, la température, les logements, l’automatisation, la propreté et la défaillance. Taiyi Polymer peut déterminer si PLATFORM POM ou un autre polymère justifie un essai de moulage, identifier les données de grades disponibles et proposer un plan de qualification du plateau.",
+    "Envie o desenho do encapsulamento e os dados disponíveis de padrão da bandeja, ESD, temperatura, alojamentos, automação, limpeza e falha. A Taiyi Polymer pode determinar se PLATFORM POM ou outro polímero justifica um teste de moldagem, identificar dados de graus disponíveis e propor um plano de qualificação da bandeja.",
   ],
 ] as const satisfies readonly TranslationRow[];
 

@@ -109,6 +109,17 @@ test("localized Technical Data document handoffs all use the TDS intent", () => 
   assert.deepEqual(calls.map((call) => call.intent), ["tds", "tds"]);
 });
 
+test("ZH Technical Data search keeps one explicit TDS document-request path", () => {
+  const calls = extractContactCalls(
+    readSource(
+      "src/components/localized/LocalizedTechnicalDataSearchPage.tsx",
+    ),
+  );
+
+  assert.equal(calls.length, 1);
+  assert.deepEqual(calls.map((call) => call.intent), ["tds"]);
+});
+
 test("English Technical Data keeps its independent search interaction model", () => {
   const source = readSource("src/app/(en)/technical-data-sheets/page.tsx");
 

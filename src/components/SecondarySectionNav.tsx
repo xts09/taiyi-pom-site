@@ -14,7 +14,7 @@ type SecondarySectionNavProps = {
   actions?: SecondarySectionNavAction[];
   ariaLabel: string;
   mobileMenuLabel?: string;
-  subtitle: string;
+  subtitle?: string;
   tabs: SecondarySectionNavTab[];
   tabsAriaLabel?: string;
   title: string;
@@ -66,12 +66,14 @@ export function SecondarySectionNav({
               {title}
             </span>
           </p>
-          <span
-            className={`${prefix}-section-subtitle`}
-            data-slot="secondary-section-subtitle"
-          >
-            {subtitle}
-          </span>
+          {subtitle ? (
+            <span
+              className={`${prefix}-section-subtitle`}
+              data-slot="secondary-section-subtitle"
+            >
+              {subtitle}
+            </span>
+          ) : null}
         </div>
 
         <div

@@ -18,7 +18,7 @@ const messages = {
       },
       hero: {
         eyebrow: "水路控制部件选材",
-        primaryAction: "提交水路部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -60,7 +60,7 @@ const messages = {
         title: "从已知的水路条件开始",
         description:
           "提供介质、水温、压力、启闭或旋转方式、循环次数、密封位置、关键尺寸和当前泄漏或磨损现象。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。",
-        action: "提交水路部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [
@@ -214,7 +214,7 @@ const messages = {
       },
       hero: {
         eyebrow: "洗衣机部件选材",
-        primaryAction: "提交洗衣机部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -261,7 +261,7 @@ const messages = {
         title: "从已知的洗涤循环和部件要求开始",
         description:
           "提供部件功能、洗涤或脱水阶段、载荷、速度、振动、水温、洗涤剂、密封位置、关键尺寸和当前失效现象。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。",
-        action: "提交洗衣机部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [
@@ -426,7 +426,7 @@ const messages = {
       },
       hero: {
         eyebrow: "户外设备部件选材",
-        primaryAction: "提交户外部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -468,7 +468,7 @@ const messages = {
         title: "从已知的户外工况开始",
         description:
           "提供安装位置、日照与暴露时长、温度范围、载荷或冲击、水尘介质、关键尺寸、颜色要求和当前失效现象。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。",
-        action: "提交户外部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [
@@ -621,7 +621,7 @@ const messages = {
       },
       hero: {
         eyebrow: "纺织机械部件选材",
-        primaryAction: "提交纺织部件要求",
+        primaryAction: "讨论您的应用",
         secondaryAction: "查找牌号数据与 TDS",
       },
       scene: {
@@ -663,7 +663,7 @@ const messages = {
         title: "从已知的纺织工况开始",
         description:
           "提供纱线或纤维类型、工序、速度、张力、接触路径、表面要求、关键尺寸和当前磨损现象。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。",
-        action: "提交纺织部件要求",
+        action: "讨论您的应用",
       },
     },
     selectionItems: [

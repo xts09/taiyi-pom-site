@@ -40,6 +40,7 @@ export const chineseComponentIndexMessages = {
     materialsEyebrow: "候选材料",
     materialsTitle: "比较材料应对方向，而不只是树脂名称",
     cautionLabel: "项目注意事项",
+    validationBoundaryLabel: "验证边界",
     pomBoundaryLabel: "POM 可能不适用的情况",
     materialGuideAction: "打开材料选型指南",
     inquiryEyebrow: "最少项目信息",
@@ -194,6 +195,7 @@ export const chinesePrecisionPlasticGearsDetail = {
       "应结合主导失效模式、齿形、载荷、转速、配对件、润滑和精度目标比较以下方向。",
     processSummary:
       "首次反馈应缩小材料候选范围，并明确注塑齿轮及总成测试。生产批准仍取决于完整传动系统。",
+    processBoundary: "生产批准仍取决于完整传动系统中的代表性验证。",
   },
   decisionRows: [
     {
@@ -421,7 +423,6 @@ export const chinesePrecisionPlasticGearsDetail = {
   finalCta: {
     eyebrow: "项目信息",
     title: "申请样品前先建立齿轮候选清单",
-    body:
-      "请提供齿轮图纸，以及现有载荷、转速、配对件、润滑、精度、环境、目标寿命和失效信息。台益可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出注塑齿轮评估计划。",
+    body: "使用上面的项目简报来比较材料方向、可用牌号数据和注塑齿轮验证计划。",
   },
 } as const satisfies ComponentSolutionDetail;

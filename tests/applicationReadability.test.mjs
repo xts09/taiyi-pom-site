@@ -4,6 +4,8 @@ import { resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { translateEnglishApplicationText } from "../src/i18n/englishApplicationNarrative.ts";
+import zhCNApplicationDetailsA from "../src/i18n/messages/zh-CN-application-details-a.ts";
+import zhCNApplicationDetailsB from "../src/i18n/messages/zh-CN-application-details-b.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const readProjectFile = (path) =>
@@ -99,5 +101,74 @@ test("A3 exact relationships use canonical English component terms", () => {
 
   for (const [source, expected] of expectedTerms) {
     assert.equal(translateEnglishApplicationText(source), expected);
+  }
+});
+
+test("reviewed Application density rollout removes only family-wide repeated framing", () => {
+  const pageSource = readProjectFile(
+    "src/components/localized/LocalizedApplicationDetailPage.tsx",
+  );
+  const secondaryNavSource = readProjectFile(
+    "src/components/SecondarySectionNav.tsx",
+  );
+  const applicationDetails = {
+    ...zhCNApplicationDetailsA,
+    ...zhCNApplicationDetailsB,
+  };
+  const reviewedSlugs = [
+    "automotive",
+    "electronics",
+    "conveyor-automation",
+    "motion-components",
+    "water-control",
+    "washing-machine-components",
+    "outdoor-equipment",
+    "textile-machinery",
+  ];
+
+  assert.match(
+    pageSource,
+    /reviewedApplicationDensitySlugs = new Set<string>/,
+  );
+  assert.doesNotMatch(pageSource, /isWaterControlCopyPilot/);
+  assert.deepEqual(Object.keys(applicationDetails).sort(), reviewedSlugs.sort());
+  for (const slug of reviewedSlugs) {
+    assert.match(pageSource, new RegExp(`"${slug}"`));
+  }
+  assert.match(secondaryNavSource, /subtitle\?: string/);
+  assert.match(secondaryNavSource, /\{subtitle \? \(/);
+  assert.match(pageSource, /cardLabel\?: string/);
+  assert.match(
+    pageSource,
+    /showKeyUseLabel=\{!usesReviewedApplicationDensity\}/,
+  );
+
+  for (const detail of Object.values(applicationDetails)) {
+    assert.equal(detail.detailUi?.hero?.primaryAction, "讨论您的应用");
+    assert.equal(detail.detailUi?.evaluation?.action, "讨论您的应用");
+    assert.equal(detail.selectionItems?.length, 4);
+  }
+  assert.equal(
+    translateEnglishApplicationText("讨论您的应用"),
+    "Discuss Your Application",
+  );
+
+  assert.equal(
+    Object.values(applicationDetails).reduce(
+      (total, detail) => total + detail.parts.length,
+      0,
+    ),
+    68,
+  );
+  assert.equal(
+    Object.values(applicationDetails).reduce(
+      (total, detail) => total + detail.materialDirections.length,
+      0,
+    ),
+    33,
+  );
+  for (const detail of Object.values(applicationDetails)) {
+    assert.match(detail.detailUi?.materials?.description ?? "", /不代表/);
+    assert.ok(detail.detailUi?.evaluation?.description);
   }
 });

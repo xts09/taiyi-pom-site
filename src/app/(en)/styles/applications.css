@@ -184,6 +184,7 @@
 }
 
 .application-component-owner-list {
+  container-type: inline-size;
   border: 1px solid var(--ds-border-subtle);
   background: rgba(255, 255, 255, 0.68);
 }
@@ -276,6 +277,18 @@
 .application-component-owner-link:focus-visible {
   outline: 2px solid var(--ds-focus-ring);
   outline-offset: 0.2rem;
+}
+
+@container (max-width: 47rem) {
+  .application-component-owner-link {
+    grid-template-columns: minmax(11rem, 0.7fr) minmax(0, 1.3fr);
+    row-gap: var(--ds-space-3);
+  }
+
+  .application-component-owner-action {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 64rem) {

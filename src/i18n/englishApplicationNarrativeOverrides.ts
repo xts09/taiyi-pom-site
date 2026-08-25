@@ -57,6 +57,7 @@ export const englishApplicationNarrativeOverrides: Record<string, string> = {
   水路控制选材关键输入: "Key inputs for water-control component selection",
   典型水路控制部件: "Typical water-control components",
   提交水路部件要求: "Share water-control component requirements",
+  讨论您的应用: "Discuss Your Application",
   提交洗衣机部件要求: "Share washing-machine component requirements",
   提交户外部件要求: "Share outdoor component requirements",
   提交纺织部件要求: "Share textile component requirements",

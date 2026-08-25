@@ -10,7 +10,8 @@ import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { resolveApplicationComponentOwnerReferences } from "@/data/applicationComponentRelations";
-import { resolveApplicationSystemPartGroups } from "@/data/applicationSystemPresentation";
+import { resolveApplicationSystemTopicReferences } from "@/data/systemTopicReleases";
+import { resolveApplicationInlinePartGroups } from "@/data/applicationSystemPresentation";
 import type {
   ApplicationEngineeringGroup,
   ApplicationImage,
@@ -67,6 +68,17 @@ type ApplicationUseCardData = {
   index: number;
   partId: string;
   title: string;
+};
+
+type ApplicationRelatedSolutionItem = {
+  key: string;
+  href: string;
+  title: string;
+  partsLabel: string;
+  partLabels: readonly string[];
+  actionLabel: string;
+  componentOwner?: string;
+  destinationBadgeLabel?: string;
 };
 
 type LocalizedApplicationDetailPageProps = {
@@ -156,6 +168,17 @@ const applicationVisualConfigs: Partial<
     ),
   },
 };
+
+const reviewedApplicationDensitySlugs = new Set<string>([
+  "automotive",
+  "electronics",
+  "conveyor-automation",
+  "motion-components",
+  "water-control",
+  "washing-machine-components",
+  "outdoor-equipment",
+  "textile-machinery",
+]);
 
 const cx = (...classes: Array<string | false | null | undefined>) =>
   classes.filter(Boolean).join(" ");
@@ -252,7 +275,7 @@ function ApplicationUseCard({
   index,
   title,
 }: ApplicationUseCardData & {
-  cardLabel: string;
+  cardLabel?: string;
   headingLevel?: 3 | 4;
 }) {
   const Heading = headingLevel === 4 ? "h4" : "h3";
@@ -285,7 +308,7 @@ function ApplicationUseCard({
 
         <CardContent className="application-use-card-body">
           <div className="application-use-card-meta">
-            <span>{cardLabel}</span>
+            {cardLabel ? <span>{cardLabel}</span> : null}
             <span>{String(index + 1).padStart(2, "0")}</span>
           </div>
           <Heading>{title}</Heading>
@@ -303,6 +326,7 @@ function ProductInfoCard({
   localeSegment,
   messages,
   materialImageSrc,
+  showKeyUseLabel = true,
 }: {
   card: MaterialDirectionCardData;
   englishDestinationLabel: string;
@@ -310,6 +334,7 @@ function ProductInfoCard({
   localeSegment?: LocalizedUrlSegment;
   messages: ApplicationDetailUiMessages["materials"];
   materialImageSrc?: string;
+  showKeyUseLabel?: boolean;
 }) {
   const mediaSrc = materialImageSrc ?? image?.src;
   const mediaAlt = materialImageSrc
@@ -347,7 +372,7 @@ function ProductInfoCard({
             <EnglishDestinationBadge label={englishDestinationLabel} />
           ) : null}
         </h3>
-        <small>{messages.keyUseLabel}</small>
+        {showKeyUseLabel ? <small>{messages.keyUseLabel}</small> : null}
         <p>{card.condition}</p>
       </div>
     </>
@@ -357,6 +382,59 @@ function ProductInfoCard({
     <article className="application-product-card" data-application-motion-item>
       {href ? <Link href={href}>{productContent}</Link> : productContent}
     </article>
+  );
+}
+
+function ApplicationRelatedSolutions({
+  ariaLabel,
+  eyebrow,
+  items,
+  title,
+}: {
+  ariaLabel: string;
+  eyebrow?: string;
+  items: readonly ApplicationRelatedSolutionItem[];
+  title: string;
+}) {
+  return (
+    <aside
+      className="application-component-guides"
+      aria-labelledby={`${items[0]?.key ?? "related"}-heading`}
+    >
+      <div className="application-component-guides-intro">
+        {eyebrow ? <p className="section-kicker">{eyebrow}</p> : null}
+        <h3 id={`${items[0]?.key ?? "related"}-heading`}>{title}</h3>
+      </div>
+      <nav className="application-component-owner-list" aria-label={ariaLabel}>
+        {items.map((item) => (
+          <Link
+            className="application-component-owner-link"
+            data-component-owner={item.componentOwner}
+            href={item.href}
+            key={item.key}
+          >
+            <strong className="application-component-owner-title">
+              {item.title}
+            </strong>
+            <div className="application-component-owner-parts">
+              <span>{item.partsLabel}</span>
+              <ul>
+                {item.partLabels.map((partLabel, partIndex) => (
+                  <li key={`${item.key}-${partIndex}`}>{partLabel}</li>
+                ))}
+              </ul>
+            </div>
+            <span className="application-component-owner-action">
+              {item.actionLabel}
+              {item.destinationBadgeLabel ? (
+                <EnglishDestinationBadge label={item.destinationBadgeLabel} />
+              ) : null}
+              <span aria-hidden="true">→</span>
+            </span>
+          </Link>
+        ))}
+      </nav>
+    </aside>
   );
 }
 
@@ -380,17 +458,58 @@ export function LocalizedApplicationDetailPage({
   const applicationUseCardByPartId = new Map(
     applicationUseCards.map((card) => [card.partId, card]),
   );
-  const applicationSystemPartGroups = resolveApplicationSystemPartGroups(
+  const applicationInlinePartGroups = resolveApplicationInlinePartGroups(
     application,
     inLanguage,
   );
   const groupedPartOrder = new Map(
-    (applicationSystemPartGroups?.flatMap((group) => group.partIds) ?? []).map(
+    (applicationInlinePartGroups?.flatMap((group) => group.partIds) ?? []).map(
       (partId, index) => [partId, index],
     ),
   );
   const componentOwners =
     resolveApplicationComponentOwnerReferences(application);
+  const systemTopicReferences = resolveApplicationSystemTopicReferences(
+    application,
+    inLanguage,
+  );
+  const usesReviewedApplicationDensity = reviewedApplicationDensitySlugs.has(
+    application.slug,
+  );
+  const componentSolutionItems: ApplicationRelatedSolutionItem[] =
+    componentOwners.map((owner) => {
+      const componentSlug =
+        owner.componentSlug as ApplicationIndexComponentSlug;
+      const componentHref = getLocalizedHref(owner.href, localeSegment);
+
+      return {
+        key: `component-${componentSlug}`,
+        href: componentHref,
+        title: componentMessages.labels[componentSlug],
+        partsLabel: componentMessages.relevantPartsLabel,
+        partLabels: owner.partExamples.map((part) => part.label),
+        actionLabel: componentMessages.viewAction,
+        componentOwner: componentSlug,
+        destinationBadgeLabel: isEnglishFallbackHref(
+          owner.href,
+          localeSegment,
+        )
+          ? componentMessages.englishDestinationLabel
+          : undefined,
+      };
+    });
+  const systemTopicItems: ApplicationRelatedSolutionItem[] =
+    systemTopicReferences.map((reference) => ({
+      key: `system-${reference.systemId}`,
+      href: reference.href,
+      title: reference.title,
+      partsLabel: "Representative parts",
+      partLabels: reference.partExamples.map((part) => part.label),
+      actionLabel:
+        reference.releaseStatus === "preview"
+          ? "Review system topic preview"
+          : "View system topic",
+    }));
   const contactHref = createContactHref(
     {
       application: application.title,
@@ -488,13 +607,29 @@ export function LocalizedApplicationDetailPage({
 
         {application.heroImage ? (
           <SecondarySectionNav
-            actions={[
-              { href: contactHref, label: messages.hero.primaryAction },
-              { href: technicalDataHref, label: messages.hero.secondaryAction },
-            ]}
+            actions={
+              usesReviewedApplicationDensity
+                ? [
+                    {
+                      href: technicalDataHref,
+                      label: messages.hero.secondaryAction,
+                    },
+                  ]
+                : [
+                    { href: contactHref, label: messages.hero.primaryAction },
+                    {
+                      href: technicalDataHref,
+                      label: messages.hero.secondaryAction,
+                    },
+                  ]
+            }
             ariaLabel={messages.navigation.ariaLabel}
             mobileMenuLabel={messages.navigation.mobileMenuLabel}
-            subtitle={application.description}
+            subtitle={
+              usesReviewedApplicationDensity
+                ? undefined
+                : application.description
+            }
             tabs={sectionTabs}
             tabsAriaLabel={messages.navigation.tabsAriaLabel}
             title={application.title}
@@ -527,7 +662,11 @@ export function LocalizedApplicationDetailPage({
               />
 
               <div className="application-scene-copy application-scene-copy-overlay">
-                <p className="section-kicker mb-3">{messages.scene.eyebrow}</p>
+                {!usesReviewedApplicationDensity ? (
+                  <p className="section-kicker mb-3">
+                    {messages.scene.eyebrow}
+                  </p>
+                ) : null}
                 <h2>{messages.scene.title}</h2>
                 <p>{messages.scene.visualDescription}</p>
               </div>
@@ -535,7 +674,11 @@ export function LocalizedApplicationDetailPage({
           ) : (
             <>
               <div className="application-scene-copy">
-                <p className="section-kicker mb-3">{messages.scene.eyebrow}</p>
+                {!usesReviewedApplicationDensity ? (
+                  <p className="section-kicker mb-3">
+                    {messages.scene.eyebrow}
+                  </p>
+                ) : null}
                 <h2>{messages.scene.title}</h2>
                 <p>{messages.scene.basicDescription}</p>
 
@@ -624,15 +767,17 @@ export function LocalizedApplicationDetailPage({
                 {messages.parts.titleSuffix}
               </h2>
             </div>
-            <p>{messages.parts.description}</p>
+            {!usesReviewedApplicationDensity ? (
+              <p>{messages.parts.description}</p>
+            ) : null}
           </div>
 
-          {applicationSystemPartGroups ? (
+          {applicationInlinePartGroups ? (
             <div
               className="application-system-groups"
               id="application-part-examples"
             >
-              {applicationSystemPartGroups.map((group) => (
+              {applicationInlinePartGroups.map((group) => (
                 <section
                   aria-labelledby={`application-system-${group.id}`}
                   className="application-system-group"
@@ -652,7 +797,11 @@ export function LocalizedApplicationDetailPage({
                         ? [
                             <ApplicationUseCard
                               key={card.key}
-                              cardLabel={messages.parts.cardLabel}
+                              cardLabel={
+                                usesReviewedApplicationDensity
+                                  ? undefined
+                                  : messages.parts.cardLabel
+                              }
                               description={card.description}
                               headingLevel={4}
                               image={card.image}
@@ -680,7 +829,11 @@ export function LocalizedApplicationDetailPage({
               {applicationUseCards.map((card) => (
                 <ApplicationUseCard
                   key={card.key}
-                  cardLabel={messages.parts.cardLabel}
+                  cardLabel={
+                    usesReviewedApplicationDensity
+                      ? undefined
+                      : messages.parts.cardLabel
+                  }
                   description={card.description}
                   image={card.image}
                   index={card.index}
@@ -691,69 +844,30 @@ export function LocalizedApplicationDetailPage({
             </ApplicationExpandableGrid>
           )}
 
-          {componentOwners.length > 0 ? (
-            <aside
-              className="application-component-guides"
-              aria-labelledby="application-component-guides-heading"
-            >
-              <div className="application-component-guides-intro">
-                <p className="section-kicker">
-                  {messages.parts.componentEyebrow}
-                </p>
-                <h3 id="application-component-guides-heading">
-                  {componentMessages.relatedTitle}
-                </h3>
-              </div>
-              <nav
-                className="application-component-owner-list"
-                aria-label={componentMessages.relatedTitle}
-              >
-                {componentOwners.map((owner) => {
-                  const componentSlug =
-                    owner.componentSlug as ApplicationIndexComponentSlug;
-                  const componentLabel =
-                    componentMessages.labels[componentSlug];
-                  const componentHref = getLocalizedHref(
-                    owner.href,
-                    localeSegment,
-                  );
-                  const showEnglishBadge = isEnglishFallbackHref(
-                    owner.href,
-                    localeSegment,
-                  );
+          {componentSolutionItems.length > 0 ? (
+            <ApplicationRelatedSolutions
+              ariaLabel={componentMessages.relatedTitle}
+              eyebrow={
+                usesReviewedApplicationDensity
+                  ? undefined
+                  : messages.parts.componentEyebrow
+              }
+              items={componentSolutionItems}
+              title={componentMessages.relatedTitle}
+            />
+          ) : null}
 
-                  return (
-                    <Link
-                      className="application-component-owner-link"
-                      data-component-owner={componentSlug}
-                      href={componentHref}
-                      key={componentSlug}
-                    >
-                      <strong className="application-component-owner-title">
-                        {componentLabel}
-                      </strong>
-                      <div className="application-component-owner-parts">
-                        <span>{componentMessages.relevantPartsLabel}</span>
-                        <ul>
-                          {owner.partExamples.map((part) => (
-                            <li key={part.id}>{part.label}</li>
-                          ))}
-                        </ul>
-                      </div>
-                      <span className="application-component-owner-action">
-                        {componentMessages.viewAction}
-                        {showEnglishBadge ? (
-                          <EnglishDestinationBadge
-                            label={componentMessages.englishDestinationLabel}
-                          />
-                        ) : null}
-                        <span aria-hidden="true">→</span>
-                      </span>
-                    </Link>
-                  );
-                })}
-              </nav>
-            </aside>
+          {systemTopicItems.length > 0 ? (
+            <ApplicationRelatedSolutions
+              ariaLabel="Related application system topic"
+              eyebrow={
+                usesReviewedApplicationDensity
+                  ? undefined
+                  : "Application system topic"
+              }
+              items={systemTopicItems}
+              title="Related application system topic"
+            />
           ) : null}
         </section>
 
@@ -792,6 +906,7 @@ export function LocalizedApplicationDetailPage({
                 localeSegment={localeSegment}
                 materialImageSrc={getMaterialCardImage(card)}
                 messages={messages.materials}
+                showKeyUseLabel={!usesReviewedApplicationDensity}
               />
             ))}
           </ApplicationExpandableGrid>

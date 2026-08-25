@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { LocalizedTechnicalDataPage } from "@/components/localized/LocalizedTechnicalDataPage";
+import { LocalizedTechnicalDataSearchPage } from "@/components/localized/LocalizedTechnicalDataSearchPage";
 import { products } from "@/data/products";
 import { getLocalizedLocale } from "@/i18n/config";
 import { loadProductFunnelMessages } from "@/i18n/productFunnelMessages";
@@ -78,10 +79,22 @@ export async function generateMetadata({
 
 export default async function LocalizedTechnicalDataPageRoute({
   params,
+  searchParams,
 }: LocalizedTechnicalDataPageRouteProps) {
   const { localeConfig, localizedProducts } = await resolveLocale(params);
   setRequestLocale(localeConfig.htmlLang);
   const messages = await loadProductFunnelMessages(localeConfig.locale);
+
+  if (localeConfig.urlSegment === "zh") {
+    return (
+      <LocalizedTechnicalDataSearchPage
+        params={searchParams ? await searchParams : {}}
+        messages={messages}
+        localeSegment={localeConfig.urlSegment}
+        inLanguage={localeConfig.htmlLang}
+      />
+    );
+  }
 
   return (
     <LocalizedTechnicalDataPage

@@ -36,6 +36,7 @@ export const chineseBushingsAndSleevesDetail = {
       "应结合装配配合、轴状态、载荷、速度、润滑、环境和目标寿命比较以下方向。",
     processSummary:
       "首次反馈应缩小材料候选范围，并明确装配后孔径、摩擦、磨损和耐久测试。生产批准仍取决于完整滑动总成。",
+    processBoundary: "生产批准仍取决于完整滑动总成。",
   },
   decisionRows: [
     {
@@ -262,6 +263,6 @@ export const chineseBushingsAndSleevesDetail = {
     eyebrow: "项目信息",
     title: "评估完整滑动界面",
     body:
-      "请提供衬套图纸，以及现有轴、载荷、运动、壳体配合、间隙、润滑、环境、目标寿命和失效信息。台益可比较相关 PLATFORM POM 方向，确认可用牌号数据或资料路径，并提出装配后衬套评估计划。",
+      "请提供图纸及现有轴、配合、运动、环境、目标寿命和失效数据。台益可比较相关 PLATFORM POM 方向、确认可用牌号数据，并提出装配后衬套评估计划。",
   },
 } as const satisfies ComponentSolutionDetail;

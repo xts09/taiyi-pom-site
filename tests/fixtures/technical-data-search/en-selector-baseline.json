@@ -1,0 +1,80 @@
+{
+  "capturedFrom": "http://127.0.0.1:3000",
+  "captureContract": "Each digest is SHA-256 of the ordered JSON array [{title,href,eyebrow}] parsed from the rendered result list.",
+  "fixtures": [
+    {
+      "url": "/technical-data-sheets",
+      "heading": "Search technical resources",
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "url": "/technical-data-sheets?q=ETM450",
+      "heading": "Search \"ETM450\" found 1 result",
+      "count": 1,
+      "sha256": "cd54347ef115a89536665284454b0a71c7d0b4689d893b8541b64471f75f3a17"
+    },
+    {
+      "url": "/technical-data-sheets?family=POM",
+      "heading": "44 results for selected filters",
+      "count": 44,
+      "sha256": "e191c61f122ea1afc6db4e150d60f5ce49a6975fa66a751ec803f9c16d30c8fc"
+    },
+    {
+      "url": "/technical-data-sheets?family=PA6",
+      "heading": "37 results for selected filters",
+      "count": 37,
+      "sha256": "a1aa584f50b8b0932f02a81c73beb9f274b7774a1f048f4ab0b77536671a17af"
+    },
+    {
+      "url": "/technical-data-sheets?direction=glass-fiber",
+      "heading": "48 results for selected filters",
+      "count": 48,
+      "sha256": "0585407b9622dafe0e773c054cf1225cec66a700e577b1b2000679a44235fdfc"
+    },
+    {
+      "url": "/technical-data-sheets?resource=guides",
+      "heading": "12 results for selected filters",
+      "count": 12,
+      "sha256": "f98d64db90460cd5b2a9ab6eea57fa3893e90c594b0185e1b79c76a8b31f95a4"
+    },
+    {
+      "url": "/technical-data-sheets?q=MFI%20%3E%3D%20100",
+      "heading": "Search \"MFI >= 100\" found 2 results",
+      "count": 2,
+      "sha256": "61d1761dbcf343f47c272eef72a24c71a6bfd6bbd3161f131a4b9472364369c9"
+    },
+    {
+      "url": "/technical-data-sheets?q=M90-44",
+      "heading": "Search \"M90-44\" found 1 result",
+      "count": 1,
+      "sha256": "5bf3a0a2834f4e682e2879dff13429252d513da545e4f72671ce1fc606f45f51"
+    },
+    {
+      "url": "/technical-data-sheets?q=unknown-grade-xyz",
+      "heading": "Search \"unknown-grade-xyz\" found 0 results",
+      "count": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "untouchedLocalizedBaselines": [
+    {
+      "locale": "de",
+      "visibleTextSha256": "138c98409287381227a7f59036e60d9a03313436fc281962ce7c647a6f558ab6",
+      "visibleChars": 23116,
+      "gradeLinks": 40
+    },
+    {
+      "locale": "fr",
+      "visibleTextSha256": "36696578e637bf3e4c4cc18c6a8a318c6603af011c2e1053e365fa2eafaa3df8",
+      "visibleChars": 25983,
+      "gradeLinks": 40
+    },
+    {
+      "locale": "pt-br",
+      "visibleTextSha256": "c105d15303f9060e266d6f3e80526012c3caa2fa1de6d88ac42dbd9461bac4ca",
+      "visibleChars": 23425,
+      "gradeLinks": 40
+    }
+  ]
+}

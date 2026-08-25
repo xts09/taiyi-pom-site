@@ -26,6 +26,7 @@ export type ComponentSolutionDetail = {
     problemSummary: string;
     materialSummary: string;
     processSummary: string;
+    processBoundary?: string;
   };
   decisionRows: readonly {
     symptom: string;
@@ -110,6 +111,8 @@ export const componentSolutionDetails = [
         "Compare the options below against the governing failure mode, tooth geometry, load, speed, mate, lubrication, and accuracy target.",
       processSummary:
         "The first response should narrow the material shortlist and define molded-gear and assembly tests. Production approval still depends on the complete transmission.",
+      processBoundary:
+        "Production approval still depends on representative validation in the complete transmission.",
     },
     decisionRows: [
       {
@@ -363,7 +366,7 @@ export const componentSolutionDetails = [
       eyebrow: "Project input",
       title: "Build a gear shortlist before sampling.",
       body:
-        "Send the gear drawing plus the load, speed, mate, lubrication, accuracy, environment, target-life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose a molded-gear evaluation plan.",
+        "Use the project brief above to compare material directions, available grade data, and a molded-gear validation plan.",
     },
   },
   {
@@ -402,8 +405,10 @@ export const componentSolutionDetails = [
         "Wear, noise, binding, or clearance change can originate in the compound, shaft, fit, alignment, contamination, or duty cycle. Diagnose the complete interface before changing material.",
       materialSummary:
         "Compare the options below against the installed fit, shaft condition, load, speed, lubrication, environment, and target life.",
-      processSummary:
-        "The first response should narrow the material shortlist and define installed-bore, friction, wear, and endurance tests. Production approval still depends on the complete sliding assembly.",
+    processSummary:
+      "The first response should narrow the material shortlist and define installed-bore, friction, wear, and endurance tests. Production approval still depends on the complete sliding assembly.",
+    processBoundary:
+      "Production approval still depends on the complete sliding assembly.",
     },
     decisionRows: [
       {
@@ -639,8 +644,8 @@ export const componentSolutionDetails = [
     finalCta: {
       eyebrow: "Project input",
       title: "Evaluate the complete sliding interface.",
-      body:
-        "Send the bushing drawing plus the shaft, load, motion, housing fit, clearance, lubrication, environment, target-life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose an installed-bushing evaluation plan.",
+    body:
+      "Send the drawing and available shaft, fit, motion, environment, target-life, and failure data. Taiyi Polymer can compare relevant PLATFORM POM directions, identify available grade data, and propose an installed-bushing evaluation plan.",
     },
   },
   {
@@ -678,8 +683,10 @@ export const componentSolutionDetails = [
         "The same symptom can come from compound behavior, chain pull, hinge geometry, guide condition, sprocket compatibility, contamination, or cleaning exposure. Diagnose the line before changing material.",
       materialSummary:
         "Compare the options below against chain pull, hinge geometry, guide friction, sprocket engagement, environment, and the target service life.",
-      processSummary:
-        "The first response should narrow the material shortlist and define dimensional, wear, drive-load, and endurance tests. Production approval still depends on the complete conveyor.",
+    processSummary:
+      "The first response should narrow the material shortlist and define dimensional, wear, drive-load, and endurance tests. Production approval still depends on the complete conveyor.",
+    processBoundary:
+      "Production approval still depends on the complete conveyor.",
     },
     decisionRows: [
       {
@@ -923,8 +930,8 @@ export const componentSolutionDetails = [
     finalCta: {
       eyebrow: "Project input",
       title: "Evaluate the chain as a complete conveyor system.",
-      body:
-        "Send the chain drawing plus the load, speed, pins, sprockets, wear strips, layout, lubrication, environment, target life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose an assembled-chain evaluation plan.",
+    body:
+      "Send the drawing and available load, pins, sprockets, layout, environment, target-life, and failure data. Taiyi Polymer can compare relevant PLATFORM POM directions, identify available grade data, and propose an assembled-chain evaluation plan.",
     },
   },
   {
@@ -1206,9 +1213,9 @@ export const componentSolutionDetails = [
     ],
     finalCta: {
       eyebrow: "Project input",
-      title: "Define the fluid system before selecting the polymer.",
+      title: "Shortlist valve material candidates.",
       body:
-        "Send the component drawing plus the pressures, medium, temperatures, mating bore, clearances, seals, actuation, flow targets, and failure details already available. Taiyi Polymer can determine whether a PLATFORM POM option merits sampling, identify available grade data or document paths, and propose a valve-level evaluation plan.",
+        "Use the project brief above to compare material directions, available grade data, and a valve-level validation plan.",
     },
   },
   {
@@ -1246,8 +1253,10 @@ export const componentSolutionDetails = [
         "Tension, breakage, wear, or static symptoms can originate in yarn construction, contact geometry, guide alignment, surface defects, deposits, environment, or material behavior. Inspect the actual yarn path first.",
       materialSummary:
         "Compare the options below against yarn construction, contact geometry, speed, tension, surface finish, environment, and target life.",
-      processSummary:
-        "The first response should narrow the contact and carrier materials and define tension, yarn-damage, wear, static, and endurance tests. Production approval still depends on the actual yarn and machine.",
+    processSummary:
+      "The first response should narrow the contact and carrier materials and define tension, yarn-damage, wear, static, and endurance tests. Production approval still depends on the actual yarn and machine.",
+    processBoundary:
+      "Production approval still depends on the actual yarn and machine.",
     },
     decisionRows: [
       {
@@ -1491,8 +1500,8 @@ export const componentSolutionDetails = [
     finalCta: {
       eyebrow: "Project input",
       title: "Match the guide material to the yarn and machine.",
-      body:
-        "Send the guide drawing plus the yarn, speed, tension, contact geometry, surface, environment, static, target-life, and failure details already available. Taiyi Polymer can compare relevant PLATFORM POM options, identify available grade data or document paths, and propose a production-yarn evaluation plan.",
+    body:
+      "Send the drawing and available yarn, speed, tension, contact surface, environment, static, and failure data. Taiyi Polymer can compare relevant PLATFORM POM directions, identify available grade data, and propose a production-yarn evaluation plan.",
     },
   },
   {
@@ -1775,8 +1784,8 @@ export const componentSolutionDetails = [
     finalCta: {
       eyebrow: "Project input",
       title: "Define the handling process before selecting the tray material.",
-      body:
-        "Send the package drawing plus the tray standard, ESD requirement, process temperature, pocket geometry, flatness, automation, cleanliness, reuse, and failure details already available. Taiyi Polymer can determine whether PLATFORM POM or another polymer merits molding, identify available grade data or document paths, and propose a tray-qualification plan.",
+    body:
+      "Send the package drawing and available tray-standard, ESD, temperature, pocket, automation, cleanliness, and failure data. Taiyi Polymer can determine whether PLATFORM POM or another polymer merits molding, identify available grade data, and propose a tray-qualification plan.",
     },
   },
 ] as const satisfies readonly ComponentSolutionDetail[];

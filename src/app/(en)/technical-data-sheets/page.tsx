@@ -5,19 +5,15 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { DocumentCard } from "@/components/DocumentCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { conductiveSeries } from "@/data/conductiveCompounds";
+import { createEngineeringTdsSlug } from "@/data/engineeringTds";
 import {
-  createEngineeringTdsSlug,
-  engineeringTdsDocuments,
-} from "@/data/engineeringTds";
-import {
-  conductiveCompounds,
-  conductiveSeries,
-} from "@/data/conductiveCompounds";
-import { findGradeCrossReference } from "@/data/gradeCrossReferences";
-import { products } from "@/data/products";
-import { resourcePages } from "@/data/resources";
+  getTechnicalDataSearchValue,
+  isTechnicalDataProductContentType,
+  selectTechnicalDataSearch,
+  type TechnicalDocumentState,
+} from "@/data/technicalDataSearch";
 import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
-import { matchesTechnicalQuery } from "@/lib/mfiSearch";
 import {
   createBreadcrumbJsonLd,
   createPageMetadata,
@@ -38,21 +34,6 @@ const technicalDataSheetsMetadata: Metadata = createPageMetadata({
   languageAlternates: getLanguageAlternatesForPath("/technical-data-sheets"),
 });
 
-const getSearchValue = (value: string | string[] | undefined) =>
-  Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
-
-const resourceTypeForSlug = (slug: string) => {
-  if (slug === "faq") {
-    return "faq";
-  }
-
-  if (slug === "application-notes") {
-    return "application-notes";
-  }
-
-  return "guides";
-};
-
 const resourceLabelForSlug = (slug: string) => {
   if (slug === "faq") {
     return "FAQ";
@@ -69,12 +50,19 @@ const resourceLabelForSlug = (slug: string) => {
   return "Guide";
 };
 
+const technicalDocumentStateLabel = (state: TechnicalDocumentState) => {
+  if (state === "registered-pdf") return "Registered TDS record available";
+  if (state === "data-only") {
+    return "Grade data available; request current technical documents for the project";
+  }
+  return "Document status requires confirmation";
+};
+
 const contentTypeFilter = {
   title: "Content Type",
   options: [
     { label: "All content", value: "" },
     { label: "Products / Grades", value: "grade-data" },
-    { label: "Technical Data Sheets", value: "tds" },
     { label: "Guides", value: "guides" },
     { label: "FAQ", value: "faq" },
     { label: "Application Notes", value: "application-notes" },
@@ -95,7 +83,6 @@ const materialFamilyFilter = {
 type MaterialDirectionOption = {
   label: string;
   value: string;
-  categories?: readonly string[];
 };
 
 const materialDirectionFilter: {
@@ -108,74 +95,50 @@ const materialDirectionFilter: {
     {
       label: "Glass fiber reinforced",
       value: "glass-fiber",
-      categories: [
-        "Glass Fiber Reinforced POM Compound",
-        "Glass Fiber Reinforced",
-        "GF Mineral Reinforced",
-      ],
     },
     {
       label: "Carbon fiber reinforced",
       value: "carbon-fiber",
-      categories: [
-        "Carbon Fiber Reinforced POM Compound",
-        "Carbon Fiber Reinforced",
-      ],
     },
     {
       label: "Wear / low friction",
       value: "wear-low-friction",
-      categories: ["Wear-Resistant POM Compound", "Wear Low Friction"],
     },
     {
       label: "Impact modified",
       value: "impact-modified",
-      categories: ["High-Impact POM Compound", "Impact Modified"],
     },
     {
       label: "Flame retardant",
       value: "flame-retardant",
-      categories: ["Flame Retardant", "V0 Flame Retardant"],
     },
     {
       label: "Conductive / antistatic",
       value: "conductive-antistatic",
-      categories: ["Conductive / Antistatic POM Compound"],
     },
     {
       label: "UV resistant",
       value: "uv-resistant",
-      categories: ["UV-Resistant POM Compound"],
     },
     {
       label: "Mineral / glass bead filled",
       value: "mineral-filled",
-      categories: [
-        "GF Mineral Reinforced",
-        "Mineral Filled",
-        "Glass Bead Filled",
-      ],
     },
     {
       label: "Mold release",
       value: "mold-release",
-      categories: ["Mold Release"],
     },
     {
       label: "Base resin",
       value: "base-resin",
-      categories: ["Base POM Resin"],
     },
   ],
 };
 
-const isProductContentType = (resource: string) =>
-  !resource || resource === "grade-data" || resource === "tds";
-
 const searchExamples = [
   { label: "ETM100", href: "/technical-data-sheets?q=ETM100" },
   { label: "MFI ≥ 100", href: "/technical-data-sheets?q=MFI+%3E%3D+100" },
-  { label: "TDS", href: "/technical-data-sheets?resource=tds" },
+  { label: "PA66", href: "/technical-data-sheets?family=PA66" },
   { label: "Automotive", href: "/technical-data-sheets?q=automotive" },
 ];
 
@@ -216,10 +179,10 @@ export async function generateMetadata({
 }: TechnicalDataSheetsPageProps): Promise<Metadata> {
   const params = searchParams ? await searchParams : {};
   const hasSearchIntent = Boolean(
-    getSearchValue(params.q).trim() ||
-      getSearchValue(params.resource).trim() ||
-      getSearchValue(params.family).trim() ||
-      getSearchValue(params.direction).trim(),
+    getTechnicalDataSearchValue(params.q).trim() ||
+      getTechnicalDataSearchValue(params.resource).trim() ||
+      getTechnicalDataSearchValue(params.family).trim() ||
+      getTechnicalDataSearchValue(params.direction).trim(),
   );
 
   return {
@@ -239,154 +202,23 @@ export default async function TechnicalDataSheetsPage({
   searchParams,
 }: TechnicalDataSheetsPageProps) {
   const params = searchParams ? await searchParams : {};
-  const query = getSearchValue(params.q).trim();
-  const activeResource = getSearchValue(params.resource).trim();
-  const requestedFamily = getSearchValue(params.family).trim();
-  const requestedDirection = getSearchValue(params.direction).trim();
-  const activeFamily = materialFamilyFilter.options.some(
-    (option) => option.value === requestedFamily,
-  )
-    ? requestedFamily
-    : "";
-  const activeDirection = materialDirectionFilter.options.some(
-    (option) => option.value === requestedDirection,
-  )
-    ? requestedDirection
-    : "";
+  const selection = selectTechnicalDataSearch({ params });
+  const {
+    query,
+    activeResource,
+    activeFamily,
+    activeDirection,
+    hasSearchIntent,
+    totalResults,
+    resourceResults: searchableResources,
+    conductiveResults: searchableConductiveCompounds,
+  } = selection;
+  const searchableEngineeringTds = selection.engineeringResults;
+  const suggestedProducts = selection.suggestedProductResults;
+  const directProductResults = selection.productResults;
   const activeDirectionFilter = materialDirectionFilter.options.find(
     (option) => option.value === activeDirection,
   );
-  const productResourceAllowed = isProductContentType(activeResource);
-  const engineeringGradeAllowed = isProductContentType(activeResource);
-  const searchableEngineeringTds = engineeringGradeAllowed
-    ? engineeringTdsDocuments.filter((document) => {
-        const matchesFamily =
-          !activeFamily || document.family === activeFamily;
-        const matchesDirection =
-          !activeDirectionFilter?.categories ||
-          activeDirectionFilter.categories.includes(document.category);
-        return (
-          matchesFamily &&
-          matchesDirection &&
-          matchesTechnicalQuery(query, {
-            fields: [
-              document.grade,
-              document.family,
-              document.category,
-              "grade data technical data sheet engineering plastic compound",
-            ],
-          })
-        );
-      })
-    : [];
-  const searchableProducts = productResourceAllowed
-    ? products.filter((product) => {
-        const matchesFamily = !activeFamily || activeFamily === "POM";
-        const matchesDirection =
-          !activeDirectionFilter?.categories ||
-          activeDirectionFilter.categories.includes(product.category);
-        const matchesQuery = matchesTechnicalQuery(query, {
-          fields: [
-            product.grade,
-            product.title,
-            product.category,
-            product.color,
-            product.description,
-            `MFI ${product.mfi}`,
-            product.features.join(" "),
-            product.applications.join(" "),
-            product.documents.join(" "),
-          ],
-          mfi: product.mfi,
-        });
-
-        return matchesFamily && matchesDirection && matchesQuery;
-      })
-    : [];
-  const searchableConductiveCompounds = productResourceAllowed
-    ? conductiveCompounds.filter((compound) => {
-        const matchesFamily =
-          !activeFamily || compound.matrix === activeFamily;
-        const matchesDirection =
-          !activeDirection || activeDirection === "conductive-antistatic";
-        const series = conductiveSeries[compound.technology];
-
-        return (
-          matchesFamily &&
-          matchesDirection &&
-          matchesTechnicalQuery(query, {
-            fields: [
-              compound.grade,
-              compound.matrix,
-              series.shortLabel,
-              series.title,
-              compound.rangeLabel,
-              "conductive antistatic static control charge control grade data",
-            ],
-          })
-        );
-      })
-    : [];
-  const crossReferenceMatch =
-    query && productResourceAllowed && (!activeFamily || activeFamily === "POM")
-      ? findGradeCrossReference(query)
-      : undefined;
-  const suggestedProducts = crossReferenceMatch
-    ? crossReferenceMatch.record.candidateGrades.flatMap((grade) => {
-        const product = products.find((item) => item.grade === grade);
-        if (!product) return [];
-
-        const matchesDirection =
-          !activeDirectionFilter?.categories ||
-          activeDirectionFilter.categories.includes(product.category);
-
-        return matchesDirection ? [product] : [];
-      })
-    : [];
-  const suggestedProductSlugs = new Set(
-    suggestedProducts.map((product) => product.slug),
-  );
-  const directProductResults = searchableProducts.filter(
-    (product) => !suggestedProductSlugs.has(product.slug),
-  );
-  const searchableResources =
-    activeFamily || activeDirection
-      ? []
-      : resourcePages.filter((resource) => {
-          const resourceType = resourceTypeForSlug(resource.slug);
-          const matchesQuery = matchesTechnicalQuery(query, {
-            fields: [
-              resource.title,
-              resource.navLabel,
-              resource.description,
-              resource.intro,
-              resource.modules
-                .map((module) =>
-                  [
-                    module.title,
-                    module.navLabel,
-                    module.description,
-                    ...(module.points ?? []),
-                    ...(module.faqItems ?? []).flatMap((item) => [
-                      item.question,
-                      item.answer,
-                    ]),
-                  ].join(" "),
-                )
-                .join(" "),
-            ],
-          });
-          const matchesResource =
-            !activeResource || resourceType === activeResource;
-
-          return matchesQuery && matchesResource;
-        });
-  const totalResults =
-    suggestedProducts.length +
-    directProductResults.length +
-    searchableResources.length +
-    searchableEngineeringTds.length +
-    searchableConductiveCompounds.length;
 
   const filterSummary = [
     activeResource &&
@@ -397,9 +229,6 @@ export default async function TechnicalDataSheetsPage({
         ?.label,
     activeDirection && activeDirectionFilter?.label,
   ].filter(Boolean);
-  const hasSearchIntent = Boolean(
-    query || activeResource || activeFamily || activeDirection,
-  );
   const getFilterHref = ({
     resource = activeResource,
     family = activeFamily,
@@ -410,7 +239,12 @@ export default async function TechnicalDataSheetsPage({
     direction?: string;
   }) => {
     const nextResource =
-      (family || direction) && !isProductContentType(resource) ? "" : resource;
+      (family || direction) &&
+      resource !== "" &&
+      resource !== "grade-data" &&
+      resource !== "tds"
+        ? ""
+        : resource;
     const nextParams = new URLSearchParams();
 
     if (query) {
@@ -544,7 +378,7 @@ export default async function TechnicalDataSheetsPage({
                       key={option.value || "all"}
                       href={getFilterHref({
                         resource: option.value,
-                        ...(isProductContentType(option.value)
+                        ...(isTechnicalDataProductContentType(option.value)
                           ? {}
                           : { family: "", direction: "" }),
                       })}
@@ -660,7 +494,7 @@ export default async function TechnicalDataSheetsPage({
                 </article>
               ))}
 
-              {searchableEngineeringTds.map((document) => (
+              {searchableEngineeringTds.map(({ document, documentState }) => (
                 <DocumentCard
                   key={`${document.family}-${document.grade}`}
                   variant="compact-link"
@@ -679,7 +513,7 @@ export default async function TechnicalDataSheetsPage({
                     <>
                       <span>Family: {document.family}</span>
                       <span>Category: {document.category}</span>
-                      <span>Documents available on request</span>
+                      <span>{technicalDocumentStateLabel(documentState)}</span>
                     </>
                   }
                 />
@@ -709,7 +543,7 @@ export default async function TechnicalDataSheetsPage({
                 );
               })}
 
-              {suggestedProducts.map((product) => (
+              {suggestedProducts.map(({ product, documentState }) => (
                 <DocumentCard
                   key={`suggested-${product.slug}`}
                   variant="compact-link"
@@ -723,15 +557,13 @@ export default async function TechnicalDataSheetsPage({
                     <>
                       <span>Preliminary material screening candidate</span>
                       <span>Compare current TDS and application requirements</span>
-                      <span>
-                        Documents: {product.documents.slice(0, 5).join(", ")}
-                      </span>
+                      <span>{technicalDocumentStateLabel(documentState)}</span>
                     </>
                   }
                 />
               ))}
 
-              {directProductResults.map((product) => (
+              {directProductResults.map(({ product, documentState }) => (
                 <DocumentCard
                   key={product.slug}
                   variant="compact-link"
@@ -745,9 +577,7 @@ export default async function TechnicalDataSheetsPage({
                     <>
                       <span>MFI: {product.mfi}</span>
                       <span>Color: {product.color}</span>
-                      <span>
-                        Documents: {product.documents.slice(0, 5).join(", ")}
-                      </span>
+                      <span>{technicalDocumentStateLabel(documentState)}</span>
                     </>
                   }
                 />

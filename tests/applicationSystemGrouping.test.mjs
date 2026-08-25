@@ -174,7 +174,7 @@ test("renders System headings as hierarchy, not links or pseudo pages", () => {
     "src/components/localized/LocalizedApplicationDetailPage.tsx",
   );
 
-  assert.match(pageSource, /resolveApplicationSystemPartGroups/);
+  assert.match(pageSource, /resolveApplicationInlinePartGroups/);
   assert.match(pageSource, /application-system-group-title/);
   assert.match(pageSource, /headingLevel=\{4\}/);
   assert.doesNotMatch(pageSource, /View System|System Page|systemHref/);
