@@ -15,6 +15,15 @@ import {
 } from "../src/data/applicationComponentRelations.ts";
 import { componentSolutions } from "../src/data/componentSolutions.ts";
 
+test("separates the Washing Machine compact label from its formal page title", () => {
+  const washingMachine = applications.find(
+    (application) => application.slug === "washing-machine-components",
+  );
+
+  assert.equal(washingMachine?.shortTitle, "Washing Machine");
+  assert.equal(washingMachine?.title, "Washing Machine Components");
+});
+
 test("validates the reviewed A3 application-component relationships", () => {
   const validation = validateApplicationComponentRelations(
     applications,

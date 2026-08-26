@@ -242,7 +242,8 @@ const messages = {
         eyebrow: "产品",
         title: "改性 POM，面向精密零部件的核心材料",
         body: "POM 兼具均衡的机械性能、耐磨性、自润滑性与尺寸稳定性。它最早被商业化用于替代齿轮、螺钉和轴承等原本由金属制造的机械部件。今天，它的应用已从拉链、牙刷等日常用品，延伸至车门锁与锁扣、安全带锁止机构和燃油系统部件等汽车组件。PLATFORM® 通过改性把这款成熟材料继续向前推进——面向那些不容许性能波动的零件，也面向那些希望从首次试模到规模量产始终保持精度与稳定的制造者。",
-        action: "了解改性 POM 系列",
+        directionsAction: "探索 POM 改性方向",
+        portfolioAction: "查看 POM 产品体系",
         materialImageAlt: "用于工程注塑件的黑色碳纤维增强 POM 颗粒。",
         materialImageCaption: "碳纤维增强 POM",
         directionsAria: "改性 POM 材料方向与具体材料族",
@@ -410,7 +411,8 @@ const messages = {
             imageAlt: "包含阀门与流路模块的洁净水路控制装配线",
           },
           {
-            title: "洗衣机",
+            title: "洗衣机零部件",
+            shortTitle: "洗衣机",
             description:
               "用于洗衣机滚筒传动、水路、排水、阀门及低摩擦运动机构的功能性注塑部件。",
             imageAlt: "包含注塑传动、排水与门锁部件的滚筒洗衣机机构",

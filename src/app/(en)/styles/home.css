@@ -3035,12 +3035,29 @@
   color: var(--home-color-white);
 }
 
-.home-material-visual figcaption span {
+.home-material-caption-link {
   color: var(--home-color-white-muted);
   font-size: var(--home-text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
+  text-decoration-color: color-mix(in oklch, currentcolor 55%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.28em;
   text-transform: uppercase;
+  transition:
+    color var(--home-dur-short) var(--home-ease-out),
+    text-decoration-color var(--home-dur-short) var(--home-ease-out);
+}
+
+.home-material-caption-link:hover {
+  color: var(--home-color-white);
+  text-decoration-color: currentcolor;
+}
+
+.home-material-caption-link:focus-visible {
+  border-radius: var(--ds-radius-tight);
+  outline: var(--ds-rule-strong) solid var(--home-color-accent-bright);
+  outline-offset: 0.3rem;
 }
 
 .home-material-visual figcaption strong {
@@ -3152,9 +3169,15 @@
   line-height: 1.7;
 }
 
-.home-material-learn-more {
-  align-self: flex-start;
+.home-material-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--home-space-sm);
+  align-items: center;
   margin-top: var(--home-space-lg);
+}
+
+.home-material-actions > a {
   text-decoration: none;
 }
 

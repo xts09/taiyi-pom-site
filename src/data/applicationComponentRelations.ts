@@ -133,6 +133,7 @@ export const applicationComponentRelations =
 type ApplicationRecord = {
   slug: string;
   title?: string;
+  shortTitle?: string;
   parts: readonly {
     id: string;
     label?: string;
@@ -388,7 +389,7 @@ export const resolveComponentApplicationReferences = (
 
     return {
       applicationSlug: application.slug,
-      applicationTitle: application.title,
+      applicationTitle: application.shortTitle ?? application.title,
       href: `/applications/${application.slug}`,
       relationType: relation.relationType,
       partExamples,

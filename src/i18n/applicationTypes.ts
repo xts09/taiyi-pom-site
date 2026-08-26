@@ -87,6 +87,7 @@ export type LocalizedApplicationDetailUiOverrides = Partial<
 
 export type LocalizedApplicationProfileMessages = {
   title: string;
+  shortTitle?: string;
   description: string;
   heroImageAlt?: string;
   detailHeroImageAlt?: string;

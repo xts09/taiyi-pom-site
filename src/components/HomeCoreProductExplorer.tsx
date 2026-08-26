@@ -9,13 +9,19 @@ import { publicPath } from "@/lib/paths";
 type HomeCoreProductExplorerProps = {
   messages: HomeTaskFirstMessages["core"];
   familyHrefs: readonly string[];
+  pomDirectionHref: string;
+  pomPortfolioHref: string;
+  carbonFiberHref: string;
 };
 
 export function HomeCoreProductExplorer({
   messages,
   familyHrefs,
+  pomDirectionHref,
+  pomPortfolioHref,
+  carbonFiberHref,
 }: HomeCoreProductExplorerProps) {
-  const pomHref = familyHrefs[0];
+  const pomFamilyHref = familyHrefs[0];
   const materialFamilies = familyHrefs
     .map((href, index) => ({
       href,
@@ -24,7 +30,7 @@ export function HomeCoreProductExplorer({
     .filter((family): family is { label: string; href: string } =>
       Boolean(family.href && family.label),
     );
-  if (!pomHref) {
+  if (!pomFamilyHref) {
     return null;
   }
 
@@ -75,7 +81,12 @@ export function HomeCoreProductExplorer({
                 sizes="(min-width: 80rem) 46rem, (min-width: 64rem) 50vw, 100vw"
               />
               <figcaption>
-                <span>{messages.materialImageCaption}</span>
+                <Link
+                  className="home-material-caption-link"
+                  href={carbonFiberHref}
+                >
+                  {messages.materialImageCaption}
+                </Link>
                 <strong aria-hidden="true">POM</strong>
               </figcaption>
             </figure>
@@ -83,17 +94,19 @@ export function HomeCoreProductExplorer({
             <article className="home-material-active-content">
               <h3 id="home-material-pom-title">PLATFORM® POM</h3>
               <p>{messages.body}</p>
-              <Button
-                asChild
-                className="home-material-learn-more"
-                size="form"
-                variant="primary"
-              >
-                <Link href={pomHref}>
-                  {messages.action}
-                  <ArrowRight aria-hidden="true" size={16} />
-                </Link>
-              </Button>
+              <div className="home-material-actions">
+                <Button asChild size="form" variant="primary">
+                  <Link href={pomDirectionHref}>
+                    {messages.directionsAction}
+                    <ArrowRight aria-hidden="true" size={16} />
+                  </Link>
+                </Button>
+                <Button asChild size="form" variant="secondary">
+                  <Link href={pomPortfolioHref}>
+                    {messages.portfolioAction}
+                  </Link>
+                </Button>
+              </div>
             </article>
           </section>
         </div>

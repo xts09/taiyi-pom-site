@@ -59,6 +59,7 @@ export const localizeApplication = (
 ): ApplicationItem => ({
   ...source,
   title: profile.title,
+  shortTitle: profile.shortTitle ?? source.shortTitle,
   description: profile.description,
   heroImage: source.heroImage
     ? {

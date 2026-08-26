@@ -309,6 +309,24 @@ test("all localized dictionaries match the complete shared English message shape
       "洗衣机",
     ],
   );
+  const formalWashingMachineTitle =
+    zhCNApplicationDetailsB["washing-machine-components"].title;
+  assert.deepEqual(
+    [
+      translateEnglishApplicationText(formalWashingMachineTitle),
+      translateExpandedText(formalWashingMachineTitle, "de"),
+      translateExpandedText(formalWashingMachineTitle, "fr"),
+      translateExpandedText(formalWashingMachineTitle, "pt-br"),
+      formalWashingMachineTitle,
+    ],
+    [
+      "Washing Machine Components",
+      "Waschmaschinenkomponenten",
+      "Composants de lave-linge",
+      "Componentes para máquinas de lavar",
+      "洗衣机零部件",
+    ],
+  );
   for (const messages of [en, de, fr, ptBR, zhCN]) {
     assert.equal(messages.Home.taskFirst?.entry.items.length, 3);
     assert.equal(messages.Home.taskFirst?.core.groups.length, 4);
@@ -341,14 +359,17 @@ test("all localized dictionaries match the complete shared English message shape
   );
   assert.deepEqual(
     [en, de, fr, ptBR, zhCN].map(
-      (messages) => messages.Home.taskFirst?.core.action,
+      (messages) => [
+        messages.Home.taskFirst?.core.directionsAction,
+        messages.Home.taskFirst?.core.portfolioAction,
+      ],
     ),
     [
-      "Explore the POM Compound Series",
-      "Modifizierte POM-Reihe entdecken",
-      "Découvrir la gamme POM modifié",
-      "Conheça a linha de POM modificado",
-      "了解改性 POM 系列",
+      ["Explore POM Directions", "View POM Portfolio"],
+      ["POM-Werkstoffrichtungen erkunden", "POM-Portfolio ansehen"],
+      ["Explorer les orientations POM", "Voir la gamme POM"],
+      ["Explorar opções de POM modificado", "Ver portfólio de POM"],
+      ["探索 POM 改性方向", "查看 POM 产品体系"],
     ],
   );
   assert.deepEqual(
@@ -357,7 +378,9 @@ test("all localized dictionaries match the complete shared English message shape
   );
   assert.equal(zhCN.Home.taskFirst?.applications.items.length, 8);
   assert.deepEqual(
-    zhCN.Home.taskFirst?.applications.items.map(({ title }) => title),
+    zhCN.Home.taskFirst?.applications.items.map(
+      ({ shortTitle, title }) => shortTitle ?? title,
+    ),
     [
       "汽车",
       "电子电气",

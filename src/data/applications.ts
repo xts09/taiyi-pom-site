@@ -37,6 +37,7 @@ export type ApplicationEngineeringGroup = {
 export type ApplicationItem = {
   slug: string;
   title: string;
+  shortTitle?: string;
   description: string;
   materialDirections: ApplicationDirection[];
   heroImage?: {
@@ -905,7 +906,8 @@ export const applications: ApplicationItem[] = [
   },
   {
     slug: "washing-machine-components",
-    title: "Washing Machine",
+    title: "Washing Machine Components",
+    shortTitle: "Washing Machine",
     description:
       "Functional molded components for washing-machine drum drive, water routing, drainage, valves, and low-friction moving assemblies.",
     materialDirections: [

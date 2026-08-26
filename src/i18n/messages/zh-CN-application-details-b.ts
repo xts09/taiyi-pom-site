@@ -197,7 +197,9 @@ const messages = {
     ],
   },
   "washing-machine-components": {
-    title: applicationIndexMessages.cards["washing-machine-components"].title,
+    title: "洗衣机零部件",
+    shortTitle:
+      applicationIndexMessages.cards["washing-machine-components"].title,
     description:
       applicationIndexMessages.cards["washing-machine-components"].description,
     heroImageAlt:

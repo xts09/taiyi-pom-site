@@ -191,7 +191,8 @@ export type HomeTaskFirstMessages = {
     eyebrow: string;
     title: string;
     body: string;
-    action: string;
+    directionsAction: string;
+    portfolioAction: string;
     materialImageAlt: string;
     materialImageCaption: string;
     directionsAria: string;
@@ -238,6 +239,7 @@ export type HomeTaskFirstMessages = {
     action: string;
     items: ReadonlyArray<{
       title: string;
+      shortTitle?: string;
       description: string;
       imageAlt: string;
     }>;

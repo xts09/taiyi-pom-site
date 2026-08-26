@@ -129,10 +129,11 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - The application-detail Hero action now caps its mobile width without forcing short labels to become full-width. This allows long Portuguese CTAs to wrap inside the Hero card at `390x844` while preserving a single-line desktop action at `1920x1080`.
 - Rendered acceptance covered representative Chinese routes for motion, conveyor automation, water control, electronics, and outdoor equipment; German electronics, French water control, Brazilian Portuguese outdoor equipment, and the Chinese automotive regression. Inspected states had four starting inputs, no generic audit wording, no horizontal overflow, no Chinese fallback in generated locales, and no browser warnings or errors. TypeScript and all 27 i18n pilot tests passed.
 
-### Washing Machine Application Label Simplification (2026-08-26)
+### Washing Machine Application Label and Page Title Separation (2026-08-26)
 
-- The public application name is `Washing Machine`, `Waschmaschine`, `Machine à laver`, `Máquina de lavar`, and `洗衣机` across the five released languages. Homepage, navigation, application directories, related-application links, and localized detail-page titles use this short application-level label.
-- The stable route remains `/applications/washing-machine-components` in every language. References to washing-machine components remain valid inside technical descriptions, part lists, image alternatives, and selection guidance where the copy is describing physical molded parts rather than naming the application category.
+- Homepage cards and compact navigation use the short labels `Washing Machine`, `Waschmaschine`, `Machine à laver`, `Máquina de lavar`, and `洗衣机` across the five released languages.
+- The formal application-detail title retains component meaning as `Washing Machine Components`, `Waschmaschinenkomponenten`, `Composants de lave-linge`, `Componentes para máquinas de lavar`, and `洗衣机零部件`. H1, metadata, breadcrumbs, WebPage JSON-LD, and other page-title references use this formal title.
+- The stable route remains `/applications/washing-machine-components` in every language. No redirect, canonical, hreflang, sitemap, or indexability behavior changes with the label split.
 
 ### Simplified Chinese Resources Release (2026-08-21)
 

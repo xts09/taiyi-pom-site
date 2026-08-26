@@ -118,6 +118,11 @@ export function TaskFirstHomeNarrative({
       <HomeCoreProductExplorer
         messages={messages.core}
         familyHrefs={materialFamilyRoutes.map((href) => localizedHref(href))}
+        pomDirectionHref={localizedHref("/modified-pom-compounds")}
+        pomPortfolioHref={localizedHref("/products/categories/pom")}
+        carbonFiberHref={localizedHref(
+          "/products/categories/carbon-fiber-reinforced-pom-compound",
+        )}
       />
 
       <section className="home-component-paths home-task-section">
@@ -189,7 +194,9 @@ export function TaskFirstHomeNarrative({
                   <span className="home-application-icon" aria-hidden="true">
                     <ApplicationIcon size={48} strokeWidth={1.5} />
                   </span>
-                  <strong className="home-application-label">{item.title}</strong>
+                  <strong className="home-application-label">
+                    {item.shortTitle ?? item.title}
+                  </strong>
                 </Link>
               );
             })}

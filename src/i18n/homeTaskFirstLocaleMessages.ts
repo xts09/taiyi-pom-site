@@ -37,7 +37,8 @@ export const homeTaskFirstLocaleMessages = {
       eyebrow: "Products",
       title: "Modified POM, Our Core Material for Precision Parts",
       body: "POM combines well-balanced mechanical properties with wear resistance, self-lubrication and dimensional stability. It was first commercialized to replace machinery components such as gears, screws and bearings that had traditionally been made of metal. Today, its applications range from everyday goods such as zippers and toothbrushes to automotive components including door locks and latches, seat-belt locking mechanisms and fuel-system parts. PLATFORM® takes this proven material further through modification—engineered for parts that cannot afford inconsistency, and for manufacturers who expect precision to hold from the first trial to full-scale production.",
-      action: "Explore the POM Compound Series",
+      directionsAction: "Explore POM Directions",
+      portfolioAction: "View POM Portfolio",
       materialImageAlt:
         "Black carbon-fiber-reinforced POM pellets for engineering injection-molded parts.",
       materialImageCaption: "Carbon Fiber Reinforced POM",
@@ -227,7 +228,8 @@ export const homeTaskFirstLocaleMessages = {
             "Clean water-control assembly line with valve and flow modules.",
         },
         {
-          title: "Washing Machine",
+          title: "Washing Machine Components",
+          shortTitle: "Washing Machine",
           description:
             "Functional molded components for drum drive, water routing, drainage, valves, and moving assemblies.",
           imageAlt:
@@ -364,7 +366,8 @@ export const homeTaskFirstLocaleMessages = {
       eyebrow: "Produkte",
       title: "Modifiziertes POM – unser Kernwerkstoff für Präzisionsteile",
       body: "POM verbindet ausgewogene mechanische Eigenschaften mit Verschleißfestigkeit, Selbstschmierung und hoher Maßhaltigkeit. Der Werkstoff wurde ursprünglich kommerziell eingesetzt, um zuvor aus Metall gefertigte Maschinenteile wie Zahnräder, Schrauben und Lager zu ersetzen. Heute reicht sein Anwendungsspektrum von Alltagsprodukten wie Reißverschlüssen und Zahnbürsten bis zu Fahrzeugkomponenten wie Türschlössern und Verriegelungen, Sicherheitsgurtmechanismen und Teilen von Kraftstoffsystemen. PLATFORM® führt diesen bewährten Werkstoff durch gezielte Modifizierung weiter – für Bauteile, die keine Schwankungen verzeihen, und für Hersteller, die vom ersten Werkzeugversuch bis zur Serienproduktion auf Präzision und Beständigkeit angewiesen sind.",
-      action: "Modifizierte POM-Reihe entdecken",
+      directionsAction: "POM-Werkstoffrichtungen erkunden",
+      portfolioAction: "POM-Portfolio ansehen",
       materialImageAlt:
         "Schwarzes kohlenfaserverstärktes POM-Granulat für technische Spritzgussteile.",
       materialImageCaption: "Kohlenfaserverstärktes POM",
@@ -554,7 +557,8 @@ export const homeTaskFirstLocaleMessages = {
             "Montagelinie für saubere Wasserstraßensteuerung einschließlich Ventilen und Durchflussmodulen",
         },
         {
-          title: "Waschmaschine",
+          title: "Waschmaschinenkomponenten",
+          shortTitle: "Waschmaschine",
           description:
             "Funktionelle Spritzgussteile für Trommelantrieb, Wasserwege, Entwässerung, Ventile und reibungsarme Bewegungsmechanismen.",
           imageAlt:
@@ -692,7 +696,8 @@ export const homeTaskFirstLocaleMessages = {
       eyebrow: "Produits",
       title: "Le POM modifié, notre matière clé pour les pièces de précision",
       body: "Le POM associe des propriétés mécaniques équilibrées à une excellente résistance à l’usure, une autolubrification et une grande stabilité dimensionnelle. Il a d’abord été commercialisé pour remplacer des composants mécaniques jusque-là fabriqués en métal, tels que les engrenages, les vis et les paliers. Aujourd’hui, ses applications vont des produits du quotidien, comme les fermetures à glissière et les brosses à dents, aux composants automobiles tels que les serrures et loquets de porte, les mécanismes de verrouillage de ceinture et les pièces de circuit carburant. PLATFORM® pousse plus loin cette matière éprouvée grâce à la modification — pour les pièces qui ne tolèrent aucune variation et pour les industriels qui exigent précision et constance, du premier essai à la production en série.",
-      action: "Découvrir la gamme POM modifié",
+      directionsAction: "Explorer les orientations POM",
+      portfolioAction: "Voir la gamme POM",
       materialImageAlt:
         "Granulés noirs de POM renforcé de fibres de carbone pour pièces techniques injectées.",
       materialImageCaption: "POM renforcé de fibres de carbone",
@@ -886,7 +891,8 @@ export const homeTaskFirstLocaleMessages = {
             "Ligne d'assemblage de contrôle des circuits d’eau comprenant des vannes et des modules de débit",
         },
         {
-          title: "Machine à laver",
+          title: "Composants de lave-linge",
+          shortTitle: "Machine à laver",
           description:
             "Pièces fonctionnelles moulées pour la transmission du tambour, les circuits d’eau, le drainage, les vannes et les mécanismes mobiles.",
           imageAlt:
@@ -1024,7 +1030,8 @@ export const homeTaskFirstLocaleMessages = {
       eyebrow: "Produtos",
       title: "POM modificado, nosso material principal para peças de precisão",
       body: "O POM combina propriedades mecânicas equilibradas com resistência ao desgaste, autolubrificação e estabilidade dimensional. O material foi inicialmente comercializado para substituir componentes de máquinas, como engrenagens, parafusos e rolamentos, que antes eram fabricados em metal. Hoje, suas aplicações vão de produtos cotidianos, como zíperes e escovas de dentes, a componentes automotivos, incluindo fechaduras e travas de portas, mecanismos de travamento de cintos de segurança e peças de sistemas de combustível. A PLATFORM® leva esse material comprovado além por meio da modificação — para peças que não admitem variação e para fabricantes que exigem precisão e consistência, do primeiro teste à produção em escala.",
-      action: "Conheça a linha de POM modificado",
+      directionsAction: "Explorar opções de POM modificado",
+      portfolioAction: "Ver portfólio de POM",
       materialImageAlt:
         "Grânulos pretos de POM reforçado com fibra de carbono para peças técnicas injetadas.",
       materialImageCaption: "POM reforçado com fibra de carbono",
@@ -1218,7 +1225,8 @@ export const homeTaskFirstLocaleMessages = {
             "Linha de montagem de controle de água com válvulas e módulos de fluxo",
         },
         {
-          title: "Máquina de lavar",
+          title: "Componentes para máquinas de lavar",
+          shortTitle: "Máquina de lavar",
           description:
             "Peças funcionais para transmissão do tambor, circulação de água, drenagem, válvulas e mecanismos móveis.",
           imageAlt:

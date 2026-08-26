@@ -174,41 +174,48 @@ export default function ApplicationsPage() {
           </header>
 
           <div className="application-directory-grid stagger-list">
-            {applications.map((application, index) => (
-              <Card key={application.title} asChild variant="interactive">
-                <Link
-                  href={`/applications/${application.slug}`}
-                  className="application-directory-card"
-                  aria-label={`View ${application.title} application details`}
-                  style={{ "--item-index": index } as CSSProperties}
-                >
-                  {application.heroImage ? (
-                    <div className="application-directory-media">
-                      <Image
-                        src={application.heroImage.src}
-                        alt={application.heroImage.alt}
-                        fill
-                        sizes="(min-width: 80rem) 23vw, (min-width: 48rem) 46vw, 100vw"
-                      />
-                      <span className="application-directory-index">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                  ) : null}
+            {applications.map((application, index) => {
+              const cardTitle = application.shortTitle ?? application.title;
 
-                  <CardContent className="application-directory-body">
-                    <h3>{application.title}</h3>
-                    <p>{application.description}</p>
-                    <span className="application-directory-action">
-                      View application
-                      <span className="application-directory-arrow" aria-hidden="true">
-                        &rarr;
+              return (
+                <Card key={application.slug} asChild variant="interactive">
+                  <Link
+                    href={`/applications/${application.slug}`}
+                    className="application-directory-card"
+                    aria-label={`View ${cardTitle} application details`}
+                    style={{ "--item-index": index } as CSSProperties}
+                  >
+                    {application.heroImage ? (
+                      <div className="application-directory-media">
+                        <Image
+                          src={application.heroImage.src}
+                          alt={application.heroImage.alt}
+                          fill
+                          sizes="(min-width: 80rem) 23vw, (min-width: 48rem) 46vw, 100vw"
+                        />
+                        <span className="application-directory-index">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                      </div>
+                    ) : null}
+
+                    <CardContent className="application-directory-body">
+                      <h3>{cardTitle}</h3>
+                      <p>{application.description}</p>
+                      <span className="application-directory-action">
+                        View application
+                        <span
+                          className="application-directory-arrow"
+                          aria-hidden="true"
+                        >
+                          &rarr;
+                        </span>
                       </span>
-                    </span>
-                  </CardContent>
-                </Link>
-              </Card>
-            ))}
+                    </CardContent>
+                  </Link>
+                </Card>
+              );
+            })}
           </div>
         </section>
 
