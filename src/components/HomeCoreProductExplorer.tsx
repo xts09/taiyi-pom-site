@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { Button } from "@/components/ui/button";
 import type { HomeTaskFirstMessages } from "@/i18n/types";
 import { publicPath } from "@/lib/paths";
 
@@ -82,10 +83,17 @@ export function HomeCoreProductExplorer({
             <article className="home-material-active-content">
               <h3 id="home-material-pom-title">PLATFORM® POM</h3>
               <p>{messages.body}</p>
-              <Link className="home-material-learn-more" href={pomHref}>
-                {messages.action}
-                <ArrowRight aria-hidden="true" size={16} />
-              </Link>
+              <Button
+                asChild
+                className="home-material-learn-more"
+                size="form"
+                variant="primary"
+              >
+                <Link href={pomHref}>
+                  {messages.action}
+                  <ArrowRight aria-hidden="true" size={16} />
+                </Link>
+              </Button>
             </article>
           </section>
         </div>

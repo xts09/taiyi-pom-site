@@ -112,15 +112,15 @@ const messages = {
     triggerLabel: "Contact",
   },
   Analytics: {
-    title: "Analytics choices",
+    title: "Your Privacy Choices",
     descriptionBeforeLink:
-      "We use Google Analytics to understand site use and improve material information. Analytics stays off unless you accept. Read our",
+      "We use optional analytics cookies to understand how visitors use this website and improve our material information. Analytics remains off unless you accept. You can change your choice at any time in Cookie Settings. Read our",
     privacyPolicy: "Privacy Policy",
     currentChoice: "Current choice:",
     accepted: "accepted",
     notAccepted: "not accepted",
-    accept: "Accept analytics",
-    continueWithout: "Continue without analytics",
+    accept: "Accept Analytics Cookies",
+    continueWithout: "Continue Without Analytics",
     settings: "Cookie Settings",
   },
   Home: {

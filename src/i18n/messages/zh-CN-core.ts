@@ -430,50 +430,50 @@ const messages = {
         ],
       },
       process: {
-        eyebrow: "合作流程",
-        title: "三步缩小候选牌号",
-        body: "",
-        stepsAria: "从零部件需求到候选牌号的三个步骤",
+        stepsAria: "明确应用需求、筛选候选牌号、验证并准备放量",
         steps: [
           {
-            title: "说明零部件",
-            description: "提供功能、工况、模具阶段和当前最重要的性能目标。",
+            title: "明确应用需求",
+            description: "梳理零件功能、使用工况与加工约束。",
           },
           {
-            title: "缩小材料范围",
-            description: "结合材料方向和牌号数据，形成候选清单。",
+            title: "筛选候选牌号",
+            description: "结合应用要求与试验范围筛选材料。",
           },
           {
-            title: "进入项目验证",
-            description: "确认技术资料、样品和试模安排。",
+            title: "验证并准备放量",
+            description: "完成试验、复盘结果，并准备材料放量。",
           },
         ],
       },
       collaboration: {
-        eyebrow: "项目协作",
-        title: "从选材到试料的直接支持",
-        body: "",
+        eyebrow: "以应用为导向的项目支持",
+        title: "每一个材料决策，都从零件出发",
+        body: "将零件要求、候选材料、试验依据与量产路径衔接起来。",
         itemsAria: "台益的三种项目协作方式",
         items: [
           {
-            title: "直接对接项目需求",
-            description: "商务、技术和生产团队围绕同一零件要求协同。",
-          },
-          {
-            title: "灵活安排样品与小批试料",
-            description: "通过样品、小批试料和试模比较候选材料。",
-          },
-          {
-            title: "按项目评估配方方案",
+            title: "跨团队联合评估",
             description:
-              "技术目标、验证条件和量产需求明确后，可评估配方调整或定制开发。",
+              "商务、技术与生产团队共同评估性能目标、加工条件与供货需求。",
+          },
+          {
+            title: "放量前充分验证",
+            description:
+              "通过样品、小批试料和试模反馈，在作出量产决策前比较候选材料。",
+          },
+          {
+            title: "务实的配方评估",
+            description:
+              "如果现有牌号不匹配，我们会评估配方调整在技术上是否合适，并确认其生产可行性。",
           },
         ],
+        action: "沟通应用需求",
       },
       proof: {
         eyebrow: "制造与验证",
-        title: "为每一次材料决策提供依据",
-        body: "自有生产、厂内检测和公开管理体系证书。",
+        body:
+          "改性材料由自有双螺杆产线生产，并通过内部检测设备进行评估。可提供的技术、批次与合规资料按具体牌号和项目确认。",
         factoryImageAlt: "台益盐城生产基地内的双螺杆挤出生产线。",
         factoryImageCaption: "盐城生产基地 · 双螺杆挤出车间",
         metricsAria: "台益制造与检测数据",
@@ -482,6 +482,14 @@ const messages = {
         documentsTitle: "项目资料",
         documentsBody: "TDS、SDS、COA、REACH、RoHS 的可用性按牌号与项目确认。",
         documentsAria: "可按牌号与项目确认的资料类型",
+        documentsAction: "索取项目资料",
+        documentTypeDescriptions: [
+          "技术数据",
+          "安全与操作",
+          "批次检测结果",
+          "物质合规",
+          "限用物质",
+        ],
         certificatesTitle: "质量管理体系证书",
         certificateAction: "查看全部证书与认证范围",
         certificateOpenAction: "查看证书",

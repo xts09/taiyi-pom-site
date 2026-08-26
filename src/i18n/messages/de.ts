@@ -113,15 +113,15 @@ const messages = {
     triggerLabel: "Kontakt",
   },
   Analytics: {
-    title: "Analyse-Einstellungen",
+    title: "Ihre Datenschutzeinstellungen",
     descriptionBeforeLink:
-      "Wir nutzen Google Analytics, um die Websitenutzung zu verstehen und Werkstoffinformationen zu verbessern. Die Analyse bleibt deaktiviert, bis Sie zustimmen. Lesen Sie unsere",
+      "Wir verwenden optionale Analyse-Cookies, um zu verstehen, wie Besucher diese Website nutzen, und unsere Werkstoffinformationen zu verbessern. Die Analyse bleibt deaktiviert, bis Sie zustimmen. Sie können Ihre Auswahl jederzeit in den Cookie-Einstellungen ändern. Lesen Sie unsere",
     privacyPolicy: "Datenschutzerklärung",
     currentChoice: "Aktuelle Auswahl:",
     accepted: "akzeptiert",
     notAccepted: "nicht akzeptiert",
-    accept: "Analyse akzeptieren",
-    continueWithout: "Ohne Analyse fortfahren",
+    accept: "Analyse-Cookies akzeptieren",
+    continueWithout: "Ohne Analyse-Cookies fortfahren",
     settings: "Cookie-Einstellungen",
   },
   Products: {

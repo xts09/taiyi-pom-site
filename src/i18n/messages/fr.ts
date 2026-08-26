@@ -113,15 +113,15 @@ const messages = {
     triggerLabel: "Contact",
   },
   Analytics: {
-    title: "Choix relatifs aux statistiques",
+    title: "Vos choix de confidentialité",
     descriptionBeforeLink:
-      "Nous utilisons Google Analytics pour comprendre l'usage du site et améliorer les informations matériaux. Les statistiques restent désactivées sans votre accord. Consultez notre",
+      "Nous utilisons des cookies d’analyse facultatifs pour comprendre comment les visiteurs utilisent ce site et améliorer nos informations sur les matériaux. Les statistiques restent désactivées sans votre accord. Vous pouvez modifier votre choix à tout moment dans les paramètres des cookies. Consultez notre",
     privacyPolicy: "Politique de confidentialité",
     currentChoice: "Choix actuel :",
     accepted: "accepté",
     notAccepted: "refusé",
-    accept: "Accepter les statistiques",
-    continueWithout: "Continuer sans statistiques",
+    accept: "Accepter les cookies d’analyse",
+    continueWithout: "Continuer sans cookies d’analyse",
     settings: "Paramètres des cookies",
   },
   Products: {

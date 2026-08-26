@@ -252,6 +252,18 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Processing guides, troubleshooting resources, grade/TDS search, contact prompts, and part-path guidance are no longer repeated inside this homepage module. They remain available on the product, Resources, Technical Data, Contact, and Components routes that own those tasks.
 - At desktop the POM feature is a balanced left-image/right-copy composition. Below 64rem it stacks into one reading column while retaining the four family entrances without horizontal overflow.
 
+### Homepage Application-Led Support Consolidation (2026-08-26)
+
+- The five-language homepage now combines the former standalone project-flow and collaboration sections into one application-led support module between Applications and Manufacturing & Validation. The module explains how part requirements guide cross-functional review, trial evidence, formulation assessment, candidate selection, and production preparation.
+- The English module copy follows the approved supplied wording. Simplified Chinese uses the review-refined shorter supporting sentence, final validation step, and CTA label to preserve clean line wrapping; German, French, and Brazilian Portuguese retain the same meaning through manually maintained locale dictionaries. No runtime translation or new performance, timing, MOQ, supply, or development-success claim is introduced.
+- Project Collaboration remains the three-point support explanation. The three-step Compact Process is presented as a concise sequence within the same module, followed by the localized general inquiry action to Contact. The previous standalone Working Process section and its separate section spacing are removed.
+
+### Homepage Manufacturing Evidence Density Polish (2026-08-26)
+
+- The Manufacturing & Validation section retains the existing factory image, capacity figures, document availability boundaries, certificates, order, and route position. Its desktop intro now uses the canonical 5/7 evidence split, with the supplied production-and-validation explanation beneath the unchanged section heading.
+- The three verified company figures remain unchanged while their panels use a more compact vertical rhythm. Project Documents remains one full-width evidence surface, now pairing the existing availability statement and Contact handoff with semantic TDS, SDS, COA, REACH, and RoHS descriptions; the Contact URL uses the existing source-context helper and adds no route.
+- Desktop certificate content, color, and four-column structure remain unchanged. Intermediate and mobile layouts use two certificate columns without horizontal scrolling; the document terminology and supplied explanation are maintained across all five released languages without adding a new performance or compliance claim.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.

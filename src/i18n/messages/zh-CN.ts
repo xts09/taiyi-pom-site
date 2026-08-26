@@ -110,14 +110,14 @@ const messages = {
     triggerLabel: "联系",
   },
   Analytics: {
-    title: "分析设置",
+    title: "您的隐私选择",
     descriptionBeforeLink:
-      "我们使用 Google Analytics 了解网站使用情况并改进材料信息。只有在您同意后才会启用分析。请阅读我们的",
+      "我们使用可选的分析 Cookie 了解访客如何使用本网站，并持续改进材料信息。除非您主动接受，否则分析功能不会启用。您可以随时通过“Cookie 设置”更改选择。请查看我们的",
     privacyPolicy: "隐私政策",
     currentChoice: "当前选择：",
     accepted: "已同意",
     notAccepted: "未同意",
-    accept: "同意分析",
+    accept: "接受分析 Cookie",
     continueWithout: "不启用分析并继续",
     settings: "Cookie 设置",
   },

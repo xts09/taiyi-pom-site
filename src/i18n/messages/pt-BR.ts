@@ -113,15 +113,15 @@ const messages = {
     triggerLabel: "Contato",
   },
   Analytics: {
-    title: "Preferências de análise",
+    title: "Suas escolhas de privacidade",
     descriptionBeforeLink:
-      "Usamos o Google Analytics para entender o uso do site e melhorar as informações sobre materiais. A análise permanece desativada até você aceitar. Leia nossa",
+      "Usamos cookies de análise opcionais para entender como os visitantes usam este site e melhorar nossas informações sobre materiais. A análise permanece desativada até você aceitar. Você pode alterar sua escolha a qualquer momento nas Configurações de cookies. Leia nossa",
     privacyPolicy: "Política de privacidade",
     currentChoice: "Escolha atual:",
     accepted: "aceita",
     notAccepted: "não aceita",
-    accept: "Aceitar análise",
-    continueWithout: "Continuar sem análise",
+    accept: "Aceitar cookies de análise",
+    continueWithout: "Continuar sem cookies de análise",
     settings: "Configurações de cookies",
   },
   Products: {

@@ -243,9 +243,6 @@ export type HomeTaskFirstMessages = {
     }>;
   };
   process: {
-    eyebrow: string;
-    title: string;
-    body: string;
     stepsAria: string;
     steps: ReadonlyArray<{
       title: string;
@@ -261,10 +258,10 @@ export type HomeTaskFirstMessages = {
       title: string;
       description: string;
     }>;
+    action: string;
   };
   proof: {
     eyebrow: string;
-    title: string;
     body: string;
     factoryImageAlt: string;
     factoryImageCaption: string;
@@ -274,6 +271,8 @@ export type HomeTaskFirstMessages = {
     documentsTitle: string;
     documentsBody: string;
     documentsAria: string;
+    documentsAction: string;
+    documentTypeDescriptions: readonly string[];
     certificatesTitle: string;
     certificateAction: string;
     certificateOpenAction: string;

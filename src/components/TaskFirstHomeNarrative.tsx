@@ -15,12 +15,14 @@ import {
 
 import { DocumentCard } from "@/components/DocumentCard";
 import { HomeCoreProductExplorer } from "@/components/HomeCoreProductExplorer";
+import { Button } from "@/components/ui/button";
 import {
   availableDocuments,
   companyFigures,
   type Certification,
 } from "@/data/company";
 import type { HomeTaskFirstMessages } from "@/i18n/types";
+import { createContactHref } from "@/lib/contactContext";
 import { publicPath } from "@/lib/paths";
 
 const materialFamilyRoutes = [
@@ -195,74 +197,81 @@ export function TaskFirstHomeNarrative({
         </div>
       </section>
 
-      <section className="home-process home-task-section">
-        <div className="site-container home-process-layout">
-          <header>
-            <h2>{messages.process.eyebrow}</h2>
-            <p>{messages.process.title}</p>
-          </header>
-          <ol
-            className="home-process-steps"
-            aria-label={messages.process.stepsAria}
-          >
-            {messages.process.steps.map((step, index) => (
-              <li key={step.title}>
-                <span aria-hidden="true">0{index + 1}</span>
-                <div>
-                  <h3>{step.title}</h3>
-                  <p>{step.description}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
       <section
         className="home-collaboration home-task-section"
         aria-labelledby="home-collaboration-title"
       >
         <div className="site-container">
-          <header className="home-task-intro home-collaboration-intro">
-            <h2 id="home-collaboration-title">
-              {messages.collaboration.eyebrow}
-            </h2>
-            <p>{messages.collaboration.title}</p>
-          </header>
+          <div className="home-collaboration-main">
+            <header className="home-collaboration-intro">
+              <p>{messages.collaboration.eyebrow}</p>
+              <h2 id="home-collaboration-title">
+                {messages.collaboration.title}
+              </h2>
+              <p>{messages.collaboration.body}</p>
+            </header>
 
-          <ul
-            className="home-collaboration-principles"
-            aria-label={messages.collaboration.itemsAria}
-          >
-            {messages.collaboration.items.map((item) => (
-              <li key={item.title}>
-                <span aria-hidden="true" />
-                <div>
+            <ul
+              className="home-collaboration-principles"
+              aria-label={messages.collaboration.itemsAria}
+            >
+              {messages.collaboration.items.map((item) => (
+                <li key={item.title}>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="home-collaboration-process">
+            <ol
+              className="home-collaboration-process-steps"
+              aria-label={messages.process.stepsAria}
+            >
+              {messages.process.steps.map((step, index) => (
+                <li key={step.title}>
+                  <span aria-hidden="true">0{index + 1}</span>
+                  <div>
+                    <h3>{step.title}</h3>
+                    <p>{step.description}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <div className="home-collaboration-action-wrap">
+              <Button
+                asChild
+                className="home-collaboration-action"
+                size="form"
+                variant="inverse"
+              >
+                <Link href={localizedHref("/contact")}>
+                  {messages.collaboration.action}
+                  <ArrowRight aria-hidden="true" size={16} />
+                </Link>
+              </Button>
+            </div>
+          </div>
         </div>
       </section>
 
       <section className="home-proof home-task-section">
         <div className="site-container">
           <header className="home-task-intro home-proof-intro">
-            <h2>{messages.proof.eyebrow}</h2>
             <div className="home-proof-intro-copy">
-              <p>{messages.proof.title}</p>
-              <figure className="home-proof-factory-figure">
-                <Image
-                  fill
-                  src={publicPath("/factory-extrusion.webp")}
-                  alt={messages.proof.factoryImageAlt}
-                  sizes="(min-width: 80rem) 52vw, (min-width: 64rem) 55vw, 100vw"
-                />
-                <figcaption>{messages.proof.factoryImageCaption}</figcaption>
-              </figure>
+              <h2>{messages.proof.eyebrow}</h2>
+              <p>{messages.proof.body}</p>
             </div>
+            <figure className="home-proof-factory-figure">
+              <Image
+                fill
+                src={publicPath("/factory-extrusion.webp")}
+                alt={messages.proof.factoryImageAlt}
+                sizes="(min-width: 80rem) 52vw, (min-width: 64rem) 55vw, 100vw"
+              />
+              <figcaption>{messages.proof.factoryImageCaption}</figcaption>
+            </figure>
           </header>
 
           <dl
@@ -281,18 +290,30 @@ export function TaskFirstHomeNarrative({
           </dl>
 
           <div className="home-proof-detail">
-            <div>
+            <div className="home-proof-detail-copy">
               <h3>{messages.proof.documentsTitle}</h3>
               <p>{messages.proof.documentsBody}</p>
-              <div
-                className="home-proof-documents"
-                aria-label={messages.proof.documentsAria}
-              >
-                {availableDocuments.map((document) => (
-                  <span key={document}>{document}</span>
-                ))}
-              </div>
             </div>
+            <dl
+              className="home-proof-documents"
+              aria-label={messages.proof.documentsAria}
+            >
+              {availableDocuments.map((document, index) => (
+                <div key={document}>
+                  <dt>{document}</dt>
+                  <dd>{messages.proof.documentTypeDescriptions[index]}</dd>
+                </div>
+              ))}
+            </dl>
+            <Link
+              className="home-task-text-link home-proof-documents-action"
+              href={localizedHref(
+                createContactHref({ source: messages.proof.documentsTitle }),
+              )}
+            >
+              {messages.proof.documentsAction}
+              <ArrowRight aria-hidden="true" size={15} />
+            </Link>
           </div>
 
           <div className="home-proof-certificates">
