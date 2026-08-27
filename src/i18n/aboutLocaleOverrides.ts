@@ -56,8 +56,8 @@ export const aboutLocaleOverrides: Partial<
     生产与供货: "Fertigung und Belieferung",
     "改性工程塑料制造商 | 台益":
       "Hersteller für modifizierte technische Kunststoffe | Taiyi Polymer",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌，专注于改性 POM 及其他精选改性工程塑料。":
-      "Taiyi Polymer ist die internationale Werkstoffmarke von Jiangsu Taiyi Nano Technology Co., Ltd. Der Schwerpunkt liegt auf modifiziertem POM und ausgewählten technischen Kunststoffcompounds.",
+    "台益是江苏台益纳米科技有限公司的国际品牌，专注于改性 POM 及其他精选改性工程塑料。":
+      "Taiyi Polymer ist die internationale Marke von Jiangsu Taiyi Nano Technology Co., Ltd. Der Schwerpunkt liegt auf modifiziertem POM und ausgewählten technischen Kunststoffcompounds.",
     替代牌号评估: "Bewertung eines alternativen Werkstofftyps",
     年改性材料产能: "Jährliche Compound-Kapazität",
     "吨/年": "Tonnen pro Jahr",
@@ -223,7 +223,7 @@ export const aboutLocaleOverrides: Partial<
     生产与供货: "Production et approvisionnement",
     "改性工程塑料制造商 | 台益":
       "Fabricant de plastiques techniques modifiés | Taiyi Polymer",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌，专注于改性 POM 及其他精选改性工程塑料。":
+    "台益是江苏台益纳米科技有限公司的国际品牌，专注于改性 POM 及其他精选改性工程塑料。":
       "Taiyi Polymer est la marque internationale de Jiangsu Taiyi Nano Technology Co., Ltd. Elle se concentre sur les POM modifiés et une sélection de compounds de plastiques techniques.",
     替代牌号评估: "Évaluation d’un grade alternatif",
     年改性材料产能: "Capacité annuelle de compoundage",
@@ -391,7 +391,7 @@ export const aboutLocaleOverrides: Partial<
     生产与供货: "Produção e fornecimento",
     "改性工程塑料制造商 | 台益":
       "Fabricante de plásticos de engenharia modificados | Taiyi Polymer",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌，专注于改性 POM 及其他精选改性工程塑料。":
+    "台益是江苏台益纳米科技有限公司的国际品牌，专注于改性 POM 及其他精选改性工程塑料。":
       "Taiyi Polymer é a marca internacional da Jiangsu Taiyi Nano Technology Co., Ltd., com foco em POM modificado e compostos selecionados de plásticos de engenharia.",
     替代牌号评估: "Avaliação de grau alternativo",
     年改性材料产能: "Capacidade anual de produção de compostos",

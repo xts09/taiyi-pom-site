@@ -18,8 +18,8 @@ export const expandedLocaleOverrides: Partial<
     精密塑料齿轮: "Präzisionszahnräder aus Kunststoff",
     "聚焦改性 POM 的工程塑料制造商":
       "Hersteller für modifiziertes POM",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
-      "Taiyi Polymer ist die internationale Werkstoffmarke von Jiangsu Taiyi Nano Technology Co., Ltd. Seit 2003 entwickeln und fertigen wir in Yancheng modifiziertes POM sowie ausgewählte PA6-, PA66- und PPA-Compounds. Werkstoffprüfung, stabile Produktion und Chargendokumentation sind dabei in einem Fertigungssystem gebündelt.",
+    "台益是江苏台益纳米科技有限公司的国际品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "Taiyi Polymer ist die internationale Marke von Jiangsu Taiyi Nano Technology Co., Ltd. Seit 2003 entwickeln und fertigen wir in Yancheng modifiziertes POM sowie ausgewählte PA6-, PA66- und PPA-Compounds. Werkstoffprüfung, stabile Produktion und Chargendokumentation sind dabei in einem Fertigungssystem gebündelt.",
     "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
       "Die Werkstoffauswahl beginnt beim Spritzgussteil, nicht bei einer allgemeinen Werkstoffbezeichnung. Bewegungsart, Belastung, Einsatzumgebung, Abmessungen, Werkzeugstand und benötigte Unterlagen bestimmen, welche modifizierten POM-Typen für einen Vergleich infrage kommen. Liegt das geforderte Eigenschaftsprofil außerhalb des sinnvollen POM-Bereichs, werden PA6, PA66 und PPA als eigenständige Alternativen bewertet.",
     查看材料范围: "Werkstoffe entdecken",
@@ -144,8 +144,8 @@ export const expandedLocaleOverrides: Partial<
     "准备 EAM140A 牌号评估": "Préparer l’évaluation du grade EAM140A",
     "聚焦改性 POM 的工程塑料制造商":
       "Fabricant de POM modifiés",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
-      "Taiyi Polymer est la marque internationale de matériaux de Jiangsu Taiyi Nano Technology Co., Ltd. Depuis 2003, notre site de Yancheng développe et fabrique des POM modifiés ainsi qu’une sélection de compounds PA6, PA66 et PPA. Les essais matière, la production récurrente et la documentation des lots sont coordonnés au sein du même système industriel.",
+    "台益是江苏台益纳米科技有限公司的国际品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "Taiyi Polymer est la marque internationale de Jiangsu Taiyi Nano Technology Co., Ltd. Depuis 2003, notre site de Yancheng développe et fabrique des POM modifiés ainsi qu’une sélection de compounds PA6, PA66 et PPA. Les essais matière, la production récurrente et la documentation des lots sont coordonnés au sein du même système industriel.",
     "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
       "Le choix du matériau part de la pièce injectée, pas d’une désignation générique. Le type de mouvement, la charge, l’environnement d’utilisation, l’avancement de l’outillage et les documents requis déterminent les grades de POM modifié à comparer. Si le profil de propriétés recherché sort du domaine d’emploi pertinent du POM, le PA6, le PA66 et le PPA sont évalués séparément.",
     查看材料范围: "Découvrir nos matériaux",
@@ -262,8 +262,8 @@ export const expandedLocaleOverrides: Partial<
     "准备 EAR210 牌号评估": "Preparar a avaliação do grau EAR210",
     "聚焦改性 POM 的工程塑料制造商":
       "Fabricante de POM modificado",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
-      "A Taiyi Polymer é a marca internacional de materiais da Jiangsu Taiyi Nano Technology Co., Ltd. Desde 2003, nossa unidade em Yancheng desenvolve e fabrica POM modificado e compostos selecionados de PA6, PA66 e PPA. Testes de materiais, produção recorrente e documentação de lotes são coordenados no mesmo sistema de fabricação.",
+    "台益是江苏台益纳米科技有限公司的国际品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "A Taiyi Polymer é a marca internacional da Jiangsu Taiyi Nano Technology Co., Ltd. Desde 2003, nossa unidade em Yancheng desenvolve e fabrica POM modificado e compostos selecionados de PA6, PA66 e PPA. Testes de materiais, produção recorrente e documentação de lotes são coordenados no mesmo sistema de fabricação.",
     "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
       "A seleção do material começa pela peça injetada, não por uma denominação genérica. Tipo de movimento, carga, ambiente de uso, dimensões, estágio do ferramental e documentação necessária definem quais graus de POM modificado devem ser comparados. Quando o conjunto de propriedades exigido fica fora da faixa de aplicação adequada do POM, PA6, PA66 e PPA são avaliados separadamente.",
     查看材料范围: "Conheça nossos materiais",

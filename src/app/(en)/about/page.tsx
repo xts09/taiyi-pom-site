@@ -21,7 +21,7 @@ import {
 import styles from "./AboutPage.module.css";
 
 const aboutDescription =
-  "Taiyi Polymer is the international materials brand of Jiangsu Taiyi Nano Technology Co., Ltd., focused on modified POM and selected engineering compounds.";
+  "Taiyi Polymer is the international brand of Jiangsu Taiyi Nano Technology Co., Ltd., focused on modified POM and selected engineering compounds.";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Engineering Plastic Compound Manufacturer | Taiyi Polymer",
