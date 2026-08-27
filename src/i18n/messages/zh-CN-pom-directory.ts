@@ -9,11 +9,7 @@ export const chinesePomDirectoryMessages = {
     eyebrow: "POM 材料组合",
     title: "POM 材料家族与牌号目录",
     description:
-      "从零件的运动方式、载荷、环境、尺寸控制和成型条件出发，先确定材料家族，再比较候选牌号、已发布数据与可提供的技术文件。",
-    overviewLabel: "筛选路径",
-    overview:
-      "先选择最接近零件要求的材料家族，再进入对应目录比较牌号。最终适用性仍需结合具体牌号、工况、模具和验证要求确认。",
-    documentsTitle: "按牌号与项目确认文件",
+      "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。",
     contactAction: "提交应用要求",
     technicalDataAction: "查找牌号数据与 TDS",
   },

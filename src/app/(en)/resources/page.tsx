@@ -61,130 +61,176 @@ export default function ResourcesPage() {
       />
       <ResourcePageMotion>
         <section className="resource-page-shell resource-index-shell mesh-surface">
-        <header
-          className="resource-index-hero"
-          aria-labelledby="resource-index-title"
-        >
-          <div className="resource-index-hero-card">
-            <Image
-              src="/generated/applications/common/cad-overlay-transparent.webp"
-              alt=""
-              fill
-              priority
-              sizes="(min-width: 82rem) 82rem, 100vw"
-              className="resource-index-hero-media"
-            />
-            <div className="resource-index-hero-content">
-              <p className="resource-index-kicker">Technical Resources</p>
-              <h1 id="resource-index-title">
-                Material Selection, Processing & Validation Resources
-              </h1>
-              <p className="resource-index-description">
-                Browse practical resources for material selection, POM molding
-                and troubleshooting, grade data, and alternative-grade
-                validation.
-              </p>
-              <div className="resource-index-actions">
-                <Button
-                  asChild
-                  size="resourceIndexAction"
-                  variant="resourceIndexSecondary"
-                >
-                  <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
-                </Button>
-              </div>
-            </div>
-            <div
-              className="resource-index-task-panel"
-              aria-label="Resource paths by task"
-            >
-              <p className="resource-index-panel-label">
-                Browse by engineering task
-              </p>
-              <div className="resource-index-path-list">
-                {resourceNavigationGroups.map((group) => (
-                  <Card key={group.id} asChild variant="interactive">
-                    <Link
-                      href={getResourceNavigationGroupPath(group)}
-                      className="resource-index-path"
-                    >
-                      <span>{group.navigationLabel}</span>
-                      <strong>{group.title}</strong>
-                      <small>{group.links.length} resources</small>
-                    </Link>
-                  </Card>
-                ))}
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <section
-          className="resource-index-directory"
-          aria-labelledby="resource-directory-title"
-        >
-          <SectionIntro
-            className="resource-index-directory-head"
-            layout="split"
-            title="Browse Technical Resources"
-            titleId="resource-directory-title"
-            description="Open the complete guide, troubleshooting, data, and FAQ directory, organized by engineering task."
-          />
-
-          <div className="resource-index-directory-groups">
-            {resourceNavigationGroups.map((group) => (
-              <section
-                key={`directory-${group.id}`}
-                className="resource-index-directory-group"
-                aria-labelledby={`resource-group-${group.id}`}
-              >
-                <header className="resource-index-directory-group-head">
-                  <div>
-                    <h3 id={`resource-group-${group.id}`}>{group.title}</h3>
-                    <p>{group.description}</p>
-                  </div>
-                  <Link href={getResourceNavigationGroupPath(group)}>
-                    View all {group.links.length}
-                    <ArrowRight aria-hidden="true" size={16} />
-                  </Link>
-                </header>
-
-                <ul className="resource-index-directory-list">
-                  {group.links.map((item) => (
-                    <li key={`${group.id}-${item.href}`}>
-                      <DirectoryRow
-                        href={item.href}
-                        eyebrow={item.type}
-                        label={item.label}
-                        description={item.description}
-                        variant="compact"
-                      />
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-
-          <div
-            className="resource-index-contact-row"
-            data-footer-adjacent="true"
+          <header
+            className="resource-index-hero"
+            aria-labelledby="resource-index-title"
           >
-            <div>
-              <h2>Need a grade-specific document?</h2>
-              <p>
-                Share the grade, application, required document, and project
-                stage so availability can be confirmed in context.
-              </p>
+            <div className="resource-index-hero-card">
+              <Image
+                src="/generated/applications/common/cad-overlay-transparent.webp"
+                alt=""
+                fill
+                priority
+                sizes="(min-width: 82rem) 82rem, 100vw"
+                className="resource-index-hero-media"
+              />
+              <div className="resource-index-hero-content">
+                <p className="resource-index-kicker">Technical Resources</p>
+                <h1 id="resource-index-title">
+                  Material Selection, Processing & Validation Resources
+                </h1>
+                <p className="resource-index-description">
+                  Browse practical resources for material selection, POM molding
+                  and troubleshooting, grade data, and alternative-grade
+                  validation.
+                </p>
+                <div className="resource-index-actions">
+                  <Button
+                    asChild
+                    size="resourceIndexAction"
+                    variant="resourceIndexSecondary"
+                  >
+                    <Link href="/technical-data-sheets">
+                      Find Grade Data & TDS
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+              <div
+                className="resource-index-task-panel"
+                aria-label="Resource paths by task"
+              >
+                <p className="resource-index-panel-label">
+                  Browse by engineering task
+                </p>
+                <div className="resource-index-path-list">
+                  {resourceNavigationGroups.map((group) => (
+                    <Card key={group.id} asChild variant="interactive">
+                      <Link
+                        href={getResourceNavigationGroupPath(group)}
+                        className="resource-index-path"
+                      >
+                        <span>{group.navigationLabel}</span>
+                        <strong>{group.title}</strong>
+                        <small>{group.links.length} resources</small>
+                      </Link>
+                    </Card>
+                  ))}
+                </div>
+              </div>
             </div>
-            <Button asChild variant="primary" size="form">
-              <Link href="/contact">
-                Discuss Your Application
-                <ArrowRight aria-hidden="true" size={16} />
+          </header>
+
+          <section
+            className="resource-index-directory"
+            aria-labelledby="resource-directory-title"
+          >
+            <SectionIntro
+              className="resource-index-directory-head"
+              layout="split"
+              title="Browse Technical Resources"
+              titleId="resource-directory-title"
+              description="Open the complete guide, troubleshooting, data, and FAQ directory, organized by engineering task."
+            />
+
+            <div className="resource-index-directory-groups">
+              {resourceNavigationGroups.map((group) => (
+                <section
+                  key={`directory-${group.id}`}
+                  className="resource-index-directory-group"
+                  aria-labelledby={`resource-group-${group.id}`}
+                >
+                  <header className="resource-index-directory-group-head">
+                    <div>
+                      <h3 id={`resource-group-${group.id}`}>{group.title}</h3>
+                      <p>{group.description}</p>
+                    </div>
+                    <Link href={getResourceNavigationGroupPath(group)}>
+                      View all {group.links.length}
+                      <ArrowRight aria-hidden="true" size={16} />
+                    </Link>
+                  </header>
+
+                  <ul className="resource-index-directory-list">
+                    {group.links.map((item) => (
+                      <li key={`${group.id}-${item.href}`}>
+                        <DirectoryRow
+                          href={item.href}
+                          eyebrow={item.type}
+                          label={item.label}
+                          description={item.description}
+                          variant="compact"
+                        />
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ))}
+            </div>
+
+            <section
+              className="resource-index-updates"
+              aria-labelledby="resource-updates-title"
+            >
+              <SectionIntro
+                className="resource-index-updates-head"
+                title="Field Notes"
+                titleId="resource-updates-title"
+                description="Material exhibitions, factory activity, and technical conversations—documented from the field."
+              />
+
+              <Link
+                href="/resources/news/chinaplas-2026"
+                className="resource-index-update-feature"
+              >
+                <div className="resource-index-update-media">
+                  <Image
+                    src="/news/chinaplas-2026/modified-pom-conversation.jpg"
+                    alt="Visitors discussing modified POM samples with a Taiyi Polymer representative at CHINAPLAS 2026"
+                    fill
+                    sizes="(min-width: 82rem) 42rem, (min-width: 48rem) 46vw, 100vw"
+                  />
+                  <span className="resource-index-update-location">
+                    CHINAPLAS 2026 · Shanghai
+                  </span>
+                </div>
+                <div className="resource-index-update-copy">
+                  <p className="resource-index-update-meta">
+                    <time dateTime="2026-04-23">April 23, 2026</time>
+                    <span>Booth 7.2A62</span>
+                  </p>
+                  <h3>Taiyi Polymer exhibits at CHINAPLAS 2026</h3>
+                  <p>
+                    Taiyi Polymer presented modified POM materials and met
+                    customers at booth 7.2A62 in Shanghai.
+                  </p>
+                  <span className="resource-index-update-link">
+                    Read field note
+                    <ArrowRight aria-hidden="true" size={16} />
+                  </span>
+                </div>
               </Link>
-            </Button>
-          </div>
-        </section>
+            </section>
+
+            <div
+              className="resource-index-contact-row"
+              data-footer-adjacent="true"
+            >
+              <div>
+                <h2>Need a grade-specific document?</h2>
+                <p>
+                  Share the grade, application, required document, and project
+                  stage so availability can be confirmed in context.
+                </p>
+              </div>
+              <Button asChild variant="primary" size="form">
+                <Link href="/contact">
+                  Discuss Your Application
+                  <ArrowRight aria-hidden="true" size={16} />
+                </Link>
+              </Button>
+            </div>
+          </section>
         </section>
       </ResourcePageMotion>
     </main>

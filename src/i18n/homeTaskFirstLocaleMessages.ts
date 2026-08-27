@@ -63,7 +63,7 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
       gradeNote:
-        "Can't find the grade you need? Search current grade data or discuss the requirement with us.",
+        "Search current grade data or discuss your part requirements with us.",
       contactAction: "Discuss Your Application",
       reviewLabel: "Confirm first",
       materialsLabel: "Material routes",

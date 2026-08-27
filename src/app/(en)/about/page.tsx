@@ -8,6 +8,7 @@ import {
   factoryImages,
 } from "@/data/company";
 import { exportRoutes } from "@/data/exportRoutes";
+import { getLanguageAlternates } from "@/i18n/releaseManifest";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
   companyName,
@@ -28,6 +29,7 @@ export const metadata: Metadata = createPageMetadata({
   path: "/about",
   image: "/factory-exterior.webp",
   imageAlt: "Taiyi Polymer factory in Yancheng, Jiangsu, China",
+  languageAlternates: getLanguageAlternates("/about"),
 });
 
 const aboutJsonLd = [

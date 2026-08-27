@@ -59,6 +59,7 @@ const messages = {
     resources: "资料",
     technicalResources: "技术资料",
     allResources: "全部资料",
+    news: "新闻",
     aboutUs: "关于我们",
     contact: "联系我们",
     searchLabel: "搜索技术数据表与资料",
@@ -72,9 +73,9 @@ const messages = {
   Footer: {
     brandRelation: "台益 · PLATFORM® 工程材料",
     logoAlt: "PLATFORM 注册商标",
-    pitchTitle: "从零部件需求出发，做材料决策",
+    pitchTitle: "获取材料、资料与供货支持",
     pitchCopy:
-      "请告诉我们零部件、使用条件和目标性能。我们将协助缩小候选牌号范围，并确认可用于评估的样品和技术资料。",
+      "浏览 PLATFORM® 工程材料与牌号资料，或联系台益了解样品、供货和企业资质。",
     discussApplication: "讨论您的应用",
     products: "产品",
     applications: "应用",
@@ -133,16 +134,14 @@ const messages = {
     hero: {
       eyebrow: "产品目录",
       title: "工程塑料改性材料",
-      subtitle: "以 POM 改性材料为核心产品线",
-      body: "以 POM 改性材料为核心，同时提供基础 POM 树脂及精选 PA6、PA66、PPA、导电与抗静电材料，满足不同的性能平衡需求。",
+      body: "以改性 POM 为核心，基础 POM 树脂及精选 PA6、PA66 和 PPA 改性材料作为补充，覆盖对性能与加工平衡有不同要求的零部件项目。",
       startAction: "按零部件需求选材",
       dataSheetsAction: "查找牌号数据与 TDS",
     },
     selection: {
       kicker: "从需求开始",
       title: "零部件需要实现什么？",
-      body: "选择最接近的初筛路径。在比较具体牌号之前，先了解各项性能之间需要权衡的因素。",
-      note: "需要更高的耐热性或其他聚合物系列？可继续查看下方完整材料范围。",
+      body: "选择最接近零部件需求的初筛路径，先明确需要权衡的性能，再进入具体牌号比较。",
       navigationAria: "按零部件需求划分的选材路径",
       paths: [
         {
@@ -172,7 +171,7 @@ const messages = {
     families: {
       kicker: "完整材料范围",
       title: "查看全部产品系列",
-      body: "POM 改性材料是核心产品线。当应用需要其他性能平衡时，还可评估基础树脂、精选 PA6、PA66、PPA 以及跨基材静电控制材料。",
+      body: "比较六个产品系列的已列牌号与应用方向，再进入具体材料页继续筛选。",
       items: [
         {
           title: "POM 改性材料",

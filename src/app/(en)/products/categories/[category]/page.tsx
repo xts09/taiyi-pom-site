@@ -171,7 +171,7 @@ export default async function ProductCategoryPage({
   });
   const pageDescription =
     isPomCategory
-      ? "Explore PLATFORM POM options for wear and low friction, impact, UV resistance, reinforcement, electrical control, and base-resin applications. Start with the part requirement, then compare candidate grades and available technical data."
+      ? "This directory covers PLATFORM POM families for wear and low friction, impact modification, UV resistance, reinforcement, conductive and antistatic performance, ultra-high flow, and base-resin applications."
       : getCategoryDescription(entry.category);
   const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
     entry.category,
@@ -278,31 +278,26 @@ export default async function ProductCategoryPage({
               {pageDescription}
             </p>
 
-            <div className="products-motion-data product-hero-data">
-              <div className="product-hero-summary">
-                <p className="section-kicker mb-2">Selection Path</p>
-                {isPomCategory ? (
-                  <p>
-                    Choose a material family first, then open its category page
-                    to compare listed grades and published data.
-                  </p>
-                ) : (
+            {!isPomCategory ? (
+              <div className="products-motion-data product-hero-data">
+                <div className="product-hero-summary">
+                  <p className="section-kicker mb-2">Selection Path</p>
                   <p>
                     Shortlist from the listed grades, then open a grade page to
                     review published values, application notes, and document
                     status.
                   </p>
-                )}
+                </div>
+                <p className="product-hero-documents">
+                  <strong>Documents by grade and project</strong>
+                  <span>
+                    {availableDocuments.map((document) => (
+                      <b key={document}>{document}</b>
+                    ))}
+                  </span>
+                </p>
               </div>
-              <p className="product-hero-documents">
-                <strong>Documents by grade and project</strong>
-                <span>
-                  {availableDocuments.map((document) => (
-                    <b key={document}>{document}</b>
-                  ))}
-                </span>
-              </p>
-            </div>
+            ) : null}
 
             <div className="product-hero-cta">
               <Button asChild size="productHero" variant="productHeroPrimary">

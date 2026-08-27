@@ -265,6 +265,16 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - The three verified company figures remain unchanged while their panels use a more compact vertical rhythm. Project Documents remains one full-width evidence surface, now pairing the existing availability statement and Contact handoff with semantic TDS, SDS, COA, REACH, and RoHS descriptions; the Contact URL uses the existing source-context helper and adds no route.
 - Desktop certificate content, color, and four-column structure remain unchanged. Intermediate and mobile layouts use two certificate columns without horizontal scrolling; the document terminology and supplied explanation are maintained across all five released languages without adding a new performance or compliance claim.
 
+### Homepage First-Two-Screen Brand And Voice Baseline (2026-08-27)
+
+- The approved Home Hero and material-family opening module are the messaging baseline for future Home, About, product-introduction, News, and other branded editorial work. Technical data, compliance, and legal content retain the more exact register required by their own page purpose.
+- The Hero message architecture is `material position -> credible portfolio range -> relevant performance directions -> customer outcome`. It leads with one clear manufacturer position, establishes modified POM as the core line and PA6, PA66, and PPA as selected extensions, and ends with a concrete production or application outcome. The same performance list must not be repeated in a separate badge row.
+- The second screen turns the promise into product credibility: POM remains the dominant material family, PA6, PA66, and PPA remain visible supporting families, real material imagery carries authority, and concise copy leads to a specific product path. It does not become a second slogan-led Hero or a catalogue of every technical feature.
+- Taiyi Polymer sounds confident, specific, restrained, and technically fluent. Marketing momentum comes from connecting materials to solutions and customer outcomes, not from unsupported superlatives, stacked adjectives, or generic phrases such as `industry-leading`, `one-stop`, or `empower`.
+- Copy should be informative without reading like a specification sheet. Use enough technical language to establish scope and relevance, then move detailed grades, test values, processing conditions, and qualification boundaries to the page that owns them.
+- Headings make one memorable claim; supporting paragraphs explain scope and meaning; labels identify real metadata; CTAs name the destination or next task. One element should not repeat another element's job.
+- All five released languages preserve the same message priority and proof boundary through natural, manually reviewed local expression. Semantic alignment is required; literal sentence structure and identical line breaks are not.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.
@@ -385,13 +395,16 @@ Top navigation should stay focused:
 - About: factory capability, production proof, document support, and company credibility.
 - Contact: inquiry preparation and sales contact.
 
-News or updates can exist under Resources later, but should not become a primary navigation item unless there is a real publishing plan.
+News is now a primary navigation item because the company has started a continuing publication track for exhibition, factory, product, and company updates. Until a dedicated News index is justified by multiple articles, the entry routes to the current update under Resources. The CHINAPLAS 2026 article is released in English, German, French, Brazilian Portuguese, and Simplified Chinese with reciprocal language alternates and localized navigation.
+
+News articles lead with event-specific facts: who took part, what requirement or product was discussed, where the exchange happened, and what the conversation established. Generic material-selection or validation instruction belongs to Applications and Resources and must not be used to pad a News article. Editorial reconstruction may connect user-supplied facts to established site-owned technical themes, but it must not invent customer identities, orders, numerical results, approvals, or completed project outcomes.
 
 ## Page Requirements
 
 ### Home
 
 - Establish POM compounds as the core line, with selected engineering plastic compound support, within the first screen.
+- Treat the approved Hero and material-family opening module as the brand and voice benchmark defined in `Homepage First-Two-Screen Brand And Voice Baseline (2026-08-27)`; preserve its message priority and restraint without cloning its layout across unrelated pages.
 - Show core proof points: annual capacity, establishment year, production lines, factory scale, and laboratory/testing equipment.
 - Provide clear routes to products, applications, TDS/resources, and contact.
 - Keep the shared content frame consistent across header, hero, metrics, product, selection, factory, and CTA sections.

@@ -28,7 +28,17 @@
 
 .control:focus-visible {
   border-color: var(--ds-input-border-focus);
-  box-shadow: 0 0 0 3px var(--ds-input-focus-halo);
+  outline: 3px solid var(--ds-focus-ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--ds-focus-ring-contrast);
+}
+
+@media (forced-colors: active) {
+  .control:focus-visible {
+    border-color: Highlight;
+    outline-color: Highlight;
+    box-shadow: none;
+  }
 }
 
 .control:disabled {

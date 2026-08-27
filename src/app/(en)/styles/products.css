@@ -814,23 +814,13 @@
 
 .products-motion-root
   .product-hero-card
-  > p:not(.product-hero-eyebrow):not(.product-hero-subtitle) {
+  > p:not(.product-hero-eyebrow) {
   margin-top: var(--ds-product-hero-body-gap);
   max-width: var(--ds-product-hero-body-measure);
   color: #334155;
   font-family: var(--ds-font-body);
   font-size: var(--ds-product-hero-body-size);
   line-height: var(--ds-product-hero-body-leading);
-}
-
-.products-motion-root .product-hero-subtitle {
-  margin-top: var(--ds-product-hero-subtitle-gap);
-  max-width: 42ch;
-  color: #0f172a;
-  font-family: var(--ds-font-body);
-  font-size: var(--ds-product-hero-subtitle-size);
-  font-weight: var(--ds-product-hero-subtitle-weight);
-  line-height: var(--ds-product-hero-subtitle-leading);
 }
 
 .products-motion-root .product-hero-cta {
@@ -981,20 +971,11 @@
 
 .products-motion-root
   .product-workbench-head
-  > p:not(.section-kicker):not(.product-workbench-note) {
+  > p:not(.section-kicker) {
   max-width: 30rem;
   color: var(--ds-foreground-on-dark-muted);
   font-size: 0.94rem;
   line-height: 1.6;
-}
-
-.products-motion-root .product-workbench-note {
-  margin-top: var(--ds-space-2);
-  border-top: 1px solid rgba(226, 236, 245, 0.18);
-  padding-top: var(--ds-space-3);
-  color: rgba(226, 236, 245, 0.68);
-  font-size: 0.78rem;
-  line-height: 1.5;
 }
 
 .products-motion-root .product-workbench-paths {
@@ -1386,8 +1367,16 @@
 
 .products-motion-root .product-section-tabs a:focus-visible {
   border-radius: 0.18rem;
-  outline: 2px solid rgba(47, 95, 158, 0.35);
+  outline: 3px solid var(--ds-focus-ring);
   outline-offset: 0.42rem;
+  box-shadow: 0 0 0 2px var(--ds-focus-ring-contrast);
+}
+
+@media (forced-colors: active) {
+  .products-motion-root .product-section-tabs a:focus-visible {
+    outline-color: Highlight;
+    box-shadow: none;
+  }
 }
 
 .products-motion-root .product-section-tabs a:hover::after,

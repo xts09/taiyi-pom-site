@@ -14,7 +14,7 @@ const messages = {
       eyebrowMobile: "POM-COMPOUNDIERUNG",
       title: "Hersteller modifizierter POM-Compounds für Präzisionsformteile",
       body:
-        "Taiyi Polymer sitzt in Yancheng, Jiangsu, und konzentriert sich auf modifiziertes POM sowie die bauteilbezogene Werkstoffauswahl, Typendaten, Muster und Spritzgießversuche.",
+        "Modifiziertes POM bildet den Kern unseres Portfolios, ergänzt durch PA6, PA66 und PPA. Für Verschleißfestigkeit, geringe Reibung, Verstärkung, Leitfähigkeit und Antistatik bieten wir Hochleistungskunststofflösungen und unterstützen Kunden dabei, neue Ideen bis zur Serienreife weiterzuentwickeln.",
       exploreAction: "Werkstoff nach Bauteil finden",
       contactAction: "Typen & TDS finden",
     },
@@ -37,7 +37,8 @@ const messages = {
         "Verschleißfestigkeit",
         "Geringe Reibung",
         "Verstärkung",
-        "Leitfähig / antistatisch",
+        "Leitfähigkeit",
+        "Antistatik",
       ],
       allFamiliesAction: "Alle Werkstofffamilien",
       additionalFamiliesAria: "Weitere Werkstofffamilien",

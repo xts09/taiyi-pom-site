@@ -23,6 +23,10 @@ import type {
   ApplicationIndexMessages,
   LocalizedApplicationQualityEvidenceMessages,
 } from "@/i18n/applicationTypes";
+import {
+  formatApplicationShowLess,
+  formatApplicationShowMore,
+} from "@/i18n/applicationShowMore";
 import type { LocalizedUrlSegment, MessageLocale } from "@/i18n/config";
 import {
   getLocalizedHref,
@@ -640,7 +644,6 @@ export function LocalizedApplicationDetailPage({
                 alt={`${application.title}${messages.scene.imageAltSuffix}`}
                 fill
                 sizes="100vw"
-                priority
                 className={cx(
                   "object-cover",
                   application.slug === "motion-components" &&
@@ -808,10 +811,12 @@ export function LocalizedApplicationDetailPage({
               className="application-use-grid"
               id="application-part-examples"
               initialVisibleCount={4}
-              showMoreLabel={`${messages.parts.showMorePrefix} ${Math.max(
-                applicationUseCards.length - 4,
-                0,
-              )} ${messages.parts.showMoreSuffix}`}
+              showLessLabel={formatApplicationShowLess(inLanguage, "parts")}
+              showMoreLabel={formatApplicationShowMore(
+                inLanguage,
+                "parts",
+                Math.max(applicationUseCards.length - 4, 0),
+              )}
             >
               {applicationUseCards.map((card) => (
                 <ApplicationUseCard
@@ -877,10 +882,15 @@ export function LocalizedApplicationDetailPage({
             className="application-notes-grid"
             id="application-material-directions"
             initialVisibleCount={3}
-            showMoreLabel={`${messages.materials.showMorePrefix} ${Math.max(
-              materialDirectionCards.length - 3,
-              0,
-            )} ${messages.materials.showMoreSuffix}`}
+            showLessLabel={formatApplicationShowLess(
+              inLanguage,
+              "materials",
+            )}
+            showMoreLabel={formatApplicationShowMore(
+              inLanguage,
+              "materials",
+              Math.max(materialDirectionCards.length - 3, 0),
+            )}
           >
             {materialDirectionCards.map((card, index) => (
               <ProductInfoCard

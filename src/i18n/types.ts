@@ -46,6 +46,7 @@ export type HeaderMessages = {
   resources: string;
   technicalResources: string;
   allResources: string;
+  news: string;
   aboutUs: string;
   contact: string;
   searchLabel: string;
@@ -134,7 +135,6 @@ export type ProductsMessages = {
   hero: {
     eyebrow: string;
     title: string;
-    subtitle: string;
     body: string;
     startAction: string;
     dataSheetsAction: string;
@@ -143,7 +143,6 @@ export type ProductsMessages = {
     kicker: string;
     title: string;
     body: string;
-    note: string;
     navigationAria: string;
     paths: readonly RequirementPathMessage[];
   };

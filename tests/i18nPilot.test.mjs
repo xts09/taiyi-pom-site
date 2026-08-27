@@ -86,6 +86,10 @@ import {
   localizedApplicationSlugs,
 } from "../src/i18n/applicationTypes.ts";
 import {
+  formatApplicationShowLess,
+  formatApplicationShowMore,
+} from "../src/i18n/applicationShowMore.ts";
+import {
   localizedResourceArticleSlugs,
   localizedResourceArticleSliceA1Slugs,
   localizedResourceArticleSliceA2Slugs,
@@ -249,6 +253,7 @@ test("all localized dictionaries match the complete shared English message shape
       expectedShape,
     );
     assert.equal(messages.Home.materials.items.length, 5);
+    assert.equal(messages.Home.materials.coreDirections.length, 5);
     assert.equal(messages.Home.qualification.steps.length, 4);
     assert.equal(messages.Home.quality.certifications.length, 4);
     assert.equal(messages.Home.exportNetwork.routes.length, 4);
@@ -395,7 +400,6 @@ test("all localized dictionaries match the complete shared English message shape
 });
 
 test("uses the approved Simplified Chinese public and legal company names", () => {
-  assert.match(zhCN.Home.hero.body, /^台益位于江苏盐城/);
   assert.equal(zhCN.Header.brandHomeLabel, "台益首页");
   assert.equal(zhCN.Footer.brandRelation, "台益 · PLATFORM® 工程材料");
   assert.match(
@@ -542,6 +546,242 @@ test("expanded translations preserve high-risk engineering meaning", () => {
         `English mistranslated production cycle time in: ${source}`,
       );
     }
+  }
+});
+
+test("confirmed technical translations preserve exact engineering meaning", () => {
+  const pa6Direction =
+    "从主导性能缺口出发，再结合吸湿、模具、加工窗口和实际工况审核候选牌号。";
+  const weldMarkAnswer =
+    "当短射、熔接痕或压力问题可能来自浇口、流道、排气、温控或设备能力时，应先确认模具与工艺根因，再判断是否需要更高流动牌号。";
+
+  assert.equal(
+    translateExpandedText(pa6Direction, "de"),
+    "Gehen Sie von der maßgeblichen Leistungslücke aus und bewerten Sie anschließend die Kandidatenwerkstofftypen unter Berücksichtigung von Feuchtigkeitsaufnahme, Werkzeug, Verarbeitungsfenster und tatsächlichen Einsatzbedingungen.",
+  );
+  assert.equal(
+    translateExpandedText(pa6Direction, "fr"),
+    "Partez de l’écart de performance dominant, puis évaluez les grades candidats en tenant compte de l’absorption d’humidité, du moule, de la fenêtre de transformation et des conditions réelles d’utilisation.",
+  );
+  assert.equal(
+    translateExpandedText(pa6Direction, "pt-br"),
+    "Comece pela principal lacuna de desempenho e, em seguida, avalie os graus candidatos considerando a absorção de umidade, o molde, a janela de processamento e as condições reais de uso.",
+  );
+  assert.equal(
+    translateExpandedText(weldMarkAnswer, "fr"),
+    "Lorsque des manques de matière, des marques de soudure ou des problèmes de pression peuvent provenir du point d’injection, des canaux d’alimentation, des évents, de la régulation de température ou des capacités de la presse, il faut d’abord confirmer les causes liées au moule et au procédé avant de déterminer si un grade plus fluide est nécessaire.",
+  );
+  assert.equal(
+    translateExpandedText(weldMarkAnswer, "pt-br"),
+    "Quando falhas de preenchimento, marcas de solda ou problemas de pressão puderem decorrer do ponto de injeção, dos canais de alimentação, da ventilação do molde, do controle de temperatura ou da capacidade da injetora, é preciso primeiro confirmar as causas relacionadas ao molde e ao processo antes de avaliar se é necessário um grau de maior fluidez.",
+  );
+  assert.equal(
+    translateExpandedText(
+      "本页用于 ECF200 的初步选型。碳纤增强材料具有方向性；浇口、流向、熔接线、壁厚、表面状态和测量位置都会影响力学与电性能。",
+      "fr",
+    ),
+    "Cette page sert à la présélection de l’ECF200. Les matériaux renforcés de fibres de carbone sont anisotropes ; le point d’injection, le sens d’écoulement, les lignes de soudure, l’épaisseur de paroi, l’état de surface et la position de mesure influencent les propriétés mécaniques et électriques.",
+  );
+  assert.equal(
+    translateExpandedText(
+      "齿轮啮合、转速、循环次数、噪声和碳粉环境决定磨损、旋转精度与尺寸保持。",
+      "de",
+    ),
+    "Zahneingriff, Drehzahl, Zyklusanzahl, Geräuschentwicklung und Tonerumgebung bestimmen Verschleiß, Rotationsgenauigkeit und Maßhaltigkeit.",
+  );
+  assert.equal(
+    translateExpandedText(
+      "纺织部件的材料方向由纤维接触、张力、速度、表面状态和尺寸精度共同决定。先找到接近的部件，再明确磨损、毛羽、摩擦和收缩控制的重点。",
+      "de",
+    ),
+    "Die Werkstoffrichtung für Textilkomponenten wird durch Faserkontakt, Fadenspannung, Geschwindigkeit, Oberflächenzustand und Maßgenauigkeit bestimmt. Suchen Sie zunächst ein vergleichbares Bauteil und legen Sie dann die Schwerpunkte für Verschleiß, Garnhaarigkeit, Reibung und Schwindungskontrolle fest.",
+  );
+  assert.equal(
+    translateExpandedText(
+      "配合阀孔材料、直径、表面质量、几何和功能间隙",
+      "pt-br",
+    ),
+    "Material do furo conjugado da válvula, diâmetro, qualidade superficial, geometria e folga funcional",
+  );
+});
+
+test("confirmed French and Portuguese grade metadata is exact and invariant-safe", () => {
+  const engineeringTdsDocuments = JSON.parse(
+    readProjectFile("src/generated/catalog.json"),
+  ).filter((record) => record.kind === "engineering-tds");
+  const pomGradeProfiles = Object.values(chinesePomGradeProfiles);
+
+  const assertMetadataInvariant = ({
+    description,
+    family,
+    grade,
+    localeSegment,
+    title,
+  }) => {
+    assert.match(title, new RegExp(`\\b${grade}\\b`));
+    assert.match(title, new RegExp(`\\b${family}\\b`, "i"));
+    assert.ok(
+      title
+        .replace(grade, "")
+        .replace(family, "")
+        .replace("| Taiyi Polymer", "")
+        .replace(/[-–—·|]/g, "")
+        .trim().length >= 3,
+      `${localeSegment} grade metadata lost its material direction: ${title}`,
+    );
+    assert.ok(
+      title.endsWith(" | Taiyi Polymer"),
+      `${localeSegment} grade metadata changed the Taiyi Polymer brand: ${title}`,
+    );
+    assert.match(description, new RegExp(`\\b${grade}\\b`));
+  };
+
+  for (const localeSegment of ["fr", "pt-br"]) {
+    for (const document of engineeringTdsDocuments) {
+      const source = createChineseEngineeringGradeCopy(document).metadata;
+
+      assertMetadataInvariant({
+        description: translateExpandedText(source.description, localeSegment),
+        family: document.family,
+        grade: document.grade,
+        localeSegment,
+        title: translateExpandedText(source.title, localeSegment),
+      });
+    }
+
+    for (const profile of pomGradeProfiles) {
+      assertMetadataInvariant({
+        description: translateExpandedText(
+          profile.metadata.description,
+          localeSegment,
+        ),
+        family: "POM",
+        grade: profile.breadcrumb,
+        localeSegment,
+        title: translateExpandedText(profile.metadata.title, localeSegment),
+      });
+    }
+  }
+
+  for (const grade of ["EAI210", "EAI220", "EAI250"]) {
+    const titleSource = `${grade} PA66 抗冲改性牌号 | 台益`;
+    const descriptionSource = `${grade} PA66 抗冲改性牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。`;
+
+    assert.equal(
+      translateExpandedText(titleSource, "fr"),
+      `${grade} PA66 modifié choc | Taiyi Polymer`,
+    );
+    assert.equal(
+      translateExpandedText(descriptionSource, "fr"),
+      `Les données du grade ${grade} en PA66 modifié choc comprennent la densité, la résistance à la traction, la température de fléchissement sous charge, le classement de réaction au feu et le tableau complet des propriétés.`,
+    );
+    assert.equal(
+      translateExpandedText(titleSource, "pt-br"),
+      `${grade} PA66 modificado para impacto | Taiyi Polymer`,
+    );
+    assert.equal(
+      translateExpandedText(descriptionSource, "pt-br"),
+      `Os dados do grau ${grade} em PA66 modificado para impacto incluem densidade, resistência à tração, temperatura de deflexão térmica, classificação de flamabilidade e a tabela completa de propriedades.`,
+    );
+  }
+
+  const ehi602tTitle = "EHI602T 高冲击高伸长方向 POM | 台益";
+  const ehi602tDescription =
+    "根据冲击、断裂伸长率、流动性、拉伸与热性能数据评估 EHI602T 高抗冲耐低温 POM，并申请样品。";
+
+  assert.equal(
+    translateExpandedText(ehi602tTitle, "fr"),
+    "EHI602T POM à haute résistance aux chocs et à fort allongement | Taiyi Polymer",
+  );
+  assert.equal(
+    translateExpandedText(ehi602tTitle, "pt-br"),
+    "EHI602T POM de alto impacto e alto alongamento | Taiyi Polymer",
+  );
+  assert.equal(
+    translateExpandedText(ehi602tDescription, "fr"),
+    "Évaluez le POM EHI602T résistant aux chocs et aux basses températures en fonction des données de performances en matière d'impact, d'allongement à la rupture, d'écoulement, de traction et thermique et demandez des échantillons.",
+  );
+  assert.equal(
+    translateExpandedText(ehi602tDescription, "pt-br"),
+    "Avalie o POM resistente a alto impacto e baixa temperatura EHI602T com base no impacto, alongamento na ruptura, fluidez, dados de desempenho térmico e de tração e solicite uma amostra.",
+  );
+});
+
+test("application show-more controls use complete locale sentences", () => {
+  const expectations = {
+    en: {
+      parts: ["Show 1 more part", "Show 2 more parts"],
+      materials: [
+        "Show 1 more material direction",
+        "Show 2 more material directions",
+      ],
+    },
+    de: {
+      parts: ["1 weiteres Bauteil anzeigen", "2 weitere Bauteile anzeigen"],
+      materials: [
+        "1 weitere Werkstoffrichtung anzeigen",
+        "2 weitere Werkstoffrichtungen anzeigen",
+      ],
+    },
+    fr: {
+      parts: [
+        "Afficher 1 pièce supplémentaire",
+        "Afficher 2 pièces supplémentaires",
+      ],
+      materials: [
+        "Afficher 1 orientation matériau supplémentaire",
+        "Afficher 2 orientations matériau supplémentaires",
+      ],
+    },
+    "pt-BR": {
+      parts: ["Mostrar mais 1 peça", "Mostrar mais 2 peças"],
+      materials: [
+        "Mostrar mais 1 direção de material",
+        "Mostrar mais 2 direções de material",
+      ],
+    },
+    "zh-CN": {
+      parts: ["再查看 1 个部件", "再查看 2 个部件"],
+      materials: ["再查看 1 个材料方向", "再查看 2 个材料方向"],
+    },
+  };
+  const collapseExpectations = {
+    en: ["Show fewer parts", "Show fewer material directions"],
+    de: ["Weniger Bauteile anzeigen", "Weniger Werkstoffrichtungen anzeigen"],
+    fr: ["Afficher moins de pièces", "Afficher moins d’orientations matériau"],
+    "pt-BR": ["Mostrar menos peças", "Mostrar menos direções de material"],
+    "zh-CN": ["收起部件列表", "收起材料方向"],
+  };
+
+  for (const [locale, kinds] of Object.entries(expectations)) {
+    for (const [kind, labels] of Object.entries(kinds)) {
+      assert.equal(formatApplicationShowMore(locale, kind, 1), labels[0]);
+      assert.equal(formatApplicationShowMore(locale, kind, 2), labels[1]);
+    }
+    assert.equal(
+      formatApplicationShowLess(locale, "parts"),
+      collapseExpectations[locale][0],
+    );
+    assert.equal(
+      formatApplicationShowLess(locale, "materials"),
+      collapseExpectations[locale][1],
+    );
+  }
+
+  const sourceFiles = [
+    "src/i18n/applicationTypes.ts",
+    "src/i18n/messages/en-application-detail.ts",
+    "src/i18n/messages/zh-CN-applications.ts",
+    "src/i18n/messages/zh-CN-application-details-a.ts",
+    "src/i18n/messages/zh-CN-application-details-b.ts",
+    "src/components/localized/LocalizedApplicationDetailPage.tsx",
+  ];
+
+  for (const sourceFile of sourceFiles) {
+    assert.doesNotMatch(
+      readProjectFile(sourceFile),
+      /showMorePrefix|showMoreSuffix/,
+    );
   }
 });
 

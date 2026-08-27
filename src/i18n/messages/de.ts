@@ -61,6 +61,7 @@ const messages = {
     resources: "Ressourcen",
     technicalResources: "Technische Ressourcen",
     allResources: "Alle Ressourcen",
+    news: "Aktuelles",
     aboutUs: "Über uns",
     contact: "Kontakt",
     searchLabel: "Technische Datenblätter und Ressourcen durchsuchen",
@@ -74,9 +75,9 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · PLATFORM® Technische Werkstoffe",
     logoAlt: "Eingetragene Marke PLATFORM",
-    pitchTitle: "Werkstoffentscheidungen, ausgehend vom Bauteil.",
+    pitchTitle: "Werkstoffe, Dokumente und Lieferunterstützung.",
     pitchCopy:
-      "Beschreiben Sie Ihr Bauteil, die Einsatzbedingungen und Leistungsziele. Wir grenzen passende Typen ein und klären verfügbare Muster sowie technische Unterlagen für Ihre Bewertung.",
+      "Informieren Sie sich über technische Werkstoffe von PLATFORM®, Werkstoffdaten und technische Dokumente oder sprechen Sie Taiyi Polymer auf Muster, Belieferung und Unternehmensnachweise an.",
     discussApplication: "Anwendung besprechen",
     products: "Produkte",
     applications: "Anwendungen",
@@ -137,9 +138,8 @@ const messages = {
     hero: {
       eyebrow: "Produktverzeichnis",
       title: "Technische Kunststoff-Compounds",
-      subtitle: "Modifiziertes POM als Kernsortiment",
       body:
-        "Durchsuchen Sie modifiziertes POM als Kernsortiment sowie POM-Basisharz und ausgewählte PA6-, PA66-, PPA-, leitfähige und antistatische Optionen, wenn die Anwendung ein anderes Eigenschaftsprofil erfordert.",
+        "Modifiziertes POM bildet das Kernsortiment. POM-Basisharz und ausgewählte PA6-, PA66- und PPA-Compounds ergänzen die Auswahl für Bauteile mit anderen Eigenschafts- und Verarbeitungsanforderungen.",
       startAction: "Nach Bauteilanforderung auswählen",
       dataSheetsAction: "Typendaten & TDS finden",
     },
@@ -147,9 +147,7 @@ const messages = {
       kicker: "Anforderung zuerst",
       title: "Was muss das Bauteil leisten?",
       body:
-        "Wählen Sie den passendsten Prüfpfad. Jeder Pfad erläutert die entscheidenden Zielkonflikte, bevor ein konkreter Typ verglichen wird.",
-      note:
-        "Benötigen Sie höhere Temperaturbeständigkeit oder eine andere Polymerfamilie? Sehen Sie unten das gesamte Werkstoffspektrum.",
+        "Wählen Sie den Pfad, der der Bauteilanforderung am nächsten kommt, um die Zielkonflikte vor dem Vergleich konkreter Typen zu klären.",
       navigationAria: "Werkstoffpfade nach Bauteilanforderung",
       paths: [
         {
@@ -182,7 +180,7 @@ const messages = {
       kicker: "Gesamtes Werkstoffspektrum",
       title: "Alle Produktfamilien durchsuchen",
       body:
-        "Modifiziertes POM ist das Kernsortiment. Basisharz, ausgewählte PA6-, PA66- und PPA-Typen sowie werkstoffübergreifende Lösungen zur Ableitfähigkeit stehen bereit, wenn die Anwendung in eine andere Richtung weist.",
+        "Vergleichen Sie gelistete Typen und Anwendungsrichtungen in sechs Produktfamilien und öffnen Sie anschließend die passende Familie für die weitere Auswahl.",
       items: [
         {
           title: "Modifizierte POM-Compounds",

@@ -14,7 +14,7 @@ const messages = {
       eyebrowMobile: "COMPOUNDAGE POM",
       title: "Fabricant de compounds POM modifiés pour pièces moulées de précision",
       body:
-        "Taiyi Polymer est implanté à Yancheng, dans le Jiangsu, avec le POM modifié au cœur de son offre, et accompagne la présélection matière, les données de grades, les échantillons et les essais de moulage selon les conditions de la pièce.",
+        "Notre gamme s’appuie sur le POM modifié et s’étend au PA6, au PA66 et au PPA. Nous développons des solutions en plastiques techniques haute performance axées sur la résistance à l’usure, le faible frottement, le renforcement, la conductivité et les propriétés antistatiques, afin d’accompagner les idées nouvelles vers l’industrialisation.",
       exploreAction: "Trouver par type de pièce",
       contactAction: "Trouver grades & TDS",
     },
@@ -37,7 +37,8 @@ const messages = {
         "Résistance à l'usure",
         "Faible frottement",
         "Renforcement",
-        "Conducteur / antistatique",
+        "Conductivité",
+        "Antistatique",
       ],
       allFamiliesAction: "Voir toutes les familles",
       additionalFamiliesAria: "Familles de matériaux complémentaires",

@@ -156,6 +156,38 @@ Family consistency is judged by visible composition and information rhythm,
 not by duplicating every section. A detailed page should extend its overview's
 logic rather than introduce a disconnected surface language.
 
+## Homepage First-Two-Screen Benchmark
+
+The approved Home Hero and the material-family opening module are the site's
+primary brand benchmark. Future branded and editorial surfaces should inherit
+their tone, information hierarchy, density, and evidence logic without copying
+their exact composition.
+
+- **Screen one — the brand thesis:** Use one decisive, image-led statement to
+  say what Taiyi Polymer makes and where it creates value. Supporting copy may
+  establish modified POM as the core line, extend the credible range to PA6,
+  PA66, and PPA, connect key performance directions to customer outcomes, and
+  then stop. Do not repeat the same performance list as decorative badges or
+  add another layer of slogans. Actions name concrete destinations.
+- **Screen two — product credibility:** Move from the brand promise into a calm,
+  light technical surface. Keep POM visually dominant, show PA6, PA66, and PPA
+  as supporting families, pair real material imagery with a concise product
+  story, and lead to the relevant product range. This screen should feel like
+  evidence following a claim, not another promotional Hero.
+- **Transfer the rhythm, not the layout:** Other route families should follow
+  the same sequence of clear position, relevant explanation, visible evidence,
+  and specific next action. They do not inherit the Home Hero crop, dark-to-light
+  transition, module dimensions, or copy verbatim unless those choices suit the
+  page's actual job.
+- **Restraint is part of the identity:** Prefer one strong headline, one useful
+  paragraph, and one primary action over stacked labels, repeated capability
+  chips, generic superlatives, or multiple competing panels. Technical detail
+  belongs on the deeper page that can explain and qualify it.
+- **Multilingual consistency is semantic:** English, Simplified Chinese, German,
+  French, and Brazilian Portuguese should preserve the same message priority
+  and confidence while using natural local phrasing and natural line wrapping.
+  Matching sentence structure word for word is not a design requirement.
+
 ## External Reference Synthesis
 
 Taiyi may borrow useful patterns from the `awesome-design-md` collection, but
@@ -477,7 +509,7 @@ height, radius, border, focus treatment, or primary-action color.
 
 ### Navigation
 
-- **Desktop:** Single-line navigation using IBM Plex Sans. The current section indicator sits at the header edge; mega-menu link hover indicators stay at text level.
+- **Desktop:** Single-line navigation using IBM Plex Sans. Current-section and hover indicators share one text-level underline baseline; mega-menu link hover indicators stay at text level as well.
 - **Hero routes:** Header and expanded menu read as one dark frosted material with stable contrast and no visible gap.
 - **Inner routes:** White header and white expanded menu connect directly without a separate gray strip.
 - **Mobile:** Use the existing labeled Menu control and stacked groups. Do not shrink the desktop menu into an unreadable row.

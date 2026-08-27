@@ -40,8 +40,6 @@ const messages = {
         description:
           "水路部件的材料方向由介质、压力、启闭方式、密封界面和装配尺寸共同决定。先找到接近的部件，再明确摩擦、磨损、刚性和尺寸控制的重点。",
         cardLabel: "水路部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -52,8 +50,6 @@ const messages = {
           "以下方向用于建立初步候选，不代表对所有水路介质和压力条件通用适用。具体牌号仍需结合介质、温度、密封、尺寸和样件结果确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",
@@ -243,8 +239,6 @@ const messages = {
         description:
           "洗衣机内部同时存在传动、旋转、水路和启闭部件。先找到接近的部件，再明确磨损、摩擦、刚性、介质和装配尺寸的主次。",
         cardLabel: "洗衣机部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -255,8 +249,6 @@ const messages = {
           "以下方向用于建立初步候选，不代表对所有洗衣机部件通用适用。具体牌号仍需结合载荷、振动、水温、洗涤剂、密封和样件结果确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",
@@ -450,8 +442,6 @@ const messages = {
         description:
           "户外部件的材料方向由暴露位置、温度循环、冲击载荷、水尘介质、运动方式和尺寸要求共同决定。先找到接近的部件，再明确需要优先控制的失效现象。",
         cardLabel: "户外设备部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -462,8 +452,6 @@ const messages = {
           "以下方向用于建立初步候选，不代表对所有户外设备部件通用适用。具体牌号仍需结合暴露周期、温度、载荷、介质、颜色与样件结果确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",
@@ -645,8 +633,6 @@ const messages = {
         description:
           "纺织部件的材料方向由纤维接触、张力、速度、表面状态和尺寸精度共同决定。先找到接近的部件，再明确磨损、毛羽、摩擦和收缩控制的重点。",
         cardLabel: "纺织部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -657,8 +643,6 @@ const messages = {
           "以下方向用于建立初步候选，不代表对所有纺织机械部件通用适用。具体牌号仍需结合纤维、张力、速度、表面和样件结果确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",

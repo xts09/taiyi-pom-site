@@ -149,10 +149,6 @@ export default function ApplicationsPage() {
                 </span>
               </Link>
             </div>
-            <p className="application-index-guide-note">
-              Modified POM is the core line; selected PA6, PA66 and PPA
-              compounds cover requirements outside the practical POM range.
-            </p>
           </aside>
         </div>
 

@@ -12,8 +12,8 @@ export const aboutLocaleOverrides: Partial<
       "Rezeptur, Prüfung und Fertigung in Yancheng",
     "公司从盐城起步，持续围绕注塑零部件所需的耐磨、低摩擦、增强与导电等性能开发改性材料。":
       "Ausgehend von Yancheng entwickelt das Unternehmen modifizierte Werkstoffe für Spritzgussteile mit Anforderungen an Verschleißfestigkeit, geringe Reibung, Verstärkung und Leitfähigkeit.",
-    "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同，让客户无需在多个外部环节之间反复沟通。":
-      "Rezepturentwicklung, Compoundierung, Werkstoffprüfung und Chargendokumentation werden von einem Team am selben Standort koordiniert, sodass Kunden nicht zwischen mehreren externen Stellen vermitteln müssen.",
+    "配方开发、改性造粒、材料检测和批次文件由盐城基地团队协同，材料、测试与文件工作在同一制造体系内推进。":
+      "Rezepturentwicklung, Compoundierung, Werkstoffprüfung und Chargendokumentation werden vom Team am Standort Yancheng koordiniert. Werkstoff-, Prüf- und Dokumentationsaufgaben laufen in einem Fertigungssystem zusammen.",
     "以改性 POM 为核心拓展材料能力":
       "Werkstoffkompetenz mit modifiziertem POM im Mittelpunkt",
     "改性 POM 是台益长期投入的核心材料，覆盖耐磨、低摩擦、增强与导电等功能方向。PA6、PA66 和 PPA 改性材料进一步补充耐热、刚性与韧性需求。":
@@ -24,8 +24,8 @@ export const aboutLocaleOverrides: Partial<
       "15 Doppelschneckenlinien, 32 Prüfgeräte und 25.000 Quadratmeter Werksfläche bilden die Fertigungsbasis in Yancheng. Von Versuchschargen bis zu wiederkehrenden Aufträgen laufen Produktion, Prüfung und Chargendokumentation in einem System zusammen und schaffen klare Liefer- und Qualitätsanforderungen.",
     "让实验室生产与质量围绕同一项目协作":
       "Labor, Fertigung und Qualität arbeiten am selben Projekt",
-    "项目需求不会停留在销售端。技术、实验室、生产和质量团队共同参与材料测试、生产安排和质量文件，让问题直接到达负责验证与制造的人。":
-      "Projektanforderungen bleiben nicht im Vertrieb hängen. Technik, Labor, Fertigung und Qualität arbeiten gemeinsam an Prüfung, Produktionsplanung und Dokumentation, damit Fragen direkt die Verantwortlichen für Validierung und Fertigung erreichen.",
+    "技术、实验室、生产和质量团队共同参与材料测试、生产安排与质量文件，由负责验证与制造的人员直接跟进项目需求。":
+      "Technik, Labor, Fertigung und Qualität arbeiten gemeinsam an Werkstoffprüfungen, Produktionsplanung und Qualitätsdokumentation. Die Verantwortlichen für Validierung und Fertigung begleiten die Projektanforderungen direkt.",
     让项目审核与供应商准入有据可查:
       "Nachweise für Projektprüfung und Lieferantenfreigabe",
     "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
@@ -48,9 +48,9 @@ export const aboutLocaleOverrides: Partial<
     "项目需求由技术、实验室、生产和质量团队共同响应。":
       "Technik, Labor, Fertigung und Qualität bearbeiten die Projektanforderungen gemeinsam.",
     联系台益: "Taiyi Polymer kontaktieren",
-    谈谈您的零部件与材料要求: "Sprechen wir über Ihre Bauteil- und Werkstoffanforderungen",
-    "请提供应用、工况、目标性能或所需文件，我们会安排相应团队跟进。":
-      "Nennen Sie uns Anwendung, Einsatzbedingungen, Zielwerte oder benötigte Dokumente. Das passende Team übernimmt die weitere Abstimmung.",
+    "您的项目需要哪类支持？": "Welche Unterstützung benötigt Ihr Projekt?",
+    "请告诉我们所需支持，我们会安排相应团队跟进。":
+      "Teilen Sie uns mit, welche Unterstützung Sie benötigen. Wir verbinden Sie mit dem zuständigen Team.",
     材料与牌号咨询: "Fragen zu Werkstoffen und Werkstofftypen",
     样品与技术文件: "Muster und technische Dokumente",
     生产与供货: "Fertigung und Belieferung",
@@ -179,8 +179,8 @@ export const aboutLocaleOverrides: Partial<
       "Formulation, essais et production réunis à Yancheng",
     "公司从盐城起步，持续围绕注塑零部件所需的耐磨、低摩擦、增强与导电等性能开发改性材料。":
       "Depuis Yancheng, l’entreprise développe des matériaux modifiés répondant aux besoins des pièces injectées en résistance à l’usure, faible frottement, renforcement et conductivité.",
-    "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同，让客户无需在多个外部环节之间反复沟通。":
-      "Le développement des formulations, le compoundage, les essais matière et la documentation des lots sont coordonnés par une même équipe sur le même site, sans multiplier les interlocuteurs externes.",
+    "配方开发、改性造粒、材料检测和批次文件由盐城基地团队协同，材料、测试与文件工作在同一制造体系内推进。":
+      "Le développement des formulations, le compoundage, les essais matière et la documentation des lots sont coordonnés par l’équipe du site de Yancheng. Les travaux liés aux matériaux, aux essais et aux documents avancent dans un même système de production.",
     "以改性 POM 为核心拓展材料能力":
       "Une expertise matière centrée sur les POM modifiés",
     "改性 POM 是台益长期投入的核心材料，覆盖耐磨、低摩擦、增强与导电等功能方向。PA6、PA66 和 PPA 改性材料进一步补充耐热、刚性与韧性需求。":
@@ -191,8 +191,8 @@ export const aboutLocaleOverrides: Partial<
       "Quinze lignes bivis, 32 équipements d’essai et un site de 25 000 mètres carrés constituent la base industrielle de Yancheng. Des lots d’essai aux commandes récurrentes, production, contrôles et documentation avancent dans un même système pour clarifier les exigences de qualité et d’approvisionnement.",
     "让实验室生产与质量围绕同一项目协作":
       "Laboratoire, production et qualité réunis",
-    "项目需求不会停留在销售端。技术、实验室、生产和质量团队共同参与材料测试、生产安排和质量文件，让问题直接到达负责验证与制造的人。":
-      "Les exigences du projet ne s’arrêtent pas au service commercial. Les équipes techniques, laboratoire, production et qualité participent ensemble aux essais, à la planification et aux documents, afin que les questions arrivent directement aux responsables de la validation et de la fabrication.",
+    "技术、实验室、生产和质量团队共同参与材料测试、生产安排与质量文件，由负责验证与制造的人员直接跟进项目需求。":
+      "Les équipes techniques, laboratoire, production et qualité participent ensemble aux essais matière, à la planification de la production et aux documents qualité. Les responsables de la validation et de la fabrication suivent directement les exigences du projet.",
     让项目审核与供应商准入有据可查:
       "Les preuves pour qualifier un fournisseur",
     "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
@@ -215,9 +215,9 @@ export const aboutLocaleOverrides: Partial<
     "项目需求由技术、实验室、生产和质量团队共同响应。":
       "Les équipes techniques, laboratoire, production et qualité répondent ensemble aux exigences du projet.",
     联系台益: "Contacter Taiyi Polymer",
-    谈谈您的零部件与材料要求: "Parlons de vos exigences pièce et matière",
-    "请提供应用、工况、目标性能或所需文件，我们会安排相应团队跟进。":
-      "Indiquez l’application, les conditions d’utilisation, les performances visées ou les documents requis. L’équipe concernée assurera le suivi.",
+    "您的项目需要哪类支持？": "De quel accompagnement votre projet a-t-il besoin ?",
+    "请告诉我们所需支持，我们会安排相应团队跟进。":
+      "Indiquez-nous l’accompagnement dont vous avez besoin. Nous vous mettrons en relation avec l’équipe compétente.",
     材料与牌号咨询: "Questions sur les matériaux et les grades",
     样品与技术文件: "Échantillons et documents techniques",
     生产与供货: "Production et approvisionnement",
@@ -347,8 +347,8 @@ export const aboutLocaleOverrides: Partial<
       "Formulação, testes e produção integrados em Yancheng",
     "公司从盐城起步，持续围绕注塑零部件所需的耐磨、低摩擦、增强与导电等性能开发改性材料。":
       "A partir de Yancheng, a empresa desenvolve materiais modificados para peças injetadas que exigem resistência ao desgaste, baixo atrito, reforço e condutividade.",
-    "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同，让客户无需在多个外部环节之间反复沟通。":
-      "Desenvolvimento de formulações, compoundagem, testes de materiais e documentação de lotes são coordenados por uma única equipe na mesma unidade, sem exigir que o cliente articule vários fornecedores externos.",
+    "配方开发、改性造粒、材料检测和批次文件由盐城基地团队协同，材料、测试与文件工作在同一制造体系内推进。":
+      "O desenvolvimento de formulações, a compoundagem, os testes de materiais e a documentação de lotes são coordenados pela equipe da unidade de Yancheng. As atividades de materiais, testes e documentos avançam no mesmo sistema de fabricação.",
     "以改性 POM 为核心拓展材料能力":
       "Competência em materiais com foco em POM modificado",
     "改性 POM 是台益长期投入的核心材料，覆盖耐磨、低摩擦、增强与导电等功能方向。PA6、PA66 和 PPA 改性材料进一步补充耐热、刚性与韧性需求。":
@@ -359,8 +359,8 @@ export const aboutLocaleOverrides: Partial<
       "Quinze linhas de dupla rosca, 32 equipamentos de teste e uma área de 25.000 metros quadrados formam a base industrial de Yancheng. Dos lotes piloto aos pedidos recorrentes, produção, testes e documentação avançam no mesmo sistema para tornar claros os requisitos de fornecimento e qualidade.",
     "让实验室生产与质量围绕同一项目协作":
       "Laboratório, produção e qualidade no mesmo projeto",
-    "项目需求不会停留在销售端。技术、实验室、生产和质量团队共同参与材料测试、生产安排和质量文件，让问题直接到达负责验证与制造的人。":
-      "Os requisitos do projeto não ficam restritos à equipe comercial. As equipes técnica, de laboratório, produção e qualidade participam dos testes, do planejamento e dos documentos para que as questões cheguem diretamente aos responsáveis pela validação e fabricação.",
+    "技术、实验室、生产和质量团队共同参与材料测试、生产安排与质量文件，由负责验证与制造的人员直接跟进项目需求。":
+      "As equipes técnica, de laboratório, produção e qualidade participam dos testes de materiais, do planejamento da produção e dos documentos de qualidade. Os responsáveis pela validação e fabricação acompanham diretamente os requisitos do projeto.",
     让项目审核与供应商准入有据可查:
       "Evidências para qualificar fornecedores",
     "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
@@ -383,9 +383,9 @@ export const aboutLocaleOverrides: Partial<
     "项目需求由技术、实验室、生产和质量团队共同响应。":
       "As equipes técnica, de laboratório, produção e qualidade respondem juntas aos requisitos do projeto.",
     联系台益: "Fale com a Taiyi Polymer",
-    谈谈您的零部件与材料要求: "Vamos falar sobre os requisitos da sua peça e do material",
-    "请提供应用、工况、目标性能或所需文件，我们会安排相应团队跟进。":
-      "Informe a aplicação, as condições de uso, o desempenho desejado ou os documentos necessários. A equipe responsável dará continuidade.",
+    "您的项目需要哪类支持？": "De que suporte seu projeto precisa?",
+    "请告诉我们所需支持，我们会安排相应团队跟进。":
+      "Informe o suporte necessário, e encaminharemos sua solicitação à equipe responsável.",
     材料与牌号咨询: "Dúvidas sobre materiais e graus",
     样品与技术文件: "Amostras e documentos técnicos",
     生产与供货: "Produção e fornecimento",

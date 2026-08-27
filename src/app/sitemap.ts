@@ -14,11 +14,13 @@ import {
 import { resourcePages } from "@/data/resources";
 import {
   getLanguageAlternates,
+  getSitemapReleasedSourcePaths,
   getSitemapLanguageOptions,
   isReleasedSourcePath,
   type ReleasedSourcePath,
 } from "@/i18n/releaseManifest";
 import { productCategoryEntries } from "@/lib/productCategories";
+import { assertMatchingRouteSets } from "@/lib/routeSetInvariant";
 import { absoluteUrl, siteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -307,6 +309,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
       changeFrequency: "weekly" as const,
     },
+    {
+      sourcePath: "/resources/news/chinaplas-2026",
+      priority: 0.55,
+      changeFrequency: "yearly" as const,
+      lastModified: "2026-04-23",
+    },
     ...resourceNavigationGroups.map((group) => ({
       sourcePath: getResourceNavigationGroupPath(group) as ReleasedSourcePath,
       priority: 0.75,
@@ -329,6 +337,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       localizedLanguageRoutes.map((route) => [route.sourcePath, route]),
     ).values(),
   ];
+
+  assertMatchingRouteSets(
+    uniqueLocalizedLanguageRoutes.map(({ sourcePath }) => sourcePath),
+    getSitemapReleasedSourcePaths(),
+    "Sitemap and localized release manifest",
+  );
 
   const localizedRoutes = uniqueLocalizedLanguageRoutes.flatMap(
     (route) => {

@@ -14,7 +14,7 @@ const messages = {
       eyebrowMobile: "COMPOSIÇÃO DE POM",
       title: "Fabricante de POM modificado para peças moldadas de precisão",
       body:
-        "A Taiyi Polymer está em Yancheng, Jiangsu, e tem o POM modificado como linha principal, com suporte à seleção por aplicação, dados de grades, amostras e testes de moldagem.",
+        "O POM modificado é o núcleo do nosso portfólio, que se estende a PA6, PA66 e PPA. Desenvolvemos soluções em plásticos de engenharia de alto desempenho para resistência ao desgaste, baixo atrito, reforço, condutividade e desempenho antiestático, ajudando nossos clientes a levar novas ideias à produção em escala.",
       exploreAction: "Encontrar material por peça",
       contactAction: "Encontrar grades & TDS",
     },
@@ -37,7 +37,8 @@ const messages = {
         "Resistência ao desgaste",
         "Baixo atrito",
         "Reforço",
-        "Condutivo / antiestático",
+        "Condutividade",
+        "Antiestático",
       ],
       allFamiliesAction: "Ver todas as famílias",
       additionalFamiliesAria: "Famílias de materiais adicionais",

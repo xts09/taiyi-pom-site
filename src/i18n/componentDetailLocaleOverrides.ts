@@ -355,5 +355,9 @@ const createOverrides = (translationIndex: 1 | 2 | 3) =>
 export const componentDetailLocaleOverrides = {
   de: createOverrides(1),
   fr: createOverrides(2),
-  "pt-br": createOverrides(3),
+  "pt-br": {
+    ...createOverrides(3),
+    "配合阀孔材料、直径、表面质量、几何和功能间隙":
+      "Material do furo conjugado da válvula, diâmetro, qualidade superficial, geometria e folga funcional",
+  },
 } as const;

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { privacyPolicyRelease } from "@/data/legal";
+import { getLanguageAlternates } from "@/i18n/releaseManifest";
 import { contactEmail } from "@/lib/seo";
 import styles from "./PrivacyPage.module.css";
 
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
     "How Jiangsu Taiyi Nano Technology Co., Ltd. collects, uses, and protects information submitted through the PLATFORM website.",
   alternates: {
     canonical: "/privacy",
+    languages: getLanguageAlternates("/privacy"),
   },
 };
 

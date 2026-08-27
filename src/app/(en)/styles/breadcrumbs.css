@@ -69,6 +69,27 @@
   width: auto;
 }
 
+.product-category-hero-pa6-compound .site-breadcrumb--hero,
+.product-category-hero-pa66-compound .site-breadcrumb--hero,
+.product-category-hero-ppa-compound .site-breadcrumb--hero {
+  --breadcrumb-link: var(--ds-color-cyan-bright);
+  --breadcrumb-link-hover: var(--ds-foreground-on-dark);
+  --breadcrumb-current: var(--ds-foreground-on-dark-muted);
+  --breadcrumb-separator: rgba(226, 236, 245, 0.58);
+}
+
+.product-category-hero-pa6-compound
+  .site-breadcrumb--hero
+  [data-slot="breadcrumb-link"]:focus-visible,
+.product-category-hero-pa66-compound
+  .site-breadcrumb--hero
+  [data-slot="breadcrumb-link"]:focus-visible,
+.product-category-hero-ppa-compound
+  .site-breadcrumb--hero
+  [data-slot="breadcrumb-link"]:focus-visible {
+  outline-color: var(--ds-color-cyan-bright);
+}
+
 @media (min-width: 64rem) {
   .site-breadcrumb--hero {
     right: var(--site-rail-inset);

@@ -33,7 +33,25 @@ test("application detail renders each part and material card from one semantic l
   assert.match(expandableSource, /Children\.toArray\(children\)/);
   assert.match(expandableSource, /items\.slice\(0, initialVisibleCount\)/);
   assert.match(expandableSource, /items\.slice\(initialVisibleCount\)/);
-  assert.match(styleSource, /application-expandable-toggle\s*~\s*\*/);
+  assert.match(expandableSource, /aria-controls=\{additionalItemsId\}/);
+  assert.match(expandableSource, /aria-expanded=\{expanded\}/);
+  assert.match(expandableSource, /aria-live="polite"/);
+  assert.match(styleSource, /application-expandable-extra\s*\{\s*display: contents/);
+  assert.match(
+    styleSource,
+    /application-expandable-grid:not\(\.is-expanded\)[\s\S]*?application-expandable-extra/,
+  );
+});
+
+test("secondary section navigation preserves fragments and exposes location", () => {
+  const motionSource = readProjectFile(
+    "src/components/secondarySectionNavMotion.ts",
+  );
+
+  assert.doesNotMatch(motionSource, /event\.preventDefault\(\)/);
+  assert.doesNotMatch(motionSource, /window\.history\.pushState/);
+  assert.match(motionSource, /setAttribute\("aria-current", "location"\)/);
+  assert.match(motionSource, /target\.focus\(\{ preventScroll: true \}\)/);
 });
 
 test("reviewed English application overrides remove confirmed machine phrasing", () => {

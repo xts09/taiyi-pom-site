@@ -40,8 +40,6 @@ const messages = {
         description:
           "不同部件面对的载荷、运动、装配和环境条件并不相同。先找到与项目接近的部件，再看哪些材料性能会影响实际使用。",
         cardLabel: "汽车部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -52,8 +50,6 @@ const messages = {
           "以下方向用于建立初步候选范围，不代表对所有汽车部件通用适用。具体牌号仍需结合实际工况、数据与样件确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",
@@ -258,8 +254,6 @@ const messages = {
         description:
           "电子电气部件可能以绝缘、静电控制、尺寸保持或运动耐久为主。先找到接近的部件，再确认电性能是否需要与刚性、摩擦和加工条件共同比较。",
         cardLabel: "电子电气部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -270,8 +264,6 @@ const messages = {
           "以下方向用于建立初步候选，不代表对所有电子电气部件通用适用。电阻、接地、湿度、测试方法、尺寸和实际装配需要一起确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",
@@ -454,8 +446,6 @@ const messages = {
         description:
           "输送部件的材料方向取决于链节啮合、销轴配合、载荷分布、线速和现场环境。先找到接近的部件，再明确磨损、摩擦、刚性或静电控制的主次。",
         cardLabel: "输送部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -466,8 +456,6 @@ const messages = {
           "以下方向用于建立初步候选，不代表对所有输送线通用适用。具体牌号仍需结合负载、节拍、配合、清洁环境和静电目标确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",
@@ -648,8 +636,6 @@ const messages = {
         description:
           "运动部件的材料方向由接触形式、载荷、速度、间隙和寿命共同决定。先找到接近的部件，再看哪些条件会改变摩擦、磨损和尺寸表现。",
         cardLabel: "运动部件",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个部件",
         componentEyebrow: "零部件指南",
         componentTitle: "以下部件可继续查看专项选材指南",
       },
@@ -660,8 +646,6 @@ const messages = {
           "以下方向用于形成初步候选，不代表对所有运动部件通用适用。具体牌号仍需结合摩擦副、载荷、速度、环境和样件结果确认。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
-        showMorePrefix: "查看更多",
-        showMoreSuffix: "个材料方向",
       },
       evaluation: {
         eyebrow: "下一步",

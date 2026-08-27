@@ -8,7 +8,6 @@ import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { ValueText, ValueWithUnit } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
-import { availableDocuments } from "@/data/company";
 import { products, type Product } from "@/data/products";
 import { pomFamilyMasterVisuals } from "@/data/pomFamilyVisuals";
 import { loadApplicationProfiles } from "@/i18n/applicationMessages";
@@ -213,23 +212,6 @@ export async function LocalizedPomDirectoryPage({
               <p className="mt-4 max-w-3xl text-lg leading-8">
                 {messages.hero.description}
               </p>
-
-              <div className="products-motion-data product-hero-data">
-                <div className="product-hero-summary">
-                  <p className="section-kicker mb-2">
-                    {messages.hero.overviewLabel}
-                  </p>
-                  <p>{messages.hero.overview}</p>
-                </div>
-                <p className="product-hero-documents">
-                  <strong>{messages.hero.documentsTitle}</strong>
-                  <span>
-                    {availableDocuments.map((document) => (
-                      <b key={document}>{document}</b>
-                    ))}
-                  </span>
-                </p>
-              </div>
 
               <div className="product-hero-cta">
                 <Button asChild size="productHero" variant="productHeroPrimary">

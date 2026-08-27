@@ -16,7 +16,7 @@ export const chineseAboutMessages = {
     eyebrow: "关于台益",
     title: "聚焦改性 POM 的工程塑料制造商",
     summary:
-      "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造以改性 POM 为核心的工程塑料，并将材料测试、稳定生产与批次文件纳入同一制造体系。",
+      "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。",
     materialsAction: "查看材料范围",
     manufacturingAction: "查看制造能力",
     location: "盐城",
@@ -25,7 +25,7 @@ export const chineseAboutMessages = {
     eyebrow: "我们是谁",
     title: "从盐城制造走向国际市场",
     body: "公司从盐城起步，持续围绕注塑零部件所需的耐磨、低摩擦、增强与导电等性能开发改性材料。",
-    bodySecondary: "配方开发、改性造粒、材料检测和批次文件由同一基地团队协同，让客户无需在多个外部环节之间反复沟通。",
+    bodySecondary: "配方开发、改性造粒、材料检测和批次文件由盐城基地团队协同，材料、测试与文件工作在同一制造体系内推进。",
   },
   focus: {
     eyebrow: "材料重点",
@@ -60,7 +60,7 @@ export const chineseAboutMessages = {
   people: {
     eyebrow: "工程支持",
     title: "技术沟通直达实验室与生产",
-    description: "项目需求不会停留在销售端。技术、实验室、生产和质量团队共同参与材料测试、生产安排和质量文件，让问题直接到达负责验证与制造的人。",
+    description: "技术、实验室、生产和质量团队共同参与材料测试、生产安排与质量文件，由负责验证与制造的人员直接跟进项目需求。",
     roles: ["技术对接", "实验室测试", "生产协调", "质量文件"],
   },
   credentials: {
@@ -78,8 +78,8 @@ export const chineseAboutMessages = {
   },
   finalCta: {
     eyebrow: "联系台益",
-    title: "谈谈您的零部件与材料要求",
-    body: "把零部件应用、使用环境、目标性能、当前材料或文件要求告诉我们。台益会安排相应的技术、生产或质量团队直接跟进。",
+    title: "您的项目需要哪类支持？",
+    body: "请告诉我们所需支持，我们会安排相应团队跟进。",
     situations: [
       "材料与牌号咨询",
       "样品与技术文件",

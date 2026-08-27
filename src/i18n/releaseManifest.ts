@@ -375,6 +375,10 @@ export const localizedReleaseManifest = {
     sourcePath: "/resources/data-validation",
     ...chineseOnlyPublicRelease,
   },
+  chinaplas2026News: {
+    sourcePath: "/resources/news/chinaplas-2026",
+    ...publicRelease,
+  },
   materialSelectionGuideResource: {
     sourcePath: "/resources/material-selection-guide",
     ...chineseOnlyPublicRelease,
@@ -493,6 +497,16 @@ const releaseEntries: readonly LocalizedReleaseEntry[] = [
 const releasedSourcePaths = releaseEntries.map(
   ({ sourcePath }) => sourcePath,
 );
+
+export const getSitemapReleasedSourcePaths = () =>
+  releaseEntries
+    .filter(
+      (release) =>
+        release.status === "public" &&
+        release.indexable &&
+        release.includeInSitemap,
+    )
+    .map(({ sourcePath }) => sourcePath);
 
 export const isReleasedSourcePath = (
   sourcePath: string,

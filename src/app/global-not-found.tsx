@@ -16,10 +16,10 @@ export default function GlobalNotFound() {
         <main className="mx-auto flex min-h-screen max-w-5xl items-center px-5 py-16 sm:px-6 lg:px-8">
           <section className="mesh-surface w-full rounded-2xl p-8 sm:p-12">
             <p className="section-kicker mb-4">404</p>
-            <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
+            <h1 className="text-4xl font-black tracking-tight text-[var(--ds-foreground-primary)] md:text-5xl">
               Page Not Found
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-200">
+            <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--ds-foreground-muted)]">
               The requested page may have moved. Browse material grades or
               contact us for a material recommendation.
             </p>

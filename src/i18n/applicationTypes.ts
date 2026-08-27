@@ -166,8 +166,6 @@ export type ApplicationDetailUiMessages = {
     titleSuffix: string;
     description: string;
     cardLabel: string;
-    showMorePrefix: string;
-    showMoreSuffix: string;
     componentEyebrow: string;
     componentTitle: string;
   };
@@ -177,8 +175,6 @@ export type ApplicationDetailUiMessages = {
     description: string;
     keyUseLabel: string;
     imageAltSuffix: string;
-    showMorePrefix: string;
-    showMoreSuffix: string;
   };
   evaluation: {
     eyebrow: string;
@@ -211,7 +207,6 @@ export type ApplicationIndexMessages = {
     industryCountSuffix: string;
     componentTitle: string;
     componentCountSuffix: string;
-    guideNote: string;
   };
   directory: {
     eyebrow: string;

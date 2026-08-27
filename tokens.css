@@ -89,6 +89,7 @@
   --ds-action-primary: var(--ds-color-cobalt-600);
   --ds-action-primary-hover: var(--ds-color-cobalt-700);
   --ds-focus-ring: var(--ds-color-cyan-500);
+  --ds-focus-ring-contrast: var(--ds-color-ink-950);
   --ds-border-subtle: rgba(15, 23, 42, 0.13);
   --ds-font-display: var(--font-display);
   --ds-font-body: var(--font-geist-sans);
@@ -202,7 +203,7 @@
     0 1rem 2rem rgba(2, 7, 17, 0.28);
   --ds-button-inverse-shadow-hover: 0 0 0 1px rgba(255, 255, 255, 0.1),
     0 1.1rem 2.15rem rgba(2, 7, 17, 0.32);
-  --ds-button-focus-outline: rgba(14, 165, 233, 0.55);
+  --ds-button-focus-outline: var(--ds-focus-ring);
   --ds-button-focus-outline-width: 3px;
   --ds-button-focus-outline-offset: 3px;
   --ds-button-radius: var(--ds-radius-tight);

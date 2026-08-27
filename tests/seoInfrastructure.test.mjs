@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -146,6 +146,17 @@ test("keeps the indexable Privacy page in sitemap with its real revision date", 
 
 test("the legacy conductive compounds URL stays consolidated", () => {
   const nextConfigSource = readFileSync(resolve(projectRoot, "next.config.ts"), "utf8");
+  const ownerSource = readFileSync(
+    resolve(
+      projectRoot,
+      "src/app/(en)/products/conductive-antistatic-compounds/page.tsx",
+    ),
+    "utf8",
+  );
+  const sitemapSource = readFileSync(
+    resolve(projectRoot, "src/app/sitemap.ts"),
+    "utf8",
+  );
   const landingSource = readFileSync(
     resolve(projectRoot, "src/data/pomLandingPages.ts"),
     "utf8",
@@ -158,6 +169,27 @@ test("the legacy conductive compounds URL stays consolidated", () => {
   assert.match(
     nextConfigSource,
     /source:\s*"\/conductive-antistatic-compounds"[\s\S]*?destination:\s*"\/products\/conductive-antistatic-compounds"[\s\S]*?permanent:\s*true/,
+  );
+  assert.equal(
+    existsSync(
+      resolve(
+        projectRoot,
+        "src/app/(en)/conductive-antistatic-compounds/page.tsx",
+      ),
+    ),
+    false,
+  );
+  assert.match(
+    ownerSource,
+    /const path = "\/products\/conductive-antistatic-compounds"/,
+  );
+  assert.match(
+    sitemapSource,
+    /sourcePath:\s*"\/products\/conductive-antistatic-compounds"/,
+  );
+  assert.doesNotMatch(
+    sitemapSource,
+    /sourcePath:\s*"\/conductive-antistatic-compounds"/,
   );
   assert.match(
     landingSource,

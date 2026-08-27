@@ -52,8 +52,6 @@ export const englishApplicationDetailMessages = {
     description:
       "Start with part geometry, load, motion and operating environment. Final material choice still depends on grade-specific data and project validation.",
     cardLabel: "Typical part",
-    showMorePrefix: "Show",
-    showMoreSuffix: "more parts",
     componentEyebrow: "Component guides",
     componentTitle: "Continue with a component-specific selection guide",
   },
@@ -64,8 +62,6 @@ export const englishApplicationDetailMessages = {
       "Use the part function and conditions above to compare POM directions that commonly enter an initial candidate range.",
     keyUseLabel: "Selection focus",
     imageAltSuffix: " material pellets",
-    showMorePrefix: "Show",
-    showMoreSuffix: "more material directions",
   },
   evaluation: {
     eyebrow: "Next step",

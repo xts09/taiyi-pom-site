@@ -25,8 +25,6 @@ const messages = {
     industryCountSuffix: "个应用场景",
     componentTitle: "按零部件浏览",
     componentCountSuffix: "类注塑零部件",
-    guideNote:
-      "改性 POM 是核心产品线；当需求超出 POM 的实际适用范围时，可进一步评估精选 PA6、PA66 与 PPA 改性材料。",
   },
   directory: {
     eyebrow: "按行业浏览",
@@ -116,8 +114,6 @@ const messages = {
       description:
         "以部件几何、载荷、运动方式与使用环境为起点；最终材料选择仍需结合具体牌号和项目验证。",
       cardLabel: "典型部件",
-      showMorePrefix: "查看更多",
-      showMoreSuffix: "个部件",
       componentEyebrow: "零部件指南",
       componentTitle: "以下部件可进一步查看专项审核指南",
     },
@@ -128,8 +124,6 @@ const messages = {
         "结合上述部件功能与工况，比较通常进入初筛的 POM 候选材料方向。",
       keyUseLabel: "主要审核方向",
       imageAltSuffix: "材料颗粒",
-      showMorePrefix: "查看更多",
-      showMoreSuffix: "个材料方向",
     },
     evaluation: {
       eyebrow: "材料评估",

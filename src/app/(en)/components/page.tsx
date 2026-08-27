@@ -13,6 +13,7 @@ import {
   type ComponentSolutionDetail,
 } from "@/data/componentSolutionDetails";
 import { componentSolutions } from "@/data/componentSolutions";
+import { getLanguageAlternates } from "@/i18n/releaseManifest";
 import {
   createBreadcrumbJsonLd,
   createCollectionPageJsonLd,
@@ -65,6 +66,7 @@ export const metadata: Metadata = createPageMetadata({
   title: componentSolutionsTitle,
   description: componentSolutionsDescription,
   path: "/components",
+  languageAlternates: getLanguageAlternates("/components"),
 });
 
 const componentSolutionsJsonLd = [

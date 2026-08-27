@@ -50,10 +50,10 @@ const gradeTerminologyReplacements: Partial<
     [/niveau/g, "grade"],
     [/notes/g, "grades"],
     [/note/g, "grade"],
-    [/marques/g, "grades"],
-    [/marque/g, "grade"],
+    [/\bmarques\b(?!\s+de soudure)/g, "grades"],
+    [/\bmarque\b(?!\s+de soudure)/g, "grade"],
     [/classes/g, "grades"],
-    [/classe/g, "grade"],
+    [/classe(?!ment)/g, "grade"],
     [/pentes/g, "grades"],
     [/pente/g, "grade"],
     [/teneurs/g, "grades"],
@@ -66,13 +66,13 @@ const gradeTerminologyReplacements: Partial<
       "validação de graus alternativos",
     ],
     [/classificações/g, "graus"],
-    [/classificação/g, "grau"],
+    [/classificação(?!\s+de flamabilidade)/g, "grau"],
     [/classes/g, "graus"],
     [/classe/g, "grau"],
     [/notas/g, "graus"],
     [/nota/g, "grau"],
-    [/marcas/g, "graus"],
-    [/marca/g, "grau"],
+    [/\bmarcas\b(?!\s+de solda)/g, "graus"],
+    [/\bmarca\b(?!\s+de solda)/g, "grau"],
     [/inclinações/g, "graus"],
     [/inclinação/g, "grau"],
     [/categorias/g, "graus"],
@@ -292,6 +292,14 @@ const polishExpandedTranslation = (
       (value, [pattern, replacement]) => value.replace(pattern, replacement),
       polished,
     );
+  }
+
+  if (source.trimEnd().endsWith("| 台益")) {
+    const brandSeparatorIndex = polished.lastIndexOf("|");
+
+    if (brandSeparatorIndex >= 0) {
+      polished = `${polished.slice(0, brandSeparatorIndex).trimEnd()} | Taiyi Polymer`;
+    }
   }
 
   return sourceAwareTerminologyReplacements.reduce((value, rule) => {

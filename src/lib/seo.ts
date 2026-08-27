@@ -150,6 +150,7 @@ export const getEngineeringTdsTitle = (document: EngineeringTdsDocument) =>
 
 export const createEngineeringTdsPageMetadata = (
   document: EngineeringTdsDocument,
+  languageAlternates?: Record<string, string>,
 ): Metadata => {
   const productTitle = getEngineeringTdsTitle(document);
   const title = document.seo?.title ?? `${productTitle} | ${siteName}`;
@@ -164,6 +165,7 @@ export const createEngineeringTdsPageMetadata = (
     image: document.seo?.image,
     imageAlt: `${productTitle} from ${siteName}`,
     indexable: document.seo?.indexable !== false,
+    languageAlternates,
   });
 };
 

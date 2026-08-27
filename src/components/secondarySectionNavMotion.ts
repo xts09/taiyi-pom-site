@@ -19,6 +19,9 @@ export function setupSecondarySectionNavMotion({
   const sectionLinks = Array.from(
     sectionNav.querySelectorAll<HTMLAnchorElement>(tabLinkSelector),
   );
+  const allSectionLinks = Array.from(
+    sectionNav.querySelectorAll<HTMLAnchorElement>('a[href^="#"]'),
+  );
   const sectionTargets = sectionLinks
     .map((link) => {
       const target = document.getElementById(link.hash.slice(1));
@@ -34,6 +37,7 @@ export function setupSecondarySectionNavMotion({
   let stickyFrame = 0;
   let activeFrame = 0;
   let alignmentTimeout = 0;
+  const temporarilyFocusableTargets = new Set<HTMLElement>();
 
   const readSectionNavTop = () => {
     const navStickyTop = Number.parseFloat(
@@ -93,8 +97,15 @@ export function setupSecondarySectionNavMotion({
         active = item;
       }
     });
-    sectionLinks.forEach((link) => {
-      link.classList.toggle("is-active", link === active?.link);
+    allSectionLinks.forEach((link) => {
+      const isActive = link.hash === active?.link.hash;
+
+      link.classList.toggle("is-active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "location");
+      } else if (link.getAttribute("aria-current") === "location") {
+        link.removeAttribute("aria-current");
+      }
     });
   };
 
@@ -106,9 +117,32 @@ export function setupSecondarySectionNavMotion({
     activeFrame = window.requestAnimationFrame(updateActiveSection);
   };
 
+  const focusSectionTarget = (target: HTMLElement) => {
+    const hadTabIndex = target.hasAttribute("tabindex");
+
+    if (!hadTabIndex) {
+      target.setAttribute("tabindex", "-1");
+      temporarilyFocusableTargets.add(target);
+    }
+
+    target.focus({ preventScroll: true });
+
+    if (!hadTabIndex) {
+      target.addEventListener(
+        "blur",
+        () => {
+          target.removeAttribute("tabindex");
+          temporarilyFocusableTargets.delete(target);
+        },
+        { once: true },
+      );
+    }
+  };
+
   const scheduleTargetAlignment = (
     target: HTMLElement,
     behavior: ScrollBehavior,
+    shouldFocusTarget = false,
   ) => {
     if (alignmentTimeout !== 0) {
       window.clearTimeout(alignmentTimeout);
@@ -132,6 +166,9 @@ export function setupSecondarySectionNavMotion({
         top: Math.max(0, targetTop),
         behavior,
       });
+      if (shouldFocusTarget) {
+        focusSectionTarget(target);
+      }
       requestActiveSection();
     }, 220);
   };
@@ -144,13 +181,14 @@ export function setupSecondarySectionNavMotion({
       return;
     }
 
-    event.preventDefault();
-    window.history.pushState(null, "", link.hash);
-    target.scrollIntoView({ behavior: "auto", block: "start" });
-    scheduleTargetAlignment(target, reduceMotion ? "auto" : "smooth");
+    scheduleTargetAlignment(
+      target,
+      reduceMotion ? "auto" : "smooth",
+      true,
+    );
   };
 
-  sectionLinks.forEach((link) => {
+  allSectionLinks.forEach((link) => {
     link.addEventListener("click", handleSectionLinkClick);
   });
 
@@ -187,10 +225,17 @@ export function setupSecondarySectionNavMotion({
     window.removeEventListener("scroll", requestActiveSection);
     window.removeEventListener("resize", requestStickyState);
     window.removeEventListener("resize", requestActiveSection);
-    sectionLinks.forEach((link) => {
+    allSectionLinks.forEach((link) => {
       link.removeEventListener("click", handleSectionLinkClick);
       link.classList.remove("is-active");
+      if (link.getAttribute("aria-current") === "location") {
+        link.removeAttribute("aria-current");
+      }
     });
+    temporarilyFocusableTargets.forEach((target) => {
+      target.removeAttribute("tabindex");
+    });
+    temporarilyFocusableTargets.clear();
     root.style.removeProperty(navHeightProperty);
     root.classList.remove("is-section-nav-pinned", "is-sticky-actions-visible");
     document.documentElement.classList.remove("is-secondary-section-nav-pinned");

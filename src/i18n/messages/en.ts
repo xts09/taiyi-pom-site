@@ -60,6 +60,7 @@ const messages = {
     resources: "Resources",
     technicalResources: "Technical Resources",
     allResources: "All Resources",
+    news: "News",
     aboutUs: "About Us",
     contact: "Contact",
     searchLabel: "Search technical data sheets and resources",
@@ -73,9 +74,9 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · PLATFORM® Engineering Materials",
     logoAlt: "PLATFORM registered trademark",
-    pitchTitle: "Material decisions, grounded in the part.",
+    pitchTitle: "Product, document and supply support.",
     pitchCopy:
-      "Tell us about your part, operating conditions and performance targets. We'll help shortlist relevant grades and confirm the samples and technical documents available for evaluation.",
+      "Explore PLATFORM® engineering materials, find grade data and technical documents, or contact Taiyi Polymer about samples, supply and company qualifications.",
     discussApplication: "Discuss Your Application",
     products: "Products",
     applications: "Applications",
@@ -127,7 +128,7 @@ const messages = {
     metadata: {
       title: "Modified POM Compounds for Industrial Parts | Taiyi Polymer",
       description:
-        "Taiyi Polymer manufactures modified POM compounds for wear, low friction, reinforcement, conductivity and antistatic precision molded parts.",
+        "Taiyi Polymer manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compounds extending the range.",
       imageAlt: "Taiyi Polymer modified POM compound manufacturing",
     },
     hero: {
@@ -135,7 +136,7 @@ const messages = {
       eyebrowMobile: "POM COMPOUNDING",
       title: "Modified POM Manufacturer for Precision Molded Parts",
       body:
-        "Taiyi Polymer is based in Yancheng, Jiangsu, with modified POM at its core, supporting part-specific material screening, grade data, samples and molding trials.",
+        "With modified POM at our core and a portfolio extending to PA6, PA66 and PPA, we provide high-performance engineering plastics solutions for wear resistance, low friction, reinforcement, conductivity and antistatic performance, helping customers move new ideas toward production.",
       exploreAction: "Find Material by Part",
       contactAction: "Find Grades & TDS",
     },
@@ -158,7 +159,8 @@ const messages = {
         "Wear resistance",
         "Low friction",
         "Reinforcement",
-        "Conductive / antistatic",
+        "Conductivity",
+        "Antistatic",
       ],
       allFamiliesAction: "View All Material Families",
       additionalFamiliesAria: "Additional material families",
@@ -377,9 +379,8 @@ const messages = {
     hero: {
       eyebrow: "Product Directory",
       title: "Engineering Plastic Compounds",
-      subtitle: "Modified POM as the core product line",
       body:
-        "Browse modified POM as the core range, with base POM resin and selected PA6, PA66, PPA, conductive, and antistatic options when the application requires a different property balance.",
+        "Modified POM leads the range. Base POM resin and selected PA6, PA66, and PPA compounds extend the options when a project calls for a different balance of performance and processing.",
       startAction: "Choose by Part Requirement",
       dataSheetsAction: "Find Grade Data & TDS",
     },
@@ -387,9 +388,7 @@ const messages = {
       kicker: "Requirement First",
       title: "What must the part do?",
       body:
-        "Choose the closest screening path. Each route explains the tradeoffs that matter before comparing an exact grade.",
-      note:
-        "Need higher temperature or another polymer family? Browse the full material range below.",
+        "Choose the path closest to the part requirement to identify the tradeoffs that should be settled before comparing grades.",
       navigationAria: "Material paths by part requirement",
       paths: [
         {
@@ -422,7 +421,7 @@ const messages = {
       kicker: "Full Material Range",
       title: "Browse Every Product Family",
       body:
-        "Modified POM is the core line. Base resin, selected PA6, PA66, PPA, and cross-material static-control options remain available when the application points elsewhere.",
+        "Compare the listed grades and application directions across six product families, then open a family to continue screening.",
       items: [
         {
           title: "Modified POM Compounds",

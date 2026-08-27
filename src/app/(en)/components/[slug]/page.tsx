@@ -18,6 +18,7 @@ import {
   localizeApplication,
 } from "@/i18n/applicationMessages";
 import { isLocalizedApplicationSlug } from "@/i18n/applicationTypes";
+import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
 import {
   createBreadcrumbJsonLd,
   createPageMetadata,
@@ -49,13 +50,19 @@ export async function generateMetadata({
     return {};
   }
 
+  const sourcePath = `/components/${solution.slug}`;
+  const languageAlternates = detail
+    ? getLanguageAlternatesForPath(sourcePath)
+    : undefined;
+
   return createPageMetadata({
     title: detail?.seo.title ?? `${solution.title} Material Selection | Taiyi Polymer`,
     description: detail?.seo.description ?? solution.summary,
-    path: `/components/${solution.slug}`,
+    path: sourcePath,
     image: detail?.seo.image,
     imageAlt: detail?.seo.imageAlt,
     indexable: Boolean(detail),
+    languageAlternates,
   });
 }
 

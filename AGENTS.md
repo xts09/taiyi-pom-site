@@ -95,7 +95,7 @@ components, verify representative consumers from each affected route family.
 
 - Header and mega-menu work is cross-page work. Verify `/` with the dark over-hero header and one inner route with the white header, both closed and expanded, at `1920x1080` unless another viewport is requested.
 - Mega-menu item hover underlines are owned by the shared `.mega-nav-label` element in `Header.tsx` and `header.css`. Products, Applications, and Resources must not reintroduce separate pseudo-element underline implementations.
-- The top-level navigation underline is a current-section indicator at the header edge. The mega-menu underline is a text-level hover indicator. Keep each internally consistent without forcing both into one structural role.
+- Top-level current-section and hover underlines share one text-level baseline. The mega-menu underline is also text-level, while remaining structurally owned by `.mega-nav-label`.
 - Navigation alignment is accepted by visible rendered edges, not by matching container variables alone.
 - Dark header and expanded mega menu must render as one perceived frosted-glass material. White inner-page navigation must connect directly to the expanded panel without a visible gap.
 

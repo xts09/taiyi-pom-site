@@ -100,9 +100,9 @@ export function AboutPageContent({
         <div className={`site-container ${styles.heroInner}`}>
           <div className={styles.heroCopy}>
             <p className={styles.heroEyebrow}>About Taiyi Polymer</p>
-            <h1 id="about-title">Modified POM Compound Manufacturer.</h1>
+            <h1 id="about-title">Modified POM Compound Manufacturer</h1>
             <p className={styles.heroSummary}>
-              Taiyi Polymer is the international brand of Jiangsu Taiyi Nano Technology Co., Ltd. At our Yancheng manufacturing site, we produce modified POM and selected engineering plastic compounds.
+              Taiyi Polymer is the international materials brand of Jiangsu Taiyi Nano Technology Co., Ltd. Since 2003, our Yancheng site has developed and manufactured modified POM alongside selected PA6, PA66 and PPA compounds. Material testing, repeat production and batch documentation are coordinated within the same manufacturing operation.
             </p>
             <div className={styles.heroActions}>
               <Button asChild variant="inverse" size="form"><Link href="/products">Explore Our Materials</Link></Button>

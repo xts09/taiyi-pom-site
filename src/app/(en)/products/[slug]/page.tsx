@@ -226,7 +226,15 @@ export async function generateMetadata({
   }
 
   if (engineeringDocument) {
-    return createEngineeringTdsPageMetadata(engineeringDocument);
+    const sourcePath = `/products/${createEngineeringTdsSlug(engineeringDocument)}`;
+    const languageAlternates = getLanguageAlternatesForPath(sourcePath);
+
+    return createEngineeringTdsPageMetadata(
+      engineeringDocument,
+      Object.keys(languageAlternates).length > 0
+        ? languageAlternates
+        : undefined,
+    );
   }
 
   if (!product) {

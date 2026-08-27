@@ -498,7 +498,8 @@
 
 .application-index-guide-links {
   display: grid;
-  gap: var(--ds-space-2);
+  border-top: 1px solid rgba(226, 236, 245, 0.18);
+  border-bottom: 1px solid rgba(226, 236, 245, 0.18);
 }
 
 .application-index-guide-link {
@@ -507,19 +508,20 @@
   gap: var(--ds-space-3);
   align-items: center;
   min-height: 5rem;
-  padding: var(--ds-space-4);
-  border-radius: var(--ds-radius-tight);
-  background: rgba(255, 255, 255, 0.075);
+  padding: var(--ds-space-4) var(--ds-space-3);
+  border-radius: 0;
+  background: transparent;
   color: var(--ds-foreground-on-dark);
-  transition:
-    background-color var(--ds-duration-short) ease,
-    transform var(--ds-duration-short) ease;
+  transition: background-color var(--ds-duration-short) ease;
+}
+
+.application-index-guide-link + .application-index-guide-link {
+  border-top: 1px solid rgba(226, 236, 245, 0.18);
 }
 
 .application-index-guide-link:hover,
 .application-index-guide-link:focus-visible {
-  background: rgba(255, 255, 255, 0.13);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.075);
 }
 
 .application-index-guide-link:focus-visible {
@@ -560,16 +562,6 @@
 .application-index-guide-link:hover .application-index-guide-arrow,
 .application-index-guide-link:focus-visible .application-index-guide-arrow {
   transform: translateX(0.2rem);
-}
-
-.application-index-shell.mesh-surface
-  .application-index-hero-guide
-  .application-index-guide-note {
-  max-width: 38ch;
-  margin: 0;
-  color: rgba(226, 236, 245, 0.68) !important;
-  font-size: var(--ds-text-sm);
-  line-height: 1.55;
 }
 
 .application-index-shell.mesh-surface .application-basis-strip {
@@ -800,10 +792,6 @@
     min-height: auto;
   }
 
-  .application-index-guide-links {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .application-index-shell.mesh-surface .application-basis-strip,
   .application-index-shell.mesh-surface .application-directory-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -822,10 +810,6 @@
   .application-index-shell.mesh-surface .application-index-hero {
     gap: var(--ds-space-8);
     padding: var(--ds-space-8) var(--ds-space-6) !important;
-  }
-
-  .application-index-guide-links {
-    grid-template-columns: minmax(0, 1fr);
   }
 
   .application-index-guide-link {
@@ -872,6 +856,10 @@
 .application-section-mobile-menu,
 .application-expandable-toggle {
   display: none;
+}
+
+.application-expandable-extra {
+  display: contents;
 }
 
 @media (max-width: 47.999rem) {
@@ -980,8 +968,9 @@
     summary:focus-visible,
   .application-detail-shell.mesh-surface
     .application-expandable-toggle:focus-visible {
-    outline: var(--ds-rule-strong) solid var(--ds-focus-ring);
+    outline: 3px solid var(--ds-focus-ring);
     outline-offset: var(--ds-space-1);
+    box-shadow: 0 0 0 2px var(--ds-focus-ring-contrast);
   }
 
   .application-detail-shell.mesh-surface
@@ -1011,8 +1000,7 @@
 
   .application-detail-shell.mesh-surface
     .application-expandable-grid:not(.is-expanded)
-    .application-expandable-toggle
-    ~ * {
+    .application-expandable-extra {
     display: none;
   }
 
@@ -1032,5 +1020,19 @@
     .application-use-card-meta
     span:first-child {
     display: none;
+  }
+}
+
+@media (forced-colors: active) and (max-width: 47.999rem) {
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu-panel
+    a:focus-visible,
+  .application-detail-shell.mesh-surface
+    .application-section-mobile-menu
+    summary:focus-visible,
+  .application-detail-shell.mesh-surface
+    .application-expandable-toggle:focus-visible {
+    outline-color: Highlight;
+    box-shadow: none;
   }
 }

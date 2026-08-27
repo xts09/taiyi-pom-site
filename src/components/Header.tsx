@@ -16,16 +16,13 @@ import {
   type MouseEvent,
   type PointerEvent,
 } from "react";
-import { applications } from "@/data/applications";
+import { applicationNavigationEntries } from "@/data/applicationNavigation";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
 } from "@/data/resourceNavigation";
-import {
-  stripLocalizedPrefix,
-  type LocalizedUrlSegment,
-} from "@/i18n/config";
+import { stripLocalizedPrefix, type LocalizedUrlSegment } from "@/i18n/config";
 import {
   getLocalizedHref,
   getLanguageOptions,
@@ -39,10 +36,7 @@ import type {
   ResourceTaxonomyKey,
   TaxonomyMessages,
 } from "@/i18n/types";
-import {
-  createContactHref,
-  parseContactContext,
-} from "@/lib/contactContext";
+import { createContactHref, parseContactContext } from "@/lib/contactContext";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const productCategoryLinks = [
@@ -82,14 +76,14 @@ const productCategoryLinks = [
   eyebrowKey: ProductEyebrowKey;
 }>;
 
+const newsHref = "/resources/news/chinaplas-2026";
+
 type MegaValue = "" | "products" | "applications" | "resources";
 
 const HEADER_SURFACE_HYSTERESIS = 8;
 
 const isMegaValue = (value: string): value is Exclude<MegaValue, ""> =>
-  value === "products" ||
-  value === "applications" ||
-  value === "resources";
+  value === "products" || value === "applications" || value === "resources";
 
 const isNodeTarget = (target: EventTarget | null): target is Node =>
   target instanceof Node;
@@ -130,9 +124,7 @@ function LanguageSwitcherLinks({
               option.localeKey === currentLocaleKey ? "page" : undefined
             }
           >
-            {variant === "desktop"
-              ? option.shortLabel
-              : option.nativeLabel}
+            {variant === "desktop" ? option.shortLabel : option.nativeLabel}
           </Link>
         ))}
       </div>
@@ -174,12 +166,13 @@ function ContextualLanguageSwitcher({
   const contactContext = hasCurrentContactContext
     ? currentContactContext
     : preservedContactContext;
-  const options = Object.keys(contactContext).length > 0
-    ? props.options.map((option) => ({
-        ...option,
-        href: createContactHref(contactContext, option.href),
-      }))
-    : props.options;
+  const options =
+    Object.keys(contactContext).length > 0
+      ? props.options.map((option) => ({
+          ...option,
+          href: createContactHref(contactContext, option.href),
+        }))
+      : props.options;
 
   return <LanguageSwitcherLinks {...props} options={options} />;
 }
@@ -203,8 +196,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   const logicalPathname = stripLocalizedPrefix(pathname, localeSegment);
   const languageOptions = getLanguageOptions(logicalPathname);
   const currentLocaleKey = localeSegment ?? "en";
-  const localizedHref = (href: string) =>
-    getLocalizedHref(href, localeSegment);
+  const localizedHref = (href: string) => getLocalizedHref(href, localeSegment);
   const englishDestinationBadge = (href: string) =>
     isEnglishFallbackHref(href, localeSegment) ? (
       <EnglishDestinationBadge label={messages.englishDestinationLabel} />
@@ -216,11 +208,8 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   const isCurrentSection = (href: string) =>
     logicalPathname === href || logicalPathname.startsWith(`${href}/`);
   const applicationLinks = [
-    ...applications.map((application) => ({
-      label:
-        taxonomy.applications[
-          application.slug as keyof typeof taxonomy.applications
-        ] ?? application.title,
+    ...applicationNavigationEntries.map((application) => ({
+      label: taxonomy.applications[application.slug] ?? application.title,
       href: `/applications/${application.slug}`,
     })),
     {
@@ -401,14 +390,20 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   const closeMegaOnPointerLeave = (event: PointerEvent<HTMLElement>) => {
     const nextTarget = event.relatedTarget;
 
-    if (!isNodeTarget(nextTarget) || !event.currentTarget.contains(nextTarget)) {
+    if (
+      !isNodeTarget(nextTarget) ||
+      !event.currentTarget.contains(nextTarget)
+    ) {
       scheduleCloseMega();
     }
   };
 
   const closeMegaOnBlur = (event: FocusEvent<HTMLElement>) => {
     const nextTarget = event.relatedTarget;
-    if (!isNodeTarget(nextTarget) || !event.currentTarget.contains(nextTarget)) {
+    if (
+      !isNodeTarget(nextTarget) ||
+      !event.currentTarget.contains(nextTarget)
+    ) {
       closeMega();
     }
   };
@@ -436,10 +431,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
       onPointerEnter={cancelScheduledClose}
       onPointerLeave={closeMegaOnPointerLeave}
     >
-      <span
-        className="site-header-glass"
-        aria-hidden="true"
-      />
+      <span className="site-header-glass" aria-hidden="true" />
       <div className="site-container flex items-center justify-between py-3">
         <Link
           href={localizedHref("/")}
@@ -461,6 +453,10 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               priority
               className="block h-auto w-full"
             />
+          </span>
+          <span className="brand-descriptor">
+            <span>HIGH-PERFORMANCE</span>
+            <span>ENGINEERING PLASTICS</span>
           </span>
         </Link>
 
@@ -599,7 +595,10 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                   onPointerEnter={() => updateMegaValue("resources")}
                   onFocus={() => updateMegaValue("resources")}
                   aria-current={
-                    isCurrentSection("/resources") ? "page" : undefined
+                    isCurrentSection("/resources") &&
+                    !logicalPathname.startsWith("/resources/news/")
+                      ? "page"
+                      : undefined
                   }
                 >
                   {messages.resources}
@@ -660,10 +659,31 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               <NavigationMenu.Item>
                 <NavigationMenu.Link asChild>
                   <Link
+                    href={localizedHref(newsHref)}
+                    prefetch={false}
+                    className="nav-link transition"
+                    aria-current={
+                      logicalPathname.startsWith("/resources/news/")
+                        ? "page"
+                        : undefined
+                    }
+                    onClick={closeMega}
+                  >
+                    <span>{messages.news}</span>
+                    {englishDestinationBadge(newsHref)}
+                  </Link>
+                </NavigationMenu.Link>
+              </NavigationMenu.Item>
+
+              <NavigationMenu.Item>
+                <NavigationMenu.Link asChild>
+                  <Link
                     href={localizedHref("/about")}
                     prefetch={false}
                     className="nav-link transition"
-                    aria-current={isCurrentSection("/about") ? "page" : undefined}
+                    aria-current={
+                      isCurrentSection("/about") ? "page" : undefined
+                    }
                     onClick={closeMega}
                   >
                     <span>{messages.aboutUs}</span>
@@ -708,9 +728,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               className="nav-search-button inline-flex items-center justify-center"
               aria-label={messages.searchLabel}
               aria-current={
-                isCurrentSection("/technical-data-sheets")
-                  ? "page"
-                  : undefined
+                isCurrentSection("/technical-data-sheets") ? "page" : undefined
               }
             >
               <Search aria-hidden="true" size={18} strokeWidth={2.1} />
@@ -855,7 +873,8 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                       prefetch={false}
                       className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
                       aria-current={
-                        logicalPathname === getResourceNavigationGroupPath(group)
+                        logicalPathname ===
+                        getResourceNavigationGroupPath(group)
                           ? "page"
                           : undefined
                       }
@@ -874,6 +893,20 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 ))}
               </div>
             </details>
+
+            <Link
+              href={localizedHref(newsHref)}
+              prefetch={false}
+              className="mobile-menu-primary-link flex items-center justify-between gap-3 py-3"
+              aria-current={
+                logicalPathname.startsWith("/resources/news/")
+                  ? "page"
+                  : undefined
+              }
+            >
+              <span>{messages.news}</span>
+              {englishDestinationBadge(newsHref)}
+            </Link>
 
             <Link
               href={localizedHref("/about")}
@@ -903,9 +936,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 href={localizedHref(item.href)}
                 prefetch={false}
                 className="mobile-menu-primary-link py-3"
-                aria-current={
-                  isCurrentSection(item.href) ? "page" : undefined
-                }
+                aria-current={isCurrentSection(item.href) ? "page" : undefined}
               >
                 {item.label}
               </Link>

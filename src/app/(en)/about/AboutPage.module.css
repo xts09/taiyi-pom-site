@@ -334,7 +334,11 @@
 .focusRow:focus-visible {
   padding-inline: 1rem;
   background: rgb(255 255 255 / 5%);
-  outline: none;
+}
+
+.focusRow:focus-visible {
+  outline: 3px solid var(--ds-focus-ring);
+  outline-offset: 3px;
 }
 
 .focusIndex,

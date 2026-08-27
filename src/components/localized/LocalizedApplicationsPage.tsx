@@ -179,9 +179,6 @@ export function LocalizedApplicationsPage({
                 </span>
               </Link>
             </div>
-            <p className="application-index-guide-note">
-              {messages.hero.guideNote}
-            </p>
           </aside>
         </div>
 

@@ -7,6 +7,7 @@ type ApplicationExpandableGridProps = {
   className: string;
   id: string;
   initialVisibleCount: 3 | 4;
+  showLessLabel: string;
   showMoreLabel: string;
 };
 
@@ -15,11 +16,13 @@ export function ApplicationExpandableGrid({
   className,
   id,
   initialVisibleCount,
+  showLessLabel,
   showMoreLabel,
 }: ApplicationExpandableGridProps) {
   const [expanded, setExpanded] = useState(false);
   const items = Children.toArray(children);
   const hasMoreItems = items.length > initialVisibleCount;
+  const additionalItemsId = `${id}-additional`;
 
   return (
     <div
@@ -28,20 +31,29 @@ export function ApplicationExpandableGrid({
     >
       {items.slice(0, initialVisibleCount)}
 
-      {hasMoreItems && !expanded ? (
+      {hasMoreItems ? (
         <button
-          aria-controls={id}
-          aria-expanded="false"
+          aria-controls={additionalItemsId}
+          aria-expanded={expanded}
           className="application-expandable-toggle"
-          onClick={() => setExpanded(true)}
+          onClick={() => setExpanded((current) => !current)}
           type="button"
         >
-          <span>{showMoreLabel}</span>
-          <span aria-hidden="true">+</span>
+          <span aria-live="polite">
+            {expanded ? showLessLabel : showMoreLabel}
+          </span>
+          <span aria-hidden="true">{expanded ? "−" : "+"}</span>
         </button>
       ) : null}
 
-      {items.slice(initialVisibleCount)}
+      {hasMoreItems ? (
+        <div
+          className="application-expandable-extra"
+          id={additionalItemsId}
+        >
+          {items.slice(initialVisibleCount)}
+        </div>
+      ) : null}
     </div>
   );
 }

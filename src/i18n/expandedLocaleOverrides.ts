@@ -18,8 +18,10 @@ export const expandedLocaleOverrides: Partial<
     精密塑料齿轮: "Präzisionszahnräder aus Kunststoff",
     "聚焦改性 POM 的工程塑料制造商":
       "Hersteller für modifiziertes POM",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造以改性 POM 为核心的工程塑料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
-      "Taiyi Polymer ist die internationale Werkstoffmarke von Jiangsu Taiyi Nano Technology Co., Ltd. Seit 2003 entwickeln und fertigen wir in Yancheng technische Kunststoffe mit Schwerpunkt auf modifiziertem POM und bündeln Werkstoffprüfung, stabile Produktion und Chargendokumentation in einem Fertigungssystem.",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "Taiyi Polymer ist die internationale Werkstoffmarke von Jiangsu Taiyi Nano Technology Co., Ltd. Seit 2003 entwickeln und fertigen wir in Yancheng modifiziertes POM sowie ausgewählte PA6-, PA66- und PPA-Compounds. Werkstoffprüfung, stabile Produktion und Chargendokumentation sind dabei in einem Fertigungssystem gebündelt.",
+    "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
+      "Die Werkstoffauswahl beginnt beim Spritzgussteil, nicht bei einer allgemeinen Werkstoffbezeichnung. Bewegungsart, Belastung, Einsatzumgebung, Abmessungen, Werkzeugstand und benötigte Unterlagen bestimmen, welche modifizierten POM-Typen für einen Vergleich infrage kommen. Liegt das geforderte Eigenschaftsprofil außerhalb des sinnvollen POM-Bereichs, werden PA6, PA66 und PPA als eigenständige Alternativen bewertet.",
     查看材料范围: "Werkstoffe entdecken",
     查看制造能力: "Fertigung ansehen",
     从零部件需求到候选牌号评估:
@@ -62,16 +64,14 @@ export const expandedLocaleOverrides: Partial<
       "Taiyi Polymer POM-Werkstofffamilien und Typenkatalog",
     "POM 材料组合": "POM-Werkstoffauswahl",
     "POM 材料家族与牌号目录": "POM-Werkstofffamilien und Typenkatalog",
-    "从零件的运动方式、载荷、环境、尺寸控制和成型条件出发，先确定材料家族，再比较候选牌号、已发布数据与可提供的技术文件。":
-      "Ausgangspunkt sind Bewegungsart, Last, Umgebung, Maßhaltigkeit und Formbedingungen des Bauteils. Wählen Sie zuerst die passende Werkstofffamilie und vergleichen Sie anschließend Werkstofftypen, veröffentlichte Daten und verfügbare technische Dokumente.",
-    筛选路径: "Auswahlpfad",
-    "先选择最接近零件要求的材料家族，再进入对应目录比较牌号。最终适用性仍需结合具体牌号、工况、模具和验证要求确认。":
-      "Wählen Sie zunächst die Werkstofffamilie, die den Bauteilanforderungen am nächsten kommt, und vergleichen Sie anschließend die zugehörigen Typen. Die endgültige Eignung ist für den konkreten Werkstofftyp, die Einsatzbedingungen, das Werkzeug und die Validierungsanforderungen zu bestätigen.",
-    按牌号与项目确认文件: "Dokumente nach Werkstofftyp und Projekt bestätigen",
+    "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。":
+      "Dieses Verzeichnis umfasst PLATFORM POM-Werkstofffamilien für Verschleiß- und Reibungsminderung, Schlagzähmodifizierung, Witterungsbeständigkeit, Verstärkung, leitfähige und antistatische Eigenschaften, sehr hohe Fließfähigkeit sowie Basisharzanwendungen.",
     提交应用要求: "Werkstoffempfehlung anfordern",
     "查找牌号数据与 TDS": "Werkstoffdaten und TDS durchsuchen",
     "33 个 PA6 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
       "Für alle 33 gelisteten PA6-Typen stehen vollständige Detailseiten und Leistungsdaten zur Verfügung. Die endgültige Freigabe muss weiterhin am Kundenwerkzeug, im definierten Konditionierungszustand und am realen Bauteil erfolgen.",
+    "从主导性能缺口出发，再结合吸湿、模具、加工窗口和实际工况审核候选牌号。":
+      "Gehen Sie von der maßgeblichen Leistungslücke aus und bewerten Sie anschließend die Kandidatenwerkstofftypen unter Berücksichtigung von Feuchtigkeitsaufnahme, Werkzeug, Verarbeitungsfenster und tatsächlichen Einsatzbedingungen.",
     "37 个 PA66 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
       "Für alle 37 gelisteten PA66-Typen stehen vollständige Detailseiten und Leistungsdaten zur Verfügung. Die endgültige Freigabe muss weiterhin am Kundenwerkzeug, im definierten Konditionierungszustand und am realen Bauteil erfolgen.",
     "5 个 PPA 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、实际温度循环与零部件验证。":
@@ -122,6 +122,20 @@ export const expandedLocaleOverrides: Partial<
     ...applicationNarrativeLocaleOverrides.fr,
     ...componentDetailLocaleOverrides.fr,
     "IC 周转托盘": "Plateaux de manutention pour circuits intégrés",
+    "EAI210 PA66 抗冲改性牌号 | 台益":
+      "EAI210 PA66 modifié choc | Taiyi Polymer",
+    "EAI210 PA66 抗冲改性牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。":
+      "Les données du grade EAI210 en PA66 modifié choc comprennent la densité, la résistance à la traction, la température de fléchissement sous charge, le classement de réaction au feu et le tableau complet des propriétés.",
+    "EAI220 PA66 抗冲改性牌号 | 台益":
+      "EAI220 PA66 modifié choc | Taiyi Polymer",
+    "EAI220 PA66 抗冲改性牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。":
+      "Les données du grade EAI220 en PA66 modifié choc comprennent la densité, la résistance à la traction, la température de fléchissement sous charge, le classement de réaction au feu et le tableau complet des propriétés.",
+    "EAI250 PA66 抗冲改性牌号 | 台益":
+      "EAI250 PA66 modifié choc | Taiyi Polymer",
+    "EAI250 PA66 抗冲改性牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。":
+      "Les données du grade EAI250 en PA66 modifié choc comprennent la densité, la résistance à la traction, la température de fléchissement sous charge, le classement de réaction au feu et le tableau complet des propriétés.",
+    "EHI602T 高冲击高伸长方向 POM | 台益":
+      "EHI602T POM à haute résistance aux chocs et à fort allongement | Taiyi Polymer",
     "准备 EAG108U 牌号评估": "Préparer l’évaluation du grade EAG108U",
     "准备 EAG130H 牌号评估": "Préparer l’évaluation du grade EAG130H",
     "准备 EAG140U 牌号评估": "Préparer l’évaluation du grade EAG140U",
@@ -130,8 +144,10 @@ export const expandedLocaleOverrides: Partial<
     "准备 EAM140A 牌号评估": "Préparer l’évaluation du grade EAM140A",
     "聚焦改性 POM 的工程塑料制造商":
       "Fabricant de POM modifiés",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造以改性 POM 为核心的工程塑料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
-      "Taiyi Polymer est la marque internationale de matériaux de Jiangsu Taiyi Nano Technology Co., Ltd. Depuis 2003, nous développons et fabriquons à Yancheng des plastiques techniques centrés sur les POM modifiés, en intégrant essais matière, production stable et documentation des lots dans un même système industriel.",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "Taiyi Polymer est la marque internationale de matériaux de Jiangsu Taiyi Nano Technology Co., Ltd. Depuis 2003, notre site de Yancheng développe et fabrique des POM modifiés ainsi qu’une sélection de compounds PA6, PA66 et PPA. Les essais matière, la production récurrente et la documentation des lots sont coordonnés au sein du même système industriel.",
+    "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
+      "Le choix du matériau part de la pièce injectée, pas d’une désignation générique. Le type de mouvement, la charge, l’environnement d’utilisation, l’avancement de l’outillage et les documents requis déterminent les grades de POM modifié à comparer. Si le profil de propriétés recherché sort du domaine d’emploi pertinent du POM, le PA6, le PA66 et le PPA sont évalués séparément.",
     查看材料范围: "Découvrir nos matériaux",
     查看制造能力: "Voir notre production",
     从零部件需求到候选牌号评估:
@@ -168,8 +184,16 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Fonctions et base de transformation",
     "电气表现、基础树脂与流动窗口":
       "Comportement électrique, résine de base et fenêtre d’écoulement",
+    "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。":
+      "Ce répertoire couvre les familles de POM PLATFORM destinées à la résistance à l’usure et à la réduction du frottement, à la modification au choc, à la tenue aux intempéries, au renforcement, aux propriétés conductrices et antistatiques, à la très haute fluidité et aux applications de résine de base.",
     "33 个 PA6 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
       "Les 33 grades PA6 répertoriés disposent de pages détaillées complètes et de données de performance. La validation finale doit néanmoins être réalisée avec l’outillage client, l’état de conditionnement défini et la pièce réelle.",
+    "从主导性能缺口出发，再结合吸湿、模具、加工窗口和实际工况审核候选牌号。":
+      "Partez de l’écart de performance dominant, puis évaluez les grades candidats en tenant compte de l’absorption d’humidité, du moule, de la fenêtre de transformation et des conditions réelles d’utilisation.",
+    "当短射、熔接痕或压力问题可能来自浇口、流道、排气、温控或设备能力时，应先确认模具与工艺根因，再判断是否需要更高流动牌号。":
+      "Lorsque des manques de matière, des marques de soudure ou des problèmes de pression peuvent provenir du point d’injection, des canaux d’alimentation, des évents, de la régulation de température ou des capacités de la presse, il faut d’abord confirmer les causes liées au moule et au procédé avant de déterminer si un grade plus fluide est nécessaire.",
+    "本页用于 ECF200 的初步选型。碳纤增强材料具有方向性；浇口、流向、熔接线、壁厚、表面状态和测量位置都会影响力学与电性能。":
+      "Cette page sert à la présélection de l’ECF200. Les matériaux renforcés de fibres de carbone sont anisotropes ; le point d’injection, le sens d’écoulement, les lignes de soudure, l’épaisseur de paroi, l’état de surface et la position de mesure influencent les propriétés mécaniques et électriques.",
     "37 个 PA66 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
       "Les 37 grades PA66 répertoriés disposent de pages détaillées complètes et de données de performance. La validation finale doit néanmoins être réalisée avec l’outillage client, l’état de conditionnement défini et la pièce réelle.",
     "5 个 PPA 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、实际温度循环与零部件验证。":
@@ -220,12 +244,28 @@ export const expandedLocaleOverrides: Partial<
     ...applicationNarrativeLocaleOverrides["pt-br"],
     ...componentDetailLocaleOverrides["pt-br"],
     "IC 周转托盘": "Bandejas para manuseio de CIs",
+    "EAI210 PA66 抗冲改性牌号 | 台益":
+      "EAI210 PA66 modificado para impacto | Taiyi Polymer",
+    "EAI210 PA66 抗冲改性牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。":
+      "Os dados do grau EAI210 em PA66 modificado para impacto incluem densidade, resistência à tração, temperatura de deflexão térmica, classificação de flamabilidade e a tabela completa de propriedades.",
+    "EAI220 PA66 抗冲改性牌号 | 台益":
+      "EAI220 PA66 modificado para impacto | Taiyi Polymer",
+    "EAI220 PA66 抗冲改性牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。":
+      "Os dados do grau EAI220 em PA66 modificado para impacto incluem densidade, resistência à tração, temperatura de deflexão térmica, classificação de flamabilidade e a tabela completa de propriedades.",
+    "EAI250 PA66 抗冲改性牌号 | 台益":
+      "EAI250 PA66 modificado para impacto | Taiyi Polymer",
+    "EAI250 PA66 抗冲改性牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。":
+      "Os dados do grau EAI250 em PA66 modificado para impacto incluem densidade, resistência à tração, temperatura de deflexão térmica, classificação de flamabilidade e a tabela completa de propriedades.",
+    "EHI602T 高冲击高伸长方向 POM | 台益":
+      "EHI602T POM de alto impacto e alto alongamento | Taiyi Polymer",
     "准备 EAI250 牌号评估": "Preparar a avaliação do grau EAI250",
     "准备 EAR210 牌号评估": "Preparar a avaliação do grau EAR210",
     "聚焦改性 POM 的工程塑料制造商":
       "Fabricante de POM modificado",
-    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造以改性 POM 为核心的工程塑料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
-      "A Taiyi Polymer é a marca internacional de materiais da Jiangsu Taiyi Nano Technology Co., Ltd. Desde 2003, desenvolvemos e fabricamos em Yancheng plásticos de engenharia com foco em POM modificado, integrando testes de materiais, produção estável e documentação de lotes ao mesmo sistema de fabricação.",
+    "台益是江苏台益纳米科技有限公司面向国际市场的材料品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
+      "A Taiyi Polymer é a marca internacional de materiais da Jiangsu Taiyi Nano Technology Co., Ltd. Desde 2003, nossa unidade em Yancheng desenvolve e fabrica POM modificado e compostos selecionados de PA6, PA66 e PPA. Testes de materiais, produção recorrente e documentação de lotes são coordenados no mesmo sistema de fabricação.",
+    "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
+      "A seleção do material começa pela peça injetada, não por uma denominação genérica. Tipo de movimento, carga, ambiente de uso, dimensões, estágio do ferramental e documentação necessária definem quais graus de POM modificado devem ser comparados. Quando o conjunto de propriedades exigido fica fora da faixa de aplicação adequada do POM, PA6, PA66 e PPA são avaliados separadamente.",
     查看材料范围: "Conheça nossos materiais",
     查看制造能力: "Ver nossa produção",
     从零部件需求到候选牌号评估:
@@ -260,6 +300,8 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Funções e base de processamento",
     "电气表现、基础树脂与流动窗口":
       "Comportamento elétrico, resina base e janela de fluxo",
+    "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。":
+      "Este diretório reúne as famílias de POM PLATFORM para resistência ao desgaste e baixo atrito, modificação de impacto, resistência às intempéries, reforço, propriedades condutivas e antiestáticas, fluidez ultra-alta e aplicações com resina base.",
     "按材料选型、加工与问题排查、牌号数据与验证任务浏览台益技术资料。":
       "Explore os recursos técnicos da Taiyi Polymer por seleção de materiais, processamento e solução de problemas, dados de graus e tarefas de validação.",
     "材料选型、加工与验证资料":
@@ -270,6 +312,10 @@ export const expandedLocaleOverrides: Partial<
     条资料: "artigos",
     "33 个 PA6 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
       "Todos os 33 graus PA6 listados têm páginas detalhadas completas e dados de desempenho. A aprovação final ainda deve ser realizada com o ferramental do cliente, a condição de umidade definida e a peça real.",
+    "从主导性能缺口出发，再结合吸湿、模具、加工窗口和实际工况审核候选牌号。":
+      "Comece pela principal lacuna de desempenho e, em seguida, avalie os graus candidatos considerando a absorção de umidade, o molde, a janela de processamento e as condições reais de uso.",
+    "当短射、熔接痕或压力问题可能来自浇口、流道、排气、温控或设备能力时，应先确认模具与工艺根因，再判断是否需要更高流动牌号。":
+      "Quando falhas de preenchimento, marcas de solda ou problemas de pressão puderem decorrer do ponto de injeção, dos canais de alimentação, da ventilação do molde, do controle de temperatura ou da capacidade da injetora, é preciso primeiro confirmar as causas relacionadas ao molde e ao processo antes de avaliar se é necessário um grau de maior fluidez.",
     "37 个 PA66 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
       "Todos os 37 graus PA66 listados têm páginas detalhadas completas e dados de desempenho. A aprovação final ainda deve ser realizada com o ferramental do cliente, a condição de umidade definida e a peça real.",
     "5 个 PPA 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、实际温度循环与零部件验证。":

@@ -167,22 +167,15 @@ export function ProductsDirectoryPage({
               </h1>
 
               <p
-                className="product-hero-subtitle"
-                style={{ "--item-index": 2 } as CSSProperties}
-              >
-                {messages.hero.subtitle}
-              </p>
-
-              <p
                 className="mt-4 max-w-3xl text-lg leading-8"
-                style={{ "--item-index": 3 } as CSSProperties}
+                style={{ "--item-index": 2 } as CSSProperties}
               >
                 {messages.hero.body}
               </p>
 
               <div
                 className="product-hero-cta stagger-list"
-                style={{ "--item-index": 4 } as CSSProperties}
+                style={{ "--item-index": 3 } as CSSProperties}
               >
                 <Button asChild size="productHero" variant="productHeroPrimary">
                   <Link
@@ -220,9 +213,6 @@ export function ProductsDirectoryPage({
               <p className="section-kicker">{messages.selection.kicker}</p>
               <h2 id="selection-start-title">{messages.selection.title}</h2>
               <p>{messages.selection.body}</p>
-              <p className="product-workbench-note">
-                {messages.selection.note}
-              </p>
             </div>
 
             <nav

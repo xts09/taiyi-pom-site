@@ -3,4 +3,12 @@
   outline-style: solid;
   outline-color: var(--ds-button-focus-outline);
   outline-offset: var(--ds-button-focus-outline-offset);
+  box-shadow: 0 0 0 2px var(--ds-focus-ring-contrast);
+}
+
+@media (forced-colors: active) {
+  .root:focus-visible {
+    outline-color: Highlight;
+    box-shadow: none;
+  }
 }

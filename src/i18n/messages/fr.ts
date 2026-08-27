@@ -61,6 +61,7 @@ const messages = {
     resources: "Ressources",
     technicalResources: "Ressources techniques",
     allResources: "Toutes les ressources",
+    news: "Actualités",
     aboutUs: "À propos",
     contact: "Contact",
     searchLabel: "Rechercher des fiches techniques et des ressources",
@@ -74,9 +75,9 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · Matériaux techniques PLATFORM®",
     logoAlt: "Marque déposée PLATFORM",
-    pitchTitle: "Le choix matière guidé par la pièce.",
+    pitchTitle: "Matériaux, documents et approvisionnement.",
     pitchCopy:
-      "Présentez-nous votre pièce, ses conditions d'utilisation et ses objectifs de performance. Nous vous aiderons à présélectionner les grades pertinents et à confirmer les échantillons et documents techniques disponibles pour l'évaluation.",
+      "Découvrez les matériaux techniques PLATFORM®, les données de grades et les documents techniques, ou contactez Taiyi Polymer pour les échantillons, l’approvisionnement et les justificatifs de l’entreprise.",
     discussApplication: "Parler de votre application",
     products: "Produits",
     applications: "Applications",
@@ -137,9 +138,8 @@ const messages = {
     hero: {
       eyebrow: "Répertoire produits",
       title: "Compounds de plastiques techniques",
-      subtitle: "Le POM modifié au cœur de la gamme",
       body:
-        "Parcourez le POM modifié comme gamme principale, avec la résine POM de base et des options PA6, PA66, PPA, conductrices et antistatiques sélectionnées lorsque l’application exige un autre équilibre de propriétés.",
+        "Le POM modifié reste la gamme principale. La résine POM de base et une sélection de compounds PA6, PA66 et PPA couvrent les projets qui demandent un autre équilibre entre performances et mise en œuvre.",
       startAction: "Choisir selon les exigences de la pièce",
       dataSheetsAction: "Trouver les données grade et TDS",
     },
@@ -147,9 +147,7 @@ const messages = {
       kicker: "Les exigences d'abord",
       title: "Que doit accomplir la pièce ?",
       body:
-        "Choisissez le parcours de présélection le plus proche. Chaque parcours précise les compromis à examiner avant de comparer un grade exact.",
-      note:
-        "Besoin d'une tenue thermique supérieure ou d'une autre famille de polymères ? Consultez toute la gamme ci-dessous.",
+        "Choisissez le parcours le plus proche des exigences de la pièce afin de définir les compromis à examiner avant de comparer les grades.",
       navigationAria: "Parcours matière selon les exigences de la pièce",
       paths: [
         {
@@ -182,7 +180,7 @@ const messages = {
       kicker: "Gamme complète de matériaux",
       title: "Parcourir toutes les familles de produits",
       body:
-        "Le POM modifié constitue la gamme principale. La résine de base, des PA6, PA66 et PPA sélectionnés ainsi que des solutions multi-matrices de contrôle électrostatique restent disponibles lorsque l'application l'exige.",
+        "Comparez les grades répertoriés et leurs domaines d'application dans les six familles, puis ouvrez la famille retenue pour poursuivre la présélection.",
       items: [
         {
           title: "Compounds POM modifiés",

@@ -61,6 +61,7 @@ const messages = {
     resources: "Recursos",
     technicalResources: "Recursos técnicos",
     allResources: "Todos os recursos",
+    news: "Notícias",
     aboutUs: "Sobre nós",
     contact: "Contato",
     searchLabel: "Pesquisar fichas técnicas e recursos",
@@ -74,9 +75,9 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · Materiais de engenharia PLATFORM®",
     logoAlt: "Marca registrada PLATFORM",
-    pitchTitle: "Decisões de material baseadas na peça.",
+    pitchTitle: "Materiais, documentos e suporte ao fornecimento.",
     pitchCopy:
-      "Conte-nos sobre a peça, as condições de operação e as metas de desempenho. Ajudaremos a selecionar grades relevantes e a confirmar amostras e documentos técnicos disponíveis para avaliação.",
+      "Conheça os materiais de engenharia PLATFORM®, os dados de grades e os documentos técnicos, ou fale com a Taiyi Polymer sobre amostras, fornecimento e qualificações da empresa.",
     discussApplication: "Fale sobre sua aplicação",
     products: "Produtos",
     applications: "Aplicações",
@@ -137,9 +138,8 @@ const messages = {
     hero: {
       eyebrow: "Diretório de produtos",
       title: "Compostos de plásticos de engenharia",
-      subtitle: "POM modificado como linha principal",
       body:
-        "Explore o POM modificado como linha principal, com resina POM base e opções selecionadas de PA6, PA66, PPA, condutivas e antiestáticas quando a aplicação exige outro equilíbrio de propriedades.",
+        "O POM modificado é a linha principal. A resina POM base e uma seleção de compostos de PA6, PA66 e PPA complementam o portfólio quando a peça exige outro equilíbrio entre desempenho e processamento.",
       startAction: "Escolher pelos requisitos da peça",
       dataSheetsAction: "Encontrar dados de grades e TDS",
     },
@@ -147,9 +147,7 @@ const messages = {
       kicker: "Requisitos primeiro",
       title: "O que a peça precisa fazer?",
       body:
-        "Escolha a rota de triagem mais próxima. Cada rota explica as compensações importantes antes da comparação de um grade específico.",
-      note:
-        "Precisa de temperatura mais alta ou de outra família de polímeros? Veja abaixo toda a linha de materiais.",
+        "Escolha a rota mais próxima do requisito da peça para definir os fatores que precisam ser equilibrados antes de comparar grades específicos.",
       navigationAria: "Rotas de material por requisito da peça",
       paths: [
         {
@@ -182,7 +180,7 @@ const messages = {
       kicker: "Linha completa de materiais",
       title: "Explore todas as famílias de produtos",
       body:
-        "O POM modificado é a linha principal. A resina base, opções selecionadas de PA6, PA66 e PPA e soluções multimateriais de controle estático continuam disponíveis quando a aplicação exigir outra direção.",
+        "Compare os grades listados e as aplicações das seis famílias e, em seguida, abra a família mais adequada para continuar a seleção.",
       items: [
         {
           title: "Compostos de POM modificado",
