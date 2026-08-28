@@ -370,7 +370,6 @@ export type ProductFunnelMessages = {
       overviewLabel: string;
       overview: string;
       documentsTitle: string;
-      documentsBody: string;
       contactAction: string;
       technicalDataAction: string;
     };

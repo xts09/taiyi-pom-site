@@ -109,7 +109,7 @@ export async function ContactPage({
   ];
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-footer-adjacent="true">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -153,6 +153,7 @@ export async function ContactPage({
                   initialMessage,
                 ].join("|")}
                 contextLabel={contextLabel}
+                contextMessageLabels={messages.context}
                 initialApplication={contactContext.application}
                 initialGrade={contactContext.grade}
                 initialIntent={contactContext.intent}

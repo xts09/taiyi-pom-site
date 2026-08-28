@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { ResourcePageActions } from "@/components/ResourcePageActions";
+import { NewsArticleActions } from "@/components/NewsArticleActions";
 import { getLanguageAlternates } from "@/i18n/releaseManifest";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -14,7 +14,7 @@ import {
   siteUrl,
 } from "@/lib/seo";
 
-const articlePath = "/resources/news/chinaplas-2026";
+const articlePath = "/news/chinaplas-2026";
 const articleTitle = "Taiyi Polymer exhibits at CHINAPLAS 2026";
 const articleDescription =
   "Taiyi Polymer presented modified POM materials at booth 7.2A62 during CHINAPLAS 2026. A European gear manufacturer visited the booth to discuss glass-fiber-reinforced POM for molded gears.";
@@ -33,7 +33,6 @@ export const metadata: Metadata = createPageMetadata({
 const articleJsonLd = [
   createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
-    { name: "Resources", path: "/resources" },
     { name: articleTitle, path: articlePath },
   ]),
   {
@@ -88,9 +87,9 @@ export default function Chinaplas2026NewsPage() {
 
       <article className="resource-news-article">
         <header className="resource-news-hero">
-          <Link href="/resources" className="resource-news-back">
+          <Link href="/" className="resource-news-back">
             <ArrowLeft aria-hidden="true" size={16} />
-            Back to Resources
+            Back to Home
           </Link>
 
           <div className="resource-news-hero-copy">
@@ -186,10 +185,9 @@ export default function Chinaplas2026NewsPage() {
             </p>
           </div>
 
-          <ResourcePageActions
+          <NewsArticleActions
             pageTitle={articleTitle}
             relatedLinks={relatedLinks}
-            variant="article"
           />
         </div>
       </article>

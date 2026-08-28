@@ -36,7 +36,11 @@ import type {
   ResourceTaxonomyKey,
   TaxonomyMessages,
 } from "@/i18n/types";
-import { createContactHref, parseContactContext } from "@/lib/contactContext";
+import {
+  createContactHref,
+  parseContactContext,
+  parseContactContextHash,
+} from "@/lib/contactContext";
 import { getCategoryPath } from "@/lib/productCategories";
 
 const productCategoryLinks = [
@@ -76,7 +80,7 @@ const productCategoryLinks = [
   eyebrowKey: ProductEyebrowKey;
 }>;
 
-const newsHref = "/resources/news/chinaplas-2026";
+const newsHref = "/news/chinaplas-2026";
 
 type MegaValue = "" | "products" | "applications" | "resources";
 
@@ -136,6 +140,7 @@ function ContextualLanguageSwitcher({
   preserveContactContext = false,
   ...props
 }: LanguageSwitcherProps) {
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const searchParamString = searchParams.toString();
   const currentContactContext = preserveContactContext
@@ -149,10 +154,13 @@ function ContextualLanguageSwitcher({
 
   useEffect(() => {
     window.queueMicrotask(() => {
+      const queryContext = parseContactContext(
+        Object.fromEntries(new URLSearchParams(searchParamString)),
+      );
       const nextContactContext = preserveContactContext
-        ? parseContactContext(
-            Object.fromEntries(new URLSearchParams(searchParamString)),
-          )
+        ? Object.keys(queryContext).length > 0
+          ? queryContext
+          : parseContactContextHash(window.location.hash)
         : {};
 
       if (Object.keys(nextContactContext).length > 0) {
@@ -161,7 +169,7 @@ function ContextualLanguageSwitcher({
         setPreservedContactContext({});
       }
     });
-  }, [preserveContactContext, searchParamString]);
+  }, [pathname, preserveContactContext, searchParamString]);
 
   const contactContext = hasCurrentContactContext
     ? currentContactContext
@@ -595,10 +603,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                   onPointerEnter={() => updateMegaValue("resources")}
                   onFocus={() => updateMegaValue("resources")}
                   aria-current={
-                    isCurrentSection("/resources") &&
-                    !logicalPathname.startsWith("/resources/news/")
-                      ? "page"
-                      : undefined
+                    isCurrentSection("/resources") ? "page" : undefined
                   }
                 >
                   {messages.resources}
@@ -663,9 +668,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                     prefetch={false}
                     className="nav-link transition"
                     aria-current={
-                      logicalPathname.startsWith("/resources/news/")
-                        ? "page"
-                        : undefined
+                      isCurrentSection("/news") ? "page" : undefined
                     }
                     onClick={closeMega}
                   >
@@ -898,11 +901,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               href={localizedHref(newsHref)}
               prefetch={false}
               className="mobile-menu-primary-link flex items-center justify-between gap-3 py-3"
-              aria-current={
-                logicalPathname.startsWith("/resources/news/")
-                  ? "page"
-                  : undefined
-              }
+              aria-current={isCurrentSection("/news") ? "page" : undefined}
             >
               <span>{messages.news}</span>
               {englishDestinationBadge(newsHref)}

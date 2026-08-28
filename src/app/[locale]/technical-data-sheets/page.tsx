@@ -73,7 +73,9 @@ export async function generateMetadata({
       isLocalizedReleaseIndexable(sourcePath, localeConfig.urlSegment) &&
       !hasSearchIntent,
     openGraphLocale: localeConfig.openGraphLocale,
-    languageAlternates: getLanguageAlternates(sourcePath),
+    languageAlternates: hasSearchIntent
+      ? undefined
+      : getLanguageAlternates(sourcePath),
   });
 }
 

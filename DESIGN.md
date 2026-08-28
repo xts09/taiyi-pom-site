@@ -147,8 +147,11 @@ type, actions, and evidence rules.
   technical documents take priority over factory storytelling.
 - **Applications:** part-first decision support. Typical components, operating
   conditions, and candidate-material direction carry the page.
-- **Resources:** reading and document discovery. Editorial hierarchy and clear
-  metadata lead; promotional visual treatment stays restrained.
+- **Resources:** technical reading and document discovery. Clear task grouping,
+  article hierarchy, and metadata lead; promotional treatment stays restrained.
+- **News:** branded editorial updates about exhibitions, factory activity,
+  products, and company developments. News remains visually restrained but is
+  not nested inside the Resources family.
 - **Conversion:** direct, low-friction forms and contact support, with only the
   evidence needed to build confidence in the next action.
 

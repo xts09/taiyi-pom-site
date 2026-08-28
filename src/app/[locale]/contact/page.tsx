@@ -9,7 +9,10 @@ import {
   getLocalizedContactPath,
   isLocalizedReleaseIndexable,
 } from "@/i18n/releaseManifest";
-import type { ContactContextSearchParams } from "@/lib/contactContext";
+import {
+  hasContactSearchParams,
+  type ContactContextSearchParams,
+} from "@/lib/contactContext";
 import { createPageMetadata } from "@/lib/seo";
 
 type LocalizedContactPageProps = {
@@ -36,9 +39,11 @@ const resolveLocale = async (params: LocalizedContactPageProps["params"]) => {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: LocalizedContactPageProps): Promise<Metadata> {
   const localeConfig = await resolveLocale(params);
   const messages = await loadMessages(localeConfig.locale);
+  const hasSearchContext = hasContactSearchParams(await searchParams);
 
   return createPageMetadata({
     title: messages.Contact.metadata.title,
@@ -46,9 +51,12 @@ export async function generateMetadata({
     path: getLocalizedContactPath(localeConfig.urlSegment),
     image: "/factory-extrusion.webp",
     imageAlt: messages.Contact.metadata.imageAlt,
-    indexable: isLocalizedReleaseIndexable("/contact"),
+    indexable:
+      isLocalizedReleaseIndexable("/contact") && !hasSearchContext,
     openGraphLocale: localeConfig.openGraphLocale,
-    languageAlternates: contactLanguageAlternates,
+    languageAlternates: hasSearchContext
+      ? undefined
+      : contactLanguageAlternates,
   });
 }
 

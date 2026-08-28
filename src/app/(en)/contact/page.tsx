@@ -5,22 +5,34 @@ import {
   contactLanguageAlternates,
   isLocalizedReleaseIndexable,
 } from "@/i18n/releaseManifest";
-import type { ContactContextSearchParams } from "@/lib/contactContext";
+import {
+  hasContactSearchParams,
+  type ContactContextSearchParams,
+} from "@/lib/contactContext";
 import { createPageMetadata } from "@/lib/seo";
-
-export const metadata: Metadata = createPageMetadata({
-  title: messages.Contact.metadata.title,
-  description: messages.Contact.metadata.description,
-  path: "/contact",
-  image: "/factory-extrusion.webp",
-  imageAlt: messages.Contact.metadata.imageAlt,
-  indexable: isLocalizedReleaseIndexable("/contact"),
-  languageAlternates: contactLanguageAlternates,
-});
 
 type ContactPageRouteProps = {
   searchParams: Promise<ContactContextSearchParams>;
 };
+
+export async function generateMetadata({
+  searchParams,
+}: ContactPageRouteProps): Promise<Metadata> {
+  const hasSearchContext = hasContactSearchParams(await searchParams);
+
+  return createPageMetadata({
+    title: messages.Contact.metadata.title,
+    description: messages.Contact.metadata.description,
+    path: "/contact",
+    image: "/factory-extrusion.webp",
+    imageAlt: messages.Contact.metadata.imageAlt,
+    indexable:
+      isLocalizedReleaseIndexable("/contact") && !hasSearchContext,
+    languageAlternates: hasSearchContext
+      ? undefined
+      : contactLanguageAlternates,
+  });
+}
 
 export default function ContactPageRoute({
   searchParams,

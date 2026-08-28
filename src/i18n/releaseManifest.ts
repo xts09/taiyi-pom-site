@@ -376,7 +376,7 @@ export const localizedReleaseManifest = {
     ...chineseOnlyPublicRelease,
   },
   chinaplas2026News: {
-    sourcePath: "/resources/news/chinaplas-2026",
+    sourcePath: "/news/chinaplas-2026",
     ...publicRelease,
   },
   materialSelectionGuideResource: {

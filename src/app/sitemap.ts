@@ -310,7 +310,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
-      sourcePath: "/resources/news/chinaplas-2026",
+      sourcePath: "/news/chinaplas-2026",
       priority: 0.55,
       changeFrequency: "yearly" as const,
       lastModified: "2026-04-23",

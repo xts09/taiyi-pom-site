@@ -161,7 +161,7 @@ export function ProductGrid({
         count: matchingGrades.length,
         description:
           engineeringDirectionSummary[category] ??
-          "Review the compound option against part function, processing fit, and target properties.",
+          "A distinct balance of processing behavior and target performance.",
         family: exampleGrade?.family ?? engineeringGrades[0]?.family,
         number: String(index + 1).padStart(2, "0"),
       };
@@ -178,8 +178,8 @@ export function ProductGrid({
     <div className="product-grade-section">
       {showPomSubcategories ? (
         <PomFamilyMap
-          title="Choose a POM Material Family"
-          description="Choose the performance family closest to the part. Each path opens a focused directory with related grade data, processing fit, and property context."
+          title="POM Material Families"
+          description="The PLATFORM POM portfolio brings together wear, impact, weathering, reinforcement, electrical function, base resin, and flow-focused material families."
           groups={pomFamilyGroups}
         />
       ) : null}
@@ -194,8 +194,8 @@ export function ProductGrid({
               {engineeringDirectionItems[0]?.family} Options
             </span>
             <p>
-              Start from reinforcement, toughness, flame rating, wear,
-              dimensional control, or processing needs.
+              The portfolio spans reinforcement, toughness, flame retardancy,
+              wear, dimensional control, and processing-focused formulations.
             </p>
           </div>
 
@@ -232,18 +232,16 @@ export function ProductGrid({
                     ? `${engineeringGrades[0]?.family} Grades`
                     : selectedCategory === "POM"
                       ? "All POM Grade Data"
-                      : `${filteredProducts.length} Available Grade${
-                          filteredProducts.length === 1 ? "" : "s"
-                        }`}
+                      : "Grade Directory"}
               </h2>
               <p>
                 {isProjectBasedCategory
                   ? "Share the part requirement, working condition, target property, and document needs so relevant material families can be shortlisted."
                   : isEngineeringCategory
-                    ? "Compare listed grade data from selected engineering plastic compound families before discussing the application."
+                    ? "Published grade data and material directions are presented together for a clear view of the available portfolio."
                     : selectedCategory === "POM"
                       ? "Compare all listed POM grades here, or open a material family above for a focused category view."
-                      : "Shortlist by properties, tooling fit, shrinkage behavior, then open the grade detail page."}
+                      : "Each listed grade combines its application focus with published property data and available detail pages."}
               </p>
               {selectedCategory === "POM" ? (
                 <p className="product-directory-guidance">

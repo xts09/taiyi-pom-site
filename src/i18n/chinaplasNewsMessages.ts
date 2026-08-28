@@ -6,7 +6,6 @@ export type ChinaplasNewsMessages = {
   description: string;
   imageAlt: string;
   breadcrumbHome: string;
-  breadcrumbResources: string;
   backLabel: string;
   articleDetailsAria: string;
   dateLabel: string;
@@ -22,6 +21,16 @@ export type ChinaplasNewsMessages = {
   venueCaption: string;
   projectTitle: string;
   projectBody: string;
+  actions: {
+    relatedAria: string;
+    relatedTitle: string;
+    relatedDescription: string;
+    contactTitle: string;
+    contactDescription: string;
+    contactAction: string;
+    contactSourcePrefix: string;
+    englishDestinationLabel: string;
+  };
   relatedLinks: Array<{ label: string; href: string }>;
 };
 
@@ -35,8 +44,7 @@ export const chinaplasNewsMessages = {
     imageAlt:
       "Ein europäischer Zahnradhersteller bespricht mit Taiyi Polymer auf der CHINAPLAS 2026 glasfaserverstärktes POM",
     breadcrumbHome: "Startseite",
-    breadcrumbResources: "Ressourcen",
-    backLabel: "Zurück zu den Ressourcen",
+    backLabel: "Zurück zur Startseite",
     articleDetailsAria: "Artikeldetails",
     dateLabel: "23. April 2026",
     boothLabel: "CHINAPLAS 2026 · Stand 7.2A62",
@@ -61,6 +69,18 @@ export const chinaplasNewsMessages = {
     projectTitle: "Ein Gespräch über Spritzgusszahnräder",
     projectBody:
       "Das Gespräch umfasste Steifigkeit, Zahngeometrie, kritische Maße, Schwindung und Verzug. Auch der Einfluss von Anschnittposition, Fließrichtung und Wanddicke auf Faserverteilung, Rundlauf und Maßhaltigkeit kam zur Sprache. Das Treffen war eines der anwendungsbezogenen Gespräche, die Taiyi Polymer während der viertägigen Messe führte.",
+    actions: {
+      relatedAria: "Weiterführende Links",
+      relatedTitle: "Von der Messe aus weiter",
+      relatedDescription:
+        "Entdecken Sie den am Stand besprochenen Werkstoff, die zugehörige Zahnradanwendung oder setzen Sie das Gespräch mit unserem Team fort.",
+      contactTitle: "Werkstoffthema oder Messegespräch fortsetzen",
+      contactDescription:
+        "Nennen Sie uns Bauteil, aktuellen Werkstoff oder benötigte Unterlagen und verweisen Sie auf die CHINAPLAS 2026, wenn Sie dort mit uns gesprochen haben.",
+      contactAction: "Taiyi Polymer kontaktieren",
+      contactSourcePrefix: "News",
+      englishDestinationLabel: "Englischer Inhalt",
+    },
     relatedLinks: [
       {
         label: "Glasfaserverstärktes POM entdecken",
@@ -82,8 +102,7 @@ export const chinaplasNewsMessages = {
     imageAlt:
       "Un fabricant européen d’engrenages examine des POM renforcés de fibres de verre avec Taiyi Polymer à CHINAPLAS 2026",
     breadcrumbHome: "Accueil",
-    breadcrumbResources: "Ressources",
-    backLabel: "Retour aux ressources",
+    backLabel: "Retour à l’accueil",
     articleDetailsAria: "Informations sur l’article",
     dateLabel: "23 avril 2026",
     boothLabel: "CHINAPLAS 2026 · Stand 7.2A62",
@@ -108,6 +127,18 @@ export const chinaplasNewsMessages = {
     projectTitle: "Un échange autour des engrenages injectés",
     projectBody:
       "La discussion a porté sur la rigidité, la géométrie des dents, les cotes critiques, le retrait et le gauchissement. Elle a aussi abordé l’effet du point d’injection, du sens d’écoulement et de l’épaisseur de paroi sur la répartition des fibres, la concentricité et la stabilité dimensionnelle. Cette rencontre faisait partie des échanges consacrés aux applications menés par Taiyi Polymer pendant les quatre jours du salon.",
+    actions: {
+      relatedAria: "Liens associés",
+      relatedTitle: "Poursuivre après le salon",
+      relatedDescription:
+        "Découvrez le matériau présenté sur le stand, l’application d’engrenage associée ou poursuivez l’échange avec notre équipe.",
+      contactTitle: "Reprendre une discussion matériau ou salon",
+      contactDescription:
+        "Indiquez-nous la pièce, le matériau actuel ou le document recherché, et mentionnez CHINAPLAS 2026 si vous nous y avez rencontrés.",
+      contactAction: "Contacter Taiyi Polymer",
+      contactSourcePrefix: "Actualité",
+      englishDestinationLabel: "Contenu en anglais",
+    },
     relatedLinks: [
       {
         label: "Découvrir les POM renforcés de fibres de verre",
@@ -129,8 +160,7 @@ export const chinaplasNewsMessages = {
     imageAlt:
       "Fabricante europeu de engrenagens analisa POM reforçado com fibra de vidro com a Taiyi Polymer na CHINAPLAS 2026",
     breadcrumbHome: "Início",
-    breadcrumbResources: "Recursos",
-    backLabel: "Voltar aos recursos",
+    backLabel: "Voltar ao início",
     articleDetailsAria: "Informações do artigo",
     dateLabel: "23 de abril de 2026",
     boothLabel: "CHINAPLAS 2026 · Estande 7.2A62",
@@ -155,6 +185,18 @@ export const chinaplasNewsMessages = {
     projectTitle: "Uma conversa sobre engrenagens injetadas",
     projectBody:
       "A conversa abordou rigidez, geometria dos dentes, dimensões críticas, retração e empenamento. Também tratou de como a posição do ponto de injeção, o sentido de fluxo e a espessura de parede afetam a distribuição das fibras, a concentricidade e a estabilidade dimensional. O encontro foi uma das conversas sobre aplicações realizadas pela Taiyi Polymer durante os quatro dias de feira.",
+    actions: {
+      relatedAria: "Links relacionados",
+      relatedTitle: "Continue a partir da feira",
+      relatedDescription:
+        "Conheça o material discutido no estande, veja a aplicação relacionada em engrenagens ou continue a conversa com nossa equipe.",
+      contactTitle: "Retome uma conversa sobre material ou feira",
+      contactDescription:
+        "Informe a peça, o material atual ou o documento necessário e mencione a CHINAPLAS 2026 caso tenha conversado conosco na feira.",
+      contactAction: "Fale com a Taiyi Polymer",
+      contactSourcePrefix: "Notícia",
+      englishDestinationLabel: "Conteúdo em inglês",
+    },
     relatedLinks: [
       {
         label: "Explorar POM reforçado com fibra de vidro",
@@ -174,8 +216,7 @@ export const chinaplasNewsMessages = {
       "CHINAPLAS 2026 期间，台益在 7.2A62 展位展示改性 POM 材料。一家欧洲齿轮制造商到访展位，就注塑齿轮用玻纤增强 POM 展开交流。",
     imageAlt: "欧洲齿轮制造商在 CHINAPLAS 2026 台益展位交流玻纤增强 POM 齿轮应用",
     breadcrumbHome: "首页",
-    breadcrumbResources: "资料",
-    backLabel: "返回资料中心",
+    backLabel: "返回首页",
     articleDetailsAria: "文章信息",
     dateLabel: "2026 年 4 月 23 日",
     boothLabel: "CHINAPLAS 2026 · 7.2A62 展位",
@@ -194,6 +235,18 @@ export const chinaplasNewsMessages = {
     projectTitle: "围绕注塑齿轮的现场交流",
     projectBody:
       "双方讨论了刚性、齿形与关键尺寸保持、收缩和翘曲，也谈到浇口位置、流动方向和壁厚对玻纤分布、齿轮同心度和尺寸稳定性的影响。这次会面是台益在四天展期中开展的应用交流之一。",
+    actions: {
+      relatedAria: "相关链接",
+      relatedTitle: "延续展会交流",
+      relatedDescription:
+        "查看现场讨论的材料与齿轮应用，或联系台益继续沟通。",
+      contactTitle: "继续沟通材料或展会事项",
+      contactDescription:
+        "如您曾在 CHINAPLAS 2026 与我们交流，可在联系时说明零部件、当前材料或所需资料。",
+      contactAction: "联系台益",
+      contactSourcePrefix: "新闻",
+      englishDestinationLabel: "英文内容",
+    },
     relatedLinks: [
       {
         label: "查看玻璃纤维增强 POM",

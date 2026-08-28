@@ -28,6 +28,7 @@ import {
   getCategoryFaqs,
   getCategoryMetadataTitle,
   getCategoryNavSubtitle,
+  getCategoryOverview,
   getCategorySelectionLinks,
   getCategoryTitle,
   getLegacyCategoryRedirect,
@@ -176,8 +177,8 @@ export default async function ProductCategoryPage({
   const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
     entry.category,
   )
-    ? "Share the part function, current material, operating conditions, mold stage, critical dimensions, and document needs. Taiyi Polymer can use them to shortlist grades and confirm available documents or samples."
-    : "Share your application, mold development stage, cavity count, operating condition, current material, shrinkage or warpage concern, document needs, and target volume. These inputs support a grade shortlist and confirmation of document availability and sample needs.";
+    ? "Share the part function, operating conditions, and molding constraints to compare relevant grades and confirm available data, documents, and samples."
+    : "Share the application, operating conditions, and processing constraints to compare relevant grades and confirm available data, documents, and samples.";
   const itemListElement =
     categoryProducts.length > 0
       ? categoryProducts.map((product, index) => ({
@@ -281,15 +282,11 @@ export default async function ProductCategoryPage({
             {!isPomCategory ? (
               <div className="products-motion-data product-hero-data">
                 <div className="product-hero-summary">
-                  <p className="section-kicker mb-2">Selection Path</p>
-                  <p>
-                    Shortlist from the listed grades, then open a grade page to
-                    review published values, application notes, and document
-                    status.
-                  </p>
+                  <p className="section-kicker mb-2">Portfolio Overview</p>
+                  <p>{getCategoryOverview(entry.category)}</p>
                 </div>
                 <p className="product-hero-documents">
-                  <strong>Documents by grade and project</strong>
+                  <strong>Technical &amp; compliance documents</strong>
                   <span>
                     {availableDocuments.map((document) => (
                       <b key={document}>{document}</b>
@@ -339,13 +336,12 @@ export default async function ProductCategoryPage({
             <div className="product-application-directory-head">
               <div className="product-application-directory-heading">
                 <p className="section-kicker mb-3">Applications</p>
-                <h2>Relevant application paths</h2>
+                <h2>Typical part families</h2>
               </div>
               <div className="product-application-directory-intro">
                 <p>
-                  Start with the routes where this material direction is most
-                  often screened. Final selection remains grade- and
-                  project-specific.
+                  Explore the application areas represented in the current
+                  material range.
                 </p>
                 <Button
                   asChild
@@ -404,10 +400,10 @@ export default async function ProductCategoryPage({
           >
             <div className="product-application-directory-head">
               <p className="section-kicker mb-3">Applications</p>
-              <h2>Relevant application paths</h2>
+              <h2>Typical part families</h2>
               <p>
-                Start with the routes where this material direction is most often
-                screened. Final selection remains grade- and project-specific.
+                Explore the application areas represented in the current
+                material range.
               </p>
               <div className="mt-5 flex flex-col items-start gap-3">
                 {categorySelectionLinks.map((link) => (
@@ -486,13 +482,13 @@ export default async function ProductCategoryPage({
         <ActionPanel
           footerAdjacent
           variant="recommendation"
-          title="Prepare a Grade Shortlist"
+          title="Compare Grades, Data & Samples"
           className="selection-support-band products-motion-support mt-12"
-          eyebrow="Inquiry Support"
+          eyebrow="Project Inquiry"
           eyebrowClassName="section-kicker mb-3"
           aside={
             <div className="support-line-steps">
-              {["Tooling Plan", "Shrinkage Target", "Document Needs"].map(
+              {["Part & Duty", "Mold & Process", "Data & Samples"].map(
                 (item, index) => (
                   <p key={item}>
                     <span>{String(index + 1).padStart(2, "0")}</span>

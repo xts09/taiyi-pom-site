@@ -15,35 +15,33 @@ const messages = {
     metadata: {
       title: "Résines POM de base pour moulage de précision | Taiyi Polymer",
       description:
-        "Comparez les résines POM de base Taiyi Polymer selon la fluidité, la résistance en traction, la tenue thermique et les contraintes du projet.",
+        "Le POM de base PLATFORM® couvre la fluidité standard à l’ultra-haute fluidité pour les pièces injectées générales, précises, minces ou sensibles au remplissage.",
       imageAlt: "Résine POM de base naturelle de Taiyi Polymer",
     },
     hero: {
       eyebrow: "Famille POM modifiée",
       title: "Résine POM de base",
       description:
-        "Comparez des grades de base pour pièces injectées de précision ou d'usage général selon la fluidité, le profil mécanique, la tenue thermique et la géométrie de la pièce.",
-      overviewLabel: "Parcours de sélection",
+        "Le POM PLATFORM® couvre différents niveaux de fluidité, de la valeur standard à l’ultra-haute fluidité, pour les pièces injectées générales, de précision, à parois minces ou difficiles à remplir.",
+      overviewLabel: "Aperçu de la gamme",
       overview:
-        "Présélectionnez parmi les grades répertoriés, puis ouvrez la page du grade pour consulter les valeurs publiées, les notes d’application et le statut des documents.",
-      documentsTitle: "Documents selon le grade et le projet",
-      documentsBody:
-        "La disponibilité des TDS, SDS, COA, REACH et RoHS est confirmée selon le grade, le marché visé et l'étape du projet.",
+        "La gamme réunit les données mécaniques, thermiques et de transformation utiles aux applications automobiles, électriques, sanitaires et industrielles. Les documents techniques et les échantillons sont confirmés selon le grade et le projet.",
+      documentsTitle: "Documents techniques et réglementaires",
       contactAction: "Parler de votre application",
       technicalDataAction: "Ouvrir les données techniques",
     },
     navigation: {
       aria: "Navigation de la catégorie résine POM de base",
       title: "Résine POM de base",
-      subtitle: "Comparer fluidité, résistance et contraintes d'outillage",
+      subtitle: "De la fluidité standard à l’ultra-haute fluidité",
       grades: "Grades",
       faq: "FAQ",
     },
     directory: {
-      kicker: "Sélection des grades",
-      title: "Comparer les grades POM de base",
+      kicker: "Gamme de grades",
+      title: "Grades de POM de base",
       body:
-        "Les valeurs servent à la présélection technique. Pour un grade sans page localisée validée, l'action ouvre directement une demande d'étude projet.",
+        "La gamme va d’un profil équilibré à l’ultra-haute fluidité. Le catalogue réunit le positionnement, les données clés, les détails produit et les documents projet disponibles.",
       countSuffix: "grades répertoriés",
       grade: "Grade",
       keyData: "Données clés",
@@ -64,7 +62,7 @@ const messages = {
         "etm1500-base-pom-resin":
           "Très haute fluidité pour faciliter le remplissage de pièces complexes.",
         "etm1800-base-pom-resin":
-          "Fluidité maximale pour les pièces à parcours d'écoulement très exigeant.",
+          "Ultra-haute fluidité pour les pièces à long parcours d’écoulement ou difficiles à remplir.",
         "etm270-base-pom-resin":
           "Haute fluidité pour pièces injectées minces et composants de précision.",
         "etm450-base-pom-resin":
@@ -72,22 +70,22 @@ const messages = {
         "etm750-base-pom-resin":
           "Très haute fluidité pour pièces minces ou sensibles au remplissage.",
         "xt-100-base-pom-resin":
-          "POM à faible densité et orientation haute résistance au choc pour pièces injectées de précision ou d'usage général.",
+          "POM à faible densité et résistance aux chocs améliorée pour les pièces injectées générales ou de précision.",
       },
     },
     faq: {
       kicker: "FAQ",
-      title: "Questions de présélection",
+      title: "Informations produit et applications",
       items: [
         {
-          question: "Comment choisir le niveau de fluidité ?",
+          question: "À quelles pièces la gamme de POM de base est-elle destinée ?",
           answer:
-            "L'épaisseur, le parcours d'écoulement, le point d'injection, le nombre d'empreintes et l'état du moule déterminent la fluidité utile. Un MFI plus élevé ne garantit pas, à lui seul, de meilleures performances de pièce.",
+            "La gamme couvre les pièces injectées générales, précises et à parois minces des secteurs automobile, électrique, sanitaire et industriel, avec différentes priorités de remplissage, de propriétés mécaniques ou de maîtrise dimensionnelle.",
         },
         {
-          question: "Ces grades sont-ils directement interchangeables ?",
+          question: "Quels niveaux de fluidité la gamme couvre-t-elle ?",
           answer:
-            "Non. Les fiches techniques servent à la présélection ; la géométrie, le moule, le procédé, les dimensions et l'usage final doivent être validés dans le procédé réel.",
+            "La gamme s’étend de la fluidité standard et moyenne à la haute et l’ultra-haute fluidité pour le remplissage conventionnel, les pièces de précision, les parois minces et les chemins d’écoulement plus longs.",
         },
         {
           question: "Quels documents peut-on demander ?",
@@ -97,12 +95,12 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "Étude projet",
-      title: "Préparer une présélection de grades exploitable",
+      eyebrow: "Support projet pour POM de base",
+      title: "Comparer les grades sur la pièce et le procédé",
       body:
-        "Transmettez la fonction de la pièce, l'épaisseur, le parcours d'écoulement, l'état du moule, la matière actuelle, les objectifs, la couleur, les documents requis et le volume estimé. Ces éléments cadrent les données, échantillons et essais suivants.",
-      action: "Envoyer les données du projet",
-      steps: ["Géométrie de la pièce", "Procédé et moule", "Documents et échantillons"],
+        "À partir de la fonction de la pièce, du moule et des conditions de transformation, nous comparons les grades concernés et fournissons les données, documents et échantillons disponibles pour les essais de moulage.",
+      action: "Contacter l’équipe matériaux",
+      steps: ["Pièce et conditions", "Moule et procédé", "Données et échantillons"],
     },
   },
   categoryProfiles: {
@@ -111,46 +109,46 @@ const messages = {
       metadata: {
         title: "POM à billes de verre : grades | Taiyi Polymer",
         description:
-          "Évaluez le POM chargé de billes de verre selon le retrait, le profil thermique, les exigences de la pièce et les documents disponibles.",
+          "PLATFORM® EGB25 contient 25 % de billes de verre et s’adresse aux pièces POM injectées qui exigent des données de retrait longitudinal et transversal, de comportement dimensionnel et de propriétés thermiques.",
         imageAlt: "POM naturel chargé de billes de verre de Taiyi Polymer",
       },
       hero: {
         eyebrow: "Famille POM modifiée",
         title: "POM chargé de billes de verre",
         description:
-          "Évaluez EGB25, chargé de 25 % de billes de verre, selon la fluidité, les retraits longitudinal et transversal, le profil thermique et les exigences de la pièce moulée.",
-        overviewLabel: "Parcours de sélection",
+          "Pour les pièces de précision sensibles aux dimensions, PLATFORM® EGB25 chargé de 25 % de billes de verre offre un profil plus équilibré de retrait longitudinal et transversal, avec des données de fluidité, de propriétés mécaniques et thermiques pour la validation projet.",
+        overviewLabel: "Aperçu de la gamme",
         overview:
-          "Présélectionnez parmi les grades répertoriés, puis ouvrez la page du grade pour consulter les valeurs publiées, les notes d’application et le statut des documents.",
+          "EGB25 réunit les données de retrait au moulage, les propriétés mécaniques et thermiques ainsi que les informations de transformation. Les documents techniques et les échantillons sont confirmés selon le projet.",
       },
       navigation: {
         aria: "Navigation des sections du POM chargé de billes de verre",
         title: "POM chargé de billes de verre",
-        subtitle: "Comparer retrait, profil thermique et exigences de la pièce",
+        subtitle: "25 % de billes de verre pour un retrait équilibré et des propriétés thermiques maîtrisées",
       },
       directory: {
-        kicker: "Sélection du grade",
-        title: "Évaluer le grade POM chargé de billes de verre",
+        kicker: "Données du grade",
+        title: "EGB25 POM chargé de billes de verre",
         body:
-          "EGB25 est entièrement révisé dans cette langue. Les données servent à la présélection ; l’approbation finale doit être obtenue dans le moule et l’application du client.",
+          "La page EGB25 réunit les retraits longitudinal et transversal ainsi que les données mécaniques et thermiques publiées pour le grade.",
         summaries: {
           "egb25-glass-bead-pom":
-            "POM chargé de 25 % de billes de verre pour évaluer l’équilibre des retraits longitudinal et transversal.",
+            "POM chargé de 25 % de billes de verre avec un profil plus équilibré de retrait longitudinal et transversal.",
         },
       },
       faq: {
         kicker: "FAQ",
-        title: "Questions sur la charge de billes de verre",
+        title: "Informations produit et applications",
         items: [
           {
-            question: "Pourquoi comparer les retraits longitudinal et transversal ?",
+            question: "À quelles pièces EGB25 est-il destiné ?",
             answer:
-              "Les billes de verre peuvent favoriser un profil de retrait plus équilibré, mais la géométrie, le point d’injection, l’épaisseur et le procédé continuent d’influencer la pièce réelle.",
+              "EGB25 s’adresse aux pièces de précision qui exigent des données de retrait longitudinal et transversal, de comportement dimensionnel et de propriétés thermiques dans les projets automobiles, électriques, sanitaires et industriels.",
           },
           {
-            question: "EGB25 peut-il être approuvé sans essai dans le moule ?",
+            question: "Quelles données la page du grade présente-t-elle ?",
             answer:
-              "Non. Les valeurs de fiche technique servent à la présélection. Les dimensions, le gauchissement, l’état de surface et les performances doivent être confirmés dans le moule et le procédé prévus.",
+              "La page présente le retrait au moulage ainsi que les propriétés mécaniques, thermiques et de transformation afin d’intégrer les données matériau à la validation de la pièce et du moule.",
           },
           {
             question: "Quels documents peuvent être demandés ?",
@@ -160,10 +158,10 @@ const messages = {
         ],
       },
       inquiry: {
-        eyebrow: "Évaluation du projet EGB25",
-        title: "Évaluer EGB25 pour vos objectifs dimensionnels",
+        eyebrow: "Support projet EGB25",
+        title: "Intégrer les données de retrait à la validation de la pièce réelle",
         body:
-          "Transmettez la géométrie, l’épaisseur, le point d’injection, l’état du moule, les retraits actuels, les tolérances, la couleur et les documents requis. Nous préparerons l’évaluation du grade et de l’échantillon.",
+          "À partir des dimensions, des tolérances, du moule et de la matière actuelle, nous fournissons les données EGB25, les documents techniques et les échantillons disponibles pour les essais de moulage.",
         steps: ["Géométrie et injection", "Retrait et tolérances", "Documents et échantillon"],
       },
     },
@@ -172,28 +170,28 @@ const messages = {
       metadata: {
         title: "POM renforcé de fibres de verre | Taiyi Polymer",
         description:
-          "Comparez les POM renforcés de 10 à 30 % de fibres de verre selon la rigidité, le retrait, le profil thermique et le projet.",
+          "Le POM PLATFORM® renforcé couvre 10 à 30 % de fibres de verre pour les pièces injectées qui exigent davantage de rigidité, de résistance et de maîtrise dimensionnelle.",
         imageAlt: "POM naturel renforcé de fibres de verre de Taiyi Polymer",
       },
       hero: {
         eyebrow: "Famille POM modifiée",
         title: "POM renforcé de fibres de verre",
         description:
-          "Comparez les grades POM renforcés de 10 à 30 % de fibres de verre selon la fluidité, la rigidité, le retrait, le profil thermique et les exigences de la pièce.",
-        overviewLabel: "Parcours de sélection",
+          "Pour les engrenages, supports et pièces structurelles, le POM PLATFORM® renforcé couvre 10 à 30 % de fibres de verre avec différents équilibres de rigidité, de résistance, de fluidité et d’impact.",
+        overviewLabel: "Aperçu de la gamme",
         overview:
-          "Présélectionnez parmi les grades répertoriés, puis ouvrez la page du grade pour consulter les valeurs publiées, les notes d’application et le statut des documents.",
+          "La gamme couvre différents niveaux de renfort et profils de performance. Les données mécaniques, thermiques et de retrait, les détails produit, les documents techniques et les échantillons sont disponibles par grade.",
       },
       navigation: {
         aria: "Navigation des sections du POM renforcé de fibres de verre",
         title: "POM renforcé de fibres de verre",
-        subtitle: "Comparer teneur en fibres, rigidité, retrait et mise en œuvre",
+        subtitle: "10 à 30 % de fibres de verre pour les pièces structurelles et porteuses de précision",
       },
       directory: {
-        kicker: "Sélection du grade",
-        title: "Comparer les grades POM renforcés de fibres de verre",
+        kicker: "Gamme de grades",
+        title: "Grades de POM renforcés de fibres de verre",
         body:
-          "EGH502H dispose d’une page entièrement révisée dans cette langue. Pour les autres grades, l’étape suivante mène à une évaluation de projet jusqu’à ce que leur page technique atteigne le même niveau de validation.",
+          "La gamme couvre de 10 à 30 % de fibres de verre. Le catalogue réunit différents équilibres de rigidité, de résistance, d’impact, de fluidité et de retrait au moulage.",
         summaries: {
           "egh202h-glass-fiber-pom": "10 % de fibres de verre pour une hausse modérée de la rigidité.",
           "egh302h-glass-fiber-pom": "15 % de fibres de verre pour davantage de résistance et de rigidité.",
@@ -209,30 +207,30 @@ const messages = {
       },
       faq: {
         kicker: "FAQ",
-        title: "Questions sur le renforcement en fibres de verre",
+        title: "Informations produit et applications",
         items: [
           {
-            question: "Comment choisir la teneur en fibres de verre ?",
+            question: "À quelles pièces ces matériaux sont-ils destinés ?",
             answer:
-              "La rigidité, la charge, l’épaisseur, le retrait, le gauchissement, la longueur d’écoulement et l’aspect doivent être évalués ensemble. Une teneur supérieure n’est pas automatiquement préférable pour chaque pièce.",
+              "Ces matériaux s’adressent principalement aux engrenages, supports, boîtiers et autres pièces de précision ou structurelles qui exigent davantage de rigidité, de résistance et de maîtrise dimensionnelle.",
           },
           {
-            question: "Pourquoi l’orientation des fibres est-elle importante ?",
+            question: "Quelles sont les différences entre les grades ?",
             answer:
-              "Les fibres s’orientent avec l’écoulement de la matière. Le point d’injection, le sens d’écoulement et la géométrie peuvent donc modifier sensiblement les propriétés, le retrait et le gauchissement de la pièce.",
+              "La gamme couvre de 10 à 30 % de fibres de verre et offre différents équilibres de rigidité, de résistance, d’impact, de fluidité et de retrait au moulage. Les pages de grade présentent les détails et données publiées.",
           },
           {
-            question: "Tous les grades listés sont-ils déjà entièrement localisés ?",
+            question: "Quelles informations sont disponibles pour les essais ?",
             answer:
-              "Non. EGH502H dispose actuellement de la page linguistique entièrement révisée. Les autres grades passent d’abord par une évaluation de données et d’échantillon liée au projet.",
+              "Les données de grade, les documents techniques et les échantillons disponibles peuvent être complétés par un échange sur le moule, le sens d’écoulement et l’orientation des fibres.",
           },
         ],
       },
       inquiry: {
-        eyebrow: "Évaluation du projet",
-        title: "Présélectionner un POM renforcé de fibres de verre",
+        eyebrow: "Projet en POM renforcé de fibres de verre",
+        title: "Comparer le renfort, la rigidité et le retrait",
         body:
-          "Transmettez la charge et la rigidité visées, la géométrie, l’épaisseur, le point d’injection, l’état du moule, le retrait ou gauchissement actuel, la couleur et les documents requis. Nous préparerons une liste de grades et le parcours d’échantillonnage.",
+          "À partir des exigences de charge, de rigidité et de dimensions ainsi que du moule, nous comparons les grades concernés et fournissons les données, documents et échantillons disponibles pour les essais de moulage.",
         steps: ["Charge et rigidité", "Moule et flux des fibres", "Documents et échantillon"],
       },
     },
@@ -241,28 +239,28 @@ const messages = {
       metadata: {
         title: "POM haute résistance aux chocs | Taiyi Polymer",
         description:
-          "Comparez les grades POM modifiés choc selon la résistance aux chocs, le comportement à basse température, l’allongement, la fluidité et le risque projet.",
+          "Le POM PLATFORM® modifié choc est destiné aux pièces injectées sensibles aux chocs, sollicitées à l’assemblage ou utilisées à basse température, avec différents équilibres de rigidité, de ténacité et de transformation.",
         imageAlt: "POM naturel haute résistance aux chocs de Taiyi Polymer",
       },
       hero: {
         eyebrow: "Famille POM modifiée",
         title: "POM haute résistance aux chocs",
         description:
-          "Comparez six grades POM destinés à une meilleure résistance aux chocs et aux besoins à basse température selon la fluidité, l’allongement, la résistance et le profil thermique.",
-        overviewLabel: "Parcours de sélection",
+          "Le POM PLATFORM® modifié choc apporte davantage de ténacité aux pièces fonctionnelles sensibles aux chocs, sollicitées à l’assemblage ou utilisées à basse température, avec différents équilibres d’impact, d’allongement, de rigidité et de transformation.",
+        overviewLabel: "Aperçu de la gamme",
         overview:
-          "Présélectionnez parmi les grades répertoriés, puis ouvrez la page du grade pour consulter les valeurs publiées, les notes d’application et le statut des documents.",
+          "La gamme couvre différents équilibres entre rigidité, ténacité, allongement et comportement à basse température. Les données publiées, les documents techniques et les échantillons disponibles sont présentés par grade.",
       },
       navigation: {
         aria: "Navigation des sections du POM haute résistance aux chocs",
         title: "POM haute résistance aux chocs",
-        subtitle: "Comparer choc, allongement, fluidité et exigences à basse température",
+        subtitle: "Pour le choc, la basse température, l’allongement et la transformation",
       },
       directory: {
-        kicker: "Sélection du grade",
-        title: "Comparer les grades POM haute résistance aux chocs",
+        kicker: "Gamme de grades",
+        title: "Grades de POM haute résistance aux chocs",
         body:
-          "EHI402T et EDR180 disposent de pages entièrement révisées dans cette langue. Pour les autres grades, l’étape suivante mène à l’évaluation des données et de l’échantillon liée au projet.",
+          "Le catalogue réunit les détails produit, les données clés et différents profils de résistance aux chocs, d’allongement, de rigidité, de fluidité et de propriétés thermiques.",
         summaries: {
           "edr100-high-impact-pom": "POM modifié choc pour pièces fonctionnelles demandant une meilleure ténacité.",
           "edr180-high-impact-pom": "POM modifié choc orienté basse température et fort allongement à la rupture.",
@@ -274,30 +272,30 @@ const messages = {
       },
       faq: {
         kicker: "FAQ",
-        title: "Questions sur la modification choc",
+        title: "Informations produit et applications",
         items: [
           {
-            question: "Comment présélectionner un grade POM résistant aux chocs ?",
+            question: "À quelles pièces le POM modifié choc est-il destiné ?",
             answer:
-              "Le cas de charge, les entailles, l’épaisseur, la température d’utilisation, l’allongement visé, la rigidité et la longueur d’écoulement doivent être évalués ensemble. Une seule valeur d’impact ne suffit pas à l’approbation.",
+              "Ces matériaux s’adressent principalement aux pièces fonctionnelles sensibles aux chocs, sollicitées à l’assemblage ou utilisées à basse température, notamment clips, boîtiers et pièces de mécanisme dans les secteurs automobile, électrique, sanitaire et industriel.",
           },
           {
-            question: "Un grade résistant aux chocs convient-il automatiquement au froid ?",
+            question: "Quels profils de performance la gamme offre-t-elle ?",
             answer:
-              "Non. Ces grades visent le choc et le comportement à basse température, mais la température réelle, la durée de charge, la géométrie et les conditions d’essai doivent être confirmées pour le projet.",
+              "La gamme va d’un équilibre rigidité-ténacité à davantage de résistance aux chocs, d’allongement et de performance à basse température, avec différents profils de fluidité et de propriétés thermiques.",
           },
           {
-            question: "Les six grades sont-ils déjà entièrement localisés ?",
+            question: "Quelles informations sont disponibles par grade ?",
             answer:
-              "Non. EHI402T et EDR180 disposent actuellement de pages linguistiques entièrement révisées. Les autres grades passent d’abord par une évaluation liée au projet.",
+              "Chaque grade dispose de données produit publiées. Les documents techniques et les échantillons disponibles sont confirmés selon le grade et le projet.",
           },
         ],
       },
       inquiry: {
-        eyebrow: "Évaluation du projet",
-        title: "Présélectionner un POM haute résistance aux chocs",
+        eyebrow: "Projet en POM modifié choc",
+        title: "Comparer ténacité, rigidité et comportement à basse température",
         body:
-          "Transmettez le cas de charge, la température d’utilisation, la géométrie, l’épaisseur, le matériau actuel, le mode de rupture, les valeurs cibles, la couleur et les documents requis. Nous préparerons une liste de grades et le parcours d’échantillonnage.",
+          "À partir des exigences de choc, de température, de charge et de géométrie, nous comparons les grades concernés et fournissons les données, documents et échantillons disponibles pour les essais sur pièce.",
         steps: ["Charge et température", "Géométrie et risque de rupture", "Documents et échantillon"],
       },
     },

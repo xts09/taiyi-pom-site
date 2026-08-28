@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { TechnicalDataQueryLink } from "@/components/TechnicalDataQueryLink";
 import { DocumentCard } from "@/components/DocumentCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -25,14 +26,20 @@ const technicalDataSheetsTitle = "Technical Data Sheets & Grade Data | Taiyi Pol
 const technicalDataSheetsDescription =
   "Search Taiyi Polymer grade data, POM material guides, PA6, PA66, PPA engineering plastic compound references, FAQ answers, processing guidance, and application notes.";
 
-const technicalDataSheetsMetadata: Metadata = createPageMetadata({
-  title: technicalDataSheetsTitle,
-  description: technicalDataSheetsDescription,
-  path: "/technical-data-sheets",
-  image: "/generated/pom-workbench-hero.webp",
-  imageAlt: "Taiyi Polymer technical data and grade search",
-  languageAlternates: getLanguageAlternatesForPath("/technical-data-sheets"),
-});
+const createTechnicalDataSheetsMetadata = (
+  hasSearchIntent: boolean,
+): Metadata =>
+  createPageMetadata({
+    title: technicalDataSheetsTitle,
+    description: technicalDataSheetsDescription,
+    path: "/technical-data-sheets",
+    image: "/generated/pom-workbench-hero.webp",
+    imageAlt: "Taiyi Polymer technical data and grade search",
+    indexable: !hasSearchIntent,
+    languageAlternates: hasSearchIntent
+      ? undefined
+      : getLanguageAlternatesForPath("/technical-data-sheets"),
+  });
 
 const resourceLabelForSlug = (slug: string) => {
   if (slug === "faq") {
@@ -185,17 +192,7 @@ export async function generateMetadata({
       getTechnicalDataSearchValue(params.direction).trim(),
   );
 
-  return {
-    ...technicalDataSheetsMetadata,
-    ...(hasSearchIntent
-      ? {
-          robots: {
-            index: false,
-            follow: true,
-          },
-        }
-      : {}),
-  };
+  return createTechnicalDataSheetsMetadata(hasSearchIntent);
 }
 
 export default async function TechnicalDataSheetsPage({
@@ -341,9 +338,13 @@ export default async function TechnicalDataSheetsPage({
             <div className="resource-site-search-examples" aria-label="Search examples">
               <span>Try</span>
               {searchExamples.map((example) => (
-                <Link key={example.label} href={example.href}>
+                <TechnicalDataQueryLink
+                  key={example.label}
+                  cleanHref="/technical-data-sheets"
+                  queryHref={example.href}
+                >
                   {example.label}
-                </Link>
+                </TechnicalDataQueryLink>
               ))}
             </div>
           </form>
@@ -374,21 +375,22 @@ export default async function TechnicalDataSheetsPage({
                 <h3>{contentTypeFilter.title}</h3>
                 <div className="resource-site-filter-options">
                   {contentTypeFilter.options.map((option) => (
-                    <Link
+                    <TechnicalDataQueryLink
                       key={option.value || "all"}
-                      href={getFilterHref({
+                      queryHref={getFilterHref({
                         resource: option.value,
                         ...(isTechnicalDataProductContentType(option.value)
                           ? {}
                           : { family: "", direction: "" }),
                       })}
+                      cleanHref="/technical-data-sheets"
                       aria-current={
                         activeResource === option.value ? "true" : undefined
                       }
                     >
                       <span aria-hidden="true" />
                       {option.label}
-                    </Link>
+                    </TechnicalDataQueryLink>
                   ))}
                 </div>
               </section>
@@ -397,16 +399,17 @@ export default async function TechnicalDataSheetsPage({
                 <h3>{materialFamilyFilter.title}</h3>
                 <div className="resource-site-filter-options">
                   {materialFamilyFilter.options.map((option) => (
-                    <Link
+                    <TechnicalDataQueryLink
                       key={option.value || "all"}
-                      href={getFilterHref({ family: option.value })}
+                      queryHref={getFilterHref({ family: option.value })}
+                      cleanHref="/technical-data-sheets"
                       aria-current={
                         activeFamily === option.value ? "true" : undefined
                       }
                     >
                       <span aria-hidden="true" />
                       {option.label}
-                    </Link>
+                    </TechnicalDataQueryLink>
                   ))}
                 </div>
               </section>
@@ -419,16 +422,17 @@ export default async function TechnicalDataSheetsPage({
                   <summary>{materialDirectionFilter.title}</summary>
                   <div className="resource-site-filter-options">
                     {materialDirectionFilter.options.map((option) => (
-                      <Link
+                      <TechnicalDataQueryLink
                         key={option.value || "all"}
-                        href={getFilterHref({ direction: option.value })}
+                        queryHref={getFilterHref({ direction: option.value })}
+                        cleanHref="/technical-data-sheets"
                         aria-current={
                           activeDirection === option.value ? "true" : undefined
                         }
                       >
                         <span aria-hidden="true" />
                         {option.label}
-                      </Link>
+                      </TechnicalDataQueryLink>
                     ))}
                   </div>
                 </details>
@@ -471,12 +475,23 @@ export default async function TechnicalDataSheetsPage({
                 this panel.
               </p>
               <div className="resource-empty-quick-links">
-                {emptyQuickLinks.map((item) => (
-                  <Link key={item.label} href={item.href}>
-                    <strong>{item.label}</strong>
-                    <span>{item.description}</span>
-                  </Link>
-                ))}
+                {emptyQuickLinks.map((item) =>
+                  item.href.startsWith("/technical-data-sheets?") ? (
+                    <TechnicalDataQueryLink
+                      key={item.label}
+                      cleanHref="/technical-data-sheets"
+                      queryHref={item.href}
+                    >
+                      <strong>{item.label}</strong>
+                      <span>{item.description}</span>
+                    </TechnicalDataQueryLink>
+                  ) : (
+                    <Link key={item.label} href={item.href}>
+                      <strong>{item.label}</strong>
+                      <span>{item.description}</span>
+                    </Link>
+                  ),
+                )}
               </div>
             </div>
           ) : totalResults > 0 ? (

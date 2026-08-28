@@ -8,44 +8,42 @@ const messages = {
     technicalData: "Dados técnicos",
     contact: "Contato",
     contactSourceCategory: "Categoria de produto",
-    contactSourceGrade: "Página localizada de grade POM",
+    contactSourceGrade: "Página localizada de grau POM",
     contactSourceTechnicalData: "Dados técnicos de POM localizados",
   },
   category: {
     metadata: {
       title: "Resinas POM base para moldagem de precisão | Taiyi Polymer",
       description:
-        "Compare resinas POM base da Taiyi Polymer por fluidez, resistência à tração, HDT e requisitos do projeto de moldagem por injeção.",
+        "O POM base PLATFORM® cobre do fluxo padrão ao ultra-alto para peças injetadas de uso geral, de precisão, de parede fina ou sensíveis ao preenchimento.",
       imageAlt: "Resina POM base natural da Taiyi Polymer",
     },
     hero: {
       eyebrow: "Família de POM modificado",
       title: "Resina POM base",
       description:
-        "Compare grades base para peças injetadas de precisão ou uso geral considerando fluidez, perfil mecânico, HDT e geometria da peça.",
-      overviewLabel: "Caminho de seleção",
+        "O POM PLATFORM® cobre diferentes níveis de fluidez, do padrão ao ultra-alto, para peças injetadas de uso geral, de precisão, com paredes finas ou preenchimento crítico.",
+      overviewLabel: "Visão geral do portfólio",
       overview:
-        "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
-      documentsTitle: "Documentos por grade e projeto",
-      documentsBody:
-        "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada conforme o grade, o mercado de destino e a etapa do projeto.",
+        "A linha reúne dados mecânicos, térmicos e de processamento para aplicações automotivas, elétricas, sanitárias e industriais. A disponibilidade de documentos técnicos e amostras é confirmada conforme o grau e o projeto.",
+      documentsTitle: "Documentos técnicos e regulatórios",
       contactAction: "Falar sobre a aplicação",
       technicalDataAction: "Abrir dados técnicos",
     },
     navigation: {
       aria: "Navegação da categoria de resina POM base",
       title: "Resina POM base",
-      subtitle: "Comparar fluidez, resistência e requisitos de ferramental",
-      grades: "Grades",
+      subtitle: "Do fluxo padrão ao ultra-alto",
+      grades: "Graus",
       faq: "FAQ",
     },
     directory: {
-      kicker: "Seleção de grades",
-      title: "Comparar grades de POM base",
+      kicker: "Portfólio de graus",
+      title: "Graus de POM base",
       body:
-        "Os dados apoiam a triagem técnica. Quando a página localizada de um grade ainda não foi liberada, a ação abre diretamente uma avaliação de projeto.",
-      countSuffix: "grades listados",
-      grade: "Grade",
+        "A linha vai de propriedades equilibradas ao fluxo ultra-alto. O catálogo reúne o posicionamento, os dados principais, os detalhes do produto e os documentos disponíveis para o projeto.",
+      countSuffix: "graus listados",
+      grade: "Grau",
       keyData: "Dados principais",
       route: "Próxima etapa",
       mfi: "MFI",
@@ -54,17 +52,17 @@ const messages = {
       color: "Cor",
       natural: "Natural",
       black: "Preto",
-      detailAction: "Detalhes do grade",
+      detailAction: "Detalhes do grau",
       reviewAction: "Avaliação do projeto",
       summaries: {
         "etm090nc-base-pom-resin":
-          "Grade padrão com bom equilíbrio entre resistência e estabilidade dimensional.",
+          "Grau padrão com bom equilíbrio entre resistência e estabilidade dimensional.",
         "etm130-base-pom-resin":
           "Fluidez média e perfil mecânico equilibrado.",
         "etm1500-base-pom-resin":
           "Fluidez ultra-alta para facilitar o preenchimento de peças complexas.",
         "etm1800-base-pom-resin":
-          "Direção de fluidez máxima para peças com caminho de fluxo crítico.",
+          "Fluidez ultra-alta para peças com caminhos de fluxo longos ou preenchimento crítico.",
         "etm270-base-pom-resin":
           "Alta fluidez para peças de parede fina e componentes de precisão.",
         "etm450-base-pom-resin":
@@ -72,37 +70,37 @@ const messages = {
         "etm750-base-pom-resin":
           "Fluidez muito alta para peças de parede fina ou sensíveis ao preenchimento.",
         "xt-100-base-pom-resin":
-          "POM de baixa densidade e direção de alto impacto para peças injetadas de precisão ou uso geral.",
+          "POM de baixa densidade e maior resistência ao impacto para peças injetadas de uso geral ou de precisão.",
       },
     },
     faq: {
       kicker: "FAQ",
-      title: "Perguntas de triagem",
+      title: "Informações de produto e aplicação",
       items: [
         {
-          question: "Como escolher a faixa de fluidez?",
+          question: "Para quais peças a linha de POM base foi desenvolvida?",
           answer:
-            "Espessura, caminho de fluxo, ponto de injeção, número de cavidades e condição do molde determinam a fluidez necessária. Um MFI maior, isoladamente, não garante melhor desempenho da peça.",
+            "A linha atende peças injetadas gerais, de precisão e de parede fina nos setores automotivo, elétrico, sanitário e industrial, com diferentes prioridades de preenchimento, propriedades mecânicas ou controle dimensional.",
         },
         {
-          question: "Os grades podem ser substituídos diretamente?",
+          question: "Quais níveis de fluxo a linha cobre?",
           answer:
-            "Não. As fichas técnicas servem para triagem; geometria, molde, processamento, dimensões e uso final devem ser validados no processo real.",
+            "A linha vai de fluxo padrão e médio a graus de fluxo alto e ultra-alto para preenchimento convencional, peças de precisão, paredes finas e caminhos de fluxo mais longos.",
         },
         {
           question: "Quais documentos podem ser solicitados?",
           answer:
-            "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada para o grade e o projeto específicos.",
+            "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada para o grau e o projeto específicos.",
         },
       ],
     },
     inquiry: {
-      eyebrow: "Avaliação do projeto",
-      title: "Preparar uma lista preliminar de grades utilizável",
+      eyebrow: "Projeto com POM base",
+      title: "Compare os graus considerando a peça e o processo",
       body:
-        "Envie a função da peça, espessura, caminho de fluxo, estágio do molde, material atual, metas, cor, documentos necessários e volume estimado. Esses dados orientam as próximas etapas de dados, amostras e testes.",
-      action: "Enviar dados do projeto",
-      steps: ["Geometria da peça", "Processo e molde", "Documentos e amostras"],
+        "Com base na função da peça, no molde e nas condições de processamento, comparamos os graus aplicáveis e disponibilizamos dados, documentos e amostras para os ensaios de moldagem.",
+      action: "Falar com a equipe de materiais",
+      steps: ["Peça e condições", "Molde e processo", "Dados e amostras"],
     },
   },
   categoryProfiles: {
@@ -111,89 +109,89 @@ const messages = {
       metadata: {
         title: "POM com microesferas de vidro | Taiyi Polymer",
         description:
-          "Avalie POM com microesferas de vidro por contração, perfil térmico, requisitos da peça e documentos disponíveis.",
+          "O PLATFORM® EGB25 contém 25% de microesferas de vidro e atende peças injetadas de POM que exigem dados de contração longitudinal e transversal, comportamento dimensional e propriedades térmicas.",
         imageAlt: "POM natural com microesferas de vidro da Taiyi Polymer",
       },
       hero: {
         eyebrow: "Família de POM modificado",
         title: "POM com microesferas de vidro",
         description:
-          "Avalie o EGB25, com 25% de microesferas de vidro, por fluidez, contração longitudinal e transversal, perfil térmico e requisitos da peça moldada.",
-        overviewLabel: "Caminho de seleção",
+          "Para peças de precisão sensíveis à dimensão, o PLATFORM® EGB25 com 25% de microesferas de vidro oferece um perfil mais equilibrado de contração longitudinal e transversal, com dados de fluxo, propriedades mecânicas e térmicas para validação do projeto.",
+        overviewLabel: "Visão geral do portfólio",
         overview:
-          "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
+          "O EGB25 reúne dados de contração de moldagem, propriedades mecânicas e térmicas e informações de processamento. A disponibilidade de documentos técnicos e amostras é confirmada conforme o projeto.",
       },
       navigation: {
         aria: "Navegação das seções de POM com microesferas de vidro",
         title: "POM com microesferas de vidro",
-        subtitle: "Compare contração, perfil térmico e requisitos da peça",
+        subtitle: "25% de microesferas de vidro para contração equilibrada e propriedades térmicas",
       },
       directory: {
-        kicker: "Seleção de grade",
-        title: "Avalie o grade de POM com microesferas de vidro",
+        kicker: "Dados do grau",
+        title: "EGB25 POM com microesferas de vidro",
         body:
-          "O EGB25 está integralmente revisado neste idioma. Os dados apoiam a triagem; a aprovação final deve ocorrer no molde e na aplicação do cliente.",
+          "A página do EGB25 reúne os valores publicados de contração longitudinal e transversal, além dos dados mecânicos e térmicos do grau.",
         summaries: {
           "egb25-glass-bead-pom":
-            "POM com 25% de microesferas de vidro para avaliar o equilíbrio entre contração longitudinal e transversal.",
+            "POM com 25% de microesferas de vidro e perfil mais equilibrado de contração longitudinal e transversal.",
         },
       },
       faq: {
         kicker: "FAQ",
-        title: "Dúvidas sobre microesferas de vidro",
+        title: "Informações de produto e aplicação",
         items: [
           {
-            question: "Por que comparar a contração longitudinal e transversal?",
+            question: "Para quais peças o EGB25 foi desenvolvido?",
             answer:
-              "As microesferas de vidro podem favorecer um perfil de contração mais equilibrado, mas geometria, ponto de injeção, espessura e processo continuam influenciando a peça real.",
+              "O EGB25 atende peças de precisão que exigem dados de contração longitudinal e transversal, comportamento dimensional e propriedades térmicas em projetos automotivos, elétricos, sanitários e industriais.",
           },
           {
-            question: "O EGB25 pode ser aprovado sem teste no molde?",
+            question: "Quais dados estão disponíveis na página do grau?",
             answer:
-              "Não. Os valores da ficha técnica apoiam a triagem. Dimensões, empenamento, superfície e desempenho devem ser confirmados no molde e no processo previstos.",
+              "A página apresenta contração de moldagem e dados mecânicos, térmicos e de processamento para levar as informações do material à validação da peça e do molde.",
           },
           {
             question: "Quais documentos podem ser solicitados?",
             answer:
-              "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada conforme o grade, o mercado de destino e o projeto.",
+              "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada conforme o grau, o mercado de destino e o projeto.",
           },
         ],
       },
       inquiry: {
-        eyebrow: "Avaliação de projeto EGB25",
-        title: "Avalie o EGB25 para suas metas dimensionais",
+        eyebrow: "Projeto com EGB25",
+        title: "Avalie a contração nas condições reais da peça",
         body:
-          "Envie geometria, espessura, ponto de injeção, estágio do molde, contrações atuais, tolerâncias, cor e documentos necessários. Prepararemos a avaliação do grade e da amostra.",
+          "Com base nas dimensões, tolerâncias, no molde e no material atual, disponibilizamos os dados do EGB25, os documentos técnicos e as amostras para os ensaios de moldagem.",
         steps: ["Geometria e injeção", "Contração e tolerância", "Documentos e amostra"],
       },
     },
     "glass-fiber-reinforced-pom-compound": {
       categoryLabel: "POM reforçado com fibra de vidro",
       metadata: {
-        title: "POM com fibra de vidro: grades | Taiyi Polymer",
+        title: "POM com fibra de vidro: graus | Taiyi Polymer",
         description:
-          "Compare POM com 10% a 30% de fibra de vidro por rigidez, contração, perfil térmico e requisitos do projeto.",
+          "O POM PLATFORM® reforçado cobre 10% a 30% de fibra de vidro para peças injetadas que exigem maior rigidez, resistência e controle dimensional.",
         imageAlt: "POM natural reforçado com fibra de vidro da Taiyi Polymer",
       },
       hero: {
         eyebrow: "Família de POM modificado",
         title: "POM reforçado com fibra de vidro",
         description:
-          "Compare grades de POM com 10% a 30% de fibra de vidro por fluidez, rigidez, contração, perfil térmico e requisitos da peça.",
-        overviewLabel: "Caminho de seleção",
+          "Para engrenagens, suportes e peças estruturais, o POM PLATFORM® reforçado cobre 10% a 30% de fibra de vidro com diferentes equilíbrios de rigidez, resistência, fluxo e impacto.",
+        overviewLabel: "Visão geral do portfólio",
         overview:
-          "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
+          "A linha cobre diferentes níveis de reforço e perfis de desempenho. Dados mecânicos, térmicos e de contração, detalhes do produto, documentos técnicos e amostras estão disponíveis por grau.",
       },
       navigation: {
         aria: "Navegação das seções de POM reforçado com fibra de vidro",
         title: "POM reforçado com fibra de vidro",
-        subtitle: "Compare teor de fibra, rigidez, contração e processamento",
+        subtitle: "10% a 30% de fibra de vidro para peças estruturais e sob carga",
       },
       directory: {
-        kicker: "Seleção de grade",
-        title: "Compare grades de POM reforçado com fibra de vidro",
+        kicker: "Portfólio de graus",
+        title: "Graus de POM reforçado com fibra de vidro",
         body:
-          "O EGH502H tem uma página integralmente revisada neste idioma. Para os demais grades, a próxima etapa leva à avaliação do projeto até que suas páginas técnicas atinjam o mesmo nível de liberação.",
+          "A linha cobre 10% a 30% de fibra de vidro. O catálogo reúne diferentes combinações de rigidez, resistência, impacto, fluidez e contração de moldagem.",
         summaries: {
           "egh202h-glass-fiber-pom": "10% de fibra de vidro para aumento moderado de rigidez.",
           "egh302h-glass-fiber-pom": "15% de fibra de vidro para maior resistência e rigidez.",
@@ -209,60 +207,60 @@ const messages = {
       },
       faq: {
         kicker: "FAQ",
-        title: "Dúvidas sobre reforço com fibra de vidro",
+        title: "Informações de produto e aplicação",
         items: [
           {
-            question: "Como escolher o teor de fibra de vidro?",
+            question: "Para quais peças esses materiais foram desenvolvidos?",
             answer:
-              "Rigidez, carga, espessura, contração, empenamento, comprimento de fluxo e acabamento devem ser avaliados em conjunto. Mais fibra não é automaticamente melhor para toda peça.",
+              "Esses materiais atendem principalmente engrenagens, suportes, carcaças e outras peças de precisão ou estruturais que exigem maior rigidez, resistência e controle dimensional.",
           },
           {
-            question: "Por que a orientação das fibras é importante?",
+            question: "Quais são as diferenças entre os graus?",
             answer:
-              "As fibras se orientam com o fluxo do fundido. Ponto de injeção, direção do fluxo e geometria podem alterar significativamente propriedades, contração e empenamento na peça real.",
+              "A linha cobre 10% a 30% de fibra de vidro e oferece diferentes combinações de rigidez, resistência, impacto, fluidez e contração de moldagem. As páginas de cada grau apresentam os detalhes e dados publicados.",
           },
           {
-            question: "Todos os grades listados já estão integralmente localizados?",
+            question: "Quais informações estão disponíveis para os ensaios?",
             answer:
-              "Não. Atualmente, o EGH502H possui a página no idioma integralmente revisada. Os demais grades passam primeiro por avaliação de dados e amostra vinculada ao projeto.",
+              "Os dados do grau, os documentos técnicos e as amostras disponíveis podem ser complementados por uma análise do molde, do sentido de fluxo e da orientação das fibras.",
           },
         ],
       },
       inquiry: {
-        eyebrow: "Avaliação do projeto",
-        title: "Defina um grade de POM reforçado com fibra de vidro",
+        eyebrow: "Projeto com POM reforçado com fibra de vidro",
+        title: "Compare teor de reforço, rigidez e contração",
         body:
-          "Envie metas de carga e rigidez, geometria, espessura, ponto de injeção, estágio do molde, contração ou empenamento atual, cor e documentos necessários. Prepararemos uma lista de grades e a etapa de amostragem.",
+          "Com base nos requisitos de carga, rigidez e dimensões, além do molde, comparamos os graus aplicáveis e disponibilizamos dados, documentos e amostras para os ensaios de moldagem.",
         steps: ["Carga e rigidez", "Molde e fluxo das fibras", "Documentos e amostra"],
       },
     },
     "high-impact-pom-compound": {
       categoryLabel: "POM de alto impacto",
       metadata: {
-        title: "POM de alto impacto: grades e dados | Taiyi Polymer",
+        title: "POM de alto impacto: graus e dados | Taiyi Polymer",
         description:
-          "Compare grades de POM modificado para impacto por resistência ao impacto, baixa temperatura, alongamento, fluidez e risco do projeto.",
+          "O POM PLATFORM® modificado para impacto atende peças injetadas sensíveis a impacto, solicitadas na montagem ou usadas em baixa temperatura, com diferentes equilíbrios de rigidez, tenacidade e processamento.",
         imageAlt: "POM natural de alto impacto da Taiyi Polymer",
       },
       hero: {
         eyebrow: "Família de POM modificado",
         title: "POM de alto impacto",
         description:
-          "Compare seis grades de POM voltados a maior resistência ao impacto e requisitos de baixa temperatura por fluidez, alongamento, resistência e perfil térmico.",
-        overviewLabel: "Caminho de seleção",
+          "O POM PLATFORM® modificado para impacto amplia a tenacidade de peças funcionais sensíveis a impacto, solicitadas na montagem ou usadas em baixa temperatura, com diferentes combinações de impacto, alongamento, rigidez e processamento.",
+        overviewLabel: "Visão geral do portfólio",
         overview:
-          "Faça uma pré-seleção entre os grades listados e abra a página do grade para consultar valores publicados, notas de aplicação e o status dos documentos.",
+          "A linha cobre diferentes equilíbrios entre rigidez, tenacidade, alongamento e comportamento em baixa temperatura. Os dados publicados, os documentos técnicos e as amostras disponíveis são apresentados por grau.",
       },
       navigation: {
         aria: "Navegação das seções de POM de alto impacto",
         title: "POM de alto impacto",
-        subtitle: "Compare impacto, alongamento, fluidez e requisitos de baixa temperatura",
+        subtitle: "Para impacto, baixa temperatura, alongamento e processamento",
       },
       directory: {
-        kicker: "Seleção de grade",
-        title: "Compare grades de POM de alto impacto",
+        kicker: "Portfólio de graus",
+        title: "Graus de POM de alto impacto",
         body:
-          "EHI402T e EDR180 possuem páginas integralmente revisadas neste idioma. Para os demais grades, a próxima etapa leva à avaliação de dados e amostra vinculada ao projeto.",
+          "O catálogo reúne detalhes de produto, dados principais e diferentes perfis de impacto, alongamento, rigidez, fluidez e propriedades térmicas.",
         summaries: {
           "edr100-high-impact-pom": "POM modificado para impacto em peças funcionais que exigem maior tenacidade.",
           "edr180-high-impact-pom": "POM modificado para impacto com foco em baixa temperatura e alto alongamento na ruptura.",
@@ -274,30 +272,30 @@ const messages = {
       },
       faq: {
         kicker: "FAQ",
-        title: "Dúvidas sobre modificação para impacto",
+        title: "Informações de produto e aplicação",
         items: [
           {
-            question: "Como fazer a triagem de um grade de POM de alto impacto?",
+            question: "Para quais peças o POM modificado para impacto foi desenvolvido?",
             answer:
-              "Condição de carga, entalhes, espessura, temperatura de uso, alongamento desejado, rigidez e comprimento de fluxo devem ser avaliados em conjunto. Um único valor de impacto não basta para aprovação.",
+              "Esses materiais atendem principalmente peças funcionais sensíveis a impacto, solicitadas na montagem ou usadas em baixa temperatura, como presilhas, carcaças e mecanismos nos setores automotivo, elétrico, sanitário e industrial.",
           },
           {
-            question: "Alto impacto significa aprovação automática em baixa temperatura?",
+            question: "Quais perfis de desempenho a linha oferece?",
             answer:
-              "Não. Esses grades são voltados a impacto e baixa temperatura, mas temperatura real, duração da carga, geometria e condição de ensaio precisam ser confirmadas para o projeto.",
+              "A linha vai do equilíbrio entre rigidez e tenacidade a maior resistência ao impacto, alongamento e desempenho em baixa temperatura, mantendo diferentes perfis de fluidez e propriedades térmicas.",
           },
           {
-            question: "Todos os seis grades já estão integralmente localizados?",
+            question: "Quais informações estão disponíveis por grau?",
             answer:
-              "Não. EHI402T e EDR180 possuem atualmente páginas no idioma integralmente revisadas. Os demais grades passam primeiro por avaliação vinculada ao projeto.",
+              "Cada grau conta com dados de produto publicados. A disponibilidade de documentos técnicos e amostras é confirmada conforme o grau e o projeto.",
           },
         ],
       },
       inquiry: {
-        eyebrow: "Avaliação do projeto",
-        title: "Defina um POM de alto impacto",
+        eyebrow: "Projeto com POM modificado para impacto",
+        title: "Compare tenacidade, rigidez e baixa temperatura",
         body:
-          "Envie condição de carga, temperatura de uso, geometria, espessura, material atual, modo de falha, valores-alvo, cor e documentos necessários. Prepararemos uma lista de grades e a etapa de amostragem.",
+          "Com base nos requisitos de impacto, temperatura, carga e geometria, comparamos os graus aplicáveis e disponibilizamos dados, documentos e amostras para os ensaios na peça.",
         steps: ["Carga e temperatura", "Geometria e risco de falha", "Documentos e amostra"],
       },
     },

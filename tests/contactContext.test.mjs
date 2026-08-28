@@ -5,7 +5,9 @@ import {
   createContactHref,
   getContactContextLabel,
   getContactContextMessage,
+  hasContactSearchParams,
   parseContactContext,
+  parseContactContextHash,
 } from "../src/lib/contactContext.ts";
 import de from "../src/i18n/messages/de-core.ts";
 import en from "../src/i18n/messages/en.ts";
@@ -30,7 +32,7 @@ test("builds an encoded contact handoff and preserves useful context", () => {
 
   assert.equal(
     href,
-    "/contact?source=Application+detail&material=Modified+POM+Compounds&application=Automotive+%2F+Gear"
+    "/contact#inquiry?source=Application+detail&material=Modified+POM+Compounds&application=Automotive+%2F+Gear"
   );
 });
 
@@ -44,7 +46,7 @@ test("rebuilds a localized contact handoff from sanitized context", () => {
 
   assert.equal(
     createContactHref(context, "/fr/contact"),
-    "/fr/contact?source=Resource+article&intent=sample",
+    "/fr/contact#inquiry?source=Resource+article&intent=sample",
   );
 });
 
@@ -69,6 +71,14 @@ test("normalizes inbound values and ignores unsupported intents", () => {
 
 test("leaves a direct contact visit without an inferred intent", () => {
   assert.deepEqual(parseContactContext({}), {});
+});
+
+test("detects contact query variants without treating empty values as context", () => {
+  assert.equal(hasContactSearchParams({}), false);
+  assert.equal(hasContactSearchParams({ source: "  " }), false);
+  assert.equal(hasContactSearchParams({ source: ["", "  "] }), false);
+  assert.equal(hasContactSearchParams({ intent: "sample" }), true);
+  assert.equal(hasContactSearchParams({ utm_source: "campaign" }), true);
 });
 
 test("keeps each recognized intent distinct in contact context", () => {
@@ -97,10 +107,8 @@ test("preserves every recognized intent across contact locale paths", () => {
         createContactHref({ intent, source: "intent-contract" }),
         localeSegment,
       );
-      const query = href.slice(href.indexOf("?") + 1);
-
       assert.equal(
-        parseContactContext(Object.fromEntries(new URLSearchParams(query))).intent,
+        parseContactContextHash(new URL(href, "https://example.com").hash).intent,
         intent,
         `${intent} was lost for ${localeSegment ?? "en"}`,
       );
@@ -116,14 +124,12 @@ test("round-trips quote and supply context through a localized contact URL", () 
     },
     "/de/contact",
   );
-  const query = href.slice(href.indexOf("?") + 1);
-
   assert.equal(
     href,
-    "/de/contact?source=About+manufacturing&intent=quote-supply",
+    "/de/contact#inquiry?source=About+manufacturing&intent=quote-supply",
   );
   assert.deepEqual(
-    parseContactContext(Object.fromEntries(new URLSearchParams(query))),
+    parseContactContextHash(new URL(href, "https://example.com").hash),
     {
       intent: "quote-supply",
       source: "About manufacturing",
@@ -164,7 +170,7 @@ test("preserves the TDS request intent in a contact handoff", () => {
 
   assert.equal(
     href,
-    "/contact?source=Product+grade&material=Base+POM+Resin&grade=ETM090NC&intent=tds",
+    "/contact#inquiry?source=Product+grade&material=Base+POM+Resin&grade=ETM090NC&intent=tds",
   );
   assert.equal(
     getContactContextMessage({ intent: "tds" }),
@@ -183,9 +189,8 @@ test("keeps workspace free text out of the contact URL", () => {
     source: "POM grade cross-reference workspace",
   });
 
-  const query = href.slice(href.indexOf("?") + 1);
-  const context = parseContactContext(
-    Object.fromEntries(new URLSearchParams(query)),
+  const context = parseContactContextHash(
+    new URL(href, "https://example.com").hash,
   );
 
   assert.deepEqual(context, {
@@ -209,4 +214,9 @@ test("keeps workspace free text out of the contact URL", () => {
       "Inquiry intent: Grade evaluation",
     ].join("\n"),
   );
+});
+
+test("ignores unrelated URL fragments", () => {
+  assert.deepEqual(parseContactContextHash("#form"), {});
+  assert.deepEqual(parseContactContextHash(""), {});
 });

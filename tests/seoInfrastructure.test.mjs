@@ -204,3 +204,44 @@ test("the legacy conductive compounds URL stays consolidated", () => {
     /href:\s*"\/conductive-antistatic-compounds"/,
   );
 });
+
+test("query-driven utility pages stay canonical-only and non-indexable", () => {
+  const englishContactSource = readFileSync(
+    resolve(projectRoot, "src/app/(en)/contact/page.tsx"),
+    "utf8",
+  );
+  const localizedContactSource = readFileSync(
+    resolve(projectRoot, "src/app/[locale]/contact/page.tsx"),
+    "utf8",
+  );
+  const englishTechnicalDataSource = readFileSync(
+    resolve(projectRoot, "src/app/(en)/technical-data-sheets/page.tsx"),
+    "utf8",
+  );
+  const localizedTechnicalDataSource = readFileSync(
+    resolve(projectRoot, "src/app/[locale]/technical-data-sheets/page.tsx"),
+    "utf8",
+  );
+
+  assert.doesNotMatch(englishContactSource, /export const metadata/);
+
+  for (const source of [englishContactSource, localizedContactSource]) {
+    assert.match(source, /hasContactSearchParams\(await searchParams\)/);
+    assert.match(source, /indexable:[\s\S]*?!hasSearchContext/);
+    assert.match(
+      source,
+      /languageAlternates:\s*hasSearchContext[\s\S]*?\? undefined[\s\S]*?: contactLanguageAlternates/,
+    );
+  }
+
+  for (const source of [
+    englishTechnicalDataSource,
+    localizedTechnicalDataSource,
+  ]) {
+    assert.match(source, /indexable:[\s\S]*?!hasSearchIntent/);
+    assert.match(
+      source,
+      /languageAlternates:\s*hasSearchIntent[\s\S]*?\? undefined/,
+    );
+  }
+});

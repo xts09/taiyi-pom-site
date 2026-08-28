@@ -10,13 +10,20 @@ import { pomSubcategoryLabels, productCategoryOrder } from "@/lib/productCategor
 import {
   clearContactRequirement,
   readContactRequirement,
+  selectionWorkspaceContactSource,
 } from "@/lib/contactRequirementStorage";
 import {
   clampInquiryMessage,
   inquiryClientTimeoutMs,
   inquiryMessageMaxLength,
 } from "@/lib/inquiryLimits";
-import type { ContactIntent } from "@/lib/contactContext";
+import {
+  getContactContextLabel,
+  getContactContextMessage,
+  parseContactContextHash,
+  type ContactContextMessageLabels,
+  type ContactIntent,
+} from "@/lib/contactContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
@@ -40,6 +47,7 @@ const materialOptions = Array.from(
 
 type ContactInquiryFormProps = {
   contextLabel?: string;
+  contextMessageLabels: ContactContextMessageLabels;
   initialApplication?: string;
   initialGrade?: string;
   initialIntent?: ContactIntent;
@@ -84,6 +92,7 @@ const buildInquiryMessage = (
 
 export function ContactInquiryForm({
   contextLabel,
+  contextMessageLabels,
   initialApplication = "",
   initialGrade = "",
   initialIntent,
@@ -108,10 +117,58 @@ export function ContactInquiryForm({
   const [prefilledMessage, setPrefilledMessage] = useState(safeInitialMessage);
   const [source, setSource] = useState(initialSource);
   const [showContext, setShowContext] = useState(Boolean(contextLabel));
+  const [activeContextLabel, setActiveContextLabel] = useState(contextLabel);
+  const [prefilledApplication, setPrefilledApplication] =
+    useState(initialApplication);
+  const [prefilledGrade, setPrefilledGrade] = useState(initialGrade);
+  const [prefilledIntent, setPrefilledIntent] = useState(initialIntent);
+  const [prefilledMaterial, setPrefilledMaterial] = useState(initialMaterial);
   const selectableMaterialOptions =
-    initialMaterial && !materialOptions.includes(initialMaterial)
-      ? [initialMaterial, ...materialOptions]
+    material && !materialOptions.includes(material)
+      ? [material, ...materialOptions]
       : materialOptions;
+
+  useEffect(() => {
+    const hashContext = parseContactContextHash(window.location.hash);
+    if (Object.keys(hashContext).length === 0) return;
+
+    const contextMessage = getContactContextMessage(
+      hashContext,
+      contextMessageLabels,
+    );
+    const storedRequirement =
+      hashContext.source === selectionWorkspaceContactSource
+        ? readContactRequirement()
+        : undefined;
+    const nextPrefilledMessage = clampInquiryMessage(
+      [
+        contextMessage,
+        storedRequirement
+          ? `${requirementLabel}: ${storedRequirement}`
+          : undefined,
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    );
+
+    const frame = window.requestAnimationFrame(() => {
+      setActiveContextLabel(getContactContextLabel(hashContext));
+      setApplication(hashContext.application ?? "");
+      setGrade(hashContext.grade ?? "");
+      setInquiryType(hashContext.intent ?? "");
+      setMaterial(hashContext.material ?? "");
+      setMessage(nextPrefilledMessage);
+      setPrefilledMessage(nextPrefilledMessage);
+      setSource(hashContext.source ?? "");
+      setShowContext(true);
+      setPrefilledApplication(hashContext.application ?? "");
+      setPrefilledGrade(hashContext.grade ?? "");
+      setPrefilledIntent(hashContext.intent);
+      setPrefilledMaterial(hashContext.material ?? "");
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [contextMessageLabels, requirementLabel]);
 
   useEffect(() => {
     if (!loadStoredRequirement) return;
@@ -146,16 +203,23 @@ export function ContactInquiryForm({
   }, []);
 
   const clearContext = () => {
-    if (loadStoredRequirement) clearContactRequirement();
+    if (loadStoredRequirement || source === selectionWorkspaceContactSource) {
+      clearContactRequirement();
+    }
     setShowContext(false);
     setApplication((value) =>
-      value === initialApplication ? "" : value
+      value === prefilledApplication ? "" : value,
     );
-    setMaterial((value) => (value === initialMaterial ? "" : value));
+    setMaterial((value) => (value === prefilledMaterial ? "" : value));
     setMessage((value) => (value === prefilledMessage ? "" : value));
-    setGrade("");
-    setInquiryType("");
+    setGrade((value) => (value === prefilledGrade ? "" : value));
+    setInquiryType((value) => (value === prefilledIntent ? "" : value));
     setSource("");
+    window.history.replaceState(
+      window.history.state,
+      "",
+      window.location.pathname,
+    );
   };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -254,11 +318,11 @@ export function ContactInquiryForm({
       />
       <input name="source" type="hidden" value={source} readOnly />
 
-      {showContext && contextLabel ? (
+      {showContext && activeContextLabel ? (
         <div className={styles.context}>
           <div className={styles.contextCopy}>
             <span className={styles.contextEyebrow}>{messages.contextFrom}</span>
-            <strong>{contextLabel}</strong>
+            <strong>{activeContextLabel}</strong>
             <p>{messages.contextPrefilled}</p>
           </div>
           <button

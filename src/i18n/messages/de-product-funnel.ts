@@ -15,35 +15,33 @@ const messages = {
     metadata: {
       title: "POM-Basisharze für Präzisionsspritzguss | Taiyi Polymer",
       description:
-        "Vergleichen Sie POM-Basisharze von Taiyi Polymer nach Fließfähigkeit, Zugfestigkeit, Wärmeformbeständigkeit und Projektanforderungen.",
+        "PLATFORM® POM-Basisharz reicht von Standard- bis Ultrahochfluss für allgemeine, präzise, dünnwandige und füllkritische Spritzgussteile.",
       imageAlt: "Naturfarbenes POM-Basisharz von Taiyi Polymer",
     },
     hero: {
       eyebrow: "Modifizierte POM-Familie",
       title: "POM-Basisharz",
       description:
-        "Vergleichen Sie Basistypen für Präzisions- und allgemeine Spritzgussteile anhand von Fließfähigkeit, mechanischem Profil, Wärmeformbeständigkeit und Bauteilgeometrie.",
-      overviewLabel: "Auswahlweg",
+        "PLATFORM® POM-Basisharz reicht von Standard- bis zu ultrahoher Fließfähigkeit für allgemeine, präzise, dünnwandige und füllkritische Spritzgussteile. Die Typen setzen unterschiedliche Schwerpunkte bei Verarbeitung, mechanischen Eigenschaften und Maßverhalten.",
+      overviewLabel: "Portfolio im Überblick",
       overview:
-        "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
-      documentsTitle: "Unterlagen nach Typ und Projekt",
-      documentsBody:
-        "TDS, SDS, COA, REACH und RoHS werden nach Typ, Zielmarkt und Projektstand bestätigt.",
+        "Für jeden Typ stehen Produktdetails und zentrale Leistungsdaten bereit. Technische Unterlagen und Muster werden typ- und projektbezogen bestätigt.",
+      documentsTitle: "Technische und regulatorische Unterlagen",
       contactAction: "Anwendung besprechen",
       technicalDataAction: "Technische Daten öffnen",
     },
     navigation: {
       aria: "Abschnittsnavigation POM-Basisharz",
       title: "POM-Basisharz",
-      subtitle: "Fließfähigkeit, Festigkeit und Werkzeuganforderungen vergleichen",
+      subtitle: "Von Standard- bis Ultrahochfluss",
       grades: "Typen",
       faq: "FAQ",
     },
     directory: {
-      kicker: "Typenauswahl",
-      title: "POM-Basistypen vergleichen",
+      kicker: "Werkstoffportfolio",
+      title: "POM-Basistypen",
       body:
-        "Die Kennwerte dienen der technischen Vorauswahl. Für Typen ohne freigegebene Sprachseite führt die Aktion direkt zur projektbezogenen Prüfung.",
+        "Das Portfolio reicht von ausgewogenen Eigenschaften bis zu ultrahoher Fließfähigkeit. Das Verzeichnis bündelt Positionierung, zentrale Daten, Produktdetails und verfügbare Projektunterlagen.",
       countSuffix: "gelistete Typen",
       grade: "Typ",
       keyData: "Kerndaten",
@@ -64,7 +62,7 @@ const messages = {
         "etm1500-base-pom-resin":
           "Sehr hohe Fließfähigkeit für leichteres Füllen komplexer Formteile.",
         "etm1800-base-pom-resin":
-          "Maximale Fließrichtung für besonders fließwegkritische Formteile.",
+          "Typ mit der höchsten Fließfähigkeit für lange Fließwege oder anspruchsvolle Werkzeugfüllung.",
         "etm270-base-pom-resin":
           "Hohe Fließfähigkeit für dünnwandige und präzise Spritzgussteile.",
         "etm450-base-pom-resin":
@@ -72,22 +70,22 @@ const messages = {
         "etm750-base-pom-resin":
           "Sehr hohe Fließfähigkeit für dünnwandige und füllkritische Bauteile.",
         "xt-100-base-pom-resin":
-          "POM mit niedriger Dichte und hoher Schlagzähigkeitsrichtung für Präzisions- und allgemeine Spritzgussteile.",
+          "POM mit niedriger Dichte und hoher Schlagzähigkeit für Präzisions- und allgemeine Spritzgussteile.",
       },
     },
     faq: {
       kicker: "FAQ",
-      title: "Fragen zur Vorauswahl",
+      title: "Produkt- und Anwendungsinformationen",
       items: [
         {
-          question: "Wie wird der passende Fließbereich gewählt?",
+          question: "Für welche Bauteile ist das POM-Basisportfolio vorgesehen?",
           answer:
-            "Wanddicke, Fließweg, Anschnitt, Kavitätenzahl und Werkzeugzustand bestimmen den benötigten Fließbereich. Ein höherer MFI-Wert allein bedeutet nicht automatisch eine bessere Bauteilleistung.",
+            "Das Portfolio unterstützt allgemeine, präzise und dünnwandige Spritzgussteile in Automobil-, Elektro-, Sanitär- und Industrieanwendungen mit unterschiedlichen Anforderungen an Füllverhalten, Mechanik und Maßkontrolle.",
         },
         {
-          question: "Sind die Typen direkt austauschbar?",
+          question: "Welche Fließstufen deckt das Portfolio ab?",
           answer:
-            "Nein. Datenblätter unterstützen die Vorauswahl; Bauteilgeometrie, Werkzeug, Verarbeitung, Maßhaltigkeit und Endanwendung müssen im eigenen Prozess geprüft werden.",
+            "Das Portfolio reicht von Standard- und mittlerer Fließfähigkeit bis zu hoch- und ultrahochfließenden Typen für konventionelle Füllung, Präzisionsformteile, dünne Wände und längere Fließwege.",
         },
         {
           question: "Welche Unterlagen können angefragt werden?",
@@ -97,12 +95,12 @@ const messages = {
       ],
     },
     inquiry: {
-      eyebrow: "Projektprüfung",
-      title: "Eine belastbare Typen-Shortlist vorbereiten",
+      eyebrow: "Projektunterstützung für POM-Basisharze",
+      title: "Von Typendaten zu einem stabilen Formprozess",
       body:
-        "Senden Sie Bauteilfunktion, Wanddicke, Fließweg, Werkzeugstand, aktuellen Werkstoff, Zielwerte, Farbe, Dokumentenbedarf und geschätztes Volumen. Daraus lässt sich die nächste Daten-, Muster- und Prüfphase ableiten.",
-      action: "Projektangaben senden",
-      steps: ["Bauteilgeometrie", "Prozess und Werkzeug", "Unterlagen und Muster"],
+        "Auf Basis von Bauteilfunktion, Werkzeug und Verarbeitung stellen wir Informationen zu POM-Basistypen, technische Daten, Projektunterlagen und Muster für Werkstoffbewertung und Werkzeugversuche bereit.",
+      action: "Werkstoffteam kontaktieren",
+      steps: ["Bauteil und Einsatz", "Werkzeug und Prozess", "Daten und Muster"],
     },
   },
   categoryProfiles: {
@@ -111,46 +109,46 @@ const messages = {
       metadata: {
         title: "Glaskugel-POM: Typen und Daten | Taiyi Polymer",
         description:
-          "Prüfen Sie glaskugelgefülltes POM nach Schwindung, Wärmeprofil, Formteilanforderungen und verfügbaren Unterlagen.",
+          "PLATFORM® EGB25 enthält 25 % Glaskugeln und ist für POM-Spritzgussteile mit Anforderungen an Längs- und Querschwindung, Maßverhalten und thermische Eigenschaften vorgesehen.",
         imageAlt: "Naturfarbenes glaskugelgefülltes POM von Taiyi Polymer",
       },
       hero: {
         eyebrow: "Modifizierte POM-Familie",
         title: "Glaskugelgefülltes POM",
         description:
-          "Bewerten Sie EGB25 mit 25 % Glaskugeln anhand von Fließfähigkeit, Längs- und Querschwindung, Wärmeprofil und den Anforderungen des Formteils.",
-        overviewLabel: "Auswahlweg",
+          "PLATFORM® EGB25 enthält 25 % Glaskugeln und ist für maßkritische Präzisionsformteile mit Anforderungen an Längs- und Querschwindung sowie thermische Eigenschaften vorgesehen. Die Typseite enthält dazu Fließ-, mechanische und thermische Daten.",
+        overviewLabel: "Portfolio im Überblick",
         overview:
-          "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
+          "EGB25 bündelt Formschwindung sowie mechanische, thermische und verarbeitungsbezogene Daten. Technische Unterlagen und Muster werden projektbezogen bestätigt.",
       },
       navigation: {
         aria: "Abschnittsnavigation glaskugelgefülltes POM",
         title: "Glaskugelgefülltes POM",
-        subtitle: "Schwindung, Wärmeprofil und Bauteilanforderungen vergleichen",
+        subtitle: "25 % Glaskugeln für ausgewogene Schwindung und thermische Eigenschaften",
       },
       directory: {
-        kicker: "Typenauswahl",
-        title: "Glaskugelgefüllten POM-Typ prüfen",
+        kicker: "Typendaten",
+        title: "EGB25 glaskugelgefülltes POM",
         body:
-          "EGB25 ist in dieser Sprachversion vollständig geprüft. Kennwerte unterstützen die Vorauswahl; die endgültige Freigabe erfolgt im Kundenwerkzeug und in der realen Anwendung.",
+          "Die EGB25-Typseite zeigt Längs- und Querschwindung sowie mechanische und thermische Daten und bietet Zugänge zu technischen Unterlagen und Mustern.",
         summaries: {
           "egb25-glass-bead-pom":
-            "POM mit 25 % Glaskugeln zur Bewertung ausgewogener Längs- und Querschwindung.",
+            "POM mit 25 % Glaskugeln und ausgewogenerem Längs- und Querschwindungsprofil.",
         },
       },
       faq: {
         kicker: "FAQ",
-        title: "Fragen zur Glaskugel-Füllung",
+        title: "Produkt- und Anwendungsinformationen",
         items: [
           {
-            question: "Warum werden Längs- und Querschwindung gemeinsam geprüft?",
+            question: "Für welche Bauteile ist EGB25 vorgesehen?",
             answer:
-              "Glaskugeln können ein ausgewogeneres Schwindungsprofil unterstützen, doch Geometrie, Anschnitt, Wanddicke und Prozessbedingungen beeinflussen das reale Formteil weiterhin.",
+              "EGB25 ist für Präzisionsformteile mit Anforderungen an Längs- und Querschwindung, Maßverhalten und thermische Eigenschaften in Automobil-, Elektro-, Sanitär- und Industrieprojekten vorgesehen.",
           },
           {
-            question: "Ist EGB25 ohne Werkzeugversuch freigabefähig?",
+            question: "Welche Daten stehen auf der Typseite bereit?",
             answer:
-              "Nein. Datenblattwerte dienen der technischen Vorauswahl. Maße, Verzug, Oberfläche und Bauteilleistung müssen im vorgesehenen Werkzeug und Prozess bestätigt werden.",
+              "Die Seite enthält Formschwindung sowie mechanische, thermische und verarbeitungsbezogene Daten für die Übertragung in Bauteil- und Werkzeugvalidierung.",
           },
           {
             question: "Welche Unterlagen können angefragt werden?",
@@ -160,10 +158,10 @@ const messages = {
         ],
       },
       inquiry: {
-        eyebrow: "EGB25 Projektprüfung",
-        title: "EGB25 für Ihre Maßhaltigkeitsziele prüfen",
+        eyebrow: "EGB25 Projektunterstützung",
+        title: "Schwindungsdaten in die reale Bauteilvalidierung übertragen",
         body:
-          "Senden Sie Bauteilgeometrie, Wanddicke, Anschnitt, Werkzeugstand, aktuelle Schwindungswerte, Toleranzen, Farbe und Dokumentenbedarf. Daraus bereiten wir die Typ- und Musterprüfung vor.",
+          "Auf Basis von Bauteilabmessungen, Toleranzen, Werkzeug und aktuellem Werkstoff stellen wir EGB25-Daten, technische Unterlagen und Muster für Werkzeugversuche und Projektvalidierung bereit.",
         steps: ["Geometrie und Anschnitt", "Schwindung und Toleranz", "Unterlagen und Muster"],
       },
     },
@@ -172,28 +170,28 @@ const messages = {
       metadata: {
         title: "Glasfaser-POM: Typen und Daten | Taiyi Polymer",
         description:
-          "Vergleichen Sie POM mit 10 bis 30 % Glasfaser nach Steifigkeit, Schwindung, Wärmeprofil und Projektanforderungen.",
+          "PLATFORM® glasfaserverstärktes POM deckt 10 bis 30 % Glasfaser für Spritzgussteile mit höheren Anforderungen an Steifigkeit, Festigkeit und Maßkontrolle ab.",
         imageAlt: "Naturfarbenes glasfaserverstärktes POM von Taiyi Polymer",
       },
       hero: {
         eyebrow: "Modifizierte POM-Familie",
         title: "Glasfaserverstärktes POM",
         description:
-          "Vergleichen Sie POM-Typen mit 10 bis 30 % Glasfaser anhand von Fließfähigkeit, Steifigkeit, Schwindung, Wärmeprofil und Anforderungen an das Formteil.",
-        overviewLabel: "Auswahlweg",
+          "PLATFORM® glasfaserverstärktes POM deckt 10 bis 30 % Glasfaser für Zahnräder, Halterungen und weitere Strukturteile mit höheren Anforderungen an Steifigkeit, Festigkeit und Maßkontrolle ab.",
+        overviewLabel: "Portfolio im Überblick",
         overview:
-          "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
+          "Für jeden Typ stehen Produktdetails sowie mechanische, thermische und Formschwindungsdaten bereit. Technische Unterlagen und Muster werden typ- und projektbezogen bestätigt.",
       },
       navigation: {
         aria: "Abschnittsnavigation glasfaserverstärktes POM",
         title: "Glasfaserverstärktes POM",
-        subtitle: "Fasergehalt, Steifigkeit, Schwindung und Verarbeitung vergleichen",
+        subtitle: "10 bis 30 % Glasfaser für präzise Struktur- und Belastungsteile",
       },
       directory: {
-        kicker: "Typenauswahl",
-        title: "Glasfaserverstärkte POM-Typen vergleichen",
+        kicker: "Werkstoffportfolio",
+        title: "Glasfaserverstärkte POM-Typen",
         body:
-          "EGH502H besitzt eine vollständig geprüfte Sprachseite. Bei den übrigen Typen führt der nächste Schritt zur projektbezogenen Prüfung, bis ihre technischen Seiten denselben Freigabestand erreicht haben.",
+          "Das Portfolio deckt 10 bis 30 % Glasfaser ab. Das Verzeichnis bündelt unterschiedliche Kombinationen aus Steifigkeit, Festigkeit, Schlagzähigkeit, Fließfähigkeit und Formschwindung.",
         summaries: {
           "egh202h-glass-fiber-pom": "10 % Glasfaser für eine moderate Steifigkeitssteigerung.",
           "egh302h-glass-fiber-pom": "15 % Glasfaser für höhere Festigkeit und Steifigkeit.",
@@ -209,30 +207,30 @@ const messages = {
       },
       faq: {
         kicker: "FAQ",
-        title: "Fragen zur Glasfaserverstärkung",
+        title: "Produkt- und Anwendungsinformationen",
         items: [
           {
-            question: "Wie wird der passende Glasfasergehalt gewählt?",
+            question: "Für welche Bauteile sind diese Werkstoffe vorgesehen?",
             answer:
-              "Steifigkeit, Last, Wanddicke, Schwindung, Verzug, Fließweg und Oberflächenanforderung müssen gemeinsam bewertet werden. Mehr Glasfaser ist nicht für jedes Formteil automatisch besser.",
+              "Die Werkstoffe sind vor allem für Zahnräder, Halterungen, Gehäuse und weitere Präzisions- oder Strukturteile mit höheren Anforderungen an Steifigkeit, Festigkeit und Maßkontrolle vorgesehen.",
           },
           {
-            question: "Warum ist die Faserorientierung wichtig?",
+            question: "Worin unterscheiden sich die Typen?",
             answer:
-              "Fasern richten sich mit der Schmelzeströmung aus. Anschnitt, Fließrichtung und Geometrie können deshalb Kennwerte, Schwindung und Verzug im realen Formteil deutlich verändern.",
+              "Das Portfolio reicht von 10 bis 30 % Glasfaser und bietet unterschiedliche Kombinationen aus Steifigkeit, Festigkeit, Schlagzähigkeit, Fließfähigkeit und Formschwindung. Details und veröffentlichte Daten stehen auf den Typenseiten.",
           },
           {
-            question: "Sind alle gelisteten Typen bereits vollständig lokalisiert?",
+            question: "Welche Projektunterstützung ist verfügbar?",
             answer:
-              "Nein. EGH502H besitzt derzeit die vollständig geprüfte Sprachseite. Andere Typen werden zunächst über eine projektbezogene Daten- und Musterprüfung geführt.",
+              "Typendaten, technische Unterlagen und Muster können angefragt werden. Werkzeug, Faserorientierung und Bauteilversuche werden anhand der Projektbedingungen abgestimmt.",
           },
         ],
       },
       inquiry: {
-        eyebrow: "Projektprüfung",
-        title: "Einen glasfaserverstärkten POM-Typ eingrenzen",
+        eyebrow: "Projektunterstützung für glasfaserverstärktes POM",
+        title: "Eine Steifigkeitsbasis für Struktur- und Präzisionsteile",
         body:
-          "Senden Sie Last- und Steifigkeitsziel, Bauteilgeometrie, Wanddicke, Anschnitt, Werkzeugstand, aktuelle Schwindung oder Verzug, Farbe und Dokumentenbedarf. Daraus bereiten wir eine Typen-Shortlist und den Musterweg vor.",
+          "Last, Steifigkeit, Abmessungen und Werkzeuganforderungen bilden die Grundlage für den Typenvergleich. Technische Daten und Muster stehen für Werkzeug- und Bauteilversuche bereit.",
         steps: ["Last und Steifigkeit", "Werkzeug und Faserfluss", "Unterlagen und Muster"],
       },
     },
@@ -241,28 +239,28 @@ const messages = {
       metadata: {
         title: "Schlagzähes POM: Typen und Daten | Taiyi Polymer",
         description:
-          "Vergleichen Sie schlagzähmodifizierte POM-Typen nach Schlagzähigkeit, Tieftemperaturverhalten, Dehnung, Fließfähigkeit und Projektrisiko.",
+          "PLATFORM® schlagzähmodifiziertes POM ist für schlagempfindliche, montagebelastete und bei tiefen Temperaturen eingesetzte Spritzgussteile mit unterschiedlichen Steifigkeits-, Zähigkeits- und Verarbeitungsprofilen ausgelegt.",
         imageAlt: "Naturfarbenes schlagzähmodifiziertes POM von Taiyi Polymer",
       },
       hero: {
         eyebrow: "Modifizierte POM-Familie",
         title: "Schlagzähmodifiziertes POM",
         description:
-          "Vergleichen Sie sechs POM-Typen für erhöhte Schlagzähigkeit und Tieftemperaturanforderungen anhand von Fließfähigkeit, Dehnung, Festigkeit und Wärmeprofil.",
-        overviewLabel: "Auswahlweg",
+          "PLATFORM® schlagzähmodifiziertes POM ist für schlagempfindliche, montagebelastete oder bei tiefen Temperaturen eingesetzte Funktionsteile ausgelegt. Die Typen setzen unterschiedliche Schwerpunkte bei Schlagzähigkeit, Dehnung, Steifigkeit und Verarbeitung.",
+        overviewLabel: "Portfolio im Überblick",
         overview:
-          "Treffen Sie anhand der gelisteten Typen eine Vorauswahl und öffnen Sie anschließend eine Typenseite, um veröffentlichte Kennwerte, Anwendungshinweise und den Dokumentenstatus zu prüfen.",
+          "Das Portfolio reicht von einem ausgewogenen Verhältnis aus Steifigkeit und Zähigkeit bis zu höherer Dehnung und besserem Tieftemperaturverhalten. Produktdetails und zentrale Daten sind verfügbar; Unterlagen und Muster werden projektbezogen bestätigt.",
       },
       navigation: {
         aria: "Abschnittsnavigation schlagzähmodifiziertes POM",
         title: "Schlagzähmodifiziertes POM",
-        subtitle: "Schlagzähigkeit, Dehnung, Fließfähigkeit und Tieftemperaturanforderungen vergleichen",
+        subtitle: "Für Schlagzähigkeit, Tieftemperatur, Dehnung und Verarbeitung",
       },
       directory: {
-        kicker: "Typenauswahl",
-        title: "Schlagzähmodifizierte POM-Typen vergleichen",
+        kicker: "Werkstoffportfolio",
+        title: "Schlagzähmodifizierte POM-Typen",
         body:
-          "EHI402T und EDR180 besitzen vollständig geprüfte Sprachseiten. Bei den übrigen Typen führt der nächste Schritt zur projektbezogenen Daten- und Musterprüfung.",
+          "Das Verzeichnis bündelt Produktdetails, zentrale Daten und unterschiedliche Profile bei Schlagzähigkeit, Dehnung, Steifigkeit, Fließfähigkeit und thermischen Eigenschaften.",
         summaries: {
           "edr100-high-impact-pom": "Schlagzähes POM für funktionale Formteile mit verbesserter Zähigkeit.",
           "edr180-high-impact-pom": "Schlagzähes POM mit Tieftemperaturausrichtung und hoher Bruchdehnung.",
@@ -274,30 +272,30 @@ const messages = {
       },
       faq: {
         kicker: "FAQ",
-        title: "Fragen zur Schlagzähmodifizierung",
+        title: "Produkt- und Anwendungsinformationen",
         items: [
           {
-            question: "Wie wird ein schlagzäher POM-Typ vorausgewählt?",
+            question: "Für welche Bauteile ist schlagzähmodifiziertes POM vorgesehen?",
             answer:
-              "Lastfall, Kerben, Wanddicke, Einsatztemperatur, gewünschte Dehnung, Steifigkeit und Fließweg müssen gemeinsam bewertet werden. Ein einzelner Schlagwert reicht nicht für die Freigabe.",
+              "Die Werkstoffe sind vor allem für schlagempfindliche, montagebelastete oder bei tiefen Temperaturen eingesetzte Funktionsteile wie Clips, Gehäuse und Mechanismusteile in Automobil-, Elektro-, Sanitär- und Industrieanwendungen vorgesehen.",
           },
           {
-            question: "Bedeutet schlagzäh automatisch tieftemperaturgeeignet?",
+            question: "Welche Leistungsprofile bietet das Portfolio?",
             answer:
-              "Nein. Die Typen sind auf Schlagzähigkeit und Tieftemperaturverhalten ausgerichtet, doch reale Temperatur, Lastdauer, Geometrie und Prüfbedingung müssen projektbezogen bestätigt werden.",
+              "Das Portfolio reicht von ausgewogener Steifigkeit und Zähigkeit bis zu höherer Schlagzähigkeit, Dehnung und Tieftemperaturleistung und behält unterschiedliche Fließ- und thermische Profile bei.",
           },
           {
-            question: "Sind alle sechs Typen bereits vollständig lokalisiert?",
+            question: "Welche Projektunterstützung ist verfügbar?",
             answer:
-              "Nein. EHI402T und EDR180 besitzen derzeit vollständig geprüfte Sprachseiten. Andere Typen werden zunächst über die projektbezogene Prüfung geführt.",
+              "Für jeden Typ stehen Produktdetails und zentrale Daten bereit. Technische Unterlagen und Muster können projektbezogen angefragt werden.",
           },
         ],
       },
       inquiry: {
-        eyebrow: "Projektprüfung",
-        title: "Einen schlagzähen POM-Typ eingrenzen",
+        eyebrow: "Projektunterstützung für schlagzähmodifiziertes POM",
+        title: "Mehr Zähigkeitsreserve für belastete Bauteile",
         body:
-          "Senden Sie Lastfall, Einsatztemperatur, Bauteilgeometrie, Wanddicke, aktuellen Werkstoff, Bruchbild, Zielwerte, Farbe und Dokumentenbedarf. Daraus bereiten wir eine Typen-Shortlist und den Musterweg vor.",
+          "Schlagbeanspruchung, Temperatur, Last und Geometrie bilden die Grundlage für den Typenvergleich. Technische Daten und Muster stehen für Werkstoffbewertung und Bauteilversuche bereit.",
         steps: ["Last und Temperatur", "Geometrie und Bruchrisiko", "Unterlagen und Muster"],
       },
     },

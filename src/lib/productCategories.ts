@@ -4,9 +4,14 @@ type ProductCategoryData = {
   category: string;
   label: string;
   description: string;
+  overview?: string;
   navSubtitle: string;
   applications: string[];
   applicationSlugs: string[];
+  faqs?: Array<{
+    question: string;
+    answer: string;
+  }>;
   selectionLinks?: Array<{
     label: string;
     href: string;
@@ -74,9 +79,11 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Wear-Resistant Low-Friction POM Compound",
     label: "Wear-Resistant & Low-Friction POM",
     description:
-      "Browse Taiyi Polymer wear-resistant and low-friction POM directions for sliding parts, gears, bushings, rollers, motion components, grade data, and document support.",
+      "PLATFORM® wear-resistant and low-friction POM uses PTFE, MoS2, aramid fiber, and other modification systems for gears, bushings, rollers, guide rails, and other moving parts. The range offers different balances of friction, wear, mechanical strength, and processing performance.",
+    overview:
+      "The range covers low-friction, wear-resistant, reinforced, and hybrid-modified formulations. Published data, technical documents, and samples are confirmed by grade and project.",
     navSubtitle:
-      "Shortlist wear-resistant and low-friction POM directions by movement, friction, MFI, shrinkage, and application fit.",
+      "Wear-resistant and low-friction POM for gears, bushings, rollers, and guide rails.",
     applications: [
       "Gears and moving mechanical parts",
       "Bushings, rollers, guide rails, and sliding parts",
@@ -89,6 +96,23 @@ export const productCategoryData: ProductCategoryData[] = [
       "water-control",
     ],
     sourceCategories: wearAndLowFrictionSourceCategories,
+    faqs: [
+      {
+        question: "What parts are these materials designed for?",
+        answer:
+          "They are primarily designed for gears, bushings, rollers, guide rails, and other continuously moving or sliding molded parts across automotive, electrical, sanitary, conveying, and industrial equipment applications.",
+      },
+      {
+        question: "What modification systems does the range cover?",
+        answer:
+          "The range includes PTFE-filled, MoS2-filled, aramid-fiber-reinforced, and other wear-modified systems, offering different balances of low friction, wear resistance, mechanical strength, and processing performance.",
+      },
+      {
+        question: "What information is available for material evaluation?",
+        answer:
+          "Published grade data, technical documents, and samples can be reviewed against the mating material, load, speed, temperature, and lubrication conditions of the part.",
+      },
+    ],
     selectionLinks: [
       {
         label: "Review wear and low-friction POM solutions",
@@ -100,9 +124,11 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "High-Impact POM Compound",
     label: "High-Impact POM",
     description:
-      "Browse Taiyi Polymer high-impact POM grades with MFI, color, impact data, low-temperature performance, applications, and document support.",
+      "PLATFORM® high-impact POM covers molded parts exposed to impact, assembly loads, or low temperatures, with different balances of impact strength, elongation, stiffness, and processability.",
+    overview:
+      "The range extends from balanced stiffness and toughness to higher elongation and low-temperature performance. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "Review impact-modified POM grades by toughness need, molding fit, and application risk.",
+      "High-impact POM for functional parts, assembly loads, and low-temperature use.",
     applications: [
       "Low-temperature molded parts",
       "Automotive, electrical, sanitary, and industrial components",
@@ -113,28 +139,66 @@ export const productCategoryData: ProductCategoryData[] = [
       "outdoor-equipment",
       "washing-machine-components",
     ],
+    faqs: [
+      {
+        question: "What parts are high-impact POM grades designed for?",
+        answer:
+          "They are primarily designed for functional molded parts exposed to impact, assembly loads, or lower operating temperatures across automotive, electrical, sanitary, and industrial equipment applications.",
+      },
+      {
+        question: "What performance profiles does the range cover?",
+        answer:
+          "The range extends from balanced stiffness and toughness to higher impact, elongation, and low-temperature performance, while retaining different flow and thermal profiles.",
+      },
+      {
+        question: "What information is available for each grade?",
+        answer:
+          "Each grade has a detailed page with published property data. Technical documents and sample availability are confirmed by grade and project.",
+      },
+    ],
   },
   {
     category: "UV-Resistant POM Compound",
-    label: "UV-Resistant POM",
+    label: "UV-Stabilized POM",
     description:
-      "Browse Taiyi Polymer UV-resistant POM grades for light-exposed molded parts with color options, property data, applications, and document support.",
+      "PLATFORM® UV-stabilized POM covers molded parts exposed to sunlight or other UV sources, with different flow, impact, color, and surface-appearance profiles.",
+    overview:
+      "The range combines UV stabilization with different mechanical, flow, color, and appearance profiles. Published data, technical documents, and samples are confirmed by grade and project.",
     navSubtitle:
-      "Compare UV-resistant POM options by color, exposure condition, and document requirements.",
+      "POM for outdoor and light-exposed molded parts.",
     applications: [
       "Outdoor or light-exposed molded parts",
       "Automotive and consumer components exposed to UV conditions",
       "Applications requiring more stable appearance retention",
     ],
     applicationSlugs: ["outdoor-equipment", "automotive"],
+    faqs: [
+      {
+        question: "What parts are UV-resistant POM grades designed for?",
+        answer:
+          "They are primarily designed for outdoor equipment, automotive components, and other molded parts exposed to light, with different priorities for color, appearance, impact, and flow.",
+      },
+      {
+        question: "How do the grades differ?",
+        answer:
+          "The range includes medium- and higher-flow options, high-impact profiles, matte appearance, and UV- or aging-oriented grades, each with its own published data.",
+      },
+      {
+        question: "What should be defined before testing?",
+        answer:
+          "The light source, exposure time, color requirement, and acceptance method should be defined before comparing published grade data or testing representative parts.",
+      },
+    ],
   },
   {
     category: "Glass Fiber Reinforced POM Compound",
     label: "Glass Fiber Reinforced POM",
     description:
-      "Compare Taiyi Polymer 10% to 30% glass fiber reinforced POM grades for stiffness and dimensional stability. Beyond POM, the current portfolio includes PA6, PA66, and PPA glass fiber compounds with up to 50% glass fiber.",
+      "PLATFORM® glass-fiber-reinforced POM spans 10% to 30% glass fiber for gears, brackets, housings, and other precision or structural parts. The range offers different strength, stiffness, flow, impact, and shrinkage profiles.",
+    overview:
+      "The range covers multiple reinforcement levels with published mechanical, thermal, and molding-shrinkage data. Technical documents and samples are confirmed by grade and project.",
     navSubtitle:
-      "Compare 10% to 30% glass fiber POM grades, then discuss PA6, PA66, and PPA directions with up to 50% glass fiber when heat, moisture, or stiffness targets move beyond POM.",
+      "POM with 10% to 30% glass fiber for precision and structural parts.",
     applications: [
       "Structural molded parts requiring higher stiffness",
       "Precision parts with dimensional stability requirements",
@@ -145,6 +209,23 @@ export const productCategoryData: ProductCategoryData[] = [
       "motion-components",
       "water-control",
       "textile-machinery",
+    ],
+    faqs: [
+      {
+        question: "What parts are glass-fiber-reinforced POM grades designed for?",
+        answer:
+          "They are primarily designed for gears, brackets, housings, and other precision or structural molded parts that place greater emphasis on stiffness, strength, and dimensional control.",
+      },
+      {
+        question: "How do the grades differ?",
+        answer:
+          "The range spans 10% to 30% glass fiber and offers different balances of stiffness, strength, impact, flow, and molding shrinkage, supported by individual grade data.",
+      },
+      {
+        question: "What information is available for molding trials?",
+        answer:
+          "Published grade data, technical documents, and samples can be reviewed together with tooling, flow direction, fiber orientation, and dimensional requirements.",
+      },
     ],
     selectionLinks: [
       {
@@ -157,13 +238,15 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Glass Bead Filled POM Compound",
     label: "Glass Bead Filled POM",
     description:
-      "Review Taiyi Polymer glass-bead-filled POM grades with MFI, shrinkage, thermal data, application fit, and document support.",
+      "PLATFORM® EGB25 contains 25% glass beads for dimension-sensitive POM parts. Its grade data include longitudinal and transverse molding shrinkage together with mechanical and thermal properties.",
+    overview:
+      "EGB25 brings molding-shrinkage, mechanical, thermal, and processing data together on one product page. Technical documents and samples are confirmed by project.",
     navSubtitle:
-      "Screen glass-bead-filled POM by shrinkage, thermal profile, molding conditions, and document requirements.",
+      "25% glass-bead-filled POM for dimension-sensitive molded parts.",
     applications: [
-      "Injection-molded parts requiring shrinkage review",
+      "Dimension-sensitive injection-molded parts",
       "Automotive, electrical, sanitary, and industrial components",
-      "Parts requiring project-specific dimensional and thermal evaluation",
+      "Parts requiring longitudinal and transverse shrinkage data",
     ],
     applicationSlugs: [
       "automotive",
@@ -171,20 +254,56 @@ export const productCategoryData: ProductCategoryData[] = [
       "water-control",
       "washing-machine-components",
     ],
+    faqs: [
+      {
+        question: "What parts is EGB25 designed for?",
+        answer:
+          "EGB25 is designed for precision molded parts that place greater emphasis on longitudinal and transverse molding shrinkage, dimensional performance, and thermal behavior.",
+      },
+      {
+        question: "What data is available for EGB25?",
+        answer:
+          "The grade page provides longitudinal and transverse molding shrinkage together with mechanical, thermal, and processing-related data for part and tool evaluation.",
+      },
+      {
+        question: "What information is available for molding trials?",
+        answer:
+          "Published grade data, technical documents, and samples can be reviewed against the part dimensions, tolerances, tooling, and molding conditions.",
+      },
+    ],
   },
   {
     category: "Carbon Fiber Reinforced POM Compound",
     label: "Carbon Fiber Reinforced POM Compound",
     description:
-      "Browse Taiyi Polymer carbon fiber reinforced POM compound grades for high stiffness, controlled conductivity, dimensional stability, and document support.",
+      "Black PLATFORM® carbon-fiber-reinforced POM spans 20% to 40% carbon fiber for precision parts that require higher stiffness, dimensional control, or specified electrical resistivity.",
+    overview:
+      "The range provides different stiffness, shrinkage, dimensional, and electrical profiles. Published mechanical, thermal, molding-shrinkage, and resistivity data are available by grade.",
     navSubtitle:
-      "Review carbon fiber reinforced POM compound grades by stiffness, conductivity target, dimensional control, and documents.",
+      "Black POM with 20% to 40% carbon fiber for structural and electrical functions.",
     applications: [
       "High-stiffness precision parts",
       "Components requiring reinforcement and controlled conductivity",
       "Mechanical parts where dimensional stability is important",
     ],
     applicationSlugs: ["electronics", "motion-components"],
+    faqs: [
+      {
+        question: "What parts are carbon-fiber-reinforced POM grades designed for?",
+        answer:
+          "They are primarily designed for precision structural and functional parts that require higher stiffness, dimensional control, or specified electrical resistivity.",
+      },
+      {
+        question: "How do the grades differ?",
+        answer:
+          "The range spans 20%, 30%, and 40% carbon fiber, creating different profiles for stiffness, molding shrinkage, dimensional behavior, and electrical resistivity.",
+      },
+      {
+        question: "What information is needed to compare the grades?",
+        answer:
+          "The comparison should account for fiber orientation, measurement method, tooling, and the required properties of the molded part. Technical documents and samples are confirmed by grade and project.",
+      },
+    ],
     selectionLinks: [
       {
         label: "PA6 carbon-fiber option: EAC115C",
@@ -196,15 +315,34 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Conductive / Antistatic POM Compound",
     label: "Conductive / Antistatic POM",
     description:
-      "Browse Taiyi Polymer conductive and antistatic POM grades with resistivity data, electrical application fit, color, and document support.",
+      "Black PLATFORM® POM provides different surface- and volume-resistivity ranges for conductive or antistatic electrical, conveying, and automation components.",
+    overview:
+      "Published surface- and volume-resistivity data are presented together with mechanical and thermal properties. Technical documents and samples are confirmed by grade and project.",
     navSubtitle:
-      "Review conductive and antistatic options by electrical target, part geometry, and validation needs.",
+      "Black POM for controlled resistivity and charge management.",
     applications: [
       "Electronic and electrical molded components",
       "Parts requiring antistatic or conductive performance",
       "Functional components where charge control is required",
     ],
     applicationSlugs: ["electronics", "conveyor-automation"],
+    faqs: [
+      {
+        question: "What parts are these materials designed for?",
+        answer:
+          "They are primarily designed for electrical, electronic, conveying, and automation components that require controlled resistivity or charge management.",
+      },
+      {
+        question: "What data is available by grade?",
+        answer:
+          "The grade pages provide surface- and volume-resistivity data together with mechanical and thermal properties and their published test context.",
+      },
+      {
+        question: "What should be defined before comparing resistivity data?",
+        answer:
+          "The test method, measurement location, operating environment, and required resistivity range should be defined before comparing data or testing molded parts.",
+      },
+    ],
     selectionLinks: [
       {
         label: "Conductive and antistatic POM selection overview",
@@ -220,18 +358,37 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Base POM Resin",
     label: "Base POM Resin",
     description:
-      "Browse selected Taiyi Polymer base POM resin grades with MFI, physical property data, processing information, and document support.",
+      "PLATFORM® base POM spans standard, medium, high, and ultra-high flow for general molded parts, precision components, thin walls, and filling-sensitive geometries.",
+    overview:
+      "The range brings together published mechanical, thermal, and processing data for automotive, electrical, sanitary, and industrial applications. Technical documents and samples are confirmed by grade and project.",
     navSubtitle:
-      "Compare base POM resin options for reference, property data, documents, and project review.",
+      "Base POM spanning standard to ultra-high flow.",
     applications: [
       "General injection molded POM parts",
-      "Customers sourcing selected POM resin with document support",
-      "Projects requiring baseline POM resin comparison",
+      "Precision and thin-wall molded components",
+      "Filling-sensitive parts with longer flow paths",
     ],
     applicationSlugs: [
       "washing-machine-components",
       "motion-components",
       "water-control",
+    ],
+    faqs: [
+      {
+        question: "What parts are base POM resin grades designed for?",
+        answer:
+          "The range serves general, precision, thin-wall, and filling-sensitive injection-molded parts across automotive, electrical, sanitary, and industrial applications.",
+      },
+      {
+        question: "What flow levels does the range cover?",
+        answer:
+          "The portfolio extends from standard and medium flow to high- and ultra-high-flow grades for different molding and part-performance priorities.",
+      },
+      {
+        question: "What information is available for each grade?",
+        answer:
+          "Each grade has a detailed page with published property data. Technical documents and sample availability are confirmed by grade and project.",
+      },
     ],
     selectionLinks: [
       {
@@ -244,57 +401,133 @@ export const productCategoryData: ProductCategoryData[] = [
     category: ultraHighFlowPomCategory,
     label: "Ultra-High Flow POM",
     description:
-      "Browse Taiyi Polymer POM grades with MFI of 100 g/10 min or higher for flow-sensitive injection molding and thin-wall molded part review.",
+      "PLATFORM® ETM1500 and ETM1800 extend base POM into the ultra-high-flow range for thin-wall parts, long flow paths, and filling-sensitive precision geometries.",
+    overview:
+      "Published mechanical, thermal, and molding-shrinkage data are available by grade. Technical documents and samples are confirmed by project.",
     navSubtitle:
-      "Compare ultra-high flow POM grades by MFI, processing fit, shrinkage behavior, and application requirements.",
+      "Ultra-high-flow POM for thin walls, long flow paths, and complex filling.",
     applications: [
       "Thin-wall injection molded POM parts",
       "Flow-sensitive molds with longer flow paths",
-      "Projects requiring easier filling and stable processability",
+      "Complex precision parts with demanding filling paths",
     ],
     applicationSlugs: ["electronics", "automotive"],
+    faqs: [
+      {
+        question: "What parts are ultra-high-flow POM grades designed for?",
+        answer:
+          "They are primarily designed for thin-wall, long-flow-path, complex, or filling-sensitive precision molded parts in electrical, electronic, and automotive applications.",
+      },
+      {
+        question: "How do ETM1500 and ETM1800 differ?",
+        answer:
+          "Their flow profiles differ, and each page also presents mechanical, thermal, and molding-shrinkage data for a broader part-performance comparison.",
+      },
+      {
+        question: "What information is needed for a molding comparison?",
+        answer:
+          "Wall thickness, flow length, gate design, equipment, and molding conditions should be reviewed together with the published grade data and available samples.",
+      },
+    ],
   },
   {
     category: "PA6 Compound",
     label: "PA6 Compounds",
     description:
-      "Compare PA6 compounds by application and grade data. Review reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled options.",
+      "PLATFORM® PA6 compounds cover fiber reinforcement, impact modification, flame retardancy, wear, mineral filling, and processing modifications for automotive, electrical, and industrial parts.",
+    overview:
+      "The range provides different balances of toughness, strength, wear performance, and processability. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "Compare PA6 compound options by reinforcement, toughness, flame rating, wear, heat, and application fit.",
+      "PA6 across reinforcement, toughness, flame retardancy, wear, and processing modifications.",
     applications: [
       "Electrical housings, connectors, and industrial molded parts",
-      "Reinforced or impact-modified nylon components",
-      "Projects requiring practical PA6 compound data before material review",
+      "Reinforced, impact-modified, or wear-oriented nylon components",
+      "Automotive and motion components with varied strength and processing priorities",
     ],
     applicationSlugs: ["automotive", "electronics", "motion-components"],
+    faqs: [
+      {
+        question: "What parts are PLATFORM® PA6 compounds designed for?",
+        answer:
+          "The portfolio supports automotive, electrical, industrial, and motion components that require different balances of toughness, strength, wear performance, and processability.",
+      },
+      {
+        question: "What modification systems does the range cover?",
+        answer:
+          "The range includes glass- and carbon-fiber reinforcement, impact modification, flame retardancy, wear-oriented formulations, mineral filling, and processing-focused options.",
+      },
+      {
+        question: "What information is available for grade comparison?",
+        answer:
+          "Published grade data, technical documents, and samples can be compared against the part requirements, tooling, and molding conditions.",
+      },
+    ],
   },
   {
     category: "PA66 Compound",
     label: "PA66 Compounds",
     description:
-      "Compare PA66 compounds by application and grade data. Review reinforced, flame-retardant, wear-related, and dimensionally stable options.",
+      "PLATFORM® PA66 compounds cover reinforcement, flame retardancy, wear, impact modification, mineral filling, and other functional modifications for automotive, electrical, and industrial parts.",
+    overview:
+      "The range provides different balances of stiffness, heat performance, dimensional control, wear, and processability. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "Compare PA66 compound options by reinforcement, flame rating, heat, wear behavior, and application fit.",
+      "PA66 across reinforcement, flame retardancy, wear, impact, and dimensional control.",
     applications: [
       "Automotive, electrical, and industrial molded components",
       "Glass fiber reinforced or flame-retardant nylon parts",
-      "Projects requiring PA66 stiffness, heat performance, or wear review",
+      "Precision and motion components with stiffness, heat, or wear priorities",
     ],
     applicationSlugs: ["automotive", "electronics", "motion-components"],
+    faqs: [
+      {
+        question: "What parts are PLATFORM® PA66 compounds designed for?",
+        answer:
+          "The portfolio supports automotive, electrical, industrial, and motion components that place greater emphasis on stiffness, heat performance, dimensional control, or wear behavior.",
+      },
+      {
+        question: "What modification systems does the range cover?",
+        answer:
+          "The range includes fiber reinforcement, flame retardancy, wear-oriented formulations, impact modification, mineral filling, and other functional options.",
+      },
+      {
+        question: "What information is available for grade comparison?",
+        answer:
+          "Published grade data, technical documents, and samples can be compared against the part requirements, tooling, and molding conditions.",
+      },
+    ],
   },
   {
     category: "PPA Compound",
     label: "PPA Compounds",
     description:
-      "Browse PPA compound options, listed grades, application fit, and technical documents for higher-temperature molded parts that need stiffness, dimensional stability, and reinforced performance.",
+      "PLATFORM® PPA compounds cover glass-fiber reinforcement, glass-fiber and mineral reinforcement, and wear-resistant or low-friction modifications for precision parts exposed to higher temperatures and thermal cycling.",
+    overview:
+      "The range provides different balances of stiffness, dimensional control, wear, and sliding performance. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "Compare PPA compound options by temperature, reinforcement, dimensional target, and application risk.",
+      "PPA for higher-temperature reinforcement, dimensional control, and wear performance.",
     applications: [
       "High-temperature automotive and electrical parts",
       "Reinforced precision molded components",
-      "Projects requiring stiffness and dimensional stability beyond standard nylon",
+      "Motion components requiring stiffness, dimensional control, or wear performance",
     ],
     applicationSlugs: ["automotive", "electronics"],
+    faqs: [
+      {
+        question: "What parts are PLATFORM® PPA compounds designed for?",
+        answer:
+          "The portfolio supports automotive, electrical, precision, and motion components exposed to higher temperatures, thermal cycling, demanding dimensions, or sliding contact.",
+      },
+      {
+        question: "What modification systems does the range cover?",
+        answer:
+          "The range includes glass-fiber reinforcement, glass-fiber/mineral reinforcement, and wear/low-friction formulations for different structural and motion-part priorities.",
+      },
+      {
+        question: "What information is available for grade comparison?",
+        answer:
+          "Published grade data, technical documents, and samples can be compared against the operating temperature, part dimensions, tooling, and molding conditions.",
+      },
+    ],
   },
 ];
 
@@ -428,6 +661,10 @@ export const getCategoryDescription = (category: string) => {
   );
 };
 
+export const getCategoryOverview = (category: string) =>
+  getCategoryData(category)?.overview ??
+  "Listed grades, published property data, application context, and document support are brought together in one place.";
+
 export const getCategoryNavSubtitle = (category: string) => {
   if (category === pomCategoryOverview.category) {
     return pomCategoryOverview.navSubtitle;
@@ -464,6 +701,12 @@ export const getCategorySelectionLinks = (category: string) => {
 };
 
 export const getCategoryFaqs = (category: string) => {
+  const categoryFaqs = getCategoryData(category)?.faqs;
+
+  if (categoryFaqs) {
+    return categoryFaqs;
+  }
+
   const label =
     category === pomCategoryOverview.category
       ? "POM materials"

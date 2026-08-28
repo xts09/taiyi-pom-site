@@ -3,6 +3,7 @@ import { applicationNarrativeLocaleOverrides } from "./applicationNarrativeLocal
 import { aboutLocaleOverrides } from "./aboutLocaleOverrides.ts";
 import { automotiveExpandedLocaleOverrides } from "./automotiveExpandedLocaleOverrides.ts";
 import { componentDetailLocaleOverrides } from "./componentDetailLocaleOverrides.ts";
+import { categoryLocaleOverrides } from "./categoryLocaleOverrides.ts";
 
 type TranslationOverrides = Readonly<Record<string, string>>;
 
@@ -10,6 +11,7 @@ export const expandedLocaleOverrides: Partial<
   Record<LocalizedUrlSegment, TranslationOverrides>
 > = {
   de: {
+    ...categoryLocaleOverrides.de,
     ...aboutLocaleOverrides.de,
     ...automotiveExpandedLocaleOverrides.de,
     ...applicationNarrativeLocaleOverrides.de,
@@ -117,6 +119,7 @@ export const expandedLocaleOverrides: Partial<
       "Deutscher materialübergreifender Leitfähigkeits- und Antistatik-Katalog",
   },
   fr: {
+    ...categoryLocaleOverrides.fr,
     ...aboutLocaleOverrides.fr,
     ...automotiveExpandedLocaleOverrides.fr,
     ...applicationNarrativeLocaleOverrides.fr,
@@ -239,6 +242,7 @@ export const expandedLocaleOverrides: Partial<
       "Catalogue français multimatériaux conducteurs et antistatiques",
   },
   "pt-br": {
+    ...categoryLocaleOverrides["pt-br"],
     ...aboutLocaleOverrides["pt-br"],
     ...automotiveExpandedLocaleOverrides["pt-br"],
     ...applicationNarrativeLocaleOverrides["pt-br"],

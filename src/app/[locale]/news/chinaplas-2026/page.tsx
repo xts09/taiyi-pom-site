@@ -4,10 +4,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { ArrowLeft } from "lucide-react";
-import { ResourcePageActions } from "@/components/ResourcePageActions";
+import { NewsArticleActions } from "@/components/NewsArticleActions";
 import { chinaplasNewsMessages } from "@/i18n/chinaplasNewsMessages";
 import { getLocalizedLocale } from "@/i18n/config";
-import { getLocalizedResourceIndexMessages } from "@/i18n/resourceMessages";
 import {
   getLanguageAlternates,
   getLocalizedHref,
@@ -27,7 +26,7 @@ type LocalizedChinaplasNewsPageProps = {
   params: Promise<{ locale: string }>;
 };
 
-const sourcePath = "/resources/news/chinaplas-2026" as const;
+const sourcePath = "/news/chinaplas-2026" as const;
 const publishedAt = "2026-04-23T17:59:21+08:00";
 
 const resolveLocale = async (
@@ -72,9 +71,6 @@ export default async function LocalizedChinaplas2026NewsPage({
   params,
 }: LocalizedChinaplasNewsPageProps) {
   const localeConfig = await resolveLocale(params);
-  const articleUi = getLocalizedResourceIndexMessages(
-    localeConfig.urlSegment,
-  ).articleUi;
   const content = chinaplasNewsMessages[localeConfig.urlSegment];
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeConfig.urlSegment);
@@ -84,7 +80,6 @@ export default async function LocalizedChinaplas2026NewsPage({
   const articleJsonLd = [
     createBreadcrumbJsonLd([
       { name: content.breadcrumbHome, path: localizedHref("/") },
-      { name: content.breadcrumbResources, path: localizedHref("/resources") },
       { name: content.title, path: articlePath },
     ]),
     {
@@ -126,7 +121,7 @@ export default async function LocalizedChinaplas2026NewsPage({
       <article className="resource-news-article">
         <header className="resource-news-hero">
           <Link
-            href={localizedHref("/resources")}
+            href={localizedHref("/")}
             className="resource-news-back"
           >
             <ArrowLeft aria-hidden="true" size={16} />
@@ -201,12 +196,11 @@ export default async function LocalizedChinaplas2026NewsPage({
             <p>{content.projectBody}</p>
           </div>
 
-          <ResourcePageActions
+          <NewsArticleActions
             pageTitle={content.title}
             relatedLinks={content.relatedLinks}
-            variant="article"
             localeSegment={localeConfig.urlSegment}
-            messages={articleUi}
+            messages={content.actions}
           />
         </div>
       </article>

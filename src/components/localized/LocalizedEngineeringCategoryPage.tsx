@@ -36,13 +36,6 @@ type LocalizedEngineeringCategoryPageProps = {
   inLanguage: string;
 };
 
-const gradeCountUnits: Record<LocalizedUrlSegment, string> = {
-  de: "Werkstofftypen",
-  fr: "grades",
-  "pt-br": "grades",
-  zh: "个牌号",
-};
-
 export function LocalizedEngineeringCategoryContent({
   categorySlug,
   sourcePath,
@@ -72,7 +65,6 @@ export function LocalizedEngineeringCategoryContent({
     .filter((direction, index, list) => list.indexOf(direction) === index)
     .map((direction) => ({
       direction,
-      count: grades.filter((grade) => grade.category === direction).length,
       copy: directionCopy[direction] ?? {
         label: direction,
         summary: translateExpandedText(
@@ -152,7 +144,6 @@ export function LocalizedEngineeringCategoryContent({
                       <b key={document}>{document}</b>
                     ))}
                   </span>
-                  <small>{copy.hero.documentsBody}</small>
                 </p>
               </div>
 
@@ -213,9 +204,6 @@ export function LocalizedEngineeringCategoryContent({
                   </span>
                   <span className="product-filter-name">{item.copy.label}</span>
                   <span className="product-filter-use">{item.copy.summary}</span>
-                  <span className="product-filter-count">
-                    {item.count} {gradeCountUnits[localeSegment]}
-                  </span>
                 </a>
               ))}
             </div>

@@ -168,50 +168,6 @@ export default function ResourcesPage() {
               ))}
             </div>
 
-            <section
-              className="resource-index-updates"
-              aria-labelledby="resource-updates-title"
-            >
-              <SectionIntro
-                className="resource-index-updates-head"
-                title="Field Notes"
-                titleId="resource-updates-title"
-                description="Material exhibitions, factory activity, and technical conversations—documented from the field."
-              />
-
-              <Link
-                href="/resources/news/chinaplas-2026"
-                className="resource-index-update-feature"
-              >
-                <div className="resource-index-update-media">
-                  <Image
-                    src="/news/chinaplas-2026/modified-pom-conversation.jpg"
-                    alt="Visitors discussing modified POM samples with a Taiyi Polymer representative at CHINAPLAS 2026"
-                    fill
-                    sizes="(min-width: 82rem) 42rem, (min-width: 48rem) 46vw, 100vw"
-                  />
-                  <span className="resource-index-update-location">
-                    CHINAPLAS 2026 · Shanghai
-                  </span>
-                </div>
-                <div className="resource-index-update-copy">
-                  <p className="resource-index-update-meta">
-                    <time dateTime="2026-04-23">April 23, 2026</time>
-                    <span>Booth 7.2A62</span>
-                  </p>
-                  <h3>Taiyi Polymer exhibits at CHINAPLAS 2026</h3>
-                  <p>
-                    Taiyi Polymer presented modified POM materials and met
-                    customers at booth 7.2A62 in Shanghai.
-                  </p>
-                  <span className="resource-index-update-link">
-                    Read field note
-                    <ArrowRight aria-hidden="true" size={16} />
-                  </span>
-                </div>
-              </Link>
-            </section>
-
             <div
               className="resource-index-contact-row"
               data-footer-adjacent="true"

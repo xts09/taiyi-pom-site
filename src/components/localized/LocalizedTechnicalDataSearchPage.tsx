@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { DocumentCard } from "@/components/DocumentCard";
+import { TechnicalDataQueryLink } from "@/components/TechnicalDataQueryLink";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { conductiveSeries } from "@/data/conductiveCompounds";
@@ -186,12 +187,13 @@ export function LocalizedTechnicalDataSearchPage({
             >
               <span>{copy.examplesLabel}</span>
               {copy.examples.map((example) => (
-                <Link
+                <TechnicalDataQueryLink
                   key={example.label}
-                  href={`${pagePath}?q=${encodeURIComponent(example.query)}`}
+                  cleanHref={pagePath}
+                  queryHref={`${pagePath}?q=${encodeURIComponent(example.query)}`}
                 >
                   {example.label}
-                </Link>
+                </TechnicalDataQueryLink>
               ))}
             </div>
           </form>
@@ -222,21 +224,22 @@ export function LocalizedTechnicalDataSearchPage({
                 <h3>{copy.contentTypeTitle}</h3>
                 <div className="resource-site-filter-options">
                   {copy.contentTypes.map((option) => (
-                    <Link
+                    <TechnicalDataQueryLink
                       key={option.value || "all"}
-                      href={getFilterHref({
+                      queryHref={getFilterHref({
                         resource: option.value,
                         ...(isTechnicalDataProductContentType(option.value)
                           ? {}
                           : { family: "", direction: "" }),
                       })}
+                      cleanHref={pagePath}
                       aria-current={
                         activeResource === option.value ? "true" : undefined
                       }
                     >
                       <span aria-hidden="true" />
                       {option.label}
-                    </Link>
+                    </TechnicalDataQueryLink>
                   ))}
                 </div>
               </section>
@@ -245,16 +248,17 @@ export function LocalizedTechnicalDataSearchPage({
                 <h3>{copy.familyTitle}</h3>
                 <div className="resource-site-filter-options">
                   {copy.families.map((option) => (
-                    <Link
+                    <TechnicalDataQueryLink
                       key={option.value || "all"}
-                      href={getFilterHref({ family: option.value })}
+                      queryHref={getFilterHref({ family: option.value })}
+                      cleanHref={pagePath}
                       aria-current={
                         activeFamily === option.value ? "true" : undefined
                       }
                     >
                       <span aria-hidden="true" />
                       {option.label}
-                    </Link>
+                    </TechnicalDataQueryLink>
                   ))}
                 </div>
               </section>
@@ -267,16 +271,17 @@ export function LocalizedTechnicalDataSearchPage({
                   <summary>{copy.directionTitle}</summary>
                   <div className="resource-site-filter-options">
                     {copy.directions.map((option) => (
-                      <Link
+                      <TechnicalDataQueryLink
                         key={option.value || "all"}
-                        href={getFilterHref({ direction: option.value })}
+                        queryHref={getFilterHref({ direction: option.value })}
+                        cleanHref={pagePath}
                         aria-current={
                           activeDirection === option.value ? "true" : undefined
                         }
                       >
                         <span aria-hidden="true" />
                         {option.label}
-                      </Link>
+                      </TechnicalDataQueryLink>
                     ))}
                   </div>
                 </details>

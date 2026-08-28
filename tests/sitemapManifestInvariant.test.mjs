@@ -26,15 +26,15 @@ test("released sitemap routes remain unique with explicit locale coverage", () =
     865,
   );
   assert.deepEqual(
-    getSitemapLanguageOptions("/resources/news/chinaplas-2026").map(
+    getSitemapLanguageOptions("/news/chinaplas-2026").map(
       ({ href }) => href,
     ),
     [
-      "/resources/news/chinaplas-2026",
-      "/de/resources/news/chinaplas-2026",
-      "/fr/resources/news/chinaplas-2026",
-      "/pt-br/resources/news/chinaplas-2026",
-      "/zh/resources/news/chinaplas-2026",
+      "/news/chinaplas-2026",
+      "/de/news/chinaplas-2026",
+      "/fr/news/chinaplas-2026",
+      "/pt-br/news/chinaplas-2026",
+      "/zh/news/chinaplas-2026",
     ],
   );
 });

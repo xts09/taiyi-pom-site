@@ -270,9 +270,9 @@
 
 .language-switcher--desktop {
   display: flex;
-  min-height: 2.38rem;
+  min-height: var(--ds-touch-target-min);
   align-items: center;
-  padding: 0.16rem;
+  padding: 0;
   border: 1px solid rgba(17, 24, 39, 0.105);
   border-radius: var(--ds-radius-pill);
   background: rgba(255, 255, 255, 0.62);
@@ -282,12 +282,8 @@
   gap: 0.08rem;
 }
 
-.site-header--solid .language-switcher--desktop {
-  min-height: var(--ds-touch-target-min);
-  padding: 0;
-}
-
-.site-header--solid .language-switcher--desktop .language-switcher-link {
+.language-switcher--desktop .language-switcher-link {
+  min-width: var(--ds-touch-target-min);
   min-height: var(--ds-touch-target-min);
   font-size: var(--ds-text-xs);
 }
@@ -355,10 +351,6 @@
 
   .desktop-navigation-list {
     gap: 1.75rem;
-  }
-
-  .site-header--solid .language-switcher--desktop .language-switcher-link {
-    min-width: var(--ds-touch-target-min);
   }
 }
 

@@ -299,6 +299,7 @@ The experience should feel like a credible B2B engineering plastics manufacturer
 - Product listing, product categories, grade detail pages, and TDS routes.
 - Application overview and application detail pages.
 - Resources overview, guide pages, FAQ, and technical-data-sheet entry.
+- News articles and editorial wayfinding.
 - About page factory proof, capability narrative, and production imagery.
 - Contact page inquiry guidance and form path.
 - Shared navigation, mega menu, secondary navigation, CTAs, and core responsive behavior.
@@ -392,10 +393,11 @@ Top navigation should stay focused:
 - Products: material families, grade categories, grade details, TDS path.
 - Applications: industry/application fit and recommended material review direction.
 - Resources: selection guide, processing guide, application notes, FAQ, and TDS support.
+- News: exhibition, factory, product, and company updates.
 - About: factory capability, production proof, document support, and company credibility.
 - Contact: inquiry preparation and sales contact.
 
-News is now a primary navigation item because the company has started a continuing publication track for exhibition, factory, product, and company updates. Until a dedicated News index is justified by multiple articles, the entry routes to the current update under Resources. The CHINAPLAS 2026 article is released in English, German, French, Brazilian Portuguese, and Simplified Chinese with reciprocal language alternates and localized navigation.
+News is a primary navigation item and an independent editorial route family under `/news/**`. Until multiple articles justify a dedicated News index, the navigation entry routes directly to the current article. News must not be nested under Resources or presented inside the Resources directory. The CHINAPLAS 2026 article is released in English, German, French, Brazilian Portuguese, and Simplified Chinese with reciprocal language alternates and localized navigation.
 
 News articles lead with event-specific facts: who took part, what requirement or product was discussed, where the exchange happened, and what the conversation established. Generic material-selection or validation instruction belongs to Applications and Resources and must not be used to pad a News article. Editorial reconstruction may connect user-supplied facts to established site-owned technical themes, but it must not invent customer identities, orders, numerical results, approvals, or completed project outcomes.
 
@@ -442,7 +444,7 @@ News articles lead with event-specific facts: who took part, what requirement or
 
 ## Functional Requirements
 
-- Header navigation must expose Products, Applications, Resources, About, Contact, and a search/TDS-oriented entry.
+- Header navigation must expose Products, Applications, Resources, News, About, Contact, and a search/TDS-oriented entry.
 - Mega menus should align to the same page frame as the header and homepage content.
 - Search entry should lead users toward technical data sheets or material discovery, not a dead-end placeholder.
 - Product accordions, filters, or reveal controls must be keyboard accessible and understandable without animation.

@@ -175,7 +175,6 @@ export function LocalizedProductCategoryContent({
                       <b key={document}>{document}</b>
                     ))}
                   </span>
-                  <small>{copy.hero.documentsBody}</small>
                 </p>
               </div>
 

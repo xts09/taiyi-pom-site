@@ -22,7 +22,6 @@ type EngineeringCategoryProfile = {
     overviewLabel: string;
     overview: string;
     documentsTitle: string;
-    documentsBody: string;
     contactAction: string;
     technicalDataAction: string;
   };
@@ -144,47 +143,45 @@ export const chineseEngineeringCategoryProfiles = {
     metadata: {
       title: "PA6 改性材料牌号与技术数据 | 台益",
       description:
-        "比较台益 PA6 玻纤增强、抗冲、阻燃、碳纤维增强、矿物填充与易脱模牌号及关键数据。",
+        "PLATFORM® PA6 改性材料覆盖纤维增强、高抗冲、阻燃、耐磨、矿物填充及加工改性。",
       imageAlt: "台益 PA6 改性材料",
     },
     hero: {
       eyebrow: "工程塑料材料系列",
       title: "PA6 改性材料",
       description:
-        "根据增强、韧性、阻燃、耐热、尺寸稳定和加工要求，比较已列 PA6 改性牌号并确定下一步验证路径。",
-      overviewLabel: "选型边界",
+        "PLATFORM® PA6 改性材料覆盖纤维增强、高抗冲、阻燃、耐磨、矿物填充及加工改性，面向汽车、电子电气和工业零件对韧性、强度与加工性能的不同要求。",
+      overviewLabel: "材料概览",
       overview:
-        "本页提供中文材料方向与关键数据初筛，并可继续打开每个牌号的完整中文详情、性能数据和项目评估路径。",
-      documentsTitle: "按牌号与项目确认资料",
-      documentsBody:
-        "TDS、SDS、COA、REACH 和 RoHS 的可用性根据牌号、目标市场与项目阶段确认。",
+        "各牌号均有中文详情和关键性能数据；技术文件与样品按具体牌号和项目确认。",
+      documentsTitle: "技术与合规资料",
       contactAction: "讨论 PA6 应用",
       technicalDataAction: "打开英文 TDS 数据库",
     },
     navigation: {
       aria: "PA6 改性材料页面分区导航",
       title: "PA6 改性材料",
-      subtitle: "按增强、韧性、阻燃、耐热与尺寸要求初筛",
-      directions: "改性方向",
+      subtitle: "覆盖增强、韧性、阻燃、耐磨与加工改性",
+      directions: "材料类型",
       grades: "牌号",
       applications: "应用",
       faq: "常见问题",
     },
     directions: {
-      kicker: "改性方向",
-      title: "先按零部件要求缩小 PA6 范围",
-      body: "从主导性能缺口出发，再结合吸湿、模具、加工窗口和实际工况审核候选牌号。",
+      kicker: "材料类型",
+      title: "PA6 改性类别",
+      body: "系列包括纤维增强、高抗冲、阻燃、耐磨、矿物填充及加工改性，可按零件要求比较不同的力学、热性能与加工表现。",
     },
     directory: {
       kicker: "牌号目录",
-      title: "比较 PA6 已列牌号",
-      body: "33 个 PA6 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。",
+      title: "PA6 改性牌号",
+      body: "目录集中呈现各牌号的改性体系、机械性能、热性能、流动与颜色信息。",
       ...commonDirectory,
     },
     applications: {
-      kicker: "应用入口",
-      title: "从实际零部件工况继续评估",
-      body: "应用页面帮助整理载荷、环境、尺寸和加工输入，再回到牌号层面完成验证。",
+      kicker: "相关应用",
+      title: "PA6 面向的零部件场景",
+      body: "覆盖汽车、电子电气与运动部件中的结构、壳体、连接和运动零件应用。",
       items: [
         ...commonApplications,
         { label: "运动部件", href: "/applications/motion-components" },
@@ -192,31 +189,31 @@ export const chineseEngineeringCategoryProfiles = {
     },
     faq: {
       kicker: "常见问题",
-      title: "PA6 初步选型问题",
+      title: "产品与应用信息",
       items: [
         {
-          question: "PA6 牌号应先看增强比例还是使用环境？",
+          question: "PA6 改性材料面向哪些零件？",
           answer:
-            "应先明确零部件功能、载荷、温度、湿度和尺寸目标，再确定增强、抗冲或阻燃方向。仅凭填充比例不能完成选型。",
+            "主要面向汽车、电子电气与工业领域中的壳体、连接件、结构件和运动零件，覆盖对韧性、强度、耐磨或加工表现有不同侧重的项目。",
         },
         {
-          question: "为什么 PA6 需要重点审核吸湿与调湿状态？",
+          question: "PA6 系列包含哪些改性类别？",
           answer:
-            "水分会影响加工稳定性、尺寸和力学性能。数据比较、试模和最终测试必须说明干燥、调湿与测试条件。",
+            "系列包含玻璃纤维与碳纤维增强、高抗冲、阻燃、耐磨、矿物填充、脱模及其他加工改性。",
         },
         {
-          question: "PA6 牌号详情是否已有中文？",
+          question: "可查看哪些资料？",
           answer:
-            "是。33 个已列 PA6 牌号均有完整中文详情页，牌号名称、技术数值、单位和测试方法继续由目录数据统一维护。",
+            "可查看各牌号的中文详情与关键数据，技术文件和样品按项目确认，并可结合加工条件安排试模。",
         },
       ],
     },
     inquiry: {
-      eyebrow: "项目评估",
-      title: "准备 PA6 候选牌号清单",
-      body: "请提供零部件功能、载荷、温湿度、壁厚、模具阶段、阻燃或增强要求、当前材料、资料需求和预估用量。",
-      action: "提交 PA6 项目信息",
-      steps: ["工况与环境", "模具与加工", "资料与样品"],
+      eyebrow: "PA6 项目",
+      title: "比较韧性、强度与加工表现",
+      body: "根据零部件功能、载荷、环境和加工要求比较 PA6 候选牌号，并提供技术数据与样品，用于试模和项目验证。",
+      action: "联系材料团队",
+      steps: ["零部件与工况", "模具与加工", "数据与样品"],
     },
   },
   "pa66-compound": {
@@ -225,47 +222,45 @@ export const chineseEngineeringCategoryProfiles = {
     metadata: {
       title: "PA66 改性材料牌号与技术数据 | 台益",
       description:
-        "比较台益 PA66 玻纤增强、阻燃、耐磨、碳纤维增强、矿物填充与抗冲牌号及关键数据。",
+        "PLATFORM® PA66 改性材料覆盖增强、阻燃、耐磨、高抗冲、矿物填充与尺寸控制。",
       imageAlt: "台益 PA66 改性材料",
     },
     hero: {
       eyebrow: "工程塑料材料系列",
       title: "PA66 改性材料",
       description:
-        "根据刚性、耐热、阻燃、耐磨、尺寸稳定和加工要求，比较已列 PA66 改性牌号并确定验证路径。",
-      overviewLabel: "选型边界",
+        "PLATFORM® PA66 改性材料覆盖纤维增强、阻燃、耐磨、高抗冲、矿物填充及其他功能改性，面向汽车、电子电气和工业零件对刚度、耐热与尺寸控制的不同要求。",
+      overviewLabel: "材料概览",
       overview:
-        "本页提供中文材料方向与关键数据初筛，并可继续打开每个牌号的完整中文详情、性能数据和项目评估路径。",
-      documentsTitle: "按牌号与项目确认资料",
-      documentsBody:
-        "TDS、SDS、COA、REACH 和 RoHS 的可用性根据牌号、目标市场与项目阶段确认。",
+        "各牌号均有中文详情和关键性能数据；技术文件与样品按具体牌号和项目确认。",
+      documentsTitle: "技术与合规资料",
       contactAction: "讨论 PA66 应用",
       technicalDataAction: "打开英文 TDS 数据库",
     },
     navigation: {
       aria: "PA66 改性材料页面分区导航",
       title: "PA66 改性材料",
-      subtitle: "按刚性、耐热、阻燃、耐磨与尺寸要求初筛",
-      directions: "改性方向",
+      subtitle: "覆盖增强、耐热、阻燃、耐磨与尺寸稳定",
+      directions: "材料类型",
       grades: "牌号",
       applications: "应用",
       faq: "常见问题",
     },
     directions: {
-      kicker: "改性方向",
-      title: "先按主导性能要求筛选 PA66",
-      body: "将耐热、刚性、阻燃、摩擦磨损与尺寸目标放在同一评估框架中，避免只看单一数据。",
+      kicker: "材料类型",
+      title: "PA66 改性类别",
+      body: "系列包括纤维增强、阻燃、耐磨、高抗冲、矿物填充与玻璃微珠填充，可按零件要求比较刚度、耐热、尺寸和加工表现。",
     },
     directory: {
       kicker: "牌号目录",
-      title: "比较 PA66 已列牌号",
-      body: "37 个 PA66 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。",
+      title: "PA66 改性牌号",
+      body: "目录集中呈现各牌号的改性体系、机械性能、热性能、流动与颜色信息。",
       ...commonDirectory,
     },
     applications: {
-      kicker: "应用入口",
-      title: "从实际零部件工况继续评估",
-      body: "应用页面帮助整理载荷、环境、尺寸和加工输入，再回到牌号层面完成验证。",
+      kicker: "相关应用",
+      title: "PA66 面向的零部件场景",
+      body: "覆盖汽车、电子电气与运动部件中的结构、壳体、连接和耐热零件应用。",
       items: [
         ...commonApplications,
         { label: "运动部件", href: "/applications/motion-components" },
@@ -273,31 +268,31 @@ export const chineseEngineeringCategoryProfiles = {
     },
     faq: {
       kicker: "常见问题",
-      title: "PA66 初步选型问题",
+      title: "产品与应用信息",
       items: [
         {
-          question: "PA66 与 PA6 应如何初步区分？",
+          question: "PA66 改性材料面向哪些零件？",
           answer:
-            "应比较温度、吸湿、刚性、冲击、尺寸、加工窗口和成本目标。材料家族只能确定方向，最终仍需落实到具体牌号与零部件验证。",
+            "主要面向汽车、电子电气与工业领域中的结构件、壳体、连接件和运动零件，覆盖对刚度、耐热、阻燃或尺寸控制有不同侧重的项目。",
         },
         {
-          question: "阻燃与增强可以只按等级选择吗？",
+          question: "PA66 系列包含哪些改性类别？",
           answer:
-            "不可以。阻燃等级、试样厚度、颜色、玻纤含量、流动性和实际零部件结构都需要同时审核。",
+            "系列包含纤维增强、阻燃、耐磨、高抗冲、矿物填充、玻璃微珠填充及其他功能改性。",
         },
         {
-          question: "PA66 牌号详情是否已有中文？",
+          question: "可查看哪些资料？",
           answer:
-            "是。37 个已列 PA66 牌号均有完整中文详情页，牌号名称、技术数值、单位和测试方法继续由目录数据统一维护。",
+            "可查看各牌号的中文详情与关键数据，技术文件和样品按项目确认，并可结合加工条件安排试模。",
         },
       ],
     },
     inquiry: {
-      eyebrow: "项目评估",
-      title: "准备 PA66 候选牌号清单",
-      body: "请提供零部件功能、载荷、温湿度、壁厚、模具阶段、阻燃或耐磨要求、当前材料、资料需求和预估用量。",
-      action: "提交 PA66 项目信息",
-      steps: ["工况与温度", "模具与尺寸", "资料与样品"],
+      eyebrow: "PA66 项目",
+      title: "比较刚度、耐热与尺寸表现",
+      body: "根据零部件功能、温度、载荷和加工要求比较 PA66 候选牌号，并提供技术数据与样品，用于试模和项目验证。",
+      action: "联系材料团队",
+      steps: ["零部件与工况", "模具与加工", "数据与样品"],
     },
   },
   "ppa-compound": {
@@ -306,76 +301,74 @@ export const chineseEngineeringCategoryProfiles = {
     metadata: {
       title: "PPA 改性材料牌号与技术数据 | 台益",
       description:
-        "比较台益 PPA 玻纤增强、玻纤矿物复合增强及耐磨低摩擦牌号与关键数据。",
+        "PLATFORM® PPA 改性材料覆盖玻璃纤维增强、玻纤矿物复合增强及耐磨低摩擦改性，面向较高温度应用。",
       imageAlt: "台益 PPA 改性材料",
     },
     hero: {
       eyebrow: "高温工程塑料系列",
       title: "PPA 改性材料",
       description:
-        "面向更高温度、刚性与尺寸稳定要求，比较已列 PPA 增强及耐磨方向，并确定牌号验证路径。",
-      overviewLabel: "选型边界",
+        "PLATFORM® PPA 改性材料包括玻璃纤维增强、玻纤矿物复合增强及耐磨低摩擦配方，面向较高温度、热循环与尺寸敏感的零件。",
+      overviewLabel: "材料概览",
       overview:
-        "本页提供中文材料方向与关键数据初筛，并可继续打开每个牌号的完整中文详情、性能数据和项目评估路径。",
-      documentsTitle: "按牌号与项目确认资料",
-      documentsBody:
-        "TDS、SDS、COA、REACH 和 RoHS 的可用性根据牌号、目标市场与项目阶段确认。",
+        "各牌号均有中文详情和关键性能数据；技术文件与样品按具体牌号和项目确认。",
+      documentsTitle: "技术与合规资料",
       contactAction: "讨论 PPA 应用",
       technicalDataAction: "打开英文 TDS 数据库",
     },
     navigation: {
       aria: "PPA 改性材料页面分区导航",
       title: "PPA 改性材料",
-      subtitle: "按温度、增强、尺寸稳定与耐磨要求初筛",
-      directions: "改性方向",
+      subtitle: "覆盖高温增强、尺寸稳定与耐磨改性",
+      directions: "材料类型",
       grades: "牌号",
       applications: "应用",
       faq: "常见问题",
     },
     directions: {
-      kicker: "改性方向",
-      title: "围绕高温零部件要求筛选 PPA",
-      body: "先明确长期温度、热循环、尺寸、载荷和吸湿条件，再比较增强体系与耐磨方向。",
+      kicker: "材料类型",
+      title: "PPA 改性类别",
+      body: "系列包括玻璃纤维增强、玻纤矿物复合增强及耐磨低摩擦配方，可按零件要求比较刚度、尺寸、流动与滑动性能。",
     },
     directory: {
       kicker: "牌号目录",
-      title: "比较 PPA 已列牌号",
-      body: "5 个 PPA 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、实际温度循环与零部件验证。",
+      title: "PPA 改性牌号",
+      body: "目录集中呈现各牌号的改性体系、机械性能、热性能、流动与颜色信息。",
       ...commonDirectory,
     },
     applications: {
-      kicker: "应用入口",
-      title: "从高温零部件工况继续评估",
-      body: "应用页面帮助整理温度、载荷、尺寸和电气输入，再回到牌号层面完成验证。",
+      kicker: "相关应用",
+      title: "PPA 面向的高温零部件场景",
+      body: "覆盖汽车与电子电气领域中对较高温度、刚度和尺寸控制有要求的精密零件应用。",
       items: commonApplications,
     },
     faq: {
       kicker: "常见问题",
-      title: "PPA 初步选型问题",
+      title: "产品与应用信息",
       items: [
         {
-          question: "何时应从 PA66 转向 PPA 方向？",
+          question: "PPA 改性材料面向哪些零件？",
           answer:
-            "当长期温度、热循环、尺寸保持或高温刚性超过现有 PA66 方案能力时，可评估 PPA；仍需比较吸湿、加工和成本边界。",
+            "主要面向汽车与电子电气领域中对较高温度、热循环、刚度或尺寸控制有要求的精密结构和功能零件。",
         },
         {
-          question: "PPA 的增强比例越高越好吗？",
+          question: "PPA 系列包含哪些改性类别？",
           answer:
-            "不是。更高增强比例会改变流动、翘曲、表面、冲击与模具磨损，需要结合零部件几何和浇口方案平衡。",
+            "系列包含玻璃纤维增强、玻纤矿物复合增强与耐磨低摩擦改性，提供不同的刚度、尺寸、流动和滑动性能组合。",
         },
         {
-          question: "PPA 牌号详情是否已有中文？",
+          question: "可查看哪些资料？",
           answer:
-            "是。5 个已列 PPA 牌号均有完整中文详情页，牌号名称、技术数值、单位和测试方法继续由目录数据统一维护。",
+            "可查看各牌号的中文详情与关键数据，技术文件和样品按项目确认，并可结合加工条件安排试模。",
         },
       ],
     },
     inquiry: {
-      eyebrow: "项目评估",
-      title: "准备 PPA 候选牌号清单",
-      body: "请提供长期与峰值温度、热循环、载荷、零部件几何、壁厚、模具阶段、当前材料、尺寸目标和资料需求。",
-      action: "提交 PPA 项目信息",
-      steps: ["温度与载荷", "尺寸与模具", "资料与样品"],
+      eyebrow: "PPA 项目",
+      title: "比较耐热、刚度与尺寸表现",
+      body: "根据零部件温度、载荷、尺寸和加工要求比较 PPA 候选牌号，并提供技术数据与样品，用于试模和项目验证。",
+      action: "联系材料团队",
+      steps: ["温度与载荷", "模具与加工", "数据与样品"],
     },
   },
 } as const satisfies Record<

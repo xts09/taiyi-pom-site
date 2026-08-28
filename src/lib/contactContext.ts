@@ -20,6 +20,16 @@ export type ContactContextSearchParams = Record<
   string | string[] | undefined
 >;
 
+export function hasContactSearchParams(
+  searchParams: ContactContextSearchParams,
+) {
+  return Object.values(searchParams).some((value) =>
+    (Array.isArray(value) ? value : [value]).some((item) =>
+      Boolean(item?.trim()),
+    ),
+  );
+}
+
 const urlContextKeys = [
   "source",
   "material",
@@ -34,6 +44,8 @@ const allowedIntents = new Set<ContactIntent>([
   "tds",
   "quote-supply",
 ]);
+
+const contactContextHashPrefix = "#inquiry?";
 
 const normalizeContextValue = (
   value: string | string[] | undefined,
@@ -86,7 +98,17 @@ export function createContactHref(
   }
 
   const query = searchParams.toString();
-  return query ? `${contactPath}?${query}` : contactPath;
+  return query ? `${contactPath}${contactContextHashPrefix}${query}` : contactPath;
+}
+
+export function parseContactContextHash(hash: string) {
+  if (!hash.startsWith(contactContextHashPrefix)) return {};
+
+  return parseContactContext(
+    Object.fromEntries(
+      new URLSearchParams(hash.slice(contactContextHashPrefix.length)),
+    ),
+  );
 }
 
 export function getContactContextLabel(context: ContactContext) {
@@ -101,7 +123,7 @@ export function getContactContextLabel(context: ContactContext) {
   return details.length > 0 ? details.join(" / ") : context.source;
 }
 
-type ContactContextMessageLabels = {
+export type ContactContextMessageLabels = {
   grade: string;
   reference: string;
   candidates: string;

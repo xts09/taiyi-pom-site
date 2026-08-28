@@ -2,6 +2,7 @@
 .next
 .next-*
 .vercel
+.vs
 node_modules
 .env
 .env.*
