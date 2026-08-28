@@ -58,6 +58,7 @@ const messages = {
     allApplications: "全部应用",
     resources: "资料",
     technicalResources: "技术资料",
+    resourceDescription: "查找材料选型、加工排障与数据验证所需的实用指南。",
     allResources: "全部资料",
     news: "新闻",
     aboutUs: "关于我们",

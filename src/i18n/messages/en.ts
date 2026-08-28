@@ -59,6 +59,8 @@ const messages = {
     allApplications: "All Applications",
     resources: "Resources",
     technicalResources: "Technical Resources",
+    resourceDescription:
+      "Find practical guidance for material selection, processing troubleshooting, and data validation.",
     allResources: "All Resources",
     news: "News",
     aboutUs: "About Us",

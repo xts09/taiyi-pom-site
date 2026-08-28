@@ -45,6 +45,7 @@ export type HeaderMessages = {
   allApplications: string;
   resources: string;
   technicalResources: string;
+  resourceDescription: string;
   allResources: string;
   news: string;
   aboutUs: string;

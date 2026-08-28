@@ -60,6 +60,8 @@ const messages = {
     allApplications: "Alle Anwendungen",
     resources: "Ressourcen",
     technicalResources: "Technische Ressourcen",
+    resourceDescription:
+      "Finden Sie praxisnahe Leitfäden zur Werkstoffauswahl, Fehlerbehebung bei der Verarbeitung und Datenvalidierung.",
     allResources: "Alle Ressourcen",
     news: "Aktuelles",
     aboutUs: "Über uns",

@@ -60,6 +60,8 @@ const messages = {
     allApplications: "Todas as aplicações",
     resources: "Recursos",
     technicalResources: "Recursos técnicos",
+    resourceDescription:
+      "Encontre guias práticos para seleção de materiais, solução de problemas de processamento e validação de dados.",
     allResources: "Todos os recursos",
     news: "Notícias",
     aboutUs: "Sobre nós",

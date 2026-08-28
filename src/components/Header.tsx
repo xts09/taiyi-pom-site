@@ -617,6 +617,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                       <div className="mega-menu-panel-head">
                         <div>
                           <span>{messages.technicalResources}</span>
+                          <p>{messages.resourceDescription}</p>
                         </div>
                         <Link
                           href={localizedHref("/resources")}
