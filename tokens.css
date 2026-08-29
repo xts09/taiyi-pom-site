@@ -406,7 +406,7 @@
   --ds-floating-contact-action-bg-hover: var(--ds-color-paper-200);
   --ds-floating-contact-icon-bg: var(--ds-color-white);
   --ds-floating-contact-backdrop: oklch(10% 0.025 245 / 0.42);
-  --ds-home-hero-title-size: clamp(3.4rem, 4.7vw, 5.6rem);
+  --ds-home-hero-title-size: clamp(3.4rem, 4.7vw, 5rem);
   --ds-home-hero-title-size-compact: clamp(3.25rem, 5.4vw, 3.8rem);
   --ds-home-hero-title-size-medium: clamp(3.8rem, 5.1vw, 4.25rem);
   --ds-home-hero-title-size-mobile: clamp(2.4rem, 10.2vw, 3.1rem);

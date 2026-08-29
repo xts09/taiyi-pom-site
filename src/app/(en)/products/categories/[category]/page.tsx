@@ -154,7 +154,7 @@ export default async function ProductCategoryPage({
   const hasEngineeringGrades = engineeringGrades.length > 0;
   const pageTitle =
     isPomCategory
-      ? "POM Material Families"
+      ? "Modified POM Directory"
       : entry.label;
   const heroTitle = isPomCategory
     ? "Modified POM Compounds by Material Family"
@@ -165,6 +165,9 @@ export default async function ProductCategoryPage({
       ? "Modified POM Family"
       : "Engineering Plastic Family";
   const primaryActionLabel = "Discuss Your Application";
+  const heroPrimaryActionLabel = isPomCategory
+    ? "Choose by Part Requirement"
+    : primaryActionLabel;
   const contactHref = createContactHref({
     intent: isPomCategory ? "grade-evaluation" : undefined,
     material: isPomCategory ? "Modified POM Compounds" : entry.label,
@@ -172,7 +175,7 @@ export default async function ProductCategoryPage({
   });
   const pageDescription =
     isPomCategory
-      ? "This directory covers PLATFORM POM families for wear and low friction, impact modification, UV resistance, reinforcement, conductive and antistatic performance, ultra-high flow, and base-resin applications."
+      ? "Start with the part's governing performance gap, then compare PLATFORM POM families and listed grades for wear, friction, impact, weathering, reinforcement, electrical control, flow, or baseline applications."
       : getCategoryDescription(entry.category);
   const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
     entry.category,
@@ -232,7 +235,7 @@ export default async function ProductCategoryPage({
       ? [
           {
             href: "#material-families",
-            label: isPomCategory ? "Families" : "Directions",
+            label: isPomCategory ? "Choose by Need" : "Directions",
           },
         ]
       : []),
@@ -298,7 +301,9 @@ export default async function ProductCategoryPage({
 
             <div className="product-hero-cta">
               <Button asChild size="productHero" variant="productHeroPrimary">
-                <Link href={contactHref}>{primaryActionLabel}</Link>
+                <Link href={isPomCategory ? "#material-families" : contactHref}>
+                  {heroPrimaryActionLabel}
+                </Link>
               </Button>
               <Button asChild size="productHero" variant="productHeroSecondary">
                 <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>

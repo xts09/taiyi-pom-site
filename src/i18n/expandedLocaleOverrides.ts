@@ -22,14 +22,12 @@ export const expandedLocaleOverrides: Partial<
       "Hersteller für modifiziertes POM",
     "台益是江苏台益纳米科技有限公司的国际品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
       "Taiyi Polymer ist die internationale Marke von Jiangsu Taiyi Nano Technology Co., Ltd. Seit 2003 entwickeln und fertigen wir in Yancheng modifiziertes POM sowie ausgewählte PA6-, PA66- und PPA-Compounds. Werkstoffprüfung, stabile Produktion und Chargendokumentation sind dabei in einem Fertigungssystem gebündelt.",
-    "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
-      "Die Werkstoffauswahl beginnt beim Spritzgussteil, nicht bei einer allgemeinen Werkstoffbezeichnung. Bewegungsart, Belastung, Einsatzumgebung, Abmessungen, Werkzeugstand und benötigte Unterlagen bestimmen, welche modifizierten POM-Typen für einen Vergleich infrage kommen. Liegt das geforderte Eigenschaftsprofil außerhalb des sinnvollen POM-Bereichs, werden PA6, PA66 und PPA als eigenständige Alternativen bewertet.",
+    "材料选择从注塑零部件及其工况出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定需要比较的改性 POM 候选牌号；当目标性能超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
+      "Die Werkstoffauswahl beginnt beim Spritzgussteil und seinen Einsatzbedingungen. Bewegungsart, Belastung, Umgebung, Abmessungen, Werkzeugstand und benötigte Unterlagen bestimmen, welche modifizierten POM-Typen verglichen werden. Liegt das Zielprofil außerhalb des sinnvollen POM-Bereichs, werden PA6, PA66 und PPA separat bewertet.",
     查看材料范围: "Werkstoffe entdecken",
     查看制造能力: "Fertigung ansehen",
     从零部件需求到候选牌号评估:
       "Von Bauteilanforderungen zur Bewertung von Kandidatenwerkstofftypen",
-    "服务工业材料项目，而不是追求宽泛目录":
-      "Fokus auf industrielle Werkstoffprojekte statt auf einen möglichst breiten Katalog",
     "聚焦更明确的材料范围，同时连接完整决策过程":
       "Klar abgegrenztes Werkstoffportfolio mit durchgängiger Entscheidungsunterstützung",
     支撑试制批次与重复订单的生产规模:
@@ -66,8 +64,11 @@ export const expandedLocaleOverrides: Partial<
       "Taiyi Polymer POM-Werkstofffamilien und Typenkatalog",
     "POM 材料组合": "POM-Werkstoffauswahl",
     "POM 材料家族与牌号目录": "POM-Werkstofffamilien und Typenkatalog",
-    "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。":
-      "Dieses Verzeichnis umfasst PLATFORM POM-Werkstofffamilien für Verschleiß- und Reibungsminderung, Schlagzähmodifizierung, Witterungsbeständigkeit, Verstärkung, leitfähige und antistatische Eigenschaften, sehr hohe Fließfähigkeit sowie Basisharzanwendungen.",
+    "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。":
+      "Bestimmen Sie zuerst die maßgebliche Leistungsanforderung des Bauteils und wählen Sie dann die passende Richtung aus PLATFORM POM-Werkstofffamilien für Verschleiß und geringe Reibung, Schlagzähigkeit, Witterungsbeständigkeit, Verstärkung, leitfähige und antistatische Eigenschaften, hohe Fließfähigkeit oder Basisharz.",
+    "浏览全部 POM 材料家族": "Alle POM-Werkstofffamilien ansehen",
+    "从零件要求出发，对比耐磨、抗冲、耐候、增强、功能、流动和基础 POM 材料家族。":
+      "Vergleichen Sie ausgehend von der Bauteilanforderung POM-Werkstofffamilien für Verschleiß, Schlagzähigkeit, Witterungsbeständigkeit, Verstärkung, Funktion, Fließverhalten und Basisharz.",
     提交应用要求: "Werkstoffempfehlung anfordern",
     "查找牌号数据与 TDS": "Werkstoffdaten und TDS durchsuchen",
     "33 个 PA6 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
@@ -149,14 +150,12 @@ export const expandedLocaleOverrides: Partial<
       "Fabricant de POM modifiés",
     "台益是江苏台益纳米科技有限公司的国际品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
       "Taiyi Polymer est la marque internationale de Jiangsu Taiyi Nano Technology Co., Ltd. Depuis 2003, notre site de Yancheng développe et fabrique des POM modifiés ainsi qu’une sélection de compounds PA6, PA66 et PPA. Les essais matière, la production récurrente et la documentation des lots sont coordonnés au sein du même système industriel.",
-    "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
-      "Le choix du matériau part de la pièce injectée, pas d’une désignation générique. Le type de mouvement, la charge, l’environnement d’utilisation, l’avancement de l’outillage et les documents requis déterminent les grades de POM modifié à comparer. Si le profil de propriétés recherché sort du domaine d’emploi pertinent du POM, le PA6, le PA66 et le PPA sont évalués séparément.",
+    "材料选择从注塑零部件及其工况出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定需要比较的改性 POM 候选牌号；当目标性能超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
+      "Le choix du matériau part de la pièce injectée et de ses conditions d’utilisation. Mouvement, charge, environnement, dimensions, avancement de l’outillage et documents requis déterminent les grades de POM modifié à comparer. Si le profil visé sort du domaine pertinent du POM, le PA6, le PA66 et le PPA sont évalués séparément.",
     查看材料范围: "Découvrir nos matériaux",
     查看制造能力: "Voir notre production",
     从零部件需求到候选牌号评估:
       "Des exigences de la pièce à l’évaluation des grades candidats",
-    "服务工业材料项目，而不是追求宽泛目录":
-      "Servir des projets de matériaux industriels sans élargir inutilement le catalogue",
     "聚焦更明确的材料范围，同时连接完整决策过程":
       "Un portefeuille de matériaux mieux ciblé, relié à l’ensemble du processus de décision",
     支撑试制批次与重复订单的生产规模:
@@ -187,8 +186,11 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Fonctions et base de transformation",
     "电气表现、基础树脂与流动窗口":
       "Comportement électrique, résine de base et fenêtre d’écoulement",
-    "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。":
-      "Ce répertoire couvre les familles de POM PLATFORM destinées à la résistance à l’usure et à la réduction du frottement, à la modification au choc, à la tenue aux intempéries, au renforcement, aux propriétés conductrices et antistatiques, à la très haute fluidité et aux applications de résine de base.",
+    "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。":
+      "Identifiez d’abord l’exigence de performance déterminante de la pièce, puis choisissez l’orientation adaptée parmi les familles de POM PLATFORM pour l’usure et le faible frottement, la résistance au choc, la tenue aux intempéries, le renforcement, les propriétés conductrices et antistatiques, la haute fluidité ou la résine de base.",
+    "浏览全部 POM 材料家族": "Voir toutes les familles de POM",
+    "从零件要求出发，对比耐磨、抗冲、耐候、增强、功能、流动和基础 POM 材料家族。":
+      "À partir des exigences de la pièce, comparez les familles de POM pour l’usure, l’impact, la tenue aux intempéries, le renforcement, les fonctions, la fluidité et la résine de base.",
     "33 个 PA6 牌号均可打开完整中文详情与性能数据。最终认可仍需结合客户模具、调湿状态与实际零部件验证。":
       "Les 33 grades PA6 répertoriés disposent de pages détaillées complètes et de données de performance. La validation finale doit néanmoins être réalisée avec l’outillage client, l’état de conditionnement défini et la pièce réelle.",
     "从主导性能缺口出发，再结合吸湿、模具、加工窗口和实际工况审核候选牌号。":
@@ -268,14 +270,12 @@ export const expandedLocaleOverrides: Partial<
       "Fabricante de POM modificado",
     "台益是江苏台益纳米科技有限公司的国际品牌。自 2003 年起，我们在盐城开发和制造改性 POM 及精选 PA6、PA66 和 PPA 改性材料，并将材料测试、稳定生产与批次文件纳入同一制造体系。":
       "A Taiyi Polymer é a marca internacional da Jiangsu Taiyi Nano Technology Co., Ltd. Desde 2003, nossa unidade em Yancheng desenvolve e fabrica POM modificado e compostos selecionados de PA6, PA66 e PPA. Testes de materiais, produção recorrente e documentação de lotes são coordenados no mesmo sistema de fabricação.",
-    "选材应从注塑零部件出发，而不是从泛化材料名称出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定哪些改性 POM 候选牌号值得比较。当所需性能平衡超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
-      "A seleção do material começa pela peça injetada, não por uma denominação genérica. Tipo de movimento, carga, ambiente de uso, dimensões, estágio do ferramental e documentação necessária definem quais graus de POM modificado devem ser comparados. Quando o conjunto de propriedades exigido fica fora da faixa de aplicação adequada do POM, PA6, PA66 e PPA são avaliados separadamente.",
+    "材料选择从注塑零部件及其工况出发。运动方式、载荷、环境、尺寸、模具阶段和资料需求共同决定需要比较的改性 POM 候选牌号；当目标性能超出 POM 的实际适用范围时，再分别评估 PA6、PA66 与 PPA。":
+      "A seleção do material começa pela peça moldada e por suas condições de uso. Movimento, carga, ambiente, dimensões, estágio do ferramental e documentação determinam quais graus de POM modificado devem ser comparados. Quando o perfil desejado fica fora da faixa prática do POM, PA6, PA66 e PPA são avaliados separadamente.",
     查看材料范围: "Conheça nossos materiais",
     查看制造能力: "Ver nossa produção",
     从零部件需求到候选牌号评估:
       "Dos requisitos da peça à avaliação de graus candidatos",
-    "服务工业材料项目，而不是追求宽泛目录":
-      "Atender projetos de materiais industriais sem buscar um catálogo excessivamente amplo",
     "聚焦更明确的材料范围，同时连接完整决策过程":
       "Um portfólio de materiais mais definido, conectado a todo o processo decisório",
     支撑试制批次与重复订单的生产规模:
@@ -304,8 +304,11 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Funções e base de processamento",
     "电气表现、基础树脂与流动窗口":
       "Comportamento elétrico, resina base e janela de fluxo",
-    "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。":
-      "Este diretório reúne as famílias de POM PLATFORM para resistência ao desgaste e baixo atrito, modificação de impacto, resistência às intempéries, reforço, propriedades condutivas e antiestáticas, fluidez ultra-alta e aplicações com resina base.",
+    "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。":
+      "Primeiro, identifique o requisito de desempenho determinante da peça e depois escolha a direção adequada entre as famílias de POM PLATFORM para desgaste e baixo atrito, resistência ao impacto, intempéries, reforço, propriedades condutivas e antiestáticas, alta fluidez ou resina base.",
+    "浏览全部 POM 材料家族": "Ver todas as famílias de POM",
+    "从零件要求出发，对比耐磨、抗冲、耐候、增强、功能、流动和基础 POM 材料家族。":
+      "A partir dos requisitos da peça, compare famílias de POM para desgaste, impacto, resistência às intempéries, reforço, função, fluxo e resina base.",
     "按材料选型、加工与问题排查、牌号数据与验证任务浏览台益技术资料。":
       "Explore os recursos técnicos da Taiyi Polymer por seleção de materiais, processamento e solução de problemas, dados de graus e tarefas de validação.",
     "材料选型、加工与验证资料":

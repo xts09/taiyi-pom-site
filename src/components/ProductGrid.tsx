@@ -178,8 +178,8 @@ export function ProductGrid({
     <div className="product-grade-section">
       {showPomSubcategories ? (
         <PomFamilyMap
-          title="POM Material Families"
-          description="The PLATFORM POM portfolio brings together wear, impact, weathering, reinforcement, electrical function, base resin, and flow-focused material families."
+          title="Choose a POM Family by Part Need"
+          description="Start with the performance gap that governs the molded part, then open the relevant PLATFORM POM family to compare listed grades and published data."
           groups={pomFamilyGroups}
         />
       ) : null}
@@ -245,8 +245,9 @@ export function ProductGrid({
               </p>
               {selectedCategory === "POM" ? (
                 <p className="product-directory-guidance">
-                  Not sure which material family fits?{" "}
-                  <Link href="/contact">Send project inputs.</Link>
+                  <Link href="/contact">
+                    Share project inputs to shortlist a material family.
+                  </Link>
                 </p>
               ) : null}
             </div>
@@ -304,10 +305,10 @@ export function ProductGrid({
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="product-empty products-motion-row">
-              This material family is reviewed by project rather than displayed
-              as a fixed grade list. Share the application, mold stage, cavity
-              count, shrinkage target, and performance requirements so we can
-              shortlist relevant options.
+              This project-based material family is evaluated through the
+              application, mold stage, cavity count, shrinkage target, and
+              performance requirements. Share these inputs to shortlist
+              relevant options.
             </div>
           ) : (
             <div className="product-directory">

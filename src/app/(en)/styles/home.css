@@ -1575,11 +1575,11 @@
 @media (min-width: 64rem) {
   .home-hero,
   .home-hero > .site-container {
-    min-height: calc(100svh - clamp(4.75rem, 6vw, 6.25rem));
+    min-height: clamp(42rem, calc(100svh - 7rem), 52rem);
   }
 
-  .home-hero-content {
-    transform: translateY(clamp(1.35rem, 2.6vh, 2.05rem));
+  .home-redesign .home-hero-content {
+    transform: translateY(calc(var(--home-space-2xl) * -1));
   }
 }
 
@@ -2921,7 +2921,7 @@
 .home-material-entry {
   background: var(--home-color-white);
   color: var(--home-color-ink);
-  padding-top: var(--home-space-2xl);
+  padding-block: var(--home-space-2xl);
 }
 
 .home-task-intro {
@@ -3037,7 +3037,7 @@
 
 .home-material-caption-link {
   color: var(--home-color-white-muted);
-  font-size: var(--home-text-xs);
+  font-size: max(var(--home-text-xs), 0.78rem);
   font-weight: 700;
   letter-spacing: 0.08em;
   text-decoration-color: color-mix(in oklch, currentcolor 55%, transparent);
@@ -3218,6 +3218,7 @@
 .home-component-paths {
   background: var(--home-color-white);
   color: var(--home-color-ink);
+  padding-block: var(--home-space-xl);
 }
 
 .home-application-intro {

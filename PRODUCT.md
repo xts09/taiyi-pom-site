@@ -275,6 +275,13 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Headings make one memorable claim; supporting paragraphs explain scope and meaning; labels identify real metadata; CTAs name the destination or next task. One element should not repeat another element's job.
 - All five released languages preserve the same message priority and proof boundary through natural, manually reviewed local expression. Semantic alignment is required; literal sentence structure and identical line breaks are not.
 
+### Canonical POM Directory Consolidation (2026-08-29)
+
+- `/products/categories/pom` is the single canonical POM hub in all five released languages. It owns the complete decision sequence: start from the molded-part requirement, choose a relevant POM family, compare listed grades and published data, continue to application guidance, and prepare a project inquiry.
+- The former `/modified-pom-compounds` page no longer owns a separate indexable experience. English and localized variants permanently redirect to the requirement-selection section of the matching POM directory and remain outside the sitemap and language-alternate groups.
+- Home exposes one localized modified-POM product action instead of asking visitors to distinguish between a requirement page and a portfolio page. About, Resources, component solutions, and the specialist POM landings link directly to the canonical POM hub or to the more specific family that owns the task.
+- `/wear-resistant-low-friction-pom` and `/conductive-antistatic-pom` remain independent specialist screening pages because they address narrower operating-condition and validation questions rather than repeating the complete POM catalogue.
+
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.

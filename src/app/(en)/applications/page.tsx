@@ -79,11 +79,12 @@ export default function ApplicationsPage() {
               className="mt-5 max-w-3xl text-lg leading-8 text-slate-200"
               style={{ "--item-index": 2 } as CSSProperties}
             >
-              Start with the molded part, not a generic material name. Motion,
-              load, environment, dimensions, tooling stage and document needs
-              determine which modified POM candidates deserve comparison.
-              PA6, PA66 and PPA are considered separately when the required
-              property balance falls outside the practical POM range.
+              Material selection starts with the molded part and its operating
+              conditions. Motion, load, environment, dimensions, tooling stage
+              and document needs determine which modified POM candidates
+              deserve comparison. PA6, PA66 and PPA are evaluated separately
+              when the required property balance falls outside the practical
+              POM range.
             </p>
 
             <div

@@ -28,8 +28,8 @@ export const aboutLocaleOverrides: Partial<
       "Technik, Labor, Fertigung und Qualität arbeiten gemeinsam an Werkstoffprüfungen, Produktionsplanung und Qualitätsdokumentation. Die Verantwortlichen für Validierung und Fertigung begleiten die Projektanforderungen direkt.",
     让项目审核与供应商准入有据可查:
       "Nachweise für Projektprüfung und Lieferantenfreigabe",
-    "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
-      "Für die Lieferantenqualifizierung reichen Produktdaten allein nicht aus. Taiyi Polymer stellt projektbezogen Unternehmensnachweise, Managementsystem-Zertifikate und Werkstoffdokumente als klare, nachvollziehbare Prüfgrundlage bereit.",
+    "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。":
+      "Taiyi Polymer stellt projektbezogen Produktdaten, Unternehmensnachweise, Managementsystem-Zertifikate und Werkstoffdokumente als klare, nachvollziehbare Grundlage für Lieferantenqualifizierung und Kundenprüfung bereit.",
     从盐城服务全球材料项目:
       "Werkstoffprojekte weltweit aus Yancheng betreuen",
     "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":
@@ -195,8 +195,8 @@ export const aboutLocaleOverrides: Partial<
       "Les équipes techniques, laboratoire, production et qualité participent ensemble aux essais matière, à la planification de la production et aux documents qualité. Les responsables de la validation et de la fabrication suivent directement les exigences du projet.",
     让项目审核与供应商准入有据可查:
       "Les preuves pour qualifier un fournisseur",
-    "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
-      "La qualification fournisseur exige plus que des données produit. Taiyi Polymer fournit selon le projet les qualifications de l’entreprise, les certificats de systèmes de management et les documents matière nécessaires à une revue claire et traçable.",
+    "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。":
+      "Taiyi Polymer fournit selon le projet les données produit, les qualifications de l’entreprise, les certificats de systèmes de management et les documents matière nécessaires à une qualification fournisseur claire et traçable.",
     从盐城服务全球材料项目:
       "Des projets matière internationaux servis depuis Yancheng",
     "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":
@@ -363,8 +363,8 @@ export const aboutLocaleOverrides: Partial<
       "As equipes técnica, de laboratório, produção e qualidade participam dos testes de materiais, do planejamento da produção e dos documentos de qualidade. Os responsáveis pela validação e fabricação acompanham diretamente os requisitos do projeto.",
     让项目审核与供应商准入有据可查:
       "Evidências para qualificar fornecedores",
-    "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。":
-      "A qualificação de fornecedores exige mais do que dados de produto. A Taiyi Polymer fornece, conforme o projeto, qualificações empresariais, certificados de sistemas de gestão e documentos de materiais para uma análise clara e rastreável.",
+    "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。":
+      "A Taiyi Polymer fornece, conforme o projeto, dados de produto, qualificações empresariais, certificados de sistemas de gestão e documentos de materiais para qualificação de fornecedores e análise do cliente de forma clara e rastreável.",
     从盐城服务全球材料项目:
       "Projetos globais de materiais atendidos a partir de Yancheng",
     "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":

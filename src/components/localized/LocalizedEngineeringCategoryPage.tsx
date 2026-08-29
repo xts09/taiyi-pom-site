@@ -192,7 +192,10 @@ export function LocalizedEngineeringCategoryContent({
               <h2>{copy.directions.title}</h2>
               <p>{copy.directions.body}</p>
             </div>
-            <div className="product-filter-rail">
+            <div
+              className="product-filter-rail"
+              data-direction-count={directions.length}
+            >
               {directions.map((item, index) => (
                 <a
                   key={item.direction}

@@ -64,11 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
     },
     {
-      sourcePath: "/modified-pom-compounds",
-      priority: 0.75,
-      changeFrequency: "weekly" as const,
-    },
-    {
       sourcePath: "/wear-resistant-low-friction-pom",
       priority: 0.75,
       changeFrequency: "weekly" as const,

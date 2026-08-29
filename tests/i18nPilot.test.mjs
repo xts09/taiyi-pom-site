@@ -364,17 +364,14 @@ test("all localized dictionaries match the complete shared English message shape
   );
   assert.deepEqual(
     [en, de, fr, ptBR, zhCN].map(
-      (messages) => [
-        messages.Home.taskFirst?.core.directionsAction,
-        messages.Home.taskFirst?.core.portfolioAction,
-      ],
+      (messages) => messages.Home.taskFirst?.core.productAction,
     ),
     [
-      ["Explore POM Directions", "View POM Portfolio"],
-      ["POM-Werkstoffrichtungen erkunden", "POM-Portfolio ansehen"],
-      ["Explorer les orientations POM", "Voir la gamme POM"],
-      ["Explorar opções de POM modificado", "Ver portfólio de POM"],
-      ["探索 POM 改性方向", "查看 POM 产品体系"],
+      "Explore Modified POM Range",
+      "Sortiment an modifiziertem POM entdecken",
+      "Découvrir la gamme de POM modifié",
+      "Explorar a linha de POM modificado",
+      "浏览改性 POM 产品系列",
     ],
   );
   assert.deepEqual(
@@ -1001,7 +998,6 @@ test("the release manifest publishes only the approved localized page groups", (
     conductiveAntistaticPomCategory:
       "/products/categories/conductive-antistatic-pom-compound",
     ultraHighFlowPomCategory: "/products/categories/ultra-high-flow-pom",
-    modifiedPomCompounds: "/modified-pom-compounds",
     wearResistantLowFrictionPom: "/wear-resistant-low-friction-pom",
     conductiveAntistaticPom: "/conductive-antistatic-pom",
     components: "/components",
@@ -1291,11 +1287,11 @@ test("the release manifest publishes only the approved localized page groups", (
   );
   assert.equal(
     isLocalizedReleaseIndexable("/modified-pom-compounds", "zh"),
-    true,
+    false,
   );
   assert.equal(
     isLocalizedReleaseIndexable("/modified-pom-compounds", "de"),
-    true,
+    false,
   );
 
   assert.deepEqual(
@@ -1325,6 +1321,7 @@ test("the release manifest publishes only the approved localized page groups", (
     getLanguageAlternates("/products/categories/pom"),
     expectedLocalizedAlternates("/products/categories/pom"),
   );
+  assert.deepEqual(getLanguageAlternates("/modified-pom-compounds"), {});
 
   assert.deepEqual(getLanguageAlternates("/products/xt-100-base-pom-resin"), {
     en: "/products/xt-100-base-pom-resin",
@@ -1360,17 +1357,16 @@ test("the release manifest publishes only the approved localized page groups", (
   assert.equal(isEnglishFallbackHref("/applications"), false);
 });
 
-test("the Simplified Chinese POM solution family is complete and localized", () => {
+test("the Simplified Chinese POM specialist solution family is complete and localized", () => {
   assert.deepEqual(Object.keys(chinesePomLandingPages).sort(), [
     "conductive-antistatic-pom",
-    "modified-pom-compounds",
     "wear-resistant-low-friction-pom",
   ]);
   assert.equal(chinesePomLandingUi.homeBreadcrumb, "首页");
   assert.equal(chinesePomLandingUi.englishDestinationLabel, "英文内容");
   assert.equal(
-    getLocalizedHref("/modified-pom-compounds#electrical-control", "zh"),
-    "/zh/modified-pom-compounds#electrical-control",
+    getLocalizedHref("/modified-pom-compounds", "zh"),
+    "/zh/modified-pom-compounds",
   );
 
   for (const [slug, page] of Object.entries(chinesePomLandingPages)) {

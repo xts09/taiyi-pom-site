@@ -38,7 +38,7 @@ export const chineseAboutMessages = {
         title: "改性 POM",
         description:
           "围绕耐磨、低摩擦、增强和导电等关键性能，开发面向精密注塑零部件的功能型改性 POM。",
-      href: "/modified-pom-compounds",
+      href: "/products/categories/pom",
       },
       {
         index: "02",
@@ -66,7 +66,7 @@ export const chineseAboutMessages = {
   credentials: {
     eyebrow: "质量与合规",
     title: "让项目审核与供应商准入有据可查",
-    description: "供应商准入需要的不只是产品数据。台益可按项目提供企业资质、管理体系证书和材料文件，为客户审核提供清晰、可追溯的依据。",
+    description: "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。",
     documentsAria: "可提供的材料资料",
     systemsCategory: "管理体系",
     systemsTitle: "已认证的管理体系",

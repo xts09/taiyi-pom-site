@@ -113,7 +113,7 @@ const messages = {
     description:
       "Compartilhe com nossa equipe de materiais a peça, as metas de desempenho e os documentos necessários.",
     directOptionsAria: "Opções de contato direto",
-    triggerLabel: "Contato",
+    triggerLabel: "Discutir sua aplicação",
   },
   Analytics: {
     title: "Suas escolhas de privacidade",

@@ -24,15 +24,6 @@ import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import styles from "../ComponentSolutions.module.css";
 
-const designContract = `<!--
-THESIS: Component-specific diagnosis leads the material conversation; this family refuses a generic resin landing page.
-OWN-WORLD: Inherited Taiyi industrial navy, technical paper, cobalt actions, real part or engineering-context imagery, and scan-first indexed rows.
-STORY: Recognize the part and failure, compare candidate materials, send the minimum project input, then validate on molded components and the complete system.
-FIRST VIEWPORT: Desktop shows the part, outcome, project inputs, and inquiry action together; mobile keeps the part, outcome, and actions immediately legible with the project-input rail following intact.
-FORM: Direct extension of the approved diagnostic brief; structure chosen over cards or a generic brochure sequence; concept seed not applicable.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
--->`;
-
 type DetailedComponentSolutionProps = {
   detail: ComponentSolutionDetail;
   solution: ComponentSolution;
@@ -90,15 +81,15 @@ const englishUi: ComponentDetailUi = {
   checkFirstLabel: "Check first",
   materialResponseLabel: "Material response",
   materialsEyebrow: "Candidate materials",
-  materialsTitle: "Compare the material response, not just the resin name.",
+  materialsTitle: "Compare candidate materials by their response to the part.",
   cautionLabel: "Project caution",
   validationBoundaryLabel: "Validation boundary",
   pomBoundaryLabel: "When POM may not fit",
   materialGuideAction: "Open the material selection guide",
   inquiryEyebrow: "Minimum project input",
-  inquiryTitle: "Send what you know. Mark what is still unknown.",
+  inquiryTitle: "Send the project inputs already available.",
   inquiryDescription:
-    "A drawing plus the operating conditions already available is enough to start. Mark unknown items as not yet confirmed and add them after the first response.",
+    "A drawing and the current operating conditions are enough to begin. Remaining details can follow after the first response.",
   processEyebrow: "After contact",
   processTitle: "Know what the first response should produce.",
   expectedOutputLabel: "Expected output",
@@ -203,8 +194,8 @@ export function DetailedComponentSolution({
   }));
   const modifiedPomPath = localizedHref(
     solution.slug === "ic-handling-trays"
-      ? "/modified-pom-compounds#electrical-control"
-      : "/modified-pom-compounds#wear-impact-weathering",
+      ? "/products/categories/conductive-antistatic-pom-compound"
+      : "/products/categories/pom#material-families",
   );
   const materialDirectionRelationById = new Map<
     string,
@@ -248,11 +239,6 @@ export function DetailedComponentSolution({
 
   return (
     <main className={`${styles.page} ${styles.detailPage}`}>
-      <span
-        aria-hidden="true"
-        dangerouslySetInnerHTML={{ __html: designContract }}
-        hidden
-      />
       <div className={styles.shell}>
         <div className={styles.rail}>
           <Breadcrumbs

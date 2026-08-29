@@ -38,7 +38,7 @@ const pomCategoryOverview = {
   description:
     "Compare Taiyi Polymer POM grades by application and grade data. Review wear, impact, friction, UV, reinforced, conductive, antistatic, and base resin options.",
   navSubtitle:
-    "Browse modified POM and base resin options by family, grade data, application fit, and documents.",
+    "Choose modified POM by part requirement, then compare families, grade data, application fit, and documents.",
   applications: [
     "Precision injection molded parts",
     "Gears, bushings, rollers, and sliding parts",
@@ -56,10 +56,6 @@ const pomCategoryOverview = {
   ],
   selectionLinks: [
     {
-      label: "Choose modified POM by part requirement",
-      href: "/modified-pom-compounds#part-requirement-map",
-    },
-    {
       label: "MoS2-filled POM grade data: EMS162",
       href: "/products/ems162-high-wear-resistant-pom",
     },
@@ -70,6 +66,23 @@ const pomCategoryOverview = {
     {
       label: "Wear and low-friction POM selection guide",
       href: "/resources/wear-resistant-low-friction-pom-selection-guide",
+    },
+  ],
+  faqs: [
+    {
+      question: "What does modified POM mean?",
+      answer:
+        "Modified POM is a POM compound adjusted with selected additives, fillers, reinforcements, lubricants, impact modifiers, or electrical modifiers. Final suitability depends on the exact grade and application conditions.",
+    },
+    {
+      question: "Should buyers choose a material family or a grade first?",
+      answer:
+        "Start with the part function, movement, load, environment, dimensional target, and processing method to identify a relevant family. Then compare its grades by the properties and documents that govern the project.",
+    },
+    {
+      question: "Can Taiyi Polymer shortlist a grade from an application requirement?",
+      answer:
+        "Yes. Share the part, current material, target performance, mold information, document needs, and estimated volume so relevant grades can be shortlisted for project evaluation.",
     },
   ],
 };
@@ -701,7 +714,10 @@ export const getCategorySelectionLinks = (category: string) => {
 };
 
 export const getCategoryFaqs = (category: string) => {
-  const categoryFaqs = getCategoryData(category)?.faqs;
+  const categoryFaqs =
+    category === pomCategoryOverview.category
+      ? pomCategoryOverview.faqs
+      : getCategoryData(category)?.faqs;
 
   if (categoryFaqs) {
     return categoryFaqs;

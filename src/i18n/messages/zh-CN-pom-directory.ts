@@ -9,7 +9,8 @@ export const chinesePomDirectoryMessages = {
     eyebrow: "POM 材料组合",
     title: "POM 材料家族与牌号目录",
     description:
-      "本目录涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等 PLATFORM POM 材料家族。",
+      "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。",
+    selectionAction: "按零件要求选择改性 POM 方向",
     contactAction: "提交应用要求",
     technicalDataAction: "查找牌号数据与 TDS",
   },
@@ -24,7 +25,7 @@ export const chinesePomDirectoryMessages = {
     faq: "常见问题",
   },
   families: {
-    label: "选择 POM 材料家族",
+    label: "按零件需求选择 POM 材料家族",
     body:
       "选择最接近零件性能缺口的方向。每个家族页用于进一步比较相关牌号、成型适配与性能数据。",
     groups: [
@@ -215,8 +216,6 @@ export const chinesePomDirectoryMessages = {
       "outdoor-equipment": "户外设备",
     },
     selectionLinks: {
-      "/modified-pom-compounds#part-requirement-map":
-        "按零件要求选择改性 POM 方向",
       "/products/ems162-high-wear-resistant-pom":
         "MoS2 填充 POM 牌号数据：EMS162",
       "/products/eptl402-high-wear-resistant-pom":
@@ -229,6 +228,11 @@ export const chinesePomDirectoryMessages = {
     kicker: "常见问题",
     title: "采购与工程筛选问题",
     items: [
+      {
+        question: "什么是改性 POM？",
+        answer:
+          "改性 POM 是通过选定的添加剂、填料、增强材料、润滑剂、增韧剂或电性能改性剂进行调整的 POM 配混料。最终适用性取决于具体牌号和应用条件。",
+      },
       {
         question: "应该先选材料家族还是直接选牌号？",
         answer:

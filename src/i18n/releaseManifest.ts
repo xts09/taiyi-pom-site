@@ -30,6 +30,15 @@ const chineseOnlyPublicRelease = {
   localizedSegments: ["de", "fr", "pt-br", "zh"],
 } as const;
 
+const legacyRedirectRelease = {
+  status: "public",
+  indexable: false,
+  publicNavigation: false,
+  includeInSitemap: false,
+  includeInAlternates: false,
+  localizedSegments: ["de", "fr", "pt-br", "zh"],
+} as const;
+
 export const chineseEngineeringGradeReleaseEntries: readonly LocalizedReleaseEntry[] =
   (generatedCatalog as CatalogEngineeringTdsRecord[])
     .filter(
@@ -285,7 +294,7 @@ export const localizedReleaseManifest = {
   },
   modifiedPomCompounds: {
     sourcePath: "/modified-pom-compounds",
-    ...chineseOnlyPublicRelease,
+    ...legacyRedirectRelease,
   },
   wearResistantLowFrictionPom: {
     sourcePath: "/wear-resistant-low-friction-pom",

@@ -20,7 +20,7 @@ const expectedAlternates = (sourcePath) => ({
   "x-default": sourcePath,
 });
 
-test("the 88 released English owners have exact manifest-backed hreflang groups", () => {
+test("the 87 released English owners have exact manifest-backed hreflang groups", () => {
   const engineeringPaths = JSON.parse(
     readProjectFile("src/generated/catalog.json"),
   )
@@ -33,7 +33,6 @@ test("the 88 released English owners have exact manifest-backed hreflang groups"
     "/about",
     "/privacy",
     "/components",
-    "/modified-pom-compounds",
     "/wear-resistant-low-friction-pom",
     "/conductive-antistatic-pom",
     "/products/conductive-antistatic-compounds",
@@ -46,8 +45,8 @@ test("the 88 released English owners have exact manifest-backed hreflang groups"
 
   assert.equal(engineeringPaths.length, 75);
   assert.equal(componentPaths.length, 6);
-  assert.equal(staticOwnerPaths.length, 7);
-  assert.equal(ownerPaths.length, 88);
+  assert.equal(staticOwnerPaths.length, 6);
+  assert.equal(ownerPaths.length, 87);
 
   for (const sourcePath of ownerPaths) {
     assert.deepEqual(
@@ -70,7 +69,6 @@ test("English metadata owners consume the release manifest at the page boundary"
     "src/app/(en)/about/page.tsx",
     "src/app/(en)/privacy/page.tsx",
     "src/app/(en)/components/page.tsx",
-    "src/app/(en)/modified-pom-compounds/page.tsx",
     "src/app/(en)/wear-resistant-low-friction-pom/page.tsx",
     "src/app/(en)/conductive-antistatic-pom/page.tsx",
     "src/app/(en)/products/conductive-antistatic-compounds/page.tsx",
@@ -92,6 +90,26 @@ test("English metadata owners consume the release manifest at the page boundary"
   for (const source of staticOwnerSources) {
     assert.match(source, /getLanguageAlternates\(/);
   }
+});
+
+test("the retired Modified POM page redirects to the canonical POM directory", () => {
+  const englishRedirect = readProjectFile(
+    "src/app/(en)/modified-pom-compounds/page.tsx",
+  );
+  const localizedRedirect = readProjectFile(
+    "src/app/[locale]/modified-pom-compounds/page.tsx",
+  );
+
+  assert.match(
+    englishRedirect,
+    /permanentRedirect\("\/products\/categories\/pom#material-families"\)/,
+  );
+  assert.match(localizedRedirect, /permanentRedirect\(/);
+  assert.match(localizedRedirect, /destinationPath/);
+  assert.deepEqual(
+    getLanguageAlternatesForPath("/modified-pom-compounds"),
+    {},
+  );
 });
 
 test("only the below-fold application scene loses eager image priority", () => {

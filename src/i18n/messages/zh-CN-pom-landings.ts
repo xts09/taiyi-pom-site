@@ -309,10 +309,10 @@ export const chineseWearLowFrictionPomLanding: PomLandingPageData = {
       description: "对比齿轮、衬套、滑块和其他运动零件。",
     },
     {
-      href: "/modified-pom-compounds#wear-impact-weathering",
-      label: "扩展改性 POM 审查",
+      href: "/products/categories/pom#material-families",
+      label: "浏览全部 POM 材料家族",
       description:
-        "从零件要求出发，对比耐磨、抗冲、耐候、增强和功能 POM 方向。",
+        "从零件要求出发，对比耐磨、抗冲、耐候、增强、功能、流动和基础 POM 材料家族。",
     },
   ],
   faqs: [
@@ -435,7 +435,6 @@ export const chineseConductiveAntistaticPomLanding: PomLandingPageData = {
 };
 
 export const chinesePomLandingPages = {
-  "modified-pom-compounds": chineseModifiedPomLanding,
   "wear-resistant-low-friction-pom": chineseWearLowFrictionPomLanding,
   "conductive-antistatic-pom": chineseConductiveAntistaticPomLanding,
 } satisfies Record<string, PomLandingPageData>;

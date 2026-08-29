@@ -102,10 +102,10 @@ export type PomLandingPageData = {
 
 export const technicalLandingLinks: LandingRelatedLink[] = [
   {
-    href: "/modified-pom-compounds",
-    label: "Modified POM Directions by Part Requirement",
+    href: "/products/categories/pom#material-families",
+    label: "Modified POM Families by Part Requirement",
     description:
-      "Identify which modification direction deserves review before opening the POM family and grade directories.",
+      "Choose a POM family from the governing part requirement, then compare listed grades and published data in one directory.",
   },
   {
     href: "/wear-resistant-low-friction-pom",
@@ -438,10 +438,10 @@ export const pomLandingPages = {
       },
       { href: "/applications/motion-components", label: "Motion Components", description: "Compare gears, bushings, sliders, and moving parts." },
       {
-        href: "/modified-pom-compounds#wear-impact-weathering",
-        label: "Broaden the Modified POM Review",
+        href: "/products/categories/pom#material-families",
+        label: "Browse All POM Families",
         description:
-          "Compare wear, impact, weathering, reinforced, and functional POM directions from the part requirement.",
+          "Compare wear, impact, weathering, reinforced, functional, flow, and base POM families from the part requirement.",
       },
     ],
     faqs: [

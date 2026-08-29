@@ -23,7 +23,6 @@ const landingMaterialBySlug: Partial<
   Record<PomLandingPageData["slug"], string>
 > = {
   "conductive-antistatic-pom": "Conductive / Antistatic POM",
-  "modified-pom-compounds": "Modified POM Compounds",
   "wear-resistant-low-friction-pom": "Wear-Resistant & Low-Friction POM",
 };
 
@@ -31,7 +30,6 @@ const landingIntentBySlug: Partial<
   Record<PomLandingPageData["slug"], ContactIntent>
 > = {
   "conductive-antistatic-pom": "grade-evaluation",
-  "modified-pom-compounds": "grade-evaluation",
 };
 
 const supplierEvidenceHrefByTarget: Record<PomLandingEvidenceTarget, string> = {

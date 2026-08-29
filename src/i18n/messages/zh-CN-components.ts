@@ -38,7 +38,7 @@ export const chineseComponentIndexMessages = {
     checkFirstLabel: "优先检查",
     materialResponseLabel: "材料应对方向",
     materialsEyebrow: "候选材料",
-    materialsTitle: "比较材料应对方向，而不只是树脂名称",
+    materialsTitle: "按零部件响应比较候选材料",
     cautionLabel: "项目注意事项",
     validationBoundaryLabel: "验证边界",
     pomBoundaryLabel: "POM 可能不适用的情况",

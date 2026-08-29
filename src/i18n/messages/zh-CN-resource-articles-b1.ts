@@ -228,7 +228,7 @@ const messages = {
       { label: "POM 加工指南", href: "/resources/processing-guide" },
       {
         label: "查看尺寸控制 POM 方向",
-        href: "/modified-pom-compounds#reinforcement-dimensional-control",
+        href: "/products/categories/pom#material-families",
       },
       {
         label: "按零部件功能查看应用审核",

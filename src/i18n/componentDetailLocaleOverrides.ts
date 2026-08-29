@@ -25,10 +25,10 @@ const componentDetailTranslationRows = [
     "Exemplo de peça",
   ],
   [
-    "比较材料应对方向，而不只是树脂名称",
-    "Werkstoffrichtungen vergleichen, nicht nur Harznamen",
-    "Comparer les orientations matériaux, pas seulement les noms de résine",
-    "Compare direções de materiais, não apenas nomes de resinas",
+    "按零部件响应比较候选材料",
+    "Kandidatenwerkstoffe nach ihrer Bauteilreaktion vergleichen",
+    "Comparer les matériaux candidats selon leur réponse dans la pièce",
+    "Compare os materiais candidatos pela resposta na peça",
   ],
   [
     "验证边界",

@@ -10,11 +10,11 @@ const messages = {
       imageAlt: "Fertigung modifizierter POM-Compounds bei Taiyi Polymer",
     },
     hero: {
-      eyebrowDesktop: "POM-COMPOUNDIERUNG · WERKSTOFFUNTERSTÜTZUNG",
-      eyebrowMobile: "POM-COMPOUNDIERUNG",
+      eyebrowDesktop: "TAIYI POLYMER · PLATFORM® WERKSTOFFE",
+      eyebrowMobile: "TAIYI POLYMER · PLATFORM®",
       title: "Hersteller modifizierter POM-Compounds für Präzisionsformteile",
       body:
-        "Modifiziertes POM bildet den Kern unseres Portfolios, ergänzt durch PA6, PA66 und PPA. Für Verschleißfestigkeit, geringe Reibung, Verstärkung, Leitfähigkeit und Antistatik bieten wir Hochleistungskunststofflösungen und unterstützen Kunden dabei, neue Ideen bis zur Serienreife weiterzuentwickeln.",
+        "Taiyi Polymer entwickelt modifizierte POM-Compounds für verschleißfeste, reibungsarme, verstärkte, leitfähige und antistatische Präzisionsteile und unterstützt ausgewählte PA6-, PA66- und PPA-Projekte von der Typenauswahl bis zur Produktion.",
       exploreAction: "Werkstoff nach Bauteil finden",
       contactAction: "Typen & TDS finden",
     },

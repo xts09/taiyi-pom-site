@@ -401,7 +401,7 @@ const messages = {
       },
       {
         label: "按零部件需求重新筛选",
-        href: "/modified-pom-compounds#part-requirement-map",
+        href: "/products/categories/pom#material-families",
       },
       { label: "讨论替代牌号", href: "/contact" },
     ],

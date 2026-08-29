@@ -15,7 +15,7 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 test("released sitemap routes remain unique with explicit locale coverage", () => {
   const sourcePaths = getSitemapReleasedSourcePaths();
 
-  assert.equal(sourcePaths.length, 173);
+  assert.equal(sourcePaths.length, 172);
   assert.equal(new Set(sourcePaths).size, sourcePaths.length);
   assert.equal(
     sourcePaths.reduce(
@@ -23,7 +23,7 @@ test("released sitemap routes remain unique with explicit locale coverage", () =
         total + getSitemapLanguageOptions(sourcePath).length,
       0,
     ),
-    865,
+    860,
   );
   assert.deepEqual(
     getSitemapLanguageOptions("/news/chinaplas-2026").map(

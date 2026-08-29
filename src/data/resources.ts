@@ -491,7 +491,7 @@ export const resourcePages: ResourcePage[] = [
       },
       {
         label: "Re-screen by Part Requirement",
-        href: "/modified-pom-compounds#part-requirement-map",
+        href: "/products/categories/pom#material-families",
       },
       { label: "Discuss an Alternative Grade", href: "/contact" },
     ],
@@ -1152,7 +1152,7 @@ export const resourcePages: ResourcePage[] = [
       { label: "POM Processing Guide", href: "/resources/processing-guide" },
       {
         label: "Review Dimensional-Control POM Directions",
-        href: "/modified-pom-compounds#reinforcement-dimensional-control",
+        href: "/products/categories/pom#material-families",
       },
       {
         label: "Application Review by Part Function",

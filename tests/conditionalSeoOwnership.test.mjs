@@ -31,7 +31,7 @@ test("assigns the generic carbon-fiber POM compound phrase to the category", () 
   );
 });
 
-test("connects alternative-grade validation to the part-requirement map", () => {
+test("connects alternative-grade validation to the canonical POM requirement map", () => {
   const guideStart = resourcesSource.indexOf(
     'slug: "alternative-pom-grade-validation"',
   );
@@ -44,7 +44,7 @@ test("connects alternative-grade validation to the part-requirement map", () => 
   assert.notEqual(guideStart, -1);
   assert.match(
     guideSource,
-    /label: "Re-screen by Part Requirement",\s+href: "\/modified-pom-compounds#part-requirement-map"/,
+    /label: "Re-screen by Part Requirement",\s+href: "\/products\/categories\/pom#material-families"/,
   );
 });
 
@@ -92,7 +92,6 @@ test("keeps POM, wear, and conductive selection links on their intended owners",
   assert.deepEqual(
     getCategorySelectionLinks("POM").map((link) => link.href),
     [
-      "/modified-pom-compounds#part-requirement-map",
       "/products/ems162-high-wear-resistant-pom",
       "/products/eptl402-high-wear-resistant-pom",
       "/resources/wear-resistant-low-friction-pom-selection-guide",

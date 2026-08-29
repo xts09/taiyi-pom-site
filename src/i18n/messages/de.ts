@@ -113,7 +113,7 @@ const messages = {
     description:
       "Teilen Sie unserem Werkstoffteam Bauteil, Leistungsziele und benötigte Unterlagen mit.",
     directOptionsAria: "Direkte Kontaktmöglichkeiten",
-    triggerLabel: "Kontakt",
+    triggerLabel: "Anwendung besprechen",
   },
   Analytics: {
     title: "Ihre Datenschutzeinstellungen",

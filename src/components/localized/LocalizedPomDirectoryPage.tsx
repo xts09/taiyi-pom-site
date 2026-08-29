@@ -215,7 +215,9 @@ export async function LocalizedPomDirectoryPage({
 
               <div className="product-hero-cta">
                 <Button asChild size="productHero" variant="productHeroPrimary">
-                  <Link href={contactHref}>{messages.hero.contactAction}</Link>
+                  <Link href="#material-families">
+                    {messages.hero.selectionAction}
+                  </Link>
                 </Button>
                 <Button
                   asChild

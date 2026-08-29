@@ -703,6 +703,27 @@
 }
 
 @media (min-width: 64.001rem) {
+  .applicationContextLinks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .applicationContextLinks a + a {
+    border-top: 0;
+  }
+
+  .applicationContextLinks a:nth-child(even) {
+    border-left: var(--ds-rule-thin) solid var(--ds-border-subtle);
+  }
+
+  .applicationContextLinks a:nth-child(n + 3) {
+    border-top: var(--ds-rule-thin) solid var(--ds-border-subtle);
+  }
+
+  .applicationContextLinks a:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
   .decisionMatrixHeader {
     display: grid;
     grid-template-columns: 2.25rem minmax(12rem, 3fr) minmax(0, 4fr) minmax(0, 4fr);

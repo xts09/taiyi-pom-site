@@ -9,16 +9,14 @@ import { publicPath } from "@/lib/paths";
 type HomeCoreProductExplorerProps = {
   messages: HomeTaskFirstMessages["core"];
   familyHrefs: readonly string[];
-  pomDirectionHref: string;
-  pomPortfolioHref: string;
+  pomHref: string;
   carbonFiberHref: string;
 };
 
 export function HomeCoreProductExplorer({
   messages,
   familyHrefs,
-  pomDirectionHref,
-  pomPortfolioHref,
+  pomHref,
   carbonFiberHref,
 }: HomeCoreProductExplorerProps) {
   const pomFamilyHref = familyHrefs[0];
@@ -96,14 +94,9 @@ export function HomeCoreProductExplorer({
               <p>{messages.body}</p>
               <div className="home-material-actions">
                 <Button asChild size="form" variant="primary">
-                  <Link href={pomDirectionHref}>
-                    {messages.directionsAction}
+                  <Link href={pomHref}>
+                    {messages.productAction}
                     <ArrowRight aria-hidden="true" size={16} />
-                  </Link>
-                </Button>
-                <Button asChild size="form" variant="secondary">
-                  <Link href={pomPortfolioHref}>
-                    {messages.portfolioAction}
                   </Link>
                 </Button>
               </div>

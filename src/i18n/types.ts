@@ -191,8 +191,7 @@ export type HomeTaskFirstMessages = {
     eyebrow: string;
     title: string;
     body: string;
-    directionsAction: string;
-    portfolioAction: string;
+    productAction: string;
     materialImageAlt: string;
     materialImageCaption: string;
     directionsAria: string;

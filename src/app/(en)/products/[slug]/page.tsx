@@ -1088,7 +1088,7 @@ export default async function ProductDetailPage({
 
             <p className="text-sm leading-6 text-slate-700">
               {campaignProfile
-                ? `This page supports preliminary ${product.grade} screening. Suitability is not automatic: part design, mold construction, processing conditions, performance targets, and customer certification can change the result. Request the current technical documents and confirm the grade through sampling and application testing.`
+                ? `This page supports preliminary ${product.grade} screening. Confirm suitability against part design, mold construction, processing conditions, performance targets, customer requirements, current technical documents, sampling, and application testing.`
                 : "This product page is for preliminary material selection. For project evaluation, please confirm the application, processing method, mold development stage, cavity count, target shrinkage or dimensional requirement, target performance requirements, current reference grade, document requirements, and estimated volume."}
             </p>
 

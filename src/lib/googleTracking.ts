@@ -1,12 +1,19 @@
 const defaultGoogleAnalyticsId =
   process.env.NODE_ENV === "production" ? "G-CQ8CYP39VN" : "";
 
-export const googleAnalyticsId =
-  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ??
-  process.env.NEXT_PUBLIC_GA_ID ??
-  defaultGoogleAnalyticsId;
+const productionGoogleTagHostname = "www.taiyipolymer.com";
 
-export const googleAdsId = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "";
+export const googleAnalyticsId =
+  process.env.NODE_ENV === "production"
+    ? (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ??
+      process.env.NEXT_PUBLIC_GA_ID ??
+      defaultGoogleAnalyticsId)
+    : "";
+
+export const googleAdsId =
+  process.env.NODE_ENV === "production"
+    ? (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "")
+    : "";
 
 export const googleAdsLeadConversionLabel =
   process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_CONVERSION_LABEL ?? "";
@@ -15,6 +22,9 @@ export const googleSiteVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";
 
 export const googleTagId = googleAnalyticsId || googleAdsId;
+
+export const isGoogleTagHostnameAllowed = (hostname: string) =>
+  hostname.toLowerCase() === productionGoogleTagHostname;
 
 export const googleConsentDefaultScript = `
 window.dataLayer = window.dataLayer || [];

@@ -108,6 +108,124 @@ type TaskFirstHomeNarrativeProps = {
   localizedHref: (href: string) => string;
 };
 
+function HomeProofSection({
+  certifications,
+  messages,
+  localizedHref,
+}: TaskFirstHomeNarrativeProps) {
+  return (
+    <section className="home-proof home-task-section">
+      <div className="site-container">
+        <header className="home-task-intro home-proof-intro">
+          <div className="home-proof-intro-copy">
+            <h2>{messages.proof.eyebrow}</h2>
+            <p>{messages.proof.body}</p>
+          </div>
+          <figure className="home-proof-factory-figure">
+            <Image
+              fill
+              src={publicPath("/factory-extrusion.webp")}
+              alt={messages.proof.factoryImageAlt}
+              sizes="(min-width: 80rem) 52vw, (min-width: 64rem) 55vw, 100vw"
+            />
+            <figcaption>{messages.proof.factoryImageCaption}</figcaption>
+          </figure>
+        </header>
+
+        <dl
+          className="home-proof-metrics"
+          aria-label={messages.proof.metricsAria}
+        >
+          {proofFigures.map((figure, index) => (
+            <div key={figure.label}>
+              <dt>{messages.proof.metricLabels[index]}</dt>
+              <dd>
+                {figure.value}
+                <span>{messages.proof.metricNotes[index]}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+
+        <div className="home-proof-detail">
+          <div className="home-proof-detail-copy">
+            <h3>{messages.proof.documentsTitle}</h3>
+            <p>{messages.proof.documentsBody}</p>
+          </div>
+          <dl
+            className="home-proof-documents"
+            aria-label={messages.proof.documentsAria}
+          >
+            {availableDocuments.map((document, index) => (
+              <div key={document}>
+                <dt>{document}</dt>
+                <dd>{messages.proof.documentTypeDescriptions[index]}</dd>
+              </div>
+            ))}
+          </dl>
+          <Link
+            className="home-task-text-link home-proof-documents-action"
+            href={localizedHref(
+              createContactHref({ source: messages.proof.documentsTitle }),
+            )}
+          >
+            {messages.proof.documentsAction}
+            <ArrowRight aria-hidden="true" size={15} />
+          </Link>
+        </div>
+
+        <div className="home-proof-certificates">
+          <header className="home-proof-certificates-head">
+            <h3>{messages.proof.certificatesTitle}</h3>
+            <Link
+              className="home-proof-certificate-link"
+              href={localizedHref("/about#overview-credentials-title")}
+            >
+              {messages.proof.certificateAction}
+              <ArrowRight aria-hidden="true" size={15} />
+            </Link>
+          </header>
+
+          <div className="home-proof-certificate-grid">
+            {certifications.map((certificate) => (
+              <DocumentCard
+                key={certificate.standard}
+                className="home-proof-certificate-card"
+                variant="certificate"
+                external
+                href={publicPath(certificate.documentHref)}
+                eyebrow={certificate.system}
+                title={certificate.standard}
+                previewAriaLabel={`${messages.proof.certificateOpenAction}: ${certificate.standard}`}
+                previewClassName="home-proof-certificate-preview"
+                preview={
+                  <Image
+                    width={64}
+                    height={90}
+                    src={publicPath(certificate.imageSrc)}
+                    alt=""
+                  />
+                }
+                actionLabel={
+                  <>
+                    {messages.proof.certificateOpenAction}
+                    <ArrowUpRight aria-hidden="true" size={14} />
+                  </>
+                }
+              />
+            ))}
+          </div>
+
+          <div className="home-international-support">
+            <span>{messages.proof.internationalLabel}</span>
+            <p>{messages.proof.internationalBody}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function TaskFirstHomeNarrative({
   certifications,
   messages,
@@ -118,8 +236,7 @@ export function TaskFirstHomeNarrative({
       <HomeCoreProductExplorer
         messages={messages.core}
         familyHrefs={materialFamilyRoutes.map((href) => localizedHref(href))}
-        pomDirectionHref={localizedHref("/modified-pom-compounds")}
-        pomPortfolioHref={localizedHref("/products/categories/pom")}
+        pomHref={localizedHref("/products/categories/pom")}
         carbonFiberHref={localizedHref(
           "/products/categories/carbon-fiber-reinforced-pom-compound",
         )}
@@ -263,115 +380,12 @@ export function TaskFirstHomeNarrative({
         </div>
       </section>
 
-      <section className="home-proof home-task-section">
-        <div className="site-container">
-          <header className="home-task-intro home-proof-intro">
-            <div className="home-proof-intro-copy">
-              <h2>{messages.proof.eyebrow}</h2>
-              <p>{messages.proof.body}</p>
-            </div>
-            <figure className="home-proof-factory-figure">
-              <Image
-                fill
-                src={publicPath("/factory-extrusion.webp")}
-                alt={messages.proof.factoryImageAlt}
-                sizes="(min-width: 80rem) 52vw, (min-width: 64rem) 55vw, 100vw"
-              />
-              <figcaption>{messages.proof.factoryImageCaption}</figcaption>
-            </figure>
-          </header>
+      <HomeProofSection
+        certifications={certifications}
+        messages={messages}
+        localizedHref={localizedHref}
+      />
 
-          <dl
-            className="home-proof-metrics"
-            aria-label={messages.proof.metricsAria}
-          >
-            {proofFigures.map((figure, index) => (
-              <div key={figure.label}>
-                <dt>{messages.proof.metricLabels[index]}</dt>
-                <dd>
-                  {figure.value}
-                  <span>{messages.proof.metricNotes[index]}</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <div className="home-proof-detail">
-            <div className="home-proof-detail-copy">
-              <h3>{messages.proof.documentsTitle}</h3>
-              <p>{messages.proof.documentsBody}</p>
-            </div>
-            <dl
-              className="home-proof-documents"
-              aria-label={messages.proof.documentsAria}
-            >
-              {availableDocuments.map((document, index) => (
-                <div key={document}>
-                  <dt>{document}</dt>
-                  <dd>{messages.proof.documentTypeDescriptions[index]}</dd>
-                </div>
-              ))}
-            </dl>
-            <Link
-              className="home-task-text-link home-proof-documents-action"
-              href={localizedHref(
-                createContactHref({ source: messages.proof.documentsTitle }),
-              )}
-            >
-              {messages.proof.documentsAction}
-              <ArrowRight aria-hidden="true" size={15} />
-            </Link>
-          </div>
-
-          <div className="home-proof-certificates">
-            <header className="home-proof-certificates-head">
-              <h3>{messages.proof.certificatesTitle}</h3>
-              <Link
-                className="home-proof-certificate-link"
-                href={localizedHref("/about#overview-credentials-title")}
-              >
-                {messages.proof.certificateAction}
-                <ArrowRight aria-hidden="true" size={15} />
-              </Link>
-            </header>
-
-            <div className="home-proof-certificate-grid">
-              {certifications.map((certificate) => (
-                <DocumentCard
-                  key={certificate.standard}
-                  className="home-proof-certificate-card"
-                  variant="certificate"
-                  external
-                  href={publicPath(certificate.documentHref)}
-                  eyebrow={certificate.system}
-                  title={certificate.standard}
-                  previewAriaLabel={`${messages.proof.certificateOpenAction}: ${certificate.standard}`}
-                  previewClassName="home-proof-certificate-preview"
-                  preview={
-                    <Image
-                      width={64}
-                      height={90}
-                      src={publicPath(certificate.imageSrc)}
-                      alt=""
-                    />
-                  }
-                  actionLabel={
-                    <>
-                      {messages.proof.certificateOpenAction}
-                      <ArrowUpRight aria-hidden="true" size={14} />
-                    </>
-                  }
-                />
-              ))}
-            </div>
-
-            <div className="home-international-support">
-              <span>{messages.proof.internationalLabel}</span>
-              <p>{messages.proof.internationalBody}</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </>
   );
 }

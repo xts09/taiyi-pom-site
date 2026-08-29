@@ -44,7 +44,6 @@ test("route-specific styles stay out of the root layout", () => {
 test("product side entrances retain their product stylesheet", () => {
   const productSideEntrances = [
     "src/app/(en)/conductive-antistatic-pom/page.tsx",
-    "src/app/(en)/modified-pom-compounds/page.tsx",
     "src/app/(en)/technical-data-sheets/page.tsx",
     "src/app/(en)/wear-resistant-low-friction-pom/page.tsx",
   ];
@@ -55,6 +54,15 @@ test("product side entrances retain their product stylesheet", () => {
       path,
     );
   }
+});
+
+test("retired product entrances redirect without loading a page stylesheet", () => {
+  const retiredEntrance = readProjectFile(
+    "src/app/(en)/modified-pom-compounds/page.tsx",
+  );
+
+  assert.match(retiredEntrance, /permanentRedirect\(/);
+  assert.doesNotMatch(retiredEntrance, /styles\/products\.css/);
 });
 
 test("retired grade cross-reference route is absent while technical search remains", () => {

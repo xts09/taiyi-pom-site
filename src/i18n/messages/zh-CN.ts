@@ -109,7 +109,7 @@ const messages = {
     title: "讨论您的应用",
     description: "向我们的材料团队说明零部件、目标性能和资料需求。",
     directOptionsAria: "直接联系选项",
-    triggerLabel: "联系",
+    triggerLabel: "讨论您的应用",
   },
   Analytics: {
     title: "您的隐私选择",
