@@ -36,7 +36,7 @@ export const homeTaskFirstLocaleMessages = {
     core: {
       eyebrow: "Products",
       title: "Modified POM, Our Core Material for Precision Parts",
-      body: "POM combines balanced mechanical properties with wear resistance, self-lubrication and dimensional stability. PLATFORM® modified POM compounds tune that balance for wear, low friction, reinforcement, conductivity, antistatic performance and dimensional control in precision molded parts.",
+      body: "POM combines well-balanced mechanical properties with wear resistance, self-lubrication and dimensional stability. It was first commercialized to replace machinery components such as gears, screws and bearings that had traditionally been made of metal. Today, its applications range from everyday goods such as zippers and toothbrushes to automotive components including door locks and latches, seat-belt locking mechanisms and fuel-system parts. PLATFORM® takes this proven material further through modification—engineered for parts that cannot afford inconsistency, and for manufacturers who expect precision to hold from the first trial to full-scale production.",
       productAction: "Explore Modified POM Range",
       materialImageAlt:
         "Black carbon-fiber-reinforced POM pellets for engineering injection-molded parts.",
@@ -364,7 +364,7 @@ export const homeTaskFirstLocaleMessages = {
     core: {
       eyebrow: "Produkte",
       title: "Modifiziertes POM – unser Kernwerkstoff für Präzisionsteile",
-      body: "POM verbindet ausgewogene mechanische Eigenschaften mit Verschleißfestigkeit, Selbstschmierung und hoher Maßhaltigkeit. PLATFORM® POM-Compounds stimmen dieses Profil auf Verschleiß, geringe Reibung, Verstärkung, Leitfähigkeit, Antistatik und Maßkontrolle bei Präzisionsformteilen ab.",
+      body: "POM verbindet ausgewogene mechanische Eigenschaften mit Verschleißfestigkeit, Selbstschmierung und hoher Maßhaltigkeit. Der Werkstoff wurde ursprünglich kommerziell eingesetzt, um zuvor aus Metall gefertigte Maschinenteile wie Zahnräder, Schrauben und Lager zu ersetzen. Heute reicht sein Anwendungsspektrum von Alltagsprodukten wie Reißverschlüssen und Zahnbürsten bis zu Fahrzeugkomponenten wie Türschlössern und Verriegelungen, Sicherheitsgurtmechanismen und Teilen von Kraftstoffsystemen. PLATFORM® führt diesen bewährten Werkstoff durch gezielte Modifizierung weiter – für Bauteile, die keine Schwankungen verzeihen, und für Hersteller, die vom ersten Werkzeugversuch bis zur Serienproduktion auf Präzision und Beständigkeit angewiesen sind.",
       productAction: "Sortiment an modifiziertem POM entdecken",
       materialImageAlt:
         "Schwarzes kohlenfaserverstärktes POM-Granulat für technische Spritzgussteile.",
@@ -693,7 +693,7 @@ export const homeTaskFirstLocaleMessages = {
     core: {
       eyebrow: "Produits",
       title: "Le POM modifié, notre matière clé pour les pièces de précision",
-      body: "Le POM associe des propriétés mécaniques équilibrées à la résistance à l’usure, l’autolubrification et la stabilité dimensionnelle. Les compounds POM modifiés PLATFORM® adaptent cet équilibre à l’usure, au faible frottement, au renforcement, à la conductivité, à l’antistatique et au contrôle dimensionnel des pièces moulées de précision.",
+      body: "Le POM associe des propriétés mécaniques équilibrées à une excellente résistance à l’usure, une autolubrification et une grande stabilité dimensionnelle. Il a d’abord été commercialisé pour remplacer des composants mécaniques jusque-là fabriqués en métal, tels que les engrenages, les vis et les paliers. Aujourd’hui, ses applications vont des produits du quotidien, comme les fermetures à glissière et les brosses à dents, aux composants automobiles tels que les serrures et loquets de porte, les mécanismes de verrouillage de ceinture et les pièces de circuit carburant. PLATFORM® pousse plus loin cette matière éprouvée grâce à la modification — pour les pièces qui ne tolèrent aucune variation et pour les industriels qui exigent précision et constance, du premier essai à la production en série.",
       productAction: "Découvrir la gamme de POM modifié",
       materialImageAlt:
         "Granulés noirs de POM renforcé de fibres de carbone pour pièces techniques injectées.",
@@ -1026,7 +1026,7 @@ export const homeTaskFirstLocaleMessages = {
     core: {
       eyebrow: "Produtos",
       title: "POM modificado, nosso material principal para peças de precisão",
-      body: "O POM combina propriedades mecânicas equilibradas com resistência ao desgaste, autolubrificação e estabilidade dimensional. Os compostos de POM modificado PLATFORM® ajustam esse equilíbrio para desgaste, baixo atrito, reforço, condutividade, desempenho antiestático e controle dimensional em peças moldadas de precisão.",
+      body: "O POM combina propriedades mecânicas equilibradas com resistência ao desgaste, autolubrificação e estabilidade dimensional. O material foi inicialmente comercializado para substituir componentes de máquinas, como engrenagens, parafusos e rolamentos, que antes eram fabricados em metal. Hoje, suas aplicações vão de produtos cotidianos, como zíperes e escovas de dentes, a componentes automotivos, incluindo fechaduras e travas de portas, mecanismos de travamento de cintos de segurança e peças de sistemas de combustível. A PLATFORM® leva esse material comprovado além por meio da modificação — para peças que não admitem variação e para fabricantes que exigem precisão e consistência, do primeiro teste à produção em escala.",
       productAction: "Explorar a linha de POM modificado",
       materialImageAlt:
         "Grânulos pretos de POM reforçado com fibra de carbono para peças técnicas injetadas.",
