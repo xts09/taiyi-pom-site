@@ -114,6 +114,9 @@ export const expandedLocaleOverrides: Partial<
     "TDS、文件与样品需求": "TDS-, Dokumenten- und Musterbedarf",
     "最终电性能应在约定测试方法和工作环境下，于注塑成品上确认。":
       "Das endgültige elektrische Verhalten ist am spritzgegossenen Bauteil nach der vereinbarten Prüfmethode und unter der vorgesehenen Einsatzumgebung zu bestätigen.",
+    汽车结构件: "Strukturbauteile für den Automobilbau",
+    "工业壳体、支架与精密注塑件":
+      "Industriegehäuse, Halterungen und Präzisionsspritzgussteile",
     中文工程塑料分类页: "Deutsche Kategorieseite für technische Kunststoffe",
     中文工程塑料牌号页: "Deutsche Detailseite für technische Kunststoffe",
     中文跨材料导电与抗静电目录:
@@ -238,6 +241,9 @@ export const expandedLocaleOverrides: Partial<
     "TDS、文件与样品需求": "Besoins en TDS, documents et échantillons",
     "最终电性能应在约定测试方法和工作环境下，于注塑成品上确认。":
       "La performance électrique finale doit être confirmée sur la pièce injectée, selon la méthode d’essai convenue et dans l’environnement d’utilisation prévu.",
+    汽车结构件: "Pièces structurelles automobiles",
+    "工业壳体、支架与精密注塑件":
+      "Boîtiers industriels, supports et pièces moulées par injection de précision",
     中文工程塑料分类页: "Page française de catégorie des plastiques techniques",
     中文工程塑料牌号页: "Page française de grade des plastiques techniques",
     中文跨材料导电与抗静电目录:
@@ -362,6 +368,9 @@ export const expandedLocaleOverrides: Partial<
     "TDS、文件与样品需求": "Necessidades de TDS, documentos e amostras",
     "最终电性能应在约定测试方法和工作环境下，于注塑成品上确认。":
       "O desempenho elétrico final deve ser confirmado na peça moldada por injeção, conforme o método de ensaio acordado e no ambiente de uso previsto.",
+    汽车结构件: "Peças estruturais automotivas",
+    "工业壳体、支架与精密注塑件":
+      "Caixas industriais, suportes e peças moldadas por injeção de precisão",
     中文工程塑料分类页:
       "Página brasileira de categoria de plásticos de engenharia",
     中文工程塑料牌号页: "Página brasileira de grau de plástico de engenharia",
