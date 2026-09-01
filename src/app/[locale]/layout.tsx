@@ -87,7 +87,7 @@ export default async function LocalizedRootLayout({
     >
       <NextIntlClientProvider
         locale={localeConfig.htmlLang}
-        messages={messages}
+        messages={null}
       >
         {children}
       </NextIntlClientProvider>
