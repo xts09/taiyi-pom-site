@@ -1,6 +1,9 @@
 const defaultGoogleAnalyticsId =
   process.env.NODE_ENV === "production" ? "G-CQ8CYP39VN" : "";
 
+const defaultGoogleAdsId =
+  process.env.NODE_ENV === "production" ? "AW-18381447688" : "";
+
 const productionGoogleTagHostname = "www.taiyipolymer.com";
 
 export const googleAnalyticsId =
@@ -12,7 +15,7 @@ export const googleAnalyticsId =
 
 export const googleAdsId =
   process.env.NODE_ENV === "production"
-    ? (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? "")
+    ? (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID ?? defaultGoogleAdsId)
     : "";
 
 export const googleAdsLeadConversionLabel =
