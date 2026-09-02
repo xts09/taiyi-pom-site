@@ -18,6 +18,10 @@ import {
   inquiryMessageMaxLength,
 } from "@/lib/inquiryLimits";
 import {
+  buildAnalyticsPageLocation,
+  readMarketingAttribution,
+} from "@/lib/analyticsAttribution";
+import {
   getContactContextLabel,
   getContactContextMessage,
   parseContactContextHash,
@@ -195,10 +199,13 @@ export function ContactInquiryForm({
   useEffect(() => {
     if (!window.location.search) return;
 
+    const analyticsUrl = new URL(
+      buildAnalyticsPageLocation(window.location.href),
+    );
     window.history.replaceState(
       window.history.state,
       "",
-      `${window.location.pathname}${window.location.hash}`,
+      `${analyticsUrl.pathname}${analyticsUrl.search}${window.location.hash}`,
     );
   }, []);
 
@@ -215,10 +222,13 @@ export function ContactInquiryForm({
     setGrade((value) => (value === prefilledGrade ? "" : value));
     setInquiryType((value) => (value === prefilledIntent ? "" : value));
     setSource("");
+    const analyticsUrl = new URL(
+      buildAnalyticsPageLocation(window.location.href),
+    );
     window.history.replaceState(
       window.history.state,
       "",
-      window.location.pathname,
+      `${analyticsUrl.pathname}${analyticsUrl.search}`,
     );
   };
 
@@ -260,6 +270,7 @@ export function ContactInquiryForm({
           application: readField(formData, "application"),
           message: readField(formData, "message"),
           source: readField(formData, "source", ""),
+          attribution: readMarketingAttribution(),
           website: String(formData.get("website") ?? ""),
         }),
         signal: controller.signal,

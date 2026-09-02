@@ -18,6 +18,31 @@ const validPayload = {
   application: "Precision gear",
   message: "Please review wear and dimensional stability.",
   source: "Product grade",
+  attribution: {
+    firstTouch: {
+      capturedAt: "2026-09-02T08:00:00.000Z",
+      landingPage: "/products/pom-compounds",
+      referrerHost: "google.com",
+      source: "google",
+      medium: "cpc",
+      campaign: "pom-global",
+      campaignId: "123456789",
+      term: "pom gf25",
+      content: "modified-pom",
+      clickId: "test-gclid",
+      clickIdType: "gclid",
+    },
+    lastTouch: {
+      capturedAt: "2026-09-02T08:15:00.000Z",
+      landingPage: "/contact",
+      source: "google",
+      medium: "cpc",
+      campaign: "pom-global",
+      term: "pom gf25",
+      clickId: "test-gclid",
+      clickIdType: "gclid",
+    },
+  },
 };
 
 const createRequest = (payload = validPayload, headers = {}) =>
@@ -74,6 +99,10 @@ test("delivers a valid inquiry with reply-to context", async () => {
   assert.match(body.text, /ETM090NC/);
   assert.match(body.text, /Precision gear/);
   assert.match(body.text, /Product grade/);
+  assert.match(body.text, /Marketing Attribution — First Touch/);
+  assert.match(body.text, /UTM source: google/);
+  assert.match(body.text, /UTM term: pom gf25/);
+  assert.match(body.text, /Ads click ID: test-gclid/);
 });
 
 test("accepts a direct inquiry without fabricating an inquiry type", async () => {

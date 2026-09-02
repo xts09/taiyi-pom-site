@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { clearMarketingAttribution } from "@/lib/analyticsAttribution";
 
 export const GOOGLE_ANALYTICS_CONSENT_KEY =
   "taiyi_google_analytics_consent";
@@ -78,6 +79,8 @@ export function updateGoogleAnalyticsConsent(
 }
 
 export function clearGoogleAnalyticsCookies() {
+  clearMarketingAttribution();
+
   const cookieNames = document.cookie
     .split(";")
     .map((cookie) => cookie.split("=")[0]?.trim())

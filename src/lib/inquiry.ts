@@ -1,4 +1,9 @@
 import { inquiryMessageMaxLength } from "./inquiryLimits.ts";
+import {
+  sanitizeMarketingAttribution,
+  type MarketingAttributionTouch,
+  type MarketingAttribution,
+} from "./analyticsAttribution.ts";
 
 const maxRequestBodyBytes = 32 * 1024;
 const rateLimitWindowMs = 10 * 60 * 1000;
@@ -16,6 +21,7 @@ export type InquiryPayload = {
   application?: string;
   message?: string;
   source?: string;
+  attribution?: MarketingAttribution;
   website?: string;
 };
 
@@ -60,8 +66,25 @@ const jsonResponse = (body: Record<string, unknown>, status = 200) =>
     },
   });
 
-export const createInquiryBody = (payload: InquiryPayload) =>
+const formatAttributionTouch = (touch: MarketingAttributionTouch) =>
   [
+    `Captured: ${cleanText(touch.capturedAt, "Not specified", 64)}`,
+    `Landing page: ${cleanText(touch.landingPage, "Not specified", 512)}`,
+    `Referrer host: ${cleanText(touch.referrerHost)}`,
+    `UTM source: ${cleanText(touch.source)}`,
+    `UTM medium: ${cleanText(touch.medium)}`,
+    `UTM campaign: ${cleanText(touch.campaign)}`,
+    `Campaign ID: ${cleanText(touch.campaignId)}`,
+    `UTM term: ${cleanText(touch.term)}`,
+    `UTM content: ${cleanText(touch.content)}`,
+    `Ads click ID type: ${cleanText(touch.clickIdType)}`,
+    `Ads click ID: ${cleanText(touch.clickId, "Not specified", 512)}`,
+  ].join("\n");
+
+export const createInquiryBody = (payload: InquiryPayload) => {
+  const attribution = sanitizeMarketingAttribution(payload.attribution);
+
+  return [
     "New material requirement from taiyipolymer.com",
     "",
     `Company: ${cleanText(payload.company)}`,
@@ -75,7 +98,18 @@ export const createInquiryBody = (payload: InquiryPayload) =>
     "",
     "Requirement Details:",
     cleanText(payload.message, "Not specified", inquiryMessageMaxLength),
+    ...(attribution
+      ? [
+          "",
+          "Marketing Attribution — First Touch:",
+          formatAttributionTouch(attribution.firstTouch),
+          "",
+          "Marketing Attribution — Last Touch:",
+          formatAttributionTouch(attribution.lastTouch),
+        ]
+      : []),
   ].join("\n");
+};
 
 export const createInquiryHandler = ({
   contactEmail,

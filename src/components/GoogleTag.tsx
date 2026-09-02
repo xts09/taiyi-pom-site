@@ -17,6 +17,7 @@ import {
   googleTagId,
   isGoogleTagHostnameAllowed,
 } from "@/lib/googleTracking";
+import { analyticsPageLocationParamNames } from "@/lib/analyticsAttribution";
 
 type GoogleTagRuntimeState = "checking" | "enabled" | "disabled";
 
@@ -118,7 +119,7 @@ export function GoogleTag() {
   const configCalls = googleTagConfigIds
     .map(
       (id) =>
-        `gtag("config", "${id}", { page_location: cleanPageLocation, page_path: window.location.pathname });`,
+        `gtag("config", "${id}", { page_location: analyticsPageLocation, page_path: window.location.pathname });`,
     )
     .join("\n");
 
@@ -142,7 +143,15 @@ gtag("consent", "update", {
   ad_personalization: "denied"
 });
 gtag("js", new Date());
-const cleanPageLocation = window.location.origin + window.location.pathname;
+const allowedPageLocationParams = new Set(${JSON.stringify(
+            analyticsPageLocationParamNames,
+          )});
+const analyticsPageUrl = new URL(window.location.href);
+for (const name of Array.from(analyticsPageUrl.searchParams.keys())) {
+  if (!allowedPageLocationParams.has(name)) analyticsPageUrl.searchParams.delete(name);
+}
+analyticsPageUrl.hash = "";
+const analyticsPageLocation = analyticsPageUrl.toString();
 ${configCalls}
           `.trim(),
         }}

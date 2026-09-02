@@ -1,4 +1,5 @@
 import { AnalyticsConsent } from "@/components/AnalyticsConsent";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { Footer } from "@/components/Footer";
 import { FloatingContact } from "@/components/FloatingContact";
 import { GoogleTag } from "@/components/GoogleTag";
@@ -59,6 +60,7 @@ export function SiteDocument({
           messages={messages.Analytics}
           localeSegment={localeSegment}
         />
+        <AnalyticsTracker />
         <GoogleTag />
       </body>
     </html>
