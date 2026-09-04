@@ -91,6 +91,17 @@ components, verify representative consumers from each affected route family.
 - When continuing from a long visual-review thread, read the dated implementation snapshot in `PRODUCT.md` before changing shared navigation, Resources, product data, or SEO behavior.
 - Prefer editing the owning component or final active rule. Remove obsolete duplicate rules when ownership is clear; do not accumulate late overrides to force a result.
 
+## Independent Product Judgment And Competitive Review
+
+- Treat the user's proposal as an important input, not as a pre-approved conclusion. Test it against user intent, available evidence, product strategy, information architecture, SEO, conversion, localization, maintenance cost, and technical risk.
+- Proactively identify relevant issues the user has not mentioned. State material objections, missing prerequisites, and tradeoffs clearly; do not agree merely to preserve momentum.
+- For product strategy, application architecture, positioning, or major page-direction work, review current public competitor and adjacent-industry references before recommending implementation. Prefer primary sources such as official product pages, technical guides, data centers, and case studies.
+- Separate observed competitor facts from inference and recommendation. Record source URLs and the review date, and do not copy competitor visuals, wording, claims, or structure without evaluating fit for Taiyi Polymer.
+- Use competitors to calibrate category expectations, evidence depth, navigation, grade discovery, and conversion paths. Taiyi Polymer's source-of-truth documents, validated catalog data, and authentic capabilities still take priority.
+- Apply an evidence gate before proposing a standalone landing page: distinct user intent, a non-duplicative technical narrative, validated grade or product records, credible test/certification/case evidence, suitable imagery, and sustainable multilingual/SEO ownership. If the gate is not met, prefer a hub module, guide, or cross-link over a thin page.
+- Label recommendations by confidence and readiness. Distinguish what is suitable for a prototype, what is suitable for production, and what remains blocked by missing evidence.
+- Save task-specific competitive research and decision rationale under `outputs/`. Promote a conclusion into `PRODUCT.md` only after the product direction is approved; do not turn exploratory research into canonical strategy automatically.
+
 ## Shared Navigation Contract
 
 - Header and mega-menu work is cross-page work. Verify `/` with the dark over-hero header and one inner route with the white header, both closed and expanded, at `1920x1080` unless another viewport is requested.
