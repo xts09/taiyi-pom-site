@@ -62,14 +62,24 @@ export function LocalizedEngineeringGradePage({
       source: getLocalizedEngineeringGradeContactSource(localeSegment),
     }),
   );
-  const relatedGrades = selectRelatedGrades({
-    items: engineeringTdsDocuments,
-    current: document,
-    getId: createEngineeringTdsSlug,
-    isPrimaryPeer: (item, current) =>
-      item.family === current.family && item.category === current.category,
-    isFallbackPeer: (item, current) => item.family === current.family,
-  });
+  const configuredRelatedGrades = (document.screening?.relatedGradeSlugs ?? [])
+    .map((relatedSlug) =>
+      engineeringTdsDocuments.find(
+        (item) => createEngineeringTdsSlug(item) === relatedSlug,
+      ),
+    )
+    .filter((item): item is EngineeringTdsDocument => Boolean(item));
+  const relatedGrades =
+    configuredRelatedGrades.length > 0
+      ? configuredRelatedGrades.slice(0, 3)
+      : selectRelatedGrades({
+          items: engineeringTdsDocuments,
+          current: document,
+          getId: createEngineeringTdsSlug,
+          isPrimaryPeer: (item, current) =>
+            item.family === current.family && item.category === current.category,
+          isFallbackPeer: (item, current) => item.family === current.family,
+        });
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: translateExpandedText("首页", localeSegment), path: localizedPath("/") },
     { name: translateExpandedText("产品", localeSegment), path: localizedPath("/products") },

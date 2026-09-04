@@ -85,6 +85,19 @@ const validateTds = (record: JsonRecord, source: string) => {
   }
 };
 
+const validateEngineeringScreening = (record: JsonRecord, source: string) => {
+  if (record.screening === undefined) return;
+  if (typeof record.screening !== "object" || record.screening === null) {
+    throw new Error(`${source}: screening must be an object`);
+  }
+
+  const screening = record.screening as JsonRecord;
+  for (const field of ["positioning", "comparison", "validation"]) {
+    requireString(screening, field, `${source}: screening`);
+  }
+  requireStringArray(screening, "relatedGradeSlugs", `${source}: screening`);
+};
+
 const validateRecord = (record: JsonRecord, source: string) => {
   if (record.schemaVersion !== 1) {
     throw new Error(`${source}: schemaVersion must be 1`);
@@ -118,6 +131,7 @@ const validateRecord = (record: JsonRecord, source: string) => {
     if (!Array.isArray(record.properties)) {
       throw new Error(`${source}: properties must be an array`);
     }
+    validateEngineeringScreening(record, source);
     validateTds(record, source);
     return;
   }
@@ -169,6 +183,20 @@ for (const record of routedRecords) {
       throw new Error(`Duplicate product route ${routeKey}: ${existing}`);
     }
     routedSlugs.set(slug, String(record.id));
+  }
+}
+
+for (const record of records) {
+  if (record.kind !== "engineering-tds" || !record.screening) continue;
+
+  const screening = record.screening as JsonRecord;
+  for (const relatedSlug of screening.relatedGradeSlugs as string[]) {
+    if (relatedSlug === record.slug) {
+      throw new Error(`${String(record.id)}: related grade cannot reference itself`);
+    }
+    if (!routedSlugs.has(relatedSlug.toLowerCase())) {
+      throw new Error(`${String(record.id)}: unknown related grade ${relatedSlug}`);
+    }
   }
 }
 

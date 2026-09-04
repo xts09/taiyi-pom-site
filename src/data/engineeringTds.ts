@@ -1,4 +1,8 @@
-import { catalogEngineeringTds, type CatalogSeo } from "@/data/catalog";
+import {
+  catalogEngineeringTds,
+  type CatalogEngineeringScreening,
+  type CatalogSeo,
+} from "@/data/catalog";
 
 export type EngineeringTdsProperty = {
   group:
@@ -36,6 +40,7 @@ export type EngineeringTdsDocument = {
   volumeResistivity: string;
   permittivity: string;
   properties: readonly EngineeringTdsProperty[];
+  screening?: CatalogEngineeringScreening;
   seo?: CatalogSeo;
 };
 
@@ -90,6 +95,7 @@ export const engineeringTdsDocuments: readonly EngineeringTdsDocument[] =
       unit: property.unit,
       method: property.method,
     })),
+    screening: record.screening,
     seo: record.seo,
   }));
 

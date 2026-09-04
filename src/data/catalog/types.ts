@@ -20,6 +20,13 @@ export type CatalogTds = {
   updatedAt?: string;
 };
 
+export type CatalogEngineeringScreening = {
+  positioning: string;
+  comparison: string;
+  validation: string;
+  relatedGradeSlugs: string[];
+};
+
 type CatalogBaseRecord = {
   schemaVersion: 1;
   id: string;
@@ -75,6 +82,7 @@ export type CatalogEngineeringTdsRecord = CatalogBaseRecord & {
   volumeResistivity: string;
   permittivity: string;
   properties: CatalogProperty[];
+  screening?: CatalogEngineeringScreening;
   tds: CatalogTds;
 };
 

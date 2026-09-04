@@ -286,23 +286,34 @@ function EngineeringProductDetailPage({
     .map((item) => item.trim())
     .filter(Boolean);
   const featureItems = [
-    `${document.family} ${document.category} compound direction`,
+    document.screening?.comparison ??
+      `${document.family} ${document.category} compound direction`,
     document.filler && document.filler !== "-"
       ? `${document.filler}% filler or reinforcement reference`
       : "Modified compound direction for project review",
     document.flammability && document.flammability !== "-"
       ? `${document.flammability} flammability reference`
       : "Grade-specific document support for review",
-    "Final selection should be confirmed against part design and molding conditions",
+    ...(document.screening
+      ? []
+      : [
+          "Final selection should be confirmed against part design and molding conditions",
+        ]),
   ];
-  const documentsToShow = selectRelatedGrades({
-    items: engineeringTdsDocuments,
-    current: document,
-    getId: createEngineeringTdsSlug,
-    isPrimaryPeer: (item, current) =>
-      item.family === current.family && item.category === current.category,
-    isFallbackPeer: (item, current) => item.family === current.family,
-  });
+  const configuredRelatedGrades = (document.screening?.relatedGradeSlugs ?? [])
+    .map((relatedSlug) => findEngineeringDocumentBySlug(relatedSlug))
+    .filter((item): item is EngineeringTdsDocument => Boolean(item));
+  const documentsToShow =
+    configuredRelatedGrades.length > 0
+      ? configuredRelatedGrades.slice(0, 3)
+      : selectRelatedGrades({
+          items: engineeringTdsDocuments,
+          current: document,
+          getId: createEngineeringTdsSlug,
+          isPrimaryPeer: (item, current) =>
+            item.family === current.family && item.category === current.category,
+          isFallbackPeer: (item, current) => item.family === current.family,
+        });
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
@@ -376,9 +387,18 @@ function EngineeringProductDetailPage({
                 <h1>{document.grade}</h1>
 
                 <p className="product-detail-summary">
-                  {document.description} The recorded profile for this grade
-                  lists {gradeProfile}. Confirm final suitability against the
-                  molded part and processing conditions.
+                  {document.screening ? (
+                    <>
+                      {document.screening.positioning} Confirm final suitability
+                      against the molded part and processing conditions.
+                    </>
+                  ) : (
+                    <>
+                      {document.description} The recorded profile for this grade
+                      lists {gradeProfile}. Confirm final suitability against the
+                      molded part and processing conditions.
+                    </>
+                  )}
                 </p>
 
                 <div className="product-detail-hero-bottom-row stagger-list">
@@ -574,11 +594,8 @@ function EngineeringProductDetailPage({
             </h2>
 
             <p className="text-sm leading-6 text-slate-700">
-              This grade page is for preliminary material selection. For
-              project evaluation, please confirm the application, processing
-              method, mold development stage, cavity count, target dimensional
-              requirement, target performance requirements, current reference
-              grade, document requirements, and estimated volume.
+              {document.screening?.validation ??
+                "This grade page is for preliminary material selection. For project evaluation, please confirm the application, processing method, mold development stage, cavity count, target dimensional requirement, target performance requirements, current reference grade, document requirements, and estimated volume."}
             </p>
           </section>
 

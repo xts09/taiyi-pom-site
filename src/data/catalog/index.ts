@@ -8,6 +8,7 @@ import type {
 
 export type {
   CatalogConductiveRecord,
+  CatalogEngineeringScreening,
   CatalogEngineeringTdsRecord,
   CatalogProduct,
   CatalogProductRecord,

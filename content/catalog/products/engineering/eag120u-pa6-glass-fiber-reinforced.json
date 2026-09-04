@@ -9,7 +9,17 @@
   "family": "PA6",
   "category": "Glass Fiber Reinforced",
   "description": "EAG120U: 20% glass fiber reinforced PA6 compound for stiffness, dimensional stability and industrial injection molded parts.",
-  "applications": "Automotive parts, electrical & electronics, industrial housings, brackets and precision molded components.",
+  "applications": "Structural housings, brackets and precision molded components screened for a 20% glass-fiber PA6 profile with stronger published tensile, flexural-strength, impact and HDT values than EAG120.",
+  "screening": {
+    "positioning": "EAG120U is a 20% glass-fiber-reinforced PA6 grade with 140 MPa tensile stress, 205 MPa flexural strength, 8.5 kJ/m2 notched impact and 210 °C HDT at 1.8 MPa.",
+    "comparison": "Compared with EAG120 at the same listed glass-fiber content, EAG120U publishes higher tensile stress, flexural strength, notched impact and HDT, with a slightly lower flexural modulus of 6400 MPa versus 6500 MPa.",
+    "validation": "Use the published advantage as a shortlist signal rather than an automatic suitability claim. Confirm conditioning, process window, fiber orientation, dimensional behavior and part testing before approval.",
+    "relatedGradeSlugs": [
+      "eag120-pa6-glass-fiber-reinforced",
+      "eag115h-pa6-glass-fiber-reinforced",
+      "eag115u-pa6-glass-fiber-reinforced"
+    ]
+  },
   "filler": "20",
   "density": "1.28",
   "waterAbsorption": "1.3~1.7",

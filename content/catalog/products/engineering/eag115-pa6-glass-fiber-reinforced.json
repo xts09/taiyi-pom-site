@@ -9,7 +9,17 @@
   "family": "PA6",
   "category": "Glass Fiber Reinforced",
   "description": "EAG115: 15% glass fiber reinforced PA6 compound for stiffness, dimensional stability and industrial injection molded parts.",
-  "applications": "Automotive parts, electrical & electronics, industrial housings, brackets and precision molded components.",
+  "applications": "Structural housings, brackets, supports and precision molded components screened for moderate glass-fiber reinforcement.",
+  "screening": {
+    "positioning": "EAG115 is a 15% glass-fiber-reinforced PA6 grade for screening a balanced combination of 120 MPa tensile stress, 190 MPa flexural strength and 205 °C HDT at 1.8 MPa.",
+    "comparison": "Within the listed 15% glass-fiber PA6 group, EAG115 has the highest published flexural strength; EAG115H has higher flexural modulus and notched impact, while EAG115U has the highest published notched impact.",
+    "validation": "Compare conditioned dimensions and mechanical performance under the same moisture state, test method and part geometry before final selection. Confirm the required balance through molding trials on the intended tool.",
+    "relatedGradeSlugs": [
+      "eag115h-pa6-glass-fiber-reinforced",
+      "eag115u-pa6-glass-fiber-reinforced",
+      "eag120-pa6-glass-fiber-reinforced"
+    ]
+  },
   "filler": "15",
   "density": "1.23",
   "waterAbsorption": "1.3~1.7",
