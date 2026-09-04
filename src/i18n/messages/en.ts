@@ -134,11 +134,11 @@ const messages = {
       imageAlt: "Taiyi Polymer modified POM compound manufacturing",
     },
     hero: {
-      eyebrowDesktop: "TAIYI POLYMER · PLATFORM® MATERIALS",
-      eyebrowMobile: "TAIYI POLYMER · PLATFORM®",
+      eyebrowDesktop: "POM COMPOUNDING · MATERIAL SUPPORT",
+      eyebrowMobile: "POM COMPOUNDING",
       title: "Modified POM Manufacturer for Precision Molded Parts",
       body:
-        "Taiyi Polymer develops modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision parts, with selected PA6, PA66 and PPA support from grade screening through production.",
+        "With modified POM at our core and a portfolio extending to PA6, PA66 and PPA, we provide high-performance engineering plastics solutions for wear resistance, low friction, reinforcement, conductivity and antistatic performance, helping customers move new ideas toward production.",
       exploreAction: "Find Material by Part",
       contactAction: "Find Grades & TDS",
     },

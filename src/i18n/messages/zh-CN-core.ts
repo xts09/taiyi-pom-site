@@ -9,10 +9,10 @@ const messages = {
       imageAlt: "台益 POM 改性材料生产现场",
     },
     hero: {
-      eyebrowDesktop: "台益 · PLATFORM® 工程塑料",
-      eyebrowMobile: "台益 · PLATFORM®",
+      eyebrowDesktop: "POM COMPOUNDING · MATERIAL SUPPORT",
+      eyebrowMobile: "POM COMPOUNDING",
       title: "面向精密注塑零部件的改性 POM 制造商",
-      body: "台益开发面向耐磨、低摩擦、增强、导电与抗静电精密零部件的改性 POM，并为精选 PA6、PA66 与 PPA 项目提供从牌号初筛到量产的材料支持。",
+      body: "我们以改性 POM 为核心，延伸至 PA6、PA66 和 PPA，围绕耐磨、低摩擦、增强、导电与抗静电等关键性能，为客户提供高性能工程塑料解决方案，助力创新构想走向量产。",
       exploreAction: "按零部件找材料",
       contactAction: "查找牌号与 TDS",
     },

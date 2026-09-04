@@ -10,11 +10,11 @@ const messages = {
       imageAlt: "Fabricação de compostos de POM modificado na Taiyi Polymer",
     },
     hero: {
-      eyebrowDesktop: "TAIYI POLYMER · MATERIAIS PLATFORM®",
-      eyebrowMobile: "TAIYI POLYMER · PLATFORM®",
+      eyebrowDesktop: "COMPOSIÇÃO DE POM · SUPORTE DE MATERIAIS",
+      eyebrowMobile: "COMPOSIÇÃO DE POM",
       title: "Fabricante de POM modificado para peças moldadas de precisão",
       body:
-        "A Taiyi Polymer desenvolve compostos de POM modificado para peças de precisão resistentes ao desgaste, de baixo atrito, reforçadas, condutivas e antiestáticas, com suporte selecionado em PA6, PA66 e PPA da triagem de grades à produção.",
+        "O POM modificado é o núcleo do nosso portfólio, que se estende a PA6, PA66 e PPA. Desenvolvemos soluções em plásticos de engenharia de alto desempenho para resistência ao desgaste, baixo atrito, reforço, condutividade e desempenho antiestático, ajudando nossos clientes a levar novas ideias à produção em escala.",
       exploreAction: "Encontrar material por peça",
       contactAction: "Encontrar grades & TDS",
     },
