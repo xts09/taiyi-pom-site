@@ -1,4 +1,5 @@
 import { ResourceArticleFeature } from "@/components/ResourceArticleFeature";
+import type { ReactNode } from "react";
 import styles from "@/components/ResourceArticle.module.css";
 import type {
   ResourceArticleFeature as ResourceArticleFeatureData,
@@ -11,6 +12,7 @@ type ResourceArticleContentProps = {
   intro: string;
   sections: ResourceArticleSection[];
   features?: ResourceArticleFeatureData[];
+  children?: ReactNode;
   articleKicker?: string;
   featureAriaLabels?: {
     mediaLabels: string;
@@ -23,6 +25,7 @@ export function ResourceArticleContent({
   intro,
   sections,
   features = [],
+  children,
   articleKicker = "Technical guide",
   featureAriaLabels,
 }: ResourceArticleContentProps) {
@@ -84,6 +87,7 @@ export function ResourceArticleContent({
             ))}
           </section>
         ))}
+        {children}
       </article>
     </>
   );

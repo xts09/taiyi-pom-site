@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { PrecisionGearLanding } from "@/components/PrecisionGearLanding";
 import {
   Accordion,
   AccordionContent,
@@ -24,7 +25,7 @@ import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import styles from "../ComponentSolutions.module.css";
 
-type DetailedComponentSolutionProps = {
+export type DetailedComponentSolutionProps = {
   detail: ComponentSolutionDetail;
   solution: ComponentSolution;
   localeSegment?: LocalizedUrlSegment;
@@ -186,6 +187,9 @@ export function DetailedComponentSolution({
   applicationReferences,
   materialOwnerLabels,
 }: DetailedComponentSolutionProps) {
+  if (solution.slug === "precision-plastic-gears" && (!localeSegment || localeSegment === "zh")) {
+    return <PrecisionGearLanding detail={detail} solution={solution} localeSegment={localeSegment} ui={ui} applicationReferences={applicationReferences} materialOwnerLabels={materialOwnerLabels} />;
+  }
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeSegment);
   const contactHref = localizedHref(createContactHref({

@@ -5,9 +5,12 @@ import { serializeJsonLd } from "@/lib/jsonLd";
 import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CarbonFiberPomComparison } from "@/components/CarbonFiberPomComparison";
+import relatedPathStyles from "@/components/BasePomRelatedPaths.module.css";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
+import { TechnicalDataQueryLink } from "@/components/TechnicalDataQueryLink";
 import { Button } from "@/components/ui/button";
 import { applications } from "@/data/applications";
 import { availableDocuments } from "@/data/company";
@@ -108,8 +111,14 @@ export async function generateMetadata({
   ];
 
   return createPageMetadata({
-    title: `${getCategoryMetadataTitle(entry.category)} | Taiyi Polymer`,
-    description: getCategoryDescription(entry.category),
+    title:
+      entry.category === "POM"
+        ? "Modified POM Compounds & Grades | Taiyi Polymer"
+        : `${getCategoryMetadataTitle(entry.category)} | Taiyi Polymer`,
+    description:
+      entry.category === "POM"
+        ? "Compare PLATFORM modified POM compounds for wear, impact, reinforcement and electrical control. Explore grade data and request documents for your project."
+        : getCategoryDescription(entry.category),
     path: entry.path,
     languageAlternates: getLanguageAlternatesForPath(entry.path),
     ...socialMedia,
@@ -175,7 +184,7 @@ export default async function ProductCategoryPage({
   });
   const pageDescription =
     isPomCategory
-      ? "Start with the part's governing performance gap, then compare PLATFORM POM families and listed grades for wear, friction, impact, weathering, reinforcement, electrical control, flow, or baseline applications."
+      ? "Choose PLATFORM modified POM compounds for gears, bushings and other precision molded parts. Compare material families for wear, friction, impact, UV stability, reinforcement or electrical performance, then review listed grades and the technical documents available for your project."
       : getCategoryDescription(entry.category);
   const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
     entry.category,
@@ -306,7 +315,16 @@ export default async function ProductCategoryPage({
                 </Link>
               </Button>
               <Button asChild size="productHero" variant="productHeroSecondary">
-                <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
+                {isPomCategory ? (
+                  <TechnicalDataQueryLink
+                    cleanHref="/technical-data-sheets"
+                    queryHref="/technical-data-sheets?family=POM"
+                  >
+                    Find Grade Data & TDS
+                  </TechnicalDataQueryLink>
+                ) : (
+                  <Link href="/technical-data-sheets">Find Grade Data & TDS</Link>
+                )}
               </Button>
             </div>
           </div>
@@ -318,6 +336,9 @@ export default async function ProductCategoryPage({
             {
               href: "/technical-data-sheets",
               label: "Find Grade Data & TDS",
+              queryHref: isPomCategory
+                ? "/technical-data-sheets?family=POM"
+                : undefined,
             },
           ]}
           ariaLabel="Product section navigation"
@@ -332,6 +353,10 @@ export default async function ProductCategoryPage({
           selectedCategory={entry.category}
           showFamilies={entry.category === "POM"}
         />
+
+        {entry.category === "Carbon Fiber Reinforced POM Compound" ? (
+          <CarbonFiberPomComparison />
+        ) : null}
 
         {isPomCategory ? (
           <section
@@ -401,7 +426,7 @@ export default async function ProductCategoryPage({
         ) : (
           <section
             id="category-applications"
-            className="product-application-directory products-motion-secondary mt-12"
+            className={`product-application-directory products-motion-secondary mt-12 ${entry.slug === "base-pom-resin" ? relatedPathStyles.section : ""}`}
           >
             <div className="product-application-directory-head">
               <p className="section-kicker mb-3">Applications</p>

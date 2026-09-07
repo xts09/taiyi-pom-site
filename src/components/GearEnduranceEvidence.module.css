@@ -1,0 +1,10 @@
+.articleLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ds-touch-target-min);
+  color: var(--ds-action-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.articleLink:hover { color: var(--ds-action-primary-hover); }
+.articleLink:focus-visible { outline: var(--ds-rule-strong) solid var(--ds-focus-ring); outline-offset: var(--ds-space-1); }

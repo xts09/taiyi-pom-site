@@ -26,6 +26,10 @@ export const productFamilyComponentRelations: readonly ProductFamilyComponentRel
       productFamilySlug: "glass-bead-filled-pom-compound",
       componentSlug: "ic-handling-trays",
     },
+    {
+      productFamilySlug: "base-pom-resin",
+      componentSlug: "precision-plastic-gears",
+    },
   ];
 
 export const getProductFamilyComponentRelations = (productFamilySlug: string) =>

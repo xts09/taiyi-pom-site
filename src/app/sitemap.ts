@@ -38,6 +38,11 @@ const createUrlEntry = (
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedLanguageRoutes = [
     {
+      sourcePath: "/case-studies/etm-100p-armrest-gear-endurance",
+      priority: 0.6,
+      changeFrequency: "monthly" as const,
+    },
+    {
       sourcePath: "/",
       priority: 1,
       changeFrequency: "weekly" as const,

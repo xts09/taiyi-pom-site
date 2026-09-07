@@ -294,6 +294,61 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - All 115 grade-detail routes in each released language retain visible breadcrumbs and valid `BreadcrumbList` JSON-LD. They do not emit Google `Product` rich-result markup while the site has no public price offer, visible product review, or aggregate rating.
 - Do not add fabricated `offers`, zero prices, availability, reviews, or ratings to satisfy a rich-result validator. Grade URLs, metadata, sitemap inclusion, technical properties, internal links, and visible page content remain unchanged by this structured-data correction.
 
+### POM Selection And Release Checks (2026-09-06, Local Implementation)
+
+- The English POM directory now starts its introduction with gears, bushings,
+  and the grade/document selection task. Its URL, H1 and language-alternate
+  ownership remain unchanged.
+- The English carbon-fiber POM family has a reference comparison for ECF200,
+  ECF300 and ECF400. Flow, flexural modulus, units and test methods are read
+  from the existing catalog. Document links, revision and date depend on each
+  grade's recorded TDS status; data-only records expose a contextual TDS request.
+  Current records have no registered PDF revision, so the pilot displays web
+  reference data. Further document evidence requires reviewed source material.
+- Base POM now links to the existing Precision Plastic Gears guide in all five
+  languages, completing the reverse path of its existing material-direction
+  link. This relation does not establish grade-level application approval.
+  Base POM application links use one row per item on mobile.
+- `vercel.json` routes subsequent Vercel builds through the existing
+  `prepublish:check` gate. The production site was verified as a Vercel Git
+  deployment from `main`. These changes are local and have not been deployed.
+
+### Anonymous Gear Assembly Evidence (2026-09-07, Local Implementation)
+
+- The English and Simplified Chinese Precision Plastic Gears page links to
+  an independent anonymous case at `/case-studies/etm-100p-armrest-gear-endurance`
+  (and its `/zh` counterpart). The user confirmed that
+  the historical grade corresponds to ETM 100P and authorized anonymous data
+  excerpts only. The customer's identity, product model, report identifiers,
+  original PDF and photographs are not published.
+- On 2026-09-07, the user confirmed that the armrest project addressed gear
+  wear. The English and Chinese case now follows that customer problem,
+  the ETM 100P gear application, customer-side assembly validation, and the
+  observed result. This background does not establish a previous material,
+  a quantified wear improvement, or production adoption.
+- The case records 20 kg applied to each side, the reported sample quantity of
+  1 pc, the specified environment, and a pass against the project's 27,500-cycle
+  requirement. Subsequent small-gear wear and slipping and the result's sample
+  boundary remain visible. This is historical assembly evidence, not a material
+  service-life guarantee, material TDS, or certification.
+- The existing English and Chinese POM gear selection article explains
+  acceptance criteria and failure observations and links to the case. Both
+  presentations read `src/data/gearEnduranceEvidence.ts`.
+- The POM directory is outside this change, following the user's scope
+  correction. No ETM 100P catalog record, route, property data or TDS is created.
+  Other languages retain their existing content until this case is localized.
+- Existing page URLs, H1s, metadata and language alternates remain unchanged.
+  The new case has its own metadata, English/Chinese alternates and sitemap
+  entries; unlocalized versions are not published. The gear landing page now
+  leads with material directions, a short case entry and project contact.
+  Diagnostic details and the full checklist remain available in disclosures.
+  This implementation is local and has not been deployed.
+- The gear landing's initial material comparison includes suitability and a
+  key validation check for each family. Its case teaser shows the reported
+  requirement, conditions, sample quantity and later wear together. Both
+  general inquiry buttons use the canonical application label and pass POM
+  plus the localized gear application into the existing contact form.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.

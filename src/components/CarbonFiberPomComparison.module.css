@@ -1,0 +1,111 @@
+.section {
+  width: var(--site-rail-width);
+  max-width: 100%;
+  margin-inline: auto;
+  margin-block: var(--ds-space-12);
+  min-width: 0;
+  scroll-margin-top: calc(var(--site-header-height) + var(--ds-space-6));
+}
+
+.intro {
+  display: grid;
+  gap: var(--ds-space-4);
+  max-width: 70ch;
+  margin-bottom: var(--ds-space-6);
+}
+
+.intro h2 {
+  color: var(--ds-foreground-primary);
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: var(--ds-font-weight-bold);
+}
+
+.intro > p:last-child,
+.note,
+.scrollHint {
+  color: var(--ds-foreground-muted);
+  line-height: 1.65;
+}
+
+.tableScroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border-block: var(--ds-rule-thin) solid var(--ds-border-subtle);
+}
+
+.tableScroll:focus-visible {
+  outline: var(--ds-rule-strong) solid var(--ds-focus-ring);
+  outline-offset: var(--ds-space-1);
+}
+
+.table {
+  width: 100%;
+  min-width: 44rem;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--ds-text-sm);
+  background: var(--ds-background-surface);
+}
+
+.table th,
+.table td {
+  padding: var(--ds-space-4) var(--ds-space-6);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.table th,
+.table strong {
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+.table thead {
+  background: var(--ds-background-canvas);
+}
+
+.table tbody tr + tr {
+  border-top: var(--ds-rule-thin) solid var(--ds-border-subtle);
+}
+
+.table a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--ds-touch-target-min);
+  color: var(--ds-action-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.table a:hover {
+  color: var(--ds-action-primary-hover);
+}
+
+.detail {
+  display: block;
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-xs);
+}
+
+.note {
+  max-width: 80ch;
+  margin-top: var(--ds-space-4);
+  font-size: var(--ds-text-sm);
+}
+
+.scrollHint {
+  display: none;
+  margin-bottom: var(--ds-space-4);
+  font-size: var(--ds-text-xs);
+}
+
+@media (max-width: 47.999rem) {
+  .scrollHint {
+    display: block;
+  }
+
+  .table th,
+  .table td {
+    padding-inline: var(--ds-space-4);
+  }
+}

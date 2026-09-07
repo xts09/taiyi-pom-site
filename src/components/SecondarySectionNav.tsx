@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TechnicalDataQueryLink } from "@/components/TechnicalDataQueryLink";
 
 export type SecondarySectionNavTab = {
   href: string;
@@ -8,6 +9,7 @@ export type SecondarySectionNavTab = {
 type SecondarySectionNavAction = {
   href: string;
   label: string;
+  queryHref?: string;
 };
 
 type SecondarySectionNavProps = {
@@ -78,7 +80,17 @@ export function SecondarySectionNav({
           className={`${prefix}-section-actions`}
           data-slot="secondary-section-actions"
         >
-          {actions.map((action, index) => (
+          {actions.map((action, index) => action.queryHref ? (
+            <TechnicalDataQueryLink
+              key={action.href}
+              cleanHref={action.href}
+              queryHref={action.queryHref}
+              data-slot="secondary-section-action"
+              data-priority={index === 0 ? "primary" : "secondary"}
+            >
+              {action.label}
+            </TechnicalDataQueryLink>
+          ) : (
             <Link
               key={action.href}
               href={action.href}
@@ -116,7 +128,16 @@ export function SecondarySectionNav({
                 {tab.label}
               </a>
             ))}
-            {actions.slice(1).map((action) => (
+            {actions.slice(1).map((action) => action.queryHref ? (
+              <TechnicalDataQueryLink
+                key={action.href}
+                cleanHref={action.href}
+                queryHref={action.queryHref}
+                className="application-section-mobile-menu-action"
+              >
+                {action.label}
+              </TechnicalDataQueryLink>
+            ) : (
               <Link
                 key={action.href}
                 href={action.href}

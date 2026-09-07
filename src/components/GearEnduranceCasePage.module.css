@@ -1,0 +1,25 @@
+.article { max-width: 72rem; margin-inline: auto; padding-top: var(--ds-space-8); }
+.header { max-width: 58rem; }
+.eyebrow { color: var(--ds-action-primary); font-size: var(--ds-text-sm); font-weight: var(--ds-font-weight-semibold); }
+.header h1 { margin: var(--ds-space-4) 0 var(--ds-space-6); font-family: var(--ds-font-display); font-size: clamp(2rem, 3.2vw, 3.5rem); line-height: 1.15; font-weight: var(--ds-font-weight-bold); letter-spacing: -0.025em; text-wrap: balance; }
+.lead { max-width: 48rem; font-size: var(--ds-text-lg); }
+.article p { color: var(--ds-foreground-muted); line-height: 1.8; }
+.article h2 { font-size: var(--ds-text-xl); font-weight: var(--ds-font-weight-semibold); line-height: 1.4; margin: 0; }
+.conditions { padding: var(--ds-space-8); background: var(--ds-background-surface); border-radius: var(--ds-radius-panel); }
+.validation { max-width: 58rem; margin: var(--ds-space-4) 0 0; text-wrap: pretty; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-6); margin: var(--ds-space-6) 0 0; }
+.facts dt { color: var(--ds-foreground-muted); font-size: var(--ds-text-sm); margin-bottom: var(--ds-space-2); }
+.facts dd { margin: 0; font-weight: var(--ds-font-weight-semibold); line-height: 1.6; }
+.section { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--ds-space-8); padding-block: var(--ds-space-12); border-bottom: 1px solid var(--ds-border-subtle); }
+.section p { margin: 0 0 var(--ds-space-4); }
+.section p:last-child { margin-bottom: 0; }
+.link { display: inline-flex; align-items: center; min-height: 44px; color: var(--ds-action-primary); text-decoration: underline; text-underline-offset: 5px; }
+.link:focus-visible { outline: 2px solid var(--ds-action-primary); outline-offset: 4px; }
+.footer { padding-block: var(--ds-space-12); }
+.actions { display: flex; gap: var(--ds-space-6); flex-wrap: wrap; margin-top: var(--ds-space-6); }
+@media (max-width: 48rem) {
+  .article { padding-top: var(--ds-space-4); }
+  .conditions { padding: var(--ds-space-6); }
+  .facts { grid-template-columns: 1fr 1fr; }
+  .section { grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-6); }
+}

@@ -413,6 +413,42 @@ the `certificate` variant without moving certification scope back under each
 preview. Engineering-grade and product TDS search results use `compact-link`,
 which remains a border-separated directory row rather than a floating card.
 
+### Carbon-Fiber POM Reference Comparison — Pilot
+
+**Owner:** `src/components/CarbonFiberPomComparison.tsx` and its CSS module.
+
+**Scope:** the English carbon-fiber POM category. It reads properties, test
+methods and TDS status from the catalog and provides grade-specific data and
+document-request links. Its horizontally scrollable table stays within the
+shared content rail. Business scope is recorded in `PRODUCT.md`.
+
+### Gear Assembly Test Evidence — Pilot
+
+**Owners:** `src/components/GearEnduranceCasePage.tsx` and its CSS module own
+the dedicated English/Chinese case pages. `GearEnduranceEvidence.tsx` owns only
+the POM gear article interpretation and link. Approved facts and case copy live
+in `src/data/gearEnduranceEvidence.ts`.
+
+`PrecisionGearLanding.tsx` and its CSS module own the English/Chinese gear
+landing composition, with concise copy in `src/data/gearLandingCopy.ts`.
+They reuse the component rail and hero styling without changing shared rules.
+Material directions, a case teaser and project contact lead the page; native
+disclosures retain diagnostic and technical content in the server-rendered HTML.
+Other components and other gear locales retain the existing renderer.
+Material suitability and a short validation check remain outside disclosures.
+The landing reuses the existing application button variant and size for both
+general inquiry actions. Local heading rules distinguish the material choices,
+case and inquiry from the main section headings, including on mobile.
+The material comparison uses one light surface, semantic definition lists and
+shared desktop row tracks; mobile restores the single-column reading order.
+The local disclosure summary preserves native details behavior while adding
+decorative plus/minus states, hover and keyboard focus feedback. Case headings
+and summaries follow the same left edge, with the case link below on mobile.
+
+Keep the sample quantity, test conditions, subsequent wear observations and
+result boundary next to the acceptance result. This module has no original
+report download or customer imagery.
+
 ## Conversion Components
 
 ### Action Panel — Canonical

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { componentSolutions } from "../src/data/componentSolutions.ts";
+import { componentMaterialDirectionRelations } from "../src/data/componentMaterialDirections.ts";
 import {
   getProductFamilyComponentRelations,
   productFamilyComponentRelations,
@@ -9,14 +10,14 @@ import {
 import { translateExpandedText } from "../src/i18n/expandedLocaleContent.ts";
 import { productCategoryEntries } from "../src/lib/productCategories.ts";
 
-test("keeps the reviewed B3.5b Product Family to Component relationship set", () => {
+test("keeps the reviewed Product Family to Component relationship set", () => {
   const validation = validateProductFamilyComponentRelations(
     productCategoryEntries,
     componentSolutions,
   );
 
-  assert.equal(validation.semanticEdges, 4);
-  assert.equal(validation.participatingProductFamilySlugs.length, 3);
+  assert.equal(validation.semanticEdges, 5);
+  assert.equal(validation.participatingProductFamilySlugs.length, 4);
   assert.equal(validation.receivingComponentSlugs.length, 3);
   assert.deepEqual(validation.duplicateRelationKeys, []);
   assert.deepEqual(validation.brokenProductFamilySlugs, []);
@@ -38,6 +39,10 @@ test("keeps the reviewed B3.5b Product Family to Component relationship set", ()
     {
       productFamilySlug: "glass-bead-filled-pom-compound",
       componentSlug: "ic-handling-trays",
+    },
+    {
+      productFamilySlug: "base-pom-resin",
+      componentSlug: "precision-plastic-gears",
     },
   ]);
 });
@@ -61,7 +66,20 @@ test("exposes only the approved relationships for each participating family", ()
     ),
     ["ic-handling-trays"],
   );
-  assert.deepEqual(getProductFamilyComponentRelations("base-pom-resin"), []);
+  assert.deepEqual(
+    getProductFamilyComponentRelations("base-pom-resin").map(
+      (relation) => relation.componentSlug,
+    ),
+    ["precision-plastic-gears"],
+  );
+});
+
+test("the base POM gear guide matches an existing component material direction", () => {
+  assert.ok(componentMaterialDirectionRelations.some((relation) =>
+    relation.componentSlug === "precision-plastic-gears" &&
+    relation.target.type === "family" &&
+    relation.target.familySlugs.includes("base-pom-resin"),
+  ));
 });
 
 test("uses the reviewed localized IC Handling Trays owner labels", () => {

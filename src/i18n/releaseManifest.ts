@@ -51,6 +51,11 @@ export const chineseEngineeringGradeReleaseEntries: readonly LocalizedReleaseEnt
     }));
 
 export const localizedReleaseManifest = {
+  gearEnduranceCase: {
+    sourcePath: "/case-studies/etm-100p-armrest-gear-endurance",
+    ...publicRelease,
+    localizedSegments: ["zh"],
+  },
   home: {
     sourcePath: "/",
     ...publicRelease,

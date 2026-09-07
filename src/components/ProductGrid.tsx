@@ -45,6 +45,13 @@ const engineeringDirectionSummary: Record<string, string> = {
   "Wear Low Friction": "Sliding parts needing wear and friction review.",
 };
 
+const engineeringDirectionLandingPaths: Record<string, string> = {
+  "PA6:Glass Fiber Reinforced":
+    "/products/categories/glass-fiber-reinforced-pa6-compound",
+  "PA66:Glass Fiber Reinforced":
+    "/products/categories/glass-fiber-reinforced-pa66-compound",
+};
+
 const pomFamilyGroupCopy = [
   {
     id: "movement-durability",
@@ -200,20 +207,27 @@ export function ProductGrid({
           </div>
 
           <div className="product-filter-rail">
-            {engineeringDirectionItems.map((item) => (
-              <a
-                key={item.category}
-                href="#pom-grades"
-                className="product-filter-link"
-              >
-                <span className="product-filter-number">{item.number}</span>
-                <span className="product-filter-name">{item.category}</span>
-                <span className="product-filter-use">{item.description}</span>
-                <span className="product-filter-count">
-                  {item.count} Listed Grade{item.count === 1 ? "" : "s"}
-                </span>
-              </a>
-            ))}
+            {engineeringDirectionItems.map((item) => {
+              const directionHref =
+                engineeringDirectionLandingPaths[
+                  `${item.family}:${item.category}`
+                ] ?? "#pom-grades";
+
+              return (
+                <Link
+                  key={item.category}
+                  href={directionHref}
+                  className="product-filter-link"
+                >
+                  <span className="product-filter-number">{item.number}</span>
+                  <span className="product-filter-name">{item.category}</span>
+                  <span className="product-filter-use">{item.description}</span>
+                  <span className="product-filter-count">
+                    {item.count} Listed Grade{item.count === 1 ? "" : "s"}
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       ) : null}

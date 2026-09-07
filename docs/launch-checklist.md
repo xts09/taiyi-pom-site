@@ -2,6 +2,14 @@
 
 ## Before Deploying
 
+- Vercel uses the repository's `vercel.json` build command,
+  `npm run prepublish:check`, for both preview and production builds. Catalog
+  validation, catalog SEO checks, lint, type checking, and unit tests must pass
+  before the production build. Keep this gate in the build path when changing
+  deployment settings; do not replace it with a build-only command.
+- Record the changed routes and the actual deployment date when releasing SEO
+  or content changes. Compare subsequent search and inquiry data against that
+  release record; a local implementation date is not a deployment date.
 - Copy `.env.example` to `.env.local` and replace every required blank value.
 - Run `npm run launch:env-check` before creating a production build.
 - Run `npm run launch:check` for the full environment, catalog, SEO, lint,

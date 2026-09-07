@@ -278,10 +278,13 @@ export function ContactInquiryForm({
       const result = (await response.json()) as {
         delivered?: boolean;
         fallback?: boolean;
+        spamFiltered?: boolean;
       };
 
       if (response.ok && result.delivered && !result.fallback) {
-        trackInquirySubmitted("server_email");
+        if (!result.spamFiltered) {
+          trackInquirySubmitted("server_email");
+        }
         setStatus("sent");
         form.reset();
         setApplication("");

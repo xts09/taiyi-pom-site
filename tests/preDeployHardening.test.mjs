@@ -11,6 +11,21 @@ const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const readProjectFile = (path) =>
   readFileSync(resolve(projectRoot, path), "utf8");
 
+test("Vercel builds run the catalog, SEO and code gates before building", () => {
+  const configuration = JSON.parse(readProjectFile("vercel.json"));
+  const { scripts } = JSON.parse(readProjectFile("package.json"));
+
+  assert.equal(configuration.buildCommand, "npm run prepublish:check");
+  const releaseSteps = scripts["prepublish:check"].split(/\s*&&\s*/);
+  assert.ok(releaseSteps.indexOf("npm run catalog:generate") >= 0);
+  assert.ok(releaseSteps.indexOf("npm run check") >= 0);
+  assert.ok(releaseSteps.indexOf("npm run check") < releaseSteps.indexOf("npm run build"));
+  const checks = scripts.check.split(/\s*&&\s*/);
+  for (const check of ["catalog:check", "seo:catalog-check", "lint", "typecheck", "test"]) {
+    assert.ok(checks.includes(`npm run ${check}`), `${check} must remain in the release gate`);
+  }
+});
+
 const expectedAlternates = (sourcePath) => ({
   en: sourcePath,
   de: `/de${sourcePath}`,

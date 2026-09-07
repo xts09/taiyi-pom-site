@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import relatedPathStyles from "@/components/BasePomRelatedPaths.module.css";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { UnitText, ValueText } from "@/components/UnitText";
@@ -318,7 +319,7 @@ export function LocalizedProductCategoryContent({
           {relatedComponentSolutions.length > 0 ? (
             <section
               id="category-applications"
-              className="product-application-directory products-motion-secondary mt-12"
+              className={`product-application-directory products-motion-secondary mt-12 ${categorySlug === "base-pom-resin" ? relatedPathStyles.section : ""}`}
             >
               <div className="product-application-directory-head">
                 <p className="section-kicker mb-3">
