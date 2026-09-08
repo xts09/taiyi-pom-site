@@ -46,6 +46,15 @@ test("keeps report identifiers, private file paths and unsupported lifetime figu
   assert.doesNotMatch(publicContent, /69[,.]?981|34[,.]?729|34[,.]?792|70[,.]?000/);
 });
 
+test("records user-confirmed production adoption separately from the test conclusion", () => {
+  const english = getGearEnduranceEvidence();
+  const chinese = getGearEnduranceEvidence("zh");
+  assert.match(english.story.takeaway, /production[\s\S]*repeat orders/);
+  assert.match(chinese.story.takeaway, /量产[\s\S]*复购/);
+  assert.doesNotMatch(english.procedure, /production|repeat orders/);
+  assert.doesNotMatch(chinese.procedure, /量产|复购/);
+});
+
 test("does not expose English or Chinese pilot content on other locales", () => {
   for (const locale of ["de", "fr", "pt-br", "unknown"]) {
     assert.equal(getGearEnduranceEvidence(locale), undefined);

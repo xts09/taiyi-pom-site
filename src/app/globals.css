@@ -3335,6 +3335,12 @@ body {
   text-wrap: balance;
 }
 
+.site-footer-pitch h2:lang(zh) {
+  max-width: none;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .site-footer-pitch-copy {
   max-width: 34rem;
   margin-top: 0.85rem;

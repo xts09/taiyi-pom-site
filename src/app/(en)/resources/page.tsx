@@ -7,6 +7,7 @@ import { ResourcePageMotion } from "@/components/ResourcePageMotion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { DirectoryRow } from "@/components/DirectoryRow";
+import { CustomerCaseStudies, CustomerCaseStudiesAction } from "@/components/CustomerCaseStudies";
 import { SectionIntro } from "@/components/SectionIntro";
 import {
   getResourceNavigationGroupPath,
@@ -94,6 +95,7 @@ export default function ResourcesPage() {
                       Find Grade Data & TDS
                     </Link>
                   </Button>
+                  <CustomerCaseStudiesAction />
                 </div>
               </div>
               <div
@@ -166,6 +168,7 @@ export default function ResourcesPage() {
                   </ul>
                 </section>
               ))}
+              <CustomerCaseStudies />
             </div>
 
             <div

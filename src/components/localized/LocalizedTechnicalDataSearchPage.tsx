@@ -5,7 +5,6 @@ import { DocumentCard } from "@/components/DocumentCard";
 import { TechnicalDataQueryLink } from "@/components/TechnicalDataQueryLink";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { conductiveSeries } from "@/data/conductiveCompounds";
 import { createEngineeringTdsSlug } from "@/data/engineeringTds";
 import {
   isTechnicalDataProductContentType,
@@ -21,11 +20,7 @@ import {
 } from "@/i18n/resourceMessages";
 import type { LocalizedResourceArticleSlug } from "@/i18n/resourceTypes";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
-import {
-  getZhTechnicalDataCategoryLabel,
-  zhTechnicalDataSearchMessages as copy,
-  zhTechnicalDataSearchVocabulary,
-} from "@/i18n/technicalDataSearchMessages";
+import { getTechnicalSearchLocale } from "@/i18n/technicalDataSearchLocale";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -34,19 +29,6 @@ import {
 } from "@/lib/seo";
 
 const sourcePath = "/technical-data-sheets";
-
-const resourceLabelForSlug = (slug: string) => {
-  if (slug === "faq") return "常见问题";
-  if (slug === "application-notes") return "应用说明";
-  if (slug === "processing-guide") return "加工指南";
-  return "技术指南";
-};
-
-const documentStateLabel = (state: TechnicalDocumentState) => {
-  if (state === "registered-pdf") return copy.documentStates.registeredPdf;
-  if (state === "data-only") return copy.documentStates.dataOnly;
-  return copy.documentStates.unknown;
-};
 
 type LocalizedTechnicalDataSearchPageProps = {
   params: TechnicalDataSearchParams;
@@ -61,11 +43,20 @@ export function LocalizedTechnicalDataSearchPage({
   localeSegment,
   inLanguage,
 }: LocalizedTechnicalDataSearchPageProps) {
+  const language = getTechnicalSearchLocale(localeSegment);
+  const { copy, categoryLabel } = language;
+  const resourceLabelForSlug = (slug: string) =>
+    language.resourceLabels[slug] ?? language.resourceLabels.default;
+  const documentStateLabel = (state: TechnicalDocumentState) => {
+    if (state === "registered-pdf") return copy.documentStates.registeredPdf;
+    if (state === "data-only") return copy.documentStates.dataOnly;
+    return copy.documentStates.unknown;
+  };
   const localizedPath = (path: string) => getLocalizedHref(path, localeSegment);
   const pagePath = localizedPath(sourcePath);
   const selection = selectTechnicalDataSearch({
     params,
-    vocabulary: zhTechnicalDataSearchVocabulary,
+    vocabulary: language.vocabulary,
   });
   const localizedResources = getLocalizedResourcePages(localeSegment);
   const requestHref = localizedPath(
@@ -96,7 +87,7 @@ export function LocalizedTechnicalDataSearchPage({
     ? query
       ? copy.queryHeading(query, totalResults)
       : copy.filteredHeading(totalResults)
-    : copy.cleanHeading;
+    : localeSegment === "zh" ? copy.cleanHeading : messages.technicalData.title;
 
   const getFilterHref = ({
     resource = activeResource,
@@ -152,13 +143,22 @@ export function LocalizedTechnicalDataSearchPage({
         <div className="resource-site-hero-inner">
           <Breadcrumbs
             items={[
-              { href: localizedPath("/resources"), label: "资源中心" },
+              { href: localizedPath("/resources"), label: language.resourcesBreadcrumb },
               { label: copy.breadcrumb },
             ]}
             variant="resource"
           />
 
           <form className="resource-site-searchbox" action={pagePath}>
+            {activeResource ? (
+              <input type="hidden" name="resource" value={activeResource} />
+            ) : null}
+            {activeFamily ? (
+              <input type="hidden" name="family" value={activeFamily} />
+            ) : null}
+            {activeDirection ? (
+              <input type="hidden" name="direction" value={activeDirection} />
+            ) : null}
             <label htmlFor="resource-search" className="resource-site-label">
               {copy.searchLabel}
             </label>
@@ -344,11 +344,11 @@ export function LocalizedTechnicalDataSearchPage({
                   href={localizedPath(
                     `/products/${createEngineeringTdsSlug(document)}`,
                   )}
-                  description={`${getZhTechnicalDataCategoryLabel(document.category)}牌号数据，用于材料初筛与项目验证。`}
+                  description={language.engineeringDescription(categoryLabel(document.category))}
                   meta={
                     <>
                       <span>{document.family}</span>
-                      <span>{getZhTechnicalDataCategoryLabel(document.category)}</span>
+                      <span>{categoryLabel(document.category)}</span>
                       <span>{documentStateLabel(documentState)}</span>
                     </>
                   }
@@ -356,7 +356,7 @@ export function LocalizedTechnicalDataSearchPage({
               ))}
 
               {selection.conductiveResults.map((compound) => {
-                const series = conductiveSeries[compound.technology];
+                const series = language.series[compound.technology];
 
                 return (
                   <DocumentCard
@@ -369,7 +369,7 @@ export function LocalizedTechnicalDataSearchPage({
                     href={localizedPath(
                       "/products/conductive-antistatic-compounds#grade-explorer",
                     )}
-                    description={`${series.shortLabel} 目录方向，目标区间 ${compound.rangeLabel}。选材时需确认测试方法、单位和制件实测结果。`}
+                    description={language.conductiveDescription(series, compound.rangeLabel)}
                     meta={
                       <>
                         <span>{compound.matrix}</span>
@@ -388,13 +388,13 @@ export function LocalizedTechnicalDataSearchPage({
                     titleLevel={2}
                     linkTitle
                     eyebrow={copy.suggestedEyebrow}
-                    title={`${product.grade} ${getZhTechnicalDataCategoryLabel(product.category)}`}
+                    title={`${product.grade} ${categoryLabel(product.category)}`}
                     href={localizedPath(`/products/${product.slug}`)}
                     description={copy.suggestedBoundary}
                     meta={
                       <>
                         <span>{documentStateLabel(documentState)}</span>
-                        <span>需对照现行牌号数据、项目要求和制件验证</span>
+                        <span>{language.suggestedReview}</span>
                       </>
                     }
                   />
@@ -408,9 +408,9 @@ export function LocalizedTechnicalDataSearchPage({
                   titleLevel={2}
                   linkTitle
                   eyebrow={copy.productEyebrow}
-                  title={`${product.grade} ${getZhTechnicalDataCategoryLabel(product.category)}`}
+                  title={`${product.grade} ${categoryLabel(product.category)}`}
                   href={localizedPath(`/products/${product.slug}`)}
-                  description={`${getZhTechnicalDataCategoryLabel(product.category)}牌号数据，用于初步材料筛选与项目验证。`}
+                  description={language.gradeDescription(categoryLabel(product.category))}
                   meta={
                     <>
                       <span>MFI: {product.mfi}</span>
@@ -448,7 +448,7 @@ export function LocalizedTechnicalDataSearchPage({
                           href={localizedPath(`/products/${item.slug}`)}
                         >
                           <strong>{item.grade}</strong>
-                          <span>{getZhTechnicalDataCategoryLabel(item.category)}</span>
+                          <span>{categoryLabel(item.category)}</span>
                           <small>{documentStateLabel(item.documentState)}</small>
                         </Link>
                       ))}
@@ -457,8 +457,8 @@ export function LocalizedTechnicalDataSearchPage({
                 ))}
               </div>
               <p className="resource-grade-document-note">
-                需要当前项目对应的技术资料？
-                <Link href={requestHref}>申请技术资料并说明应用条件</Link>
+                {language.requestPrompt}{" "}
+                <Link href={requestHref}>{language.requestAction}</Link>
               </p>
             </section>
           ) : null}

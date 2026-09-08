@@ -206,6 +206,22 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Each of the 75 engineering-grade English/Chinese pairs emits a self-canonical and reciprocal `en`, `zh-CN`, and `x-default` group and appears once in sitemap. The generated sitemap contains 389 unique locations without duplicates, including all 75 Chinese engineering-grade URLs.
 - Rendered acceptance covered representative PA6, PA66, and PPA grade pages at `1920x1080` and `390x844`. There was no horizontal overflow; mobile property cards wrapped long labels without clipping, Hero CTAs remained full-width and equal, related-grade links retained `/zh`, and a real PA6 directory click entered the Chinese detail route. All 80 automated tests, lint, typecheck, and the production build passed; the build generated 821 static pages.
 
+### Localized Technical Search Parity (2026-09-08, Local Implementation)
+
+- German, French, and Brazilian Portuguese now use the shared localized
+  technical-data search template alongside Chinese. Published paths, clean-page
+  H1 text, metadata, canonical and language-alternate ownership remain unchanged.
+- Local dictionaries own interface copy, material labels, document-state wording
+  and curated search aliases. Latin aliases match case-insensitively at word
+  boundaries; grade identifiers and the shared catalog remain unchanged.
+- Visitors can search, filter and expand all 115 published grade links by
+  material family. Grade and inquiry destinations retain the active language.
+- Search/filter URLs retain the existing noindex and clean canonical policy.
+  Registered-document status and preliminary-candidate boundaries remain explicit.
+- German was verified first, followed by French and Brazilian Portuguese, with
+  English/Chinese search regression. Evidence is recorded under
+  `outputs/multilingual-search-2026-09-08/`. This change has not been deployed.
+
 ### German, French, and Brazilian Portuguese Full-Site Parity (2026-08-22)
 
 - German, French, and Brazilian Portuguese now publish the same 172 source paths as English and Simplified Chinese. This supersedes the earlier staged-release notes that described Applications, Resources, About, Components, solution pages, product families, or grade details as unavailable in these three locales.
@@ -324,8 +340,11 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - On 2026-09-07, the user confirmed that the armrest project addressed gear
   wear. The English and Chinese case now follows that customer problem,
   the ETM 100P gear application, customer-side assembly validation, and the
-  observed result. This background does not establish a previous material,
-  a quantified wear improvement, or production adoption.
+  observed result. The user subsequently clarified that gear wear performance
+  was insufficient and confirmed production adoption and repeat orders.
+  These business facts come from the user; the report supports the assembly
+  test conditions and result. No previous material, quantified improvement,
+  formulation changes, order quantities or supply duration have been established.
 - The case records 20 kg applied to each side, the reported sample quantity of
   1 pc, the specified environment, and a pass against the project's 27,500-cycle
   requirement. Subsequent small-gear wear and slipping and the result's sample
@@ -454,12 +473,14 @@ Top navigation should stay focused:
 
 - Products: material families, grade categories, grade details, TDS path.
 - Applications: industry/application fit and recommended material review direction.
-- Resources: selection guide, processing guide, application notes, FAQ, and TDS support.
+- Resources: selection guide, processing guide, application notes, customer case studies, FAQ, and TDS support.
 - News: exhibition, factory, product, and company updates.
 - About: factory capability, production proof, document support, and company credibility.
 - Contact: inquiry preparation and sales contact.
 
 News is a primary navigation item and an independent editorial route family under `/news/**`. Until multiple articles justify a dedicated News index, the navigation entry routes directly to the current article. News must not be nested under Resources or presented inside the Resources directory. The CHINAPLAS 2026 article is released in English, German, French, Brazilian Portuguese, and Simplified Chinese with reciprocal language alternates and localized navigation.
+
+Customer case studies belong under Resources in navigation (approved 2026-09-07), while keeping their independent `/case-studies/**` URLs. Product and application pages retain related-case links. The English and Chinese resource pages now collect the available case at `#customer-case-studies`; desktop/mobile Resources menus and Footer link to that section. Case-page breadcrumbs and the desktop current-section state follow Resources. There is no separate case index route yet. `src/data/caseStudyNavigation.ts` owns the shared entry label and section path; `CustomerCaseStudies.tsx` renders the collection from existing case evidence. Other languages do not expose this entry until case content is localized. This implementation is local and has not been deployed.
 
 News articles lead with event-specific facts: who took part, what requirement or product was discussed, where the exchange happened, and what the conversation established. Generic material-selection or validation instruction belongs to Applications and Resources and must not be used to pad a News article. Editorial reconstruction may connect user-supplied facts to established site-owned technical themes, but it must not invent customer identities, orders, numerical results, approvals, or completed project outcomes.
 

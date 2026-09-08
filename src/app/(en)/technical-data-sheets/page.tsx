@@ -313,6 +313,15 @@ export default async function TechnicalDataSheetsPage({
             className="resource-site-searchbox"
             action="/technical-data-sheets"
           >
+            {activeResource ? (
+              <input type="hidden" name="resource" value={activeResource} />
+            ) : null}
+            {activeFamily ? (
+              <input type="hidden" name="family" value={activeFamily} />
+            ) : null}
+            {activeDirection ? (
+              <input type="hidden" name="direction" value={activeDirection} />
+            ) : null}
             <label htmlFor="resource-search" className="resource-site-label">
               Search technical resources
             </label>

@@ -114,10 +114,11 @@ test("treats catalogue document state as registration evidence, not nonexistence
     /Grade data available; request current technical documents for the project/,
   );
   assert.match(messageSource, /技术资料请按项目确认/);
-  assert.match(componentSource, /申请技术资料并说明应用条件/);
+  assert.match(componentSource, /language\.requestAction/);
+  assert.match(readProjectFile("src/i18n/technicalDataSearchLocale.ts"), /申请技术资料并说明应用条件/);
 });
 
-test("limits the shared-search rollout to English regression and the ZH pilot", () => {
+test("serves shared localized search while retaining grade browsing and evidence boundaries", () => {
   const englishRoute = readProjectFile(
     "src/app/(en)/technical-data-sheets/page.tsx",
   );
@@ -129,8 +130,9 @@ test("limits the shared-search rollout to English regression and the ZH pilot", 
   );
 
   assert.match(englishRoute, /selectTechnicalDataSearch\(\{ params \}\)/);
-  assert.match(localizedRoute, /localeConfig\.urlSegment === "zh"/);
-  assert.match(localizedRoute, /<LocalizedTechnicalDataPage/);
+  assert.match(localizedRoute, /<LocalizedTechnicalDataSearchPage/);
+  assert.doesNotMatch(localizedRoute, /localeConfig\.urlSegment === "zh"/);
+  assert.match(localizedSearch, /getTechnicalSearchLocale\(localeSegment\)/);
   assert.match(localizedSearch, /technicalDataGradeBrowseGroups\.map/);
   assert.match(
     localizedSearch,

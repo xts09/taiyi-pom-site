@@ -17,6 +17,7 @@ import {
   type PointerEvent,
 } from "react";
 import { applicationNavigationEntries } from "@/data/applicationNavigation";
+import { getCaseStudyNavigation, isCaseStudyPath } from "@/data/caseStudyNavigation";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import {
   getResourceNavigationGroupPath,
@@ -215,6 +216,8 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   const hasHeroHeaderSurface = isHome || isAbout;
   const isCurrentSection = (href: string) =>
     logicalPathname === href || logicalPathname.startsWith(`${href}/`);
+  const caseStudies = getCaseStudyNavigation(localeSegment);
+  const isResourcesSection = isCurrentSection("/resources") || isCaseStudyPath(logicalPathname);
   const applicationLinks = [
     ...applicationNavigationEntries.map((application) => ({
       label: taxonomy.applications[application.slug] ?? application.title,
@@ -603,7 +606,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                   onPointerEnter={() => updateMegaValue("resources")}
                   onFocus={() => updateMegaValue("resources")}
                   aria-current={
-                    isCurrentSection("/resources") ? "page" : undefined
+                    isResourcesSection ? "page" : undefined
                   }
                 >
                   {messages.resources}
@@ -631,7 +634,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                         </Link>
                       </div>
 
-                      <div className="mega-simple-grid mega-simple-grid-resources">
+                      <div className={`mega-simple-grid mega-simple-grid-resources${caseStudies ? " mega-simple-grid-resources-with-cases" : ""}`}>
                         {resourceNavigationGroups.map((group) => (
                           <Link
                             key={group.id}
@@ -656,6 +659,16 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                             </span>
                           </Link>
                         ))}
+                        {caseStudies ? (
+                          <Link
+                            href={localizedHref(caseStudies.href)}
+                            prefetch={false}
+                            className="mega-simple-link"
+                            onClick={closeMega}
+                          >
+                            <span className="mega-simple-title mega-nav-label">{caseStudies.label}</span>
+                          </Link>
+                        ) : null}
                       </div>
                     </div>
                   ) : null}
@@ -895,6 +908,15 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                     </Link>
                   </div>
                 ))}
+                {caseStudies ? (
+                  <Link
+                    href={localizedHref(caseStudies.href)}
+                    prefetch={false}
+                    className="mobile-product-list flex items-center justify-between gap-3 py-1"
+                  >
+                    <span>{caseStudies.label}</span>
+                  </Link>
+                ) : null}
               </div>
             </details>
 

@@ -89,6 +89,7 @@
 
 .formPanel {
   padding: clamp(1.35rem, 2.8vw, 2.2rem);
+  scroll-margin-top: calc(var(--site-header-height) + var(--ds-space-4));
 }
 
 .formPanel :global(.section-kicker) {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { gearEnduranceTest, getGearEnduranceEvidence } from "@/data/gearEnduranceEvidence";
+import { getCaseStudyNavigation } from "@/data/caseStudyNavigation";
 import { getLanguageAlternates, getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { createBreadcrumbJsonLd, createPageMetadata, createWebPageJsonLd } from "@/lib/seo";
@@ -23,13 +24,15 @@ export function createGearCaseMetadata(localeSegment?: "zh") {
 export function GearEnduranceCasePage({ localeSegment }: { localeSegment?: "zh" }) {
   const copy = getGearEnduranceEvidence(localeSegment)!;
   const href = (path: string) => getLocalizedHref(path, localeSegment);
+  const caseStudies = getCaseStudyNavigation(localeSegment)!;
   const path = href(gearEnduranceTest.casePath);
   const contactHref = href(createContactHref({ grade: gearEnduranceTest.grade, material: "POM", application: copy.application, intent: "grade-evaluation", source: "Gear endurance case" }));
   const schema = [
     createWebPageJsonLd({ title: copy.page.heading, description: copy.page.description, path }),
     createBreadcrumbJsonLd([
       { name: localeSegment ? "首页" : "Home", path: href("/") },
-      { name: copy.page.back, path: href(gearEnduranceTest.componentPath) },
+      { name: caseStudies.resourcesLabel, path: href("/resources") },
+      { name: caseStudies.label, path: href(caseStudies.href) },
       { name: copy.page.heading, path },
     ]),
   ];
@@ -37,7 +40,8 @@ export function GearEnduranceCasePage({ localeSegment }: { localeSegment?: "zh" 
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }} />
     <main className={shared.page}><div className={shared.shell}><div className={shared.rail}>
       <Breadcrumbs className={shared.breadcrumbs} items={[
-        { label: copy.page.back, href: href(gearEnduranceTest.componentPath) },
+        { label: caseStudies.resourcesLabel, href: href("/resources") },
+        { label: caseStudies.label, href: href(caseStudies.href) },
         { label: localeSegment ? "齿轮试验案例" : "Gear endurance case" },
       ]} />
       <article className={styles.article}>
@@ -50,6 +54,10 @@ export function GearEnduranceCasePage({ localeSegment }: { localeSegment?: "zh" 
           <h2 id="project-challenge">{copy.story.challengeTitle}</h2>
           <div><p>{copy.story.challenge}</p></div>
         </section>
+        <section className={styles.section} aria-labelledby="material-solution">
+          <h2 id="material-solution">{copy.story.solutionTitle}</h2>
+          <div><p>{copy.story.solution}</p></div>
+        </section>
         <section className={styles.conditions} aria-labelledby="test-conditions">
           <h2 id="test-conditions">{copy.page.conditions}</h2>
           <p className={styles.validation}>{copy.story.validation}</p>
@@ -57,13 +65,13 @@ export function GearEnduranceCasePage({ localeSegment }: { localeSegment?: "zh" 
         </section>
         <section className={styles.section} aria-labelledby="test-result">
           <h2 id="test-result">{copy.page.result}</h2>
-          <div><p>{copy.procedure}</p><p>{copy.observations}</p><p>{copy.scope}</p></div>
+          <div><p>{copy.procedure}</p><p>{copy.observations}</p><p>{copy.scope}</p><Link className={styles.link} href={href(`${gearEnduranceTest.guidePath}#${gearEnduranceTest.interpretationId}`)}>{copy.guideAction}</Link></div>
         </section>
         <section className={styles.section} aria-labelledby="project-review">
           <h2 id="project-review">{copy.page.scope}</h2>
-          <div><p>{copy.story.takeaway}</p><Link className={styles.link} href={href(`${gearEnduranceTest.guidePath}#${gearEnduranceTest.interpretationId}`)}>{copy.guideAction}</Link></div>
+          <div><p>{copy.story.takeaway}</p></div>
         </section>
-        <footer className={styles.footer}>
+        <footer className={styles.footer} data-footer-adjacent="true">
           <h2>{copy.page.contactTitle}</h2>
           <div className={styles.actions}>
             <Button asChild size="form"><Link href={contactHref}>{copy.action}</Link></Button>

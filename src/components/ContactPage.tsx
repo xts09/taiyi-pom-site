@@ -127,10 +127,13 @@ export async function ContactPage({
         <div className={`${styles.workspace} stagger-list`}>
           <Card asChild variant="soft">
             <section
+              id="inquiry"
+              tabIndex={-1}
+              aria-labelledby="inquiry-title"
               className={styles.formPanel}
               style={{ "--item-index": 0 } as CSSProperties}
             >
-              <h2 className="text-2xl font-semibold text-slate-950">
+              <h2 id="inquiry-title" className="text-2xl font-semibold text-slate-950">
                 {messages.formPanel.title}
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-700">

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import type { ComponentProps } from "react";
 
 type TechnicalDataQueryLinkProps = Omit<
@@ -15,19 +14,20 @@ type TechnicalDataQueryLinkProps = Omit<
 export function TechnicalDataQueryLink({
   cleanHref,
   queryHref,
+  rel,
   ...props
 }: TechnicalDataQueryLinkProps) {
-  const router = useRouter();
+  const linkRel = queryHref === cleanHref
+    ? rel
+    : Array.from(new Set([...(rel?.split(/\s+/).filter(Boolean) ?? []), "nofollow"]))
+        .join(" ");
 
   return (
     <Link
       {...props}
-      href={cleanHref}
+      href={queryHref}
+      rel={linkRel}
       prefetch={false}
-      onNavigate={(event) => {
-        event.preventDefault();
-        router.push(queryHref);
-      }}
     />
   );
 }

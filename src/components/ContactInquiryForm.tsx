@@ -133,46 +133,82 @@ export function ContactInquiryForm({
       : materialOptions;
 
   useEffect(() => {
-    const hashContext = parseContactContextHash(window.location.hash);
-    if (Object.keys(hashContext).length === 0) return;
+    let frame = 0;
+    const applyHashContext = () => {
+      const hashContext = parseContactContextHash(window.location.hash);
+      if (Object.keys(hashContext).length === 0) return;
 
-    const contextMessage = getContactContextMessage(
-      hashContext,
-      contextMessageLabels,
-    );
-    const storedRequirement =
-      hashContext.source === selectionWorkspaceContactSource
-        ? readContactRequirement()
-        : undefined;
-    const nextPrefilledMessage = clampInquiryMessage(
-      [
-        contextMessage,
-        storedRequirement
-          ? `${requirementLabel}: ${storedRequirement}`
-          : undefined,
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    );
+      const contextMessage = getContactContextMessage(
+        hashContext,
+        contextMessageLabels,
+      );
+      const storedRequirement =
+        hashContext.source === selectionWorkspaceContactSource
+          ? readContactRequirement()
+          : undefined;
+      const nextPrefilledMessage = clampInquiryMessage(
+        [
+          contextMessage,
+          storedRequirement
+            ? `${requirementLabel}: ${storedRequirement}`
+            : undefined,
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      );
 
-    const frame = window.requestAnimationFrame(() => {
-      setActiveContextLabel(getContactContextLabel(hashContext));
-      setApplication(hashContext.application ?? "");
-      setGrade(hashContext.grade ?? "");
-      setInquiryType(hashContext.intent ?? "");
-      setMaterial(hashContext.material ?? "");
-      setMessage(nextPrefilledMessage);
-      setPrefilledMessage(nextPrefilledMessage);
-      setSource(hashContext.source ?? "");
-      setShowContext(true);
-      setPrefilledApplication(hashContext.application ?? "");
-      setPrefilledGrade(hashContext.grade ?? "");
-      setPrefilledIntent(hashContext.intent);
-      setPrefilledMaterial(hashContext.material ?? "");
-    });
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        setActiveContextLabel(getContactContextLabel(hashContext));
+        setApplication(hashContext.application ?? "");
+        setGrade(hashContext.grade ?? "");
+        setInquiryType(hashContext.intent ?? "");
+        setMaterial(hashContext.material ?? "");
+        setMessage(nextPrefilledMessage);
+        setPrefilledMessage(nextPrefilledMessage);
+        setSource(hashContext.source ?? "");
+        setShowContext(true);
+        setPrefilledApplication(hashContext.application ?? "");
+        setPrefilledGrade(hashContext.grade ?? "");
+        setPrefilledIntent(hashContext.intent);
+        setPrefilledMaterial(hashContext.material ?? "");
+      });
+    };
 
-    return () => window.cancelAnimationFrame(frame);
+    applyHashContext();
+    window.addEventListener("hashchange", applyHashContext);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", applyHashContext);
+    };
   }, [contextMessageLabels, requirementLabel]);
+
+  useEffect(() => {
+    let frame = 0;
+    const revealInquiry = () => {
+      const hasHashContext = Object.keys(
+        parseContactContextHash(window.location.hash),
+      ).length > 0;
+      if (!hasHashContext && !contextLabel && !initialIntent) return;
+
+      window.cancelAnimationFrame(frame);
+      // Let prefilled context render before positioning the form.
+      frame = window.requestAnimationFrame(() => {
+        frame = window.requestAnimationFrame(() => {
+          const panel = document.getElementById("inquiry");
+          panel?.scrollIntoView({ behavior: "instant", block: "start" });
+          panel?.focus({ preventScroll: true });
+        });
+      });
+    };
+
+    revealInquiry();
+    window.addEventListener("hashchange", revealInquiry);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", revealInquiry);
+    };
+  }, [contextLabel, initialIntent]);
 
   useEffect(() => {
     if (!loadStoredRequirement) return;

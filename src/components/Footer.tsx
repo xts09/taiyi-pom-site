@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Mail, Phone } from "lucide-react";
 import { AnalyticsSettingsButton } from "@/components/AnalyticsConsent";
 import { applications } from "@/data/applications";
+import { getCaseStudyNavigation } from "@/data/caseStudyNavigation";
 import {
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
@@ -78,6 +79,7 @@ export function Footer({
 }: FooterProps) {
   const localizedHref = (href: string) =>
     getLocalizedHref(href, localeSegment);
+  const caseStudies = getCaseStudyNavigation(localeSegment);
   const footerColumns = [
     {
       key: "products",
@@ -124,10 +126,10 @@ export function Footer({
     {
       key: "resources",
       title: messages.resources,
-      links: resourceNavigationGroups.map((group) => ({
+      links: [...resourceNavigationGroups.map((group) => ({
         href: getResourceNavigationGroupPath(group),
         label: taxonomy.resources[group.id as ResourceTaxonomyKey].title,
-      })),
+      })), ...(caseStudies ? [{ href: caseStudies.href, label: caseStudies.label }] : [])],
     },
     {
       key: "company",

@@ -694,10 +694,10 @@ const messages = {
     eyebrow: "Données et preuves",
     title: "Données techniques pour l'évaluation matière",
     description:
-      "Cette version linguistique ne publie que les grades dont la page technique et les explications ont été entièrement vérifiées. Chaque valeur doit être lue avec son unité, sa norme et sa condition d'essai.",
+      "Comparez les grades POM à partir de leurs propriétés publiées. Lisez chaque valeur avec son unité, sa norme et sa condition d'essai.",
     evidenceTitle: "Données de grade validées",
     evidenceBody:
-      "ETM450, ETM750, XT-100, EGB25, EGH502H, EHI402T et EDR180 forment le groupe de données entièrement localisé. D'autres grades seront ajoutés après le même contrôle technique et linguistique.",
+      "Ouvrez la page de chaque grade pour consulter ses données ou demander sa fiche technique à jour. La version et la disponibilité des documents sont confirmées pour le grade et le projet concernés.",
     gradeLabel: "Grade",
     materialLabel: "Matière",
     statusLabel: "État des données",

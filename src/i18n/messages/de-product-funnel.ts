@@ -694,10 +694,10 @@ const messages = {
     eyebrow: "Daten und Nachweise",
     title: "Technische Daten für die Werkstoffprüfung",
     description:
-      "Diese Sprachversion veröffentlicht nur Typen, deren technische Seite und Erklärtexte vollständig geprüft wurden. Werte sind zusammen mit Einheit, Norm und Prüfbedingung zu lesen.",
+      "Vergleichen Sie POM-Typen anhand ihrer veröffentlichten Kennwerte. Lesen Sie jeden Wert zusammen mit Einheit, Norm und Prüfbedingung.",
     evidenceTitle: "Freigegebene Typdaten",
     evidenceBody:
-      "ETM450, ETM750, XT-100, EGB25, EGH502H, EHI402T und EDR180 bilden die vollständig lokalisierte Datengruppe. Weitere Typen werden erst nach derselben technischen und sprachlichen Prüfung ergänzt.",
+      "Öffnen Sie die einzelnen Typseiten für weitere Daten oder fragen Sie aktuelle TDS an. Dokumentenversion und Verfügbarkeit werden für den jeweiligen Typ und Ihr Projekt bestätigt.",
     gradeLabel: "Typ",
     materialLabel: "Werkstoff",
     statusLabel: "Datenstatus",

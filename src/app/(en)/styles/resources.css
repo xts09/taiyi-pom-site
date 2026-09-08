@@ -98,6 +98,11 @@
   text-wrap: balance;
 }
 
+.resource-index-hero h1:lang(zh) {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
 .resource-index-description {
   max-width: var(--ds-resource-hero-body-measure);
   margin: 1.25rem 0 0;

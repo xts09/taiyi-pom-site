@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { ArrowRight } from "lucide-react";
 import { DirectoryRow } from "@/components/DirectoryRow";
+import { CustomerCaseStudies, CustomerCaseStudiesAction } from "@/components/CustomerCaseStudies";
 import { ResourcePageMotion } from "@/components/ResourcePageMotion";
 import { SectionIntro } from "@/components/SectionIntro";
 import { Button } from "@/components/ui/button";
@@ -147,6 +148,7 @@ export default async function LocalizedResourcesPage({
                       {messages.hero.dataAction}
                     </Link>
                   </Button>
+                  <CustomerCaseStudiesAction localeSegment={localeConfig.urlSegment} />
                 </div>
               </div>
               <div
@@ -221,6 +223,7 @@ export default async function LocalizedResourcesPage({
                   </ul>
                 </section>
               ))}
+              <CustomerCaseStudies localeSegment={localeConfig.urlSegment} />
             </div>
 
             <div

@@ -20,7 +20,12 @@ export const normalizeTechnicalDataQuery = (
     .sort((left, right) => right.alias.length - left.alias.length);
 
   for (const entry of aliases) {
-    normalized = normalized.replaceAll(entry.alias, ` ${entry.canonicalTerm} `);
+    const escaped = entry.alias.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    // Latin aliases are whole words/phrases; CJK search keeps substring matching.
+    const pattern = /\p{Script=Latin}/u.test(entry.alias)
+      ? `(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`
+      : escaped;
+    normalized = normalized.replace(new RegExp(pattern, "giu"), ` ${entry.canonicalTerm} `);
   }
 
   return normalized.replace(/\s+/g, " ").trim();
