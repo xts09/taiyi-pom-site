@@ -106,6 +106,16 @@
   padding-inline: 0;
 }
 
+/* The legacy product-motion rules add a horizontal inset only after this
+   navigation becomes sticky. Keep its top row on the same visible rail as the
+   tabs and grade directory. */
+@media (min-width: 64rem) {
+  .page :global(.products-motion-root.is-sticky-actions-visible) [data-slot="secondary-section-nav-top"],
+  .page :global(.products-motion-root.is-section-nav-pinned) [data-slot="secondary-section-nav-top"] {
+    padding-inline: 0;
+  }
+}
+
 .section,
 .sectionRail {
   min-width: 0;

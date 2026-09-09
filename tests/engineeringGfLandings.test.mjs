@@ -19,6 +19,9 @@ const localizationSource = readProjectFile(
 const landingPageSource = readProjectFile(
   "src/components/EngineeringGfLandingPage.tsx",
 );
+const landingStyles = readProjectFile(
+  "src/components/EngineeringGfLandingPage.module.css",
+);
 const comparisonSource = readProjectFile("src/components/EngineeringGfGradeComparison.tsx");
 const directionSource = readProjectFile("src/data/engineeringDirectionNavigation.ts");
 const releaseManifestSource = readProjectFile("src/i18n/releaseManifest.ts");
@@ -109,6 +112,17 @@ test("connects the PA6 and PA66 hub directions to their GF landing owners", () =
 test("uses the native comparison anchor for the hero action", () => {
   assert.match(landingPageSource, /<Link href="#grade-comparison">/);
   assert.doesNotMatch(landingPageSource, /EngineeringGfAnchorLink/);
+});
+
+test("keeps the pinned PA glass-fiber navigation on the shared rail", () => {
+  assert.match(
+    landingStyles,
+    /\.products-motion-root\.is-section-nav-pinned\)[\s\S]*padding-inline: 0/,
+  );
+  assert.match(
+    landingStyles,
+    /\.products-motion-root\.is-sticky-actions-visible\)[\s\S]*padding-inline: 0/,
+  );
 });
 
 test("does not turn unresolved suffixes into invented positioning", () => {
