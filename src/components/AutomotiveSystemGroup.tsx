@@ -5,7 +5,7 @@ import type { ApplicationItem } from "@/data/applications";
 import type { ApplicationInlinePartGroup } from "@/data/applicationSystemPresentation";
 import { automotivePartMaterials, automotiveSelectionLabels, automotiveWindowCases } from "@/data/automotiveSelection";
 import { automotivePageDesign } from "@/data/automotivePageDesign";
-import { AutomotivePartTabs } from "./AutomotivePartTabs";
+import { AutomotiveHashNavigator, AutomotivePartTabs } from "./AutomotivePartTabs";
 import { Button } from "./ui/button";
 import { getGlassFiberCaseStudy, getGlassFiberCasePath } from "@/data/glassFiberCaseStudies";
 import type { LocalizedUrlSegment, MessageLocale } from "@/i18n/config";
@@ -31,9 +31,11 @@ function AutomotiveTextLink({ href, children, badge }: { href: string; children:
 }
 
 export function AutomotiveSystemGroups({ groups, ...props }: Omit<Props, "group"> & { groups: readonly ApplicationInlinePartGroup[] }) {
-  return <div className={styles.groups} id="application-part-examples">
-    {groups.map(group => <AutomotiveSystemGroup {...props} group={group} key={group.id} />)}
-  </div>;
+  return <AutomotiveHashNavigator>
+    <div className={styles.groups} id="application-part-examples">
+      {groups.map(group => <AutomotiveSystemGroup {...props} group={group} key={group.id} />)}
+    </div>
+  </AutomotiveHashNavigator>;
 }
 
 export function AutomotiveNextSteps({ inLanguage, localeSegment, contactHref, technicalLabel, evaluation, qualityEvidence }: {
@@ -145,7 +147,12 @@ export function AutomotiveSystemGroup({ application, group, inLanguage, localeSe
     /> : <div className={styles.parts}>{parts.map(renderPart)}</div>}
   </div>;
 
-  return <details className={styles.system} name="automotive-systems" open={windowSystem}>
+  return <details
+    className={styles.system}
+    name="automotive-systems"
+    open={windowSystem}
+    suppressHydrationWarning
+  >
     <summary className={styles.systemSummary}>
       <div className={styles.sectionHeading}>
         <div>

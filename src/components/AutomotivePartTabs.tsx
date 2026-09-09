@@ -1,7 +1,77 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import styles from "./AutomotiveSystemGroup.module.css";
+
+const automotivePartHashPrefix = "#automotive-part-";
+type AutomotivePartHashListener = (hash: string) => void;
+
+const automotivePartHashListeners = new Set<AutomotivePartHashListener>();
+let isListeningForAutomotivePartHash = false;
+
+const notifyAutomotivePartHashListeners = () => {
+  const hash = window.location.hash;
+  automotivePartHashListeners.forEach((listener) => listener(hash));
+};
+
+const subscribeToAutomotivePartHash = (
+  listener: AutomotivePartHashListener,
+) => {
+  automotivePartHashListeners.add(listener);
+  if (!isListeningForAutomotivePartHash) {
+    window.addEventListener("hashchange", notifyAutomotivePartHashListeners);
+    isListeningForAutomotivePartHash = true;
+  }
+  window.queueMicrotask(() => {
+    if (automotivePartHashListeners.has(listener)) {
+      listener(window.location.hash);
+    }
+  });
+
+  return () => {
+    automotivePartHashListeners.delete(listener);
+    if (automotivePartHashListeners.size === 0) {
+      window.removeEventListener("hashchange", notifyAutomotivePartHashListeners);
+      isListeningForAutomotivePartHash = false;
+    }
+  };
+};
+
+export function AutomotiveHashNavigator({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    let frameId: number | undefined;
+    const unsubscribe = subscribeToAutomotivePartHash((hash) => {
+      if (!hash.startsWith(automotivePartHashPrefix)) return;
+
+      const target = document.getElementById(hash.slice(1));
+      if (!target) return;
+
+      const system = target.closest('details[name="automotive-systems"]');
+      if (system instanceof HTMLDetailsElement) system.open = true;
+
+      if (frameId !== undefined) window.cancelAnimationFrame(frameId);
+      frameId = window.requestAnimationFrame(() => {
+        frameId = window.requestAnimationFrame(() => {
+          document
+            .getElementById(hash.slice(1))
+            ?.scrollIntoView({ block: "start" });
+        });
+      });
+    });
+
+    return () => {
+      unsubscribe();
+      if (frameId !== undefined) window.cancelAnimationFrame(frameId);
+    };
+  }, []);
+
+  return <>{children}</>;
+}
 
 export function AutomotivePartTabs({ items, label }: {
   items: { id: string; title: string; content: ReactNode }[];
@@ -11,13 +81,12 @@ export function AutomotivePartTabs({ items, label }: {
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
 
   useEffect(() => {
-    const syncHash = () => {
-      const index = items.findIndex(item => window.location.hash === `#automotive-part-${item.id}`);
+    return subscribeToAutomotivePartHash((hash) => {
+      const index = items.findIndex(
+        (item) => hash === `${automotivePartHashPrefix}${item.id}`,
+      );
       if (index >= 0) setActive(index);
-    };
-    syncHash();
-    window.addEventListener("hashchange", syncHash);
-    return () => window.removeEventListener("hashchange", syncHash);
+    });
   }, [items]);
 
   useEffect(() => {

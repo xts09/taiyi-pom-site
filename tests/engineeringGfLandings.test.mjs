@@ -2,14 +2,17 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import {
+  getLanguageAlternatesForPath,
+  getSitemapLanguageOptions,
+  getSitemapReleasedSourcePaths,
+} from "../src/i18n/releaseManifest.ts";
+
 const readProjectFile = (path) =>
   readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
 const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
 const dataSource = readProjectFile("src/data/engineeringGfLandingPages.ts");
-const pageSource = readProjectFile(
-  "src/components/EngineeringGfLandingPage.tsx",
-);
 const comparisonSource = readProjectFile("src/components/EngineeringGfGradeComparison.tsx");
 const directionSource = readProjectFile("src/data/engineeringDirectionNavigation.ts");
 const releaseManifestSource = readProjectFile("src/i18n/releaseManifest.ts");
@@ -97,17 +100,29 @@ test("does not turn unresolved suffixes into invented positioning", () => {
   }
 });
 
-test("stages both routes as noindex outside the release manifest and sitemap", () => {
+test("publishes both routes as English-only indexable sitemap owners", () => {
   for (const routeSource of [pa6RouteSource, pa66RouteSource]) {
-    assert.match(routeSource, /indexable: false/);
-    assert.doesNotMatch(routeSource, /languageAlternates/);
+    assert.match(routeSource, /indexable: true/);
+    assert.match(
+      routeSource,
+      /languageAlternates: getLanguageAlternatesForPath\(page\.path\)/,
+    );
   }
 
-  for (const slug of [
-    "glass-fiber-reinforced-pa6-compound",
-    "glass-fiber-reinforced-pa66-compound",
+  for (const path of [
+    "/products/categories/glass-fiber-reinforced-pa6-compound",
+    "/products/categories/glass-fiber-reinforced-pa66-compound",
   ]) {
-    assert.doesNotMatch(releaseManifestSource, new RegExp(slug));
-    assert.doesNotMatch(sitemapSource, new RegExp(slug));
+    assert.match(releaseManifestSource, new RegExp(path));
+    assert.match(sitemapSource, new RegExp(path));
+    assert.ok(getSitemapReleasedSourcePaths().includes(path));
+    assert.deepEqual(
+      getSitemapLanguageOptions(path).map(({ href }) => href),
+      [path],
+    );
+    assert.deepEqual(getLanguageAlternatesForPath(path), {
+      en: path,
+      "x-default": path,
+    });
   }
 });

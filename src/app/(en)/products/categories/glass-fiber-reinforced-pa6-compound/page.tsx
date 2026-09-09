@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { EngineeringGfLandingPage } from "@/components/EngineeringGfLandingPage";
 import { getEngineeringGfLandingPageData } from "@/data/engineeringGfLandingPages";
+import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
 import { createPageMetadata } from "@/lib/seo";
 
 const page = getEngineeringGfLandingPageData("PA6");
@@ -11,7 +12,8 @@ export const metadata: Metadata = createPageMetadata({
   path: page.path,
   image: "/generated/landing/home-dark-satin-wave-v1.webp",
   imageAlt: "PLATFORM glass-fiber-reinforced PA6 grade selection",
-  indexable: false,
+  indexable: true,
+  languageAlternates: getLanguageAlternatesForPath(page.path),
 });
 
 export default function GlassFiberReinforcedPa6Page() {

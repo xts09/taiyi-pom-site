@@ -388,6 +388,21 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
   module pilot; PA6/PA66 and other language layouts have not yet been migrated.
   The pilot is local and has not been committed or deployed in this task.
 
+### English Glass-Fiber PA6 And PA66 Landing Release (2026-09-09, Local Implementation)
+
+- The English `/products/categories/glass-fiber-reinforced-pa6-compound` and
+  `/products/categories/glass-fiber-reinforced-pa66-compound` routes are
+  approved as public, indexable material-selection pages. They preserve the
+  catalogue-owned 17-grade PA6 and 15-grade PA66 comparison sets and the
+  existing application and validation boundaries.
+- Each route emits a self-canonical plus English and `x-default` alternates and
+  is included once in the release manifest and sitemap. German, French,
+  Brazilian Portuguese and Simplified Chinese variants remain unreleased until
+  complete localized pages pass the normal content and rendered-review gate.
+- The release changes SEO ownership only; it does not alter the page layout,
+  technical values or published claims. The implementation remains local until
+  its branch is merged and deployed through the Vercel production gate.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
