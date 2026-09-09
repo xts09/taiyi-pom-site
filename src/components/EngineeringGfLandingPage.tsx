@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { EngineeringGfAnchorLink } from "@/components/EngineeringGfAnchorLink";
 import {
   EngineeringGfGradeComparison,
   type EngineeringGfComparisonGrade,
@@ -149,9 +148,9 @@ export function EngineeringGfLandingPage({
                   size="productHero"
                   variant="productHeroPrimary"
                 >
-                  <EngineeringGfAnchorLink href="#grade-comparison">
+                  <Link href="#grade-comparison">
                     {ui.compareGradesAction}
-                  </EngineeringGfAnchorLink>
+                  </Link>
                 </Button>
                 <Button
                   asChild

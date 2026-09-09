@@ -106,6 +106,11 @@ test("connects the PA6 and PA66 hub directions to their GF landing owners", () =
   assert.match(directionSource, /\?\? "#pom-grades"/);
 });
 
+test("uses the native comparison anchor for the hero action", () => {
+  assert.match(landingPageSource, /<Link href="#grade-comparison">/);
+  assert.doesNotMatch(landingPageSource, /EngineeringGfAnchorLink/);
+});
+
 test("does not turn unresolved suffixes into invented positioning", () => {
   assert.doesNotMatch(
     dataSource,
