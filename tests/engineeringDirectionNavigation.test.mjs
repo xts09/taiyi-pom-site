@@ -8,8 +8,8 @@ test("PA glass fiber cards open their corresponding existing landing pages", () 
     const href = getEngineeringDirectionHref(family, "Glass Fiber Reinforced");
     assert.equal(href, `/products/categories/glass-fiber-reinforced-${family.toLowerCase()}-compound`);
     for (const locale of ["zh", "de", "fr", "pt-br"]) {
-      assert.equal(getLocalizedHref(href, locale), href);
-      assert.equal(isEnglishFallbackHref(href, locale), true);
+      assert.equal(getLocalizedHref(href, locale), `/${locale}${href}`);
+      assert.equal(isEnglishFallbackHref(href, locale), false);
     }
   }
 });

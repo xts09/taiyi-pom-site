@@ -467,11 +467,12 @@ TDS support belong to the linked grade detail pages; do not repeat the complete
 cross-grade table on this landing page. Other POM categories and languages keep their owners.
 The existing category Hero and secondary navigation are not owned by this module.
 
-The PA6/PA66 English GF pages retain their original PageHero factory image and
-share this card owner. Their complete seven-property comparison and per-grade
-TDS links remain in the full-parameters disclosure. POM TDS links remain on
-the individual grade detail pages. These changes do not migrate other categories
-or change the staged routes' release status.
+The five-language PA6/PA66 GF pages retain their original PageHero factory
+image and share this card owner. Their complete seven-property comparison and
+per-grade TDS links remain in the full-parameters disclosure. POM TDS links
+remain on the individual grade detail pages. The localized PA pages reuse the
+same catalogue records and layout while translating visible labels, links,
+metadata and structured-data language signals.
 
 ### Gear Assembly Test Evidence — Pilot
 

@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { GlassFiberGradeCards } from "@/components/GlassFiberGradeCards";
+import {
+  formatEngineeringGfMessage,
+  type EngineeringGfComparisonUi,
+} from "@/i18n/engineeringGfLandingMessages";
 import styles from "./EngineeringGfLandingPage.module.css";
 
 export type EngineeringGfComparisonGrade = {
   grade: string;
   slug: string;
+  href: string;
   filler: string;
   density: string;
   flammability: string;
@@ -17,52 +22,57 @@ export type EngineeringGfComparisonGrade = {
   tdsHref: string;
 };
 
-const formatValue = (value: string, unit: string) =>
-  value ? `${value} ${unit}` : "Not published";
+const formatValue = (
+  value: string,
+  unit: string,
+  notPublishedLabel: string,
+) => (value ? `${value} ${unit}` : notPublishedLabel);
 
 export function EngineeringGfGradeComparison({
   grades,
   polymer,
+  ui,
 }: {
   grades: readonly EngineeringGfComparisonGrade[];
   polymer: string;
+  ui: EngineeringGfComparisonUi;
 }) {
   return (
     <div>
-      <GlassFiberGradeCards actionLabel="View grade data" grades={grades.map(grade => ({
+      <GlassFiberGradeCards actionLabel={ui.actionLabel} grades={grades.map(grade => ({
         grade: grade.grade,
-        href: `/products/${grade.slug}`,
-        eyebrow: `${polymer} · Glass fiber ${grade.filler}%`,
+        href: grade.href,
+        eyebrow: `${polymer} · ${ui.glassFiberLabel} ${grade.filler}%`,
         metrics: [
-          { label: "Density", value: grade.density || "Not published" },
-          { label: "Tensile stress", value: formatValue(grade.tensile, "MPa") },
-          { label: "HDT (1.8 MPa)", value: formatValue(grade.hdt, "°C") },
-          { label: "Flammability", value: grade.flammability || "Not published" },
+          { label: ui.densityLabel, value: grade.density || ui.notPublishedLabel },
+          { label: ui.tensileStressLabel, value: formatValue(grade.tensile, "MPa", ui.notPublishedLabel) },
+          { label: ui.hdtLabel, value: formatValue(grade.hdt, "°C", ui.notPublishedLabel) },
+          { label: ui.flammabilityLabel, value: grade.flammability || ui.notPublishedLabel },
         ],
       }))} />
       <details className={styles.fullComparison}>
-        <summary>Full parameters &amp; test methods</summary>
-      <p className={styles.tableHint}>Scroll sideways to compare all properties →</p>
+        <summary>{ui.disclosureLabel}</summary>
+      <p className={styles.tableHint}>{ui.scrollHint}</p>
       <div
         className={styles.tableScroller}
         tabIndex={0}
         role="region"
-        aria-label="Glass-fiber grade comparison"
+        aria-label={ui.regionAria}
       >
         <table className={styles.comparisonTable} aria-describedby="gf-comparison-methods">
           <caption className={styles.srOnly}>
-            Grades ordered by glass-fiber content
+            {ui.caption}
           </caption>
           <thead>
             <tr>
-              <th scope="col">Grade / TDS</th>
-              <th scope="col">Glass fiber</th>
-              <th scope="col">Tensile stress</th>
-              <th scope="col">Flexural strength</th>
-              <th scope="col">Flexural modulus</th>
-              <th scope="col">Notched impact</th>
-              <th scope="col">HDT 1.8 MPa</th>
-              <th scope="col">Water absorption</th>
+              <th scope="col">{ui.gradeTdsLabel}</th>
+              <th scope="col">{ui.glassFiberLabel}</th>
+              <th scope="col">{ui.tensileStressLabel}</th>
+              <th scope="col">{ui.flexuralStrengthLabel}</th>
+              <th scope="col">{ui.flexuralModulusLabel}</th>
+              <th scope="col">{ui.notchedImpactLabel}</th>
+              <th scope="col">{ui.hdtLabel}</th>
+              <th scope="col">{ui.waterAbsorptionLabel}</th>
             </tr>
           </thead>
           <tbody>
@@ -70,23 +80,26 @@ export function EngineeringGfGradeComparison({
               <tr key={grade.slug}>
                 <th scope="row">
                   <div className={styles.gradeLinks}>
-                    <Link href={`/products/${grade.slug}`}>{grade.grade}</Link>
+                    <Link href={grade.href}>{grade.grade}</Link>
                     <Link
                       className={styles.tdsLink}
                       href={grade.tdsHref}
-                      aria-label={`Request Full TDS for ${grade.grade}`}
+                      aria-label={formatEngineeringGfMessage(
+                        ui.requestTdsAriaTemplate,
+                        { grade: grade.grade },
+                      )}
                     >
                       TDS
                     </Link>
                   </div>
                 </th>
                 <td>{grade.filler}%</td>
-                <td>{formatValue(grade.tensile, "MPa")}</td>
-                <td>{formatValue(grade.flexuralStrength, "MPa")}</td>
-                <td>{formatValue(grade.flexuralModulus, "MPa")}</td>
-                <td>{formatValue(grade.impact, "kJ/m²")}</td>
-                <td>{formatValue(grade.hdt, "°C")}</td>
-                <td>{formatValue(grade.waterAbsorption, "%")}</td>
+                <td>{formatValue(grade.tensile, "MPa", ui.notPublishedLabel)}</td>
+                <td>{formatValue(grade.flexuralStrength, "MPa", ui.notPublishedLabel)}</td>
+                <td>{formatValue(grade.flexuralModulus, "MPa", ui.notPublishedLabel)}</td>
+                <td>{formatValue(grade.impact, "kJ/m²", ui.notPublishedLabel)}</td>
+                <td>{formatValue(grade.hdt, "°C", ui.notPublishedLabel)}</td>
+                <td>{formatValue(grade.waterAbsorption, "%", ui.notPublishedLabel)}</td>
               </tr>
             ))}
           </tbody>

@@ -20,6 +20,12 @@ import {
   getEngineeringGfLandingPageData,
   type EngineeringGfPolymer,
 } from "@/data/engineeringGfLandingPages";
+import type { LocalizedUrlSegment } from "@/i18n/config";
+import {
+  formatEngineeringGfMessage,
+  getEngineeringGfLandingMessages,
+} from "@/i18n/engineeringGfLandingMessages";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -30,16 +36,27 @@ import styles from "./EngineeringGfLandingPage.module.css";
 
 type EngineeringGfLandingPageProps = {
   polymer: EngineeringGfPolymer;
+  localeSegment?: LocalizedUrlSegment;
+  inLanguage?: string;
 };
 
 export function EngineeringGfLandingPage({
   polymer,
+  localeSegment,
+  inLanguage = "en",
 }: EngineeringGfLandingPageProps) {
-  const page = getEngineeringGfLandingPageData(polymer);
+  const { page, ui } = getEngineeringGfLandingMessages(
+    polymer,
+    localeSegment,
+  );
+  const localizedPath = (path: string) =>
+    getLocalizedHref(path, localeSegment);
+  const otherPolymer = polymer === "PA6" ? "PA66" : "PA6";
   const grades = getEngineeringGfGrades(polymer);
   const comparisonGrades = grades.map((grade): EngineeringGfComparisonGrade => ({
     grade: grade.grade,
     slug: grade.slug,
+    href: localizedPath(`/products/${grade.slug}`),
     filler: grade.filler,
     density: grade.density,
     flammability: grade.flammability,
@@ -50,32 +67,38 @@ export function EngineeringGfLandingPage({
     hdt: grade.hdt,
     waterAbsorption: grade.waterAbsorption,
 
-    tdsHref: createContactHref({
-      material: page.contactMaterial,
-      grade: grade.grade,
-      intent: "tds",
-      source: `${page.polymer} glass-fiber comparison`,
-    }),
+    tdsHref: createContactHref(
+      {
+        material: page.contactMaterial,
+        grade: grade.grade,
+        intent: "tds",
+        source: `${page.polymer} glass-fiber comparison`,
+      },
+      localizedPath("/contact"),
+    ),
   }));
-  const contactHref = createContactHref({
-    material: page.contactMaterial,
-    source: `${page.polymer} glass-fiber landing`,
-  });
+  const contactHref = createContactHref(
+    {
+      material: page.contactMaterial,
+      source: `${page.polymer} glass-fiber landing`,
+    },
+    localizedPath("/contact"),
+  );
   const jsonLd = [
     createBreadcrumbJsonLd([
-      { name: "Home", path: "/" },
-      { name: "Products", path: "/products" },
-      { name: page.parentLabel, path: page.parentPath },
-      { name: page.title, path: page.path },
+      { name: ui.homeBreadcrumb, path: localizedPath("/") },
+      { name: ui.productsBreadcrumb, path: localizedPath("/products") },
+      { name: page.parentLabel, path: localizedPath(page.parentPath) },
+      { name: page.title, path: localizedPath(page.path) },
     ]),
     createCollectionPageJsonLd({
       title: page.metaTitle,
       description: page.metaDescription,
-      path: page.path,
-      inLanguage: "en",
+      path: localizedPath(page.path),
+      inLanguage,
       items: grades.map((grade) => ({
         name: `${grade.grade} ${grade.family} GF${grade.filler}`,
-        path: `/products/${grade.slug}`,
+        path: localizedPath(`/products/${grade.slug}`),
       })),
     }),
   ];
@@ -93,8 +116,8 @@ export function EngineeringGfLandingPage({
             <Breadcrumbs
               className={styles.breadcrumb}
               items={[
-                { href: "/products", label: "Products" },
-                { href: page.parentPath, label: page.parentLabel },
+                { href: localizedPath("/products"), label: ui.productsBreadcrumb },
+                { href: localizedPath(page.parentPath), label: page.parentLabel },
                 { label: page.title },
               ]}
             />
@@ -112,9 +135,10 @@ export function EngineeringGfLandingPage({
             media={
               <Image
                 src="/factory-extrusion.png"
-                alt="Taiyi Polymer twin-screw extrusion production line"
+                alt={ui.heroImageAlt}
                 fill
                 sizes="100vw"
+                loading="eager"
                 fetchPriority="high"
               />
             }
@@ -126,7 +150,7 @@ export function EngineeringGfLandingPage({
                   variant="productHeroPrimary"
                 >
                   <EngineeringGfAnchorLink href="#grade-comparison">
-                    Compare Grades
+                    {ui.compareGradesAction}
                   </EngineeringGfAnchorLink>
                 </Button>
                 <Button
@@ -134,7 +158,7 @@ export function EngineeringGfLandingPage({
                   size="productHero"
                   variant="productHeroSecondary"
                 >
-                  <Link href={contactHref}>Discuss Your Application</Link>
+                  <Link href={contactHref}>{ui.discussApplicationAction}</Link>
                 </Button>
               </>
             }
@@ -143,18 +167,22 @@ export function EngineeringGfLandingPage({
 
         <SecondarySectionNav
           actions={[
-            { href: "#grade-comparison", label: "Compare Grades" },
-            { href: contactHref, label: "Discuss Your Application" },
+            { href: "#grade-comparison", label: ui.compareGradesAction },
+            { href: contactHref, label: ui.discussApplicationAction },
           ]}
-          ariaLabel={`${page.polymer} glass-fiber page navigation`}
+          ariaLabel={formatEngineeringGfMessage(ui.navigationAriaTemplate, {
+            polymer: page.polymer,
+          })}
           subtitle={page.navSubtitle}
           tabs={[
-            { href: "#grade-comparison", label: "Compare" },
-            { href: "#engineering-tradeoffs", label: "Trade-offs" },
-            { href: "#applications", label: "Applications" },
-            { href: "#validation", label: "Validation" },
+            { href: "#grade-comparison", label: ui.compareTab },
+            { href: "#engineering-tradeoffs", label: ui.tradeoffsTab },
+            { href: "#applications", label: ui.applicationsTab },
+            { href: "#validation", label: ui.validationTab },
           ]}
-          title={`${page.polymer} GF Compounds`}
+          title={formatEngineeringGfMessage(ui.navTitleTemplate, {
+            polymer: page.polymer,
+          })}
           variant="product"
         />
 
@@ -165,21 +193,24 @@ export function EngineeringGfLandingPage({
         >
           <div className={styles.sectionRail}>
             <GlassFiberGradeHeading
-              eyebrow="Grade directory"
-              title={`${page.polymer} glass-fiber grades`}
+              eyebrow={ui.gradeDirectoryEyebrow}
+              title={formatEngineeringGfMessage(ui.gradeTitleTemplate, {
+                polymer: page.polymer,
+              })}
               description={page.comparisonIntro}
-              count={`${grades.length} listed grades`}
+              count={formatEngineeringGfMessage(ui.listedGradesTemplate, {
+                count: grades.length,
+              })}
             />
 
-            <EngineeringGfGradeComparison grades={comparisonGrades} polymer={page.polymer} />
+            <EngineeringGfGradeComparison
+              grades={comparisonGrades}
+              polymer={page.polymer}
+              ui={ui.comparison}
+            />
 
             <p id="gf-comparison-methods" className={styles.methodNote}>
-              Comparison basis: GF content ISO 1172; tensile stress ISO 527;
-              flexural properties ISO 178; notched Charpy impact at 23 °C ISO
-              179/1eA; HDT at 1.8 MPa ISO 75; water absorption at 23 °C and 50%
-              RH ISO 62. These are typical web reference values. The catalog
-              does not specify the dry or conditioned state of the mechanical
-              data; confirm it in the grade-specific TDS before final selection.
+              {ui.comparisonMethods}
             </p>
           </div>
         </section>
@@ -191,9 +222,12 @@ export function EngineeringGfLandingPage({
           <div className={styles.tradeoffCanvas}>
             <SectionIntro
               className={styles.tradeoffIntro}
-              eyebrow="Engineering Trade-offs"
-              title="Reinforcement changes more than stiffness"
-              description={`Use GF content to narrow the ${page.polymer} range, then evaluate the complete molded system. Higher listed reinforcement does not automatically produce the better part.`}
+              eyebrow={ui.tradeoffsEyebrow}
+              title={ui.tradeoffsTitle}
+              description={formatEngineeringGfMessage(
+                ui.tradeoffsDescriptionTemplate,
+                { polymer: page.polymer },
+              )}
               layout="stacked"
             />
 
@@ -217,15 +251,17 @@ export function EngineeringGfLandingPage({
                 </ul>
               </section>
             </div>
-            <nav className={styles.guideLinks} aria-label="PA material selection guides">
-              <Link href={getEngineeringGfLandingPageData(polymer === "PA6" ? "PA66" : "PA6").path}>
-                Compare {polymer === "PA6" ? "PA66" : "PA6"} GF grades →
+            <nav className={styles.guideLinks} aria-label={ui.guideLinksAria}>
+              <Link href={localizedPath(getEngineeringGfLandingPageData(otherPolymer).path)}>
+                {formatEngineeringGfMessage(ui.compareOtherTemplate, {
+                  otherPolymer,
+                })}
               </Link>
-              <Link href="/resources/pa6-vs-pa66-reinforced-parts">
-                PA6 or PA66? Selection guide →
+              <Link href={localizedPath("/resources/pa6-vs-pa66-reinforced-parts")}>
+                {ui.pa6Pa66Guide}
               </Link>
-              <Link href="/resources/glass-fiber-reinforced-pa6-pa66-selection-guide">
-                Glass-fiber reinforcement guide →
+              <Link href={localizedPath("/resources/glass-fiber-reinforced-pa6-pa66-selection-guide")}>
+                {ui.reinforcementGuide}
               </Link>
             </nav>
           </div>
@@ -234,8 +270,8 @@ export function EngineeringGfLandingPage({
         <section id="applications" className={styles.section}>
           <SectionIntro
             className={styles.sectionIntro}
-            eyebrow="Application Context"
-            title="Connect the grade to the part architecture"
+            eyebrow={ui.applicationsEyebrow}
+            title={ui.applicationsTitle}
             description={page.applicationsIntro}
             layout="stacked"
           />
@@ -244,7 +280,7 @@ export function EngineeringGfLandingPage({
             {page.applications.map((application) => (
               <DirectoryRow
                 key={application.href}
-                href={application.href}
+                href={localizedPath(application.href)}
                 eyebrow={application.eyebrow}
                 label={application.label}
                 description={application.description}
@@ -261,8 +297,8 @@ export function EngineeringGfLandingPage({
           <div className={styles.sectionRail}>
             <SectionIntro
               className={styles.validationIntro}
-              eyebrow="Before Final Selection"
-              title="Validate moisture, molding and the actual part"
+              eyebrow={ui.validationEyebrow}
+              title={ui.validationTitle}
               description={page.validationIntro}
               layout="stacked"
             />
@@ -281,11 +317,11 @@ export function EngineeringGfLandingPage({
               <MediaFigure
                 className={styles.validationFigure}
                 variant="captioned"
-                caption="In-house tensile-test specimen setup. Confirm the grade-specific test basis and moisture state before final selection."
+                caption={ui.validationCaption}
                 media={
                   <Image
                     src="/factory-tensile-test-specimen.jpg"
-                    alt="Taiyi Polymer tensile-test specimen clamped in laboratory testing equipment"
+                    alt={ui.validationImageAlt}
                     fill
                     sizes="(max-width: 767px) calc(100vw - 64px), 30vw"
                   />
@@ -299,15 +335,13 @@ export function EngineeringGfLandingPage({
           <ActionPanel
             footerAdjacent
             variant="recommendation"
-            eyebrow="Project Inquiry"
-            title={`Move from ${page.polymer} GF screening to a molding decision`}
+            eyebrow={ui.inquiryEyebrow}
+            title={formatEngineeringGfMessage(ui.inquiryTitleTemplate, {
+              polymer: page.polymer,
+            })}
             aside={
               <div className={styles.inquirySteps}>
-                {[
-                  "Part & operating conditions",
-                  "Grade data & documents",
-                  "Molded-part validation",
-                ].map((item, index) => (
+                {ui.inquirySteps.map((item, index) => (
                   <p key={item}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
                     {item}
@@ -317,13 +351,11 @@ export function EngineeringGfLandingPage({
             }
             action={
               <Button asChild variant="inverse">
-                <Link href={contactHref}>Discuss Your Application</Link>
+                <Link href={contactHref}>{ui.discussApplicationAction}</Link>
               </Button>
             }
           >
-            Share the part, current material, load, temperature, moisture state,
-            mold stage, target properties and document requirements. Taiyi
-            Polymer can help narrow the listed grades for project evaluation.
+            {ui.inquiryBody}
           </ActionPanel>
         </section>
       </ProductPageMotion>

@@ -23,7 +23,7 @@ test("released sitemap routes remain unique with explicit locale coverage", () =
         total + getSitemapLanguageOptions(sourcePath).length,
       0,
     ),
-    886,
+    894,
   );
   assert.deepEqual(
     getSitemapLanguageOptions("/news/chinaplas-2026").map(

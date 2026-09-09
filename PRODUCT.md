@@ -385,23 +385,29 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
   published processing settings are not presented as a validated tooling window.
 - The existing Chinese and English Heroes, language alternates, metadata and
   surrounding route structure remain in place. This is the first comparison
-  module pilot; PA6/PA66 and other language layouts have not yet been migrated.
-  The pilot is local and has not been committed or deployed in this task.
+  module pilot. The separate PA6/PA66 GF landings now use their own
+  five-language renderer and do not reuse this POM comparison module. The pilot
+  is local and has not been committed or deployed in this task.
 
-### English Glass-Fiber PA6 And PA66 Landing Release (2026-09-09, Local Implementation)
+### Multilingual Glass-Fiber PA6 And PA66 Landing Release (2026-09-09, Local Implementation)
 
-- The English `/products/categories/glass-fiber-reinforced-pa6-compound` and
-  `/products/categories/glass-fiber-reinforced-pa66-compound` routes are
-  approved as public, indexable material-selection pages. They preserve the
-  catalogue-owned 17-grade PA6 and 15-grade PA66 comparison sets and the
-  existing application and validation boundaries.
-- Each route emits a self-canonical plus English and `x-default` alternates and
-  is included once in the release manifest and sitemap. German, French,
-  Brazilian Portuguese and Simplified Chinese variants remain unreleased until
-  complete localized pages pass the normal content and rendered-review gate.
+- The PA6 and PA66 glass-fiber landing pages are published as one complete
+  English, German, French, Brazilian Portuguese and Simplified Chinese group.
+  They preserve the catalogue-owned 17-grade PA6 and 15-grade PA66 comparison
+  sets and the existing application and validation boundaries.
+- Each of the ten URLs emits a self-canonical and reciprocal `en`, `de`, `fr`,
+  `pt-BR`, `zh-CN` and `x-default` alternates and is included once in the
+  sitemap. Visible labels, metadata, links, contact context and structured-data
+  language signals retain the active locale; grade names, technical values,
+  units and test methods remain shared catalogue data.
 - The release changes SEO ownership only; it does not alter the page layout,
   technical values or published claims. The implementation remains local until
   its branch is merged and deployed through the Vercel production gate.
+- Rendered acceptance covers Simplified Chinese PA6, German PA66 and English PA6
+  at `1920x1080`, plus French PA6 and Brazilian Portuguese PA66 at `390x844`.
+  These representative views have no horizontal page overflow or console
+  warnings/errors. The release gate passes 245 tests and generates all 972
+  production routes.
 
 ## Version Goal
 

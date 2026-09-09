@@ -13,6 +13,12 @@ const readProjectFile = (path) =>
 
 const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
 const dataSource = readProjectFile("src/data/engineeringGfLandingPages.ts");
+const localizationSource = readProjectFile(
+  "src/i18n/engineeringGfLandingMessages.ts",
+);
+const landingPageSource = readProjectFile(
+  "src/components/EngineeringGfLandingPage.tsx",
+);
 const comparisonSource = readProjectFile("src/components/EngineeringGfGradeComparison.tsx");
 const directionSource = readProjectFile("src/data/engineeringDirectionNavigation.ts");
 const releaseManifestSource = readProjectFile("src/i18n/releaseManifest.ts");
@@ -23,6 +29,10 @@ const pa6RouteSource = readProjectFile(
 const pa66RouteSource = readProjectFile(
   "src/app/(en)/products/categories/glass-fiber-reinforced-pa66-compound/page.tsx",
 );
+const localizedRouteSources = [
+  "src/app/[locale]/products/categories/glass-fiber-reinforced-pa6-compound/page.tsx",
+  "src/app/[locale]/products/categories/glass-fiber-reinforced-pa66-compound/page.tsx",
+].map(readProjectFile);
 
 const gfGrades = catalog.filter(
   (record) =>
@@ -67,10 +77,20 @@ test("keeps the approved comparison fields and marks only real gaps unpublished"
     gfGrades.filter((grade) => !grade.impact).map((grade) => grade.grade),
     ["EAG220", "EAG240"],
   );
-  assert.match(comparisonSource, /Glass fiber<\/th>[\s\S]*Tensile stress[\s\S]*Flexural strength/);
-  assert.match(comparisonSource, /Flexural modulus[\s\S]*Notched impact[\s\S]*HDT 1\.8 MPa/);
-  assert.match(comparisonSource, /Water absorption/);
-  assert.match(comparisonSource, /"Not published"/);
+  for (const label of [
+    "Glass fiber",
+    "Tensile stress",
+    "Flexural strength",
+    "Flexural modulus",
+    "Notched impact",
+    "HDT (1.8 MPa)",
+    "Water absorption",
+    "Not published",
+  ]) {
+    assert.ok(localizationSource.includes(`"${label}"`), label);
+  }
+  assert.match(comparisonSource, /ui\.glassFiberLabel/);
+  assert.match(comparisonSource, /ui\.notPublishedLabel/);
   assert.doesNotMatch(comparisonSource, /\?\s*"0/);
 });
 
@@ -100,13 +120,27 @@ test("does not turn unresolved suffixes into invented positioning", () => {
   }
 });
 
-test("publishes both routes as English-only indexable sitemap owners", () => {
+test("publishes both routes as complete five-language sitemap owners", () => {
   for (const routeSource of [pa6RouteSource, pa66RouteSource]) {
     assert.match(routeSource, /indexable: true/);
     assert.match(
       routeSource,
       /languageAlternates: getLanguageAlternatesForPath\(page\.path\)/,
     );
+  }
+
+  for (const routeSource of localizedRouteSources) {
+    assert.match(routeSource, /isLocalizedReleaseIndexable/);
+    assert.match(routeSource, /getEngineeringGfLandingMessages/);
+    assert.match(routeSource, /languageAlternates: getLanguageAlternates/);
+    assert.match(routeSource, /localeSegment=\{localeConfig\.urlSegment\}/);
+    assert.match(routeSource, /inLanguage=\{localeConfig\.htmlLang\}/);
+  }
+
+  assert.match(landingPageSource, /getLocalizedHref/);
+  assert.match(landingPageSource, /inLanguage/);
+  for (const localeKey of ["de", "fr", '"pt-br"', "zh"]) {
+    assert.match(localizationSource, new RegExp(`^  ${localeKey}: \\{`, "m"));
   }
 
   for (const path of [
@@ -118,10 +152,14 @@ test("publishes both routes as English-only indexable sitemap owners", () => {
     assert.ok(getSitemapReleasedSourcePaths().includes(path));
     assert.deepEqual(
       getSitemapLanguageOptions(path).map(({ href }) => href),
-      [path],
+      [path, `/de${path}`, `/fr${path}`, `/pt-br${path}`, `/zh${path}`],
     );
     assert.deepEqual(getLanguageAlternatesForPath(path), {
       en: path,
+      de: `/de${path}`,
+      fr: `/fr${path}`,
+      "pt-BR": `/pt-br${path}`,
+      "zh-CN": `/zh${path}`,
       "x-default": path,
     });
   }

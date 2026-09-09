@@ -130,12 +130,10 @@ export const localizedReleaseManifest = {
   glassFiberReinforcedPa6Landing: {
     sourcePath: "/products/categories/glass-fiber-reinforced-pa6-compound",
     ...publicRelease,
-    localizedSegments: [],
   },
   glassFiberReinforcedPa66Landing: {
     sourcePath: "/products/categories/glass-fiber-reinforced-pa66-compound",
     ...publicRelease,
-    localizedSegments: [],
   },
   ppaCompoundCategory: {
     sourcePath: "/products/categories/ppa-compound",
