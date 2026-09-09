@@ -33,7 +33,7 @@ const messages = {
     navigation: {
       aria: "Navegação da categoria de resina POM base",
       title: "Resina POM base",
-      subtitle: "Do fluxo padrão ao ultra-alto",
+      subtitle: "Dados mecânicos, térmicos e de processamento por faixa de fluidez",
       grades: "Graus",
       faq: "FAQ",
     },
@@ -124,7 +124,7 @@ const messages = {
       navigation: {
         aria: "Navegação das seções de POM com microesferas de vidro",
         title: "POM com microesferas de vidro",
-        subtitle: "25% de microesferas de vidro para contração equilibrada e propriedades térmicas",
+        subtitle: "Dados de contração, mecânicos, térmicos e de processamento",
       },
       directory: {
         kicker: "Dados do grau",
@@ -177,15 +177,15 @@ const messages = {
         eyebrow: "Família de POM modificado",
         title: "POM reforçado com fibra de vidro",
         description:
-          "Para engrenagens, suportes e peças estruturais, o POM PLATFORM® reforçado cobre 10% a 30% de fibra de vidro com diferentes equilíbrios de rigidez, resistência, fluxo e impacto.",
+          "O POM PLATFORM® reforçado com fibra de vidro cobre 10% a 30% de fibra de vidro para engrenagens, suportes e outras peças estruturais que exigem maior rigidez, resistência e controle dimensional.",
         overviewLabel: "Visão geral do portfólio",
         overview:
-          "A linha cobre diferentes níveis de reforço e perfis de desempenho. Dados mecânicos, térmicos e de contração, detalhes do produto, documentos técnicos e amostras estão disponíveis por grau.",
+          "O POM PLATFORM® reforçado com fibra de vidro cobre 10% a 30% de fibra de vidro para engrenagens, suportes e outras peças estruturais que exigem maior rigidez, resistência e controle dimensional.",
       },
       navigation: {
         aria: "Navegação das seções de POM reforçado com fibra de vidro",
         title: "POM reforçado com fibra de vidro",
-        subtitle: "10% a 30% de fibra de vidro para peças estruturais e sob carga",
+        subtitle: "POM com 10%–30% de fibra de vidro para rigidez, resistência e controle dimensional",
       },
       directory: {
         kicker: "Portfólio de graus",
@@ -254,7 +254,7 @@ const messages = {
       navigation: {
         aria: "Navegação das seções de POM de alto impacto",
         title: "POM de alto impacto",
-        subtitle: "Para impacto, baixa temperatura, alongamento e processamento",
+        subtitle: "Equilíbrio entre rigidez e tenacidade, alongamento e baixa temperatura",
       },
       directory: {
         kicker: "Portfólio de graus",

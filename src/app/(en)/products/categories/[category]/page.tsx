@@ -6,6 +6,8 @@ import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CarbonFiberPomComparison } from "@/components/CarbonFiberPomComparison";
+import { GlassFiberPomDecisionPaths } from "@/components/GlassFiberPomDecisionPaths";
+import { PomGlassFiberComparison } from "@/components/PomGlassFiberComparison";
 import relatedPathStyles from "@/components/BasePomRelatedPaths.module.css";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
@@ -159,6 +161,8 @@ export default async function ProductCategoryPage({
       (solution): solution is NonNullable<typeof solution> => Boolean(solution),
     );
   const isPomCategory = entry.category === "POM";
+  const isGlassFiberPomCategory =
+    entry.slug === "glass-fiber-reinforced-pom-compound";
   const isPomSubcategory = productCategoryOrder.includes(entry.category);
   const hasEngineeringGrades = engineeringGrades.length > 0;
   const pageTitle =
@@ -291,7 +295,7 @@ export default async function ProductCategoryPage({
               {pageDescription}
             </p>
 
-            {!isPomCategory ? (
+            {!isPomCategory && !isGlassFiberPomCategory ? (
               <div className="products-motion-data product-hero-data">
                 <div className="product-hero-summary">
                   <p className="section-kicker mb-2">Portfolio Overview</p>
@@ -348,17 +352,23 @@ export default async function ProductCategoryPage({
           variant="product"
         />
 
-        <ProductGrid
-          products={products}
-          selectedCategory={entry.category}
-          showFamilies={entry.category === "POM"}
-        />
+        {entry.slug === "glass-fiber-reinforced-pom-compound" ? (
+          <PomGlassFiberComparison />
+        ) : (
+          <ProductGrid
+            products={products}
+            selectedCategory={entry.category}
+            showFamilies={entry.category === "POM"}
+          />
+        )}
 
         {entry.category === "Carbon Fiber Reinforced POM Compound" ? (
           <CarbonFiberPomComparison />
         ) : null}
 
-        {isPomCategory ? (
+        {isGlassFiberPomCategory ? (
+          <GlassFiberPomDecisionPaths applications={relevantApplications} />
+        ) : isPomCategory ? (
           <section
             id="category-applications"
             className="product-application-directory product-application-directory-rich products-motion-secondary mt-12"

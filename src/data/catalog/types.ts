@@ -43,6 +43,7 @@ export type CatalogProductRecord = CatalogBaseRecord & {
   title: string;
   family: string;
   category: string;
+  glassFiberContent?: number;
   mfi?: {
     value?: number;
     display: string;

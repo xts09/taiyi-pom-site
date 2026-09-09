@@ -100,6 +100,12 @@
   margin-top: var(--ds-space-4);
 }
 
+.page [data-slot="secondary-section-nav"] [data-slot="secondary-section-nav-top"],
+.page [data-slot="secondary-section-nav"] [data-slot="secondary-section-tabs"] {
+  width: var(--site-rail-width);
+  padding-inline: 0;
+}
+
 .section,
 .sectionRail {
   min-width: 0;
@@ -107,7 +113,7 @@
 
 .section,
 .sectionBand {
-  padding-block: clamp(4rem, 6vw, 6rem);
+  padding-block: var(--ds-space-18);
 }
 
 .section,
@@ -131,16 +137,19 @@
 
 .methodNote {
   color: var(--ds-foreground-muted);
-  font-size: 0.8rem;
+  font-size: var(--ds-text-sm);
   line-height: 1.55;
   max-width: 88rem;
   margin: 1rem 0 0;
 }
 
 .comparisonBand {
-  border-block: var(--ds-rule-thin) solid var(--ds-border-subtle);
-  background: var(--ds-background-surface);
+  background: var(--ds-background-canvas);
 }
+
+.fullComparison { margin-top: var(--ds-space-6); border-bottom: var(--ds-rule-thin) solid var(--ds-border-subtle); }
+.fullComparison summary { padding-block: var(--ds-space-4); cursor: pointer; font-weight: 600; }
+.fullComparison summary:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: 3px; }
 
 .guideLinks a {
   display: inline-flex;
@@ -172,7 +181,8 @@
 }
 
 .gradeLinks {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--ds-space-2);
 }
@@ -193,7 +203,7 @@
   min-width: 72rem;
   border-collapse: collapse;
   color: var(--ds-foreground-primary);
-  font-size: var(--ds-text-sm);
+  font-size: var(--ds-text-md);
   text-align: left;
 }
 
@@ -207,10 +217,8 @@
 
 .comparisonTable thead th {
   color: var(--ds-foreground-muted);
-  font-size: var(--ds-text-xs);
-  font-weight: var(--ds-font-weight-bold);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-font-weight-semibold);
 }
 
 .comparisonTable tbody tr:last-child th,
@@ -272,7 +280,7 @@
 }
 
 .tradeoffCanvas {
-  padding-block: clamp(4rem, 6vw, 6rem);
+  padding-block: var(--ds-space-18);
 }
 
 .tradeoffGrid {
@@ -481,7 +489,7 @@
   .section,
   .sectionBand,
   .tradeoffCanvas {
-    padding-block: 3.75rem;
+    padding-block: var(--ds-space-12);
   }
 
   .sectionIntro,
@@ -540,5 +548,3 @@
     padding-top: 1rem;
   }
 }
-
-

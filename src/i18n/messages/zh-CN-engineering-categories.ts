@@ -161,7 +161,7 @@ export const chineseEngineeringCategoryProfiles = {
     navigation: {
       aria: "PA6 改性材料页面分区导航",
       title: "PA6 改性材料",
-      subtitle: "覆盖增强、韧性、阻燃、耐磨与加工改性",
+      subtitle: "韧性、强度、耐磨与加工性能组合",
       directions: "材料类型",
       grades: "牌号",
       applications: "应用",
@@ -240,7 +240,7 @@ export const chineseEngineeringCategoryProfiles = {
     navigation: {
       aria: "PA66 改性材料页面分区导航",
       title: "PA66 改性材料",
-      subtitle: "覆盖增强、耐热、阻燃、耐磨与尺寸稳定",
+      subtitle: "刚性、耐热、尺寸与加工性能组合",
       directions: "材料类型",
       grades: "牌号",
       applications: "应用",
@@ -319,7 +319,7 @@ export const chineseEngineeringCategoryProfiles = {
     navigation: {
       aria: "PPA 改性材料页面分区导航",
       title: "PPA 改性材料",
-      subtitle: "覆盖高温增强、尺寸稳定与耐磨改性",
+      subtitle: "刚性、尺寸、耐磨与滑动性能组合",
       directions: "材料类型",
       grades: "牌号",
       applications: "应用",

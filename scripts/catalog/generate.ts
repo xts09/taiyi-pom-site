@@ -111,6 +111,12 @@ const validateRecord = (record: JsonRecord, source: string) => {
   validateSeo(record, source);
 
   if (record.kind === "product") {
+    if (record.glassFiberContent !== undefined &&
+      (typeof record.glassFiberContent !== "number" ||
+        !Number.isFinite(record.glassFiberContent) ||
+        record.glassFiberContent <= 0 || record.glassFiberContent > 100)) {
+      throw new Error(`${source}: glassFiberContent must be a percentage greater than 0 and at most 100`);
+    }
     for (const field of ["slug", "title", "family", "category", "description"]) {
       requireString(record, field, source);
     }

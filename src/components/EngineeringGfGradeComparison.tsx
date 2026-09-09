@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { GlassFiberGradeCards } from "@/components/GlassFiberGradeCards";
 import styles from "./EngineeringGfLandingPage.module.css";
 
 export type EngineeringGfComparisonGrade = {
   grade: string;
   slug: string;
   filler: string;
+  density: string;
+  flammability: string;
   tensile: string;
   flexuralStrength: string;
   flexuralModulus: string;
@@ -19,11 +22,26 @@ const formatValue = (value: string, unit: string) =>
 
 export function EngineeringGfGradeComparison({
   grades,
+  polymer,
 }: {
   grades: readonly EngineeringGfComparisonGrade[];
+  polymer: string;
 }) {
   return (
     <div>
+      <GlassFiberGradeCards actionLabel="View grade data" grades={grades.map(grade => ({
+        grade: grade.grade,
+        href: `/products/${grade.slug}`,
+        eyebrow: `${polymer} · Glass fiber ${grade.filler}%`,
+        metrics: [
+          { label: "Density", value: grade.density || "Not published" },
+          { label: "Tensile stress", value: formatValue(grade.tensile, "MPa") },
+          { label: "HDT (1.8 MPa)", value: formatValue(grade.hdt, "°C") },
+          { label: "Flammability", value: grade.flammability || "Not published" },
+        ],
+      }))} />
+      <details className={styles.fullComparison}>
+        <summary>Full parameters &amp; test methods</summary>
       <p className={styles.tableHint}>Scroll sideways to compare all properties →</p>
       <div
         className={styles.tableScroller}
@@ -74,6 +92,7 @@ export function EngineeringGfGradeComparison({
           </tbody>
         </table>
       </div>
+      </details>
     </div>
   );
 }

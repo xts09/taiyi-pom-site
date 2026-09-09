@@ -368,6 +368,26 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
   general inquiry buttons use the canonical application label and pass POM
   plus the localized gear application into the existing contact form.
 
+### Glass-Fiber POM Comparison Pilot (2026-09-08, Local Implementation)
+
+- English and Chinese glass-fiber POM category pages now share the same grade
+  comparison: grade, glass-fiber percentage, flexural modulus, notched Charpy
+  impact, HDT at 1.8 MPa, and grade/document actions. On mobile, percentages sit
+  beside grade names and the three core properties remain visible below them.
+- The ten existing POM records now carry `glassFiberContent` sourced from their
+  already published formulation descriptions. Existing numeric properties,
+  methods, document statuses, grade identities and URLs remain source-owned.
+  The new field does not claim a tested filler percentage or a new test method.
+- The POM landing pages retain a test-basis disclosure; full technical data and
+  TDS support are accessed from grade detail pages. The complete cross-grade
+  table was removed from the landing pages after user review (2026-09-08).
+  Unspecified impact temperature and specimen conditioning remain explicit;
+  published processing settings are not presented as a validated tooling window.
+- The existing Chinese and English Heroes, language alternates, metadata and
+  surrounding route structure remain in place. This is the first comparison
+  module pilot; PA6/PA66 and other language layouts have not yet been migrated.
+  The pilot is local and has not been committed or deployed in this task.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.
@@ -458,6 +478,49 @@ Avoid:
 
 ## Content And Data Requirements
 
+### Case discovery and inquiry repair — 2026-09-09, local implementation
+
+- Case overview and detail inquiry actions resolve the localized Contact path
+  before attaching grade/application context. Chinese actions lead to
+  `/zh/contact`; ETM 100P remains an inquiry-only grade.
+- Existing case placement mappings now render through `RelatedCaseStudies`
+  in POM grade details, mapped application and component pages, and the Chinese
+  glass-fiber POM category. The English category retains its existing dedicated
+  case directory. Untranslated locales and unmapped pages render no case block.
+- Automotive and other application pages share one material-card rendering
+  definition while retaining their different image and initial-count rules.
+  The reported duplicate automotive imagery was withdrawn by the user after
+  clarification; this repair does not replace or remove image assets.
+- This repair is local and has not been deployed. Verification records are in
+  `outputs/review-fixes-20260909/`.
+
+### Glass-Fiber POM Customer Cases — 2026-09-08
+
+Ten anonymous project accounts supplied by the user are now represented by
+`src/data/glassFiberCaseStudies.ts` with English and Chinese copy. They extend
+the existing case overview and Resources preview, with independent detail
+routes under `/case-studies/<slug>` and `/zh/case-studies/<slug>`. Existing case
+and product URLs remain unchanged. The release manifest and sitemap include
+only the completed English/Chinese versions.
+
+On 2026-09-08 the user approved application filtering and a more compact
+overview, followed by links to exact grades and relevant articles. The overview
+now groups cases into automotive, home/commercial equipment, pumps/valves,
+conveying and renewable energy. Desktop uses two columns and category buttons;
+mobile uses one column and an application select. Filtering is local UI state:
+all 11 cases render initially, with no new category URLs. The two case detail
+templates link to two relevant existing articles and the exact grade. ETM 100P
+has no exact catalog page and retains a clearly labeled inquiry route.
+
+The user confirmed that the draft EGH20T and EGH25T references mean EGH402T and
+EGH502T respectively. The seven referenced grade records own GF content and
+technical values; EGH502H's quoted MFI includes the catalog test condition.
+Project outcomes remain attributed to customer feedback at the supplied stage:
+trials, further durability work, candidate selection or small-batch validation.
+These accounts do not add certificates, numerical performance gains, public
+customer identities, original reports or project imagery. This update is local;
+it has not been deployed.
+
 Product and technical content should be treated as structured product data, not freeform marketing copy.
 
 - Each product or grade should have a stable name, slug, category, short description, material direction, application fit, available document path, and inquiry route.
@@ -480,7 +543,7 @@ Top navigation should stay focused:
 
 News is a primary navigation item and an independent editorial route family under `/news/**`. Until multiple articles justify a dedicated News index, the navigation entry routes directly to the current article. News must not be nested under Resources or presented inside the Resources directory. The CHINAPLAS 2026 article is released in English, German, French, Brazilian Portuguese, and Simplified Chinese with reciprocal language alternates and localized navigation.
 
-Customer case studies belong under Resources in navigation (approved 2026-09-07), while keeping their independent `/case-studies/**` URLs. Product and application pages retain related-case links. The English and Chinese resource pages now collect the available case at `#customer-case-studies`; desktop/mobile Resources menus and Footer link to that section. Case-page breadcrumbs and the desktop current-section state follow Resources. There is no separate case index route yet. `src/data/caseStudyNavigation.ts` owns the shared entry label and section path; `CustomerCaseStudies.tsx` renders the collection from existing case evidence. Other languages do not expose this entry until case content is localized. This implementation is local and has not been deployed.
+Customer case studies belong under Resources in navigation (approved 2026-09-07). On 2026-09-08 the user confirmed ongoing case accumulation and approved standalone overview routes at `/case-studies` and `/zh/case-studies`, retaining independent detail URLs. Desktop/mobile Resources menus, Footer and case-detail breadcrumbs lead to the overview. Resource pages retain a short preview at `#customer-case-studies` with a View all cases link, preserving old bookmarks. `src/data/caseStudyNavigation.ts` owns the shared entry; `src/data/caseStudies.ts` owns published collection records, consumed by the overview, Resources preview and collection schema. The overview supports the approved application filters; new verified cases extend the list and receive a category and related-reading mapping. Product/application related-case links remain. English and Chinese overview routes are included in the release manifest, reciprocal language alternates and sitemap; other languages do not expose the entry until localized. This implementation is local and has not been deployed.
 
 News articles lead with event-specific facts: who took part, what requirement or product was discussed, where the exchange happened, and what the conversation established. Generic material-selection or validation instruction belongs to Applications and Resources and must not be used to pad a News article. Editorial reconstruction may connect user-supplied facts to established site-owned technical themes, but it must not invent customer identities, orders, numerical results, approvals, or completed project outcomes.
 
@@ -508,6 +571,37 @@ News articles lead with event-specific facts: who took part, what requirement or
 - Help users map part function and operating need to a material review direction.
 - Application pages should use practical engineering notes, visual context, and restrained CTAs.
 - Recommended materials should be framed as starting points for review, not final guarantees.
+
+#### Automotive decision pilot — 2026-09-09, local implementation
+
+- The automotive page uses the standard image-led application-detail Hero,
+  followed by a unified part/material/case layout. The former four
+  selection-input rows remain removed at the user's request.
+- Visibility/window mechanisms lead the page and open initially. The five
+  system disclosures form one single-open group. Within an expanded system,
+  every multi-part system uses tabs and renders one part panel at a time; the
+  four visibility/window parts share one tab set, with the first two retaining
+  their adjacent structural cases. Shift control and brake actuation share one
+  Control & Actuation display group while preserving separate part copy,
+  material paths and inquiry context. All twelve canonical parts remain in the
+  rendered document.
+- EGH402H carrier-plate and EGH602H gearbox-housing cases retain the source
+  summaries and validation stages. They do not establish grade suitability for
+  gears or sliding contacts. English/Chinese display native case summaries;
+  other released languages explicitly mark the source summary, stage and
+  fallback case destination as English.
+- Four material directions use the established application-detail card layout.
+  All four remain visible and image-free on desktop and mobile. Wear and
+  friction explain their common family destination. The related-component
+  area retains its full-size solution cards. The final section groups technical resources, inquiry and the
+  existing quality-system evidence, preserving its scope wording.
+- Automotive-specific copy, candidate mappings and interface labels are owned
+  by `src/data/automotiveSelection.ts` and `src/data/automotivePageDesign.ts`;
+  the localized application profiles still own existing part descriptions.
+  The automotive module omits the mixed
+  handle/guide-ring asset until an accurate image is supplied. Fuel parts link
+  to evaluation guidance and inquiry without a generic material recommendation.
+- This update is local and has not been deployed.
 
 ### Resources
 

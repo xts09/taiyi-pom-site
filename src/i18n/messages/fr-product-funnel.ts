@@ -33,7 +33,7 @@ const messages = {
     navigation: {
       aria: "Navigation de la catégorie résine POM de base",
       title: "Résine POM de base",
-      subtitle: "De la fluidité standard à l’ultra-haute fluidité",
+      subtitle: "Données mécaniques, thermiques et de transformation selon la fluidité",
       grades: "Grades",
       faq: "FAQ",
     },
@@ -124,7 +124,7 @@ const messages = {
       navigation: {
         aria: "Navigation des sections du POM chargé de billes de verre",
         title: "POM chargé de billes de verre",
-        subtitle: "25 % de billes de verre pour un retrait équilibré et des propriétés thermiques maîtrisées",
+        subtitle: "Données de retrait, mécaniques, thermiques et de transformation",
       },
       directory: {
         kicker: "Données du grade",
@@ -177,15 +177,15 @@ const messages = {
         eyebrow: "Famille POM modifiée",
         title: "POM renforcé de fibres de verre",
         description:
-          "Pour les engrenages, supports et pièces structurelles, le POM PLATFORM® renforcé couvre 10 à 30 % de fibres de verre avec différents équilibres de rigidité, de résistance, de fluidité et d’impact.",
+          "Le POM PLATFORM® renforcé de fibres de verre couvre 10 à 30 % de fibres de verre pour les engrenages, supports et autres pièces structurelles exigeant davantage de rigidité, de résistance et de maîtrise dimensionnelle.",
         overviewLabel: "Aperçu de la gamme",
         overview:
-          "La gamme couvre différents niveaux de renfort et profils de performance. Les données mécaniques, thermiques et de retrait, les détails produit, les documents techniques et les échantillons sont disponibles par grade.",
+          "Le POM PLATFORM® renforcé de fibres de verre couvre 10 à 30 % de fibres de verre pour les engrenages, supports et autres pièces structurelles exigeant davantage de rigidité, de résistance et de maîtrise dimensionnelle.",
       },
       navigation: {
         aria: "Navigation des sections du POM renforcé de fibres de verre",
         title: "POM renforcé de fibres de verre",
-        subtitle: "10 à 30 % de fibres de verre pour les pièces structurelles et porteuses de précision",
+        subtitle: "POM renforcé à 10–30 % pour rigidité, résistance et maîtrise dimensionnelle",
       },
       directory: {
         kicker: "Gamme de grades",
@@ -254,7 +254,7 @@ const messages = {
       navigation: {
         aria: "Navigation des sections du POM haute résistance aux chocs",
         title: "POM haute résistance aux chocs",
-        subtitle: "Pour le choc, la basse température, l’allongement et la transformation",
+        subtitle: "Équilibre rigidité-ténacité, allongement et tenue à basse température",
       },
       directory: {
         kicker: "Gamme de grades",

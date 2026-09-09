@@ -12,6 +12,13 @@ The three record kinds are:
 - `engineering-tds`: PA6, PA66, and PPA grade data shown as web TDS pages.
 - `conductive-entry`: cross-material conductive and antistatic directory rows.
 
+For POM glass-fiber records, maintain `glassFiberContent` as the numeric percentage
+supported by the grade's reviewed formulation description. The comparison module
+reads this field, not translated copy. Keep the percentage consistent with the
+record's existing descriptions; do not infer it from a grade suffix. New POM
+comparison property labels also need a Chinese label in
+`src/lib/pomGlassFiberComparison.ts` before inclusion in the pilot.
+
 ## TDS PDFs
 
 Store PDFs at:
@@ -42,6 +49,10 @@ when the default wording needs an intentional override:
 Grade pages are indexable by default. Use `"indexable": false` only when a
 real grade must remain accessible but should stay out of search results and the
 sitemap. Product aliases redirect permanently to the canonical `slug`.
+
+## Customer case studies
+
+The English `/case-studies` and Chinese `/zh/case-studies` pages are the permanent case overviews. Add verified case records in `src/data/caseStudies.ts`; the overview, Resources preview (first three cases), and overview structured data consume that collection. Keep existing detail URLs stable. Each new detail page also needs its own route, metadata, release-manifest entry and sitemap entry, with only completed languages released. Confirm customer facts and permission for identities, images and test excerpts before publishing. Do not add placeholders or filters merely to fill the overview.
 
 ## Before Publishing
 

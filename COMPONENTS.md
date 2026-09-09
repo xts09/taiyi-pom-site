@@ -320,6 +320,33 @@ inner-page Hero.
 
 ### Section Intro — Partial
 
+**Automotive application pilot (2026-09-09):**
+`src/components/AutomotiveSystemGroup.tsx` and its CSS module own the automotive
+component selection layout, adjacent structural cases, material comparison
+section and resource/inquiry section. The material directions reuse the
+application-detail card treatment without imagery. `AutomotivePartTabs.tsx` is the
+small client boundary for every multi-part system and keyboard navigation;
+each active panel's content is composed on the server. `src/data/automotiveSelection.ts`
+owns the candidate-family mappings and shared automotive labels;
+`src/data/automotivePageDesign.ts` owns the approved five-language page copy.
+This is a page-specific composition using
+the shared rail and tokens, not a new generic Card or Section Intro variant.
+`LocalizedApplicationDetailPage` retains the standard application-detail Hero
+and routes only the automotive content sections to this module. Other
+application layouts retain their existing owners. Five peer system sections
+preserve all canonical parts and form one native single-open disclosure group;
+Visibility & Window Systems opens initially. Within the expanded system,
+multi-part systems render one tab panel at a time while the window/wiper
+examples retain their adjacent case evidence.
+The automotive related-component area retains the standard full-size
+`ApplicationRelatedSolutions` treatment rather than reducing it to inline links.
+Shared Header, navigation styling,
+Button variants and Footer remain under their existing owners.
+The private `AutomotiveTextLink` owns inline material, case, grade and resource
+actions. Its label owns the underline, its SVG arrow is undecorated, and the
+link supplies the 44px target and keyboard focus ring. Do not add a second
+link-wide border or text decoration to these controls.
+
 **Role:** optional eyebrow, section heading, supporting paragraph, and optional
 single action aligned to the site rail.
 
@@ -422,7 +449,52 @@ methods and TDS status from the catalog and provides grade-specific data and
 document-request links. Its horizontally scrollable table stays within the
 shared content rail. Business scope is recorded in `PRODUCT.md`.
 
+### Glass-Fiber POM Grade Comparison — English / Chinese Pilot
+
+**Owner:** `src/components/PomGlassFiberComparison.tsx` and its CSS module.
+`src/lib/pomGlassFiberComparison.ts` owns catalog selection, stable percentage
+ordering, core metric definitions, and Chinese property labels.
+
+The English and Chinese glass-fiber POM categories use `GlassFiberGradeCards`
+and its CSS module for the user-selected historical card layout (reference:
+`bdf7a35` product-directory styles). The numbered grade sits at top left, its
+data action at top right, and four metrics span the row below. Keep this stacked
+card grid even at wide desktop sizes; do not revert to the general directory's
+three-column wide-screen layout. Mobile metrics form two columns. Glass-fiber
+percentage remains in the grade eyebrow. The whole card links to grade data.
+The POM landing pages retain a short test-basis disclosure only. Full data and
+TDS support belong to the linked grade detail pages; do not repeat the complete
+cross-grade table on this landing page. Other POM categories and languages keep their owners.
+The existing category Hero and secondary navigation are not owned by this module.
+
+The PA6/PA66 English GF pages retain their original PageHero factory image and
+share this card owner. Their complete seven-property comparison and per-grade
+TDS links remain in the full-parameters disclosure. POM TDS links remain on
+the individual grade detail pages. These changes do not migrate other categories
+or change the staged routes' release status.
+
 ### Gear Assembly Test Evidence — Pilot
+
+`RelatedCaseStudies.tsx` and its CSS module own the contextual case directory.
+POM grade details pass a grade; applications, component solutions and localized
+POM categories pass their source path. Collection data controls placement and
+language visibility. Application consumers supply the standard application rail
+through the scoped `relatedCases` rule; other consumers use their existing rail.
+The English glass-fiber category keeps its dedicated decision-path directory.
+
+`CaseStudiesPage.tsx` owns the English/Chinese overview composition and its
+page-local CSS. `CaseStudyFilters.tsx` controls application filtering while
+receiving server-rendered cards; all cases are present initially. Classification,
+short summaries and related-guide mappings live in `caseStudyDiscovery.ts`.
+`CaseStudyRelatedLinks.tsx` and its CSS own the grade and reading section used
+by both case detail renderers. Article titles come from the existing resource
+records. ETM 100P uses a grade inquiry until an exact product page is published.
+
+`MaterialCaseStudyPage.tsx` renders the supplied glass-fiber POM customer
+accounts in English and Chinese, reusing the existing case article CSS module
+and component rail without changing their rules. Story copy and current project
+stages belong to `src/data/glassFiberCaseStudies.ts`; `src/data/caseStudies.ts`
+combines these entries with the existing gear case for the overview and preview.
 
 **Owners:** `src/components/GearEnduranceCasePage.tsx` and its CSS module own
 the dedicated English/Chinese case pages. `GearEnduranceEvidence.tsx` owns only

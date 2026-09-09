@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { glassFiberCaseStudies, getGlassFiberCasePath } from "@/data/glassFiberCaseStudies";
 import { componentSolutionDetails } from "@/data/componentSolutionDetails";
 import { privacyPolicyRelease } from "@/data/legal";
 import {
@@ -37,6 +38,14 @@ const createUrlEntry = (
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedLanguageRoutes = [
+    ...glassFiberCaseStudies.map((study) => ({
+      sourcePath: getGlassFiberCasePath(study), priority: 0.6, changeFrequency: "monthly" as const,
+    })),
+    {
+      sourcePath: "/case-studies",
+      priority: 0.7,
+      changeFrequency: "monthly" as const,
+    },
     {
       sourcePath: "/case-studies/etm-100p-armrest-gear-endurance",
       priority: 0.6,

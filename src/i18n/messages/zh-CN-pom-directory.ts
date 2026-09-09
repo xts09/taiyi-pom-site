@@ -17,8 +17,7 @@ export const chinesePomDirectoryMessages = {
   navigation: {
     aria: "POM 产品目录分区导航",
     title: "POM 材料家族",
-    subtitle:
-      "按性能方向浏览改性 POM 与基础树脂，再进入牌号数据、应用路径和技术文件。",
+    subtitle: "耐磨、抗冲、增强、电性能与流动系列",
     families: "材料家族",
     grades: "牌号目录",
     applications: "应用路径",

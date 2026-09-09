@@ -4,6 +4,8 @@ import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import relatedPathStyles from "@/components/BasePomRelatedPaths.module.css";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
+import { PomGlassFiberComparison } from "@/components/PomGlassFiberComparison";
+import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
@@ -62,6 +64,8 @@ export function LocalizedProductCategoryContent({
     throw new Error(`Missing localized product category: ${categorySlug}`);
   }
 
+  const isGlassFiberPomCategory =
+    categorySlug === "glass-fiber-reinforced-pom-compound";
   const categoryProducts = getProductsByCategory(products, entry.category);
   const localizedPath = (path: string) => getLocalizedHref(path, localeSegment);
   const categoryPath = localizedPath(sourcePath);
@@ -164,20 +168,22 @@ export function LocalizedProductCategoryContent({
                 {copy.hero.description}
               </p>
 
-              <div className="products-motion-data product-hero-data">
-                <div className="product-hero-summary">
-                  <p className="section-kicker mb-2">{copy.hero.overviewLabel}</p>
-                  <p>{copy.hero.overview}</p>
+              {!isGlassFiberPomCategory ? (
+                <div className="products-motion-data product-hero-data">
+                  <div className="product-hero-summary">
+                    <p className="section-kicker mb-2">{copy.hero.overviewLabel}</p>
+                    <p>{copy.hero.overview}</p>
+                  </div>
+                  <p className="product-hero-documents">
+                    <strong>{copy.hero.documentsTitle}</strong>
+                    <span>
+                      {availableDocuments.map((document) => (
+                        <b key={document}>{document}</b>
+                      ))}
+                    </span>
+                  </p>
                 </div>
-                <p className="product-hero-documents">
-                  <strong>{copy.hero.documentsTitle}</strong>
-                  <span>
-                    {availableDocuments.map((document) => (
-                      <b key={document}>{document}</b>
-                    ))}
-                  </span>
-                </p>
-              </div>
+              ) : null}
 
               <div className="product-hero-cta">
                 <Button asChild size="productHero" variant="productHeroPrimary">
@@ -204,6 +210,9 @@ export function LocalizedProductCategoryContent({
             variant="product"
           />
 
+          {isGlassFiberPomCategory && localeSegment === "zh" ? (
+            <PomGlassFiberComparison locale="zh" />
+          ) : (
           <section id="pom-grades" className="product-grade-section">
             <div className="product-directory-head products-motion-head">
               <div>
@@ -316,6 +325,8 @@ export function LocalizedProductCategoryContent({
             </div>
           </section>
 
+          )}
+
           {relatedComponentSolutions.length > 0 ? (
             <section
               id="category-applications"
@@ -391,6 +402,8 @@ export function LocalizedProductCategoryContent({
               </div>
             </div>
           </section>
+
+          <RelatedCaseStudies sourcePath={sourcePath} localeSegment={localeSegment} />
 
           <ActionPanel
             footerAdjacent

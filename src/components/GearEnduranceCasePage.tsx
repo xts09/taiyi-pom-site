@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CaseStudyRelatedLinks } from "@/components/CaseStudyRelatedLinks";
 import { Button } from "@/components/ui/button";
 import { gearEnduranceTest, getGearEnduranceEvidence } from "@/data/gearEnduranceEvidence";
 import { getCaseStudyNavigation } from "@/data/caseStudyNavigation";
@@ -71,6 +72,7 @@ export function GearEnduranceCasePage({ localeSegment }: { localeSegment?: "zh" 
           <h2 id="project-review">{copy.page.scope}</h2>
           <div><p>{copy.story.takeaway}</p></div>
         </section>
+        <CaseStudyRelatedLinks caseId={gearEnduranceTest.id} grade={gearEnduranceTest.grade} localeSegment={localeSegment} />
         <footer className={styles.footer} data-footer-adjacent="true">
           <h2>{copy.page.contactTitle}</h2>
           <div className={styles.actions}>

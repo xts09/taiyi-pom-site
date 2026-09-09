@@ -167,7 +167,7 @@ test("reviewed Application density rollout removes only family-wide repeated fra
   assert.match(pageSource, /cardLabel\?: string/);
   assert.match(
     pageSource,
-    /showKeyUseLabel=\{!usesReviewedApplicationDensity\}/,
+    /showKeyUseLabel=\{!automotiveUi && !usesReviewedApplicationDensity\}/,
   );
 
   for (const detail of Object.values(applicationDetails)) {

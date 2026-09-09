@@ -8,6 +8,7 @@ import {
   type EngineeringGfComparisonGrade,
 } from "@/components/EngineeringGfGradeComparison";
 import { DirectoryRow } from "@/components/DirectoryRow";
+import { GlassFiberGradeHeading } from "@/components/GlassFiberGradeCards";
 import { PageHero } from "@/components/PageHero";
 import { MediaFigure } from "@/components/MediaFigure";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
@@ -40,6 +41,8 @@ export function EngineeringGfLandingPage({
     grade: grade.grade,
     slug: grade.slug,
     filler: grade.filler,
+    density: grade.density,
+    flammability: grade.flammability,
     tensile: grade.tensile,
     flexuralStrength: grade.flexuralStrength,
     flexuralModulus: grade.flexuralModulus,
@@ -144,7 +147,7 @@ export function EngineeringGfLandingPage({
             { href: contactHref, label: "Discuss Your Application" },
           ]}
           ariaLabel={`${page.polymer} glass-fiber page navigation`}
-          subtitle={`${grades.length} listed ${page.polymer} glass-fiber grades`}
+          subtitle={page.navSubtitle}
           tabs={[
             { href: "#grade-comparison", label: "Compare" },
             { href: "#engineering-tradeoffs", label: "Trade-offs" },
@@ -161,15 +164,14 @@ export function EngineeringGfLandingPage({
           className={`${styles.sectionBand} ${styles.comparisonBand}`}
         >
           <div className={styles.sectionRail}>
-            <SectionIntro
-              className={styles.sectionIntro}
-              eyebrow="Grade Comparison"
-              title={`Compare ${page.polymer} glass-fiber grades`}
+            <GlassFiberGradeHeading
+              eyebrow="Grade directory"
+              title={`${page.polymer} glass-fiber grades`}
               description={page.comparisonIntro}
-              layout="stacked"
+              count={`${grades.length} listed grades`}
             />
 
-            <EngineeringGfGradeComparison grades={comparisonGrades} />
+            <EngineeringGfGradeComparison grades={comparisonGrades} polymer={page.polymer} />
 
             <p id="gf-comparison-methods" className={styles.methodNote}>
               Comparison basis: GF content ISO 1172; tensile stress ISO 527;

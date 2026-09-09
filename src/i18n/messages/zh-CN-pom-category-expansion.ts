@@ -24,7 +24,7 @@ export const chinesePomCategoryExpansion = {
     navigation: {
       aria: "耐磨与低摩擦 POM 页面分区导航",
       title: "耐磨与低摩擦 POM",
-      subtitle: "面向齿轮、轴套、滚轮与导轨等运动部件",
+      subtitle: "低摩擦、耐磨与复合改性组合",
     },
     directory: {
       kicker: "牌号范围",
@@ -95,7 +95,7 @@ export const chinesePomCategoryExpansion = {
     navigation: {
       aria: "耐候 POM 页面分区导航",
       title: "耐候 POM",
-      subtitle: "面向长期接触光照的注塑零件",
+      subtitle: "耐候与流动、冲击、外观组合",
     },
     directory: {
       kicker: "牌号范围",
@@ -162,7 +162,7 @@ export const chinesePomCategoryExpansion = {
     navigation: {
       aria: "碳纤维增强 POM 页面分区导航",
       title: "碳纤维增强 POM",
-      subtitle: "20% 至 40% 碳纤增强，面向结构与电性能零件",
+      subtitle: "刚性、收缩、尺寸与电性能组合",
     },
     directory: {
       kicker: "牌号范围",
@@ -227,7 +227,7 @@ export const chinesePomCategoryExpansion = {
     navigation: {
       aria: "导电与抗静电 POM 页面分区导航",
       title: "导电与抗静电 POM",
-      subtitle: "黑色 POM 覆盖不同电阻率与电荷管理要求",
+      subtitle: "电阻率与机械、热性能数据",
     },
     directory: {
       kicker: "牌号范围",
@@ -290,7 +290,7 @@ export const chinesePomCategoryExpansion = {
     navigation: {
       aria: "超高流动 POM 页面分区导航",
       title: "超高流动 POM",
-      subtitle: "面向薄壁、长流路与复杂填充的超高流动 POM",
+      subtitle: "机械、热与成型收缩数据",
     },
     directory: {
       kicker: "牌号范围",

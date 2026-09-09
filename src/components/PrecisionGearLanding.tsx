@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { Button } from "@/components/ui/button";
 import { gearLandingCopy } from "@/data/gearLandingCopy";
 import { gearEnduranceTest } from "@/data/gearEnduranceEvidence";
@@ -95,6 +96,8 @@ export function PrecisionGearLanding({ detail, solution, localeSegment, ui, appl
             <h3>{ui.expectedOutputLabel}</h3><p>{detail.processOutcome}</p><p>{detail.copy.processBoundary}</p>
           </div></details>
         </section>
+
+        <RelatedCaseStudies sourcePath={`/components/${solution.slug}`} localeSegment={localeSegment} />
 
         <section className={styles.section} aria-labelledby="technical-detail">
           <div className={styles.intro}><h2 id="technical-detail">{copy.technicalTitle}</h2><p>{copy.technicalIntro}</p></div>

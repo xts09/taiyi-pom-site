@@ -2,8 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
+import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
 import { ApplicationExpandableGrid } from "@/components/ApplicationExpandableGrid";
+import { AutomotiveSystemGroups, AutomotiveNextSteps } from "@/components/AutomotiveSystemGroup";
+import automotiveStyles from "@/components/AutomotiveSystemGroup.module.css";
+import { automotivePageDesign } from "@/data/automotivePageDesign";
+import { automotiveSelectionLabels } from "@/data/automotiveSelection";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { MediaFigure } from "@/components/MediaFigure";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
@@ -453,6 +458,7 @@ export function LocalizedApplicationDetailPage({
   selectionItems,
   showSelectionInputs = false,
 }: LocalizedApplicationDetailPageProps) {
+  const automotiveUi = application.slug === "automotive" ? automotiveSelectionLabels[inLanguage] : undefined;
   const engineeringGroups = getEngineeringGroups(application);
   const partFitItems = getPerformanceItems(engineeringGroups);
   const { visualAssets } = getApplicationVisualContext(application);
@@ -462,10 +468,13 @@ export function LocalizedApplicationDetailPage({
   const applicationUseCardByPartId = new Map(
     applicationUseCards.map((card) => [card.partId, card]),
   );
-  const applicationInlinePartGroups = resolveApplicationInlinePartGroups(
+  const sourceInlinePartGroups = resolveApplicationInlinePartGroups(
     application,
     inLanguage,
   );
+  const applicationInlinePartGroups = automotiveUi && sourceInlinePartGroups
+    ? [...sourceInlinePartGroups].sort((a, b) => Number(b.id === "automotive-visibility-window") - Number(a.id === "automotive-visibility-window"))
+    : sourceInlinePartGroups;
   const groupedPartOrder = new Map(
     (applicationInlinePartGroups?.flatMap((group) => group.partIds) ?? []).map(
       (partId, index) => [partId, index],
@@ -525,7 +534,11 @@ export function LocalizedApplicationDetailPage({
     "/technical-data-sheets",
     localeSegment,
   );
-  const sectionTabs = [
+  const sectionTabs = automotiveUi ? [
+    { href: "#material-match", label: automotivePageDesign[inLanguage].selection },
+    { href: "#review-checklist", label: messages.navigation.materials },
+    { href: "#material-evaluation", label: messages.navigation.evaluation },
+  ] : [
     { href: "#application-scene", label: messages.navigation.scene },
     { href: "#material-match", label: messages.navigation.parts },
     { href: "#review-checklist", label: messages.navigation.materials },
@@ -557,15 +570,38 @@ export function LocalizedApplicationDetailPage({
     }),
   ];
 
+  const materialDirectionGrid = (
+    <ApplicationExpandableGrid
+      className="application-notes-grid"
+      id={automotiveUi ? "automotive-material-direction-cards" : "application-material-directions"}
+      initialVisibleCount={automotiveUi ? 4 : 3}
+      showLessLabel={formatApplicationShowLess(inLanguage, "materials")}
+      showMoreLabel={formatApplicationShowMore(inLanguage, "materials", Math.max(materialDirectionCards.length - (automotiveUi ? 4 : 3), 0))}
+    >
+      {materialDirectionCards.map((card, index) => (
+        <ProductInfoCard
+          key={card.key}
+          card={card}
+          englishDestinationLabel={componentMessages.englishDestinationLabel}
+          image={automotiveUi ? undefined : getCyclicItem(application.images, index)}
+          localeSegment={localeSegment}
+          materialImageSrc={automotiveUi ? undefined : getMaterialCardImage(card)}
+          messages={messages.materials}
+          showKeyUseLabel={!automotiveUi && !usesReviewedApplicationDensity}
+        />
+      ))}
+    </ApplicationExpandableGrid>
+  );
+
   return (
-    <main className="application-detail-page min-h-screen text-slate-900">
+    <main className={cx("application-detail-page min-h-screen text-slate-900", automotiveUi && automotiveStyles.page)}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonLd) }}
       />
       <ApplicationAnimeMotion />
       <section
-        className={`application-detail-shell application-detail-${application.slug} mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8`}
+        className={cx(`application-detail-shell application-detail-${application.slug} mesh-surface mx-auto max-w-7xl px-5 py-12 sm:px-6 lg:px-8`, automotiveUi && automotiveStyles.shell)}
       >
         <div
           className={getApplicationHeroClassName(application)}
@@ -628,7 +664,7 @@ export function LocalizedApplicationDetailPage({
           />
         ) : null}
 
-        <section
+        {automotiveUi ? null : <section
           id="application-scene"
           className={
             visualAssets
@@ -737,18 +773,18 @@ export function LocalizedApplicationDetailPage({
               ))}
             </ul>
           ) : null}
-        </section>
+        </section>}
 
         <section
           id="material-match"
           className={
-            visualAssets
+            automotiveUi ? automotiveStyles.selectionSection : visualAssets
               ? "application-match-board application-match-solution"
               : "application-match-board"
           }
           data-application-motion
         >
-          <div className="application-use-head">
+          {!automotiveUi ? <div className="application-use-head">
             <div>
               <p className="section-kicker">{messages.parts.eyebrow}</p>
               <h2>
@@ -760,9 +796,11 @@ export function LocalizedApplicationDetailPage({
             {!usesReviewedApplicationDensity ? (
               <p>{messages.parts.description}</p>
             ) : null}
-          </div>
+          </div> : null}
 
-          {applicationInlinePartGroups ? (
+          {automotiveUi && applicationInlinePartGroups ? (
+            <AutomotiveSystemGroups application={application} groups={applicationInlinePartGroups} inLanguage={inLanguage} localeSegment={localeSegment} />
+          ) : applicationInlinePartGroups ? (
             <div
               className="application-system-groups"
               id="application-part-examples"
@@ -866,50 +904,38 @@ export function LocalizedApplicationDetailPage({
         <section
           id="review-checklist"
           className={
-            visualAssets
+            automotiveUi ? cx("application-notes application-notes-material", automotiveStyles.materialSection) : visualAssets
               ? "application-notes application-notes-material"
               : "application-notes"
           }
           data-application-motion
         >
-          <div className="application-notes-head">
+          {!automotiveUi ? <div className="application-notes-head">
             <p className="section-kicker mb-3">{messages.materials.eyebrow}</p>
             <h2>{messages.materials.title}</h2>
             <p>{messages.materials.description}</p>
-          </div>
+          </div> : null}
 
-          <ApplicationExpandableGrid
-            className="application-notes-grid"
-            id="application-material-directions"
-            initialVisibleCount={3}
-            showLessLabel={formatApplicationShowLess(
-              inLanguage,
-              "materials",
-            )}
-            showMoreLabel={formatApplicationShowMore(
-              inLanguage,
-              "materials",
-              Math.max(materialDirectionCards.length - 3, 0),
-            )}
-          >
-            {materialDirectionCards.map((card, index) => (
-              <ProductInfoCard
-                key={card.key}
-                card={card}
-                englishDestinationLabel={
-                  componentMessages.englishDestinationLabel
-                }
-                image={getCyclicItem(application.images, index)}
-                localeSegment={localeSegment}
-                materialImageSrc={getMaterialCardImage(card)}
-                messages={messages.materials}
-                showKeyUseLabel={!usesReviewedApplicationDensity}
-              />
-            ))}
-          </ApplicationExpandableGrid>
+          {automotiveUi ? <div className={automotiveStyles.materials} id="application-material-directions">
+            <div className={automotiveStyles.sectionHeading}>
+              <div>
+                <p className={automotiveStyles.eyebrow}>{automotivePageDesign[inLanguage].direction}</p>
+                <h2>{automotivePageDesign[inLanguage].materialTitle}</h2>
+              </div>
+              <p>{automotivePageDesign[inLanguage].materialIntro}</p>
+            </div>
+            {materialDirectionGrid}
+            <p className={automotiveStyles.materialNote}>{application.materialDirections[1].shortLabel} / {application.materialDirections[2].shortLabel}: {automotiveUi.shared}</p>
+          </div> : materialDirectionGrid}
         </section>
 
-        <ActionPanel
+        <RelatedCaseStudies
+          sourcePath={`/applications/${application.slug}`}
+          localeSegment={localeSegment}
+          className={automotiveStyles.relatedCases}
+        />
+
+        {automotiveUi ? <AutomotiveNextSteps inLanguage={inLanguage} localeSegment={localeSegment} contactHref={contactHref} technicalLabel={messages.hero.secondaryAction} evaluation={messages.evaluation} qualityEvidence={qualityEvidence} /> : <ActionPanel
           footerAdjacent
           id="material-evaluation"
           variant="recommendation"
@@ -954,7 +980,7 @@ export function LocalizedApplicationDetailPage({
           data-application-motion
         >
           <p>{messages.evaluation.description}</p>
-        </ActionPanel>
+        </ActionPanel>}
       </section>
     </main>
   );

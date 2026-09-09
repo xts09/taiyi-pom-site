@@ -38,7 +38,7 @@ const pomCategoryOverview = {
   description:
     "Compare Taiyi Polymer POM grades by application and grade data. Review wear, impact, friction, UV, reinforced, conductive, antistatic, and base resin options.",
   navSubtitle:
-    "Choose modified POM by part requirement, then compare families, grade data, application fit, and documents.",
+    "Wear, impact, reinforcement, electrical, and flow families",
   applications: [
     "Precision injection molded parts",
     "Gears, bushings, rollers, and sliding parts",
@@ -96,7 +96,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range covers low-friction, wear-resistant, reinforced, and hybrid-modified formulations. Published data, technical documents, and samples are confirmed by grade and project.",
     navSubtitle:
-      "Wear-resistant and low-friction POM for gears, bushings, rollers, and guide rails.",
+      "Low-friction, wear-resistant, reinforced, and hybrid formulations",
     applications: [
       "Gears and moving mechanical parts",
       "Bushings, rollers, guide rails, and sliding parts",
@@ -141,7 +141,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range extends from balanced stiffness and toughness to higher elongation and low-temperature performance. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "High-impact POM for functional parts, assembly loads, and low-temperature use.",
+      "Stiffness-toughness balance, elongation, and low-temperature performance",
     applications: [
       "Low-temperature molded parts",
       "Automotive, electrical, sanitary, and industrial components",
@@ -178,7 +178,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range combines UV stabilization with different mechanical, flow, color, and appearance profiles. Published data, technical documents, and samples are confirmed by grade and project.",
     navSubtitle:
-      "POM for outdoor and light-exposed molded parts.",
+      "UV stabilization across flow, impact, color, and appearance",
     applications: [
       "Outdoor or light-exposed molded parts",
       "Automotive and consumer components exposed to UV conditions",
@@ -207,11 +207,11 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Glass Fiber Reinforced POM Compound",
     label: "Glass Fiber Reinforced POM",
     description:
-      "PLATFORM® glass-fiber-reinforced POM spans 10% to 30% glass fiber for gears, brackets, housings, and other precision or structural parts. The range offers different strength, stiffness, flow, impact, and shrinkage profiles.",
+      "PLATFORM® glass-fiber-reinforced POM spans 10% to 30% glass fiber for gears, brackets and other structural parts requiring higher stiffness, strength and dimensional control.",
     overview:
-      "The range covers multiple reinforcement levels with published mechanical, thermal, and molding-shrinkage data. Technical documents and samples are confirmed by grade and project.",
+      "PLATFORM® glass-fiber-reinforced POM spans 10% to 30% glass fiber for gears, brackets and other structural parts requiring higher stiffness, strength and dimensional control.",
     navSubtitle:
-      "POM with 10% to 30% glass fiber for precision and structural parts.",
+      "10–30% GF POM for stiffness, strength and dimensional control in gears and structural parts",
     applications: [
       "Structural molded parts requiring higher stiffness",
       "Precision parts with dimensional stability requirements",
@@ -255,7 +255,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "EGB25 brings molding-shrinkage, mechanical, thermal, and processing data together on one product page. Technical documents and samples are confirmed by project.",
     navSubtitle:
-      "25% glass-bead-filled POM for dimension-sensitive molded parts.",
+      "Shrinkage, mechanical, thermal, and processing data for EGB25",
     applications: [
       "Dimension-sensitive injection-molded parts",
       "Automotive, electrical, sanitary, and industrial components",
@@ -293,7 +293,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range provides different stiffness, shrinkage, dimensional, and electrical profiles. Published mechanical, thermal, molding-shrinkage, and resistivity data are available by grade.",
     navSubtitle:
-      "Black POM with 20% to 40% carbon fiber for structural and electrical functions.",
+      "Stiffness, shrinkage, dimensional, and electrical profiles",
     applications: [
       "High-stiffness precision parts",
       "Components requiring reinforcement and controlled conductivity",
@@ -332,7 +332,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "Published surface- and volume-resistivity data are presented together with mechanical and thermal properties. Technical documents and samples are confirmed by grade and project.",
     navSubtitle:
-      "Black POM for controlled resistivity and charge management.",
+      "Resistivity with mechanical and thermal property data",
     applications: [
       "Electronic and electrical molded components",
       "Parts requiring antistatic or conductive performance",
@@ -375,7 +375,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range brings together published mechanical, thermal, and processing data for automotive, electrical, sanitary, and industrial applications. Technical documents and samples are confirmed by grade and project.",
     navSubtitle:
-      "Base POM spanning standard to ultra-high flow.",
+      "Mechanical, thermal, and processing data across flow grades",
     applications: [
       "General injection molded POM parts",
       "Precision and thin-wall molded components",
@@ -418,7 +418,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "Published mechanical, thermal, and molding-shrinkage data are available by grade. Technical documents and samples are confirmed by project.",
     navSubtitle:
-      "Ultra-high-flow POM for thin walls, long flow paths, and complex filling.",
+      "Mechanical, thermal, and molding-shrinkage data by grade",
     applications: [
       "Thin-wall injection molded POM parts",
       "Flow-sensitive molds with longer flow paths",
@@ -451,7 +451,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range provides different balances of toughness, strength, wear performance, and processability. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "PA6 across reinforcement, toughness, flame retardancy, wear, and processing modifications.",
+      "Toughness, strength, wear, and processing profiles",
     applications: [
       "Electrical housings, connectors, and industrial molded parts",
       "Reinforced, impact-modified, or wear-oriented nylon components",
@@ -484,7 +484,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range provides different balances of stiffness, heat performance, dimensional control, wear, and processability. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "PA66 across reinforcement, flame retardancy, wear, impact, and dimensional control.",
+      "Stiffness, heat, dimensional, wear, and processing profiles",
     applications: [
       "Automotive, electrical, and industrial molded components",
       "Glass fiber reinforced or flame-retardant nylon parts",
@@ -517,7 +517,7 @@ export const productCategoryData: ProductCategoryData[] = [
     overview:
       "The range provides different balances of stiffness, dimensional control, wear, and sliding performance. Published data, technical documents, and samples are presented by grade.",
     navSubtitle:
-      "PPA for higher-temperature reinforcement, dimensional control, and wear performance.",
+      "Stiffness, dimensional, wear, and sliding profiles",
     applications: [
       "High-temperature automotive and electrical parts",
       "Reinforced precision molded components",

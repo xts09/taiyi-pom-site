@@ -4,6 +4,24 @@ import ptBRCategoryCopy from "./messages/pt-BR-category-copy.ts";
 
 export const categoryLocaleOverrides = {
   de: {
+    "耐磨、抗冲、增强、电性能与流动系列":
+      "Werkstofffamilien für Verschleiß, Schlagzähigkeit, Verstärkung, Elektrik und Fließverhalten",
+    "低摩擦、耐磨与复合改性组合":
+      "Profile für geringe Reibung, Verschleißschutz und kombinierte Modifikationen",
+    "耐候与流动、冲击、外观组合":
+      "Profile für Witterung, Fließverhalten, Schlagzähigkeit und Oberfläche",
+    "刚性、收缩、尺寸与电性能组合":
+      "Profile für Steifigkeit, Schwindung, Maßhaltigkeit und Elektrik",
+    "电阻率与机械、热性能数据":
+      "Widerstands-, mechanische und thermische Eigenschaftsdaten",
+    "机械、热与成型收缩数据":
+      "Mechanische, thermische und Formschwindungsdaten",
+    "韧性、强度、耐磨与加工性能组合":
+      "Profile für Zähigkeit, Festigkeit, Verschleiß und Verarbeitung",
+    "刚性、耐热、尺寸与加工性能组合":
+      "Profile für Steifigkeit, Wärmebeständigkeit, Maßhaltigkeit und Verarbeitung",
+    "刚性、尺寸、耐磨与滑动性能组合":
+      "Profile für Steifigkeit, Maßhaltigkeit, Verschleiß und Gleiten",
     ...deCategoryCopy,
     材料概览: "Portfolio im Überblick",
     牌号范围: "Werkstoffportfolio",
@@ -164,6 +182,24 @@ export const categoryLocaleOverrides = {
       "Nennen Sie uns Temperatur-, Last- und Maßanforderungen des Bauteils. Wir empfehlen passende PPA-Typen, Daten, Unterlagen und Muster.",
   },
   fr: {
+    "耐磨、抗冲、增强、电性能与流动系列":
+      "Familles pour usure, choc, renfort, fonctions électriques et fluidité",
+    "低摩擦、耐磨与复合改性组合":
+      "Profils de faible friction, d’usure et de modifications combinées",
+    "耐候与流动、冲击、外观组合":
+      "Profils de tenue extérieure, fluidité, choc et aspect",
+    "刚性、收缩、尺寸与电性能组合":
+      "Profils de rigidité, retrait, dimensions et propriétés électriques",
+    "电阻率与机械、热性能数据":
+      "Données de résistivité, mécaniques et thermiques",
+    "机械、热与成型收缩数据":
+      "Données mécaniques, thermiques et de retrait au moulage",
+    "韧性、强度、耐磨与加工性能组合":
+      "Profils de ténacité, résistance, usure et transformation",
+    "刚性、耐热、尺寸与加工性能组合":
+      "Profils de rigidité, tenue thermique, dimensions et transformation",
+    "刚性、尺寸、耐磨与滑动性能组合":
+      "Profils de rigidité, dimensions, usure et glissement",
     ...frCategoryCopy,
     材料概览: "Aperçu de la gamme",
     牌号范围: "Gamme de grades",
@@ -325,6 +361,24 @@ export const categoryLocaleOverrides = {
       "Indiquez-nous les exigences de température, de charge et de dimensions. Nous proposerons les grades PPA, données, documents et échantillons adaptés.",
   },
   "pt-br": {
+    "耐磨、抗冲、增强、电性能与流动系列":
+      "Famílias para desgaste, impacto, reforço, função elétrica e fluidez",
+    "低摩擦、耐磨与复合改性组合":
+      "Perfis de baixo atrito, resistência ao desgaste e modificações combinadas",
+    "耐候与流动、冲击、外观组合":
+      "Perfis de exposição, fluidez, impacto e aparência",
+    "刚性、收缩、尺寸与电性能组合":
+      "Perfis de rigidez, contração, dimensão e propriedades elétricas",
+    "电阻率与机械、热性能数据":
+      "Dados de resistividade, mecânicos e térmicos",
+    "机械、热与成型收缩数据":
+      "Dados mecânicos, térmicos e de contração de moldagem",
+    "韧性、强度、耐磨与加工性能组合":
+      "Perfis de tenacidade, resistência, desgaste e processamento",
+    "刚性、耐热、尺寸与加工性能组合":
+      "Perfis de rigidez, resistência térmica, dimensão e processamento",
+    "刚性、尺寸、耐磨与滑动性能组合":
+      "Perfis de rigidez, dimensão, desgaste e deslizamento",
     ...ptBRCategoryCopy,
     材料概览: "Visão geral do portfólio",
     牌号范围: "Portfólio de graus",

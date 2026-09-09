@@ -11,7 +11,7 @@ const pageSource = readProjectFile(
   "src/components/EngineeringGfLandingPage.tsx",
 );
 const comparisonSource = readProjectFile("src/components/EngineeringGfGradeComparison.tsx");
-const productGridSource = readProjectFile("src/components/ProductGrid.tsx");
+const directionSource = readProjectFile("src/data/engineeringDirectionNavigation.ts");
 const releaseManifestSource = readProjectFile("src/i18n/releaseManifest.ts");
 const sitemapSource = readProjectFile("src/app/sitemap.ts");
 const pa6RouteSource = readProjectFile(
@@ -73,14 +73,14 @@ test("keeps the approved comparison fields and marks only real gaps unpublished"
 
 test("connects the PA6 and PA66 hub directions to their GF landing owners", () => {
   assert.match(
-    productGridSource,
+    directionSource,
     /"PA6:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-pa6-compound/,
   );
   assert.match(
-    productGridSource,
+    directionSource,
     /"PA66:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-pa66-compound/,
   );
-  assert.match(productGridSource, /\?\? "#pom-grades"/);
+  assert.match(directionSource, /\?\? "#pom-grades"/);
 });
 
 test("does not turn unresolved suffixes into invented positioning", () => {

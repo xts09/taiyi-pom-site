@@ -33,7 +33,7 @@ const messages = {
     navigation: {
       aria: "Abschnittsnavigation POM-Basisharz",
       title: "POM-Basisharz",
-      subtitle: "Von Standard- bis Ultrahochfluss",
+      subtitle: "Mechanische, thermische und Verarbeitungsdaten nach Fließbereich",
       grades: "Typen",
       faq: "FAQ",
     },
@@ -124,7 +124,7 @@ const messages = {
       navigation: {
         aria: "Abschnittsnavigation glaskugelgefülltes POM",
         title: "Glaskugelgefülltes POM",
-        subtitle: "25 % Glaskugeln für ausgewogene Schwindung und thermische Eigenschaften",
+        subtitle: "Schwindungs-, mechanische, thermische und Verarbeitungsdaten",
       },
       directory: {
         kicker: "Typendaten",
@@ -180,12 +180,12 @@ const messages = {
           "PLATFORM® glasfaserverstärktes POM deckt 10 bis 30 % Glasfaser für Zahnräder, Halterungen und weitere Strukturteile mit höheren Anforderungen an Steifigkeit, Festigkeit und Maßkontrolle ab.",
         overviewLabel: "Portfolio im Überblick",
         overview:
-          "Für jeden Typ stehen Produktdetails sowie mechanische, thermische und Formschwindungsdaten bereit. Technische Unterlagen und Muster werden typ- und projektbezogen bestätigt.",
+          "PLATFORM® glasfaserverstärktes POM deckt 10 bis 30 % Glasfaser für Zahnräder, Halterungen und weitere Strukturteile mit höheren Anforderungen an Steifigkeit, Festigkeit und Maßkontrolle ab.",
       },
       navigation: {
         aria: "Abschnittsnavigation glasfaserverstärktes POM",
         title: "Glasfaserverstärktes POM",
-        subtitle: "10 bis 30 % Glasfaser für präzise Struktur- und Belastungsteile",
+        subtitle: "10–30 % GF-POM für Steifigkeit, Festigkeit und Maßkontrolle in Strukturteilen",
       },
       directory: {
         kicker: "Werkstoffportfolio",
@@ -254,7 +254,7 @@ const messages = {
       navigation: {
         aria: "Abschnittsnavigation schlagzähmodifiziertes POM",
         title: "Schlagzähmodifiziertes POM",
-        subtitle: "Für Schlagzähigkeit, Tieftemperatur, Dehnung und Verarbeitung",
+        subtitle: "Steifigkeits-Zähigkeits-Balance, Dehnung und Tieftemperaturverhalten",
       },
       directory: {
         kicker: "Werkstoffportfolio",

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { getEngineeringDirectionHref } from "@/data/engineeringDirectionNavigation";
 import { useEffect, type CSSProperties, type ReactNode } from "react";
 import {
   createEngineeringTdsSlug,
@@ -43,13 +44,6 @@ const engineeringDirectionSummary: Record<string, string> = {
   "Mold Release": "Smoother demolding for complex molded parts.",
   "V0 Flame Retardant": "V-0 review for electrical and structural parts.",
   "Wear Low Friction": "Sliding parts needing wear and friction review.",
-};
-
-const engineeringDirectionLandingPaths: Record<string, string> = {
-  "PA6:Glass Fiber Reinforced":
-    "/products/categories/glass-fiber-reinforced-pa6-compound",
-  "PA66:Glass Fiber Reinforced":
-    "/products/categories/glass-fiber-reinforced-pa66-compound",
 };
 
 const pomFamilyGroupCopy = [
@@ -208,10 +202,7 @@ export function ProductGrid({
 
           <div className="product-filter-rail">
             {engineeringDirectionItems.map((item) => {
-              const directionHref =
-                engineeringDirectionLandingPaths[
-                  `${item.family}:${item.category}`
-                ] ?? "#pom-grades";
+              const directionHref = getEngineeringDirectionHref(item.family, item.category);
 
               return (
                 <Link

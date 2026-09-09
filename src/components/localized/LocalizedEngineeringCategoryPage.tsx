@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
+import { getEngineeringDirectionHref } from "@/data/engineeringDirectionNavigation";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { ValueText } from "@/components/UnitText";
@@ -21,7 +23,7 @@ import {
   chineseEngineeringDirectionCopy,
   type ChineseEngineeringProductCategorySlug,
 } from "@/i18n/messages/zh-CN-engineering-categories";
-import { getLocalizedHref } from "@/i18n/releaseManifest";
+import { getLocalizedHref, isEnglishFallbackHref } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -65,6 +67,7 @@ export function LocalizedEngineeringCategoryContent({
     .filter((direction, index, list) => list.indexOf(direction) === index)
     .map((direction) => ({
       direction,
+      href: getEngineeringDirectionHref(grades.find((grade) => grade.category === direction)!.family, direction),
       copy: directionCopy[direction] ?? {
         label: direction,
         summary: translateExpandedText(
@@ -197,17 +200,22 @@ export function LocalizedEngineeringCategoryContent({
               data-direction-count={directions.length}
             >
               {directions.map((item, index) => (
-                <a
+                <Link
                   key={item.direction}
-                  href="#pom-grades"
+                  href={localizedPath(item.href)}
                   className="product-filter-link"
                 >
                   <span className="product-filter-number">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="product-filter-name">{item.copy.label}</span>
+                  <span className="product-filter-name">
+                    {item.copy.label}{" "}
+                    {item.href.startsWith("/") && isEnglishFallbackHref(item.href, localeSegment) && (
+                      <EnglishDestinationBadge label={localeSegment === "zh" ? "英文内容" : "English content"} />
+                    )}
+                  </span>
                   <span className="product-filter-use">{item.copy.summary}</span>
-                </a>
+                </Link>
               ))}
             </div>
           </section>

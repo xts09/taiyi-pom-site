@@ -65,7 +65,7 @@ const messages = {
       "关键尺寸、配合间隙、收缩、翘曲与装配方式",
       "温度、介质、光照、颜色、文件与样品需求",
     ],
-    showSelectionInputs: true,
+    showSelectionInputs: false,
     qualityEvidence: {
       standard: "IATF 16949:2016",
       system: "汽车行业质量管理体系",

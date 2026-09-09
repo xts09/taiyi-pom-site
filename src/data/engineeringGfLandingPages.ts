@@ -28,6 +28,7 @@ export type EngineeringGfLandingPageData = {
   metaDescription: string;
   heroEyebrow: string;
   heroDescription: string;
+  navSubtitle: string;
   comparisonIntro: string;
   tradeoffs: {
     improvementTitle: string;
@@ -67,6 +68,7 @@ const landingPages: Record<
     heroEyebrow: "PA6 Grade Selection",
     heroDescription:
       "Explore 17 PLATFORM® PA6 grades from GF8 to GF50. Compare stiffness, impact and heat-deflection data for your molded part.",
+    navSubtitle: "GF8–GF50 across stiffness, impact, and heat deflection",
     comparisonIntro:
       "Grades are ordered by glass-fiber content. Compare the published properties, then open a grade or request its full TDS.",
     tradeoffs: {
@@ -173,6 +175,7 @@ const landingPages: Record<
     heroEyebrow: "PA66 Grade Selection",
     heroDescription:
       "Explore 15 PLATFORM® PA66 grades from GF15 to GF50. Compare strength and heat-deflection data, then check moisture and assembly requirements.",
+    navSubtitle: "GF15–GF50 across strength, heat deflection, and moisture",
     comparisonIntro:
       "Grades are ordered by glass-fiber content. Compare the published properties, then open a grade or request its full TDS.",
     tradeoffs: {

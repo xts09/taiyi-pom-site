@@ -1,0 +1,65 @@
+.section {
+  width: var(--site-rail-width);
+  margin-inline: auto;
+  padding-block: var(--ds-space-8) var(--ds-space-12);
+  color: var(--ds-foreground-primary);
+  scroll-margin-top: calc(
+    var(--site-header-height) + var(--product-section-nav-height, 10rem) +
+      var(--ds-space-4)
+  );
+}
+
+.section a:focus-visible,
+.section summary:focus-visible {
+  outline: 2px solid var(--ds-focus-ring);
+  outline-offset: 3px;
+}
+
+.note,
+.basis {
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-sm);
+  line-height: 1.7;
+}
+
+.note {
+  max-width: 65rem;
+  margin: var(--ds-space-4) 0;
+}
+
+.disclosure {
+  border-bottom: var(--ds-rule-thin) solid var(--ds-border-subtle);
+}
+
+.disclosure summary {
+  min-height: var(--ds-touch-target-min);
+  padding-block: var(--ds-space-3);
+  cursor: pointer;
+  font-weight: var(--ds-font-weight-semibold);
+}
+
+.disclosure summary:hover {
+  color: var(--ds-action-primary);
+}
+
+.basis {
+  padding-bottom: var(--ds-space-4);
+  max-width: 65rem;
+}
+
+.basis dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-2) var(--ds-space-4);
+  margin-block: var(--ds-space-2);
+}
+
+.basis dt {
+  font-weight: var(--ds-font-weight-semibold);
+}
+.basis dd {
+  margin: 0;
+}
+.missing {
+  color: var(--ds-foreground-muted);
+}

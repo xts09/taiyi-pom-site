@@ -55,8 +55,10 @@ const expectedGroups = {
       "automotive-seat-adjustment-guidance",
       ["seat-guide-ring"],
     ],
-    ["automotive-shift-control", ["gear-shift-seat"]],
-    ["automotive-brake-actuation", ["ev-brake-component"]],
+    [
+      "automotive-control-actuation",
+      ["gear-shift-seat", "ev-brake-component"],
+    ],
     [
       "automotive-retention-latching",
       ["automotive-clips-and-fasteners", "safety-latch"],
@@ -168,19 +170,12 @@ const expectedSemanticCorrectionLabels = {
       "pt-BR": "Ajuste e guia do banco",
       "zh-CN": "座椅调节与导向",
     },
-    "automotive-shift-control": {
-      en: "Shift Control",
-      de: "Schaltbetätigung",
-      fr: "Commande de changement de vitesse",
-      "pt-BR": "Controle de seleção de marchas",
-      "zh-CN": "换挡控制",
-    },
-    "automotive-brake-actuation": {
-      en: "Brake Actuation",
-      de: "Bremsbetätigung",
-      fr: "Actionnement du frein",
-      "pt-BR": "Acionamento do freio",
-      "zh-CN": "制动执行",
+    "automotive-control-actuation": {
+      en: "Control & Actuation",
+      de: "Steuerung und Betätigung",
+      fr: "Commande et actionnement",
+      "pt-BR": "Controle e acionamento",
+      "zh-CN": "操控与执行",
     },
   },
   "water-control": {
@@ -237,7 +232,7 @@ test("registers exactly the eight reviewed Application inline-group capabilities
       (total, presentation) => total + presentation.groups.length,
       0,
     ),
-    29,
+    28,
   );
 });
 

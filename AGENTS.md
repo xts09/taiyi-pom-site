@@ -81,6 +81,7 @@ components, verify representative consumers from each affected route family.
 - Keep tool output compact: summarize errors and results instead of dumping long logs, DOM snapshots, JSON, screenshots, or generated files into chat.
 - Avoid printing full `git diff` output in chat. Default to `git diff --stat`, `git diff --name-only`, or tightly scoped file/keyword diffs; save large diffs or long command output under `.codex-run/` and summarize the key changes.
 - Before starting a dev server, check whether port `3000` is already listening. Do not leave duplicate Next.js dev servers running.
+- Keep exactly one project development server available once it has been started. Reuse the existing listener and leave it running during normal task cleanup; stop or restart it only when the user explicitly asks, the process exits, the port conflicts, or a restart is required to verify stale code.
 - If the thread already contains many screenshots, large images, long logs, or large tool outputs, suggest continuing with a lightweight new thread that carries only a short task summary.
 - If reconnecting, rate-limit, or tool timeout symptoms appear, stop the long path, preserve the known state, and continue with a smaller current-session step.
 

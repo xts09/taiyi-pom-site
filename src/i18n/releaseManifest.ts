@@ -1,6 +1,7 @@
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import generatedCatalog from "../generated/catalog.json" with { type: "json" };
 import type { CatalogEngineeringTdsRecord } from "../data/catalog/types.ts";
+import { glassFiberCaseStudies, getGlassFiberCasePath } from "../data/glassFiberCaseStudies.ts";
 
 export type LocalizedReleaseStatus = "public" | "preview" | "disabled";
 
@@ -51,6 +52,11 @@ export const chineseEngineeringGradeReleaseEntries: readonly LocalizedReleaseEnt
     }));
 
 export const localizedReleaseManifest = {
+  caseStudies: {
+    sourcePath: "/case-studies",
+    ...publicRelease,
+    localizedSegments: ["zh"],
+  },
   gearEnduranceCase: {
     sourcePath: "/case-studies/etm-100p-armrest-gear-endurance",
     ...publicRelease,
@@ -457,7 +463,8 @@ export const localizedReleaseManifest = {
 
 export type ReleasedSourcePath =
   | (typeof localizedReleaseManifest)[keyof typeof localizedReleaseManifest]["sourcePath"]
-  | `/products/${string}`;
+  | `/products/${string}`
+  | `/case-studies/${string}`;
 
 const languageDefinitions = [
   {
@@ -506,6 +513,9 @@ const languageDefinitions = [
 const releaseEntries: readonly LocalizedReleaseEntry[] = [
   ...Object.values(localizedReleaseManifest),
   ...chineseEngineeringGradeReleaseEntries,
+  ...glassFiberCaseStudies.map((study) => ({
+    sourcePath: getGlassFiberCasePath(study), ...publicRelease, localizedSegments: ["zh"] as const,
+  })),
 ];
 
 const releasedSourcePaths = releaseEntries.map(

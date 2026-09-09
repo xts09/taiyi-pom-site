@@ -2,7 +2,7 @@ import Link from "next/link";
 import { DirectoryRow } from "@/components/DirectoryRow";
 import { Button } from "@/components/ui/button";
 import { caseStudyCollectionId, getCaseStudyNavigation } from "@/data/caseStudyNavigation";
-import { gearEnduranceTest, getGearEnduranceEvidence } from "@/data/gearEnduranceEvidence";
+import { getPublishedCaseStudies } from "@/data/caseStudies";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
 
@@ -20,8 +20,8 @@ export function CustomerCaseStudiesAction({ localeSegment }: Props) {
 
 export function CustomerCaseStudies({ localeSegment }: Props) {
   const navigation = getCaseStudyNavigation(localeSegment);
-  const evidence = getGearEnduranceEvidence(localeSegment);
-  if (!navigation || !evidence) return null;
+  const cases = getPublishedCaseStudies(localeSegment);
+  if (!navigation || !cases.length) return null;
   return (
     <section
       id={caseStudyCollectionId}
@@ -34,17 +34,20 @@ export function CustomerCaseStudies({ localeSegment }: Props) {
           <h3 id={`${caseStudyCollectionId}-title`}>{navigation.label}</h3>
           <p>{navigation.description}</p>
         </div>
+        <Link href={getLocalizedHref(navigation.href, localeSegment)}>
+          {localeSegment === "zh" ? "查看全部案例" : "View all cases"}
+        </Link>
       </header>
       <ul className="resource-index-directory-list">
-        <li>
+        {cases.slice(0, 3).map((study) => <li key={study.id}>
           <DirectoryRow
-            href={getLocalizedHref(`${gearEnduranceTest.casePath}#top`, localeSegment)}
-            eyebrow={evidence.page.label}
-            label={evidence.page.heading}
-            description={evidence.introduction}
+            href={getLocalizedHref(`${study.path}#top`, localeSegment)}
+            eyebrow={study.label}
+            label={study.title}
+            description={study.description}
             variant="compact"
           />
-        </li>
+        </li>)}
       </ul>
     </section>
   );

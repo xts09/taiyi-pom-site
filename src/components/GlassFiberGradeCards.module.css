@@ -1,0 +1,66 @@
+/* Based on bdf7a35 product-directory cards: retain the stacked card grid
+   at wide viewports instead of reverting to a three-column directory row. */
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--ds-space-6);
+  margin-bottom: var(--ds-space-6);
+}
+.heading h2 {
+  margin: var(--ds-space-2) 0;
+  color: var(--ds-foreground-primary);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+.heading p {
+  margin: 0;
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-md);
+  line-height: 1.65;
+  max-width: 65ch;
+}
+.heading .eyebrow { margin-bottom: var(--ds-space-2); }
+.count {
+  flex-shrink: 0;
+  border-top: var(--ds-rule-thin) solid var(--ds-border-subtle);
+  padding-top: var(--ds-space-2);
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.directory { display: grid; gap: var(--ds-space-3); }
+.card {
+  --grade-index-width: 2.35rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--ds-space-4);
+  padding: var(--ds-space-4) var(--ds-space-4);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06), 0 0.75rem 1.6rem rgba(15, 23, 42, 0.05);
+  color: var(--ds-foreground-primary);
+  text-decoration: none;
+}
+.card:hover {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(47, 95, 158, 0.14), 0 0.9rem 1.8rem rgba(15, 23, 42, 0.06);
+}
+.card:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: 3px; }
+.identity { display: grid; grid-template-columns: var(--grade-index-width) minmax(0, 1fr); gap: var(--ds-space-4); align-items: start; }
+.index { color: var(--ds-foreground-muted); font-size: var(--ds-text-xs); font-weight: 700; padding-top: 0.2rem; }
+.family { margin: 0; color: var(--ds-action-primary); font-size: var(--ds-text-sm); font-weight: 600; line-height: 1.4; }
+.identity h3 { margin: 0.2rem 0 0; font-size: var(--ds-text-lg); font-weight: 700; line-height: 1.25; }
+.action { align-self: start; border-bottom: 1px solid rgba(11, 95, 184, 0.32); padding-bottom: 0.2rem; color: var(--ds-action-primary); font-size: var(--ds-text-sm); font-weight: 600; white-space: nowrap; }
+.metrics { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-4); margin: 0; padding-left: calc(var(--grade-index-width) + var(--ds-space-4)); }
+.metrics dt { color: var(--ds-foreground-muted); font-size: var(--ds-text-sm); line-height: 1.4; }
+.metrics dd { margin: 0.2rem 0 0; font-size: var(--ds-text-md); font-weight: 600; line-height: 1.4; }
+@media (max-width: 47.999rem) {
+  .heading { flex-direction: column; align-items: flex-start; gap: var(--ds-space-3); }
+  .card { --grade-index-width: 1.4rem; grid-template-columns: minmax(0, 1fr); padding: var(--ds-space-4); }
+  .identity { gap: var(--ds-space-3); }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-left: calc(var(--grade-index-width) + var(--ds-space-3)); }
+  .action { grid-row: 3; justify-self: start; margin-left: calc(var(--grade-index-width) + var(--ds-space-3)); }
+}

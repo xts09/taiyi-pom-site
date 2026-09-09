@@ -33,7 +33,7 @@ const category = {
   navigation: {
     aria: "基础 POM 树脂页面分区导航",
     title: "基础 POM 树脂",
-    subtitle: "从标准流动延伸至超高流动",
+    subtitle: "不同流动等级的机械、热与加工数据",
     grades: "牌号",
     faq: "常见问题",
   },
@@ -115,7 +115,7 @@ const categoryProfiles = {
     navigation: {
       aria: "玻璃微珠填充 POM 页面分区导航",
       title: "玻璃微珠填充 POM",
-      subtitle: "25% 玻璃微珠填充，兼顾纵横向收缩与热性能",
+      subtitle: "收缩、机械、热与加工数据",
     },
     directory: {
       kicker: "牌号数据",
@@ -169,12 +169,12 @@ const categoryProfiles = {
         "PLATFORM® 玻璃纤维增强 POM 覆盖 10% 至 30% 玻纤含量，面向齿轮、支架及其他对刚度、强度和尺寸控制要求较高的结构件。",
       overviewLabel: "材料概览",
       overview:
-        "各牌号均有中文详情及机械、热性能和成型收缩数据；技术文件与样品按具体牌号和项目确认。",
+        "PLATFORM® 玻璃纤维增强 POM 覆盖 10% 至 30% 玻纤含量，面向齿轮、支架及其他对刚度、强度和尺寸控制要求较高的结构件。",
     },
     navigation: {
       aria: "玻璃纤维增强 POM 页面分区导航",
       title: "玻璃纤维增强 POM",
-      subtitle: "10% 至 30% 玻纤增强，面向精密结构与承载零件",
+      subtitle: "10% 至 30% 玻纤增强 POM，面向高刚度、高强度与尺寸控制结构件",
     },
     directory: {
       kicker: "牌号范围",
@@ -241,7 +241,7 @@ const categoryProfiles = {
     navigation: {
       aria: "高抗冲 POM 页面分区导航",
       title: "高抗冲 POM",
-      subtitle: "覆盖冲击、低温、伸长率与加工性能需求",
+      subtitle: "刚韧平衡、伸长率与低温表现",
     },
     directory: {
       kicker: "牌号范围",

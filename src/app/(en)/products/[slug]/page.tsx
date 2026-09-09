@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
+import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
@@ -1127,6 +1128,8 @@ export default async function ProductDetailPage({
               </p>
             ) : null}
           </section>
+
+          <RelatedCaseStudies grade={product.grade} />
 
           <ActionPanel
             variant="recommendation"

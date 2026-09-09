@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ArrowRight } from "lucide-react";
 import { ActionPanel } from "@/components/ActionPanel";
+import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { PrecisionGearLanding } from "@/components/PrecisionGearLanding";
 import {
@@ -655,6 +656,8 @@ export function DetailedComponentSolution({
               </div>
             </div>
           </section>
+
+          <RelatedCaseStudies sourcePath={`/components/${solution.slug}`} localeSegment={localeSegment} />
 
           <ActionPanel
             className={styles.gearActionPanel}

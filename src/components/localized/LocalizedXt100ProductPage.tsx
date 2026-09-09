@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ActionPanel } from "@/components/ActionPanel";
+import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
@@ -354,6 +355,8 @@ export function LocalizedProductGradePage({
               {messages.common.technicalData} &rarr;
             </Link>
           </section>
+
+          <RelatedCaseStudies grade={product.grade} localeSegment={localeSegment} />
 
           <ActionPanel
             variant="recommendation"
