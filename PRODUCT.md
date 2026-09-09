@@ -409,6 +409,14 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
   warnings/errors. The release gate passes 245 tests and generates all 972
   production routes.
 
+### Shared Glass-Fiber Grade Directory Alignment (2026-09-09, Local Implementation)
+
+- The POM, PA6 and PA66 glass-fiber landing pages share the approved compact
+  desktop grade row: index and grade identity, four core metrics, then the grade
+  data action. Tablet and mobile retain the existing progressive two-row and
+  two-column metric layouts. This is a presentation change only; catalogue
+  values, ordering, links and document status remain unchanged.
+
 ## Version Goal
 
 The current site version should help an overseas buyer or engineer understand Taiyi Polymer's POM compound direction, identify relevant product or application paths, find technical documents or resources, and contact sales with enough context for a material recommendation.

@@ -457,11 +457,12 @@ ordering, core metric definitions, and Chinese property labels.
 
 The English and Chinese glass-fiber POM categories use `GlassFiberGradeCards`
 and its CSS module for the user-selected historical card layout (reference:
-`bdf7a35` product-directory styles). The numbered grade sits at top left, its
-data action at top right, and four metrics span the row below. Keep this stacked
-card grid even at wide desktop sizes; do not revert to the general directory's
-three-column wide-screen layout. Mobile metrics form two columns. Glass-fiber
-percentage remains in the grade eyebrow. The whole card links to grade data.
+`bdf7a35` product-directory styles). At wide desktop sizes, the numbered grade,
+four metrics and data action share one compact horizontal row. Below 64rem the
+metrics move beneath the grade identity, and mobile metrics form two columns.
+Keep the cards as one vertical directory instead of reverting to the general
+directory's three-column card grid. Glass-fiber percentage remains in the grade
+eyebrow. The whole card links to grade data.
 The POM landing pages retain a short test-basis disclosure only. Full data and
 TDS support belong to the linked grade detail pages; do not repeat the complete
 cross-grade table on this landing page. Other POM categories and languages keep their owners.
