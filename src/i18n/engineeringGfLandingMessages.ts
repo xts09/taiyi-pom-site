@@ -47,8 +47,8 @@ export type EngineeringGfLandingUi = {
   homeBreadcrumb: string;
   productsBreadcrumb: string;
   heroImageAlt: string;
-  compareGradesAction: string;
   discussApplicationAction: string;
+  technicalDataAction: string;
   navigationAriaTemplate: string;
   navTitleTemplate: string;
   compareTab: string;
@@ -83,8 +83,8 @@ const englishUi: EngineeringGfLandingUi = {
   homeBreadcrumb: "Home",
   productsBreadcrumb: "Products",
   heroImageAlt: "Taiyi Polymer twin-screw extrusion production line",
-  compareGradesAction: "Compare Grades",
   discussApplicationAction: "Discuss Your Application",
+  technicalDataAction: "Open Technical Data",
   navigationAriaTemplate: "{polymer} glass-fiber page navigation",
   navTitleTemplate: "{polymer} GF Compounds",
   compareTab: "Compare",
@@ -148,8 +148,8 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     homeBreadcrumb: "Startseite",
     productsBreadcrumb: "Produkte",
     heroImageAlt: "Doppelschnecken-Extrusionslinie von Taiyi Polymer",
-    compareGradesAction: "Werkstofftypen vergleichen",
     discussApplicationAction: "Anwendung besprechen",
+    technicalDataAction: "Technische Daten öffnen",
     navigationAriaTemplate: "Seitennavigation für {polymer}-Glasfaserwerkstoffe",
     navTitleTemplate: "{polymer}-GF-Compounds",
     compareTab: "Vergleich",
@@ -212,8 +212,8 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     homeBreadcrumb: "Accueil",
     productsBreadcrumb: "Produits",
     heroImageAlt: "Ligne d’extrusion bivis de Taiyi Polymer",
-    compareGradesAction: "Comparer les grades",
     discussApplicationAction: "Échanger sur votre application",
+    technicalDataAction: "Ouvrir les données techniques",
     navigationAriaTemplate:
       "Navigation de la page des matériaux {polymer} renforcés de fibres de verre",
     navTitleTemplate: "Compounds {polymer} GF",
@@ -277,8 +277,8 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     homeBreadcrumb: "Início",
     productsBreadcrumb: "Produtos",
     heroImageAlt: "Linha de extrusão de dupla rosca da Taiyi Polymer",
-    compareGradesAction: "Comparar graus",
     discussApplicationAction: "Discutir sua aplicação",
+    technicalDataAction: "Abrir dados técnicos",
     navigationAriaTemplate:
       "Navegação da página de materiais {polymer} reforçados com fibra de vidro",
     navTitleTemplate: "Compostos {polymer} GF",
@@ -341,8 +341,8 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     homeBreadcrumb: "首页",
     productsBreadcrumb: "产品",
     heroImageAlt: "Taiyi Polymer 双螺杆挤出生产线",
-    compareGradesAction: "对比牌号",
     discussApplicationAction: "讨论应用需求",
+    technicalDataAction: "打开技术数据",
     navigationAriaTemplate: "{polymer} 玻纤增强材料页面导航",
     navTitleTemplate: "{polymer} 玻纤增强材料",
     compareTab: "牌号对比",

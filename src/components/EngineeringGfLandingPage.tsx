@@ -83,6 +83,7 @@ export function EngineeringGfLandingPage({
     },
     localizedPath("/contact"),
   );
+  const technicalDataHref = localizedPath("/technical-data-sheets");
   const jsonLd = [
     createBreadcrumbJsonLd([
       { name: ui.homeBreadcrumb, path: localizedPath("/") },
@@ -148,16 +149,14 @@ export function EngineeringGfLandingPage({
                   size="productHero"
                   variant="productHeroPrimary"
                 >
-                  <Link href="#grade-comparison">
-                    {ui.compareGradesAction}
-                  </Link>
+                  <Link href={contactHref}>{ui.discussApplicationAction}</Link>
                 </Button>
                 <Button
                   asChild
                   size="productHero"
                   variant="productHeroSecondary"
                 >
-                  <Link href={contactHref}>{ui.discussApplicationAction}</Link>
+                  <Link href={technicalDataHref}>{ui.technicalDataAction}</Link>
                 </Button>
               </>
             }
@@ -166,8 +165,8 @@ export function EngineeringGfLandingPage({
 
         <SecondarySectionNav
           actions={[
-            { href: "#grade-comparison", label: ui.compareGradesAction },
             { href: contactHref, label: ui.discussApplicationAction },
+            { href: technicalDataHref, label: ui.technicalDataAction },
           ]}
           ariaLabel={formatEngineeringGfMessage(ui.navigationAriaTemplate, {
             polymer: page.polymer,

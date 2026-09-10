@@ -109,9 +109,20 @@ test("connects the PA6 and PA66 hub directions to their GF landing owners", () =
   assert.match(directionSource, /\?\? "#pom-grades"/);
 });
 
-test("uses the native comparison anchor for the hero action", () => {
-  assert.match(landingPageSource, /<Link href="#grade-comparison">/);
+test("uses inquiry and technical-data destinations for the primary PA glass-fiber actions", () => {
+  assert.match(
+    landingPageSource,
+    /const technicalDataHref = localizedPath\("\/technical-data-sheets"\)/,
+  );
+  assert.match(
+    landingPageSource,
+    /<Link href=\{contactHref\}>\{ui\.discussApplicationAction\}<\/Link>/,
+  );
   assert.doesNotMatch(landingPageSource, /EngineeringGfAnchorLink/);
+  assert.match(
+    landingPageSource,
+    /\{ href: technicalDataHref, label: ui\.technicalDataAction \}/,
+  );
 });
 
 test("keeps the pinned PA glass-fiber navigation on the shared rail", () => {
