@@ -8,7 +8,10 @@ import {
   getSitemapLanguageOptions,
   getSitemapReleasedSourcePaths,
 } from "../src/i18n/releaseManifest.ts";
-import { assertMatchingRouteSets } from "../src/lib/routeSetInvariant.ts";
+import {
+  assertMatchingRouteSets,
+  assertNoSitemapUrlFragments,
+} from "../src/lib/routeSetInvariant.ts";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -54,6 +57,21 @@ test("route-set invariant reports missing, unexpected, and duplicate routes", ()
   );
 });
 
+test("sitemap URL invariant rejects page fragments", () => {
+  assert.doesNotThrow(() =>
+    assertNoSitemapUrlFragments([
+      "https://www.taiyipolymer.com/products/categories/pom",
+    ]),
+  );
+  assert.throws(
+    () =>
+      assertNoSitemapUrlFragments([
+        "https://www.taiyipolymer.com/products/categories/pom#material-families",
+      ]),
+    /Sitemap URLs must not include fragments:[\s\S]*#material-families/,
+  );
+});
+
 test("sitemap generation enforces release-manifest set equality", () => {
   const sitemapSource = readFileSync(
     resolve(projectRoot, "src/app/sitemap.ts"),
@@ -61,6 +79,7 @@ test("sitemap generation enforces release-manifest set equality", () => {
   );
 
   assert.match(sitemapSource, /assertMatchingRouteSets\(/);
+  assert.match(sitemapSource, /assertNoSitemapUrlFragments\(/);
   assert.match(sitemapSource, /getSitemapReleasedSourcePaths\(\)/);
   assert.match(
     sitemapSource,

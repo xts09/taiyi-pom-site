@@ -1,4 +1,8 @@
 import { expect, test } from "@playwright/test";
+import {
+  getSitemapLanguageOptions,
+  getSitemapReleasedSourcePaths,
+} from "../../src/i18n/releaseManifest.ts";
 
 const readFocusStyle = (element: HTMLElement) => {
   const style = window.getComputedStyle(element);
@@ -120,7 +124,7 @@ test("Header application navigation is stable on dark and light surfaces", async
   }
 });
 
-test("runtime sitemap stays at 173 unique source paths across 5 languages", async ({
+test("runtime sitemap contains every released locale URL once and no fragments", async ({
   request,
 }) => {
   const response = await request.get("/sitemap.xml");
@@ -130,17 +134,22 @@ test("runtime sitemap stays at 173 unique source paths across 5 languages", asyn
   const locations = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
     ([, location]) => location,
   );
-  const sourcePaths = new Set(
-    locations.map((location) => {
-      const pathname = new URL(location).pathname.replace(
-        /^\/(?:de|fr|pt-br|zh)(?=\/|$)/,
-        "",
-      );
-      return pathname || "/";
-    }),
+  const sitemapPaths = locations.map((location) => {
+    const url = new URL(location);
+    return `${url.pathname}${url.search}${url.hash}`;
+  });
+  const releasedLocalePaths = getSitemapReleasedSourcePaths().flatMap(
+    (sourcePath) =>
+      getSitemapLanguageOptions(sourcePath).map(({ href }) => href),
   );
 
-  expect(locations).toHaveLength(865);
-  expect(new Set(locations).size).toBe(865);
-  expect(sourcePaths.size).toBe(173);
+  expect(new Set(locations).size).toBe(locations.length);
+  expect(locations.every((location) => new URL(location).hash === "")).toBe(
+    true,
+  );
+  for (const releasedLocalePath of releasedLocalePaths) {
+    expect(sitemapPaths.filter((path) => path === releasedLocalePath)).toHaveLength(
+      1,
+    );
+  }
 });

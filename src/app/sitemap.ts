@@ -23,7 +23,10 @@ import {
   type ReleasedSourcePath,
 } from "@/i18n/releaseManifest";
 import { productCategoryEntries } from "@/lib/productCategories";
-import { assertMatchingRouteSets } from "@/lib/routeSetInvariant";
+import {
+  assertMatchingRouteSets,
+  assertNoSitemapUrlFragments,
+} from "@/lib/routeSetInvariant";
 import { absoluteUrl, siteUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
@@ -432,10 +435,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   const technicalLandingRoutes = publicTechnicalLandingLinks
+    .filter((page) => !page.href.includes("#"))
     .filter((page) => !isReleasedSourcePath(page.href))
     .map((page) => createUrlEntry(page.href, 0.75, "weekly"));
 
-  return [
+  const sitemapRoutes = [
     ...localizedRoutes,
     ...categoryRoutes,
     ...productRoutes,
@@ -445,4 +449,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...resourceRoutes,
     ...technicalLandingRoutes,
   ];
+
+  assertNoSitemapUrlFragments(sitemapRoutes.map(({ url }) => url));
+
+  return sitemapRoutes;
 }

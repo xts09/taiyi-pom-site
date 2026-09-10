@@ -37,3 +37,15 @@ export const assertMatchingRouteSets = (
     `${label} mismatch: missing=[${missing.join(", ")}], unexpected=[${unexpected.join(", ")}], actualDuplicates=[${actualDuplicates.join(", ")}], expectedDuplicates=[${expectedDuplicates.join(", ")}]`,
   );
 };
+
+export const assertNoSitemapUrlFragments = (urls: readonly string[]) => {
+  const fragmentUrls = urls.filter((url) => url.includes("#"));
+
+  if (fragmentUrls.length === 0) {
+    return;
+  }
+
+  throw new Error(
+    `Sitemap URLs must not include fragments: [${fragmentUrls.join(", ")}]`,
+  );
+};
