@@ -341,7 +341,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     homeBreadcrumb: "首页",
     productsBreadcrumb: "产品",
     heroImageAlt: "Taiyi Polymer 双螺杆挤出生产线",
-    discussApplicationAction: "讨论应用需求",
+    discussApplicationAction: "讨论您的应用",
     technicalDataAction: "打开技术数据",
     navigationAriaTemplate: "{polymer} 玻纤增强材料页面导航",
     navTitleTemplate: "{polymer} 玻纤增强材料",
