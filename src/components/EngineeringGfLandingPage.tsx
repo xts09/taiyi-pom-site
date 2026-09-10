@@ -50,7 +50,8 @@ export function EngineeringGfLandingPage({
   );
   const localizedPath = (path: string) =>
     getLocalizedHref(path, localeSegment);
-  const otherPolymer = polymer === "PA6" ? "PA66" : "PA6";
+  const otherPolymer =
+    polymer === "PA6" ? "PA66" : polymer === "PA66" ? "PA6" : "PA66";
   const grades = getEngineeringGfGrades(polymer);
   const comparisonGrades = grades.map((grade): EngineeringGfComparisonGrade => ({
     grade: grade.grade,
@@ -255,12 +256,20 @@ export function EngineeringGfLandingPage({
                   otherPolymer,
                 })}
               </Link>
-              <Link href={localizedPath("/resources/pa6-vs-pa66-reinforced-parts")}>
-                {ui.pa6Pa66Guide}
-              </Link>
-              <Link href={localizedPath("/resources/glass-fiber-reinforced-pa6-pa66-selection-guide")}>
-                {ui.reinforcementGuide}
-              </Link>
+              {polymer === "PPA" ? (
+                <Link href={localizedPath("/resources/ppa-vs-pa66-material-selection")}>
+                  {ui.ppaVsPa66Guide}
+                </Link>
+              ) : (
+                <>
+                  <Link href={localizedPath("/resources/pa6-vs-pa66-reinforced-parts")}>
+                    {ui.pa6Pa66Guide}
+                  </Link>
+                  <Link href={localizedPath("/resources/glass-fiber-reinforced-pa6-pa66-selection-guide")}>
+                    {ui.reinforcementGuide}
+                  </Link>
+                </>
+              )}
             </nav>
           </div>
         </section>

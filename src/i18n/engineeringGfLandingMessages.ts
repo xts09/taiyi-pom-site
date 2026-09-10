@@ -66,6 +66,7 @@ export type EngineeringGfLandingUi = {
   compareOtherTemplate: string;
   pa6Pa66Guide: string;
   reinforcementGuide: string;
+  ppaVsPa66Guide: string;
   applicationsEyebrow: string;
   applicationsTitle: string;
   validationEyebrow: string;
@@ -104,6 +105,7 @@ const englishUi: EngineeringGfLandingUi = {
   compareOtherTemplate: "Compare {otherPolymer} GF grades →",
   pa6Pa66Guide: "PA6 or PA66? Selection guide →",
   reinforcementGuide: "Glass-fiber reinforcement guide →",
+  ppaVsPa66Guide: "PPA vs PA66 selection guide →",
   applicationsEyebrow: "Application Context",
   applicationsTitle: "Connect the grade to the part architecture",
   validationEyebrow: "Before Final Selection",
@@ -170,6 +172,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "GF-Werkstofftypen aus {otherPolymer} vergleichen →",
     pa6Pa66Guide: "PA6 oder PA66? Auswahlleitfaden →",
     reinforcementGuide: "Leitfaden zur Glasfaserverstärkung →",
+    ppaVsPa66Guide: "Auswahlleitfaden PPA vs. PA66 →",
     applicationsEyebrow: "Anwendungskontext",
     applicationsTitle: "Werkstofftyp und Bauteilarchitektur zusammenführen",
     validationEyebrow: "Vor der endgültigen Auswahl",
@@ -235,6 +238,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "Comparer les grades GF en {otherPolymer} →",
     pa6Pa66Guide: "PA6 ou PA66 ? Guide de sélection →",
     reinforcementGuide: "Guide du renforcement par fibres de verre →",
+    ppaVsPa66Guide: "Guide de sélection PPA vs PA66 →",
     applicationsEyebrow: "Contexte d’application",
     applicationsTitle: "Relier le grade à l’architecture de la pièce",
     validationEyebrow: "Avant la sélection finale",
@@ -299,6 +303,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     compareOtherTemplate: "Comparar graus GF de {otherPolymer} →",
     pa6Pa66Guide: "PA6 ou PA66? Guia de seleção →",
     reinforcementGuide: "Guia de reforço com fibra de vidro →",
+    ppaVsPa66Guide: "Guia de seleção PPA vs PA66 →",
     applicationsEyebrow: "Contexto da aplicação",
     applicationsTitle: "Relacionar o grau à arquitetura da peça",
     validationEyebrow: "Antes da seleção final",
@@ -362,6 +367,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     compareOtherTemplate: "对比 {otherPolymer} 玻纤增强牌号 →",
     pa6Pa66Guide: "PA6 还是 PA66？查看选型指南 →",
     reinforcementGuide: "查看玻纤增强选型指南 →",
+    ppaVsPa66Guide: "查看 PPA 与 PA66 选型指南 →",
     applicationsEyebrow: "应用场景",
     applicationsTitle: "将牌号选择与零件结构对应起来",
     validationEyebrow: "最终选型前",
@@ -398,7 +404,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
 
 const localizedPageCopy: Record<
   LocalizedUrlSegment,
-  Record<EngineeringGfPolymer, LocalizedEngineeringGfPageCopy>
+  Record<Exclude<EngineeringGfPolymer, "PPA">, LocalizedEngineeringGfPageCopy>
 > = {
   de: {
     PA6: {
@@ -1240,6 +1246,399 @@ const localizedPageCopy: Record<
   },
 };
 
+const localizedPpaPageCopy: Record<
+  LocalizedUrlSegment,
+  LocalizedEngineeringGfPageCopy
+> = {
+  de: {
+    parentLabel: "PPA-Compounds",
+    title: "Glasfaserverstärkte PPA-Compounds",
+    metaTitle: "Glasfaserverstärkte PPA-Typen | Taiyi Polymer",
+    metaDescription:
+      "Vergleichen Sie glasfaserverstärkte PLATFORM PPA-Typen nach GF-Anteil, Zug- und Biegedaten, HDT, Wasseraufnahme und Bauteilanforderungen.",
+    heroEyebrow: "PPA-Werkstoffauswahl",
+    heroDescription:
+      "Vergleichen Sie zwei PLATFORM® PPA-Typen mit GF30 und GF50 für die Vorauswahl hochtemperaturbeständiger, maßhaltiger und belastbarer Formteile.",
+    navSubtitle:
+      "GF30–GF50 für thermisches Verhalten, Steifigkeit und Maßhaltigkeit",
+    comparisonIntro:
+      "Die gelisteten Typen sind nach Glasfasergehalt geordnet. Vergleichen Sie veröffentlichte Werte und öffnen Sie anschließend den Typdatensatz oder fordern Sie das vollständige TDS an.",
+    tradeoffs: {
+      improvementTitle: "Glasfaserverstärkung kann unterstützen",
+      improvementIntro:
+        "Glasfaserverstärkte PPA-Typen werden vorausgewählt, wenn das Bauteil ein hochtemperaturbeständiges Strukturprofil benötigt. Der Faseranteil allein belegt keine Eignung.",
+      improvements: [
+        "Höhere Steifigkeit und besseres Lastverhalten",
+        "Höhere Zug- und Biegefestigkeit",
+        "Hohe Wärmeformbeständigkeitswerte zur Vorauswahl",
+        "Maßkontrolle unter Last",
+        "Ausgangspunkt für heiße Strukturbauteile",
+      ],
+      reviewTitle: "Dieselbe Vorauswahl muss weiterhin prüfen",
+      reviewIntro:
+        "Temperaturbeanspruchung, Medien, Geometrie, Verarbeitungshistorie und Faserorientierung können das Formteil- und Montageergebnis verändern. Validieren Sie den tatsächlichen Lastzyklus und das Bauteil.",
+      reviewPoints: [
+        "Temperatur, Dauer und Last",
+        "Feuchtezustand und Umgebungsmedien",
+        "Faserorientierung und Anisotropie",
+        "Richtungsabhängige Schwindung und Verzug",
+        "Bindenähte, Anschnitte und lokale Spannungen",
+        "Montagegrenzen und Funktionsnachweise",
+      ],
+    },
+    applicationsIntro:
+      "Nutzen Sie die gelisteten Daten zur Vorauswahl einer strukturellen PPA-Option und ordnen Sie Temperatur, Last, Umgebung und Maße dem realen Bauteil zu, bevor Formversuche beginnen.",
+    applications: [
+      {
+        eyebrow: "Hochtemperatur-Strukturbauteile",
+        label: "Struktur- und Funktionsbauteile für Fahrzeuge",
+        description:
+          "Definieren Sie Wärmebeanspruchung, Lastdauer, Medienkontakt, Montagezwang und Validierungsanforderungen, bevor Sie einen Typ auswählen.",
+        href: "/applications/automotive",
+      },
+      {
+        eyebrow: "Elektrische und elektronische Bauteile",
+        label: "Thermisch beanspruchte Gehäuse und Stützen",
+        description:
+          "Prüfen Sie Wärme, mechanischen Halt, Maße, elektrische Anforderungen und die genaue Dokumentgrundlage mit der Formteilgeometrie.",
+        href: "/applications/electronics",
+      },
+      {
+        eyebrow: "Präzise Strukturformteile",
+        label: "Industriegehäuse und Halterungen",
+        description:
+          "Verknüpfen Sie Lastpfad, Befestigungsgeometrie, Temperatur, Faserorientierung und Maßziele mit der PPA-Vorauswahl.",
+        href: "/applications/conveyor-automation",
+      },
+    ],
+    validationIntro:
+      "PPA-GF-Daten können eine erste Auswahl eingrenzen, ersetzen jedoch keine Validierung von Temperatur, Maßen und Baugruppe am Bauteil. Halten Sie Prüfgrundlage, Materialzustand und Verarbeitungshistorie während der Entscheidung sichtbar.",
+    validationSteps: [
+      {
+        title: "Lastzyklus und Temperaturbeanspruchung definieren",
+        description:
+          "Erfassen Sie Temperatur, Dauer, Last, Zyklen und Umgebungsmedien. HDT ist ein Vorauswahlwert und keine allgemeine Dauergebrauchstemperatur.",
+      },
+      {
+        title: "Prüfgrundlage und Materialzustand bestätigen",
+        description:
+          "Prüfen Sie vor dem Vergleich kritischer Werte das typenspezifische TDS. Typische Webdaten sind keine vollständige Freigabegrundlage.",
+      },
+      {
+        title: "Trocknung und Schmelzeführung kontrollieren",
+        description:
+          "Legen Sie vor der Bewertung eines Formversuchs das typenspezifische Trocknungs- und Prozessfenster einschließlich Feuchte- und Verweilzeitkontrolle fest.",
+      },
+      {
+        title: "Faserorientierung dem Lastpfad zuordnen",
+        description:
+          "Prüfen Sie Anschnittlage, Fließrichtung, Bindenähte, Rippen und Einlegeteile gegenüber der kritischen Strukturrichtung und lokalen Spannung.",
+      },
+      {
+        title: "Maße und Verzug am Bauteil messen",
+        description:
+          "Verwenden Sie das vorgesehene Werkzeug und die Konditionierungsfolge. Veröffentlichte Schwindungsbereiche helfen bei der Vorauswahl, ersetzen aber keine Messung an der realen Geometrie.",
+      },
+      {
+        title: "Funktion der Baugruppe validieren",
+        description:
+          "Bestätigen Sie thermische, mechanische, Umgebungs-, Dokument- und Wiederholbarkeitsanforderungen vor der Produktionsfreigabe.",
+      },
+    ],
+    contactMaterial: "Glasfaserverstärktes PPA",
+  },
+  fr: {
+    parentLabel: "Composés PPA",
+    title: "Composés PPA renforcés de fibres de verre",
+    metaTitle: "Grades PPA renforcés de fibres de verre | Taiyi Polymer",
+    metaDescription:
+      "Comparez les grades PLATFORM en PPA renforcé de fibres de verre selon le taux de GF, la traction, la flexion, la HDT, l’absorption d’eau et les exigences de la pièce.",
+    heroEyebrow: "Sélection de grades PPA",
+    heroDescription:
+      "Comparez deux grades PLATFORM® PPA, GF30 et GF50, pour présélectionner des pièces moulées structurelles soumises à la chaleur, à la charge et aux exigences dimensionnelles.",
+    navSubtitle:
+      "GF30–GF50 selon la réponse thermique, la rigidité et les dimensions",
+    comparisonIntro:
+      "Les grades répertoriés sont classés par teneur en fibres de verre. Comparez les valeurs publiées, puis ouvrez la fiche du grade ou demandez sa TDS complète.",
+    tradeoffs: {
+      improvementTitle: "Le renforcement en fibres de verre peut contribuer à",
+      improvementIntro:
+        "Les grades PPA renforcés de fibres de verre sont présélectionnés lorsqu’une pièce requiert un équilibre structurel à haute température. Le pourcentage seul ne démontre pas l’aptitude.",
+      improvements: [
+        "Plus de rigidité et de réponse sous charge",
+        "Plus de résistance à la traction et à la flexion",
+        "Des valeurs élevées de HDT pour la présélection",
+        "Un contrôle dimensionnel sous charge",
+        "Un point de départ pour les pièces structurelles chaudes",
+      ],
+      reviewTitle: "Cette présélection doit aussi examiner",
+      reviewIntro:
+        "L’exposition thermique, les milieux, la géométrie, l’historique de moulage et l’orientation des fibres peuvent modifier le résultat moulé et assemblé. Validez le cycle de service et la pièce réels.",
+      reviewPoints: [
+        "Température, durée et charge",
+        "État d’humidité et milieux environnants",
+        "Orientation des fibres et anisotropie",
+        "Retrait directionnel et gauchissement",
+        "Lignes de soudure, points d’injection et contraintes locales",
+        "Contraintes d’assemblage et preuves fonctionnelles",
+      ],
+    },
+    applicationsIntro:
+      "Utilisez les données publiées pour présélectionner une option PPA structurelle, puis reliez température, charge, environnement et dimensions à la pièce réelle avant les essais de moulage.",
+    applications: [
+      {
+        eyebrow: "Structures à haute température",
+        label: "Pièces automobiles structurelles et fonctionnelles",
+        description:
+          "Définissez l’exposition thermique, la durée de charge, le contact avec les fluides, les contraintes d’assemblage et les exigences de validation avant de choisir un grade.",
+        href: "/applications/automotive",
+      },
+      {
+        eyebrow: "Pièces électriques et électroniques",
+        label: "Boîtiers et supports soumis à la chaleur",
+        description:
+          "Examinez la chaleur, la tenue mécanique, les dimensions, les exigences électriques et la base documentaire exacte avec la géométrie moulée.",
+        href: "/applications/electronics",
+      },
+      {
+        eyebrow: "Structures moulées de précision",
+        label: "Boîtiers et supports industriels",
+        description:
+          "Reliez le chemin de charge, la géométrie de fixation, la température, l’orientation des fibres et les objectifs dimensionnels à la présélection PPA.",
+        href: "/applications/conveyor-automation",
+      },
+    ],
+    validationIntro:
+      "Les données PPA GF peuvent réduire une première sélection, mais ne remplacent pas la validation thermique, dimensionnelle et d’assemblage au niveau de la pièce. Gardez visibles la base d’essai, l’état matière et l’historique de transformation pendant la décision.",
+    validationSteps: [
+      {
+        title: "Définir le cycle de service et l’exposition thermique",
+        description:
+          "Consignez température, durée, charge, cycles et milieux. La HDT est une valeur de présélection, pas une température universelle d’usage continu.",
+      },
+      {
+        title: "Confirmer la base d’essai et l’état matière",
+        description:
+          "Vérifiez la TDS propre au grade avant de comparer les valeurs critiques. Les données web typiques ne constituent pas une base d’approbation complète.",
+      },
+      {
+        title: "Contrôler le séchage et la gestion de la matière fondue",
+        description:
+          "Définissez la fenêtre de séchage et de transformation du grade avant d’interpréter un essai de moulage, y compris le contrôle de l’humidité et du temps de séjour.",
+      },
+      {
+        title: "Relier l’orientation des fibres au chemin de charge",
+        description:
+          "Examinez position de l’injection, direction d’écoulement, lignes de soudure, nervures et inserts par rapport à la direction structurelle critique et aux contraintes locales.",
+      },
+      {
+        title: "Mesurer les dimensions et le gauchissement de la pièce",
+        description:
+          "Utilisez l’outillage et la séquence de conditionnement prévus. Les plages de retrait publiées guident la présélection mais ne remplacent pas les mesures sur la géométrie réelle.",
+      },
+      {
+        title: "Valider la fonction assemblée",
+        description:
+          "Confirmez les exigences thermiques, mécaniques, environnementales, documentaires et de répétabilité avant le passage en production.",
+      },
+    ],
+    contactMaterial: "PPA renforcé de fibres de verre",
+  },
+  "pt-br": {
+    parentLabel: "Compostos de PPA",
+    title: "Compostos de PPA reforçados com fibra de vidro",
+    metaTitle: "Graus de PPA reforçados com fibra de vidro | Taiyi Polymer",
+    metaDescription:
+      "Compare graus PLATFORM de PPA reforçado com fibra de vidro por teor de GF, tração, flexão, HDT, absorção de água e requisitos da peça.",
+    heroEyebrow: "Seleção de graus PPA",
+    heroDescription:
+      "Compare dois graus PLATFORM® PPA, GF30 e GF50, para a triagem de peças moldadas estruturais submetidas a alta temperatura, carga e requisitos dimensionais.",
+    navSubtitle:
+      "GF30–GF50 em resposta térmica, rigidez e controle dimensional",
+    comparisonIntro:
+      "Os graus listados estão ordenados pelo teor de fibra de vidro. Compare os valores publicados e depois abra o registro do grau ou solicite a TDS completa.",
+    tradeoffs: {
+      improvementTitle: "O reforço com fibra de vidro pode contribuir para",
+      improvementIntro:
+        "Graus de PPA reforçados com fibra de vidro entram na triagem quando a peça precisa de um equilíbrio estrutural em alta temperatura. A porcentagem, por si só, não comprova a adequação.",
+      improvements: [
+        "Maior rigidez e resposta à carga",
+        "Maior resistência à tração e à flexão",
+        "Valores elevados de HDT para a triagem",
+        "Controle dimensional sob carga",
+        "Ponto de partida para peças estruturais quentes",
+      ],
+      reviewTitle: "A mesma triagem ainda deve avaliar",
+      reviewIntro:
+        "Exposição térmica, meios de contato, geometria, histórico de moldagem e orientação das fibras podem mudar o resultado moldado e montado. Valide o ciclo de serviço e a peça reais.",
+      reviewPoints: [
+        "Temperatura, duração e carga",
+        "Estado de umidade e meios do ambiente",
+        "Orientação das fibras e anisotropia",
+        "Contração direcional e empenamento",
+        "Linhas de solda, pontos de injeção e tensões locais",
+        "Restrições de montagem e evidências funcionais",
+      ],
+    },
+    applicationsIntro:
+      "Use os dados publicados para a triagem de uma opção estrutural de PPA e depois relacione temperatura, carga, ambiente e dimensões à peça real antes dos testes de moldagem.",
+    applications: [
+      {
+        eyebrow: "Estruturas de alta temperatura",
+        label: "Peças automotivas estruturais e funcionais",
+        description:
+          "Defina exposição térmica, duração da carga, contato com fluidos, restrições de montagem e requisitos de validação antes de selecionar um grau.",
+        href: "/applications/automotive",
+      },
+      {
+        eyebrow: "Peças elétricas e eletrônicas",
+        label: "Carcaças e suportes sob exigência térmica",
+        description:
+          "Avalie calor, retenção mecânica, dimensões, requisitos elétricos e a base documental exata junto da geometria moldada.",
+        href: "/applications/electronics",
+      },
+      {
+        eyebrow: "Estruturas moldadas de precisão",
+        label: "Carcaças e suportes industriais",
+        description:
+          "Relacione o caminho de carga, a geometria de fixação, a temperatura, a orientação das fibras e os objetivos dimensionais à triagem de PPA.",
+        href: "/applications/conveyor-automation",
+      },
+    ],
+    validationIntro:
+      "Os dados de PPA GF podem reduzir uma seleção inicial, mas não substituem a validação térmica, dimensional e de montagem da peça. Mantenha a base de ensaio, o estado do material e o histórico de processo visíveis durante toda a decisão.",
+    validationSteps: [
+      {
+        title: "Definir o ciclo de serviço e a exposição térmica",
+        description:
+          "Registre temperatura, duração, carga, ciclos e meios do ambiente. A HDT é um valor de triagem, não uma temperatura universal de uso contínuo.",
+      },
+      {
+        title: "Confirmar a base de ensaio e o estado do material",
+        description:
+          "Verifique a TDS específica do grau antes de comparar valores críticos. Dados típicos publicados na web não constituem uma base de aprovação completa.",
+      },
+      {
+        title: "Controlar a secagem e o manuseio do fundido",
+        description:
+          "Defina a janela de secagem e processamento específica do grau antes de interpretar um teste de moldagem, incluindo o controle de umidade e do tempo de residência.",
+      },
+      {
+        title: "Relacionar a orientação das fibras ao caminho de carga",
+        description:
+          "Avalie a posição de injeção, a direção de fluxo, as linhas de solda, as nervuras e os insertos em relação à direção estrutural crítica e às tensões locais.",
+      },
+      {
+        title: "Medir dimensões e empenamento na peça",
+        description:
+          "Use o molde e a sequência de condicionamento previstos. As faixas de contração publicadas ajudam na triagem, mas não substituem medições na geometria real.",
+      },
+      {
+        title: "Validar a função montada",
+        description:
+          "Confirme requisitos térmicos, mecânicos, ambientais, documentais e de repetibilidade antes da liberação para produção.",
+      },
+    ],
+    contactMaterial: "PPA reforçado com fibra de vidro",
+  },
+  zh: {
+    parentLabel: "PPA 改性材料",
+    title: "玻璃纤维增强 PPA 材料",
+    metaTitle: "玻璃纤维增强 PPA 牌号 | Taiyi Polymer",
+    metaDescription:
+      "按玻纤含量、拉伸与弯曲数据、热变形温度、吸水率和零件要求，对比 PLATFORM 玻璃纤维增强 PPA 牌号。",
+    heroEyebrow: "PPA 牌号选择",
+    heroDescription:
+      "对比 2 个 PLATFORM® PPA 牌号，覆盖 GF30 与 GF50，用于高温、承载和尺寸要求较高的注塑零件初筛。",
+    navSubtitle: "GF30–GF50，覆盖热响应、刚性与尺寸控制",
+    comparisonIntro:
+      "已列牌号按玻纤含量排序。请先对比已发布数据，再进入牌号页面或申请完整 TDS。",
+    tradeoffs: {
+      improvementTitle: "玻璃纤维增强可支持",
+      improvementIntro:
+        "当零件需要高温下的结构性能平衡时，可将玻纤增强 PPA 纳入初筛。玻纤比例本身不能证明材料适用性。",
+      improvements: [
+        "更高的刚性与承载响应",
+        "更高的拉伸与弯曲强度",
+        "较高的热变形初筛数据",
+        "载荷下的尺寸控制",
+        "高温结构件的初始候选方向",
+      ],
+      reviewTitle: "同一轮初筛仍需审查",
+      reviewIntro:
+        "热暴露、接触介质、结构、加工历史和纤维取向都会改变注塑件与装配结果。应验证真实的工作循环和零件。",
+      reviewPoints: [
+        "温度、持续时间与载荷",
+        "水分状态与环境介质",
+        "纤维取向与各向异性",
+        "方向性收缩与翘曲",
+        "熔接线、浇口和局部应力",
+        "装配约束与功能验证证据",
+      ],
+    },
+    applicationsIntro:
+      "可先用已发布数据初筛结构型 PPA 方向，再将温度、载荷、环境与尺寸要求对应到真实零件后开展试模。",
+    applications: [
+      {
+        eyebrow: "高温结构件",
+        label: "汽车结构与功能部件",
+        description:
+          "对比牌号前，请定义热暴露、载荷持续时间、介质接触、装配约束和验证要求。",
+        href: "/applications/automotive",
+      },
+      {
+        eyebrow: "电气与电子部件",
+        label: "耐热壳体与支撑件",
+        description:
+          "结合注塑结构，审查温度、机械保持、尺寸、电气要求和具体文件依据。",
+        href: "/applications/electronics",
+      },
+      {
+        eyebrow: "精密结构注塑件",
+        label: "工业壳体与支架",
+        description:
+          "将载荷路径、固定结构、温度、纤维取向和尺寸目标对应到 PPA 初筛范围。",
+        href: "/applications/conveyor-automation",
+      },
+    ],
+    validationIntro:
+      "PPA GF 数据可缩小初始范围，但不能代替零件层面的热、尺寸与装配验证。整个决策过程中应保留测试依据、材料状态和加工历史。",
+    validationSteps: [
+      {
+        title: "定义工作循环与热暴露",
+        description:
+          "记录温度、持续时间、载荷、循环和环境介质。HDT 是初筛数据，不是通用连续使用温度。",
+      },
+      {
+        title: "确认测试依据与材料状态",
+        description:
+          "在对比关键数据前，请查验对应牌号的 TDS。网页典型值不能作为完整批准依据。",
+      },
+      {
+        title: "控制干燥与熔体处理",
+        description:
+          "解释试模结果前，应确定牌号对应的干燥和加工窗口，并控制水分和停留时间。",
+      },
+      {
+        title: "将纤维取向对应到载荷路径",
+        description:
+          "根据关键结构方向与局部应力，审查浇口位置、流动方向、熔接线、加强筋和嵌件。",
+      },
+      {
+        title: "测量零件尺寸与翘曲",
+        description:
+          "使用目标模具和调湿流程。已发布收缩范围可用于初筛，但不能替代对真实结构的测量。",
+      },
+      {
+        title: "验证装配后的功能",
+        description:
+          "量产前，确认热、力学、环境、文件与重复性要求。",
+      },
+    ],
+    contactMaterial: "玻璃纤维增强 PPA",
+  },
+};
+
 export const formatEngineeringGfMessage = (
   template: string,
   values: Readonly<Record<string, string | number>>,
@@ -1260,7 +1659,10 @@ export const getEngineeringGfLandingMessages = (
     return { page: sourcePage, ui: englishUi };
   }
 
-  const pageCopy = localizedPageCopy[localeSegment][polymer];
+  const pageCopy =
+    polymer === "PPA"
+      ? localizedPpaPageCopy[localeSegment]
+      : localizedPageCopy[localeSegment][polymer];
   const ui = localizedUi[localeSegment];
 
   if (!pageCopy || !ui) {

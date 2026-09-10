@@ -3,7 +3,7 @@ import {
   type CatalogEngineeringTdsRecord,
 } from "@/data/catalog";
 
-export type EngineeringGfPolymer = "PA6" | "PA66";
+export type EngineeringGfPolymer = "PA6" | "PA66" | "PPA";
 
 export type EngineeringGfApplicationLink = {
   eyebrow: string;
@@ -268,6 +268,106 @@ const landingPages: Record<
       },
     ],
     contactMaterial: "Glass Fiber Reinforced PA66",
+  },
+  PPA: {
+    polymer: "PPA",
+    slug: "glass-fiber-reinforced-ppa-compound",
+    path: "/products/categories/glass-fiber-reinforced-ppa-compound",
+    parentPath: "/products/categories/ppa-compound",
+    parentLabel: "PPA Compounds",
+    title: "Glass Fiber Reinforced PPA Compounds",
+    metaTitle: "Glass Fiber Reinforced PPA Grades | Taiyi Polymer",
+    metaDescription:
+      "Compare PLATFORM glass-fiber-reinforced PPA grades by GF level, tensile and flexural data, HDT, water absorption and molded-part requirements.",
+    heroEyebrow: "PPA Grade Selection",
+    heroDescription:
+      "Compare two PLATFORM® PPA grades at GF30 and GF50 for high-temperature, dimensional and load-bearing molded-part screening.",
+    navSubtitle: "GF30–GF50 across thermal response, stiffness, and dimensions",
+    comparisonIntro:
+      "The listed grades are ordered by glass-fiber content. Compare published values, then open the grade record or request its full TDS.",
+    tradeoffs: {
+      improvementTitle: "Glass-fiber reinforcement can support",
+      improvementIntro:
+        "PPA glass-fiber grades are screened where the part needs a high-temperature structural balance. The percentage alone does not establish suitability.",
+      improvements: [
+        "Higher stiffness and load response",
+        "Higher tensile and flexural strength",
+        "High heat-deflection screening values",
+        "Dimensional control under load",
+        "A starting point for hot structural parts",
+      ],
+      reviewTitle: "The same screening must still review",
+      reviewIntro:
+        "Temperature exposure, media, geometry, molding history and fiber orientation can change the molded and assembled result. Validate the actual duty cycle and part.",
+      reviewPoints: [
+        "Thermal exposure, duration and load",
+        "Moisture state and environmental media",
+        "Fiber orientation and anisotropy",
+        "Directional shrinkage and warpage",
+        "Weld lines, gates and local stress",
+        "Assembly constraints and functional evidence",
+      ],
+    },
+    applicationsIntro:
+      "Use the listed data to screen a structural PPA option, then match temperature, load, environment and dimensions to the actual part before molding trials.",
+    applications: [
+      {
+        eyebrow: "High-temperature structures",
+        label: "Automotive structural and functional parts",
+        description:
+          "Define heat exposure, load duration, medium contact, assembly restraint and validation requirements before selecting a grade.",
+        href: "/applications/automotive",
+      },
+      {
+        eyebrow: "Electrical and electronic parts",
+        label: "Thermally demanding housings and supports",
+        description:
+          "Review heat, mechanical retention, dimensions, electrical requirements and the exact document basis with the molded geometry.",
+        href: "/applications/electronics",
+      },
+      {
+        eyebrow: "Precision molded structures",
+        label: "Industrial housings and brackets",
+        description:
+          "Connect the load path, fastening geometry, temperature, fiber orientation and dimensional targets to the PPA screening range.",
+        href: "/applications/conveyor-automation",
+      },
+    ],
+    validationIntro:
+      "PPA GF data can narrow an initial range, but it does not replace part-level thermal, dimensional and assembly validation. Keep the test basis, material state and processing history visible throughout the decision.",
+    validationSteps: [
+      {
+        title: "Define the duty cycle and thermal exposure",
+        description:
+          "Record temperature, duration, loading, cycling and environmental media. HDT is a screening value, not a universal continuous-use temperature.",
+      },
+      {
+        title: "Confirm the test basis and material state",
+        description:
+          "Check the grade-specific TDS before comparing critical values. Do not treat typical web data as a complete approval basis.",
+      },
+      {
+        title: "Control drying and melt handling",
+        description:
+          "Set the grade-specific drying and processing window before interpreting a molding trial, including moisture and residence-time control.",
+      },
+      {
+        title: "Map fiber orientation to the load path",
+        description:
+          "Review gate position, flow direction, weld lines, ribs and inserts against the critical structural direction and local stress.",
+      },
+      {
+        title: "Measure dimensions and warpage on the part",
+        description:
+          "Use the intended mold and conditioning sequence. Published shrinkage ranges guide screening but cannot replace measurements on the actual geometry.",
+      },
+      {
+        title: "Validate the assembled function",
+        description:
+          "Confirm thermal, mechanical, environmental, document and repeatability requirements before production approval.",
+      },
+    ],
+    contactMaterial: "Glass Fiber Reinforced PPA",
   },
 };
 

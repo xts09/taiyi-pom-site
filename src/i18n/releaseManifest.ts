@@ -135,6 +135,10 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/categories/glass-fiber-reinforced-pa66-compound",
     ...publicRelease,
   },
+  glassFiberReinforcedPpaLanding: {
+    sourcePath: "/products/categories/glass-fiber-reinforced-ppa-compound",
+    ...publicRelease,
+  },
   ppaCompoundCategory: {
     sourcePath: "/products/categories/ppa-compound",
     ...chineseOnlyPublicRelease,

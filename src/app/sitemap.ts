@@ -116,6 +116,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly" as const,
     },
     {
+      sourcePath: "/products/categories/glass-fiber-reinforced-ppa-compound",
+      priority: 0.75,
+      changeFrequency: "weekly" as const,
+    },
+    {
       sourcePath:
         "/products/categories/wear-resistant-low-friction-pom-compound",
       priority: 0.75,

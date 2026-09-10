@@ -7,17 +7,7 @@
 
 .heroBand {
   position: relative;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(7, 17, 31, 0.96) 0%,
-      rgba(7, 17, 31, 0.76) 46%,
-      rgba(7, 17, 31, 0.34) 100%
-    ),
-    url("/generated/landing/home-dark-satin-wave-v1.webp") center right / cover
-      no-repeat,
-    var(--ds-background-evidence);
-  color: var(--ds-foreground-on-dark);
+  background: var(--ds-background-surface);
 }
 
 .heroBreadcrumb,
@@ -31,23 +21,15 @@
 }
 
 .heroBreadcrumb {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   z-index: 3;
   padding-top: var(--ds-space-4);
 }
 
-.heroBreadcrumb .breadcrumb {
-  --breadcrumb-link: var(--ds-color-cyan-bright);
-  --breadcrumb-link-hover: var(--ds-foreground-on-dark);
-  --breadcrumb-current: var(--ds-foreground-on-dark-muted);
-  --breadcrumb-separator: var(--ds-foreground-on-dark-muted);
-}
-
-.breadcrumb [data-slot="breadcrumb-link"]:focus-visible {
-  outline-color: var(--ds-color-cyan-bright);
-}
-
-.hero {
+.page .hero {
   min-height: 0;
   overflow: visible;
 }
@@ -66,7 +48,7 @@
 
 .heroInner {
   align-items: flex-start;
-  padding-block: var(--ds-space-8) 0;
+  padding-block: calc(var(--ds-space-4) + 2.75rem + var(--ds-space-4)) 0;
 }
 
 .heroCopy {
@@ -85,6 +67,20 @@
   --ds-page-hero-eyebrow: var(--ds-action-primary);
   --ds-page-hero-title-size: var(--ds-product-hero-title-size);
   --ds-page-hero-description-size: var(--ds-product-hero-body-size);
+}
+
+@media (min-width: 48rem) {
+  .heroBand {
+    /* Keep the card overlap on a continuous white support surface, matching
+       the POM category Hero instead of exposing the gray page canvas. */
+    padding-bottom: clamp(2.45rem, 4.8vw, 3.35rem);
+  }
+
+  .heroCopy {
+    /* Match the product-category Hero rhythm: the card extends into the
+       white secondary-navigation support band instead of stopping above it. */
+    margin-bottom: calc(clamp(2.1rem, 4.2vw, 3rem) * -1);
+  }
 }
 
 .heroCopy h1 {
@@ -442,10 +438,6 @@
 }
 
 @media (max-width: 47.999rem) {
-  .heroBand {
-    background-position: center top;
-  }
-
   .heroBreadcrumb {
     padding-top: 0.85rem;
   }
@@ -456,7 +448,7 @@
 
   .heroInner {
     align-items: flex-end;
-    padding-block: var(--ds-space-8) 0;
+    padding-block: calc(0.85rem + 2.75rem + var(--ds-space-4)) 0;
   }
 
   .heroMedia img {

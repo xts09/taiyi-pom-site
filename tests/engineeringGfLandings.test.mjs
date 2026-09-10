@@ -32,24 +32,30 @@ const pa6RouteSource = readProjectFile(
 const pa66RouteSource = readProjectFile(
   "src/app/(en)/products/categories/glass-fiber-reinforced-pa66-compound/page.tsx",
 );
+const ppaRouteSource = readProjectFile(
+  "src/app/(en)/products/categories/glass-fiber-reinforced-ppa-compound/page.tsx",
+);
 const localizedRouteSources = [
   "src/app/[locale]/products/categories/glass-fiber-reinforced-pa6-compound/page.tsx",
   "src/app/[locale]/products/categories/glass-fiber-reinforced-pa66-compound/page.tsx",
+  "src/app/[locale]/products/categories/glass-fiber-reinforced-ppa-compound/page.tsx",
 ].map(readProjectFile);
 
 const gfGrades = catalog.filter(
   (record) =>
     record.kind === "engineering-tds" &&
     record.category === "Glass Fiber Reinforced" &&
-    ["PA6", "PA66"].includes(record.family),
+    ["PA6", "PA66", "PPA"].includes(record.family),
 );
 
-test("keeps the two GF landing catalogs complete and separate", () => {
+test("keeps the PA6, PA66 and PPA GF landing catalogs complete and separate", () => {
   const pa6 = gfGrades.filter((grade) => grade.family === "PA6");
   const pa66 = gfGrades.filter((grade) => grade.family === "PA66");
+  const ppa = gfGrades.filter((grade) => grade.family === "PPA");
 
   assert.equal(pa6.length, 17);
   assert.equal(pa66.length, 15);
+  assert.equal(ppa.length, 2);
   assert.deepEqual(
     [...new Set(pa6.map((grade) => Number(grade.filler)))].sort((a, b) => a - b),
     [8, 15, 20, 30, 32, 35, 40, 45, 50],
@@ -57,6 +63,14 @@ test("keeps the two GF landing catalogs complete and separate", () => {
   assert.deepEqual(
     [...new Set(pa66.map((grade) => Number(grade.filler)))].sort((a, b) => a - b),
     [15, 20, 25, 30, 33, 35, 40, 45, 50],
+  );
+  assert.deepEqual(
+    ppa.map((grade) => grade.grade),
+    ["EAG630H", "EAG650H"],
+  );
+  assert.deepEqual(
+    ppa.map((grade) => Number(grade.filler)),
+    [30, 50],
   );
 });
 
@@ -97,7 +111,7 @@ test("keeps the approved comparison fields and marks only real gaps unpublished"
   assert.doesNotMatch(comparisonSource, /\?\s*"0/);
 });
 
-test("connects the PA6 and PA66 hub directions to their GF landing owners", () => {
+test("connects the PA6, PA66 and PPA hub directions to their GF landing owners", () => {
   assert.match(
     directionSource,
     /"PA6:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-pa6-compound/,
@@ -106,10 +120,14 @@ test("connects the PA6 and PA66 hub directions to their GF landing owners", () =
     directionSource,
     /"PA66:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-pa66-compound/,
   );
+  assert.match(
+    directionSource,
+    /"PPA:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-ppa-compound/,
+  );
   assert.match(directionSource, /\?\? "#pom-grades"/);
 });
 
-test("uses inquiry and technical-data destinations for the primary PA glass-fiber actions", () => {
+test("uses inquiry and technical-data destinations for the primary engineering glass-fiber actions", () => {
   assert.match(
     landingPageSource,
     /const technicalDataHref = localizedPath\("\/technical-data-sheets"\)/,
@@ -136,6 +154,14 @@ test("keeps the pinned PA glass-fiber navigation on the shared rail", () => {
   );
 });
 
+test("places the PA glass-fiber breadcrumb within the factory hero", () => {
+  assert.match(
+    landingStyles,
+    /\.heroBreadcrumb \{[\s\S]*position: absolute[\s\S]*top: 0/,
+  );
+  assert.doesNotMatch(landingStyles, /home-dark-satin-wave-v1/);
+});
+
 test("does not turn unresolved suffixes into invented positioning", () => {
   assert.doesNotMatch(
     dataSource,
@@ -150,8 +176,8 @@ test("does not turn unresolved suffixes into invented positioning", () => {
   }
 });
 
-test("publishes both routes as complete five-language sitemap owners", () => {
-  for (const routeSource of [pa6RouteSource, pa66RouteSource]) {
+test("publishes all three routes as complete five-language sitemap owners", () => {
+  for (const routeSource of [pa6RouteSource, pa66RouteSource, ppaRouteSource]) {
     assert.match(routeSource, /indexable: true/);
     assert.match(
       routeSource,
@@ -176,6 +202,7 @@ test("publishes both routes as complete five-language sitemap owners", () => {
   for (const path of [
     "/products/categories/glass-fiber-reinforced-pa6-compound",
     "/products/categories/glass-fiber-reinforced-pa66-compound",
+    "/products/categories/glass-fiber-reinforced-ppa-compound",
   ]) {
     assert.match(releaseManifestSource, new RegExp(path));
     assert.match(sitemapSource, new RegExp(path));
