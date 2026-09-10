@@ -26,10 +26,111 @@ const publicRelease = {
   includeInAlternates: true,
 } as const;
 
-const chineseOnlyPublicRelease = {
+const allLocalizedSegments = ["de", "fr", "pt-br", "zh"] as const satisfies
+  readonly LocalizedUrlSegment[];
+
+const defaultNonPomGradeLocalizedSegments = ["de", "zh"] as const satisfies
+  readonly LocalizedUrlSegment[];
+
+const allLocalizedPublicRelease = {
   ...publicRelease,
-  localizedSegments: ["de", "fr", "pt-br", "zh"],
+  localizedSegments: allLocalizedSegments,
 } as const;
+
+export const legacyFiveLocaleNonPomGradeSlugs = [
+  "eag108u-pa6-glass-fiber-reinforced",
+  "eag115-pa6-glass-fiber-reinforced",
+  "eag115h-pa6-glass-fiber-reinforced",
+  "eag115u-pa6-glass-fiber-reinforced",
+  "eag120-pa6-glass-fiber-reinforced",
+  "eag120u-pa6-glass-fiber-reinforced",
+  "eag130-pa6-glass-fiber-reinforced",
+  "eag130a-pa6-glass-fiber-reinforced",
+  "eag130h-pa6-glass-fiber-reinforced",
+  "eag130u-pa6-glass-fiber-reinforced",
+  "eag132h-pa6-glass-fiber-reinforced",
+  "eag135-pa6-glass-fiber-reinforced",
+  "eag140-pa6-glass-fiber-reinforced",
+  "eag140u-pa6-glass-fiber-reinforced",
+  "eag145-pa6-glass-fiber-reinforced",
+  "eag145a-pa6-glass-fiber-reinforced",
+  "eag150u-pa6-glass-fiber-reinforced",
+  "eam120-pa6-mineral-filled",
+  "eam125-pa6-mineral-filled",
+  "eam130-pa6-mineral-filled",
+  "eam140-pa6-mineral-filled",
+  "eam140a-pa6-mineral-filled",
+  "eac115c-pa6-carbon-fiber-reinforced",
+  "ear110h-pa6-mold-release",
+  "ear120h-pa6-mold-release",
+  "eai110-pa6-impact-modified",
+  "eai120-pa6-impact-modified",
+  "eai130u-pa6-impact-modified",
+  "eai140-pa6-impact-modified",
+  "eai150-pa6-impact-modified",
+  "eai160-pa6-impact-modified",
+  "eag125f-pa6-flame-retardant",
+  "eag125v0-pa6-v0-flame-retardant",
+  "eab230-pa66-glass-bead-filled",
+  "eab250-pa66-glass-bead-filled",
+  "eax238-pa66-gf-mineral-reinforced",
+  "eax240-pa66-gf-mineral-reinforced",
+  "eax240a-pa66-gf-mineral-reinforced",
+  "eag215-pa66-glass-fiber-reinforced",
+  "eag215a-pa66-glass-fiber-reinforced",
+  "eag220-pa66-glass-fiber-reinforced",
+  "eag225-pa66-glass-fiber-reinforced",
+  "eag225h-pa66-glass-fiber-reinforced",
+  "eag230-pa66-glass-fiber-reinforced",
+  "eag230h-pa66-glass-fiber-reinforced",
+  "eag230ha-pa66-glass-fiber-reinforced",
+  "eag233-pa66-glass-fiber-reinforced",
+  "eag233h-pa66-glass-fiber-reinforced",
+  "eag235h-pa66-glass-fiber-reinforced",
+  "eag240-pa66-glass-fiber-reinforced",
+  "eag245-pa66-glass-fiber-reinforced",
+  "eag250-pa66-glass-fiber-reinforced",
+  "eag250h-pa66-glass-fiber-reinforced",
+  "eam240-pa66-mineral-filled",
+  "eam240a-pa66-mineral-filled",
+  "eaw210-pa66-wear-low-friction",
+  "eaw220-pa66-wear-low-friction",
+  "eac220c-pa66-carbon-fiber-reinforced",
+  "ear210-pa66-mold-release",
+  "eai210-pa66-impact-modified",
+  "eai220-pa66-impact-modified",
+  "eai230-pa66-impact-modified",
+  "eai240u-pa66-impact-modified",
+  "eai250-pa66-impact-modified",
+  "eag210v0-pa66-flame-retardant",
+  "eag215v0-pa66-flame-retardant",
+  "eag225v0-pa66-flame-retardant",
+  "eag225v0a-pa66-flame-retardant",
+  "eag225v0b-pa66-flame-retardant",
+  "eag230v0-pa66-flame-retardant",
+  "eax645-ppa-gf-mineral-reinforced",
+  "eag630h-ppa-glass-fiber-reinforced",
+  "eag650h-ppa-glass-fiber-reinforced",
+  "eaw610-ppa-wear-low-friction",
+  "eaw620-ppa-wear-low-friction",
+] as const;
+
+const legacyFiveLocaleNonPomGradeSlugSet = new Set<string>(
+  legacyFiveLocaleNonPomGradeSlugs,
+);
+
+type CatalogGradeReleaseIdentity = {
+  kind: "product" | "engineering-tds";
+  slug: string;
+};
+
+export const getCatalogGradeLocalizedSegments = ({
+  kind,
+  slug,
+}: CatalogGradeReleaseIdentity): readonly LocalizedUrlSegment[] =>
+  kind === "product" || legacyFiveLocaleNonPomGradeSlugSet.has(slug)
+    ? allLocalizedSegments
+    : defaultNonPomGradeLocalizedSegments;
 
 const legacyRedirectRelease = {
   status: "public",
@@ -37,19 +138,8 @@ const legacyRedirectRelease = {
   publicNavigation: false,
   includeInSitemap: false,
   includeInAlternates: false,
-  localizedSegments: ["de", "fr", "pt-br", "zh"],
+  localizedSegments: allLocalizedSegments,
 } as const;
-
-export const chineseEngineeringGradeReleaseEntries: readonly LocalizedReleaseEntry[] =
-  (generatedCatalog as CatalogEngineeringTdsRecord[])
-    .filter(
-      (record): record is CatalogEngineeringTdsRecord =>
-        record.kind === "engineering-tds" && record.seo?.indexable !== false,
-    )
-    .map((document) => ({
-      sourcePath: `/products/${document.slug}`,
-      ...chineseOnlyPublicRelease,
-    }));
 
 export const localizedReleaseManifest = {
   caseStudies: {
@@ -72,36 +162,36 @@ export const localizedReleaseManifest = {
   },
   privacy: {
     sourcePath: "/privacy",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   conductiveAntistaticCompounds: {
     sourcePath: "/products/conductive-antistatic-compounds",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   pomDirectory: {
     sourcePath: "/products/categories/pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   wearResistantLowFrictionPomCategory: {
     sourcePath:
       "/products/categories/wear-resistant-low-friction-pom-compound",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   uvResistantPomCategory: {
     sourcePath: "/products/categories/uv-resistant-pom-compound",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   carbonFiberReinforcedPomCategory: {
     sourcePath: "/products/categories/carbon-fiber-reinforced-pom-compound",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   conductiveAntistaticPomCategory: {
     sourcePath: "/products/categories/conductive-antistatic-pom-compound",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ultraHighFlowPomCategory: {
     sourcePath: "/products/categories/ultra-high-flow-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   basePomCategory: {
     sourcePath: "/products/categories/base-pom-resin",
@@ -121,11 +211,11 @@ export const localizedReleaseManifest = {
   },
   pa6CompoundCategory: {
     sourcePath: "/products/categories/pa6-compound",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   pa66CompoundCategory: {
     sourcePath: "/products/categories/pa66-compound",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   glassFiberReinforcedPa6Landing: {
     sourcePath: "/products/categories/glass-fiber-reinforced-pa6-compound",
@@ -141,167 +231,167 @@ export const localizedReleaseManifest = {
   },
   ppaCompoundCategory: {
     sourcePath: "/products/categories/ppa-compound",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm090ncGrade: {
     sourcePath: "/products/etm090nc-base-pom-resin",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm130Grade: {
     sourcePath: "/products/etm130-base-pom-resin",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm270Grade: {
     sourcePath: "/products/etm270-base-pom-resin",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm450Grade: {
     sourcePath: "/products/etm450-base-pom-resin",
-    ...publicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm750Grade: {
     sourcePath: "/products/etm750-base-pom-resin",
-    ...publicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm1500Grade: {
     sourcePath: "/products/etm1500-base-pom-resin",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm1800Grade: {
     sourcePath: "/products/etm1800-base-pom-resin",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   xt100Grade: {
     sourcePath: "/products/xt-100-base-pom-resin",
-    ...publicRelease,
+    ...allLocalizedPublicRelease,
   },
   egb25Grade: {
     sourcePath: "/products/egb25-glass-bead-pom",
-    ...publicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh502hGrade: {
     sourcePath: "/products/egh502h-glass-fiber-pom",
-    ...publicRelease,
+    ...allLocalizedPublicRelease,
   },
   edr100Grade: {
     sourcePath: "/products/edr100-high-impact-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ehi100stGrade: {
     sourcePath: "/products/ehi100st-high-impact-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ehi202tGrade: {
     sourcePath: "/products/ehi202t-high-impact-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ehi402tGrade: {
     sourcePath: "/products/ehi402t-high-impact-pom",
-    ...publicRelease,
+    ...allLocalizedPublicRelease,
   },
   ehi602tGrade: {
     sourcePath: "/products/ehi602t-high-impact-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   edr180Grade: {
     sourcePath: "/products/edr180-high-impact-pom",
-    ...publicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm270hGrade: {
     sourcePath: "/products/etm270h-wear-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   epaf100aGrade: {
     sourcePath: "/products/epaf100a-high-wear-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   eptl402Grade: {
     sourcePath: "/products/eptl402-high-wear-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   enm1040Grade: {
     sourcePath: "/products/enm1040-high-wear-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   edm111Grade: {
     sourcePath: "/products/edm-111-high-wear-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ems162Grade: {
     sourcePath: "/products/ems162-high-wear-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm090uGrade: {
     sourcePath: "/products/etm090u-uv-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   etm100puGrade: {
     sourcePath: "/products/etm100pu-uv-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   edr180uGrade: {
     sourcePath: "/products/edr180u-uv-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   edr2000zdUvGrade: {
     sourcePath: "/products/edr2000zd-uv-resistant-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh202hGrade: {
     sourcePath: "/products/egh202h-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh302hGrade: {
     sourcePath: "/products/egh302h-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh402hGrade: {
     sourcePath: "/products/egh402h-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh402tGrade: {
     sourcePath: "/products/egh402t-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh502tGrade: {
     sourcePath: "/products/egh502t-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh580hGrade: {
     sourcePath: "/products/egh580h-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh580tGrade: {
     sourcePath: "/products/egh580t-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh602hGrade: {
     sourcePath: "/products/egh602h-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh602tGrade: {
     sourcePath: "/products/egh602t-glass-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ecf200Grade: {
     sourcePath: "/products/ecf200-carbon-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ecf300Grade: {
     sourcePath: "/products/ecf300-carbon-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ecf400Grade: {
     sourcePath: "/products/ecf400-carbon-fiber-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   egh25cnGrade: {
     sourcePath: "/products/egh25cn-conductive-antistatic-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ecn1003bGrade: {
     sourcePath: "/products/ecn1003b-conductive-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   technicalDataSheets: {
     sourcePath: "/technical-data-sheets",
@@ -313,7 +403,7 @@ export const localizedReleaseManifest = {
   },
   about: {
     sourcePath: "/about",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   modifiedPomCompounds: {
     sourcePath: "/modified-pom-compounds",
@@ -321,91 +411,91 @@ export const localizedReleaseManifest = {
   },
   wearResistantLowFrictionPom: {
     sourcePath: "/wear-resistant-low-friction-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   conductiveAntistaticPom: {
     sourcePath: "/conductive-antistatic-pom",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   applications: {
     sourcePath: "/applications",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   automotiveApplication: {
     sourcePath: "/applications/automotive",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   electronicsApplication: {
     sourcePath: "/applications/electronics",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   conveyorAutomationApplication: {
     sourcePath: "/applications/conveyor-automation",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   motionComponentsApplication: {
     sourcePath: "/applications/motion-components",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   waterControlApplication: {
     sourcePath: "/applications/water-control",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   washingMachineComponentsApplication: {
     sourcePath: "/applications/washing-machine-components",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   outdoorEquipmentApplication: {
     sourcePath: "/applications/outdoor-equipment",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   textileMachineryApplication: {
     sourcePath: "/applications/textile-machinery",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   components: {
     sourcePath: "/components",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   precisionPlasticGearsComponent: {
     sourcePath: "/components/precision-plastic-gears",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   bushingsAndSleevesComponent: {
     sourcePath: "/components/bushings-and-sleeves",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   conveyorChainComponentsComponent: {
     sourcePath: "/components/conveyor-chain-components",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   valveSpoolsAndCartridgesComponent: {
     sourcePath: "/components/valve-spools-and-cartridges",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   textileGuideComponentsComponent: {
     sourcePath: "/components/textile-guide-components",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   icHandlingTraysComponent: {
     sourcePath: "/components/ic-handling-trays",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   resources: {
     sourcePath: "/resources",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   materialSelectionResources: {
     sourcePath: "/resources/material-selection",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   processingTroubleshootingResources: {
     sourcePath: "/resources/processing-troubleshooting",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   dataValidationResources: {
     sourcePath: "/resources/data-validation",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   chinaplas2026News: {
     sourcePath: "/news/chinaplas-2026",
@@ -413,65 +503,77 @@ export const localizedReleaseManifest = {
   },
   materialSelectionGuideResource: {
     sourcePath: "/resources/material-selection-guide",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   alternativePomGradeValidationResource: {
     sourcePath: "/resources/alternative-pom-grade-validation",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   wearResistantLowFrictionPomSelectionGuideResource: {
     sourcePath:
       "/resources/wear-resistant-low-friction-pom-selection-guide",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   pomGearMaterialSelectionResource: {
     sourcePath: "/resources/pom-gear-material-selection",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   processingGuideResource: {
     sourcePath: "/resources/processing-guide",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   pomWarpageTroubleshootingResource: {
     sourcePath: "/resources/pom-warpage-troubleshooting",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   applicationNotesResource: {
     sourcePath: "/resources/application-notes",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   faqResource: {
     sourcePath: "/resources/faq",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   reinforcementMaterialsOverviewResource: {
     sourcePath: "/resources/reinforcement-materials-overview",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   pa6VsPa66ReinforcedPartsResource: {
     sourcePath: "/resources/pa6-vs-pa66-reinforced-parts",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   glassFiberReinforcedPa6Pa66SelectionGuideResource: {
     sourcePath:
       "/resources/glass-fiber-reinforced-pa6-pa66-selection-guide",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   ppaVsPa66MaterialSelectionResource: {
     sourcePath: "/resources/ppa-vs-pa66-material-selection",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   pa6Pa66MoistureDryingConditioningGuideResource: {
     sourcePath:
       "/resources/pa6-pa66-moisture-drying-conditioning-guide",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
   conductiveAntistaticPa6Pa66PpaSelectionGuideResource: {
     sourcePath:
       "/resources/conductive-antistatic-pa6-pa66-ppa-selection-guide",
-    ...chineseOnlyPublicRelease,
+    ...allLocalizedPublicRelease,
   },
 } as const satisfies Record<string, LocalizedReleaseEntry>;
+
+export const engineeringGradeReleaseEntries: readonly LocalizedReleaseEntry[] =
+  (generatedCatalog as CatalogEngineeringTdsRecord[])
+    .filter(
+      (record): record is CatalogEngineeringTdsRecord =>
+        record.kind === "engineering-tds" && record.seo?.indexable !== false,
+    )
+    .map((record) => ({
+      sourcePath: `/products/${record.slug}`,
+      ...publicRelease,
+      localizedSegments: getCatalogGradeLocalizedSegments(record),
+    }));
 
 export type ReleasedSourcePath =
   | (typeof localizedReleaseManifest)[keyof typeof localizedReleaseManifest]["sourcePath"]
@@ -524,7 +626,7 @@ const languageDefinitions = [
 
 const releaseEntries: readonly LocalizedReleaseEntry[] = [
   ...Object.values(localizedReleaseManifest),
-  ...chineseEngineeringGradeReleaseEntries,
+  ...engineeringGradeReleaseEntries,
   ...glassFiberCaseStudies.map((study) => ({
     sourcePath: getGlassFiberCasePath(study), ...publicRelease, localizedSegments: ["zh"] as const,
   })),

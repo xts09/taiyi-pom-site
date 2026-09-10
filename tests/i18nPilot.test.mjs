@@ -140,7 +140,8 @@ import {
   isReleaseLocaleEnabled,
   isLocalizedReleaseIndexable,
   isReleaseSurfaceEnabled,
-  chineseEngineeringGradeReleaseEntries,
+  engineeringGradeReleaseEntries,
+  getCatalogGradeLocalizedSegments,
   localizedReleaseManifest,
   productsLanguageAlternates,
   productsLanguageOptions,
@@ -164,6 +165,25 @@ const expectedLocalizedAlternates = (sourcePath) => ({
   "zh-CN": `/zh${sourcePath}`,
   "x-default": sourcePath,
 });
+const expectedLocalizedAlternatesForSegments = (sourcePath, segments) => {
+  const hreflangBySegment = {
+    de: "de",
+    fr: "fr",
+    "pt-br": "pt-BR",
+    zh: "zh-CN",
+  };
+
+  return {
+    en: sourcePath,
+    ...Object.fromEntries(
+      segments.map((segment) => [
+        hreflangBySegment[segment],
+        `/${segment}${sourcePath}`,
+      ]),
+    ),
+    "x-default": sourcePath,
+  };
+};
 
 const shapeOf = (value) => {
   if (Array.isArray(value)) {
@@ -903,6 +923,7 @@ test("the release manifest publishes only the approved localized page groups", (
     publicNavigation: true,
     includeInSitemap: true,
     includeInAlternates: true,
+    localizedSegments: allLocalizedSegments,
   });
   assert.deepEqual(localizedReleaseManifest.etm750Grade, {
     sourcePath: "/products/etm750-base-pom-resin",
@@ -911,6 +932,7 @@ test("the release manifest publishes only the approved localized page groups", (
     publicNavigation: true,
     includeInSitemap: true,
     includeInAlternates: true,
+    localizedSegments: allLocalizedSegments,
   });
   assert.deepEqual(localizedReleaseManifest.xt100Grade, {
     sourcePath: "/products/xt-100-base-pom-resin",
@@ -919,6 +941,7 @@ test("the release manifest publishes only the approved localized page groups", (
     publicNavigation: true,
     includeInSitemap: true,
     includeInAlternates: true,
+    localizedSegments: allLocalizedSegments,
   });
   assert.deepEqual(localizedReleaseManifest.egb25Grade, {
     sourcePath: "/products/egb25-glass-bead-pom",
@@ -927,6 +950,7 @@ test("the release manifest publishes only the approved localized page groups", (
     publicNavigation: true,
     includeInSitemap: true,
     includeInAlternates: true,
+    localizedSegments: allLocalizedSegments,
   });
   assert.deepEqual(localizedReleaseManifest.egh502hGrade, {
     sourcePath: "/products/egh502h-glass-fiber-pom",
@@ -935,6 +959,7 @@ test("the release manifest publishes only the approved localized page groups", (
     publicNavigation: true,
     includeInSitemap: true,
     includeInAlternates: true,
+    localizedSegments: allLocalizedSegments,
   });
   assert.deepEqual(localizedReleaseManifest.ehi402tGrade, {
     sourcePath: "/products/ehi402t-high-impact-pom",
@@ -943,6 +968,7 @@ test("the release manifest publishes only the approved localized page groups", (
     publicNavigation: true,
     includeInSitemap: true,
     includeInAlternates: true,
+    localizedSegments: allLocalizedSegments,
   });
   assert.deepEqual(localizedReleaseManifest.edr180Grade, {
     sourcePath: "/products/edr180-high-impact-pom",
@@ -951,6 +977,7 @@ test("the release manifest publishes only the approved localized page groups", (
     publicNavigation: true,
     includeInSitemap: true,
     includeInAlternates: true,
+    localizedSegments: allLocalizedSegments,
   });
   assert.deepEqual(localizedReleaseManifest.technicalDataSheets, {
     sourcePath: "/technical-data-sheets",
@@ -1570,33 +1597,22 @@ test("the Simplified Chinese engineering-plastic category entries lead into Chin
   }
 });
 
-test("all released PA6, PA66 and PPA grades have complete Chinese detail contracts", () => {
-  const expectedCounts = { PA6: 33, PA66: 37, PPA: 5 };
+test("catalogued PA6, PA66 and PPA grades follow their localized release contracts", () => {
   const engineeringTdsDocuments = JSON.parse(
     readProjectFile("src/generated/catalog.json"),
   ).filter((record) => record.kind === "engineering-tds");
-  const actualCounts = Object.fromEntries(
-    Object.keys(expectedCounts).map((family) => [
-      family,
-      engineeringTdsDocuments.filter((document) => document.family === family)
-        .length,
-    ]),
-  );
-
-  assert.equal(engineeringTdsDocuments.length, 75);
-  assert.deepEqual(actualCounts, expectedCounts);
-  assert.equal(chineseEngineeringGradeReleaseEntries.length, 75);
 
   for (const document of engineeringTdsDocuments) {
     const sourcePath = `/products/${document.slug}`;
     const copy = createChineseEngineeringGradeCopy(document);
     const visibleCopy = JSON.stringify(copy);
-    const releaseEntry = chineseEngineeringGradeReleaseEntries.find(
+    const releaseEntry = engineeringGradeReleaseEntries.find(
       (entry) => entry.sourcePath === sourcePath,
     );
+    const localizedSegments = getCatalogGradeLocalizedSegments(document);
 
-    assert.ok(releaseEntry, `missing Chinese release entry for ${sourcePath}`);
-    assert.deepEqual(releaseEntry.localizedSegments, allLocalizedSegments);
+    assert.ok(releaseEntry, `missing grade release entry for ${sourcePath}`);
+    assert.deepEqual(releaseEntry.localizedSegments, localizedSegments);
     assert.equal(releaseEntry.indexable, true);
     assert.match(visibleCopy, /[\u3400-\u9fff]/);
     assert.doesNotMatch(
@@ -1614,7 +1630,7 @@ test("all released PA6, PA66 and PPA grades have complete Chinese detail contrac
     assert.equal(getLocalizedHref(sourcePath, "de"), `/de${sourcePath}`);
     assert.deepEqual(
       getLanguageAlternates(sourcePath),
-      expectedLocalizedAlternates(sourcePath),
+      expectedLocalizedAlternatesForSegments(sourcePath, localizedSegments),
     );
   }
 });

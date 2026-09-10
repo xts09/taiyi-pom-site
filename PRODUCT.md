@@ -231,6 +231,13 @@ This is a handoff snapshot for future maintenance sessions. Refresh it after the
 - Representative desktop and `390x844` mobile rendering covered the POM directory, Applications, Resources, and an engineering-grade detail, including long localized titles, navigation, CTAs, cards, breadcrumbs, technical summaries, and document labels. No content clipping or document-level horizontal overflow was observed in the inspected states.
 - Release validation passed the 4,376-key dictionary parity and no-CJK-fallback checks for each of the three languages, 81 automated tests, ESLint, TypeScript, and the production build. The build generated 928 static pages.
 
+### Current Language Release Policy
+
+- Acquisition, selection, directory, and landing pages remain complete five-language releases in English, German, French, Brazilian Portuguese, and Simplified Chinese. This includes the PA6, PA66, and PPA glass-fiber landing pages; `/products/categories/glass-fiber-reinforced-ppa-compound` is a landing page rather than a grade-detail route.
+- POM grade-detail pages, both existing and newly added, use the same five-language release group.
+- Existing published non-POM grade-detail pages retain their complete five-language URL, sitemap, navigation, canonical, and reciprocal alternate coverage through an explicit preserved-grade registry. This migration does not remove, redirect, or noindex any existing French or Brazilian Portuguese grade URL.
+- Newly added non-POM grade-detail pages default to English, German, and Simplified Chinese. French or Brazilian Portuguese can be added only through an explicit release-policy change after the corresponding localized page is ready.
+
 ### Simplified Chinese Homepage Task-First Narrative (2026-08-22)
 
 - `/zh` is the first homepage to use the task-first manufacturer narrative. The Hero owns the Chinese modified-POM manufacturer position, then routes visitors by three real starting states: part requirements, a performance problem, or an existing reference grade.
