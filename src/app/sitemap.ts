@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { glassFiberCaseStudies, getGlassFiberCasePath } from "@/data/glassFiberCaseStudies";
 import { componentSolutionDetails } from "@/data/componentSolutionDetails";
 import { privacyPolicyRelease } from "@/data/legal";
+import { listEngineeringGfLandingRegistrations } from "@/data/engineeringGfLandingRegistry";
 import {
   catalogEngineeringTds,
   catalogProducts,
@@ -18,6 +19,7 @@ import {
   getSitemapReleasedSourcePaths,
   getSitemapLanguageOptions,
   isReleasedSourcePath,
+  isReleaseSurfaceEnabledForPath,
   type ReleasedSourcePath,
 } from "@/i18n/releaseManifest";
 import { productCategoryEntries } from "@/lib/productCategories";
@@ -35,6 +37,11 @@ const createUrlEntry = (
   changeFrequency,
   priority,
 });
+
+const engineeringGfSitemapProfile = {
+  priority: 0.75,
+  changeFrequency: "weekly",
+} as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const localizedLanguageRoutes = [
@@ -105,21 +112,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.85,
       changeFrequency: "weekly" as const,
     },
-    {
-      sourcePath: "/products/categories/glass-fiber-reinforced-pa6-compound",
-      priority: 0.75,
-      changeFrequency: "weekly" as const,
-    },
-    {
-      sourcePath: "/products/categories/glass-fiber-reinforced-pa66-compound",
-      priority: 0.75,
-      changeFrequency: "weekly" as const,
-    },
-    {
-      sourcePath: "/products/categories/glass-fiber-reinforced-ppa-compound",
-      priority: 0.75,
-      changeFrequency: "weekly" as const,
-    },
+    ...listEngineeringGfLandingRegistrations()
+      .filter(({ path }) =>
+        isReleaseSurfaceEnabledForPath(path, "includeInSitemap"),
+      )
+      .map(({ path: sourcePath }) => ({
+        sourcePath,
+        ...engineeringGfSitemapProfile,
+      })),
     {
       sourcePath:
         "/products/categories/wear-resistant-low-friction-pom-compound",

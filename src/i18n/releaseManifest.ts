@@ -1,6 +1,7 @@
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import generatedCatalog from "../generated/catalog.json" with { type: "json" };
 import type { CatalogEngineeringTdsRecord } from "../data/catalog/types.ts";
+import { getEngineeringGfLandingPath } from "../data/engineeringGfLandingRegistry.ts";
 import { glassFiberCaseStudies, getGlassFiberCasePath } from "../data/glassFiberCaseStudies.ts";
 
 export type LocalizedReleaseStatus = "public" | "preview" | "disabled";
@@ -218,15 +219,15 @@ export const localizedReleaseManifest = {
     ...allLocalizedPublicRelease,
   },
   glassFiberReinforcedPa6Landing: {
-    sourcePath: "/products/categories/glass-fiber-reinforced-pa6-compound",
+    sourcePath: getEngineeringGfLandingPath("PA6"),
     ...publicRelease,
   },
   glassFiberReinforcedPa66Landing: {
-    sourcePath: "/products/categories/glass-fiber-reinforced-pa66-compound",
+    sourcePath: getEngineeringGfLandingPath("PA66"),
     ...publicRelease,
   },
   glassFiberReinforcedPpaLanding: {
-    sourcePath: "/products/categories/glass-fiber-reinforced-ppa-compound",
+    sourcePath: getEngineeringGfLandingPath("PPA"),
     ...publicRelease,
   },
   ppaCompoundCategory: {
@@ -669,6 +670,14 @@ export const isReleaseSurfaceEnabled = (
   return true;
 };
 
+export const isReleaseSurfaceEnabledForPath = (
+  sourcePath: string,
+  surface: LocalizedReleaseSurface,
+) => isReleaseSurfaceEnabled(getReleaseEntry(sourcePath), surface);
+
+export const isSourceReleaseIndexable = (sourcePath: string) =>
+  isReleaseSurfaceEnabledForPath(sourcePath, "indexable");
+
 export const isReleaseLocaleEnabled = (
   release: LocalizedReleaseEntry | undefined,
   localeSegment: LocalizedUrlSegment,
@@ -684,7 +693,7 @@ export const isLocalizedReleaseIndexable = (
   const release = getReleaseEntry(sourcePath);
 
   return (
-    isReleaseSurfaceEnabled(release, "indexable") &&
+    isSourceReleaseIndexable(sourcePath) &&
     (!localeSegment || isReleaseLocaleEnabled(release, localeSegment))
   );
 };

@@ -7,6 +7,12 @@ import {
   getSitemapLanguageOptions,
   getSitemapReleasedSourcePaths,
 } from "../src/i18n/releaseManifest.ts";
+import {
+  ENGINEERING_GF_DIRECTION,
+  isEngineeringGfPolymer,
+  listEngineeringGfLandingRegistrations,
+} from "../src/data/engineeringGfLandingRegistry.ts";
+import { getEngineeringDirectionHref } from "../src/data/engineeringDirectionNavigation.ts";
 
 const readProjectFile = (path) =>
   readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -23,9 +29,6 @@ const landingStyles = readProjectFile(
   "src/components/EngineeringGfLandingPage.module.css",
 );
 const comparisonSource = readProjectFile("src/components/EngineeringGfGradeComparison.tsx");
-const directionSource = readProjectFile("src/data/engineeringDirectionNavigation.ts");
-const releaseManifestSource = readProjectFile("src/i18n/releaseManifest.ts");
-const sitemapSource = readProjectFile("src/app/sitemap.ts");
 const pa6RouteSource = readProjectFile(
   "src/app/(en)/products/categories/glass-fiber-reinforced-pa6-compound/page.tsx",
 );
@@ -45,7 +48,7 @@ const gfGrades = catalog.filter(
   (record) =>
     record.kind === "engineering-tds" &&
     record.category === "Glass Fiber Reinforced" &&
-    ["PA6", "PA66", "PPA"].includes(record.family),
+    isEngineeringGfPolymer(record.family),
 );
 
 test("keeps the PA6, PA66 and PPA GF landing catalogs complete and separate", () => {
@@ -112,19 +115,12 @@ test("keeps the approved comparison fields and marks only real gaps unpublished"
 });
 
 test("connects the PA6, PA66 and PPA hub directions to their GF landing owners", () => {
-  assert.match(
-    directionSource,
-    /"PA6:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-pa6-compound/,
-  );
-  assert.match(
-    directionSource,
-    /"PA66:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-pa66-compound/,
-  );
-  assert.match(
-    directionSource,
-    /"PPA:Glass Fiber Reinforced"[\s\S]*glass-fiber-reinforced-ppa-compound/,
-  );
-  assert.match(directionSource, /\?\? "#pom-grades"/);
+  for (const { polymer, path } of listEngineeringGfLandingRegistrations()) {
+    assert.equal(
+      getEngineeringDirectionHref(polymer, ENGINEERING_GF_DIRECTION),
+      path,
+    );
+  }
 });
 
 test("uses inquiry and technical-data destinations for the primary engineering glass-fiber actions", () => {
@@ -178,10 +174,12 @@ test("does not turn unresolved suffixes into invented positioning", () => {
 
 test("publishes all three routes as complete five-language sitemap owners", () => {
   for (const routeSource of [pa6RouteSource, pa66RouteSource, ppaRouteSource]) {
-    assert.match(routeSource, /indexable: true/);
+    assert.match(routeSource, /isSourceReleaseIndexable/);
+    assert.match(routeSource, /notFound\(\)/);
+    assert.doesNotMatch(routeSource, /indexable: true/);
     assert.match(
       routeSource,
-      /languageAlternates: getLanguageAlternatesForPath\(page\.path\)/,
+      /languageAlternates: getLanguageAlternatesForPath\(sourcePath\)/,
     );
   }
 
@@ -195,17 +193,14 @@ test("publishes all three routes as complete five-language sitemap owners", () =
 
   assert.match(landingPageSource, /getLocalizedHref/);
   assert.match(landingPageSource, /inLanguage/);
+  assert.match(landingPageSource, /registration\.compareWith/);
+  assert.match(landingPageSource, /registration\.guideIds\.map/);
+  assert.doesNotMatch(landingPageSource, /polymer === "(?:PA6|PA66|PPA)"/);
   for (const localeKey of ["de", "fr", '"pt-br"', "zh"]) {
     assert.match(localizationSource, new RegExp(`^  ${localeKey}: \\{`, "m"));
   }
 
-  for (const path of [
-    "/products/categories/glass-fiber-reinforced-pa6-compound",
-    "/products/categories/glass-fiber-reinforced-pa66-compound",
-    "/products/categories/glass-fiber-reinforced-ppa-compound",
-  ]) {
-    assert.match(releaseManifestSource, new RegExp(path));
-    assert.match(sitemapSource, new RegExp(path));
+  for (const { path } of listEngineeringGfLandingRegistrations()) {
     assert.ok(getSitemapReleasedSourcePaths().includes(path));
     assert.deepEqual(
       getSitemapLanguageOptions(path).map(({ href }) => href),

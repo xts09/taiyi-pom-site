@@ -2336,7 +2336,7 @@ export const resourceIndexLinks = [
   },
 ];
 
-export { resourceNavigationGroups as resourceIndexGroups } from "@/data/resourceNavigation";
+export { resourceNavigationGroups as resourceIndexGroups } from "./resourceNavigation.ts";
 
 export const getResourcePage = (slug: string) =>
   resourcePages.find((page) => page.slug === slug);

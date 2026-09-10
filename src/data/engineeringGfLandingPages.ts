@@ -2,8 +2,11 @@ import {
   catalogEngineeringTds,
   type CatalogEngineeringTdsRecord,
 } from "@/data/catalog";
-
-export type EngineeringGfPolymer = "PA6" | "PA66" | "PPA";
+import {
+  getEngineeringGfLandingRegistration,
+  type EngineeringGfLandingRegistration,
+  type EngineeringGfPolymer,
+} from "@/data/engineeringGfLandingRegistry";
 
 export type EngineeringGfApplicationLink = {
   eyebrow: string;
@@ -17,11 +20,7 @@ export type EngineeringGfValidationStep = {
   description: string;
 };
 
-export type EngineeringGfLandingPageData = {
-  polymer: EngineeringGfPolymer;
-  slug: string;
-  path: string;
-  parentPath: string;
+type EngineeringGfLandingPageContent = {
   parentLabel: string;
   title: string;
   metaTitle: string;
@@ -45,21 +44,20 @@ export type EngineeringGfLandingPageData = {
   contactMaterial: string;
 };
 
+export type EngineeringGfLandingPageData =
+  EngineeringGfLandingRegistration & EngineeringGfLandingPageContent;
+
 export type EngineeringGfGrade = CatalogEngineeringTdsRecord;
 
 const glassFiberGrades = catalogEngineeringTds.filter(
   (grade) => grade.category === "Glass Fiber Reinforced",
 );
 
-const landingPages: Record<
+const landingPageContent: Record<
   EngineeringGfPolymer,
-  EngineeringGfLandingPageData
+  EngineeringGfLandingPageContent
 > = {
   PA6: {
-    polymer: "PA6",
-    slug: "glass-fiber-reinforced-pa6-compound",
-    path: "/products/categories/glass-fiber-reinforced-pa6-compound",
-    parentPath: "/products/categories/pa6-compound",
     parentLabel: "PA6 Compounds",
     title: "Glass Fiber Reinforced PA6 Compounds",
     metaTitle: "Glass Fiber Reinforced PA6 Grades | Taiyi Polymer",
@@ -163,10 +161,6 @@ const landingPages: Record<
     contactMaterial: "Glass Fiber Reinforced PA6",
   },
   PA66: {
-    polymer: "PA66",
-    slug: "glass-fiber-reinforced-pa66-compound",
-    path: "/products/categories/glass-fiber-reinforced-pa66-compound",
-    parentPath: "/products/categories/pa66-compound",
     parentLabel: "PA66 Compounds",
     title: "Glass Fiber Reinforced PA66 Compounds",
     metaTitle: "Glass Fiber Reinforced PA66 Grades | Taiyi Polymer",
@@ -270,10 +264,6 @@ const landingPages: Record<
     contactMaterial: "Glass Fiber Reinforced PA66",
   },
   PPA: {
-    polymer: "PPA",
-    slug: "glass-fiber-reinforced-ppa-compound",
-    path: "/products/categories/glass-fiber-reinforced-ppa-compound",
-    parentPath: "/products/categories/ppa-compound",
     parentLabel: "PPA Compounds",
     title: "Glass Fiber Reinforced PPA Compounds",
     metaTitle: "Glass Fiber Reinforced PPA Grades | Taiyi Polymer",
@@ -373,7 +363,10 @@ const landingPages: Record<
 
 export const getEngineeringGfLandingPageData = (
   polymer: EngineeringGfPolymer,
-) => landingPages[polymer];
+): EngineeringGfLandingPageData => ({
+  ...getEngineeringGfLandingRegistration(polymer),
+  ...landingPageContent[polymer],
+});
 
 export const getEngineeringGfGrades = (
   polymer: EngineeringGfPolymer,

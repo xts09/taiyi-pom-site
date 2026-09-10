@@ -16,12 +16,15 @@ import { SectionIntro } from "@/components/SectionIntro";
 import { Button } from "@/components/ui/button";
 import {
   getEngineeringGfGrades,
-  getEngineeringGfLandingPageData,
-  type EngineeringGfPolymer,
 } from "@/data/engineeringGfLandingPages";
+import {
+  getEngineeringGfLandingRegistration,
+  type EngineeringGfPolymer,
+} from "@/data/engineeringGfLandingRegistry";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import {
   formatEngineeringGfMessage,
+  getEngineeringGfGuideLabel,
   getEngineeringGfLandingMessages,
 } from "@/i18n/engineeringGfLandingMessages";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
@@ -50,8 +53,7 @@ export function EngineeringGfLandingPage({
   );
   const localizedPath = (path: string) =>
     getLocalizedHref(path, localeSegment);
-  const otherPolymer =
-    polymer === "PA6" ? "PA66" : polymer === "PA66" ? "PA6" : "PA66";
+  const registration = getEngineeringGfLandingRegistration(polymer);
   const grades = getEngineeringGfGrades(polymer);
   const comparisonGrades = grades.map((grade): EngineeringGfComparisonGrade => ({
     grade: grade.grade,
@@ -251,25 +253,27 @@ export function EngineeringGfLandingPage({
               </section>
             </div>
             <nav className={styles.guideLinks} aria-label={ui.guideLinksAria}>
-              <Link href={localizedPath(getEngineeringGfLandingPageData(otherPolymer).path)}>
-                {formatEngineeringGfMessage(ui.compareOtherTemplate, {
-                  otherPolymer,
-                })}
-              </Link>
-              {polymer === "PPA" ? (
-                <Link href={localizedPath("/resources/ppa-vs-pa66-material-selection")}>
-                  {ui.ppaVsPa66Guide}
+              {registration.compareWith ? (
+                <Link
+                  href={localizedPath(
+                    getEngineeringGfLandingRegistration(
+                      registration.compareWith,
+                    ).path,
+                  )}
+                >
+                  {formatEngineeringGfMessage(ui.compareOtherTemplate, {
+                    otherPolymer: registration.compareWith,
+                  })}
                 </Link>
-              ) : (
-                <>
-                  <Link href={localizedPath("/resources/pa6-vs-pa66-reinforced-parts")}>
-                    {ui.pa6Pa66Guide}
-                  </Link>
-                  <Link href={localizedPath("/resources/glass-fiber-reinforced-pa6-pa66-selection-guide")}>
-                    {ui.reinforcementGuide}
-                  </Link>
-                </>
-              )}
+              ) : null}
+              {registration.guideIds.map((guideId) => (
+                <Link
+                  key={guideId}
+                  href={localizedPath(`/resources/${guideId}`)}
+                >
+                  {getEngineeringGfGuideLabel(guideId, ui)}
+                </Link>
+              ))}
             </nav>
           </div>
         </section>

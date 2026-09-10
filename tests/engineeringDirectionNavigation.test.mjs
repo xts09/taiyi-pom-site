@@ -1,12 +1,17 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { getEngineeringDirectionHref } from "../src/data/engineeringDirectionNavigation.ts";
+import {
+  ENGINEERING_GF_DIRECTION,
+  engineeringGfPolymers,
+  getEngineeringGfLandingRegistration,
+} from "../src/data/engineeringGfLandingRegistry.ts";
 import { getLocalizedHref, isEnglishFallbackHref } from "../src/i18n/releaseManifest.ts";
 
 test("engineering glass-fiber cards open their corresponding landing pages", () => {
-  for (const family of ["PA6", "PA66", "PPA"]) {
-    const href = getEngineeringDirectionHref(family, "Glass Fiber Reinforced");
-    assert.equal(href, `/products/categories/glass-fiber-reinforced-${family.toLowerCase()}-compound`);
+  for (const family of engineeringGfPolymers) {
+    const href = getEngineeringDirectionHref(family, ENGINEERING_GF_DIRECTION);
+    assert.equal(href, getEngineeringGfLandingRegistration(family).path);
     for (const locale of ["zh", "de", "fr", "pt-br"]) {
       assert.equal(getLocalizedHref(href, locale), `/${locale}${href}`);
       assert.equal(isEnglishFallbackHref(href, locale), false);

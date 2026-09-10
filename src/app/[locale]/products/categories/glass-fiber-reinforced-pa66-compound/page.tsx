@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { EngineeringGfLandingPage } from "@/components/EngineeringGfLandingPage";
+import { getEngineeringGfLandingPath } from "@/data/engineeringGfLandingRegistry";
 import { getEngineeringGfLandingMessages } from "@/i18n/engineeringGfLandingMessages";
 import { getLocalizedLocale } from "@/i18n/config";
 import {
@@ -15,8 +16,7 @@ type LocalizedPa66GfRouteProps = {
   params: Promise<{ locale: string }>;
 };
 
-const sourcePath =
-  "/products/categories/glass-fiber-reinforced-pa66-compound" as const;
+const sourcePath = getEngineeringGfLandingPath("PA66");
 
 const resolveLocale = async (
   params: LocalizedPa66GfRouteProps["params"],

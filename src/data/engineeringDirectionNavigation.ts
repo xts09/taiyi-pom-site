@@ -1,9 +1,13 @@
-const landingPaths: Record<string, string> = {
-  "PA6:Glass Fiber Reinforced": "/products/categories/glass-fiber-reinforced-pa6-compound",
-  "PA66:Glass Fiber Reinforced": "/products/categories/glass-fiber-reinforced-pa66-compound",
-  "PPA:Glass Fiber Reinforced": "/products/categories/glass-fiber-reinforced-ppa-compound",
-};
+import { findEngineeringGfLandingByDirection } from "./engineeringGfLandingRegistry.ts";
+import { isReleaseSurfaceEnabledForPath } from "../i18n/releaseManifest.ts";
+
+const gradeDirectoryFallback = "#pom-grades";
 
 export function getEngineeringDirectionHref(family: string, direction: string) {
-  return landingPaths[`${family}:${direction}`] ?? "#pom-grades";
+  const candidate = findEngineeringGfLandingByDirection(family, direction);
+
+  return candidate &&
+    isReleaseSurfaceEnabledForPath(candidate.path, "publicNavigation")
+    ? candidate.path
+    : gradeDirectoryFallback;
 }

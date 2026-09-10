@@ -1,8 +1,11 @@
 import {
   getEngineeringGfLandingPageData,
   type EngineeringGfLandingPageData,
-  type EngineeringGfPolymer,
 } from "@/data/engineeringGfLandingPages";
+import type {
+  EngineeringGfGuideId,
+  EngineeringGfPolymer,
+} from "@/data/engineeringGfLandingRegistry";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 
 type LocalizedEngineeringGfPageCopy = Pick<
@@ -79,6 +82,20 @@ export type EngineeringGfLandingUi = {
   inquiryBody: string;
   comparison: EngineeringGfComparisonUi;
 };
+
+const engineeringGfGuideLabelKeys = {
+  "pa6-vs-pa66-reinforced-parts": "pa6Pa66Guide",
+  "glass-fiber-reinforced-pa6-pa66-selection-guide": "reinforcementGuide",
+  "ppa-vs-pa66-material-selection": "ppaVsPa66Guide",
+} as const satisfies Record<
+  EngineeringGfGuideId,
+  "pa6Pa66Guide" | "reinforcementGuide" | "ppaVsPa66Guide"
+>;
+
+export const getEngineeringGfGuideLabel = (
+  guideId: EngineeringGfGuideId,
+  ui: EngineeringGfLandingUi,
+) => ui[engineeringGfGuideLabelKeys[guideId]];
 
 const englishUi: EngineeringGfLandingUi = {
   homeBreadcrumb: "Home",
