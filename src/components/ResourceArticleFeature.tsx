@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import styles from "@/components/ResourceArticle.module.css";
 import type { ResourceArticleFeature as ResourceArticleFeatureData } from "@/data/resources";
 
@@ -104,7 +105,16 @@ export function ResourceArticleFeature({
                 role="cell"
                 data-label={feature.columns[index]}
               >
-                {value}
+                {feature.cellLinks?.[value] ? (
+                  <Link
+                    href={feature.cellLinks[value]}
+                    className="underline underline-offset-4 hover:text-[var(--ds-action-primary-hover)]"
+                  >
+                    {value}
+                  </Link>
+                ) : (
+                  value
+                )}
               </span>
             ))}
           </div>

@@ -17,6 +17,7 @@ export type LandingSection = {
 
 export type CatalogEvidenceItem = {
   label: string;
+  labelParts?: Array<{ text: string; href?: string }>;
   mobileLabel?: string;
   detail: string;
   href?: string;
@@ -412,8 +413,16 @@ export const pomLandingPages = {
         },
         {
           label: "POM EPTL402 / ES0162 / ETM270H",
+          labelParts: [
+            { text: "POM " },
+            {
+              text: "EPTL402",
+              href: "/products/eptl402-high-wear-resistant-pom",
+            },
+            { text: " / ES0162 / ETM270H" },
+          ],
           detail:
-            "PTFE-filled, silicone-oil-modified, and high-flow wear-resistant options.",
+            "EPTL402: PTFE-filled POM; ES0162: silicone-oil-modified POM; ETM270H: high-flow wear-resistant POM.",
         },
       ],
     },

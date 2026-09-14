@@ -49,6 +49,7 @@ type ResourceArticleMatrixFeature = ResourceArticleFeaturePlacement & {
   title: string;
   columns: [string, string, string];
   rows: Array<[string, string, string]>;
+  cellLinks?: Record<string, string>;
 };
 
 type ResourceArticlePartShowcaseFeature = ResourceArticleFeaturePlacement & {
@@ -683,6 +684,9 @@ export const resourcePages: ResourcePage[] = [
           "Selecting PTFE, MoS2, Silicone Oil, or Other Wear Additive Directions",
         title: "Modified POM directions to review against the application",
         columns: ["Primary selection direction", "Typical review focus", "Taiyi direction"],
+        cellLinks: {
+          EPTL402: "/products/eptl402-high-wear-resistant-pom",
+        },
         rows: [
           [
             "PTFE-filled POM",

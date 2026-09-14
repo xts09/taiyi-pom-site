@@ -276,7 +276,24 @@ export function PomLandingPage({
               </Link>
             ) : (
               <article key={item.label}>
-                <h3>{item.label}</h3>
+                <h3>
+                  {item.labelParts
+                    ? item.labelParts.map((part, index) =>
+                        part.href ? (
+                          <Link
+                            key={index}
+                            href={localizedHref(part.href)}
+                            className="underline underline-offset-4 hover:text-[var(--ds-action-primary-hover)]"
+                          >
+                            {part.text}
+                            {englishDestinationBadge(part.href)}
+                          </Link>
+                        ) : (
+                          part.text
+                        ),
+                      )
+                    : item.label}
+                </h3>
                 <p>{item.detail}</p>
               </article>
             ),
