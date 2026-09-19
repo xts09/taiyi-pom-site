@@ -64,6 +64,14 @@ const pomFamilyGroupCopy = [
   },
 ] as const;
 
+const conductiveAntistaticPomCategorySlug =
+  "conductive-antistatic-pom-compound";
+
+const getPomFamilyCardTitle = (category: string, label: string) =>
+  createCategorySlug(category) === conductiveAntistaticPomCategorySlug
+    ? "Conductive / Antistatic POM Grades"
+    : label;
+
 export function ProductGrid({
   products,
   selectedCategory = "POM",
@@ -140,7 +148,7 @@ export function ProductGrid({
     items: familyItems.slice(index * 3, index * 3 + 3).map((item) => ({
       id: item.category,
       href: getCategoryPath(item.category),
-      title: item.label,
+      title: getPomFamilyCardTitle(item.category, item.label),
       description: item.applications[0],
       countLabel: `${item.count} Grade${item.count === 1 ? "" : "s"}`,
       image: pomFamilyMasterVisuals[item.category],

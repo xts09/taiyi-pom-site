@@ -87,9 +87,9 @@ export type ResourcePage = {
 export const resourcePages: ResourcePage[] = [
   {
     slug: "material-selection-guide",
-    title: "Material Selection Guide",
+    title: "POM Material Selection for Molded Parts",
     metadataTitle: "POM Material Selection for Molded Parts",
-    navLabel: "Material Selection Guide",
+    navLabel: "POM Material Selection",
     description:
       "A practical POM material selection guide for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV, and high-impact compounds.",
     intro:
