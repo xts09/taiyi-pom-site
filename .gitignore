@@ -44,6 +44,10 @@ yarn-error.log*
 /taiyi-pom-*-promo/
 /public/generated/taiyi-nano-asset-candidates/
 
+# locally linked agent skills — machine-local junctions into ~/.codex/skills, never
+# portable. Add a `!` negation below if a real project-owned skill belongs here.
+/.agents/skills/
+
 # root-level visual verification artifacts
 /*.png
 /*.log
