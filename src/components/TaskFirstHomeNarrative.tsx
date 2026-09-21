@@ -114,7 +114,7 @@ function HomeProofSection({
   localizedHref,
 }: TaskFirstHomeNarrativeProps) {
   return (
-    <section className="home-proof home-task-section">
+    <section className="home-proof home-task-section" data-home-reveal>
       <div className="site-container">
         <header className="home-task-intro home-proof-intro">
           <div className="home-proof-intro-copy">
@@ -242,7 +242,7 @@ export function TaskFirstHomeNarrative({
         )}
       />
 
-      <section className="home-component-paths home-task-section">
+      <section className="home-component-paths home-task-section" data-home-reveal>
         <div className="site-container">
           <header className="home-task-intro home-application-intro">
             <h2>{messages.components.eyebrow}</h2>
@@ -282,7 +282,7 @@ export function TaskFirstHomeNarrative({
         </div>
       </section>
 
-      <section className="home-application-paths home-task-section">
+      <section className="home-application-paths home-task-section" data-home-reveal>
         <div className="site-container">
           <header className="home-task-intro home-application-intro">
             <h2>{messages.applications.eyebrow}</h2>
@@ -324,6 +324,7 @@ export function TaskFirstHomeNarrative({
       <section
         className="home-collaboration home-task-section"
         aria-labelledby="home-collaboration-title"
+        data-home-reveal
       >
         <div className="site-container">
           <div className="home-collaboration-main">

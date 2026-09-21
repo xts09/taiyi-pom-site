@@ -19,6 +19,7 @@ export function HomeInquirySection({
       id="material-review"
       className="home-inquiry"
       data-footer-adjacent="true"
+      data-home-reveal
     >
       <div className="site-container home-inquiry-inner">
         <div className="home-inquiry-copy">

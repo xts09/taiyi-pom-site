@@ -115,15 +115,15 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .home-motion-root .home-hero .hero-motion-kicker {
-    animation: home-hero-rise 0.36s var(--home-ease-out) 0.04s both;
+    animation: home-hero-rise 0.52s var(--home-ease-out) 0s both;
   }
 
   .home-motion-root .home-hero .hero-motion-title {
-    animation: home-hero-rise 0.44s var(--home-ease-out) 0.08s both;
+    animation: home-hero-rise 0.6s var(--home-ease-out) 0.06s both;
   }
 
   .home-motion-root .home-hero .hero-support-motion {
-    animation: home-hero-rise 0.4s var(--home-ease-out) 0.14s both;
+    animation: home-hero-rise 0.56s var(--home-ease-out) 0.12s both;
   }
 }
 
