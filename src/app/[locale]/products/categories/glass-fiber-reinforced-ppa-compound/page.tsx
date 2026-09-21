@@ -48,7 +48,7 @@ export async function generateMetadata({
     title: page.metaTitle,
     description: page.metaDescription,
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
-    image: "/generated/landing/home-dark-satin-wave-v1.webp",
+    image: "/factory-extrusion.webp",
     imageAlt: ui.heroImageAlt,
     indexable: isLocalizedReleaseIndexable(
       sourcePath,
