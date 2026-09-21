@@ -71,11 +71,8 @@ export function HomePage({
                 </span>
               </p>
 
-              <h1
-                className="hero-motion-title typewriter-title text-white"
-                aria-label={messages.hero.title}
-              >
-                <span className="typewriter-visual" aria-hidden="true">
+              <h1 className="hero-motion-title hero-title-balance text-white">
+                <span className="hero-title-line">
                   {messages.hero.title}
                 </span>
               </h1>

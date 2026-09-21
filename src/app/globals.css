@@ -3850,12 +3850,6 @@ body {
   transform-origin: 50% 50%;
 }
 
-.hero-material {
-  mix-blend-mode: screen;
-  opacity: 0.12;
-  transform: scale(1.08) translate3d(5%, 4%, 0);
-}
-
 .eyebrow-glass {
   border: 1px solid rgba(162, 244, 253, 0.24);
   border-radius: 999px;
@@ -3906,11 +3900,11 @@ body {
   transition: none;
 }
 
-.typewriter-title {
+.hero-title-balance {
   text-wrap: balance;
 }
 
-.typewriter-visual {
+.hero-title-line {
   display: block;
 }
 
@@ -4457,7 +4451,7 @@ body {
   }
 
   .reveal-up {
-    animation: reveal-up 780ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation: reveal-up 780ms var(--ds-ease-out) both;
   }
 
   .reveal-delay-1 {
@@ -4471,31 +4465,6 @@ body {
   .animate-menu-down {
     animation: menu-down 180ms ease both;
     transform-origin: top;
-  }
-
-  .dark-panel::after {
-    animation: panel-sheen 11s ease-in-out infinite;
-  }
-
-  .slow-float {
-    animation: slow-float 8s ease-in-out infinite;
-  }
-
-  .hero-material {
-    animation: hero-drift 18s ease-in-out infinite alternate;
-  }
-
-  @keyframes mesh-drift {
-    from {
-      background-position:
-        0 0,
-        0 0;
-    }
-    to {
-      background-position:
-        34px 34px,
-        34px 34px;
-    }
   }
 
   @keyframes reveal-up {
@@ -4522,35 +4491,6 @@ body {
     }
   }
 
-  @keyframes panel-sheen {
-    0%,
-    58% {
-      transform: translateX(-44%) rotate(8deg);
-    }
-    88%,
-    100% {
-      transform: translateX(36%) rotate(8deg);
-    }
-  }
-
-  @keyframes slow-float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes hero-drift {
-    from {
-      transform: scale(1.08) translate3d(5%, 4%, 0);
-    }
-    to {
-      transform: scale(1.12) translate3d(1%, 1%, 0);
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

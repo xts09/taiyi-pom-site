@@ -2,10 +2,9 @@
 
 import { useRef, type ReactNode } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 type HomeMotionProps = {
   children: ReactNode;
@@ -87,9 +86,6 @@ export function HomeMotion({ children }: HomeMotionProps) {
             });
           }
         }
-
-        ScrollTrigger.refresh();
-        ScrollTrigger.update();
 
         return () => {
           heroVideo?.removeEventListener("ended", restartHeroVideo);
