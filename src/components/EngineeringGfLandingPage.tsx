@@ -361,7 +361,7 @@ export function EngineeringGfLandingPage({
               </div>
             }
             action={
-              <Button asChild variant="inverse">
+              <Button asChild size="form" variant="inverse">
                 <Link href={contactHref}>{ui.discussApplicationAction}</Link>
               </Button>
             }
