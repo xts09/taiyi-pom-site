@@ -33,7 +33,7 @@ export function HomePage({
   return (
     <HomeMotion>
       <main
-        className={`home-cinema home-redesign min-h-screen overflow-hidden text-white${taskFirstMessages ? " home-task-first" : ""}`}
+        className="home-cinema home-redesign home-task-first min-h-screen overflow-hidden text-white"
       >
         <script
           type="application/ld+json"
@@ -88,18 +88,12 @@ export function HomePage({
                     size="lg"
                     className="cta-primary hero-cta-primary h-auto"
                   >
-                    <Link
-                      href={taskFirstMessages ? "#entry-points" : "#materials"}
-                    >
-                      {taskFirstMessages
-                        ? taskFirstMessages.core.allFamiliesAction
-                        : messages.hero.exploreAction}
+                    <Link href="#entry-points">
+                      {taskFirstMessages.core.allFamiliesAction}
                     </Link>
                   </Button>
                   <Link
-                    href={localizedHref(
-                      taskFirstMessages ? "/technical-data-sheets" : "/contact",
-                    )}
+                    href={localizedHref("/technical-data-sheets")}
                     className="hero-cta-secondary inline-flex min-h-11 items-center gap-2"
                   >
                     {messages.hero.contactAction}
@@ -111,13 +105,11 @@ export function HomePage({
           </div>
         </section>
 
-        {taskFirstMessages ? (
-          <TaskFirstHomeNarrative
-            certifications={localizedCertifications}
-            messages={taskFirstMessages}
-            localizedHref={localizedHref}
-          />
-        ) : null}
+        <TaskFirstHomeNarrative
+          certifications={localizedCertifications}
+          messages={taskFirstMessages}
+          localizedHref={localizedHref}
+        />
 
         <HomeInquirySection
           messages={messages.inquiry}
