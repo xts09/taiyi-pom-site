@@ -1469,11 +1469,6 @@
   max-width: min(100%, 78rem);
 }
 
-.home-task-first .home-hero .hero-readable-copy,
-.home-task-first .home-hero .hero-motion-copy {
-  max-width: 48rem;
-}
-
 .home-task-section {
   position: relative;
   scroll-margin-top: calc(var(--site-header-height) + var(--home-space-md));
@@ -1822,9 +1817,8 @@
 
 @media (min-width: 70.001rem) {
   .home-component-grid {
-    grid-template-columns: repeat(3, 29.3%);
-    column-gap: 0;
-    justify-content: space-between;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--home-space-lg);
   }
 
   .home-component-grid > .home-application-card {
@@ -2205,8 +2199,7 @@
   justify-content: center;
   border-radius: var(--home-radius-card);
   background: var(--home-color-paper-soft);
-  padding: clamp(1.5rem, 1.6vw, 1.75rem)
-    clamp(1.75rem, 2vw, 2rem);
+  padding: clamp(1.25rem, 1.6vw, 1.5rem) clamp(1.25rem, 2vw, 1.5rem);
 }
 
 .home-proof-metrics dt {
@@ -2246,7 +2239,7 @@
   margin-top: var(--home-space-sm);
   border-radius: var(--home-radius-card);
   background: var(--home-color-paper-blue);
-  padding: clamp(1.75rem, 2vw, 2rem);
+  padding: clamp(1.25rem, 2vw, 1.5rem);
 }
 
 .home-proof-documents {
@@ -2294,7 +2287,7 @@
   margin-top: var(--home-space-sm);
   border-radius: var(--ds-evidence-radius);
   background: var(--ds-evidence-surface);
-  padding: clamp(1.5rem, 2.8vw, 2.75rem);
+  padding: clamp(1.5rem, 2.8vw, 2.5rem);
   color: var(--home-color-white);
   box-shadow: var(--ds-evidence-shadow);
 }
