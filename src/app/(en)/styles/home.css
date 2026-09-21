@@ -113,18 +113,6 @@
   }
 }
 
-@keyframes home-hero-slide-in {
-  from {
-    opacity: 0;
-    transform: translateX(1.5rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .home-motion-root .home-hero .hero-motion-kicker {
     animation: home-hero-rise 0.36s var(--home-ease-out) 0.04s both;
@@ -617,29 +605,7 @@
     text-align: center;
   }
 }
-@keyframes product-disclosure-open {
-  from {
-    height: 0;
-    opacity: 0;
-  }
 
-  to {
-    height: var(--radix-accordion-content-height);
-    opacity: 1;
-  }
-}
-
-@keyframes product-disclosure-close {
-  from {
-    height: var(--radix-accordion-content-height);
-    opacity: 1;
-  }
-
-  to {
-    height: 0;
-    opacity: 0;
-  }
-}
 /* Home typography pass: use loaded IBM Plex weights only */
 .home-motion-root {
   font-kerning: normal;
