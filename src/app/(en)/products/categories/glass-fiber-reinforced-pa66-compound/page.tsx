@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { EngineeringGfLandingPage } from "@/components/EngineeringGfLandingPage";
-import { getEngineeringGfLandingPageData } from "@/data/engineeringGfLandingPages";
 import { getEngineeringGfLandingPath } from "@/data/engineeringGfLandingRegistry";
+import { getEngineeringGfLandingMessages } from "@/i18n/engineeringGfLandingMessages";
 import {
   getLanguageAlternatesForPath,
   isSourceReleaseIndexable,
@@ -10,14 +10,14 @@ import {
 import { createPageMetadata } from "@/lib/seo";
 
 const sourcePath = getEngineeringGfLandingPath("PA66");
-const page = getEngineeringGfLandingPageData("PA66");
+const { page, ui } = getEngineeringGfLandingMessages("PA66");
 
 export const metadata: Metadata = createPageMetadata({
   title: page.metaTitle,
   description: page.metaDescription,
   path: sourcePath,
   image: "/factory-extrusion.webp",
-  imageAlt: "PLATFORM glass-fiber-reinforced PA66 grade selection",
+  imageAlt: ui.heroImageAlt,
   indexable: isSourceReleaseIndexable(sourcePath),
   languageAlternates: getLanguageAlternatesForPath(sourcePath),
 });
