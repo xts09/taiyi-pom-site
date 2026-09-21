@@ -374,7 +374,7 @@ export type HomeMessages = {
     checklist: readonly string[];
     action: string;
   };
-  taskFirst?: HomeTaskFirstMessages;
+  taskFirst: HomeTaskFirstMessages;
 };
 
 export type ContactFormMessages = {
