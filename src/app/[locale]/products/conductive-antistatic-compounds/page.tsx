@@ -4,7 +4,7 @@ import { setRequestLocale } from "next-intl/server";
 import {
   ConductiveAntistaticCompoundsContent,
   conductiveAntistaticCompoundsHeroImage,
-} from "@/app/(en)/products/conductive-antistatic-compounds/page";
+} from "@/components/ConductiveAntistaticCompoundsPage";
 import { getLocalizedLocale } from "@/i18n/config";
 import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 import { chineseConductiveAntistaticCompoundsMessages } from "@/i18n/messages/zh-CN-conductive-compounds";

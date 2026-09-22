@@ -18,6 +18,7 @@ type ResourceArticleContentProps = {
     mediaLabels: string;
     comparison: string;
   };
+  mobileNavigation?: ReactNode;
 };
 
 export function ResourceArticleContent({
@@ -28,6 +29,7 @@ export function ResourceArticleContent({
   children,
   articleKicker = "Technical guide",
   featureAriaLabels,
+  mobileNavigation,
 }: ResourceArticleContentProps) {
   const introFeatures = features.filter(
     (feature) => feature.position === "after-intro",
@@ -51,6 +53,8 @@ export function ResourceArticleContent({
           {intro}
         </p>
       </header>
+
+      {mobileNavigation}
 
       {introFeatures.map((feature) => (
         <ResourceArticleFeature

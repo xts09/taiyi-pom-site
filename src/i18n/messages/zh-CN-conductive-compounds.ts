@@ -1,4 +1,4 @@
-import type { ConductiveAntistaticCompoundsMessages } from "@/app/(en)/products/conductive-antistatic-compounds/page";
+import type { ConductiveAntistaticCompoundsMessages } from "@/components/ConductiveAntistaticCompoundsPage";
 
 export const chineseConductiveAntistaticCompoundsMessages = {
   home: "首页",

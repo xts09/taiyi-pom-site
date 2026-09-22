@@ -126,8 +126,8 @@
 
 .closeButton {
   display: inline-flex;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: var(--ds-touch-target-min);
+  height: var(--ds-touch-target-min);
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;

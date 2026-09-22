@@ -309,6 +309,14 @@ export default async function TechnicalDataSheetsPage({
             variant="resource"
           />
 
+          <h1 className="resource-site-title">
+            Technical Data Sheets &amp; Grade Data
+          </h1>
+          <p className="resource-site-intro">
+            Search by grade, material family, product direction, document path,
+            or technical topic.
+          </p>
+
           <form
             className="resource-site-searchbox"
             action="/technical-data-sheets"
@@ -453,13 +461,13 @@ export default async function TechnicalDataSheetsPage({
         <section id="resource-results" className="resource-site-results">
           <div className="resource-site-results-head">
             <div>
-              <h1
+              <h2
                 id="resource-search-title"
                 aria-live="polite"
                 aria-atomic="true"
               >
                 {resultHeading}
-              </h1>
+              </h2>
             </div>
             <span>Grouped by content type</span>
           </div>

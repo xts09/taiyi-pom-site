@@ -47,6 +47,8 @@ export type Certification = {
   system: string;
   scope: string;
   imageSrc: string;
+  imageWidth: number;
+  imageHeight: number;
   documentHref: string;
 };
 
@@ -165,6 +167,8 @@ export const certifications = [
     scope:
       "Manufacture of plastic granules, excluding product design under clause 8.3.",
     imageSrc: "/certificates/iatf-16949-certificate.webp",
+    imageWidth: 710,
+    imageHeight: 1000,
     documentHref: "/certificates/iatf-16949-certificate.pdf",
   },
   {
@@ -172,6 +176,8 @@ export const certifications = [
     system: "Quality Management",
     scope: "Production of nano-polymer materials (plastic particles).",
     imageSrc: "/certificates/iso-9001-certificate.webp",
+    imageWidth: 720,
+    imageHeight: 989,
     documentHref: "/certificates/iso-9001-certificate.pdf",
   },
   {
@@ -180,6 +186,8 @@ export const certifications = [
     scope:
       "Environmental management in sales-related areas of nano-polymer materials (plastic particles).",
     imageSrc: "/certificates/iso-14001-certificate.webp",
+    imageWidth: 612,
+    imageHeight: 842,
     documentHref: "/certificates/iso-14001-certificate.pdf",
   },
   {
@@ -188,6 +196,8 @@ export const certifications = [
     scope:
       "Occupational health and safety management in sales-related areas of nano-polymer materials (plastic particles).",
     imageSrc: "/certificates/iso-45001-certificate.webp",
+    imageWidth: 612,
+    imageHeight: 842,
     documentHref: "/certificates/iso-45001-certificate.pdf",
   },
 ] satisfies Certification[];

@@ -3,7 +3,7 @@
 .section + .section { padding-top: 0; }
 .section h2 { margin: 0; font-size: var(--ds-section-intro-title-size); font-weight: var(--ds-font-weight-bold); line-height: 1.12; letter-spacing: -0.025em; text-wrap: balance; }
 .section p { color: var(--ds-foreground-muted); line-height: 1.75; }
-.intro { max-width: 48rem; margin-bottom: var(--ds-space-8); }
+.intro { max-width: 65ch; margin-bottom: var(--ds-space-8); }
 .intro p { margin: var(--ds-space-4) 0 0; }
 .materials { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); gap: var(--ds-space-6) var(--ds-space-12); margin: 0 0 var(--ds-space-3); padding: var(--ds-space-8); list-style: none; background: var(--ds-background-surface); border-radius: var(--ds-radius-panel); }
 .materials > li { display: grid; grid-row: span 4; grid-template-rows: subgrid; min-width: 0; }
@@ -37,7 +37,7 @@
 .caseHeading { grid-column: 1; }
 .case h2, .inquiry h2 { font-size: clamp(1.5rem, 2vw, 2rem); line-height: 1.3; }
 .case p { margin: 0; color: var(--ds-foreground-on-dark-muted); }
-.case > p { grid-column: 1 / -1; max-width: 72rem; text-wrap: pretty; }
+.case > p { grid-column: 1 / -1; max-width: 65ch; text-wrap: pretty; }
 .case .eyebrow { color: var(--ds-color-cyan-bright); font-size: var(--ds-text-sm); margin-bottom: var(--ds-space-3); }
 .case .link { grid-column: 2; grid-row: 1; align-self: end; color: var(--ds-foreground-on-dark); }
 .case .link:focus-visible { outline-color: var(--ds-color-cyan-bright); }

@@ -16,6 +16,7 @@ type ResourceArticleSidebarProps = {
   label?: string;
   sidebarAria?: string;
   tableOfContentsAria?: string;
+  variant: "desktop" | "mobile";
 };
 
 export function ResourceArticleSidebar({
@@ -23,6 +24,7 @@ export function ResourceArticleSidebar({
   label = "On this page",
   sidebarAria = "Article sections",
   tableOfContentsAria = "Article table of contents",
+  variant,
 }: ResourceArticleSidebarProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [mobileTocValue, setMobileTocValue] = useState("");
@@ -32,50 +34,73 @@ export function ResourceArticleSidebar({
       return;
     }
 
-    const elements = sections
-      .map((section) => document.getElementById(section.id))
-      .filter((element): element is HTMLElement => Boolean(element));
-    const articleEnd = document.getElementById("resource-article-end");
+    const desktopViewport = window.matchMedia("(min-width: 64rem)");
+    let observer: IntersectionObserver | undefined;
 
-    if (articleEnd) {
-      elements.push(articleEnd);
-    }
+    const observeActiveSection = () => {
+      observer?.disconnect();
+      observer = undefined;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.boundingClientRect.top - a.boundingClientRect.top)[0];
+      const shouldObserve =
+        variant === "desktop"
+          ? desktopViewport.matches
+          : !desktopViewport.matches;
+      if (!shouldObserve) {
+        return;
+      }
 
-        if (!visibleEntry) {
-          return;
-        }
+      const elements = sections
+        .map((section) => document.getElementById(section.id))
+        .filter((element): element is HTMLElement => Boolean(element));
+      const articleEnd = document.getElementById("resource-article-end");
 
-        if (visibleEntry.target.id === "resource-article-end") {
-          setActiveIndex(sections.length - 1);
-          return;
-        }
+      if (articleEnd) {
+        elements.push(articleEnd);
+      }
 
-        const nextIndex = sections.findIndex(
-          (section) => section.id === visibleEntry.target.id,
-        );
+      observer = new IntersectionObserver(
+        (entries) => {
+          const visibleEntry = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort(
+              (a, b) =>
+                b.boundingClientRect.top - a.boundingClientRect.top,
+            )[0];
 
-        if (nextIndex >= 0) {
-          setActiveIndex(nextIndex);
-        }
-      },
-      {
-        rootMargin: "-8% 0px -72% 0px",
-        threshold: 0,
-      },
-    );
+          if (!visibleEntry) {
+            return;
+          }
 
-    elements.forEach((element) => observer.observe(element));
+          if (visibleEntry.target.id === "resource-article-end") {
+            setActiveIndex(sections.length - 1);
+            return;
+          }
+
+          const nextIndex = sections.findIndex(
+            (section) => section.id === visibleEntry.target.id,
+          );
+
+          if (nextIndex >= 0) {
+            setActiveIndex(nextIndex);
+          }
+        },
+        {
+          rootMargin: "-8% 0px -72% 0px",
+          threshold: 0,
+        },
+      );
+
+      elements.forEach((element) => observer?.observe(element));
+    };
+
+    observeActiveSection();
+    desktopViewport.addEventListener("change", observeActiveSection);
 
     return () => {
-      observer.disconnect();
+      desktopViewport.removeEventListener("change", observeActiveSection);
+      observer?.disconnect();
     };
-  }, [sections]);
+  }, [sections, variant]);
 
   const sectionLinks = (mobile = false) => (
     <ul className={mobile ? "grid gap-1" : "grid gap-1.5"}>
@@ -109,34 +134,38 @@ export function ResourceArticleSidebar({
     </ul>
   );
 
-  return (
-    <aside className="h-full" aria-label={sidebarAria}>
-      <div className="hidden lg:sticky lg:top-[calc(var(--site-header-height)+2rem)] lg:block">
-        <p className="mb-4 text-xs font-semibold tracking-[0.08em] text-slate-500 uppercase">
-          {label}
-        </p>
-        <nav aria-label={tableOfContentsAria}>{sectionLinks()}</nav>
-      </div>
+  if (variant === "desktop") {
+    return (
+      <aside className="hidden h-full lg:block" aria-label={sidebarAria}>
+        <div className="lg:sticky lg:top-[calc(var(--site-header-height)+2rem)]">
+          <p className="mb-4 text-xs font-semibold tracking-[0.08em] text-slate-500 uppercase">
+            {label}
+          </p>
+          <nav aria-label={tableOfContentsAria}>{sectionLinks()}</nav>
+        </div>
+      </aside>
+    );
+  }
 
-      <div className="border-b border-slate-200 bg-white px-5 py-3 sm:px-8 lg:hidden">
-        <Accordion
-          type="single"
-          collapsible
-          value={mobileTocValue}
-          onValueChange={setMobileTocValue}
-        >
-          <AccordionItem value="article-sections" className="border-0">
-            <AccordionTrigger className="min-h-11 py-2 text-sm font-semibold text-slate-800 hover:no-underline">
-              {label}
-            </AccordionTrigger>
-            <AccordionContent className="pt-2 pb-2">
-              <nav aria-label={tableOfContentsAria}>
-                {sectionLinks(true)}
-              </nav>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
-      </div>
+  return (
+    <aside className="mt-8 border-y border-slate-200 bg-white py-3 lg:hidden" aria-label={sidebarAria}>
+      <Accordion
+        type="single"
+        collapsible
+        value={mobileTocValue}
+        onValueChange={setMobileTocValue}
+      >
+        <AccordionItem value="article-sections" className="border-0">
+          <AccordionTrigger className="min-h-11 py-2 text-sm font-semibold text-slate-800 hover:no-underline">
+            {label}
+          </AccordionTrigger>
+          <AccordionContent className="pt-2 pb-2">
+            <nav aria-label={tableOfContentsAria}>
+              {sectionLinks(true)}
+            </nav>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </aside>
   );
 }

@@ -23,7 +23,7 @@
 }
 
 .note {
-  max-width: 65rem;
+  max-width: 65ch;
   margin: var(--ds-space-4) 0;
 }
 
@@ -44,7 +44,7 @@
 
 .basis {
   padding-bottom: var(--ds-space-4);
-  max-width: 65rem;
+  max-width: 65ch;
 }
 
 .basis dl > div {

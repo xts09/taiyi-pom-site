@@ -200,8 +200,8 @@ function HomeProofSection({
                 previewClassName="home-proof-certificate-preview"
                 preview={
                   <Image
-                    width={64}
-                    height={90}
+                    width={certificate.imageWidth}
+                    height={certificate.imageHeight}
                     src={publicPath(certificate.imageSrc)}
                     alt=""
                   />

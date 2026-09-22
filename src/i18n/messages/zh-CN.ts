@@ -121,6 +121,7 @@ const messages = {
     notAccepted: "未同意",
     accept: "接受分析 Cookie",
     continueWithout: "不启用分析并继续",
+    dismiss: "稍后决定",
     settings: "Cookie 设置",
   },
   Products: {

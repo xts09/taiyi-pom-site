@@ -188,7 +188,7 @@ export const pomLandingPages = {
       src: "/generated/landing/modified-pom-material-landscape-v1.webp",
       alt: "Dark technical composition of polymer pellets and molded parts",
     },
-    primaryActionLabel: "Choose by Part Requirement",
+    primaryActionLabel: "Choose by Part Requirements",
     primaryActionHref: "#part-requirement-map",
     finalActionLabel: "Request a POM Grade Review",
     finalDescription:

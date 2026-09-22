@@ -2911,6 +2911,7 @@
   .product-category-shell
   .evaluation-note
   p:not(.section-kicker) {
+  max-width: 65ch;
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -4229,7 +4230,7 @@
 
 #evaluation-notes p {
   margin-top: 0.85rem;
-  max-width: 72rem;
+  max-width: 65ch;
   color: #475569;
   font-size: 0.98rem;
   line-height: 1.72;
@@ -5719,6 +5720,25 @@
   margin: 0 auto;
 }
 
+.resource-site-title {
+  max-width: 18ch;
+  margin: clamp(1rem, 2vw, 1.35rem) 0 0;
+  color: var(--ds-foreground-primary);
+  font-size: var(--ds-resource-hero-title-size);
+  font-weight: var(--ds-resource-hero-title-weight);
+  letter-spacing: var(--ds-resource-hero-title-tracking);
+  line-height: var(--ds-resource-hero-title-leading);
+}
+
+.resource-site-intro {
+  max-width: var(--ds-resource-hero-body-measure);
+  margin: 1rem 0 0;
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-resource-hero-body-size);
+  font-weight: var(--ds-resource-hero-body-weight);
+  line-height: var(--ds-resource-hero-body-leading);
+}
+
 .resource-site-searchbox {
   display: grid;
   margin-top: clamp(1rem, 2vw, 1.35rem);
@@ -5803,7 +5823,7 @@
 .resource-site-search-examples a {
   display: inline-flex;
   align-items: center;
-  min-height: 1.8rem;
+  min-height: var(--ds-touch-target-min);
   border: 1px solid rgba(0, 119, 165, 0.16);
   border-radius: 999px;
   background: #f3f8fb;
@@ -5867,6 +5887,11 @@
 }
 
 .resource-site-filter-head a {
+  display: inline-flex;
+  min-width: var(--ds-touch-target-min);
+  min-height: var(--ds-touch-target-min);
+  align-items: center;
+  justify-content: center;
   color: #0077a5;
   font-size: 0.78rem;
   font-weight: 700;
@@ -5887,6 +5912,7 @@
 
 .resource-site-filter-disclosure summary {
   display: flex;
+  min-height: var(--ds-touch-target-min);
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
@@ -5935,7 +5961,7 @@
   grid-template-columns: 0.85rem minmax(0, 1fr);
   gap: 0.65rem;
   align-items: center;
-  min-height: 2.5rem;
+  min-height: var(--ds-touch-target-min);
   border-radius: 0.25rem;
   color: #243145;
   font-size: 0.9rem;
@@ -6011,7 +6037,7 @@
   margin-bottom: 1.45rem;
 }
 
-.resource-site-results-head h1 {
+.resource-site-results-head :is(h1, h2) {
   margin: 0;
   color: #07111f;
   font-size: clamp(1.55rem, 2.2vw, 2rem);
