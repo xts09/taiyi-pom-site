@@ -10,6 +10,7 @@ import { ResourceHero } from "@/components/ResourceHero";
 import {
   getResourceNavigationGroup,
   getResourceNavigationGroupForHref,
+  getResourceNavigationGroupMetadataTitle,
   getResourceNavigationGroupPath,
   resourceNavigationGroups,
 } from "@/data/resourceNavigation";
@@ -64,7 +65,7 @@ export async function generateMetadata({
     ) as ReleasedSourcePath;
 
     return createPageMetadata({
-      title: `${group.title} Resources | Taiyi Polymer`,
+      title: `${getResourceNavigationGroupMetadataTitle(group)} | Taiyi Polymer`,
       description: group.description,
       path: sourcePath,
       image: group.image,

@@ -78,7 +78,7 @@ export const componentSolutionDetails = [
   {
     slug: "precision-plastic-gears",
     seo: {
-      title: "Precision Plastic Gears | POM Material Selection Guide",
+      title: "POM Materials for Precision Plastic Gears | Taiyi Polymer",
       description:
         "Compare load, speed, tooth geometry, wear, tolerance, molding, and validation requirements for precision plastic gears using modified POM.",
       image: "/applications/parts/motion-components-detail-cad-hero.webp",
