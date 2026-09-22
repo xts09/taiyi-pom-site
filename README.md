@@ -1,4 +1,4 @@
-# Taiyi Nano Product Site
+# Taiyi Polymer Product Site
 
 Next.js product, application, resource, and technical-data site for Taiyi Nano.
 

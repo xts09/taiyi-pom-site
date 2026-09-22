@@ -72,6 +72,25 @@ preflight. For visual work, rendered evidence and the viewport matrix are
 mandatory. For copy and CTA work, search for stale variants. For shared
 components, verify representative consumers from each affected route family.
 
+### Documentation Freshness Gate
+
+- When a task changes a canonical token, route owner, shared component owner,
+  public route family, or release boundary, update the corresponding canonical
+  source in the same task. Runtime token changes must keep both the narrative
+  and machine-readable summary in `DESIGN.md` aligned; ownership changes must
+  update `COMPONENTS.md`; durable product or release changes must update
+  `PRODUCT.md`.
+- Do not record an active branch name, current commit, dirty-file list, sitemap
+  total, test count, or build count as a durable product requirement. Read live
+  repository state when needed. Dated milestone counts may remain as history
+  when their date and historical status are explicit.
+- Before treating a documented source path as current, verify that it exists.
+  Mark superseded audits, handoffs, and browser snapshots as historical instead
+  of silently carrying their instructions into new work.
+- `.impeccable/design.json` is ignored tooling output. Regenerate it only when
+  that tooling is intentionally used; never hand-edit it into a competing
+  source of truth.
+
 ## Stable Session Protocol
 
 - Keep work in short, verifiable steps. Avoid combining broad analysis, large edits, build, browser automation, and screenshots in one long chain.

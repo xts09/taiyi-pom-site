@@ -1,5 +1,11 @@
 # Component Solution Pages — Lightweight Handoff
 
+> **Historical handoff — superseded 2026-09-22.** The component-solution family
+> has been implemented since this planning note was written. Do not treat the
+> “Current Decision”, “Current Code State”, or “Next Lightweight Task Opening”
+> sections below as active instructions. Current ownership and acceptance come
+> from `AGENTS.md`, `DESIGN.md`, `COMPONENTS.md`, and `PRODUCT.md`.
+
 ## Objective
 
 Build a component-led Applications content family for overseas buyers and engineers. Use the Precision Plastic Gears route as the first verified sample, then apply the approved content model to the remaining five component families.
@@ -73,18 +79,20 @@ Only after this table is approved should the page structure and CSS be changed.
 
 The source documents are reference material. Do not publish all of their content automatically; select only what supports the customer's decision and can be stated responsibly.
 
-## Current Code State
+## Current Owner Locations
 
 - Sample route: `/components/precision-plastic-gears`
-- Page component: `src/app/components/[slug]/DetailedComponentSolution.tsx`
-- Page styles: `src/app/components/ComponentSolutions.module.css`
+- Page component: `src/app/(en)/components/[slug]/DetailedComponentSolution.tsx`
+- Page styles: `src/app/(en)/components/ComponentSolutions.module.css`
 - Detail content data: `src/data/componentSolutionDetails.ts`
-- The incomplete customer-path restructuring was reverted.
 - The previously approved dark-panel top-padding correction remains:
   - Desktop: `64px` at the 1920px verification viewport.
   - Mobile: `24px` at the 390px verification viewport.
-- No commit, push, or deployment was performed for this handoff.
 
-## Next Lightweight Task Opening
+## Historical Next-Step Record
 
-Read this handoff, `AGENTS.md`, the relevant `DESIGN.md` / `PRODUCT.md` sections, and only the Precision Plastic Gears source document first. Produce the required content-planning table without editing the page. After approval, implement one section family at a time and verify at `1920x1080` and `390x844`.
+The original next step was to read this handoff, the canonical project sources,
+and the Precision Plastic Gears source document, then produce a content-planning
+table before implementation. That sequence is retained only as historical
+context; new work follows the current canonical documents and rendered
+regression contract.

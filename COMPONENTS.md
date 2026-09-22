@@ -44,8 +44,8 @@ The registry was derived from all current route families:
 
 ## Company Family Composition — Pattern Only
 
-**Owner:** `src/app/about/AboutSections.tsx` and
-`src/app/about/AboutPage.module.css`.
+**Owner:** `src/app/(en)/about/AboutSections.tsx` and
+`src/app/(en)/about/AboutPage.module.css`.
 
 **Composition:** image-led hero, overlapping identity plate, open company
 metric rail, manufacturing evidence, credential proof, then one inquiry.
@@ -62,8 +62,8 @@ page-family composition, not a new global component suite.
 
 ### Site Frame — Canonical
 
-**Owner:** `src/app/layout.tsx`, `src/components/Header.tsx`,
-`src/components/Footer.tsx`
+**Owner:** `src/app/(en)/layout.tsx`, `src/app/[locale]/layout.tsx`,
+`src/components/Header.tsx`, and `src/components/Footer.tsx`.
 
 **Includes:** global Header, main content boundary, Footer, skip link, desktop
 and mobile navigation behavior.
@@ -237,7 +237,9 @@ placement. Pages supply labels, anchors, and optional actions.
 
 ### Header and Mega Menu — Canonical
 
-**Owner:** `src/components/Header.tsx` and `src/app/styles/header.css`.
+**Owner:** `src/components/Header.tsx` and
+`src/app/(en)/styles/header.css`. The localized layout imports the same shared
+stylesheet; it does not own a separate navigation skin.
 
 **Rule:** preserve the existing shared navigation contract. Mega-menu layout is
 a specialized composition, not a generic Card.
