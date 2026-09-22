@@ -1,5 +1,10 @@
 # Taiyi Polymer Site Design Audit
 
+> **Historical audit.** This document records the site state on 2026-08-01.
+> File paths, line numbers, implementation gaps, and completion claims may have
+> been superseded. Use `AGENTS.md`, `DESIGN.md`, `COMPONENTS.md`, `PRODUCT.md`,
+> and the current runtime sources for new work.
+
 Method: joint Taste + Impeccable review in a single context. The project rules in
 `AGENTS.md`, `DESIGN.md`, `PRODUCT.md`, `COMPONENTS.md`, and `tokens.css` are the
 acceptance authority. Taste was used for visual specificity and composition;

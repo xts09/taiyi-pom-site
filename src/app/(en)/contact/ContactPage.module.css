@@ -21,7 +21,7 @@
     url("/generated/landing/pom-satin-wave-background-v1.webp") center 42% /
       cover no-repeat,
     #f4f7f8;
-  padding: 4rem 0;
+  padding: var(--ds-space-16) 0;
 }
 
 .shell > * {
@@ -187,7 +187,7 @@
 
 @media (max-width: 63.999rem) {
   .shell {
-    padding-top: 2.5rem;
+    padding-top: var(--ds-space-10);
   }
 
   .hero {

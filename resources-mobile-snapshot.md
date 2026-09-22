@@ -1,3 +1,6 @@
+> Historical generated browser snapshot. This file is evidence from an earlier
+> rendered state, not current design or implementation guidance.
+
 - generic [active] [ref=e1] [box=0,0,390,4756]:
   - link "Skip to main content" [ref=e2] [cursor=pointer] [box=12,-48,168,44]:
     - /url: "#main-content"

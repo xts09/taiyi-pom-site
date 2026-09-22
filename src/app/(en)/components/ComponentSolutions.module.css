@@ -5,7 +5,8 @@
 
 .shell {
   width: 100%;
-  padding: clamp(1.5rem, 3vw, 2.5rem) 0 clamp(4.5rem, 7vw, 7rem);
+  padding: clamp(1.5rem, 3vw, var(--ds-space-10)) 0
+    clamp(4.5rem, 7vw, 7rem);
 }
 
 .rail {
@@ -52,14 +53,14 @@
 }
 
 .section {
-  padding-top: clamp(3rem, 5.5vw, 5rem);
+  padding-top: clamp(3rem, 5.5vw, var(--ds-space-20));
   scroll-margin-top: calc(var(--site-header-height) + var(--ds-space-4));
 }
 
 .directoryIntro {
   --section-intro-description-max: 65ch;
   width: min(62rem, 100%);
-  margin-bottom: clamp(2rem, 3vw, 2.5rem);
+  margin-bottom: clamp(2rem, 3vw, var(--ds-space-10));
 }
 
 .directory {

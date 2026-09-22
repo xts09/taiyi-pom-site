@@ -59,8 +59,12 @@ spacing:
   sm: "1rem"
   md: "1.5rem"
   lg: "2rem"
+  layout40: "2.5rem"
   xl: "3rem"
+  layout56: "3.5rem"
+  layout64: "4rem"
   2xl: "4.5rem"
+  layout80: "5rem"
   3xl: "7rem"
 layout:
   siteMax: "92rem"
@@ -293,7 +297,7 @@ The primary site rail is a centered maximum width of 92rem with fluid side gutte
 
 Use a 12-column grid for complex desktop compositions and simpler two-column grids for ordinary content. Mobile layouts below 48rem collapse to one column. At widths below 64rem, remove non-essential overlaps and simplify navigation and evidence compositions rather than scaling the desktop layout down.
 
-The spacing rhythm uses a 4px base with repeated 8, 12, 16, 24, 32, 48, 72, and 112px steps. Tight spacing belongs inside a component; generous spacing belongs between separate ideas. Avoid large empty areas that do not establish hierarchy.
+The fixed spacing rhythm uses a 4px base with repeated 8, 12, 16, 24, 32, 40, 48, 56, 64, 72, 80, and 112px steps. The 40–80px range is the extended layout tier for section insets, large grid gaps, and page-level breathing room. Fluid `clamp()` values may interpolate between fixed endpoints; review their authored minimum and maximum against the rhythm instead of treating every computed intermediate value as a new token. Tight spacing belongs inside a component; generous spacing belongs between separate ideas. Avoid large empty areas that do not establish hierarchy.
 
 **The One Rail Rule.** Primary modules align to the same rendered rail. A local component cannot introduce an unrelated page width.
 

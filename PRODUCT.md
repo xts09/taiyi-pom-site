@@ -4,30 +4,42 @@ This file is the product, content, design, and acceptance reference for the Taiy
 
 ## Current Working Baseline
 
-As of 2026-07-01, the active working branch is `codex/site-cleanup-batches`. The GitHub tag `checkpoint-before-react-bits` points to the checkpoint commit `6a64732 checkpoint: current site iteration`.
+Resolve the active branch, commit, and working-tree state from Git at the start
+of each task. Branch names and dirty-file lists are intentionally not treated as
+product requirements because they become stale between maintenance sessions.
+The GitHub tag `checkpoint-before-react-bits` remains the historical
+pre-React-Bits recovery point at commit `6a64732`.
 
 Treat that tag as the pre-React-Bits recovery point. If later motion or component experiments feel wrong, compare against or return to that tag rather than guessing which visual changes caused the drift.
 
 The current homepage and main navigation baseline is:
 
-- Header, mega menu, and homepage content use a shared `82rem` maximum content frame with matching desktop side padding.
+- Header, mega menu, homepage content, and inner-page modules use the shared
+  `92rem` maximum rail with fluid side gutters defined by the runtime site
+  variables.
 - Main navigation is white, compact, and right-weighted, with a dark logo, smaller nav labels, a `Contact` text link, and a search icon button instead of a heavy quote button.
 - The homepage should avoid region-dividing lines, faint grid overlays, nested pale panels, and second-layer background blocks over the main page background.
 - The first screen should stay restrained and image-led. React Bits-style interaction should begin below the hero unless there is a strong functional reason.
 
-### Active Implementation Snapshot (2026-07-16)
+### Active Implementation Snapshot (2026-09-22)
 
-This is a handoff snapshot for future maintenance sessions. Refresh it after the next checkpoint commit rather than treating stale working-tree details as permanent product requirements.
+This snapshot records durable implementation ownership. Live branch names,
+commit hashes, dirty files, sitemap totals, and build counts must be read from
+the repository or generated output rather than copied forward as current facts.
 
-- Active branch: `codex/keptds`; last committed baseline at the time of this snapshot: `2c97a27 Add deployment environment template`.
-- The working tree contains intentional, uncommitted Resources and Header work. Inspect `git status --short` before editing and preserve all existing changes.
+- English route owners live under `src/app/(en)/**`; localized route owners live
+  under `src/app/[locale]/**`. Shared components and data remain under
+  `src/components/**` and `src/data/**`.
+- Inspect `git status --short` before editing and preserve intentional existing
+  changes. Do not infer the current worktree from this document.
 - Resources are organized by buyer task: Choose a Material, Process & Troubleshoot, and Find Data. `src/data/resourceNavigation.ts` is the shared navigation source used to keep the Resources mega menu and Resources page language aligned.
 - `/resources` has an image-led technical hero, task navigation, grouped resource lists, and a restrained contact path. Do not turn it back into a collection of unrelated cards.
 - Products, Applications, and Resources mega-menu item underlines now share the `mega-nav-label` implementation. Their thickness, color, offset, animation, and text-width behavior should remain visually consistent.
 - The dark homepage header and its expanded menu are one frosted-glass material system. Inner pages use the white header and white expanded menu with no gap between them.
 - A cross-material Conductive / Antistatic page can support search intent and specialist inquiries without becoming a primary top-navigation branch. Keep the main product architecture focused on established material families.
-- Current uncommitted files at this snapshot: `src/app/resources/page.tsx`, `src/app/styles/header.css`, `src/app/styles/resources.css`, `src/components/Header.tsx`, `src/data/resources.ts`, and new `src/data/resourceNavigation.ts`.
-- Most recent verification for the shared navigation work: `npm run typecheck` passed; Products, Applications, and Resources expanded-menu hover states were visually inspected at `1920x1080` on a white inner-page header, and Products was also checked on the dark homepage header. Browser console errors: none.
+- Dated release sections below preserve historical milestone counts. They do not
+  state the current sitemap size, test count, or deployment status unless the
+  section explicitly carries a newer verification date.
 
 ### Component Solution Structure (2026-08-08)
 

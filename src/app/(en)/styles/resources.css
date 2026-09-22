@@ -5,14 +5,15 @@
   width: 100%;
   max-width: none;
   background: #f3f5f7;
-  padding: clamp(1.4rem, 3vw, 2.2rem) 0 clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.4rem, 3vw, 2.2rem) 0
+    clamp(3rem, 6vw, var(--ds-space-20));
 }
 
 .resource-page-shell.mesh-surface.resource-index-shell {
   width: 100%;
   max-width: none;
   background: #f3f5f7;
-  padding: 0 0 clamp(3rem, 6vw, 5rem);
+  padding: 0 0 clamp(3rem, 6vw, var(--ds-space-20));
 }
 
 .resource-index-shell .resource-index-hero {
@@ -190,7 +191,6 @@
 .resource-index-directory-head {
   display: grid;
   grid-template-columns: minmax(15rem, 5fr) minmax(0, 7fr);
-  gap: clamp(2rem, 5vw, 6rem);
   align-items: start;
   padding-block: clamp(1.5rem, 2.5vw, 2.25rem);
 }
@@ -613,7 +613,7 @@
 }
 
 .resource-news-article {
-  padding-bottom: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, var(--ds-space-20));
 }
 
 .resource-news-hero {
