@@ -10,7 +10,8 @@
 .facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ds-space-6); margin: var(--ds-space-6) 0 0; }
 .facts dt { color: var(--ds-foreground-muted); font-size: var(--ds-text-sm); margin-bottom: var(--ds-space-2); }
 .facts dd { margin: 0; font-weight: var(--ds-font-weight-semibold); line-height: 1.6; }
-.section { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--ds-space-8); padding-block: var(--ds-space-12); border-bottom: 1px solid var(--ds-border-subtle); }
+.evidence { margin-top: var(--ds-space-8); padding: var(--ds-space-4) var(--ds-space-8); background: var(--ds-background-surface); border-radius: var(--ds-radius-panel); }
+.section { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: var(--ds-space-8); padding-block: var(--ds-space-12); }
 .section p { margin: 0 0 var(--ds-space-4); }
 .section p:last-child { margin-bottom: 0; }
 .link { display: inline-flex; align-items: center; min-height: 44px; color: var(--ds-action-primary); text-decoration: underline; text-underline-offset: 5px; }

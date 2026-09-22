@@ -60,10 +60,12 @@ export function MaterialCaseStudyPage({ study, localeSegment }: Props) {
           <p className={styles.lead}>{copy.summary}</p>
           <p><strong>{zh ? "项目进展：" : "Project status: "}</strong>{copy.stage}</p>
         </header>
-        {sections.map((section) => <section key={section.id} className={styles.section} aria-labelledby={section.id}>
-          <h2 id={section.id}>{section.title}</h2>
-          <div>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-        </section>)}
+        <div className={styles.evidence}>
+          {sections.map((section) => <section key={section.id} className={styles.section} aria-labelledby={section.id}>
+            <h2 id={section.id}>{section.title}</h2>
+            <div>{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+          </section>)}
+        </div>
         <CaseStudyRelatedLinks caseId={study.id} grade={study.grade} gradePath={`/products/${study.grade.toLowerCase()}-glass-fiber-pom`} localeSegment={localeSegment} />
         <footer className={styles.footer} data-footer-adjacent="true">
           <h2>{zh ? "讨论类似零件的材料选择" : "Discuss material selection for a similar component"}</h2>
