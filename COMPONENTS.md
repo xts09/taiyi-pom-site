@@ -495,8 +495,11 @@ by both case detail renderers. Article titles come from the existing resource
 records. ETM 100P uses a grade inquiry until an exact product page is published.
 
 `MaterialCaseStudyPage.tsx` renders the supplied glass-fiber POM customer
-accounts in English and Chinese, reusing the existing case article CSS module
-and component rail without changing their rules. Story copy and current project
+accounts in English and Chinese on the shared case article rail. Its four story
+sections are grouped inside one `evidence` surface owned by the case article CSS
+module instead of being separated by rules, so the record reads as a single
+proof block; the gear case page shares the same `.section` rule and separates by
+spacing alone. Story copy and current project
 stages belong to `src/data/glassFiberCaseStudies.ts`; `src/data/caseStudies.ts`
 combines these entries with the existing gear case for the overview and preview.
 
