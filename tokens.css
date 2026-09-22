@@ -233,6 +233,7 @@
   --ds-panel-radius: var(--ds-radius-panel);
   --ds-panel-padding: var(--ds-space-6);
   --ds-panel-padding-compact: var(--ds-space-4);
+  --ds-panel-padding-large: 2.5rem;
   --ds-panel-interactive-shadow-hover: 0 0.75rem 1.8rem
     rgba(15, 23, 42, 0.08);
   --ds-evidence-bg: var(--ds-background-evidence);
@@ -258,7 +259,7 @@
   --ds-product-hero-title-tracking: -0.025em;
   --ds-product-hero-body-size: clamp(1rem, 1.12vw, 1.125rem);
   --ds-product-hero-body-leading: 1.65;
-  --ds-product-hero-body-measure: 65ch;
+  --ds-product-hero-body-measure: 60ch;
   --ds-product-hero-subtitle-size: clamp(1.125rem, 1.5vw, 1.35rem);
   --ds-product-hero-subtitle-weight: var(--ds-font-weight-semibold);
   --ds-product-hero-subtitle-leading: 1.35;
@@ -329,8 +330,8 @@
   --ds-resource-article-intro-size: var(--ds-product-hero-body-size);
   --ds-resource-article-intro-leading: 1.75;
   --ds-resource-article-canvas-measure: 60rem;
-  --ds-resource-article-prose-measure: 52rem;
-  --ds-resource-article-intro-measure: 100%;
+  --ds-resource-article-prose-measure: 65ch;
+  --ds-resource-article-intro-measure: 65ch;
   --ds-resource-article-surface-bg: var(--ds-product-hero-surface-bg);
   --ds-resource-article-surface-border: var(--ds-product-hero-surface-border);
   --ds-resource-article-surface-radius: var(--ds-product-hero-surface-radius);
@@ -358,7 +359,7 @@
   --ds-action-panel-evidence-bg: var(--ds-evidence-surface);
   --ds-action-panel-evidence-fg: var(--ds-foreground-on-dark);
   --ds-action-panel-recommendation-body-fg: var(--ds-color-slate-300);
-  --ds-action-panel-recommendation-body-max: 58rem;
+  --ds-action-panel-recommendation-body-max: 65ch;
   --ds-action-panel-recommendation-copy-basis: 34rem;
   --ds-action-panel-recommendation-aside-basis: 24rem;
   --ds-action-panel-recommendation-aside-min: 18rem;

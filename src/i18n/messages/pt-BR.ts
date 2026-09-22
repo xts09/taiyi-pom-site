@@ -125,6 +125,7 @@ const messages = {
     notAccepted: "não aceita",
     accept: "Aceitar cookies de análise",
     continueWithout: "Continuar sem cookies de análise",
+    dismiss: "Decidir depois",
     settings: "Configurações de cookies",
   },
   Products: {

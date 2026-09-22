@@ -79,7 +79,7 @@ export function AutomotiveSystemGroup({ application, group, inLanguage, localeSe
         <figcaption>{moving ? ui.moving : candidates.length === 0 ? ui.fuel : `${ui.image} · ${part.label}`}</figcaption>
       </figure> : null}
       <div className={styles.body}>
-        <h4>{part.label}</h4>
+        <h3>{part.label}</h3>
         <p>{part.description}</p>
         <div className={styles.candidates}>
           <span>{ui.candidate}</span>

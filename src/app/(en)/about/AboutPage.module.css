@@ -89,7 +89,7 @@
 }
 
 .heroCopy > p:not(.heroEyebrow) {
-  max-width: 48rem;
+  max-width: 42rem;
   margin-top: 1.75rem;
   color: rgb(255 255 255 / 78%);
   font-size: clamp(1rem, 1.35vw, 1.2rem);

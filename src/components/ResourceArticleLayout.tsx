@@ -50,6 +50,7 @@ export function ResourceArticleLayout({
           label={messages?.sidebarLabel}
           sidebarAria={messages?.sidebarAria}
           tableOfContentsAria={messages?.tableOfContentsAria}
+          variant="desktop"
         />
       }
     >
@@ -59,6 +60,15 @@ export function ResourceArticleLayout({
         sections={articleSections}
         features={page.articleFeatures}
         articleKicker={messages?.articleKicker}
+        mobileNavigation={
+          <ResourceArticleSidebar
+            sections={sidebarSections}
+            label={messages?.sidebarLabel}
+            sidebarAria={messages?.sidebarAria}
+            tableOfContentsAria={messages?.tableOfContentsAria}
+            variant="mobile"
+          />
+        }
         featureAriaLabels={
           messages
             ? {

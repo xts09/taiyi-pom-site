@@ -124,6 +124,7 @@ const messages = {
     notAccepted: "not accepted",
     accept: "Accept Analytics Cookies",
     continueWithout: "Continue Without Analytics",
+    dismiss: "Decide later",
     settings: "Cookie Settings",
   },
   Home: {
@@ -383,7 +384,7 @@ const messages = {
       title: "Engineering Plastic Compounds",
       body:
         "Modified POM leads the range. Base POM resin and selected PA6, PA66, and PPA compounds extend the options when a project calls for a different balance of performance and processing.",
-      startAction: "Choose by Part Requirement",
+      startAction: "Choose by Part Requirements",
       dataSheetsAction: "Find Grade Data & TDS",
     },
     selection: {

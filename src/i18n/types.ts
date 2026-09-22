@@ -109,6 +109,7 @@ export type AnalyticsMessages = {
   notAccepted: string;
   accept: string;
   continueWithout: string;
+  dismiss: string;
   settings: string;
 };
 

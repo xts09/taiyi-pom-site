@@ -303,8 +303,8 @@ Heroes share `--ds-resource-hero-*` eyebrow, title, and body roles, aliased to
 the verified Products Hero scale while retaining their route-specific dark
 evidence surfaces. Long-form resource articles use the related
 `--ds-resource-article-*` Read-mode roles: the same display/body families and
-weights, a quieter headline scale, a 60rem editorial canvas for introductions
-and technical features, and a 52rem measure for long prose. Resource titles
+weights, a quieter headline scale, a 60rem editorial canvas for technical
+features, and a 65ch measure for introductions and long prose. Resource titles
 wrap naturally against their real content width; page-local type ramps must
 not be reintroduced. Directory and standard resource Heroes also share one
 evidence-material contract: the existing midnight satin texture, evidence

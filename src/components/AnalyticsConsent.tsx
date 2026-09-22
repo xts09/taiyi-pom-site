@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import type { AnalyticsMessages } from "@/i18n/types";
@@ -30,13 +31,17 @@ export function AnalyticsConsent({
 }: AnalyticsConsentProps) {
   const choice = useGoogleAnalyticsConsent();
   const [isManuallyOpen, setIsManuallyOpen] = useState(false);
+  const [isDismissed, setIsDismissed] = useState(false);
 
   useEffect(() => {
     if (!enabled) {
       return;
     }
 
-    const openSettings = () => setIsManuallyOpen(true);
+    const openSettings = () => {
+      setIsDismissed(false);
+      setIsManuallyOpen(true);
+    };
     window.addEventListener(
       GOOGLE_ANALYTICS_CONSENT_OPEN_EVENT,
       openSettings,
@@ -50,7 +55,7 @@ export function AnalyticsConsent({
     };
   }, [enabled]);
 
-  const isOpen = isManuallyOpen || choice === null;
+  const isOpen = isManuallyOpen || (choice === null && !isDismissed);
 
   if (!enabled || choice === "loading" || !isOpen) {
     return null;
@@ -65,12 +70,18 @@ export function AnalyticsConsent({
     }
 
     setIsManuallyOpen(false);
+    setIsDismissed(false);
     window.dispatchEvent(
       new CustomEvent<GoogleAnalyticsConsent>(
         GOOGLE_ANALYTICS_CONSENT_CHANGE_EVENT,
         { detail: nextChoice },
       ),
     );
+  };
+
+  const dismiss = () => {
+    setIsManuallyOpen(false);
+    setIsDismissed(choice === null);
   };
 
   return (
@@ -80,7 +91,18 @@ export function AnalyticsConsent({
       aria-describedby="analytics-consent-description"
     >
       <div className={styles.copy}>
-        <h2 id="analytics-consent-title">{messages.title}</h2>
+        <div className={styles.panelHeader}>
+          <h2 id="analytics-consent-title">{messages.title}</h2>
+          <button
+            className={styles.dismissButton}
+            type="button"
+            aria-label={messages.dismiss}
+            title={messages.dismiss}
+            onClick={dismiss}
+          >
+            <X aria-hidden="true" />
+          </button>
+        </div>
         <p id="analytics-consent-description">
           {messages.descriptionBeforeLink}{" "}
           <Link href={getLocalizedHref("/privacy", localeSegment)}>

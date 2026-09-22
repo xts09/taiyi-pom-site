@@ -45,21 +45,27 @@ export function HomePage({
           }}
         />
         <section className="home-hero relative isolate overflow-hidden">
-          <video
-            className="hero-video absolute inset-0 -z-20 h-full w-full object-cover"
-            muted
-            playsInline
-            preload="metadata"
-            poster={publicPath("/factory-hero-95b-loop-v6-poster.webp")}
-            aria-hidden="true"
-            data-loop-start="3"
-          >
-            <source
-              src={publicPath("/factory-hero-95b-loop-v6.mp4")}
-              type="video/mp4"
-              media="(min-width: 520px)"
-            />
-          </video>
+          {["primary", "standby"].map((layer, index) => (
+            <video
+              key={layer}
+              className={`hero-video absolute inset-0 -z-20 h-full w-full object-cover${
+                index === 0 ? " is-active" : ""
+              }`}
+              muted
+              playsInline
+              preload="metadata"
+              poster={publicPath("/factory-hero-95b-loop-v6-poster.webp")}
+              aria-hidden="true"
+              data-hero-video={layer}
+              data-loop-start="3"
+            >
+              <source
+                src={publicPath("/factory-hero-95b-loop-v6.mp4")}
+                type="video/mp4"
+                media="(min-width: 520px)"
+              />
+            </video>
+          ))}
           <div className="site-container home-hero-grid">
             <div className="home-hero-content relative z-10">
               <p className="hero-eyebrow hero-motion-kicker">

@@ -19,6 +19,13 @@
   gap: var(--ds-space-2);
 }
 
+.panelHeader {
+  display: flex;
+  gap: var(--ds-space-4);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
 .copy h2 {
   margin: 0;
   font-size: 1.125rem;
@@ -39,6 +46,34 @@
   color: var(--ds-action-primary);
   font-weight: var(--ds-font-weight-semibold);
   text-underline-offset: 0.2em;
+}
+
+.dismissButton {
+  display: inline-flex;
+  width: var(--ds-touch-target-min);
+  height: var(--ds-touch-target-min);
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  margin: calc(var(--ds-space-2) * -1) calc(var(--ds-space-2) * -1) 0 0;
+  border: 0;
+  border-radius: var(--ds-radius-control);
+  color: var(--ds-foreground-muted);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    color var(--ds-duration-short) var(--ds-ease-out),
+    background var(--ds-duration-short) var(--ds-ease-out);
+}
+
+.dismissButton svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.dismissButton:hover {
+  color: var(--ds-foreground-primary);
+  background: var(--ds-panel-bg-soft);
 }
 
 .currentChoice {
@@ -74,6 +109,7 @@
 }
 
 .settingsButton:focus-visible,
+.dismissButton:focus-visible,
 .copy a:focus-visible {
   outline: 2px solid var(--ds-focus-ring);
   outline-offset: 3px;

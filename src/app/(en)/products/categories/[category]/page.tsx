@@ -179,7 +179,7 @@ export default async function ProductCategoryPage({
       : "Engineering Plastic Family";
   const primaryActionLabel = "Discuss Your Application";
   const heroPrimaryActionLabel = isPomCategory
-    ? "Choose by Part Requirement"
+    ? "Choose by Part Requirements"
     : primaryActionLabel;
   const contactHref = createContactHref({
     intent: isPomCategory ? "grade-evaluation" : undefined,
