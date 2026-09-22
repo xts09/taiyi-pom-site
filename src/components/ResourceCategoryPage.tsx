@@ -6,6 +6,7 @@ import { ResourceHero } from "@/components/ResourceHero";
 import { SectionIntro } from "@/components/SectionIntro";
 import { Button } from "@/components/ui/button";
 import {
+  getResourceNavigationGroupMetadataTitle,
   resourceNavigationGroups,
   type ResourceNavigationGroup,
   type ResourceNavigationLink,
@@ -79,7 +80,7 @@ export function ResourceCategoryPage({
     createCollectionPageJsonLd({
       title: localeSegment
         ? `${group.title}${copy.category.context} | Taiyi Polymer`
-        : `${group.title} Resources | Taiyi Polymer`,
+        : `${getResourceNavigationGroupMetadataTitle(group)} | Taiyi Polymer`,
       description: group.description,
       path,
       items: group.links.map((item) => ({

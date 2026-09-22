@@ -8,6 +8,7 @@ export type ResourceNavigationLink = {
 export type ResourceNavigationGroup = {
   id: string;
   title: string;
+  metadataTitle?: string;
   navigationLabel: string;
   description: string;
   image: string;
@@ -18,7 +19,8 @@ export type ResourceNavigationGroup = {
 export const resourceNavigationGroups: ResourceNavigationGroup[] = [
   {
     id: "material-selection",
-    title: "Material Selection",
+    title: "Material Selection Resources",
+    metadataTitle: "Material Selection Resources",
     navigationLabel: "Choose a Material",
     description:
       "Start with the part function, failure risk, operating conditions, and required evidence before narrowing a material or grade direction.",
@@ -27,7 +29,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
       "Material Selection technical resources from Taiyi Polymer",
     links: [
       {
-        label: "Material Selection Guide",
+        label: "POM Material Selection for Molded Parts",
         href: "/resources/material-selection-guide",
         type: "Guide",
         description:
@@ -168,6 +170,10 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
 export const getResourceNavigationGroupPath = (
   group: ResourceNavigationGroup,
 ) => `/resources/${group.id}`;
+
+export const getResourceNavigationGroupMetadataTitle = (
+  group: Pick<ResourceNavigationGroup, "title" | "metadataTitle">,
+) => group.metadataTitle ?? `${group.title} Resources`;
 
 export const getResourceNavigationGroup = (id: string) =>
   resourceNavigationGroups.find((group) => group.id === id);
