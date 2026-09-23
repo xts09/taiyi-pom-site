@@ -516,6 +516,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               alt="PLATFORM"
               width={1400}
               height={217}
+              sizes="(max-width: 325px) 46vw, (max-width: 1312px) 150px, (max-width: 1495px) 11.4vw, 171px"
               priority
               className="block h-auto w-full"
             />
