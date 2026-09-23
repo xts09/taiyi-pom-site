@@ -319,6 +319,11 @@ export const hasExpandedLocaleDictionary = (
   localeSegment: LocalizedUrlSegment,
 ) => localeSegment === "zh" || dictionaries[localeSegment] !== undefined;
 
+const engineeringGradeTranslationTemplates = [
+  ["SPUN-9200", "EAG245"],
+  ["SPUN-4500", "EAG630H"],
+] as const;
+
 export const translateExpandedText = (
   value: string,
   localeSegment: LocalizedUrlSegment,
@@ -328,8 +333,21 @@ export const translateExpandedText = (
   }
 
   const dictionary = dictionaries[localeSegment];
-  const translated =
+  let translated =
     expandedLocaleOverrides[localeSegment]?.[value] ?? dictionary?.[value];
+
+  if (!translated) {
+    for (const [grade, templateGrade] of engineeringGradeTranslationTemplates) {
+      if (!value.includes(grade)) continue;
+      const template = value.replaceAll(grade, templateGrade);
+      const templateTranslation =
+        expandedLocaleOverrides[localeSegment]?.[template] ?? dictionary?.[template];
+      if (templateTranslation) {
+        translated = templateTranslation.replaceAll(templateGrade, grade);
+        break;
+      }
+    }
+  }
 
   if (!translated) {
     throw new Error(

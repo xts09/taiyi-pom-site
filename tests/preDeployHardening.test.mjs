@@ -20,7 +20,7 @@ const expectedAlternates = (sourcePath) => ({
   "x-default": sourcePath,
 });
 
-test("the 87 released English owners have exact manifest-backed hreflang groups", () => {
+test("the 89 released English owners have exact manifest-backed hreflang groups", () => {
   const engineeringPaths = JSON.parse(
     readProjectFile("src/generated/catalog.json"),
   )
@@ -43,10 +43,10 @@ test("the 87 released English owners have exact manifest-backed hreflang groups"
     ...staticOwnerPaths,
   ];
 
-  assert.equal(engineeringPaths.length, 75);
+  assert.equal(engineeringPaths.length, 77);
   assert.equal(componentPaths.length, 6);
   assert.equal(staticOwnerPaths.length, 6);
-  assert.equal(ownerPaths.length, 87);
+  assert.equal(ownerPaths.length, 89);
 
   for (const sourcePath of ownerPaths) {
     assert.deepEqual(

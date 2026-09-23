@@ -1533,8 +1533,8 @@ test("the Simplified Chinese engineering-plastic category entries lead into Chin
   const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
   const expectedCounts = {
     "pa6-compound": 33,
-    "pa66-compound": 37,
-    "ppa-compound": 5,
+    "pa66-compound": 38,
+    "ppa-compound": 6,
   };
 
   assert.deepEqual(
@@ -1571,7 +1571,7 @@ test("the Simplified Chinese engineering-plastic category entries lead into Chin
 });
 
 test("all released PA6, PA66 and PPA grades have complete Chinese detail contracts", () => {
-  const expectedCounts = { PA6: 33, PA66: 37, PPA: 5 };
+  const expectedCounts = { PA6: 33, PA66: 38, PPA: 6 };
   const engineeringTdsDocuments = JSON.parse(
     readProjectFile("src/generated/catalog.json"),
   ).filter((record) => record.kind === "engineering-tds");
@@ -1583,9 +1583,9 @@ test("all released PA6, PA66 and PPA grades have complete Chinese detail contrac
     ]),
   );
 
-  assert.equal(engineeringTdsDocuments.length, 75);
+  assert.equal(engineeringTdsDocuments.length, 77);
   assert.deepEqual(actualCounts, expectedCounts);
-  assert.equal(chineseEngineeringGradeReleaseEntries.length, 75);
+  assert.equal(chineseEngineeringGradeReleaseEntries.length, 77);
 
   for (const document of engineeringTdsDocuments) {
     const sourcePath = `/products/${document.slug}`;
