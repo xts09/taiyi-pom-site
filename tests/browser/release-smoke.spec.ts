@@ -84,6 +84,7 @@ for (const route of ["/", "/zh/resources/pom-wear-benchmark"]) {
     for (const selector of [".brand-logo img", ".site-footer-logo img"]) {
       const logo = page.locator(selector);
       await expect(logo).toHaveAttribute("sizes", /px/);
+      await expect.poll(() => logo.evaluate((el: HTMLImageElement) => Boolean(el.currentSrc) && el.complete && el.naturalWidth > 0)).toBe(true);
       const width = await logo.evaluate((el: HTMLImageElement) => new URL(el.currentSrc).searchParams.get("w"));
       expect(Number(width)).toBeLessThanOrEqual(384);
     }
