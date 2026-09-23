@@ -347,6 +347,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
       changeFrequency: "weekly" as const,
     })),
+    {
+      sourcePath: "/resources/pom-wear-benchmark" as ReleasedSourcePath,
+      priority: 0.65,
+      changeFrequency: "monthly" as const,
+    },
     ...resourcePages.map((page) => ({
       sourcePath: `/resources/${page.slug}` as ReleasedSourcePath,
       priority: 0.65,

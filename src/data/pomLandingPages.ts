@@ -412,17 +412,17 @@ export const pomLandingPages = {
             "Aramid fiber or aramid powder filled options for wear-resistant parts.",
         },
         {
-          label: "POM EPTL402 / ES0162 / ETM270H",
+          label: "POM EPTL402 / ESO102 / ETM270H",
           labelParts: [
             { text: "POM " },
             {
               text: "EPTL402",
               href: "/products/eptl402-high-wear-resistant-pom",
             },
-            { text: " / ES0162 / ETM270H" },
+            { text: " / ESO102 / ETM270H" },
           ],
           detail:
-            "EPTL402: PTFE-filled POM; ES0162: silicone-oil-modified POM; ETM270H: high-flow wear-resistant POM.",
+            "EPTL402: PTFE-filled POM; ESO102: silicone-oil-modified POM; ETM270H: high-flow wear-resistant POM.",
         },
       ],
     },

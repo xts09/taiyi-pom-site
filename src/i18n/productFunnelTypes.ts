@@ -113,6 +113,7 @@ export const chineseOnlyProductGradeSliceCSlugs = [
   "eptl402-high-wear-resistant-pom",
   "enm1040-high-wear-resistant-pom",
   "edm-111-high-wear-resistant-pom",
+  "ems102-high-wear-resistant-pom",
   "ems162-high-wear-resistant-pom",
 ] as const;
 
@@ -222,6 +223,8 @@ const localizedGradeCategorySourcePaths: Record<
     "/products/categories/wear-resistant-low-friction-pom-compound",
   "edm-111-high-wear-resistant-pom":
     "/products/categories/wear-resistant-low-friction-pom-compound",
+  "ems102-high-wear-resistant-pom":
+    "/products/categories/wear-resistant-low-friction-pom-compound",
   "ems162-high-wear-resistant-pom":
     "/products/categories/wear-resistant-low-friction-pom-compound",
   "etm090u-uv-resistant-pom":
@@ -302,6 +305,7 @@ export type LocalizedGradeProfileMessages = {
     title: string;
     body: string;
     flowNote: string;
+    colorValue?: string;
   };
   sectionNavAria: string;
   features: readonly string[];
@@ -452,6 +456,7 @@ export type ProductFunnelMessages = {
       unit: string;
       method: string;
       requestAction: string;
+      moistureGuidance: string;
       labels: Record<Xt100FeaturedPropertyLabel, string>;
       internalMethod: string;
       injectionMolding: string;

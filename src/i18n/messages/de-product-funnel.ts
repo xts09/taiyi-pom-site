@@ -345,6 +345,7 @@ const messages = {
       unit: "Einheit",
       method: "Prüfmethode",
       requestAction: "Aktuelle Unterlagen anfragen",
+      moistureGuidance: "Empfohlener maximaler Feuchtegehalt für die POM-Verarbeitung",
       labels: {
         Density: "Dichte",
         "Melt Flow Rate (MFI)": "Schmelzeflussrate (MFI)",

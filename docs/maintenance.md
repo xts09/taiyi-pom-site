@@ -29,6 +29,25 @@ Example: `public/documents/tds/pom/taiyi-etm100pu-tds-en-r01.pdf`.
 Set `tds.status` to `pdf`, then add `revision`, `pdfPath`, and `updatedAt` to the
 product JSON. Until a PDF exists, keep `tds.status` as `data-only`.
 
+## POM wear-test benchmark
+
+The English and Chinese benchmark pages read `src/data/wearTestEvidence.ts`.
+Update a report record there once, then check the benchmark table, its
+detail section and the two entry links. Keep original workbooks and internal
+review notes under `outputs/`; copy only individually reviewed curves and
+specimen photos to `public/images/wear-benchmark/`. Do not copy formulas,
+personnel details or whole report screenshots into public files. Preserve
+the report's stated units and precision. Keep source discrepancies in the
+internal ledger and withhold disputed public fields until verified.
+
+Store run duration as seconds in the public record; `formatWearDuration`
+provides the readable table value, while the full-data disclosure preserves
+seconds. Approximate load/speed group headings are browsing aids; keep exact
+conditions and end state in each record. Preserve `record-*` anchors when
+editing disclosures. Image previews may crop via CSS; the enlargement dialog
+must display the unchanged original image. Verify keyboard closure, focus
+return and grade/source context in the existing Contact form.
+
 ## SEO
 
 Titles, descriptions, canonical URLs, social metadata, structured data, and the

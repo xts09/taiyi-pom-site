@@ -345,6 +345,7 @@ const messages = {
       unit: "Unidade",
       method: "Método de ensaio",
       requestAction: "Solicitar documentos atuais",
+      moistureGuidance: "Teor máximo de umidade recomendado para o processamento de POM",
       labels: {
         Density: "Densidade",
         "Melt Flow Rate (MFI)": "Índice de fluidez (MFI)",

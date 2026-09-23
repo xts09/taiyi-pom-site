@@ -316,6 +316,18 @@ documents use the standard polymer-white surface, quiet border, 8px panel
 radius, and no resting shadow on desktop; mobile remains integrated with the
 page canvas.
 
+**Wear-test benchmark owner:** `src/components/WearBenchmarkPage.tsx` and its
+local CSS module own the English/Chinese benchmark tables, report details,
+curves and specimen photos. `WearBenchmarkRecords.tsx` opens native record
+disclosures for incoming and in-page anchors. `WearEvidenceGallery.tsx` and
+its local CSS own image previews and the keyboard-accessible original-image
+dialog. Hero, section intros and actions reuse their shared owners.
+`src/data/wearTestEvidence.ts` is the single
+public source for all six report-level numeric records and bilingual copy.
+`WearTestEvidence.tsx` owns only the benchmark entry links in the POM
+landing and selection guide. Keep source workbooks, formulations and
+internal review files outside public components and assets.
+
 **Keep separate:** the Home hero. It is the brand-level entry composition and
 should consume shared Actions and typography tokens without becoming a generic
 inner-page Hero.

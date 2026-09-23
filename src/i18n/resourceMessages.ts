@@ -128,7 +128,13 @@ export const getLocalizedResourceNavigationGroups = (
         description: groupMessages.description,
         image: sourceGroup.image,
         imageAlt: groupMessages.imageAlt,
-        links: groupMessages.entryPaths.map((href) => {
+        links: groupMessages.entryPaths
+          .filter(
+            (href) =>
+              href !== "/resources/pom-wear-benchmark" ||
+              localeSegment === "zh",
+          )
+          .map((href) => {
           const entry = messages.entries[href];
 
           return {
@@ -137,7 +143,7 @@ export const getLocalizedResourceNavigationGroups = (
             description: entry.description,
             type: messages.linkTypeLabels[entry.type],
           };
-        }),
+          }),
       };
     },
   );

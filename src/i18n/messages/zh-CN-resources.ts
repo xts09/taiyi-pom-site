@@ -80,6 +80,7 @@ const messages = {
       imageAlt: "台益数据与验证技术资料",
       entryPaths: [
         "/resources/alternative-pom-grade-validation",
+        "/resources/pom-wear-benchmark",
         "/technical-data-sheets",
         "/products/categories/pom",
         "/resources/faq",
@@ -87,6 +88,11 @@ const messages = {
     },
   },
   entries: {
+    "/resources/pom-wear-benchmark": {
+      label: "POM 耐磨测试 Benchmark",
+      type: "technicalNote",
+      description: "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。",
+    },
     "/resources/material-selection-guide": {
       label: "POM 材料选型指南",
       type: "guide",

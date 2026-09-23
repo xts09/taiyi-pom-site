@@ -9,6 +9,7 @@ type ChinesePomGradeProfileSeed = {
   eyebrow: string;
   summary: string;
   flowNote: string;
+  colorValue?: string;
   features: readonly string[];
   applications: readonly string[];
   evaluationBody: string;
@@ -26,6 +27,7 @@ export const createChinesePomGradeProfile = ({
   eyebrow,
   summary,
   flowNote,
+  colorValue,
   features,
   applications,
   evaluationBody,
@@ -48,6 +50,7 @@ export const createChinesePomGradeProfile = ({
     title: `${grade} 选型概览`,
     body: "用于初步比较牌号的已发布参考数据和测试方法。",
     flowNote,
+    ...(colorValue ? { colorValue } : {}),
   },
   sectionNavAria: `${grade} 产品页分区`,
   features,

@@ -1455,7 +1455,7 @@ test("the Simplified Chinese POM directory covers every listed family and grade"
   );
   assert.equal(
     Object.keys(chinesePomDirectoryMessages.directory.summaries).length,
-    40,
+    41,
   );
   assert.deepEqual(
     Object.keys(chinesePomDirectoryMessages.directory.summaries).sort(),
@@ -1552,7 +1552,7 @@ test("the remaining Simplified Chinese POM category family is complete", () => {
         total + Object.keys(profile.directory.summaries).length,
       0,
     ),
-    17,
+    18,
   );
 });
 
@@ -1726,7 +1726,7 @@ test("the second Simplified Chinese POM grade expansion completes high-impact PO
     Object.keys(chinesePomGradeProfiles).sort(),
     [...chineseOnlyProductGradeSlugs].sort(),
   );
-  assert.equal(localizedProductGradeRouteSlugs.length, 40);
+  assert.equal(localizedProductGradeRouteSlugs.length, 41);
 
   const expectedGrades = {
     "edr100-high-impact-pom": "EDR100",
@@ -1775,7 +1775,24 @@ test("the second Simplified Chinese POM grade expansion completes high-impact PO
   }
 });
 
-test("the remaining Simplified Chinese POM grade families complete the 40-grade directory", () => {
+test("black MoS2 POM grades keep their color in localized snapshots", () => {
+  const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
+  const localizedBlack = { de: "Schwarz", fr: "Noir", "pt-br": "Preto" };
+
+  for (const slug of [
+    "ems102-high-wear-resistant-pom",
+    "ems162-high-wear-resistant-pom",
+  ]) {
+    assert.deepEqual(catalog.find((record) => record.slug === slug)?.colors, ["Black"]);
+    const colorValue = chinesePomGradeProfiles[slug].snapshot.colorValue;
+    assert.equal(colorValue, "黑色");
+    for (const [locale, expected] of Object.entries(localizedBlack)) {
+      assert.equal(translateExpandedText(colorValue, locale), expected);
+    }
+  }
+});
+
+test("the remaining Simplified Chinese POM grade families complete the 41-grade directory", () => {
   const expansionProfiles = {
     ...chinesePomGradeExpansionC,
     ...chinesePomGradeExpansionD,
@@ -1796,7 +1813,7 @@ test("the remaining Simplified Chinese POM grade families complete the 40-grade 
     pomProducts.map((product) => [product.slug, product.grade]),
   );
 
-  assert.equal(expansionSlugs.length, 24);
+  assert.equal(expansionSlugs.length, 25);
   assert.deepEqual(
     Object.keys(expansionProfiles).sort(),
     [...expansionSlugs].sort(),
@@ -2113,7 +2130,7 @@ test("the Simplified Chinese resource directory copy matches the source taxonomy
   const groupedPaths = localizedResourceGroupIds.flatMap(
     (groupId) => zhCNResources.groups[groupId].entryPaths,
   );
-  assert.equal(groupedPaths.length, 16);
+  assert.equal(groupedPaths.length, localizedResourceLinkPaths.length);
   assert.equal(new Set(groupedPaths).size, groupedPaths.length);
   assert.deepEqual(
     [...groupedPaths].sort(),
@@ -2132,10 +2149,14 @@ test("the Simplified Chinese resource directory copy matches the source taxonomy
 
   assert.equal(localizedResourceArticleSlugs.length, 14);
   assert.equal(
-    localizedResourceLinkPaths.filter((path) => path.startsWith("/resources/"))
-      .length,
-    14,
+    localizedResourceLinkPaths.filter(
+      (path) =>
+        path.startsWith("/resources/") &&
+        !path.endsWith("/pom-wear-benchmark"),
+    ).length,
+    localizedResourceArticleSlugs.length,
   );
+  assert.ok(localizedResourceLinkPaths.includes("/resources/pom-wear-benchmark"));
 
   const visibleCopy = JSON.stringify(zhCNResources);
   assert.match(visibleCopy, /[\u3400-\u9fff]/);

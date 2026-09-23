@@ -34,6 +34,7 @@ export const pomPropertyLabels: Record<string, string> = {
   "Dielectric Strength": "介电强度",
   "Drying Temperature": "干燥温度",
   "Drying Time": "干燥时间",
+  "Suggested Max Moisture": "建议最高含水率",
   "Melt Temperature": "熔体温度",
   "Hopper Temperature": "料斗温度",
   "Front Temperature": "前段温度",
