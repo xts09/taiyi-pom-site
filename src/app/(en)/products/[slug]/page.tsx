@@ -104,6 +104,20 @@ type GradeDecisionLink = {
 const gradeDecisionLinks: Partial<
   Record<string, GradeDecisionLink[]>
 > = {
+  "ems102-high-wear-resistant-pom": [
+    {
+      href: "/resources/wear-resistant-low-friction-pom-selection-guide",
+      label: "MoS2 and wear-resistant POM selection guide",
+    },
+    {
+      href: "/products/categories/wear-resistant-low-friction-pom-compound",
+      label: "wear-resistant and low-friction POM grades",
+    },
+    {
+      href: "/wear-resistant-low-friction-pom",
+      label: "wear-resistant POM compound options",
+    },
+  ],
   "ems162-high-wear-resistant-pom": [
     {
       href: "/resources/wear-resistant-low-friction-pom-selection-guide",
@@ -750,6 +764,7 @@ export default async function ProductDetailPage({
   const getProperty = (label: string) =>
     product.properties.find((property) => property.label === label);
   const coreProperties = getPublicCoreProperties(product.properties);
+  const moistureProperty = getProperty("Suggested Max Moisture");
   const tensileProperty = getProperty("Tensile Strength");
   const hdtProperty = getProperty("Heat Deflection Temperature");
   const snapshotItems = [
@@ -998,6 +1013,11 @@ export default async function ProductDetailPage({
               </div>
 
               <div className="product-detail-core-data-note">
+                {moistureProperty ? (
+                  <p>
+                    Suggested maximum moisture for POM processing: <strong><ValueText value={moistureProperty.value} /> <UnitText unit={moistureProperty.unit} /></strong>
+                  </p>
+                ) : null}
                 <p>
                   Core comparison values are shown here. Full property,
                   processing, impact, electrical, and project-specific data are

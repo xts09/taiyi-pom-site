@@ -279,7 +279,7 @@ export const chineseWearLowFrictionPomLanding: PomLandingPageData = {
         detail: "适用于耐磨零件的芳纶纤维或芳纶粉填充选项。",
       },
       {
-        label: "POM EPTL402 / ES0162 / ETM270H",
+        label: "POM EPTL402 / ESO102 / ETM270H",
         detail: "PTFE 填充、硅油改性和高流动耐磨选项。",
       },
     ],

@@ -89,6 +89,11 @@
       "value": "1e16",
       "unit": "ohm",
       "method": "Internal Method"
+    },
+    {
+      "label": "Suggested Max Moisture",
+      "value": "0.2-0.4",
+      "unit": "%"
     }
   ],
   "tds": {

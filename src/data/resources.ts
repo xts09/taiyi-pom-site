@@ -549,7 +549,7 @@ export const resourcePages: ResourcePage[] = [
         paragraphs: [
           "Different wear and lubrication additives influence POM through different mechanisms. They should be selected according to the operating system rather than treated as equivalent methods of achieving self-lubrication.",
           "PTFE-filled POM is commonly considered where reduced friction, smoother sliding, or lower operating force is required. Taiyi POM EPTL402 represents a PTFE-filled direction. POM EGH20-TF combines PTFE with glass fiber and may be considered where the application requires a balance of lubrication and additional stiffness.",
-          "MoS2-filled POM, represented by POM EMS162, may be considered for high-wear applications where its solid-lubricant system is appropriate. POM ES0162 is a silicone-oil-modified, high-lubricity direction. Consider it when smooth movement, lower friction, less operating force, or improved running feel matters.",
+          "MoS2-filled POM, represented by POM EMS162, may be considered for high-wear applications where its solid-lubricant system is appropriate. POM ESO102 is a silicone-oil-modified, high-lubricity direction. Consider it when smooth movement, lower friction, less operating force, or improved running feel matters.",
           "POM ENM1040 uses a special wear-resistant additive direction, while POM EDM-111 is positioned as a high wear-resistant direction. These options may be relevant where a customer requires a different balance from conventional PTFE-, MoS2-, or silicone-modified systems.",
         ],
         points: [
@@ -610,7 +610,7 @@ export const resourcePages: ResourcePage[] = [
         title: "What to Send Before Grade Recommendation",
         navLabel: "Review Inputs",
         paragraphs: [
-          "A grade recommendation should not be based only on the statement that the customer needs wear-resistant POM or low-friction POM. More complete application information helps distinguish between EDM-111, EGH20-TF, EMS162, ENM1040, EPTL402, ES0162, aramid-filled directions, or another material approach.",
+          "A grade recommendation should not be based only on the statement that the customer needs wear-resistant POM or low-friction POM. More complete application information helps distinguish between EDM-111, EGH20-TF, EMS162, ENM1040, EPTL402, ESO102, aramid-filled directions, or another material approach.",
           "Use this information to choose a material direction. Then review the applicable TDS, mold representative parts, and test them under actual or closely simulated operating conditions.",
         ],
         points: [
@@ -706,7 +706,7 @@ export const resourcePages: ResourcePage[] = [
           [
             "Silicone-oil-modified POM",
             "High lubricity, lower operating force, and running feel",
-            "ES0162",
+            "ESO102",
           ],
           [
             "Special wear-resistant directions",

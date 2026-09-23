@@ -4,6 +4,7 @@ import { aboutLocaleOverrides } from "./aboutLocaleOverrides.ts";
 import { automotiveExpandedLocaleOverrides } from "./automotiveExpandedLocaleOverrides.ts";
 import { componentDetailLocaleOverrides } from "./componentDetailLocaleOverrides.ts";
 import { categoryLocaleOverrides } from "./categoryLocaleOverrides.ts";
+import { ems102LocaleOverrides } from "./ems102LocaleOverrides.ts";
 
 type TranslationOverrides = Readonly<Record<string, string>>;
 
@@ -11,7 +12,11 @@ export const expandedLocaleOverrides: Partial<
   Record<LocalizedUrlSegment, TranslationOverrides>
 > = {
   de: {
+    "POM 耐磨测试 Benchmark": "POM-Verschleißtest-Benchmark",
+    "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
+      "Sechs Prüfberichte nach Prüfbedingungen gruppiert, mit Messwerten, Verlaufskurven und vorhandenen Probenfotos.",
     ...categoryLocaleOverrides.de,
+    ...ems102LocaleOverrides.de,
     ...aboutLocaleOverrides.de,
     ...automotiveExpandedLocaleOverrides.de,
     ...applicationNarrativeLocaleOverrides.de,
@@ -123,7 +128,11 @@ export const expandedLocaleOverrides: Partial<
       "Deutscher materialübergreifender Leitfähigkeits- und Antistatik-Katalog",
   },
   fr: {
+    "POM 耐磨测试 Benchmark": "Benchmark des essais d'usure POM",
+    "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
+      "Six rapports d'essai regroupés par conditions, avec mesures, courbes et photos d'éprouvettes disponibles.",
     ...categoryLocaleOverrides.fr,
+    ...ems102LocaleOverrides.fr,
     ...aboutLocaleOverrides.fr,
     ...automotiveExpandedLocaleOverrides.fr,
     ...applicationNarrativeLocaleOverrides.fr,
@@ -250,7 +259,11 @@ export const expandedLocaleOverrides: Partial<
       "Catalogue français multimatériaux conducteurs et antistatiques",
   },
   "pt-br": {
+    "POM 耐磨测试 Benchmark": "Benchmark de ensaios de desgaste de POM",
+    "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
+      "Seis relatórios agrupados por condição de ensaio, com medições, curvas de processo e fotos disponíveis dos corpos de prova.",
     ...categoryLocaleOverrides["pt-br"],
+    ...ems102LocaleOverrides["pt-br"],
     ...aboutLocaleOverrides["pt-br"],
     ...automotiveExpandedLocaleOverrides["pt-br"],
     ...applicationNarrativeLocaleOverrides["pt-br"],

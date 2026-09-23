@@ -133,6 +133,7 @@ export const localizedResourceLinkPaths = [
   "/resources/pom-warpage-troubleshooting",
   "/resources/pa6-pa66-moisture-drying-conditioning-guide",
   "/resources/alternative-pom-grade-validation",
+  "/resources/pom-wear-benchmark",
   "/technical-data-sheets",
   "/products/categories/pom",
   "/resources/faq",

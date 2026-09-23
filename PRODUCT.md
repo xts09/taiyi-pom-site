@@ -33,6 +33,34 @@ the repository or generated output rather than copied forward as current facts.
 - Inspect `git status --short` before editing and preserve intentional existing
   changes. Do not infer the current worktree from this document.
 - Resources are organized by buyer task: Choose a Material, Process & Troubleshoot, and Find Data. `src/data/resourceNavigation.ts` is the shared navigation source used to keep the Resources mega menu and Resources page language aligned.
+- EMS102 is a separate POM grade record sourced from the supplied property sheet.
+  Its detail page is released in English, German, French, Brazilian Portuguese,
+  and Chinese. The uncertain `5%` moisture entry from the supplied sheet is
+  excluded. A user-approved POM-family processing guidance range of `0.2-0.4%`
+  is stored in each POM catalog record and displayed separately from tested
+  properties. Unverified wear-test results are excluded. Only a TDS request is indexed for EMS102;
+  grade-specific SDS, COA, REACH, and RoHS documents are not established by the
+  supplied sheet. ESO102
+  is the confirmed name used in place of the former ES0162 references in the
+  wear/low-friction selection content; this naming correction does not create
+  a separate ESO102 catalog record.
+- The English and Chinese wear-test benchmark at
+  `/resources/pom-wear-benchmark` is the detailed public owner for six
+  report-level test records, grouped by recorded conditions. It shows the
+  published measurements, original process curves and available specimen photos.
+  Disputed measurements and undefined friction-coefficient values stay in the
+  internal review ledger until verified. The
+  wear/low-friction selection guide and specialist POM landing link to it
+  without duplicating the numeric table. The source workbooks, EPS055
+  formulation and internal review files are excluded from public assets.
+  German, French and Brazilian Portuguese do not yet have a localized
+  benchmark page. This report collection does not assert a controlled
+  grade-level wear ranking.
+- The wear benchmark presents two approximate load/speed groups with each
+  record's run time and end state. Mobile tables keep grade, mass loss and
+  run time visible together. Grade records expand in place with working deep
+  links, original-image enlargement and grade-specific Contact context.
+  The selection guide and specialist landing remain the related-reading paths.
 - `/resources` has an image-led technical hero, task navigation, grouped resource lists, and a restrained contact path. Do not turn it back into a collection of unrelated cards.
 - Products, Applications, and Resources mega-menu item underlines now share the `mega-nav-label` implementation. Their thickness, color, offset, animation, and text-width behavior should remain visually consistent.
 - The dark homepage header and its expanded menu are one frosted-glass material system. Inner pages use the white header and white expanded menu with no gap between them.

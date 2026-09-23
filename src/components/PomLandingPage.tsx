@@ -6,6 +6,7 @@ import { serializeJsonLd } from "@/lib/jsonLd";
 import { ActionPanel } from "@/components/ActionPanel";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { MetricGroup } from "@/components/MetricGroup";
+import { WearTestLandingSummary } from "@/components/WearTestEvidence";
 import { Button } from "@/components/ui/button";
 import { getPomFamilyMasterVisualByHref } from "@/data/pomFamilyVisuals";
 import type {
@@ -475,6 +476,10 @@ export function PomLandingPage({
         {page.catalogEvidence?.position !== "afterHero"
           ? catalogEvidenceSection
           : null}
+
+        {page.slug === "wear-resistant-low-friction-pom" ? (
+          <WearTestLandingSummary localeSegment={localeSegment} />
+        ) : null}
 
         {page.crossReferenceRows ? (
           <section className="pom-landing-cross-reference">

@@ -3,10 +3,15 @@ import { ResourceArticleSidebar } from "@/components/ResourceArticleSidebar";
 import { ResourceDocumentFrame } from "@/components/ResourceDocumentFrame";
 import { ResourcePageActions } from "@/components/ResourcePageActions";
 import { GearEnduranceInterpretation } from "@/components/GearEnduranceEvidence";
+import { WearTestGuideSection } from "@/components/WearTestEvidence";
 import {
   gearEnduranceTest,
   getGearEnduranceEvidence,
 } from "@/data/gearEnduranceEvidence";
+import {
+  getWearTestEvidenceCopy,
+  wearTestEvidence,
+} from "@/data/wearTestEvidence";
 import styles from "@/components/ResourceArticle.module.css";
 import type { ResourcePage } from "@/data/resources";
 import type { LocalizedUrlSegment } from "@/i18n/config";
@@ -31,6 +36,9 @@ export function ResourceArticleLayout({
   const enduranceInterpretation = page.slug === "pom-gear-material-selection"
     ? getGearEnduranceEvidence(localeSegment)?.interpretation
     : undefined;
+  const wearEvidence = page.slug === "wear-resistant-low-friction-pom-selection-guide"
+    ? getWearTestEvidenceCopy(localeSegment)
+    : undefined;
   const sidebarSections = articleSections.map((section) => ({
     id: toResourceSectionId(section.title),
     title: section.navLabel ?? section.title,
@@ -39,6 +47,12 @@ export function ResourceArticleLayout({
     sidebarSections.push({
       id: gearEnduranceTest.interpretationId,
       title: enduranceInterpretation.navLabel,
+    });
+  }
+  if (wearEvidence) {
+    sidebarSections.push({
+      id: wearTestEvidence.sectionId,
+      title: wearEvidence.navLabel,
     });
   }
 
@@ -80,6 +94,12 @@ export function ResourceArticleLayout({
       >
         {enduranceInterpretation ? (
           <GearEnduranceInterpretation
+            className={styles.section}
+            localeSegment={localeSegment}
+          />
+        ) : null}
+        {wearEvidence ? (
+          <WearTestGuideSection
             className={styles.section}
             localeSegment={localeSegment}
           />

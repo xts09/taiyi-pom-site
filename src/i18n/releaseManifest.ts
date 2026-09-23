@@ -318,6 +318,10 @@ export const localizedReleaseManifest = {
     sourcePath: "/products/edm-111-high-wear-resistant-pom",
     ...allLocalizedPublicRelease,
   },
+  ems102Grade: {
+    sourcePath: "/products/ems102-high-wear-resistant-pom",
+    ...allLocalizedPublicRelease,
+  },
   ems162Grade: {
     sourcePath: "/products/ems162-high-wear-resistant-pom",
     ...allLocalizedPublicRelease,
@@ -514,6 +518,11 @@ export const localizedReleaseManifest = {
     sourcePath:
       "/resources/wear-resistant-low-friction-pom-selection-guide",
     ...allLocalizedPublicRelease,
+  },
+  pomWearBenchmarkResource: {
+    sourcePath: "/resources/pom-wear-benchmark",
+    ...publicRelease,
+    localizedSegments: ["zh"],
   },
   pomGearMaterialSelectionResource: {
     sourcePath: "/resources/pom-gear-material-selection",

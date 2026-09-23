@@ -60,6 +60,7 @@ export function LocalizedProductGradePage({
   const getProperty = (label: string) =>
     product.properties.find((property) => property.label === label);
   const tensileProperty = getProperty("Tensile Strength");
+  const moistureProperty = getProperty("Suggested Max Moisture");
   const hdtProperty = getProperty("Heat Deflection Temperature");
   const featuredProperties = xt100FeaturedPropertyLabels
     .map((label) => {
@@ -282,6 +283,11 @@ export function LocalizedProductGradePage({
             </div>
 
             <div className="product-detail-core-data-note">
+              {moistureProperty ? (
+                <p>
+                  {copy.properties.moistureGuidance}: <strong><ValueText value={moistureProperty.value} /> <UnitText unit={moistureProperty.unit} /></strong>
+                </p>
+              ) : null}
               <p>{copy.properties.body}</p>
               <Link href={evaluationHref}>{copy.properties.requestAction}</Link>
             </div>

@@ -142,6 +142,8 @@ export const chinesePomDirectoryMessages = {
         "采用特殊耐磨添加剂体系的 POM，用于滑动与功能注塑零件。",
       "edm-111-high-wear-resistant-pom":
         "高耐磨 POM 方向，面向汽车、电气、卫浴和工业注塑应用。",
+      "ems102-high-wear-resistant-pom":
+        "MoS2 填充黑色高耐磨 POM，用于需要耐磨与稳定力学表现的零件。",
       "ems162-high-wear-resistant-pom":
         "MoS2 填充黑色高耐磨 POM，用于需要耐磨与稳定力学表现的零件。",
       "ehi202t-high-impact-pom":

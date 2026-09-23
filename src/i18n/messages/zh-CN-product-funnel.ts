@@ -332,6 +332,7 @@ const grade = {
     unit: "单位",
     method: "测试方法",
     requestAction: "申请最新资料",
+    moistureGuidance: "POM 加工建议最高含水率",
     labels: {
       Density: "密度",
       "Melt Flow Rate (MFI)": "熔体质量流动速率（MFI）",

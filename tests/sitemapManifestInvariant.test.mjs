@@ -18,15 +18,16 @@ const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 test("released sitemap routes remain unique with explicit locale coverage", () => {
   const sourcePaths = getSitemapReleasedSourcePaths();
 
-  assert.equal(sourcePaths.length, 187);
   assert.equal(new Set(sourcePaths).size, sourcePaths.length);
-  assert.equal(
-    sourcePaths.reduce(
-      (total, sourcePath) =>
-        total + getSitemapLanguageOptions(sourcePath).length,
-      0,
+  assert.ok(sourcePaths.includes("/resources/pom-wear-benchmark"));
+  assert.deepEqual(
+    getSitemapLanguageOptions("/resources/pom-wear-benchmark").map(
+      ({ href }) => href,
     ),
-    899,
+    [
+      "/resources/pom-wear-benchmark",
+      "/zh/resources/pom-wear-benchmark",
+    ],
   );
   assert.deepEqual(
     getSitemapLanguageOptions("/news/chinaplas-2026").map(

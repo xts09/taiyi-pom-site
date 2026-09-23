@@ -42,6 +42,8 @@ export const chinesePomCategoryExpansion = {
           "采用特殊耐磨添加剂体系的 POM，用于滑动与功能零件。",
         "edm-111-high-wear-resistant-pom":
           "面向汽车、电气、卫浴和工业注塑应用的高耐磨 POM。",
+        "ems102-high-wear-resistant-pom":
+          "MoS2 填充黑色高耐磨 POM，兼顾耐磨与稳定力学表现。",
         "ems162-high-wear-resistant-pom":
           "MoS2 填充黑色高耐磨 POM，兼顾耐磨与稳定力学表现。",
       },

@@ -122,6 +122,28 @@ export const chinesePomGradeExpansionC = {
     inquiryBody:
       "请提供应用、零部件几何、摩擦副、载荷与速度、温度、润滑、当前材料、失效现象、颜色、用量和所需资料。我们将据此准备牌号与样品评估。",
   }),
+  "ems102-high-wear-resistant-pom": createChinesePomGradeProfile({
+    grade: "EMS102",
+    categoryLabel: "耐磨与低摩擦 POM",
+    metadataTitle: "EMS102 MoS2 填充黑色 POM | 台益",
+    metadataDescription:
+      "查看 EMS102 MoS2 填充黑色 POM 的力学、热、电学和注塑参考数据，并申请资料或样品。",
+    imageAlt: "POM 改性材料示意图",
+    eyebrow: "MoS2 填充 POM · 黑色",
+    summary:
+      "EMS102 是采用二硫化钼（MoS2）填充的黑色 POM 牌号。所列流动、力学、热、电学与注塑数据用于初步选型；实际摩擦磨耗、寿命和零件适用性需按项目工况验证。",
+    flowNote: "用于汽车、电气电子、卫浴和工业零件的 MoS2 填充黑色 POM",
+    colorValue: "黑色",
+    features: ["MoS2 填充", "黑色", "提供注塑参考数据", "实际摩擦副需验证"],
+    applications: ["汽车零部件", "电子电气零件", "卫浴配件", "工业注塑件"],
+    evaluationBody:
+      "EMS102 作为技术评估候选材料提供。最终认可需在客户模具和实际使用条件下完成尺寸、摩擦磨耗及寿命验证。",
+    notesBody:
+      "本页数据用于 EMS102 的初步选型。摩擦副材料、表面状态、载荷、速度、润滑、温度与加工条件都可能改变零件表现。",
+    inquiryTitle: "评估 EMS102 是否适用于您的注塑零件？",
+    inquiryBody:
+      "请提供零部件用途、图纸、摩擦副、载荷与速度、润滑、温度、当前材料、目标性能、用量和所需资料，以便安排牌号与样品评估。",
+  }),
   "ems162-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "EMS162",
     categoryLabel: "耐磨与低摩擦 POM",
@@ -133,6 +155,7 @@ export const chinesePomGradeExpansionC = {
     summary:
       "EMS162 是采用 MoS2 填充的黑色高耐磨 POM 候选牌号，用于滑动件、汽车功能件和工业注塑件的耐磨与稳定力学表现评估。最终适用性需结合摩擦副、载荷、速度、润滑、温度和外观要求确认。",
     flowNote: "兼顾耐磨与稳定力学表现的 MoS2 填充黑色方向",
+    colorValue: "黑色",
     features: ["MoS2 填充方向", "高耐磨方向", "稳定力学方向", "黑色"],
     applications: ["滑动件", "汽车功能零件", "电子电气零件", "工业注塑件"],
     evaluationBody:

@@ -143,6 +143,13 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
           "Compare an alternative POM grade through documents, controlled molding, dimensions, function, compliance, and production-release evidence.",
       },
       {
+        label: "POM Wear Test Benchmark",
+        href: "/resources/pom-wear-benchmark",
+        type: "Technical note",
+        description:
+          "Six internal wear-test report records grouped by condition, with measured results, process curves and available specimen photos.",
+      },
+      {
         label: "Data / TDS Search",
         href: "/technical-data-sheets",
         type: "Data tool",

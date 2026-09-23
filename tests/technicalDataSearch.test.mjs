@@ -15,7 +15,7 @@ const readProjectFile = (path) =>
   readFileSync(resolve(projectRoot, path), "utf8");
 const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
 
-test("keeps one canonical catalogue behind the 115-grade progressive browse", () => {
+test("keeps one canonical catalogue behind the 116-grade progressive browse", () => {
   const pom = catalog.filter((record) => record.kind === "product");
   const engineering = catalog.filter(
     (record) => record.kind === "engineering-tds",
@@ -35,9 +35,9 @@ test("keeps one canonical catalogue behind the 115-grade progressive browse", ()
     ]),
   );
 
-  assert.deepEqual(counts, { POM: 40, PA6: 33, PA66: 37, PPA: 5 });
-  assert.equal(browseRecords.length, 115);
-  assert.equal(new Set(browseRecords.map((record) => record.slug)).size, 115);
+  assert.deepEqual(counts, { POM: 41, PA6: 33, PA66: 37, PPA: 5 });
+  assert.equal(browseRecords.length, 116);
+  assert.equal(new Set(browseRecords.map((record) => record.slug)).size, 116);
   assert.equal(conductive.length, 78);
   assert.equal(
     conductive.some((record) => "slug" in record),
