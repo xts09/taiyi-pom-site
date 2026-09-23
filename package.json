@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node --no-warnings --experimental-strip-types --test tests/*.test.mjs",
     "test:browser": "playwright test",
+    "test:release": "playwright test --config playwright.release.config.ts",
     "catalog:generate": "node --no-warnings --experimental-strip-types scripts/catalog/generate.ts",
     "catalog:check": "node --no-warnings --experimental-strip-types scripts/catalog/generate.ts --check",
     "seo:catalog-check": "node --no-warnings --experimental-strip-types scripts/catalog/seo-check.ts",

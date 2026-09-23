@@ -4,6 +4,12 @@ This file is the product, content, design, and acceptance reference for the Taiy
 
 ## Current Working Baseline
 
+Release acceptance uses checks tied to the exact commit being released:
+catalog/code/build validation plus the production browser regression in
+`playwright.release.config.ts`. Keep its SHA-tagged logs, traces and screenshots
+as release evidence. See `docs/launch-checklist.md` for the scope and the separate
+remote deployment/branch-protection requirements.
+
 Resolve the active branch, commit, and working-tree state from Git at the start
 of each task. Branch names and dirty-file lists are intentionally not treated as
 product requirements because they become stale between maintenance sessions.

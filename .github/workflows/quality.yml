@@ -1,0 +1,51 @@
+name: Release quality
+
+on:
+  push:
+    branches: [codex/keptds]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Catalog, code, production build and browser regression
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+      NEXT_PUBLIC_SITE_URL: https://www.taiyipolymer.com
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Record checked commit
+        run: |
+          mkdir -p outputs/release-check
+          git rev-parse HEAD > outputs/release-check/commit.txt
+          node --version > outputs/release-check/node.txt
+      - name: Catalog, lint, types, unit tests and build
+        run: |
+          set -o pipefail
+          npm run prepublish:check 2>&1 | tee outputs/release-check/quality.log
+          git diff --exit-code -- content/catalog src/generated
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Verify production pages and inquiry behavior
+        run: npm run test:release
+      - name: Save evidence for this commit
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-quality-${{ github.sha }}
+          path: outputs/release-check/
+          retention-days: 14
