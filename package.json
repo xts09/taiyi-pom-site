@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "git:setup": "node scripts/git/install-hooks.mjs",
+    "git:status": "node scripts/git/install-hooks.mjs --status",
+    "git:restore": "node scripts/git/install-hooks.mjs --restore",
     "predev": "npm run catalog:generate",
     "dev": "next dev",
     "prebuild": "npm run catalog:generate",
