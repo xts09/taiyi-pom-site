@@ -13,8 +13,8 @@ export const expandedLocaleOverrides: Partial<
 > = {
   de: {
     "POM 耐磨测试 Benchmark": "POM-Verschleißtest-Benchmark",
-    "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
-      "Sechs Prüfberichte nach Prüfbedingungen gruppiert, mit Messwerten, Verlaufskurven und vorhandenen Probenfotos.",
+    "报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
+      "Prüfberichte nach Prüfbedingungen gruppiert, mit Messwerten, Verlaufskurven und vorhandenen Probenfotos.",
     "SPUN-9200 PA66 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
       "Werkstoffdaten für SPUN-9200 PA66 mit Glasfaserverstärkung, einschließlich Dichte, Zugfestigkeit, Wärmeformbeständigkeit und vollständiger Eigenschaftstabelle.",
     "SPUN-4500 PPA 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
@@ -138,8 +138,8 @@ export const expandedLocaleOverrides: Partial<
   },
   fr: {
     "POM 耐磨测试 Benchmark": "Benchmark des essais d'usure POM",
-    "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
-      "Six rapports d'essai regroupés par conditions, avec mesures, courbes et photos d'éprouvettes disponibles.",
+    "报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
+      "Rapports d'essai regroupés par conditions, avec mesures, courbes et photos d'éprouvettes disponibles.",
     "SPUN-9200 PA66 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
       "Données du grade SPUN-9200 en PA66 renforcé de fibres de verre, comprenant la densité, la résistance en traction, la température de fléchissement sous charge et le tableau complet des propriétés.",
     "SPUN-4500 PPA 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
@@ -278,8 +278,8 @@ export const expandedLocaleOverrides: Partial<
   },
   "pt-br": {
     "POM 耐磨测试 Benchmark": "Benchmark de ensaios de desgaste de POM",
-    "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
-      "Seis relatórios agrupados por condição de ensaio, com medições, curvas de processo e fotos disponíveis dos corpos de prova.",
+    "报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
+      "Relatórios agrupados por condição de ensaio, com medições, curvas de processo e fotos disponíveis dos corpos de prova.",
     "SPUN-9200 PA66 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
       "Dados do grau SPUN-9200 em PA66 reforçado com fibra de vidro, incluindo densidade, resistência à tração, temperatura de deflexão térmica e tabela completa de propriedades.",
     "SPUN-4500 PPA 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":

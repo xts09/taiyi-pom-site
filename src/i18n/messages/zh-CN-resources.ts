@@ -91,7 +91,7 @@ const messages = {
     "/resources/pom-wear-benchmark": {
       label: "POM 耐磨测试 Benchmark",
       type: "technicalNote",
-      description: "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。",
+      description: "报告记录按工况分组，附测量值、过程曲线和现有试样照片。",
     },
     "/resources/material-selection-guide": {
       label: "POM 材料选型指南",

@@ -15,6 +15,10 @@
 .jumpLinks a { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 2.75rem; color: var(--ds-color-resource-cyan-300); font-size: 0.875rem; }
 .results, .details, .nextSteps { scroll-margin-top: calc(var(--site-header-height, 4rem) + 1rem); padding-block: 3rem; }
 .sectionIntro { margin-bottom: 1.5rem; }
+.dataNote, .sourceNote { color: var(--ds-foreground-muted); font-size: 0.875rem; line-height: 1.7; }
+.dataNote { margin: -0.5rem 0 1.5rem; }
+.sourceNote { max-width: 80ch; margin-block: 1rem; }
+.sourceDate { display: block; white-space: nowrap; }
 .group + .group { margin-top: 2rem; }
 .groupHead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.5rem 1rem; margin-bottom: 0.75rem; }
 .groupHead h3 { margin: 0; font-size: 1.125rem; font-weight: 600; }

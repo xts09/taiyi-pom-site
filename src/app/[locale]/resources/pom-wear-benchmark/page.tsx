@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props) {
   if ((await params).locale !== "zh") return { robots: { index: false, follow: true } };
   return createPageMetadata({
     title: "POM 耐磨测试 Benchmark | 台益",
-    description: "按工况查看六条 POM 耐磨试验报告记录，包括测量值、过程曲线和现有试样前后照片。",
+    description: "按工况查看 POM 耐磨试验记录，包括测量值、过程曲线和现有试样前后照片。",
     path: getLocalizedHref(sourcePath, "zh"),
     image: "/og-resources-data-validation.jpg",
     languageAlternates: getLanguageAlternates(sourcePath),

@@ -147,7 +147,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
         href: "/resources/pom-wear-benchmark",
         type: "Technical note",
         description:
-          "Six internal wear-test report records grouped by condition, with measured results, process curves and available specimen photos.",
+          "Internal wear-test records grouped by condition, with measured results, process curves and available specimen photos.",
       },
       {
         label: "Data / TDS Search",
