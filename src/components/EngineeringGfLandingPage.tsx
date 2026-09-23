@@ -27,7 +27,10 @@ import {
   getEngineeringGfGuideLabel,
   getEngineeringGfLandingMessages,
 } from "@/i18n/engineeringGfLandingMessages";
-import { getLocalizedHref } from "@/i18n/releaseManifest";
+import {
+  getLocalizedHref,
+  isLocalizedReleaseIndexable,
+} from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import {
@@ -54,7 +57,9 @@ export function EngineeringGfLandingPage({
   const localizedPath = (path: string) =>
     getLocalizedHref(path, localeSegment);
   const registration = getEngineeringGfLandingRegistration(polymer);
-  const grades = getEngineeringGfGrades(polymer);
+  const grades = getEngineeringGfGrades(polymer).filter((grade) =>
+    isLocalizedReleaseIndexable(`/products/${grade.slug}`, localeSegment),
+  );
   const comparisonGrades = grades.map((grade): EngineeringGfComparisonGrade => ({
     grade: grade.grade,
     slug: grade.slug,
@@ -345,7 +350,7 @@ export function EngineeringGfLandingPage({
         <section className={styles.actionRail}>
           <ActionPanel
             footerAdjacent
-            variant="recommendation"
+            variant="compact"
             eyebrow={ui.inquiryEyebrow}
             title={formatEngineeringGfMessage(ui.inquiryTitleTemplate, {
               polymer: page.polymer,
@@ -361,7 +366,7 @@ export function EngineeringGfLandingPage({
               </div>
             }
             action={
-              <Button asChild size="form" variant="inverse">
+              <Button asChild size="form" variant="primary">
                 <Link href={contactHref}>{ui.discussApplicationAction}</Link>
               </Button>
             }

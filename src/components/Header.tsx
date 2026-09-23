@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { Search } from "lucide-react";
+import { Check, ChevronDown, Search } from "lucide-react";
 import { usePathname, useSearchParams } from "next/navigation";
 import {
   Suspense,
@@ -99,6 +99,7 @@ type LanguageSwitcherProps = {
   currentLocaleKey: LanguageOption["localeKey"];
   preserveContactContext?: boolean;
   variant: "desktop" | "mobile";
+  onOpen?: () => void;
 };
 
 function LanguageSwitcherLinks({
@@ -106,17 +107,54 @@ function LanguageSwitcherLinks({
   options,
   currentLocaleKey,
   variant,
+  onOpen,
 }: LanguageSwitcherProps) {
+  const detailsRef = useRef<HTMLDetailsElement>(null);
+  const currentOption = options.find(
+    (option) => option.localeKey === currentLocaleKey,
+  ) ?? options[0];
+
+  useEffect(() => {
+    const closeOutside = (event: Event) => {
+      const details = detailsRef.current;
+      if (details?.open && isNodeTarget(event.target) && !details.contains(event.target)) {
+        details.open = false;
+      }
+    };
+    document.addEventListener("pointerdown", closeOutside);
+    document.addEventListener("focusin", closeOutside);
+    return () => {
+      document.removeEventListener("pointerdown", closeOutside);
+      document.removeEventListener("focusin", closeOutside);
+    };
+  }, []);
+
   return (
-    <div
+    <details
+      ref={detailsRef}
       className={`language-switcher language-switcher--${variant}`}
-      role="group"
-      aria-label={label}
+      onToggle={(event) => {
+        if (event.currentTarget.open) onOpen?.();
+      }}
+      onKeyDown={(event) => {
+        if (event.key === "Escape" && event.currentTarget.open) {
+          event.preventDefault();
+          event.stopPropagation();
+          event.currentTarget.open = false;
+          event.currentTarget.querySelector("summary")?.focus();
+        }
+      }}
     >
-      {variant === "mobile" ? (
-        <span className="language-switcher-label">{label}</span>
-      ) : null}
-      <div className="language-switcher-options">
+      <summary
+        className="language-switcher-trigger"
+        aria-label={`${label}: ${currentOption.nativeLabel}`}
+      >
+        <span lang={currentOption.hreflang}>
+          {variant === "mobile" ? currentOption.shortLabel : currentOption.nativeLabel}
+        </span>
+        <ChevronDown aria-hidden="true" size={14} />
+      </summary>
+      <nav className="language-switcher-options" aria-label={label}>
         {options.map((option) => (
           <Link
             key={option.localeKey}
@@ -128,12 +166,18 @@ function LanguageSwitcherLinks({
             aria-current={
               option.localeKey === currentLocaleKey ? "page" : undefined
             }
+            onClick={() => {
+              if (detailsRef.current) detailsRef.current.open = false;
+            }}
           >
-            {variant === "desktop" ? option.shortLabel : option.nativeLabel}
+            {option.nativeLabel}
+            {option.localeKey === currentLocaleKey ? (
+              <Check aria-hidden="true" size={16} />
+            ) : null}
           </Link>
         ))}
-      </div>
-    </div>
+      </nav>
+    </details>
   );
 }
 
@@ -267,6 +311,14 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
     }
   };
 
+  const closeLanguageMenus = () => {
+    headerRef.current
+      ?.querySelectorAll<HTMLDetailsElement>("details.language-switcher[open]")
+      .forEach((menu) => {
+        menu.open = false;
+      });
+  };
+
   const closeMobileMenuOnLinkClick = (event: MouseEvent<HTMLElement>) => {
     const target = event.target;
 
@@ -304,22 +356,24 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
   }, []);
 
   useEffect(() => {
-    if (!activeMega) {
-      return;
-    }
-
-    const closeMegaOnDocumentEscape = (event: globalThis.KeyboardEvent) => {
+    const closeNavigationOnDocumentEscape = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {
         setMegaValue("");
+        const mobileMenu = mobileMenuRef.current;
+        if (mobileMenu?.open) {
+          event.preventDefault();
+          mobileMenu.open = false;
+          mobileMenu.querySelector("summary")?.focus();
+        }
       }
     };
 
-    document.addEventListener("keydown", closeMegaOnDocumentEscape);
+    document.addEventListener("keydown", closeNavigationOnDocumentEscape);
 
     return () => {
-      document.removeEventListener("keydown", closeMegaOnDocumentEscape);
+      document.removeEventListener("keydown", closeNavigationOnDocumentEscape);
     };
-  }, [activeMega]);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -393,6 +447,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
     }
 
     cancelScheduledClose();
+    closeLanguageMenus();
     setMegaValue((currentValue) =>
       currentValue === value ? currentValue : value,
     );
@@ -736,6 +791,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                 currentLocaleKey={currentLocaleKey}
                 preserveContactContext={logicalPathname === "/contact"}
                 variant="desktop"
+                onOpen={() => setMegaValue("")}
               />
             ) : null}
 
@@ -753,10 +809,24 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
           </div>
         </div>
 
+        <div className="header-mobile-utilities flex items-center gap-2 lg:hidden">
+          {languageOptions.length > 0 ? (
+            <LanguageSwitcher
+              label={messages.languageSwitcherLabel}
+              options={languageOptions}
+              currentLocaleKey={currentLocaleKey}
+              preserveContactContext={logicalPathname === "/contact"}
+              variant="mobile"
+              onOpen={closeMobileMenu}
+            />
+          ) : null}
         <details
           key={pathname}
           ref={mobileMenuRef}
           className="mobile-menu relative z-50 lg:hidden"
+          onToggle={(event) => {
+            if (event.currentTarget.open) closeLanguageMenus();
+          }}
         >
           <summary className="nav-pill inline-flex cursor-pointer list-none items-center justify-center gap-2 px-3 py-2 text-sm">
             <span className="mobile-menu-label mobile-menu-label-open">
@@ -775,16 +845,6 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             className="mobile-menu-panel animate-menu-down absolute right-0 top-[calc(100%+0.8rem)] flex w-[min(20rem,calc(100vw-2.5rem))] flex-col p-4 text-sm font-semibold"
             onClick={closeMobileMenuOnLinkClick}
           >
-            {languageOptions.length > 0 ? (
-              <LanguageSwitcher
-                label={messages.languageSwitcherLabel}
-                options={languageOptions}
-                currentLocaleKey={currentLocaleKey}
-                preserveContactContext={logicalPathname === "/contact"}
-                variant="mobile"
-              />
-            ) : null}
-
             <details className="mobile-product-group mobile-menu-section py-3">
               <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
                 <span>{messages.products}</span>
@@ -973,6 +1033,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
             </Link>
           </nav>
         </details>
+        </div>
       </div>
     </header>
   );

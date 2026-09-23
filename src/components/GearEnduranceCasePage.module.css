@@ -20,6 +20,7 @@
 .actions { display: flex; gap: var(--ds-space-6); flex-wrap: wrap; margin-top: var(--ds-space-6); }
 @media (max-width: 48rem) {
   .article { padding-top: var(--ds-space-4); }
+  .evidence { padding: var(--ds-space-4); }
   .conditions { padding: var(--ds-space-6); }
   .facts { grid-template-columns: 1fr 1fr; }
   .section { grid-template-columns: minmax(0, 1fr); gap: var(--ds-space-6); }

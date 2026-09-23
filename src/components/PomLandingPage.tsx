@@ -412,7 +412,7 @@ export function PomLandingPage({
                 fill
                 src="/materials/real/pom-black-modified-pellets-real-master.webp"
                 alt="Black modified POM pellets"
-                sizes="(min-width: 80rem) 44rem, (min-width: 48rem) 62vw, calc(100vw - 2rem)"
+                sizes="96px"
               />
             </span>
             <figcaption>
@@ -431,7 +431,16 @@ export function PomLandingPage({
           </figure>
         ) : null}
 
-        {page.metrics && page.slug !== "conductive-antistatic-pom" ? (
+        {page.metrics && page.slug === "wear-resistant-low-friction-pom" ? (
+          <dl className="pom-landing-selection-summary" aria-label={ui.materialSelectionSummaryAria}>
+            {page.metrics.map((item) => (
+              <div key={item.label}>
+                <dt>{item.label}</dt>
+                <dd>{item.value}</dd>
+              </div>
+            ))}
+          </dl>
+        ) : page.metrics && page.slug !== "conductive-antistatic-pom" ? (
           <MetricGroup
             className="pom-landing-metrics"
             aria-label={ui.materialSelectionSummaryAria}

@@ -19,7 +19,6 @@ type MetricGroupProps = Omit<ComponentPropsWithoutRef<"dl">, "children"> & {
   featuredItem?: MetricGroupItem
   itemClassName?: string
   items: MetricGroupItem[]
-  itemsClassName?: string
   renderValue?: (item: MetricGroupItem) => ReactNode
   tone?: "light" | "dark"
   variant?: "rail" | "grid" | "inline"
@@ -39,7 +38,6 @@ export function MetricGroup({
   featuredItem,
   itemClassName,
   items,
-  itemsClassName,
   renderValue = (item) => item.value,
   tone = "light",
   variant = "grid",
@@ -62,7 +60,7 @@ export function MetricGroup({
     >
       <dt className={styles.label}>{item.label}</dt>
       <dd className={styles.value}>{renderValue(item)}</dd>
-      {item.note ? <span className={styles.note}>{item.note}</span> : null}
+      {item.note ? <dd className={styles.note}>{item.note}</dd> : null}
     </div>
   )
 
@@ -75,10 +73,7 @@ export function MetricGroup({
       className={cn(styles.root, className)}
     >
       {featuredItem ? renderItem(featuredItem, -1, true) : null}
-      <div className={cn(styles.items, itemsClassName)}>
-        {items.map((item, index) => renderItem(item, index))}
-      </div>
+      {items.map((item, index) => renderItem(item, index))}
     </dl>
   )
 }
-

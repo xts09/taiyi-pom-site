@@ -168,27 +168,58 @@ export function HomeMotion({ children }: HomeMotionProps) {
     };
   }, []);
 
-  // Section reveals. Each section marked `data-home-reveal` animates in once,
-  // when it first enters the viewport. Targets already on screen at mount keep
-  // their final state, and nothing is hidden in CSS, so the page reads normally
-  // before this effect runs and without JavaScript.
+  // Reveal the content, not the section's empty top padding. Nothing is hidden
+  // in CSS, so content remains readable before hydration and without JS.
   useEffect(() => {
     const root = rootRef.current;
     if (!root) {
       return;
     }
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
-    }
-
     const targets = Array.from(
-      root.querySelectorAll<HTMLElement>("[data-home-reveal]"),
-    ).filter((element) => element.getBoundingClientRect().top > window.innerHeight);
+      root.querySelectorAll<HTMLElement>(
+        [
+          "[data-home-reveal] .home-products-intro",
+          "[data-home-reveal] .home-material-family-nav",
+          "[data-home-reveal] .home-material-visual",
+          "[data-home-reveal] .home-material-active-content",
+          "[data-home-reveal] .home-task-intro",
+          "[data-home-reveal] .home-application-card",
+          "[data-home-reveal] .home-collaboration-intro",
+          "[data-home-reveal] .home-collaboration-principles",
+          "[data-home-reveal] .home-collaboration-process",
+          "[data-home-reveal] .home-proof-intro-copy",
+          "[data-home-reveal] .home-proof-factory-figure",
+          "[data-home-reveal] .home-proof-metrics > *",
+          "[data-home-reveal] .home-proof-detail",
+          "[data-home-reveal] .home-proof-certificates",
+          "[data-home-reveal] .home-inquiry-copy",
+          "[data-home-reveal] .home-inquiry-panel",
+        ].join(", "),
+      ),
+    );
 
     if (targets.length === 0) {
       return;
     }
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const activeAnimations = new Set<Animation>();
+    const completed = new WeakSet<HTMLElement>();
+    const revealLine = window.innerHeight - Math.min(180, window.innerHeight * 0.18);
+
+    const staggerDelay = (element: HTMLElement) => {
+      if (!element.matches(".home-application-card, .home-proof-metrics > *")) {
+        return 0;
+      }
+
+      const siblings = Array.from(element.parentElement?.children ?? []);
+      const rowTop = element.offsetTop;
+      const position = siblings
+        .slice(0, siblings.indexOf(element))
+        .filter((sibling) => (sibling as HTMLElement).offsetTop === rowTop).length;
+      return Math.min(position, 2) * 70;
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -198,27 +229,63 @@ export function HomeMotion({ children }: HomeMotionProps) {
           }
 
           observer.unobserve(entry.target);
-          entry.target.animate(
+          const element = entry.target as HTMLElement;
+          completed.add(element);
+          if (reducedMotion.matches) {
+            continue;
+          }
+
+          const animation = element.animate(
             [
               { opacity: 0, transform: "translateY(18px)" },
               { opacity: 1, transform: "none" },
             ],
             {
               duration: 600,
+              delay: staggerDelay(element),
               easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-              fill: "none",
+              fill: "backwards",
             },
           );
+          activeAnimations.add(animation);
+          animation.addEventListener("finish", () => activeAnimations.delete(animation), {
+            once: true,
+          });
+          animation.addEventListener("cancel", () => activeAnimations.delete(animation), {
+            once: true,
+          });
         }
       },
-      { threshold: 0 },
+      { rootMargin: `0px 0px -${Math.round(window.innerHeight - revealLine)}px 0px` },
     );
 
-    for (const element of targets) {
-      observer.observe(element);
-    }
+    const observeUpcoming = () => {
+      observer.disconnect();
+      if (reducedMotion.matches) {
+        activeAnimations.forEach((animation) => animation.cancel());
+        return;
+      }
 
-    return () => observer.disconnect();
+      for (const element of targets) {
+        if (completed.has(element)) {
+          continue;
+        }
+        if (element.getBoundingClientRect().top <= revealLine) {
+          completed.add(element);
+        } else {
+          observer.observe(element);
+        }
+      }
+    };
+
+    reducedMotion.addEventListener("change", observeUpcoming);
+    observeUpcoming();
+
+    return () => {
+      observer.disconnect();
+      reducedMotion.removeEventListener("change", observeUpcoming);
+      activeAnimations.forEach((animation) => animation.cancel());
+    };
   }, []);
 
   return (

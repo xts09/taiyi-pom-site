@@ -93,6 +93,9 @@ components, verify representative consumers from each affected route family.
 
 ## Stable Session Protocol
 
+- **子代理使用规则（更新）：** 本项目允许按任务需要主动使用短时、范围明确的子代理，无需逐次征求许可。本条替代此前“代理线程必须由用户明确要求才能创建”的限制；保守执行协议不应被理解为全面禁止子代理。
+- 仅把可独立执行、能够减少主任务耗时或提供独立复核的具体子任务交给子代理；简单任务直接完成。启动前简要说明分工，避免重复扫描、并发修改同一文件或重复启动服务，主代理负责汇总与验证。
+- 上述许可仅针对当前任务内的子代理协作，不授权主动创建新的用户任务、项目线程、定时任务或长期无人值守后台任务；这些仍需用户明确要求。其余小步执行、输出控制与保守服务收尾规则继续适用。
 - Keep work in short, verifiable steps. Avoid combining broad analysis, large edits, build, browser automation, and screenshots in one long chain.
 - Store every generated deliverable, export, preview, audit record, and task artifact for this project under `F:\Projects\taiyi-pom-site\outputs\`. Use a task-specific subdirectory when practical. Do not write outputs to `C:\Users\xts10\Documents\Codex\outputs`, the Windows desktop, downloads, or any other C-drive location unless the user explicitly requests that exact destination. User-provided source files on C: remain source files and must not be moved unless explicitly requested.
 - Prefer targeted searches and file reads. Do not scan large generated folders such as `.next`, `node_modules`, `dist`, `build`, `coverage`, cache, or media-heavy folders unless explicitly needed.

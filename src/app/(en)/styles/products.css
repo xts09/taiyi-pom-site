@@ -489,10 +489,6 @@
 }
 
 @media (max-width: 47.999rem) {
-  .products-motion-root .product-hero-card {
-    margin-left: 0;
-  }
-
   .products-motion-root
     .product-category-shell
     .product-category-hero-glass-fiber-reinforced-pom-compound {
@@ -2063,7 +2059,7 @@
 
 .products-motion-root .product-directory-head > div > p {
   margin-top: 0.35rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
 }
 
 .products-motion-root .product-directory-count {
@@ -2508,6 +2504,21 @@
     display: block;
   }
 
+  .products-motion-root .product-category-shell .product-index-hero {
+    padding-inline: var(--site-rail-inset);
+  }
+
+  .products-motion-root .product-category-shell .site-breadcrumb--hero {
+    position: relative;
+    inset: auto;
+    margin-bottom: var(--ds-space-4);
+  }
+
+  .products-motion-root .product-category-shell .product-hero-card {
+    margin-top: 0;
+    margin-left: 0;
+  }
+
   .products-motion-root .product-index-hero h1 {
     max-width: none;
     font-size: var(--ds-product-hero-title-size);
@@ -2652,7 +2663,7 @@
 
 @media (max-width: 47.999rem) {
   .products-motion-root.is-sticky-actions-visible .product-section-nav-top {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--ds-space-3);
     max-height: none;
     padding-block: var(--ds-space-2);
@@ -2670,6 +2681,7 @@
 
   .products-motion-root.is-sticky-actions-visible .product-section-actions a {
     min-height: 2.75rem;
+    white-space: nowrap;
   }
 
   .products-motion-root.is-sticky-actions-visible .product-section-tabs {
@@ -3860,7 +3872,8 @@
   line-height: 1.25;
 }
 
-.product-detail-snapshot-grid span {
+.product-detail-snapshot-grid span,
+.product-detail-snapshot-grid .product-detail-snapshot-note {
   display: block;
   margin-top: 0.25rem;
   color: rgba(226, 232, 240, 0.62);
@@ -4325,6 +4338,7 @@
 }
 
 .product-detail-related .related-product-row dt {
+  color: var(--ds-foreground-muted);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -4736,6 +4750,31 @@
   line-height: 1.5;
 }
 
+.pom-landing-selection-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ds-space-3) var(--ds-space-6);
+  margin: var(--ds-space-6) 0;
+  font-size: var(--ds-text-sm);
+  line-height: 1.5;
+}
+
+.pom-landing-selection-summary dt {
+  color: var(--ds-foreground-muted);
+}
+
+.pom-landing-selection-summary dd {
+  margin: 0;
+  color: var(--ds-foreground-primary);
+  font-weight: var(--ds-font-weight-medium);
+}
+
+@media (min-width: 48rem) {
+  .pom-landing-selection-summary {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .pom-landing-metrics {
   --metric-group-columns: 4;
   --metric-group-columns-tablet: 2;
@@ -5109,17 +5148,16 @@
 
 .pom-landing-material-figure {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(12rem, 3fr);
-  margin: clamp(1.5rem, 3vw, 2.1rem) 0;
-  overflow: hidden;
-  border-radius: var(--ds-radius-panel);
-  background: var(--ds-background-evidence);
+  grid-template-columns: 6rem minmax(0, 1fr);
+  align-items: center;
+  gap: var(--ds-space-4);
+  margin: var(--ds-space-6) 0;
 }
 
 .pom-landing-material-media {
   position: relative;
   display: block;
-  min-height: 18rem;
+  height: 6rem;
 }
 
 .pom-landing-material-media img {
@@ -5129,33 +5167,30 @@
 .pom-landing-material-figure figcaption {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  gap: var(--ds-space-5);
-  padding: var(--ds-space-6);
-  color: var(--ds-foreground-on-dark-muted);
+  gap: var(--ds-space-2);
+  color: var(--ds-foreground-muted);
   font-size: var(--ds-text-sm);
   line-height: 1.5;
 }
 
 .pom-landing-material-figure figcaption > strong {
-  color: var(--ds-foreground-on-dark);
-  font-size: var(--ds-text-lg);
+  color: var(--ds-foreground-primary);
+  font-size: var(--ds-text-md);
   line-height: 1.2;
 }
 
 .pom-landing-material-figure figcaption dl {
-  display: grid;
-  gap: var(--ds-space-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-1) var(--ds-space-6);
   width: 100%;
   margin: 0;
 }
 
 .pom-landing-material-figure figcaption dl > div {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--ds-space-3);
-  padding-top: var(--ds-space-3);
-  border-top: var(--ds-rule-thin) solid rgba(255, 255, 255, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--ds-space-2);
 }
 
 .pom-landing-material-figure figcaption dt,
@@ -5164,9 +5199,8 @@
 }
 
 .pom-landing-material-figure figcaption dd {
-  color: var(--ds-foreground-on-dark);
-  font-weight: var(--ds-font-weight-semibold);
-  text-align: right;
+  color: var(--ds-foreground-primary);
+  font-weight: var(--ds-font-weight-medium);
 }
 
 .pom-landing-path-link:last-child {
@@ -5413,14 +5447,6 @@
 
   .pom-landing-path-media {
     min-height: 5rem;
-  }
-
-  .pom-landing-material-figure {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .pom-landing-material-media {
-    min-height: 13rem;
   }
 
   .pom-landing-hero,

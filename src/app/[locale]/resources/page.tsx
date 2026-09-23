@@ -184,7 +184,7 @@ export default async function LocalizedResourcesPage({
           >
             <SectionIntro
               className="resource-index-directory-head"
-              layout="split"
+              layout="stacked"
               title={messages.directory.title}
               titleId="resource-directory-title"
               description={messages.directory.description}

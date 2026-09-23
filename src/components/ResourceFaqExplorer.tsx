@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useId, useMemo, useState } from "react";
 import { Search } from "lucide-react";
 import { ResourceFaqAccordion } from "@/components/ResourceFaqAccordion";
 import { Input } from "@/components/ui/input";
@@ -34,6 +34,7 @@ export function ResourceFaqExplorer({
   messages,
 }: ResourceFaqExplorerProps) {
   const copy = messages ?? defaultMessages;
+  const contentId = useId();
   const [query, setQuery] = useState("");
   const [activeTitle, setActiveTitle] = useState(modules[0]?.title ?? "");
   const normalizedQuery = normalize(query);
@@ -109,7 +110,7 @@ export function ResourceFaqExplorer({
                 key={module.title}
                 type="button"
                 aria-pressed={module.title === activeModule?.title}
-                aria-controls={`panel-${toResourceSectionId(module.title)}`}
+                aria-controls={contentId}
                 onClick={() => setActiveTitle(module.title)}
               >
                 <span>{module.navLabel ?? module.title}</span>
@@ -119,7 +120,7 @@ export function ResourceFaqExplorer({
         </section>
       </div>
 
-      <div className="resource-faq-content stagger-list">
+      <div id={contentId} className="resource-faq-content stagger-list">
         {activeModule ? (
           <section
             id={`panel-${toResourceSectionId(activeModule.title)}`}

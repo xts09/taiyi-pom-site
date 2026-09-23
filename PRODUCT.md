@@ -20,6 +20,13 @@ The current homepage and main navigation baseline is:
 - Main navigation is white, compact, and right-weighted, with a dark logo, smaller nav labels, a `Contact` text link, and a search icon button instead of a heavy quote button.
 - The homepage should avoid region-dividing lines, faint grid overlays, nested pale panels, and second-layer background blocks over the main page background.
 - The first screen should stay restrained and image-led. React Bits-style interaction should begin below the hero unless there is a strong functional reason.
+- The homepage hero copy is a lower-left group with a maximum 56rem column and
+  the existing medium hero title role on wide desktops. Do not restore the old
+  72px upward translation. Mobile reserves the header height plus 32px before
+  the copy; existing copy, video, and next-module ownership remain unchanged.
+- The shared language selector exposes one current-language control and opens
+  native-language destination links on demand. On mobile it stays available
+  beside Menu, not buried inside the main navigation panel.
 
 ### Active Implementation Snapshot (2026-09-22)
 
@@ -33,6 +40,15 @@ the repository or generated output rather than copied forward as current facts.
 - Inspect `git status --short` before editing and preserve intentional existing
   changes. Do not infer the current worktree from this document.
 - Resources are organized by buyer task: Choose a Material, Process & Troubleshoot, and Find Data. `src/data/resourceNavigation.ts` is the shared navigation source used to keep the Resources mega menu and Resources page language aligned.
+- The English and Chinese material-selection guide starts its technical
+  sections immediately after the introduction and article navigation. The
+  representative image follows the first section; duplicate introductory
+  comparison callouts and image tags are omitted. Technical sections,
+  comparison matrices, validation requirements and related links remain.
+- Wear/low-friction POM landing summaries use compact descriptive facts rather
+  than a metric rail. Conductive/antistatic POM keeps a small pellet reference
+  beside its descriptive facts instead of a second large image panel. Both
+  released languages share these layouts without changing catalogue data.
 - EMS102 is a separate POM grade record sourced from the supplied property sheet.
   Its detail page is released in English, German, French, Brazilian Portuguese,
   and Chinese. The uncertain `5%` moisture entry from the supplied sheet is
@@ -463,6 +479,21 @@ the repository or generated output rather than copied forward as current facts.
   data action. Tablet and mobile retain the existing progressive two-row and
   two-column metric layouts. This is a presentation change only; catalogue
   values, ordering, links and document status remain unchanged.
+
+### SPUN Engineering Grades (2026-09-23, Local Catalog Addition)
+
+- `SPUN-9200` is catalogued as PA66 GF45 and `SPUN-4500` as PPA GF45. Their
+  records are owned by `content/catalog/products/engineering/` and feed grade
+  details, material-family listings, technical-data search, and the glass-fiber
+  comparison pages. The PA66 and PPA glass-fiber comparisons contain 16 and 3
+  grades respectively in all five released languages.
+- These two grades are reviewed five-language exceptions to the default
+  English, German, and Chinese policy for future non-POM grades. Both records
+  remain `data-only` because the supplied PDFs
+  contain wording and test-condition issues; the original files are not public
+  downloads. Values without a reliable matching website field or stated test
+  basis are omitted pending confirmation. This addition is local until it passes
+  the production gate and is deployed.
 
 ## Version Goal
 

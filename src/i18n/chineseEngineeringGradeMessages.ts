@@ -26,10 +26,14 @@ const familyCopy = {
 } as const;
 
 const propertyLabels: Record<string, string> = {
+  "Density": "密度",
   "Specific gravity": "密度",
+  "Water absorption": "吸水率",
   "Water absorption(23 °C, 50 %RH)": "吸水率（23 °C、50% RH）",
+  "Mold shrinkage": "注塑收缩率",
   "Mold shrinkage(Flow direction, Φ = 100 mm, t = 3 mm)":
     "注塑收缩率（流动方向，Φ=100 mm，t=3 mm）",
+  "Melting point": "熔融温度",
   "Melting point (10 °C/min)": "熔融温度（10 °C/min）",
   "Heat deflection temperature (0.45 MPa)": "热变形温度（0.45 MPa）",
   "Heat deflection temperature (1.8 MPa)": "热变形温度（1.8 MPa）",
@@ -39,6 +43,7 @@ const propertyLabels: Record<string, string> = {
   "Elongation at break": "断裂伸长率",
   "Flexural strength": "弯曲强度",
   "Flexural modulus": "弯曲模量",
+  "Charpy impact strength (notched)": "简支梁缺口冲击强度",
   "Charpy impact strength(Notched) @ 23 °C":
     "简支梁缺口冲击强度（23 °C）",
   "Rockwell Hardness(R-Scale)": "洛氏硬度（R 标尺）",
@@ -122,6 +127,9 @@ export const createChineseEngineeringGradeCopy = (
     ? `${document.flammability} 阻燃等级参考`
     : "阻燃等级按牌号与项目确认";
   const summary = `${document.grade} 是 ${document.family} ${direction.label}方向牌号，${direction.summary} 当前页面所列数值用于技术初筛；最终适用性需结合零部件几何、模具、加工窗口和实际工况确认。`;
+  const metadataDescription = document.flammability
+    ? `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。`
+    : `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。`;
   const properties = document.properties.map(localizeEngineeringProperty);
 
   return {
@@ -130,7 +138,7 @@ export const createChineseEngineeringGradeCopy = (
     directionLabel: direction.label,
     metadata: {
       title: `${document.grade} ${document.family} ${direction.label}牌号 | 台益`,
-      description: `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。`,
+      description: metadataDescription,
       imageAlt: `台益 ${document.grade} ${document.family} ${direction.label}材料`,
     },
     eyebrow: `${document.family} · ${direction.label}`,

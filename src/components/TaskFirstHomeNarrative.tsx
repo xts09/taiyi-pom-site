@@ -198,6 +198,7 @@ function HomeProofSection({
                 title={certificate.standard}
                 previewAriaLabel={`${messages.proof.certificateOpenAction}: ${certificate.standard}`}
                 previewClassName="home-proof-certificate-preview"
+                actionClassName="home-proof-document-action"
                 preview={
                   <Image
                     width={certificate.imageWidth}

@@ -57,8 +57,8 @@ test("keeps the PA6, PA66 and PPA GF landing catalogs complete and separate", ()
   const ppa = gfGrades.filter((grade) => grade.family === "PPA");
 
   assert.equal(pa6.length, 17);
-  assert.equal(pa66.length, 15);
-  assert.equal(ppa.length, 2);
+  assert.equal(pa66.length, 16);
+  assert.equal(ppa.length, 3);
   assert.deepEqual(
     [...new Set(pa6.map((grade) => Number(grade.filler)))].sort((a, b) => a - b),
     [8, 15, 20, 30, 32, 35, 40, 45, 50],
@@ -69,11 +69,11 @@ test("keeps the PA6, PA66 and PPA GF landing catalogs complete and separate", ()
   );
   assert.deepEqual(
     ppa.map((grade) => grade.grade),
-    ["EAG630H", "EAG650H"],
+    ["EAG630H", "EAG650H", "SPUN-4500"],
   );
   assert.deepEqual(
     ppa.map((grade) => Number(grade.filler)),
-    [30, 50],
+    [30, 50, 45],
   );
 });
 
