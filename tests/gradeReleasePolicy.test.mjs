@@ -8,6 +8,7 @@ import {
   getLanguageAlternates,
   getSitemapLanguageOptions,
   legacyFiveLocaleNonPomGradeSlugs,
+  reviewedFiveLocaleSpunGradeSlugs,
 } from "../src/i18n/releaseManifest.ts";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -75,6 +76,19 @@ test("future POM and non-POM grades receive the intended default locales", () =>
     }),
     defaultNonPomGradeLocalizedSegments,
   );
+});
+
+test("the two reviewed SPUN grades retain all five released language routes", () => {
+  for (const slug of reviewedFiveLocaleSpunGradeSlugs) {
+    assert.deepEqual(
+      getCatalogGradeLocalizedSegments({ kind: "engineering-tds", slug }),
+      allLocalizedSegments,
+    );
+    assert.deepEqual(
+      getSitemapLanguageOptions(`/products/${slug}`).map(({ href }) => href),
+      expectedFiveLanguageHrefs(`/products/${slug}`),
+    );
+  }
 });
 
 test("representative existing grade URLs keep their five-language sitemap and alternates", () => {

@@ -71,6 +71,11 @@ and mobile navigation behavior.
 **Rule:** page code must not create alternate site headers or footers. Header
 surface variants are controlled states of the same component.
 
+Chinese desktop Footer navigation reserves enough width for the complete
+product labels through locale-scoped grid tracks. Do not truncate labels,
+shrink type, or force nowrap across all languages. Mobile keeps its disclosure
+navigation.
+
 ### Rail / Section Shell — Partial
 
 **Current owner:** `.site-container`, site rail variables, and page-local band
@@ -244,6 +249,16 @@ stylesheet; it does not own a separate navigation skin.
 **Rule:** preserve the existing shared navigation contract. Mega-menu layout is
 a specialized composition, not a generic Card.
 
+**Language control:** one current-language disclosure, rather than a persistent
+row of locale pills. Desktop shows the native language name; mobile shows the
+short label beside Menu, outside its panel. The dropdown lists native names,
+marks the current language, and retains equivalent-route and inquiry-context
+links. Native summary/links support Enter and Tab; Escape closes and returns
+focus, and outside pointer/focus closes the dropdown. Language and main
+navigation are mutually exclusive: opening either dismisses the other,
+including desktop hover and mobile disclosure toggles. Trigger and option
+hit areas remain at least 44px high.
+
 ## Content Components
 
 ### Page Hero — Partial
@@ -328,6 +343,13 @@ public source for all six report-level numeric records and bilingual copy.
 landing and selection guide. Keep source workbooks, formulations and
 internal review files outside public components and assets.
 
+The Resources overview Hero is content-height driven. Its directory uses a
+stacked SectionIntro and group headers above full-width link grids: three
+columns from 80rem, two from 48rem, one below. DOM order stays the reading and
+keyboard order. On mobile, Hero task links retain the title and count while
+omitting redundant category labels. These layout rules also cover the case
+preview inside the overview, not standalone case pages.
+
 **Keep separate:** the Home hero. It is the brand-level entry composition and
 should consume shared Actions and typography tokens without becoming a generic
 inner-page Hero.
@@ -404,6 +426,10 @@ figures.
 
 **Anatomy:** label, value, optional unit, note. Numeric alignment and unit
 rendering use `CountUpValue` and `UnitText` where applicable.
+
+The definition list contains each metric group directly. Values and optional
+notes use `dd`; do not insert an extra layout wrapper between `dl` and its
+term/description groups. CSS `display: contents` does not repair list semantics.
 
 **Canonical owner:** `src/components/MetricGroup.tsx` with component tokens in
 `tokens.css`. Home factory metrics and About facility figures are the first
@@ -483,8 +509,13 @@ cross-grade table on this landing page. Other POM categories and languages keep 
 The existing category Hero and secondary navigation are not owned by this module.
 
 The five-language PA6/PA66 GF pages retain their original PageHero factory
-image and share this card owner. Their complete seven-property comparison and
-per-grade TDS links remain in the full-parameters disclosure. POM TDS links
+image and use the opt-in `compact` variant of this card owner. It preserves
+all four metrics and the whole-card grade link; on mobile the linked grade
+title replaces the repeated action label. POM keeps the default card variant.
+`EngineeringGfGradeComparison` places the full-parameters disclosure before
+the card directory so comparison does not require scrolling past every grade.
+The complete seven-property comparison and per-grade TDS links remain available.
+POM TDS links
 remain on the individual grade detail pages. The localized PA pages reuse the
 same catalogue records and layout while translating visible labels, links,
 metadata and structured-data language signals.
@@ -575,6 +606,12 @@ primary action, optional evidence aside.
 spacing, type hierarchy, and Button implementation come from the component.
 Recommendation titles use the full available copy width on desktop; they must
 not be constrained by an arbitrary character width or forced onto one line.
+
+`recommendation` supplies on-dark copy and inverse-action styling and requires
+a caller-owned dark band. Unskinned endings on the light canvas, including
+engineering glass-fiber landing pages, use `compact` with the primary Button.
+In stacked layouts, both copy and optional aside size to their contents;
+desktop horizontal flex bases must not become mobile reserved heights.
 
 Set `footerAdjacent` only when the panel is the page's final conversion action.
 The shared Footer then omits its own pitch and duplicate CTA while preserving

@@ -129,7 +129,7 @@ export default function ResourcesPage() {
           >
             <SectionIntro
               className="resource-index-directory-head"
-              layout="split"
+              layout="stacked"
               title="Browse Technical Resources"
               titleId="resource-directory-title"
               description="Open the complete guide, troubleshooting, data, and FAQ directory, organized by engineering task."

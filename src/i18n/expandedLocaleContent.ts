@@ -320,6 +320,8 @@ export const hasExpandedLocaleDictionary = (
 ) => localeSegment === "zh" || dictionaries[localeSegment] !== undefined;
 
 const gradeCodeTranslationTemplates = [
+  ["SPUN-9200", "EAG245"],
+  ["SPUN-4500", "EAG630H"],
   ["EMS102", "EMS162"],
   ["ESO102", "ES0162"],
 ] as const;

@@ -203,7 +203,7 @@ export function LocalizedProductGradePage({
                       </>
                     ) : null}
                   </dd>
-                  <span>{item.note}</span>
+                  <dd className="product-detail-snapshot-note">{item.note}</dd>
                 </div>
               ))}
             </dl>

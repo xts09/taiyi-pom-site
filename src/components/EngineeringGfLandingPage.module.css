@@ -153,7 +153,7 @@
   background: var(--ds-background-canvas);
 }
 
-.fullComparison { margin-top: var(--ds-space-6); border-bottom: var(--ds-rule-thin) solid var(--ds-border-subtle); }
+.fullComparison { margin-bottom: var(--ds-space-6); border-bottom: var(--ds-rule-thin) solid var(--ds-border-subtle); }
 .fullComparison summary { padding-block: var(--ds-space-4); cursor: pointer; font-weight: 600; }
 .fullComparison summary:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: 3px; }
 
@@ -409,6 +409,7 @@
 
 .actionRail {
   padding-top: clamp(2rem, 4vw, 4rem);
+  padding-bottom: var(--ds-space-8);
 }
 
 .inquirySteps {
@@ -425,7 +426,7 @@
 }
 
 .inquirySteps span {
-  color: var(--ds-color-cyan-bright);
+  color: var(--ds-action-primary);
   font-family: var(--ds-font-mono);
   font-size: var(--ds-text-xs);
   font-weight: var(--ds-font-weight-bold);
@@ -546,7 +547,6 @@
   }
 
   .actionRail {
-    width: 100%;
     padding-top: 1rem;
   }
 }

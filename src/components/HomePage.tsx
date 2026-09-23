@@ -25,6 +25,9 @@ export function HomePage({
 }: HomePageProps) {
   const localizedHref = (href: string) => getLocalizedHref(href, localeSegment);
   const taskFirstMessages = messages.taskFirst;
+  const heroSubjectStart = localeSegment === "zh"
+    ? messages.hero.title.indexOf("改性 POM 制造商")
+    : -1;
   const localizedCertifications = certifications.map((certificate, index) => ({
     ...certificate,
     ...messages.quality.certifications[index],
@@ -79,7 +82,16 @@ export function HomePage({
 
               <h1 className="hero-motion-title hero-title-balance text-white">
                 <span className="hero-title-line">
-                  {messages.hero.title}
+                  {heroSubjectStart > 0 ? (
+                    <>
+                      <span className="hero-title-phrase">
+                        {messages.hero.title.slice(0, heroSubjectStart)}
+                      </span>
+                      <span className="hero-title-subject hero-title-phrase">
+                        {messages.hero.title.slice(heroSubjectStart)}
+                      </span>
+                    </>
+                  ) : messages.hero.title}
                 </span>
               </h1>
 

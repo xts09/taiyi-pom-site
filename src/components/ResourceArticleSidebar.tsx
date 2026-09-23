@@ -138,7 +138,7 @@ export function ResourceArticleSidebar({
     return (
       <aside className="hidden h-full lg:block" aria-label={sidebarAria}>
         <div className="lg:sticky lg:top-[calc(var(--site-header-height)+2rem)]">
-          <p className="mb-4 text-xs font-semibold tracking-[0.08em] text-slate-500 uppercase">
+          <p className="mb-4 text-xs font-semibold tracking-[0.08em] text-[var(--ds-foreground-muted)] uppercase">
             {label}
           </p>
           <nav aria-label={tableOfContentsAria}>{sectionLinks()}</nav>

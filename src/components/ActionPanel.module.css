@@ -170,7 +170,9 @@
   }
 
   .root[data-variant="compact"] .copy,
-  .root[data-variant="recommendation"] .copy {
+  .root[data-variant="recommendation"] .copy,
+  .root[data-variant="compact"] .aside,
+  .root[data-variant="recommendation"] .aside {
     flex: 0 1 auto;
   }
 

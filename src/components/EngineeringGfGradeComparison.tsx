@@ -39,17 +39,6 @@ export function EngineeringGfGradeComparison({
 }) {
   return (
     <div>
-      <GlassFiberGradeCards actionLabel={ui.actionLabel} grades={grades.map(grade => ({
-        grade: grade.grade,
-        href: grade.href,
-        eyebrow: `${polymer} · ${ui.glassFiberLabel} ${grade.filler}%`,
-        metrics: [
-          { label: ui.densityLabel, value: grade.density || ui.notPublishedLabel },
-          { label: ui.tensileStressLabel, value: formatValue(grade.tensile, "MPa", ui.notPublishedLabel) },
-          { label: ui.hdtLabel, value: formatValue(grade.hdt, "°C", ui.notPublishedLabel) },
-          { label: ui.flammabilityLabel, value: grade.flammability || ui.notPublishedLabel },
-        ],
-      }))} />
       <details className={styles.fullComparison}>
         <summary>{ui.disclosureLabel}</summary>
       <p className={styles.tableHint}>{ui.scrollHint}</p>
@@ -106,6 +95,17 @@ export function EngineeringGfGradeComparison({
         </table>
       </div>
       </details>
+      <GlassFiberGradeCards compact actionLabel={ui.actionLabel} grades={grades.map(grade => ({
+        grade: grade.grade,
+        href: grade.href,
+        eyebrow: `${polymer} · ${ui.glassFiberLabel} ${grade.filler}%`,
+        metrics: [
+          { label: ui.densityLabel, value: grade.density || ui.notPublishedLabel },
+          { label: ui.tensileStressLabel, value: formatValue(grade.tensile, "MPa", ui.notPublishedLabel) },
+          { label: ui.hdtLabel, value: formatValue(grade.hdt, "°C", ui.notPublishedLabel) },
+          { label: ui.flammabilityLabel, value: grade.flammability || ui.notPublishedLabel },
+        ],
+      }))} />
     </div>
   );
 }

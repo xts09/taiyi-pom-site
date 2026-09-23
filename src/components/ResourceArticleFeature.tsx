@@ -34,11 +34,11 @@ export function ResourceArticleFeature({
           <strong>{feature.title}</strong>
           <div className={styles.mediaCaptionBody}>
             <p>{feature.description}</p>
-            <ul aria-label={ariaLabels.mediaLabels}>
+            {feature.labels.length > 0 ? <ul aria-label={ariaLabels.mediaLabels}>
               {feature.labels.map((label) => (
                 <li key={label}>{label}</li>
               ))}
-            </ul>
+            </ul> : null}
           </div>
         </figcaption>
       </figure>

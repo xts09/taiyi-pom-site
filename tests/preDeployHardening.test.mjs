@@ -5,7 +5,11 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import { componentSolutions } from "../src/data/componentSolutions.ts";
-import { getLanguageAlternatesForPath } from "../src/i18n/releaseManifest.ts";
+import {
+  getLanguageAlternatesForPath,
+  legacyFiveLocaleNonPomGradeSlugs,
+  reviewedFiveLocaleSpunGradeSlugs,
+} from "../src/i18n/releaseManifest.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const readProjectFile = (path) =>
@@ -35,7 +39,14 @@ const expectedAlternates = (sourcePath) => ({
   "x-default": sourcePath,
 });
 
-test("the 87 released English owners have exact manifest-backed hreflang groups", () => {
+const expectedNewEngineeringGradeAlternates = (sourcePath) => ({
+  en: sourcePath,
+  de: `/de${sourcePath}`,
+  "zh-CN": `/zh${sourcePath}`,
+  "x-default": sourcePath,
+});
+
+test("the 89 released English owners have exact manifest-backed hreflang groups", () => {
   const engineeringPaths = JSON.parse(
     readProjectFile("src/generated/catalog.json"),
   )
@@ -58,15 +69,25 @@ test("the 87 released English owners have exact manifest-backed hreflang groups"
     ...staticOwnerPaths,
   ];
 
-  assert.equal(engineeringPaths.length, 75);
+  assert.equal(engineeringPaths.length, 77);
   assert.equal(componentPaths.length, 6);
   assert.equal(staticOwnerPaths.length, 6);
-  assert.equal(ownerPaths.length, 87);
+  assert.equal(ownerPaths.length, 89);
 
   for (const sourcePath of ownerPaths) {
+    const isNewEngineeringGrade =
+      engineeringPaths.includes(sourcePath) &&
+      !legacyFiveLocaleNonPomGradeSlugs.includes(
+        sourcePath.slice("/products/".length),
+      ) &&
+      !reviewedFiveLocaleSpunGradeSlugs.includes(
+        sourcePath.slice("/products/".length),
+      );
     assert.deepEqual(
       getLanguageAlternatesForPath(sourcePath),
-      expectedAlternates(sourcePath),
+      isNewEngineeringGrade
+        ? expectedNewEngineeringGradeAlternates(sourcePath)
+        : expectedAlternates(sourcePath),
       sourcePath,
     );
   }

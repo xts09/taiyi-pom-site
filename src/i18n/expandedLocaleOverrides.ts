@@ -15,6 +15,15 @@ export const expandedLocaleOverrides: Partial<
     "POM 耐磨测试 Benchmark": "POM-Verschleißtest-Benchmark",
     "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
       "Sechs Prüfberichte nach Prüfbedingungen gruppiert, mit Messwerten, Verlaufskurven und vorhandenen Probenfotos.",
+    "SPUN-9200 PA66 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
+      "Werkstoffdaten für SPUN-9200 PA66 mit Glasfaserverstärkung, einschließlich Dichte, Zugfestigkeit, Wärmeformbeständigkeit und vollständiger Eigenschaftstabelle.",
+    "SPUN-4500 PPA 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
+      "Werkstoffdaten für SPUN-4500 PPA mit Glasfaserverstärkung, einschließlich Dichte, Zugfestigkeit, Wärmeformbeständigkeit und vollständiger Eigenschaftstabelle.",
+    "阻燃等级按牌号与项目确认": "Flammverhalten für den Werkstofftyp und das Projekt bestätigen",
+    吸水率: "Wasseraufnahme",
+    注塑收缩率: "Formschwindung",
+    熔融温度: "Schmelztemperatur",
+    简支梁缺口冲击强度: "Kerbschlagzähigkeit nach Charpy",
     ...categoryLocaleOverrides.de,
     ...ems102LocaleOverrides.de,
     ...aboutLocaleOverrides.de,
@@ -131,6 +140,15 @@ export const expandedLocaleOverrides: Partial<
     "POM 耐磨测试 Benchmark": "Benchmark des essais d'usure POM",
     "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
       "Six rapports d'essai regroupés par conditions, avec mesures, courbes et photos d'éprouvettes disponibles.",
+    "SPUN-9200 PA66 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
+      "Données du grade SPUN-9200 en PA66 renforcé de fibres de verre, comprenant la densité, la résistance en traction, la température de fléchissement sous charge et le tableau complet des propriétés.",
+    "SPUN-4500 PPA 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
+      "Données du grade SPUN-4500 en PPA renforcé de fibres de verre, comprenant la densité, la résistance en traction, la température de fléchissement sous charge et le tableau complet des propriétés.",
+    "阻燃等级按牌号与项目确认": "Classement de réaction au feu à confirmer pour le grade et le projet",
+    吸水率: "Absorption d’eau",
+    注塑收缩率: "Retrait au moulage",
+    熔融温度: "Température de fusion",
+    简支梁缺口冲击强度: "Résistance au choc Charpy entaillé",
     ...categoryLocaleOverrides.fr,
     ...ems102LocaleOverrides.fr,
     ...aboutLocaleOverrides.fr,
@@ -262,6 +280,15 @@ export const expandedLocaleOverrides: Partial<
     "POM 耐磨测试 Benchmark": "Benchmark de ensaios de desgaste de POM",
     "六条报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
       "Seis relatórios agrupados por condição de ensaio, com medições, curvas de processo e fotos disponíveis dos corpos de prova.",
+    "SPUN-9200 PA66 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
+      "Dados do grau SPUN-9200 em PA66 reforçado com fibra de vidro, incluindo densidade, resistência à tração, temperatura de deflexão térmica e tabela completa de propriedades.",
+    "SPUN-4500 PPA 玻璃纤维增强牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。":
+      "Dados do grau SPUN-4500 em PPA reforçado com fibra de vidro, incluindo densidade, resistência à tração, temperatura de deflexão térmica e tabela completa de propriedades.",
+    "阻燃等级按牌号与项目确认": "Classificação de inflamabilidade a confirmar para o grau e o projeto",
+    吸水率: "Absorção de água",
+    注塑收缩率: "Contração de moldagem",
+    熔融温度: "Temperatura de fusão",
+    简支梁缺口冲击强度: "Resistência ao impacto Charpy com entalhe",
     ...categoryLocaleOverrides["pt-br"],
     ...ems102LocaleOverrides["pt-br"],
     ...aboutLocaleOverrides["pt-br"],

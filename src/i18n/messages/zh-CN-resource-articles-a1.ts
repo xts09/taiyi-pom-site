@@ -101,29 +101,14 @@ const messages = {
     articleFeatures: [
       {
         type: "media",
-        position: "after-intro",
+        position: "after-section",
+        sectionTitle: "从注塑零部件开始，而不是从牌号名称开始",
         src: "/generated/pom-material-hero.webp",
         alt: "材料实验室中天然色 POM 粒子、注塑齿轮与精密零部件",
         title: "从成品零部件及其运行系统开始",
         description:
           "选定改性 POM 方向前，应把注塑几何、使用环境、接触条件和失效风险放在同一套材料初筛逻辑中。",
-        labels: ["零部件功能", "使用工况", "失效模式", "注塑验证"],
-      },
-      {
-        type: "comparison",
-        position: "after-intro",
-        items: [
-          {
-            title: "先确定零部件的主要风险",
-            description:
-              "根据实际失效模式、运动方式、对偶面、载荷、环境和注塑限制筛选材料方向，而不是只看牌号名称。",
-          },
-          {
-            title: "以零部件级证据作为放行依据",
-            description:
-              "先用牌号 TDS 缩小候选范围，再在目标零部件和工况中确认成型表现、尺寸、功能与关键性能。",
-          },
-        ],
+        labels: [],
       },
       {
         type: "matrix",

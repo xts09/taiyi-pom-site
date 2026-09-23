@@ -291,7 +291,7 @@
   margin: 0;
   color: var(--home-color-white);
   font-family: var(--home-font-display);
-  font-size: var(--home-hero-title-size);
+  font-size: var(--home-hero-title-size-medium);
   font-style: normal;
   font-weight: 700;
   letter-spacing: 0;
@@ -314,7 +314,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--home-space-sm);
-  margin-top: clamp(2.65rem, 4.65vh, 3.25rem);
+  margin-top: var(--home-space-lg);
 }
 
 .home-redesign .home-hero .hero-cta-primary {
@@ -764,9 +764,6 @@
     min-height: clamp(42rem, calc(100svh - 7rem), 52rem);
   }
 
-  .home-redesign .home-hero-content {
-    transform: translateY(calc(var(--home-space-2xl) * -1));
-  }
 }
 
 @media (min-width: 48rem) and (max-width: 63.999rem) {
@@ -1479,7 +1476,22 @@
 
 /* Five-language task-first homepage narrative. */
 .home-task-first .home-hero-content {
-  max-width: min(100%, 78rem);
+  max-width: min(100%, 56rem);
+}
+
+/* Chinese glyphs need more leading than the Latin display setting. */
+html:lang(zh) .home-redesign .home-hero .hero-motion-title {
+  line-height: 1.14;
+}
+
+html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
+  text-wrap: balance;
+}
+
+@media (min-width: 48rem) {
+  .home-redesign .home-hero .hero-title-phrase {
+    white-space: nowrap;
+  }
 }
 
 .home-task-section {
@@ -1778,6 +1790,7 @@
   display: inline-flex;
   gap: var(--home-space-2xs);
   align-items: center;
+  min-height: var(--ds-touch-target-min);
   color: var(--home-color-accent);
   font-size: var(--home-text-sm);
   font-weight: 700;
@@ -2088,6 +2101,7 @@
 }
 
 .home-collaboration-principles p {
+  max-width: 36rem;
   margin: var(--home-space-sm) 0 0;
   color: var(--home-color-ink-muted);
   font-size: clamp(0.9375rem, 1vw, 1rem);
@@ -2325,6 +2339,10 @@
   color: var(--home-color-accent-bright);
 }
 
+.home-proof-document-action {
+  min-height: var(--ds-touch-target-min);
+}
+
 .home-proof-certificate-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -2510,10 +2528,6 @@
 
   .home-proof {
     padding: var(--home-space-xl) 0;
-  }
-
-  .home-proof > .site-container {
-    width: calc(100% - 3rem);
   }
 
   .home-application-paths,
@@ -2854,7 +2868,7 @@
   .home-redesign .home-hero-grid {
     min-height: auto;
     gap: var(--home-space-lg);
-    padding-top: var(--home-space-2xl);
+    padding-top: calc(var(--site-header-height) + var(--home-space-lg));
     padding-bottom: var(--home-space-lg);
   }
 

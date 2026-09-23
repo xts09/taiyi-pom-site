@@ -1560,8 +1560,8 @@ test("the Simplified Chinese engineering-plastic category entries lead into Chin
   const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
   const expectedCounts = {
     "pa6-compound": 33,
-    "pa66-compound": 37,
-    "ppa-compound": 5,
+    "pa66-compound": 38,
+    "ppa-compound": 6,
   };
 
   assert.deepEqual(
@@ -2180,7 +2180,7 @@ test("the first Simplified Chinese resource article slice matches source structu
   const expectedCounts = {
     "material-selection-guide": {
       sections: 8,
-      features: 4,
+      features: 3,
       modules: 5,
       relatedLinks: 5,
     },

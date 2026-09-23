@@ -168,7 +168,7 @@ const landingPageContent: Record<
       "Compare PLATFORM glass-fiber-reinforced PA66 grades by GF level, strength, flexural modulus, notched impact, HDT, moisture data and part requirements.",
     heroEyebrow: "PA66 Grade Selection",
     heroDescription:
-      "Explore 15 PLATFORM® PA66 grades from GF15 to GF50. Compare strength and heat-deflection data, then check moisture and assembly requirements.",
+      "Explore 16 PLATFORM® PA66 grades from GF15 to GF50. Compare strength and heat-deflection data, then check moisture and assembly requirements.",
     navSubtitle: "GF15–GF50 across strength, heat deflection, and moisture",
     comparisonIntro:
       "Grades are ordered by glass-fiber content. Compare the published properties, then open a grade or request its full TDS.",
@@ -271,7 +271,7 @@ const landingPageContent: Record<
       "Compare PLATFORM glass-fiber-reinforced PPA grades by GF level, tensile and flexural data, HDT, water absorption and molded-part requirements.",
     heroEyebrow: "PPA Grade Selection",
     heroDescription:
-      "Compare two PLATFORM® PPA grades at GF30 and GF50 for high-temperature, dimensional and load-bearing molded-part screening.",
+      "Compare three PLATFORM® PPA grades from GF30 to GF50 for high-temperature, dimensional and load-bearing molded-part screening.",
     navSubtitle: "GF30–GF50 across thermal response, stiffness, and dimensions",
     comparisonIntro:
       "The listed grades are ordered by glass-fiber content. Compare published values, then open the grade record or request its full TDS.",

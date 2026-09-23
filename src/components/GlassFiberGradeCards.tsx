@@ -22,11 +22,12 @@ export function GlassFiberGradeHeading({ eyebrow, title, description, count, tit
   </div>;
 }
 
-export function GlassFiberGradeCards({ grades, actionLabel }: {
+export function GlassFiberGradeCards({ grades, actionLabel, compact = false }: {
   grades: GlassFiberGradeCard[];
   actionLabel: string;
+  compact?: boolean;
 }) {
-  return <div className={styles.directory}>
+  return <div className={`${styles.directory}${compact ? ` ${styles.compact}` : ""}`}>
     {grades.map((grade, index) => <Link key={grade.grade} href={grade.href} className={styles.card} data-grade={grade.grade}>
       <div className={styles.identity}>
         <span className={styles.index}>{String(index + 1).padStart(2, "0")}</span>

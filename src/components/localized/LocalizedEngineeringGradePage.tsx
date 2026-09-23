@@ -17,7 +17,10 @@ import {
   getLocalizedEngineeringGradeContactSource,
 } from "@/i18n/engineeringGradeMessages";
 import { translateExpandedText } from "@/i18n/expandedLocaleContent";
-import { getLocalizedHref } from "@/i18n/releaseManifest";
+import {
+  getLocalizedHref,
+  isLocalizedReleaseIndexable,
+} from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { selectRelatedGrades } from "@/lib/relatedGrades";
@@ -62,9 +65,15 @@ export function LocalizedEngineeringGradePage({
       source: getLocalizedEngineeringGradeContactSource(localeSegment),
     }),
   );
+  const releasedGradeDocuments = engineeringTdsDocuments.filter((item) =>
+    isLocalizedReleaseIndexable(
+      `/products/${createEngineeringTdsSlug(item)}`,
+      localeSegment,
+    ),
+  );
   const configuredRelatedGrades = (document.screening?.relatedGradeSlugs ?? [])
     .map((relatedSlug) =>
-      engineeringTdsDocuments.find(
+      releasedGradeDocuments.find(
         (item) => createEngineeringTdsSlug(item) === relatedSlug,
       ),
     )
@@ -73,7 +82,7 @@ export function LocalizedEngineeringGradePage({
     configuredRelatedGrades.length > 0
       ? configuredRelatedGrades.slice(0, 3)
       : selectRelatedGrades({
-          items: engineeringTdsDocuments,
+          items: releasedGradeDocuments,
           current: document,
           getId: createEngineeringTdsSlug,
           isPrimaryPeer: (item, current) =>
@@ -172,7 +181,7 @@ export function LocalizedEngineeringGradePage({
                       </>
                     ) : null}
                   </dd>
-                  <span>{item.note}</span>
+                  <dd className="product-detail-snapshot-note">{item.note}</dd>
                 </div>
               ))}
             </dl>

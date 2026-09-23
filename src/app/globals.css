@@ -2319,7 +2319,7 @@ body {
 
 .contact-form-actions p {
   max-width: 28rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.76rem;
   line-height: 1.55;
 }
@@ -3496,6 +3496,11 @@ body {
 }
 
 @media (min-width: 75rem) {
+  .site-footer-menu:lang(zh) {
+    grid-template-columns: minmax(11rem, 1.2fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(var(--ds-space-6), 3vw, var(--ds-space-12));
+  }
+
   .site-footer-column--resources a,
   .site-footer-column--company a {
     white-space: nowrap;

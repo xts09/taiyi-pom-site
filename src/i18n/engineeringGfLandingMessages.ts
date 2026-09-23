@@ -536,7 +536,7 @@ const localizedPageCopy: Record<
         "Vergleichen Sie glasfaserverstärkte PLATFORM PA66-Typen nach GF-Anteil, Festigkeit, Biegemodul, Kerbschlagzähigkeit, HDT, Feuchtedaten und Bauteilanforderungen.",
       heroEyebrow: "PA66-Werkstoffauswahl",
       heroDescription:
-        "Entdecken Sie 15 PLATFORM® PA66-Werkstofftypen von GF15 bis GF50. Vergleichen Sie Festigkeit und Wärmeformbeständigkeit und prüfen Sie Feuchte- und Montageanforderungen.",
+        "Entdecken Sie 16 PLATFORM® PA66-Werkstofftypen von GF15 bis GF50. Vergleichen Sie Festigkeit und Wärmeformbeständigkeit und prüfen Sie Feuchte- und Montageanforderungen.",
       navSubtitle:
         "GF15–GF50 für Festigkeit, Wärmeformbeständigkeit und Feuchte",
       comparisonIntro:
@@ -746,7 +746,7 @@ const localizedPageCopy: Record<
         "Comparez les grades PLATFORM en PA66 renforcé de fibres de verre selon le taux de GF, la résistance, le module de flexion, le choc entaillé, la HDT, l’humidité et les exigences de la pièce.",
       heroEyebrow: "Sélection de grades PA66",
       heroDescription:
-        "Explorez 15 grades PLATFORM® PA66 de GF15 à GF50. Comparez la résistance et la HDT, puis examinez les exigences d’humidité et d’assemblage.",
+        "Explorez 16 grades PLATFORM® PA66 de GF15 à GF50. Comparez la résistance et la HDT, puis examinez les exigences d’humidité et d’assemblage.",
       navSubtitle: "GF15–GF50 : résistance, tenue sous charge à chaud et humidité",
       comparisonIntro:
         "Les grades sont classés par teneur en fibres de verre. Comparez les propriétés publiées, puis ouvrez la fiche d’un grade ou demandez sa TDS complète.",
@@ -956,7 +956,7 @@ const localizedPageCopy: Record<
         "Compare graus PLATFORM de PA66 reforçado com fibra de vidro por teor de GF, resistência, módulo de flexão, impacto com entalhe, HDT, umidade e requisitos da peça.",
       heroEyebrow: "Seleção de graus PA66",
       heroDescription:
-        "Explore 15 graus PLATFORM® de PA66, de GF15 a GF50. Compare resistência e HDT e depois avalie os requisitos de umidade e montagem.",
+        "Explore 16 graus PLATFORM® de PA66, de GF15 a GF50. Compare resistência e HDT e depois avalie os requisitos de umidade e montagem.",
       navSubtitle: "GF15–GF50 em resistência, deflexão térmica e umidade",
       comparisonIntro:
         "Os graus estão ordenados pelo teor de fibra de vidro. Compare as propriedades publicadas e depois abra um grau ou solicite sua TDS completa.",
@@ -1165,7 +1165,7 @@ const localizedPageCopy: Record<
         "按玻纤含量、强度、弯曲模量、缺口冲击强度、热变形温度、水分数据和零件要求，对比 PLATFORM 玻璃纤维增强 PA66 牌号。",
       heroEyebrow: "PA66 牌号选择",
       heroDescription:
-        "浏览 15 个 PLATFORM® PA66 牌号，玻纤含量覆盖 GF15 至 GF50。对比强度和热变形数据，并审查水分与装配要求。",
+        "浏览 16 个 PLATFORM® PA66 牌号，玻纤含量覆盖 GF15 至 GF50。对比强度和热变形数据，并审查水分与装配要求。",
       navSubtitle: "GF15–GF50，覆盖强度、热变形与水分表现",
       comparisonIntro:
         "牌号按玻纤含量排序。请先对比已发布性能，再进入具体牌号页面或申请完整 TDS。",
@@ -1275,7 +1275,7 @@ const localizedPpaPageCopy: Record<
       "Vergleichen Sie glasfaserverstärkte PLATFORM PPA-Typen nach GF-Anteil, Zug- und Biegedaten, HDT, Wasseraufnahme und Bauteilanforderungen.",
     heroEyebrow: "PPA-Werkstoffauswahl",
     heroDescription:
-      "Vergleichen Sie zwei PLATFORM® PPA-Typen mit GF30 und GF50 für die Vorauswahl hochtemperaturbeständiger, maßhaltiger und belastbarer Formteile.",
+      "Vergleichen Sie drei PLATFORM® PPA-Typen von GF30 bis GF50 für die Vorauswahl hochtemperaturbeständiger, maßhaltiger und belastbarer Formteile.",
     navSubtitle:
       "GF30–GF50 für thermisches Verhalten, Steifigkeit und Maßhaltigkeit",
     comparisonIntro:
@@ -1372,7 +1372,7 @@ const localizedPpaPageCopy: Record<
       "Comparez les grades PLATFORM en PPA renforcé de fibres de verre selon le taux de GF, la traction, la flexion, la HDT, l’absorption d’eau et les exigences de la pièce.",
     heroEyebrow: "Sélection de grades PPA",
     heroDescription:
-      "Comparez deux grades PLATFORM® PPA, GF30 et GF50, pour présélectionner des pièces moulées structurelles soumises à la chaleur, à la charge et aux exigences dimensionnelles.",
+      "Comparez trois grades PLATFORM® PPA, de GF30 à GF50, pour présélectionner des pièces moulées structurelles soumises à la chaleur, à la charge et aux exigences dimensionnelles.",
     navSubtitle:
       "GF30–GF50 selon la réponse thermique, la rigidité et les dimensions",
     comparisonIntro:
@@ -1469,7 +1469,7 @@ const localizedPpaPageCopy: Record<
       "Compare graus PLATFORM de PPA reforçado com fibra de vidro por teor de GF, tração, flexão, HDT, absorção de água e requisitos da peça.",
     heroEyebrow: "Seleção de graus PPA",
     heroDescription:
-      "Compare dois graus PLATFORM® PPA, GF30 e GF50, para a triagem de peças moldadas estruturais submetidas a alta temperatura, carga e requisitos dimensionais.",
+      "Compare três graus PLATFORM® PPA, de GF30 a GF50, para a triagem de peças moldadas estruturais submetidas a alta temperatura, carga e requisitos dimensionais.",
     navSubtitle:
       "GF30–GF50 em resposta térmica, rigidez e controle dimensional",
     comparisonIntro:
@@ -1566,7 +1566,7 @@ const localizedPpaPageCopy: Record<
       "按玻纤含量、拉伸与弯曲数据、热变形温度、吸水率和零件要求，对比 PLATFORM 玻璃纤维增强 PPA 牌号。",
     heroEyebrow: "PPA 牌号选择",
     heroDescription:
-      "对比 2 个 PLATFORM® PPA 牌号，覆盖 GF30 与 GF50，用于高温、承载和尺寸要求较高的注塑零件初筛。",
+      "对比 3 个 PLATFORM® PPA 牌号，玻纤含量覆盖 GF30 至 GF50，用于高温、承载和尺寸要求较高的注塑零件初筛。",
     navSubtitle: "GF30–GF50，覆盖热响应、刚性与尺寸控制",
     comparisonIntro:
       "已列牌号按玻纤含量排序。请先对比已发布数据，再进入牌号页面或申请完整 TDS。",

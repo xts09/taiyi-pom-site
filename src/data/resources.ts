@@ -186,34 +186,14 @@ export const resourcePages: ResourcePage[] = [
     articleFeatures: [
       {
         type: "media",
-        position: "after-intro",
+        position: "after-section",
+        sectionTitle: "Start with the Molded Part, Not the Grade Name",
         src: "/generated/pom-material-hero.webp",
         alt: "Natural POM pellets beside molded gears and precision components in a materials laboratory",
         title: "Start with the finished part and its operating system",
         description:
           "Material screening connects the molded geometry, working environment, contact conditions, and failure risk before a modified POM direction is selected.",
-        labels: [
-          "Part function",
-          "Operating conditions",
-          "Failure mode",
-          "Molding validation",
-        ],
-      },
-      {
-        type: "comparison",
-        position: "after-intro",
-        items: [
-          {
-            title: "Choose the dominant part risk first",
-            description:
-              "Screen the material direction from the actual failure mode, movement, mating surface, load, environment, and molding constraints—not from a grade name alone.",
-          },
-          {
-            title: "Release only with part-level evidence",
-            description:
-              "Use the grade TDS to shortlist candidates, then confirm molding behavior, dimensions, function, and critical properties in the intended part and operating conditions.",
-          },
-        ],
+        labels: [],
       },
       {
         type: "matrix",

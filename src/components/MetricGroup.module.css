@@ -10,10 +10,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.items {
-  display: contents;
-}
-
 .item {
   display: grid;
   min-width: 0;
@@ -58,6 +54,7 @@
 
 .note {
   display: block;
+  margin: 0;
   color: var(--metric-note-color, var(--ds-metric-note-fg));
   font-size: var(--metric-note-size, var(--ds-metric-note-size));
   font-weight: 500;
