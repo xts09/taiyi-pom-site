@@ -430,57 +430,44 @@ const messages = {
           },
         ],
       },
-      process: {
-        stepsAria: "明确应用需求、筛选候选牌号、验证并准备放量",
-        steps: [
-          {
-            title: "明确应用需求",
-            description: "梳理零件功能、使用工况与加工约束。",
-          },
-          {
-            title: "筛选候选牌号",
-            description: "结合应用要求与试验范围筛选材料。",
-          },
-          {
-            title: "验证并准备放量",
-            description: "完成试验、复盘结果，并准备材料放量。",
-          },
-        ],
-      },
       collaboration: {
-        eyebrow: "以应用为导向的项目支持",
-        title: "每一个材料决策，都从零件出发",
-        body: "将零件要求、候选材料、试验依据与量产路径衔接起来。",
-        itemsAria: "台益的三种项目协作方式",
+        eyebrow: "项目支持",
+        title: "从试料到量产的项目支持",
+        body: "从技术资料、样品和小批试料，到材料验证及量产供货，按阶段提供支持。",
+        itemsAria: "台益的四项项目支持",
         items: [
           {
-            title: "跨团队联合评估",
-            description:
-              "商务、技术与生产团队共同评估性能目标、加工条件与供货需求。",
+            title: "快速响应",
+            description: "针对询价、技术资料、牌号确认和样品需求，减少不必要的沟通等待。",
           },
           {
-            title: "放量前充分验证",
-            description:
-              "通过样品、小批试料和试模反馈，在作出量产决策前比较候选材料。",
+            title: "灵活起订量",
+            description: "根据项目阶段支持样品、小批试料及后续量产采购需求。",
           },
           {
-            title: "务实的配方评估",
-            description:
-              "如果现有牌号不匹配，我们会评估配方调整在技术上是否合适，并确认其生产可行性。",
+            title: "品质与批次控制",
+            description: "结合生产、内部检测及批次资料，为材料验证和持续供货提供基础支持。",
+          },
+          {
+            title: "材料技术支持",
+            description: "围绕牌号选择、加工条件和试模反馈沟通，并按需评估材料调整的可行性。",
           },
         ],
-        action: "沟通应用需求",
+        action: "沟通项目需求",
       },
       proof: {
         eyebrow: "制造与验证",
-        body:
-          "改性材料由自有双螺杆产线生产，并通过内部检测设备进行评估。可提供的技术、批次与合规资料按具体牌号和项目确认。",
+        title: "让材料的表现，经得起量产",
+        body: [
+          "一款材料，从试样走向零件，从首次试模进入持续生产，面对的要求也随之展开。填充是否顺畅，尺寸能否控制，装配是否合适——这些发生在生产现场的细节，让数据表上的性能有了具体意义。对于制造者，选到合适的牌号只是开始，后续生产中可预期的材料表现，同样重要。",
+          "PLATFORM® 在盐城生产基地开展改性材料生产，配置自有双螺杆产线与厂内检测设备。我们关注改性能够带来的性能提升，也重视支撑这些性能的制造基础——因为客户选择的，不只是用于一次试验的材料，更是需要持续投入生产的材料。",
+        ],
         factoryImageAlt: "台益盐城生产基地内的双螺杆挤出生产线。",
         factoryImageCaption: "盐城生产基地 · 双螺杆挤出车间",
         metricsAria: "台益制造与检测数据",
         metricLabels: ["年改性材料产能", "自有双螺杆生产线", "厂内检测设备"],
         metricNotes: ["吨/年", "条", "台"],
-        documentsTitle: "项目资料",
+        documentsTitle: "技术与批次资料",
         documentsBody: "TDS、SDS、COA、REACH、RoHS 的可用性按牌号与项目确认。",
         documentsAria: "可按牌号与项目确认的资料类型",
         documentsAction: "索取项目资料",
@@ -491,11 +478,9 @@ const messages = {
           "物质合规",
           "限用物质",
         ],
-        certificatesTitle: "质量管理体系证书",
+        certificatesTitle: "管理体系证书",
         certificateAction: "查看全部证书与认证范围",
         certificateOpenAction: "查看证书",
-        internationalLabel: "国际项目支持",
-        internationalBody: "可为国际项目提供材料资料与出口交付协同。",
       },
     },
   },

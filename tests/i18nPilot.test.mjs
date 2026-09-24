@@ -357,8 +357,7 @@ test("all localized dictionaries match the complete shared English message shape
     assert.equal(messages.Home.taskFirst?.core.groups.length, 4);
     assert.equal(messages.Home.taskFirst?.components.items.length, 6);
     assert.equal(messages.Home.taskFirst?.applications.items.length, 8);
-    assert.equal(messages.Home.taskFirst?.process.steps.length, 3);
-    assert.equal(messages.Home.taskFirst?.collaboration.items.length, 3);
+    assert.equal(messages.Home.taskFirst?.collaboration.items.length, 4);
     assert.doesNotMatch(
       JSON.stringify(messages.Home.taskFirst?.collaboration),
       /24[- ]hour|fastest|guaranteed|low MOQ|small MOQ/i,

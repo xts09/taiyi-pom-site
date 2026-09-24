@@ -118,8 +118,13 @@ function HomeProofSection({
       <div className="site-container">
         <header className="home-task-intro home-proof-intro">
           <div className="home-proof-intro-copy">
-            <h2>{messages.proof.eyebrow}</h2>
-            <p>{messages.proof.body}</p>
+            <p className="home-proof-eyebrow">{messages.proof.eyebrow}</p>
+            <h2>{messages.proof.title}</h2>
+            <div className="home-proof-body">
+              {messages.proof.body.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </div>
           <figure className="home-proof-factory-figure">
             <Image
@@ -217,10 +222,6 @@ function HomeProofSection({
             ))}
           </div>
 
-          <div className="home-international-support">
-            <span>{messages.proof.internationalLabel}</span>
-            <p>{messages.proof.internationalBody}</p>
-          </div>
         </div>
       </div>
     </section>
@@ -328,56 +329,38 @@ export function TaskFirstHomeNarrative({
         data-home-reveal
       >
         <div className="site-container">
-          <div className="home-collaboration-main">
-            <header className="home-collaboration-intro">
-              <p>{messages.collaboration.eyebrow}</p>
-              <h2 id="home-collaboration-title">
-                {messages.collaboration.title}
-              </h2>
-              <p>{messages.collaboration.body}</p>
-            </header>
+          <header className="home-collaboration-intro">
+            <p>{messages.collaboration.eyebrow}</p>
+            <h2 id="home-collaboration-title">
+              {messages.collaboration.title}
+            </h2>
+            <p>{messages.collaboration.body}</p>
+          </header>
 
-            <ul
-              className="home-collaboration-principles"
-              aria-label={messages.collaboration.itemsAria}
-            >
-              {messages.collaboration.items.map((item) => (
-                <li key={item.title}>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <ul
+            className="home-collaboration-principles"
+            aria-label={messages.collaboration.itemsAria}
+          >
+            {messages.collaboration.items.map((item) => (
+              <li key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </li>
+            ))}
+          </ul>
 
-          <div className="home-collaboration-process">
-            <ol
-              className="home-collaboration-process-steps"
-              aria-label={messages.process.stepsAria}
+          <div className="home-collaboration-action-wrap">
+            <Button
+              asChild
+              className="home-collaboration-action"
+              size="form"
+              variant="primary"
             >
-              {messages.process.steps.map((step, index) => (
-                <li key={step.title}>
-                  <span aria-hidden="true">0{index + 1}</span>
-                  <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <div className="home-collaboration-action-wrap">
-              <Button
-                asChild
-                className="home-collaboration-action"
-                size="form"
-                variant="inverse"
-              >
-                <Link href={localizedHref("/contact")}>
-                  {messages.collaboration.action}
-                  <ArrowRight aria-hidden="true" size={16} />
-                </Link>
-              </Button>
-            </div>
+              <Link href={localizedHref("/contact")}>
+                {messages.collaboration.action}
+                <ArrowRight aria-hidden="true" size={16} />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

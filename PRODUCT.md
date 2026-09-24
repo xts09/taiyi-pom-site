@@ -360,6 +360,17 @@ the repository or generated output rather than copied forward as current facts.
 - Headings make one memorable claim; supporting paragraphs explain scope and meaning; labels identify real metadata; CTAs name the destination or next task. One element should not repeat another element's job.
 - All five released languages preserve the same message priority and proof boundary through natural, manually reviewed local expression. Semantic alignment is required; literal sentence structure and identical line breaks are not.
 
+### Homepage Project Support Simplification (2026-09-24)
+
+- The five-language Home module between Applications and Manufacturing & Validation now explains supplier value from trial to production: responsive communication, order quantities suited to project stages, quality and batch support, and material technical support. It uses one short introduction, four equal-weight points, and one project-discussion action to Contact.
+- The three-step process formerly repeated beneath the support points is removed from Home. The 2026-08-26 application-led support snapshot above is historical; its three-point and three-step structure is superseded by this section.
+- Copy makes no fixed response-time, MOQ, defect-rate, delivery, or formulation-success promise. Material adjustments are assessed for feasibility by project; document availability remains grade- and project-specific.
+
+### Homepage Manufacturing Narrative Continuity (2026-09-24)
+
+- Manufacturing & Validation now follows the Home Hero and core POM story with a section label, the Chinese title `让材料的表现，经得起量产`, and two narrative paragraphs about the demands that emerge from trial to sustained production and the Yancheng manufacturing foundation behind modified materials. The five released languages preserve that progression without turning the introduction into a facilities list.
+- The factory photograph, verified company figures, document types and grade/project availability note, and existing certificates remain the factual evidence. The labels identify technical and batch documents and management-system certificates directly; a separate international-project promotional sentence is removed from this Home module. The shorter intro described in the 2026-08-26 manufacturing snapshot is historical and superseded here.
+
 ### Canonical POM Directory Consolidation (2026-08-29)
 
 - `/products/categories/pom` is the single canonical POM hub in all five released languages. It owns the complete decision sequence: start from the molded-part requirement, choose a relevant POM family, compare listed grades and published data, continue to application guidance, and prepare a project inquiry.

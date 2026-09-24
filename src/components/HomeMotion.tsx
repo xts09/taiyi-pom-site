@@ -187,7 +187,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
           "[data-home-reveal] .home-application-card",
           "[data-home-reveal] .home-collaboration-intro",
           "[data-home-reveal] .home-collaboration-principles",
-          "[data-home-reveal] .home-collaboration-process",
+          "[data-home-reveal] .home-collaboration-action-wrap",
           "[data-home-reveal] .home-proof-intro-copy",
           "[data-home-reveal] .home-proof-factory-figure",
           "[data-home-reveal] .home-proof-metrics > *",

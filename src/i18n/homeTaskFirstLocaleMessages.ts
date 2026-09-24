@@ -250,55 +250,43 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
-    process: {
-      stepsAria: "Define the need, select candidates, then validate and scale",
-      steps: [
-        {
-          title: "Define the Need",
-          description:
-            "Clarify part function, service conditions and processing constraints.",
-        },
-        {
-          title: "Select Candidates",
-          description:
-            "Shortlist grades that fit the application and trial scope.",
-        },
-        {
-          title: "Validate & Scale",
-          description:
-            "Test, review results and prepare the selected material for production.",
-        },
-      ],
-    },
     collaboration: {
-      eyebrow: "APPLICATION-LED SUPPORT",
-      title: "Decisions Built Around the Part",
+      eyebrow: "PROJECT SUPPORT",
+      title: "Support from Trial to Production",
       body:
-        "We connect part requirements with material candidates, trial evidence and a workable route to production.",
-      itemsAria: "How Taiyi Polymer supports project collaboration",
+        "From technical data and samples to trial lots, validation and production supply, we support material qualification at each project stage.",
+      itemsAria: "Four ways Taiyi Polymer supports material projects",
       items: [
         {
-          title: "Cross-Functional Review",
+          title: "Responsive Support",
           description:
-            "Commercial, technical and production teams assess performance targets, processing conditions and supply needs together.",
+            "We handle inquiries, technical data, grade checks and sample requests without unnecessary back-and-forth.",
         },
         {
-          title: "Evidence Before Scale-Up",
+          title: "Flexible Order Quantities",
           description:
-            "Samples, small trial lots and molding feedback help compare candidate materials before a production decision.",
+            "We support samples and small trial lots, then production orders as the project advances.",
         },
         {
-          title: "Practical Formulation Assessment",
+          title: "Quality & Batch Control",
           description:
-            "If an existing grade does not fit, we assess whether a formulation adjustment is technically appropriate and feasible to produce.",
+            "Manufacturing, in-house testing and batch records support validation and ongoing supply.",
+        },
+        {
+          title: "Material Technical Support",
+          description:
+            "Discuss grade choice, processing conditions and mold-trial feedback; we assess the feasibility of material adjustments where needed.",
         },
       ],
-      action: "Discuss Your Application",
+      action: "Discuss Your Project",
     },
     proof: {
       eyebrow: "Manufacturing & Validation",
-      body:
-        "Modified compounds are produced on in-house twin-screw lines and evaluated using internal test equipment. Available technical, batch and compliance documents are confirmed by grade and project.",
+      title: "Material Performance That Holds Up in Production",
+      body: [
+        "A material faces a broader set of demands as it moves from sample to molded part, and from its first mold trial into ongoing production. Will it fill the mold as expected? Can dimensions be controlled? Will the part fit in assembly? Details like these, observed on the production floor, give the figures on a data sheet their practical meaning. For manufacturers, choosing the right grade is only a start. Material behavior they can plan around in the production runs that follow matters just as much.",
+        "PLATFORM® modified compounds are produced at our Yancheng site on in-house twin-screw lines, with on-site test equipment. We focus on the performance gains modification can bring, and on the manufacturing foundation that supports them. Customers are choosing a material for more than a single trial; they need one they can continue to run in production.",
+      ],
       factoryImageAlt:
         "Twin-screw extrusion lines at the Taiyi Polymer manufacturing site in Yancheng.",
       factoryImageCaption:
@@ -310,7 +298,7 @@ export const homeTaskFirstLocaleMessages = {
         "In-House Test Equipment",
       ],
       metricNotes: ["metric tons/year", "lines", "units"],
-      documentsTitle: "Project Documents",
+      documentsTitle: "Technical & Batch Documents",
       documentsBody:
         "TDS, SDS, COA, REACH and RoHS availability is confirmed by grade and project.",
       documentsAria:
@@ -323,12 +311,9 @@ export const homeTaskFirstLocaleMessages = {
         "Substance compliance",
         "Restricted substances",
       ],
-      certificatesTitle: "Quality-Management System Certificates",
+      certificatesTitle: "Management System Certificates",
       certificateAction: "View all certificates and certified scopes",
       certificateOpenAction: "View certificate",
-      internationalLabel: "International Project Support",
-      internationalBody:
-        "Material documentation and export-delivery coordination are available for international projects.",
     },
   },
   de: {
@@ -578,56 +563,43 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
-    process: {
-      stepsAria:
-        "Bedarf definieren, Kandidaten auswählen, validieren und skalieren",
-      steps: [
-        {
-          title: "Bedarf definieren",
-          description:
-            "Bauteilfunktion, Einsatzbedingungen und Verarbeitungsgrenzen klären.",
-        },
-        {
-          title: "Kandidaten auswählen",
-          description:
-            "Typen auswählen, die zur Anwendung und zum Versuchsumfang passen.",
-        },
-        {
-          title: "Validieren & skalieren",
-          description:
-            "Prüfen, Ergebnisse auswerten und den ausgewählten Werkstoff für die Produktion vorbereiten.",
-        },
-      ],
-    },
     collaboration: {
-      eyebrow: "ANWENDUNGSORIENTIERTE UNTERSTÜTZUNG",
-      title: "Entscheidungen rund um das Bauteil",
+      eyebrow: "PROJEKTUNTERSTÜTZUNG",
+      title: "Vom Versuch zur Serienfertigung",
       body:
-        "Wir verbinden Bauteilanforderungen mit Werkstoffkandidaten, Versuchsnachweisen und einem praktikablen Weg zur Produktion.",
-      itemsAria: "Arbeitsweise von Taiyi Polymer in der Projektzusammenarbeit",
+        "Wir begleiten die Materialqualifizierung mit technischen Daten, Mustern und Versuchschargen bis zur Validierung und Serienbelieferung.",
+      itemsAria: "Vier Bereiche der Projektunterstützung von Taiyi Polymer",
       items: [
         {
-          title: "Funktionsübergreifende Prüfung",
+          title: "Schnelle Rückmeldung",
           description:
-            "Vertrieb, Technik und Produktion bewerten Leistungsziele, Verarbeitungsbedingungen und Versorgungsanforderungen gemeinsam.",
+            "Angebotsanfragen, technische Daten, Typenabstimmung und Musterbedarf klären wir im direkten Austausch.",
         },
         {
-          title: "Nachweise vor der Serienfertigung",
+          title: "Flexible Bestellmengen",
           description:
-            "Muster, kleine Versuchsmengen und Rückmeldungen aus Spritzgießversuchen helfen, Werkstoffkandidaten vor der Produktionsentscheidung zu vergleichen.",
+            "Wir unterstützen Muster, kleine Versuchschargen und spätere Serienbedarfe passend zur Projektphase.",
         },
         {
-          title: "Praxisnahe Rezepturbewertung",
+          title: "Qualitäts- und Chargenkontrolle",
           description:
-            "Wenn ein bestehender Typ nicht passt, prüfen wir, ob eine Rezepturanpassung technisch geeignet und produktionstechnisch umsetzbar ist.",
+            "Fertigung, interne Prüfungen und Chargenunterlagen unterstützen die Validierung und spätere Serienbelieferung.",
+        },
+        {
+          title: "Werkstofftechnische Unterstützung",
+          description:
+            "Wir besprechen Typenauswahl, Verarbeitungsbedingungen und Spritzgießversuche; mögliche Werkstoffanpassungen prüfen wir auf Machbarkeit.",
         },
       ],
-      action: "Ihre Anwendung besprechen",
+      action: "Projekt besprechen",
     },
     proof: {
       eyebrow: "Fertigung & Validierung",
-      body:
-        "Modifizierte Compounds werden auf eigenen Doppelschneckenlinien hergestellt und mit internen Prüfgeräten bewertet. Verfügbare technische, chargenbezogene und Compliance-Dokumente werden nach Typ und Projekt bestätigt.",
+      title: "Damit sich Werkstoffe in der Serie bewähren",
+      body: [
+        "Ein Werkstoff muss mehr leisten, wenn aus einem Muster ein Bauteil wird und auf den ersten Spritzgießversuch eine laufende Fertigung folgt. Füllt die Schmelze das Werkzeug wie erwartet? Lassen sich die Maße beherrschen? Passt das Bauteil in der Montage? Solche Details aus der Fertigung geben den Kennwerten im Datenblatt eine konkrete Bedeutung. Für Verarbeiter ist die Wahl des passenden Typs erst der Anfang. Ebenso wichtig ist ein Werkstoffverhalten, mit dem sich in der weiteren Produktion planen lässt.",
+        "Die modifizierten Werkstoffe von PLATFORM® werden an unserem Standort in Yancheng auf eigenen Doppelschnecken-Extrusionslinien gefertigt; Prüfgeräte vor Ort unterstützen die Bewertung. Wir betrachten sowohl die Leistungsverbesserungen durch Modifikation als auch die Fertigungsbasis, die sie trägt. Denn Kunden wählen keinen Werkstoff nur für einen Versuch, sondern für den fortlaufenden Einsatz in der Produktion.",
+      ],
       factoryImageAlt:
         "Doppelschnecken-Extrusionslinien am Taiyi-Polymer-Produktionsstandort in Yancheng.",
       factoryImageCaption:
@@ -639,7 +611,7 @@ export const homeTaskFirstLocaleMessages = {
         "Interne Prüfgeräte",
       ],
       metricNotes: ["Tonnen/Jahr", "Linien", "Geräte"],
-      documentsTitle: "Projektunterlagen",
+      documentsTitle: "Technische und Chargenunterlagen",
       documentsBody:
         "Die Verfügbarkeit von TDS, SDS, COA, REACH und RoHS wird nach Typ und Projekt bestätigt.",
       documentsAria: "Nach Typ und Projekt bestätigbare Dokumentarten",
@@ -654,9 +626,6 @@ export const homeTaskFirstLocaleMessages = {
       certificatesTitle: "Zertifikate der Managementsysteme",
       certificateAction: "Alle Zertifikate und Geltungsbereiche ansehen",
       certificateOpenAction: "Zertifikat ansehen",
-      internationalLabel: "Unterstützung internationaler Projekte",
-      internationalBody:
-        "Für internationale Projekte stehen Werkstoffunterlagen und Koordination der Exportlieferung zur Verfügung.",
     },
   },
   fr: {
@@ -911,56 +880,43 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
-    process: {
-      stepsAria:
-        "Définir le besoin, sélectionner les candidats, valider et passer à l'échelle",
-      steps: [
-        {
-          title: "Définir le besoin",
-          description:
-            "Clarifier la fonction de la pièce, les conditions de service et les contraintes de transformation.",
-        },
-        {
-          title: "Sélectionner les candidats",
-          description:
-            "Présélectionner les grades adaptés à l'application et au périmètre des essais.",
-        },
-        {
-          title: "Valider & passer à l'échelle",
-          description:
-            "Tester, examiner les résultats et préparer le matériau sélectionné pour la production.",
-        },
-      ],
-    },
     collaboration: {
-      eyebrow: "ACCOMPAGNEMENT GUIDÉ PAR L’APPLICATION",
-      title: "Des décisions construites autour de la pièce",
+      eyebrow: "ACCOMPAGNEMENT DE PROJET",
+      title: "De l’essai à la production",
       body:
-        "Nous relions les exigences de la pièce aux matériaux candidats, aux résultats d’essais et à une voie réalisable vers la production.",
-      itemsAria: "Mode de collaboration de Taiyi Polymer sur les projets",
+        "Des données techniques et échantillons aux lots d’essai, à la validation et à la fourniture en série, nous accompagnons chaque étape de qualification.",
+      itemsAria: "Quatre formes d’accompagnement de projet par Taiyi Polymer",
       items: [
         {
-          title: "Évaluation interfonctionnelle",
+          title: "Réponse rapide",
           description:
-            "Les équipes commerciales, techniques et de production évaluent ensemble les objectifs de performance, les conditions de transformation et les besoins d’approvisionnement.",
+            "Échanges directs sur les devis, les données techniques, la confirmation des grades et les demandes d’échantillons.",
         },
         {
-          title: "Des preuves avant l’industrialisation",
+          title: "Quantités de commande flexibles",
           description:
-            "Les échantillons, les petits lots d’essai et les retours de moulage permettent de comparer les matériaux candidats avant une décision de production.",
+            "Échantillons et petits lots d’essai selon la phase du projet, puis commandes pour la production en série.",
         },
         {
-          title: "Évaluation pratique de formulation",
+          title: "Qualité et suivi des lots",
           description:
-            "Si un grade existant ne convient pas, nous évaluons si un ajustement de formulation est techniquement approprié et réalisable en production.",
+            "Fabrication, contrôles internes et documents de lot appuient la validation et les approvisionnements ultérieurs.",
+        },
+        {
+          title: "Appui technique sur les matériaux",
+          description:
+            "Choix des grades, conditions de transformation et retours d’essais de moulage ; nous évaluons la faisabilité d’un ajustement si besoin.",
         },
       ],
-      action: "Discuter de votre application",
+      action: "Discuter de votre projet",
     },
     proof: {
       eyebrow: "Fabrication & validation",
-      body:
-        "Les compounds modifiés sont produits sur nos lignes bivis intégrées et évalués avec nos équipements d’essai internes. Les documents techniques, de lot et de conformité disponibles sont confirmés selon le grade et le projet.",
+      title: "La performance matière à l’épreuve de la production",
+      body: [
+        "Les exigences évoluent quand une matière passe de l’échantillon à la pièce, puis du premier essai de moulage à la production en série. Remplit-elle le moule comme prévu ? Les dimensions restent-elles maîtrisables ? La pièce s’assemble-t-elle correctement ? Ces détails observés en atelier donnent un sens concret aux propriétés indiquées sur la fiche technique. Pour un fabricant, choisir le bon grade n’est qu’un début : pouvoir compter sur un comportement matière prévisible au fil de la production importe tout autant.",
+        "Les compounds modifiés PLATFORM® sont produits sur notre site de Yancheng, avec nos propres lignes d’extrusion bivis et des équipements d’essai sur place. Nous nous intéressons aux gains de performance que la modification peut apporter, ainsi qu’à la base industrielle qui permet de les soutenir. Nos clients ne choisissent pas une matière pour un seul essai ; ils doivent aussi pouvoir la mettre en œuvre dans une production suivie.",
+      ],
       factoryImageAlt:
         "Lignes d'extrusion bivis du site de production Taiyi Polymer à Yancheng.",
       factoryImageCaption: "Site de Yancheng · atelier d'extrusion bivis",
@@ -971,7 +927,7 @@ export const homeTaskFirstLocaleMessages = {
         "Équipements d'essai internes",
       ],
       metricNotes: ["tonnes/an", "lignes", "équipements"],
-      documentsTitle: "Documents projet",
+      documentsTitle: "Documents techniques et de lot",
       documentsBody:
         "La disponibilité des TDS, SDS, COA, REACH et RoHS est confirmée selon le grade et le projet.",
       documentsAria:
@@ -987,9 +943,6 @@ export const homeTaskFirstLocaleMessages = {
       certificatesTitle: "Certificats des systèmes de management",
       certificateAction: "Voir tous les certificats et périmètres",
       certificateOpenAction: "Voir le certificat",
-      internationalLabel: "Support des projets internationaux",
-      internationalBody:
-        "La documentation matière et la coordination des livraisons export sont disponibles pour les projets internationaux.",
     },
   },
   "pt-br": {
@@ -1244,56 +1197,43 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
-    process: {
-      stepsAria:
-        "Definir a necessidade, selecionar candidatos, validar e ampliar a escala",
-      steps: [
-        {
-          title: "Defina a necessidade",
-          description:
-            "Esclareça a função da peça, as condições de serviço e as restrições de processamento.",
-        },
-        {
-          title: "Selecione candidatos",
-          description:
-            "Selecione grades compatíveis com a aplicação e o escopo dos testes.",
-        },
-        {
-          title: "Valide & amplie a escala",
-          description:
-            "Teste, analise os resultados e prepare o material selecionado para a produção.",
-        },
-      ],
-    },
     collaboration: {
-      eyebrow: "SUPORTE ORIENTADO PELA APLICAÇÃO",
-      title: "Decisões construídas em torno da peça",
+      eyebrow: "SUPORTE AO PROJETO",
+      title: "Dos testes à produção",
       body:
-        "Conectamos os requisitos da peça a materiais candidatos, evidências de testes e uma rota viável para a produção.",
-      itemsAria: "Formas de colaboração da Taiyi Polymer em projetos",
+        "De dados técnicos e amostras a lotes de teste, validação e fornecimento para produção, apoiamos cada etapa do projeto.",
+      itemsAria: "Quatro formas de suporte da Taiyi Polymer aos projetos",
       items: [
         {
-          title: "Análise multifuncional",
+          title: "Atendimento ágil",
           description:
-            "As equipes comercial, técnica e de produção avaliam juntas as metas de desempenho, as condições de processamento e as necessidades de fornecimento.",
+            "Atendimento direto para cotações, dados técnicos, confirmação de grades e solicitações de amostras.",
         },
         {
-          title: "Evidências antes da produção em escala",
+          title: "Quantidades flexíveis de pedido",
           description:
-            "Amostras, pequenos lotes de teste e feedback de moldagem ajudam a comparar materiais candidatos antes de uma decisão de produção.",
+            "Apoiamos amostras, pequenos lotes de teste e pedidos para produção conforme a etapa do projeto.",
         },
         {
-          title: "Avaliação prática de formulação",
+          title: "Qualidade e controle de lotes",
           description:
-            "Se um grade existente não for adequado, avaliamos se um ajuste de formulação é tecnicamente apropriado e viável para produção.",
+            "Fabricação, ensaios internos e registros de lote apoiam a validação e o fornecimento recorrente.",
+        },
+        {
+          title: "Suporte técnico de materiais",
+          description:
+            "Discutimos grades, processamento e resultados de testes em molde; avaliamos a viabilidade de ajustes quando necessário.",
         },
       ],
-      action: "Discuta sua aplicação",
+      action: "Converse sobre seu projeto",
     },
     proof: {
       eyebrow: "Fabricação & validação",
-      body:
-        "Os compostos modificados são produzidos em linhas próprias de dupla rosca e avaliados com equipamentos internos de ensaio. A disponibilidade de documentos técnicos, de lote e de conformidade é confirmada por grade e projeto.",
+      title: "Para que o desempenho chegue à produção em série",
+      body: [
+        "As exigências mudam quando um material passa da amostra à peça e do primeiro teste em molde à produção contínua. O preenchimento ocorre como esperado? As dimensões podem ser controladas? A peça se encaixa na montagem? São detalhes do chão de fábrica que dão sentido concreto aos dados da ficha técnica. Para quem fabrica, escolher o grade adequado é só o começo; também importa contar com um comportamento previsível do material nas etapas seguintes de produção.",
+        "Os compostos modificados PLATFORM® são produzidos em nossa unidade de Yancheng, com linhas próprias de extrusão de dupla rosca e equipamentos de ensaio internos. Consideramos tanto os ganhos de desempenho que a modificação pode trazer quanto a base fabril necessária para sustentá-los. Afinal, o cliente escolhe um material para mais do que um único teste: ele precisa utilizá-lo de forma contínua na produção.",
+      ],
       factoryImageAlt:
         "Linhas de extrusão de dupla rosca na unidade de fabricação da Taiyi Polymer em Yancheng.",
       factoryImageCaption: "Unidade de Yancheng · extrusão de dupla rosca",
@@ -1304,7 +1244,7 @@ export const homeTaskFirstLocaleMessages = {
         "Equipamentos internos de ensaio",
       ],
       metricNotes: ["toneladas/ano", "linhas", "unidades"],
-      documentsTitle: "Documentos do projeto",
+      documentsTitle: "Documentos técnicos e de lote",
       documentsBody:
         "A disponibilidade de TDS, SDS, COA, REACH e RoHS é confirmada por grade e projeto.",
       documentsAria: "Tipos de documentos a confirmar por grade e projeto",
@@ -1319,9 +1259,6 @@ export const homeTaskFirstLocaleMessages = {
       certificatesTitle: "Certificados dos sistemas de gestão",
       certificateAction: "Ver todos os certificados e escopos",
       certificateOpenAction: "Ver certificado",
-      internationalLabel: "Suporte a projetos internacionais",
-      internationalBody:
-        "Documentação de material e coordenação de entregas de exportação estão disponíveis para projetos internacionais.",
     },
   },
 } satisfies Record<AlignedHomeLocale, HomeTaskFirstMessages>;
