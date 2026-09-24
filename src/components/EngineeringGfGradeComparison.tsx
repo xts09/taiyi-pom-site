@@ -74,7 +74,7 @@ export function EngineeringGfGradeComparison({
                     <Link href={grade.href} hrefLang={grade.englishFallback ? "en" : undefined}>
                       {grade.grade}
                       {grade.englishFallback ? (
-                        <EnglishDestinationBadge label="English content" />
+                        <EnglishDestinationBadge label={ui.englishDestinationLabel} />
                       ) : null}
                     </Link>
                     <Link
@@ -105,7 +105,8 @@ export function EngineeringGfGradeComparison({
       <GlassFiberGradeCards compact actionLabel={ui.actionLabel} grades={grades.map(grade => ({
         grade: grade.grade,
         href: grade.href,
-        eyebrow: `${polymer} · ${ui.glassFiberLabel} ${grade.filler}%${grade.englishFallback ? " · English content" : ""}`,
+        hrefLang: grade.englishFallback ? "en" : undefined,
+        eyebrow: `${polymer} · ${ui.glassFiberLabel} ${grade.filler}%${grade.englishFallback ? ` · ${ui.englishDestinationLabel}` : ""}`,
         metrics: [
           { label: ui.densityLabel, value: grade.density || ui.notPublishedLabel },
           { label: ui.tensileStressLabel, value: formatValue(grade.tensile, "MPa", ui.notPublishedLabel) },

@@ -49,7 +49,7 @@ for (const prefix of ["", "/zh"]) {
   });
 }
 
-for (const prefix of ["", "/zh"]) {
+for (const prefix of ["", "/de", "/zh"]) {
   test(`${prefix || "en"}: SPUN grades use catalog values and request TDS`, async ({ page }) => {
     for (const product of [pa66, ppa]) {
       await page.goto(`${prefix}/products/${product.slug}`);
@@ -68,23 +68,78 @@ for (const prefix of ["", "/zh"]) {
       const tds = page.locator('main a[href*="#inquiry?"][href*="intent=tds"]').first();
       await expect(tds).toHaveAttribute("href", new RegExp(`grade=${product.grade}`));
       await noOverflow(page);
+      const gradeHref = `${prefix}/products/${product.slug}`;
+      const polymer = product.family.toLowerCase();
+      await page.goto(`${prefix}/products/categories/glass-fiber-reinforced-${polymer}-compound`);
+      const card = page.locator(`[data-grade="${product.grade}"]`);
+      await expect(card).toHaveAttribute("href", gradeHref);
+      await expect(card).not.toHaveAttribute("hreflang", "en");
+      await expect(card).not.toContainText("English content");
+      const comparison = page.locator("main details").filter({ has: page.locator("table") }).first();
+      const tableLink = comparison.locator(`a[href="${gradeHref}"]`).first();
+      await expect(tableLink).not.toHaveAttribute("hreflang", "en");
+      await expect(tableLink.locator('[lang="en"]')).toHaveCount(0);
+      await page.goto(`${prefix}/products/categories/${polymer}-compound`);
+      await expect(page.locator(`main a[href="${gradeHref}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
+      await page.goto(`${prefix}/technical-data-sheets?q=${product.grade}`);
+      await expect(page.locator(`main a[href="${gradeHref}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
     }
   });
 }
 
-for (const prefix of ["/de", "/fr", "/pt-br"]) {
-  test(`${prefix}: SPUN details are not released and comparison links open English`, async ({ page }) => {
+for (const [prefix, fallbackLabel] of [["/fr", "Contenu en anglais"], ["/pt-br", "Conteúdo em inglês"]] as const) {
+  test(`${prefix}: SPUN FR/PT details are withdrawn and comparison links identify English`, async ({ page }) => {
     for (const [product, polymer] of [[pa66, "pa66"], [ppa, "ppa"]] as const) {
       const response = await page.goto(`${prefix}/products/${product.slug}`);
       expect(response?.status()).toBe(404);
       await page.goto(`${prefix}/products/categories/glass-fiber-reinforced-${polymer}-compound`);
       const card = page.locator(`[data-grade="${product.grade}"]`);
       await expect(card).toHaveAttribute("href", `/products/${product.slug}`);
-      await expect(card).toContainText("English content");
+      await expect(card).toHaveAttribute("hreflang", "en");
+      await expect(card).toContainText(fallbackLabel);
+      const comparison = page.locator("main details").filter({ has: page.locator("table") }).first();
+      await comparison.locator("summary").click();
+      const tableLink = comparison.locator(`a[href="/products/${product.slug}"]`).first();
+      await expect(tableLink).toHaveAttribute("hreflang", "en");
+      await expect(tableLink.locator('[lang="en"]')).toHaveText("EN");
+      await expect(tableLink.locator('[title]')).toHaveAttribute("title", fallbackLabel);
+      await page.goto(`${prefix}/products/categories/${polymer}-compound`);
+      await expect(page.locator(`main a[href="/products/${product.slug}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
+      await page.goto(`${prefix}/technical-data-sheets?q=${product.grade}`);
+      await expect(page.locator(`main a[href="/products/${product.slug}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
       await noOverflow(page);
     }
   });
 }
+
+test("SPUN sitemap, canonical, alternates and language switcher match the three-language detail release", async ({ page, request }) => {
+  const sitemapResponse = await request.get("/sitemap.xml");
+  expect(sitemapResponse.status()).toBe(200);
+  const sitemap = await sitemapResponse.text();
+  for (const product of [pa66, ppa]) {
+    const sourcePath = `/products/${product.slug}`;
+    for (const prefix of ["", "/de", "/zh"]) {
+      expect(sitemap).toContain(`<loc>https://www.taiyipolymer.com${prefix}${sourcePath}</loc>`);
+      await page.goto(`${prefix}${sourcePath}`);
+      await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute("href", `https://www.taiyipolymer.com${prefix}${sourcePath}`);
+      const alternateLanguages = await page.locator('head link[rel="alternate"][hreflang]').evaluateAll(links =>
+        links.map(link => link.getAttribute("hreflang")).sort(),
+      );
+      expect(alternateLanguages).toEqual(["de", "en", "x-default", "zh-CN"]);
+      await expect(page.locator("header .language-switcher--desktop .language-switcher-link")).toHaveCount(3);
+    }
+    for (const prefix of ["/fr", "/pt-br"]) {
+      expect(sitemap).not.toContain(`<loc>https://www.taiyipolymer.com${prefix}${sourcePath}</loc>`);
+    }
+  }
+  const preservedPath = "/products/eag230h-pa66-glass-fiber-reinforced";
+  for (const prefix of ["/fr", "/pt-br"]) {
+    const response = await page.goto(`${prefix}${preservedPath}`);
+    expect(response?.status()).toBe(200);
+    expect(sitemap).toContain(`<loc>https://www.taiyipolymer.com${prefix}${preservedPath}</loc>`);
+  }
+  await expect(page.locator("header .language-switcher--desktop .language-switcher-link")).toHaveCount(5);
+});
 
 for (const prefix of ["", "/zh"]) {
   test(`${prefix || "en"}: home support and manufacturing proof stay readable`, async ({ page }) => {

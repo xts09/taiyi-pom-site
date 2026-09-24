@@ -17,6 +17,7 @@ import ptBRExpanded from "../src/i18n/generated/pt-BR.json" with { type: "json" 
 import { translateEnglishApplicationText } from "../src/i18n/englishApplicationNarrative.ts";
 import {
   hasExpandedLocaleDictionary,
+  translateExpandedContent,
   translateExpandedText,
 } from "../src/i18n/expandedLocaleContent.ts";
 import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
@@ -1639,6 +1640,52 @@ test("catalogued PA6, PA66 and PPA grades follow their localized release contrac
       getLanguageAlternates(sourcePath),
       expectedLocalizedAlternatesForSegments(sourcePath, localizedSegments),
     );
+  }
+});
+
+test("SPUN public core rows preserve approved names, values, units and methods in every locale", () => {
+  const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
+  const expectedLabels = [
+    "Density",
+    "Tensile stress",
+    "Flexural modulus",
+    "Charpy impact strength (notched)",
+    "Heat deflection temperature (1.8 MPa)",
+  ];
+  const expectedByGrade = {
+    "SPUN-9200": ["1.53", "245", "12500", "20", "260"],
+    "SPUN-4500": ["1.5", "268", "12500", "15", "260"],
+  };
+  const expectedUnits = ["g/cm3", "MPa", "MPa", "kJ/m2", "degC"];
+  const expectedMethods = ["ISO 1183", "ISO 527", "ISO 178", "ISO 179/1eA", "ISO 75-2"];
+  const labelsByLocale = {
+    zh: ["密度", "拉伸强度", "弯曲模量", "简支梁缺口冲击强度", "热变形温度（1.8 MPa）"],
+    de: ["Dichte", "Zugfestigkeit", "Biegemodul", "Kerbschlagzähigkeit nach Charpy", "Wärmeformbeständigkeit (1,8 MPa)"],
+    fr: ["Densité", "Résistance à la traction", "Module de flexion", "Résistance au choc Charpy entaillé", "Température de déformation thermique (1,8 MPa)"],
+    "pt-br": ["Densidade", "Resistência à tração", "Módulo de flexão", "Resistência ao impacto Charpy com entalhe", "Temperatura de deformação térmica (1,8 MPa)"],
+  };
+
+  for (const [grade, values] of Object.entries(expectedByGrade)) {
+    const document = catalog.find(record => record.grade === grade);
+    assert.ok(document, `missing ${grade}`);
+    const publicRows = getPublicCoreProperties(document.properties);
+    assert.deepEqual(publicRows, expectedLabels.map((label, index) => ({
+      group: document.properties.find(property => property.label === label).group,
+      label,
+      value: values[index],
+      unit: expectedUnits[index],
+      method: expectedMethods[index],
+    })));
+    assert.equal(publicRows.some(row => /shrinkage/i.test(row.label)), false);
+    const chineseRows = createChineseEngineeringGradeCopy(document).properties.items;
+    for (const [locale, labels] of Object.entries(labelsByLocale)) {
+      const rows = locale === "zh" ? chineseRows : translateExpandedContent(chineseRows, locale);
+      assert.deepEqual(rows.map(row => row.label), labels, `${grade} ${locale} labels`);
+      assert.deepEqual(rows.map(row => row.value), values, `${grade} ${locale} values`);
+      assert.deepEqual(rows.map(row => row.unit), expectedUnits, `${grade} ${locale} units`);
+      assert.deepEqual(rows.map(row => row.method), expectedMethods, `${grade} ${locale} methods`);
+    }
+    assert.equal(document.tds.status, "data-only");
   }
 });
 

@@ -30,7 +30,7 @@ const publicRelease = {
 const allLocalizedSegments = ["de", "fr", "pt-br", "zh"] as const satisfies
   readonly LocalizedUrlSegment[];
 
-const defaultNonPomGradeLocalizedSegments = ["zh"] as const satisfies
+const defaultNonPomGradeLocalizedSegments = ["de", "zh"] as const satisfies
   readonly LocalizedUrlSegment[];
 
 const allLocalizedPublicRelease = {

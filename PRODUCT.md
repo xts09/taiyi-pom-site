@@ -504,17 +504,18 @@ the repository or generated output rather than copied forward as current facts.
   details, material-family listings, technical-data search, and the glass-fiber
   comparison pages. The PA66 and PPA glass-fiber comparisons contain 16 and 3
   grades respectively in all five released languages.
-- These two grade-detail routes are configured for English and Simplified
-  Chinese only, matching the default for new non-POM grade details. Previously
-  released engineering-grade details retain their five-language
-  routes. The two SPUN records still appear in all five localized material
-  directories and glass-fiber comparisons. In those listings, German, French,
-  and Brazilian Portuguese links lead to the English detail pages and identify
-  that destination. Both records remain `data-only` because the supplied PDFs
-  contain wording and test-condition issues; the original files are not public
-  downloads. Values without a reliable matching website field or stated test
-  basis are omitted pending confirmation. This addition is local until it passes
-  the production gate and is deployed.
+- Future non-POM grade details default to English, German and Simplified
+  Chinese. Earlier five-language non-POM grade details keep their French and
+  Brazilian Portuguese URLs. By explicit 2026-09-24 direction, the two recently
+  published SPUN grades follow the EN/DE/ZH detail policy; their FR/PT detail
+  URLs are withdrawn when this local change is deployed. Five-language material
+  directories, technical-data search and glass-fiber comparisons continue
+  listing them; FR/PT destinations resolve to English, with localized prompts
+  on the glass-fiber comparison cards and table. Both records remain `data-only`
+  because the supplied PDFs contain wording and test-condition issues; the
+  original files are not public downloads. Values without a reliable matching
+  website field or stated test basis are omitted pending confirmation. The
+  EN/DE/ZH policy revision is verified locally but has not been deployed.
 - Engineering-grade detail pages use the same selected core-property rows in
   every released language. Localization does not expand the public detail table
   from the underlying catalogue property array; fuller technical data remains

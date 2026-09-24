@@ -17,8 +17,8 @@ const catalog = JSON.parse(
 );
 
 const allLocalizedSegments = ["de", "fr", "pt-br", "zh"];
-const defaultNonPomGradeLocalizedSegments = ["zh"];
-const englishChineseSpunGradeSlugs = [
+const defaultNonPomGradeLocalizedSegments = ["de", "zh"];
+const spunGradeSlugs = [
   "spun-9200-pa66-glass-fiber-reinforced",
   "spun-4500-ppa-glass-fiber-reinforced",
 ];
@@ -82,8 +82,8 @@ test("future POM and non-POM grades receive the intended default locales", () =>
   );
 });
 
-test("new SPUN grade details are released only in English and Chinese", () => {
-  for (const slug of englishChineseSpunGradeSlugs) {
+test("SPUN grade details follow the approved English, German and Chinese policy", () => {
+  for (const slug of spunGradeSlugs) {
     const sourcePath = `/products/${slug}`;
     assert.ok(catalog.some(record => record.slug === slug), `missing catalog grade: ${slug}`);
     assert.deepEqual(
@@ -92,13 +92,16 @@ test("new SPUN grade details are released only in English and Chinese", () => {
     );
     assert.deepEqual(
       getSitemapLanguageOptions(sourcePath).map(({ href }) => href),
-      [sourcePath, `/zh${sourcePath}`],
+      [sourcePath, `/de${sourcePath}`, `/zh${sourcePath}`],
     );
     assert.deepEqual(
       getLanguageAlternates(sourcePath),
-      { en: sourcePath, "zh-CN": `/zh${sourcePath}`, "x-default": sourcePath },
+      { en: sourcePath, de: `/de${sourcePath}`, "zh-CN": `/zh${sourcePath}`, "x-default": sourcePath },
     );
-    for (const locale of ["de", "fr", "pt-br"]) {
+    for (const locale of ["de", "zh"]) {
+      assert.equal(getLocalizedHref(sourcePath, locale), `/${locale}${sourcePath}`);
+    }
+    for (const locale of ["fr", "pt-br"]) {
       assert.equal(getLocalizedHref(sourcePath, locale), sourcePath);
     }
   }

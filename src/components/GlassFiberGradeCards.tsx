@@ -5,6 +5,7 @@ import styles from "./GlassFiberGradeCards.module.css";
 export type GlassFiberGradeCard = {
   grade: string;
   href: string;
+  hrefLang?: "en";
   eyebrow: string;
   metrics: { label: string; value: ReactNode }[];
 };
@@ -28,7 +29,7 @@ export function GlassFiberGradeCards({ grades, actionLabel, compact = false }: {
   compact?: boolean;
 }) {
   return <div className={`${styles.directory}${compact ? ` ${styles.compact}` : ""}`}>
-    {grades.map((grade, index) => <Link key={grade.grade} href={grade.href} className={styles.card} data-grade={grade.grade}>
+    {grades.map((grade, index) => <Link key={grade.grade} href={grade.href} hrefLang={grade.hrefLang} className={styles.card} data-grade={grade.grade}>
       <div className={styles.identity}>
         <span className={styles.index}>{String(index + 1).padStart(2, "0")}</span>
         <div><p className={styles.family}>{grade.eyebrow}</p><h3>{grade.grade}</h3></div>

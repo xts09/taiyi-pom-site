@@ -40,6 +40,7 @@ const expectedAlternates = (sourcePath) => ({
 
 const expectedNewEngineeringGradeAlternates = (sourcePath) => ({
   en: sourcePath,
+  de: `/de${sourcePath}`,
   "zh-CN": `/zh${sourcePath}`,
   "x-default": sourcePath,
 });
