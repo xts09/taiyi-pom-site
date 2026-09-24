@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { GlassFiberGradeCards } from "@/components/GlassFiberGradeCards";
 import {
   formatEngineeringGfMessage,
@@ -10,6 +11,7 @@ export type EngineeringGfComparisonGrade = {
   grade: string;
   slug: string;
   href: string;
+  englishFallback: boolean;
   filler: string;
   density: string;
   flammability: string;
@@ -69,7 +71,12 @@ export function EngineeringGfGradeComparison({
               <tr key={grade.slug}>
                 <th scope="row">
                   <div className={styles.gradeLinks}>
-                    <Link href={grade.href}>{grade.grade}</Link>
+                    <Link href={grade.href} hrefLang={grade.englishFallback ? "en" : undefined}>
+                      {grade.grade}
+                      {grade.englishFallback ? (
+                        <EnglishDestinationBadge label="English content" />
+                      ) : null}
+                    </Link>
                     <Link
                       className={styles.tdsLink}
                       href={grade.tdsHref}
@@ -98,7 +105,7 @@ export function EngineeringGfGradeComparison({
       <GlassFiberGradeCards compact actionLabel={ui.actionLabel} grades={grades.map(grade => ({
         grade: grade.grade,
         href: grade.href,
-        eyebrow: `${polymer} · ${ui.glassFiberLabel} ${grade.filler}%`,
+        eyebrow: `${polymer} · ${ui.glassFiberLabel} ${grade.filler}%${grade.englishFallback ? " · English content" : ""}`,
         metrics: [
           { label: ui.densityLabel, value: grade.density || ui.notPublishedLabel },
           { label: ui.tensileStressLabel, value: formatValue(grade.tensile, "MPa", ui.notPublishedLabel) },

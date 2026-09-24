@@ -2,6 +2,7 @@ import type {
   EngineeringTdsDocument,
   EngineeringTdsProperty,
 } from "../data/engineeringTds.ts";
+import { getPublicCoreProperties } from "../lib/productPropertyVisibility.ts";
 import { chineseEngineeringDirectionCopy } from "./messages/zh-CN-engineering-categories.ts";
 
 const familyCopy = {
@@ -130,7 +131,9 @@ export const createChineseEngineeringGradeCopy = (
   const metadataDescription = document.flammability
     ? `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。`
     : `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。`;
-  const properties = document.properties.map(localizeEngineeringProperty);
+  const properties = getPublicCoreProperties(document.properties).map(
+    localizeEngineeringProperty,
+  );
 
   return {
     categoryLabel: family.label,

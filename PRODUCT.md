@@ -504,13 +504,21 @@ the repository or generated output rather than copied forward as current facts.
   details, material-family listings, technical-data search, and the glass-fiber
   comparison pages. The PA66 and PPA glass-fiber comparisons contain 16 and 3
   grades respectively in all five released languages.
-- These two grades are reviewed five-language exceptions to the default
-  English, German, and Chinese policy for future non-POM grades. Both records
-  remain `data-only` because the supplied PDFs
+- These two grade-detail routes are configured for English and Simplified
+  Chinese only, matching the default for new non-POM grade details. Previously
+  released engineering-grade details retain their five-language
+  routes. The two SPUN records still appear in all five localized material
+  directories and glass-fiber comparisons. In those listings, German, French,
+  and Brazilian Portuguese links lead to the English detail pages and identify
+  that destination. Both records remain `data-only` because the supplied PDFs
   contain wording and test-condition issues; the original files are not public
   downloads. Values without a reliable matching website field or stated test
   basis are omitted pending confirmation. This addition is local until it passes
   the production gate and is deployed.
+- Engineering-grade detail pages use the same selected core-property rows in
+  every released language. Localization does not expand the public detail table
+  from the underlying catalogue property array; fuller technical data remains
+  subject to the existing document request and review process.
 
 ## Version Goal
 

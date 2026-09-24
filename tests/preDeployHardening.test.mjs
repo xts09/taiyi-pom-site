@@ -8,7 +8,6 @@ import { componentSolutions } from "../src/data/componentSolutions.ts";
 import {
   getLanguageAlternatesForPath,
   legacyFiveLocaleNonPomGradeSlugs,
-  reviewedFiveLocaleSpunGradeSlugs,
 } from "../src/i18n/releaseManifest.ts";
 
 const projectRoot = resolve(fileURLToPath(new URL("..", import.meta.url)));
@@ -41,7 +40,6 @@ const expectedAlternates = (sourcePath) => ({
 
 const expectedNewEngineeringGradeAlternates = (sourcePath) => ({
   en: sourcePath,
-  de: `/de${sourcePath}`,
   "zh-CN": `/zh${sourcePath}`,
   "x-default": sourcePath,
 });
@@ -78,9 +76,6 @@ test("the 89 released English owners have exact manifest-backed hreflang groups"
     const isNewEngineeringGrade =
       engineeringPaths.includes(sourcePath) &&
       !legacyFiveLocaleNonPomGradeSlugs.includes(
-        sourcePath.slice("/products/".length),
-      ) &&
-      !reviewedFiveLocaleSpunGradeSlugs.includes(
         sourcePath.slice("/products/".length),
       );
     assert.deepEqual(

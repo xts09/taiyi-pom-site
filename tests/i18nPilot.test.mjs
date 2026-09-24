@@ -61,6 +61,7 @@ import {
   createChineseEngineeringGradeCopy,
   localizeEngineeringProperty,
 } from "../src/i18n/chineseEngineeringGradeMessages.ts";
+import { getPublicCoreProperties } from "../src/lib/productPropertyVisibility.ts";
 import { chineseConductiveAntistaticCompoundsMessages } from "../src/i18n/messages/zh-CN-conductive-compounds.ts";
 import { chinesePomGradeExpansionA } from "../src/i18n/messages/zh-CN-pom-grade-expansion-a.ts";
 import { chinesePomGradeExpansionB } from "../src/i18n/messages/zh-CN-pom-grade-expansion-b.ts";
@@ -1618,18 +1619,36 @@ test("catalogued PA6, PA66 and PPA grades follow their localized release contrac
       visibleCopy,
       /保证适用|直接替代|完全等同|无需验证|普遍适用/,
     );
-    assert.equal(copy.properties.items.length, document.properties.length);
+    const publicProperties = getPublicCoreProperties(document.properties);
+    assert.equal(copy.properties.items.length, publicProperties.length);
     assert.deepEqual(
       copy.properties.items,
-      document.properties.map(localizeEngineeringProperty),
+      publicProperties.map(localizeEngineeringProperty),
     );
+    if (document.grade === "SPUN-9200" || document.grade === "SPUN-4500") {
+      assert.equal(copy.properties.items.length, 5);
+    }
     assert.ok(copy.applications.length > 0);
     assert.match(JSON.stringify(copy.applications), /[\u3400-\u9fff]/);
     assert.equal(getLocalizedHref(sourcePath, "zh"), `/zh${sourcePath}`);
-    assert.equal(getLocalizedHref(sourcePath, "de"), `/de${sourcePath}`);
+    assert.equal(
+      getLocalizedHref(sourcePath, "de"),
+      localizedSegments.includes("de") ? `/de${sourcePath}` : sourcePath,
+    );
     assert.deepEqual(
       getLanguageAlternates(sourcePath),
       expectedLocalizedAlternatesForSegments(sourcePath, localizedSegments),
+    );
+  }
+});
+
+test("grade terminology keeps French and Brazilian Portuguese labels grammatical", () => {
+  assert.equal(translateExpandedText("牌号特点", "fr"), "Caractéristiques du grade");
+  assert.equal(translateExpandedText("牌号特点", "pt-br"), "Características do grau");
+  for (const family of ["PA6", "PA66", "PPA"]) {
+    assert.equal(
+      translateExpandedText(`比较相关 ${family} 牌号`, "pt-br"),
+      `Comparar graus de ${family}`,
     );
   }
 });

@@ -1,5 +1,7 @@
 # Mobile Polish Audit Notes
 
+> Historical audit record started 2026-08-21. This is not a current execution plan; see `PRODUCT.md` for the current product state.
+
 ## DE / FR / PT-BR Full-Site Parity — 2026-08-21
 
 - Baseline release-manifest count: English 172, Simplified Chinese 172,

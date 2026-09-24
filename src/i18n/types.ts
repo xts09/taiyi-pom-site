@@ -268,7 +268,7 @@ export type HomeTaskFirstMessages = {
     documentsBody: string;
     documentsAria: string;
     documentsAction: string;
-    documentTypeDescriptions: readonly string[];
+    wearRecordAction?: string;
     certificatesTitle: string;
     certificateAction: string;
     certificateOpenAction: string;

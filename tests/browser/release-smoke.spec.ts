@@ -49,7 +49,7 @@ for (const prefix of ["", "/zh"]) {
   });
 }
 
-for (const prefix of ["", "/zh", "/de", "/fr", "/pt-br"]) {
+for (const prefix of ["", "/zh"]) {
   test(`${prefix || "en"}: SPUN grades use catalog values and request TDS`, async ({ page }) => {
     for (const product of [pa66, ppa]) {
       await page.goto(`${prefix}/products/${product.slug}`);
@@ -59,6 +59,11 @@ for (const prefix of ["", "/zh", "/de", "/fr", "/pt-br"]) {
       await expect(density).toContainText(/g\/cm[³3]/);
       const tensile = page.locator("main tr").filter({ hasText: "ISO 527" }).filter({ hasText: "MPa" });
       await expect(tensile).toContainText(product.tensile);
+      await expect(page.locator(".product-detail-core-property-table tbody tr")).toHaveCount(5);
+      if (prefix) {
+        await expect(page.locator(".product-detail-summary")).toContainText(`${product.family}`);
+        await expect(page.locator(".product-detail-summary")).toContainText("GF45");
+      }
       await expect(page.locator('main a[href$=".pdf"]')).toHaveCount(0);
       const tds = page.locator('main a[href*="#inquiry?"][href*="intent=tds"]').first();
       await expect(tds).toHaveAttribute("href", new RegExp(`grade=${product.grade}`));
@@ -66,6 +71,61 @@ for (const prefix of ["", "/zh", "/de", "/fr", "/pt-br"]) {
     }
   });
 }
+
+for (const prefix of ["/de", "/fr", "/pt-br"]) {
+  test(`${prefix}: SPUN details are not released and comparison links open English`, async ({ page }) => {
+    for (const [product, polymer] of [[pa66, "pa66"], [ppa, "ppa"]] as const) {
+      const response = await page.goto(`${prefix}/products/${product.slug}`);
+      expect(response?.status()).toBe(404);
+      await page.goto(`${prefix}/products/categories/glass-fiber-reinforced-${polymer}-compound`);
+      const card = page.locator(`[data-grade="${product.grade}"]`);
+      await expect(card).toHaveAttribute("href", `/products/${product.slug}`);
+      await expect(card).toContainText("English content");
+      await noOverflow(page);
+    }
+  });
+}
+
+for (const prefix of ["", "/zh"]) {
+  test(`${prefix || "en"}: home support and manufacturing proof stay readable`, async ({ page }) => {
+    await page.setViewportSize(prefix ? { width: 390, height: 844 } : { width: 1440, height: 900 });
+    await page.goto(prefix || "/");
+    await page.mouse.wheel(0, 1100);
+    await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(0);
+    const support = page.locator(".home-collaboration");
+    await expect(support.locator(".home-collaboration-principles > li")).toHaveCount(4);
+    await support.scrollIntoViewIfNeeded();
+    await expect(support.locator("h2")).toBeVisible();
+    const proof = page.locator(".home-proof");
+    await proof.locator(".home-proof-detail").scrollIntoViewIfNeeded();
+    await expect(proof.locator(".home-proof-body > p")).toHaveCount(2);
+    await expect(proof.locator(".home-proof-documents > li")).toHaveCount(5);
+    await expect(proof.locator(".home-proof-certificate-card")).toHaveCount(4);
+    await expect(proof.locator(`a[href="${prefix}/resources/pom-wear-benchmark"]`)).toBeVisible();
+    await expect.poll(() => proof.locator(".home-proof-detail").evaluate(
+      element => Number(getComputedStyle(element).opacity),
+    )).toBe(1);
+    await noOverflow(page);
+  });
+}
+
+test("home anchor, keyboard focus and reduced motion reveal their content", async ({ page }) => {
+  await page.setViewportSize({ width: 768, height: 1024 });
+  await page.goto("/zh#home-collaboration-title");
+  const support = page.locator(".home-collaboration");
+  await expect(support.locator("h2")).toBeVisible();
+  await support.locator(".home-collaboration-action").focus();
+  await expect(support.locator(".home-collaboration-action")).toBeFocused();
+  await expect.poll(() => support.locator(".home-collaboration-action-wrap").evaluate(
+    element => Number(getComputedStyle(element).opacity),
+  )).toBe(1);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.locator(".home-proof-detail").scrollIntoViewIfNeeded();
+  await expect.poll(() => page.locator(".home-proof-detail").evaluate(
+    element => Number(getComputedStyle(element).opacity),
+  )).toBe(1);
+  await noOverflow(page);
+});
 
 for (const route of ["/", "/zh/resources/pom-wear-benchmark"]) {
   test(`${route}: desktop header states and appropriately sized logos`, async ({ page }, info) => {

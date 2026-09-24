@@ -1,5 +1,7 @@
 # Taiyi Polymer Mobile Polish
 
+> Historical task plan started 2026-08-21. Completed and pending items below describe that period, not the current project plan; see `PRODUCT.md` for the current state.
+
 ## DE / FR / PT-BR Full-Site Parity — 2026-08-21
 
 ### Goal

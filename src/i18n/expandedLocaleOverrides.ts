@@ -137,6 +137,7 @@ export const expandedLocaleOverrides: Partial<
       "Deutscher materialübergreifender Leitfähigkeits- und Antistatik-Katalog",
   },
   fr: {
+    "牌号特点": "Caractéristiques du grade",
     "POM 耐磨测试 Benchmark": "Benchmark des essais d'usure POM",
     "报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
       "Rapports d'essai regroupés par conditions, avec mesures, courbes et photos d'éprouvettes disponibles.",
@@ -277,6 +278,10 @@ export const expandedLocaleOverrides: Partial<
       "Catalogue français multimatériaux conducteurs et antistatiques",
   },
   "pt-br": {
+    "牌号特点": "Características do grau",
+    "比较相关 PA6 牌号": "Comparar graus de PA6",
+    "比较相关 PA66 牌号": "Comparar graus de PA66",
+    "比较相关 PPA 牌号": "Comparar graus de PPA",
     "POM 耐磨测试 Benchmark": "Benchmark de ensaios de desgaste de POM",
     "报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
       "Relatórios agrupados por condição de ensaio, com medições, curvas de processo e fotos disponíveis dos corpos de prova.",

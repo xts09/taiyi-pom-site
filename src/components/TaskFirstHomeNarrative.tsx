@@ -157,26 +157,34 @@ function HomeProofSection({
             <h3>{messages.proof.documentsTitle}</h3>
             <p>{messages.proof.documentsBody}</p>
           </div>
-          <dl
+          <ul
             className="home-proof-documents"
             aria-label={messages.proof.documentsAria}
           >
-            {availableDocuments.map((document, index) => (
-              <div key={document}>
-                <dt>{document}</dt>
-                <dd>{messages.proof.documentTypeDescriptions[index]}</dd>
-              </div>
+            {availableDocuments.map((document) => (
+              <li key={document}>{document}</li>
             ))}
-          </dl>
-          <Link
-            className="home-task-text-link home-proof-documents-action"
-            href={localizedHref(
-              createContactHref({ source: messages.proof.documentsTitle }),
-            )}
-          >
-            {messages.proof.documentsAction}
-            <ArrowRight aria-hidden="true" size={15} />
-          </Link>
+          </ul>
+          <div className="home-proof-document-actions">
+            <Link
+              className="home-task-text-link"
+              href={localizedHref(
+                createContactHref({ source: messages.proof.documentsTitle }),
+              )}
+            >
+              {messages.proof.documentsAction}
+              <ArrowRight aria-hidden="true" size={15} />
+            </Link>
+            {messages.proof.wearRecordAction ? (
+              <Link
+                className="home-task-text-link"
+                href={localizedHref("/resources/pom-wear-benchmark")}
+              >
+                {messages.proof.wearRecordAction}
+                <ArrowRight aria-hidden="true" size={15} />
+              </Link>
+            ) : null}
+          </div>
         </div>
 
         <div className="home-proof-certificates">

@@ -6,9 +6,9 @@ import { dirname, resolve } from "node:path";
 import {
   getCatalogGradeLocalizedSegments,
   getLanguageAlternates,
+  getLocalizedHref,
   getSitemapLanguageOptions,
   legacyFiveLocaleNonPomGradeSlugs,
-  reviewedFiveLocaleSpunGradeSlugs,
 } from "../src/i18n/releaseManifest.ts";
 
 const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -17,7 +17,11 @@ const catalog = JSON.parse(
 );
 
 const allLocalizedSegments = ["de", "fr", "pt-br", "zh"];
-const defaultNonPomGradeLocalizedSegments = ["de", "zh"];
+const defaultNonPomGradeLocalizedSegments = ["zh"];
+const englishChineseSpunGradeSlugs = [
+  "spun-9200-pa66-glass-fiber-reinforced",
+  "spun-4500-ppa-glass-fiber-reinforced",
+];
 
 const expectedFiveLanguageHrefs = (sourcePath) => [
   sourcePath,
@@ -78,16 +82,25 @@ test("future POM and non-POM grades receive the intended default locales", () =>
   );
 });
 
-test("the two reviewed SPUN grades retain all five released language routes", () => {
-  for (const slug of reviewedFiveLocaleSpunGradeSlugs) {
+test("new SPUN grade details are released only in English and Chinese", () => {
+  for (const slug of englishChineseSpunGradeSlugs) {
+    const sourcePath = `/products/${slug}`;
+    assert.ok(catalog.some(record => record.slug === slug), `missing catalog grade: ${slug}`);
     assert.deepEqual(
       getCatalogGradeLocalizedSegments({ kind: "engineering-tds", slug }),
-      allLocalizedSegments,
+      defaultNonPomGradeLocalizedSegments,
     );
     assert.deepEqual(
-      getSitemapLanguageOptions(`/products/${slug}`).map(({ href }) => href),
-      expectedFiveLanguageHrefs(`/products/${slug}`),
+      getSitemapLanguageOptions(sourcePath).map(({ href }) => href),
+      [sourcePath, `/zh${sourcePath}`],
     );
+    assert.deepEqual(
+      getLanguageAlternates(sourcePath),
+      { en: sourcePath, "zh-CN": `/zh${sourcePath}`, "x-default": sourcePath },
+    );
+    for (const locale of ["de", "fr", "pt-br"]) {
+      assert.equal(getLocalizedHref(sourcePath, locale), sourcePath);
+    }
   }
 });
 
