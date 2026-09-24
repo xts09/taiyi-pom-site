@@ -176,7 +176,7 @@ export function HomeMotion({ children }: HomeMotionProps) {
       return;
     }
 
-    const targets = Array.from(
+    const candidates = Array.from(
       root.querySelectorAll<HTMLElement>(
         [
           "[data-home-reveal] .home-products-intro",
@@ -199,14 +199,20 @@ export function HomeMotion({ children }: HomeMotionProps) {
       ),
     );
 
+    // Several sections reuse intro classes on a parent and its children.
+    // Animate the specific content blocks once, without stacked fades/movement.
+    const targets = candidates.filter(
+      (element) => !candidates.some((other) => other !== element && element.contains(other)),
+    );
+
     if (targets.length === 0) {
       return;
     }
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const activeAnimations = new Set<Animation>();
-    const completed = new WeakSet<HTMLElement>();
-    const revealLine = window.innerHeight - Math.min(180, window.innerHeight * 0.18);
+    const pending = new Map<HTMLElement, Animation>();
+    let frame = 0;
 
     const staggerDelay = (element: HTMLElement) => {
       if (!element.matches(".home-application-card, .home-proof-metrics > *")) {
@@ -221,69 +227,85 @@ export function HomeMotion({ children }: HomeMotionProps) {
       return Math.min(position, 2) * 70;
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) {
-            continue;
-          }
-
-          observer.unobserve(entry.target);
-          const element = entry.target as HTMLElement;
-          completed.add(element);
-          if (reducedMotion.matches) {
-            continue;
-          }
-
-          const animation = element.animate(
-            [
-              { opacity: 0, transform: "translateY(18px)" },
-              { opacity: 1, transform: "none" },
-            ],
-            {
-              duration: 600,
-              delay: staggerDelay(element),
-              easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-              fill: "backwards",
-            },
-          );
-          activeAnimations.add(animation);
-          animation.addEventListener("finish", () => activeAnimations.delete(animation), {
-            once: true,
-          });
-          animation.addEventListener("cancel", () => activeAnimations.delete(animation), {
-            once: true,
-          });
-        }
-      },
-      { rootMargin: `0px 0px -${Math.round(window.innerHeight - revealLine)}px 0px` },
-    );
-
-    const observeUpcoming = () => {
-      observer.disconnect();
-      if (reducedMotion.matches) {
-        activeAnimations.forEach((animation) => animation.cancel());
-        return;
-      }
-
+    // Prepare only offscreen content, before the user can see it. Starting a
+    // fade from zero at the trigger point would hide already-visible content.
+    if (!reducedMotion.matches) {
       for (const element of targets) {
-        if (completed.has(element)) {
-          continue;
-        }
-        if (element.getBoundingClientRect().top <= revealLine) {
-          completed.add(element);
-        } else {
-          observer.observe(element);
-        }
+        if (element.getBoundingClientRect().top < window.innerHeight) continue;
+        const animation = element.animate(
+          [
+            { opacity: 0, transform: "translateY(18px)" },
+            { opacity: 1, transform: "none" },
+          ],
+          {
+            duration: 750,
+            delay: staggerDelay(element),
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            fill: "backwards",
+          },
+        );
+        animation.pause();
+        animation.currentTime = 0;
+        pending.set(element, animation);
+        activeAnimations.add(animation);
+        animation.addEventListener("finish", () => activeAnimations.delete(animation), {
+          once: true,
+        });
+        animation.addEventListener("cancel", () => activeAnimations.delete(animation), {
+          once: true,
+        });
+      }
+    }
+
+    const revealUpcoming = () => {
+      frame = 0;
+      const triggerLine = window.innerHeight * 0.85;
+      // Read positions together, then start animations. Checking all remaining
+      // targets also handles anchor jumps that skip an observer's intersection.
+      const positions = Array.from(pending, ([element, animation]) => ({
+        element,
+        animation,
+        top: element.getBoundingClientRect().top,
+      }));
+      for (const { element, animation, top } of positions) {
+        if (top > triggerLine) continue;
+        pending.delete(element);
+        if (top < 0) animation.cancel();
+        else animation.play();
       }
     };
 
-    reducedMotion.addEventListener("change", observeUpcoming);
-    observeUpcoming();
+    const scheduleReveal = () => {
+      if (!frame && pending.size) frame = requestAnimationFrame(revealUpcoming);
+    };
+    const showAll = () => {
+      if (!reducedMotion.matches) return;
+      pending.clear();
+      activeAnimations.forEach((animation) => animation.cancel());
+    };
+    const showFocused = (event: FocusEvent) => {
+      if (!(event.target instanceof Node)) return;
+      for (const element of targets) {
+        if (!element.contains(event.target)) continue;
+        pending.delete(element);
+        element.getAnimations().forEach((animation) => {
+          if (activeAnimations.has(animation)) animation.cancel();
+        });
+      }
+    };
+
+    window.addEventListener("scroll", scheduleReveal, { passive: true });
+    window.addEventListener("resize", scheduleReveal);
+    root.addEventListener("focusin", showFocused);
+    reducedMotion.addEventListener("change", showAll);
+    scheduleReveal();
 
     return () => {
-      observer.disconnect();
-      reducedMotion.removeEventListener("change", observeUpcoming);
+      cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleReveal);
+      window.removeEventListener("resize", scheduleReveal);
+      root.removeEventListener("focusin", showFocused);
+      reducedMotion.removeEventListener("change", showAll);
       activeAnimations.forEach((animation) => animation.cancel());
     };
   }, []);

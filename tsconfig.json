@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
@@ -20,7 +24,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   },
   "include": [
@@ -29,7 +35,15 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "outputs/wear-benchmark-review/next-build/types/**/*.ts",
+    "outputs/wear-benchmark-review/next-build/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules", ".codex-run", "output", "outputs", "tmp"]
+  "exclude": [
+    "node_modules",
+    ".codex-run",
+    "output",
+    "outputs",
+    "tmp"
+  ]
 }
