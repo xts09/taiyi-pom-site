@@ -1485,7 +1485,8 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-title {
 }
 
 html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
-  text-wrap: balance;
+  max-width: 46rem;
+  text-wrap: wrap;
 }
 
 @media (min-width: 48rem) {
