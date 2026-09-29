@@ -4,6 +4,7 @@ import { serializeJsonLd } from "@/lib/jsonLd";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { TechnicalDataQueryLink } from "@/components/TechnicalDataQueryLink";
 import { DocumentCard } from "@/components/DocumentCard";
+import { PaginationNav } from "@/components/PaginationNav";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { conductiveSeries } from "@/data/conductiveCompounds";
@@ -11,6 +12,7 @@ import { createEngineeringTdsSlug } from "@/data/engineeringTds";
 import {
   getTechnicalDataSearchValue,
   isTechnicalDataProductContentType,
+  paginateTechnicalDataResults,
   selectTechnicalDataSearch,
   type TechnicalDocumentState,
 } from "@/data/technicalDataSearch";
@@ -178,6 +180,7 @@ type TechnicalDataSheetsPageProps = {
     resource?: string | string[];
     family?: string | string[];
     direction?: string | string[];
+    page?: string | string[];
   }>;
 };
 
@@ -200,6 +203,7 @@ export default async function TechnicalDataSheetsPage({
 }: TechnicalDataSheetsPageProps) {
   const params = searchParams ? await searchParams : {};
   const selection = selectTechnicalDataSearch({ params });
+  const paginatedResults = paginateTechnicalDataResults(selection, params.page);
   const {
     query,
     activeResource,
@@ -207,12 +211,14 @@ export default async function TechnicalDataSheetsPage({
     activeDirection,
     hasSearchIntent,
     totalResults,
-    resourceResults: searchableResources,
-    conductiveResults: searchableConductiveCompounds,
   } = selection;
-  const searchableEngineeringTds = selection.engineeringResults;
-  const suggestedProducts = selection.suggestedProductResults;
-  const directProductResults = selection.productResults;
+  const {
+    resourceResults: searchableResources,
+    engineeringResults: searchableEngineeringTds,
+    conductiveResults: searchableConductiveCompounds,
+    suggestedProductResults: suggestedProducts,
+    productResults: directProductResults,
+  } = paginatedResults;
   const activeDirectionFilter = materialDirectionFilter.options.find(
     (option) => option.value === activeDirection,
   );
@@ -512,6 +518,7 @@ export default async function TechnicalDataSheetsPage({
               </div>
             </div>
           ) : totalResults > 0 ? (
+            <>
             <div className="resource-site-result-list">
               {searchableResources.map((resource) => (
                 <article className="resource-site-result" key={resource.slug}>
@@ -615,6 +622,17 @@ export default async function TechnicalDataSheetsPage({
                 />
               ))}
             </div>
+            <PaginationNav
+              page={paginatedResults.page}
+              totalPages={paginatedResults.totalPages}
+              first={paginatedResults.first}
+              last={paginatedResults.last}
+              total={totalResults}
+              kind="results"
+              hrefBase={getFilterHref({})}
+              anchor="resource-results"
+            />
+            </>
           ) : (
             <div className="resource-search-empty">
               <h2>No matching resources found</h2>

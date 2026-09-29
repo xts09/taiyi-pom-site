@@ -29,7 +29,7 @@ import {
 } from "@/i18n/engineeringGfLandingMessages";
 import {
   getLocalizedHref,
-  isLocalizedReleaseIndexable,
+  isEnglishFallbackHref,
 } from "@/i18n/releaseManifest";
 import { createContactHref } from "@/lib/contactContext";
 import { serializeJsonLd } from "@/lib/jsonLd";
@@ -57,13 +57,15 @@ export function EngineeringGfLandingPage({
   const localizedPath = (path: string) =>
     getLocalizedHref(path, localeSegment);
   const registration = getEngineeringGfLandingRegistration(polymer);
-  const grades = getEngineeringGfGrades(polymer).filter((grade) =>
-    isLocalizedReleaseIndexable(`/products/${grade.slug}`, localeSegment),
-  );
+  const grades = getEngineeringGfGrades(polymer);
   const comparisonGrades = grades.map((grade): EngineeringGfComparisonGrade => ({
     grade: grade.grade,
     slug: grade.slug,
     href: localizedPath(`/products/${grade.slug}`),
+    englishFallback: isEnglishFallbackHref(
+      `/products/${grade.slug}`,
+      localeSegment,
+    ),
     filler: grade.filler,
     density: grade.density,
     flammability: grade.flammability,

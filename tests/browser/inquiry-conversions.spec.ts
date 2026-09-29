@@ -6,14 +6,6 @@ test.beforeEach(async ({ context }) => {
     (route) => route.abort(),
   );
   await context.addInitScript(() => {
-    const browserWindow = window as typeof window & {
-      __inquiryEvents: unknown[][];
-      gtag: (...args: unknown[]) => void;
-    };
-    browserWindow.__inquiryEvents = [];
-    browserWindow.gtag = (...args: unknown[]) => {
-      browserWindow.__inquiryEvents.push(args);
-    };
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
       value: { writeText: async () => {} },
@@ -65,6 +57,18 @@ for (const path of ["/contact", "/zh/contact"]) {
       });
 
       await page.goto(path);
+      // Production's consent bootstrap defines gtag during navigation.
+      // Install the event spy afterwards so it is not overwritten by that script.
+      await page.evaluate(() => {
+        const browserWindow = window as typeof window & {
+          __inquiryEvents: unknown[][];
+          gtag: (...args: unknown[]) => void;
+        };
+        browserWindow.__inquiryEvents = [];
+        browserWindow.gtag = (...args: unknown[]) => {
+          browserWindow.__inquiryEvents.push(args);
+        };
+      });
       const form = page.locator("form.contact-form");
       await form.locator('[name="company"]').fill("Regression sample");
       await form.locator('[name="email"]').fill("inquiry-test@example.invalid");

@@ -2,6 +2,22 @@
 
 ## Before Deploying
 
+- `.github/workflows/quality.yml` checks each push to the maintained branch
+  and each pull request. It records the checked SHA, runs `prepublish:check`,
+  then runs `test:release` against that checkout's production build. Download
+  the `release-quality-<sha>` artifact for logs, browser traces and screenshots.
+  Require the quality job to pass for the exact release SHA; an earlier green
+  commit or a Vercel Ready state is not equivalent evidence.
+- `npm run test:release` requires a completed production build and a free
+  port 3107. It starts and stops its own production server; it does not reuse
+  the development server on port 3000. Run local release verification in a
+  clean checkout of the target SHA so unrelated working changes are excluded.
+- This workflow supplies a commit check; branch-protection requirements and
+  Vercel promotion rules are separate repository/project settings. Do not
+  claim automatic deployment blocking unless those settings are verified.
+  Browser fixtures simulate inquiry responses and block external analytics;
+  they do not verify live email delivery or Google ingestion.
+
 - Vercel uses the repository's `vercel.json` build command,
   `npm run prepublish:check`, for both preview and production builds. Catalog
   validation, catalog SEO checks, lint, type checking, and unit tests must pass

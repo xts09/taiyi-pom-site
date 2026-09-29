@@ -40,11 +40,12 @@ export function WearBenchmarkPage({ localeSegment }: Props) {
       <div className={styles.rail}>
         <section id="wear-benchmark-results" className={styles.results} aria-labelledby="wear-results-title">
           <SectionIntro title={copy.tableTitle} titleId="wear-results-title" description={copy.tableIntro} className={styles.sectionIntro} />
+          <p id="wear-missing-value" className={styles.dataNote}>{copy.missingValue}</p>
           {groups.map(group => (
             <section key={group} className={styles.group} aria-labelledby={`group-${group}`}>
               <div className={styles.groupHead}><h3 id={`group-${group}`}>{copy.groups[group].title}</h3><span>{copy.groups[group].summary}</span></div>
               <div className={styles.tableFrame}>
-                <table className={styles.table}>
+                <table className={styles.table} aria-describedby="wear-missing-value">
                   <caption className="sr-only">{copy.groups[group].title}</caption>
                   <colgroup><col className={styles.gradeCol} /><col className={styles.lossCol} /><col className={styles.durationCol} /><col className={styles.outcomeCol} /><col className={styles.actionCol} /></colgroup>
                   <thead><tr>
@@ -121,6 +122,17 @@ function RecordDetail({ record, initiallyOpen, localeSegment, locale, copy }: {
         <details className={styles.parameters}>
           <summary>{copy.allData}<ChevronDown size={16} aria-hidden="true" /></summary>
           <dl className={styles.facts}>{facts.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+        </details>
+        <details className={styles.parameters}>
+          <summary>{copy.sourceTitle}<ChevronDown size={16} aria-hidden="true" /></summary>
+          <p className={styles.sourceNote}>{copy.sourceIntro}</p>
+          <dl className={styles.facts}>
+            <div><dt>{copy.recordLocator}</dt><dd>{record.grade}<time className={styles.sourceDate} dateTime={record.date}>{record.date}</time></dd></div>
+            {(Object.keys(record.source) as Array<keyof typeof record.source>).map(key => (
+              <div key={key}><dt>{copy.sourceFields[key]}</dt><dd>{record.source[key] ?? copy.notPublished}</dd></div>
+            ))}
+          </dl>
+          <p className={styles.sourceNote}>{copy.recordUse}</p>
         </details>
         <div className={styles.recordActions}>
           <Button asChild variant="primary" size="form"><Link href={contactHref}>{copy.inquiryAction} {record.grade}<ArrowRight aria-hidden="true" /></Link></Button>

@@ -249,6 +249,7 @@
 .comparisonTable a {
   display: inline-flex;
   align-items: center;
+  gap: var(--ds-space-2);
   min-height: 2.75rem;
   color: var(--ds-action-primary);
   font-family: var(--ds-font-display);

@@ -9,7 +9,7 @@ export const dynamic = "force-static";
 
 export const metadata = createPageMetadata({
   title: "POM Wear Test Benchmark | Taiyi Polymer",
-  description: "Explore six POM wear-test results by condition, with measured values, process curves and specimen photos.",
+  description: "Explore POM wear-test records by condition, with measured values, process curves and specimen photos.",
   path: sourcePath,
   image: "/og-resources-data-validation.jpg",
   languageAlternates: getLanguageAlternates(sourcePath),

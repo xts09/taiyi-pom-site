@@ -790,7 +790,11 @@ export function LocalizedApplicationDetailPage({
               <h2>
                 {application.title}
                 {inLanguage.startsWith("zh") ? "" : " — "}
-                {messages.parts.titleSuffix}
+                {inLanguage.startsWith("zh") &&
+                application.title.endsWith("部件") &&
+                messages.parts.titleSuffix.startsWith("部件")
+                  ? messages.parts.titleSuffix.slice(2)
+                  : messages.parts.titleSuffix}
               </h2>
             </div>
             {!usesReviewedApplicationDensity ? (

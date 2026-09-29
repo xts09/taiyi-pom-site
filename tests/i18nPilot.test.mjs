@@ -17,6 +17,7 @@ import ptBRExpanded from "../src/i18n/generated/pt-BR.json" with { type: "json" 
 import { translateEnglishApplicationText } from "../src/i18n/englishApplicationNarrative.ts";
 import {
   hasExpandedLocaleDictionary,
+  translateExpandedContent,
   translateExpandedText,
 } from "../src/i18n/expandedLocaleContent.ts";
 import deProductFunnel from "../src/i18n/messages/de-product-funnel.ts";
@@ -61,6 +62,7 @@ import {
   createChineseEngineeringGradeCopy,
   localizeEngineeringProperty,
 } from "../src/i18n/chineseEngineeringGradeMessages.ts";
+import { getPublicCoreProperties } from "../src/lib/productPropertyVisibility.ts";
 import { chineseConductiveAntistaticCompoundsMessages } from "../src/i18n/messages/zh-CN-conductive-compounds.ts";
 import { chinesePomGradeExpansionA } from "../src/i18n/messages/zh-CN-pom-grade-expansion-a.ts";
 import { chinesePomGradeExpansionB } from "../src/i18n/messages/zh-CN-pom-grade-expansion-b.ts";
@@ -357,8 +359,7 @@ test("all localized dictionaries match the complete shared English message shape
     assert.equal(messages.Home.taskFirst?.core.groups.length, 4);
     assert.equal(messages.Home.taskFirst?.components.items.length, 6);
     assert.equal(messages.Home.taskFirst?.applications.items.length, 8);
-    assert.equal(messages.Home.taskFirst?.process.steps.length, 3);
-    assert.equal(messages.Home.taskFirst?.collaboration.items.length, 3);
+    assert.equal(messages.Home.taskFirst?.collaboration.items.length, 4);
     assert.doesNotMatch(
       JSON.stringify(messages.Home.taskFirst?.collaboration),
       /24[- ]hour|fastest|guaranteed|low MOQ|small MOQ/i,
@@ -1619,18 +1620,82 @@ test("catalogued PA6, PA66 and PPA grades follow their localized release contrac
       visibleCopy,
       /保证适用|直接替代|完全等同|无需验证|普遍适用/,
     );
-    assert.equal(copy.properties.items.length, document.properties.length);
+    const publicProperties = getPublicCoreProperties(document.properties);
+    assert.equal(copy.properties.items.length, publicProperties.length);
     assert.deepEqual(
       copy.properties.items,
-      document.properties.map(localizeEngineeringProperty),
+      publicProperties.map(localizeEngineeringProperty),
     );
+    if (document.grade === "SPUN-9200" || document.grade === "SPUN-4500") {
+      assert.equal(copy.properties.items.length, 5);
+    }
     assert.ok(copy.applications.length > 0);
     assert.match(JSON.stringify(copy.applications), /[\u3400-\u9fff]/);
     assert.equal(getLocalizedHref(sourcePath, "zh"), `/zh${sourcePath}`);
-    assert.equal(getLocalizedHref(sourcePath, "de"), `/de${sourcePath}`);
+    assert.equal(
+      getLocalizedHref(sourcePath, "de"),
+      localizedSegments.includes("de") ? `/de${sourcePath}` : sourcePath,
+    );
     assert.deepEqual(
       getLanguageAlternates(sourcePath),
       expectedLocalizedAlternatesForSegments(sourcePath, localizedSegments),
+    );
+  }
+});
+
+test("SPUN public core rows preserve approved names, values, units and methods in every locale", () => {
+  const catalog = JSON.parse(readProjectFile("src/generated/catalog.json"));
+  const expectedLabels = [
+    "Density",
+    "Tensile stress",
+    "Flexural modulus",
+    "Charpy impact strength (notched)",
+    "Heat deflection temperature (1.8 MPa)",
+  ];
+  const expectedByGrade = {
+    "SPUN-9200": ["1.53", "245", "12500", "20", "260"],
+    "SPUN-4500": ["1.5", "268", "12500", "15", "260"],
+  };
+  const expectedUnits = ["g/cm3", "MPa", "MPa", "kJ/m2", "degC"];
+  const expectedMethods = ["ISO 1183", "ISO 527", "ISO 178", "ISO 179/1eA", "ISO 75-2"];
+  const labelsByLocale = {
+    zh: ["密度", "拉伸强度", "弯曲模量", "简支梁缺口冲击强度", "热变形温度（1.8 MPa）"],
+    de: ["Dichte", "Zugfestigkeit", "Biegemodul", "Kerbschlagzähigkeit nach Charpy", "Wärmeformbeständigkeit (1,8 MPa)"],
+    fr: ["Densité", "Résistance à la traction", "Module de flexion", "Résistance au choc Charpy entaillé", "Température de déformation thermique (1,8 MPa)"],
+    "pt-br": ["Densidade", "Resistência à tração", "Módulo de flexão", "Resistência ao impacto Charpy com entalhe", "Temperatura de deformação térmica (1,8 MPa)"],
+  };
+
+  for (const [grade, values] of Object.entries(expectedByGrade)) {
+    const document = catalog.find(record => record.grade === grade);
+    assert.ok(document, `missing ${grade}`);
+    const publicRows = getPublicCoreProperties(document.properties);
+    assert.deepEqual(publicRows, expectedLabels.map((label, index) => ({
+      group: document.properties.find(property => property.label === label).group,
+      label,
+      value: values[index],
+      unit: expectedUnits[index],
+      method: expectedMethods[index],
+    })));
+    assert.equal(publicRows.some(row => /shrinkage/i.test(row.label)), false);
+    const chineseRows = createChineseEngineeringGradeCopy(document).properties.items;
+    for (const [locale, labels] of Object.entries(labelsByLocale)) {
+      const rows = locale === "zh" ? chineseRows : translateExpandedContent(chineseRows, locale);
+      assert.deepEqual(rows.map(row => row.label), labels, `${grade} ${locale} labels`);
+      assert.deepEqual(rows.map(row => row.value), values, `${grade} ${locale} values`);
+      assert.deepEqual(rows.map(row => row.unit), expectedUnits, `${grade} ${locale} units`);
+      assert.deepEqual(rows.map(row => row.method), expectedMethods, `${grade} ${locale} methods`);
+    }
+    assert.equal(document.tds.status, "data-only");
+  }
+});
+
+test("grade terminology keeps French and Brazilian Portuguese labels grammatical", () => {
+  assert.equal(translateExpandedText("牌号特点", "fr"), "Caractéristiques du grade");
+  assert.equal(translateExpandedText("牌号特点", "pt-br"), "Características do grau");
+  for (const family of ["PA6", "PA66", "PPA"]) {
+    assert.equal(
+      translateExpandedText(`比较相关 ${family} 牌号`, "pt-br"),
+      `Comparar graus de ${family}`,
     );
   }
 });

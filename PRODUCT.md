@@ -4,6 +4,12 @@ This file is the product, content, design, and acceptance reference for the Taiy
 
 ## Current Working Baseline
 
+Release acceptance uses checks tied to the exact commit being released:
+catalog/code/build validation plus the production browser regression in
+`playwright.release.config.ts`. Keep its SHA-tagged logs, traces and screenshots
+as release evidence. See `docs/launch-checklist.md` for the scope and the separate
+remote deployment/branch-protection requirements.
+
 Resolve the active branch, commit, and working-tree state from Git at the start
 of each task. Branch names and dirty-file lists are intentionally not treated as
 product requirements because they become stale between maintenance sessions.
@@ -354,6 +360,17 @@ the repository or generated output rather than copied forward as current facts.
 - Headings make one memorable claim; supporting paragraphs explain scope and meaning; labels identify real metadata; CTAs name the destination or next task. One element should not repeat another element's job.
 - All five released languages preserve the same message priority and proof boundary through natural, manually reviewed local expression. Semantic alignment is required; literal sentence structure and identical line breaks are not.
 
+### Homepage Project Support Simplification (2026-09-24)
+
+- The five-language Home module between Applications and Manufacturing & Validation now explains supplier value from trial to production: responsive communication, order quantities suited to project stages, quality and batch support, and material technical support. It uses one short introduction, four equal-weight points, and one project-discussion action to Contact.
+- The three-step process formerly repeated beneath the support points is removed from Home. The 2026-08-26 application-led support snapshot above is historical; its three-point and three-step structure is superseded by this section.
+- Copy makes no fixed response-time, MOQ, defect-rate, delivery, or formulation-success promise. Material adjustments are assessed for feasibility by project; document availability remains grade- and project-specific.
+
+### Homepage Manufacturing Narrative Continuity (2026-09-24)
+
+- Manufacturing & Validation now follows the Home Hero and core POM story with a section label, the Chinese title `让材料的表现，经得起量产`, and two narrative paragraphs about the demands that emerge from trial to sustained production and the Yancheng manufacturing foundation behind modified materials. The five released languages preserve that progression without turning the introduction into a facilities list.
+- The factory photograph, verified company figures, document types and grade/project availability note, and existing certificates remain the factual evidence. The labels identify technical and batch documents and management-system certificates directly; a separate international-project promotional sentence is removed from this Home module. The shorter intro described in the 2026-08-26 manufacturing snapshot is historical and superseded here.
+
 ### Canonical POM Directory Consolidation (2026-08-29)
 
 - `/products/categories/pom` is the single canonical POM hub in all five released languages. It owns the complete decision sequence: start from the molded-part requirement, choose a relevant POM family, compare listed grades and published data, continue to application guidance, and prepare a project inquiry.
@@ -487,13 +504,22 @@ the repository or generated output rather than copied forward as current facts.
   details, material-family listings, technical-data search, and the glass-fiber
   comparison pages. The PA66 and PPA glass-fiber comparisons contain 16 and 3
   grades respectively in all five released languages.
-- These two grades are reviewed five-language exceptions to the default
-  English, German, and Chinese policy for future non-POM grades. Both records
-  remain `data-only` because the supplied PDFs
-  contain wording and test-condition issues; the original files are not public
-  downloads. Values without a reliable matching website field or stated test
-  basis are omitted pending confirmation. This addition is local until it passes
-  the production gate and is deployed.
+- Future non-POM grade details default to English, German and Simplified
+  Chinese. Earlier five-language non-POM grade details keep their French and
+  Brazilian Portuguese URLs. By explicit 2026-09-24 direction, the two recently
+  published SPUN grades follow the EN/DE/ZH detail policy; their FR/PT detail
+  URLs are withdrawn when this local change is deployed. Five-language material
+  directories, technical-data search and glass-fiber comparisons continue
+  listing them; FR/PT destinations resolve to English, with localized prompts
+  on the glass-fiber comparison cards and table. Both records remain `data-only`
+  because the supplied PDFs contain wording and test-condition issues; the
+  original files are not public downloads. Values without a reliable matching
+  website field or stated test basis are omitted pending confirmation. The
+  EN/DE/ZH policy revision is verified locally but has not been deployed.
+- Engineering-grade detail pages use the same selected core-property rows in
+  every released language. Localization does not expand the public detail table
+  from the underlying catalogue property array; fuller technical data remains
+  subject to the existing document request and review process.
 
 ## Version Goal
 

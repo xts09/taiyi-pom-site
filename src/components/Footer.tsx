@@ -186,6 +186,7 @@ export function Footer({
                 alt={messages.logoAlt}
                 width={1400}
                 height={217}
+                sizes="(max-width: 1440px) 144px, (max-width: 1640px) 10vw, 164px"
               />
             </span>
             <div className="site-footer-brand-body" data-nosnippet>

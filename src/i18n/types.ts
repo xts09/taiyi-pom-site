@@ -244,13 +244,6 @@ export type HomeTaskFirstMessages = {
       imageAlt: string;
     }>;
   };
-  process: {
-    stepsAria: string;
-    steps: ReadonlyArray<{
-      title: string;
-      description: string;
-    }>;
-  };
   collaboration: {
     eyebrow: string;
     title: string;
@@ -264,7 +257,8 @@ export type HomeTaskFirstMessages = {
   };
   proof: {
     eyebrow: string;
-    body: string;
+    title: string;
+    body: readonly [string, string];
     factoryImageAlt: string;
     factoryImageCaption: string;
     metricsAria: string;
@@ -274,12 +268,10 @@ export type HomeTaskFirstMessages = {
     documentsBody: string;
     documentsAria: string;
     documentsAction: string;
-    documentTypeDescriptions: readonly string[];
+    wearRecordAction?: string;
     certificatesTitle: string;
     certificateAction: string;
     certificateOpenAction: string;
-    internationalLabel: string;
-    internationalBody: string;
   };
 };
 

@@ -109,6 +109,15 @@ components, verify representative consumers from each affected route family.
 
 ## Change Ownership And Handoff
 
+- Default Git destination: **origin/codex/keptds**. Never infer the desired
+  destination from the active branch. Before commit/push, verify the branch,
+  upstream, worktree state and actual push refspec. Use `codex/keptds` or a
+  `codex/keptds-*` work branch tracking `origin/codex/keptds` if the target is
+  occupied by another worktree. Preserve that worktree's pending changes.
+- Run `npm run git:setup` once per clone to activate the commit/push guards.
+  Follow `docs/git-workflow.md`. Another destination or a guard exception
+  requires an explicit user instruction; do not bypass guards automatically.
+
 - Assume the working tree may contain intentional uncommitted user or prior-session work. Run `git status --short` before editing and never revert, replace, or reformat unrelated changes.
 - A visual or technical audit is not authorization for a broad redesign. Review first; implement only the page, component, and visual family the user explicitly approves.
 - When continuing from a long visual-review thread, read the dated implementation snapshot in `PRODUCT.md` before changing shared navigation, Resources, product data, or SEO behavior.

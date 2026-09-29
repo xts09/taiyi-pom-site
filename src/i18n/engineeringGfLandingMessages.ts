@@ -28,6 +28,7 @@ type LocalizedEngineeringGfPageCopy = Pick<
 
 export type EngineeringGfComparisonUi = {
   actionLabel: string;
+  englishDestinationLabel: string;
   glassFiberLabel: string;
   densityLabel: string;
   tensileStressLabel: string;
@@ -143,6 +144,7 @@ const englishUi: EngineeringGfLandingUi = {
     "Share the part, current material, load, temperature, moisture state, mold stage, target properties and document requirements. Taiyi Polymer can help narrow the listed grades for project evaluation.",
   comparison: {
     actionLabel: "View grade data",
+    englishDestinationLabel: "English content",
     glassFiberLabel: "Glass fiber",
     densityLabel: "Density",
     tensileStressLabel: "Tensile stress",
@@ -210,6 +212,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "Teilen Sie uns Bauteil, aktuellen Werkstoff, Last, Temperatur, Feuchtezustand, Werkzeugphase, Zielwerte und Dokumentanforderungen mit. Taiyi Polymer kann die gelisteten Werkstofftypen für die Projektbewertung eingrenzen.",
     comparison: {
       actionLabel: "Werkstoffdaten ansehen",
+      englishDestinationLabel: "Inhalt auf Englisch",
       glassFiberLabel: "Glasfaser",
       densityLabel: "Dichte",
       tensileStressLabel: "Zugspannung",
@@ -276,6 +279,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "Indiquez la pièce, le matériau actuel, la charge, la température, l’état d’humidité, la phase d’outillage, les propriétés cibles et les documents requis. Taiyi Polymer peut ainsi réduire la sélection de grades répertoriés pour l’évaluation du projet.",
     comparison: {
       actionLabel: "Voir les données du grade",
+      englishDestinationLabel: "Contenu en anglais",
       glassFiberLabel: "Fibres de verre",
       densityLabel: "Masse volumique",
       tensileStressLabel: "Contrainte de traction",
@@ -341,6 +345,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "Informe a peça, o material atual, a carga, a temperatura, o estado de umidade, a fase do molde, as propriedades-alvo e os documentos necessários. A Taiyi Polymer pode ajudar a reduzir os graus listados para a avaliação do projeto.",
     comparison: {
       actionLabel: "Ver dados do grau",
+      englishDestinationLabel: "Conteúdo em inglês",
       glassFiberLabel: "Fibra de vidro",
       densityLabel: "Densidade",
       tensileStressLabel: "Tensão de tração",
@@ -399,6 +404,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "请提供零件、当前材料、载荷、温度、水分状态、模具阶段、目标性能和文件要求。Taiyi Polymer 可据此缩小已列牌号范围，用于项目评估。",
     comparison: {
       actionLabel: "查看牌号数据",
+      englishDestinationLabel: "英文内容",
       glassFiberLabel: "玻纤含量",
       densityLabel: "密度",
       tensileStressLabel: "拉伸应力",

@@ -12,6 +12,7 @@ import { findGradeCrossReference } from "@/data/gradeCrossReferences";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { matchesTechnicalQuery } from "@/lib/mfiSearch";
+import { createResultPage } from "@/lib/paginateResultGroups";
 import {
   normalizeTechnicalDataQuery,
   type TechnicalDataSearchAlias,
@@ -101,6 +102,7 @@ export type TechnicalDataSearchParams = {
   resource?: string | string[];
   family?: string | string[];
   direction?: string | string[];
+  page?: string | string[];
 };
 
 export type TechnicalDocumentState =
@@ -351,6 +353,31 @@ export function selectTechnicalDataSearch({
     conductiveResults,
     suggestedProductResults,
     productResults,
+  };
+}
+
+export const technicalDataResultsPerPage = 10;
+
+export function paginateTechnicalDataResults(
+  selection: ReturnType<typeof selectTechnicalDataSearch>,
+  requestedPageValue: TechnicalDataSearchParams["page"],
+) {
+  const paging = createResultPage(
+    selection.totalResults,
+    getTechnicalDataSearchValue(requestedPageValue),
+    technicalDataResultsPerPage,
+  );
+
+  return {
+    page: paging.page,
+    totalPages: paging.totalPages,
+    first: paging.first,
+    last: paging.last,
+    resourceResults: paging.take(selection.resourceResults),
+    engineeringResults: paging.take(selection.engineeringResults),
+    conductiveResults: paging.take(selection.conductiveResults),
+    suggestedProductResults: paging.take(selection.suggestedProductResults),
+    productResults: paging.take(selection.productResults),
   };
 }
 

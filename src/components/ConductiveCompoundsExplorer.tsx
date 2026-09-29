@@ -6,6 +6,7 @@ import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
+import { PaginationNav } from "@/components/PaginationNav";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
 import {
@@ -130,6 +131,7 @@ export function ConductiveCompoundsExplorer({
   const [matrix, setMatrix] = useState("all");
   const [range, setRange] = useState<RangeFilter>("all");
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
 
   const filteredCompounds = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -177,12 +179,48 @@ export function ConductiveCompoundsExplorer({
     });
   }, [filteredCompounds]);
 
+  const pages = useMemo(() => {
+    const groups = groupByMatrix
+      ? groupedCompounds
+      : Array.from(
+          { length: Math.ceil(filteredCompounds.length / 10) },
+          (_, index) => ({
+            matrix: "",
+            compounds: filteredCompounds.slice(index * 10, index * 10 + 10),
+          }),
+        );
+    const packed: Array<typeof groups> = [];
+    let current: typeof groups = [];
+    let count = 0;
+
+    for (const group of groups) {
+      if (count > 0 && count + group.compounds.length > 10) {
+        packed.push(current);
+        current = [];
+        count = 0;
+      }
+      current.push(group);
+      count += group.compounds.length;
+    }
+    if (current.length) packed.push(current);
+
+    let offset = 0;
+    return packed.map((pageGroups) => {
+      const first = offset + 1;
+      offset += pageGroups.reduce((total, group) => total + group.compounds.length, 0);
+      return { groups: pageGroups, first, last: offset };
+    });
+  }, [filteredCompounds, groupByMatrix, groupedCompounds]);
+  const currentPage = Math.min(page, Math.max(1, pages.length));
+  const visiblePage = pages[currentPage - 1];
+
   const activeDescription =
     technology === "all"
       ? messages.allDescription
       : messages.seriesDescriptions[technology];
 
   const changeTechnology = (nextTechnology: TechnologyFilter) => {
+    setPage(1);
     setTechnology(nextTechnology);
 
     if (
@@ -191,6 +229,13 @@ export function ConductiveCompoundsExplorer({
     ) {
       setRange("all");
     }
+  };
+
+  const changePage = (nextPage: number) => {
+    setPage(nextPage);
+    requestAnimationFrame(() => {
+      document.getElementById("grade-results")?.scrollIntoView({ block: "start" });
+    });
   };
 
   const renderRows = (compounds: ConductiveCompound[]) =>
@@ -286,7 +331,10 @@ export function ConductiveCompoundsExplorer({
               <span>{messages.materialMatrix}</span>
               <Select
                 value={matrix}
-                onChange={(event) => setMatrix(event.target.value)}
+                onChange={(event) => {
+                  setMatrix(event.target.value);
+                  setPage(1);
+                }}
                 className={`${styles.filterControl} ${styles.filterSelect}`}
               >
                 <option value="all">{messages.allMaterials}</option>
@@ -302,9 +350,10 @@ export function ConductiveCompoundsExplorer({
               <span>{messages.targetRange}</span>
               <Select
                 value={range}
-                onChange={(event) =>
-                  setRange(event.target.value as RangeFilter)
-                }
+                onChange={(event) => {
+                  setRange(event.target.value as RangeFilter);
+                  setPage(1);
+                }}
                 className={`${styles.filterControl} ${styles.filterSelect}`}
               >
                 <option value="all">{messages.allRanges}</option>
@@ -324,7 +373,10 @@ export function ConductiveCompoundsExplorer({
                   type="search"
                   value={query}
                   placeholder={messages.searchPlaceholder}
-                  onChange={(event) => setQuery(event.target.value)}
+                  onChange={(event) => {
+                    setQuery(event.target.value);
+                    setPage(1);
+                  }}
                   className={`${styles.filterControl} ${styles.searchControl}`}
                 />
               </span>
@@ -337,10 +389,11 @@ export function ConductiveCompoundsExplorer({
           <span>{messages.rangeNote}</span>
         </div>
 
+        <div id="grade-results" className={styles.results}>
         {filteredCompounds.length ? (
           groupByMatrix ? (
             <div className={styles.matrixGroups}>
-              {groupedCompounds.map((group) => (
+              {visiblePage?.groups.map((group) => (
                 <section
                   key={group.matrix}
                   className={styles.matrixGroup}
@@ -358,11 +411,22 @@ export function ConductiveCompoundsExplorer({
               ))}
             </div>
           ) : (
-            renderTable(filteredCompounds)
+            renderTable(visiblePage?.groups[0]?.compounds ?? [])
           )
         ) : (
           <div className={styles.emptyState}>{messages.empty}</div>
         )}
+        </div>
+        <PaginationNav
+          page={currentPage}
+          totalPages={pages.length}
+          first={visiblePage?.first ?? 0}
+          last={visiblePage?.last ?? 0}
+          total={filteredCompounds.length}
+          kind="grades"
+          locale={localeSegment ?? "en"}
+          onPageChange={changePage}
+        />
       </div>
     </section>
   );

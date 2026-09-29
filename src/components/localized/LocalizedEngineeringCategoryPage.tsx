@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GradeDirectoryPagination } from "@/components/GradeDirectoryPagination";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -239,6 +240,7 @@ export function LocalizedEngineeringCategoryContent({
                 <span>{copy.directory.route}</span>
               </div>
 
+              <GradeDirectoryPagination enabled={grades.length > 10} locale={localeSegment}>
               {grades.map((grade, index) => {
                 const direction = directionCopy[
                   grade.category
@@ -295,6 +297,7 @@ export function LocalizedEngineeringCategoryContent({
                   </Link>
                 );
               })}
+              </GradeDirectoryPagination>
             </div>
           </section>
 

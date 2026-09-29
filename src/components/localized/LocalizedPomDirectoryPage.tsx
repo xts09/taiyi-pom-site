@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
+import { GradeDirectoryPagination } from "@/components/GradeDirectoryPagination";
 import { PomFamilyMap } from "@/components/PomFamilyMap";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
@@ -291,6 +292,7 @@ export async function LocalizedPomDirectoryPage({
                 <span>{messages.directory.route}</span>
               </div>
 
+              <GradeDirectoryPagination locale={localeSegment}>
               {sortedProducts.map((product, index) => {
                 const tensile = readProperty(product, "Tensile Strength");
                 const hdt = readProperty(
@@ -377,6 +379,7 @@ export async function LocalizedPomDirectoryPage({
                   </Link>
                 );
               })}
+              </GradeDirectoryPagination>
             </div>
           </div>
 

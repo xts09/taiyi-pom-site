@@ -120,15 +120,6 @@ const legacyFiveLocaleNonPomGradeSlugSet = new Set<string>(
   legacyFiveLocaleNonPomGradeSlugs,
 );
 
-export const reviewedFiveLocaleSpunGradeSlugs = [
-  "spun-9200-pa66-glass-fiber-reinforced",
-  "spun-4500-ppa-glass-fiber-reinforced",
-] as const;
-
-const reviewedFiveLocaleSpunGradeSlugSet = new Set<string>(
-  reviewedFiveLocaleSpunGradeSlugs,
-);
-
 type CatalogGradeReleaseIdentity = {
   kind: "product" | "engineering-tds";
   slug: string;
@@ -138,9 +129,7 @@ export const getCatalogGradeLocalizedSegments = ({
   kind,
   slug,
 }: CatalogGradeReleaseIdentity): readonly LocalizedUrlSegment[] =>
-  kind === "product" ||
-  legacyFiveLocaleNonPomGradeSlugSet.has(slug) ||
-  reviewedFiveLocaleSpunGradeSlugSet.has(slug)
+  kind === "product" || legacyFiveLocaleNonPomGradeSlugSet.has(slug)
     ? allLocalizedSegments
     : defaultNonPomGradeLocalizedSegments;
 

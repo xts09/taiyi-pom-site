@@ -48,6 +48,14 @@ editing disclosures. Image previews may crop via CSS; the enlargement dialog
 must display the unchanged original image. Verify keyboard closure, focus
 return and grade/source context in the existing Contact form.
 
+Counts in the wear evidence copy are derived from the records. Entry metadata
+uses count-free descriptions. The source disclosure distinguishes a page
+locator (grade + date) from an original report number. Method and source
+fields without technical confirmation remain null and display only inside
+the record's source/method disclosure. Never infer repeat counts from the
+number of reports received. A dash means a value is not published on this
+page; do not describe it as zero or as proof that the original report lacks it.
+
 ## SEO
 
 Titles, descriptions, canonical URLs, social metadata, structured data, and the

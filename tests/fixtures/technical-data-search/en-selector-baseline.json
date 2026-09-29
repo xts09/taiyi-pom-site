@@ -1,5 +1,6 @@
 {
   "capturedFrom": "http://127.0.0.1:3000",
+  "status": "Historical full-list snapshot before search pagination; use for total-count and order reference only.",
   "captureContract": "Each digest is SHA-256 of the ordered JSON array [{title,href,eyebrow}] parsed from the rendered result list.",
   "fixtures": [
     {
