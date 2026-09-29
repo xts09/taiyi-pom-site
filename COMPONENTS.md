@@ -203,6 +203,20 @@ eligible migration targets when those route families are next changed.
 **Rule:** Directory Row is not a Card. It may use a quiet separator and hover
 surface, but it must preserve list density and aligned columns.
 
+### Listing Pagination — Product Directories and Resource Search
+
+**Owner:** `src/components/GradeDirectoryPagination.tsx` for grade rows and
+`src/components/PaginationNav.tsx` with its CSS module for shared page controls.
+
+**Consumers:** English and localized `/products/categories/pom`, PA6 and PA66
+directories. Lists over ten grades show ten per page, keep continuous grade
+numbering and the full catalog count, and leave individual grade routes unchanged.
+`ConductiveCompoundsExplorer.tsx` uses the same controls after its filters and
+keeps matrix groups intact, so a page may contain fewer than ten grades.
+English and localized `/technical-data-sheets` use URL-backed pages of ten
+results; `src/data/technicalDataSearch.ts` owns the ordered result groups and
+`src/lib/paginateResultGroups.ts` slices across them without changing totals.
+
 ### Disclosure — Partial
 
 **Canonical owner:** `src/components/ui/accordion.tsx`

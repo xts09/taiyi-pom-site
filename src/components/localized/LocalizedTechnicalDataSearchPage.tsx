@@ -2,12 +2,14 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { DocumentCard } from "@/components/DocumentCard";
+import { PaginationNav } from "@/components/PaginationNav";
 import { TechnicalDataQueryLink } from "@/components/TechnicalDataQueryLink";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createEngineeringTdsSlug } from "@/data/engineeringTds";
 import {
   isTechnicalDataProductContentType,
+  paginateTechnicalDataResults,
   selectTechnicalDataSearch,
   technicalDataGradeBrowseGroups,
   type TechnicalDataSearchParams,
@@ -58,6 +60,7 @@ export function LocalizedTechnicalDataSearchPage({
     params,
     vocabulary: language.vocabulary,
   });
+  const paginatedResults = paginateTechnicalDataResults(selection, params.page);
   const localizedResources = getLocalizedResourcePages(localeSegment);
   const requestHref = localizedPath(
     createContactHref({
@@ -312,8 +315,9 @@ export function LocalizedTechnicalDataSearchPage({
               <p>{copy.cleanBody}</p>
             </div>
           ) : totalResults > 0 ? (
+            <>
             <div className="resource-site-result-list">
-              {selection.resourceResults.map((resource) => {
+              {paginatedResults.resourceResults.map((resource) => {
                 const localizedResource =
                   localizedResources[
                     resource.slug as LocalizedResourceArticleSlug
@@ -333,7 +337,7 @@ export function LocalizedTechnicalDataSearchPage({
                 );
               })}
 
-              {selection.engineeringResults.map(({ document, documentState }) => (
+              {paginatedResults.engineeringResults.map(({ document, documentState }) => (
                 <DocumentCard
                   key={`${document.family}-${document.grade}`}
                   variant="compact-link"
@@ -355,7 +359,7 @@ export function LocalizedTechnicalDataSearchPage({
                 />
               ))}
 
-              {selection.conductiveResults.map((compound) => {
+              {paginatedResults.conductiveResults.map((compound) => {
                 const series = language.series[compound.technology];
 
                 return (
@@ -380,7 +384,7 @@ export function LocalizedTechnicalDataSearchPage({
                 );
               })}
 
-              {selection.suggestedProductResults.map(
+              {paginatedResults.suggestedProductResults.map(
                 ({ product, documentState }) => (
                   <DocumentCard
                     key={`suggested-${product.slug}`}
@@ -401,7 +405,7 @@ export function LocalizedTechnicalDataSearchPage({
                 ),
               )}
 
-              {selection.productResults.map(({ product, documentState }) => (
+              {paginatedResults.productResults.map(({ product, documentState }) => (
                 <DocumentCard
                   key={product.slug}
                   variant="compact-link"
@@ -420,6 +424,18 @@ export function LocalizedTechnicalDataSearchPage({
                 />
               ))}
             </div>
+            <PaginationNav
+              page={paginatedResults.page}
+              totalPages={paginatedResults.totalPages}
+              first={paginatedResults.first}
+              last={paginatedResults.last}
+              total={totalResults}
+              kind="results"
+              locale={localeSegment}
+              hrefBase={getFilterHref({})}
+              anchor="resource-results"
+            />
+            </>
           ) : (
             <div className="resource-search-empty">
               <h2>{copy.noResultsTitle}</h2>

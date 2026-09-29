@@ -145,7 +145,7 @@ test("serves shared localized search while retaining grade browsing and evidence
   );
 });
 
-test("preserves the frozen English rendered-result fixture set", () => {
+test("preserves the historical English full-list result fixture set", () => {
   const baseline = JSON.parse(
     readProjectFile(
       "tests/fixtures/technical-data-search/en-selector-baseline.json",

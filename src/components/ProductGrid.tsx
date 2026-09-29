@@ -10,6 +10,7 @@ import {
 } from "@/data/engineeringTds";
 import type { Product } from "@/data/products";
 import { PomFamilyMap } from "@/components/PomFamilyMap";
+import { GradeDirectoryPagination } from "@/components/GradeDirectoryPagination";
 import { ValueText, ValueWithUnit } from "@/components/UnitText";
 import {
   getProductListDescriptor,
@@ -278,6 +279,7 @@ export function ProductGrid({
                 <span>Details</span>
               </div>
 
+              <GradeDirectoryPagination enabled={engineeringGrades.length > 10}>
               {engineeringGrades.map((document, index) => (
                 <Link
                   key={`${document.family}-${document.grade}`}
@@ -315,6 +317,7 @@ export function ProductGrid({
                   </span>
                 </Link>
               ))}
+              </GradeDirectoryPagination>
             </div>
           ) : filteredProducts.length === 0 ? (
             <div className="product-empty products-motion-row">
@@ -331,6 +334,7 @@ export function ProductGrid({
                 <span>Details</span>
               </div>
 
+              <GradeDirectoryPagination enabled={selectedCategory === "POM"}>
               {filteredProducts.map((product, index) => {
                 const tensile = readProperty(product, "Tensile Strength");
                 const hdt = readProperty(
@@ -402,6 +406,7 @@ export function ProductGrid({
                   </Link>
                 );
               })}
+              </GradeDirectoryPagination>
             </div>
           )}
         </>
