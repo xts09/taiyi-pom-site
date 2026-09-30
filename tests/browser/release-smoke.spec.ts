@@ -6,6 +6,20 @@ async function noOverflow(page: Page) {
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 }
 
+async function expectDirectoryGrade(page: Page, href: string, grade: string) {
+  const link = page.locator(`main a[href="${href}"]`).filter({ hasText: grade }).first();
+  const next = page.getByRole("button", { name: /^(Next|Weiter|下一页|Suivant|Próxima)$/ });
+  // Follow the visible directory controls instead of assuming every grade is on page one.
+  for (let visited = 0; visited < 20; visited += 1) {
+    if (await link.isVisible()) break;
+    if (await next.count() === 0 || await next.isDisabled()) break;
+    const previousUrl = page.url();
+    await next.click();
+    await expect(page).not.toHaveURL(previousUrl);
+  }
+  await expect(link).toBeVisible();
+}
+
 test.beforeEach(async ({ context, baseURL }) => {
   const origin = new URL(baseURL!).origin;
   // A release smoke check never sends inquiries or external analytics.
@@ -80,7 +94,7 @@ for (const prefix of ["", "/de", "/zh"]) {
       await expect(tableLink).not.toHaveAttribute("hreflang", "en");
       await expect(tableLink.locator('[lang="en"]')).toHaveCount(0);
       await page.goto(`${prefix}/products/categories/${polymer}-compound`);
-      await expect(page.locator(`main a[href="${gradeHref}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
+      await expectDirectoryGrade(page, gradeHref, product.grade);
       await page.goto(`${prefix}/technical-data-sheets?q=${product.grade}`);
       await expect(page.locator(`main a[href="${gradeHref}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
     }
@@ -104,7 +118,7 @@ for (const [prefix, fallbackLabel] of [["/fr", "Contenu en anglais"], ["/pt-br",
       await expect(tableLink.locator('[lang="en"]')).toHaveText("EN");
       await expect(tableLink.locator('[title]')).toHaveAttribute("title", fallbackLabel);
       await page.goto(`${prefix}/products/categories/${polymer}-compound`);
-      await expect(page.locator(`main a[href="/products/${product.slug}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
+      await expectDirectoryGrade(page, `/products/${product.slug}`, product.grade);
       await page.goto(`${prefix}/technical-data-sheets?q=${product.grade}`);
       await expect(page.locator(`main a[href="/products/${product.slug}"]`).filter({ hasText: product.grade }).first()).toBeVisible();
       await noOverflow(page);
