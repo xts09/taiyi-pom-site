@@ -549,7 +549,7 @@ function EngineeringProductDetailPage({
 
             <p className="text-sm leading-6 text-slate-700">
               {document.screening?.validation ??
-                "This grade page is for preliminary material selection. For project evaluation, please confirm the application, processing method, mold development stage, cavity count, target dimensional requirement, target performance requirements, current reference grade, document requirements, and estimated volume."}
+                "Use these reference values for preliminary screening only. Confirm final suitability with current technical documents, molded-part trials, processing conditions, and project-specific requirements."}
             </p>
           </section>
 
@@ -1066,7 +1066,7 @@ export default async function ProductDetailPage({
             <p className="text-sm leading-6 text-slate-700">
               {campaignProfile
                 ? `This page supports preliminary ${product.grade} screening. Confirm suitability against part design, mold construction, processing conditions, performance targets, customer requirements, current technical documents, sampling, and application testing.`
-                : "This product page is for preliminary material selection. For project evaluation, please confirm the application, processing method, mold development stage, cavity count, target shrinkage or dimensional requirement, target performance requirements, current reference grade, document requirements, and estimated volume."}
+                : "Use these reference values for preliminary screening only. Confirm final suitability with current technical documents, molded-part trials, processing conditions, and project-specific requirements."}
             </p>
 
             {decisionLinks.length > 0 ? (

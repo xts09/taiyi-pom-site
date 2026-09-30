@@ -383,9 +383,14 @@ Use Current Language Release Policy below for current coverage and review requir
 ### Unified Grade Alternative Search (2026-08-15)
 
 - The English `/technical-data-sheets` search recognizes only curated reference-grade aliases and may place reviewed PLATFORM candidates ahead of ordinary catalogue matches. Unknown reference grades must not produce a guessed recommendation.
+- A curated external alias may be recognized as a standalone grade inside a natural-language query, but it must not be extracted from inside another catalogue grade such as `EGH25CN`. Matching preserves punctuation, case, and Unicode normalization.
 - Candidate wording remains preliminary screening language and directs users to compare current TDS data, application requirements, documents, and customer validation; it must not claim equivalence or direct replacement.
 - Reference matching stays server-side. The former public `/pom-grade-cross-reference` route, workspace component, dedicated styles, sitemap exposure, and internal entry points are removed rather than maintained as a separate tool.
 - The retired route was public for only one day and intentionally returns 404 after removal. The unified technical-data search is the sole public entry for current-grade lookup.
+
+### Grade Detail Evaluation Handoff (2026-09-30)
+
+- English grade-detail evaluation notes state the screening and validation boundary. The inquiry panel owns the complete application, mold, performance, reference-grade, document, and volume inputs so the same checklist is not repeated in both sections.
 
 ### B2B Grade Structured Data Boundary (2026-08-23)
 

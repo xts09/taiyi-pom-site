@@ -30,6 +30,26 @@ test("recognizes a grade inside a natural-language lookup", () => {
   assert.equal(match?.score, 80);
 });
 
+test("does not extract an external alias from inside another grade", () => {
+  for (const query of ["EGH25CN", "GH25CN", "candidate alternative to EGH25CN"]) {
+    assert.equal(findGradeCrossReference(query), undefined, query);
+  }
+  assert.equal(
+    findGradeCrossReference("candidate alternative to GH25")?.record.id,
+    "polyplastics-gh-25",
+  );
+});
+
+test("preserves punctuation and Unicode normalization in natural-language lookup", () => {
+  for (const query of [
+    "candidate alternative to m 90 44",
+    "candidate alternative to Ｍ９０－４４",
+    "candidate alternative to DURACON® M90-44",
+  ]) {
+    assert.equal(findGradeCrossReference(query)?.record.id, "duracon-m90-44", query);
+  }
+});
+
 test("supports aliases and returns no result for an unknown grade", () => {
   assert.equal(findGradeCrossReference("GH25")?.record.id, "polyplastics-gh-25");
   assert.equal(findGradeCrossReference("Celanese S9364")?.record.id, "hostaform-s9364");

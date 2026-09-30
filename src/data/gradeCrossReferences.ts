@@ -332,6 +332,17 @@ const aliasEntries = gradeCrossReferences.flatMap((record) => {
   }));
 });
 
+const hasDelimitedReferenceAlias = (query: string, alias: string) => {
+  const normalizedAlias = normalizeReferenceGrade(alias);
+  if (!normalizedAlias) return false;
+
+  // Preserve separator-insensitive matching while requiring whole-grade boundaries.
+  const aliasPattern = normalizedAlias.split("").join("[^a-z0-9]*");
+  return new RegExp(`(?:^|[^a-z0-9])${aliasPattern}(?:$|[^a-z0-9])`, "i").test(
+    query.normalize("NFKC").replace(/[®™]/g, ""),
+  );
+};
+
 export function searchGradeCrossReferences(
   query: string,
   limit = 4,
@@ -349,7 +360,8 @@ export function searchGradeCrossReferences(
       score = 100;
     } else if (
       entry.key.length >= 4 &&
-      normalizedQuery.includes(entry.key)
+      normalizedQuery.includes(entry.key) &&
+      hasDelimitedReferenceAlias(query, entry.alias)
     ) {
       score = 80;
     } else if (
