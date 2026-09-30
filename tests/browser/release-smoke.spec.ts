@@ -203,11 +203,17 @@ for (const route of ["/", "/zh/resources/pom-wear-benchmark"]) {
     if (route === "/") await expect(header).toHaveClass(/site-header--over-hero/);
     else await expect(header).not.toHaveClass(/site-header--over-hero/);
     await info.attach("closed", { body: await page.screenshot(), contentType: "image/png" });
-    await page.locator("header .nav-trigger").first().focus();
+    const trigger = page.locator("header button.nav-trigger").first();
+    await trigger.focus();
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await trigger.press("Enter");
     await expect(page.locator(".product-menu")).toBeVisible();
     await info.attach("expanded", { body: await page.screenshot(), contentType: "image/png" });
+    await trigger.press("ArrowDown");
+    await expect(page.locator(".product-menu a").first()).toBeFocused();
     await page.keyboard.press("Escape");
     await expect(page.locator(".product-menu")).toBeHidden();
+    await expect(trigger).toBeFocused();
     await page.locator(".site-footer-logo").scrollIntoViewIfNeeded();
     await expect.poll(() => page.locator(".site-footer-logo img").evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
     for (const selector of [".brand-logo img", ".site-footer-logo img"]) {
@@ -223,6 +229,25 @@ for (const route of ["/", "/zh/resources/pom-wear-benchmark"]) {
     await noOverflow(page);
   });
 }
+
+test.describe("desktop navigation with touch input", () => {
+  test.use({ hasTouch: true, viewport: { width: 1024, height: 768 } });
+
+  test("each section toggles once per tap", async ({ page }) => {
+    await page.goto("/zh/resources/pom-wear-benchmark");
+    const triggers = page.locator("header button.nav-trigger");
+    for (const index of [0, 1, 2]) {
+      const trigger = triggers.nth(index);
+      await trigger.tap();
+      await expect(trigger).toHaveAttribute("aria-expanded", "true");
+      await expect(page.locator(".mega-menu-content")).toBeVisible();
+      await expect(page.locator('header button.nav-trigger[aria-expanded="true"]')).toHaveCount(1);
+      await trigger.tap();
+      await expect(trigger).toHaveAttribute("aria-expanded", "false");
+      await expect(page.locator(".mega-menu-content")).toBeHidden();
+    }
+  });
+});
 
 test("mobile navigation and inquiry context survive language switching", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
