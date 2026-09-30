@@ -4,6 +4,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import {
+  engineeringGradeReleaseEntries,
   getCatalogGradeLocalizedSegments,
   getLanguageAlternates,
   getLocalizedHref,
@@ -63,6 +64,21 @@ test("the non-POM migration boundary names only real published engineering grade
       allLocalizedSegments,
     );
   }
+});
+
+test("published engineering grade routes match the indexable catalog records", () => {
+  const expectedPaths = catalog
+    .filter(
+      (record) =>
+        record.kind === "engineering-tds" && record.seo?.indexable !== false,
+    )
+    .map((record) => `/products/${record.slug}`)
+    .sort();
+  const releasedPaths = engineeringGradeReleaseEntries
+    .map((entry) => entry.sourcePath)
+    .sort();
+
+  assert.deepEqual(releasedPaths, expectedPaths);
 });
 
 test("future POM and non-POM grades receive the intended default locales", () => {

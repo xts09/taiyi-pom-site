@@ -252,7 +252,7 @@ export const homeTaskFirstLocaleMessages = {
     },
     collaboration: {
       eyebrow: "PROJECT SUPPORT",
-      title: "Support from Trial to Production",
+      title: "Why Choose Taiyi Polymer",
       body:
         "From technical data and samples to trial lots, validation and production supply, we support material qualification at each project stage.",
       itemsAria: "Four ways Taiyi Polymer supports material projects",
@@ -558,7 +558,7 @@ export const homeTaskFirstLocaleMessages = {
     },
     collaboration: {
       eyebrow: "PROJEKTUNTERSTÜTZUNG",
-      title: "Vom Versuch zur Serienfertigung",
+      title: "Warum Taiyi Polymer?",
       body:
         "Wir begleiten die Materialqualifizierung mit technischen Daten, Mustern und Versuchschargen bis zur Validierung und Serienbelieferung.",
       itemsAria: "Vier Bereiche der Projektunterstützung von Taiyi Polymer",
@@ -868,7 +868,7 @@ export const homeTaskFirstLocaleMessages = {
     },
     collaboration: {
       eyebrow: "ACCOMPAGNEMENT DE PROJET",
-      title: "De l’essai à la production",
+      title: "Pourquoi choisir Taiyi Polymer ?",
       body:
         "Des données techniques et échantillons aux lots d’essai, à la validation et à la fourniture en série, nous accompagnons chaque étape de qualification.",
       itemsAria: "Quatre formes d’accompagnement de projet par Taiyi Polymer",
@@ -1178,7 +1178,7 @@ export const homeTaskFirstLocaleMessages = {
     },
     collaboration: {
       eyebrow: "SUPORTE AO PROJETO",
-      title: "Dos testes à produção",
+      title: "Por que escolher a Taiyi Polymer?",
       body:
         "De dados técnicos e amostras a lotes de teste, validação e fornecimento para produção, apoiamos cada etapa do projeto.",
       itemsAria: "Quatro formas de suporte da Taiyi Polymer aos projetos",

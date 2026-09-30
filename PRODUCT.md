@@ -13,11 +13,6 @@ remote deployment/branch-protection requirements.
 Resolve the active branch, commit, and working-tree state from Git at the start
 of each task. Branch names and dirty-file lists are intentionally not treated as
 product requirements because they become stale between maintenance sessions.
-The GitHub tag `checkpoint-before-react-bits` remains the historical
-pre-React-Bits recovery point at commit `6a64732`.
-
-Treat that tag as the pre-React-Bits recovery point. If later motion or component experiments feel wrong, compare against or return to that tag rather than guessing which visual changes caused the drift.
-
 The current homepage and main navigation baseline is:
 
 - Header, mega menu, homepage content, and inner-page modules use the shared
@@ -39,6 +34,8 @@ The current homepage and main navigation baseline is:
 This snapshot records durable implementation ownership. Live branch names,
 commit hashes, dirty files, sitemap totals, and build counts must be read from
 the repository or generated output rather than copied forward as current facts.
+Later dated implementation entries supplement this baseline; `COMPONENTS.md`
+remains the canonical reference for shared component ownership.
 
 - English route owners live under `src/app/(en)/**`; localized route owners live
   under `src/app/[locale]/**`. Shared components and data remain under
@@ -98,24 +95,11 @@ the repository or generated output rather than copied forward as current facts.
 - Applications, its mega menu, and the Footer expose the component hub without listing every child route in global navigation.
 - The hub and six initial detail routes now contain verified engineering content, useful component imagery, and complete internal-link paths. Keep the hub and only detail routes backed by `componentSolutionDetails` indexable and included in `sitemap.xml`; future scaffold routes remain `noindex, follow` and excluded until they pass the same content, imagery, and internal-link gate.
 
-### Multilingual Products Release (2026-08-13)
+### Historical Localization Rollout (2026-08-13 to 2026-08-14)
 
-- Phase A is limited to isolated, non-indexable routing previews at `/de/i18n-preview`, `/fr/i18n-preview`, and `/pt-br/i18n-preview`.
-- Phase B publishes complete, human-reviewed React pages at `/de/products`, `/fr/products`, and `/pt-br/products`, backed by typed dictionaries and `next-intl`. The English `/products` page and these three localized pages form one public language group.
-- The four Products pages emit the correct HTML language, a self-canonical, reciprocal `hreflang` entries for `en`, `de`, `fr`, `pt-BR`, and `x-default`, and are indexable sitemap entries. The Header exposes the same four destinations on desktop and in the mobile menu only while visiting this released page group.
-- Existing unprefixed English routes outside this released group remain unchanged. Do not publish a localized URL, language switcher destination, sitemap entry, or `hreflang` for an incomplete page.
-- Every Phase A preview route remains `noindex` in metadata and HTTP policy and stays absent from sitemap, public language navigation, and `hreflang`.
-- The localized release manifest maps only reviewed page pairs. Unreleased destinations keep their existing English URL instead of creating a localized URL with English fallback or a false 404.
-- Codex owns linguistic, technical, factual, SEO, and rendered review. User confirmation is required only when the approved English source does not establish an underlying business fact.
-- Future localized pages require the same reviewed release gate. A locale URL must not expose English fallback content or become indexable before its full translated page passes review.
-
-### Multilingual Core Funnel Release (2026-08-14)
-
-- ML1 extends the reviewed public language group to Home and Contact at `/de`, `/fr`, `/pt-br`, `/de/contact`, `/fr/contact`, and `/pt-br/contact` while preserving the existing English routes.
-- Home, Products, and Contact now share reciprocal `en`, `de`, `fr`, `pt-BR`, and `x-default` alternates, self-canonicals, language-switcher destinations, and sitemap inclusion.
-- Localized Home and Contact use typed, complete page dictionaries. Contact field labels, material options, prefilled context, progress, success, fallback, and email-draft copy must not fall back to English.
-- Within these released pages, Home, Products, and Contact links remain in the current locale. Applications, Resources, About, product categories, grade pages, technical-data search, previews, dynamic search parameters, and legal pages continue to use their existing English routes until separately reviewed.
-- Publishing a locale shell is still not sufficient: each future route requires complete translated copy, factual and linguistic review, responsive rendered acceptance, reciprocal SEO signals, and explicit release-manifest inclusion.
+The initial phased releases are preserved in the
+[historical rollout records](docs/archive/2026-09-30-retired-rules.md#early-localization-rollout).
+Use Current Language Release Policy below for current coverage and review requirements.
 
 ### Multilingual Product Decision Pilot (2026-08-15)
 
@@ -297,8 +281,19 @@ the repository or generated output rather than copied forward as current facts.
 
 - Acquisition, selection, directory, and landing pages remain complete five-language releases in English, German, French, Brazilian Portuguese, and Simplified Chinese. This includes the PA6, PA66, and PPA glass-fiber landing pages; `/products/categories/glass-fiber-reinforced-ppa-compound` is a landing page rather than a grade-detail route.
 - POM grade-detail pages, both existing and newly added, use the same five-language release group.
-- Existing published non-POM grade-detail pages retain their complete five-language URL, sitemap, navigation, canonical, and reciprocal alternate coverage through an explicit preserved-grade registry. This migration does not remove, redirect, or noindex any existing French or Brazilian Portuguese grade URL.
-- Newly added non-POM grade-detail pages default to English, German, and Simplified Chinese. French or Brazilian Portuguese can be added only through an explicit release-policy change after the corresponding localized page is ready.
+- Historical five-language non-POM grade-detail records are identified by the fixed `legacyFiveLocaleNonPomGradeSlugs` registry in `src/i18n/releaseManifest.ts`. Those records retain their five-language URL, sitemap, navigation, canonical, and reciprocal alternate coverage. This registry defines the historical release batch; it is not derived from all currently published catalog records.
+- Subsequent non-POM grade-detail additions outside that historical registry, including `SPUN-9200` and `SPUN-4500`, default to English, German, and Simplified Chinese. Publishing a later record does not add it to the historical five-language batch. French or Brazilian Portuguese can be added only through an explicit release-policy change after the corresponding localized page is ready.
+
+- Public localized routes require complete translated copy, factual and
+  linguistic review, responsive rendered acceptance, reciprocal SEO signals,
+  and explicit release-manifest inclusion. A locale URL must not expose
+  incomplete English fallback content.
+- Internal previews and unreleased localized pages stay out of public
+  navigation, sitemap, and language alternates. Previews remain `noindex` in
+  metadata and HTTP policy.
+- Codex owns linguistic, technical, factual, SEO, and rendered review. User
+  confirmation is required only when the approved source does not establish
+  an underlying business fact.
 
 ### Simplified Chinese Homepage Task-First Narrative (2026-08-22)
 
@@ -370,6 +365,13 @@ the repository or generated output rather than copied forward as current facts.
 
 - Manufacturing & Validation now follows the Home Hero and core POM story with a section label, the Chinese title `让材料的表现，经得起量产`, and two narrative paragraphs about the demands that emerge from trial to sustained production and the Yancheng manufacturing foundation behind modified materials. The five released languages preserve that progression without turning the introduction into a facilities list.
 - The factory photograph, verified company figures, document types and grade/project availability note, and existing certificates remain the factual evidence. The labels identify technical and batch documents and management-system certificates directly; a separate international-project promotional sentence is removed from this Home module. The shorter intro described in the 2026-08-26 manufacturing snapshot is historical and superseded here.
+
+### Homepage Visual Scope And Copy Preservation (2026-09-29)
+
+- The user-approved project-support heading is `为什么选择台益` / `Why Choose Taiyi Polymer`, with corresponding German, French, and Brazilian Portuguese titles. This title-only change preserves the section eyebrow, introduction, four support points, and action copy.
+- The supplied five-language homepage copy is retained, including the original POM introduction, manufacturing paragraphs, and navigation labels. UI-only work must not shorten or rewrite this copy.
+- The second screen keeps its original four horizontal material entrances, POM blue treatment, and combined material-image/text frame. The retained visual adjustment is the upward-right link arrow, also visible on mobile.
+- At 64rem and below, Manufacturing & Validation places the factory photograph immediately after its heading and before the original narrative paragraphs. Desktop retains text on the left and the photograph on the right. The original company figures, documents, and certificate sources remain unchanged.
 
 ### Canonical POM Directory Consolidation (2026-08-29)
 
@@ -497,6 +499,24 @@ the repository or generated output rather than copied forward as current facts.
   two-column metric layouts. This is a presentation change only; catalogue
   values, ordering, links and document status remain unchanged.
 
+### Shared Grade Directories And Engineering Details (2026-09-30, Local Implementation)
+
+- The POM material directory and PA6/PA66 category directories show ten grades
+  per page, preserve continuous numbering, and keep the selected page in the
+  URL for refresh and Back/Forward navigation. Shorter engineering-family
+  directories retain one list.
+- English and localized grade directories share the row presentation, and
+  engineering-grade details share the core-property table presentation.
+  `COMPONENTS.md` records their canonical owners and migration boundaries;
+  catalog values, translated copy, and locale release policy stay with their
+  existing data and page owners.
+- Engineering related-grade links use the configured order when at least one
+  configured candidate is available, up to three links. Otherwise they use
+  same-category peers with a same-family fallback. Localized detail pages
+  select only from grade routes released and indexable in the active language.
+- This entry records local implementation; deployment status requires separate
+  release verification.
+
 ### SPUN Engineering Grades (2026-09-23, Local Catalog Addition)
 
 - `SPUN-9200` is catalogued as PA66 GF45 and `SPUN-4500` as PPA GF45. Their
@@ -504,10 +524,11 @@ the repository or generated output rather than copied forward as current facts.
   details, material-family listings, technical-data search, and the glass-fiber
   comparison pages. The PA66 and PPA glass-fiber comparisons contain 16 and 3
   grades respectively in all five released languages.
-- Future non-POM grade details default to English, German and Simplified
-  Chinese. Earlier five-language non-POM grade details keep their French and
-  Brazilian Portuguese URLs. By explicit 2026-09-24 direction, the two recently
-  published SPUN grades follow the EN/DE/ZH detail policy; their FR/PT detail
+- Historical non-POM grade records in `legacyFiveLocaleNonPomGradeSlugs`
+  retain five-language detail coverage. Subsequent records outside that fixed
+  registry default to English, German and Simplified Chinese. The two SPUN
+  records belong to the subsequent batch. By explicit 2026-09-24 direction,
+  their EN/DE/ZH detail policy is applied locally; their FR/PT detail
   URLs are withdrawn when this local change is deployed. Five-language material
   directories, technical-data search and glass-fiber comparisons continue
   listing them; FR/PT destinations resolve to English, with localized prompts

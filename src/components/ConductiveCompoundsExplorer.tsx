@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { createContactHref } from "@/lib/contactContext";
+import { focusDirectoryResults } from "@/lib/focusDirectoryResults";
 import { Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
@@ -234,7 +235,7 @@ export function ConductiveCompoundsExplorer({
   const changePage = (nextPage: number) => {
     setPage(nextPage);
     requestAnimationFrame(() => {
-      document.getElementById("grade-results")?.scrollIntoView({ block: "start" });
+      focusDirectoryResults("grade-results");
     });
   };
 
@@ -389,7 +390,7 @@ export function ConductiveCompoundsExplorer({
           <span>{messages.rangeNote}</span>
         </div>
 
-        <div id="grade-results" className={styles.results}>
+        <div id="grade-results" className={styles.results} role="region" aria-labelledby="grade-explorer-title" tabIndex={-1}>
         {filteredCompounds.length ? (
           groupByMatrix ? (
             <div className={styles.matrixGroups}>

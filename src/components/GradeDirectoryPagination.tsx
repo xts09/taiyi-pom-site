@@ -1,7 +1,22 @@
 "use client";
 
-import { Children, useState, type ReactNode } from "react";
+import { Children, useSyncExternalStore, type ReactNode } from "react";
 import { PaginationNav, type PaginationLocale } from "@/components/PaginationNav";
+import { focusDirectoryResults } from "@/lib/focusDirectoryResults";
+
+const pageChangeEvent = "grade-directory-pagechange";
+
+function subscribeToPage(onChange: () => void) {
+  window.addEventListener("popstate", onChange);
+  window.addEventListener(pageChangeEvent, onChange);
+  return () => {
+    window.removeEventListener("popstate", onChange);
+    window.removeEventListener(pageChangeEvent, onChange);
+  };
+}
+
+const getPageSnapshot = () => new URLSearchParams(window.location.search).get("page") ?? "1";
+const getServerPageSnapshot = () => "1";
 
 export function GradeDirectoryPagination({
   children,
@@ -18,7 +33,9 @@ export function GradeDirectoryPagination({
 }) {
   const rows = Children.toArray(children);
   const totalPages = Math.ceil(rows.length / pageSize);
-  const [page, setPage] = useState(1);
+  const pageValue = useSyncExternalStore(subscribeToPage, getPageSnapshot, getServerPageSnapshot);
+  const parsedPage = Number(pageValue);
+  const page = /^[1-9]\d*$/.test(pageValue) && Number.isSafeInteger(parsedPage) ? parsedPage : 1;
 
   if (!enabled || totalPages <= 1) return <>{children}</>;
 
@@ -27,9 +44,14 @@ export function GradeDirectoryPagination({
 
   const selectPage = (nextPage: number) => {
     if (nextPage < 1 || nextPage > totalPages || nextPage === currentPage) return;
-    setPage(nextPage);
+    const url = new URL(window.location.href);
+    if (nextPage === 1) url.searchParams.delete("page");
+    else url.searchParams.set("page", String(nextPage));
+    url.hash = scrollTargetId;
+    window.history.pushState(null, "", `${url.pathname}${url.search}${url.hash}`);
+    window.dispatchEvent(new Event(pageChangeEvent));
     requestAnimationFrame(() => {
-      document.getElementById(scrollTargetId)?.scrollIntoView({ block: "start" });
+      focusDirectoryResults(scrollTargetId);
     });
   };
 

@@ -4,6 +4,7 @@ type RelatedGradeSelectionOptions<T> = {
   getId: (item: T) => string;
   isPrimaryPeer: (item: T, current: T) => boolean;
   isFallbackPeer: (item: T, current: T) => boolean;
+  preferredIds?: readonly string[];
   limit?: number;
 };
 
@@ -59,8 +60,16 @@ export const selectRelatedGrades = <T>({
   getId,
   isPrimaryPeer,
   isFallbackPeer,
+  preferredIds,
   limit = 3,
 }: RelatedGradeSelectionOptions<T>) => {
+  const preferred = preferredIds
+    ?.map((id) => items.find((item) => getId(item) === id))
+    .filter((item): item is T => item !== undefined)
+    .slice(0, limit);
+
+  if (preferred && preferred.length > 0) return preferred;
+
   const currentId = getId(current);
   const selectGroup = (predicate: RelatedGradeSelectionOptions<T>["isPrimaryPeer"]) =>
     selectCircularNeighbours(

@@ -432,7 +432,7 @@ const messages = {
       },
       collaboration: {
         eyebrow: "项目支持",
-        title: "从试料到量产的项目支持",
+        title: "为什么选择台益",
         body: "从技术资料、样品和小批试料，到材料验证及量产供货，按阶段提供支持。",
         itemsAria: "台益的四项项目支持",
         items: [

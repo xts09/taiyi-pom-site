@@ -100,3 +100,30 @@ test("uses a deterministic same-family fallback for a one-grade category", () =>
     "POM-BASE-1",
   ]);
 });
+
+test("honors configured related grades in order within the available catalog", () => {
+  const items = ["A", "B", "C", "D"].map((id) => ({
+    id,
+    family: "PA6",
+    category: "Glass Fiber",
+  }));
+  const current = items[0];
+  const options = {
+    items,
+    current,
+    getId,
+    isPrimaryPeer: sameCategory,
+    isFallbackPeer: sameFamily,
+    preferredIds: ["D", "unreleased", "B", "C"],
+  };
+
+  assert.deepEqual(selectRelatedGrades(options).map(getId), ["D", "B", "C"]);
+  assert.deepEqual(
+    selectRelatedGrades({ ...options, items: items.slice(0, 2) }).map(getId),
+    ["B"],
+  );
+  assert.deepEqual(
+    selectRelatedGrades({ ...options, preferredIds: ["unreleased"] }).map(getId),
+    ["B", "D", "C"],
+  );
+});

@@ -842,24 +842,6 @@ body {
   text-transform: uppercase;
 }
 
-.product-directory-row {
-  grid-template-columns: minmax(18rem, 0.95fr) minmax(25rem, 1fr) 8rem;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  background: rgba(255, 255, 255, 0.7);
-  padding: clamp(1rem, 2vw, 1.35rem) 1.2rem;
-  transition:
-    border-color 160ms ease,
-    background 160ms ease,
-    box-shadow 160ms ease;
-}
-
-.product-directory-row:hover {
-  border-color: rgba(47, 95, 158, 0.26);
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 1rem 2.4rem rgba(15, 23, 42, 0.08);
-  transform: none;
-}
-
 .product-directory-main {
   grid-template-columns: 3rem minmax(0, 1fr);
 }
@@ -1011,23 +993,6 @@ body {
   border-top: 1px solid rgba(15, 23, 42, 0.14);
 }
 
-.product-directory-row {
-  position: relative;
-  isolation: isolate;
-  display: grid;
-  grid-template-columns: minmax(18rem, 1.05fr) minmax(24rem, 0.9fr) 4rem;
-  gap: clamp(1rem, 2.5vw, 2rem);
-  align-items: center;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
-  padding: clamp(1.1rem, 2vw, 1.45rem) 0;
-  color: #07111f;
-  transition:
-    border-color 180ms ease,
-    transform 180ms ease,
-    background 180ms ease;
-}
-
-.product-directory-row::before,
 .application-direction-row::before,
 .related-product-row::before,
 .capability-line::before {
@@ -1045,7 +1010,6 @@ body {
   transition: opacity 180ms ease;
 }
 
-.product-directory-row:hover,
 .application-direction-row:hover,
 .related-product-row:hover,
 .capability-line:hover {
@@ -1053,7 +1017,6 @@ body {
   transform: translateX(0.25rem);
 }
 
-.product-directory-row:hover::before,
 .application-direction-row:hover::before,
 .related-product-row:hover::before,
 .capability-line:hover::before {
@@ -3201,14 +3164,12 @@ body {
   outline: none;
 }
 
-.product-directory-row:hover,
 .application-direction-row:hover,
 .related-product-row:hover,
 .capability-line:hover {
   transform: none;
 }
 
-.product-directory-row::before,
 .application-direction-row::before,
 .related-product-row::before,
 .capability-line::before {
@@ -4593,7 +4554,6 @@ body {
     flex-direction: column;
   }
 
-  .product-directory-row,
   .related-product-row {
     grid-template-columns: 1fr;
   }
@@ -5983,8 +5943,7 @@ body {
 
 /* Subtle card surface: a light industrial gradient without changing layout. */
 .premium-card,
-.document-line,
-.product-directory-row {
+.document-line {
   background:
     linear-gradient(
       145deg,
@@ -5993,17 +5952,6 @@ body {
       rgba(235, 244, 250, 0.62)
     ),
     rgba(255, 255, 255, 0.72);
-}
-
-.product-directory-row:hover {
-  background:
-    linear-gradient(
-      145deg,
-      #ffffff,
-      rgba(244, 250, 254, 0.92) 56%,
-      rgba(224, 241, 250, 0.72)
-    ),
-    rgba(255, 255, 255, 0.86);
 }
 
 /* Dark surface gradient depth: richer, still muted industrial blue-black. */

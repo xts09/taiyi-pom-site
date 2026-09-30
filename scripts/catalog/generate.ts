@@ -6,6 +6,7 @@ type JsonRecord = Record<string, unknown>;
 const root = process.cwd();
 const catalogDirectory = resolve(root, "content/catalog/products");
 const outputPath = resolve(root, "src/generated/catalog.json");
+const releaseSlugsOutputPath = resolve(root, "src/generated/engineering-grade-release-slugs.json");
 const checkOnly = process.argv.includes("--check");
 
 const collectJsonFiles = (directory: string): string[] => {
@@ -212,14 +213,28 @@ records.sort((left, right) => {
 });
 
 const output = `${JSON.stringify(records, null, 2)}\n`;
+const engineeringGradeReleaseSlugs = records
+  .filter(
+    (record) =>
+      record.kind === "engineering-tds" &&
+      (record.seo as JsonRecord | undefined)?.indexable !== false,
+  )
+  .map((record) => String(record.slug));
+const releaseSlugsOutput = `${JSON.stringify(engineeringGradeReleaseSlugs, null, 2)}\n`;
 
 if (checkOnly) {
-  if (!existsSync(outputPath) || readFileSync(outputPath, "utf8") !== output) {
-    throw new Error("Generated catalog is stale. Run npm run catalog:generate.");
+  for (const [path, expected] of [
+    [outputPath, output],
+    [releaseSlugsOutputPath, releaseSlugsOutput],
+  ]) {
+    if (!existsSync(path) || readFileSync(path, "utf8") !== expected) {
+      throw new Error(`Generated ${relative(root, path)} is stale. Run npm run catalog:generate.`);
+    }
   }
-  console.log(`Catalog check passed: ${records.length} records.`);
+  console.log(`Catalog check passed: ${records.length} records, ${engineeringGradeReleaseSlugs.length} released engineering grades.`);
 } else {
   mkdirSync(dirname(outputPath), { recursive: true });
   writeFileSync(outputPath, output, "utf8");
-  console.log(`Generated ${records.length} catalog records.`);
+  writeFileSync(releaseSlugsOutputPath, releaseSlugsOutput, "utf8");
+  console.log(`Generated ${records.length} catalog records and ${engineeringGradeReleaseSlugs.length} released engineering grade routes.`);
 }

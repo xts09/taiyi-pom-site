@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { GradeDirectoryPagination } from "@/components/GradeDirectoryPagination";
-import type { CSSProperties } from "react";
+import { GradeDirectory, GradeDirectoryRow } from "@/components/GradeDirectory";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { getEngineeringDirectionHref } from "@/data/engineeringDirectionNavigation";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
-import { ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { availableDocuments } from "@/data/company";
 import {
@@ -233,72 +231,36 @@ export function LocalizedEngineeringCategoryContent({
               </span>
             </div>
 
-            <div className="product-directory">
-              <div className="product-directory-labels" aria-hidden="true">
-                <span>{copy.directory.grade}</span>
-                <span>{copy.directory.keyData}</span>
-                <span>{copy.directory.route}</span>
-              </div>
-
-              <GradeDirectoryPagination enabled={grades.length > 10} locale={localeSegment}>
+            <GradeDirectory
+              enabled={grades.length > 10}
+              labels={[copy.directory.grade, copy.directory.keyData, copy.directory.route]}
+              locale={localeSegment}
+            >
               {grades.map((grade, index) => {
-                const direction = directionCopy[
-                  grade.category
-                ] ?? { label: grade.category, summary: grade.description };
+                const direction = directionCopy[grade.category] ?? {
+                  label: grade.category,
+                  summary: grade.description,
+                };
 
                 return (
-                  <Link
+                  <GradeDirectoryRow
                     key={`${grade.family}-${grade.grade}`}
+                    action={copy.directory.detailAction}
+                    description={direction.summary}
+                    eyebrow={`${grade.family} · ${direction.label}`}
                     href={localizedPath(`/products/${createEngineeringTdsSlug(grade)}`)}
-                    className="product-directory-row products-motion-row"
-                    style={{ "--item-index": index } as CSSProperties}
-                  >
-                    <div className="product-directory-main">
-                      <span className="product-directory-index">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <div>
-                        <p className="section-kicker">
-                          {grade.family} · {direction.label}
-                        </p>
-                        <h3>{grade.grade}</h3>
-                        <p>{direction.summary}</p>
-                      </div>
-                    </div>
-
-                    <dl className="product-directory-specs">
-                      <div>
-                        <dt>{copy.directory.density}</dt>
-                        <dd><ValueText value={grade.density || "-"} /></dd>
-                      </div>
-                      <div>
-                        <dt>{copy.directory.tensile}</dt>
-                        <dd>
-                          <ValueText
-                            value={grade.tensile ? `${grade.tensile} MPa` : "-"}
-                          />
-                        </dd>
-                      </div>
-                      <div>
-                        <dt>{copy.directory.hdt}</dt>
-                        <dd>
-                          <ValueText value={grade.hdt ? `${grade.hdt} ℃` : "-"} />
-                        </dd>
-                      </div>
-                      <div>
-                        <dt>{copy.directory.flammability}</dt>
-                        <dd><ValueText value={grade.flammability || "-"} /></dd>
-                      </div>
-                    </dl>
-
-                    <span className="product-directory-action">
-                      {copy.directory.detailAction}
-                    </span>
-                  </Link>
+                    index={index}
+                    specs={[
+                      [copy.directory.density, grade.density || "-"],
+                      [copy.directory.tensile, grade.tensile ? `${grade.tensile} MPa` : "-"],
+                      [copy.directory.hdt, grade.hdt ? `${grade.hdt} ℃` : "-"],
+                      [copy.directory.flammability, grade.flammability || "-"],
+                    ]}
+                    title={grade.grade}
+                  />
                 );
               })}
-              </GradeDirectoryPagination>
-            </div>
+            </GradeDirectory>
           </section>
 
           <section

@@ -1,13 +1,12 @@
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
-import { GradeDirectoryPagination } from "@/components/GradeDirectoryPagination";
+import { GradeDirectory, GradeDirectoryRow, type GradeDirectorySpec } from "@/components/GradeDirectory";
 import { PomFamilyMap } from "@/components/PomFamilyMap";
 import { ProductPageMotion } from "@/components/ProductPageMotion";
 import { SecondarySectionNav } from "@/components/SecondarySectionNav";
-import { ValueText, ValueWithUnit } from "@/components/UnitText";
+import { ValueWithUnit } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { products, type Product } from "@/data/products";
 import { pomFamilyMasterVisuals } from "@/data/pomFamilyVisuals";
@@ -285,21 +284,17 @@ export async function LocalizedPomDirectoryPage({
               </span>
             </div>
 
-            <div className="product-directory">
-              <div className="product-directory-labels" aria-hidden="true">
-                <span>{messages.directory.grade}</span>
-                <span>{messages.directory.keyData}</span>
-                <span>{messages.directory.route}</span>
-              </div>
-
-              <GradeDirectoryPagination locale={localeSegment}>
+            <GradeDirectory
+              labels={[messages.directory.grade, messages.directory.keyData, messages.directory.route]}
+              locale={localeSegment}
+            >
               {sortedProducts.map((product, index) => {
                 const tensile = readProperty(product, "Tensile Strength");
                 const hdt = readProperty(
                   product,
                   "Heat Deflection Temperature",
                 );
-                const specs: Array<[string, ReactNode]> = [
+                const specs: GradeDirectorySpec[] = [
                   [messages.directory.mfi, product.mfi],
                   [
                     messages.directory.tensile,
@@ -332,55 +327,30 @@ export async function LocalizedPomDirectoryPage({
                 );
 
                 return (
-                  <Link
+                  <GradeDirectoryRow
                     key={product.slug}
+                    action={
+                      <>
+                        {isEnglishDestination
+                          ? messages.directory.englishDetailAction
+                          : messages.directory.detailAction}{" "}
+                        {isEnglishDestination ? (
+                          <EnglishDestinationBadge
+                            label={messages.directory.englishDestinationLabel}
+                          />
+                        ) : null}
+                      </>
+                    }
+                    description={getGradeSummary(messages, product)}
+                    eyebrow={getCategoryLabel(messages, product.category)}
                     href={href}
-                    className="product-directory-row products-motion-row"
-                    style={{ "--item-index": index } as CSSProperties}
-                  >
-                    <div className="product-directory-main">
-                      <span className="product-directory-index">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <div>
-                        <p className="section-kicker">
-                          {getCategoryLabel(messages, product.category)}
-                        </p>
-                        <h3>{product.grade}</h3>
-                        <p>{getGradeSummary(messages, product)}</p>
-                      </div>
-                    </div>
-
-                    <dl className="product-directory-specs">
-                      {specs.map(([label, value]) => (
-                        <div key={label}>
-                          <dt>{label}</dt>
-                          <dd>
-                            {typeof value === "string" ? (
-                              <ValueText value={value} />
-                            ) : (
-                              value
-                            )}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-
-                    <span className="product-directory-action">
-                      {isEnglishDestination
-                        ? messages.directory.englishDetailAction
-                        : messages.directory.detailAction}{" "}
-                      {isEnglishDestination ? (
-                        <EnglishDestinationBadge
-                          label={messages.directory.englishDestinationLabel}
-                        />
-                      ) : null}
-                    </span>
-                  </Link>
+                    index={index}
+                    specs={specs}
+                    title={product.grade}
+                  />
                 );
               })}
-              </GradeDirectoryPagination>
-            </div>
+            </GradeDirectory>
           </div>
 
           <section

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { getEngineeringDirectionHref } from "@/data/engineeringDirectionNavigation";
-import { useEffect, type CSSProperties, type ReactNode } from "react";
+import { useEffect } from "react";
 import {
   createEngineeringTdsSlug,
   getEngineeringTdsByProductCategory,
@@ -10,8 +10,8 @@ import {
 } from "@/data/engineeringTds";
 import type { Product } from "@/data/products";
 import { PomFamilyMap } from "@/components/PomFamilyMap";
-import { GradeDirectoryPagination } from "@/components/GradeDirectoryPagination";
-import { ValueText, ValueWithUnit } from "@/components/UnitText";
+import { GradeDirectory, GradeDirectoryRow, type GradeDirectorySpec } from "@/components/GradeDirectory";
+import { ValueWithUnit } from "@/components/UnitText";
 import {
   getProductListDescriptor,
   getProductListTitle,
@@ -177,7 +177,7 @@ export function ProductGrid({
       };
     });
 
-  const getEngineeringSpecs = (document: EngineeringTdsDocument) => [
+  const getEngineeringSpecs = (document: EngineeringTdsDocument): GradeDirectorySpec[] => [
     ["Specific gravity", document.density],
     ["Tensile stress", document.tensile ? `${document.tensile} MPa` : "-"],
     ["HDT 1.8 MPa", document.hdt ? `${document.hdt} degC` : "-"],
@@ -272,53 +272,23 @@ export function ProductGrid({
           </div>
 
           {isEngineeringCategory ? (
-            <div className="product-directory">
-              <div className="product-directory-labels" aria-hidden="true">
-                <span>Grade</span>
-                <span>Key Data</span>
-                <span>Details</span>
-              </div>
-
-              <GradeDirectoryPagination enabled={engineeringGrades.length > 10}>
+            <GradeDirectory
+              enabled={engineeringGrades.length > 10}
+              labels={["Grade", "Key Data", "Details"]}
+            >
               {engineeringGrades.map((document, index) => (
-                <Link
+                <GradeDirectoryRow
                   key={`${document.family}-${document.grade}`}
+                  action="Grade Details"
+                  description={document.description}
+                  eyebrow={`${document.family} ${document.category}`}
                   href={`/products/${createEngineeringTdsSlug(document)}`}
-                  className="product-directory-row products-motion-row"
-                  style={{ "--item-index": index } as CSSProperties}
-                >
-                  <div className="product-directory-main">
-                    <span className="product-directory-index">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-
-                    <div>
-                      <p className="section-kicker">
-                        {document.family} {document.category}
-                      </p>
-                      <h3>{document.grade}</h3>
-                      <p>{document.description}</p>
-                    </div>
-                  </div>
-
-                  <dl className="product-directory-specs">
-                    {getEngineeringSpecs(document).map(([label, value]) => (
-                      <div key={label}>
-                        <dt>{label}</dt>
-                        <dd>
-                          <ValueText value={value} />
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-
-                  <span className="product-directory-action">
-                    Grade Details
-                  </span>
-                </Link>
+                  index={index}
+                  specs={getEngineeringSpecs(document)}
+                  title={document.grade}
+                />
               ))}
-              </GradeDirectoryPagination>
-            </div>
+            </GradeDirectory>
           ) : filteredProducts.length === 0 ? (
             <div className="product-empty products-motion-row">
               This project-based material family is evaluated through the
@@ -327,21 +297,17 @@ export function ProductGrid({
               relevant options.
             </div>
           ) : (
-            <div className="product-directory">
-              <div className="product-directory-labels" aria-hidden="true">
-                <span>Grade</span>
-                <span>Key Data</span>
-                <span>Details</span>
-              </div>
-
-              <GradeDirectoryPagination enabled={selectedCategory === "POM"}>
+            <GradeDirectory
+              enabled={selectedCategory === "POM"}
+              labels={["Grade", "Key Data", "Details"]}
+            >
               {filteredProducts.map((product, index) => {
                 const tensile = readProperty(product, "Tensile Strength");
                 const hdt = readProperty(
                   product,
                   "Heat Deflection Temperature",
                 );
-                const specs: Array<[string, ReactNode]> = [
+                const specs: GradeDirectorySpec[] = [
                   ["MFI", product.mfi],
                   [
                     "Tensile",
@@ -367,47 +333,19 @@ export function ProductGrid({
                     : product.category;
 
                 return (
-                  <Link
+                  <GradeDirectoryRow
                     key={product.slug}
+                    action="Grade Details"
+                    description={product.description}
+                    eyebrow={eyebrow}
                     href={`/products/${product.slug}`}
-                    className="product-directory-row products-motion-row"
-                    style={{ "--item-index": index } as CSSProperties}
-                  >
-                    <div className="product-directory-main">
-                      <span className="product-directory-index">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-
-                      <div>
-                        <p className="section-kicker">{eyebrow}</p>
-                        <h3>{getProductListTitle(product)}</h3>
-                        <p>{product.description}</p>
-                      </div>
-                    </div>
-
-                    <dl className="product-directory-specs">
-                      {specs.map(([label, value]) => (
-                        <div key={label}>
-                          <dt>{label}</dt>
-                          <dd>
-                            {typeof value === "string" ? (
-                              <ValueText value={value} />
-                            ) : (
-                              value
-                            )}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-
-                    <span className="product-directory-action">
-                      Grade Details
-                    </span>
-                  </Link>
+                    index={index}
+                    specs={specs}
+                    title={getProductListTitle(product)}
+                  />
                 );
               })}
-              </GradeDirectoryPagination>
-            </div>
+            </GradeDirectory>
           )}
         </>
       )}

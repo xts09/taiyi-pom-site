@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { ActionPanel } from "@/components/ActionPanel";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { EngineeringPropertyTable } from "@/components/EngineeringPropertyTable";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -71,24 +72,15 @@ export function LocalizedEngineeringGradePage({
       localeSegment,
     ),
   );
-  const configuredRelatedGrades = (document.screening?.relatedGradeSlugs ?? [])
-    .map((relatedSlug) =>
-      releasedGradeDocuments.find(
-        (item) => createEngineeringTdsSlug(item) === relatedSlug,
-      ),
-    )
-    .filter((item): item is EngineeringTdsDocument => Boolean(item));
-  const relatedGrades =
-    configuredRelatedGrades.length > 0
-      ? configuredRelatedGrades.slice(0, 3)
-      : selectRelatedGrades({
-          items: releasedGradeDocuments,
-          current: document,
-          getId: createEngineeringTdsSlug,
-          isPrimaryPeer: (item, current) =>
-            item.family === current.family && item.category === current.category,
-          isFallbackPeer: (item, current) => item.family === current.family,
-        });
+  const relatedGrades = selectRelatedGrades({
+    items: releasedGradeDocuments,
+    current: document,
+    getId: createEngineeringTdsSlug,
+    preferredIds: document.screening?.relatedGradeSlugs,
+    isPrimaryPeer: (item, current) =>
+      item.family === current.family && item.category === current.category,
+    isFallbackPeer: (item, current) => item.family === current.family,
+  });
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: translateExpandedText("首页", localeSegment), path: localizedPath("/") },
     { name: translateExpandedText("产品", localeSegment), path: localizedPath("/products") },
@@ -199,72 +191,21 @@ export function LocalizedEngineeringGradePage({
         </nav>
 
         <article className="product-detail-sheet">
-          <section
-            id="typical-properties"
-            className="property-table-section product-detail-table-section"
-          >
-            <div className="property-table-head">
-              <p className="section-kicker mb-2">{copy.properties.kicker}</p>
-              <h2 className="text-xl font-black text-slate-950">
-                {copy.properties.title}
-              </h2>
-              <p>{copy.properties.body}</p>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="product-detail-core-property-table w-full text-left text-sm">
-                <thead className="bg-slate-950 text-white">
-                  <tr>
-                    {[
-                      copy.properties.property,
-                      copy.properties.value,
-                      copy.properties.unit,
-                      copy.properties.method,
-                    ].map((label) => (
-                      <th key={label} className="px-5 py-3 font-black">
-                        {label}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200/80">
-                  {copy.properties.items.map((property) => (
-                    <tr key={property.label} className="hover:bg-cyan-50/60">
-                      <td
-                        className="px-5 py-3 font-bold text-slate-950"
-                        data-label={copy.properties.property}
-                      >
-                        {property.label}
-                      </td>
-                      <td
-                        className="px-5 py-3 font-black text-blue-700"
-                        data-label={copy.properties.value}
-                      >
-                        <ValueText value={property.value} />
-                      </td>
-                      <td
-                        className="px-5 py-3 text-slate-700"
-                        data-label={copy.properties.unit}
-                      >
-                        <UnitText unit={property.unit} />
-                      </td>
-                      <td
-                        className="px-5 py-3 text-slate-600"
-                        data-label={copy.properties.method}
-                      >
-                        {property.method}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="product-detail-core-data-note">
-              <p>{copy.properties.body}</p>
-              <Link href={tdsRequestHref}>{copy.properties.requestAction}</Link>
-            </div>
-          </section>
+          <EngineeringPropertyTable
+            kicker={copy.properties.kicker}
+            heading={copy.properties.title}
+            introduction={copy.properties.body}
+            labels={[
+              copy.properties.property,
+              copy.properties.value,
+              copy.properties.unit,
+              copy.properties.method,
+            ]}
+            note={copy.properties.body}
+            properties={copy.properties.items}
+            requestHref={tdsRequestHref}
+            requestLabel={copy.properties.requestAction}
+          />
 
           <section
             id="material-fit"

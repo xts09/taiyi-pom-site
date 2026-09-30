@@ -209,28 +209,6 @@
   text-transform: uppercase;
 }
 
-.products-motion-root .product-directory-row {
-  border: 0;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.11);
-  border-radius: 0;
-  background: transparent;
-  grid-template-columns: minmax(22rem, 1fr) minmax(22rem, 0.82fr) 7.5rem;
-  gap: clamp(1.1rem, 2.2vw, 1.8rem);
-  padding: clamp(1rem, 1.65vw, 1.28rem) 0;
-  transition:
-    border-color 180ms ease,
-    background 180ms ease;
-}
-
-.products-motion-root .product-directory-row::before {
-  display: none;
-}
-
-.products-motion-root .product-directory-row:hover {
-  border-color: rgba(11, 95, 184, 0.28);
-  background: rgba(248, 250, 252, 0.7);
-}
-
 .products-motion-root .product-directory-main {
   grid-template-columns: 3.2rem minmax(0, 1fr);
   gap: 1rem;
@@ -2081,10 +2059,13 @@
 
 .products-motion-root .product-directory-row {
   position: relative;
+  isolation: isolate;
+  display: grid;
   width: 100%;
   min-width: 0;
   grid-template-columns: minmax(16rem, 0.9fr) minmax(20rem, 1fr) 7.5rem;
   gap: clamp(1rem, 2.4vw, 1.8rem);
+  align-items: center;
   min-height: 0;
   border: 1px solid rgba(15, 23, 42, 0.1);
   border-radius: 0;
@@ -2096,20 +2077,13 @@
     ),
     rgba(255, 255, 255, 0.72);
   padding: clamp(0.95rem, 1.55vw, 1.18rem) clamp(0.85rem, 1.8vw, 1.15rem);
+  color: #07111f;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease;
   contain: layout paint style;
   content-visibility: auto;
   contain-intrinsic-size: auto 5.75rem;
-}
-
-.products-motion-root .product-directory-row:hover {
-  border-color: rgba(11, 95, 184, 0.24);
-  background:
-    linear-gradient(
-      90deg,
-      rgba(11, 95, 184, 0.055),
-      rgba(255, 255, 255, 0) 20%
-    ),
-    rgba(255, 255, 255, 0.9);
 }
 
 .products-motion-root .product-directory-main {
@@ -3158,14 +3132,6 @@
   color: var(--ds-action-primary);
   font-size: var(--ds-text-sm);
   line-height: 1.45;
-}
-
-.products-motion-root .product-category-shell .product-directory-row {
-  background: rgba(255, 255, 255, 0.82);
-}
-
-.products-motion-root .product-category-shell .product-directory-row:hover {
-  background: rgba(255, 255, 255, 0.92);
 }
 
 .products-motion-root .product-category-shell .product-directory-specs {
@@ -6054,6 +6020,7 @@
 
 .resource-site-results {
   min-width: 0;
+  scroll-margin-top: calc(var(--site-header-height) + var(--ds-space-4));
 }
 
 .resource-site-results-head {

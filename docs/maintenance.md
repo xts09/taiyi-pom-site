@@ -4,7 +4,17 @@
 
 Edit one JSON file under `content/catalog/products/<source>/`. Keep `id`, `slug`,
 and `grade` stable after publishing. Run `npm run catalog:generate`; never edit
-`src/generated/catalog.json` directly.
+`src/generated/catalog.json` or
+`src/generated/engineering-grade-release-slugs.json` directly. The latter is
+the small release index used by shared language navigation; generation includes
+only indexable `engineering-tds` records. This generated index lists catalog
+routes; it does not approve their language coverage. In
+`src/i18n/releaseManifest.ts`, the fixed `legacyFiveLocaleNonPomGradeSlugs`
+registry identifies the historical five-language engineering-grade batch.
+Subsequent records outside it default to English, German, and Simplified
+Chinese, even after they are published. Never rebuild the historical registry
+from the generated index; add French or Brazilian Portuguese only through an
+explicit release-policy change.
 
 The three record kinds are:
 
@@ -18,6 +28,22 @@ reads this field, not translated copy. Keep the percentage consistent with the
 record's existing descriptions; do not infer it from a grade suffix. New POM
 comparison property labels also need a Chinese label in
 `src/lib/pomGlassFiberComparison.ts` before inclusion in the pilot.
+
+## Grade directories and engineering details
+
+Use `COMPONENTS.md` for canonical presentation ownership. Shared grade rows
+live in `src/components/GradeDirectory.tsx`; page selection and URL/focus
+behavior live in `src/components/GradeDirectoryPagination.tsx`. Engineering
+core-property tables live in `src/components/EngineeringPropertyTable.tsx`.
+Keep catalog values and localized copy in their existing data and page owners.
+POM-specific processing notes remain in the POM detail templates.
+
+`src/lib/relatedGrades.ts` owns configured related-grade order and peer
+fallback. Call it with the page's available candidate set; localized detail
+pages must filter candidates through the active language's release policy.
+When these owners or boundaries change, update `COMPONENTS.md` and the relevant
+implementation entry in `PRODUCT.md` in the same task, as required by
+`AGENTS.md`.
 
 ## TDS PDFs
 
@@ -65,7 +91,7 @@ when the default wording needs an intentional override:
 ```json
 {
   "seo": {
-    "title": "Custom title | Taiyi Nano",
+    "title": "Custom title | Taiyi Polymer",
     "description": "Custom search description.",
     "image": "/custom-og-image.jpg",
     "indexable": true

@@ -120,11 +120,6 @@ function HomeProofSection({
           <div className="home-proof-intro-copy">
             <p className="home-proof-eyebrow">{messages.proof.eyebrow}</p>
             <h2>{messages.proof.title}</h2>
-            <div className="home-proof-body">
-              {messages.proof.body.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
           </div>
           <figure className="home-proof-factory-figure">
             <Image
@@ -135,6 +130,11 @@ function HomeProofSection({
             />
             <figcaption>{messages.proof.factoryImageCaption}</figcaption>
           </figure>
+          <div className="home-proof-body">
+            {messages.proof.body.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </header>
 
         <dl

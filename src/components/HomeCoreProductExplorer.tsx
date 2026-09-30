@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import type { HomeTaskFirstMessages } from "@/i18n/types";
@@ -61,7 +61,7 @@ export function HomeCoreProductExplorer({
                 }
               >
                 <strong>{family.label}</strong>
-                <ArrowRight aria-hidden="true" size={18} />
+                <ArrowUpRight aria-hidden="true" size={18} />
               </Link>
             ))}
           </nav>

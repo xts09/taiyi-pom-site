@@ -7,6 +7,7 @@ import { createContactHref } from "@/lib/contactContext";
 import { ActionPanel } from "@/components/ActionPanel";
 import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { EngineeringPropertyTable } from "@/components/EngineeringPropertyTable";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -315,20 +316,15 @@ function EngineeringProductDetailPage({
           "Final selection should be confirmed against part design and molding conditions",
         ]),
   ];
-  const configuredRelatedGrades = (document.screening?.relatedGradeSlugs ?? [])
-    .map((relatedSlug) => findEngineeringDocumentBySlug(relatedSlug))
-    .filter((item): item is EngineeringTdsDocument => Boolean(item));
-  const documentsToShow =
-    configuredRelatedGrades.length > 0
-      ? configuredRelatedGrades.slice(0, 3)
-      : selectRelatedGrades({
-          items: engineeringTdsDocuments,
-          current: document,
-          getId: createEngineeringTdsSlug,
-          isPrimaryPeer: (item, current) =>
-            item.family === current.family && item.category === current.category,
-          isFallbackPeer: (item, current) => item.family === current.family,
-        });
+  const documentsToShow = selectRelatedGrades({
+    items: engineeringTdsDocuments,
+    current: document,
+    getId: createEngineeringTdsSlug,
+    preferredIds: document.screening?.relatedGradeSlugs,
+    isPrimaryPeer: (item, current) =>
+      item.family === current.family && item.category === current.category,
+    isFallbackPeer: (item, current) => item.family === current.family,
+  });
   const breadcrumbJsonLd = createBreadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Products", path: "/products" },
@@ -498,72 +494,15 @@ function EngineeringProductDetailPage({
         </nav>
 
         <article className="product-detail-sheet">
-          <section
-            id="typical-properties"
-            className="property-table-section product-detail-table-section"
-          >
-            <div className="property-table-head">
-              <p className="section-kicker mb-2">Core Selection Data</p>
-              <h2 className="text-xl font-black text-slate-950">
-                Reference Values for Early Screening
-              </h2>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="product-detail-core-property-table w-full text-left text-sm">
-                <thead className="bg-slate-950 text-white">
-                  <tr>
-                    {["Property", "Value", "Unit", "Test Method"].map(
-                      (label) => (
-                        <th key={label} className="px-5 py-3 font-black">
-                          {label}
-                        </th>
-                      )
-                    )}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200/80">
-                  {coreProperties.map((property) => (
-                    <tr key={property.label} className="hover:bg-cyan-50/60">
-                      <td
-                        className="px-5 py-3 font-bold text-slate-950"
-                        data-label="Property"
-                      >
-                        {property.label}
-                      </td>
-                      <td
-                        className="px-5 py-3 font-black text-blue-700"
-                        data-label="Value"
-                      >
-                        <ValueText value={property.value} />
-                      </td>
-                      <td
-                        className="px-5 py-3 text-slate-700"
-                        data-label="Unit"
-                      >
-                        <UnitText unit={property.unit} />
-                      </td>
-                      <td
-                        className="px-5 py-3 text-slate-600"
-                        data-label="Test Method"
-                      >
-                        {property.method}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="product-detail-core-data-note">
-              <p>
-                Core comparison values are shown here. Full property,
-                processing, impact, electrical, and project-specific data are
-                provided through TDS or project review.
-              </p>
-              <Link href={tdsRequestHref}>Request Full TDS</Link>
-            </div>
-          </section>
+          <EngineeringPropertyTable
+            kicker="Core Selection Data"
+            heading="Reference Values for Early Screening"
+            labels={["Property", "Value", "Unit", "Test Method"]}
+            note="Core comparison values are shown here. Full property, processing, impact, electrical, and project-specific data are provided through TDS or project review."
+            properties={coreProperties}
+            requestHref={tdsRequestHref}
+            requestLabel="Request Full TDS"
+          />
 
           <section
             id="material-fit"

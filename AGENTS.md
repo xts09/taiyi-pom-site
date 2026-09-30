@@ -101,7 +101,7 @@ components, verify representative consumers from each affected route family.
 - Prefer targeted searches and file reads. Do not scan large generated folders such as `.next`, `node_modules`, `dist`, `build`, `coverage`, cache, or media-heavy folders unless explicitly needed.
 - Use the in-app browser only when visual verification is needed, and perform one browser action at a time.
 - Keep tool output compact: summarize errors and results instead of dumping long logs, DOM snapshots, JSON, screenshots, or generated files into chat.
-- Avoid printing full `git diff` output in chat. Default to `git diff --stat`, `git diff --name-only`, or tightly scoped file/keyword diffs; save large diffs or long command output under `.codex-run/` and summarize the key changes.
+- Avoid printing full `git diff` output in chat. Default to `git diff --stat`, `git diff --name-only`, or tightly scoped file/keyword diffs; save large diffs or long command output under `outputs/<task>/` and summarize the key changes.
 - Before starting a dev server, check whether port `3000` is already listening. Do not leave duplicate Next.js dev servers running.
 - Keep exactly one project development server available once it has been started. Reuse the existing listener and leave it running during normal task cleanup; stop or restart it only when the user explicitly asks, the process exits, the port conflicts, or a restart is required to verify stale code.
 - If the thread already contains many screenshots, large images, long logs, or large tool outputs, suggest continuing with a lightweight new thread that carries only a short task summary.

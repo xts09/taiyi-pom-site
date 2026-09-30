@@ -208,7 +208,7 @@
   z-index: -10;
   inset: 0;
   background:
-    linear-gradient(90deg, var(--home-color-scrim) 0 43%, transparent 72%),
+    linear-gradient(90deg, var(--home-color-scrim) 0 65%, transparent 90%),
     linear-gradient(
       180deg,
       var(--home-color-scrim-soft),
@@ -2115,14 +2115,20 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
   text-transform: uppercase;
 }
 
+.home-proof-intro-copy {
+  grid-area: heading;
+}
+
 .home-proof-intro-copy > h2 {
   font-size: var(--ds-section-intro-title-size-display);
   line-height: 1.02;
 }
 
 .home-proof-body {
+  display: grid;
+  grid-area: body;
+  gap: var(--home-space-md);
   max-width: 42rem;
-  margin-top: var(--home-space-lg);
 }
 
 .home-proof-body > p {
@@ -2133,17 +2139,16 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
   text-wrap: pretty;
 }
 
-.home-proof-body > p + p {
-  margin-top: var(--home-space-md);
-}
-
 .home-proof-intro {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--home-space-xl);
+  grid-template-areas: "heading image" "body image";
+  grid-template-rows: auto 1fr;
+  gap: var(--home-space-md) var(--home-space-xl);
   align-items: start;
 }
 
 .home-proof-factory-figure {
+  grid-area: image;
   aspect-ratio: 16 / 8.5;
   margin: 0;
 }
@@ -2336,6 +2341,11 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
     gap: var(--home-space-lg);
   }
 
+  .home-proof-intro {
+    grid-template-areas: "heading" "image" "body";
+    grid-template-rows: none;
+  }
+
   .home-material-active {
     grid-template-columns: minmax(0, 1fr);
     min-height: 0;
@@ -2414,12 +2424,9 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
   }
 
   .home-products-intro h2,
-  .home-task-intro h2 {
-    font-size: clamp(2.3rem, 10vw, 3rem);
-  }
-
+  .home-task-intro h2,
   .home-collaboration-intro > h2 {
-    font-size: clamp(2.1rem, 8.5vw, 2.6rem);
+    font-size: clamp(2.3rem, 10vw, 3rem);
   }
 
   .home-collaboration-principles {
@@ -2467,6 +2474,7 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
   .home-material-family-link {
     min-height: 4.5rem;
     justify-content: center;
+    gap: var(--home-space-3xs);
     padding: var(--home-space-sm) var(--home-space-2xs);
   }
 
@@ -2475,7 +2483,9 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
   }
 
   .home-material-family-link svg {
-    display: none;
+    width: 0.75rem;
+    height: 0.75rem;
+    flex-shrink: 0;
   }
 
   .home-material-active {
@@ -2605,6 +2615,17 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
 }
 
 @media (max-width: 70rem) {
+  .home-redesign .home-hero::before {
+    background:
+      linear-gradient(90deg, var(--home-color-scrim) 0 65%, var(--home-color-scrim-soft) 100%),
+      linear-gradient(
+        180deg,
+        var(--home-color-scrim-soft),
+        transparent 48%,
+        var(--home-color-scrim)
+      );
+  }
+
     .home-redesign .home-inquiry-inner {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--home-space-xl);

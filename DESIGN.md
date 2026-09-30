@@ -20,6 +20,8 @@ typography:
   display:
     fontFamily: '"IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
     fontSize: "clamp(3rem, 5.4vw, 5rem)"
+    homeMobileFontSize: "clamp(2.5rem, 12.5vw, 3.1rem)"
+    homeMobileGermanFontSize: "clamp(2rem, 8.65vw, 2.65rem)"
     fontWeight: 700
     lineHeight: 0.96
     letterSpacing: "-0.03em"
@@ -100,6 +102,7 @@ components:
   input-field:
     backgroundColor: "{colors.polymer-white}"
     textColor: "{colors.industrial-ink}"
+    placeholderColor: "#64748b"
     typography: "{typography.body}"
     rounded: "{rounded.control}"
     padding: "0.72rem 0.82rem"
@@ -280,6 +283,7 @@ The palette is cool, technical, and industrial. Taiyi cobalt is the only primary
 ### Hierarchy
 
 - **Display** (700, responsive 3rem to 5rem, 0.96 line-height): Hero headlines only. Desktop headlines should use one or two natural lines and must not depend on manual `<br>` tags.
+- **Home mobile Display:** `--ds-home-hero-title-size-mobile` uses `clamp(2.5rem, 12.5vw, 3.1rem)`, reaching the 3rem Display floor by 384px. Below that width, it scales down to keep long words visible inside the mobile rail. The longer German headline retains `clamp(2rem, 8.65vw, 2.65rem)` so `Präzisionsformteile` stays intact at 390px without pushing the actions below the first viewport.
 - **Headline** (700, responsive 2rem to 3.35rem, 1 line-height): Section and major module headings.
 - **Title** (600, 1.25rem, 1.2 line-height): Cards, capability groups, and supporting modules.
 - **Body** (400 to 500, 1rem, 1.65 line-height): Explanatory copy. Keep normal reading measures between roughly 45 and 70 characters per line.
@@ -494,6 +498,7 @@ content inset comes from `CardContent`.
 ### Inputs / Fields
 
 - **Style:** White background, quiet one-pixel rule, 5px corners, persistent label above the field, and at least 44px control height.
+- **Placeholder:** `--ds-input-placeholder` uses `#64748b`, providing at least 4.5:1 contrast against the white field surface while remaining secondary to entered text.
 - **Focus:** Cobalt border plus a restrained technical-cyan focus halo.
 - **Error / Disabled:** Preserve text contrast and state meaning. Do not communicate errors through color alone.
 

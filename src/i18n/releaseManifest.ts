@@ -1,6 +1,5 @@
 import type { LocalizedUrlSegment } from "@/i18n/config";
-import generatedCatalog from "../generated/catalog.json" with { type: "json" };
-import type { CatalogEngineeringTdsRecord } from "../data/catalog/types.ts";
+import engineeringGradeReleaseSlugs from "../generated/engineering-grade-release-slugs.json" with { type: "json" };
 import { getEngineeringGfLandingPath } from "../data/engineeringGfLandingRegistry.ts";
 import { glassFiberCaseStudies, getGlassFiberCasePath } from "../data/glassFiberCaseStudies.ts";
 
@@ -574,16 +573,11 @@ export const localizedReleaseManifest = {
 } as const satisfies Record<string, LocalizedReleaseEntry>;
 
 export const engineeringGradeReleaseEntries: readonly LocalizedReleaseEntry[] =
-  (generatedCatalog as CatalogEngineeringTdsRecord[])
-    .filter(
-      (record): record is CatalogEngineeringTdsRecord =>
-        record.kind === "engineering-tds" && record.seo?.indexable !== false,
-    )
-    .map((record) => ({
-      sourcePath: `/products/${record.slug}`,
-      ...publicRelease,
-      localizedSegments: getCatalogGradeLocalizedSegments(record),
-    }));
+  engineeringGradeReleaseSlugs.map((slug) => ({
+    sourcePath: `/products/${slug}`,
+    ...publicRelease,
+    localizedSegments: getCatalogGradeLocalizedSegments({ kind: "engineering-tds", slug }),
+  }));
 
 export type ReleasedSourcePath =
   | (typeof localizedReleaseManifest)[keyof typeof localizedReleaseManifest]["sourcePath"]

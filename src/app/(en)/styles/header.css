@@ -4,6 +4,8 @@
   --nav-surface: #ffffff;
   --nav-accent: #075a9f;
   --nav-accent-hover: #053f72;
+  --nav-control-bg: #075a9f;
+  --nav-control-bg-hover: #053f72;
   --nav-focus-ring: #075a9f;
   --nav-ink: #172033;
   --nav-underline-thickness: 2px;
@@ -1050,9 +1052,9 @@
 
 .mobile-menu > summary.nav-pill {
   min-height: 2.75rem;
-  border-color: var(--nav-accent);
+  border-color: var(--nav-control-bg);
   border-radius: 0.35rem;
-  background: var(--nav-accent);
+  background: var(--nav-control-bg);
   color: #ffffff;
   box-shadow: none;
 }
@@ -1066,8 +1068,8 @@
 
 .mobile-menu > summary.nav-pill:hover,
 .mobile-menu[open] > summary.nav-pill {
-  border-color: var(--nav-accent-hover);
-  background: var(--nav-accent-hover);
+  border-color: var(--nav-control-bg-hover);
+  background: var(--nav-control-bg-hover);
 }
 
 .site-header--home .mobile-menu > summary.nav-pill:hover,

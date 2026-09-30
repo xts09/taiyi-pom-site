@@ -195,13 +195,36 @@ directories, grade lists, and similar indexed collections.
 
 **Current implementations:** resource overview rows, resource category data
 rows, and resource article related links. Product family directories,
-application indexes, product grade lists, and related-product rows remain
-eligible migration targets when those route families are next changed.
+application indexes, and related-product rows remain eligible migration targets
+when those route families are next changed. Four-metric grade lists use the
+specialized owner below.
 
 **Variants:** `compact`, `data`, `related`.
 
 **Rule:** Directory Row is not a Card. It may use a quiet separator and hover
 surface, but it must preserve list density and aligned columns.
+
+### Product Grade Directory — Canonical
+
+**Owner:** `src/components/GradeDirectory.tsx` owns the three-column label strip,
+numbered grade row, four-metric definition list, and action slot.
+`GradeDirectoryPagination.tsx` owns page state, controls, and focus behavior.
+
+**Consumers:** English and localized POM, PA6, PA66, and PPA category grade
+lists. Each page supplies its own translated labels, catalog-backed values,
+released destination, and action text. Keep the rendered row classes and
+responsive data grid shared without moving product or translation policy into
+the component.
+
+### Engineering Property Table — Canonical
+
+**Owner:** `src/components/EngineeringPropertyTable.tsx` owns the engineering
+grade detail property table and its TDS request note.
+
+**Consumers:** English and localized engineering grade detail pages. The pages
+provide catalog-backed properties, translated headings and column labels, and
+their locale-aware request links. POM detail pages retain their separate data
+notes and processing guidance.
 
 ### Listing Pagination — Product Directories and Resource Search
 
@@ -211,8 +234,17 @@ surface, but it must preserve list density and aligned columns.
 **Consumers:** English and localized `/products/categories/pom`, PA6 and PA66
 directories. Lists over ten grades show ten per page, keep continuous grade
 numbering and the full catalog count, and leave individual grade routes unchanged.
+Directory page selection uses the `page` URL parameter with native history so
+refresh, shared links, and Back/Forward retain the selected page. Other query
+parameters are preserved; invalid values fall back to page one and values beyond
+the directory size display the last page. The server renders page one, and the
+client restores the URL selection on hydration.
+`src/lib/focusDirectoryResults.ts` moves focus to the result heading (or the
+labelled result region) after a page selection, before scrolling to that region.
+It realigns after the sticky navigation settles while focus remains on the target.
 `ConductiveCompoundsExplorer.tsx` uses the same controls after its filters and
-keeps matrix groups intact, so a page may contain fewer than ten grades.
+keeps matrix groups intact, so a page may contain fewer than ten grades. It uses
+the same focus helper; its filter and page state remain local to the explorer.
 English and localized `/technical-data-sheets` use URL-backed pages of ten
 results; `src/data/technicalDataSearch.ts` owns the ordered result groups and
 `src/lib/paginateResultGroups.ts` slices across them without changing totals.
@@ -732,59 +764,11 @@ Secondary Section Navigation uses one shared internal anatomy and one set of
 motion query hooks while preserving its existing product/application skins,
 labels, and pinned behavior.
 
-### Audited Follow-up Queue
+### Completed Migration History
 
-1. **Completed:** the shared POM landing-page hero actions now use `Button`,
-   and its technical summary rails use `MetricGroup` without replacing the
-   page-specific product narrative or the plain/image hero distinction.
-2. **Completed:** the TDS technical search uses the shared `Input` and
-   `Button` primitives while retaining its compound search-control anatomy.
-   The FAQ explorer now uses the same `Input` primitive and a standard Lucide
-   search icon. Guide explorers share that same input/icon anatomy, and the
-   conductive grade directory now uses the shared `Select` and `Input`
-   primitives for its controlled filters.
-3. **Completed:** product/application `SecondarySectionNav` variants share the
-   same internal slots and motion queries while preserving route-specific
-   labels, responsive tab layouts, and pinned behavior.
-4. **Completed:** visible Breadcrumb consumers share the canonical component
-   anatomy, and the unused `.subpage-breadcrumb` rules have been removed.
-5. **Completed:** all Material Recommendation CTA consumers now use
-   `ActionPanel` directly, and the compatibility wrapper has been removed.
-6. **Completed:** the `recommendation` variant owns the former
-   `.material-cta*` visual family through component tokens and slots; the
-   compatibility selectors have been removed after full CTA route-matrix
-   verification.
-7. **Completed:** recommendation actions use the shared `Button` inverse
-   variant, and recommendation titles wrap only when the actual layout width
-   requires it.
-8. **Completed:** the Applications index Hero uses shared primary/secondary
-   Button variants with its original desktop/mobile geometry and a verified
-   keyboard focus outline; its legacy CTA classes have been removed.
-9. **Completed:** product-category Heroes use the shared product-Hero Button
-   variants and size with their original desktop/mobile geometry, the
-   glass-fiber mobile full-width exception, and the shared keyboard focus
-   outline verified. The legacy product-Hero classes remain owned by the
-   product-detail routes until that family is migrated.
-10. **Completed:** the product index Hero uses the shared product-Hero Button
-    variants and size with exact desktop/mobile screenshot parity and a
-    verified keyboard focus outline; its legacy CTA classes have been removed.
-11. **Completed:** both product-detail Hero render branches use the shared
-    product-detail Button variants and size. Standard, document-supported, and
-    longer campaign-label samples preserve their desktop/mobile geometry; the
-    obsolete `.product-hero-primary-action` and `.product-hero-tds-link` CSS
-    families have been removed.
-12. **Completed:** application-detail Hero actions use the shared application
-    Button variants and size. Automotive and long-title Conveyor Automation
-    samples preserve their desktop/mobile geometry and keyboard focus outline;
-    the former descendant-link styling is removed from the layout container.
-13. **Completed:** long resource-article closing actions use the shared
-    `resourceArticleInverse` variant and `resourceArticleAction` size. Standard
-    and long-title article samples preserve their desktop/mobile geometry, and
-    the local white-link class stack has been removed.
-14. **Completed:** the Resources index Hero uses shared resource-index Button
-    variants and size. Desktop and mobile screenshots retain exact pixel
-    parity, including mobile full-width behavior; the three legacy action
-    classes have been removed.
+The 14 completed audit follow-ups are preserved in
+[historical migration records](docs/archive/2026-09-30-retired-rules.md#completed-component-migrations).
+Use the component entries above for current owners, variants, and migration boundaries.
 
 ## Definition of Done
 
