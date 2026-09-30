@@ -549,7 +549,7 @@ export const chineseIcHandlingTraysDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "选择托盘材料之前先定义周转工艺",
+    title: "周转工艺与托盘材料要求",
     body:
       "请提供封装图纸及现有托盘标准、ESD、温度、槽位、自动化、洁净度和失效数据。台益可判断 PLATFORM POM 或其他聚合物是否值得试模、确认可用牌号数据，并提出托盘认证计划。",
   },

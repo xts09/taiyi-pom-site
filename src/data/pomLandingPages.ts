@@ -106,7 +106,7 @@ export const technicalLandingLinks: LandingRelatedLink[] = [
     href: "/products/categories/pom#material-families",
     label: "Modified POM Families by Part Requirement",
     description:
-      "Choose a POM family from the governing part requirement, then compare listed grades and published data in one directory.",
+      "Compare POM families, listed grades and published data for different molded-part requirements in one directory.",
   },
   {
     href: "/wear-resistant-low-friction-pom",
@@ -183,7 +183,7 @@ export const pomLandingPages = {
       "Understand which modified POM direction may address wear, friction, impact, stiffness, flow, UV exposure, or electrical control before comparing families and grades.",
     eyebrow: "",
     intro:
-      "Choose the performance gap that controls the part, then open the relevant PLATFORM POM family to compare listed grades and published data.",
+      "PLATFORM POM families address different part requirements, with listed grades and published data available for comparison.",
     heroImage: {
       src: "/generated/landing/modified-pom-material-landscape-v1.webp",
       alt: "Dark technical composition of polymer pellets and molded parts",
@@ -207,7 +207,7 @@ export const pomLandingPages = {
       position: "afterHero",
       title: "What must the molded part improve?",
       note:
-        "Start with the governing performance gap. Each path opens the relevant family page for grade, application, and document review.",
+        "Each material family addresses different performance requirements, with grade, application and technical-document information on its family page.",
       items: [
         {
           label: "Base POM Resin",
@@ -320,7 +320,7 @@ export const pomLandingPages = {
       "Document and compliance needs",
     ],
     relatedLinks: [
-      { href: "/products/categories/pom", label: "POM Material Families", description: "Compare the family options, then open a category to review its listed grades." },
+      { href: "/products/categories/pom", label: "POM Material Families", description: "Browse POM family options and their listed grades." },
       technicalLandingLinks[1],
       technicalLandingLinks[2],
     ],
@@ -377,7 +377,7 @@ export const pomLandingPages = {
           "Gears, worm gears, cams, rollers, sleeves, and sliders",
           "Guide rails, conveyor parts, textile machinery parts, and motion supports",
           "Applications needing reduced stick-slip, smoother movement, or longer surface life",
-          "Projects comparing modified POM before requesting samples",
+          "Modified POM grade comparisons and sample evaluations",
         ],
       },
     ],
@@ -494,7 +494,7 @@ export const pomLandingPages = {
     sections: [
       {
         title: "Define the electrical target",
-        body: "Start with the required electrical behavior and how it will be measured. Antistatic, static-dissipative and conductive targets should be defined by range and test method rather than by label alone.",
+        body: "Antistatic, static-dissipative and conductive material selection depends on the target electrical range and test method. A material label alone does not establish suitability.",
         points: [
           "Required resistivity range",
           "Surface or volume resistivity",

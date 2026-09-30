@@ -368,9 +368,21 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
       }
     };
 
+    const closeMobileNavigationOutside = (event: Event) => {
+      const mobileMenu = mobileMenuRef.current;
+      const target = event.target;
+      if (mobileMenu?.open && target instanceof Node && !mobileMenu.contains(target)) {
+        mobileMenu.open = false;
+      }
+    };
+
+    document.addEventListener("pointerdown", closeMobileNavigationOutside);
+    document.addEventListener("focusin", closeMobileNavigationOutside);
     document.addEventListener("keydown", closeNavigationOnDocumentEscape);
 
     return () => {
+      document.removeEventListener("pointerdown", closeMobileNavigationOutside);
+      document.removeEventListener("focusin", closeMobileNavigationOutside);
       document.removeEventListener("keydown", closeNavigationOnDocumentEscape);
     };
   }, []);
@@ -527,7 +539,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
           </span>
         </Link>
 
-        <div className="hidden items-center justify-end gap-7 lg:flex xl:gap-8">
+        <div className="header-desktop-navigation hidden items-center justify-end lg:flex">
           <NavigationMenu.Root
             aria-label={messages.navigationAria}
             value={megaValue}
@@ -540,8 +552,6 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               <NavigationMenu.Item value="products">
                 <NavigationMenu.Trigger
                   className="nav-link nav-trigger transition"
-                  onPointerEnter={() => updateMegaValue("products")}
-                  onFocus={() => updateMegaValue("products")}
                   aria-current={
                     isCurrentSection("/products") ? "page" : undefined
                   }
@@ -599,8 +609,6 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               <NavigationMenu.Item value="applications">
                 <NavigationMenu.Trigger
                   className="nav-link nav-trigger transition"
-                  onPointerEnter={() => updateMegaValue("applications")}
-                  onFocus={() => updateMegaValue("applications")}
                   aria-current={
                     isCurrentSection("/applications") ||
                     isCurrentSection("/components")
@@ -659,8 +667,6 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               <NavigationMenu.Item value="resources">
                 <NavigationMenu.Trigger
                   className="nav-link nav-trigger transition"
-                  onPointerEnter={() => updateMegaValue("resources")}
-                  onFocus={() => updateMegaValue("resources")}
                   aria-current={
                     isResourcesSection ? "page" : undefined
                   }
@@ -690,7 +696,17 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
                         </Link>
                       </div>
 
-                      <div className={`mega-simple-grid mega-simple-grid-resources${caseStudies ? " mega-simple-grid-resources-with-cases" : ""}`}>
+                      <div className="mega-simple-grid mega-simple-grid-resources">
+                        <Link
+                          href={localizedHref("/technical-data-sheets")}
+                          prefetch={false}
+                          className="mega-simple-link"
+                          onClick={closeMega}
+                        >
+                          <span className="mega-simple-title mega-nav-label">
+                            {messages.findGradeData}
+                          </span>
+                        </Link>
                         {resourceNavigationGroups.map((group) => (
                           <Link
                             key={group.id}
@@ -800,7 +816,7 @@ export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
               href={localizedHref("/technical-data-sheets")}
               prefetch={false}
               className="nav-search-button inline-flex items-center justify-center"
-              aria-label={messages.searchLabel}
+              aria-label={messages.findGradeData}
               aria-current={
                 isCurrentSection("/technical-data-sheets") ? "page" : undefined
               }

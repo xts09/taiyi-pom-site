@@ -104,9 +104,9 @@ export const componentSolutionDetails = [
     },
     copy: {
       reviewInputsLabel: "Inputs for gear material comparison",
-      problemTitle: "Start with the gear problem.",
+      problemTitle: "Gear performance and failure conditions",
       problemSummary:
-        "The same symptom can come from material, geometry, tooling, assembly, or operating conditions. Start with the observed problem before comparing compounds.",
+        "The same symptom can come from material, geometry, tooling, assembly, or operating conditions. These causes need to be distinguished when evaluating compounds.",
       materialSummary:
         "Compare the options below against the governing failure mode, tooth geometry, load, speed, mate, lubrication, and accuracy target.",
       processSummary:
@@ -400,7 +400,7 @@ export const componentSolutionDetails = [
     },
     copy: {
       reviewInputsLabel: "Inputs for bushing material comparison",
-      problemTitle: "Start with the sliding-system problem.",
+      problemTitle: "Sliding performance and contact conditions",
       problemSummary:
         "Wear, noise, binding, or clearance change can originate in the compound, shaft, fit, alignment, contamination, or duty cycle. Diagnose the complete interface before changing material.",
       materialSummary:
@@ -678,7 +678,7 @@ export const componentSolutionDetails = [
     },
     copy: {
       reviewInputsLabel: "Inputs for conveyor chain material comparison",
-      problemTitle: "Start with the conveyor-system problem.",
+      problemTitle: "Conveyor loads and contact conditions",
       problemSummary:
         "The same symptom can come from compound behavior, chain pull, hinge geometry, guide condition, sprocket compatibility, contamination, or cleaning exposure. Diagnose the line before changing material.",
       materialSummary:
@@ -964,7 +964,7 @@ export const componentSolutionDetails = [
     },
     copy: {
       reviewInputsLabel: "Inputs for valve-component material comparison",
-      problemTitle: "Start with the valve-function problem.",
+      problemTitle: "Valve function and operating conditions",
       problemSummary:
         "Sticking, leakage, scoring, or variable flow can originate in pressure forces, clearance, seals, contamination, fluid chemistry, tooling, or the compound. Diagnose the valve before changing polymer.",
       materialSummary:
@@ -1248,7 +1248,7 @@ export const componentSolutionDetails = [
     },
     copy: {
       reviewInputsLabel: "Inputs for textile-guide material comparison",
-      problemTitle: "Start with the yarn-path problem.",
+      problemTitle: "Yarn contact and guide performance",
       problemSummary:
         "Tension, breakage, wear, or static symptoms can originate in yarn construction, contact geometry, guide alignment, surface defects, deposits, environment, or material behavior. Inspect the actual yarn path first.",
       materialSummary:
@@ -1534,7 +1534,7 @@ export const componentSolutionDetails = [
     },
     copy: {
       reviewInputsLabel: "Inputs for IC-tray material comparison",
-      problemTitle: "Start with the handling-process problem.",
+      problemTitle: "Handling conditions and tray performance",
       problemSummary:
         "Pickup faults, device movement, ESD failures, particles, or warpage can originate in tray geometry, molding, conditioning, automation, handling, or compound behavior. Diagnose the complete process first.",
       materialSummary:
@@ -1783,7 +1783,7 @@ export const componentSolutionDetails = [
     ],
     finalCta: {
       eyebrow: "Project input",
-      title: "Define the handling process before selecting the tray material.",
+      title: "Handling process and tray material requirements",
     body:
       "Send the package drawing and available tray-standard, ESD, temperature, pocket, automation, cleanliness, and failure data. Taiyi Polymer can determine whether PLATFORM POM or another polymer merits molding, identify available grade data, and propose a tray-qualification plan.",
     },

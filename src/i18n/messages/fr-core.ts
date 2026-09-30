@@ -28,7 +28,7 @@ const messages = {
     materials: {
       title: "Gamme de matériaux",
       body:
-        "Commencez par le POM modifié, notre gamme principale. Nous étudions aussi des compounds PA6, PA66 et PPA sélectionnés lorsqu'une pièce nécessite un autre équilibre entre rigidité, tenue thermique et comportement de mise en œuvre.",
+        "Le POM modifié est notre gamme principale. Des compounds PA6, PA66 et PPA sélectionnés offrent d’autres options pour les pièces ayant des besoins différents en rigidité, tenue thermique ou transformation.",
       documentSupport: "Documents selon le grade et le projet",
       dataSheetsAction: "Trouver les données grade et TDS",
       coreLabel: "Gamme principale",
@@ -138,7 +138,7 @@ const messages = {
           stage: "Décision",
           title: "Présélection de grades",
           description:
-            "Les candidats sont comparés avant de confirmer la disponibilité des documents et les besoins d'essais sur échantillons.",
+            "Comparaison des grades candidats, vérification de la disponibilité des documents et définition des besoins en échantillons et essais de moulage.",
         },
       ],
     },
@@ -248,7 +248,7 @@ const messages = {
         "Indiquez la fonction de la pièce, les conditions d'utilisation et les exigences visées. Nous identifierons les familles pertinentes, confirmerons les documents disponibles et préciserons la prochaine étape d'échantillonnage ou d'évaluation.",
     },
     formPanel: {
-      title: "Commencez par l'essentiel",
+      title: "Vos exigences d’application",
       body:
         "L'entreprise, l'adresse e-mail et l'application suffisent pour démarrer. Ajoutez les détails techniques seulement s'ils sont déjà disponibles.",
       requiredBefore: "Les champs marqués",

@@ -38,10 +38,10 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
   title: "按零件需求选择 POM 材料家族",
   metaTitle: "按零件要求选择改性 POM 方向 | 台益",
   metaDescription:
-    "先按耐磨、摩擦、冲击、刚性、流动性、耐候性或电性能控制要求判断改性 POM 方向，再对比材料家族与牌号。",
+    "改性 POM 材料家族覆盖耐磨、摩擦、冲击、刚性、流动性、耐候性和电性能控制需求。各家族页面提供对应牌号与公开数据。",
   eyebrow: "",
   intro:
-    "先确定主导零件表现的性能缺口，再进入对应的 PLATFORM POM 材料家族，对比已列牌号与公开数据。",
+    "各 PLATFORM POM 材料家族针对不同性能需求，提供已列牌号与公开数据，便于结合零件问题比较。",
   heroImage: {
     src: "/generated/landing/modified-pom-material-landscape-v1.webp",
     alt: "聚合物粒子与注塑零件组成的深色技术画面",
@@ -71,7 +71,7 @@ export const chineseModifiedPomLanding: PomLandingPageData = {
         label: "基础 POM 树脂",
         mobileLabel: "基础 POM",
         detail:
-          "当标准 POM 性能能够满足项目，需要先建立基准牌号对比时，从这里开始。",
+          "标准 POM 适用于其性能能够满足项目要求的应用，也可作为牌号比较的基准。",
         href: "/products/categories/base-pom-resin",
       },
       {
@@ -379,7 +379,7 @@ export const chineseConductiveAntistaticPomLanding: PomLandingPageData = {
     {
       title: "定义电性能目标",
       body:
-        "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。",
+        "抗静电、静电耗散和导电材料的选型依据是目标电性能范围与测试方法，单凭材料标签不足以判断适用性。",
       points: [
         "所需电阻率范围",
         "表面或体积电阻率",

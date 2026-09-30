@@ -524,13 +524,15 @@ height, radius, border, focus treatment, or primary-action color.
 - **Desktop:** Single-line navigation using IBM Plex Sans. Current-section and hover indicators share one text-level underline baseline; mega-menu link hover indicators stay at text level as well.
 - **Hero routes:** Header and expanded menu read as one dark frosted material with stable contrast and no visible gap.
 - **Inner routes:** White header and white expanded menu connect directly without a separate gray strip.
-- **Mobile:** Use the existing labeled Menu control and stacked groups. Do not shrink the desktop menu into an unreadable row.
+- **Desktop fit:** Between 1024px and 1279px, use compact token spacing between navigation labels and utilities. Keep a visible gap between the logo and navigation. The supplementary brand descriptor appears from 1440px; labels remain on one line at every desktop width.
+- **Mobile:** Use the existing labeled Menu control and stacked groups. Do not shrink the desktop menu into an unreadable row. Mobile rows retain at least the 44px touch-target token, and the inquiry CTA stays fully visible when reached by scrolling. Disclosure indicators use the header's active accent so they remain legible on both dark and white panels.
 
 ### Footer
 
 - **Surface:** Production navy with restrained satin depth.
-- **Structure:** Brand and primary inquiry path first, then contact actions and navigation. Mobile navigation collapses into labeled groups.
-- **Contact actions:** Entire tiles are clickable, use 8px corners, and share one icon treatment and focus state.
+- **Structure:** Retain the white PLATFORM® wordmark with the manufacturer/material-brand relation in the caption below. Brand, inquiry path and contact actions accompany four navigation columns. Suppress the inquiry pitch when the preceding page CTA is marked footerAdjacent.
+- **Navigation:** Full localized labels wrap within flexible columns. Mobile uses line-separated labeled disclosures; controls remain at least 44px high.
+- **Contact actions:** Entire rows are clickable; icon frames use 8px corners and share one treatment and focus state.
 
 ### Evidence Module
 

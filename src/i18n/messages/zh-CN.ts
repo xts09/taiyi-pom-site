@@ -82,6 +82,7 @@ const messages = {
     applications: "应用",
     allApplications: "全部应用",
     resources: "资料",
+    technicalData: "牌号数据与 TDS",
     company: "公司",
     aboutUs: "关于我们",
     contactSales: "联系销售",
@@ -143,7 +144,7 @@ const messages = {
     selection: {
       kicker: "从需求开始",
       title: "零部件需要实现什么？",
-      body: "选择最接近零部件需求的初筛路径，先明确需要权衡的性能，再进入具体牌号比较。",
+      body: "按零部件需求浏览材料方向，比较各方向的性能特点与具体牌号。",
       navigationAria: "按零部件需求划分的选材路径",
       paths: [
         {

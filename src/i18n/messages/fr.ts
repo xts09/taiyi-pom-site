@@ -51,7 +51,7 @@ const messages = {
     products: "Produits",
     productCategories: "Catégories de produits",
     productDescription:
-      "Commencez par une famille de matériaux ou comparez les grades conducteurs et antistatiques entre plusieurs matrices.",
+      "Familles de matériaux et grades conducteurs ou antistatiques pour différentes matrices polymères.",
     allProducts: "Tous les produits",
     applications: "Applications",
     applicationAreas: "Domaines d'application",
@@ -85,6 +85,7 @@ const messages = {
     applications: "Applications",
     allApplications: "Toutes les applications",
     resources: "Ressources",
+    technicalData: "Données des grades et TDS",
     company: "Entreprise",
     aboutUs: "À propos",
     contactSales: "Contacter le service commercial",
@@ -150,7 +151,7 @@ const messages = {
       kicker: "Les exigences d'abord",
       title: "Que doit accomplir la pièce ?",
       body:
-        "Choisissez le parcours le plus proche des exigences de la pièce afin de définir les compromis à examiner avant de comparer les grades.",
+        "Des options de matériaux et leurs compromis de performance selon les exigences de votre pièce.",
       navigationAria: "Parcours matière selon les exigences de la pièce",
       paths: [
         {
@@ -169,13 +170,13 @@ const messages = {
           label: "Impact / Assemblage",
           title: "Clipsage ou charges de choc",
           description:
-            "Vérifiez le choc, la température, les lignes de soudure et les contraintes d'assemblage avant de choisir le niveau de ténacité.",
+            "Les chocs, la température, les lignes de soudure et les contraintes d’assemblage déterminent les besoins en ténacité.",
         },
         {
           label: "Contrôle électrostatique",
           title: "Fonction conductrice ou antistatique",
           description:
-            "Définissez la résistance cible, la mise à la terre, la géométrie, la couleur et la méthode d'essai avant de choisir une matrice.",
+            "La résistance cible, la mise à la terre, la géométrie, la couleur et la méthode d’essai orientent le choix de la matrice.",
         },
       ],
     },
@@ -183,7 +184,7 @@ const messages = {
       kicker: "Gamme complète de matériaux",
       title: "Parcourir toutes les familles de produits",
       body:
-        "Comparez les grades répertoriés et leurs domaines d'application dans les six familles, puis ouvrez la famille retenue pour poursuivre la présélection.",
+        "Grades répertoriés et applications dans six familles de produits.",
       items: [
         {
           title: "Compounds POM modifiés",

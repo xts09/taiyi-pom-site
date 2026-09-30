@@ -71,10 +71,12 @@ and mobile navigation behavior.
 **Rule:** page code must not create alternate site headers or footers. Header
 surface variants are controlled states of the same component.
 
-Chinese desktop Footer navigation reserves enough width for the complete
-product labels through locale-scoped grid tracks. Do not truncate labels,
-shrink type, or force nowrap across all languages. Mobile keeps its disclosure
-navigation.
+Footer retains the white PLATFORM® wordmark as a home link, with the
+manufacturer/material-brand relation in the caption below. Desktop navigation has four flexible columns; complete localized
+labels wrap within their own column. Do not truncate labels, shrink type, or
+force nowrap. Resources includes the localized Grade Data & TDS entrance.
+Mobile navigation uses labeled, line-separated disclosures with 44px minimum
+link targets. Keep the footerAdjacent pitch suppression contract.
 
 ### Rail / Section Shell — Partial
 
@@ -304,6 +306,21 @@ focus, and outside pointer/focus closes the dropdown. Language and main
 navigation are mutually exclusive: opening either dismisses the other,
 including desktop hover and mobile disclosure toggles. Trigger and option
 hit areas remain at least 44px high.
+
+**Menu interaction:** Radix owns desktop hover and click state; focusing a
+trigger does not pre-open it. Enter/Space opens or toggles the focused trigger,
+Arrow Down enters an open panel, and Escape closes it and restores trigger
+focus. Touch at desktop widths toggles once per tap. Mobile Menu closes on
+outside pointer/focus and Escape, and remains mutually exclusive with the
+language control. Direct panel rows and the inquiry CTA do not flex-shrink;
+all mobile links and controls retain a minimum 44px target as the panel scrolls.
+
+**Grade data entry:** the Resources mega menu starts with the localized
+`findGradeData` link to `/technical-data-sheets`, followed by task groups and
+released case-study entries. The desktop search utility and mobile data link
+use the same destination and purpose. Resource item underlines remain owned
+by `.mega-nav-label`.
+
 
 ## Content Components
 

@@ -23,7 +23,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
     metadataTitle: "Material Selection Resources",
     navigationLabel: "Choose a Material",
     description:
-      "Start with the part function, failure risk, operating conditions, and required evidence before narrowing a material or grade direction.",
+      "Guides on material and grade selection for different part functions, failure risks and operating conditions, including the evidence needed for evaluation.",
     image: "/og-resources-material-selection.jpg",
     imageAlt:
       "Material Selection technical resources from Taiyi Polymer",

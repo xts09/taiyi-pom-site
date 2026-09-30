@@ -304,7 +304,7 @@ const messages = {
     metadata: {
       title: "XT-100 POM à faible densité et haute résistance au choc | Taiyi Polymer",
       description:
-        "Évaluez le POM XT-100 à partir des données de densité, MFI, traction, choc et tenue thermique, puis demandez les documents ou un échantillon.",
+        "Données de densité, MFI, traction, choc et tenue thermique du POM XT-100, avec accès aux documents et demandes d’échantillons.",
       imageAlt: "Granulés naturels de POM XT-100 de Taiyi Polymer",
     },
     breadcrumb: "XT-100",
@@ -420,7 +420,7 @@ const messages = {
       metadata: {
         title: "ETM450 POM haute fluidité pour précision | Taiyi Polymer",
         description:
-          "Évaluez ETM450, grade POM haute fluidité pour l'injection de précision, puis consultez les données techniques et demandez un échantillon.",
+          "ETM450 est un grade POM haute fluidité pour l’injection de précision, avec données techniques et demande d’échantillon.",
         imageAlt: "Granulés naturels de POM ETM450 de Taiyi Polymer",
       },
       breadcrumb: "ETM450",
@@ -464,7 +464,7 @@ const messages = {
       metadata: {
         title: "ETM750 POM très fluide pour parois minces | Taiyi Polymer",
         description:
-          "Évaluez ETM750, un grade POM à très haute fluidité pour pièces injectées à paroi mince ou difficiles à remplir, puis demandez les données ou un échantillon.",
+          "ETM750 est un grade POM à très haute fluidité pour les pièces injectées à paroi mince ou difficiles à remplir, avec données techniques et demande d’échantillon.",
         imageAlt: "Granulés naturels de POM ETM750 de Taiyi Polymer",
       },
       breadcrumb: "ETM750",
@@ -509,7 +509,7 @@ const messages = {
       metadata: {
         title: "EGB25 POM à 25 % de billes de verre | Taiyi Polymer",
         description:
-          "Évaluez EGB25, un POM chargé de 25 % de billes de verre, selon le retrait, les données thermiques et mécaniques, puis demandez des documents ou un échantillon.",
+          "EGB25 est un POM chargé de 25 % de billes de verre. Données de retrait et de propriétés thermiques et mécaniques, documents et demande d’échantillon.",
         imageAlt: "Granulés POM EGB25 naturels de Taiyi Polymer",
       },
       breadcrumb: "EGB25",
@@ -554,7 +554,7 @@ const messages = {
       metadata: {
         title: "EGH502H POM à 25 % de fibre de verre | Taiyi Polymer",
         description:
-          "Évaluez EGH502H, un POM renforcé de 25 % de fibre de verre, selon la rigidité, le retrait et les données thermiques et mécaniques, puis demandez un échantillon.",
+          "EGH502H est un POM renforcé de 25 % de fibres de verre. Données de rigidité, retrait et propriétés thermiques et mécaniques, avec demande d’échantillon.",
         imageAlt: "Granulés POM EGH502H naturels de Taiyi Polymer",
       },
       breadcrumb: "EGH502H",
@@ -689,7 +689,7 @@ const messages = {
     metadata: {
       title: "Données techniques et TDS POM | Taiyi Polymer",
       description:
-        "Consultez des données POM validées avec unités, normes et conditions d'essai, puis demandez les TDS et documents de projet à jour.",
+        "Données POM validées avec unités, normes et conditions d’essai, ainsi que demandes de TDS et de documents de projet à jour.",
       imageAlt: "Données techniques POM et vérification TDS chez Taiyi Polymer",
     },
     eyebrow: "Données et preuves",

@@ -188,7 +188,7 @@ export default async function ProductCategoryPage({
   });
   const pageDescription =
     isPomCategory
-      ? "Choose PLATFORM modified POM compounds for gears, bushings and other precision molded parts. Compare material families for wear, friction, impact, UV stability, reinforcement or electrical performance, then review listed grades and the technical documents available for your project."
+      ? "PLATFORM modified POM compounds cover gears, bushings and other precision molded parts with different wear, friction, impact, UV stability, reinforcement and electrical requirements. This directory provides material-family comparisons, listed grades and available technical documents."
       : getCategoryDescription(entry.category);
   const inquirySupportCopy = ["POM", "PA6 Compound", "PA66 Compound"].includes(
     entry.category,

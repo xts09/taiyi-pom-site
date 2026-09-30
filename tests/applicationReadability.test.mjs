@@ -66,7 +66,7 @@ test("reviewed English application overrides remove confirmed machine phrasing",
       "滑动、旋转或配合界面需要降低摩擦、噪声或粘滑时进入候选，并结合电气要求判断。",
     ),
     translateEnglishApplicationText(
-      "现有方向无法同时满足电气、机械、颜色或加工目标时再讨论调整；若阻燃、高温或法规要求主导，应先确认 POM 是否仍适合作为候选。",
+      "现有方向无法同时满足电气、机械、颜色或加工目标时再讨论调整；若阻燃、高温或法规要求主导，POM 能否作为候选材料需单独确认。",
     ),
     translateEnglishApplicationText(
       "部件存在持续或周期性日照，并已明确暴露时长、颜色、外观或性能保持目标时进入候选，仍需按牌号与测试条件确认。",

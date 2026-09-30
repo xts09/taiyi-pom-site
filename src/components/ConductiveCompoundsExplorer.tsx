@@ -78,7 +78,7 @@ export const defaultConductiveCompoundsExplorerMessages: ConductiveCompoundsExpl
     all: "All Series",
   },
   allDescription:
-    "Compare both modification systems, then narrow the list by polymer matrix and target range.",
+    "Compare both modification systems by polymer matrix and electrical target range.",
   seriesDescriptions: {
     cnt: conductiveSeries.cnt.description,
     cf: conductiveSeries.cf.description,

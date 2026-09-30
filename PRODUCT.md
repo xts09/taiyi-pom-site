@@ -29,6 +29,11 @@ The current homepage and main navigation baseline is:
   native-language destination links on demand. On mobile it stays available
   beside Menu, not buried inside the main navigation panel.
 
+- The Resources mega menu includes an explicit grade-data/TDS entry to the
+  localized `/technical-data-sheets` directory. The desktop search icon and
+  mobile data link lead to that same released directory; this entry does not
+  imply a separate site-wide resource search.
+
 ### Active Implementation Snapshot (2026-09-22)
 
 This snapshot records durable implementation ownership. Live branch names,
@@ -625,6 +630,7 @@ Avoid:
 - Consumer-startup friendliness.
 - Vague innovation copy.
 - Generic `direction`, `review`, or `support` wording when a concrete customer outcome can be named.
+- Repeated procedural introductions such as “first define … then compare/request …” in page summaries, cards and section headings. Describe the material, application, selection factors or available information directly. Preserve sequences when they are necessary for real test methods, processing instructions or form interactions. Apply this standard to English, Simplified Chinese, German, French and Brazilian Portuguese; localized introductions should not reintroduce the same formula.
 - Unsupported claims about potable water, food contact, automotive approval, flammability, outdoor durability, fuel contact, or electrical compliance.
 
 ## Content Rules
@@ -992,3 +998,14 @@ Aim for WCAG AA basics:
 - Visible focus states.
 - Meaningful alt text for real images.
 - No text overflow or incoherent overlap across desktop and mobile.
+
+
+### Shared Footer refinement — 2026-09-30, local implementation
+
+The shared Footer retains the white PLATFORM® wordmark and identifies the
+manufacturer/material-brand relation in the caption below. Its Resources group includes a direct Grade Data & TDS link
+to `/technical-data-sheets`, resolved through the active locale release manifest.
+Five-language labels stay complete and wrap within their navigation columns.
+Mobile retains labeled disclosures and contact channels. A page CTA marked
+`footerAdjacent` suppresses the Footer inquiry pitch. This refinement is local;
+publication requires the normal release checks.

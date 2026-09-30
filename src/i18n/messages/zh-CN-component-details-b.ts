@@ -58,7 +58,7 @@ export const chineseConveyorChainComponentsDetail = {
       review:
         "审核正常与卡料载荷、冲击、产品堆积、熔接线位置、薄壁、化学介质及局部几何。",
       direction:
-        "先区分过载、应力集中和注塑缺陷与材料极限，再考虑平衡型或增强型 POM。",
+        "评估平衡型或增强型 POM 时，需区分过载、应力集中、注塑缺陷与材料本身的极限。",
     },
     {
       symptom: "静电控制表现不稳定",
@@ -334,7 +334,7 @@ export const chineseValveSpoolsAndCartridgesDetail = {
       review:
         "识别颗粒来源、过滤与洁净度、表面质量、阀口边缘、对中、密封损伤和流体污染。",
       direction:
-        "先区分磨粒污染和破坏性几何与材料表现，再评估摩擦学改性。",
+        "磨粒污染和破坏性几何的影响需与材料表现区分，摩擦学改性不能替代这些问题的处理。",
     },
     {
       symptom: "开裂、变形或保持失效",

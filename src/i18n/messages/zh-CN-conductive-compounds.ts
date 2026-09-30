@@ -13,7 +13,7 @@ export const chineseConductiveAntistaticCompoundsMessages = {
   heroKicker: "静电控制工程塑料",
   heroTitle: "导电与抗静电改性材料",
   heroDescription:
-    "在申请牌号数据或样品前，按 ABS、PC、POM、PA6、PA66、PPS、TPU 等基材比较碳纳米管永久抗静电与碳纤维导电方向。",
+    "面向静电放电（ESD）控制与导电应用，比较碳纳米管永久抗静电和碳纤维导电材料。",
   exploreAction: "浏览牌号目录",
   contactAction: "讨论您的应用",
   metricsAria: "材料系列概览",
@@ -24,7 +24,7 @@ export const chineseConductiveAntistaticCompoundsMessages = {
   overviewKicker: "系列架构",
   overviewTitle: "一个目录，两种静电控制技术",
   overviewBody:
-    "先明确电性能目标和聚合物基材，再结合测试方法、注塑件几何、调湿状态及力学性能完成牌号审核。",
+    "材料选型需结合电性能目标、聚合物基材、测试方法、注塑件几何、调湿状态及力学要求。",
   cntTag: "CNT／永久抗静电",
   cntTitle: "碳纳米管永久抗静电系列",
   cntDescription:
@@ -86,7 +86,7 @@ export const chineseConductiveAntistaticCompoundsMessages = {
     empty: "没有牌号符合当前筛选条件，请尝试其他基材或目标区间。",
   },
   reviewKicker: "选型输入",
-  reviewTitle: "先定义电性能要求，再确定牌号",
+  reviewTitle: "电性能要求与牌号选型",
   reviewItems: [
     {
       title: "测量依据",

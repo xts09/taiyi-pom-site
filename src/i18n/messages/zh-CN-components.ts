@@ -210,7 +210,7 @@ export const chinesePrecisionPlasticGearsDetail = {
       review:
         "检查齿隙、跳动、中心距、轴与壳体对中、冷热尺寸及工作循环。",
       direction:
-        "先区分几何、装配波动和热间隙与材料表现，再考虑摩擦改性配方。",
+        "几何、装配波动和热间隙都可能影响运行表现；摩擦改性配方的评估需与这些因素区分。",
     },
     {
       symptom: "齿根开裂或断齿",
@@ -422,7 +422,7 @@ export const chinesePrecisionPlasticGearsDetail = {
   ],
   finalCta: {
     eyebrow: "项目信息",
-    title: "申请样品前先建立齿轮候选清单",
+    title: "齿轮候选牌号与样品评估",
     body: "使用上面的项目简报来比较材料方向、可用牌号数据和注塑齿轮验证计划。",
   },
 } as const satisfies ComponentSolutionDetail;

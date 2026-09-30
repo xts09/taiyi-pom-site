@@ -189,7 +189,7 @@ export function ProductGrid({
       {showPomSubcategories ? (
         <PomFamilyMap
           title="Choose a POM Family by Part Need"
-          description="Start with the performance gap that governs the molded part, then open the relevant PLATFORM POM family to compare listed grades and published data."
+          description="PLATFORM POM families address different molded-part requirements. Compare listed grades and published data within each family."
           groups={pomFamilyGroups}
         />
       ) : null}

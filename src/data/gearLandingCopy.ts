@@ -4,10 +4,10 @@ const cycles = new Intl.NumberFormat("en-US").format(test.projectRequirementCycl
 
 export const gearLandingCopy = {
   en: {
-    summary: "Compare POM materials for molded transmission gears, worm wheels and small gear mechanisms. Start with the load, wear or dimensional issue your part needs to solve.",
+    summary: "Compare POM materials for molded transmission gears, worm wheels and small gear mechanisms with different load, wear and dimensional requirements.",
     secondary: "Compare Materials",
     materialsTitle: "Which POM direction fits your gear?",
-    materialsIntro: "Use these three starting points to narrow the material family, then validate a grade in your assembly.",
+    materialsIntro: "These three material options address different gear requirements. Grade suitability still requires validation in your assembly.",
     directions: [
       { title: "Balanced POM", purpose: "For general transmission and dimensional consistency.", check: "Validate fatigue and dimensional stability at the actual torque, speed and temperature." },
       { title: "Wear-resistant POM", purpose: "For sliding contact and friction or wear concerns.", check: "Test the actual mating part and lubrication. Friction data alone does not predict gear life." },
@@ -31,7 +31,7 @@ export const gearLandingCopy = {
     summary: "为注塑传动齿轮、蜗轮和小型齿轮机构选择 POM 材料。从零件的承载、磨损或尺寸问题出发，找到值得验证的材料方向。",
     secondary: "比较材料方向",
     materialsTitle: "你的齿轮，先看哪类 POM？",
-    materialsIntro: "先缩小材料范围，再结合实际齿轮组件验证具体牌号。",
+    materialsIntro: "候选牌号需结合实际齿轮组件的载荷、磨损与尺寸要求验证。",
     directions: [
       { title: "平衡型 POM", purpose: "用于常规传动，兼顾尺寸稳定与综合性能。", check: "在实际扭矩、转速和温度下，验证疲劳表现与尺寸稳定性。" },
       { title: "耐磨型 POM", purpose: "存在滑动接触，重点关注摩擦与磨损。", check: "使用实际配对件与润滑条件测试，摩擦系数不能直接换算齿轮寿命。" },

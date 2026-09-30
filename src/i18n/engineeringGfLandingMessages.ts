@@ -185,7 +185,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     tradeoffsEyebrow: "Technische Abwägungen",
     tradeoffsTitle: "Verstärkung verändert mehr als nur die Steifigkeit",
     tradeoffsDescriptionTemplate:
-      "Grenzen Sie die {polymer}-Auswahl anhand des Glasfaseranteils ein und bewerten Sie anschließend das vollständige Formteilsystem. Ein höherer gelisteter Verstärkungsanteil ergibt nicht automatisch das bessere Bauteil.",
+      "Der Glasfaseranteil hilft beim Vergleich von {polymer}-Typen. Die Eignung hängt vom vollständigen Formteilsystem ab; ein höherer Verstärkungsanteil ergibt nicht automatisch das bessere Bauteil.",
     guideLinksAria: "Leitfäden zur PA-Werkstoffauswahl",
     compareOtherTemplate:
       "GF-Werkstofftypen aus {otherPolymer} vergleichen →",
@@ -252,7 +252,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     tradeoffsEyebrow: "Compromis techniques",
     tradeoffsTitle: "Le renforcement ne modifie pas seulement la rigidité",
     tradeoffsDescriptionTemplate:
-      "Utilisez la teneur en fibres de verre pour réduire la sélection {polymer}, puis évaluez l’ensemble du système moulé. Un taux de renforcement publié plus élevé ne produit pas automatiquement une meilleure pièce.",
+      "La teneur en fibres de verre aide à comparer les grades {polymer}. Leur adéquation dépend du système moulé complet ; un taux de renforcement plus élevé ne produit pas automatiquement une meilleure pièce.",
     guideLinksAria: "Guides de sélection des matériaux PA",
     compareOtherTemplate:
       "Comparer les grades GF en {otherPolymer} →",
@@ -319,7 +319,7 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     tradeoffsEyebrow: "Contrapartidas de engenharia",
     tradeoffsTitle: "O reforço altera mais do que a rigidez",
     tradeoffsDescriptionTemplate:
-      "Use o teor de fibra de vidro para reduzir a faixa de {polymer} e depois avalie o sistema moldado completo. Um teor de reforço listado mais alto não produz automaticamente a melhor peça.",
+      "O teor de fibra de vidro ajuda a comparar os grades de {polymer}. A adequação depende do sistema moldado completo; um teor maior de reforço não produz automaticamente uma peça melhor.",
     guideLinksAria: "Guias de seleção de materiais PA",
     compareOtherTemplate: "Comparar graus GF de {otherPolymer} →",
     pa6Pa66Guide: "PA6 ou PA66? Guia de seleção →",
@@ -442,7 +442,7 @@ const localizedPageCopy: Record<
       navSubtitle:
         "GF8–GF50 für Steifigkeit, Schlagzähigkeit und Wärmeformbeständigkeit",
       comparisonIntro:
-        "Die Werkstofftypen sind nach Glasfasergehalt geordnet. Vergleichen Sie die veröffentlichten Eigenschaften und öffnen Sie anschließend einen Werkstofftyp oder fordern Sie das vollständige TDS an.",
+        "Die Werkstofftypen sind nach Glasfasergehalt geordnet, mit veröffentlichten Eigenschaften, Typendetails und Links zur Anforderung vollständiger TDS.",
       tradeoffs: {
         improvementTitle: "Ein höherer Glasfaseranteil kann unterstützen",
         improvementIntro:
@@ -473,7 +473,7 @@ const localizedPageCopy: Record<
           eyebrow: "Strukturgehäuse",
           label: "Elektrische und elektronische Gehäuse",
           description:
-            "Prüfen Sie Gehäusegeometrie, Montagelast, Isolationsanforderungen, Wärme und Dokumentbedarf, bevor Sie einen Werkstofftyp vorauswählen.",
+            "Gehäusegeometrie, Montagelast, Isolationsanforderungen, Wärme und Dokumentbedarf bestimmen die relevanten Werkstoffoptionen.",
           href: "/applications/electronics",
         },
         {
@@ -494,7 +494,7 @@ const localizedPageCopy: Record<
           eyebrow: "Funktionsgehäuse",
           label: "Bauteile für die Wasserregelung",
           description:
-            "Definieren Sie Druck, Temperatur, Medienkontakt, Maße und Validierungsumfang vor der Werkstoffauswahl.",
+            "Druck, Temperatur, Medienkontakt, Maße und Validierungsumfang bestimmen die Werkstoffanforderungen.",
           href: "/applications/water-control",
         },
       ],
@@ -546,7 +546,7 @@ const localizedPageCopy: Record<
       navSubtitle:
         "GF15–GF50 für Festigkeit, Wärmeformbeständigkeit und Feuchte",
       comparisonIntro:
-        "Die Werkstofftypen sind nach Glasfasergehalt geordnet. Vergleichen Sie die veröffentlichten Eigenschaften und öffnen Sie anschließend einen Werkstofftyp oder fordern Sie das vollständige TDS an.",
+        "Die Werkstofftypen sind nach Glasfasergehalt geordnet, mit veröffentlichten Eigenschaften, Typendetails und Links zur Anforderung vollständiger TDS.",
       tradeoffs: {
         improvementTitle: "Ein höherer Glasfaseranteil kann unterstützen",
         improvementIntro:
@@ -571,13 +571,13 @@ const localizedPageCopy: Record<
         ],
       },
       applicationsIntro:
-        "Definieren Sie Last, thermische Belastung und Montagebedingungen des Bauteils und anschließend die für die Anwendung erforderlichen Nachweise.",
+        "Last, thermische Belastung und Montagebedingungen des Bauteils bestimmen die erforderlichen Validierungsnachweise.",
       applications: [
         {
           eyebrow: "Fahrzeugmechanismen",
           label: "Struktur- und Funktionsbauteile für Fahrzeuge",
           description:
-            "Definieren Sie Last, Temperatur, Zyklen, Feuchte, Befestigung und Freigabeanforderungen, bevor Sie Werkstofftypen vergleichen.",
+            "Werkstoffvergleiche berücksichtigen Last, Temperatur, Zyklen, Feuchte, Befestigung und Freigabeanforderungen.",
           href: "/applications/automotive",
         },
         {
@@ -603,7 +603,7 @@ const localizedPageCopy: Record<
         },
       ],
       validationIntro:
-        "Die Vorauswahl von PA66-GF muss Feuchtezustand, Wärme, Prozessbedingungen und Orientierung in derselben Nachweiskette halten. Grenzen Sie die Reihe mit veröffentlichten Daten ein und validieren Sie anschließend Formteil und Baugruppe.",
+        "Die Vorauswahl von PA66-GF muss Feuchtezustand, Wärme, Prozessbedingungen und Orientierung in derselben Nachweiskette halten. Veröffentlichte Daten unterstützen die Vorauswahl; Formteil und Baugruppe benötigen weiterhin eine Validierung.",
       validationSteps: [
         {
           title: "Probekörper und Feuchtezustand festlegen",
@@ -651,7 +651,7 @@ const localizedPageCopy: Record<
         "Explorez 17 grades PLATFORM® PA6 de GF8 à GF50. Comparez la rigidité, la résistance au choc et la HDT en fonction de votre pièce moulée.",
       navSubtitle: "GF8–GF50 : rigidité, choc et tenue sous charge à chaud",
       comparisonIntro:
-        "Les grades sont classés par teneur en fibres de verre. Comparez les propriétés publiées, puis ouvrez la fiche d’un grade ou demandez sa TDS complète.",
+        "Les grades sont classés par teneur en fibres de verre, avec propriétés publiées, fiches détaillées et demandes de TDS complètes.",
       tradeoffs: {
         improvementTitle:
           "Une teneur supérieure en fibres de verre peut favoriser",
@@ -683,7 +683,7 @@ const localizedPageCopy: Record<
           eyebrow: "Boîtiers structurels",
           label: "Boîtiers électriques et électroniques",
           description:
-            "Examinez la géométrie du boîtier, les efforts d’assemblage, l’isolation, la chaleur et les documents requis avant de présélectionner un grade.",
+            "La géométrie du boîtier, les efforts d’assemblage, l’isolation, la chaleur et les documents requis déterminent les grades pertinents.",
           href: "/applications/electronics",
         },
         {
@@ -704,7 +704,7 @@ const localizedPageCopy: Record<
           eyebrow: "Boîtiers fonctionnels",
           label: "Composants de régulation de l’eau",
           description:
-            "Définissez la pression, la température, le fluide, les dimensions et le périmètre de validation avant de choisir le matériau.",
+            "La pression, la température, le fluide, les dimensions et le périmètre de validation déterminent les exigences du matériau.",
           href: "/applications/water-control",
         },
       ],
@@ -752,10 +752,10 @@ const localizedPageCopy: Record<
         "Comparez les grades PLATFORM en PA66 renforcé de fibres de verre selon le taux de GF, la résistance, le module de flexion, le choc entaillé, la HDT, l’humidité et les exigences de la pièce.",
       heroEyebrow: "Sélection de grades PA66",
       heroDescription:
-        "Explorez 16 grades PLATFORM® PA66 de GF15 à GF50. Comparez la résistance et la HDT, puis examinez les exigences d’humidité et d’assemblage.",
+        "16 grades PLATFORM® PA66 de GF15 à GF50, avec données publiées de résistance et de HDT. Le choix du matériau doit aussi tenir compte de l’humidité et des exigences d’assemblage.",
       navSubtitle: "GF15–GF50 : résistance, tenue sous charge à chaud et humidité",
       comparisonIntro:
-        "Les grades sont classés par teneur en fibres de verre. Comparez les propriétés publiées, puis ouvrez la fiche d’un grade ou demandez sa TDS complète.",
+        "Les grades sont classés par teneur en fibres de verre, avec propriétés publiées, fiches détaillées et demandes de TDS complètes.",
       tradeoffs: {
         improvementTitle:
           "Une teneur supérieure en fibres de verre peut favoriser",
@@ -781,13 +781,13 @@ const localizedPageCopy: Record<
         ],
       },
       applicationsIntro:
-        "Définissez la charge, l’exposition thermique et les conditions d’assemblage de la pièce, puis les preuves requises pour l’application.",
+        "La charge, l’exposition thermique et les conditions d’assemblage de la pièce déterminent les preuves nécessaires à la validation.",
       applications: [
         {
           eyebrow: "Mécanismes automobiles",
           label: "Pièces automobiles structurelles et fonctionnelles",
           description:
-            "Définissez la charge, la température, les cycles, l’humidité, la fixation et les exigences d’approbation avant de comparer les grades.",
+            "La comparaison des grades tient compte des charges, de la température, des cycles, de l’humidité, de la fixation et des exigences d’approbation.",
           href: "/applications/automotive",
         },
         {
@@ -813,7 +813,7 @@ const localizedPageCopy: Record<
         },
       ],
       validationIntro:
-        "La présélection d’un PA66 GF doit réunir l’état d’humidité, la chaleur, les conditions de procédé et l’orientation dans une même chaîne de preuves. Utilisez les données publiées pour réduire la gamme, puis validez la pièce moulée et l’assemblage.",
+        "La présélection d’un PA66 GF doit réunir l’état d’humidité, la chaleur, les conditions de procédé et l’orientation dans une même chaîne de preuves. Les données publiées aident à la présélection ; la pièce moulée et l’assemblage nécessitent leur propre validation.",
       validationSteps: [
         {
           title: "Définir l’éprouvette et l’état d’humidité",
@@ -861,7 +861,7 @@ const localizedPageCopy: Record<
         "Explore 17 graus PLATFORM® de PA6, de GF8 a GF50. Compare rigidez, impacto e HDT de acordo com os requisitos da peça moldada.",
       navSubtitle: "GF8–GF50 em rigidez, impacto e deflexão térmica",
       comparisonIntro:
-        "Os graus estão ordenados pelo teor de fibra de vidro. Compare as propriedades publicadas e depois abra um grau ou solicite sua TDS completa.",
+        "Os grades estão ordenados pelo teor de fibra de vidro, com propriedades publicadas, páginas detalhadas e solicitações de TDS completas.",
       tradeoffs: {
         improvementTitle:
           "Um teor maior de fibra de vidro pode favorecer",
@@ -893,7 +893,7 @@ const localizedPageCopy: Record<
           eyebrow: "Carcaças estruturais",
           label: "Carcaças elétricas e eletrônicas",
           description:
-            "Avalie a geometria da carcaça, a carga de montagem, o isolamento, o calor e os documentos necessários antes de selecionar um grau.",
+            "Geometria da carcaça, carga de montagem, isolamento, calor e documentos necessários definem as opções de grades relevantes.",
           href: "/applications/electronics",
         },
         {
@@ -962,10 +962,10 @@ const localizedPageCopy: Record<
         "Compare graus PLATFORM de PA66 reforçado com fibra de vidro por teor de GF, resistência, módulo de flexão, impacto com entalhe, HDT, umidade e requisitos da peça.",
       heroEyebrow: "Seleção de graus PA66",
       heroDescription:
-        "Explore 16 graus PLATFORM® de PA66, de GF15 a GF50. Compare resistência e HDT e depois avalie os requisitos de umidade e montagem.",
+        "16 grades PLATFORM® de PA66, de GF15 a GF50, com dados publicados de resistência e HDT. A escolha do material também precisa considerar a umidade e os requisitos de montagem.",
       navSubtitle: "GF15–GF50 em resistência, deflexão térmica e umidade",
       comparisonIntro:
-        "Os graus estão ordenados pelo teor de fibra de vidro. Compare as propriedades publicadas e depois abra um grau ou solicite sua TDS completa.",
+        "Os grades estão ordenados pelo teor de fibra de vidro, com propriedades publicadas, páginas detalhadas e solicitações de TDS completas.",
       tradeoffs: {
         improvementTitle:
           "Um teor maior de fibra de vidro pode favorecer",
@@ -991,13 +991,13 @@ const localizedPageCopy: Record<
         ],
       },
       applicationsIntro:
-        "Defina a carga, a exposição térmica e as condições de montagem da peça e depois confirme as evidências exigidas pela aplicação.",
+        "A carga, a exposição térmica e as condições de montagem da peça definem as evidências necessárias para validação.",
       applications: [
         {
           eyebrow: "Mecanismos automotivos",
           label: "Peças automotivas estruturais e funcionais",
           description:
-            "Defina carga, temperatura, ciclos, umidade, fixação e requisitos de aprovação antes de comparar os graus.",
+            "A comparação de grades considera carga, temperatura, ciclos, umidade, fixação e requisitos de aprovação.",
           href: "/applications/automotive",
         },
         {
@@ -1023,7 +1023,7 @@ const localizedPageCopy: Record<
         },
       ],
       validationIntro:
-        "A triagem de PA66 GF deve manter o estado de umidade, o calor, as condições de processo e a orientação na mesma cadeia de evidências. Use os dados publicados para reduzir a faixa e depois valide a peça moldada e o conjunto.",
+        "A triagem de PA66 GF deve manter o estado de umidade, o calor, as condições de processo e a orientação na mesma cadeia de evidências. Os dados publicados ajudam na seleção inicial; a peça moldada e o conjunto ainda precisam de validação.",
       validationSteps: [
         {
           title: "Definir o corpo de prova e o estado de umidade",
@@ -1285,7 +1285,7 @@ const localizedPpaPageCopy: Record<
     navSubtitle:
       "GF30–GF50 für thermisches Verhalten, Steifigkeit und Maßhaltigkeit",
     comparisonIntro:
-      "Die gelisteten Typen sind nach Glasfasergehalt geordnet. Vergleichen Sie veröffentlichte Werte und öffnen Sie anschließend den Typdatensatz oder fordern Sie das vollständige TDS an.",
+      "Die gelisteten Typen sind nach Glasfasergehalt geordnet, mit veröffentlichten Werten, Typendetails und Links zur Anforderung vollständiger TDS.",
     tradeoffs: {
       improvementTitle: "Glasfaserverstärkung kann unterstützen",
       improvementIntro:
@@ -1310,13 +1310,13 @@ const localizedPpaPageCopy: Record<
       ],
     },
     applicationsIntro:
-      "Nutzen Sie die gelisteten Daten zur Vorauswahl einer strukturellen PPA-Option und ordnen Sie Temperatur, Last, Umgebung und Maße dem realen Bauteil zu, bevor Formversuche beginnen.",
+      "Die Vorauswahl struktureller PPA-Typen verbindet veröffentlichte Daten mit Temperatur, Last, Umgebung und Maßanforderungen des realen Bauteils. Spritzgussversuche bleiben für die Validierung erforderlich.",
     applications: [
       {
         eyebrow: "Hochtemperatur-Strukturbauteile",
         label: "Struktur- und Funktionsbauteile für Fahrzeuge",
         description:
-          "Definieren Sie Wärmebeanspruchung, Lastdauer, Medienkontakt, Montagezwang und Validierungsanforderungen, bevor Sie einen Typ auswählen.",
+          "Wärmebeanspruchung, Lastdauer, Medienkontakt, Montagezwang und Validierungsanforderungen bestimmen die relevanten Werkstoffoptionen.",
         href: "/applications/automotive",
       },
       {
@@ -1382,7 +1382,7 @@ const localizedPpaPageCopy: Record<
     navSubtitle:
       "GF30–GF50 selon la réponse thermique, la rigidité et les dimensions",
     comparisonIntro:
-      "Les grades répertoriés sont classés par teneur en fibres de verre. Comparez les valeurs publiées, puis ouvrez la fiche du grade ou demandez sa TDS complète.",
+      "Les grades répertoriés sont classés par teneur en fibres de verre, avec valeurs publiées, fiches détaillées et demandes de TDS complètes.",
     tradeoffs: {
       improvementTitle: "Le renforcement en fibres de verre peut contribuer à",
       improvementIntro:
@@ -1407,13 +1407,13 @@ const localizedPpaPageCopy: Record<
       ],
     },
     applicationsIntro:
-      "Utilisez les données publiées pour présélectionner une option PPA structurelle, puis reliez température, charge, environnement et dimensions à la pièce réelle avant les essais de moulage.",
+      "La présélection d’un PPA structurel associe les données publiées à la température, aux charges, à l’environnement et aux dimensions de la pièce réelle. Les essais de moulage restent nécessaires à la validation.",
     applications: [
       {
         eyebrow: "Structures à haute température",
         label: "Pièces automobiles structurelles et fonctionnelles",
         description:
-          "Définissez l’exposition thermique, la durée de charge, le contact avec les fluides, les contraintes d’assemblage et les exigences de validation avant de choisir un grade.",
+          "L’exposition thermique, la durée de charge, le contact avec les fluides, les contraintes d’assemblage et les exigences de validation déterminent les grades pertinents.",
         href: "/applications/automotive",
       },
       {
@@ -1504,13 +1504,13 @@ const localizedPpaPageCopy: Record<
       ],
     },
     applicationsIntro:
-      "Use os dados publicados para a triagem de uma opção estrutural de PPA e depois relacione temperatura, carga, ambiente e dimensões à peça real antes dos testes de moldagem.",
+      "A seleção inicial de PPA estrutural combina os dados publicados com a temperatura, a carga, o ambiente e os requisitos dimensionais da peça real. Os ensaios de moldagem continuam necessários para validação.",
     applications: [
       {
         eyebrow: "Estruturas de alta temperatura",
         label: "Peças automotivas estruturais e funcionais",
         description:
-          "Defina exposição térmica, duração da carga, contato com fluidos, restrições de montagem e requisitos de validação antes de selecionar um grau.",
+          "Exposição térmica, duração da carga, contato com fluidos, restrições de montagem e requisitos de validação definem as opções de grades relevantes.",
         href: "/applications/automotive",
       },
       {

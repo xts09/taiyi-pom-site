@@ -68,7 +68,7 @@ const landingPageContent: Record<
       "Explore 17 PLATFORM® PA6 grades from GF8 to GF50. Compare stiffness, impact and heat-deflection data for your molded part.",
     navSubtitle: "GF8–GF50 across stiffness, impact, and heat deflection",
     comparisonIntro:
-      "Grades are ordered by glass-fiber content. Compare the published properties, then open a grade or request its full TDS.",
+      "Grades are ordered by glass-fiber content, with published properties, grade details and full TDS request links.",
     tradeoffs: {
       improvementTitle: "Increasing glass-fiber content can support",
       improvementIntro:
@@ -99,7 +99,7 @@ const landingPageContent: Record<
         eyebrow: "Structural housings",
         label: "Electrical and electronic housings",
         description:
-          "Review enclosure geometry, assembly load, insulation requirements, heat and document needs before shortlisting a grade.",
+          "Enclosure geometry, assembly load, insulation requirements, heat and document needs determine the relevant grade options.",
         href: "/applications/electronics",
       },
       {
@@ -120,7 +120,7 @@ const landingPageContent: Record<
         eyebrow: "Functional housings",
         label: "Water-control components",
         description:
-          "Define pressure, temperature, medium exposure, dimensions and validation scope before material selection.",
+          "Pressure, temperature, medium exposure, dimensions and validation scope determine the material requirements.",
         href: "/applications/water-control",
       },
     ],
@@ -168,10 +168,10 @@ const landingPageContent: Record<
       "Compare PLATFORM glass-fiber-reinforced PA66 grades by GF level, strength, flexural modulus, notched impact, HDT, moisture data and part requirements.",
     heroEyebrow: "PA66 Grade Selection",
     heroDescription:
-      "Explore 16 PLATFORM® PA66 grades from GF15 to GF50. Compare strength and heat-deflection data, then check moisture and assembly requirements.",
+      "Explore 16 PLATFORM® PA66 grades from GF15 to GF50, with published strength and heat-deflection data. Material selection also needs to account for moisture and assembly requirements.",
     navSubtitle: "GF15–GF50 across strength, heat deflection, and moisture",
     comparisonIntro:
-      "Grades are ordered by glass-fiber content. Compare the published properties, then open a grade or request its full TDS.",
+      "Grades are ordered by glass-fiber content, with published properties, grade details and full TDS request links.",
     tradeoffs: {
       improvementTitle: "Increasing glass-fiber content can support",
       improvementIntro:
@@ -196,13 +196,13 @@ const landingPageContent: Record<
       ],
     },
     applicationsIntro:
-      "Define the part's load, thermal exposure and assembly conditions, then confirm the evidence needed for your application.",
+      "The part's load, thermal exposure and assembly conditions determine the evidence needed for material evaluation.",
     applications: [
       {
         eyebrow: "Automotive mechanisms",
         label: "Automotive structural and functional parts",
         description:
-          "Define load, temperature, cycling, moisture, fastening and approval requirements before comparing grades.",
+          "Grade comparisons need to account for load, temperature, cycling, moisture, fastening and approval requirements.",
         href: "/applications/automotive",
       },
       {
@@ -228,7 +228,7 @@ const landingPageContent: Record<
       },
     ],
     validationIntro:
-      "PA66 GF screening must keep moisture state, heat, process conditions and orientation on the same evidence chain. Use published data to narrow the range, then validate the molded part and assembly.",
+      "PA66 GF screening must keep moisture state, heat, process conditions and orientation on the same evidence chain. Published data supports initial screening; the molded part and assembly still require validation.",
     validationSteps: [
       {
         title: "Set the specimen and moisture state",
@@ -274,7 +274,7 @@ const landingPageContent: Record<
       "Compare three PLATFORM® PPA grades from GF30 to GF50 for high-temperature, dimensional and load-bearing molded-part screening.",
     navSubtitle: "GF30–GF50 across thermal response, stiffness, and dimensions",
     comparisonIntro:
-      "The listed grades are ordered by glass-fiber content. Compare published values, then open the grade record or request its full TDS.",
+      "Listed grades are ordered by glass-fiber content, with published values, grade records and full TDS request links.",
     tradeoffs: {
       improvementTitle: "Glass-fiber reinforcement can support",
       improvementIntro:
@@ -299,13 +299,13 @@ const landingPageContent: Record<
       ],
     },
     applicationsIntro:
-      "Use the listed data to screen a structural PPA option, then match temperature, load, environment and dimensions to the actual part before molding trials.",
+      "Structural PPA screening combines the listed data with the actual part's temperature, load, environment and dimensional requirements. Molding trials are required for validation.",
     applications: [
       {
         eyebrow: "High-temperature structures",
         label: "Automotive structural and functional parts",
         description:
-          "Define heat exposure, load duration, medium contact, assembly restraint and validation requirements before selecting a grade.",
+          "Heat exposure, load duration, medium contact, assembly restraint and validation requirements determine the relevant grade options.",
         href: "/applications/automotive",
       },
       {

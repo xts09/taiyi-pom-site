@@ -1,7 +1,7 @@
 export const automotiveExpandedLocaleOverrides = {
   de: {
     从部件与实际工况开始:
-      "Mit dem Bauteil und den tatsächlichen Einsatzbedingungen beginnen",
+      "Bauteil und tatsächliche Einsatzbedingungen",
     的代表性部件: " – typische Bauteile",
     以下部件可进一步查看专项审核指南:
       "Für diese Bauteile stehen vertiefende Leitfäden zur Werkstoffauswahl zur Verfügung",
@@ -13,12 +13,12 @@ export const automotiveExpandedLocaleOverrides = {
     部件关注点: "Bauteilbezogene Schwerpunkte",
     汽车零部件选材: "Werkstoffauswahl für Automobilbauteile",
     提交汽车零部件要求: "Anforderungen für ein Automobilbauteil übermitteln",
-    先明确部件功能和实际工况:
-      "Zuerst Bauteilfunktion und reale Einsatzbedingungen definieren",
-    "同一辆车上的齿轮、卡扣、导向件和壳体承担的任务不同。先明确机构、载荷、运动、尺寸与环境，再判断哪些 POM 材料方向值得进入候选。":
-      "Zahnräder, Clips, Führungen und Gehäuse in einem Fahrzeug erfüllen unterschiedliche Aufgaben. Definieren Sie zunächst Mechanik, Last, Bewegung, Maße und Umgebung, bevor Sie entscheiden, welche POM-Werkstoffrichtungen in die Vorauswahl aufgenommen werden.",
-    "先明确汽车零部件的功能、工况、尺寸目标与资料需求，再进入 POM 材料方向和具体牌号的比较。":
-      "Definieren Sie zunächst Funktion, Einsatzbedingungen, Maßziele und Dokumentationsanforderungen des Automobilbauteils und vergleichen Sie anschließend POM-Werkstoffrichtungen und konkrete Werkstofftypen.",
+    部件功能与实际工况:
+      "Bauteilfunktion und Einsatzbedingungen",
+    "同一辆车上的齿轮、卡扣、导向件和壳体承担的任务不同。机构、载荷、运动、尺寸与环境条件决定了各类部件的 POM 材料需求。":
+      "Zahnräder, Clips, Führungen und Gehäuse im selben Fahrzeug erfüllen unterschiedliche Aufgaben. Mechanismen, Lasten, Bewegung, Maße und Umgebung bestimmen ihre POM-Werkstoffanforderungen.",
+    "汽车零部件的 POM 选型需兼顾功能、工况、尺寸目标与资料需求。":
+      "Die POM-Auswahl für Fahrzeugteile berücksichtigt Funktion, Einsatzbedingungen, Maßziele und Dokumentanforderungen.",
     汽车零部件选材场景: "Auswahlszenario für Automobilbauteile",
     汽车零部件选材关键输入:
       "Schlüsseleingaben für die Werkstoffauswahl von Automobilbauteilen",
@@ -29,8 +29,8 @@ export const automotiveExpandedLocaleOverrides = {
     尺寸与装配: "Maße und Montage",
     环境与资料: "Umgebung und Dokumentation",
     部件的材料关注点: " – werkstoffliche Schwerpunkte der Bauteile",
-    "不同部件面对的载荷、运动、装配和环境条件并不相同。先找到与项目接近的部件，再看哪些材料性能会影响实际使用。":
-      "Last, Bewegung, Montage und Umgebung unterscheiden sich je nach Bauteil. Wählen Sie zunächst ein dem Projekt ähnliches Bauteil und prüfen Sie dann, welche Werkstoffeigenschaften seine Funktion bestimmen.",
+    "不同部件面对的载荷、运动、装配和环境条件并不相同。以下部件示例说明这些差异对应的材料性能要求。":
+      "Bauteile unterscheiden sich in Lasten, Bewegung, Montage und Umgebungsbedingungen. Die folgenden Beispiele zeigen die daraus entstehenden Werkstoffanforderungen.",
     汽车部件: "Automobilbauteil",
     以下部件可继续查看专项选材指南:
       "Für diese Bauteile stehen vertiefende Leitfäden zur Werkstoffauswahl zur Verfügung",
@@ -40,7 +40,7 @@ export const automotiveExpandedLocaleOverrides = {
       "Die folgenden Richtungen dienen zur Bildung einer ersten Kandidatenauswahl und sind nicht für alle Automobilbauteile allgemein geeignet. Der konkrete Werkstofftyp ist weiterhin anhand realer Einsatzbedingungen, Daten und Musterteilen zu bestätigen.",
     何时考虑: "Wann berücksichtigen",
     从已知的汽车零部件要求开始:
-      "Mit den bekannten Anforderungen des Automobilbauteils beginnen",
+      "Anforderungen an das Automobilbauteil",
     "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。":
       "Geben Sie Bauteilfunktion, Last, Bewegungsart, Einsatzumgebung, aktuellen Werkstoff und Werkzeugstatus an. Daraus können wir geeignete Werkstoffrichtungen, offene Punkte sowie verfügbare Typendaten oder Musteroptionen zusammenstellen.",
     "零部件功能、机构位置与主要失效现象":
@@ -70,8 +70,8 @@ export const automotiveExpandedLocaleOverrides = {
       "Glasfaserverstärktes POM — für Steifigkeit und Maßkontrolle",
     "支架、壳体或承载件优先关注刚性、收缩和翘曲时进入候选；需同时检查纤维取向和韧性影响。":
       "Als Kandidat für Halter, Gehäuse oder lasttragende Teile mit Schwerpunkt auf Steifigkeit, Schwindung und Verzug; Faserorientierung und Einfluss auf die Zähigkeit sind mitzuprüfen.",
-    "先明确内部运动方式、装配配合、尺寸目标和实际介质条件；介质适用性必须按具体牌号与项目要求确认。":
-      "Definieren Sie zunächst interne Bewegung, Montagepassung, Maßziele und reale Medienbedingungen; die Medienbeständigkeit ist für den konkreten Werkstofftyp und das Projekt zu bestätigen.",
+    "内部运动方式、装配配合、尺寸目标和实际介质条件影响材料选择；介质适用性必须按具体牌号与项目要求确认。":
+      "Innere Bewegung, Passung, Maßziele und tatsächliche Medienbedingungen beeinflussen die Werkstoffauswahl. Die Medienverträglichkeit ist für den konkreten Typ und das Projekt zu bestätigen.",
     "齿轮与导轨的摩擦副、载荷、循环次数和噪声目标，决定是否优先比较耐磨或低摩擦 POM。":
       "Reibpaarung, Last, Lastspiele und Geräuschziel von Zahnrad und Führung bestimmen, ob verschleißfestes oder reibungsarmes POM zuerst verglichen wird.",
     "装配应变、保持力、反复拆装和翘曲要求，决定需要重点比较韧性与尺寸稳定性。":
@@ -107,7 +107,7 @@ export const automotiveExpandedLocaleOverrides = {
   },
   fr: {
     从部件与实际工况开始:
-      "Commencer par la pièce et ses conditions réelles d’utilisation",
+      "Pièce et conditions réelles d’utilisation",
     的代表性部件: " : pièces représentatives",
     以下部件可进一步查看专项审核指南:
       "Ces pièces disposent de guides dédiés pour approfondir la sélection matière",
@@ -119,12 +119,12 @@ export const automotiveExpandedLocaleOverrides = {
     部件关注点: "Priorités par pièce",
     汽车零部件选材: "Sélection matière pour pièces automobiles",
     提交汽车零部件要求: "Transmettre les exigences de la pièce automobile",
-    先明确部件功能和实际工况:
-      "Commencer par définir la fonction et les conditions réelles de la pièce",
-    "同一辆车上的齿轮、卡扣、导向件和壳体承担的任务不同。先明确机构、载荷、运动、尺寸与环境，再判断哪些 POM 材料方向值得进入候选。":
-      "Dans un même véhicule, les engrenages, clips, guides et boîtiers remplissent des fonctions différentes. Définissez d’abord le mécanisme, les charges, le mouvement, les dimensions et l’environnement afin de déterminer quelles orientations POM doivent entrer dans la présélection.",
-    "先明确汽车零部件的功能、工况、尺寸目标与资料需求，再进入 POM 材料方向和具体牌号的比较。":
-      "Définissez d’abord la fonction, les conditions d’utilisation, les objectifs dimensionnels et les besoins documentaires de la pièce automobile, puis comparez les orientations POM et les grades concernés.",
+    部件功能与实际工况:
+      "Fonction de la pièce et conditions d’utilisation",
+    "同一辆车上的齿轮、卡扣、导向件和壳体承担的任务不同。机构、载荷、运动、尺寸与环境条件决定了各类部件的 POM 材料需求。":
+      "Les engrenages, clips, guides et boîtiers d’un même véhicule remplissent des fonctions différentes. Les mécanismes, les charges, le mouvement, les dimensions et l’environnement déterminent leurs exigences en matériau POM.",
+    "汽车零部件的 POM 选型需兼顾功能、工况、尺寸目标与资料需求。":
+      "Le choix du POM pour les pièces automobiles tient compte de la fonction, des conditions d’utilisation, des objectifs dimensionnels et des documents requis.",
     汽车零部件选材场景: "Contexte de sélection des pièces automobiles",
     汽车零部件选材关键输入:
       "Données clés pour sélectionner la matière d’une pièce automobile",
@@ -135,8 +135,8 @@ export const automotiveExpandedLocaleOverrides = {
     尺寸与装配: "Dimensions et assemblage",
     环境与资料: "Environnement et documents",
     部件的材料关注点: " : priorités matière des pièces",
-    "不同部件面对的载荷、运动、装配和环境条件并不相同。先找到与项目接近的部件，再看哪些材料性能会影响实际使用。":
-      "Les charges, mouvements, assemblages et environnements diffèrent selon la pièce. Commencez par une pièce proche de votre projet, puis identifiez les propriétés matière qui influencent son fonctionnement.",
+    "不同部件面对的载荷、运动、装配和环境条件并不相同。以下部件示例说明这些差异对应的材料性能要求。":
+      "Les charges, le mouvement, l’assemblage et l’environnement varient d’une pièce à l’autre. Les exemples suivants présentent les exigences de matériau qui en découlent.",
     汽车部件: "Pièce automobile",
     以下部件可继续查看专项选材指南:
       "Ces pièces disposent de guides dédiés pour approfondir la sélection matière",
@@ -146,7 +146,7 @@ export const automotiveExpandedLocaleOverrides = {
       "Les orientations suivantes servent à établir une première liste de candidats et ne garantissent pas une aptitude générale à toutes les pièces automobiles. Le grade doit encore être confirmé à partir des conditions réelles, des données et des pièces échantillons.",
     何时考虑: "Quand l’envisager",
     从已知的汽车零部件要求开始:
-      "Commencer par les exigences déjà connues de la pièce automobile",
+      "Exigences pour la pièce automobile",
     "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。":
       "Indiquez la fonction, la charge, le type de mouvement, l’environnement, la matière actuelle et l’état d’avancement de l’outillage. Nous pourrons ainsi structurer les familles candidates, les points à préciser et les données de grades ou options d’échantillons disponibles.",
     "零部件功能、机构位置与主要失效现象":
@@ -176,8 +176,8 @@ export const automotiveExpandedLocaleOverrides = {
       "POM renforcé fibres de verre — pour la rigidité et la maîtrise dimensionnelle",
     "支架、壳体或承载件优先关注刚性、收缩和翘曲时进入候选；需同时检查纤维取向和韧性影响。":
       "À considérer pour les supports, boîtiers ou pièces porteuses où la rigidité, le retrait et le gauchissement sont prioritaires ; l’orientation des fibres et son effet sur la ténacité doivent aussi être vérifiés.",
-    "先明确内部运动方式、装配配合、尺寸目标和实际介质条件；介质适用性必须按具体牌号与项目要求确认。":
-      "Définissez d’abord le mouvement interne, les ajustements d’assemblage, les objectifs dimensionnels et les fluides réels ; la compatibilité avec les fluides doit être confirmée pour le grade et le projet concernés.",
+    "内部运动方式、装配配合、尺寸目标和实际介质条件影响材料选择；介质适用性必须按具体牌号与项目要求确认。":
+      "Le mouvement interne, l’ajustement, les objectifs dimensionnels et les fluides réellement rencontrés influencent le choix du matériau. La compatibilité avec ces fluides doit être confirmée pour le grade et le projet concernés.",
     "齿轮与导轨的摩擦副、载荷、循环次数和噪声目标，决定是否优先比较耐磨或低摩擦 POM。":
       "Le couple de frottement, la charge, le nombre de cycles et l’objectif acoustique des engrenages et guides déterminent s’il faut comparer en priorité un POM résistant à l’usure ou à faible frottement.",
     "装配应变、保持力、反复拆装和翘曲要求，决定需要重点比较韧性与尺寸稳定性。":
@@ -212,7 +212,7 @@ export const automotiveExpandedLocaleOverrides = {
       "Confirmer l’aptitude finale à partir des données du grade, de pièces échantillons et d’essais d’outillage",
   },
   "pt-br": {
-    从部件与实际工况开始: "Comece pela peça e pelas condições reais de uso",
+    从部件与实际工况开始: "Peça e condições reais de uso",
     的代表性部件: " — componentes representativos",
     以下部件可进一步查看专项审核指南:
       "Estes componentes têm guias específicos para aprofundar a seleção de materiais",
@@ -224,12 +224,12 @@ export const automotiveExpandedLocaleOverrides = {
     部件关注点: "Prioridades do componente",
     汽车零部件选材: "Seleção de materiais para componentes automotivos",
     提交汽车零部件要求: "Enviar requisitos do componente automotivo",
-    先明确部件功能和实际工况:
-      "Comece definindo a função e as condições reais do componente",
-    "同一辆车上的齿轮、卡扣、导向件和壳体承担的任务不同。先明确机构、载荷、运动、尺寸与环境，再判断哪些 POM 材料方向值得进入候选。":
-      "Em um mesmo veículo, engrenagens, presilhas, guias e carcaças cumprem funções diferentes. Defina primeiro o mecanismo, as cargas, o movimento, as dimensões e o ambiente para decidir quais direções de POM devem entrar na pré-seleção.",
-    "先明确汽车零部件的功能、工况、尺寸目标与资料需求，再进入 POM 材料方向和具体牌号的比较。":
-      "Defina primeiro a função, as condições de uso, as metas dimensionais e as necessidades de documentação do componente automotivo; depois compare as direções de POM e os graus específicos.",
+    部件功能与实际工况:
+      "Função da peça e condições de uso",
+    "同一辆车上的齿轮、卡扣、导向件和壳体承担的任务不同。机构、载荷、运动、尺寸与环境条件决定了各类部件的 POM 材料需求。":
+      "Engrenagens, presilhas, guias e carcaças de um mesmo veículo desempenham funções diferentes. Mecanismos, cargas, movimento, dimensões e ambiente determinam seus requisitos de material POM.",
+    "汽车零部件的 POM 选型需兼顾功能、工况、尺寸目标与资料需求。":
+      "A seleção do POM para peças automotivas considera a função, as condições de uso, as metas dimensionais e os documentos necessários.",
     汽车零部件选材场景: "Cenário de seleção de componentes automotivos",
     汽车零部件选材关键输入:
       "Entradas principais para selecionar o material de um componente automotivo",
@@ -240,8 +240,8 @@ export const automotiveExpandedLocaleOverrides = {
     尺寸与装配: "Dimensões e montagem",
     环境与资料: "Ambiente e documentos",
     部件的材料关注点: " — prioridades de material dos componentes",
-    "不同部件面对的载荷、运动、装配和环境条件并不相同。先找到与项目接近的部件，再看哪些材料性能会影响实际使用。":
-      "Cargas, movimentos, montagens e ambientes variam entre os componentes. Comece por um componente próximo ao seu projeto e identifique quais propriedades do material influenciam seu funcionamento.",
+    "不同部件面对的载荷、运动、装配和环境条件并不相同。以下部件示例说明这些差异对应的材料性能要求。":
+      "Cargas, movimento, montagem e ambiente variam entre as peças. Os exemplos a seguir mostram os requisitos de material decorrentes dessas diferenças.",
     汽车部件: "Componente automotivo",
     以下部件可继续查看专项选材指南:
       "Estes componentes têm guias específicos para aprofundar a seleção de materiais",
@@ -251,7 +251,7 @@ export const automotiveExpandedLocaleOverrides = {
       "As direções abaixo servem para formar uma primeira lista de candidatos e não garantem aplicação geral em todos os componentes automotivos. O grau específico ainda deve ser confirmado com as condições reais, os dados e as peças de amostra.",
     何时考虑: "Quando considerar",
     从已知的汽车零部件要求开始:
-      "Comece pelos requisitos já conhecidos do componente automotivo",
+      "Requisitos do componente automotivo",
     "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。":
       "Informe a função, a carga, o tipo de movimento, o ambiente de uso, o material atual e a etapa do molde. Com isso, podemos organizar as direções candidatas, os pontos pendentes e os dados de graus ou opções de amostras disponíveis.",
     "零部件功能、机构位置与主要失效现象":
@@ -281,8 +281,8 @@ export const automotiveExpandedLocaleOverrides = {
       "POM reforçado com fibra de vidro — para rigidez e controle dimensional",
     "支架、壳体或承载件优先关注刚性、收缩和翘曲时进入候选；需同时检查纤维取向和韧性影响。":
       "A considerar para suportes, carcaças ou peças estruturais em que rigidez, retração e empenamento sejam prioritários; também é necessário verificar a orientação das fibras e o efeito sobre a tenacidade.",
-    "先明确内部运动方式、装配配合、尺寸目标和实际介质条件；介质适用性必须按具体牌号与项目要求确认。":
-      "Defina primeiro o movimento interno, o ajuste de montagem, as metas dimensionais e os meios reais de contato; a compatibilidade deve ser confirmada para o grau e o projeto específicos.",
+    "内部运动方式、装配配合、尺寸目标和实际介质条件影响材料选择；介质适用性必须按具体牌号与项目要求确认。":
+      "O movimento interno, o ajuste, as metas dimensionais e os meios de contato reais influenciam a seleção do material. A compatibilidade com esses meios precisa ser confirmada para o grade e o projeto específicos.",
     "齿轮与导轨的摩擦副、载荷、循环次数和噪声目标，决定是否优先比较耐磨或低摩擦 POM。":
       "O par de atrito, a carga, o número de ciclos e a meta de ruído de engrenagens e guias determinam se POM resistente ao desgaste ou de baixo atrito deve ser comparado primeiro.",
     "装配应变、保持力、反复拆装和翘曲要求，决定需要重点比较韧性与尺寸稳定性。":

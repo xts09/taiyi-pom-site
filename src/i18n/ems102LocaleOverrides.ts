@@ -7,7 +7,7 @@ export const ems102LocaleOverrides: Partial<
     "EMS102 MoS2 填充黑色 POM | 台益":
       "EMS102 Schwarzes POM mit MoS2-Füllung | Taiyi Polymer",
     "查看 EMS102 MoS2 填充黑色 POM 的力学、热、电学和注塑参考数据，并申请资料或样品。":
-      "Prüfen Sie die mechanischen, thermischen, elektrischen und spritzgusstechnischen Referenzdaten von EMS102, einem schwarzen POM mit MoS2-Füllung, und fragen Sie Unterlagen oder Muster an.",
+      "Mechanische, thermische, elektrische und Spritzguss-Referenzdaten für schwarzes, MoS2-gefülltes POM EMS102. Unterlagen und Muster können angefragt werden.",
     "POM 改性材料示意图": "Schematische Darstellung eines modifizierten POM-Compounds",
     "MoS2 填充 POM · 黑色": "POM mit MoS2-Füllung · schwarz",
     "EMS102 是采用二硫化钼（MoS2）填充的黑色 POM 牌号。所列流动、力学、热、电学与注塑数据用于初步选型；实际摩擦磨耗、寿命和零件适用性需按项目工况验证。":
@@ -35,7 +35,7 @@ export const ems102LocaleOverrides: Partial<
     "EMS102 MoS2 填充黑色 POM | 台益":
       "EMS102 POM noir chargé de MoS2 | Taiyi Polymer",
     "查看 EMS102 MoS2 填充黑色 POM 的力学、热、电学和注塑参考数据，并申请资料或样品。":
-      "Consultez les données de référence mécaniques, thermiques, électriques et de moulage par injection du POM noir chargé de MoS2 EMS102, puis demandez des documents ou des échantillons.",
+      "Données de référence mécaniques, thermiques, électriques et de moulage par injection du POM noir chargé de MoS2 EMS102. Documents et échantillons peuvent être demandés.",
     "POM 改性材料示意图": "Illustration d'un compound POM modifié",
     "MoS2 填充 POM · 黑色": "POM chargé de MoS2 · noir",
     "EMS102 是采用二硫化钼（MoS2）填充的黑色 POM 牌号。所列流动、力学、热、电学与注塑数据用于初步选型；实际摩擦磨耗、寿命和零件适用性需按项目工况验证。":
@@ -63,7 +63,7 @@ export const ems102LocaleOverrides: Partial<
     "EMS102 MoS2 填充黑色 POM | 台益":
       "EMS102 POM preto com MoS2 | Taiyi Polymer",
     "查看 EMS102 MoS2 填充黑色 POM 的力学、热、电学和注塑参考数据，并申请资料或样品。":
-      "Consulte os dados de referência mecânicos, térmicos, elétricos e de moldagem por injeção do POM preto com MoS2 EMS102 e solicite documentos ou amostras.",
+      "Dados de referência mecânicos, térmicos, elétricos e de moldagem por injeção do POM preto com MoS2 EMS102. Documentos e amostras podem ser solicitados.",
     "POM 改性材料示意图": "Ilustração de um composto de POM modificado",
     "MoS2 填充 POM · 黑色": "POM com MoS2 · preto",
     "EMS102 是采用二硫化钼（MoS2）填充的黑色 POM 牌号。所列流动、力学、热、电学与注塑数据用于初步选型；实际摩擦磨耗、寿命和零件适用性需按项目工况验证。":

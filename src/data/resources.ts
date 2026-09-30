@@ -94,10 +94,10 @@ export const resourcePages: ResourcePage[] = [
     description:
       "A practical POM material selection guide for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV, and high-impact compounds.",
     intro:
-      "Choose a POM grade by defining the part's main failure risk, motion, load, mating surface, environment, dimensions, and molding constraints. Use those requirements to screen standard, wear-resistant, low-friction, reinforced, conductive, antistatic, UV-resistant, or high-impact POM. Confirm the exact grade with its current TDS and trials in the intended mold and application.",
+      "POM selection depends on the part's main failure risk, motion, load, mating surface, environment, dimensions and molding constraints. This guide explains how to compare standard, wear-resistant, low-friction, reinforced, conductive, antistatic, UV-resistant and high-impact POM. The exact grade still requires its current TDS and trials in the intended mold and application.",
     articleSections: [
       {
-        title: "Start with the Molded Part, Not the Grade Name",
+        title: "Part Requirements and Material Selection",
         navLabel: "Molded Part First",
         paragraphs: [
           "Choose from the finished part and its dominant failure risk, not from a grade name. Geometry, wall thickness, assembly, mold setup, and service conditions determine whether a formulation is a suitable candidate.",
@@ -187,10 +187,10 @@ export const resourcePages: ResourcePage[] = [
       {
         type: "media",
         position: "after-section",
-        sectionTitle: "Start with the Molded Part, Not the Grade Name",
+        sectionTitle: "Part Requirements and Material Selection",
         src: "/generated/pom-material-hero.webp",
         alt: "Natural POM pellets beside molded gears and precision components in a materials laboratory",
-        title: "Start with the finished part and its operating system",
+        title: "Molded geometry and operating conditions",
         description:
           "Material screening connects the molded geometry, working environment, contact conditions, and failure risk before a modified POM direction is selected.",
         labels: [],
@@ -259,7 +259,7 @@ export const resourcePages: ResourcePage[] = [
       {
         title: "Start From The Part Requirement",
         description:
-          "Material selection should start with the molded part, not only with a target property value. The same POM direction can behave differently when geometry, mating materials, and molding conditions change.",
+          "Material selection depends on the molded part and its operating requirements; a target property value alone is insufficient. The same POM direction can behave differently when geometry, mating materials, and molding conditions change.",
         points: [
           "Define the part function, load type, movement pattern, service life target, and acceptable dimensional or surface change.",
           "Record continuous and peak temperatures, chemical contact, moisture exposure, UV exposure, and any electrical or cleanliness requirements.",
@@ -334,7 +334,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Define What Equivalent Means for This Project",
         navLabel: "Project Equivalence",
         paragraphs: [
-          "Start by defining the reason for the change and the boundary that must remain unchanged. The project may involve supply continuity, regional sourcing, cost, a discontinued grade, a performance issue, or a new document requirement. Record the exact current grade, color, supplier, manufacturing scope, approved specification, mold, process, application, and any customer or regulatory approvals attached to it.",
+          "The reason for a material change and the conditions that must remain unchanged determine the scope of the replacement evaluation. The project may involve supply continuity, regional sourcing, cost, a discontinued grade, a performance issue, or a new document requirement. Record the exact current grade, color, supplier, manufacturing scope, approved specification, mold, process, application, and any customer or regulatory approvals attached to it.",
           "Equivalence is application-specific. One candidate may mold and assemble correctly but fail a wear test. Another may meet mechanical targets but change shrinkage, color, emissions, or document status. Separate mandatory requirements from preferred improvements. Define the test, conditioning, sample basis, and acceptance limit before trialing a substitute.",
         ],
         points: [
@@ -1262,7 +1262,7 @@ export const resourcePages: ResourcePage[] = [
         title: "POM Basics And Grade Selection",
         navLabel: "Basics",
         description:
-          "Start with the part requirement and the dominant failure risk. Material-family names or one data-sheet value are not enough to confirm suitability.",
+          "Part requirements and the dominant failure risk determine the relevant material options. Material-family names or one data-sheet value are not enough to confirm suitability.",
         faqItems: [
           {
             question: "What is modified POM?",
@@ -1405,7 +1405,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Define the Performance Gap Before Choosing a Fiber",
         navLabel: "Performance Gap",
         paragraphs: [
-          "Start with the result the current material or design cannot achieve. The gap may involve deflection under load, creep, dimensional movement, weight, electrical behavior, temperature, surface quality, wear, or a combination of these factors. A request for 'more stiffness' is incomplete until the load direction, duration, temperature, allowable movement, and test method are defined.",
+          "Reinforcement selection should address a defined performance gap in the current material or design. The gap may involve deflection under load, creep, dimensional movement, weight, electrical behavior, temperature, surface quality, wear, or a combination of these factors. A request for 'more stiffness' is incomplete until the load direction, duration, temperature, allowable movement, and test method are defined.",
           "For an existing component, compare the current material, measured failure, part drawing, molding record, and acceptance limit. For a new component, define the load cases, critical dimensions, assembly, environment, safety factors, appearance limits, and validation method before selecting the polymer matrix or fiber system.",
         ],
         points: [
@@ -1488,7 +1488,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Glass Fiber Direction",
         navLabel: "Glass Fiber",
         description:
-          "Start with documented POM GF10 to GF30 grades where they fit, then evaluate higher-fill or another polymer matrix only against a defined performance gap.",
+          "Documented POM GF10 to GF30 grades provide a comparison baseline where suitable. Higher-fill grades or another polymer matrix require a defined performance gap to justify evaluation.",
       },
       {
         title: "Carbon Fiber Direction",
@@ -1589,7 +1589,7 @@ export const resourcePages: ResourcePage[] = [
         position: "after-intro",
         items: [
           {
-            title: "Start with a matched grade comparison",
+            title: "Matched grades and test conditions",
             description:
               "Compare the same reinforcement level, test methods, color, and defined dry or conditioned state before attributing a difference to the PA6 or PA66 matrix.",
           },
@@ -1664,7 +1664,7 @@ export const resourcePages: ResourcePage[] = [
         navLabel: "Load Case",
         paragraphs: [
           "Map every static, cyclic, impact, assembly and fastener load, including direction, duration, temperature and frequency. Define allowable deflection, creep, permanent set, fatigue life, impact condition and failure location. Also record humidity, chemicals, electrical or flame requirements, appearance, weight, wall thickness, critical dimensions and the intended validation method.",
-          "A request for higher stiffness is incomplete unless the part-level target is measurable. Increasing reinforcement may improve one load direction while creating a new weld-line, warpage, surface, toughness, flow or equipment risk. Start with the lowest-complexity grade direction that can plausibly meet the full acceptance criteria.",
+          "A request for higher stiffness is incomplete unless the part-level target is measurable. Increasing reinforcement may improve one load direction while creating a new weld-line, warpage, surface, toughness, flow or equipment risk. The preferred candidate is the lowest-complexity grade direction that can plausibly meet the full acceptance criteria.",
         ],
       },
       {
@@ -1910,7 +1910,7 @@ export const resourcePages: ResourcePage[] = [
         type: "part-showcase",
         position: "after-section",
         sectionTitle: "Review the PPA Molding System Before Material Approval",
-        title: "PPA reviews often start with the part geometry",
+        title: "Part geometry in PPA evaluation",
         description:
           "Representative electrical-part geometries only. Wall thickness, inserts, weld lines, drying, mold temperature, and machine capability still require grade-specific review; the images do not imply a PPA approval.",
         items: [

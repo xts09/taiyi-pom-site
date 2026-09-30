@@ -50,7 +50,7 @@ const messages = {
     products: "Products",
     productCategories: "Product Categories",
     productDescription:
-      "Start with a material family or compare conductive and antistatic grades across matrices.",
+      "Browse material families and compare conductive and antistatic grades across polymer matrices.",
     allProducts: "All Products",
     applications: "Applications",
     applicationAreas: "Application Areas",
@@ -84,6 +84,7 @@ const messages = {
     applications: "Applications",
     allApplications: "All Applications",
     resources: "Resources",
+    technicalData: "Grade Data & TDS",
     company: "Company",
     aboutUs: "About Us",
     contactSales: "Contact Sales",
@@ -153,7 +154,7 @@ const messages = {
     materials: {
       title: "Material Range",
       body:
-        "Start with modified POM, our core product line. We also review selected PA6, PA66 and PPA compounds when a part needs a different balance of stiffness, heat resistance or processing behavior.",
+        "Modified POM is our core product line. Selected PA6, PA66 and PPA compounds offer other options for parts with different stiffness, heat-resistance or processing requirements.",
       documentSupport: "Document support by grade and project",
       dataSheetsAction: "Find Grade Data & TDS",
       coreLabel: "Core product line",
@@ -391,7 +392,7 @@ const messages = {
       kicker: "Requirement First",
       title: "What must the part do?",
       body:
-        "Choose the path closest to the part requirement to identify the tradeoffs that should be settled before comparing grades.",
+        "Explore material options and performance tradeoffs for your part requirements.",
       navigationAria: "Material paths by part requirement",
       paths: [
         {
@@ -416,7 +417,7 @@ const messages = {
           label: "Static Control",
           title: "Conductive or antistatic function",
           description:
-            "Define the resistance target, grounding, geometry, color, and test method before choosing a matrix.",
+            "Resistance targets, grounding, geometry, color and test method guide matrix selection.",
         },
       ],
     },
@@ -424,7 +425,7 @@ const messages = {
       kicker: "Full Material Range",
       title: "Browse Every Product Family",
       body:
-        "Compare the listed grades and application directions across six product families, then open a family to continue screening.",
+        "Explore listed grades and applications across six product families.",
       items: [
         {
           title: "Modified POM Compounds",
@@ -494,7 +495,7 @@ const messages = {
         "Tell us the part function, operating conditions and target requirements. We will identify relevant material families, confirm available documents and outline the next sample or evaluation step.",
     },
     formPanel: {
-      title: "Start with the essentials",
+      title: "Your application requirements",
       body:
         "Company, email, and application are enough to start. Add technical details only if you already have them.",
       requiredBefore: "Fields marked",

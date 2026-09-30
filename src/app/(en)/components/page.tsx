@@ -104,7 +104,7 @@ export default function ComponentSolutionsPage() {
             mediaClassName={styles.heroMedia}
             actionsClassName={styles.heroActions}
             eyebrow="Component Solutions"
-            title="Start with the molded component"
+            title="Materials by molded component"
             description="Compare six component paths by part function, operating conditions, failure modes, molding constraints, and validation needs."
             media={
               <Image
@@ -135,7 +135,7 @@ export default function ComponentSolutionsPage() {
               layout="stacked"
               eyebrow="Component Directory"
               title="Choose the family closest to your part"
-              description="Compare typical parts and engineering priorities, then open the family closest to your component."
+              description="Browse component families with typical parts and their engineering requirements."
             />
 
             <div className={styles.directory}>

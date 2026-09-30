@@ -28,7 +28,7 @@ const messages = {
     materials: {
       title: "Werkstoffspektrum",
       body:
-        "Beginnen Sie mit modifiziertem POM, unserer Kernproduktlinie. Ausgewählte PA6-, PA66- und PPA-Compounds prüfen wir, wenn ein Bauteil ein anderes Verhältnis von Steifigkeit, Wärmebeständigkeit oder Verarbeitungsverhalten benötigt.",
+        "Modifiziertes POM ist unsere Kernproduktlinie. Ausgewählte PA6-, PA66- und PPA-Compounds bieten weitere Optionen für Bauteile mit anderen Anforderungen an Steifigkeit, Wärmebeständigkeit oder Verarbeitung.",
       documentSupport: "Dokumente nach Typ und Projekt",
       dataSheetsAction: "Typendaten und TDS finden",
       coreLabel: "Kernproduktlinie",
@@ -138,7 +138,7 @@ const messages = {
           stage: "Entscheidung",
           title: "Typen-Shortlist",
           description:
-            "Kandidaten werden verglichen, bevor Dokumentverfügbarkeit und Bedarf an Musterversuchen bestätigt werden.",
+            "Vergleich der Kandidaten, Prüfung der Dokumentverfügbarkeit und Abstimmung des Bedarfs an Muster- und Werkzeugversuchen.",
         },
       ],
     },
@@ -248,7 +248,7 @@ const messages = {
         "Beschreiben Sie Bauteilfunktion, Einsatzbedingungen und Zielanforderungen. Wir identifizieren relevante Werkstofffamilien, bestätigen verfügbare Dokumente und skizzieren den nächsten Muster- oder Bewertungsschritt.",
     },
     formPanel: {
-      title: "Beginnen Sie mit den Kerndaten",
+      title: "Ihre Anwendungsanforderungen",
       body:
         "Unternehmen, E-Mail und Anwendung genügen für den Start. Technische Details können Sie ergänzen, wenn sie bereits vorliegen.",
       requiredBefore: "Mit",

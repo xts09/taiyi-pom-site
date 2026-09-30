@@ -4,14 +4,14 @@ export const applicationNarrativeLocaleOverrides = {
     洗衣机: "Waschmaschine",
     洗衣机零部件: "Waschmaschinenkomponenten",
     负载与节拍: "Last und Taktzeit",
-    "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
-      "Definieren Sie Förderaufgabe, Last, Taktzeit, Kontaktflächen und Einsatzumgebung, bevor Sie POM-Werkstoffrichtungen und konkrete Werkstofftypen vergleichen.",
+    "输送任务、负载、节拍、接触界面和现场环境，是比较 POM 材料与牌号的依据。":
+      "Förderaufgabe, Last, Takt, Kontaktflächen und Einsatzumgebung bilden die Grundlage für den Vergleich von POM-Werkstoffen und Typen.",
     "以下方向用于建立初步候选，不代表对所有输送线通用适用。具体牌号仍需结合负载、节拍、配合、清洁环境和静电目标确认。":
       "Die folgenden Richtungen dienen zur Bildung einer ersten Kandidatenauswahl und gelten nicht pauschal für alle Förderlinien. Der konkrete Werkstofftyp ist anhand von Last, Taktzeit, Passungsbedingungen, Reinigungsumgebung und elektrostatischem Ziel zu bestätigen.",
     "齿轮啮合、转速、循环次数、噪声和碳粉环境决定磨损、旋转精度与尺寸保持。":
       "Zahneingriff, Drehzahl, Zyklusanzahl, Geräuschentwicklung und Tonerumgebung bestimmen Verschleiß, Rotationsgenauigkeit und Maßhaltigkeit.",
-    "纺织部件的材料方向由纤维接触、张力、速度、表面状态和尺寸精度共同决定。先找到接近的部件，再明确磨损、毛羽、摩擦和收缩控制的重点。":
-      "Die Werkstoffrichtung für Textilkomponenten wird durch Faserkontakt, Fadenspannung, Geschwindigkeit, Oberflächenzustand und Maßgenauigkeit bestimmt. Suchen Sie zunächst ein vergleichbares Bauteil und legen Sie dann die Schwerpunkte für Verschleiß, Garnhaarigkeit, Reibung und Schwindungskontrolle fest.",
+    "纤维接触、张力、速度、表面状态和尺寸精度，决定了纺织部件对磨损、毛羽、摩擦和收缩控制的不同要求。":
+      "Faserkontakt, Fadenspannung, Geschwindigkeit, Oberflächenzustand und Maßgenauigkeit bestimmen die Anforderungen an Verschleiß, Garnhaarigkeit, Reibung und Schwindungskontrolle bei Textilbauteilen.",
     提交运动部件要求: "Anforderungen für Bewegungsbauteile übermitteln",
     提交输送部件要求: "Anforderungen für Fördertechnik-Bauteile übermitteln",
     提交纺织部件要求: "Anforderungen für Textilmaschinen-Bauteile übermitteln",
@@ -26,8 +26,8 @@ export const applicationNarrativeLocaleOverrides = {
     洗衣机: "Machine à laver",
     洗衣机零部件: "Composants de lave-linge",
     负载与节拍: "Charge et cadence",
-    "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
-      "Définissez la tâche de convoyage, la charge, la cadence, les interfaces de contact et l’environnement d’utilisation avant de comparer les orientations POM et les grades précis.",
+    "输送任务、负载、节拍、接触界面和现场环境，是比较 POM 材料与牌号的依据。":
+      "La fonction de convoyage, la charge, la cadence, les interfaces de contact et l’environnement servent de base à la comparaison des matériaux et grades POM.",
     "以下方向用于建立初步候选，不代表对所有输送线通用适用。具体牌号仍需结合负载、节拍、配合、清洁环境和静电目标确认。":
       "Les orientations ci-dessous servent à établir une première sélection et ne sont pas universellement applicables à toutes les lignes de convoyage. Le grade précis doit être confirmé selon la charge, la cadence, les conditions d’ajustement, l’environnement de nettoyage et l’objectif électrostatique.",
     提交运动部件要求: "Transmettre les exigences de la pièce mobile",
@@ -47,8 +47,8 @@ export const applicationNarrativeLocaleOverrides = {
     洗衣机: "Máquina de lavar",
     洗衣机零部件: "Componentes para máquinas de lavar",
     负载与节拍: "Carga e tempo de ciclo",
-    "先明确输送任务、负载、节拍、接触界面和现场环境，再比较 POM 材料方向与具体牌号。":
-      "Defina a tarefa de transporte, a carga, o tempo de ciclo, as interfaces de contato e o ambiente de uso antes de comparar as direções de POM e os graus específicos.",
+    "输送任务、负载、节拍、接触界面和现场环境，是比较 POM 材料与牌号的依据。":
+      "A função de transporte, a carga, o ritmo de operação, as interfaces de contato e o ambiente orientam a comparação de materiais e grades de POM.",
     "以下方向用于建立初步候选，不代表对所有输送线通用适用。具体牌号仍需结合负载、节拍、配合、清洁环境和静电目标确认。":
       "As direções abaixo servem para estabelecer uma seleção inicial e não são universalmente aplicáveis a todas as linhas de transporte. O grau específico deve ser confirmado considerando carga, tempo de ciclo, condições de acoplamento, ambiente de limpeza e objetivo eletrostático.",
     提交运动部件要求: "Enviar requisitos do componente móvel",

@@ -9,7 +9,7 @@ export const chinesePomDirectoryMessages = {
     eyebrow: "POM 材料组合",
     title: "POM 材料家族与牌号目录",
     description:
-      "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。",
+      "PLATFORM POM 涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等家族，对应不同零件的性能需求。",
     selectionAction: "按零件要求选择改性 POM 方向",
     contactAction: "提交应用要求",
     technicalDataAction: "查找牌号数据与 TDS",
@@ -237,7 +237,7 @@ export const chinesePomDirectoryMessages = {
       {
         question: "应该先选材料家族还是直接选牌号？",
         answer:
-          "先根据零件功能、运动方式、载荷、环境、尺寸目标和加工方式确定材料家族，再比较相关牌号的数据与文件。这样可以减少只看单个数值造成的误判。",
+          "材料家族和牌号的选择取决于零件功能、运动方式、载荷、环境、尺寸目标和加工方式。数据与技术文件需结合这些条件比较，单个性能数值不足以判断适用性。",
       },
       {
         question: "目录中的数值能否直接代表最终零件表现？",

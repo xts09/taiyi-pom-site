@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, Plus } from "lucide-react";
 import { AnalyticsSettingsButton } from "@/components/AnalyticsConsent";
 import { applications } from "@/data/applications";
 import { getCaseStudyNavigation } from "@/data/caseStudyNavigation";
@@ -23,6 +23,8 @@ import {
   contactWhatsAppUrl,
 } from "@/lib/contactDetails";
 import { getCategoryPath } from "@/lib/productCategories";
+
+const copyrightYear = new Date().getFullYear();
 
 function LinkedInMark({
   size = 20,
@@ -126,10 +128,14 @@ export function Footer({
     {
       key: "resources",
       title: messages.resources,
-      links: [...resourceNavigationGroups.map((group) => ({
-        href: getResourceNavigationGroupPath(group),
-        label: taxonomy.resources[group.id as ResourceTaxonomyKey].title,
-      })), ...(caseStudies ? [{ href: caseStudies.href, label: caseStudies.label }] : [])],
+      links: [
+        { href: "/technical-data-sheets", label: messages.technicalData },
+        ...resourceNavigationGroups.map((group) => ({
+          href: getResourceNavigationGroupPath(group),
+          label: taxonomy.resources[group.id as ResourceTaxonomyKey].title,
+        })),
+        ...(caseStudies ? [{ href: caseStudies.href, label: caseStudies.label }] : []),
+      ],
     },
     {
       key: "company",
@@ -180,7 +186,7 @@ export function Footer({
       <div className="site-footer-inner site-container">
         <div className="site-footer-lead">
           <div className="site-footer-brand">
-            <span className="site-footer-logo">
+            <Link className="site-footer-logo" href={localizedHref("/")}>
               <Image
                 src="/platform-wordmark-white.png"
                 alt={messages.logoAlt}
@@ -188,12 +194,8 @@ export function Footer({
                 height={217}
                 sizes="(max-width: 1440px) 144px, (max-width: 1640px) 10vw, 164px"
               />
-            </span>
-            <div className="site-footer-brand-body" data-nosnippet>
-              <p className="site-footer-brand-relation">
-                {messages.brandRelation}
-              </p>
-            </div>
+            </Link>
+            <p className="site-footer-brand-relation">{messages.brandRelation}</p>
           </div>
 
           <div className="site-footer-pitch" data-nosnippet>
@@ -246,7 +248,13 @@ export function Footer({
               <ul>
                 {column.links.map((item) => (
                   <li key={`${column.title}-${item.href}-${item.label}`}>
-                    <Link href={localizedHref(item.href)}>{item.label}</Link>
+                    <Link
+                      href={localizedHref(item.href)}
+                      className={item.href === "/technical-data-sheets" ? "site-footer-data-link" : undefined}
+                    >
+                      <span>{item.label}</span>
+                      {item.href === "/technical-data-sheets" && <ArrowUpRight aria-hidden="true" size={14} strokeWidth={1.8} />}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -263,13 +271,19 @@ export function Footer({
               <summary>
                 <span>{column.title}</span>
                 <span className="site-footer-mobile-menu-icon" aria-hidden="true">
-                  +
+                  <Plus size={18} strokeWidth={1.7} />
                 </span>
               </summary>
               <ul>
                 {column.links.map((item) => (
                   <li key={`mobile-${column.title}-${item.href}-${item.label}`}>
-                    <Link href={localizedHref(item.href)}>{item.label}</Link>
+                    <Link
+                      href={localizedHref(item.href)}
+                      className={item.href === "/technical-data-sheets" ? "site-footer-data-link" : undefined}
+                    >
+                      <span>{item.label}</span>
+                      {item.href === "/technical-data-sheets" && <ArrowUpRight aria-hidden="true" size={14} strokeWidth={1.8} />}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -293,7 +307,7 @@ export function Footer({
           </div>
           <div className="site-footer-legal">
             <p className="site-footer-copy">
-              &copy; 2026 Jiangsu Taiyi Nano Technology Co., Ltd.{" "}
+              &copy; {copyrightYear} Jiangsu Taiyi Nano Technology Co., Ltd.{" "}
               {messages.rightsReserved}
             </p>
             <Link href={localizedHref("/privacy")}>{messages.privacyPolicy}</Link>

@@ -78,7 +78,7 @@ const englishUi: ComponentDetailUi = {
   },
   primaryAction: "Discuss Your Application",
   familyAction: "Review Relevant POM Families",
-  problemEyebrow: "Start with the problem",
+  problemEyebrow: "Part performance",
   observedProblemLabel: "Observed problem",
   checkFirstLabel: "Check first",
   materialResponseLabel: "Material response",

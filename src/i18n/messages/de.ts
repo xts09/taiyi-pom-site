@@ -51,7 +51,7 @@ const messages = {
     products: "Produkte",
     productCategories: "Produktkategorien",
     productDescription:
-      "Beginnen Sie mit einer Werkstofffamilie oder vergleichen Sie leitfähige und antistatische Typen über mehrere Matrizes hinweg.",
+      "Werkstofffamilien und leitfähige sowie antistatische Typen für unterschiedliche Polymermatrizes.",
     allProducts: "Alle Produkte",
     applications: "Anwendungen",
     applicationAreas: "Anwendungsbereiche",
@@ -85,6 +85,7 @@ const messages = {
     applications: "Anwendungen",
     allApplications: "Alle Anwendungen",
     resources: "Ressourcen",
+    technicalData: "Werkstoffdaten & TDS",
     company: "Unternehmen",
     aboutUs: "Über uns",
     contactSales: "Vertrieb kontaktieren",
@@ -150,7 +151,7 @@ const messages = {
       kicker: "Anforderung zuerst",
       title: "Was muss das Bauteil leisten?",
       body:
-        "Wählen Sie den Pfad, der der Bauteilanforderung am nächsten kommt, um die Zielkonflikte vor dem Vergleich konkreter Typen zu klären.",
+        "Werkstoffoptionen und Leistungsabwägungen für die Anforderungen Ihres Bauteils.",
       navigationAria: "Werkstoffpfade nach Bauteilanforderung",
       paths: [
         {
@@ -169,13 +170,13 @@ const messages = {
           label: "Schlagzähigkeit / Montage",
           title: "Schnappverbindungen oder Stoßlasten",
           description:
-            "Prüfen Sie Stoßbelastung, Temperatur, Bindenähte und Montagespannung, bevor Sie die Zähigkeit festlegen.",
+            "Stoßbelastung, Temperatur, Bindenähte und Montagespannungen bestimmen die Anforderungen an die Zähigkeit.",
         },
         {
           label: "Ableitfähigkeit",
           title: "Leitfähige oder antistatische Funktion",
           description:
-            "Definieren Sie Widerstandsziel, Erdung, Geometrie, Farbe und Prüfverfahren, bevor Sie eine Matrix wählen.",
+            "Widerstandsziel, Erdung, Geometrie, Farbe und Prüfverfahren orientieren die Auswahl der Polymermatrix.",
         },
       ],
     },
@@ -183,7 +184,7 @@ const messages = {
       kicker: "Gesamtes Werkstoffspektrum",
       title: "Alle Produktfamilien durchsuchen",
       body:
-        "Vergleichen Sie gelistete Typen und Anwendungsrichtungen in sechs Produktfamilien und öffnen Sie anschließend die passende Familie für die weitere Auswahl.",
+        "Gelistete Werkstofftypen und Anwendungen in sechs Produktfamilien.",
       items: [
         {
           title: "Modifizierte POM-Compounds",

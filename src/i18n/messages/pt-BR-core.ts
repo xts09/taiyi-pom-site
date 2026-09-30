@@ -28,7 +28,7 @@ const messages = {
     materials: {
       title: "Linha de materiais",
       body:
-        "Comece pelo POM modificado, nossa principal linha de produtos. Também avaliamos compostos selecionados de PA6, PA66 e PPA quando a peça precisa de outro equilíbrio entre rigidez, resistência térmica e comportamento de processamento.",
+        "O POM modificado é nossa principal linha de produtos. Compostos selecionados de PA6, PA66 e PPA oferecem outras opções para peças com requisitos diferentes de rigidez, resistência térmica ou processamento.",
       documentSupport: "Documentos conforme a grade e o projeto",
       dataSheetsAction: "Encontrar dados de grade e TDS",
       coreLabel: "Linha principal",
@@ -248,7 +248,7 @@ const messages = {
         "Informe a função da peça, as condições de operação e os requisitos desejados. Identificaremos as famílias de materiais relevantes, confirmaremos os documentos disponíveis e indicaremos a próxima etapa de amostragem ou avaliação.",
     },
     formPanel: {
-      title: "Comece pelo essencial",
+      title: "Seus requisitos de aplicação",
       body:
         "Empresa, e-mail e aplicação são suficientes para começar. Acrescente detalhes técnicos somente se já estiverem disponíveis.",
       requiredBefore: "Os campos marcados com",

@@ -90,7 +90,7 @@ export const aboutLocaleOverrides: Partial<
       "Werkstoffprüflabor und Prüfgeräte von Taiyi Polymer",
     材料检测实验室: "Werkstoffprüflabor",
     讨论您的项目: "Ihr Projekt besprechen",
-    从零部件需求开始: "Beginnen wir mit den Anforderungen Ihres Bauteils",
+    从零部件需求开始: "Bauteilanforderungen",
     "告诉我们零部件功能、使用条件、目标性能或当前牌号，我们会根据现有信息建议下一步。":
       "Nennen Sie uns Bauteilfunktion, Einsatzbedingungen, Zielwerte oder den derzeit verwendeten Werkstofftyp. Auf dieser Grundlage empfehlen wir den nächsten sinnvollen Schritt.",
     新零部件选材: "Werkstoffauswahl für ein neues Bauteil",
@@ -257,7 +257,7 @@ export const aboutLocaleOverrides: Partial<
       "Laboratoire d’essais matière et équipements d’évaluation de Taiyi Polymer",
     材料检测实验室: "Laboratoire d’essais matière",
     讨论您的项目: "Échangeons sur votre projet",
-    从零部件需求开始: "Commençons par les exigences de votre pièce",
+    从零部件需求开始: "Exigences de la pièce",
     "告诉我们零部件功能、使用条件、目标性能或当前牌号，我们会根据现有信息建议下一步。":
       "Indiquez-nous la fonction de la pièce, les conditions d’utilisation, les performances visées ou le grade actuel. À partir de ces informations, nous vous proposerons la prochaine étape la plus utile.",
     新零部件选材: "Choix du matériau pour une nouvelle pièce",
@@ -425,7 +425,7 @@ export const aboutLocaleOverrides: Partial<
       "Laboratório de ensaios de materiais e equipamentos de avaliação da Taiyi Polymer",
     材料检测实验室: "Laboratório de ensaios de materiais",
     讨论您的项目: "Vamos conversar sobre seu projeto",
-    从零部件需求开始: "Comece pelos requisitos da peça",
+    从零部件需求开始: "Requisitos da peça",
     "告诉我们零部件功能、使用条件、目标性能或当前牌号，我们会根据现有信息建议下一步。":
       "Informe a função da peça, as condições de uso, o desempenho esperado ou o grau atual. Com base nessas informações, recomendaremos o próximo passo mais adequado.",
     新零部件选材: "Seleção de material para uma nova peça",

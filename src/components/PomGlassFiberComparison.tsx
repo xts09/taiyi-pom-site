@@ -14,7 +14,7 @@ const messages = {
     eyebrow: "Grade directory",
     title: "Glass-fiber POM grades",
     intro:
-      "Review glass-fiber content and key properties, then open a grade for full technical data and TDS support.",
+      "Compare glass-fiber content and key properties. Grade pages show published technical data and provide TDS request links.",
     count: "listed grades",
     fiber: "Glass fiber",
     webData: "Grade data",
@@ -31,7 +31,7 @@ const messages = {
     eyebrow: "牌号目录",
     title: "玻纤 POM 牌号",
     intro:
-      "先查看玻纤含量与关键性能，再进入牌号详情查看完整技术数据或申请 TDS。",
+      "比较玻纤含量与关键性能；各牌号详情页展示已发布的技术数据，并提供 TDS 申请入口。",
     count: "个牌号",
     fiber: "玻纤含量",
     webData: "牌号数据",

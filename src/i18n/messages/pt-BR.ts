@@ -51,7 +51,7 @@ const messages = {
     products: "Produtos",
     productCategories: "Categorias de produtos",
     productDescription:
-      "Comece por uma família de materiais ou compare grades condutivos e antiestáticos entre diferentes matrizes.",
+      "Famílias de materiais e grades condutivos ou antiestáticos para diferentes matrizes poliméricas.",
     allProducts: "Todos os produtos",
     applications: "Aplicações",
     applicationAreas: "Áreas de aplicação",
@@ -85,6 +85,7 @@ const messages = {
     applications: "Aplicações",
     allApplications: "Todas as aplicações",
     resources: "Recursos",
+    technicalData: "Dados dos grades e TDS",
     company: "Empresa",
     aboutUs: "Sobre nós",
     contactSales: "Falar com vendas",
@@ -150,7 +151,7 @@ const messages = {
       kicker: "Requisitos primeiro",
       title: "O que a peça precisa fazer?",
       body:
-        "Escolha a rota mais próxima do requisito da peça para definir os fatores que precisam ser equilibrados antes de comparar grades específicos.",
+        "Opções de materiais e compromissos de desempenho conforme os requisitos da sua peça.",
       navigationAria: "Rotas de material por requisito da peça",
       paths: [
         {
@@ -169,13 +170,13 @@ const messages = {
           label: "Impacto / Montagem",
           title: "Encaixes ou cargas de choque",
           description:
-            "Verifique impacto, temperatura, linhas de solda e tensão de montagem antes de definir a tenacidade.",
+            "Impacto, temperatura, linhas de solda e tensões de montagem definem os requisitos de tenacidade.",
         },
         {
           label: "Controle estático",
           title: "Função condutiva ou antiestática",
           description:
-            "Defina a resistência-alvo, o aterramento, a geometria, a cor e o método de ensaio antes de escolher a matriz.",
+            "Resistência-alvo, aterramento, geometria, cor e método de ensaio orientam a escolha da matriz.",
         },
       ],
     },
@@ -183,7 +184,7 @@ const messages = {
       kicker: "Linha completa de materiais",
       title: "Explore todas as famílias de produtos",
       body:
-        "Compare os grades listados e as aplicações das seis famílias e, em seguida, abra a família mais adequada para continuar a seleção.",
+        "Grades listados e aplicações em seis famílias de produtos.",
       items: [
         {
           title: "Compostos de POM modificado",

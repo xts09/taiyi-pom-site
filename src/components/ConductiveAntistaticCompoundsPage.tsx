@@ -95,7 +95,7 @@ const defaultMessages: ConductiveAntistaticCompoundsMessages = {
   heroKicker: "Static-Control Engineering Plastics",
   heroTitle: "Conductive and Antistatic Plastic Compounds",
   heroDescription:
-    "Compare carbon-nanotube permanent antistatic and carbon-fiber conductive directions across multiple engineering-plastic matrices before requesting grade data or samples.",
+    "Compare carbon-nanotube permanent antistatic and carbon-fiber conductive options for electrostatic discharge (ESD) control and conductive applications.",
   exploreAction: "Explore Grades",
   contactAction: "Discuss Your Application",
   metricsAria: "Series summary",
@@ -106,7 +106,7 @@ const defaultMessages: ConductiveAntistaticCompoundsMessages = {
   overviewKicker: "Series Architecture",
   overviewTitle: "One directory, two material technologies",
   overviewBody:
-    "Start with the electrical target and polymer matrix. Final selection still requires the specified test method, molded-part geometry, conditioning, and mechanical-property review.",
+    "Material selection depends on the electrical target, polymer matrix, specified test method, molded-part geometry, conditioning, and mechanical requirements.",
   cntTag: "CNT / Permanent Antistatic",
   cntTitle: conductiveSeries.cnt.title,
   cntDescription: conductiveSeries.cnt.description,
@@ -133,7 +133,7 @@ const defaultMessages: ConductiveAntistaticCompoundsMessages = {
   targetBand: "10^3-10^5 band",
   explorer: defaultConductiveCompoundsExplorerMessages,
   reviewKicker: "Selection Inputs",
-  reviewTitle: "Define the electrical requirement before the grade",
+  reviewTitle: "Electrical targets and grade selection",
   reviewItems: [
     {
       title: "Measurement basis",

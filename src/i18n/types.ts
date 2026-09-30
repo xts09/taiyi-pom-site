@@ -69,6 +69,7 @@ export type FooterMessages = {
   applications: string;
   allApplications: string;
   resources: string;
+  technicalData: string;
   company: string;
   aboutUs: string;
   contactSales: string;

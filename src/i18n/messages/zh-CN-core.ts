@@ -124,7 +124,7 @@ const messages = {
         {
           stage: "决策",
           title: "候选牌号清单",
-          description: "先比较候选牌号，再确认资料可用性以及样品和试模需求。",
+          description: "比较候选牌号，确认资料可用性，讨论样品和试模需求。",
         },
       ],
     },
@@ -264,7 +264,7 @@ const messages = {
         ],
         gradeNote: "查询当前牌号数据，或与我们讨论零部件要求。",
         contactAction: "讨论您的应用",
-        reviewLabel: "先确认",
+        reviewLabel: "评估要点",
         materialsLabel: "材料入口",
         groups: [
           {

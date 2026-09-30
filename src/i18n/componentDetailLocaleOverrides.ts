@@ -62,9 +62,9 @@ const componentDetailTranslationRows = [
   ],
   [
     "先从齿轮问题开始",
-    "Mit dem Problem des Zahnrads beginnen",
-    "Commencer par le problème de l’engrenage",
-    "Comece pelo problema da engrenagem",
+    "Probleme und Einsatzbedingungen des Zahnrads",
+    "Problèmes et conditions de fonctionnement des engrenages",
+    "Problemas e condições de operação da engrenagem",
   ],
   [
     "定义可信齿轮材料比较的六类使用条件",
@@ -97,10 +97,10 @@ const componentDetailTranslationRows = [
     "A aprovação para produção ainda depende de uma validação representativa na transmissão completa.",
   ],
   [
-    "申请样品前先建立齿轮候选清单",
-    "Vor der Bemusterung eine Kandidatenauswahl für das Zahnrad erstellen",
-    "Établir une liste restreinte pour l’engrenage avant l’échantillonnage",
-    "Monte uma lista de candidatos para a engrenagem antes de solicitar amostras",
+    "齿轮候选牌号与样品评估",
+    "Zahnradwerkstoffe und Musterbewertung",
+    "Grades candidats pour engrenages et évaluation des échantillons",
+    "Grades candidatos para engrenagens e avaliação de amostras",
   ],
   [
     "使用上面的项目简报来比较材料方向、可用牌号数据和注塑齿轮验证计划。",
@@ -110,9 +110,9 @@ const componentDetailTranslationRows = [
   ],
   [
     "先从滑动系统的问题开始",
-    "Mit dem Problem des Gleitsystems beginnen",
-    "Commencer par le problème du système coulissant",
-    "Comece pelo problema do sistema deslizante",
+    "Probleme und Einsatzbedingungen des Gleitsystems",
+    "Problèmes et conditions de fonctionnement du système coulissant",
+    "Problemas e condições de operação do sistema deslizante",
   ],
   [
     "定义可信衬套比较的使用变量",
@@ -146,9 +146,9 @@ const componentDetailTranslationRows = [
   ],
   [
     "先从输送系统的问题开始",
-    "Mit dem Problem des Fördersystems beginnen",
-    "Commencer par le problème du système de convoyage",
-    "Comece pelo problema do sistema de transporte",
+    "Probleme und Einsatzbedingungen des Fördersystems",
+    "Problèmes et conditions de fonctionnement du système de convoyage",
+    "Problemas e condições de operação do sistema de transporte",
   ],
   [
     "定义可信链条材料比较的系统变量",
@@ -182,9 +182,9 @@ const componentDetailTranslationRows = [
   ],
   [
     "先从阀门功能问题开始",
-    "Mit dem Problem der Ventilfunktion beginnen",
-    "Commencer par le problème de fonctionnement de la vanne",
-    "Comece pelo problema funcional da válvula",
+    "Funktionsprobleme des Ventils",
+    "Problèmes de fonctionnement de la vanne",
+    "Problemas de funcionamento da válvula",
   ],
   [
     "定义材料适用性的压力、流体、间隙和执行输入",
@@ -230,9 +230,9 @@ const componentDetailTranslationRows = [
   ],
   [
     "先从纱线路径的问题开始",
-    "Mit dem Problem des Garnlaufs beginnen",
-    "Commencer par le problème du chemin du fil",
-    "Comece pelo problema do percurso do fio",
+    "Probleme beim Garnlauf",
+    "Problèmes sur le parcours du fil",
+    "Problemas no percurso do fio",
   ],
   [
     "主导导向件表现的纱线、运动、几何、表面和环境输入",
@@ -266,9 +266,9 @@ const componentDetailTranslationRows = [
   ],
   [
     "先从周转工艺的问题开始",
-    "Mit dem Problem des Handhabungsprozesses beginnen",
-    "Commencer par le problème du processus de manutention",
-    "Comece pelo problema do processo de manuseio",
+    "Probleme im Handhabungsprozess",
+    "Problèmes dans le processus de manutention",
+    "Problemas no processo de manuseio",
   ],
   [
     "主导托盘适用性的电气、热、尺寸、洁净度和搬运输入",
@@ -295,10 +295,10 @@ const componentDetailTranslationRows = [
     "Conjunto completo de dados do projeto para comparação de materiais e qualificação da bandeja de IC",
   ],
   [
-    "选择托盘材料之前先定义周转工艺",
-    "Den Handhabungsprozess definieren, bevor der Tray-Werkstoff ausgewählt wird",
-    "Définir le processus de manutention avant de sélectionner le matériau du plateau",
-    "Defina o processo de manuseio antes de selecionar o material da bandeja",
+    "周转工艺与托盘材料要求",
+    "Handhabungsprozess und Anforderungen an Tray-Werkstoffe",
+    "Procédé de manutention et exigences du matériau des plateaux",
+    "Processo de movimentação e requisitos do material das bandejas",
   ],
   [
     "生产批准仍取决于完整滑动总成。",

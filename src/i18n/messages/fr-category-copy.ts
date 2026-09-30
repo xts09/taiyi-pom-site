@@ -177,7 +177,7 @@ const frCategoryCopy: Record<string, string> = {
   "系列包含玻璃纤维与碳纤维增强、高抗冲、阻燃、耐磨、矿物填充、脱模及其他加工改性方向。":
     "La gamme comprend le renforcement par fibres de verre ou de carbone, la forte résistance aux chocs, la retardance à la flamme, la résistance à l’usure, les charges minérales, l’aide au démoulage et d’autres modifications de transformation.",
   "可查看 33 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "Les fiches et les données clés des 33 grades sont disponibles. Les documents techniques et les échantillons peuvent être demandés selon le projet ; les conditions de transformation et les essais de moulage sont ensuite précisés.",
+    "Les fiches et les données clés des 33 grades sont disponibles. Les documents techniques et les échantillons peuvent être demandés selon le projet. Les conditions de transformation et les essais de moulage sont précisés selon ses exigences.",
   "PA6 项目支持": "Support projet PA6",
   "为零件建立合适的韧性与强度组合":
     "Le bon équilibre entre ténacité et résistance pour la pièce",
@@ -205,7 +205,7 @@ const frCategoryCopy: Record<string, string> = {
   "系列包含纤维增强、阻燃、耐磨、高抗冲、矿物填充、玻璃微珠填充及其他功能改性方向。":
     "La gamme comprend le renforcement par fibres, la retardance à la flamme, la résistance à l’usure, la forte résistance aux chocs, les charges minérales, les microbilles de verre et d’autres modifications fonctionnelles.",
   "可查看 37 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "Les fiches et les données clés des 37 grades sont disponibles. Les documents techniques et les échantillons peuvent être demandés selon le projet ; les conditions de transformation et les essais de moulage sont ensuite précisés.",
+    "Les fiches et les données clés des 37 grades sont disponibles. Les documents techniques et les échantillons peuvent être demandés selon le projet. Les conditions de transformation et les essais de moulage sont précisés selon ses exigences.",
   "PA66 项目支持": "Support projet PA66",
   "为结构与耐热零件建立性能基础":
     "Une base de performance pour les pièces structurelles et thermiques",
@@ -233,7 +233,7 @@ const frCategoryCopy: Record<string, string> = {
   "系列包含玻璃纤维增强、玻纤矿物复合增强与耐磨低摩擦方向，提供不同的刚度、尺寸、流动和运动界面性能组合。":
     "La gamme comprend le renforcement par fibres de verre, le renforcement hybride fibres/minéraux et les formulations anti-usure à faible frottement, avec différents profils de rigidité, de comportement dimensionnel, de fluidité et de contact en mouvement.",
   "可查看 5 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "Les fiches et les données clés des cinq grades sont disponibles. Les documents techniques et les échantillons peuvent être demandés selon le projet ; les conditions de transformation et les essais de moulage sont ensuite précisés.",
+    "Les fiches et les données clés des cinq grades sont disponibles. Les documents techniques et les échantillons peuvent être demandés selon le projet. Les conditions de transformation et les essais de moulage sont précisés selon ses exigences.",
   "PPA 项目支持": "Support projet PPA",
   "为较高温度零件建立稳定性能组合":
     "Un profil de performance fiable pour les pièces à température plus élevée",

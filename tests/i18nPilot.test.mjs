@@ -609,10 +609,10 @@ test("confirmed technical translations preserve exact engineering meaning", () =
   );
   assert.equal(
     translateExpandedText(
-      "纺织部件的材料方向由纤维接触、张力、速度、表面状态和尺寸精度共同决定。先找到接近的部件，再明确磨损、毛羽、摩擦和收缩控制的重点。",
+      "纤维接触、张力、速度、表面状态和尺寸精度，决定了纺织部件对磨损、毛羽、摩擦和收缩控制的不同要求。",
       "de",
     ),
-    "Die Werkstoffrichtung für Textilkomponenten wird durch Faserkontakt, Fadenspannung, Geschwindigkeit, Oberflächenzustand und Maßgenauigkeit bestimmt. Suchen Sie zunächst ein vergleichbares Bauteil und legen Sie dann die Schwerpunkte für Verschleiß, Garnhaarigkeit, Reibung und Schwindungskontrolle fest.",
+    "Faserkontakt, Fadenspannung, Geschwindigkeit, Oberflächenzustand und Maßgenauigkeit bestimmen die Anforderungen an Verschleiß, Garnhaarigkeit, Reibung und Schwindungskontrolle bei Textilbauteilen.",
   );
   assert.equal(
     translateExpandedText(

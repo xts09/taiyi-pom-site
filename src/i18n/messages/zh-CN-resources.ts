@@ -46,7 +46,7 @@ const messages = {
       title: "材料选型",
       navigationLabel: "选择材料",
       description:
-        "先明确零部件功能、主要失效风险、使用工况和所需验证资料，再缩小材料系列或牌号方向。",
+        "围绕零部件功能、失效风险和使用工况，介绍材料与牌号的选择依据及所需验证资料。",
       imageAlt: "台益材料选型技术资料",
       entryPaths: [
         "/resources/material-selection-guide",
@@ -179,7 +179,7 @@ const messages = {
     "/products/categories/pom": {
       label: "POM 材料族",
       type: "directory",
-      description: "先浏览 POM 材料族，再进入当前可用的牌号级数据与资料。",
+      description: "浏览 POM 材料族及当前可用的牌号数据与技术资料。",
     },
     "/resources/faq": {
       label: "改性 POM 常见问题",

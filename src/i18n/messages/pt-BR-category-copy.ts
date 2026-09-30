@@ -177,7 +177,7 @@ const ptBRCategoryCopy: Record<string, string> = {
   "系列包含玻璃纤维与碳纤维增强、高抗冲、阻燃、耐磨、矿物填充、脱模及其他加工改性方向。":
     "A linha inclui reforço com fibra de vidro ou carbono, alto impacto, retardância à chama, resistência ao desgaste, carga mineral, desmoldagem e outras modificações voltadas ao processamento.",
   "可查看 33 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "As páginas e os dados principais dos 33 graus estão disponíveis. Documentos técnicos e amostras podem ser solicitados conforme o projeto; as condições de processamento e os ensaios de moldagem são definidos em seguida.",
+    "As páginas e os dados principais dos 33 graus estão disponíveis. Documentos técnicos e amostras podem ser solicitados conforme o projeto. As condições de processamento e os ensaios de moldagem são definidos de acordo com seus requisitos.",
   "PA6 项目支持": "Suporte a projetos com PA6",
   "为零件建立合适的韧性与强度组合":
     "O equilíbrio certo entre tenacidade e resistência para a peça",
@@ -205,7 +205,7 @@ const ptBRCategoryCopy: Record<string, string> = {
   "系列包含纤维增强、阻燃、耐磨、高抗冲、矿物填充、玻璃微珠填充及其他功能改性方向。":
     "A linha inclui reforço de fibras, retardância à chama, resistência ao desgaste, alto impacto, carga mineral, microesferas de vidro e outras modificações funcionais.",
   "可查看 37 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "As páginas e os dados principais dos 37 graus estão disponíveis. Documentos técnicos e amostras podem ser solicitados conforme o projeto; as condições de processamento e os ensaios de moldagem são definidos em seguida.",
+    "As páginas e os dados principais dos 37 graus estão disponíveis. Documentos técnicos e amostras podem ser solicitados conforme o projeto. As condições de processamento e os ensaios de moldagem são definidos de acordo com seus requisitos.",
   "PA66 项目支持": "Suporte a projetos com PA66",
   "为结构与耐热零件建立性能基础":
     "Uma base de desempenho para peças estruturais e térmicas",
@@ -233,7 +233,7 @@ const ptBRCategoryCopy: Record<string, string> = {
   "系列包含玻璃纤维增强、玻纤矿物复合增强与耐磨低摩擦方向，提供不同的刚度、尺寸、流动和运动界面性能组合。":
     "A linha inclui reforço de fibra de vidro, reforço híbrido de fibra e mineral e formulações de baixo atrito e resistência ao desgaste, com diferentes perfis de rigidez, comportamento dimensional, fluidez e contato em movimento.",
   "可查看 5 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "As páginas e os dados principais dos cinco graus estão disponíveis. Documentos técnicos e amostras podem ser solicitados conforme o projeto; as condições de processamento e os ensaios de moldagem são definidos em seguida.",
+    "As páginas e os dados principais dos cinco graus estão disponíveis. Documentos técnicos e amostras podem ser solicitados conforme o projeto. As condições de processamento e os ensaios de moldagem são definidos de acordo com seus requisitos.",
   "PPA 项目支持": "Suporte a projetos com PPA",
   "为较高温度零件建立稳定性能组合":
     "Um perfil de desempenho confiável para peças em temperaturas mais altas",

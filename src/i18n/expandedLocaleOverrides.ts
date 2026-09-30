@@ -78,8 +78,8 @@ export const expandedLocaleOverrides: Partial<
       "Taiyi Polymer POM-Werkstofffamilien und Typenkatalog",
     "POM 材料组合": "POM-Werkstoffauswahl",
     "POM 材料家族与牌号目录": "POM-Werkstofffamilien und Typenkatalog",
-    "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。":
-      "Bestimmen Sie zuerst die maßgebliche Leistungsanforderung des Bauteils und wählen Sie dann die passende Richtung aus PLATFORM POM-Werkstofffamilien für Verschleiß und geringe Reibung, Schlagzähigkeit, Witterungsbeständigkeit, Verstärkung, leitfähige und antistatische Eigenschaften, hohe Fließfähigkeit oder Basisharz.",
+    "PLATFORM POM 涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等家族，对应不同零件的性能需求。":
+      "PLATFORM POM umfasst verschleißfeste und reibungsarme, schlagzähe, witterungsbeständige, verstärkte, leitfähige und antistatische, hochfließfähige sowie Standard-Familien für unterschiedliche Bauteilanforderungen.",
     "浏览全部 POM 材料家族": "Alle POM-Werkstofffamilien ansehen",
     "从零件要求出发，对比耐磨、抗冲、耐候、增强、功能、流动和基础 POM 材料家族。":
       "Vergleichen Sie ausgehend von der Bauteilanforderung POM-Werkstofffamilien für Verschleiß, Schlagzähigkeit, Witterungsbeständigkeit, Verstärkung, Funktion, Fließverhalten und Basisharz.",
@@ -116,8 +116,8 @@ export const expandedLocaleOverrides: Partial<
     "适用于电荷控制零件，其电阻范围、测试方法和工作环境决定牌号选择。":
       "Für Bauteile zur Kontrolle elektrostatischer Ladung; Widerstandsbereich, Prüfmethode und Einsatzumgebung bestimmen die Auswahl des Werkstofftyps.",
     定义电性能目标: "Ziel für das elektrische Verhalten definieren",
-    "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。":
-      "Zunächst sind das geforderte elektrische Verhalten und die Messmethode festzulegen. Antistatische, statisch ableitende und leitfähige Ziele müssen durch Bereiche und Prüfmethoden definiert werden, nicht nur durch Bezeichnungen.",
+    "抗静电、静电耗散和导电材料的选型依据是目标电性能范围与测试方法，单凭材料标签不足以判断适用性。":
+      "Antistatische, statisch ableitfähige und leitfähige Werkstoffe werden anhand des elektrischen Zielbereichs und Prüfverfahrens ausgewählt. Eine Materialbezeichnung allein belegt die Eignung nicht.",
     表面或体积电阻率: "Oberflächen- oder Volumenwiderstand",
     "所需的抗静电、静电耗散或导电性能":
       "Gefordertes antistatisches, statisch ableitendes oder leitfähiges Verhalten",
@@ -217,8 +217,8 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Fonctions et base de transformation",
     "电气表现、基础树脂与流动窗口":
       "Comportement électrique, résine de base et fenêtre d’écoulement",
-    "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。":
-      "Identifiez d’abord l’exigence de performance déterminante de la pièce, puis choisissez l’orientation adaptée parmi les familles de POM PLATFORM pour l’usure et le faible frottement, la résistance au choc, la tenue aux intempéries, le renforcement, les propriétés conductrices et antistatiques, la haute fluidité ou la résine de base.",
+    "PLATFORM POM 涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等家族，对应不同零件的性能需求。":
+      "PLATFORM POM comprend des familles résistantes à l’usure et à faible frottement, modifiées au choc, résistantes aux intempéries, renforcées, conductrices et antistatiques, à haute fluidité et standards pour différents besoins de pièces.",
     "浏览全部 POM 材料家族": "Voir toutes les familles de POM",
     "从零件要求出发，对比耐磨、抗冲、耐候、增强、功能、流动和基础 POM 材料家族。":
       "À partir des exigences de la pièce, comparez les familles de POM pour l’usure, l’impact, la tenue aux intempéries, le renforcement, les fonctions, la fluidité et la résine de base.",
@@ -257,8 +257,8 @@ export const expandedLocaleOverrides: Partial<
     "适用于电荷控制零件，其电阻范围、测试方法和工作环境决定牌号选择。":
       "Pour les pièces nécessitant un contrôle électrostatique ; la plage de résistance, la méthode d’essai et l’environnement d’utilisation déterminent le choix du grade.",
     定义电性能目标: "Définir l’objectif de performance électrique",
-    "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。":
-      "Définir d’abord la performance électrique requise et la méthode de mesure. Les objectifs antistatiques, dissipatifs électrostatiques et conducteurs doivent être exprimés par des plages et des méthodes d’essai, et non par de simples désignations.",
+    "抗静电、静电耗散和导电材料的选型依据是目标电性能范围与测试方法，单凭材料标签不足以判断适用性。":
+      "Le choix des matériaux antistatiques, dissipatifs et conducteurs repose sur la plage électrique visée et la méthode d’essai. Une désignation seule ne suffit pas à établir leur adéquation.",
     表面或体积电阻率: "Résistivité surfacique ou volumique",
     "所需的抗静电、静电耗散或导电性能":
       "Performance antistatique, dissipative électrostatique ou conductrice requise",
@@ -355,8 +355,8 @@ export const expandedLocaleOverrides: Partial<
     功能与成型基准: "Funções e base de processamento",
     "电气表现、基础树脂与流动窗口":
       "Comportamento elétrico, resina base e janela de fluxo",
-    "先确认零件的主导性能缺口，再从耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动或基础树脂等 PLATFORM POM 家族中筛选方向。":
-      "Primeiro, identifique o requisito de desempenho determinante da peça e depois escolha a direção adequada entre as famílias de POM PLATFORM para desgaste e baixo atrito, resistência ao impacto, intempéries, reforço, propriedades condutivas e antiestáticas, alta fluidez ou resina base.",
+    "PLATFORM POM 涵盖耐磨低摩擦、增韧、耐候、增强、导电与抗静电、高流动及基础树脂等家族，对应不同零件的性能需求。":
+      "PLATFORM POM inclui famílias resistentes ao desgaste e de baixo atrito, modificadas para impacto, resistentes às intempéries, reforçadas, condutivas e antiestáticas, de alta fluidez e resinas padrão para diferentes requisitos de peças.",
     "浏览全部 POM 材料家族": "Ver todas as famílias de POM",
     "从零件要求出发，对比耐磨、抗冲、耐候、增强、功能、流动和基础 POM 材料家族。":
       "A partir dos requisitos da peça, compare famílias de POM para desgaste, impacto, resistência às intempéries, reforço, função, fluxo e resina base.",
@@ -401,8 +401,8 @@ export const expandedLocaleOverrides: Partial<
     "适用于电荷控制零件，其电阻范围、测试方法和工作环境决定牌号选择。":
       "Para peças que exigem controle eletrostático; a faixa de resistência, o método de ensaio e o ambiente de uso determinam a seleção do grau.",
     定义电性能目标: "Definir a meta de desempenho elétrico",
-    "先明确所需的电性能以及测量方式。抗静电、静电耗散和导电目标应以范围和测试方法定义，而不能只依赖标签。":
-      "Primeiro, defina o desempenho elétrico necessário e o método de medição. As metas antiestáticas, dissipativas eletrostáticas e condutivas devem ser definidas por faixas e métodos de ensaio, não apenas por rótulos.",
+    "抗静电、静电耗散和导电材料的选型依据是目标电性能范围与测试方法，单凭材料标签不足以判断适用性。":
+      "A seleção de materiais antiestáticos, dissipativos e condutivos depende da faixa elétrica desejada e do método de ensaio. A designação do material, por si só, não comprova sua adequação.",
     表面或体积电阻率: "Resistividade superficial ou volumétrica",
     "所需的抗静电、静电耗散或导电性能":
       "Desempenho antiestático, dissipativo eletrostático ou condutivo necessário",

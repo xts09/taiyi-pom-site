@@ -30,11 +30,11 @@ export const englishApplicationDetailMessages = {
   },
   scene: {
     eyebrow: "Part & conditions",
-    title: "Start with the part and actual operating conditions",
+    title: "Part function and operating conditions",
     visualDescription:
-      "Define the mechanism, motion, assembly fit and dimensional target before narrowing the grade range.",
+      "Mechanism, motion, assembly fit and dimensional requirements determine the relevant grade range.",
     basicDescription:
-      "Define the part function, operating conditions, dimensional target and document needs before comparing modified POM directions.",
+      "Compare modified POM options against the part function, operating conditions, dimensional requirements and document needs.",
     imageAltSuffix: " application scene for material selection",
     keywordsAria: "Material-selection inputs",
     galleryAria: "Typical parts",
@@ -50,7 +50,7 @@ export const englishApplicationDetailMessages = {
     eyebrow: "Typical parts",
     titleSuffix: " representative components",
     description:
-      "Start with part geometry, load, motion and operating environment. Final material choice still depends on grade-specific data and project validation.",
+      "Part geometry, load, motion and operating environment shape the material requirements. Grade-specific data and project validation determine the final choice.",
     cardLabel: "Typical part",
     componentEyebrow: "Component guides",
     componentTitle: "Continue with a component-specific selection guide",
@@ -65,7 +65,7 @@ export const englishApplicationDetailMessages = {
   },
   evaluation: {
     eyebrow: "Next step",
-    title: "Start with the requirements you already know",
+    title: "Discuss your application requirements",
     description:
       "Share the part, operating conditions and target. We can organize a candidate material range, open questions and the next grade-data, sample or molding-trial step.",
     action: "Discuss your application",

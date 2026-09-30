@@ -175,7 +175,7 @@ const deCategoryCopy: Record<string, string> = {
   "系列包含玻璃纤维与碳纤维增强、高抗冲、阻燃、耐磨、矿物填充、脱模及其他加工改性方向。":
     "Das Portfolio umfasst Glas- und Carbonfaserverstärkung, hohe Schlagzähigkeit, Flammschutz, Verschleißschutz, Mineralfüllung, Entformung und weitere verarbeitungsorientierte Modifikationen.",
   "可查看 33 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "Produktdetails und zentrale Daten aller 33 Typen sind verfügbar. Technische Unterlagen und Muster können projektbezogen angefragt; Verarbeitungsbedingungen und Werkzeugversuche anschließend abgestimmt werden.",
+    "Produktdetails und zentrale Daten aller 33 Typen sind verfügbar. Technische Unterlagen und Muster können projektbezogen angefragt werden. Verarbeitungsbedingungen und Werkzeugversuche werden für das jeweilige Projekt abgestimmt.",
   "PA6 项目支持": "PA6-Projektunterstützung",
   "为零件建立合适的韧性与强度组合":
     "Das passende Verhältnis von Zähigkeit und Festigkeit für das Bauteil",
@@ -203,7 +203,7 @@ const deCategoryCopy: Record<string, string> = {
   "系列包含纤维增强、阻燃、耐磨、高抗冲、矿物填充、玻璃微珠填充及其他功能改性方向。":
     "Das Portfolio umfasst Faserverstärkung, Flammschutz, Verschleißschutz, hohe Schlagzähigkeit, Mineral- und Glaskugelfüllung sowie weitere funktionale Modifikationen.",
   "可查看 37 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "Produktdetails und zentrale Daten aller 37 Typen sind verfügbar. Technische Unterlagen und Muster können projektbezogen angefragt; Verarbeitungsbedingungen und Werkzeugversuche anschließend abgestimmt werden.",
+    "Produktdetails und zentrale Daten aller 37 Typen sind verfügbar. Technische Unterlagen und Muster können projektbezogen angefragt werden. Verarbeitungsbedingungen und Werkzeugversuche werden für das jeweilige Projekt abgestimmt.",
   "PA66 项目支持": "PA66-Projektunterstützung",
   "为结构与耐热零件建立性能基础":
     "Eine belastbare Leistungsbasis für Struktur- und Wärmebauteile",
@@ -231,7 +231,7 @@ const deCategoryCopy: Record<string, string> = {
   "系列包含玻璃纤维增强、玻纤矿物复合增强与耐磨低摩擦方向，提供不同的刚度、尺寸、流动和运动界面性能组合。":
     "Das Portfolio umfasst Glasfaserverstärkung, Glasfaser-Mineral-Verstärkung sowie verschleißarme und reibungsreduzierte Formulierungen mit unterschiedlichen Profilen bei Steifigkeit, Maßverhalten, Fließfähigkeit und Gleitkontakt.",
   "可查看 5 个牌号的中文详情与关键数据，并按项目申请技术文件和样品；加工条件与试模要求可进一步讨论。":
-    "Produktdetails und zentrale Daten aller fünf Typen sind verfügbar. Technische Unterlagen und Muster können projektbezogen angefragt; Verarbeitungsbedingungen und Werkzeugversuche anschließend abgestimmt werden.",
+    "Produktdetails und zentrale Daten aller fünf Typen sind verfügbar. Technische Unterlagen und Muster können projektbezogen angefragt werden. Verarbeitungsbedingungen und Werkzeugversuche werden für das jeweilige Projekt abgestimmt.",
   "PPA 项目支持": "PPA-Projektunterstützung",
   "为较高温度零件建立稳定性能组合":
     "Ein belastbares Leistungsprofil für höher temperierte Bauteile",

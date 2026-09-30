@@ -28,7 +28,7 @@ export function GlassFiberPomDecisionPaths({
     >
       <SectionIntro
         className={styles.intro}
-        description="Start with the closest part family, then review how customers evaluated specific glass-fiber POM grades in comparable parts."
+        description="Customer cases show how specific glass-fiber POM grades were evaluated in comparable part families."
         layout="split"
         title="Application paths and customer trials"
         titleId="glass-fiber-pom-paths-title"
