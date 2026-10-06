@@ -108,6 +108,12 @@ export function GoogleTag() {
     };
   }, []);
 
+  useEffect(() => {
+    setGoogleTagDisabled(
+      consent !== "granted" || runtimeState !== "enabled",
+    );
+  }, [consent, runtimeState]);
+
   if (
     !googleTagId ||
     consent !== "granted" ||
