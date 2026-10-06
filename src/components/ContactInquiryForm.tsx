@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   trackInquiryFallback,
   trackInquirySubmitted,
@@ -108,6 +108,7 @@ export function ContactInquiryForm({
   requirementLabel = "Priority requirement",
 }: ContactInquiryFormProps) {
   const safeInitialMessage = clampInquiryMessage(initialMessage);
+  const submissionInFlight = useRef(false);
   const [status, setStatus] = useState<
     "idle" | "submitting" | "sent" | "fallback"
   >("idle");
@@ -268,10 +269,7 @@ export function ContactInquiryForm({
     );
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const form = event.currentTarget;
+  const submitInquiry = async (form: HTMLFormElement) => {
     const formData = new FormData(form);
     const body = buildInquiryMessage(formData, messages.emailDraft);
     const subject = `${messages.emailDraft.subjectPrefix} - ${readField(
@@ -348,6 +346,18 @@ export function ContactInquiryForm({
     setStatus("fallback");
     trackInquiryFallback("mailto_draft");
     window.location.href = mailto;
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (submissionInFlight.current) return;
+
+    submissionInFlight.current = true;
+    try {
+      await submitInquiry(event.currentTarget);
+    } finally {
+      submissionInFlight.current = false;
+    }
   };
 
   return (

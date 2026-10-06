@@ -5,6 +5,7 @@ import {
   googleAdsLeadConversionLabel,
 } from "@/lib/googleTracking";
 import { readMarketingAttribution } from "@/lib/analyticsAttribution";
+import { readGoogleAnalyticsConsent } from "@/lib/googleConsent";
 
 type GtagCommand = "consent" | "event";
 
@@ -21,7 +22,9 @@ declare global {
 }
 
 const hasGtag = () =>
-  typeof window !== "undefined" && typeof window.gtag === "function";
+  typeof window !== "undefined" &&
+  readGoogleAnalyticsConsent() === "granted" &&
+  typeof window.gtag === "function";
 
 const readLeadAttributionParameters = () => {
   const attribution = readMarketingAttribution();

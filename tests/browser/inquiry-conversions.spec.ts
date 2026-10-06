@@ -6,6 +6,7 @@ test.beforeEach(async ({ context }) => {
     (route) => route.abort(),
   );
   await context.addInitScript(() => {
+    window.localStorage.setItem("taiyi_google_analytics_consent", "granted");
     Object.defineProperty(navigator, "clipboard", {
       configurable: true,
       value: { writeText: async () => {} },
