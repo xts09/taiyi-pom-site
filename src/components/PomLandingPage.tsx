@@ -68,10 +68,10 @@ export type PomLandingPageUi = {
 const englishUi: PomLandingPageUi = {
   homeBreadcrumb: "Home",
   openFamilyAction: "Open family",
-  gradeEvidenceKicker: "Grade Evidence",
+  gradeEvidenceKicker: "Catalogue Grades",
   gradeFamilyLabel: "Grade / family",
-  modificationDirectionLabel: "Modification direction",
-  electricalDirectionLabel: "Published electrical direction",
+  modificationDirectionLabel: "Formulation / series",
+  electricalDirectionLabel: "Electrical classification",
   materialSelectionSummaryAria: "Material selection summary",
   defaultSecondaryAction: "Find Technical Data",
   comparisonKicker: "Grade Comparison",
@@ -383,6 +383,7 @@ export function PomLandingPage({
             <div className="pom-landing-section-head">
               <p className="section-kicker">{ui.gradeEvidenceKicker}</p>
               <h2>{page.gradeEvidence.title}</h2>
+              {page.gradeEvidence.note ? <p>{page.gradeEvidence.note}</p> : null}
             </div>
             <div className="pom-landing-grade-evidence-list">
               {page.gradeEvidence.items.map((item) => (

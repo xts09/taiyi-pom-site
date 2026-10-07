@@ -212,6 +212,7 @@ export function EngineeringGfLandingPage({
             />
 
             <EngineeringGfGradeComparison
+              key={polymer}
               grades={comparisonGrades}
               polymer={page.polymer}
               ui={ui.comparison}
@@ -357,16 +358,6 @@ export function EngineeringGfLandingPage({
             title={formatEngineeringGfMessage(ui.inquiryTitleTemplate, {
               polymer: page.polymer,
             })}
-            aside={
-              <div className={styles.inquirySteps}>
-                {ui.inquirySteps.map((item, index) => (
-                  <p key={item}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    {item}
-                  </p>
-                ))}
-              </div>
-            }
             action={
               <Button asChild size="form" variant="primary">
                 <Link href={contactHref}>{ui.discussApplicationAction}</Link>

@@ -172,7 +172,7 @@ export function AboutPageContent({
       <section className={styles.credentials} aria-labelledby="overview-credentials-title">
         <div className="site-container">
           <div className={styles.credentialsIntro}>
-            <SectionHeading eyebrow="Quality and compliance" id="overview-credentials-title" title="Documents for project review and supplier qualification." description="Company qualifications, management-system certificates and material documents are available to support project and supplier review." />
+            <SectionHeading eyebrow="Quality and compliance" id="overview-credentials-title" title="Company credentials and material documents." description="Company qualifications and management-system certificates support supplier review. Material documents are confirmed for the selected grade and project." />
             <div className={styles.documentTags} aria-label="Available material documents">{availableDocuments.map((document) => <span key={document}>{document}</span>)}</div>
           </div>
           <div className={styles.credentialGrid}>

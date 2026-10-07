@@ -235,20 +235,20 @@ const messages = {
   },
   Contact: {
     metadata: {
-      title: "Fale sobre uma necessidade de material | Taiyi Polymer",
+      title: "Contato com a Taiyi Polymer | Dados, amostras e fornecimento",
       description:
-        "Entre em contato com a Jiangsu Taiyi Nano Technology Co., Ltd. sobre POM modificado, compostos de plásticos de engenharia, resina POM, seleção de materiais, documentos, amostras e avaliação de projetos.",
+        "Entre em contato com a Taiyi Polymer para obter dados de graus de POM, PA6, PA66 e PPA, solicitar amostras e discutir materiais e fornecimento.",
       imageAlt: "Linha de produção de plásticos de engenharia da Taiyi Polymer",
     },
     breadcrumbHome: "Início",
     breadcrumbContact: "Contato",
     hero: {
-      title: "Solicite uma análise de material",
+      title: "Fale com a Taiyi Polymer",
       description:
-        "Informe a função da peça, as condições de operação e os requisitos desejados. Identificaremos as famílias de materiais relevantes, confirmaremos os documentos disponíveis e indicaremos a próxima etapa de amostragem ou avaliação.",
+        "Para dados de graus, amostras, seleção de materiais e fornecimento. Fale diretamente com nossa equipe comercial ou envie sua solicitação pelo formulário abaixo.",
     },
     formPanel: {
-      title: "Seus requisitos de aplicação",
+      title: "Sua solicitação",
       body:
         "Empresa, e-mail e aplicação são suficientes para começar. Acrescente detalhes técnicos somente se já estiverem disponíveis.",
       requiredBefore: "Os campos marcados com",
@@ -263,10 +263,11 @@ const messages = {
       whatsapp: "WhatsApp",
       location: "Localização",
       locationValue: "Yancheng, Jiangsu, China",
-      reviewTitle: "O que podemos avaliar",
+      reviewTitle: "Assuntos da consulta",
       reviewItems: [
-        "Famílias de materiais relevantes e grades candidatas",
-        "Documentos técnicos disponíveis e necessidade de amostras",
+        "Materiais e graus",
+        "Documentos técnicos e amostras",
+        "Preços e requisitos de fornecimento",
       ],
       emailDirectly: "Enviar e-mail",
     },

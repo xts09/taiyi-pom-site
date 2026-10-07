@@ -480,20 +480,20 @@ const messages = {
   },
   Contact: {
     metadata: {
-      title: "提交材料需求 | 台益",
+      title: "联系台益 | 牌号资料、样品与供货咨询",
       description:
-        "联系江苏台益纳米科技有限公司，咨询 POM 改性材料、工程塑料改性材料、POM 树脂、材料建议、技术资料、样品及项目评估。",
+        "联系台益，咨询改性 POM、PA6、PA66 与 PPA 的牌号资料、样品、材料选型及供货事项。",
       imageAlt: "台益工程塑料生产线",
     },
     breadcrumbHome: "首页",
     breadcrumbContact: "联系我们",
     hero: {
-      title: "申请材料评估",
+      title: "联系台益",
       description:
-        "请说明零部件功能、使用条件与目标要求。我们将识别相关材料系列、确认可提供的资料，并说明下一步样品或评估安排。",
+        "咨询牌号资料、样品、材料选型和供货事项，可直接联系销售人员，或填写下方表单。",
     },
     formPanel: {
-      title: "先提供基本信息",
+      title: "您的咨询",
       body: "公司、邮箱和应用信息即可开始。如已有技术细节，可继续补充。",
       requiredBefore: "标有",
       requiredAfter: "的字段为必填项。",
@@ -507,8 +507,8 @@ const messages = {
       whatsapp: "WhatsApp",
       location: "地址",
       locationValue: "中国江苏盐城",
-      reviewTitle: "我们可以评估",
-      reviewItems: ["相关材料系列与候选牌号", "可提供的技术资料与样品需求"],
+      reviewTitle: "咨询事项",
+      reviewItems: ["材料与牌号", "技术资料与样品", "报价与供货要求"],
       emailDirectly: "直接发送邮件",
     },
     directEmail: {

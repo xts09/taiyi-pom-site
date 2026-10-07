@@ -12,6 +12,10 @@ import { findGradeCrossReference } from "@/data/gradeCrossReferences";
 import { products } from "@/data/products";
 import { resourcePages } from "@/data/resources";
 import { matchesTechnicalQuery } from "@/lib/mfiSearch";
+import {
+  getReinforcementLabel,
+  matchesReinforcedGradeQuery,
+} from "@/lib/reinforcedGradeSearch";
 import { createResultPage } from "@/lib/paginateResultGroups";
 import {
   normalizeTechnicalDataQuery,
@@ -196,7 +200,10 @@ export function selectTechnicalDataSearch({
           return (
             matchesFamily &&
             matchesDirection &&
-            matchesTechnicalQuery(canonicalQuery, {
+            matchesReinforcedGradeQuery(canonicalQuery, {
+              family: document.family,
+              category: document.category,
+              filler: document.filler,
               fields: [
                 document.grade,
                 document.family,
@@ -208,6 +215,10 @@ export function selectTechnicalDataSearch({
         })
         .map((document) => ({
           document,
+          reinforcementLabel: getReinforcementLabel({
+            category: document.category,
+            filler: document.filler,
+          }),
           documentState:
             engineeringDocumentStateByGrade.get(
               `${document.family}:${document.grade}`,
@@ -221,7 +232,11 @@ export function selectTechnicalDataSearch({
         const matchesDirection =
           !directionCategories ||
           directionCategories.includes(product.category);
-        const matchesQuery = matchesTechnicalQuery(canonicalQuery, {
+        const matchesQuery = matchesReinforcedGradeQuery(canonicalQuery, {
+          family: "POM",
+          category: product.category,
+          filler: catalogProducts.find((record) => record.slug === product.slug)
+            ?.glassFiberContent,
           fields: [
             product.grade,
             product.title,

@@ -337,7 +337,7 @@ export function LocalizedTechnicalDataSearchPage({
                 );
               })}
 
-              {paginatedResults.engineeringResults.map(({ document, documentState }) => (
+              {paginatedResults.engineeringResults.map(({ document, documentState, reinforcementLabel }) => (
                 <DocumentCard
                   key={`${document.family}-${document.grade}`}
                   variant="compact-link"
@@ -353,6 +353,7 @@ export function LocalizedTechnicalDataSearchPage({
                     <>
                       <span>{document.family}</span>
                       <span>{categoryLabel(document.category)}</span>
+                      {reinforcementLabel && <span>{reinforcementLabel}</span>}
                       <span>{documentStateLabel(documentState)}</span>
                     </>
                   }

@@ -5,6 +5,7 @@ import { automotiveExpandedLocaleOverrides } from "./automotiveExpandedLocaleOve
 import { componentDetailLocaleOverrides } from "./componentDetailLocaleOverrides.ts";
 import { categoryLocaleOverrides } from "./categoryLocaleOverrides.ts";
 import { ems102LocaleOverrides } from "./ems102LocaleOverrides.ts";
+import { functionalPomLocaleOverrides } from "./functionalPomLocaleOverrides.ts";
 
 type TranslationOverrides = Readonly<Record<string, string>>;
 
@@ -26,6 +27,7 @@ export const expandedLocaleOverrides: Partial<
     简支梁缺口冲击强度: "Kerbschlagzähigkeit nach Charpy",
     ...categoryLocaleOverrides.de,
     ...ems102LocaleOverrides.de,
+    ...functionalPomLocaleOverrides.de,
     ...aboutLocaleOverrides.de,
     ...automotiveExpandedLocaleOverrides.de,
     ...applicationNarrativeLocaleOverrides.de,
@@ -152,6 +154,7 @@ export const expandedLocaleOverrides: Partial<
     简支梁缺口冲击强度: "Résistance au choc Charpy entaillé",
     ...categoryLocaleOverrides.fr,
     ...ems102LocaleOverrides.fr,
+    ...functionalPomLocaleOverrides.fr,
     ...aboutLocaleOverrides.fr,
     ...automotiveExpandedLocaleOverrides.fr,
     ...applicationNarrativeLocaleOverrides.fr,
@@ -296,6 +299,7 @@ export const expandedLocaleOverrides: Partial<
     简支梁缺口冲击强度: "Resistência ao impacto Charpy com entalhe",
     ...categoryLocaleOverrides["pt-br"],
     ...ems102LocaleOverrides["pt-br"],
+    ...functionalPomLocaleOverrides["pt-br"],
     ...aboutLocaleOverrides["pt-br"],
     ...automotiveExpandedLocaleOverrides["pt-br"],
     ...applicationNarrativeLocaleOverrides["pt-br"],

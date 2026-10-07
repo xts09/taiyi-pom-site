@@ -41,6 +41,9 @@ export const automotiveExpandedLocaleOverrides = {
     何时考虑: "Wann berücksichtigen",
     从已知的汽车零部件要求开始:
       "Anforderungen an das Automobilbauteil",
+    "咨询候选牌号、技术资料或样品时，可提供部件用途、载荷、运动方式、使用环境、当前材料和模具阶段等已知信息。":
+      "Kontaktieren Sie uns zu Kandidatentypen, technischen Unterlagen oder Mustern. Hilfreich sind bekannte Angaben zu Bauteilfunktion, Last, Bewegung, Einsatzbedingungen, aktuellem Werkstoff und Werkzeugstatus.",
+    // Historical source key retained for generated narrative dictionary coverage.
     "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。":
       "Geben Sie Bauteilfunktion, Last, Bewegungsart, Einsatzumgebung, aktuellen Werkstoff und Werkzeugstatus an. Daraus können wir geeignete Werkstoffrichtungen, offene Punkte sowie verfügbare Typendaten oder Musteroptionen zusammenstellen.",
     "零部件功能、机构位置与主要失效现象":
@@ -147,6 +150,9 @@ export const automotiveExpandedLocaleOverrides = {
     何时考虑: "Quand l’envisager",
     从已知的汽车零部件要求开始:
       "Exigences pour la pièce automobile",
+    "咨询候选牌号、技术资料或样品时，可提供部件用途、载荷、运动方式、使用环境、当前材料和模具阶段等已知信息。":
+      "Contactez-nous pour discuter des grades candidats, des documents techniques ou des échantillons. Précisez les informations connues sur la fonction de la pièce, la charge, le mouvement, les conditions d’utilisation, le matériau actuel et le stade d’outillage.",
+    // Historical source key retained for generated narrative dictionary coverage.
     "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。":
       "Indiquez la fonction, la charge, le type de mouvement, l’environnement, la matière actuelle et l’état d’avancement de l’outillage. Nous pourrons ainsi structurer les familles candidates, les points à préciser et les données de grades ou options d’échantillons disponibles.",
     "零部件功能、机构位置与主要失效现象":
@@ -252,6 +258,9 @@ export const automotiveExpandedLocaleOverrides = {
     何时考虑: "Quando considerar",
     从已知的汽车零部件要求开始:
       "Requisitos do componente automotivo",
+    "咨询候选牌号、技术资料或样品时，可提供部件用途、载荷、运动方式、使用环境、当前材料和模具阶段等已知信息。":
+      "Fale conosco sobre graus candidatos, documentos técnicos ou amostras. Inclua as informações conhecidas sobre a função da peça, a carga, o movimento, as condições de uso, o material atual e a etapa do molde.",
+    // Historical source key retained for generated narrative dictionary coverage.
     "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。":
       "Informe a função, a carga, o tipo de movimento, o ambiente de uso, o material atual e a etapa do molde. Com isso, podemos organizar as direções candidatas, os pontos pendentes e os dados de graus ou opções de amostras disponíveis.",
     "零部件功能、机构位置与主要失效现象":

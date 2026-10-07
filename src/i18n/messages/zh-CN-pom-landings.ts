@@ -6,10 +6,10 @@ import type { PomLandingPageUi } from "@/components/PomLandingPage";
 export const chinesePomLandingUi: PomLandingPageUi = {
   homeBreadcrumb: "首页",
   openFamilyAction: "查看材料家族",
-  gradeEvidenceKicker: "牌号依据",
+  gradeEvidenceKicker: "目录牌号",
   gradeFamilyLabel: "牌号 / 家族",
-  modificationDirectionLabel: "改性方向",
-  electricalDirectionLabel: "公开电性能方向",
+  modificationDirectionLabel: "配方 / 系列",
+  electricalDirectionLabel: "目录电性能分类",
   materialSelectionSummaryAria: "材料选型摘要",
   defaultSecondaryAction: "查找技术数据",
   comparisonKicker: "牌号对比",
@@ -221,7 +221,7 @@ export const chineseWearLowFrictionPomLanding: PomLandingPageData = {
     "对比台益面向齿轮、衬套、滚轮、滑动零件和运动部件的耐磨与低摩擦 POM 选项。",
   eyebrow: "运动部件",
   intro:
-    "针对存在材料损耗、滑动阻力、噪声、黏滑或对偶件磨损的注塑零件，对比耐磨与低摩擦 POM。",
+    "面向齿轮、衬套、滚轮和滑动件的耐磨与低摩擦 POM，包含 PTFE、MoS2、芳纶和硅油改性配方，以及不同流动性和增强选项。",
   primaryActionLabel: "讨论磨损或摩擦要求",
   metrics: [
     { label: "典型零件", value: "齿轮 / 衬套" },
@@ -231,35 +231,39 @@ export const chineseWearLowFrictionPomLanding: PomLandingPageData = {
   ],
   sections: [
     {
-      title: "磨损与摩擦是两个不同目标",
+      title: "磨损、摩擦与表面寿命",
       body:
-        "低摩擦并不保证较长的耐磨寿命；耐磨牌号也可能仍产生过高摩擦或噪声。",
+        "耐磨性关注反复接触中的材料损耗；摩擦关系到滑动阻力、启动力和黏滑表现。两者都受对偶材料和工作条件影响。",
       points: [
-        "明确载荷、速度、循环、温度和对偶材料",
-        "检查润滑、表面粗糙度、对中情况和污染物",
-        "对比磨损量、摩擦表现、噪声和尺寸变化",
-        "通过有代表性的注塑零件测试确认结果",
+        "磨损量与表面状态变化",
+        "滑动阻力与启动力",
+        "黏滑现象与运行噪声",
+        "反复运动后的尺寸变化",
       ],
     },
     {
       title: "典型运动部件",
       body:
-        "齿轮、衬套、滚轮、滑块、导向件和其他反复运动的注塑零件可按这些因素进行初筛。",
+        "齿轮、衬套、滚轮和导向件的接触表面、运动方式与使用寿命要求各不相同。",
       points: [
-        "齿轮、蜗轮、凸轮、滚轮、套筒和滑块",
-        "导轨、输送部件、纺织机械零件和运动支撑件",
-        "需要降低黏滑、改善运动顺畅度或延长表面寿命的应用",
-        "申请样品前需要对比改性 POM 的项目",
+        "齿轮、蜗轮与凸轮",
+        "衬套、套筒与滚轮",
+        "滑块、导向件与输送部件",
+        "纺织机械零件及其他运动组件",
       ],
     },
   ],
   catalogEvidence: {
-    title: "目录中的耐磨与摩擦牌号",
+    title: "耐磨配方与牌号",
     note:
-      "目录标明改性方向及部分已列性能。具体摩擦、磨损量和注塑零件适用性仍需结合牌号数据与代表性试验确认。",
+      "各配方采用不同填料和添加剂。牌号链接提供现有性能数据，具体磨损与摩擦表现取决于对偶表面和测试条件。",
     items: [
       {
         label: "POM EDM-111",
+        labelParts: [
+          { text: "POM " },
+          { text: "EDM-111", href: "/products/edm-111-high-wear-resistant-pom" },
+        ],
         detail: "MFI 7 g/10 min；本色；已列为高耐磨牌号。",
       },
       {
@@ -268,19 +272,48 @@ export const chineseWearLowFrictionPomLanding: PomLandingPageData = {
       },
       {
         label: "POM EMS162",
+        labelParts: [
+          { text: "POM " },
+          { text: "EMS162", href: "/products/ems162-high-wear-resistant-pom" },
+        ],
         detail: "MFI 7 g/10 min；黑色；填充 MoS2，已列为高耐磨牌号。",
       },
       {
         label: "POM ENM1040",
+        labelParts: [
+          { text: "POM " },
+          { text: "ENM1040", href: "/products/enm1040-high-wear-resistant-pom" },
+        ],
         detail: "MFI 7 g/10 min；本色；已列有专用耐磨添加剂。",
       },
       {
         label: "POM EP-AF100A / EPAF100A / EPAF96A",
+        labelParts: [
+          { text: "POM EP-AF100A / " },
+          { text: "EPAF100A", href: "/products/epaf100a-high-wear-resistant-pom" },
+          { text: " / EPAF96A" },
+        ],
         detail: "适用于耐磨零件的芳纶纤维或芳纶粉填充选项。",
       },
       {
-        label: "POM EPTL402 / ESO102 / ETM270H",
-        detail: "PTFE 填充、硅油改性和高流动耐磨选项。",
+        label: "POM EPTL402",
+        labelParts: [
+          { text: "POM " },
+          { text: "EPTL402", href: "/products/eptl402-high-wear-resistant-pom" },
+        ],
+        detail: "PTFE 填充 POM；MFI 7.5 g/10 min；本色。",
+      },
+      {
+        label: "POM ESO102",
+        detail: "硅油改性 POM。",
+      },
+      {
+        label: "POM ETM270H",
+        labelParts: [
+          { text: "POM " },
+          { text: "ETM270H", href: "/products/etm270h-wear-resistant-pom" },
+        ],
+        detail: "高流动耐磨 POM。",
       },
     ],
   },
@@ -334,11 +367,11 @@ export const chineseConductiveAntistaticPomLanding: PomLandingPageData = {
   title: "导电与抗静电 POM",
   metaTitle: "导电与抗静电 POM 配混料 | 台益",
   metaDescription:
-    "按目标电阻率、填料体系和零件要求对比导电与抗静电 POM 牌号，并审查牌号数据、文件和样品选项。",
+    "了解台益的碳纳米管和碳纤维 POM 配方，查看导电与抗静电牌号、电性能范围及选型所需的测试条件。",
   eyebrow: "电荷控制 POM",
   intro:
-    "根据所需电性能测量、零件功能、颜色、保留的机械性能和成品测试方法选择导电或抗静电 POM。",
-  primaryActionLabel: "申请导电 POM 牌号审查",
+    "用于电荷控制零件的 POM 配混料，包含碳纳米管和碳纤维配方。目录中的电性能范围可结合机械性能、颜色及成品要求进行比较。",
+  primaryActionLabel: "讨论导电 POM 应用",
   secondaryActionLabel: "查看导电 POM 牌号数据",
   heroImage: {
     src: "/generated/landing/conductive-antistatic-pom-functional-components.png",
@@ -352,6 +385,8 @@ export const chineseConductiveAntistaticPomLanding: PomLandingPageData = {
   ],
   gradeEvidence: {
     title: "可选 POM 电荷控制牌号",
+    note:
+      "表中电性能范围用于目录分类。牌号的具体电阻率数据还需注明表面或体积测量、单位及测试条件。",
     items: [
       {
         grade: "POM-CNT-R610 / POM-CNT-R35",
@@ -377,25 +412,25 @@ export const chineseConductiveAntistaticPomLanding: PomLandingPageData = {
   },
   sections: [
     {
-      title: "定义电性能目标",
+      title: "电荷控制零件的电性能数据",
       body:
-        "抗静电、静电耗散和导电材料的选型依据是目标电性能范围与测试方法，单凭材料标签不足以判断适用性。",
+        "抗静电、静电耗散和导电零件的电性能目标各有不同。用于比较牌号的数据需要把目标范围、测量类型和测试条件对应起来。",
       points: [
-        "所需电阻率范围",
         "表面或体积电阻率",
-        "测试方法",
-        "所需的抗静电、静电耗散或导电性能",
+        "目标范围与测量单位",
+        "测试方法与试样调节条件",
+        "成品零件的电性能要求",
       ],
     },
     {
-      title: "定义零件条件",
+      title: "电性能与机械性能的平衡",
       body:
-        "补充可能影响牌号适用性及机械性能保留的零件与项目条件。",
+        "填料体系可能影响流动性、冲击强度、刚性、磨损和表面质量。精密注塑件的选材需要同时考虑这些性能与电性能目标。",
       points: [
         "零件功能与工作环境",
-        "机械与尺寸要求",
-        "颜色要求",
-        "TDS、文件与样品需求",
+        "强度、冲击与尺寸要求",
+        "颜色与表面质量",
+        "TDS 与注塑样件数据",
       ],
     },
   ],

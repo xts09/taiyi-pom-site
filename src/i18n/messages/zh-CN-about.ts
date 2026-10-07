@@ -65,8 +65,8 @@ export const chineseAboutMessages = {
   },
   credentials: {
     eyebrow: "质量与合规",
-    title: "让项目审核与供应商准入有据可查",
-    description: "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。",
+    title: "企业资质与材料文件",
+    description: "企业资质和管理体系证书可用于供应商审核。TDS、SDS、COA、REACH、RoHS 等材料文件按具体牌号与项目确认。",
     documentsAria: "可提供的材料资料",
     systemsCategory: "管理体系",
     systemsTitle: "已认证的管理体系",

@@ -5,7 +5,7 @@
   "sortOrder": 10,
   "slug": "eptl402-high-wear-resistant-pom",
   "grade": "EPTL402",
-  "title": "EPTL402 PTFE-Filled High Wear-Resistant POM Compound",
+  "title": "EPTL402 PTFE-Filled Wear-Resistant POM Compound",
   "polymer": "POM",
   "family": "Wear-Resistant POM Compound",
   "category": "Wear-Resistant POM Compound",
@@ -16,11 +16,11 @@
   "colors": [
     "Natural"
   ],
-  "description": "PTFE-filled high wear-resistant POM compound for sliding parts, moving assemblies, and low-friction wear applications.",
+  "description": "PTFE-filled POM for bushings, gears and other sliding components where wear and friction are key material-selection factors.",
   "features": [
-    "PTFE-filled direction",
-    "High wear-resistant direction",
-    "Low-friction sliding fit"
+    "PTFE-filled formulation",
+    "Wear-resistant POM",
+    "For sliding components"
   ],
   "applications": [
     "Sliding parts",

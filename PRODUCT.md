@@ -34,6 +34,16 @@ The current homepage and main navigation baseline is:
   mobile data link lead to that same released directory; this entry does not
   imply a separate site-wide resource search.
 
+### Approved Release Scope (2026-10-07)
+
+The October 6–7 optimization batches are approved for release together:
+engineering-GF filtering and copy, reinforced-grade queries, functional-POM
+copy, buyer enquiry copy, and the seven reviewed application-detail group
+compositions. Their dated `Local Implementation` entries below describe the
+original review state, rather than the current deployment status. The actual
+deployment date, exact release commit and acceptance evidence are recorded
+under `outputs/release-20261007-site-optimization/`.
+
 ### Active Implementation Snapshot (2026-09-22)
 
 This snapshot records durable implementation ownership. Live branch names,
@@ -459,6 +469,167 @@ Use Current Language Release Policy below for current coverage and review requir
   requirement, conditions, sample quantity and later wear together. Both
   general inquiry buttons use the canonical application label and pass POM
   plus the localized gear application into the existing contact form.
+
+### Engineering GF Directory And Material Copy (2026-10-06, Local Implementation)
+
+- PA6, PA66 and PPA glass-fiber landing directories support filtering by
+  catalogue glass-fiber percentage in all five released languages. The default
+  is the full grade range; the selection applies to both the compact cards and
+  complete comparison. Grade data and locale-aware TDS request destinations
+  retain their existing ownership.
+- PA6 copy describes material properties, applications and molding factors
+  directly. The shared contact ending uses a short material inquiry and the
+  canonical application CTA. Technical test methods and unknown specimen
+  conditioning remain explicit in the comparison basis.
+- PA66 and PPA now follow the same direct writing standard in all five released
+  languages. PA66 describes load response, moisture state and molded geometry;
+  PPA describes heat exposure, structural requirements and grade-specific data.
+  Material summaries, applications and technical notes use the existing catalog
+  and evidence boundaries, with current official material pages as writing references.
+- This is a local improvement to existing categories. It creates no new public
+  routes, grade records, technical values or document availability claims.
+
+### Reinforced Material Queries (2026-10-06, Local Implementation)
+
+- Technical-data search recognizes material and reinforcement expressions such
+  as `PA6 GF50`, `PA66-GF50`, `PPA GF45` and `PA6 50% glass fiber`.
+  `src/lib/reinforcedGradeSearch.ts` matches the requested family, reinforcement
+  category and exact catalog percentage. Unknown filler values and combined
+  glass/mineral filler are excluded from an exact GF-content match.
+- Engineering records use catalog `filler`; POM glass-fiber records use the
+  reviewed `glassFiberContent` field. Engineering search results show the
+  verified GF/CF percentage in English and localized result rows.
+- Search behavior and result ordering remain owned by
+  `src/data/technicalDataSearch.ts`; grade names, properties, document states,
+  and public language coverage retain their existing owners.
+
+### Functional POM Material Copy (2026-10-06, Local Implementation)
+
+- The existing wear/low-friction POM landing separates PTFE-filled EPTL402,
+  silicone-oil-modified ESO102 and high-flow ETM270H into individual entries.
+  Published grade names link to their existing locale-aware detail pages;
+  source-only formulation references retain text entries. Keep this as a
+  compact formulation directory rather than adding a second property table.
+- Conductive/antistatic POM copy identifies catalogue formulations and the
+  electrical/mechanical selection factors directly. Its grade table labels
+  catalogue electrical classifications and includes their measurement-basis
+  note. Do not infer surface/volume resistivity, units, test methods or part
+  approval from a catalogue electrical band.
+- EPTL402 copy describes the PTFE formulation and listed applications. The
+  catalogue remains the owner of its properties and document status; the
+  localized MFI note names the existing test conditions. Feature lists describe
+  the material, while test boundaries belong in evaluation notes.
+- These copy changes cover the existing five-language release. Chinese source
+  profiles and `src/i18n/functionalPomLocaleOverrides.ts` own localized wording;
+  the latter is registered through `expandedLocaleOverrides.ts`. Short localized
+  action labels retain the original Contact context and fit the mobile Hero.
+- This local batch adds no routes, performance values, certificates or document
+  availability claims. Official competitor references and rendered verification
+  are recorded under `outputs/functional-pom-optimization-20261006/`.
+
+### Buyer Enquiry Copy (2026-10-06, Local Implementation)
+
+- Contact copy reflects the existing grade-selection, technical-document,
+  sample and quote/supply request types. The English and localized heroes use
+  the public brand and direct enquiry wording; they do not frame every request
+  as a material assessment. Form submission, context, delivery, consent and
+  attribution retain their existing owners and behavior.
+- Automotive material introductions describe the four existing POM
+  formulation needs directly. The final module names grade data and project
+  enquiries. Candidate mappings, canonical parts and case stages remain under
+  their established source owners.
+- About distinguishes company credentials and management-system certificates
+  from grade/project-specific material documents. This wording does not assert
+  universal availability of TDS, SDS, COA, REACH or RoHS for every grade.
+- These copy refinements cover all five released languages, preserve current
+  routes and page compositions, and have not been deployed.
+
+### Electronics Application Subcategories (2026-10-07, Local Implementation)
+
+- The reviewed electronics prototype is implemented on the English, German,
+  French, Brazilian Portuguese and Chinese electronics detail routes. Its
+  three existing groups use same-page tabs, one main part image with thumbnail
+  controls, and adjacent part requirements and material links. No new public
+  routes are introduced.
+- Canonical part IDs, membership, images and localized descriptions remain
+  source-owned. The copier gear and IC tray links come from existing exact
+  component relations. Other parts do not acquire inferred component guides.
+- Drive material links retain both wear and friction selection conditions;
+  the static-control panel retains the conductive and carbon-fiber directions'
+  separate conditions. Connector requirements do not imply that POM meets
+  unverified flame, temperature or regulatory requirements.
+- `electronicsPageDesign.ts` owns the reviewed five-language UI wording.
+  The general material section and inquiry behavior remain in their current
+  owners. This is a local implementation and has not been deployed.
+
+### Washing-Machine Application Subcategories (2026-10-07, Local Implementation)
+
+- The washing-machine detail routes use the reviewed same-page category tabs,
+  main part image with thumbnail controls, and adjacent part/material
+  requirements in all five released languages. Drum Drive is the default;
+  Fill & Distribution and Drainage retain their existing group bookmarks.
+- `ApplicationPartGroups` owns the shared application part-group
+  presentation; `washingMachinePageDesign.ts` owns the washing-machine UI copy.
+  Canonical part IDs, group membership, images and localized descriptions
+  remain source-owned. Existing exact gear-guide relationships are preserved.
+- German, French and Brazilian Portuguese drum-drive gear labels are corrected
+  through the existing application narrative overrides to match the source
+  part's drum-drive function.
+- Fill & Distribution presents base POM as a comparison direction. Drum Drive
+  and Drainage retain the distinct wear, friction and reinforced-POM selection
+  conditions from the current application record. These are candidate-review
+  directions, not detergent, water-temperature or sealing guarantees.
+- Other application compositions and all public URLs retain their existing
+  owners. The general material section, custom-formulation direction and inquiry
+  behavior remain available. This is a local implementation and has not been
+  deployed.
+
+### Motion And Conveyor Application Subcategories (2026-10-07, Local Implementation)
+
+- Motion and conveyor detail routes use the reviewed same-page part-group
+  composition in all five released languages. Their existing three and two
+  groups remain in the canonical grouping source. Transmission & Actuation
+  and Conveying Surfaces & Chain Path are the defaults; group bookmarks remain
+  available. No new public routes are introduced.
+- `industrialApplicationPageDesign.ts` owns the two applications' UI wording.
+  `ApplicationPartGroups` supports two-category tabs and a multirow thumbnail
+  grid for the conveyor surface group. Part IDs, images and requirement
+  descriptions remain source-owned; exact guides come from approved part
+  relations, without extending industry-context links to individual parts.
+- The presentation registry selects existing material paths for each group.
+  Motion keeps distinct wear and low-friction destinations; impact and
+  reinforced directions remain in the general material section. Conveyor
+  charge-control conditions stay with the surface/chain group. Reinforced
+  conveyor material retains its application inquiry path and original
+  stiffness conditions, rather than implying a confirmed catalog grade.
+- Clear terminology errors in the existing application translations are
+  corrected through their narrative owners. The full material, related-guide
+  and final inquiry sections retain their current roles. This is a local
+  implementation and has not been deployed.
+
+### Textile, Outdoor And Water-Control Subcategories (2026-10-07, Local Implementation)
+
+- The remaining textile, outdoor and water-control detail families use the
+  reviewed same-page part-group composition in all five released languages.
+  Each retains its four source-owned groups and eight canonical parts. Yarn
+  Path & Guidance, Irrigation and Valve Internals & Actuation are the defaults;
+  existing group bookmarks remain available. No new public routes are added.
+- Their dedicated page-design data files own the localized group introductions
+  and compact labels. Four-category navigation uses one desktop row and two
+  mobile rows. A single-part category presents its image and requirements
+  directly, without a redundant image selector. Water's five-part valve group
+  retains the multirow gallery. Automotive keeps its separate composition.
+- Group material links retain source conditions as well as destinations.
+  Textile yarn/linear groups retain wear and friction directions; shedding
+  and spindle-support groups retain wear and reinforced directions. Outdoor
+  UV candidates are limited to irrigation and housing groups with exposure
+  conditions. Water internals/guidance retain wear and friction directions;
+  housing and pumping retain the reinforced direction with its dimensional
+  conditions. General material sections preserve their broader source lists.
+- Part names with clear translation errors are corrected in the existing
+  narrative overrides. Canonical images, part requirement descriptions and
+  exact component-guide relationships remain source-owned. These changes are
+  local and have not been deployed.
 
 ### Glass-Fiber POM Comparison Pilot (2026-09-08, Local Implementation)
 

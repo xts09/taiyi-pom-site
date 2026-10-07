@@ -235,20 +235,20 @@ const messages = {
   },
   Contact: {
     metadata: {
-      title: "Werkstoffanforderung besprechen | Taiyi Polymer",
+      title: "Kontakt zu Taiyi Polymer | Typendaten, Muster & Lieferung",
       description:
-        "Kontaktieren Sie Jiangsu Taiyi Nano Technology Co., Ltd. zu modifiziertem POM, technischen Kunststoffcompounds, POM-Harz, Werkstoffempfehlungen, Dokumenten, Mustern und Projektbewertung.",
+        "Kontaktieren Sie Taiyi Polymer für Typendaten, Muster, Werkstoffauswahl und Lieferanfragen zu POM-, PA6-, PA66- und PPA-Compounds.",
       imageAlt: "Produktionslinie für technische Kunststoffe bei Taiyi Polymer",
     },
     breadcrumbHome: "Startseite",
     breadcrumbContact: "Kontakt",
     hero: {
-      title: "Werkstoffprüfung anfragen",
+      title: "Kontakt zu Taiyi Polymer",
       description:
-        "Beschreiben Sie Bauteilfunktion, Einsatzbedingungen und Zielanforderungen. Wir identifizieren relevante Werkstofffamilien, bestätigen verfügbare Dokumente und skizzieren den nächsten Muster- oder Bewertungsschritt.",
+        "Für Typendaten, Muster, Werkstoffauswahl und Lieferanfragen. Kontaktieren Sie unseren Vertrieb direkt oder nutzen Sie das folgende Formular.",
     },
     formPanel: {
-      title: "Ihre Anwendungsanforderungen",
+      title: "Ihre Anfrage",
       body:
         "Unternehmen, E-Mail und Anwendung genügen für den Start. Technische Details können Sie ergänzen, wenn sie bereits vorliegen.",
       requiredBefore: "Mit",
@@ -263,10 +263,11 @@ const messages = {
       whatsapp: "WhatsApp",
       location: "Standort",
       locationValue: "Yancheng, Jiangsu, China",
-      reviewTitle: "Was wir prüfen können",
+      reviewTitle: "Anfragethemen",
       reviewItems: [
-        "Relevante Werkstofffamilien und Kandidatentypen",
-        "Verfügbare technische Dokumente und Musterbedarf",
+        "Werkstoffe und Typen",
+        "Technische Dokumente und Muster",
+        "Preise und Lieferanforderungen",
       ],
       emailDirectly: "Direkt per E-Mail",
     },

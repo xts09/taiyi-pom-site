@@ -45,6 +45,32 @@ When these owners or boundaries change, update `COMPONENTS.md` and the relevant
 implementation entry in `PRODUCT.md` in the same task, as required by
 `AGENTS.md`.
 
+## Technical-data material queries
+
+`src/data/technicalDataSearch.ts` owns selection and result ordering;
+`src/lib/reinforcedGradeSearch.ts` interprets explicit GF/CF content queries.
+Engineering records use their catalog `filler` field, and POM glass-fiber
+records use reviewed `glassFiberContent`. Keep these values numeric and
+source-supported. Combined glass/mineral filler does not establish an exact
+glass-fiber percentage. Engineering result labels use the same catalog fields.
+Grade-only, free-text and MFI queries keep their existing matching behavior.
+
+## Functional POM copy
+
+The specialist POM landings use `src/data/pomLandingPages.ts` for English and
+`src/i18n/messages/zh-CN-pom-landings.ts` for Chinese. Published grade names may
+link through `labelParts`; use only existing, released grade destinations.
+Electrical catalogue bands need the measurement-basis note and must not be
+expanded into test results without reviewed grade data.
+
+When changing these Chinese strings or the EPTL402 profile in
+`zh-CN-pom-grade-expansion-c.ts`, update the matching German, French and Brazilian
+Portuguese entries in `src/i18n/functionalPomLocaleOverrides.ts`. The shared
+expanded-content translator registers this source through
+`expandedLocaleOverrides.ts`; do not edit generated dictionaries to bypass
+missing translations. Check rendered button and copy boundaries as well as
+page width, since an overflow-hidden Hero can conceal a stretched child.
+
 ## TDS PDFs
 
 Store PDFs at:

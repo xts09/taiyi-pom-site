@@ -153,6 +153,23 @@
   background: var(--ds-background-canvas);
 }
 
+.gradeFilter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ds-space-3);
+  margin-bottom: var(--ds-space-4);
+}
+
+.gradeFilter label {
+  font-size: var(--ds-text-sm);
+  font-weight: var(--ds-font-weight-medium);
+}
+
+.gradeFilter .gradeFilterSelect {
+  width: min(100%, 16rem);
+}
+
 .fullComparison { margin-bottom: var(--ds-space-6); border-bottom: var(--ds-rule-thin) solid var(--ds-border-subtle); }
 .fullComparison summary { padding-block: var(--ds-space-4); cursor: pointer; font-weight: 600; }
 .fullComparison summary:focus-visible { outline: 2px solid var(--ds-focus-ring); outline-offset: 3px; }
@@ -411,26 +428,6 @@
 .actionRail {
   padding-top: clamp(2rem, 4vw, 4rem);
   padding-bottom: var(--ds-space-8);
-}
-
-.inquirySteps {
-  display: grid;
-  gap: 0.7rem;
-}
-
-.inquirySteps p {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
-  gap: 0.55rem;
-  align-items: baseline;
-  margin: 0;
-}
-
-.inquirySteps span {
-  color: var(--ds-action-primary);
-  font-family: var(--ds-font-mono);
-  font-size: var(--ds-text-xs);
-  font-weight: var(--ds-font-weight-bold);
 }
 
 @media (max-width: 79.999rem) {

@@ -482,20 +482,20 @@ const messages = {
   },
   Contact: {
     metadata: {
-      title: "Discuss a Material Requirement | Taiyi Polymer",
+      title: "Contact Taiyi Polymer | Grade Data, Samples & Supply",
       description:
-        "Contact Jiangsu Taiyi Nano Technology Co., Ltd. for modified POM, engineering plastic compounds, POM resin, material recommendations, documents, samples, and project evaluation.",
+        "Contact Taiyi Polymer for POM, PA6, PA66 and PPA grade data, samples, material selection and supply enquiries.",
       imageAlt: "Taiyi Polymer engineering-plastic production line",
     },
     breadcrumbHome: "Home",
     breadcrumbContact: "Contact",
     hero: {
-      title: "Request a Material Review",
+      title: "Contact Taiyi Polymer",
       description:
-        "Tell us the part function, operating conditions and target requirements. We will identify relevant material families, confirm available documents and outline the next sample or evaluation step.",
+        "For grade data, samples, material selection and supply enquiries. Contact our sales team directly or send your requirements below.",
     },
     formPanel: {
-      title: "Your application requirements",
+      title: "Your enquiry",
       body:
         "Company, email, and application are enough to start. Add technical details only if you already have them.",
       requiredBefore: "Fields marked",
@@ -510,10 +510,11 @@ const messages = {
       whatsapp: "WhatsApp",
       location: "Location",
       locationValue: "Yancheng, Jiangsu, China",
-      reviewTitle: "What We Can Review",
+      reviewTitle: "Enquiry Topics",
       reviewItems: [
-        "Relevant material families and candidate grades",
-        "Available technical documents and sample needs",
+        "Materials and grades",
+        "Technical documents and samples",
+        "Pricing and supply requirements",
       ],
       emailDirectly: "Email Directly",
     },

@@ -9,6 +9,11 @@ export const englishApplicationNarrativeOverrides: Record<string, string> = {
   洗衣机部件: "Washing Machine Components",
   户外设备: "Outdoor Equipment",
   纺织机械: "Textile Machinery",
+  综丝束: "Heddle Wire Bundle",
+  筒管座: "Bobbin Holder",
+  打草机线盘: "Trimmer Spool",
+  手拉启动器总成: "Recoil Starter Assembly",
+  耐候壳体卡扣: "Weather-Resistant Housing Clip",
   负载与节拍: "Load and cycle time",
   "喷头、割草机齿轮、线盘和壳体卡扣承受的日照、温差、水尘、冲击与重复运动不同。抗冲、耐候、耐磨或定制材料的评估需结合安装位置、暴露时长、温度范围、载荷、介质和寿命目标。":
     "Sprinkler heads, lawn-mower gears, line spools and housing clips face different sunlight, temperature variation, water and dust, impact and repeated motion. Evaluating impact-resistant, weather-resistant, wear-resistant or custom materials requires the installation position, exposure duration, temperature range, load, media and service-life targets.",
@@ -19,6 +24,7 @@ export const englishApplicationNarrativeOverrides: Record<string, string> = {
   复印机传动齿轮: "Copier Drive Gear",
   精密齿轮: "Precision Gear",
   蜗轮: "Worm Gear",
+  滚轮: "Roller",
   滚筒传动齿轮: "Drum Drive Gear",
   减速齿轮总成: "Reduction Gear Assembly",
   割草机齿轮: "Lawn Mower Gear",
@@ -77,8 +83,8 @@ export const englishApplicationNarrativeOverrides: Record<string, string> = {
     "Gears, clips, guides and housings in the same vehicle perform different tasks. Their mechanisms, loads, motion, dimensions and environment determine the POM material requirements.",
   "汽车零部件的 POM 选型需兼顾功能、工况、尺寸目标与资料需求。":
     "POM selection for automotive parts must account for function, operating conditions, dimensional targets and document requirements.",
-  "提供部件功能、载荷、运动方式、使用环境、当前材料和模具阶段。我们可据此整理候选材料范围、待确认条件，以及可提供的牌号资料或样品安排。":
-    "Share the part function, load, motion, operating environment, current material and tooling stage. We can then organize the candidate material range, open conditions, and available grade documents or sample arrangements.",
+  "咨询候选牌号、技术资料或样品时，可提供部件用途、载荷、运动方式、使用环境、当前材料和模具阶段等已知信息。":
+    "Contact us about candidate grades, technical documents or samples. Include the part function, load, motion, operating conditions, current material and tooling stage where known.",
   "提供部件功能、目标电阻、测试电压与调节条件、接地方式、机械载荷、关键尺寸、使用环境和当前材料。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。":
     "Share the part function, target resistance, test voltage and conditioning, grounding method, mechanical load, key dimensions, environment and current material. We can then organize the candidate range, open conditions, and grade-document or sample arrangements.",
   "提供输送物、单件或累计负载、线速、启停频率、接触材料、清洁环境、静电目标和当前失效现象。我们可据此整理候选材料范围、待确认条件，以及牌号资料或样品安排。":

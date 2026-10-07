@@ -406,6 +406,16 @@ public source for all six report-level numeric records and bilingual copy.
 landing and selection guide. Keep source workbooks, formulations and
 internal review files outside public components and assets.
 
+**Specialist POM landing content:** `src/components/PomLandingPage.tsx` renders
+the wear/low-friction and conductive/antistatic pages from
+`src/data/pomLandingPages.ts`. Wear grade links use the existing `labelParts`
+presentation so the formulation list retains compact descriptive rows.
+`gradeEvidence.note` is an optional measurement-basis paragraph inside the
+grade-list section introduction; it does not introduce a separate panel.
+Chinese content is owned by `src/i18n/messages/zh-CN-pom-landings.ts`; the
+functional POM overrides registered in `expandedLocaleOverrides.ts` supply
+German, French and Brazilian Portuguese wording.
+
 The Resources overview Hero is content-height driven. Its directory uses a
 stacked SectionIntro and group headers above full-width link grids: three
 columns from 80rem, two from 48rem, one below. DOM order stays the reading and
@@ -445,6 +455,37 @@ The private `AutomotiveTextLink` owns inline material, case, grade and resource
 actions. Its label owns the underline, its SVG arrow is undecorated, and the
 link supplies the 44px target and keyboard focus ring. Do not add a second
 link-wide border or text decoration to these controls.
+
+**Part-based application groups (2026-10-07, local implementation):**
+`src/components/ApplicationPartGroups.tsx` and its CSS module own the reviewed
+electronics, washing-machine, motion, conveyor, textile, outdoor and water-control
+category tabs, main part image, thumbnail
+controls and adjacent part/material requirements.
+`src/data/applicationPartGroupPresentation.ts` owns their shared copy shape
+and the approved route/default-group registry, source material-path selections
+and optional source-direction index selections. The indices distinguish
+conditions that share a product-category destination;
+`src/data/electronicsPageDesign.ts`, `src/data/washingMachinePageDesign.ts`
+`src/data/industrialApplicationPageDesign.ts`, `src/data/textileApplicationPageDesign.ts`,
+`src/data/outdoorApplicationPageDesign.ts` and `src/data/waterControlApplicationPageDesign.ts`
+own each application's five-language UI wording. Canonical group
+membership remains in `applicationSystemPresentation.ts`; part copy and images
+remain in the localized application records. `LocalizedApplicationDetailPage`
+selects this composition only for the seven registered application families,
+and resolves material and exact
+component-guide links on the server. All other application compositions retain
+their existing owners. Existing group bookmarks open their matching panel;
+Drive & Motion, Drum Drive, Transmission & Actuation and Conveying Surfaces &
+Chain Path are the respective defaults for the original four families. Yarn
+Path & Guidance, Irrigation and Valve Internals & Actuation are the textile,
+outdoor and water-control defaults. Two-, three- and four-group tab layouts are
+supported; four groups form two columns on mobile. Groups with more than three
+images use a three-column thumbnail grid, while single-image groups omit
+thumbnail controls. One set of part records serves desktop and
+mobile, with all panels present in server-rendered HTML. The outer rail and
+balanced media/text tracks follow `DESIGN.md`; Header, secondary navigation,
+Button variants, the full related-guide area and the final inquiry section
+retain their existing owners.
 
 **Role:** optional eyebrow, section heading, supporting paragraph, and optional
 single action aligned to the site rail.
@@ -578,6 +619,11 @@ title replaces the repeated action label. POM keeps the default card variant.
 `EngineeringGfGradeComparison` places the full-parameters disclosure before
 the card directory so comparison does not require scrolling past every grade.
 The complete seven-property comparison and per-grade TDS links remain available.
+This component owns the PA6, PA66 and PPA glass-fiber percentage filter. It uses
+the shared native `Select` primitive and catalogue-sourced percentages. All
+grades render initially; a selection filters the table and cards together in
+local client state without creating a route or changing catalogue records.
+Labels belong to `engineeringGfLandingMessages.ts` in all five released languages.
 POM TDS links
 remain on the individual grade detail pages. The localized PA pages reuse the
 same catalogue records and layout while translating visible labels, links,

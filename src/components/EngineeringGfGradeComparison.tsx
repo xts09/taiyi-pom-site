@@ -1,10 +1,11 @@
+"use client";
+
+import { useId, useState } from "react";
 import Link from "next/link";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
 import { GlassFiberGradeCards } from "@/components/GlassFiberGradeCards";
-import {
-  formatEngineeringGfMessage,
-  type EngineeringGfComparisonUi,
-} from "@/i18n/engineeringGfLandingMessages";
+import { Select } from "@/components/ui/select";
+import type { EngineeringGfComparisonUi } from "@/i18n/engineeringGfLandingMessages";
 import styles from "./EngineeringGfLandingPage.module.css";
 
 export type EngineeringGfComparisonGrade = {
@@ -39,8 +40,31 @@ export function EngineeringGfGradeComparison({
   polymer: string;
   ui: EngineeringGfComparisonUi;
 }) {
+  const filterId = useId();
+  const [glassFiberContent, setGlassFiberContent] = useState("");
+  const glassFiberContents = [...new Set(grades.map((grade) => grade.filler))]
+    .filter(Boolean)
+    .sort((a, b) => Number(a) - Number(b));
+  const visibleGrades = grades.filter(
+    (grade) => !glassFiberContent || grade.filler === glassFiberContent,
+  );
+
   return (
     <div>
+      <div className={styles.gradeFilter}>
+        <label htmlFor={filterId}>{ui.glassFiberLabel}</label>
+        <Select
+          id={filterId}
+          className={styles.gradeFilterSelect}
+          value={glassFiberContent}
+          onChange={(event) => setGlassFiberContent(event.target.value)}
+        >
+          <option value="">{ui.allGlassFiberLabel}</option>
+          {glassFiberContents.map((content) => (
+            <option key={content} value={content}>{content}%</option>
+          ))}
+        </Select>
+      </div>
       <details className={styles.fullComparison}>
         <summary>{ui.disclosureLabel}</summary>
       <p className={styles.tableHint}>{ui.scrollHint}</p>
@@ -67,7 +91,7 @@ export function EngineeringGfGradeComparison({
             </tr>
           </thead>
           <tbody>
-            {grades.map((grade) => (
+            {visibleGrades.map((grade) => (
               <tr key={grade.slug}>
                 <th scope="row">
                   <div className={styles.gradeLinks}>
@@ -80,10 +104,7 @@ export function EngineeringGfGradeComparison({
                     <Link
                       className={styles.tdsLink}
                       href={grade.tdsHref}
-                      aria-label={formatEngineeringGfMessage(
-                        ui.requestTdsAriaTemplate,
-                        { grade: grade.grade },
-                      )}
+                      aria-label={ui.requestTdsAriaTemplate.replace("{grade}", grade.grade)}
                     >
                       TDS
                     </Link>
@@ -102,7 +123,7 @@ export function EngineeringGfGradeComparison({
         </table>
       </div>
       </details>
-      <GlassFiberGradeCards compact actionLabel={ui.actionLabel} grades={grades.map(grade => ({
+      <GlassFiberGradeCards compact actionLabel={ui.actionLabel} grades={visibleGrades.map(grade => ({
         grade: grade.grade,
         href: grade.href,
         hrefLang: grade.englishFallback ? "en" : undefined,

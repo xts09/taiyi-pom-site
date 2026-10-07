@@ -533,7 +533,7 @@ export default async function TechnicalDataSheetsPage({
                 </article>
               ))}
 
-              {searchableEngineeringTds.map(({ document, documentState }) => (
+              {searchableEngineeringTds.map(({ document, documentState, reinforcementLabel }) => (
                 <DocumentCard
                   key={`${document.family}-${document.grade}`}
                   variant="compact-link"
@@ -552,6 +552,7 @@ export default async function TechnicalDataSheetsPage({
                     <>
                       <span>Family: {document.family}</span>
                       <span>Category: {document.category}</span>
+                      {reinforcementLabel && <span>{reinforcementLabel}</span>}
                       <span>{technicalDocumentStateLabel(documentState)}</span>
                     </>
                   }

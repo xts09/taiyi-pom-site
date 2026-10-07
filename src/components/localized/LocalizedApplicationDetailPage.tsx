@@ -6,6 +6,9 @@ import { RelatedCaseStudies } from "@/components/RelatedCaseStudies";
 import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
 import { ApplicationExpandableGrid } from "@/components/ApplicationExpandableGrid";
 import { AutomotiveSystemGroups, AutomotiveNextSteps } from "@/components/AutomotiveSystemGroup";
+import { ApplicationPartGroups, type ApplicationPartGroup } from "@/components/ApplicationPartGroups";
+import { electronicsPageDesign } from "@/data/electronicsPageDesign";
+import { applicationPartGroupPresentations } from "@/data/applicationPartGroupPresentation";
 import automotiveStyles from "@/components/AutomotiveSystemGroup.module.css";
 import { automotivePageDesign } from "@/data/automotivePageDesign";
 import { automotiveSelectionLabels } from "@/data/automotiveSelection";
@@ -459,6 +462,9 @@ export function LocalizedApplicationDetailPage({
   showSelectionInputs = false,
 }: LocalizedApplicationDetailPageProps) {
   const automotiveUi = application.slug === "automotive" ? automotiveSelectionLabels[inLanguage] : undefined;
+  const electronicsUi = application.slug === "electronics" ? electronicsPageDesign[inLanguage] : undefined;
+  const partGroupPresentation = applicationPartGroupPresentations[application.slug];
+  const partGroupsUi = partGroupPresentation?.copy[inLanguage];
   const engineeringGroups = getEngineeringGroups(application);
   const partFitItems = getPerformanceItems(engineeringGroups);
   const { visualAssets } = getApplicationVisualContext(application);
@@ -534,6 +540,43 @@ export function LocalizedApplicationDetailPage({
     "/technical-data-sheets",
     localeSegment,
   );
+  const interactivePartGroups: ApplicationPartGroup[] | undefined = partGroupPresentation && partGroupsUi && applicationInlinePartGroups
+    ? applicationInlinePartGroups.map(group => {
+      const toMaterial = (card: MaterialDirectionCardData) => ({
+        title: card.directionName,
+        conditions: [card.condition],
+        href: card.href === "/contact" ? contactHref : card.href ? getLocalizedHref(card.href, localeSegment) : undefined,
+        action: card.href === "/contact" ? messages.hero.primaryAction : partGroupsUi.materialsAction,
+        badge: card.href && isEnglishFallbackHref(card.href, localeSegment) ? componentMessages.englishDestinationLabel : undefined,
+      });
+      const materials = electronicsUi && group.id === "electronics-interconnects"
+        ? [{ title: electronicsUi.electricalTitle, conditions: [electronicsUi.electricalNote], href: technicalDataHref, action: messages.hero.secondaryAction }]
+        : (partGroupPresentation.materialPathsByGroup[group.id] ?? []).flatMap(path => {
+          const sourceIndices = partGroupPresentation.materialSourceIndicesByGroup?.[group.id];
+          const cards = materialDirectionCards.filter((card, index) => card.href === path && (!sourceIndices || sourceIndices.includes(index)));
+          // Merge duplicate wear/friction destinations while retaining both source conditions.
+          if (cards.length > 1 && path === "/products/categories/wear-resistant-low-friction-pom-compound") {
+            return [{ ...toMaterial(cards[0]), title: partGroupsUi.driveMaterialTitle, conditions: cards.map(card => card.condition) }];
+          }
+          return cards.map(toMaterial);
+        });
+
+      return {
+        id: group.id,
+        parts: group.partIds.flatMap(partId => {
+          const part = application.parts.find(candidate => candidate.id === partId);
+          if (!part) return [];
+          const guide = componentOwners.find(owner => owner.partExamples.some(example => example.id === partId));
+          return [{ ...part, guide: guide ? {
+            href: getLocalizedHref(guide.href, localeSegment),
+            label: componentMessages.labels[guide.componentSlug as ApplicationIndexComponentSlug],
+            badge: isEnglishFallbackHref(guide.href, localeSegment) ? componentMessages.englishDestinationLabel : undefined,
+          } : undefined }];
+        }),
+        materials,
+      };
+    })
+    : undefined;
   const sectionTabs = automotiveUi ? [
     { href: "#material-match", label: automotivePageDesign[inLanguage].selection },
     { href: "#review-checklist", label: messages.navigation.materials },
@@ -788,13 +831,13 @@ export function LocalizedApplicationDetailPage({
             <div>
               <p className="section-kicker">{messages.parts.eyebrow}</p>
               <h2>
-                {application.title}
+                {partGroupsUi ? partGroupsUi.sectionTitle : <>{application.title}
                 {inLanguage.startsWith("zh") ? "" : " — "}
                 {inLanguage.startsWith("zh") &&
                 application.title.endsWith("部件") &&
                 messages.parts.titleSuffix.startsWith("部件")
                   ? messages.parts.titleSuffix.slice(2)
-                  : messages.parts.titleSuffix}
+                  : messages.parts.titleSuffix}</>}
               </h2>
             </div>
             {!usesReviewedApplicationDensity ? (
@@ -804,6 +847,12 @@ export function LocalizedApplicationDetailPage({
 
           {automotiveUi && applicationInlinePartGroups ? (
             <AutomotiveSystemGroups application={application} groups={applicationInlinePartGroups} inLanguage={inLanguage} localeSegment={localeSegment} />
+          ) : partGroupPresentation && partGroupsUi && interactivePartGroups ? (
+            <ApplicationPartGroups groups={interactivePartGroups} ui={partGroupsUi}
+              idPrefix={partGroupPresentation.idPrefix}
+              defaultGroupId={partGroupPresentation.defaultGroupId}
+              technicalData={{ href: technicalDataHref, label: messages.hero.secondaryAction }}
+              inquiry={{ href: contactHref, label: messages.hero.primaryAction }} />
           ) : applicationInlinePartGroups ? (
             <div
               className="application-system-groups"

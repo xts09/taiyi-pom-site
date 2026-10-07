@@ -64,21 +64,21 @@ export const chinesePomGradeExpansionC = {
     categoryLabel: "耐磨与低摩擦 POM",
     metadataTitle: "EPTL402 PTFE 填充低摩擦 POM | 台益",
     metadataDescription:
-      "评估 EPTL402 PTFE 填充耐磨 POM 是否适合滑动件、轴套、齿轮和低摩擦应用。",
+      "查看 EPTL402 PTFE 填充耐磨 POM 的流动性、力学与热性能，以及滑动件、轴套和齿轮应用参考。可申请 TDS 和样品。",
     imageAlt: "台益 EPTL402 PTFE 填充耐磨 POM 粒子",
-    eyebrow: "PTFE 填充 POM · 低摩擦滑动方向",
+    eyebrow: "PTFE 填充耐磨 POM",
     summary:
-      "EPTL402 是面向滑动件、轴套、齿轮和运动组件的 PTFE 填充高耐磨 POM 候选牌号，用于审核低摩擦与磨耗方向。最终适用性需结合目标摩擦副、表面状态、载荷、速度、润滑、温度和噪声要求确认。",
-    flowNote: "面向滑动件与低摩擦磨损应用的 PTFE 填充方向",
-    features: ["PTFE 填充方向", "高耐磨方向", "低摩擦滑动方向", "摩擦副验证要求"],
+      "EPTL402 是 PTFE 填充耐磨 POM，面向滑动件、轴套、齿轮和运动组件。现有数据表列有流动性、力学和热性能，供牌号比较与样件选材参考。",
+    flowNote: "ISO 1133 · 195 °C / 2.16 kg",
+    features: ["PTFE 填充配方", "耐磨 POM", "面向滑动组件", "本色"],
     applications: ["滑动件", "轴套", "齿轮", "工业运动组件"],
     evaluationBody:
-      "EPTL402 作为技术评估候选材料提供。最终认可需在目标摩擦副和实际工况中完成摩擦、磨耗、噪声、尺寸与寿命验证。",
+      "样件评估关注实际摩擦副中的磨耗、噪声、尺寸变化和使用寿命，测试条件包括载荷、速度、润滑与温度。",
     notesBody:
-      "本页用于 EPTL402 的初步选型。PTFE 填充方向不代表对所有配对材料都具有相同摩擦表现；表面粗糙度、载荷、速度、润滑和温度必须按项目确认。",
-    inquiryTitle: "评估 EPTL402 是否适用于您的低摩擦滑动件？",
+      "数据表中的性能值用于初步选材。摩擦与磨耗表现需结合对偶材料、表面粗糙度及实际工况确认。",
+    inquiryTitle: "EPTL402 数据与样品",
     inquiryBody:
-      "请提供摩擦副材料、表面状态、载荷、速度、运动方式、润滑、温度、当前材料、失效现象、用量和所需资料。我们将据此准备牌号与样品评估。",
+      "提供对偶材料、载荷、速度和润滑情况，可帮助判断 EPTL402 是否适合您的零件。也可注明颜色、用量及所需技术资料。",
   }),
   "enm1040-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "ENM1040",

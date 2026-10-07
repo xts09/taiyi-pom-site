@@ -235,20 +235,20 @@ const messages = {
   },
   Contact: {
     metadata: {
-      title: "Échanger sur un besoin matière | Taiyi Polymer",
+      title: "Contacter Taiyi Polymer | Données, échantillons & approvisionnement",
       description:
-        "Contactez Jiangsu Taiyi Nano Technology Co., Ltd. pour le POM modifié, les compounds de plastiques techniques, la résine POM, la sélection matière, les documents, les échantillons et l'évaluation de projet.",
+        "Contactez Taiyi Polymer pour les données des grades POM, PA6, PA66 et PPA, les échantillons, le choix matière et les besoins d’approvisionnement.",
       imageAlt: "Ligne de production de plastiques techniques de Taiyi Polymer",
     },
     breadcrumbHome: "Accueil",
     breadcrumbContact: "Contact",
     hero: {
-      title: "Demander une étude matière",
+      title: "Contacter Taiyi Polymer",
       description:
-        "Indiquez la fonction de la pièce, les conditions d'utilisation et les exigences visées. Nous identifierons les familles pertinentes, confirmerons les documents disponibles et préciserons la prochaine étape d'échantillonnage ou d'évaluation.",
+        "Pour les données des grades, les échantillons, le choix matière et l’approvisionnement. Contactez directement notre équipe commerciale ou utilisez le formulaire ci-dessous.",
     },
     formPanel: {
-      title: "Vos exigences d’application",
+      title: "Votre demande",
       body:
         "L'entreprise, l'adresse e-mail et l'application suffisent pour démarrer. Ajoutez les détails techniques seulement s'ils sont déjà disponibles.",
       requiredBefore: "Les champs marqués",
@@ -263,10 +263,11 @@ const messages = {
       whatsapp: "WhatsApp",
       location: "Localisation",
       locationValue: "Yancheng, Jiangsu, Chine",
-      reviewTitle: "Ce que nous pouvons étudier",
+      reviewTitle: "Sujets de demande",
       reviewItems: [
-        "Familles de matériaux pertinentes et grades candidats",
-        "Documents techniques disponibles et besoins d'échantillons",
+        "Matériaux et grades",
+        "Documents techniques et échantillons",
+        "Prix et besoins d’approvisionnement",
       ],
       emailDirectly: "Envoyer un e-mail",
     },

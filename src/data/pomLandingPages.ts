@@ -89,6 +89,7 @@ export type PomLandingPageData = {
   };
   gradeEvidence?: {
     title: string;
+    note?: string;
     items: GradeEvidenceItem[];
   };
   reviewInputs: string[];
@@ -351,7 +352,7 @@ export const pomLandingPages = {
       "Compare Taiyi Polymer wear-resistant and low-friction POM options for gears, bushings, rollers, sliding parts, and motion components.",
     eyebrow: "Motion Components",
     intro:
-      "Compare wear-resistant and low-friction POM for molded parts affected by material loss, sliding resistance, noise, stick-slip, or counterpart wear.",
+      "Wear-resistant and low-friction POM for gears, bushings, rollers and sliding parts. The range includes PTFE, MoS2, aramid and silicone-oil formulations, with different flow and reinforcement options.",
     primaryActionLabel: "Discuss a Wear or Friction Requirement",
     metrics: [
       { label: "Typical parts", value: "Gears / bushings" },
@@ -361,33 +362,37 @@ export const pomLandingPages = {
     ],
     sections: [
       {
-        title: "Wear and Friction Are Different Targets",
-        body: "Low friction does not guarantee long wear life, and a wear-resistant grade may still create excessive friction or noise.",
+        title: "Wear, Friction and Surface Life",
+        body: "Wear resistance describes material loss during repeated contact. Friction affects sliding resistance, start-up force and stick-slip. Both depend on the mating material and operating conditions.",
         points: [
-          "Define load, speed, cycle, temperature, and mating material",
-          "Check lubrication, surface finish, alignment, and contamination",
-          "Compare wear loss, friction behavior, noise, and dimensional change",
-          "Confirm results with representative molded-part testing",
+          "Wear loss and changes in surface condition",
+          "Sliding resistance and start-up force",
+          "Stick-slip and operating noise",
+          "Dimensional change over repeated cycles",
         ],
       },
       {
         title: "Typical Moving Components",
-        body: "Use these screening factors for gears, bushings, rollers, sliders, guides, and other repeatedly moving molded parts.",
+        body: "Gears, bushings, rollers and guides have different contact surfaces, motion patterns and service-life requirements.",
         points: [
-          "Gears, worm gears, cams, rollers, sleeves, and sliders",
-          "Guide rails, conveyor parts, textile machinery parts, and motion supports",
-          "Applications needing reduced stick-slip, smoother movement, or longer surface life",
-          "Modified POM grade comparisons and sample evaluations",
+          "Gears, worm gears and cams",
+          "Bushings, sleeves and rollers",
+          "Sliders, guides and conveyor components",
+          "Textile machinery and other moving assemblies",
         ],
       },
     ],
     catalogEvidence: {
-      title: "Wear and Friction Grades in the Catalogue",
+      title: "Wear-Resistant Formulations and Grades",
       note:
-        "The catalogue identifies the modification and selected listed properties. Exact friction, wear loss, and molded-part suitability still require grade-specific data and representative trials.",
+        "These options use different fillers and additives. Linked grade pages contain the available property data; wear and friction results depend on the mating surface and test conditions.",
       items: [
         {
           label: "POM EDM-111",
+          labelParts: [
+            { text: "POM " },
+            { text: "EDM-111", href: "/products/edm-111-high-wear-resistant-pom" },
+          ],
           detail:
             "MFI 7 g/10 min; natural color; listed for high wear resistance.",
         },
@@ -398,31 +403,51 @@ export const pomLandingPages = {
         },
         {
           label: "POM EMS162",
+          labelParts: [
+            { text: "POM " },
+            { text: "EMS162", href: "/products/ems162-high-wear-resistant-pom" },
+          ],
           detail:
             "MFI 7 g/10 min; black color; MoS2-filled and listed for high wear resistance.",
         },
         {
           label: "POM ENM1040",
+          labelParts: [
+            { text: "POM " },
+            { text: "ENM1040", href: "/products/enm1040-high-wear-resistant-pom" },
+          ],
           detail:
             "MFI 7 g/10 min; natural color; listed with a special wear-resistant additive.",
         },
         {
           label: "POM EP-AF100A / EPAF100A / EPAF96A",
+          labelParts: [
+            { text: "POM EP-AF100A / " },
+            { text: "EPAF100A", href: "/products/epaf100a-high-wear-resistant-pom" },
+            { text: " / EPAF96A" },
+          ],
           detail:
             "Aramid fiber or aramid powder filled options for wear-resistant parts.",
         },
         {
-          label: "POM EPTL402 / ESO102 / ETM270H",
+          label: "POM EPTL402",
           labelParts: [
             { text: "POM " },
-            {
-              text: "EPTL402",
-              href: "/products/eptl402-high-wear-resistant-pom",
-            },
-            { text: " / ESO102 / ETM270H" },
+            { text: "EPTL402", href: "/products/eptl402-high-wear-resistant-pom" },
           ],
-          detail:
-            "EPTL402: PTFE-filled POM; ESO102: silicone-oil-modified POM; ETM270H: high-flow wear-resistant POM.",
+          detail: "PTFE-filled POM; MFI 7.5 g/10 min; natural color.",
+        },
+        {
+          label: "POM ESO102",
+          detail: "Silicone-oil-modified POM.",
+        },
+        {
+          label: "POM ETM270H",
+          labelParts: [
+            { text: "POM " },
+            { text: "ETM270H", href: "/products/etm270h-wear-resistant-pom" },
+          ],
+          detail: "High-flow wear-resistant POM.",
         },
       ],
     },
@@ -474,8 +499,8 @@ export const pomLandingPages = {
       "Compare conductive and antistatic POM grades by resistivity target, filler system and part requirements. Review grade data, documents and sample options.",
     eyebrow: "Charge-Control POM",
     intro:
-      "Select conductive or antistatic POM by the required electrical measurement, part function, color, retained mechanical properties, and finished-part test method.",
-    primaryActionLabel: "Request a Conductive POM Grade Review",
+      "POM compounds for charge-control parts, with carbon-nanotube and carbon-fiber formulations. Compare the catalogue's electrical bands alongside mechanical properties, color and finished-part requirements.",
+    primaryActionLabel: "Discuss a Conductive POM Application",
     secondaryActionLabel: "View Conductive POM Grade Data",
     heroImage: {
       src: "/generated/landing/conductive-antistatic-pom-functional-components.png",
@@ -489,27 +514,29 @@ export const pomLandingPages = {
     ],
     gradeEvidence: {
       title: "Available POM Charge-Control Grades",
+      note:
+        "Electrical bands are catalogue classifications. Grade-specific resistivity data should identify surface or volume measurement, units and test conditions.",
       items: conductivePomGradeEvidence,
     },
     sections: [
       {
-        title: "Define the electrical target",
-        body: "Antistatic, static-dissipative and conductive material selection depends on the target electrical range and test method. A material label alone does not establish suitability.",
+        title: "Electrical Data for Charge-Control Parts",
+        body: "Antistatic, static-dissipative and conductive parts have different electrical targets. Useful grade data pairs the target range with the measurement type and test conditions.",
         points: [
-          "Required resistivity range",
           "Surface or volume resistivity",
-          "Test method",
-          "Required antistatic, static-dissipative or conductive behavior",
+          "Target range and measurement units",
+          "Test method and specimen conditioning",
+          "Finished-part electrical requirements",
         ],
       },
       {
-        title: "Define the part conditions",
-        body: "Add the part and project conditions that can affect grade suitability and retained mechanical performance.",
+        title: "Electrical and Mechanical Property Balance",
+        body: "The filler system can affect flow, impact strength, stiffness, wear and surface finish. These properties matter alongside the electrical target in a precision-molded part.",
         points: [
           "Component function and operating environment",
-          "Mechanical and dimensional requirements",
-          "Color requirements",
-          "TDS, document and sample needs",
+          "Strength, impact and dimensional requirements",
+          "Color and surface finish",
+          "TDS and molded sample data",
         ],
       },
     ],

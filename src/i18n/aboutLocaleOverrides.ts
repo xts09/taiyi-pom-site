@@ -26,10 +26,10 @@ export const aboutLocaleOverrides: Partial<
       "Labor, Fertigung und Qualität arbeiten am selben Projekt",
     "技术、实验室、生产和质量团队共同参与材料测试、生产安排与质量文件，由负责验证与制造的人员直接跟进项目需求。":
       "Technik, Labor, Fertigung und Qualität arbeiten gemeinsam an Werkstoffprüfungen, Produktionsplanung und Qualitätsdokumentation. Die Verantwortlichen für Validierung und Fertigung begleiten die Projektanforderungen direkt.",
-    让项目审核与供应商准入有据可查:
-      "Nachweise für Projektprüfung und Lieferantenfreigabe",
-    "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。":
-      "Taiyi Polymer stellt projektbezogen Produktdaten, Unternehmensnachweise, Managementsystem-Zertifikate und Werkstoffdokumente als klare, nachvollziehbare Grundlage für Lieferantenqualifizierung und Kundenprüfung bereit.",
+    企业资质与材料文件:
+      "Firmennachweise und Werkstoffdokumente",
+    "企业资质和管理体系证书可用于供应商审核。TDS、SDS、COA、REACH、RoHS 等材料文件按具体牌号与项目确认。":
+      "Unternehmensnachweise und Managementsystem-Zertifikate dienen der Lieferantenprüfung. Werkstoffdokumente wie TDS, SDS, COA, REACH und RoHS werden für den jeweiligen Typ und das Projekt bestätigt.",
     从盐城服务全球材料项目:
       "Werkstoffprojekte weltweit aus Yancheng betreuen",
     "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":
@@ -193,10 +193,10 @@ export const aboutLocaleOverrides: Partial<
       "Laboratoire, production et qualité réunis",
     "技术、实验室、生产和质量团队共同参与材料测试、生产安排与质量文件，由负责验证与制造的人员直接跟进项目需求。":
       "Les équipes techniques, laboratoire, production et qualité participent ensemble aux essais matière, à la planification de la production et aux documents qualité. Les responsables de la validation et de la fabrication suivent directement les exigences du projet.",
-    让项目审核与供应商准入有据可查:
-      "Les preuves pour qualifier un fournisseur",
-    "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。":
-      "Taiyi Polymer fournit selon le projet les données produit, les qualifications de l’entreprise, les certificats de systèmes de management et les documents matière nécessaires à une qualification fournisseur claire et traçable.",
+    企业资质与材料文件:
+      "Qualifications de l’entreprise et documents matière",
+    "企业资质和管理体系证书可用于供应商审核。TDS、SDS、COA、REACH、RoHS 等材料文件按具体牌号与项目确认。":
+      "Les qualifications de l’entreprise et les certificats de systèmes de management servent à l’évaluation du fournisseur. Les documents matière, tels que TDS, SDS, COA, REACH et RoHS, sont confirmés pour le grade et le projet concernés.",
     从盐城服务全球材料项目:
       "Des projets matière internationaux servis depuis Yancheng",
     "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":
@@ -361,10 +361,10 @@ export const aboutLocaleOverrides: Partial<
       "Laboratório, produção e qualidade no mesmo projeto",
     "技术、实验室、生产和质量团队共同参与材料测试、生产安排与质量文件，由负责验证与制造的人员直接跟进项目需求。":
       "As equipes técnica, de laboratório, produção e qualidade participam dos testes de materiais, do planejamento da produção e dos documentos de qualidade. Os responsáveis pela validação e fabricação acompanham diretamente os requisitos do projeto.",
-    让项目审核与供应商准入有据可查:
-      "Evidências para qualificar fornecedores",
-    "台益可按项目提供产品数据、企业资质、管理体系证书和材料文件，为供应商准入与客户审核形成清晰、可追溯的依据。":
-      "A Taiyi Polymer fornece, conforme o projeto, dados de produto, qualificações empresariais, certificados de sistemas de gestão e documentos de materiais para qualificação de fornecedores e análise do cliente de forma clara e rastreável.",
+    企业资质与材料文件:
+      "Qualificações da empresa e documentos de materiais",
+    "企业资质和管理体系证书可用于供应商审核。TDS、SDS、COA、REACH、RoHS 等材料文件按具体牌号与项目确认。":
+      "As qualificações da empresa e os certificados de sistemas de gestão servem à avaliação do fornecedor. Documentos de materiais, como TDS, SDS, COA, REACH e RoHS, são confirmados para o grau e o projeto em questão.",
     从盐城服务全球材料项目:
       "Projetos globais de materiais atendidos a partir de Yancheng",
     "台益已与中亚、欧洲、东亚和美洲多个市场的客户开展合作。盐城团队根据不同地区的项目要求衔接材料、文件与供货沟通。":

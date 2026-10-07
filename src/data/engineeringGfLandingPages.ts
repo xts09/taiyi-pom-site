@@ -62,17 +62,17 @@ const landingPageContent: Record<
     title: "Glass Fiber Reinforced PA6 Compounds",
     metaTitle: "Glass Fiber Reinforced PA6 Grades | Taiyi Polymer",
     metaDescription:
-      "Compare PLATFORM glass-fiber-reinforced PA6 grades by GF level, tensile and flexural data, notched impact, HDT, water absorption and part requirements.",
-    heroEyebrow: "PA6 Grade Selection",
+      "Glass-fiber-reinforced PLATFORM PA6 for injection molding. Compare grade properties and request technical data for your part.",
+    heroEyebrow: "PLATFORM® PA6",
     heroDescription:
-      "Explore 17 PLATFORM® PA6 grades from GF8 to GF50. Compare stiffness, impact and heat-deflection data for your molded part.",
-    navSubtitle: "GF8–GF50 across stiffness, impact, and heat deflection",
+      "PLATFORM® PA6 compounds with 8–50% glass fiber reinforcement for injection-molded parts.",
+    navSubtitle: "Glass-fiber PA6 grades and properties",
     comparisonIntro:
-      "Grades are ordered by glass-fiber content, with published properties, grade details and full TDS request links.",
+      "Glass-fiber content and key properties for each grade, with links to grade data and TDS requests.",
     tradeoffs: {
-      improvementTitle: "Increasing glass-fiber content can support",
+      improvementTitle: "Strength and dimensional stability",
       improvementIntro:
-        "Across an appropriate formulation and test basis, glass-fiber reinforcement is commonly screened when these requirements control the shortlist.",
+        "Glass-fiber-reinforced PA6 is used for parts that need stiffness and strength under load. Performance varies with the grade and molding conditions.",
       improvements: [
         "Higher stiffness and load response",
         "Higher tensile and flexural strength",
@@ -80,9 +80,9 @@ const landingPageContent: Record<
         "Improved creep resistance",
         "Dimensional control under load",
       ],
-      reviewTitle: "The same shortlist must also review",
+      reviewTitle: "Moisture and molded geometry",
       reviewIntro:
-        "More fiber does not settle the material decision. The molded result remains sensitive to geometry, process, moisture state and the complete load path.",
+        "Moisture changes PA6's mechanical properties and dimensions. Fiber direction and weld lines also affect performance in molded parts.",
       reviewPoints: [
         "Impact trade-offs and failure mode",
         "Fiber orientation and anisotropy",
@@ -93,69 +93,69 @@ const landingPageContent: Record<
       ],
     },
     applicationsIntro:
-      "Match the part's load, temperature and environment to a candidate grade before starting molding trials.",
+      "Housings, brackets and functional components place different demands on strength, temperature resistance and dimensional stability.",
     applications: [
       {
         eyebrow: "Structural housings",
         label: "Electrical and electronic housings",
         description:
-          "Enclosure geometry, assembly load, insulation requirements, heat and document needs determine the relevant grade options.",
+          "Housing stiffness, assembly loads, electrical insulation and heat exposure shape the material requirements.",
         href: "/applications/electronics",
       },
       {
         eyebrow: "Brackets and supports",
         label: "Automation support components",
         description:
-          "Connect the load path, fastening points, vibration and molding constraints to the reinforcement shortlist.",
+          "Brackets and supports carry loads through fastening points and are often exposed to vibration.",
         href: "/applications/conveyor-automation",
       },
       {
         eyebrow: "Automotive mechanisms",
         label: "Automotive molded components",
         description:
-          "Screen temperature, load, moisture, movement, dimensional tolerance and project evidence together.",
+          "Molded automotive parts combine mechanical loads with heat, moisture and close dimensional tolerances.",
         href: "/applications/automotive",
       },
       {
         eyebrow: "Functional housings",
         label: "Water-control components",
         description:
-          "Pressure, temperature, medium exposure, dimensions and validation scope determine the material requirements.",
+          "Pressure, temperature and contact with water or other fluids affect material choice and dimensional performance.",
         href: "/applications/water-control",
       },
     ],
     validationIntro:
-      "PA6 absorbs moisture and its molded performance depends on conditioning, geometry and process history. Treat catalog values as screening inputs and close the decision on the intended tool and part.",
+      "PA6 absorbs moisture. Drying, conditioning and molding conditions influence the properties and dimensions of the finished part.",
     validationSteps: [
       {
-        title: "Define the moisture state",
+        title: "Moisture state",
         description:
-          "Record whether the comparison uses as-molded, dry or conditioned specimens. Do not mix those states in one conclusion.",
+          "Dry, as-molded and conditioned specimens can have different properties. Comparable data need the same moisture state.",
       },
       {
-        title: "Control drying and material handling",
+        title: "Drying and handling",
         description:
-          "Use grade-specific processing guidance and prevent uncontrolled moisture pickup before molding trials.",
+          "Drying conditions depend on the grade. Storage and handling affect moisture pickup before molding.",
       },
       {
-        title: "Review orientation and weld lines",
+        title: "Fiber orientation",
         description:
-          "Relate the gate, flow path and weld-line position to the real load direction and critical dimensions.",
+          "Gate position, flow direction and weld lines influence strength along the load path.",
       },
       {
-        title: "Measure shrinkage and warpage on the part",
+        title: "Shrinkage and warpage",
         description:
-          "Catalog shrinkage data are not complete across this range. Measure the intended geometry instead of filling the gap with assumed values.",
+          "Shrinkage data are incomplete for this range. Part measurements establish directional shrinkage and warpage for the intended geometry.",
       },
       {
-        title: "Run the intended tool and process window",
+        title: "Molding conditions",
         description:
-          "Confirm filling, surface, dimensions, repeatability and local defects under production-relevant molding conditions.",
+          "Tool design and the process window affect filling, surface finish, dimensions and repeatability.",
       },
       {
-        title: "Validate the assembled function",
+        title: "Part testing",
         description:
-          "Close load, environment, cycling, assembly and customer evidence requirements before production approval.",
+          "Tests on the assembled part assess load response, environmental exposure, cycling and fit under the intended service conditions.",
       },
     ],
     contactMaterial: "Glass Fiber Reinforced PA6",
@@ -165,17 +165,17 @@ const landingPageContent: Record<
     title: "Glass Fiber Reinforced PA66 Compounds",
     metaTitle: "Glass Fiber Reinforced PA66 Grades | Taiyi Polymer",
     metaDescription:
-      "Compare PLATFORM glass-fiber-reinforced PA66 grades by GF level, strength, flexural modulus, notched impact, HDT, moisture data and part requirements.",
-    heroEyebrow: "PA66 Grade Selection",
+      "PLATFORM glass-fiber-reinforced PA66 for structural injection-molded parts. Compare strength, heat-deflection and moisture data by grade.",
+    heroEyebrow: "PLATFORM® PA66",
     heroDescription:
-      "Explore 16 PLATFORM® PA66 grades from GF15 to GF50, with published strength and heat-deflection data. Material selection also needs to account for moisture and assembly requirements.",
-    navSubtitle: "GF15–GF50 across strength, heat deflection, and moisture",
+      "PLATFORM® PA66 compounds with 15–50% glass fiber reinforcement for load-bearing injection-molded parts.",
+    navSubtitle: "Glass-fiber PA66 grades and properties",
     comparisonIntro:
-      "Grades are ordered by glass-fiber content, with published properties, grade details and full TDS request links.",
+      "Glass-fiber content and key properties for each grade, with links to grade data and TDS requests.",
     tradeoffs: {
-      improvementTitle: "Increasing glass-fiber content can support",
+      improvementTitle: "Strength under load",
       improvementIntro:
-        "Within a suitable PA66 formulation and comparable test basis, reinforcement is commonly screened for these structural and thermal requirements.",
+        "Glass-fiber-reinforced PA66 combines stiffness and strength for housings, brackets and structural parts. Grade formulation and test conditions affect the balance of mechanical and thermal properties.",
       improvements: [
         "Higher stiffness and short-term load response",
         "Higher tensile and flexural strength",
@@ -183,9 +183,9 @@ const landingPageContent: Record<
         "Improved creep resistance",
         "Dimensional control under load",
       ],
-      reviewTitle: "The final shortlist still depends on",
+      reviewTitle: "Moisture and molded geometry",
       reviewIntro:
-        "Fiber percentage is only one input. Moisture state, geometry, process history and local orientation can change the molded and assembled result.",
+        "PA66's moisture state influences mechanical properties and dimensions. Fiber direction, gate position and weld lines also affect the molded result.",
       reviewPoints: [
         "Impact requirement and failure mode",
         "Fiber orientation and directional properties",
@@ -196,69 +196,69 @@ const landingPageContent: Record<
       ],
     },
     applicationsIntro:
-      "The part's load, thermal exposure and assembly conditions determine the evidence needed for material evaluation.",
+      "Housings, brackets and structural components have different requirements for stiffness, impact response and dimensional stability.",
     applications: [
       {
         eyebrow: "Automotive mechanisms",
         label: "Automotive structural and functional parts",
         description:
-          "Grade comparisons need to account for load, temperature, cycling, moisture, fastening and approval requirements.",
+          "Vehicle components face load, temperature cycles, moisture and fastening stresses. Grade and part testing address the project's approval requirements.",
         href: "/applications/automotive",
       },
       {
         eyebrow: "Electrical housings",
         label: "Electrical and electronic components",
         description:
-          "Review heat, mechanical retention, dimensions, electrical evidence and the exact document requirement together.",
+          "Heat exposure, dimensional fit and mechanical retention matter for electrical housings. Electrical properties and document requirements depend on the grade.",
         href: "/applications/electronics",
       },
       {
         eyebrow: "Brackets and supports",
         label: "Automation and conveyor systems",
         description:
-          "Relate static and cyclic loads, mounting geometry, vibration and process constraints to the grade shortlist.",
+          "Static and cyclic loads, vibration and mounting geometry shape the requirements for brackets and supports. Processing conditions affect the molded result.",
         href: "/applications/conveyor-automation",
       },
       {
         eyebrow: "Load-bearing housings",
         label: "Appliance molded components",
         description:
-          "Screen temperature, moisture, assembly load, repeated cycles and production consistency for the actual housing or support.",
+          "Temperature, moisture, assembly loads and repeated cycles affect housings and supports. Consistent molding conditions help assess repeatability.",
         href: "/applications/washing-machine-components",
       },
     ],
     validationIntro:
-      "PA66 GF screening must keep moisture state, heat, process conditions and orientation on the same evidence chain. Published data supports initial screening; the molded part and assembly still require validation.",
+      "Moisture conditioning and molding conditions affect PA66 test results and part dimensions. Grade data and molded-part measurements need a clear record of those conditions.",
     validationSteps: [
       {
-        title: "Set the specimen and moisture state",
+        title: "Specimen conditioning",
         description:
-          "Identify the conditioning basis behind each value and avoid comparing dry and conditioned results as though they were interchangeable.",
+          "Dry and conditioned PA66 values describe different material states. Comparisons need the conditioning basis used for each test.",
       },
       {
-        title: "Confirm drying and melt handling",
+        title: "Drying and melt handling",
         description:
-          "Follow grade-specific processing guidance and control residence time and moisture before interpreting a molding trial.",
+          "Grade-specific guidance sets the drying and processing conditions for a molding trial. Moisture and residence time affect how the results are interpreted.",
       },
       {
-        title: "Map fiber orientation to the load path",
+        title: "Fiber direction and load",
         description:
-          "Check gates, flow direction, weld lines, ribs and inserts against the critical structural direction.",
+          "Gate location, flow, weld lines, ribs and inserts influence fiber orientation along the part's load path.",
       },
       {
-        title: "Measure dimensions and warpage",
+        title: "Shrinkage and warpage",
         description:
-          "Use the actual tool and conditioning sequence. Current catalog shrinkage coverage is incomplete and cannot replace part measurement.",
+          "Catalog shrinkage data are incomplete for this range. Measurements on the molded part establish dimensions and warpage for the actual tool and conditioning sequence.",
       },
       {
-        title: "Test thermal and assembly conditions",
+        title: "Heat and assembly loads",
         description:
-          "HDT is a screening measurement, not a universal continuous-use temperature. Validate load, time, cycling and assembly restraint.",
+          "An HDT value alone does not establish continuous-use temperature. Part tests address load duration, temperature cycles and assembly restraint.",
       },
       {
-        title: "Close project-specific evidence",
+        title: "Function and repeatability",
         description:
-          "Confirm repeatability, function, environment, documents and customer requirements before production release.",
+          "Part testing covers functional response, repeatability and environmental exposure. Document and customer requirements form part of production approval.",
       },
     ],
     contactMaterial: "Glass Fiber Reinforced PA66",
@@ -268,27 +268,27 @@ const landingPageContent: Record<
     title: "Glass Fiber Reinforced PPA Compounds",
     metaTitle: "Glass Fiber Reinforced PPA Grades | Taiyi Polymer",
     metaDescription:
-      "Compare PLATFORM glass-fiber-reinforced PPA grades by GF level, tensile and flexural data, HDT, water absorption and molded-part requirements.",
-    heroEyebrow: "PPA Grade Selection",
+      "PLATFORM glass-fiber-reinforced PPA compounds for injection molding. Compare mechanical properties, heat deflection and water absorption by grade.",
+    heroEyebrow: "PLATFORM® PPA",
     heroDescription:
-      "Compare three PLATFORM® PPA grades from GF30 to GF50 for high-temperature, dimensional and load-bearing molded-part screening.",
-    navSubtitle: "GF30–GF50 across thermal response, stiffness, and dimensions",
+      "PLATFORM® PPA compounds with 30%, 45% and 50% glass fiber reinforcement for molded parts with heat and stiffness requirements.",
+    navSubtitle: "Glass-fiber PPA grades and thermal properties",
     comparisonIntro:
-      "Listed grades are ordered by glass-fiber content, with published values, grade records and full TDS request links.",
+      "Glass-fiber content and key properties for each grade, with links to grade data and TDS requests.",
     tradeoffs: {
-      improvementTitle: "Glass-fiber reinforcement can support",
+      improvementTitle: "Structural performance at elevated temperatures",
       improvementIntro:
-        "PPA glass-fiber grades are screened where the part needs a high-temperature structural balance. The percentage alone does not establish suitability.",
+        "Glass-fiber-reinforced PPA is considered for structural parts exposed to heat. Grade data includes tensile and flexural properties, heat-deflection temperature and water absorption.",
       improvements: [
         "Higher stiffness and load response",
         "Higher tensile and flexural strength",
         "High heat-deflection screening values",
         "Dimensional control under load",
-        "A starting point for hot structural parts",
+        "For structural parts exposed to heat",
       ],
-      reviewTitle: "The same screening must still review",
+      reviewTitle: "Heat exposure and part geometry",
       reviewIntro:
-        "Temperature exposure, media, geometry, molding history and fiber orientation can change the molded and assembled result. Validate the actual duty cycle and part.",
+        "Temperature, load duration and environmental media define the operating conditions. Fiber orientation, weld lines and assembly restraint also affect strength and dimensions in the molded part.",
       reviewPoints: [
         "Thermal exposure, duration and load",
         "Moisture state and environmental media",
@@ -299,62 +299,62 @@ const landingPageContent: Record<
       ],
     },
     applicationsIntro:
-      "Structural PPA screening combines the listed data with the actual part's temperature, load, environment and dimensional requirements. Molding trials are required for validation.",
+      "PPA grade selection relates mechanical and thermal data to the part's temperature, load, environment and dimensional requirements.",
     applications: [
       {
         eyebrow: "High-temperature structures",
         label: "Automotive structural and functional parts",
         description:
-          "Heat exposure, load duration, medium contact, assembly restraint and validation requirements determine the relevant grade options.",
+          "Hot structural parts combine heat exposure with sustained or cyclic loads. Media contact and assembly restraint are part of the test conditions.",
         href: "/applications/automotive",
       },
       {
         eyebrow: "Electrical and electronic parts",
         label: "Thermally demanding housings and supports",
         description:
-          "Review heat, mechanical retention, dimensions, electrical requirements and the exact document basis with the molded geometry.",
+          "Heat exposure, dimensional fit and mechanical retention shape housing and support requirements. Electrical properties and supporting documents are grade-specific.",
         href: "/applications/electronics",
       },
       {
         eyebrow: "Precision molded structures",
         label: "Industrial housings and brackets",
         description:
-          "Connect the load path, fastening geometry, temperature, fiber orientation and dimensional targets to the PPA screening range.",
+          "Load paths, fastening points and temperature affect structural requirements. Fiber orientation and molding conditions influence the resulting dimensions.",
         href: "/applications/conveyor-automation",
       },
     ],
     validationIntro:
-      "PPA GF data can narrow an initial range, but it does not replace part-level thermal, dimensional and assembly validation. Keep the test basis, material state and processing history visible throughout the decision.",
+      "PPA comparisons depend on the test basis, material state and processing history. Molded-part trials assess thermal response, dimensions and assembled function under the intended conditions.",
     validationSteps: [
       {
-        title: "Define the duty cycle and thermal exposure",
+        title: "Temperature and duty cycle",
         description:
-          "Record temperature, duration, loading, cycling and environmental media. HDT is a screening value, not a universal continuous-use temperature.",
+          "Temperature, duration, load, cycling and environmental media define service conditions. HDT alone does not establish continuous-use temperature.",
       },
       {
-        title: "Confirm the test basis and material state",
+        title: "Test basis and material state",
         description:
-          "Check the grade-specific TDS before comparing critical values. Do not treat typical web data as a complete approval basis.",
+          "The grade-specific TDS supplies the basis for comparing critical properties. Published typical values support selection; production approval needs the project's full evidence.",
       },
       {
-        title: "Control drying and melt handling",
+        title: "Drying and processing",
         description:
-          "Set the grade-specific drying and processing window before interpreting a molding trial, including moisture and residence-time control.",
+          "Grade-specific drying and processing guidance defines the trial conditions. Moisture and residence time are part of the molding record.",
       },
       {
-        title: "Map fiber orientation to the load path",
+        title: "Fiber direction and local stress",
         description:
-          "Review gate position, flow direction, weld lines, ribs and inserts against the critical structural direction and local stress.",
+          "Gate position, flow direction, weld lines, ribs and inserts influence the structural response along the part's load path.",
       },
       {
-        title: "Measure dimensions and warpage on the part",
+        title: "Dimensions and warpage",
         description:
-          "Use the intended mold and conditioning sequence. Published shrinkage ranges guide screening but cannot replace measurements on the actual geometry.",
+          "Published shrinkage ranges support initial selection. Measurements with the intended mold and conditioning sequence establish dimensions and warpage for the actual geometry.",
       },
       {
-        title: "Validate the assembled function",
+        title: "Assembled function",
         description:
-          "Confirm thermal, mechanical, environmental, document and repeatability requirements before production approval.",
+          "Part and assembly tests address thermal, mechanical, environmental and repeatability requirements. Supporting documents complete the production-approval record.",
       },
     ],
     contactMaterial: "Glass Fiber Reinforced PPA",
