@@ -43,7 +43,7 @@
   b:not(:last-child)::after {
   content: "/";
   margin-left: 0.45rem;
-  color: #94a3b8;
+  color: var(--ds-foreground-muted);
   font-weight: 500;
 }
 
@@ -136,7 +136,7 @@
   border-radius: 0;
   background: transparent;
   padding: 0.48rem 0 0.42rem;
-  color: #526276;
+  color: var(--ds-foreground-muted);
   font-size: 0.84rem;
   font-weight: 700;
   line-height: 1.15;
@@ -201,7 +201,7 @@
   gap: clamp(1rem, 2vw, 1.4rem);
   border-bottom: 0;
   padding: 0.62rem 0;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -219,7 +219,7 @@
 }
 
 .products-motion-root .product-directory-index {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -831,7 +831,7 @@
 
 .products-motion-root .product-hero-data .section-kicker,
 .products-motion-root .product-index-hero .product-hero-data .section-kicker {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -862,7 +862,7 @@
   gap: 0.22rem;
   border-left: 1px solid rgba(15, 23, 42, 0.1);
   padding: 0.25rem 0.75rem 0.7rem 0;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.68rem;
   font-weight: 700;
   line-height: 1.1;
@@ -1034,7 +1034,7 @@
 
 .products-motion-root .product-index-hero .product-hero-documents strong {
   margin-bottom: 0.45rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -1701,7 +1701,7 @@
 .products-motion-root .product-filter-intro p {
   margin-top: 0.65rem;
   max-width: 18rem;
-  color: #526276;
+  color: var(--ds-foreground-muted);
   font-size: 0.88rem;
   line-height: 1.45;
 }
@@ -1774,7 +1774,7 @@
 }
 
 .products-motion-root .product-filter-number {
-  color: #94a3b8;
+  color: var(--ds-foreground-muted);
   font-size: 0.7rem;
   font-weight: 700;
   line-height: 1;
@@ -1791,7 +1791,7 @@
 
 .products-motion-root .product-filter-use {
   display: block;
-  color: #526276;
+  color: var(--ds-foreground-muted);
   font-size: 0.76rem;
   font-weight: 600;
   line-height: 1.28;
@@ -1800,7 +1800,7 @@
 .products-motion-root .product-filter-count {
   align-self: end;
   justify-self: start;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.7rem;
   font-weight: 700;
   line-height: 1.2;
@@ -1855,7 +1855,7 @@
 }
 
 .products-motion-root .product-directory-filter-button b {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.66rem;
 }
 
@@ -2004,7 +2004,8 @@
 }
 
 .products-motion-root .product-finder-control input::placeholder {
-  color: #94a3b8;
+  color: var(--ds-foreground-muted);
+  opacity: 1;
   font-weight: 600;
 }
 
@@ -2092,7 +2093,7 @@
 }
 
 .products-motion-root .product-directory-index {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.76rem;
   font-weight: 700;
   line-height: 1.2;
@@ -2144,7 +2145,7 @@
 }
 
 .products-motion-root .product-directory-specs dt {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.68rem;
   letter-spacing: 0.08em;
 }
@@ -2259,7 +2260,7 @@
 }
 
 .tds-search-bar input::placeholder {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
 }
 
 .tds-search-bar:focus-within {
@@ -2875,7 +2876,7 @@
   .product-application-list-item
   .product-application-number {
   display: block;
-  color: #94a3b8;
+  color: var(--ds-foreground-muted);
   font-size: 0.72rem;
   font-weight: 700;
   line-height: 1;

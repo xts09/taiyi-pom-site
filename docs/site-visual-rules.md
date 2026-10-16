@@ -5,6 +5,14 @@
 This file is only a short review checklist and must not introduce different
 values or component rules.
 
+This checklist covers production repairs, extensions and adopted designs.
+Independent concepts/Demos may test new type, colors, surfaces, grids and
+component patterns in `outputs/`. Their acceptance is the requested visual
+direction plus a basic rendered check for legibility, assets and clipping;
+unchanged production-route regression is not required. See the task modes in
+`AGENTS.md` and the applicability section in `DESIGN.md` before applying this
+checklist to a redesign.
+
 Taiyi Polymer pages should read as one restrained engineering-materials system,
 not a collection of unrelated marketing templates.
 
@@ -16,6 +24,10 @@ not a collection of unrelated marketing templates.
   at the same viewport.
 - **Type:** One H1 per route. Journey-stage, evidence-section, and component
   headings use their documented levels; do not create a local title scale.
+- **Reading:** Use the semantic reading foreground for light-surface prose.
+  Aim for 7:1 for normal body/description text; keep small metadata and
+  placeholders at least 4.5:1. Navigation destinations use the primary
+  foreground. Inspect real white, canvas and dark consumers.
 - **Copy measure:** Normal section copy stays within 42rem or about 65ch and
   starts on the shared copy track.
 - **Actions:** Use the canonical labels in `DESIGN.md`. One section has one

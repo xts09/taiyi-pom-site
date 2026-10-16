@@ -72,7 +72,7 @@ export default function ApplicationsPage() {
               className="text-4xl font-black tracking-tight text-white md:text-5xl"
               style={{ "--item-index": 1 } as CSSProperties}
             >
-              Application Engineering for Molded Parts
+              Material Selection for Molded Parts
             </h1>
 
             <p
@@ -162,9 +162,8 @@ export default function ApplicationsPage() {
               <h2 id="industry-applications-title">Application areas</h2>
             </div>
             <p>
-              Choose the operating context closest to your part. Each route
-              connects typical components and working conditions to the
-              material properties that matter most.
+              Explore typical components, operating conditions and material
+              properties for each application.
             </p>
           </header>
 
@@ -224,8 +223,8 @@ export default function ApplicationsPage() {
               <h2 id="component-solutions-title">Component solution paths</h2>
             </div>
             <p>
-              Choose the molded-part family closest to your design to compare
-              its operating inputs, failure modes and validation needs.
+              Explore geometry, operating conditions and relevant materials for
+              gears, bushings, valve spools and other molded components.
             </p>
           </div>
 
@@ -274,12 +273,12 @@ export default function ApplicationsPage() {
               id="grade-shortlist-title"
               style={{ "--item-index": 1 } as CSSProperties}
             >
-              How We Build a Grade Shortlist
+              Material Selection Factors
             </h2>
             <p style={{ "--item-index": 2 } as CSSProperties}>
-              We start from the molded part, tooling plan, multi-cavity
-              consistency, shrinkage target, working condition, and performance
-              target before building a practical grade shortlist.
+              Load, motion, environment and dimensions influence material
+              selection. Tooling and processing conditions affect how the part
+              molds.
             </p>
           </div>
 
@@ -300,9 +299,8 @@ export default function ApplicationsPage() {
         </section>
 
         <ActionPanel
-          footerAdjacent
           variant="recommendation"
-          title="Need Help Shortlisting a Grade?"
+          title="Request Relevant Grade Data"
           className="application-cta cta-ribbon mt-10"
           eyebrow="Inquiry Preparation"
           eyebrowClassName="section-kicker mb-3"

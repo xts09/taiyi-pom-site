@@ -58,21 +58,26 @@ function FloatingContactShell({
   const panelId = useId();
 
   useEffect(() => {
-    const localInquiryAction = Array.from(
+    // Every inline inquiry link on the page counts, not just the first one:
+    // otherwise the floating button returns while a later inquiry band is
+    // already on screen.
+    const localInquiryActions = Array.from(
       document.querySelectorAll<HTMLAnchorElement>(
         `main a[href^="${localeSegment ? `/${localeSegment}/contact` : "/contact"}"]`,
       ),
-    ).find((action) => {
+    ).filter((action) => {
       const rect = action.getBoundingClientRect();
       return rect.width > 0 && rect.height > 0;
     });
 
-    if (!localInquiryAction) {
+    if (localInquiryActions.length === 0) {
       const frame = window.requestAnimationFrame(() => setIsAvailable(true));
       return () => window.cancelAnimationFrame(frame);
     }
 
-    const updateAvailability = (isLocalActionVisible: boolean) => {
+    const visibleActions = new Set<Element>();
+    const updateAvailability = () => {
+      const isLocalActionVisible = visibleActions.size > 0;
       setIsAvailable(!isLocalActionVisible);
 
       if (isLocalActionVisible) {
@@ -80,16 +85,31 @@ function FloatingContactShell({
       }
     };
     const frame = window.requestAnimationFrame(() => {
-      const rect = localInquiryAction.getBoundingClientRect();
-      updateAvailability(rect.bottom > 0 && rect.top < window.innerHeight);
+      localInquiryActions.forEach((action) => {
+        const rect = action.getBoundingClientRect();
+
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          visibleActions.add(action);
+        }
+      });
+      updateAvailability();
     });
 
     const observer = new IntersectionObserver(
-      ([entry]) => updateAvailability(entry.isIntersecting),
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleActions.add(entry.target);
+          } else {
+            visibleActions.delete(entry.target);
+          }
+        });
+        updateAvailability();
+      },
       { threshold: 0.01 },
     );
 
-    observer.observe(localInquiryAction);
+    localInquiryActions.forEach((action) => observer.observe(action));
 
     return () => {
       window.cancelAnimationFrame(frame);

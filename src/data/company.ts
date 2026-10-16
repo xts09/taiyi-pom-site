@@ -202,7 +202,23 @@ export const certifications = [
   },
 ] satisfies Certification[];
 
+// Company-level document offering (home, About, category overviews).
+// Grade pages must use getGradeDocuments so they only list what the
+// individual grade record confirms.
 export const availableDocuments = ["TDS", "SDS", "COA", "REACH", "RoHS"];
+
+type GradeDocumentSource = {
+  documents?: string[];
+};
+
+// Grade-level document chips. POM records list their confirmed documents;
+// engineering records carry data-only TDS status and no document list, so
+// they only advertise TDS data.
+export function getGradeDocuments(source: GradeDocumentSource): string[] {
+  return source.documents && source.documents.length > 0
+    ? source.documents
+    : ["TDS"];
+}
 
 export const companyQualifications: CompanyQualification[] = [
   {

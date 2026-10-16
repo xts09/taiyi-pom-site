@@ -21,7 +21,7 @@ export const englishApplicationDetailMessages = {
     scene: "Part & conditions",
     parts: "Typical parts",
     materials: "Candidate materials",
-    evaluation: "Next step",
+    evaluation: "Grade data",
   },
   hero: {
     eyebrow: "Application & part selection",
@@ -50,24 +50,24 @@ export const englishApplicationDetailMessages = {
     eyebrow: "Typical parts",
     titleSuffix: " representative components",
     description:
-      "Part geometry, load, motion and operating environment shape the material requirements. Grade-specific data and project validation determine the final choice.",
+      "Explore the geometry, load, motion and operating environment of typical components.",
     cardLabel: "Typical part",
     componentEyebrow: "Component guides",
-    componentTitle: "Continue with a component-specific selection guide",
+    componentTitle: "Related component selection guides",
   },
   materials: {
     eyebrow: "Candidate materials",
-    title: "Material directions worth comparing for these parts",
+    title: "Related materials",
     description:
-      "Use the part function and conditions above to compare POM directions that commonly enter an initial candidate range.",
+      "Compare the properties and typical uses of relevant POM materials.",
     keyUseLabel: "Selection focus",
     imageAltSuffix: " material pellets",
   },
   evaluation: {
-    eyebrow: "Next step",
-    title: "Discuss your application requirements",
+    eyebrow: "Grade data",
+    title: "Request relevant grade data",
     description:
-      "Share the part, operating conditions and target. We can organize a candidate material range, open questions and the next grade-data, sample or molding-trial step.",
+      "Share the part function, operating conditions and material requirements to request relevant grade data and discuss sample needs.",
     action: "Discuss your application",
   },
 } satisfies ApplicationDetailUiMessages;
@@ -76,7 +76,7 @@ export const englishApplicationComponentMessages = {
   eyebrow: "Browse by component",
   title: "Component solution paths",
   description:
-    "Choose the molded-part family closest to your design to compare operating inputs, failure modes and validation needs.",
+    "Explore geometry, operating conditions and relevant materials for gears, bushings, valve spools and other molded components.",
   allAction: "View all component solutions",
   relatedTitle: "Related component solutions",
   relevantPartsLabel: "Relevant parts",

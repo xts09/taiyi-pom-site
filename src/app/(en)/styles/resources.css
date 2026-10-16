@@ -501,7 +501,7 @@
 }
 
 .resource-task-nav > span {
-  color: #526276;
+  color: var(--ds-foreground-muted);
   font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.06em;

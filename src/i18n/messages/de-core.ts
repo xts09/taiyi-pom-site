@@ -221,7 +221,7 @@ const messages = {
       eyebrow: "Anwendungsprüfung",
       title: "Teilen Sie uns Ihre Bauteilanforderungen mit",
       body:
-        "Mit den folgenden Angaben grenzen wir Werkstoffrichtungen ein und klären verfügbare Typendaten, Dokumente und Muster.",
+        "Beginnen Sie mit Typendaten, einem Muster oder einer Werkstofffrage. Teilen Sie uns Bauteilfunktion und Leistungsziele mit.",
       checklistLabel: "Hilfreiche Ausgangsdaten",
       checklist: [
         "Bauteilfunktion und Bewegungsart",

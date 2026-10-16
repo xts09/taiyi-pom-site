@@ -365,7 +365,6 @@ export function LocalizedAboutPage({
       <section
         className={styles.finalCta}
         aria-labelledby="about-cta-title"
-        data-footer-adjacent="true"
       >
         <div className={`site-container ${styles.finalCtaGrid}`}>
           <div>

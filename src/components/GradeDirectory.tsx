@@ -36,6 +36,7 @@ export type GradeDirectorySpec = readonly [label: string, value: ReactNode];
 type GradeDirectoryRowProps = {
   action: ReactNode;
   description: ReactNode;
+  descriptionVisible?: boolean;
   eyebrow: ReactNode;
   href: string;
   index: number;
@@ -46,6 +47,7 @@ type GradeDirectoryRowProps = {
 export function GradeDirectoryRow({
   action,
   description,
+  descriptionVisible = false,
   eyebrow,
   href,
   index,
@@ -65,7 +67,7 @@ export function GradeDirectoryRow({
         <div>
           <p className="section-kicker">{eyebrow}</p>
           <h3>{title}</h3>
-          <p>{description}</p>
+          <p className={descriptionVisible ? "product-directory-selection-note" : undefined}>{description}</p>
         </div>
       </div>
 

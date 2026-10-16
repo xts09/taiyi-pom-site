@@ -80,7 +80,7 @@ const englishUi: ComponentDetailUi = {
   familyAction: "Review Relevant POM Families",
   problemEyebrow: "Part performance",
   observedProblemLabel: "Observed problem",
-  checkFirstLabel: "Check first",
+  checkFirstLabel: "Checkpoints",
   materialResponseLabel: "Material response",
   materialsEyebrow: "Candidate materials",
   materialsTitle: "Compare candidate materials by their response to the part.",
@@ -88,20 +88,20 @@ const englishUi: ComponentDetailUi = {
   validationBoundaryLabel: "Validation boundary",
   pomBoundaryLabel: "When POM may not fit",
   materialGuideAction: "Open the material selection guide",
-  inquiryEyebrow: "Minimum project input",
-  inquiryTitle: "Send the project inputs already available.",
+  inquiryEyebrow: "Inquiry details",
+  inquiryTitle: "Discuss the material requirements for your part",
   inquiryDescription:
-    "A drawing and the current operating conditions are enough to begin. Remaining details can follow after the first response.",
+    "Include a drawing, current material and operating conditions to help us provide relevant grade data.",
   processEyebrow: "After contact",
-  processTitle: "Know what the first response should produce.",
+  processTitle: "Material data and evaluation options",
   expectedOutputLabel: "Expected output",
   gradeDataAction: "Find Grade Data & TDS",
   technicalEyebrow: "Technical depth",
-  technicalTitle: "Open the detail when the project needs it.",
+  technicalTitle: "Operating conditions and test references",
   technicalDescription:
     "Open the operating criteria, tooling requirements, molded-part tests, and full project checklist as needed.",
   relatedEyebrow: "Related guidance",
-  relatedTitle: "Open the next technical reference.",
+  relatedTitle: "Related technical guides",
   applicationContextTitle: "Where this component appears",
   applicationContextDescription:
     "Open the relevant application path to review operating conditions, selection priorities, and candidate material directions in context.",
@@ -662,7 +662,6 @@ export function DetailedComponentSolution({
           <ActionPanel
             className={styles.gearActionPanel}
             eyebrow={detail.finalCta.eyebrow}
-            footerAdjacent
             title={detail.finalCta.title}
             variant="evidence"
             action={

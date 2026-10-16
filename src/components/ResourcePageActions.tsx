@@ -84,7 +84,6 @@ export function ResourcePageActions({
         ) : null}
 
         <ActionPanel
-          footerAdjacent
           variant="evidence"
           className="mt-10"
           eyebrow={copy.reviewEyebrow}
@@ -129,7 +128,6 @@ export function ResourcePageActions({
       </section>
 
       <ActionPanel
-        footerAdjacent
         variant="recommendation"
         title={copy.reviewTitle}
         className="selection-support-band resource-cta mt-12"

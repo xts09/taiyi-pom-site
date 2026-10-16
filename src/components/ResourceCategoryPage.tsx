@@ -157,7 +157,6 @@ export function ResourceCategoryPage({
         </section>
 
         <ActionPanel
-          footerAdjacent
           variant="recommendation"
           title={copy.category.reviewTitle}
           className="selection-support-band resource-cta mt-12"

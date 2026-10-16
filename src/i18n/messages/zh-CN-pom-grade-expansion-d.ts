@@ -17,7 +17,7 @@ export const chinesePomGradeExpansionD = {
     imageAlt: "台益 ETM090U 耐候 POM 粒子",
     eyebrow: "耐候 POM · 中等流动方向",
     summary:
-      "ETM090U 是面向汽车、电子电气、卫浴和精密注塑件的中等流动耐候 POM 候选牌号。已发布数据支持材料初筛；耐候适用性必须结合目标光源、暴露周期、温度、颜色变化与实际使用环境确认。",
+      "ETM090U 是中等流动耐候 POM 牌号，面向汽车、电子电气、卫浴和精密注塑件的选材。",
     flowNote: "兼顾中等流动、力学表现与耐候筛选的方向",
     features: ["耐候方向", "中等流动方向", "本色或黑色", "光照验证要求"],
     applications: ["汽车零部件", "电子电气零件", "卫浴配件", "精密注塑件"],
@@ -38,7 +38,7 @@ export const chinesePomGradeExpansionD = {
     imageAlt: "台益 ETM100PU 耐候 POM 粒子",
     eyebrow: "耐候 POM · 高流动注塑方向",
     summary:
-      "ETM100PU 是面向汽车、电子电气、卫浴和工业注塑件的高流动耐候 POM 候选牌号，用于同时审核充模和光照环境下的材料方向。最终适用性需结合实际流长、壁厚、模具、光源、暴露周期、颜色和使用温度确认。",
+      "ETM100PU 是高流动耐候 POM 牌号，面向汽车、电子电气、卫浴和工业注塑件的充模与光照环境需求。",
     flowNote: "面向填充要求更高零件的高流动耐候方向",
     features: ["耐候方向", "高流动方向", "本色或黑色", "注塑充模评估"],
     applications,
@@ -59,7 +59,7 @@ export const chinesePomGradeExpansionD = {
     imageAlt: "台益 EDR180U 哑光耐候 POM 粒子",
     eyebrow: "耐候 POM · 高抗冲哑光方向",
     summary:
-      "EDR180U 是面向需要同时评估冲击韧性、哑光外观和耐候方向零件的 POM 候选牌号。最终适用性需结合零部件缺口与壁厚、载荷、光源、暴露周期、颜色和实际使用温度确认。",
+      "EDR180U 是耐候方向的 POM 牌号，面向同时需要冲击韧性与哑光外观的零件。",
     flowNote: "兼顾高抗冲、哑光外观与耐候筛选的方向",
     features: ["耐候方向", "高抗冲方向", "哑光方向", "本色或黑色"],
     applications,
@@ -80,7 +80,7 @@ export const chinesePomGradeExpansionD = {
     imageAlt: "台益 EDR2000ZD-UV 耐候 POM 粒子",
     eyebrow: "耐候 POM · 高抗冲与耐老化方向",
     summary:
-      "EDR2000ZD-UV 是面向光照环境下外观与性能保持评估的高抗冲、耐紫外和耐老化 POM 候选牌号。最终适用性需结合光源、辐照强度、暴露周期、温湿度、颜色、载荷和零部件几何确认。",
+      "EDR2000ZD-UV 是高抗冲、耐紫外与耐老化方向的 POM 牌号，选材关注光照环境下的外观与性能保持。",
     flowNote: "面向高抗冲、耐紫外与耐老化筛选的方向",
     features: ["耐紫外方向", "耐老化方向", "高抗冲方向", "本色或黑色"],
     applications: ["汽车零部件", "电子电气零件", "卫浴配件", "精密注塑件"],

@@ -80,6 +80,37 @@ export function trackTechnicalDataClick(context: string) {
   });
 }
 
+export function trackInquiryEntry(context: "footer" | "contact_page" | "page") {
+  if (!hasGtag()) return;
+
+  window.gtag?.("event", "inquiry_entry", {
+    link_context: context,
+    page_path: window.location.pathname,
+  });
+}
+
+export type InquiryErrorReason =
+  | "network"
+  | "timeout"
+  | "invalid_response"
+  | "rate_limited"
+  | "delivery_unavailable"
+  | "delivery_rejected";
+
+export function trackInquiryFunnel(
+  stage: "view" | "attempt" | "error",
+  reason?: InquiryErrorReason,
+) {
+  if (!hasGtag()) return false;
+
+  window.gtag?.("event", `inquiry_${stage}`, {
+    form_name: "material_requirement",
+    page_path: window.location.pathname,
+    ...(stage === "error" && reason ? { error_reason: reason } : {}),
+  });
+  return true;
+}
+
 export function trackInquirySubmitted(method: "server_email") {
   if (!hasGtag()) {
     return;

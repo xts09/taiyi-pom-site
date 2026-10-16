@@ -15,6 +15,12 @@ import { SecondarySectionNav } from "@/components/SecondarySectionNav";
 import { SectionIntro } from "@/components/SectionIntro";
 import { Button } from "@/components/ui/button";
 import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
   getEngineeringGfGrades,
 } from "@/data/engineeringGfLandingPages";
 import {
@@ -57,7 +63,17 @@ export function EngineeringGfLandingPage({
   const localizedPath = (path: string) =>
     getLocalizedHref(path, localeSegment);
   const registration = getEngineeringGfLandingRegistration(polymer);
+  const validationMaterialImage =
+    "validationMaterialImage" in registration
+      ? registration.validationMaterialImage
+      : undefined;
   const grades = getEngineeringGfGrades(polymer);
+  const comparisonIntro = formatEngineeringGfMessage(page.comparisonIntro, {
+    gf50Grades: grades
+      .filter((grade) => grade.filler === "50")
+      .map((grade) => grade.grade)
+      .join(" / "),
+  });
   const comparisonGrades = grades.map((grade): EngineeringGfComparisonGrade => ({
     grade: grade.grade,
     slug: grade.slug,
@@ -94,6 +110,26 @@ export function EngineeringGfLandingPage({
     localizedPath("/contact"),
   );
   const technicalDataHref = localizedPath("/technical-data-sheets");
+  const guideLinks = (
+    <nav className={styles.guideLinks} aria-label={ui.guideLinksAria}>
+      {registration.compareWith ? (
+        <Link
+          href={localizedPath(
+            getEngineeringGfLandingRegistration(registration.compareWith).path,
+          )}
+        >
+          {formatEngineeringGfMessage(ui.compareOtherTemplate, {
+            otherPolymer: registration.compareWith,
+          })}
+        </Link>
+      ) : null}
+      {registration.guideIds.map((guideId) => (
+        <Link key={guideId} href={localizedPath(`/resources/${guideId}`)}>
+          {getEngineeringGfGuideLabel(guideId, ui)}
+        </Link>
+      ))}
+    </nav>
+  );
   const jsonLd = [
     createBreadcrumbJsonLd([
       { name: ui.homeBreadcrumb, path: localizedPath("/") },
@@ -112,6 +148,84 @@ export function EngineeringGfLandingPage({
       })),
     }),
   ];
+
+  const validationSection = (
+    <section
+    id="validation"
+    className={`${styles.sectionBand} ${styles.validationBand}`}
+  >
+    <div className={styles.sectionRail}>
+      <SectionIntro
+        className={styles.validationIntro}
+        eyebrow={page.materialNotes ? undefined : ui.validationEyebrow}
+        title={ui.validationTitle}
+        description={page.validationIntro}
+        layout="stacked"
+      />
+
+      <div className={styles.validationGrid}>
+        {page.materialNotes ? (
+          <div className={styles.materialNotesCopy}>
+            <dl className={styles.materialNotes}>
+              {page.validationSteps.map((note) => (
+                <div key={note.title}>
+                  <dt>{note.title}</dt>
+                  <dd>{note.description}</dd>
+                </div>
+              ))}
+            </dl>
+            <Accordion
+              type="single"
+              collapsible
+              className={styles.materialNotesDisclosure}
+            >
+              <AccordionItem value="molding-and-selection">
+                <AccordionTrigger>{page.materialNotes.label}</AccordionTrigger>
+                <AccordionContent>
+                  <p>{page.materialNotes.description}</p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+            {guideLinks}
+          </div>
+        ) : <ol className={styles.validationList}>
+          {page.validationSteps.map((step, index) => (
+            <li key={step.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </li>
+          ))}
+        </ol>}
+
+        <MediaFigure
+          className={styles.validationFigure}
+          variant="captioned"
+          caption={
+            validationMaterialImage
+              ? ui.materialIllustrationCaption
+              : ui.validationCaption
+          }
+          media={
+            <Image
+              src={
+                validationMaterialImage ?? "/factory-tensile-test-specimen.jpg"
+              }
+              alt={
+                validationMaterialImage
+                  ? ui.materialIllustrationImageAlt
+                  : ui.validationImageAlt
+              }
+              fill
+              sizes="(max-width: 767px) calc(100vw - 64px), 30vw"
+            />
+          }
+        />
+      </div>
+      {!page.tradeoffs && !page.materialNotes ? guideLinks : null}
+    </div>
+  </section>
+  );
 
   return (
     <main className={styles.page}>
@@ -183,16 +297,25 @@ export function EngineeringGfLandingPage({
           })}
           subtitle={page.navSubtitle}
           tabs={[
+            ...(page.materialNotes
+              ? [{ href: "#validation", label: ui.validationTab }]
+              : []),
             { href: "#grade-comparison", label: ui.compareTab },
-            { href: "#engineering-tradeoffs", label: ui.tradeoffsTab },
+            ...(page.tradeoffs
+              ? [{ href: "#engineering-tradeoffs", label: ui.tradeoffsTab }]
+              : []),
             { href: "#applications", label: ui.applicationsTab },
-            { href: "#validation", label: ui.validationTab },
+            ...(!page.materialNotes
+              ? [{ href: "#validation", label: ui.validationTab }]
+              : []),
           ]}
           title={formatEngineeringGfMessage(ui.navTitleTemplate, {
             polymer: page.polymer,
           })}
           variant="product"
         />
+
+        {page.materialNotes ? validationSection : null}
 
         <section
           id="grade-comparison"
@@ -205,7 +328,7 @@ export function EngineeringGfLandingPage({
               title={formatEngineeringGfMessage(ui.gradeTitleTemplate, {
                 polymer: page.polymer,
               })}
-              description={page.comparisonIntro}
+              description={comparisonIntro}
               count={formatEngineeringGfMessage(ui.listedGradesTemplate, {
                 count: grades.length,
               })}
@@ -224,7 +347,7 @@ export function EngineeringGfLandingPage({
           </div>
         </section>
 
-        <section
+        {page.tradeoffs ? <section
           id="engineering-tradeoffs"
           className={styles.tradeoffSection}
         >
@@ -260,31 +383,9 @@ export function EngineeringGfLandingPage({
                 </ul>
               </section>
             </div>
-            <nav className={styles.guideLinks} aria-label={ui.guideLinksAria}>
-              {registration.compareWith ? (
-                <Link
-                  href={localizedPath(
-                    getEngineeringGfLandingRegistration(
-                      registration.compareWith,
-                    ).path,
-                  )}
-                >
-                  {formatEngineeringGfMessage(ui.compareOtherTemplate, {
-                    otherPolymer: registration.compareWith,
-                  })}
-                </Link>
-              ) : null}
-              {registration.guideIds.map((guideId) => (
-                <Link
-                  key={guideId}
-                  href={localizedPath(`/resources/${guideId}`)}
-                >
-                  {getEngineeringGfGuideLabel(guideId, ui)}
-                </Link>
-              ))}
-            </nav>
+            {guideLinks}
           </div>
-        </section>
+        </section> : null}
 
         <section id="applications" className={styles.section}>
           <SectionIntro
@@ -309,50 +410,13 @@ export function EngineeringGfLandingPage({
           </div>
         </section>
 
-        <section
-          id="validation"
-          className={`${styles.sectionBand} ${styles.validationBand}`}
-        >
-          <div className={styles.sectionRail}>
-            <SectionIntro
-              className={styles.validationIntro}
-              eyebrow={ui.validationEyebrow}
-              title={ui.validationTitle}
-              description={page.validationIntro}
-              layout="stacked"
-            />
-
-            <div className={styles.validationGrid}>
-              <ol className={styles.validationList}>
-                {page.validationSteps.map((step, index) => (
-                  <li key={step.title}>
-                    <span>{String(index + 1).padStart(2, "0")}</span>
-                    <h3>{step.title}</h3>
-                    <p>{step.description}</p>
-                  </li>
-                ))}
-              </ol>
-
-              <MediaFigure
-                className={styles.validationFigure}
-                variant="captioned"
-                caption={ui.validationCaption}
-                media={
-                  <Image
-                    src="/factory-tensile-test-specimen.jpg"
-                    alt={ui.validationImageAlt}
-                    fill
-                    sizes="(max-width: 767px) calc(100vw - 64px), 30vw"
-                  />
-                }
-              />
-            </div>
-          </div>
-        </section>
+        {!page.tradeoffs ? (
+          <span id="engineering-tradeoffs" className={styles.sectionAnchor} aria-hidden="true" />
+        ) : null}
+        {!page.materialNotes ? validationSection : null}
 
         <section className={styles.actionRail}>
           <ActionPanel
-            footerAdjacent
             variant="compact"
             eyebrow={ui.inquiryEyebrow}
             title={formatEngineeringGfMessage(ui.inquiryTitleTemplate, {

@@ -461,7 +461,6 @@ export async function LocalizedPomDirectoryPage({
           </section>
 
           <ActionPanel
-            footerAdjacent
             variant="recommendation"
             title={messages.inquiry.title}
             className="selection-support-band products-motion-support mt-12"

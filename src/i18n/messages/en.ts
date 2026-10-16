@@ -76,10 +76,6 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · PLATFORM® Engineering Materials",
     logoAlt: "PLATFORM registered trademark",
-    pitchTitle: "Product, document and supply support.",
-    pitchCopy:
-      "Explore PLATFORM® engineering materials, find grade data and technical documents, or contact Taiyi Polymer about samples, supply and company qualifications.",
-    discussApplication: "Discuss Your Application",
     products: "Products",
     applications: "Applications",
     allApplications: "All Applications",
@@ -130,17 +126,17 @@ const messages = {
   },
   Home: {
     metadata: {
-      title: "Modified POM Compounds for Industrial Parts | Taiyi Polymer",
+      title: "Engineering Plastics & Modified POM Manufacturer | PLATFORM®",
       description:
-        "Taiyi Polymer manufactures modified POM compounds for wear-resistant, low-friction, reinforced, conductive and antistatic precision molded parts, with selected PA6, PA66 and PPA compounds extending the range.",
+        "Taiyi Polymer is a manufacturer of high-performance engineering plastics, specializing in modified POM and custom PA6, PA66 and PPA compounds for industrial applications.",
       imageAlt: "Taiyi Polymer modified POM compound manufacturing",
     },
     hero: {
       eyebrowDesktop: "POM COMPOUNDING · MATERIAL SUPPORT",
       eyebrowMobile: "POM COMPOUNDING",
-      title: "Modified POM Manufacturer for Precision Molded Parts",
+      title: "High-Performance Engineering Plastics",
       body:
-        "With modified POM at our core and a portfolio extending to PA6, PA66 and PPA, we provide high-performance engineering plastics solutions for wear resistance, low friction, reinforcement, conductivity and antistatic performance, helping customers move new ideas toward production.",
+        "Taiyi Polymer is an engineering plastics manufacturer with modified POM at its core and a portfolio extending to PA6, PA66 and PPA. We develop tailored materials for wear resistance, low friction, reinforcement, conductivity and antistatic performance—helping customers move new ideas toward production.",
       exploreAction: "Find Material by Part",
       contactAction: "Find Grades & TDS",
     },
@@ -358,7 +354,7 @@ const messages = {
       eyebrow: "Application Review",
       title: "Share Your Part Requirements",
       body:
-        "Share the details below; we will shortlist material directions and clarify available grade data, documents and samples.",
+        "Start with grade data, a sample or a material question. Share your part function and performance targets with us.",
       checklistLabel: "Useful starting points",
       checklist: [
         "Part function and movement mode",

@@ -520,7 +520,6 @@ export default async function ProductCategoryPage({
         </section>
 
         <ActionPanel
-          footerAdjacent
           variant="recommendation"
           title="Compare Grades, Data & Samples"
           className="selection-support-band products-motion-support mt-12"

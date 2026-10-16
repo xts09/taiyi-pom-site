@@ -357,7 +357,7 @@ export function ConductiveAntistaticCompoundsContent({
         </div>
       </section>
 
-      <section className={styles.ctaBand} data-footer-adjacent="true">
+      <section className={styles.ctaBand}>
         <div className={`${styles.rail} ${styles.ctaLayout}`}>
           <div>
             <p className={styles.kicker}>{messages.ctaKicker}</p>

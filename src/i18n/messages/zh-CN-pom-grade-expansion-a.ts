@@ -14,7 +14,7 @@ export const chinesePomGradeExpansionA = {
     breadcrumb: "ETM090NC",
     eyebrow: "标准基础 POM · 注塑",
     summary:
-      "ETM090NC 是面向汽车、电气、卫浴和工业注塑件的标准基础 POM 候选牌号，适合同时评估力学强度、尺寸稳定性与常规充模表现。已发布数据用于前期筛选；最终适用性需结合实际零部件、模具、工艺窗口和使用条件确认。",
+      "ETM090NC 是标准基础 POM 牌号，面向汽车、电气、卫浴和工业注塑件的强度、尺寸稳定与充模需求。",
     sampleAction: "申请 ETM090NC 样品",
     snapshot: {
       aria: "ETM090NC 关键数据概览",
@@ -51,7 +51,7 @@ export const chinesePomGradeExpansionA = {
     breadcrumb: "ETM130",
     eyebrow: "中等流动基础 POM · 注塑",
     summary:
-      "ETM130 是兼顾稳定加工与均衡力学性能的中等流动基础 POM 候选牌号，可用于汽车、电气电子和卫浴注塑件的前期筛选。最终适用性需结合实际零部件几何、模具、工艺窗口和使用条件确认。",
+      "ETM130 是中等流动基础 POM 牌号，兼顾加工稳定性和力学性能，用于汽车、电气电子及卫浴注塑件的选材。",
     sampleAction: "申请 ETM130 样品",
     snapshot: {
       aria: "ETM130 关键数据概览",
@@ -88,7 +88,7 @@ export const chinesePomGradeExpansionA = {
     breadcrumb: "ETM270",
     eyebrow: "高流动基础 POM · 薄壁与精密注塑",
     summary:
-      "ETM270 是面向薄壁、精密和通用注塑件的高流动基础 POM 候选牌号，用于在改善充模能力的同时审核力学与尺寸表现。已发布数据用于前期筛选；最终适用性需结合实际流长、壁厚、浇口、模具和使用条件确认。",
+      "ETM270 是高流动基础 POM 牌号，面向薄壁、精密与通用注塑件的充模、力学和尺寸需求。",
     sampleAction: "申请 ETM270 样品",
     snapshot: {
       aria: "ETM270 关键数据概览",
@@ -125,7 +125,7 @@ export const chinesePomGradeExpansionA = {
     breadcrumb: "ETM1500",
     eyebrow: "超高流动基础 POM · 填充敏感零部件",
     summary:
-      "ETM1500 是面向填充敏感和复杂注塑件的超高流动基础 POM 候选牌号，适合在更易充模与最终力学表现之间进行项目评估。已发布数据用于前期筛选；最终适用性需结合实际流长、壁厚、浇口、模具和使用条件确认。",
+      "ETM1500 是超高流动基础 POM 牌号，面向几何复杂、充模敏感的注塑件，兼顾充模与零件力学性能需求。",
     sampleAction: "申请 ETM1500 样品",
     snapshot: {
       aria: "ETM1500 关键数据概览",
@@ -162,7 +162,7 @@ export const chinesePomGradeExpansionA = {
     breadcrumb: "ETM1800",
     eyebrow: "超高流动基础 POM · 更高流长要求",
     summary:
-      "ETM1800 是当前基础 POM 系列中面向更高流长要求的超高流动候选牌号，用于审核复杂流路的充模能力与最终零部件性能。已发布数据用于前期筛选；最终适用性需结合实际壁厚、流长、浇口、模具和使用条件确认。",
+      "ETM1800 是超高流动基础 POM 牌号，面向较长流路的复杂注塑件及其零件性能需求。",
     sampleAction: "申请 ETM1800 样品",
     snapshot: {
       aria: "ETM1800 关键数据概览",

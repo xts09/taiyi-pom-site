@@ -6,7 +6,7 @@ import { EngineeringPropertyTable } from "@/components/EngineeringPropertyTable"
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { availableDocuments } from "@/data/company";
+import { getGradeDocuments } from "@/data/company";
 import {
   createEngineeringTdsSlug,
   engineeringTdsDocuments,
@@ -120,7 +120,7 @@ export function LocalizedEngineeringGradePage({
                   >
                     <span>{copy.documentSupport}</span>
                     <div>
-                      {availableDocuments.map((item) => (
+                      {getGradeDocuments({}).map((item) => (
                         <span key={item}>{item}</span>
                       ))}
                     </div>
@@ -194,7 +194,6 @@ export function LocalizedEngineeringGradePage({
           <EngineeringPropertyTable
             kicker={copy.properties.kicker}
             heading={copy.properties.title}
-            introduction={copy.properties.body}
             labels={[
               copy.properties.property,
               copy.properties.value,

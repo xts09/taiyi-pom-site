@@ -25,6 +25,7 @@
   --ds-color-ink-home: oklch(18% 0.035 245);
   --ds-color-slate-500: #64748b;
   --ds-color-slate-700: #526276;
+  --ds-color-reading-slate: #3e4d60;
   --ds-color-slate-300: #cbd5e1;
   --ds-color-slate-home: oklch(47% 0.035 244);
   --ds-color-slate-soft: oklch(62% 0.026 242);
@@ -87,7 +88,7 @@
   --ds-background-surface: var(--ds-color-white);
   --ds-background-evidence: var(--ds-color-navy-950);
   --ds-foreground-primary: var(--ds-color-ink-950);
-  --ds-foreground-muted: var(--ds-color-slate-700);
+  --ds-foreground-muted: var(--ds-color-reading-slate);
   --ds-foreground-on-dark: var(--ds-color-white);
   --ds-foreground-on-dark-muted: rgba(226, 236, 245, 0.82);
   --ds-action-primary: var(--ds-color-cobalt-600);
@@ -221,7 +222,7 @@
   --ds-input-border-hover: rgba(15, 23, 42, 0.24);
   --ds-input-border-focus: rgba(11, 95, 184, 0.62);
   --ds-input-focus-halo: rgba(22, 163, 212, 0.14);
-  --ds-input-placeholder: #64748b;
+  --ds-input-placeholder: var(--ds-foreground-muted);
   --ds-input-disabled-bg: var(--ds-color-paper-100);
   --ds-input-disabled-fg: var(--ds-color-slate-500);
   --ds-input-radius: var(--ds-radius-control);
@@ -421,7 +422,7 @@
   --home-color-paper-soft: var(--ds-color-paper-100);
   --home-color-paper-blue: var(--ds-color-paper-200);
   --home-color-ink: var(--ds-color-ink-home);
-  --home-color-ink-muted: var(--ds-color-slate-home);
+  --home-color-ink-muted: var(--ds-foreground-muted);
   --home-color-ink-soft: var(--ds-color-slate-soft);
   --home-color-night: var(--ds-color-night-home);
   --home-color-night-2: var(--ds-color-night-home-2);

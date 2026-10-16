@@ -1489,12 +1489,6 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
   text-wrap: wrap;
 }
 
-@media (min-width: 48rem) {
-  .home-redesign .home-hero .hero-title-phrase {
-    white-space: nowrap;
-  }
-}
-
 .home-task-section {
   position: relative;
   scroll-margin-top: calc(var(--site-header-height) + var(--home-space-md));
@@ -2626,12 +2620,12 @@ html:lang(zh) .home-redesign .home-hero .hero-motion-copy {
       );
   }
 
-    .home-redesign .home-inquiry-inner {
+  .home-redesign .home-inquiry-inner {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--home-space-xl);
   }
 
-      .home-redesign .home-hero .hero-motion-title {
+  .home-redesign .home-hero .hero-motion-title {
     font-size: var(--home-hero-title-size-compact);
   }
 

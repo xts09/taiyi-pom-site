@@ -176,3 +176,38 @@ export function getContactContextMessage(
     .filter((value): value is string => Boolean(value))
     .join("\n");
 }
+
+export const contactContextChangeEvent = "taiyi:contact-context-change";
+
+export type ContactDirectEmailCopy = {
+  greeting: string;
+  application: string;
+  material: string;
+  reference: string;
+  candidates: string;
+  keyRequirements: string;
+  documentNeeds: string;
+  closing: string;
+  subject: string;
+};
+
+export function buildContactDirectEmailHref(
+  context: ContactContext,
+  copy: ContactDirectEmailCopy,
+  email: string,
+) {
+  const body = [
+    copy.greeting,
+    "",
+    `${copy.application}: ${context.application ?? ""}`,
+    `${copy.material}: ${[context.material, context.grade].filter(Boolean).join(" / ")}`,
+    context.reference ? `${copy.reference}: ${context.reference}` : undefined,
+    context.candidates ? `${copy.candidates}: ${context.candidates}` : undefined,
+    copy.keyRequirements,
+    copy.documentNeeds,
+    "",
+    copy.closing,
+  ].filter((value): value is string => value !== undefined).join("\r\n");
+
+  return `mailto:${email}?subject=${encodeURIComponent(copy.subject)}&body=${encodeURIComponent(body)}`;
+}

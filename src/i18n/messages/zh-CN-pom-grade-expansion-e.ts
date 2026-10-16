@@ -25,7 +25,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH202H 玻纤增强 POM 粒子",
     eyebrow: "10% 玻纤增强 POM · 标准增强方向",
     summary:
-      "EGH202H 是采用 10% 玻璃纤维增强的标准 POM 候选牌号，用于汽车、电子电气、卫浴和工业零件的刚度、强度、收缩与热性能初筛。最终适用性需结合纤维取向、零部件几何、模具与载荷条件确认。",
+      "EGH202H 含 10% 玻璃纤维，面向汽车、电子电气、卫浴和工业注塑件的刚度、强度、收缩与热性能需求。",
     flowNote: "面向标准刚度提升与尺寸评估的 10% 玻纤方向",
     features: ["10% 玻璃纤维", "标准增强方向", "刚度提升方向", "尺寸验证要求"],
     applications: glassApplications,
@@ -43,7 +43,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH302H 玻纤增强 POM 粒子",
     eyebrow: "15% 玻纤增强 POM · 中等增强方向",
     summary:
-      "EGH302H 是采用 15% 玻璃纤维增强的 POM 候选牌号，用于在标准与更高增强方向之间评估强度、刚度、收缩和加工表现。最终适用性需结合纤维取向、熔接线、零部件几何、模具和载荷确认。",
+      "EGH302H 含 15% 玻璃纤维，提供介于标准和更高增强方向之间的强度、刚度、收缩及加工选材数据。",
     flowNote: "兼顾强度、刚度与加工评估的 15% 玻纤方向",
     features: ["15% 玻璃纤维", "中等增强方向", "强度提升方向", "收缩评估"],
     applications: glassApplications,
@@ -61,7 +61,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH402H 高刚度玻纤 POM 粒子",
     eyebrow: "20% 玻纤增强 POM · 高刚度低收缩方向",
     summary:
-      "EGH402H 是采用 20% 玻璃纤维增强的 POM 候选牌号，面向需要较高刚度、较低注塑收缩和耐热评估的功能与结构零件。最终适用性需结合纤维取向、载荷、尺寸公差、模具和使用温度确认。",
+      "EGH402H 含 20% 玻璃纤维，面向功能与结构件的较高刚度、较低收缩及耐热需求。",
     flowNote: "面向较高刚度、低收缩与耐热评估的 20% 玻纤方向",
     features: ["20% 玻璃纤维", "高刚度方向", "较低收缩方向", "耐热评估"],
     applications: ["汽车功能零件", "精密零件", "结构注塑件"],
@@ -79,7 +79,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH402T 玻纤增强 POM 粒子",
     eyebrow: "20% 玻纤增强 POM · 平衡流动方向",
     summary:
-      "EGH402T 是采用 20% 玻璃纤维增强的 POM 候选牌号，用于兼顾注塑流动、刚度和尺寸控制的项目评估。最终适用性需结合流长、壁厚、浇口、纤维取向、熔接线和实际载荷确认。",
+      "EGH402T 含 20% 玻璃纤维，兼顾注塑流动、刚度与尺寸控制的选材需求。",
     flowNote: "兼顾流动、刚度与尺寸控制的 20% 玻纤方向",
     features: ["20% 玻璃纤维", "平衡流动方向", "刚度提升方向", "尺寸控制方向"],
     applications: glassApplications,
@@ -97,7 +97,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH502T 玻纤增强 POM 粒子",
     eyebrow: "25% 玻纤增强 POM · 受控流动方向",
     summary:
-      "EGH502T 是采用 25% 玻璃纤维增强的 POM 候选牌号，用于需要较高刚度、较低收缩与受控加工流动性的注塑项目。最终适用性需结合零部件方向性、浇口、熔接线、尺寸公差和载荷确认。",
+      "EGH502T 含 25% 玻璃纤维，面向较高刚度、较低收缩与受控流动性的注塑需求。",
     flowNote: "兼顾较高刚度、低收缩与受控流动的 25% 玻纤方向",
     features: ["25% 玻璃纤维", "高刚度方向", "较低收缩方向", "受控流动方向"],
     applications: glassApplications,
@@ -115,7 +115,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH580H 玻纤增强 POM 粒子",
     eyebrow: "25% 玻纤增强 POM · 高弯曲性能方向",
     summary:
-      "EGH580H 是采用 25% 玻璃纤维增强的 POM 候选牌号，用于需要较高弯曲表现、刚度和尺寸控制的零部件初筛。最终适用性需结合流向、载荷方向、壁厚、熔接线、模具和使用温度确认。",
+      "EGH580H 含 25% 玻璃纤维，面向零部件的弯曲性能、刚度与尺寸控制需求。",
     flowNote: "面向较高弯曲表现与尺寸控制的 25% 玻纤方向",
     features: ["25% 玻璃纤维", "较高弯曲方向", "高刚度方向", "尺寸控制方向"],
     applications: glassApplications,
@@ -133,7 +133,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH580T 玻纤增强 POM 粒子",
     eyebrow: "25% 玻纤增强 POM · 刚度与冲击平衡方向",
     summary:
-      "EGH580T 是采用 25% 玻璃纤维增强的 POM 候选牌号，用于兼顾高刚度、冲击表现与加工流动性的项目评估。最终适用性需结合缺口、纤维取向、熔接线、载荷、壁厚和使用温度确认。",
+      "EGH580T 含 25% 玻璃纤维，选材兼顾高刚度、冲击性能与加工流动性。",
     flowNote: "兼顾高刚度、冲击表现与流动性的 25% 玻纤方向",
     features: ["25% 玻璃纤维", "高刚度方向", "冲击平衡方向", "流动评估"],
     applications: glassApplications,
@@ -151,7 +151,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH602H 高刚度玻纤 POM 粒子",
     eyebrow: "30% 玻纤增强 POM · 高刚度尺寸稳定方向",
     summary:
-      "EGH602H 是采用 30% 玻璃纤维增强的 POM 候选牌号，面向需要更高刚度、尺寸稳定与较低收缩的功能和精密零件。最终适用性需结合方向性、载荷、尺寸公差、浇口、模具和使用温度确认。",
+      "EGH602H 含 30% 玻璃纤维，面向功能与精密零件的较高刚度、尺寸稳定和较低收缩需求。",
     flowNote: "面向更高刚度、尺寸稳定与低收缩的 30% 玻纤方向",
     features: ["30% 玻璃纤维", "高刚度方向", "尺寸稳定方向", "较低收缩方向"],
     applications: ["汽车功能零件", "电子电气零件", "精密注塑件"],
@@ -169,7 +169,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 EGH602T 玻纤增强 POM 粒子",
     eyebrow: "30% 玻纤增强 POM · 低收缩稳定加工方向",
     summary:
-      "EGH602T 是采用 30% 玻璃纤维增强的 POM 候选牌号，用于需要较低注塑收缩、增强刚度和稳定加工方向的零部件评估。最终适用性需结合纤维取向、流长、壁厚、浇口、保压与尺寸公差确认。",
+      "EGH602T 含 30% 玻璃纤维，面向较低注塑收缩、增强刚度与稳定加工的零部件需求。",
     flowNote: "兼顾低收缩、增强刚度与稳定加工的 30% 玻纤方向",
     features: ["30% 玻璃纤维", "较低收缩方向", "稳定加工方向", "增强刚度方向"],
     applications: glassApplications,
@@ -187,7 +187,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 ECF200 碳纤增强黑色 POM 粒子",
     eyebrow: "20% 碳纤增强 POM · 刚度与导电方向",
     summary:
-      "ECF200 是采用 20% 碳纤维增强的黑色 POM 候选牌号，用于评估刚度、低收缩、尺寸稳定与导电方向。最终适用性需结合纤维取向、零部件几何、载荷、电阻目标、测试方法和环境确认。",
+      "ECF200 是含 20% 碳纤维的黑色 POM 牌号，选材关注刚度、低收缩、尺寸稳定与导电方向。",
     flowNote: "面向刚度、尺寸稳定与导电筛选的 20% 碳纤方向",
     features: ["20% 碳纤维", "高刚度方向", "低收缩方向", "导电黑色方向"],
     applications: carbonApplications,
@@ -208,7 +208,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 ECF300 碳纤增强黑色 POM 粒子",
     eyebrow: "30% 碳纤增强 POM · 高刚度导电方向",
     summary:
-      "ECF300 是采用 30% 碳纤维增强的黑色 POM 候选牌号，用于需要高刚度、低收缩、尺寸稳定与导电方向的项目初筛。最终适用性需结合加工流动、纤维取向、载荷、电阻目标、测试方法和环境确认。",
+      "ECF300 是含 30% 碳纤维的黑色 POM 牌号，面向高刚度、低收缩、尺寸稳定及导电方向的选材。",
     flowNote: "面向高刚度、低收缩与稳定导电筛选的 30% 碳纤方向",
     features: ["30% 碳纤维", "高刚度方向", "低收缩方向", "导电黑色方向"],
     applications: carbonApplications,
@@ -229,7 +229,7 @@ export const chinesePomGradeExpansionE = {
     imageAlt: "台益 ECF400 碳纤增强黑色 POM 粒子",
     eyebrow: "40% 碳纤增强 POM · 更高刚度导电方向",
     summary:
-      "ECF400 是采用 40% 碳纤维增强的黑色 POM 候选牌号，用于更高刚度、尺寸稳定与导电方向的项目评估。最终适用性需重点结合加工流动、纤维取向、表面、熔接线、载荷、电阻目标和测试环境确认。",
+      "ECF400 是含 40% 碳纤维的黑色 POM 牌号，面向更高刚度、尺寸稳定及导电方向的选材。",
     flowNote: "面向更高刚度、尺寸稳定与导电筛选的 40% 碳纤方向",
     features: ["40% 碳纤维", "更高刚度方向", "尺寸稳定方向", "导电黑色方向"],
     applications: carbonApplications,

@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import { ContactInquiryForm } from "@/components/ContactInquiryForm";
+import { ContactDirectEmailLink } from "@/components/ContactDirectEmailLink";
 import { PageHero } from "@/components/PageHero";
 import { Card } from "@/components/ui/card";
 import type { ContactMessages } from "@/i18n/types";
@@ -45,32 +46,6 @@ export async function ContactPage({
     contactContext,
     messages.context,
   );
-  const directEmailBody = [
-    messages.directEmail.greeting,
-    "",
-    `${messages.directEmail.application}: ${contactContext.application ?? ""}`,
-    `${messages.directEmail.material}: ${[
-      contactContext.material,
-      contactContext.grade,
-    ]
-      .filter(Boolean)
-      .join(" / ")}`,
-    contactContext.reference
-      ? `${messages.directEmail.reference}: ${contactContext.reference}`
-      : undefined,
-    contactContext.candidates
-      ? `${messages.directEmail.candidates}: ${contactContext.candidates}`
-      : undefined,
-    messages.directEmail.keyRequirements,
-    messages.directEmail.documentNeeds,
-    "",
-    messages.directEmail.closing,
-  ]
-    .filter((value): value is string => value !== undefined)
-    .join("\r\n");
-  const directEmailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(
-    messages.directEmail.subject,
-  )}&body=${encodeURIComponent(directEmailBody)}`;
   const contactJsonLd = [
     createBreadcrumbJsonLd([
       { name: messages.breadcrumbHome, path: pagePath.replace(/\/contact$/, "") || "/" },
@@ -109,7 +84,7 @@ export async function ContactPage({
   ];
 
   return (
-    <main className={styles.page} data-footer-adjacent="true">
+    <main className={styles.page}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -238,12 +213,11 @@ export async function ContactPage({
             </div>
 
             <div className="contact-direct-links">
-              <a
-                href={directEmailHref}
-                className="cta-secondary px-6 py-3 text-sm"
-              >
-                {messages.sales.emailDirectly}
-              </a>
+              <ContactDirectEmailLink
+                initialContext={contactContext}
+                copy={messages.directEmail}
+                label={messages.sales.emailDirectly}
+              />
             </div>
           </aside>
         </div>

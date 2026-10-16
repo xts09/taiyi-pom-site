@@ -62,7 +62,8 @@ const nextConfig: NextConfig = {
   },
   ...(distDir ? { distDir } : {}),
   experimental: {
-    cpus: 4,
+    cpus: 1,
+    staticGenerationMaxConcurrency: 1,
     globalNotFound: true,
   },
   ...(!isGithubPages

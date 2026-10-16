@@ -15,7 +15,7 @@ export const chinesePomGradeExpansionB = {
     breadcrumb: "EDR100",
     eyebrow: "高抗冲 POM · 韧性提升方向",
     summary:
-      "EDR100 是面向功能注塑件的高抗冲、耐低温 POM 候选牌号，用于在标准 POM 基础上评估更高韧性。已发布数据支持前期筛选；最终适用性需结合零部件缺口、壁厚、载荷、使用温度、模具和工艺条件确认。",
+      "EDR100 是高抗冲、耐低温 POM 牌号，面向比标准 POM 更注重韧性的功能注塑件。",
     sampleAction: "申请 EDR100 样品",
     snapshot: {
       aria: "EDR100 关键数据概览",
@@ -53,7 +53,7 @@ export const chinesePomGradeExpansionB = {
     breadcrumb: "EHI100ST",
     eyebrow: "高抗冲 POM · 刚韧平衡方向",
     summary:
-      "EHI100ST 是面向需要平衡刚性与韧性的注塑应用的高抗冲、耐低温 POM 候选牌号。已发布数据支持前期筛选；最终适用性需结合零部件几何、缺口、载荷、使用温度、模具和工艺窗口确认。",
+      "EHI100ST 是高抗冲、耐低温 POM 牌号，面向需要平衡刚性与韧性的注塑件。",
     sampleAction: "申请 EHI100ST 样品",
     snapshot: {
       aria: "EHI100ST 关键数据概览",
@@ -91,7 +91,7 @@ export const chinesePomGradeExpansionB = {
     breadcrumb: "EHI202T",
     eyebrow: "高抗冲 POM · 通用功能注塑方向",
     summary:
-      "EHI202T 是面向汽车、电气、卫浴和工业注塑应用的高抗冲、耐低温 POM 候选牌号，用于审核韧性、流动性与力学性能的项目平衡。最终适用性需结合零部件几何、缺口、载荷、使用温度、模具和工艺条件确认。",
+      "EHI202T 是高抗冲、耐低温 POM 牌号，面向汽车、电气、卫浴和工业注塑件的韧性、流动与力学性能需求。",
     sampleAction: "申请 EHI202T 样品",
     snapshot: {
       aria: "EHI202T 关键数据概览",
@@ -129,7 +129,7 @@ export const chinesePomGradeExpansionB = {
     breadcrumb: "EHI602T",
     eyebrow: "高抗冲 POM · 更高冲击与伸长方向",
     summary:
-      "EHI602T 是面向需要更强冲击韧性与伸长余量零部件的高抗冲、耐低温 POM 候选牌号。已发布数据支持前期筛选；最终适用性需结合零部件缺口、壁厚、载荷、变形要求、使用温度、模具和工艺条件确认。",
+      "EHI602T 是高抗冲、耐低温 POM 牌号，面向对冲击韧性与伸长率有更高要求的注塑件。",
     sampleAction: "申请 EHI602T 样品",
     snapshot: {
       aria: "EHI602T 关键数据概览",

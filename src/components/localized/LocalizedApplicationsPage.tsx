@@ -355,7 +355,6 @@ export function LocalizedApplicationsPage({
         </section>
 
         <ActionPanel
-          footerAdjacent
           variant="recommendation"
           title={messages.inquiry.title}
           className="application-cta cta-ribbon mt-10"

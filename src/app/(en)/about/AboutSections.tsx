@@ -195,7 +195,6 @@ export function AboutPageContent({
       <section
         className={styles.finalCta}
         aria-labelledby="about-cta-title"
-        data-footer-adjacent="true"
       >
         <div className={`site-container ${styles.finalCtaGrid}`}>
           <div><p className={styles.eyebrow}>Talk to Taiyi Polymer</p><h2 id="about-cta-title">What support does your project need?</h2><p>Tell us what you need, and we&apos;ll connect you with the appropriate team.</p></div>

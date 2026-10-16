@@ -62,9 +62,6 @@ export type HeaderMessages = {
 export type FooterMessages = {
   brandRelation: string;
   logoAlt: string;
-  pitchTitle: string;
-  pitchCopy: string;
-  discussApplication: string;
   products: string;
   applications: string;
   allApplications: string;
@@ -177,6 +174,18 @@ export type HomeMaterialDirectionMessage = {
 };
 
 export type HomeTaskFirstMessages = {
+  catalogue: {
+    title: string;
+    body: string;
+    polyamideTitle: string;
+    gradesLabel: string;
+    matricesLabel: string;
+    functionalTitle: string;
+    functionalNote: string;
+    cntTitle: string;
+    cfTitle: string;
+    polyamideAction: string;
+  };
   entry: {
     eyebrow: string;
     title: string;
@@ -259,6 +268,17 @@ export type HomeTaskFirstMessages = {
   proof: {
     eyebrow: string;
     title: string;
+    production: {
+      title: string;
+      body: string;
+      sinceLabel: string;
+    };
+    laboratory: {
+      title: string;
+      body: string;
+      imageAlt: string;
+      imageCaption: string;
+    };
     body: readonly [string, string];
     factoryImageAlt: string;
     factoryImageCaption: string;

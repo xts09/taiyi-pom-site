@@ -310,7 +310,7 @@ const messages = {
     breadcrumb: "XT-100",
     eyebrow: "POM à faible densité et orientation haute résistance au choc · Injection",
     summary:
-      "XT-100 est un grade candidat pour les pièces injectées de précision ou d'usage général lorsque la densité, la résistance au choc et une fluidité équilibrée doivent être examinées ensemble. Les valeurs publiées facilitent la sélection initiale ; confirmez l'aptitude avec la géométrie réelle, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+      "XT-100 est un grade POM pour les pièces injectées de précision ou d’usage général. Les données couvrent la densité, la résistance au choc et la fluidité.",
     documentSupport: "Documents matière",
     documentNote: "Disponibilité confirmée selon le grade, le marché visé et le projet.",
     sampleAction: "Demander un échantillon XT-100",
@@ -426,7 +426,7 @@ const messages = {
       breadcrumb: "ETM450",
       eyebrow: "POM haute fluidité · Injection",
       summary:
-        "ETM450 est un grade candidat pour les pièces injectées de précision lorsque le remplissage et le profil mécanique doivent être examinés ensemble. Les valeurs publiées facilitent la sélection initiale ; confirmez l'aptitude avec la géométrie réelle, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+        "ETM450 est un grade POM pour les pièces injectées de précision, avec des exigences de remplissage et de propriétés mécaniques.",
       sampleAction: "Demander un échantillon ETM450",
       snapshot: {
         aria: "Synthèse des données ETM450",
@@ -470,7 +470,7 @@ const messages = {
       breadcrumb: "ETM750",
       eyebrow: "POM à très haute fluidité · Injection",
       summary:
-        "ETM750 est un grade candidat pour les pièces à paroi mince ou difficiles à remplir lorsque le parcours d'écoulement et les performances mécaniques doivent être examinés ensemble. Les valeurs publiées facilitent la sélection initiale ; confirmez l'aptitude avec la géométrie réelle, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+        "ETM750 est un grade POM pour les pièces injectées à parois fines ou difficiles à remplir. La longueur d’écoulement et les propriétés mécaniques orientent le choix.",
       sampleAction: "Demander un échantillon ETM750",
       snapshot: {
         aria: "Synthèse des données ETM750",
@@ -515,7 +515,7 @@ const messages = {
       breadcrumb: "EGB25",
       eyebrow: "POM à 25 % de billes de verre · Injection",
       summary:
-        "EGB25 est un grade candidat pour les pièces injectées nécessitant une étude conjointe du retrait longitudinal et transversal ainsi que du profil thermique. Les valeurs publiées facilitent la présélection ; confirmez l'adéquation avec la géométrie réelle, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+        "EGB25 est un grade POM pour les pièces injectées sensibles aux dimensions. Le catalogue présente le retrait longitudinal et transversal ainsi que les propriétés thermiques.",
       sampleAction: "Demander un échantillon EGB25",
       snapshot: {
         aria: "Synthèse des propriétés EGB25",
@@ -560,7 +560,7 @@ const messages = {
       breadcrumb: "EGH502H",
       eyebrow: "POM à 25 % de fibre de verre · Haute rigidité",
       summary:
-        "EGH502H est un grade candidat pour les pièces moulées nécessitant une étude conjointe de la rigidité élevée, du faible retrait et du profil thermique. Les valeurs publiées facilitent la présélection ; confirmez l'adéquation avec la géométrie réelle, l'orientation des fibres, le moule, la fenêtre de procédé et les conditions d'utilisation.",
+        "EGH502H est un grade POM renforcé de fibres de verre pour les pièces injectées recherchant rigidité, faible retrait et propriétés thermiques.",
       sampleAction: "Demander un échantillon EGH502H",
       snapshot: {
         aria: "Synthèse des propriétés EGH502H",
@@ -605,7 +605,7 @@ const messages = {
       breadcrumb: "EHI402T",
       eyebrow: "POM modifié choc · Transformation équilibrée",
       summary:
-        "EHI402T est un grade candidat pour les pièces fonctionnelles où la ténacité améliorée, le comportement à basse température et un profil de transformation équilibré doivent être évalués ensemble. Les valeurs publiées facilitent la présélection ; confirmez l'adéquation avec la géométrie réelle, les entailles, le cas de charge, le moule, la fenêtre de procédé et la température d'utilisation.",
+        "EHI402T est un grade POM à haute résistance au choc pour les pièces injectées fonctionnelles, avec des exigences de ténacité, de comportement à basse température et de transformation.",
       sampleAction: "Demander un échantillon EHI402T",
       snapshot: {
         aria: "Synthèse des données EHI402T",
@@ -650,7 +650,7 @@ const messages = {
       breadcrumb: "EDR180",
       eyebrow: "POM modifié choc · Fort allongement à la rupture",
       summary:
-        "EDR180 est un grade candidat pour les pièces fonctionnelles où la résistance aux chocs, le comportement à basse température et une réserve d'allongement élevée doivent être évalués ensemble. Les valeurs publiées facilitent la présélection ; confirmez l'adéquation avec la géométrie réelle, les entailles, le cas de charge, le moule, la fenêtre de procédé et la température d'utilisation.",
+        "EDR180 est un grade POM à haute résistance au choc pour les pièces injectées fonctionnelles, avec des exigences de résistance au choc, de comportement à basse température et d’allongement.",
       sampleAction: "Demander un échantillon EDR180",
       snapshot: {
         aria: "Synthèse des données EDR180",

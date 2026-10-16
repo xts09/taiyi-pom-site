@@ -310,7 +310,6 @@ export function LocalizedEngineeringCategoryContent({
           </section>
 
           <ActionPanel
-            footerAdjacent
             variant="recommendation"
             title={copy.inquiry.title}
             className="selection-support-band products-motion-support mt-12"

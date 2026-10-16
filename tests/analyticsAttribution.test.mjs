@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   buildAnalyticsPageLocation,
   captureMarketingAttribution,
+  clearMarketingAttribution,
   marketingAttributionStorageKey,
   parseMarketingAttribution,
   readMarketingAttribution,
@@ -24,6 +25,20 @@ const createStorage = () => {
       values.delete(key);
     },
   };
+};
+
+const installBrowserGlobals = (t, browserWindow) => {
+  for (const [key, value] of [
+    ["window", browserWindow],
+    ["document", { referrer: "" }],
+  ]) {
+    const descriptor = Object.getOwnPropertyDescriptor(globalThis, key);
+    Object.defineProperty(globalThis, key, { configurable: true, value });
+    t.after(() => {
+      if (descriptor) Object.defineProperty(globalThis, key, descriptor);
+      else delete globalThis[key];
+    });
+  }
 };
 
 test("parses only approved marketing parameters and keeps a safe landing path", () => {
@@ -107,4 +122,90 @@ test("removes expired attribution", () => {
     null,
   );
   assert.equal(storage.getItem(marketingAttributionStorageKey), null);
+});
+
+test("default attribution helpers are safe without browser globals", () => {
+  assert.equal(readMarketingAttribution(), null);
+  assert.equal(captureMarketingAttribution(), null);
+  assert.equal(clearMarketingAttribution(), undefined);
+});
+
+for (const [name, run] of [
+  ["read", () => assert.equal(readMarketingAttribution(), null)],
+  ["capture", () => {
+    const attribution = captureMarketingAttribution();
+    assert.equal(attribution.firstTouch.source, "google");
+    assert.equal(attribution.lastTouch.source, "google");
+  }],
+  ["clear", () => assert.equal(clearMarketingAttribution(), undefined)],
+]) {
+  test(`${name} tolerates a denied localStorage getter`, (t) => {
+    installBrowserGlobals(t, {
+      location: { href: "https://www.taiyipolymer.com/?utm_source=google" },
+      get localStorage() {
+        throw new DOMException("Storage is denied", "SecurityError");
+      },
+    });
+    assert.doesNotThrow(run);
+  });
+}
+
+test("storage operation failures keep attribution optional", () => {
+  const storage = {
+    getItem() { throw new DOMException("Storage is denied", "SecurityError"); },
+    setItem() { throw new DOMException("Storage is full", "QuotaExceededError"); },
+    removeItem() { throw new DOMException("Storage is denied", "SecurityError"); },
+  };
+
+  assert.equal(readMarketingAttribution(storage), null);
+  assert.equal(captureMarketingAttribution("https://www.taiyipolymer.com/", "", storage), null);
+  const attribution = captureMarketingAttribution(
+    "https://www.taiyipolymer.com/?utm_source=google",
+    "",
+    storage,
+  );
+  assert.equal(attribution.firstTouch.source, "google");
+  assert.equal(attribution.lastTouch.source, "google");
+  assert.equal(clearMarketingAttribution(storage), undefined);
+});
+
+test("expired attribution stays unavailable when removal is denied", () => {
+  const capturedAt = "2026-01-01T00:00:00.000Z";
+  const storage = {
+    getItem: () => JSON.stringify({
+      firstTouch: { capturedAt, landingPage: "/" },
+      lastTouch: { capturedAt, landingPage: "/contact" },
+    }),
+    removeItem() { throw new DOMException("Storage is denied", "SecurityError"); },
+  };
+
+  assert.equal(
+    readMarketingAttribution(storage, Date.parse("2026-04-15T00:00:00.000Z")),
+    null,
+  );
+});
+
+test("injected storage bypasses browser storage and clears saved attribution", (t) => {
+  let browserStorageReads = 0;
+  installBrowserGlobals(t, {
+    get localStorage() {
+      browserStorageReads += 1;
+      throw new DOMException("Storage is denied", "SecurityError");
+    },
+  });
+  const storage = createStorage();
+  const attribution = captureMarketingAttribution(
+    "https://www.taiyipolymer.com/?utm_campaign=first",
+    "",
+    storage,
+  );
+
+  assert.deepEqual(readMarketingAttribution(storage), attribution);
+  assert.deepEqual(
+    captureMarketingAttribution("https://www.taiyipolymer.com/contact", "", storage),
+    attribution,
+  );
+  clearMarketingAttribution(storage);
+  assert.equal(readMarketingAttribution(storage), null);
+  assert.equal(browserStorageReads, 0);
 });

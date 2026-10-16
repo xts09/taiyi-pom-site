@@ -19,5 +19,5 @@ export const metadata: Metadata = createPageMetadata({
 });
 
 export default function Home() {
-  return <HomePage messages={messages.Home} inLanguage="en" />;
+  return <HomePage messages={messages.Home} inquiryLabels={messages.Contact.form.inquiryTypeOptions} materialLabels={messages.Contact.form.materialOptionLabels} inLanguage="en" />;
 }

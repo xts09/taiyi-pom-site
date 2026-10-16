@@ -13,6 +13,7 @@ type EngineeringGfLandingRegistryEntry = {
   slug: `glass-fiber-reinforced-${string}-compound`;
   parentPath: `/products/categories/${string}`;
   compareWith?: EngineeringGfPolymer;
+  validationMaterialImage?: string;
   guideIds: readonly EngineeringGfGuideId[];
 };
 
@@ -29,6 +30,8 @@ export const engineeringGfLandingRegistry = {
   PA66: {
     slug: "glass-fiber-reinforced-pa66-compound",
     parentPath: "/products/categories/pa66-compound",
+    validationMaterialImage:
+      "/images/material-illustrations/pa66-gf-specimen.webp",
     compareWith: "PA6",
     guideIds: [
       "pa6-vs-pa66-reinforced-parts",

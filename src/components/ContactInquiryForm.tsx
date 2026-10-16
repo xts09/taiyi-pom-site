@@ -3,9 +3,12 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   trackInquiryFallback,
+  trackInquiryFunnel,
   trackInquirySubmitted,
+  type InquiryErrorReason,
 } from "@/lib/conversionEvents";
 import { contactEmail } from "@/lib/contactDetails";
+import { useGoogleAnalyticsConsent } from "@/lib/googleConsent";
 import { pomSubcategoryLabels, productCategoryOrder } from "@/lib/productCategories";
 import {
   clearContactRequirement,
@@ -22,6 +25,7 @@ import {
   readMarketingAttribution,
 } from "@/lib/analyticsAttribution";
 import {
+  contactContextChangeEvent,
   getContactContextLabel,
   getContactContextMessage,
   parseContactContextHash,
@@ -109,6 +113,9 @@ export function ContactInquiryForm({
 }: ContactInquiryFormProps) {
   const safeInitialMessage = clampInquiryMessage(initialMessage);
   const submissionInFlight = useRef(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const viewRecorded = useRef(false);
+  const consent = useGoogleAnalyticsConsent();
   const [status, setStatus] = useState<
     "idle" | "submitting" | "sent" | "fallback"
   >("idle");
@@ -132,6 +139,19 @@ export function ContactInquiryForm({
     material && !materialOptions.includes(material)
       ? [material, ...materialOptions]
       : materialOptions;
+
+  useEffect(() => {
+    if (consent !== "granted" || viewRecorded.current || !formRef.current) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!viewRecorded.current && entry?.isIntersecting && trackInquiryFunnel("view")) {
+        viewRecorded.current = true;
+        observer.disconnect();
+      }
+    });
+    observer.observe(formRef.current);
+    return () => observer.disconnect();
+  }, [consent]);
 
   useEffect(() => {
     let frame = 0;
@@ -267,6 +287,7 @@ export function ContactInquiryForm({
       "",
       `${analyticsUrl.pathname}${analyticsUrl.search}`,
     );
+    window.dispatchEvent(new Event(contactContextChangeEvent));
   };
 
   const submitInquiry = async (form: HTMLFormElement) => {
@@ -287,6 +308,8 @@ export function ContactInquiryForm({
       () => controller.abort(),
       inquiryClientTimeoutMs,
     );
+    let responseStatus: number | undefined;
+    let errorReason: InquiryErrorReason = "delivery_rejected";
 
     try {
       const response = await fetch("/api/inquiry", {
@@ -309,6 +332,7 @@ export function ContactInquiryForm({
         }),
         signal: controller.signal,
       });
+      responseStatus = response.status;
       const result = (await response.json()) as {
         delivered?: boolean;
         fallback?: boolean;
@@ -331,11 +355,22 @@ export function ContactInquiryForm({
         clearContactRequirement();
         return;
       }
+      errorReason = response.status === 429
+        ? "rate_limited"
+        : response.status === 503 || result.fallback
+          ? "delivery_unavailable"
+          : "delivery_rejected";
     } catch {
-      // Keep the fallback path below available for local and offline cases.
+      errorReason = controller.signal.aborted
+        ? "timeout"
+        : responseStatus === undefined
+          ? "network"
+          : "invalid_response";
     } finally {
       window.clearTimeout(timeoutId);
     }
+
+    trackInquiryFunnel("error", errorReason);
 
     try {
       await navigator.clipboard?.writeText(body);
@@ -353,6 +388,7 @@ export function ContactInquiryForm({
     if (submissionInFlight.current) return;
 
     submissionInFlight.current = true;
+    trackInquiryFunnel("attempt");
     try {
       await submitInquiry(event.currentTarget);
     } finally {
@@ -361,7 +397,7 @@ export function ContactInquiryForm({
   };
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
       <input
         className="hidden"
         name="website"

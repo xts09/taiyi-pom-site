@@ -17,7 +17,7 @@ import {
   type EngineeringTdsDocument,
 } from "@/data/engineeringTds";
 import { products, type ProductProperty } from "@/data/products";
-import { availableDocuments } from "@/data/company";
+import { getGradeDocuments } from "@/data/company";
 import { getLanguageAlternatesForPath } from "@/i18n/releaseManifest";
 import {
   getProductListDescriptor,
@@ -310,11 +310,6 @@ function EngineeringProductDetailPage({
     document.flammability && document.flammability !== "-"
       ? `${document.flammability} flammability reference`
       : "Grade-specific document support for review",
-    ...(document.screening
-      ? []
-      : [
-          "Final selection should be confirmed against part design and molding conditions",
-        ]),
   ];
   const documentsToShow = selectRelatedGrades({
     items: engineeringTdsDocuments,
@@ -400,14 +395,12 @@ function EngineeringProductDetailPage({
                 <p className="product-detail-summary">
                   {document.screening ? (
                     <>
-                      {document.screening.positioning} Confirm final suitability
-                      against the molded part and processing conditions.
+                      {document.screening.positioning}
                     </>
                   ) : (
                     <>
                       {document.description} The recorded profile for this grade
-                      lists {gradeProfile}. Confirm final suitability against the
-                      molded part and processing conditions.
+                      lists {gradeProfile}.
                     </>
                   )}
                 </p>
@@ -419,11 +412,15 @@ function EngineeringProductDetailPage({
                   >
                     <span>Document Support</span>
                     <div>
-                      {availableDocuments.map((availableDocument) => (
+                      {/* Engineering records are data-only: no confirmed document list. */}
+                      {getGradeDocuments({}).map((availableDocument) => (
                         <span key={availableDocument}>{availableDocument}</span>
                       ))}
                     </div>
-                    <p>REACH / RoHS support available upon request.</p>
+                    <p>
+                      SDS, COA, REACH and RoHS documents are available on
+                      request, confirmed by grade and project.
+                    </p>
                   </div>
 
                   <div className="product-detail-hero-side stagger-list">
@@ -459,8 +456,7 @@ function EngineeringProductDetailPage({
             <div className="product-detail-resource-copy stagger-list">
               <strong>Grade Snapshot</strong>
               <p>
-                Review the reference values before confirming this material for a
-                molded part or document request.
+                Catalog values and test methods for this grade.
               </p>
             </div>
 
@@ -775,14 +771,12 @@ export default async function ProductDetailPage({
                   {campaignProfile ? (
                     <>
                       {product.description} Published screening values include{" "}
-                      {gradeProfile}. Confirm the final choice with the actual
-                      part, tooling, and processing conditions.
+                      {gradeProfile}.
                     </>
                   ) : (
                     <>
                       {product.description} The recorded profile for this grade
-                      lists {gradeProfile}. Confirm final suitability against
-                      the molded part and processing conditions.
+                      lists {gradeProfile}.
                     </>
                   )}
                 </p>
@@ -794,11 +788,14 @@ export default async function ProductDetailPage({
                   >
                     <span>Document Support</span>
                     <div>
-                      {availableDocuments.map((document) => (
+                      {getGradeDocuments(product).map((document) => (
                         <span key={document}>{document}</span>
                       ))}
                     </div>
-                    <p>REACH / RoHS support available upon request.</p>
+                    <p>
+                      SDS, COA, REACH and RoHS documents are available on
+                      request, confirmed by grade and project.
+                    </p>
                   </div>
 
                   <div className="product-detail-hero-side stagger-list">

@@ -108,6 +108,21 @@ for (const path of ["/contact", "/zh/contact"]) {
           )
           .map((event) => event[1]);
       });
+      const diagnostics = await page.evaluate(() => {
+        const browserWindow = window as typeof window & {
+          __inquiryEvents: unknown[][];
+        };
+        return browserWindow.__inquiryEvents.filter(
+          (event) => event[0] === "event" &&
+            ["inquiry_attempt", "inquiry_error"].includes(String(event[1])),
+        );
+      });
+      expect(diagnostics.filter((event) => event[1] === "inquiry_attempt")).toHaveLength(1);
+      expect(diagnostics.filter((event) => event[1] === "inquiry_error")).toHaveLength(
+        scenario.sent ? 0 : 1,
+      );
+      expect(JSON.stringify(diagnostics)).not.toContain("inquiry-test@example.invalid");
+      expect(JSON.stringify(diagnostics)).not.toContain("Keep these requirements.");
       expect(events.filter((event) => event !== "conversion")).toEqual(
         scenario.expectedEvents,
       );
@@ -116,4 +131,41 @@ for (const path of ["/contact", "/zh/contact"]) {
       }
     });
   }
+
+  test(`inquiry submission tolerates unavailable localStorage on ${path}`, async ({ page }) => {
+    let requestCount = 0;
+    await page.route("**/api/inquiry", async (route) => {
+      requestCount += 1;
+      expect(route.request().method()).toBe("POST");
+      expect(route.request().postDataJSON()).toMatchObject({
+        company: "Regression sample",
+        email: "inquiry-test@example.invalid",
+        application: "Test part",
+        attribution: null,
+      });
+      await route.fulfill({ status: 200, json: { delivered: true, fallback: false } });
+    });
+
+    await page.goto(path);
+    await page.evaluate(() => {
+      Object.defineProperty(window, "localStorage", {
+        configurable: true,
+        get() {
+          throw new DOMException("Storage is denied", "SecurityError");
+        },
+      });
+    });
+    const form = page.locator("form.contact-form");
+    await form.locator('[name="company"]').fill("Regression sample");
+    await form.locator('[name="email"]').fill("inquiry-test@example.invalid");
+    await form.locator('[name="application"]').fill("Test part");
+    await form.locator('[name="message"]').fill("Keep these requirements.");
+    await form.locator('button[type="submit"]').click();
+
+    await expect(form.locator('[role="status"]')).toHaveClass(/contact-submit-status-sent/);
+    await expect(form.locator('button[type="submit"]')).toBeEnabled();
+    await expect(form.locator('[name="company"]')).toHaveValue("");
+    await expect(form.locator('[name="message"]')).toHaveValue("");
+    expect(requestCount).toBe(1);
+  });
 }

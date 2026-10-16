@@ -61,6 +61,8 @@ export default async function LocalizedHomePage({
   return (
     <HomePage
       messages={messages.Home}
+      inquiryLabels={messages.Contact.form.inquiryTypeOptions}
+      materialLabels={messages.Contact.form.materialOptionLabels}
       inLanguage={localeConfig.htmlLang}
       localeSegment={localeConfig.urlSegment}
     />

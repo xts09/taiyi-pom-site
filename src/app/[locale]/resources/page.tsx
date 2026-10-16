@@ -228,7 +228,6 @@ export default async function LocalizedResourcesPage({
 
             <div
               className="resource-index-contact-row"
-              data-footer-adjacent="true"
             >
               <div>
                 <h2>{messages.inquiry.title}</h2>

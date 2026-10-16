@@ -62,7 +62,7 @@ export function NotFoundContent({
   return (
     <main className="text-slate-900">
       <section className="mesh-surface mx-auto max-w-5xl px-5 py-16 sm:px-6 sm:py-20 lg:px-8">
-        <div className="inner-hero reveal-up" data-footer-adjacent="true">
+        <div className="inner-hero reveal-up">
           <p className="section-kicker mb-4">404</p>
           <h1 className="text-4xl font-black tracking-tight text-white md:text-5xl">
             {copy.title}

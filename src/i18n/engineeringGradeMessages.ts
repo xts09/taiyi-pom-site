@@ -2,7 +2,6 @@ import type { EngineeringTdsDocument } from "@/data/engineeringTds";
 import { createChineseEngineeringGradeCopy } from "@/i18n/chineseEngineeringGradeMessages";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
-import { chineseEngineeringDirectionCopy } from "@/i18n/messages/zh-CN-engineering-categories";
 
 const contactSources: Record<LocalizedUrlSegment, string> = {
   de: "Deutsche Seite für technische Werkstofftypen",
@@ -57,40 +56,23 @@ const createLocalizedSummary = (
   document: EngineeringTdsDocument,
   localeSegment: LocalizedUrlSegment,
 ) => {
-  const direction = translateExpandedContent(
-    chineseEngineeringDirectionCopy[document.category] ?? {
-      label: document.category,
-      summary: "结合零部件功能、加工条件与目标性能进行项目评估。",
-    },
-    localeSegment,
-  );
-
-  if (localeSegment === "zh") {
-    if (isSpunGf45(document)) {
-      return `${document.grade} 是 ${document.family} GF45 玻纤增强牌号。${direction.summary} 当前页面所列数值用于技术初筛；最终适用性需结合零部件几何、模具、加工窗口和实际工况确认。`;
-    }
-    return createChineseEngineeringGradeCopy(document).summary;
-  }
-
   if (isSpunGf45(document)) {
+    if (localeSegment === "zh") {
+      return `${document.grade} 是 ${document.family} GF45 玻纤增强牌号。用于需要更高刚性、强度、耐热和承载能力的结构件。`;
+    }
     if (localeSegment === "de") {
-      return `${document.grade} ist ein glasfaserverstärkter ${document.family}-Typ mit 45 % Glasfaser (GF45). ${direction.summary} Die aufgeführten Werte dienen der technischen Vorauswahl. Die endgültige Eignung ist anhand von Bauteil, Werkzeug, Verarbeitung und Einsatzbedingungen zu bestätigen.`;
+      return `${document.grade} ist ein glasfaserverstärkter ${document.family}-Typ mit 45 % Glasfaser (GF45). Für Strukturteile mit höheren Anforderungen an Steifigkeit, Festigkeit, Wärmeverhalten und Tragfähigkeit.`;
     }
     if (localeSegment === "fr") {
-      return `${document.grade} est un grade de ${document.family} renforcé à 45 % de fibres de verre (GF45). ${direction.summary} Les valeurs présentées servent à la présélection technique. L’aptitude finale doit être confirmée sur la pièce, avec l’outillage, le procédé et les conditions réelles d’utilisation.`;
+      return `${document.grade} est un grade de ${document.family} renforcé à 45 % de fibres de verre (GF45). Pour les pièces structurelles exigeant davantage de rigidité, de résistance, de tenue thermique et de capacité de charge.`;
     }
-    return `${document.grade} é um grau de ${document.family} reforçado com 45% de fibra de vidro (GF45). ${direction.summary} Os valores apresentados servem para a pré-seleção técnica. A adequação final deve ser confirmada na peça, com o ferramental, o processo e as condições reais de uso.`;
+    return `${document.grade} é um grau de ${document.family} reforçado com 45% de fibra de vidro (GF45). Para peças estruturais com maiores requisitos de rigidez, resistência, comportamento térmico e capacidade de carga.`;
   }
 
-  if (localeSegment === "de") {
-    return `${document.grade} ist ein Werkstofftyp aus der ${document.family}-Familie für die Richtung „${direction.label}“. ${direction.summary} Die aufgeführten Werte dienen der technischen Vorauswahl. Die endgültige Eignung ist anhand der Bauteilgeometrie, des Werkzeugs, des Verarbeitungsfensters und der realen Einsatzbedingungen zu bestätigen.`;
-  }
-
-  if (localeSegment === "fr") {
-    return `${document.grade} est un grade de la famille ${document.family}, orienté « ${direction.label} ». ${direction.summary} Les valeurs présentées servent à la présélection technique. L’aptitude finale doit être confirmée à partir de la géométrie de la pièce, de l’outillage, de la fenêtre de procédé et des conditions réelles d’utilisation.`;
-  }
-
-  return `${document.grade} é um grau da família ${document.family}, na direção “${direction.label}”. ${direction.summary} Os valores apresentados servem para a pré-seleção técnica. A adequação final deve ser confirmada com base na geometria da peça, no ferramental, na janela de processo e nas condições reais de uso.`;
+  return translateExpandedContent(
+    createChineseEngineeringGradeCopy(document).summary,
+    localeSegment,
+  );
 };
 
 export const createLocalizedEngineeringGradeCopy = (
@@ -98,8 +80,6 @@ export const createLocalizedEngineeringGradeCopy = (
   localeSegment: LocalizedUrlSegment,
 ): LocalizedEngineeringGradeCopy => {
   const copy = translateExpandedContent(
-    // The dictionaries use the original source keys. Replace these two fields
-    // with core-data wording in the returned public copy below.
     createChineseEngineeringGradeCopy(document),
     localeSegment,
   );

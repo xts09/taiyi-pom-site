@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  buildContactDirectEmailHref,
   createContactHref,
   getContactContextLabel,
   getContactContextMessage,
@@ -22,6 +23,38 @@ const canonicalContactIntents = [
   "grade-evaluation",
   "quote-supply",
 ];
+
+test("direct email drafts retain hash-based grade context in every language", () => {
+  const context = parseContactContextHash(new URL(createContactHref({
+    application: "Window carrier plate",
+    material: "Glass Fiber Reinforced POM",
+    grade: "EGH402H",
+    reference: "Reference & sample",
+    candidates: "EGH402H / EGH602H",
+    source: "private-source-marker",
+  }), "https://example.com").hash);
+
+  for (const messages of [en, zhCN, de, fr, ptBR]) {
+    const copy = messages.Contact.directEmail;
+    const draft = new URL(buildContactDirectEmailHref(context, copy, "sales@example.invalid"));
+    const body = draft.searchParams.get("body");
+    assert.equal(draft.searchParams.get("subject"), copy.subject);
+    assert.ok(body.includes(`${copy.application}: Window carrier plate`));
+    assert.ok(body.includes(`${copy.material}: Glass Fiber Reinforced POM / EGH402H`));
+    assert.ok(body.includes(`${copy.reference}: Reference & sample`));
+    assert.ok(body.includes(`${copy.candidates}: EGH402H / EGH602H`));
+    assert.ok(!body.includes("private-source-marker"));
+  }
+});
+
+test("cleared direct email context contains no previous grade or candidate", () => {
+  const copy = en.Contact.directEmail;
+  const href = buildContactDirectEmailHref(parseContactContextHash(""), copy, "sales@example.invalid");
+  const body = new URL(href).searchParams.get("body");
+  assert.ok(body.includes(`${copy.application}: `));
+  assert.ok(!body.includes(`${copy.candidates}:`));
+  assert.ok(!body.includes(`${copy.reference}:`));
+});
 
 test("builds an encoded contact handoff and preserves useful context", () => {
   const href = createContactHref({

@@ -77,10 +77,6 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · PLATFORM® Technische Werkstoffe",
     logoAlt: "Eingetragene Marke PLATFORM",
-    pitchTitle: "Werkstoffe, Dokumente und Lieferunterstützung.",
-    pitchCopy:
-      "Informieren Sie sich über technische Werkstoffe von PLATFORM®, Werkstoffdaten und technische Dokumente oder sprechen Sie Taiyi Polymer auf Muster, Belieferung und Unternehmensnachweise an.",
-    discussApplication: "Anwendung besprechen",
     products: "Produkte",
     applications: "Anwendungen",
     allApplications: "Alle Anwendungen",

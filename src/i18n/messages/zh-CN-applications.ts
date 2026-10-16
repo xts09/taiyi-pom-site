@@ -14,7 +14,7 @@ const messages = {
   contactSource: "应用目录",
   hero: {
     eyebrow: "应用工程",
-    title: "面向注塑零部件的应用工程",
+    title: "注塑零部件的材料选择",
     description:
       "从零件失效切入选材：运动件平衡摩擦与磨耗，卡扣平衡韧性与保持力，承载件平衡刚性与尺寸。按行业或零部件找到候选配方、牌号数据和试模重点。",
     primaryAction: "讨论您的应用",
@@ -30,14 +30,14 @@ const messages = {
     eyebrow: "按行业浏览",
     title: "应用领域",
     description:
-      "选择与您的零部件最接近的使用场景。每条路径都会把典型部件和工况连接到需要优先审核的材料性能。",
+      "查看各应用中的典型部件、主要工况和相关材料特点。",
     viewAction: "查看应用路径",
   },
   componentSolutions: {
     eyebrow: "按零部件浏览",
     title: "零部件解决方案路径",
     description:
-      "选择与设计最接近的注塑零部件系列，比较其工况输入、主要失效模式与验证需求。",
+      "从齿轮、轴套、阀芯等零部件查看结构特点、使用工况和相关材料。",
     allAction: "查看全部零部件解决方案",
     relatedTitle: "相关零部件方案",
     relevantPartsLabel: "相关零部件",
@@ -54,9 +54,9 @@ const messages = {
   },
   selection: {
     eyebrow: "选型依据",
-    title: "我们如何建立候选牌号清单",
+    title: "选材依据",
     description:
-      "我们根据注塑零部件、模具方案、多腔一致性、收缩目标、使用工况与性能目标，提供候选牌号清单。",
+      "载荷、运动、环境与尺寸要求影响材料选择；模具方案和加工条件则关系到零件成型表现。",
     items: [
       "模具开发阶段与模具方案",
       "模穴数量、流动路径与穴间一致性",
@@ -66,7 +66,7 @@ const messages = {
   },
   inquiry: {
     eyebrow: "询盘准备",
-    title: "需要协助筛选候选牌号？",
+    title: "获取相关牌号资料",
     description:
       "提交当前材料、零件用途与未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可用于确定首轮验证重点。",
     action: "讨论您的应用",
@@ -88,18 +88,18 @@ const messages = {
       scene: "部件与工况",
       parts: "典型部件",
       materials: "候选材料",
-      evaluation: "材料评估",
+      evaluation: "牌号资料",
     },
     hero: {
-      eyebrow: "应用与部件审核",
+      eyebrow: "应用与材料",
       primaryAction: "讨论您的应用",
       secondaryAction: "查找牌号数据与 TDS",
     },
     scene: {
       eyebrow: "部件与工况",
-      title: "从部件与实际工况开始",
+      title: "部件功能与使用工况",
       visualDescription:
-        "筛选牌号前，应先审核实际机构、运动方式、装配配合与尺寸目标。",
+        "机构、运动方式、装配配合与尺寸要求共同影响材料选择。",
       basicDescription:
         "部件功能、使用工况、尺寸目标与资料需求，是比较改性 POM 牌号的重要依据。",
       imageAltSuffix: "应用场景，用于工程塑料材料审核",
@@ -111,23 +111,22 @@ const messages = {
     parts: {
       eyebrow: "典型部件",
       titleSuffix: "的代表性部件",
-      description:
-        "以部件几何、载荷、运动方式与使用环境为起点；最终材料选择仍需结合具体牌号和项目验证。",
+      description: "了解典型部件的结构、载荷、运动方式及使用环境。",
       cardLabel: "典型部件",
       componentEyebrow: "零部件指南",
-      componentTitle: "以下部件可进一步查看专项审核指南",
+      componentTitle: "相关零部件选材指南",
     },
     materials: {
       eyebrow: "候选材料",
-      title: "适用于上述部件审核的材料方向",
+      title: "相关材料",
       description:
-        "结合上述部件功能与工况，比较通常进入初筛的 POM 候选材料方向。",
-      keyUseLabel: "主要审核方向",
+        "比较相关 POM 材料的性能特点和典型用途。",
+      keyUseLabel: "选材要点",
       imageAltSuffix: "材料颗粒",
     },
     evaluation: {
-      eyebrow: "材料评估",
-      title: "准备建立候选牌号清单？",
+      eyebrow: "牌号资料",
+      title: "获取相关牌号资料",
       description:
         "提交当前材料、零件用途与未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可用于确定首轮验证重点。",
       action: "讨论您的应用",

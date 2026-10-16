@@ -291,7 +291,6 @@ export function ProductsDirectoryPage({
           </section>
 
           <ActionPanel
-            footerAdjacent
             id="product-inquiry"
             variant="recommendation"
             title={messages.inquiry.title}

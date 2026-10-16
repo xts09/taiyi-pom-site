@@ -5,6 +5,7 @@ import { washingMachinePageDesign } from "./washingMachinePageDesign";
 import { textilePageDesign } from "./textileApplicationPageDesign";
 import { outdoorPageDesign } from "./outdoorApplicationPageDesign";
 import { waterControlPageDesign } from "./waterControlApplicationPageDesign";
+import { automotivePartGroupPageDesign } from "./automotivePartGroupPageDesign";
 
 export type ApplicationPartGroupCopy = {
   title: string;
@@ -19,6 +20,7 @@ export type ApplicationPartGroupsCopy = {
   partsLabel: string;
   imageLabel: string;
   materialsAction: string;
+  materialsLabel?: string;
   groups: Record<string, ApplicationPartGroupCopy>;
 };
 
@@ -34,6 +36,13 @@ const wearPOM = "/products/categories/wear-resistant-low-friction-pom-compound";
 const reinforcedPOM = "/products/categories/glass-fiber-reinforced-pom-compound";
 
 export const applicationPartGroupPresentations: Partial<Record<string, ApplicationPartGroupPresentation>> = {
+  automotive: {
+    copy: automotivePartGroupPageDesign,
+    idPrefix: "automotive",
+    defaultGroupId: "automotive-visibility-window",
+    // Automotive candidates are resolved per part from automotivePartMaterials.
+    materialPathsByGroup: {},
+  },
   electronics: {
     copy: electronicsPageDesign,
     idPrefix: "electronics",

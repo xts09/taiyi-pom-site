@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { UnitText, ValueText } from "@/components/UnitText";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { availableDocuments } from "@/data/company";
+import { getGradeDocuments } from "@/data/company";
 import type { Product } from "@/data/products";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import type { ProductFunnelMessages } from "@/i18n/productFunnelTypes";
@@ -146,7 +146,7 @@ export function LocalizedProductGradePage({
                   >
                     <span>{copy.documentSupport}</span>
                     <div>
-                      {availableDocuments.map((document) => (
+                      {getGradeDocuments(product).map((document) => (
                         <span key={document}>{document}</span>
                       ))}
                     </div>
@@ -230,7 +230,6 @@ export function LocalizedProductGradePage({
               <h2 className="text-xl font-black text-slate-950">
                 {copy.properties.title}
               </h2>
-              <p>{copy.properties.body}</p>
             </div>
 
             <div className="overflow-x-auto">

@@ -77,10 +77,6 @@ const messages = {
   Footer: {
     brandRelation: "Taiyi Polymer · Materiais de engenharia PLATFORM®",
     logoAlt: "Marca registrada PLATFORM",
-    pitchTitle: "Materiais, documentos e suporte ao fornecimento.",
-    pitchCopy:
-      "Conheça os materiais de engenharia PLATFORM®, os dados de grades e os documentos técnicos, ou fale com a Taiyi Polymer sobre amostras, fornecimento e qualificações da empresa.",
-    discussApplication: "Fale sobre sua aplicação",
     products: "Produtos",
     applications: "Aplicações",
     allApplications: "Todas as aplicações",

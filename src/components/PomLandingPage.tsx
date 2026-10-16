@@ -590,7 +590,6 @@ export function PomLandingPage({
         </section>
 
         <ActionPanel
-          footerAdjacent
           variant="recommendation"
           title={ui.finalTitle}
           className="selection-support-band resource-cta pom-landing-cta"

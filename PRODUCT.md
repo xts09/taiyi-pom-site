@@ -2,6 +2,33 @@
 
 This file is the product, content, design, and acceptance reference for the Taiyi Polymer website. It is not runtime code. Use it to keep future page edits, AI-generated content, component choices, and visual polish aligned with the site's business goal, brand direction, implementation scope, and release quality bar.
 
+## Approved Release Scope (2026-10-17)
+
+The homepage body, precision-gear and engineering-GF compositions, application
+part groups, shared reading controls and inquiry diagnostics are approved for
+release together. Internal component acceptance pages remain development-only.
+The current production Header remains the released navigation owner; the local
+navigation revision and its related tokens, messages, examples and tests stay
+outside this release. Actual deployment timing and verification evidence belong
+under `outputs/site-release-2026-10-17/`.
+
+## Concept / Demo Scope — 2026-10-10
+
+The content-evidence, approved-style, catalog, localization, SEO and release
+requirements in this document apply to production adoption. A requested
+independent concept/Demo may explore new typography, palette, layouts, copy,
+sample figures, placeholders and generated imagery before those checks.
+Identify the deliverable as a demo in its title or delivery notes; avoid repeated
+warnings inside the page. Do not block visual exploration on a complete document
+inventory, certification audit or live form implementation.
+
+Treat the working baseline and historical approvals as context for production
+repairs, not as immutable art direction for a new concept or requested redesign.
+Preserve the identity/content elements explicitly required by the current user
+brief. Validate content, routes, functional contracts and release requirements
+when a direction is selected for production; keep experimental assets and data
+out of production until that adoption work is requested.
+
 ## Current Working Baseline
 
 Release acceptance uses checks tied to the exact commit being released:
@@ -30,7 +57,7 @@ The current homepage and main navigation baseline is:
   beside Menu, not buried inside the main navigation panel.
 
 - The Resources mega menu includes an explicit grade-data/TDS entry to the
-  localized `/technical-data-sheets` directory. The desktop search icon and
+  localized `/technical-data-sheets` directory. The desktop TDS action and
   mobile data link lead to that same released directory; this entry does not
   imply a separate site-wide resource search.
 
@@ -356,11 +383,17 @@ Use Current Language Release Policy below for current coverage and review requir
 
 ### Homepage Manufacturing Evidence Density Polish (2026-08-26)
 
+Historical layout snapshot; the 2026-10-14 homepage body adoption supersedes
+this composition while retaining its factual sources.
+
 - The Manufacturing & Validation section retains the existing factory image, capacity figures, document availability boundaries, certificates, order, and route position. Its desktop intro now uses the canonical 5/7 evidence split, with the supplied production-and-validation explanation beneath the unchanged section heading.
 - The three verified company figures remain unchanged while their panels use a more compact vertical rhythm. Project Documents remains one full-width evidence surface, now pairing the existing availability statement and Contact handoff with semantic TDS, SDS, COA, REACH, and RoHS descriptions; the Contact URL uses the existing source-context helper and adds no route.
 - Desktop certificate content, color, and four-column structure remain unchanged. Intermediate and mobile layouts use two certificate columns without horizontal scrolling; the document terminology and supplied explanation are maintained across all five released languages without adding a new performance or compliance claim.
 
 ### Homepage First-Two-Screen Brand And Voice Baseline (2026-08-27)
+
+Historical material-opening layout; the restrained Hero voice remains current,
+while the 2026-10-14 body adoption owns the below-hero sequence.
 
 - The approved Home Hero and material-family opening module are the messaging baseline for future Home, About, product-introduction, News, and other branded editorial work. Technical data, compliance, and legal content retain the more exact register required by their own page purpose.
 - The Hero message architecture is `material position -> credible portfolio range -> relevant performance directions -> customer outcome`. It leads with one clear manufacturer position, establishes modified POM as the core line and PA6, PA66, and PPA as selected extensions, and ends with a concrete production or application outcome. The same performance list must not be repeated in a separate badge row.
@@ -377,6 +410,9 @@ Use Current Language Release Policy below for current coverage and review requir
 - Copy makes no fixed response-time, MOQ, defect-rate, delivery, or formulation-success promise. Material adjustments are assessed for feasibility by project; document availability remains grade- and project-specific.
 
 ### Homepage Manufacturing Narrative Continuity (2026-09-24)
+
+Historical narrative layout; the 2026-10-14 body adoption replaces the long
+introduction with separate factory and laboratory evidence rows.
 
 - Manufacturing & Validation now follows the Home Hero and core POM story with a section label, the Chinese title `让材料的表现，经得起量产`, and two narrative paragraphs about the demands that emerge from trial to sustained production and the Yancheng manufacturing foundation behind modified materials. The five released languages preserve that progression without turning the introduction into a facilities list.
 - The factory photograph, verified company figures, document types and grade/project availability note, and existing certificates remain the factual evidence. The labels identify technical and batch documents and management-system certificates directly; a separate international-project promotional sentence is removed from this Home module. The shorter intro described in the 2026-08-26 manufacturing snapshot is historical and superseded here.
@@ -462,10 +498,10 @@ Use Current Language Release Policy below for current coverage and review requir
   The new case has its own metadata, English/Chinese alternates and sitemap
   entries; unlocalized versions are not published. The gear landing page now
   leads with material directions, a short case entry and project contact.
-  Diagnostic details and the full checklist remain available in disclosures.
+  Diagnostic and material-selection details remain available in disclosures.
   This implementation is local and has not been deployed.
-- The gear landing's initial material comparison includes suitability and a
-  key validation check for each family. Its case teaser shows the reported
+- The gear landing's initial material comparison shows suitability, while each
+  family's validation check is inside the selection disclosure. Its case teaser shows the reported
   requirement, conditions, sample quantity and later wear together. Both
   general inquiry buttons use the canonical application label and pass POM
   plus the localized gear application into the existing contact form.
@@ -488,6 +524,33 @@ Use Current Language Release Policy below for current coverage and review requir
   and evidence boundaries, with current official material pages as writing references.
 - This is a local improvement to existing categories. It creates no new public
   routes, grade records, technical values or document availability claims.
+
+### PA66 GF Landing Simplification (2026-10-08, Local Implementation)
+
+- The five-language PA66 glass-fiber landing now names its GF50 grades in the
+  comparison introduction, using the catalog to supply those names. The full
+  range remains the default; percentage filtering, grade data and grade-specific
+  TDS requests retain their existing behavior.
+- The standalone material-tradeoff block is consolidated into the properties
+  section. Four topics cover stiffness and strength, moisture, fiber orientation
+  and molded dimensions, and temperature and load. Unknown conditioning and
+  incomplete shrinkage data remain explicit; processing and part-approval
+  requirements remain available in the expandable selection note.
+- The PA6 comparison and two selection guides sit beside these technical notes.
+  The previous `#engineering-tradeoffs` bookmark still has a target at this
+  section. PA6 and PPA retain their separate tradeoff sections.
+- The PA66 specimen image now uses an edited glass-fiber material appearance.
+  Its five-language caption identifies the image as a material illustration,
+  rather than a record of a specific grade test. The equipment composition and
+  figure layout are preserved; PA6 and PPA keep the original laboratory photo.
+- PA66's five-language copy uses concise material and part descriptions, with
+  an unnumbered properties section. Processing, incomplete shrinkage data,
+  continuous-temperature limits and project approval remain in an expandable
+  molding/selection note. Mechanical-data conditioning remains visible beside
+  the grade directory. Data and inquiry labels describe their destinations;
+  no grade values, qualification claims or document availability are added.
+- This is a local refinement of existing routes. It does not change catalog
+  values, ad destinations or publication status.
 
 ### Reinforced Material Queries (2026-10-06, Local Implementation)
 
@@ -544,8 +607,25 @@ Use Current Language Release Policy below for current coverage and review requir
 - These copy refinements cover all five released languages, preserve current
   routes and page compositions, and have not been deployed.
 
+### Application Selected-Part Display (2026-10-10, Local Implementation)
+
+- All eight registered application details use single-part details beside the
+  selected image: automotive, electronics, washing-machine components, motion
+  components, conveyor automation, textile machinery, outdoor equipment and
+  water control. Their five language versions share the same behavior.
+- Category and thumbnail controls retain every canonical part; the active part
+  name, description and existing exact component guide switch with the image.
+  The generic requirements label is omitted. The image-free automotive seat
+  guide remains available, with details and materials aligned on desktop.
+- Existing material conditions, evidence, inquiry context and group/part
+  bookmarks retain their owners and meanings. This change remains local.
+
 ### Electronics Application Subcategories (2026-10-07, Local Implementation)
 
+- On 2026-10-10, the adjacent part details were narrowed to the selected part.
+  Thumbnail controls switch the featured image, part name, description and exact
+  guide together on all five electronics locales. The generic requirements
+  label is omitted; category-level material directions retain their own conditions.
 - The reviewed electronics prototype is implemented on the English, German,
   French, Brazilian Portuguese and Chinese electronics detail routes. Its
   three existing groups use same-page tabs, one main part image with thumbnail
@@ -779,12 +859,6 @@ Use proof points such as factory scale, production lines, testing equipment, ava
 
 ## Voice
 
-The maintained `codex/keptds` branch uses explicit Vercel deployments. Its Git
-pushes run the release-quality workflow while `vercel.json` disables automatic
-cloud deployments for that branch. Check live storage before an explicit
-production build and retain the current production deployment as a rollback
-target. This avoids retaining a preview solely as an intermediate release step.
-
 The voice is professional, restrained, technical, and helpful.
 
 Write active engineering guidance. Explain the failure risk, formulation choice,
@@ -831,6 +905,7 @@ Avoid:
 - Vague innovation copy.
 - Generic `direction`, `review`, or `support` wording when a concrete customer outcome can be named.
 - Repeated procedural introductions such as “first define … then compare/request …” in page summaries, cards and section headings. Describe the material, application, selection factors or available information directly. Preserve sequences when they are necessary for real test methods, processing instructions or form interactions. Apply this standard to English, Simplified Chinese, German, French and Brazilian Portuguese; localized introductions should not reintroduce the same formula.
+- Generic final-approval reminders repeated across the Hero, material cards and inquiry panel. Put each technical qualification beside the relevant data, in material notes or in the specific test guidance. Keep distinct processing, compliance and project limits where they help the reader make a decision.
 - Unsupported claims about potable water, food contact, automotive approval, flammability, outdoor durability, fuel contact, or electrical compliance.
 
 ## Content Rules
@@ -917,11 +992,14 @@ News articles lead with event-specific facts: who took part, what requirement or
 ### Home
 
 - Establish POM compounds as the core line, with selected engineering plastic compound support, within the first screen.
-- Treat the approved Hero and material-family opening module as the brand and voice benchmark defined in `Homepage First-Two-Screen Brand And Voice Baseline (2026-08-27)`; preserve its message priority and restraint without cloning its layout across unrelated pages.
-- Show core proof points: annual capacity, establishment year, production lines, factory scale, and laboratory/testing equipment.
+- Keep the approved Hero's material position, credible portfolio range and
+  restrained voice. Use `Homepage Body Adoption` for the current body sequence.
+- Show verified capacity, manufacturing roots, production lines and laboratory
+  equipment beside real factory/testing photographs.
 - Provide clear routes to products, applications, TDS/resources, and contact.
 - Keep the shared content frame consistent across header, hero, metrics, product, selection, factory, and CTA sections.
-- Avoid visible section-dividing lines, faint grid overlays, nested pale panels, and decorative background layers.
+- Use fine rules for support items, material rows and factual lists. Keep the
+  cool page surfaces clear; the inquiry panel may use its adopted blue curve.
 - Use interaction below the hero to clarify selection or product structure, not to decorate the page.
 
 ### Products
@@ -937,7 +1015,11 @@ News articles lead with event-specific facts: who took part, what requirement or
 - Application pages should use practical engineering notes, visual context, and restrained CTAs.
 - Recommended materials should be framed as starting points for review, not final guarantees.
 
-#### Automotive decision pilot — 2026-09-09, local implementation
+#### Automotive decision pilot — 2026-09-09, historical implementation
+
+This describes the earlier automotive composition. Its disclosure and part-tab
+layout is superseded by the October 8 local implementation below; the source
+evidence and technical boundaries remain valid.
 
 - The automotive page uses the standard image-led application-detail Hero,
   followed by a unified part/material/case layout. The former four
@@ -983,6 +1065,19 @@ News articles lead with event-specific facts: who took part, what requirement or
 
 - Help users prepare a useful inquiry: material, part function, application environment, required documents, processing method, and target properties.
 - Confirmation and error states should be clear, calm, and professional.
+- Marketing attribution is optional. Browser storage denial or storage-operation
+  errors must not prevent inquiry submission or consent revocation; unavailable
+  attribution is represented as `null` in the existing inquiry payload.
+- The October 8 local repair keeps hash-based material/grade/reference context
+  in the dedicated direct-email draft as well as the form, and clears the draft
+  context when the visitor explicitly clears the source context.
+- Consent-gated `inquiry_entry`, `inquiry_view`, `inquiry_attempt` and
+  `inquiry_error` are diagnostic events, not lead conversions. They carry route,
+  fixed form/link context and coarse error categories, without inquiry text,
+  email, company, grade context or query/hash values. `generate_lead` and the
+  Ads lead action retain the confirmed server-delivery boundary; opening an
+  email draft remains a fallback, not a delivered inquiry. This repair awaits
+  release and GA4 receipt verification.
 
 ## Functional Requirements
 
@@ -996,7 +1091,7 @@ News articles lead with event-specific facts: who took part, what requirement or
 
 ## Visual DNA v1
 
-Visual DNA v1 is the stable design contract for the current site. It captures the approved direction without freezing one screenshot, one generated asset, or one temporary module layout. Future redesigns should preserve this DNA unless the product direction is intentionally revised.
+Visual DNA v1 describes the current production system. Repairs and extensions preserve it. Concepts may explore alternatives, and an explicit redesign request may revise its visual direction within the requested scope; record the selected production system when it is adopted.
 
 ### Brand Character
 
@@ -1009,7 +1104,7 @@ Visual DNA v1 is the stable design contract for the current site. It captures th
 - Prefer verified real imagery in this order: factory and production, laboratory and testing, certificates and documents, products and molded-part context.
 - One decisive, well-cropped image is better than several mediocre images. Do not introduce a carousel merely to compensate for weak or insufficient assets.
 - Use a carousel only when there are at least three visually consistent, high-quality images that each add distinct information. Otherwise use one static image or a deliberate image-and-content composition.
-- AI-generated imagery may support abstract material textures, satin-like light surfaces, and non-factual atmospheric backgrounds. It must not fabricate factories, laboratories, certificates, customer cases, test results, or product evidence.
+- In production, AI-generated imagery may support abstract material textures and non-factual atmosphere; it must not present invented factories, laboratories, certificates, cases or test results as real evidence. Independent concepts may use demonstration imagery and data under the Concept / Demo Scope above without claiming production verification.
 - Generated product or document visuals must not introduce unverified grades, compliance claims, performance values, or packaging details. Essential claims and navigation must remain live HTML text rather than being available only inside an image.
 - Crop real images intentionally. Avoid empty image containers, visibly stretched photos, inconsistent aspect ratios, and controls that draw attention to low-resolution assets.
 
@@ -1026,7 +1121,7 @@ Visual DNA v1 is the stable design contract for the current site. It captures th
 - Use space deliberately. Avoid both crowded technical tables and large unearned voids. A section should feel compact enough to scan and open enough to establish hierarchy.
 - Keep module titles concise and naturally wrapped. Do not force line breaks for effect, allow narrow columns to create awkward wraps, or use oversized headings that consume the module.
 - Preserve clear alignment within each module: title, supporting copy, controls, imagery, and content blocks should share deliberate top or baseline relationships.
-- Use the established type system and scale. Do not add new fonts or typographic treatments to solve a local layout problem.
+- Production repairs and extensions use the established type system. Independent concepts and requested redesigns may explore new typography; adopt a selected system coherently rather than adding stray fonts to a local fix.
 
 ### Components And Interaction
 
@@ -1200,7 +1295,7 @@ Aim for WCAG AA basics:
 - No text overflow or incoherent overlap across desktop and mobile.
 
 
-### Shared Footer refinement — 2026-09-30, local implementation
+### Shared Footer composition — 2026-10-14, local implementation
 
 The shared Footer retains the white PLATFORM® wordmark and identifies the
 manufacturer/material-brand relation in the caption below. Its Resources group includes a direct Grade Data & TDS link

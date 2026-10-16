@@ -33,6 +33,18 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    catalogue: {
+      "title": "A material range with clear routes to grade data",
+      "body": "POM at our core. Polyamide and functional compounds for additional material requirements.",
+      "polyamideTitle": "Polyamide Compounds",
+      "gradesLabel": "grades",
+      "matricesLabel": "polymer matrices",
+      "functionalTitle": "Conductive & Antistatic",
+      "functionalNote": "Confirm the polymer matrix, resistance range and test conditions together.",
+      "cntTitle": "Carbon-nanotube antistatic",
+      "cfTitle": "Carbon-fiber conductive",
+      "polyamideAction": "Explore polyamide grades"
+    },
     core: {
       eyebrow: "Products",
       title: "Modified POM, Our Core Material for Precision Parts",
@@ -64,7 +76,7 @@ export const homeTaskFirstLocaleMessages = {
       gradeNote:
         "Search current grade data or discuss your part requirements with us.",
       contactAction: "Discuss Your Application",
-      reviewLabel: "Confirm first",
+      reviewLabel: "Selection factors",
       materialsLabel: "Material routes",
       groups: [
         {
@@ -281,6 +293,17 @@ export const homeTaskFirstLocaleMessages = {
       action: "Discuss Your Project",
     },
     proof: {
+      production: {
+        "title": "In-house twin-screw production",
+        "body": "Our Yancheng site brings compounding, batch control and material testing together, from trial lots to production supply.",
+        "sinceLabel": "Manufacturing roots"
+      },
+      laboratory: {
+        "title": "Material Testing Laboratory",
+        "body": "In-house equipment supports material-property evaluation. Data and document availability are confirmed by grade, test method and project.",
+        "imageAlt": "Taiyi Polymer material testing laboratory and evaluation equipment",
+        "imageCaption": "Yancheng site · material testing laboratory"
+      },
       eyebrow: "Manufacturing & Validation",
       title: "Material Performance That Holds Up in Production",
       body: [
@@ -339,6 +362,18 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    catalogue: {
+      "title": "Werkstoffe und ein direkter Weg zu Werkstoffdaten",
+      "body": "POM als Kernsortiment. Polyamide und funktionale Compounds für weitere Materialanforderungen.",
+      "polyamideTitle": "Polyamid-Compounds",
+      "gradesLabel": "Typen",
+      "matricesLabel": "Polymermatrizes",
+      "functionalTitle": "Leitfähig & Antistatisch",
+      "functionalNote": "Polymermatrix, Widerstandsbereich und Prüfbedingungen gemeinsam abgleichen.",
+      "cntTitle": "Antistatisch mit Kohlenstoffnanoröhren",
+      "cfTitle": "Leitfähig mit Kohlenstofffasern",
+      "polyamideAction": "Polyamid-Typen ansehen"
+    },
     core: {
       eyebrow: "Produkte",
       title: "Modifiziertes POM – unser Kernwerkstoff für Präzisionsteile",
@@ -370,7 +405,7 @@ export const homeTaskFirstLocaleMessages = {
       gradeNote:
         "Gesuchten Typ nicht gefunden? Durchsuchen Sie die aktuellen Typendaten oder besprechen Sie die Anforderung mit uns.",
       contactAction: "Anwendung besprechen",
-      reviewLabel: "Zuerst klären",
+      reviewLabel: "Auswahlkriterien",
       materialsLabel: "Werkstoffpfade",
       groups: [
         {
@@ -587,6 +622,17 @@ export const homeTaskFirstLocaleMessages = {
       action: "Projekt besprechen",
     },
     proof: {
+      production: {
+        "title": "Eigene Doppelschneckenproduktion",
+        "body": "Am Standort Yancheng verbinden wir Compoundierung, Chargenkontrolle und Werkstoffprüfung – von Versuchsmengen bis zur Serienbelieferung.",
+        "sinceLabel": "Fertigung seit"
+      },
+      laboratory: {
+        "title": "Werkstoffprüflabor",
+        "body": "Eigene Prüfgeräte unterstützen die Bewertung von Materialeigenschaften. Daten und Dokumente werden nach Typ, Prüfmethode und Projekt bestätigt.",
+        "imageAlt": "Werkstoffprüflabor und Prüfgeräte von Taiyi Polymer",
+        "imageCaption": "Standort Yancheng · Werkstoffprüflabor"
+      },
       eyebrow: "Fertigung & Validierung",
       title: "Damit sich Werkstoffe in der Serie bewähren",
       body: [
@@ -645,6 +691,18 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    catalogue: {
+      "title": "Une gamme de matières, un accès direct aux données",
+      "body": "Le POM au cœur de notre gamme. Des polyamides et compounds fonctionnels pour les autres exigences matière.",
+      "polyamideTitle": "Compounds Polyamides",
+      "gradesLabel": "grades",
+      "matricesLabel": "matrices polymères",
+      "functionalTitle": "Conducteurs & Antistatiques",
+      "functionalNote": "Vérifiez ensemble la matrice polymère, la plage de résistance et les conditions d’essai.",
+      "cntTitle": "Antistatiques à nanotubes de carbone",
+      "cfTitle": "Conducteurs à fibres de carbone",
+      "polyamideAction": "Voir les grades polyamides"
+    },
     core: {
       eyebrow: "Produits",
       title: "Le POM modifié, notre matière clé pour les pièces de précision",
@@ -676,7 +734,7 @@ export const homeTaskFirstLocaleMessages = {
       gradeNote:
         "Vous ne trouvez pas le grade recherché ? Consultez les données actuelles ou échangez avec nous sur votre besoin.",
       contactAction: "Discuter de votre application",
-      reviewLabel: "À confirmer d'abord",
+      reviewLabel: "Critères de choix",
       materialsLabel: "Parcours matière",
       groups: [
         {
@@ -897,6 +955,17 @@ export const homeTaskFirstLocaleMessages = {
       action: "Discuter de votre projet",
     },
     proof: {
+      production: {
+        "title": "Production sur extrudeuses bivis en interne",
+        "body": "Notre site de Yancheng réunit compoundage, contrôle des lots et essais matière, des lots d’essai à la production en série.",
+        "sinceLabel": "Fabrication depuis"
+      },
+      laboratory: {
+        "title": "Laboratoire d’essais matière",
+        "body": "Nos équipements permettent d’évaluer les propriétés matière. Les données et documents sont confirmés selon le grade, la méthode d’essai et le projet.",
+        "imageAlt": "Laboratoire d’essais matière et équipements de Taiyi Polymer",
+        "imageCaption": "Site de Yancheng · laboratoire d’essais matière"
+      },
       eyebrow: "Fabrication & validation",
       title: "La performance matière à l’épreuve de la production",
       body: [
@@ -955,6 +1024,18 @@ export const homeTaskFirstLocaleMessages = {
         },
       ],
     },
+    catalogue: {
+      "title": "Uma linha de materiais com acesso direto aos dados",
+      "body": "POM como linha principal. Poliamidas e compostos funcionais para outras necessidades de materiais.",
+      "polyamideTitle": "Compostos de Poliamida",
+      "gradesLabel": "graus",
+      "matricesLabel": "matrizes poliméricas",
+      "functionalTitle": "Condutivos & Antiestáticos",
+      "functionalNote": "Confira em conjunto a matriz polimérica, a faixa de resistência e as condições de ensaio.",
+      "cntTitle": "Antiestáticos com nanotubos de carbono",
+      "cfTitle": "Condutivos com fibra de carbono",
+      "polyamideAction": "Ver graus de poliamida"
+    },
     core: {
       eyebrow: "Produtos",
       title: "POM modificado, nosso material principal para peças de precisão",
@@ -986,7 +1067,7 @@ export const homeTaskFirstLocaleMessages = {
       gradeNote:
         "Não encontrou o grade necessário? Consulte os dados atuais ou converse conosco sobre o requisito.",
       contactAction: "Discutir sua aplicação",
-      reviewLabel: "Confirme primeiro",
+      reviewLabel: "Critérios de seleção",
       materialsLabel: "Rotas de material",
       groups: [
         {
@@ -1207,6 +1288,17 @@ export const homeTaskFirstLocaleMessages = {
       action: "Converse sobre seu projeto",
     },
     proof: {
+      production: {
+        "title": "Produção interna em dupla rosca",
+        "body": "Nossa unidade em Yancheng reúne produção de compostos, controle de lotes e ensaios de materiais, dos lotes de teste ao fornecimento em série.",
+        "sinceLabel": "Fabricação desde"
+      },
+      laboratory: {
+        "title": "Laboratório de ensaios de materiais",
+        "body": "Os equipamentos internos apoiam a avaliação das propriedades dos materiais. Dados e documentos são confirmados por grau, método de ensaio e projeto.",
+        "imageAlt": "Laboratório de ensaios de materiais e equipamentos da Taiyi Polymer",
+        "imageCaption": "Unidade de Yancheng · laboratório de ensaios de materiais"
+      },
       eyebrow: "Fabricação & validação",
       title: "Para que o desempenho chegue à produção em série",
       body: [

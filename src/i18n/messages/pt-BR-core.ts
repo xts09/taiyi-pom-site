@@ -221,7 +221,7 @@ const messages = {
       eyebrow: "Análise da aplicação",
       title: "Compartilhe os requisitos da sua peça",
       body:
-        "Com as informações abaixo, reduzimos as direções de material e esclarecemos os dados de grades, documentos e amostras disponíveis.",
+        "Comece pelos dados de um grau, uma amostra ou uma dúvida sobre materiais. Compartilhe a função da peça e as metas de desempenho.",
       checklistLabel: "Informações úteis para começar",
       checklist: [
         "Função da peça e modo de movimento",

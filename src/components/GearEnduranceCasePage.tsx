@@ -73,7 +73,7 @@ export function GearEnduranceCasePage({ localeSegment }: { localeSegment?: "zh" 
           <div><p>{copy.story.takeaway}</p></div>
         </section>
         <CaseStudyRelatedLinks caseId={gearEnduranceTest.id} grade={gearEnduranceTest.grade} localeSegment={localeSegment} />
-        <footer className={styles.footer} data-footer-adjacent="true">
+        <footer className={styles.footer}>
           <h2>{copy.page.contactTitle}</h2>
           <div className={styles.actions}>
             <Button asChild size="form"><Link href={contactHref}>{copy.action}</Link></Button>

@@ -220,9 +220,13 @@ the component.
 
 Localized POM directory formulation labels are resolved from the catalogue's
 first feature by `src/i18n/pomDirectoryCopy.ts`. Filler percentages remain
-catalogue-owned. The localized wear-POM category displays the reviewed
-EMS102/EMS162 selection notes beside their catalogue data. Label translations
-and compact test-condition notes stay outside the structural row component.
+catalogue-owned. The same helper and real EMS102/EMS162 records appear in the
+`/design-system` grade-directory specimen. Label translations and compact
+test-condition notes stay outside the structural row component.
+`GradeDirectoryRow` can opt into a visible selection description with
+`descriptionVisible`; the default dense row keeps its existing presentation.
+The localized wear-POM category uses the matching selection-note class for
+EMS102/EMS162. Both states are maintained in the acceptance page.
 
 ### Engineering Property Table — Canonical
 
@@ -233,6 +237,17 @@ grade detail property table and its TDS request note.
 provide catalog-backed properties, translated headings and column labels, and
 their locale-aware request links. POM detail pages retain their separate data
 notes and processing guidance.
+
+The English grade route owns its Hero introduction. Localized engineering
+introductions belong to `chineseEngineeringGradeMessages.ts` and
+`engineeringGradeMessages.ts`; reviewed translations of complete summary
+templates belong to `expandedLocaleOverrides.ts`. Localized POM intros remain
+in the product-funnel and POM expansion messages, with expansion translations
+in the same override owner. The generic translation entry resolves only the
+registered grade/family summary templates; it does not rewrite arbitrary prose.
+`LocalizedEngineeringGradePage` and `LocalizedXt100ProductPage` render
+`properties.body` once as the below-table data note. Do not also pass that same
+paragraph to the table's optional introduction.
 
 ### Listing Pagination — Product Directories and Resource Search
 
@@ -261,10 +276,16 @@ results; `src/data/technicalDataSearch.ts` owns the ordered result groups and
 
 **Canonical owner:** `src/components/ui/accordion.tsx`
 
-**Composed consumers:** `MaterialRangeAccordion`, `ResourceFaqAccordion`, and
-resource explorer components.
+**Current consumers:** `EngineeringGfLandingPage`, the English/Chinese
+`PrecisionGearLanding`, and the mobile article directory in
+`ResourceArticleSidebar`. Material-range and Resource FAQ
+compositions retain separate implementations and are migration candidates.
+The development component acceptance page also uses this primitive.
 
-**Planned variants:** `plain`, `panel`, `technical-row`.
+**Variants:** `plain` preserves compact 14px labels/content; `technical-row`
+uses a single white information group with 8px corners, 16px semibold labels,
+64px minimum rows, and shared content insets for technical disclosures.
+Desktop insets are 24px; below 48rem they are 16px. `panel` remains planned.
 
 **Rule:** triggers, keyboard behavior, focus, and open/closed indicators come
 from the primitive. Content structure remains domain-specific.
@@ -435,7 +456,7 @@ inner-page Hero.
 
 ### Section Intro — Partial
 
-**Automotive application pilot (2026-09-09):**
+**Automotive application pilot (2026-09-09, historical layout):**
 `src/components/AutomotiveSystemGroup.tsx` and its CSS module own the automotive
 component selection layout, adjacent structural cases, material comparison
 section and resource/inquiry section. The material directions reuse the
@@ -462,9 +483,19 @@ actions. Its label owns the underline, its SVG arrow is undecorated, and the
 link supplies the 44px target and keyboard focus ring. Do not add a second
 link-wide border or text decoration to these controls.
 
-**Part-based application groups (2026-10-07, local implementation):**
+The October 8 automotive migration below supersedes this pilot's system
+disclosures and individual part tabs. `AutomotiveSystemGroup.tsx` now supplies
+the selected-part structural case evidence and final resources/quality section;
+it does not own the active category or part-image controls.
+The subsequent October 8 simplification removes automotive's duplicate
+standalone material grid and related-component cards. Part-local material
+conditions and exact guide links remain. `AutomotiveNextSteps` owns compact case
+links with their existing stages and its page-owned consultation section. Other
+application compositions retain their material-grid and related-guide owners.
+
+**Part-based application groups (2026-10-07; automotive added 2026-10-08):**
 `src/components/ApplicationPartGroups.tsx` and its CSS module own the reviewed
-electronics, washing-machine, motion, conveyor, textile, outdoor and water-control
+electronics, washing-machine, motion, conveyor, textile, outdoor, water-control and automotive
 category tabs, main part image, thumbnail
 controls and adjacent part/material requirements.
 `src/data/applicationPartGroupPresentation.ts` owns their shared copy shape
@@ -474,10 +505,12 @@ conditions that share a product-category destination;
 `src/data/electronicsPageDesign.ts`, `src/data/washingMachinePageDesign.ts`
 `src/data/industrialApplicationPageDesign.ts`, `src/data/textileApplicationPageDesign.ts`,
 `src/data/outdoorApplicationPageDesign.ts` and `src/data/waterControlApplicationPageDesign.ts`
-own each application's five-language UI wording. Canonical group
+own the original seven applications' five-language UI wording;
+`src/data/automotivePartGroupPageDesign.ts` owns the automotive category wording.
+Canonical group
 membership remains in `applicationSystemPresentation.ts`; part copy and images
 remain in the localized application records. `LocalizedApplicationDetailPage`
-selects this composition only for the seven registered application families,
+selects this composition only for the eight registered application families,
 and resolves material and exact
 component-guide links on the server. All other application compositions retain
 their existing owners. Existing group bookmarks open their matching panel;
@@ -485,13 +518,28 @@ Drive & Motion, Drum Drive, Transmission & Actuation and Conveying Surfaces &
 Chain Path are the respective defaults for the original four families. Yarn
 Path & Guidance, Irrigation and Valve Internals & Actuation are the textile,
 outdoor and water-control defaults. Two-, three- and four-group tab layouts are
-supported; four groups form two columns on mobile. Groups with more than three
+supported; automotive adds five categories, with two columns and a full-width
+last tab on mobile. Four groups also form two columns on mobile. Groups with more than three
 images use a three-column thumbnail grid, while single-image groups omit
 thumbnail controls. One set of part records serves desktop and
 mobile, with all panels present in server-rendered HTML. The outer rail and
 balanced media/text tracks follow `DESIGN.md`; Header, secondary navigation,
 Button variants, the full related-guide area and the final inquiry section
 retain their existing owners.
+
+All eight registered application families enable `selectedPartOnly`: the
+adjacent part name, description and exact guide follow the selected image,
+without a separate requirements label. Image-free single-part groups retain
+their part details and align them with the material column on desktop.
+
+Automotive retains all twelve canonical parts and defaults to Visibility &
+Window Systems. Its material conditions, contextual inquiry and structural
+case evidence follow the selected part image. `automotivePartMaterials` remains
+the candidate source; a group-wide union must not give gears a structural GF
+recommendation. Fuel parts retain an evaluation note and inquiry without a
+POM prefill. The unverified seat-guide image stays omitted, with an image-free
+requirements/material layout. Existing group and automotive-part hash links
+open the correct category and select the corresponding illustrated part.
 
 **Role:** optional eyebrow, section heading, supporting paragraph, and optional
 single action aligned to the site rail.
@@ -542,9 +590,11 @@ notes use `dd`; do not insert an extra layout wrapper between `dl` and its
 term/description groups. CSS `display: contents` does not repair list semantics.
 
 **Canonical owner:** `src/components/MetricGroup.tsx` with component tokens in
-`tokens.css`. Home factory metrics and About facility figures are the first
-migrated representatives; page styles may set layout variables but must not
-redefine label/value/note typography.
+`tokens.css`. About facility figures and `/design-system#evidence` use this
+owner; page styles may set layout variables but must not redefine
+label/value/note typography. The current Home factory/laboratory composition
+uses its documented compact fact lists in `HomeSections.module.css`, reviewed
+through the Home acceptance companion.
 
 ### Media Figure — Canonical
 
@@ -669,10 +719,12 @@ in `src/data/gearEnduranceEvidence.ts`.
 `PrecisionGearLanding.tsx` and its CSS module own the English/Chinese gear
 landing composition, with concise copy in `src/data/gearLandingCopy.ts`.
 They reuse the component rail and hero styling without changing shared rules.
-Material directions, a case teaser and project contact lead the page; native
-disclosures retain diagnostic and technical content in the server-rendered HTML.
+Material comparison leads to one grouped case-evidence section, optional
+technical topics and a final project inquiry. Shared Radix disclosures retain
+diagnostic and technical content in the server-rendered HTML.
 Other components and other gear locales retain the existing renderer.
-Material suitability and a short validation check remain outside disclosures.
+Material suitability remains visible in the comparison. Validation checks sit
+with each material family's selection details inside the shared disclosure.
 The landing reuses the existing application button variant and size for both
 general inquiry actions. Local heading rules distinguish the material choices,
 case and inquiry from the main section headings, including on mobile.
@@ -694,8 +746,8 @@ report download or customer imagery.
 
 The former `MaterialRecommendationCta` wrapper has been removed. About,
 product, application, POM landing, and resource review panels now consume the
-canonical component directly. `HomeInquirySection` remains a specialized
-checklist composition.
+canonical component directly. `HomeInquirySection` owns the homepage's four
+intent links in a white panel over a blue material background.
 
 The `recommendation` variant now owns the former `.material-cta*` layout,
 supporting-copy treatment, evidence aside, action styling, and responsive
@@ -812,9 +864,8 @@ consumers can migrate incrementally without inventing new anatomy.
 
 **Status:** Media Figure and Document Card foundations plus representative
 About, Manufacturing, Application, and TDS consumers are complete. The
-homepage quality-system gallery remains a specialized whole-card document
-composition and will be reviewed with other legacy consumers instead of being
-forced into a generic media card.
+homepage certificate strip now consumes the canonical DocumentCard with
+page-local horizontal preview sizing in HomeSections.module.css.
 - Certificate and TDS migration.
 
 ### Batch 5 — Navigation consolidation

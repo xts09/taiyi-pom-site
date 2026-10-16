@@ -10,7 +10,7 @@ colors:
   laboratory-canvas: "#f4f7fa"
   cool-paper: "oklch(98% 0.008 240)"
   industrial-ink: "#07111f"
-  body-slate: "#526276"
+  body-slate: "#3e4d60"
   production-navy: "#03101d"
   evidence-navy: "oklch(22% 0.04 252)"
   on-dark: "#ffffff"
@@ -37,6 +37,13 @@ typography:
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: "-0.02em"
+  homeSection:
+    fontFamily: '"IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
+    fontSize: "clamp(1.75rem, 2.4vw, 2.5rem)"
+    mobileFontSize: "1.75rem"
+    fontWeight: 400
+    lineHeight: 1.2
+    letterSpacing: "-0.025em"
   body:
     fontFamily: '"IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
     fontSize: "1rem"
@@ -102,7 +109,7 @@ components:
   input-field:
     backgroundColor: "{colors.polymer-white}"
     textColor: "{colors.industrial-ink}"
-    placeholderColor: "#64748b"
+    placeholderColor: "{colors.body-slate}"
     typography: "{typography.body}"
     rounded: "{rounded.control}"
     padding: "0.72rem 0.82rem"
@@ -120,6 +127,25 @@ components:
 ---
 
 # Design System: Taiyi POM Site
+
+## Applicability: Production Baseline And Concept Exploration
+
+The values in this document, including its machine-readable summary, describe
+the current production system. They guide repairs and extensions; they do not
+freeze the visual direction of a requested concept or redesign.
+
+For an independent concept/Demo under `outputs/`, use the user's reference and
+brief to choose the visual system. Alternative display/body fonts, palettes,
+radius, surfaces, grids, imagery, motion and section order are allowed together.
+Existing Hero approval, IBM Plex Sans, the 92rem rail and cobalt-only actions
+are useful baseline information, not concept acceptance gates. Keep identity
+elements the user asks to retain and mark experimental content as demo content
+in the delivery notes; do not put repeated implementation warnings into the UI.
+
+For a production redesign, propose and implement the requested visual scope;
+preservation is a task choice, not an automatic default. When a new system is
+adopted, update tokens and canonical documentation together. Independent drafts
+can be reviewed before that production migration or business-content audit.
 
 ## Overview
 
@@ -168,10 +194,19 @@ logic rather than introduce a disconnected surface language.
 
 ## Homepage First-Two-Screen Benchmark
 
-The approved Home Hero and the material-family opening module are the site's
-primary brand benchmark. Future branded and editorial surfaces should inherit
-their tone, information hierarchy, density, and evidence logic without copying
-their exact composition.
+The Home Hero remains the production baseline for repairs and extensions.
+The below-hero composition adopted on 2026-10-14 is owned by
+`HomeSections.module.css`: project support, material catalogue, component images,
+industry photos, manufacturing/testing, then inquiry paths. Earlier material-story
+opening modules are historical references. Requested concepts and redesigns may
+choose another composition within the user's scope.
+
+`/design-system#home-patterns` maintains the actual catalogue and entry-card
+specimens; `/design-system#evidence` covers the shared photo, metric and document
+components. `/design-system/home` composes the real homepage body in the five
+existing languages. These internal acceptance surfaces reuse the production
+owners and preserve the boundary between shared primitives and Home-specific
+compositions. Their maintenance contract lives in `COMPONENTS.md`.
 
 - **Screen one — the brand thesis:** Use one decisive, image-led statement to
   say what Taiyi Polymer makes and where it creates value. Supporting copy may
@@ -179,11 +214,24 @@ their exact composition.
   PA66, and PPA, connect key performance directions to customer outcomes, and
   then stop. Do not repeat the same performance list as decorative badges or
   add another layer of slogans. Actions name concrete destinations.
-- **Screen two — product credibility:** Move from the brand promise into a calm,
-  light technical surface. Keep POM visually dominant, show PA6, PA66, and PPA
-  as supporting families, pair real material imagery with a concise product
-  story, and lead to the relevant product range. This screen should feel like
-  evidence following a claim, not another promotional Hero.
+- **Homepage title:** `HomePage.tsx` renders the translated material
+  statement inside one H1 using IBM Plex Sans and the existing Chinese
+  fallback. Text wraps within the real title column. The body measure, media
+  and actions retain their owners. Exact copy lives in the Home messages
+  and `PRODUCT.md`.
+- **Below the Hero — clear routes and evidence:** Begin with four concise support
+  items on a cool canvas. Follow with a navy POM column, cobalt polyamide column,
+  and pale-blue conductive/antistatic column. Counts come from the catalogue;
+  family rows lead to their actual directories. On mobile, one material group is
+  expanded at a time. Six isolated component images precede eight shorter scene
+  cards. Real factory and laboratory photographs alternate with short facts;
+  certificate previews retain original PDF links.
+- **Homepage section hierarchy:** Use the `homeSection` title role above with
+  lighter headings, square image-card arrow surfaces, and cold white/canvas
+  backgrounds. The inquiry module uses a white panel over a blue material curve
+  with four intent links. Below-hero content is visible without entrance or scroll
+  effects; only ordinary hover/focus feedback remains. These page-local choices
+  do not change the shared Hero, Section Intro defaults or runtime tokens.
 - **Transfer the rhythm, not the layout:** Other route families should follow
   the same sequence of clear position, relevant explanation, visible evidence,
   and specific next action. They do not inherit the Home Hero crop, dark-to-light
@@ -218,10 +266,11 @@ the project does not copy another brand's identity. The reference blend is
   the source of truth. Reference styles may shape hierarchy and composition,
   never the logo, claims, color ownership, or content language.
 
-**Reference Guardrail:** Treat external `DESIGN.md` files as inspiration for
-layout, surface sequencing, and interaction clarity. Do not paste a reference
-file over this document or introduce its gradients, fonts, rounded language,
-or brand motifs unless an explicit Taiyi design decision adopts them.
+**Reference Use:** A supplied reference may guide concept typography, palette,
+layout, surfaces, motion and image direction. Explore those choices in a coherent
+draft without requiring production adoption first. For production, evaluate fit
+and explicitly update the relevant system before migrating it; do not replace
+this document wholesale with another brand's file.
 
 ## Governance And Sources Of Truth
 
@@ -262,13 +311,19 @@ The palette is cool, technical, and industrial. Taiyi cobalt is the only primary
 - **Laboratory Canvas:** Default page background for light technical pages.
 - **Cool Paper:** Slightly elevated or grouped light areas when plain white would merge into the canvas.
 - **Industrial Ink:** Primary text and high-contrast interface labels.
-- **Body Slate:** Supporting copy on light surfaces.
+- **Body Slate:** Supporting copy on light surfaces. The reading role is
+  `--ds-color-reading-slate: #3e4d60`, consumed through
+  `--ds-foreground-muted`; retain the slate primitives for other explicit roles.
+  Normal body and supporting copy on white/canvas should reach at least 7:1.
+  Small metadata and placeholders must reach 4.5:1. Use spacing, size and weight
+  for hierarchy instead of reducing text opacity. On dark surfaces use the
+  existing light foreground roles; do not reuse the light-surface slate there.
 - **Production Navy:** Header glass foundation, Footer, and important evidence or CTA panels.
 - **Evidence Navy:** Dark narrative bands that group real factory or testing proof.
 - **On Dark / On Dark Muted:** Text hierarchy on navy surfaces.
 - **Quiet Rule:** Form strokes and the few dividers that carry real structure.
 
-**The One Cobalt Rule.** One interaction intent gets one color. Do not introduce page-local blues, teals, or reds for ordinary actions.
+**The One Cobalt Rule — production baseline.** Current production actions use cobalt consistently. Independent concepts and requested visual-system redesigns may choose another coherent palette; this rule does not prohibit those experiments.
 
 **The Logo Red Rule.** Red belongs to the PLATFORM mark unless a real destructive or legal state requires red semantically.
 
@@ -291,7 +346,7 @@ The palette is cool, technical, and industrial. Taiyi cobalt is the only primary
 
 **The Natural Wrap Rule.** Adjust the column or type scale before forcing a line break. A title should never be split simply to create a composition.
 
-**The One Display Voice Rule.** All proportional interface text uses IBM Plex Sans. Do not solve a local layout problem by adding another font or decorative italic family. Monospace is reserved for genuine identifiers, measurements, and technical data.
+**The One Display Voice Rule — production baseline.** Repairs and extensions use IBM Plex Sans for proportional interface text; avoid adding a stray font to a local fix. Independent concepts and requested redesigns may explore a distinct display/body pairing, condensed faces or other justified typography. Update the production type system when a selected direction is adopted.
 
 **The Four Weight Rule.** Use only 400 for body copy, 500 for emphasized body and navigation, 600 for titles, labels, and controls, and 700 for display and headline roles. Do not introduce intermediate variable-font weights.
 
@@ -506,6 +561,22 @@ content inset comes from `CardContent`.
 Input, Select, and Textarea implementations live in `src/components/ui/`.
 Page-level styles may position these controls, but must not redefine their
 height, radius, border, focus treatment, or primary-action color.
+
+### Disclosures
+
+- **Technical rows:** One flat white group with an 8px outer radius and quiet
+  separators. Semibold 16px labels sit in rows at least 64px high; the title
+  and expanded body share a 24px inset, reduced to 16px below 48rem.
+- **State:** An open row uses the canvas surface, a cobalt title, and a cobalt
+  32px indicator with a white chevron. Closed indicators remain quiet.
+  Long labels wrap naturally beside a centered indicator.
+- **Focus and motion:** Use one 2px cobalt outline, inset within technical
+  rows. The chevron and content use the short motion token; reduced-motion
+  and forced-colors settings remain supported.
+- **Compact use:** The `plain` variant keeps 14px labels and consumer spacing
+  for article directories and inline notes, with a minimum 44px target.
+- **Owner:** `src/components/ui/accordion.tsx` and its CSS module own the
+  structure and states. Pages supply content and reading measures.
 
 ### Page Heroes / Section Intros
 

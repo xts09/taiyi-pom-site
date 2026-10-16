@@ -299,7 +299,7 @@ const grade = {
   breadcrumb: "XT-100",
   eyebrow: "低密度高抗冲方向 POM · 注塑",
   summary:
-    "XT-100 可作为精密与通用注塑件的候选材料，用于同时评估密度、冲击性能和均衡流动表现。已发布数据支持前期选型；最终适用性需结合实际零部件几何、模具、工艺窗口和使用条件确认。",
+    "XT-100 面向精密与通用注塑件，可查看密度、冲击性能和流动性数据。",
   documentSupport: "资料支持",
   documentNote: "可用性根据牌号、目标市场与项目确认。",
   sampleAction: "申请 XT-100 样品",
@@ -405,7 +405,7 @@ const gradeProfiles = {
     breadcrumb: "ETM450",
     eyebrow: "高流动 POM · 注塑",
     summary:
-      "ETM450 可作为精密注塑件的候选材料，用于同时评估良好充模能力和可靠的力学性能。已发布数据支持前期选型；最终适用性需结合实际零部件几何、模具、工艺窗口和使用条件确认。",
+      "ETM450 面向精密注塑件的充模与力学性能需求。",
     sampleAction: "申请 ETM450 样品",
     snapshot: {
       aria: "ETM450 关键数据概览",
@@ -437,7 +437,7 @@ const gradeProfiles = {
     breadcrumb: "ETM750",
     eyebrow: "极高流动 POM · 注塑",
     summary:
-      "ETM750 可作为薄壁和填充困难注塑件的候选材料，用于同时评估长流长与力学性能。已发布数据支持前期选型；最终适用性需结合实际零部件几何、模具、工艺窗口和使用条件确认。",
+      "ETM750 面向薄壁及充模困难的注塑件，选材重点是流长与力学性能。",
     sampleAction: "申请 ETM750 样品",
     snapshot: {
       aria: "ETM750 关键数据概览",
@@ -475,7 +475,7 @@ const gradeProfiles = {
     breadcrumb: "EGB25",
     eyebrow: "含 25% 玻璃微珠的 POM · 注塑",
     summary:
-      "EGB25 可作为需要同时评估纵向与横向收缩及热性能的注塑件候选材料。已发布数据支持前期选型；最终适用性需结合实际零部件几何、模具、工艺窗口和使用条件确认。",
+      "EGB25 面向尺寸敏感的注塑件，目录提供纵向、横向收缩及热性能数据。",
     sampleAction: "申请 EGB25 样品",
     snapshot: {
       aria: "EGB25 关键数据概览",
@@ -518,7 +518,7 @@ const gradeProfiles = {
     breadcrumb: "EGH502H",
     eyebrow: "含 25% 玻璃纤维的 POM · 高刚性",
     summary:
-      "EGH502H 可作为需要同时评估高刚性、低收缩与热性能的注塑件候选材料。已发布数据支持前期选型；最终适用性需结合实际零部件几何、纤维取向、模具、工艺窗口和使用条件确认。",
+      "EGH502H 是玻纤增强 POM 牌号，面向注塑件的高刚性、低收缩与热性能需求。",
     sampleAction: "申请 EGH502H 样品",
     snapshot: {
       aria: "EGH502H 关键数据概览",
@@ -551,7 +551,7 @@ const gradeProfiles = {
     breadcrumb: "EHI402T",
     eyebrow: "高抗冲 POM · 均衡加工",
     summary:
-      "EHI402T 可作为需要同时评估更高韧性、低温表现与均衡加工性能的功能注塑件候选材料。已发布数据支持前期选型；最终适用性需结合实际几何、缺口、载荷工况、模具、工艺窗口和使用温度确认。",
+      "EHI402T 是高抗冲 POM 牌号，面向功能注塑件的韧性、低温表现与加工性能需求。",
     sampleAction: "申请 EHI402T 样品",
     snapshot: {
       aria: "EHI402T 关键数据概览",
@@ -589,7 +589,7 @@ const gradeProfiles = {
     breadcrumb: "EDR180",
     eyebrow: "高抗冲 POM · 高断裂伸长率",
     summary:
-      "EDR180 可作为需要同时评估冲击性能、低温表现与高伸长余量的功能注塑件候选材料。已发布数据支持前期选型；最终适用性需结合实际几何、缺口、载荷工况、模具、工艺窗口和使用温度确认。",
+      "EDR180 是高抗冲 POM 牌号，面向功能注塑件的冲击、低温表现与伸长率需求。",
     sampleAction: "申请 EDR180 样品",
     snapshot: {
       aria: "EDR180 关键数据概览",

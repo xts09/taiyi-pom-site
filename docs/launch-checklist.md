@@ -2,6 +2,24 @@
 
 ## Before Deploying
 
+- Check the team's live Deployment Storage and Functions Storage usage before
+  starting a build. Record the allowance, current usage, retained production
+  versions, and stale previews. If usage is at or above its allowance, resolve
+  retention or cleanup before creating another deployment. Local screenshots
+  and test artifacts are excluded by `.gitignore` and `.vercelignore`; this does
+  not exclude retained Vercel build output.
+- Choose the production release path before triggering deployments. A validated
+  preview can be promoted without a new build only when its build-time settings
+  and environment are suitable for production. Otherwise use a production build
+  and include cleanup of its superseded preview in the release plan. Preserve
+  the live production version and a verified rollback version. Confirm aliases
+  and obtain the required deletion authorization before removing a deployment;
+  do not treat deployment deletion as equivalent to clearing a local cache.
+- Review the project's actual retention policy and its exceptions after cleanup.
+  A shorter retention period does not immediately remove newly created previews
+  or protected production versions. Verify the live usage after cleanup instead
+  of assuming that a deletion has reclaimed a specific number of bytes.
+
 - `.github/workflows/quality.yml` checks each push to the maintained branch
   and each pull request. It records the checked SHA, runs `prepublish:check`,
   then runs `test:release` against that checkout's production build. Download
@@ -30,6 +48,11 @@
 - Run `npm run launch:env-check` before creating a production build.
 - Run `npm run launch:check` for the full environment, catalog, SEO, lint,
   type, test, and production-build gate.
+- Production prerendering uses one worker and one page at a time in
+  `next.config.ts` to bound memory use for the multilingual catalogue. Keep
+  TypeScript checks and the full static route set enabled. Run builds and
+  browser verification sequentially on memory-constrained machines, and check
+  available memory before starting another build after an out-of-memory exit.
 - Configure production variables from `.env.example`; never commit real secrets.
 - Confirm `NEXT_PUBLIC_SITE_URL=https://www.taiyipolymer.com`.
 - Set `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, and `RESEND_API_KEY`.

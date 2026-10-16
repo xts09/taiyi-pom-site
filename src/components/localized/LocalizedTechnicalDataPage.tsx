@@ -197,7 +197,6 @@ export function LocalizedTechnicalDataPage({
           </section>
 
           <ActionPanel
-            footerAdjacent
             variant="recommendation"
             title={copy.inquiryTitle}
             className="selection-support-band products-motion-support mt-12"

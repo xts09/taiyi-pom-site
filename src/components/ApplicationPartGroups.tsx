@@ -2,17 +2,26 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import type { ApplicationPart } from "@/data/applications";
 import type { ApplicationPartGroupsCopy } from "@/data/applicationPartGroupPresentation";
 import { publicPath } from "@/lib/paths";
 import { Button } from "./ui/button";
 import styles from "./ApplicationPartGroups.module.css";
 
+type MaterialDirection = { title: string; conditions: string[]; href?: string; action: string; badge?: string };
+
 export type ApplicationPartGroup = {
   id: string;
-  parts: (ApplicationPart & { guide?: { href: string; label: string; badge?: string } })[];
-  materials: { title: string; conditions: string[]; href?: string; action: string; badge?: string }[];
+  parts: (ApplicationPart & {
+    guide?: { href: string; label: string; badge?: string };
+    anchorId?: string;
+    materials?: MaterialDirection[];
+    evidence?: ReactNode;
+    inquiry?: { href: string; label: string };
+  })[];
+  materials: MaterialDirection[];
+  materialNote?: string;
 };
 
 function subscribeToHashChange(onChange: () => void) {
@@ -35,19 +44,21 @@ function TextLink({ href, label, badge }: { href: string; label: string; badge?:
   </Link>;
 }
 
-export function ApplicationPartGroups({ groups, ui, technicalData, inquiry, idPrefix, defaultGroupId }: {
+export function ApplicationPartGroups({ groups, ui, technicalData, inquiry, idPrefix, defaultGroupId, selectedPartOnly = false }: {
   groups: ApplicationPartGroup[];
   ui: ApplicationPartGroupsCopy;
   technicalData: { href: string; label: string };
   inquiry: { href: string; label: string };
   idPrefix: string;
   defaultGroupId: string;
+  selectedPartOnly?: boolean;
 }) {
   const defaultIndex = Math.max(0, groups.findIndex(group => group.id === defaultGroupId));
   const hash = useSyncExternalStore(subscribeToHashChange, currentHash, serverHash);
-  const hashIndex = groups.findIndex(group => hash === `#application-system-${group.id}`);
+  const hashIndex = groups.findIndex(group => hash === `#application-system-${group.id}`
+    || group.parts.some(part => part.anchorId && hash === `#${part.anchorId}`));
   const [selection, setSelection] = useState({ hash: "", index: defaultIndex });
-  const [images, setImages] = useState<Record<string, string>>({});
+  const [images, setImages] = useState<Record<string, { hash: string; id: string }>>({});
   const buttons = useRef<(HTMLButtonElement | null)[]>([]);
   const activeIndex = selection.hash === hash ? selection.index : hashIndex >= 0 ? hashIndex : defaultIndex;
 
@@ -90,7 +101,14 @@ export function ApplicationPartGroups({ groups, ui, technicalData, inquiry, idPr
     {groups.map((group, index) => {
       const copy = ui.groups[group.id];
       const illustratedParts = group.parts.filter(part => part.image);
-      const picturedPart = illustratedParts.find(part => part.id === images[group.id]) ?? illustratedParts[0];
+      const anchoredPart = group.parts.find(part => part.anchorId && hash === `#${part.anchorId}`);
+      const imageChoice = images[group.id];
+      const imageId = imageChoice?.hash === hash ? imageChoice.id : anchoredPart?.id;
+      const picturedPart = illustratedParts.find(part => part.id === imageId) ?? illustratedParts[0];
+      const selectedPart = picturedPart ?? anchoredPart ?? group.parts[0];
+      const visibleParts = selectedPartOnly && selectedPart ? [selectedPart] : group.parts;
+      const materials = selectedPart?.materials ?? group.materials;
+      const partInquiry = selectedPart?.inquiry ?? inquiry;
       return <section key={group.id} className={styles.panel}
         id={`application-system-${group.id}`} role="tabpanel"
         aria-labelledby={`${idPrefix}-tab-${group.id}`}
@@ -99,7 +117,7 @@ export function ApplicationPartGroups({ groups, ui, technicalData, inquiry, idPr
         <div className={styles.groupHead}>
           <h3>{copy.title}</h3><p>{copy.intro}</p>
         </div>
-        <div className={styles.split}>
+        <div className={styles.split} data-has-image={Boolean(picturedPart?.image)}>
           {picturedPart?.image ? <figure className={styles.figure}>
             <div className={styles.featuredImage} id={`${idPrefix}-featured-${group.id}`}>
               <Image src={publicPath(picturedPart.image.src)} alt={picturedPart.image.alt}
@@ -110,33 +128,40 @@ export function ApplicationPartGroups({ groups, ui, technicalData, inquiry, idPr
               {illustratedParts.map(part => <button key={part.id} type="button"
                 aria-label={part.label} aria-pressed={part.id === picturedPart.id}
                 aria-controls={`${idPrefix}-featured-${group.id}`}
-                onClick={() => setImages(previous => ({ ...previous, [group.id]: part.id }))}
+                onClick={() => setImages(previous => ({ ...previous, [group.id]: { hash, id: part.id } }))}
               >
                 <Image src={publicPath(part.image!.src)} alt="" width={64} height={52} sizes="64px" />
                 <span>{part.label}</span>
               </button>)}
             </div> : null}
           </figure> : null}
-          <div className={styles.requirements}>
-            <p className={styles.listLabel}>{ui.partsLabel}</p>
-            <ul className={styles.partList}>
-              {group.parts.map(part => <li key={part.id} data-application-part={part.id}>
+          <div className={`${styles.requirements}${picturedPart?.image ? "" : ` ${styles.requirementsWithoutImage}`}`}
+            data-selected-part-only={selectedPartOnly || undefined}>
+            {!selectedPartOnly ? <p className={styles.listLabel}>{ui.partsLabel}</p> : null}
+            <ul className={styles.partList} data-selected-part-only={selectedPartOnly || undefined}>
+              {visibleParts.map(part => <li key={part.id} id={part.anchorId} data-application-part={part.id}>
                 <h4>{part.label}</h4><p>{part.description}</p>
                 {part.guide ? <TextLink {...part.guide} /> : null}
               </li>)}
             </ul>
-            <div className={styles.materials}>
-              {group.materials.map(material => <div key={material.title}>
+            {materials.length || group.materialNote ? <div className={styles.materials}
+              role={ui.materialsLabel ? "region" : undefined}
+              aria-label={ui.materialsLabel ? `${ui.materialsLabel} · ${selectedPart.label}` : undefined}
+            >
+              {ui.materialsLabel ? <p className={styles.listLabel}>{ui.materialsLabel} · {selectedPart.label}</p> : null}
+              {materials.map(material => <div key={material.title}>
                 <h4>{material.title}</h4>
                 {material.conditions.map(condition => <p key={condition}>{condition}</p>)}
                 {material.href ? <TextLink href={material.href} label={material.action} badge={material.badge} /> : null}
               </div>)}
-            </div>
+              {!materials.length && group.materialNote ? <p>{group.materialNote}</p> : null}
+            </div> : null}
           </div>
         </div>
+        {selectedPart?.evidence}
         <div className={styles.groupFooter}>
           <TextLink {...technicalData} />
-          <Button asChild variant="primary" size="form"><Link href={inquiry.href}>{inquiry.label}<span aria-hidden="true">↗</span></Link></Button>
+          <Button asChild variant="primary" size="form"><Link href={partInquiry.href}>{partInquiry.label}<span aria-hidden="true">↗</span></Link></Button>
         </div>
       </section>;
     })}

@@ -221,7 +221,7 @@ const messages = {
       eyebrow: "Revue de l'application",
       title: "Partagez les exigences de votre pièce",
       body:
-        "À partir des éléments ci-dessous, nous resserrons les orientations matière et précisons les données de grades, les documents et les échantillons disponibles.",
+        "Commencez par les données d’un grade, un échantillon ou une question matière. Indiquez la fonction de votre pièce et vos objectifs de performance.",
       checklistLabel: "Éléments utiles au départ",
       checklist: [
         "Fonction de la pièce et type de mouvement",

@@ -23,6 +23,7 @@ type LocalizedEngineeringGfPageCopy = Pick<
   | "applications"
   | "validationIntro"
   | "validationSteps"
+  | "materialNotes"
   | "contactMaterial"
 >;
 
@@ -78,6 +79,8 @@ export type EngineeringGfLandingUi = {
   validationTitle: string;
   validationCaption: string;
   validationImageAlt: string;
+  materialIllustrationCaption: string;
+  materialIllustrationImageAlt: string;
   inquiryEyebrow: string;
   inquiryTitleTemplate: string;
   inquiryBody: string;
@@ -132,6 +135,10 @@ const englishUi: EngineeringGfLandingUi = {
     "Tensile testing in the Taiyi Polymer laboratory.",
   validationImageAlt:
     "Taiyi Polymer tensile-test specimen clamped in laboratory testing equipment",
+  materialIllustrationCaption:
+    "Glass-fiber specimen · material illustration.",
+  materialIllustrationImageAlt:
+    "Illustrative glass-fiber tensile specimen in testing equipment",
   inquiryEyebrow: "Project Inquiry",
   inquiryTitleTemplate:
     "{polymer} GF material inquiries",
@@ -196,6 +203,10 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "Zugprüfung im Labor von Taiyi Polymer.",
     validationImageAlt:
       "In einer Laborprüfmaschine eingespannter Zugprüfkörper von Taiyi Polymer",
+    materialIllustrationCaption:
+      "Glasfaserverstärkter Prüfkörper · Materialillustration.",
+    materialIllustrationImageAlt:
+      "Materialillustration eines glasfaserverstärkten Zugprüfkörpers in einer Prüfmaschine",
     inquiryEyebrow: "Projektanfrage",
     inquiryTitleTemplate:
       "Anfragen zu {polymer} GF",
@@ -259,6 +270,10 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "Essai de traction au laboratoire de Taiyi Polymer.",
     validationImageAlt:
       "Éprouvette de traction Taiyi Polymer serrée dans un équipement d’essai de laboratoire",
+    materialIllustrationCaption:
+      "Éprouvette renforcée de fibres de verre · illustration du matériau.",
+    materialIllustrationImageAlt:
+      "Illustration d’une éprouvette renforcée de fibres de verre dans une machine de traction",
     inquiryEyebrow: "Demande projet",
     inquiryTitleTemplate:
       "Demandes sur le {polymer} GF",
@@ -321,6 +336,10 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       "Ensaio de tração no laboratório da Taiyi Polymer.",
     validationImageAlt:
       "Corpo de prova de tração da Taiyi Polymer preso em equipamento de laboratório",
+    materialIllustrationCaption:
+      "Corpo de prova com fibra de vidro · ilustração do material.",
+    materialIllustrationImageAlt:
+      "Ilustração de um corpo de prova reforçado com fibra de vidro em equipamento de tração",
     inquiryEyebrow: "Consulta de projeto",
     inquiryTitleTemplate:
       "Consultas sobre {polymer} GF",
@@ -381,6 +400,8 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
     validationCaption:
       "Taiyi Polymer 实验室拉伸测试。",
     validationImageAlt: "Taiyi Polymer 实验室设备夹持的拉伸测试试样",
+    materialIllustrationCaption: "玻纤增强试样 · 材质示意。",
+    materialIllustrationImageAlt: "玻纤增强拉伸试样的材质示意图",
     inquiryEyebrow: "项目询盘",
     inquiryTitleTemplate: "咨询 {polymer} 玻纤增强材料",
     inquiryBody:
@@ -406,6 +427,54 @@ const localizedUi: Record<LocalizedUrlSegment, EngineeringGfLandingUi> = {
       waterAbsorptionLabel: "吸水率",
       requestTdsAriaTemplate: "申请 {grade} 完整 TDS",
     },
+  },
+};
+
+const pa66UiOverrides: Record<
+  "en" | LocalizedUrlSegment,
+  Pick<EngineeringGfLandingUi,
+    "technicalDataAction" | "validationTab" |
+    "validationTitle" | "inquiryTitleTemplate" | "inquiryBody">
+> = {
+  en: {
+    technicalDataAction: "Find Grade Data & TDS",
+    validationTab: "Properties",
+    validationTitle: "PA66 material properties",
+    inquiryTitleTemplate: "Get PA66 Grade Information",
+    inquiryBody:
+      "Contact Taiyi Polymer for grade data or a TDS. You can also discuss the part, service conditions and material requirements.",
+  },
+  de: {
+    technicalDataAction: "Typendaten und TDS finden",
+    validationTab: "Eigenschaften",
+    validationTitle: "PA66-Eigenschaften",
+    inquiryTitleTemplate: "PA66-Typendaten und Beratung",
+    inquiryBody:
+      "Kontaktieren Sie Taiyi Polymer für Typendaten oder technische Datenblätter. Auch Bauteil, Einsatzbedingungen und Materialanforderungen können Sie mit uns besprechen.",
+  },
+  fr: {
+    technicalDataAction: "Données et fiches techniques",
+    validationTab: "Propriétés",
+    validationTitle: "Propriétés du PA66",
+    inquiryTitleTemplate: "Informations et fiches techniques PA66",
+    inquiryBody:
+      "Contactez Taiyi Polymer pour les données d’un grade ou sa fiche technique. Vous pouvez aussi nous parler de la pièce, des conditions d’utilisation et des besoins en matière de matériau.",
+  },
+  "pt-br": {
+    technicalDataAction: "Dados e fichas técnicas",
+    validationTab: "Propriedades",
+    validationTitle: "Propriedades do PA66",
+    inquiryTitleTemplate: "Dados de graus PA66 e fichas técnicas",
+    inquiryBody:
+      "Entre em contato com a Taiyi Polymer para dados de um grau ou sua ficha técnica. Também podemos conversar sobre a peça, as condições de uso e os requisitos do material.",
+  },
+  zh: {
+    technicalDataAction: "查看牌号与 TDS",
+    validationTab: "材料特点",
+    validationTitle: "PA66 材料特点",
+    inquiryTitleTemplate: "获取 PA66 牌号资料",
+    inquiryBody:
+      "联系台益索取牌号资料或 TDS，也可说明零件用途和使用条件，沟通选材需求。",
   },
 };
 
@@ -526,98 +595,66 @@ const localizedPageCopy: Record<
         "Glasfaserverstärktes PLATFORM PA66 für tragende Spritzgussteile. Festigkeit, Wärmeformbeständigkeit und Feuchtedaten nach Materialtyp vergleichen.",
       heroEyebrow: "PLATFORM® PA66",
       heroDescription:
-        "PLATFORM® PA66-Compounds mit 15–50 % Glasfaserverstärkung für tragende Spritzgussteile.",
+        "PLATFORM® PA66-Compounds mit 15–50 % Glasfaserverstärkung für spritzgegossene Gehäuse, Halterungen und tragende Strukturteile.",
       navSubtitle:
         "Glasfaserverstärkte PA66-Typen und Eigenschaften",
       comparisonIntro:
-        "Glasfaseranteil und wichtige Eigenschaften je Typ, mit Links zu Typendaten und zur Anforderung technischer Datenblätter.",
-      tradeoffs: {
-        improvementTitle: "Festigkeit unter Last",
-        improvementIntro:
-          "Glasfaserverstärktes PA66 verbindet Steifigkeit und Festigkeit für Gehäuse, Halterungen und Strukturteile. Rezeptur und Prüfbedingungen beeinflussen das Verhältnis zwischen mechanischen und thermischen Eigenschaften.",
-        improvements: [
-          "Höhere Steifigkeit und kurzfristiges Lastverhalten",
-          "Höhere Zug- und Biegefestigkeit",
-          "Höhere Wärmeformbeständigkeit",
-          "Verbesserte Kriechbeständigkeit",
-          "Maßkontrolle unter Last",
-        ],
-        reviewTitle: "Feuchte und Bauteilgeometrie",
-        reviewIntro:
-          "Der Feuchtezustand von PA66 beeinflusst mechanische Eigenschaften und Abmessungen. Faserorientierung, Anschnittposition und Bindenähte wirken sich ebenfalls auf das Spritzgussteil aus.",
-        reviewPoints: [
-          "Anforderung an Schlagzähigkeit und Versagensart",
-          "Faserorientierung und richtungsabhängige Eigenschaften",
-          "Schwindungsausgleich und Verzug",
-          "Oberflächenbild und sichtbare Fasern",
-          "Feuchtezustand und Maßkonditionierung",
-          "Bindenähte, Anschnittlage und lokale Spannungen",
-        ],
-      },
+        "GF50-Typen: {gf50Grades}. Weitere Glasfasergehalte finden Sie in der Übersicht.",
+      tradeoffs: null,
       applicationsIntro:
-        "Gehäuse, Halterungen und Strukturteile stellen unterschiedliche Anforderungen an Steifigkeit, Schlagverhalten und Maßhaltigkeit.",
+        "Typische Anwendungen sind tragende Gehäuse, Halterungen und Stützbauteile.",
       applications: [
         {
           eyebrow: "Fahrzeugmechanismen",
           label: "Struktur- und Funktionsbauteile für Fahrzeuge",
           description:
-            "Fahrzeugbauteile sind Lasten, Temperaturwechseln, Feuchte und Befestigungskräften ausgesetzt. Material- und Bauteilprüfungen berücksichtigen die Freigabeanforderungen des Projekts.",
+            "Gehäuse und Halterungen unter Wärme-, Vibrations- und Befestigungslasten.",
           href: "/applications/automotive",
         },
         {
           eyebrow: "Elektrogehäuse",
           label: "Elektrische und elektronische Bauteile",
           description:
-            "Wärmebelastung, Passmaße und mechanischer Halt sind für Elektrogehäuse relevant. Elektrische Eigenschaften und Dokumentanforderungen hängen vom Materialtyp ab.",
+            "Gehäusesteifigkeit, Passgenauigkeit bei der Montage und Maßhaltigkeit bei Wärme.",
           href: "/applications/electronics",
         },
         {
           eyebrow: "Halterungen und Stützen",
           label: "Automations- und Fördersysteme",
           description:
-            "Statische und zyklische Lasten, Schwingungen und Befestigungsgeometrie bestimmen die Anforderungen an Halterungen und Stützen. Die Verarbeitung beeinflusst das geformte Bauteil.",
+            "Halterungen und Stützen unter zyklischen Lasten, Vibrationen und Befestigungskräften.",
           href: "/applications/conveyor-automation",
         },
         {
           eyebrow: "Tragende Gehäuse",
           label: "Kunststoffformteile für Haushaltsgeräte",
           description:
-            "Temperatur, Feuchte, Montagelasten und wiederholte Zyklen wirken auf Gehäuse und Stützen. Konstante Spritzgussbedingungen helfen bei der Beurteilung der Wiederholbarkeit.",
+            "Gehäuse, Stützen und Montagebauteile bei wechselnder Temperatur und Feuchte.",
           href: "/applications/washing-machine-components",
         },
       ],
+      materialNotes: {
+        label: "Hinweise zu Verarbeitung und Auswahl",
+        description: "Schwindungsdaten sind in dieser Übersicht nicht vollständig veröffentlicht. Typenspezifische TDS und Bauteilversuche bilden die Grundlage für Trocknung, Verarbeitung und Maßanforderungen. Bauteilversuche erfassen auch Schlagverhalten, Oberfläche und Wiederholbarkeit. HDT ist keine Dauergebrauchstemperatur. Die Projektfreigabe hängt auch von Kundenanforderungen und Anwendungsdokumenten ab.",
+      },
       validationIntro:
-        "Konditionierung und Spritzgussbedingungen beeinflussen PA66-Prüfwerte und Bauteilabmessungen. Für Materialdaten und Bauteilmessungen müssen diese Bedingungen dokumentiert sein.",
+        "Glasfaserverstärkung erhöht Steifigkeit und Festigkeit von PA66. Feuchte, Faserorientierung und Einsatztemperatur beeinflussen ebenfalls das Verhalten des Formteils.",
       validationSteps: [
         {
-          title: "Konditionierung der Prüfkörper",
-          description:
-            "Trockene und konditionierte PA66-Werte beschreiben unterschiedliche Materialzustände. Vergleiche benötigen die Konditionierungsbedingungen der jeweiligen Prüfung.",
+          title: "Steifigkeit und Festigkeit",
+          description: "Fasergehalt und Rezeptur beeinflussen Steifigkeit, Festigkeit und Schlagverhalten. Typische Eigenschaften sind für jeden Materialtyp aufgeführt.",
         },
         {
-          title: "Trocknung und Schmelzehandhabung",
-          description:
-            "Die typspezifischen Vorgaben legen Trocknungs- und Verarbeitungsbedingungen für den Spritzgussversuch fest. Feuchte und Verweilzeit beeinflussen die Interpretation der Ergebnisse.",
+          title: "Feuchteeinfluss",
+          description: "PA66 nimmt Feuchtigkeit auf. Trockenes und konditioniertes Material unterscheiden sich in mechanischen Eigenschaften und Abmessungen.",
         },
         {
-          title: "Faserrichtung und Last",
-          description:
-            "Anschnitt, Fließrichtung, Bindenähte, Rippen und Einlegeteile beeinflussen die Faserorientierung entlang des Lastpfads.",
+          title: "Formteilabmessungen",
+          description: "Anguss, Fließrichtung und Bindenähte beeinflussen die Faserorientierung und damit Festigkeit, Schwindung und Verzug des Bauteils.",
         },
         {
-          title: "Schwindung und Verzug",
-          description:
-            "Die Schwindungsdaten im Katalog sind für diese Reihe unvollständig. Messungen am Formteil bestimmen Abmessungen und Verzug für das tatsächliche Werkzeug und die Konditionierungsfolge.",
-        },
-        {
-          title: "Wärme und Montagelasten",
-          description:
-            "Ein HDT-Wert allein bestimmt keine Dauergebrauchstemperatur. Bauteilprüfungen berücksichtigen Lastdauer, Temperaturwechsel und Montagezwänge.",
-        },
-        {
-          title: "Funktion und Wiederholbarkeit",
-          description:
-            "Bauteilprüfungen erfassen Funktion, Wiederholbarkeit und Umwelteinflüsse. Dokument- und Kundenanforderungen gehören zur Produktionsfreigabe.",
+          title: "Wärme und Last",
+          description: "HDT beschreibt die Wärmeformbeständigkeit unter einer festgelegten Last. Lastdauer, Temperaturwechsel und Einspannbedingungen beeinflussen ebenfalls das Einsatzverhalten.",
         },
       ],
       contactMaterial: "Glasfaserverstärktes PA66",
@@ -736,98 +773,65 @@ const localizedPageCopy: Record<
         "PA66 PLATFORM renforcé de fibres de verre pour pièces structurelles injectées. Comparez résistance, déformation sous charge à chaud et données d'humidité par grade.",
       heroEyebrow: "PLATFORM® PA66",
       heroDescription:
-        "Matériaux PA66 PLATFORM® renforcés de 15 à 50 % de fibres de verre, pour pièces structurelles moulées par injection.",
+        "Compounds PLATFORM® PA66 renforcés de 15 à 50 % de fibres de verre pour boîtiers, supports et pièces structurelles moulés par injection.",
       navSubtitle: "Grades PA66 renforcés de fibres de verre et propriétés",
       comparisonIntro:
-        "Teneur en fibres de verre et principales propriétés de chaque grade, avec accès aux données et aux demandes de fiches techniques.",
-      tradeoffs: {
-        improvementTitle:
-          "Résistance sous charge",
-        improvementIntro:
-          "Le PA66 renforcé de fibres de verre associe rigidité et résistance pour les boîtiers, supports et pièces structurelles. La formulation et les conditions d'essai influencent l'équilibre des propriétés mécaniques et thermiques.",
-        improvements: [
-          "Une rigidité et une réponse à court terme supérieures",
-          "Une résistance à la traction et à la flexion supérieure",
-          "Une meilleure tenue sous charge à chaud",
-          "Une meilleure résistance au fluage",
-          "La maîtrise dimensionnelle sous charge",
-        ],
-        reviewTitle: "Humidité et géométrie moulée",
-        reviewIntro:
-          "L'état d'humidité du PA66 influence les propriétés mécaniques et les dimensions. L'orientation des fibres, la position du seuil et les lignes de soudure affectent aussi la pièce injectée.",
-        reviewPoints: [
-          "L’exigence au choc et le mode de rupture",
-          "L’orientation des fibres et les propriétés directionnelles",
-          "L’équilibre du retrait et le gauchissement",
-          "L’aspect de surface et les fibres apparentes",
-          "L’état d’humidité et le conditionnement dimensionnel",
-          "Les lignes de soudure, la position des seuils et les contraintes locales",
-        ],
-      },
+        "Grades GF50 : {gf50Grades}. Les autres teneurs en fibres de verre figurent dans le catalogue.",
+      tradeoffs: null,
       applicationsIntro:
-        "Les boîtiers, supports et pièces structurelles ont des exigences différentes en matière de rigidité, de résistance au choc et de stabilité dimensionnelle.",
+        "Les applications courantes comprennent les boîtiers porteurs, les fixations et les pièces de support.",
       applications: [
         {
           eyebrow: "Mécanismes automobiles",
           label: "Pièces automobiles structurelles et fonctionnelles",
           description:
-            "Les composants automobiles subissent charges, cycles thermiques, humidité et efforts de fixation. Les essais matière et pièce tiennent compte des exigences d'approbation du projet.",
+            "Boîtiers et supports soumis à la chaleur, aux vibrations et aux efforts de fixation.",
           href: "/applications/automotive",
         },
         {
           eyebrow: "Boîtiers électriques",
           label: "Composants électriques et électroniques",
           description:
-            "L'exposition thermique, l'ajustement dimensionnel et le maintien mécanique comptent pour les boîtiers électriques. Les propriétés électriques et documents requis dépendent du grade.",
+            "Rigidité du boîtier, ajustement à l’assemblage et stabilité dimensionnelle à chaud.",
           href: "/applications/electronics",
         },
         {
           eyebrow: "Supports et fixations",
           label: "Systèmes d’automatisation et de convoyage",
           description:
-            "Les charges statiques et cycliques, vibrations et fixations déterminent les exigences des supports. Les conditions de transformation influencent le résultat moulé.",
+            "Supports et fixations soumis à des charges répétées, aux vibrations et aux efforts de serrage.",
           href: "/applications/conveyor-automation",
         },
         {
           eyebrow: "Boîtiers porteurs",
           label: "Composants moulés pour appareils ménagers",
           description:
-            "Température, humidité, charges d'assemblage et cycles répétés affectent les boîtiers et supports. Des conditions d'injection constantes facilitent l'évaluation de la répétabilité.",
+            "Boîtiers, supports et pièces de montage exposés aux variations de température et d’humidité.",
           href: "/applications/washing-machine-components",
         },
       ],
+      materialNotes: {
+        label: "Notes sur le moulage et le choix du grade",
+        description: "Les données de retrait ne sont pas entièrement publiées dans ce catalogue. La fiche technique du grade et les essais sur pièces définissent les conditions de séchage, de moulage et les exigences dimensionnelles. Les essais portent aussi sur le comportement au choc, la finition et la répétabilité. La HDT n’est pas une température d’utilisation continue. L’approbation du projet dépend aussi des exigences du client et des documents liés à l’application.",
+      },
       validationIntro:
-        "Le conditionnement et les conditions d'injection influencent les résultats d'essai du PA66 et les dimensions des pièces. Ces conditions doivent être précisées pour les données matière comme pour les mesures sur pièce.",
+        "Le renfort en fibres de verre augmente la rigidité et la résistance du PA66. L’humidité, l’orientation des fibres et la température d’utilisation influencent aussi les propriétés de la pièce moulée.",
       validationSteps: [
         {
-          title: "Conditionnement des éprouvettes",
-          description:
-            "Les valeurs de PA66 sec et conditionné correspondent à des états matière différents. La comparaison exige les conditions de préparation propres à chaque essai.",
+          title: "Rigidité et résistance",
+          description: "La teneur en fibres et la formulation influencent la rigidité, la résistance et le comportement au choc. Les propriétés typiques figurent pour chaque grade.",
         },
         {
-          title: "Séchage et gestion de la matière fondue",
-          description:
-            "Les recommandations du grade définissent les conditions de séchage et de transformation de l'essai d'injection. L'humidité et le temps de séjour influencent l'interprétation des résultats.",
+          title: "Effet de l’humidité",
+          description: "Le PA66 absorbe l’humidité. Le matériau sec et le matériau conditionné présentent des propriétés mécaniques et des dimensions différentes.",
         },
         {
-          title: "Orientation des fibres et charges",
-          description:
-            "Le seuil, l'écoulement, les lignes de soudure, nervures et inserts influencent l'orientation des fibres le long du chemin de charge.",
+          title: "Dimensions de la pièce moulée",
+          description: "Les points d’injection, le sens d’écoulement et les lignes de soudure influencent l’orientation des fibres, donc la résistance, le retrait et le gauchissement.",
         },
         {
-          title: "Retrait et gauchissement",
-          description:
-            "Les données de retrait du catalogue sont incomplètes pour cette gamme. Les mesures sur pièce établissent les dimensions et le gauchissement avec le moule et le cycle de conditionnement réels.",
-        },
-        {
-          title: "Chaleur et charges d'assemblage",
-          description:
-            "La HDT seule ne définit pas une température d'utilisation continue. Les essais sur pièce couvrent la durée de charge, les cycles thermiques et les contraintes d'assemblage.",
-        },
-        {
-          title: "Fonction et répétabilité",
-          description:
-            "Les essais sur pièce évaluent fonction, répétabilité et exposition environnementale. Les documents et exigences du client font partie de l'approbation de production.",
+          title: "Chaleur et charge",
+          description: "La HDT décrit la déformation thermique sous une charge définie. La durée de charge, les cycles thermiques et les contraintes d’assemblage influencent aussi les performances en service.",
         },
       ],
       contactMaterial: "PA66 renforcé de fibres de verre",
@@ -946,98 +950,65 @@ const localizedPageCopy: Record<
         "PA66 PLATFORM reforçado com fibra de vidro para peças estruturais injetadas. Compare resistência, deflexão térmica e dados de umidade por grau.",
       heroEyebrow: "PLATFORM® PA66",
       heroDescription:
-        "Compostos PA66 PLATFORM® com 15–50% de reforço de fibra de vidro para peças injetadas que suportam carga.",
+        "Compostos PLATFORM® PA66 com 15–50% de fibra de vidro para carcaças, suportes e peças estruturais moldados por injeção.",
       navSubtitle: "Graus PA66 com fibra de vidro e suas propriedades",
       comparisonIntro:
-        "Teor de fibra de vidro e principais propriedades de cada grade, com acesso aos dados e à solicitação de fichas técnicas.",
-      tradeoffs: {
-        improvementTitle:
-          "Resistência sob carga",
-        improvementIntro:
-          "O PA66 reforçado com fibra de vidro combina rigidez e resistência para carcaças, suportes e peças estruturais. A formulação e as condições de ensaio influenciam o equilíbrio entre propriedades mecânicas e térmicas.",
-        improvements: [
-          "Maior rigidez e resposta de curto prazo à carga",
-          "Maior resistência à tração e à flexão",
-          "Maior desempenho de deflexão térmica",
-          "Melhor resistência à fluência",
-          "Controle dimensional sob carga",
-        ],
-        reviewTitle: "Umidade e geometria moldada",
-        reviewIntro:
-          "O estado de umidade do PA66 influencia as propriedades mecânicas e as dimensões. A orientação das fibras, o ponto de injeção e as linhas de solda também afetam a peça moldada.",
-        reviewPoints: [
-          "Requisito de impacto e modo de falha",
-          "Orientação das fibras e propriedades direcionais",
-          "Equilíbrio de contração e empenamento",
-          "Aparência superficial e fibras expostas",
-          "Estado de umidade e condicionamento dimensional",
-          "Linhas de solda, posição dos pontos de injeção e tensões locais",
-        ],
-      },
+        "Graus GF50: {gf50Grades}. Outros teores de fibra de vidro estão no catálogo abaixo.",
+      tradeoffs: null,
       applicationsIntro:
-        "Carcaças, suportes e peças estruturais têm requisitos distintos de rigidez, resistência ao impacto e estabilidade dimensional.",
+        "As aplicações comuns incluem carcaças estruturais, suportes e peças de fixação.",
       applications: [
         {
           eyebrow: "Mecanismos automotivos",
           label: "Peças automotivas estruturais e funcionais",
           description:
-            "Componentes automotivos estão sujeitos a cargas, ciclos térmicos, umidade e esforços de fixação. Os ensaios do material e da peça contemplam os requisitos de aprovação do projeto.",
+            "Carcaças e suportes expostos ao calor, à vibração e aos esforços de fixação.",
           href: "/applications/automotive",
         },
         {
           eyebrow: "Carcaças elétricas",
           label: "Componentes elétricos e eletrônicos",
           description:
-            "Exposição térmica, ajuste dimensional e retenção mecânica importam para carcaças elétricas. As propriedades elétricas e os documentos exigidos dependem do grau.",
+            "Rigidez da carcaça, ajuste na montagem e estabilidade dimensional sob calor.",
           href: "/applications/electronics",
         },
         {
           eyebrow: "Suportes e fixações",
           label: "Sistemas de automação e transporte",
           description:
-            "Cargas estáticas e cíclicas, vibração e geometria de montagem definem os requisitos dos suportes. As condições de processamento influenciam o resultado moldado.",
+            "Suportes e fixações sujeitos a cargas repetidas, vibração e esforços de aperto.",
           href: "/applications/conveyor-automation",
         },
         {
           eyebrow: "Carcaças sob carga",
           label: "Componentes moldados para eletrodomésticos",
           description:
-            "Temperatura, umidade, cargas de montagem e ciclos repetidos afetam carcaças e suportes. Condições consistentes de injeção ajudam a avaliar a repetibilidade.",
+            "Carcaças, suportes e peças de montagem expostos a mudanças de temperatura e umidade.",
           href: "/applications/washing-machine-components",
         },
       ],
+      materialNotes: {
+        label: "Notas de moldagem e seleção",
+        description: "Os dados de contração não estão totalmente publicados neste catálogo. A ficha técnica do grau e os ensaios de peças definem as condições de secagem, moldagem e os requisitos dimensionais. Os ensaios também abrangem impacto, acabamento e repetibilidade. A HDT não representa a temperatura de uso contínuo. A aprovação do projeto também depende dos requisitos do cliente e dos documentos da aplicação.",
+      },
       validationIntro:
-        "O condicionamento e as condições de moldagem afetam os resultados de ensaio do PA66 e as dimensões da peça. Esses fatores precisam estar registrados nos dados do grau e nas medições da peça.",
+        "O reforço com fibra de vidro aumenta a rigidez e a resistência do PA66. A umidade, a orientação das fibras e a temperatura de uso também influenciam o desempenho da peça moldada.",
       validationSteps: [
         {
-          title: "Condicionamento dos corpos de prova",
-          description:
-            "Os valores de PA66 seco e condicionado representam estados distintos do material. A comparação exige a base de condicionamento de cada ensaio.",
+          title: "Rigidez e resistência",
+          description: "O teor de fibra e a formulação influenciam a rigidez, a resistência e o desempenho ao impacto. As propriedades típicas estão listadas para cada grau.",
         },
         {
-          title: "Secagem e manuseio do fundido",
-          description:
-            "As orientações do grau definem as condições de secagem e processamento do teste de moldagem. Umidade e tempo de residência influenciam a interpretação dos resultados.",
+          title: "Efeito da umidade",
+          description: "O PA66 absorve umidade. O material seco e o condicionado apresentam propriedades mecânicas e dimensões diferentes.",
         },
         {
-          title: "Direção das fibras e carga",
-          description:
-            "Ponto de injeção, fluxo, linhas de solda, nervuras e insertos influenciam a orientação das fibras ao longo do caminho de carga.",
+          title: "Dimensões da peça moldada",
+          description: "Os pontos de injeção, a direção do fluxo e as linhas de solda influenciam a orientação das fibras e, assim, a resistência, a contração e o empenamento.",
         },
         {
-          title: "Contração e empenamento",
-          description:
-            "Os dados de contração do catálogo estão incompletos para esta linha. Medições na peça estabelecem dimensões e empenamento para o molde e a sequência de condicionamento reais.",
-        },
-        {
-          title: "Calor e cargas de montagem",
-          description:
-            "O valor de HDT sozinho não define uma temperatura de uso contínuo. Os ensaios da peça abrangem duração da carga, ciclos térmicos e restrições de montagem.",
-        },
-        {
-          title: "Função e repetibilidade",
-          description:
-            "Ensaios na peça cobrem resposta funcional, repetibilidade e exposição ambiental. Documentos e requisitos do cliente fazem parte da aprovação para produção.",
+          title: "Calor e carga",
+          description: "A HDT descreve a deformação térmica sob uma carga definida. A duração da carga, os ciclos térmicos e as restrições na montagem também afetam o desempenho em uso.",
         },
       ],
       contactMaterial: "PA66 reforçado com fibra de vidro",
@@ -1155,97 +1126,65 @@ const localizedPageCopy: Record<
         "PLATFORM 玻璃纤维增强 PA66，用于承载型注塑零件。可按牌号查看强度、热变形和水分数据，并索取技术资料。",
       heroEyebrow: "PLATFORM® PA66",
       heroDescription:
-        "PLATFORM® 玻璃纤维增强 PA66 材料，玻纤含量覆盖 15–50%，面向承载型注塑零件。",
+        "PLATFORM® PA66，玻纤含量 15–50%，用于注塑壳体、支架及结构件。",
       navSubtitle: "玻纤增强 PA66 牌号与性能",
       comparisonIntro:
-        "各牌号的玻纤含量和主要性能，可查看牌号数据或索取 TDS。",
-      tradeoffs: {
-        improvementTitle: "承载所需的刚性与强度",
-        improvementIntro:
-          "玻纤增强 PA66 为壳体、支架和结构件提供刚性与强度。不同配方和测试条件下，力学与热性能的表现有所不同。",
-        improvements: [
-          "更高的刚性与短期载荷响应",
-          "更高的拉伸与弯曲强度",
-          "更高的热变形性能",
-          "改善抗蠕变能力",
-          "载荷下的尺寸控制",
-        ],
-        reviewTitle: "吸湿状态与注塑结构",
-        reviewIntro:
-          "PA66 的水分状态会影响力学性能和尺寸。纤维取向、浇口位置和熔接线也会影响注塑零件的表现。",
-        reviewPoints: [
-          "冲击要求与失效模式",
-          "纤维取向与方向性性能",
-          "收缩平衡与翘曲",
-          "表面外观与浮纤",
-          "水分状态与尺寸调节",
-          "熔接线、浇口位置与局部应力",
-        ],
-      },
+        "GF50 牌号：{gf50Grades}。其他玻纤含量牌号见下方目录。",
+      tradeoffs: null,
       applicationsIntro:
-        "壳体、支架和结构件对刚性、冲击性能和尺寸稳定性的要求各不相同。",
+        "承载壳体、安装支架和支撑件是常见的应用方向。",
       applications: [
         {
           eyebrow: "汽车机构",
           label: "汽车结构与功能部件",
           description:
-            "汽车部件涉及载荷、温度循环、湿度和紧固应力。牌号及零件试验应覆盖项目的批准要求。",
+            "温度循环、振动和安装载荷下的壳体与支架。",
           href: "/applications/automotive",
         },
         {
           eyebrow: "电气壳体",
           label: "电气与电子部件",
           description:
-            "电气壳体需要兼顾热暴露、尺寸配合和机械保持性能。电性能和文件要求需对应到具体牌号。",
+            "电气壳体的刚性、装配配合与受热后的尺寸保持。",
           href: "/applications/electronics",
         },
         {
           eyebrow: "支架与支撑件",
           label: "自动化与输送系统",
           description:
-            "支架与支撑件的要求与静态及循环载荷、振动和安装结构有关，加工条件也会影响成型结果。",
+            "承载支架与支撑件，涉及循环载荷、振动和紧固连接。",
           href: "/applications/conveyor-automation",
         },
         {
           eyebrow: "承载壳体",
           label: "家电注塑部件",
           description:
-            "壳体与支撑件的表现受温度、水分、装配载荷和循环工况影响。一致的注塑条件有助于评估重复性。",
+            "温度和湿度变化下的壳体、支撑及安装部件。",
           href: "/applications/washing-machine-components",
         },
       ],
+      materialNotes: {
+        label: "成型与选型说明",
+        description: "本目录暂未提供完整收缩数据。干燥、成型与尺寸要求以具体牌号 TDS 和零件试验为依据。零件试验还覆盖冲击、表面外观与重复性。HDT 不代表连续使用温度；项目批准还涉及客户要求和应用文件。",
+      },
       validationIntro:
-        "调湿和成型条件会影响 PA66 的测试结果与零件尺寸。牌号数据和零件测量都需要明确这些条件。",
+        "玻纤增强提高 PA66 的刚性与强度。水分状态、纤维取向和工作温度同样影响零件表现。",
       validationSteps: [
         {
-          title: "试样调节状态",
-          description:
-            "干态与调湿后的 PA66 数据对应不同材料状态。对比时需要明确各项测试采用的调节条件。",
+          title: "刚性与强度",
+          description: "玻纤含量与配方影响刚性、强度和冲击性能，各牌号的典型值见目录数据。",
         },
         {
-          title: "干燥与熔体处理",
-          description:
-            "牌号加工指南给出试模所需的干燥和加工条件。水分和停留时间也会影响试验结果的解读。",
+          title: "水分影响",
+          description: "吸湿会改变 PA66 的力学性能与尺寸，干态和调湿后的材料表现不同。",
         },
         {
-          title: "纤维方向与受力",
-          description:
-            "浇口、流动方向、熔接线、加强筋和嵌件会影响零件受力路径上的纤维取向。",
+          title: "成型尺寸",
+          description: "浇口、流动方向和熔接线影响纤维取向，进而影响零件强度、收缩与翘曲。",
         },
         {
-          title: "收缩与翘曲",
-          description:
-            "当前目录的收缩数据尚不完整。采用实际模具和调湿流程测量零件，可确认尺寸与翘曲表现。",
-        },
-        {
-          title: "温度与装配载荷",
-          description:
-            "HDT 单项数值不能确定连续使用温度。零件试验还需覆盖载荷持续时间、温度循环和装配约束。",
-        },
-        {
-          title: "功能与重复性",
-          description:
-            "零件试验覆盖功能、重复性和环境暴露。量产批准还需满足文件与客户要求。",
+          title: "温度与载荷",
+          description: "HDT 反映规定载荷下的热变形表现，载荷持续时间、温度循环与装配约束也影响使用性能。",
         },
       ],
       contactMaterial: "玻璃纤维增强 PA66",
@@ -1663,7 +1602,10 @@ export const getEngineeringGfLandingMessages = (
   const sourcePage = getEngineeringGfLandingPageData(polymer);
 
   if (!localeSegment) {
-    return { page: sourcePage, ui: englishUi };
+    return {
+      page: sourcePage,
+      ui: polymer === "PA66" ? { ...englishUi, ...pa66UiOverrides.en } : englishUi,
+    };
   }
 
   const pageCopy =
@@ -1680,6 +1622,6 @@ export const getEngineeringGfLandingMessages = (
 
   return {
     page: { ...sourcePage, ...pageCopy },
-    ui,
+    ui: polymer === "PA66" ? { ...ui, ...pa66UiOverrides[localeSegment] } : ui,
   };
 };

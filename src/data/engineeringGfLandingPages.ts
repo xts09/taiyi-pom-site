@@ -36,11 +36,15 @@ type EngineeringGfLandingPageContent = {
     reviewTitle: string;
     reviewIntro: string;
     reviewPoints: readonly string[];
-  };
+  } | null;
   applicationsIntro: string;
   applications: readonly EngineeringGfApplicationLink[];
   validationIntro: string;
   validationSteps: readonly EngineeringGfValidationStep[];
+  materialNotes?: {
+    label: string;
+    description: string;
+  };
   contactMaterial: string;
 };
 
@@ -168,97 +172,65 @@ const landingPageContent: Record<
       "PLATFORM glass-fiber-reinforced PA66 for structural injection-molded parts. Compare strength, heat-deflection and moisture data by grade.",
     heroEyebrow: "PLATFORM® PA66",
     heroDescription:
-      "PLATFORM® PA66 compounds with 15–50% glass fiber reinforcement for load-bearing injection-molded parts.",
+      "PLATFORM® PA66 compounds with 15–50% glass fiber reinforcement for injection-molded housings, brackets and structural parts.",
     navSubtitle: "Glass-fiber PA66 grades and properties",
     comparisonIntro:
-      "Glass-fiber content and key properties for each grade, with links to grade data and TDS requests.",
-    tradeoffs: {
-      improvementTitle: "Strength under load",
-      improvementIntro:
-        "Glass-fiber-reinforced PA66 combines stiffness and strength for housings, brackets and structural parts. Grade formulation and test conditions affect the balance of mechanical and thermal properties.",
-      improvements: [
-        "Higher stiffness and short-term load response",
-        "Higher tensile and flexural strength",
-        "Higher heat-deflection response",
-        "Improved creep resistance",
-        "Dimensional control under load",
-      ],
-      reviewTitle: "Moisture and molded geometry",
-      reviewIntro:
-        "PA66's moisture state influences mechanical properties and dimensions. Fiber direction, gate position and weld lines also affect the molded result.",
-      reviewPoints: [
-        "Impact requirement and failure mode",
-        "Fiber orientation and directional properties",
-        "Shrinkage balance and warpage",
-        "Surface appearance and exposed fibers",
-        "Moisture state and dimensional conditioning",
-        "Weld lines, gate position and local stress",
-      ],
-    },
+      "GF50 grades: {gf50Grades}. Other glass-fiber contents are listed below.",
+    tradeoffs: null,
     applicationsIntro:
-      "Housings, brackets and structural components have different requirements for stiffness, impact response and dimensional stability.",
+      "Typical applications include load-bearing housings, brackets and support components.",
     applications: [
       {
         eyebrow: "Automotive mechanisms",
         label: "Automotive structural and functional parts",
         description:
-          "Vehicle components face load, temperature cycles, moisture and fastening stresses. Grade and part testing address the project's approval requirements.",
+          "Housings and brackets exposed to heat, vibration and fastening loads.",
         href: "/applications/automotive",
       },
       {
         eyebrow: "Electrical housings",
         label: "Electrical and electronic components",
         description:
-          "Heat exposure, dimensional fit and mechanical retention matter for electrical housings. Electrical properties and document requirements depend on the grade.",
+          "Housing stiffness, assembly fit and dimensional retention under heat.",
         href: "/applications/electronics",
       },
       {
         eyebrow: "Brackets and supports",
         label: "Automation and conveyor systems",
         description:
-          "Static and cyclic loads, vibration and mounting geometry shape the requirements for brackets and supports. Processing conditions affect the molded result.",
+          "Brackets and supports subject to repeated loads, vibration and fastener stresses.",
         href: "/applications/conveyor-automation",
       },
       {
         eyebrow: "Load-bearing housings",
         label: "Appliance molded components",
         description:
-          "Temperature, moisture, assembly loads and repeated cycles affect housings and supports. Consistent molding conditions help assess repeatability.",
+          "Housings, supports and mounting parts exposed to changing temperature and moisture.",
         href: "/applications/washing-machine-components",
       },
     ],
+    materialNotes: {
+      label: "Molding and selection notes",
+      description: "Shrinkage data are not fully published in this catalog. Grade-specific TDS and part trials establish drying, molding and dimensional requirements. Part trials also cover impact, finish and repeatability. HDT is not a continuous-use temperature rating. Project approval also depends on customer requirements and application documents.",
+    },
     validationIntro:
-      "Moisture conditioning and molding conditions affect PA66 test results and part dimensions. Grade data and molded-part measurements need a clear record of those conditions.",
+      "Glass fiber reinforcement increases PA66's stiffness and strength. Moisture, fiber orientation and operating temperature also influence molded-part performance.",
     validationSteps: [
       {
-        title: "Specimen conditioning",
-        description:
-          "Dry and conditioned PA66 values describe different material states. Comparisons need the conditioning basis used for each test.",
+        title: "Stiffness and strength",
+        description: "Fiber content and formulation affect stiffness, strength and impact performance. Typical properties are listed for each grade.",
       },
       {
-        title: "Drying and melt handling",
-        description:
-          "Grade-specific guidance sets the drying and processing conditions for a molding trial. Moisture and residence time affect how the results are interpreted.",
+        title: "Moisture response",
+        description: "PA66 absorbs moisture. Dry and conditioned material differ in mechanical properties and dimensions.",
       },
       {
-        title: "Fiber direction and load",
-        description:
-          "Gate location, flow, weld lines, ribs and inserts influence fiber orientation along the part's load path.",
+        title: "Molded dimensions",
+        description: "Gates, flow direction and weld lines influence fiber orientation, affecting part strength, shrinkage and warpage.",
       },
       {
-        title: "Shrinkage and warpage",
-        description:
-          "Catalog shrinkage data are incomplete for this range. Measurements on the molded part establish dimensions and warpage for the actual tool and conditioning sequence.",
-      },
-      {
-        title: "Heat and assembly loads",
-        description:
-          "An HDT value alone does not establish continuous-use temperature. Part tests address load duration, temperature cycles and assembly restraint.",
-      },
-      {
-        title: "Function and repeatability",
-        description:
-          "Part testing covers functional response, repeatability and environmental exposure. Document and customer requirements form part of production approval.",
+        title: "Heat and load",
+        description: "HDT describes thermal deformation under a specified load. Load duration, temperature cycles and assembly restraint also affect service performance.",
       },
     ],
     contactMaterial: "Glass Fiber Reinforced PA66",

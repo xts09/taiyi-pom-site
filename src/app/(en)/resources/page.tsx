@@ -173,7 +173,6 @@ export default function ResourcesPage() {
 
             <div
               className="resource-index-contact-row"
-              data-footer-adjacent="true"
             >
               <div>
                 <h2>Need a grade-specific document?</h2>

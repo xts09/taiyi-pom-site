@@ -410,7 +410,6 @@ export function LocalizedProductCategoryContent({
           <RelatedCaseStudies sourcePath={sourcePath} localeSegment={localeSegment} />
 
           <ActionPanel
-            footerAdjacent
             variant="recommendation"
             title={copy.inquiry.title}
             className="selection-support-band products-motion-support mt-12"

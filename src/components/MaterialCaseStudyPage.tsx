@@ -67,7 +67,7 @@ export function MaterialCaseStudyPage({ study, localeSegment }: Props) {
           </section>)}
         </div>
         <CaseStudyRelatedLinks caseId={study.id} grade={study.grade} gradePath={`/products/${study.grade.toLowerCase()}-glass-fiber-pom`} localeSegment={localeSegment} />
-        <footer className={styles.footer} data-footer-adjacent="true">
+        <footer className={styles.footer}>
           <h2>{zh ? "讨论类似零件的材料选择" : "Discuss material selection for a similar component"}</h2>
           <div className={styles.actions}>
             <Button asChild size="form"><Link href={contact}>{zh ? "讨论你的应用" : "Discuss your application"}</Link></Button>

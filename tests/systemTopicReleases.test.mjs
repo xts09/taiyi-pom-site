@@ -268,6 +268,7 @@ test("reuses the existing related-solution presentation and leaves Home unchange
   const homeSource = readProjectFile(
     "src/components/TaskFirstHomeNarrative.tsx",
   );
+  const homeEntriesSource = readProjectFile("src/data/homeEntries.ts");
 
   assert.match(applicationPageSource, /function ApplicationRelatedSolutions/);
   assert.match(applicationPageSource, /items=\{componentSolutionItems\}/);
@@ -287,8 +288,12 @@ test("reuses the existing related-solution presentation and leaves Home unchange
     "textile-guide-components",
     "ic-handling-trays",
   ]) {
-    assert.match(homeSource, new RegExp(`/components/${componentSlug}`));
+    assert.match(homeEntriesSource, new RegExp(`/components/${componentSlug}`));
   }
+  assert.match(homeSource, /import \{ homeComponentEntries, homeIndustryEntries \} from "@\/data\/homeEntries"/);
+  assert.match(homeSource, /messages\.components\.items\.map/);
+  assert.match(homeSource, /homeComponentEntries\[index\]/);
+  assert.match(homeSource, /localizedHref\(homeComponentEntries\[index\]\.href\)/);
   assert.match(homeSource, /localizedHref\("\/components"\)/);
   assert.doesNotMatch(homeSource, /valve-flow-control|systemTopicReleases/);
 });

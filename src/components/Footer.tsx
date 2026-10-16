@@ -198,18 +198,6 @@ export function Footer({
             <p className="site-footer-brand-relation">{messages.brandRelation}</p>
           </div>
 
-          <div className="site-footer-pitch" data-nosnippet>
-            <h2>{messages.pitchTitle}</h2>
-            <p className="site-footer-pitch-copy">{messages.pitchCopy}</p>
-            <Link
-              className="site-footer-pitch-action"
-              href={localizedHref("/contact")}
-            >
-              {messages.discussApplication}
-              <ArrowUpRight aria-hidden="true" size={19} strokeWidth={1.8} />
-            </Link>
-          </div>
-
           <div
             className="site-footer-contact-actions"
             aria-label={messages.contactActionsAria}

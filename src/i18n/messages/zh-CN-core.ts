@@ -11,7 +11,7 @@ const messages = {
     hero: {
       eyebrowDesktop: "POM COMPOUNDING · MATERIAL SUPPORT",
       eyebrowMobile: "POM COMPOUNDING",
-      title: "面向精密注塑零部件的改性 POM 制造商",
+      title: "面向精密注塑零部件的工程塑料制造商",
       body: "我们以改性 POM 为核心，延伸至 PA6、PA66 和 PPA，围绕耐磨、低摩擦、增强、导电与抗静电等关键性能，为客户提供高性能工程塑料解决方案，助力创新构想走向量产。",
       exploreAction: "按零部件找材料",
       contactAction: "查找牌号与 TDS",
@@ -198,7 +198,7 @@ const messages = {
     inquiry: {
       eyebrow: "应用评估",
       title: "告诉我们零部件需求",
-      body: "提供以下信息，我们会据此筛选材料方向，并说明可提供的牌号数据、文件和样品。",
+      body: "从牌号数据、样品或选材问题开始，告诉我们部件用途和性能要求。",
       checklistLabel: "可先提供",
       checklist: [
         "零部件功能与运动方式",
@@ -238,6 +238,18 @@ const messages = {
           },
         ],
       },
+      catalogue: {
+        "title": "材料目录，直达分类与牌号数据",
+        "body": "以 POM 为核心，覆盖聚酰胺和导电、抗静电等功能改性材料。",
+        "polyamideTitle": "聚酰胺改性材料",
+        "gradesLabel": "个牌号",
+        "matricesLabel": "种聚合物基体",
+        "functionalTitle": "导电与抗静电",
+        "functionalNote": "将聚合物基体、电阻范围和测试条件一起确认。",
+        "cntTitle": "碳纳米管抗静电材料",
+        "cfTitle": "碳纤维导电材料",
+        "polyamideAction": "查看聚酰胺牌号"
+      },
       core: {
         eyebrow: "产品",
         title: "改性 POM，面向精密零部件的核心材料",
@@ -264,7 +276,7 @@ const messages = {
         ],
         gradeNote: "查询当前牌号数据，或与我们讨论零部件要求。",
         contactAction: "讨论您的应用",
-        reviewLabel: "评估要点",
+        reviewLabel: "选材因素",
         materialsLabel: "材料入口",
         groups: [
           {
@@ -456,6 +468,17 @@ const messages = {
         action: "沟通项目需求",
       },
       proof: {
+        production: {
+          "title": "自有双螺杆改性生产",
+          "body": "盐城生产基地将改性生产、批次控制与材料检测衔接在一起，支持小批试料及后续量产供货。",
+          "sinceLabel": "制造起点"
+        },
+        laboratory: {
+          "title": "材料检测实验室",
+          "body": "厂内设备用于材料性能评价。数据与资料按具体牌号、测试方法和项目要求确认。",
+          "imageAlt": "台益材料检测实验室及性能评价设备",
+          "imageCaption": "盐城生产基地 · 材料检测实验室"
+        },
         eyebrow: "制造与验证",
         title: "让材料的表现，经得起量产",
         body: [

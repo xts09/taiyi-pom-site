@@ -7,27 +7,28 @@ import { Button } from "@/components/ui/button";
 import { certifications } from "@/data/company";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
-import type { HomeMessages } from "@/i18n/types";
+import type { ContactFormMessages, HomeMessages } from "@/i18n/types";
 import { serializeJsonLd } from "@/lib/jsonLd";
 import { publicPath } from "@/lib/paths";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 
 type HomePageProps = {
   messages: HomeMessages;
+  inquiryLabels: ContactFormMessages["inquiryTypeOptions"];
+  materialLabels: ContactFormMessages["materialOptionLabels"];
   inLanguage: string;
   localeSegment?: LocalizedUrlSegment;
 };
 
 export function HomePage({
   messages,
+  inquiryLabels,
+  materialLabels,
   inLanguage,
   localeSegment,
 }: HomePageProps) {
   const localizedHref = (href: string) => getLocalizedHref(href, localeSegment);
   const taskFirstMessages = messages.taskFirst;
-  const heroSubjectStart = localeSegment === "zh"
-    ? messages.hero.title.indexOf("改性 POM 制造商")
-    : -1;
   const localizedCertifications = certifications.map((certificate, index) => ({
     ...certificate,
     ...messages.quality.certifications[index],
@@ -81,18 +82,7 @@ export function HomePage({
               </p>
 
               <h1 className="hero-motion-title hero-title-balance text-white">
-                <span className="hero-title-line">
-                  {heroSubjectStart > 0 ? (
-                    <>
-                      <span className="hero-title-phrase">
-                        {messages.hero.title.slice(0, heroSubjectStart)}
-                      </span>
-                      <span className="hero-title-subject hero-title-phrase">
-                        {messages.hero.title.slice(heroSubjectStart)}
-                      </span>
-                    </>
-                  ) : messages.hero.title}
-                </span>
+                {messages.hero.title}
               </h1>
 
               <div className="hero-support-motion">
@@ -126,12 +116,14 @@ export function HomePage({
         <TaskFirstHomeNarrative
           certifications={localizedCertifications}
           messages={taskFirstMessages}
+          materialLabels={materialLabels}
           localizedHref={localizedHref}
         />
 
         <HomeInquirySection
           messages={messages.inquiry}
-          contactHref={localizedHref("/contact")}
+          inquiryLabels={inquiryLabels}
+          localizedHref={localizedHref}
         />
       </main>
     </HomeMotion>

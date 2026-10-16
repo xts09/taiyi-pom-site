@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "tailwindcss" source("../");
 @source not "../../.codex-run";
 @source not "../../output";
 @source not "../../.next";
@@ -783,7 +783,7 @@ body {
 
 .product-filter-number,
 .product-filter-count {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.05em;
@@ -835,7 +835,7 @@ body {
   gap: clamp(1rem, 2.5vw, 2rem);
   border-bottom: 1px solid rgba(15, 23, 42, 0.12);
   padding: 0.85rem 1.2rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -847,7 +847,7 @@ body {
 }
 
 .product-directory-index {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 1rem;
 }
 
@@ -962,7 +962,7 @@ body {
 
 .product-directory-guidance {
   margin-top: 0.45rem;
-  color: #64748b !important;
+  color: var(--ds-foreground-muted) !important;
   font-size: 0.84rem !important;
 }
 
@@ -1069,7 +1069,7 @@ body {
 .product-directory-specs dt,
 .related-product-row dt,
 .detail-fact dt {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -1450,7 +1450,7 @@ body {
 .application-scene-frame figcaption {
   border-top: 1px solid rgba(15, 23, 42, 0.08);
   padding: 0.72rem 0.78rem 0.78rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.74rem;
   font-weight: 600;
   line-height: 1.35;
@@ -1882,7 +1882,7 @@ body {
 .application-part-frame figcaption span {
   display: block;
   margin-top: 0.28rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.68rem;
   font-weight: 500;
   line-height: 1.32;
@@ -1959,7 +1959,7 @@ body {
   border: 0;
   background: transparent;
   padding: 0;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.72rem;
   font-weight: 500;
   line-height: 1.32;
@@ -2064,7 +2064,7 @@ body {
 .company-figure-item span {
   display: block;
   margin-top: 0.45rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.76rem;
   font-weight: 600;
 }
@@ -2186,7 +2186,7 @@ body {
 
 .contact-preflight-head > p {
   max-width: 31rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.78rem;
   line-height: 1.55;
 }
@@ -2289,7 +2289,7 @@ body {
 
 .contact-submit-status {
   min-height: 1.2rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.78rem;
   line-height: 1.55;
 }
@@ -3267,61 +3267,6 @@ body {
   line-height: 1.5;
 }
 
-.site-footer-pitch {
-  min-width: 0;
-}
-
-#main-content:has([data-footer-adjacent="true"])
-  ~ .site-footer
-  .site-footer-pitch {
-  display: none;
-}
-
-.site-footer-pitch h2 {
-  max-width: 22ch;
-  color: var(--ds-foreground-on-dark);
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1.2;
-  text-wrap: balance;
-}
-
-.site-footer-pitch h2:lang(zh) {
-  max-width: none;
-  word-break: keep-all;
-  overflow-wrap: anywhere;
-}
-
-.site-footer-pitch-copy {
-  margin-top: var(--ds-space-3);
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  text-wrap: pretty;
-}
-
-.site-footer-pitch-action {
-  display: inline-flex;
-  min-height: var(--ds-touch-target-min);
-  align-items: center;
-  justify-content: center;
-  gap: var(--ds-space-2);
-  margin-top: var(--ds-space-4);
-  border-radius: var(--ds-radius-panel);
-  background: var(--ds-action-primary);
-  padding: var(--ds-space-3) var(--ds-space-4);
-  color: var(--ds-foreground-on-dark);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 160ms ease;
-}
-
-.site-footer-pitch-action:hover {
-  background: var(--ds-action-primary-hover);
-}
-
 .site-footer :is(a, button, summary):focus-visible {
   outline: 2px solid #7dd3fc;
   outline-offset: 4px;
@@ -3499,7 +3444,6 @@ body {
   }
 
   .site-footer-brand,
-  .site-footer-pitch,
   .site-footer-contact-actions {
     flex: 1 1 17rem;
   }
@@ -4305,10 +4249,6 @@ body {
 
 :where(.company-figure-item span) {
   font-weight: 500;
-}
-
-[data-slot="accordion-trigger"][data-state="open"] > svg {
-  transform: rotate(180deg);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -6294,7 +6234,7 @@ body {
 
 .resource-page-nav > span {
   flex: 0 0 auto;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -6394,7 +6334,7 @@ body {
 
 .resource-index-card span,
 .resource-module-card > span {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -6445,7 +6385,7 @@ body {
 
 .resource-directory-section-head p {
   margin-top: 0.7rem;
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.95rem;
   line-height: 1.65;
 }
@@ -6484,7 +6424,7 @@ body {
 }
 
 .resource-directory-link em {
-  color: #64748b;
+  color: var(--ds-foreground-muted);
   font-size: 0.92rem;
   font-style: normal;
   line-height: 1.55;

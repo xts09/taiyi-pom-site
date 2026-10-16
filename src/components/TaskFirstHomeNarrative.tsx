@@ -1,110 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CarFront,
-  CircuitBoard,
-  Cog,
-  Droplets,
-  Spool,
-  Trees,
-  WashingMachine,
-  Waypoints,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { DocumentCard } from "@/components/DocumentCard";
-import { HomeCoreProductExplorer } from "@/components/HomeCoreProductExplorer";
-import { Button } from "@/components/ui/button";
-import {
-  availableDocuments,
-  companyFigures,
-  type Certification,
-} from "@/data/company";
-import type { HomeTaskFirstMessages } from "@/i18n/types";
+import { HomeComponentCard, HomeIndustryCard } from "@/components/HomeEntryCards";
+import { HomeMaterialCatalogue } from "@/components/HomeMaterialCatalogue";
+import { MediaFigure } from "@/components/MediaFigure";
+import { SectionIntro } from "@/components/SectionIntro";
+import { availableDocuments, companyFigures, type Certification } from "@/data/company";
+import { homeComponentEntries, homeIndustryEntries } from "@/data/homeEntries";
+import type { ContactFormMessages, HomeTaskFirstMessages } from "@/i18n/types";
 import { createContactHref } from "@/lib/contactContext";
+import { buildHomeMaterialColumns } from "@/lib/homeMaterialCatalogue";
 import { publicPath } from "@/lib/paths";
-
-const materialFamilyRoutes = [
-  "/products/categories/pom",
-  "/products/categories/pa6-compound",
-  "/products/categories/pa66-compound",
-  "/products/categories/ppa-compound",
-] as const;
-
-const componentRoutes = [
-  {
-    href: "/components/precision-plastic-gears",
-    image:
-      "/applications/parts/generated/components-directory-gears-cad-transparent-v1.webp",
-  },
-  {
-    href: "/components/bushings-and-sleeves",
-    image:
-      "/applications/parts/generated/components-directory-bushings-cad-transparent-v1.webp",
-  },
-  {
-    href: "/components/conveyor-chain-components",
-    image:
-      "/applications/parts/generated/components-directory-conveyor-chain-cad-transparent-v1.webp",
-  },
-  {
-    href: "/components/valve-spools-and-cartridges",
-    image:
-      "/applications/parts/generated/components-directory-valve-cartridges-cad-transparent-v1.webp",
-  },
-  {
-    href: "/components/textile-guide-components",
-    image:
-      "/applications/parts/generated/components-directory-textile-guide-cad-transparent-v1.webp",
-  },
-  {
-    href: "/components/ic-handling-trays",
-    image:
-      "/applications/parts/generated/components-directory-ic-jedec-tray-cad-transparent-v1.webp",
-  },
-] as const;
-
-const applicationRoutes = [
-  {
-    href: "/applications/automotive",
-    icon: CarFront,
-  },
-  {
-    href: "/applications/electronics",
-    icon: CircuitBoard,
-  },
-  {
-    href: "/applications/conveyor-automation",
-    icon: Waypoints,
-  },
-  {
-    href: "/applications/motion-components",
-    icon: Cog,
-  },
-  {
-    href: "/applications/water-control",
-    icon: Droplets,
-  },
-  {
-    href: "/applications/washing-machine-components",
-    icon: WashingMachine,
-  },
-  {
-    href: "/applications/outdoor-equipment",
-    icon: Trees,
-  },
-  {
-    href: "/applications/textile-machinery",
-    icon: Spool,
-  },
-] as const;
+import styles from "./HomeSections.module.css";
 
 const proofFigures = [companyFigures[0], companyFigures[2], companyFigures[4]];
 
 type TaskFirstHomeNarrativeProps = {
   certifications: readonly Certification[];
   messages: HomeTaskFirstMessages;
+  materialLabels: ContactFormMessages["materialOptionLabels"];
   localizedHref: (href: string) => string;
 };
 
@@ -112,124 +28,99 @@ function HomeProofSection({
   certifications,
   messages,
   localizedHref,
-}: TaskFirstHomeNarrativeProps) {
+}: Omit<TaskFirstHomeNarrativeProps, "materialLabels">) {
+  const proof = messages.proof;
   return (
-    <section className="home-proof home-task-section" data-home-reveal>
+    <section id="factory-snapshot" className={`${styles.section} ${styles.cool}`} aria-labelledby="home-proof-title">
       <div className="site-container">
-        <header className="home-task-intro home-proof-intro">
-          <div className="home-proof-intro-copy">
-            <p className="home-proof-eyebrow">{messages.proof.eyebrow}</p>
-            <h2>{messages.proof.title}</h2>
-          </div>
-          <figure className="home-proof-factory-figure">
-            <Image
-              fill
-              src={publicPath("/factory-extrusion.webp")}
-              alt={messages.proof.factoryImageAlt}
-              sizes="(min-width: 80rem) 52vw, (min-width: 64rem) 55vw, 100vw"
-            />
-            <figcaption>{messages.proof.factoryImageCaption}</figcaption>
-          </figure>
-          <div className="home-proof-body">
-            {messages.proof.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
+        <header className={styles.sectionHeader}>
+          <SectionIntro
+            className={styles.intro}
+            titleClassName={styles.title}
+            descriptionClassName={styles.description}
+            title={proof.eyebrow}
+            titleId="home-proof-title"
+            description={proof.title}
+          />
         </header>
-
-        <dl
-          className="home-proof-metrics"
-          aria-label={messages.proof.metricsAria}
-        >
-          {proofFigures.map((figure, index) => (
-            <div key={figure.label}>
-              <dt>{messages.proof.metricLabels[index]}</dt>
-              <dd>
-                {figure.value}
-                <span>{messages.proof.metricNotes[index]}</span>
-              </dd>
+        <div className={styles.evidenceRows}>
+          <div className={styles.evidenceRow}>
+            <MediaFigure
+              className={styles.evidenceImage}
+              caption={proof.factoryImageCaption}
+              media={<Image fill src={publicPath("/factory-extrusion.webp")} alt={proof.factoryImageAlt} sizes="(min-width: 64rem) 46vw, 100vw" />}
+            />
+            <div className={styles.evidenceCopy}>
+              <h3>{proof.production.title}</h3>
+              <p>{proof.production.body}</p>
+              <dl className={styles.facts} aria-label={proof.metricsAria}>
+                {[0, 1].map((index) => (
+                  <div key={proof.metricLabels[index]}>
+                    <dt>{proof.metricLabels[index]}</dt>
+                    <dd>{proofFigures[index].value} {proof.metricNotes[index]}</dd>
+                  </div>
+                ))}
+                <div>
+                  <dt>{proof.production.sinceLabel}</dt>
+                  <dd>{companyFigures[1].value}</dd>
+                </div>
+              </dl>
             </div>
-          ))}
-        </dl>
-
-        <div className="home-proof-detail">
-          <div className="home-proof-detail-copy">
-            <h3>{messages.proof.documentsTitle}</h3>
-            <p>{messages.proof.documentsBody}</p>
           </div>
-          <ul
-            className="home-proof-documents"
-            aria-label={messages.proof.documentsAria}
-          >
-            {availableDocuments.map((document) => (
-              <li key={document}>{document}</li>
-            ))}
-          </ul>
-          <div className="home-proof-document-actions">
-            <Link
-              className="home-task-text-link"
-              href={localizedHref(
-                createContactHref({ source: messages.proof.documentsTitle }),
-              )}
-            >
-              {messages.proof.documentsAction}
-              <ArrowRight aria-hidden="true" size={15} />
-            </Link>
-            {messages.proof.wearRecordAction ? (
-              <Link
-                className="home-task-text-link"
-                href={localizedHref("/resources/pom-wear-benchmark")}
-              >
-                {messages.proof.wearRecordAction}
-                <ArrowRight aria-hidden="true" size={15} />
-              </Link>
-            ) : null}
+          <div className={`${styles.evidenceRow} ${styles.reverse}`}>
+            <MediaFigure
+              className={styles.evidenceImage}
+              caption={proof.laboratory.imageCaption}
+              media={<Image fill src={publicPath("/factory-laboratory-testing-documentary-v4.webp")} alt={proof.laboratory.imageAlt} sizes="(min-width: 64rem) 46vw, 100vw" />}
+            />
+            <div className={styles.evidenceCopy}>
+              <h3>{proof.laboratory.title}</h3>
+              <p>{proof.laboratory.body}</p>
+              <dl className={styles.facts}>
+                <div>
+                  <dt>{proof.metricLabels[2]}</dt>
+                  <dd>{proofFigures[2].value} {proof.metricNotes[2]}</dd>
+                </div>
+                <div>
+                  <dt>{proof.documentsTitle}</dt>
+                  <dd>{availableDocuments.join(" · ")}</dd>
+                </div>
+              </dl>
+              <div className={styles.evidenceActions}>
+                <Link className={styles.textLink} href={localizedHref(createContactHref({intent: "tds", source: proof.documentsTitle}))}>
+                  {proof.documentsAction}<ArrowRight aria-hidden="true" size={16} />
+                </Link>
+                {proof.wearRecordAction ? (
+                  <Link className={styles.textLink} href={localizedHref("/resources/pom-wear-benchmark")}>
+                    {proof.wearRecordAction}<ArrowRight aria-hidden="true" size={16} />
+                  </Link>
+                ) : null}
+              </div>
+            </div>
           </div>
         </div>
-
-        <div className="home-proof-certificates">
-          <header className="home-proof-certificates-head">
-            <h3>{messages.proof.certificatesTitle}</h3>
-            <Link
-              className="home-proof-certificate-link"
-              href={localizedHref("/about#overview-credentials-title")}
-            >
-              {messages.proof.certificateAction}
-              <ArrowRight aria-hidden="true" size={15} />
-            </Link>
-          </header>
-
-          <div className="home-proof-certificate-grid">
-            {certifications.map((certificate) => (
-              <DocumentCard
-                key={certificate.standard}
-                className="home-proof-certificate-card"
-                variant="certificate"
-                external
-                href={publicPath(certificate.documentHref)}
-                eyebrow={certificate.system}
-                title={certificate.standard}
-                previewAriaLabel={`${messages.proof.certificateOpenAction}: ${certificate.standard}`}
-                previewClassName="home-proof-certificate-preview"
-                actionClassName="home-proof-document-action"
-                preview={
-                  <Image
-                    width={certificate.imageWidth}
-                    height={certificate.imageHeight}
-                    src={publicPath(certificate.imageSrc)}
-                    alt=""
-                  />
-                }
-                actionLabel={
-                  <>
-                    {messages.proof.certificateOpenAction}
-                    <ArrowUpRight aria-hidden="true" size={14} />
-                  </>
-                }
-              />
-            ))}
-          </div>
-
+        <header className={styles.certificateHead}>
+          <h3>{proof.certificatesTitle}</h3>
+          <Link className={styles.textLink} href={localizedHref("/about#overview-credentials-title")}>
+            {proof.certificateAction}<ArrowRight aria-hidden="true" size={16} />
+          </Link>
+        </header>
+        <div className={styles.certificateGrid}>
+          {certifications.map((certificate) => (
+            <DocumentCard
+              key={certificate.standard}
+              className={styles.certificate}
+              variant="certificate"
+              external
+              href={publicPath(certificate.documentHref)}
+              eyebrow={certificate.system}
+              title={certificate.standard}
+              previewAriaLabel={`${proof.certificateOpenAction}: ${certificate.standard}`}
+              previewClassName={styles.certificatePreview}
+              preview={<Image width={certificate.imageWidth} height={certificate.imageHeight} src={publicPath(certificate.imageSrc)} alt="" />}
+              actionLabel={<>{proof.certificateOpenAction}<ArrowUpRight aria-hidden="true" size={14} /></>}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -239,146 +130,96 @@ function HomeProofSection({
 export function TaskFirstHomeNarrative({
   certifications,
   messages,
+  materialLabels,
   localizedHref,
 }: TaskFirstHomeNarrativeProps) {
+  const catalogue = messages.catalogue;
+  const columns = buildHomeMaterialColumns({ messages, materialLabels, localizedHref });
   return (
     <>
-      <HomeCoreProductExplorer
-        messages={messages.core}
-        familyHrefs={materialFamilyRoutes.map((href) => localizedHref(href))}
-        pomHref={localizedHref("/products/categories/pom")}
-        carbonFiberHref={localizedHref(
-          "/products/categories/carbon-fiber-reinforced-pom-compound",
-        )}
-      />
-
-      <section className="home-component-paths home-task-section" data-home-reveal>
-        <div className="site-container">
-          <header className="home-task-intro home-application-intro">
-            <h2>{messages.components.eyebrow}</h2>
-            <div>
-              <p>{messages.components.title}</p>
-              <Link
-                className="home-task-text-link"
-                href={localizedHref("/components")}
-              >
-                {messages.components.action}
-                <ArrowRight aria-hidden="true" size={15} />
-              </Link>
-            </div>
-          </header>
-
-          <div className="home-application-grid home-component-grid">
-            {messages.components.items.map((item, index) => (
-              <Link
-                key={item.title}
-                className="home-application-card"
-                href={localizedHref(componentRoutes[index].href)}
-              >
-                <Image
-                  fill
-                  src={publicPath(componentRoutes[index].image)}
-                  alt={item.imageAlt}
-                  sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 100vw"
-                />
-                <span className="home-application-scrim" aria-hidden="true" />
-                <span className="home-application-copy">
-                  <strong>{item.title}</strong>
-                  <ArrowUpRight aria-hidden="true" size={18} />
-                </span>
-              </Link>
-            ))}
+      <section className={`${styles.section} ${styles.cool}`} aria-labelledby="home-collaboration-title">
+        <div className={`site-container ${styles.whyLayout}`}>
+          <div className={styles.whyCopy}>
+            <SectionIntro
+              className={styles.intro}
+              titleClassName={styles.title}
+              descriptionClassName={styles.description}
+              title={messages.collaboration.title}
+              titleId="home-collaboration-title"
+              description={messages.collaboration.body}
+            />
+            <Link className={styles.textLink} href="#factory-snapshot">
+              {messages.proof.eyebrow}<ArrowRight aria-hidden="true" size={16} />
+            </Link>
           </div>
-        </div>
-      </section>
-
-      <section className="home-application-paths home-task-section" data-home-reveal>
-        <div className="site-container">
-          <header className="home-task-intro home-application-intro">
-            <h2>{messages.applications.eyebrow}</h2>
-            <div>
-              <p>{messages.applications.title}</p>
-              <Link
-                className="home-task-text-link"
-                href={localizedHref("/applications")}
-              >
-                {messages.applications.action}
-                <ArrowRight aria-hidden="true" size={15} />
-              </Link>
-            </div>
-          </header>
-
-          <div className="home-application-grid home-application-icon-grid">
-            {messages.applications.items.map((item, index) => {
-              const ApplicationIcon = applicationRoutes[index].icon;
-
-              return (
-                <Link
-                  key={item.title}
-                  className="home-application-card home-application-card--icon"
-                  href={localizedHref(applicationRoutes[index].href)}
-                >
-                  <span className="home-application-icon" aria-hidden="true">
-                    <ApplicationIcon size={48} strokeWidth={1.5} />
-                  </span>
-                  <strong className="home-application-label">
-                    {item.shortTitle ?? item.title}
-                  </strong>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      <section
-        className="home-collaboration home-task-section"
-        aria-labelledby="home-collaboration-title"
-        data-home-reveal
-      >
-        <div className="site-container">
-          <header className="home-collaboration-intro">
-            <p>{messages.collaboration.eyebrow}</p>
-            <h2 id="home-collaboration-title">
-              {messages.collaboration.title}
-            </h2>
-            <p>{messages.collaboration.body}</p>
-          </header>
-
-          <ul
-            className="home-collaboration-principles"
-            aria-label={messages.collaboration.itemsAria}
-          >
+          <ul className={styles.supportGrid} aria-label={messages.collaboration.itemsAria}>
             {messages.collaboration.items.map((item) => (
-              <li key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </li>
+              <li key={item.title}><h3>{item.title}</h3><p>{item.description}</p></li>
             ))}
           </ul>
-
-          <div className="home-collaboration-action-wrap">
-            <Button
-              asChild
-              className="home-collaboration-action"
-              size="form"
-              variant="primary"
-            >
-              <Link href={localizedHref("/contact")}>
-                {messages.collaboration.action}
-                <ArrowRight aria-hidden="true" size={16} />
-              </Link>
-            </Button>
+        </div>
+      </section>
+      <section id="entry-points" className={styles.section} aria-labelledby="home-catalogue-title">
+        <div className="site-container">
+          <header className={styles.sectionHeader}>
+            <SectionIntro
+              className={styles.intro}
+              titleClassName={styles.title}
+              descriptionClassName={styles.description}
+              title={catalogue.title}
+              titleId="home-catalogue-title"
+              description={catalogue.body}
+            />
+            <Link className={styles.textLink} href={localizedHref("/products")}>
+              {messages.core.allFamiliesAction}<ArrowRight aria-hidden="true" size={16} />
+            </Link>
+          </header>
+          <HomeMaterialCatalogue columns={columns} />
+        </div>
+      </section>
+      <section className={`${styles.section} ${styles.cool}`} aria-labelledby="home-components-title">
+        <div className="site-container">
+          <header className={styles.sectionHeader}>
+            <SectionIntro className={styles.intro} titleClassName={styles.title} descriptionClassName={styles.description} title={messages.components.eyebrow} titleId="home-components-title" description={messages.components.title} />
+            <Link className={styles.textLink} href={localizedHref("/components")}>
+              {messages.components.action}<ArrowRight aria-hidden="true" size={16} />
+            </Link>
+          </header>
+          <div className={styles.partGrid}>
+            {messages.components.items.map((item, index) => (
+              <HomeComponentCard
+                key={item.title}
+                {...homeComponentEntries[index]}
+                href={localizedHref(homeComponentEntries[index].href)}
+                title={item.title}
+                imageAlt={item.imageAlt}
+              />
+            ))}
           </div>
         </div>
       </section>
-
-      <HomeProofSection
-        certifications={certifications}
-        messages={messages}
-        localizedHref={localizedHref}
-      />
-
+      <section className={styles.section} aria-labelledby="home-applications-title">
+        <div className="site-container">
+          <header className={styles.sectionHeader}>
+            <SectionIntro className={styles.intro} titleClassName={styles.title} descriptionClassName={styles.description} title={messages.applications.eyebrow} titleId="home-applications-title" description={messages.applications.title} />
+            <Link className={styles.textLink} href={localizedHref("/applications")}>
+              {messages.applications.action}<ArrowRight aria-hidden="true" size={16} />
+            </Link>
+          </header>
+          <div className={styles.industryGrid}>
+            {messages.applications.items.map((item, index) => (
+              <HomeIndustryCard
+                key={item.title}
+                {...homeIndustryEntries[index]}
+                href={localizedHref(homeIndustryEntries[index].href)}
+                title={item.shortTitle ?? item.title}
+                imageAlt={item.imageAlt}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+      <HomeProofSection certifications={certifications} messages={messages} localizedHref={localizedHref} />
     </>
   );
 }

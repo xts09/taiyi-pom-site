@@ -75,7 +75,6 @@ export function NewsArticleActions({
       </section>
 
       <ActionPanel
-        footerAdjacent
         variant="evidence"
         className="mt-10"
         title={messages.contactTitle}

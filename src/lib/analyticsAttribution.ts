@@ -39,6 +39,14 @@ export type MarketingAttribution = {
 
 type StorageLike = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
+const getBrowserStorage = (): StorageLike | undefined => {
+  try {
+    return typeof window === "undefined" ? undefined : window.localStorage;
+  } catch {
+    return undefined;
+  }
+};
+
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === "object" && value !== null && !Array.isArray(value);
 
@@ -169,11 +177,11 @@ export function buildAnalyticsPageLocation(rawUrl: string) {
 }
 
 export function readMarketingAttribution(
-  storage: StorageLike = window.localStorage,
+  storage: StorageLike | undefined = getBrowserStorage(),
   now = Date.now(),
 ): MarketingAttribution | null {
   try {
-    const stored = storage.getItem(marketingAttributionStorageKey);
+    const stored = storage?.getItem(marketingAttributionStorageKey);
     if (!stored) return null;
 
     const attribution = sanitizeMarketingAttribution(JSON.parse(stored));
@@ -186,7 +194,7 @@ export function readMarketingAttribution(
       !Number.isFinite(capturedAt) ||
       now - capturedAt > marketingAttributionMaxAgeMs
     ) {
-      storage.removeItem(marketingAttributionStorageKey);
+      storage?.removeItem(marketingAttributionStorageKey);
       return null;
     }
 
@@ -197,9 +205,9 @@ export function readMarketingAttribution(
 }
 
 export function captureMarketingAttribution(
-  rawUrl = window.location.href,
-  referrer = document.referrer,
-  storage: StorageLike = window.localStorage,
+  rawUrl = typeof window === "undefined" ? "" : window.location.href,
+  referrer = typeof document === "undefined" ? "" : document.referrer,
+  storage: StorageLike | undefined = getBrowserStorage(),
 ) {
   const touch = parseMarketingAttribution(rawUrl, referrer);
   if (!touch) return readMarketingAttribution(storage);
@@ -211,7 +219,7 @@ export function captureMarketingAttribution(
   };
 
   try {
-    storage.setItem(
+    storage?.setItem(
       marketingAttributionStorageKey,
       JSON.stringify(attribution),
     );
@@ -223,10 +231,10 @@ export function captureMarketingAttribution(
 }
 
 export function clearMarketingAttribution(
-  storage: StorageLike = window.localStorage,
+  storage: StorageLike | undefined = getBrowserStorage(),
 ) {
   try {
-    storage.removeItem(marketingAttributionStorageKey);
+    storage?.removeItem(marketingAttributionStorageKey);
   } catch {
     // Consent revocation still applies to the current page.
   }

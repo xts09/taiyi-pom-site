@@ -74,10 +74,6 @@ const messages = {
   Footer: {
     brandRelation: "台益 · PLATFORM® 工程材料",
     logoAlt: "PLATFORM 注册商标",
-    pitchTitle: "获取材料、资料与供货支持",
-    pitchCopy:
-      "浏览 PLATFORM® 工程材料与牌号资料，或联系台益了解样品、供货和企业资质。",
-    discussApplication: "讨论您的应用",
     products: "产品",
     applications: "应用",
     allApplications: "全部应用",

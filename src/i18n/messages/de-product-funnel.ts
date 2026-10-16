@@ -310,7 +310,7 @@ const messages = {
     breadcrumb: "XT-100",
     eyebrow: "POM mit niedriger Dichte und hoher Schlagzähigkeitsrichtung · Spritzguss",
     summary:
-      "XT-100 ist ein Kandidat für Präzisions- und allgemeine Spritzgussteile, bei denen Dichte, Schlagzähigkeit und ein ausgewogenes Fließprofil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
+      "XT-100 ist ein POM-Typ für Präzisions- und allgemeine Spritzgussteile. Die Werkstoffdaten umfassen Dichte, Schlagzähigkeit und Fließverhalten.",
     documentSupport: "Dokumentenunterstützung",
     documentNote: "Verfügbarkeit wird nach Typ, Zielmarkt und Projekt bestätigt.",
     sampleAction: "XT-100 Muster anfragen",
@@ -426,7 +426,7 @@ const messages = {
       breadcrumb: "ETM450",
       eyebrow: "Hochfließendes POM · Spritzguss",
       summary:
-        "ETM450 ist ein Kandidat für Präzisionsspritzgussteile, bei denen gute Formfüllung und ein belastbares mechanisches Profil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
+        "ETM450 ist ein POM-Typ für Präzisionsspritzgussteile mit Anforderungen an Formfüllung und mechanische Eigenschaften.",
       sampleAction: "ETM450 Muster anfragen",
       snapshot: {
         aria: "ETM450 Kennwertübersicht",
@@ -470,7 +470,7 @@ const messages = {
       breadcrumb: "ETM750",
       eyebrow: "Sehr hochfließendes POM · Spritzguss",
       summary:
-        "ETM750 ist ein Kandidat für dünnwandige und füllkritische Spritzgussteile, bei denen lange Fließwege und die mechanische Leistung gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
+        "ETM750 ist ein POM-Typ für dünnwandige oder schwer zu füllende Spritzgussteile. Fließweglänge und mechanische Eigenschaften bestimmen die Auswahl.",
       sampleAction: "ETM750 Muster anfragen",
       snapshot: {
         aria: "ETM750 Kennwertübersicht",
@@ -515,7 +515,7 @@ const messages = {
       breadcrumb: "EGB25",
       eyebrow: "POM mit 25 % Glaskugeln · Spritzguss",
       summary:
-        "EGB25 ist ein Kandidat für Spritzgussteile, bei denen Längs- und Querschwindung sowie das thermische Profil gemeinsam geprüft werden müssen. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Werkzeug, Prozessfenster und Einsatzbedingungen.",
+        "EGB25 ist ein POM-Typ für maßkritische Spritzgussteile. Der Katalog enthält Angaben zur Schwindung längs und quer zur Fließrichtung sowie zu thermischen Eigenschaften.",
       sampleAction: "EGB25 Muster anfragen",
       snapshot: {
         aria: "EGB25 Kennwertübersicht",
@@ -560,7 +560,7 @@ const messages = {
       breadcrumb: "EGH502H",
       eyebrow: "POM mit 25 % Glasfaser · Hohe Steifigkeit",
       summary:
-        "EGH502H ist ein Kandidat für Formteile, bei denen hohe Steifigkeit, geringe Schwindung und das thermische Profil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Bauteilgeometrie, Faserorientierung, Werkzeug, Prozessfenster und Einsatzbedingungen.",
+        "EGH502H ist ein glasfaserverstärkter POM-Typ für Spritzgussteile mit Anforderungen an hohe Steifigkeit, geringe Schwindung und thermische Eigenschaften.",
       sampleAction: "EGH502H Muster anfragen",
       snapshot: {
         aria: "EGH502H Kennwertübersicht",
@@ -605,7 +605,7 @@ const messages = {
       breadcrumb: "EHI402T",
       eyebrow: "Schlagzähmodifiziertes POM · Ausgewogene Verarbeitung",
       summary:
-        "EHI402T ist ein Kandidat für funktionale Formteile, bei denen verbesserte Zähigkeit, Tieftemperaturverhalten und ein ausgewogenes Verarbeitungsprofil gemeinsam geprüft werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur.",
+        "EHI402T ist ein schlagzäher POM-Typ für funktionale Spritzgussteile mit Anforderungen an Zähigkeit, Tieftemperaturverhalten und Verarbeitung.",
       sampleAction: "EHI402T Muster anfragen",
       snapshot: {
         aria: "EHI402T Kennwertübersicht",
@@ -650,7 +650,7 @@ const messages = {
       breadcrumb: "EDR180",
       eyebrow: "Schlagzähmodifiziertes POM · Hohe Bruchdehnung",
       summary:
-        "EDR180 ist ein Kandidat für funktionale Formteile, bei denen Schlagzähigkeit, Tieftemperaturverhalten und eine hohe Dehnungsreserve gemeinsam bewertet werden. Die veröffentlichten Werte unterstützen die frühe Auswahl; bestätigen Sie die Eignung mit realer Geometrie, Kerben, Lastfall, Werkzeug, Prozessfenster und Einsatztemperatur.",
+        "EDR180 ist ein schlagzäher POM-Typ für funktionale Spritzgussteile mit Anforderungen an Schlagzähigkeit, Tieftemperaturverhalten und Dehnung.",
       sampleAction: "EDR180 Muster anfragen",
       snapshot: {
         aria: "EDR180 Kennwertübersicht",

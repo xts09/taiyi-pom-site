@@ -8,6 +8,7 @@ import {
 import {
   trackContactClick,
   trackDocumentDownload,
+  trackInquiryEntry,
   trackTechnicalDataClick,
 } from "@/lib/conversionEvents";
 import { useGoogleAnalyticsConsent } from "@/lib/googleConsent";
@@ -59,6 +60,14 @@ export function AnalyticsTracker() {
       try {
         url = new URL(href, window.location.href);
       } catch {
+        return;
+      }
+
+      if (
+        url.origin === window.location.origin &&
+        /^(?:\/(?:zh|de|fr|pt-br))?\/contact\/?$/.test(url.pathname)
+      ) {
+        trackInquiryEntry(context);
         return;
       }
 
