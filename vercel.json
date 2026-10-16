@@ -1,4 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run prepublish:check"
+  "buildCommand": "npm run prepublish:check",
+  "git": {
+    "deploymentEnabled": {
+      "codex/keptds": false
+    }
+  }
 }

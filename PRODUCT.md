@@ -779,6 +779,12 @@ Use proof points such as factory scale, production lines, testing equipment, ava
 
 ## Voice
 
+The maintained `codex/keptds` branch uses explicit Vercel deployments. Its Git
+pushes run the release-quality workflow while `vercel.json` disables automatic
+cloud deployments for that branch. Check live storage before an explicit
+production build and retain the current production deployment as a rollback
+target. This avoids retaining a preview solely as an intermediate release step.
+
 The voice is professional, restrained, technical, and helpful.
 
 Write active engineering guidance. Explain the failure risk, formulation choice,
