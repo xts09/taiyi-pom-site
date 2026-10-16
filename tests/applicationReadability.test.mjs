@@ -195,7 +195,7 @@ test("reviewed Application density rollout removes only family-wide repeated fra
     33,
   );
   for (const detail of Object.values(applicationDetails)) {
-    assert.match(detail.detailUi?.materials?.description ?? "", /不代表/);
-    assert.ok(detail.detailUi?.evaluation?.description);
+    assert.match(detail.detailUi?.materials?.description ?? "", /基准牌号.*TDS/);
+    assert.match(detail.detailUi?.evaluation?.description ?? "", /候选牌号.*TDS.*试模/);
   }
 });

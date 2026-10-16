@@ -339,6 +339,17 @@ export const translateExpandedText = (
     expandedLocaleOverrides[localeSegment]?.[value] ?? dictionary?.[value];
 
   if (!translated) {
+    const grade = value.match(/^([A-Z0-9][A-Z0-9-]*) 是 (?:PA6|PA66|PPA) /)?.[1];
+    if (grade) {
+      const template = value.replace(`${grade} 是 `, "{{grade}} 是 ");
+      translated = expandedLocaleOverrides[localeSegment]?.[template]?.replaceAll(
+        "{{grade}}",
+        grade,
+      );
+    }
+  }
+
+  if (!translated) {
     for (const [grade, templateGrade] of gradeCodeTranslationTemplates) {
       if (!value.includes(grade)) continue;
       const template = value.replaceAll(grade, templateGrade);

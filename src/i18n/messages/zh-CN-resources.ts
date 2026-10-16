@@ -31,7 +31,7 @@ const messages = {
   inquiry: {
     title: "需要特定牌号的资料？",
     description:
-      "请提供牌号、应用、所需资料和项目阶段，以便结合具体需求确认资料是否可提供。",
+      "告知牌号或零件用途及所需资料，获取对应 TDS、候选牌号对比建议和试模样品支持。",
     action: "讨论您的应用",
   },
   linkTypeLabels: {
@@ -89,7 +89,7 @@ const messages = {
   },
   entries: {
     "/resources/pom-wear-benchmark": {
-      label: "POM 耐磨测试 Benchmark",
+      label: "POM 耐磨测试记录",
       type: "technicalNote",
       description: "报告记录按工况分组，附测量值、过程曲线和现有试样照片。",
     },
@@ -97,79 +97,79 @@ const messages = {
       label: "POM 材料选型指南",
       type: "guide",
       description:
-        "以零部件需求为起点，比较耐磨、低摩擦、增强、导电、抗静电、耐候与高抗冲 POM 方向。",
+        "从磨损、开裂或变形等主导失效切入，找到润滑、增韧或增强 POM 的首轮候选牌号。",
     },
     "/resources/wear-resistant-low-friction-pom-selection-guide": {
       label: "耐磨 / 低摩擦 POM 选型指南",
       type: "guide",
       description:
-        "面向齿轮、轴套、滚轮、滑块、导向件与阀门运动部件，比较耐磨和低摩擦 POM 的选型依据。",
+        "区分低启动阻力与长期磨耗，按摩擦副选择 PTFE、MoS₂、硅油或芳纶改性 POM。",
     },
     "/resources/pom-gear-material-selection": {
       label: "POM 齿轮材料选型",
       type: "guide",
       description:
-        "根据载荷、疲劳、对偶件、润滑、温度、精密注塑与代表性验证要求筛选塑料齿轮用 POM。",
+        "齿面磨损、齿根疲劳与蠕变分别怎样影响 POM 选择？结合已有牌号与齿轮案例确定首轮验证重点。",
     },
     "/resources/pa6-vs-pa66-reinforced-parts": {
       label: "PA6 与 PA66 选型指南",
       type: "guide",
       description:
-        "从调湿状态、温度、力学平衡、尺寸表现、注塑风险与牌号数据等方面比较增强 PA6 和 PA66。",
+        "以 EAG130 与 EAG230 GF30 为对比起点，分清基材、吸湿状态与温度对刚性和尺寸的影响。",
     },
     "/resources/glass-fiber-reinforced-pa6-pa66-selection-guide": {
       label: "玻纤增强 PA6 / PA66 指南",
       type: "guide",
       description:
-        "结合玻纤含量、调湿、载荷、取向、翘曲、注塑可行性与零部件证据筛选玻纤增强 PA6 和 PA66。",
+        "先以相同玻纤比例比较 PA6 与 PA66，再沿目录阶梯调整刚性，并控制取向翘曲和装配韧性。",
     },
     "/resources/ppa-vs-pa66-material-selection": {
       label: "PPA 与 PA66 选型指南",
       type: "guide",
       description:
-        "仅在已明确高温、调湿后性能、尺寸、耐化学或电气性能缺口时，再评估以 PPA 替代 PA66 的方向。",
+        "PA66 高温刚性或湿度下尺寸未达标时，用 EAG230／EAG630H GF30 数据确定 PPA 对比与试模重点。",
     },
     "/resources/conductive-antistatic-pa6-pa66-ppa-selection-guide": {
       label: "导电 PA6 / PA66 / PPA 指南",
       type: "guide",
       description:
-        "依据电气测试方法、目标区间、接地、几何、调湿、注塑与验证要求筛选 CNT 或碳纤维 PA6、PA66 和 PPA。",
+        "从目标电阻与接地路径切入，选择 CNT 或碳纤维配方，明确成型后应复测的电气指标。",
     },
     "/resources/application-notes": {
       label: "应用说明",
       type: "technicalNote",
       description:
-        "按零部件功能、失效风险和使用工况审核改性 POM，并明确进入牌号筛选前所需的验证依据。",
+        "把零件失效转化为选材指标：齿轮看疲劳与磨损，阀芯看启动阻力与密封，支架看刚性与蠕变。",
     },
     "/resources/reinforcement-materials-overview": {
       label: "增强材料概览",
       type: "guide",
       description:
-        "从载荷路径、尺寸目标、电气功能、注塑风险和验证范围比较玻璃纤维与碳纤维增强方向。",
+        "刚性不足时如何选玻纤，需要导电时如何选碳纤维？同时识别取向、翘曲与对偶件磨损的代价。",
     },
     "/resources/processing-guide": {
       label: "POM 加工指南",
       type: "technicalNote",
       description:
-        "涵盖材料处理、试模、收缩、翘曲、尺寸漂移、成型缺陷及问题排查输入的实用 POM 注塑指南。",
+        "先稳定材料处理与充填保压，再按缺陷定位收缩、翘曲和尺寸漂移的排查顺序。",
     },
     "/resources/pom-warpage-troubleshooting": {
       label: "POM 翘曲问题排查",
       type: "technicalNote",
       description:
-        "从测量方法、收缩方向、零部件与模具设计、保压、冷却和验证过程排查 POM 翘曲。",
+        "把翘曲形状与模穴、流向和测量时间对应起来，优先定位冷却、保压或取向差异。",
     },
     "/resources/pa6-pa66-moisture-drying-conditioning-guide": {
       label: "PA6 / PA66 水分与调湿指南",
       type: "technicalNote",
       description:
-        "区分 PA6 和 PA66 的粒子干燥、成型后干态、调湿、使用环境暴露、测量与验证。",
+        "区分成型前干燥与成型后调湿，建立可重复的水分状态，减少尺寸与装配测量误判。",
     },
     "/resources/alternative-pom-grade-validation": {
       label: "替代 POM 牌号验证",
       type: "guide",
       description:
-        "通过资料比较、受控成型、尺寸、功能、合规与生产放行依据，对候选替代 POM 牌号进行验证。",
+        "更换 POM 供应来源时，建立尺寸、成型与功能对比基准，形成试模和生产放行清单。",
     },
     "/technical-data-sheets": {
       label: "数据 / TDS 搜索",
@@ -185,7 +185,7 @@ const messages = {
       label: "改性 POM 常见问题",
       type: "faq",
       description:
-        "了解 POM 与 PA、耐磨与摩擦、增强与导电 POM、TDS 性能、收缩、翘曲及材料选型等常见问题。",
+        "快速厘清 POM 与 PA、低摩擦与耐磨的区别，并找到 TDS、收缩和翘曲问题的下一步处理方式。",
     },
   },
   category: {
@@ -200,7 +200,7 @@ const messages = {
     reviewEyebrow: "技术审核",
     reviewTitle: "不确定应从哪项资料开始？",
     reviewDescription:
-      "请提供零部件、当前材料、目标性能、加工方式和资料需求。我们可协助确定适合初步比较的材料系列与所需资料。",
+      "提交当前材料、零件用途与未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可用于确定首轮验证重点。",
     reviewAction: "讨论您的应用",
   },
   articleUi: {
@@ -218,7 +218,7 @@ const messages = {
     reviewEyebrow: "技术审核",
     reviewTitle: "需要把这些说明用于您的零部件？",
     reviewDescription:
-      "请提供零部件、使用工况、目标性能、当前材料、模具阶段和资料需求。我们可协助确定适合比较的材料系列与所需数据。",
+      "提交当前材料、零件用途与未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可用于确定首轮验证重点。",
     reviewAction: "讨论您的应用",
     contactSourcePrefix: "技术资料",
     sidebarLabel: "本页内容",

@@ -1,3 +1,4 @@
+import { selectionEditorialLocaleOverrides } from "./selectionEditorialLocaleOverrides.ts";
 import type { LocalizedUrlSegment } from "./config.ts";
 import { applicationNarrativeLocaleOverrides } from "./applicationNarrativeLocaleOverrides.ts";
 import { aboutLocaleOverrides } from "./aboutLocaleOverrides.ts";
@@ -6,6 +7,8 @@ import { componentDetailLocaleOverrides } from "./componentDetailLocaleOverrides
 import { categoryLocaleOverrides } from "./categoryLocaleOverrides.ts";
 import { ems102LocaleOverrides } from "./ems102LocaleOverrides.ts";
 import { functionalPomLocaleOverrides } from "./functionalPomLocaleOverrides.ts";
+import { pomSelectionLocaleOverrides } from "./pomSelectionLocaleOverrides.ts";
+import { copyAuditResourceLocaleOverrides } from "./copyAuditResourceLocaleOverrides.ts";
 
 type TranslationOverrides = Readonly<Record<string, string>>;
 
@@ -13,6 +16,7 @@ export const expandedLocaleOverrides: Partial<
   Record<LocalizedUrlSegment, TranslationOverrides>
 > = {
   de: {
+    ...selectionEditorialLocaleOverrides["de"],
     "POM 耐磨测试 Benchmark": "POM-Verschleißtest-Benchmark",
     "报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
       "Prüfberichte nach Prüfbedingungen gruppiert, mit Messwerten, Verlaufskurven und vorhandenen Probenfotos.",
@@ -32,6 +36,8 @@ export const expandedLocaleOverrides: Partial<
     ...automotiveExpandedLocaleOverrides.de,
     ...applicationNarrativeLocaleOverrides.de,
     ...componentDetailLocaleOverrides.de,
+    ...pomSelectionLocaleOverrides.de,
+    ...copyAuditResourceLocaleOverrides.de,
     "IC 周转托盘": "IC-Handling-Trays",
     精密塑料齿轮: "Präzisionszahnräder aus Kunststoff",
     "聚焦改性 POM 的工程塑料制造商":
@@ -139,6 +145,7 @@ export const expandedLocaleOverrides: Partial<
       "Deutscher materialübergreifender Leitfähigkeits- und Antistatik-Katalog",
   },
   fr: {
+    ...selectionEditorialLocaleOverrides["fr"],
     "牌号特点": "Caractéristiques du grade",
     "POM 耐磨测试 Benchmark": "Benchmark des essais d'usure POM",
     "报告记录按工况分组，附测量值、过程曲线和现有试样照片。":
@@ -159,6 +166,8 @@ export const expandedLocaleOverrides: Partial<
     ...automotiveExpandedLocaleOverrides.fr,
     ...applicationNarrativeLocaleOverrides.fr,
     ...componentDetailLocaleOverrides.fr,
+    ...pomSelectionLocaleOverrides.fr,
+    ...copyAuditResourceLocaleOverrides.fr,
     "IC 周转托盘": "Plateaux de manutention pour circuits intégrés",
     "EAI210 PA66 抗冲改性牌号 | 台益":
       "EAI210 PA66 modifié choc | Taiyi Polymer",
@@ -281,6 +290,7 @@ export const expandedLocaleOverrides: Partial<
       "Catalogue français multimatériaux conducteurs et antistatiques",
   },
   "pt-br": {
+    ...selectionEditorialLocaleOverrides["pt-br"],
     "牌号特点": "Características do grau",
     "比较相关 PA6 牌号": "Comparar graus de PA6",
     "比较相关 PA66 牌号": "Comparar graus de PA66",
@@ -304,6 +314,8 @@ export const expandedLocaleOverrides: Partial<
     ...automotiveExpandedLocaleOverrides["pt-br"],
     ...applicationNarrativeLocaleOverrides["pt-br"],
     ...componentDetailLocaleOverrides["pt-br"],
+    ...pomSelectionLocaleOverrides["pt-br"],
+    ...copyAuditResourceLocaleOverrides["pt-br"],
     "IC 周转托盘": "Bandejas para manuseio de CIs",
     "EAI210 PA66 抗冲改性牌号 | 台益":
       "EAI210 PA66 modificado para impacto | Taiyi Polymer",

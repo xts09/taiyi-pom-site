@@ -16,6 +16,7 @@ import { getLocalizedComponentSolution } from "@/i18n/componentMessages";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import { translateExpandedContent } from "@/i18n/expandedLocaleContent";
 import { chinesePomDirectoryMessages } from "@/i18n/messages/zh-CN-pom-directory";
+import { getPomGradeDirectoryLabel, pomComparisonDataNote } from "@/i18n/pomDirectoryCopy";
 import {
   type LocalizedProductCategoryRouteSlug,
   type ProductFunnelMessages,
@@ -263,9 +264,9 @@ export function LocalizedProductCategoryContent({
                         {String(index + 1).padStart(2, "0")}
                       </span>
                       <div>
-                        <p className="section-kicker">POM</p>
+                        <p className="section-kicker">{getPomGradeDirectoryLabel(product, localeSegment)}</p>
                         <h3>{product.grade}</h3>
-                        <p>
+                        <p className={product.grade === "EMS102" || product.grade === "EMS162" ? "product-directory-selection-note" : undefined}>
                           {copy.directory.summaries[
                             product.slug as keyof typeof copy.directory.summaries
                           ]}
@@ -323,6 +324,9 @@ export function LocalizedProductCategoryContent({
                 );
               })}
             </div>
+            {categorySlug === "wear-resistant-low-friction-pom-compound" ? (
+              <p className="mt-4 text-sm text-[color:var(--ds-foreground-muted)]">{pomComparisonDataNote[localeSegment]}</p>
+            ) : null}
           </section>
 
           )}

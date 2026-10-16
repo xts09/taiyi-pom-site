@@ -102,7 +102,7 @@ export const applications: ApplicationItem[] = [
     slug: "automotive",
     title: "Automotive",
     description:
-      "Functional molded parts for vehicle doors, seats, fuel systems, wipers, control boxes, and interior mechanisms.",
+      "Drive gears require a balance of root loading and tooth wear; clips need crack resistance and retention; fluid parts need dimensional and sealing stability after exposure. Build the first grade comparison around the part’s failure mode.",
     materialDirections: [
       materialDirection(
         "High-Impact POM Compound",
@@ -292,7 +292,7 @@ export const applications: ApplicationItem[] = [
     slug: "electronics",
     title: "Electronics",
     description:
-      "Precision molded parts for electrical connection, insulation, control, and actuation, with conductive or antistatic material directions where charge control is required.",
+      "For connectors, balance latch retention with thin-wall filling; for drives, control wear and noise. For static-control handling parts, start with resistance targets and the grounding path to select CNT or carbon-fiber formulations.",
     materialDirections: [
       materialDirection(
         "Conductive / Antistatic POM Compound",
@@ -446,7 +446,7 @@ export const applications: ApplicationItem[] = [
     slug: "conveyor-automation",
     title: "Conveyor Automation",
     description:
-      "Plastic chain plates, conveyor guides, rollers, and handling components for clean automated movement.",
+      "Pin-bore wear lengthens chain pitch, while guide stick-slip raises drive load. Separate load deformation from contact wear before choosing reinforced or lubricated POM for chains, rollers and guides.",
     materialDirections: [
       materialDirection("Wear-Resistant POM Compound"),
       materialDirection("Low-Friction POM Compound"),
@@ -596,7 +596,7 @@ export const applications: ApplicationItem[] = [
     slug: "motion-components",
     title: "Motion Components",
     description:
-      "Gears, rollers, bushings, sleeves, and sliding parts for transmission, guidance, and low-friction movement.",
+      "For continuous meshing, start with tooth wear and heat; for frequent starts, address stick-slip and impact. Match lubricated, toughened or reinforced POM to the dominant risk and shortlist listed grades for trials.",
     materialDirections: [
       {
         ...materialDirection("Wear-Resistant POM Compound"),
@@ -749,7 +749,7 @@ export const applications: ApplicationItem[] = [
     slug: "water-control",
     title: "Water Control",
     description:
-      "Valve, sanitary, pump, and water-control molded parts for clean movement and stable assembly.",
+      "Spool sticking and seal leakage can begin with changing clearances. Prioritize starting friction and wear at moving interfaces, and creep and warpage in pressure housings; screen formulations against fluid and water temperature.",
     materialDirections: [
       materialDirection("Low-Friction POM Compound"),
       materialDirection("Wear-Resistant POM Compound"),
@@ -909,7 +909,7 @@ export const applications: ApplicationItem[] = [
     title: "Washing Machine Components",
     shortTitle: "Washing Machine",
     description:
-      "Functional molded components for washing-machine drum drive, water routing, drainage, valves, and low-friction moving assemblies.",
+      "Drive parts face starting impact and tooth wear; drain and valve parts depend on fit and sealing after hot-water and detergent exposure. Build separate shortlists for dry and wet service.",
     materialDirections: [
       materialDirection("Base POM Resin"),
       materialDirection("Wear-Resistant POM Compound"),
@@ -1073,7 +1073,7 @@ export const applications: ApplicationItem[] = [
     slug: "outdoor-equipment",
     title: "Outdoor Equipment",
     description:
-      "Weather-exposed molded parts for garden equipment, sprinklers, outdoor mechanisms, and durable equipment assemblies.",
+      "For outdoor clips, balance cold-temperature toughness with light aging; for gears and spools, address impact and dust wear. Establish separate baselines using weather-modified, toughened or lubricated formulations.",
     materialDirections: [
       materialDirection("High-Impact POM Compound"),
       materialDirection("UV-Resistant POM Compound"),
@@ -1220,7 +1220,7 @@ export const applications: ApplicationItem[] = [
     slug: "textile-machinery",
     title: "Textile Machinery",
     description:
-      "Wear-resistant guide, motion, and low-shrinkage molded parts for textile machinery and yarn or fabric handling systems.",
+      "Wear on yarn-contact surfaces can increase fuzz and breakage, while dusty reciprocation promotes stick-slip. Balance surface retention with friction first, then compare stiffness and dimensions for load-bearing supports.",
     materialDirections: [
       materialDirection("Wear-Resistant POM Compound"),
       materialDirection("Low-Friction POM Compound"),

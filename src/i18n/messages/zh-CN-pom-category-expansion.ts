@@ -16,7 +16,7 @@ export const chinesePomCategoryExpansion = {
       eyebrow: "POM 改性材料系列",
       title: "耐磨与低摩擦 POM",
       description:
-        "PLATFORM® 耐磨与低摩擦 POM 采用 PTFE、MoS2、芳纶纤维及其他耐磨改性体系，面向齿轮、轴套、滚轮、导轨等持续滑动或转动的零件。不同牌号在摩擦、磨损、强度与加工性能之间各有侧重。",
+        "齿轮、轴套和导轨的选型，先区分磨耗、粘滑与承载变形。PLATFORM® 耐磨与低摩擦 POM 提供润滑、固体润滑及纤维复合配方，按主导风险建立首轮牌号对比。",
       overviewLabel: "材料概览",
       overview:
         "系列配套关键力学与热性能数据，技术文件和样品按具体牌号与项目确认。",
@@ -30,22 +30,22 @@ export const chinesePomCategoryExpansion = {
       kicker: "牌号范围",
       title: "耐磨与低摩擦 POM 牌号",
       body:
-        "从 PTFE、MoS2、芳纶纤维到其他耐磨添加体系，不同牌号提供各有侧重的摩擦、耐磨、强度与加工性能组合，并配套关键力学与热性能数据。",
+        "低启动阻力从 EPTL402 切入，耐磨与拉伸平衡从 EMS102／EMS162 切入，刚性与接触耐磨并重时加入 EPAF100A。下列目录按配方标注牌号，并列出关键数据。",
       summaries: {
         "etm270h-wear-resistant-pom":
           "耐磨改性 POM，兼顾较高的拉伸与弯曲表现。",
         "epaf100a-high-wear-resistant-pom":
-          "芳纶纤维改性高耐磨 POM，用于评估刚度、耐磨和耐热表现。",
+          "10% 芳纶纤维改性 POM；滑动件需要同时比较刚性、耐磨与热变形时，从 EPAF100A 切入。",
         "eptl402-high-wear-resistant-pom":
-          "PTFE 填充高耐磨 POM，用于滑动件和低摩擦磨损场景。",
+          "PTFE 润滑改性 POM；轴套、滑块的启动阻力或粘滑突出时，优先将 EPTL402 纳入首轮试模。",
         "enm1040-high-wear-resistant-pom":
           "采用特殊耐磨添加剂体系的 POM，用于滑动与功能零件。",
         "edm-111-high-wear-resistant-pom":
           "面向汽车、电气、卫浴和工业注塑应用的高耐磨 POM。",
         "ems102-high-wear-resistant-pom":
-          "MoS2 填充黑色高耐磨 POM，兼顾耐磨与稳定力学表现。",
+          "MoS2 改性黑色耐磨 POM。复杂流道或充模流动性敏感的零件，首轮优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。",
         "ems162-high-wear-resistant-pom":
-          "MoS2 填充黑色高耐磨 POM，兼顾耐磨与稳定力学表现。",
+          "MoS2 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，从 EMS162 切入对比（65 MPa，MFI 7 g/10 min）。",
       },
     },
     faq: {
@@ -60,7 +60,7 @@ export const chinesePomCategoryExpansion = {
         {
           question: "系列采用哪些改性体系？",
           answer:
-            "系列包含 PTFE 填充、MoS2 填充、芳纶纤维增强及其他耐磨添加体系，可提供不同的低摩擦、耐磨、强度与加工性能组合。",
+            "PTFE 体系优先对比滑动阻力与粘滑；MoS₂ 体系对比耐磨和拉伸性能；芳纶体系加入刚性与耐磨的权衡。外部润滑或对偶材料改变时，分别记录各组合的磨耗和温升。",
         },
         {
           question: "可查看哪些资料？",

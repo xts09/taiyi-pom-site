@@ -143,7 +143,7 @@ const messages = {
       eyebrow: "Produktverzeichnis",
       title: "Technische Kunststoff-Compounds",
       body:
-        "Modifiziertes POM bildet das Kernsortiment. POM-Basisharz und ausgewählte PA6-, PA66- und PPA-Compounds ergänzen die Auswahl für Bauteile mit anderen Eigenschafts- und Verarbeitungsanforderungen.",
+        "Bei Verschleiß und Stick-Slip beginnen Sie mit geschmiertem POM, bei Lastverformung mit verstärkten Rezepturen. Wenn der Temperatur- oder Zähigkeitsbedarf zu Polyamiden führt, vergleichen Sie konkrete PA6-, PA66- und PPA-Typen.",
       startAction: "Nach Bauteilanforderung auswählen",
       dataSheetsAction: "Typendaten & TDS finden",
     },
@@ -151,32 +151,32 @@ const messages = {
       kicker: "Anforderung zuerst",
       title: "Was muss das Bauteil leisten?",
       body:
-        "Werkstoffoptionen und Leistungsabwägungen für die Anforderungen Ihres Bauteils.",
+        "Bestimmen Sie den Hauptausfall und wählen Sie über diese Pfade erste Rezepturen und Vergleichskriterien.",
       navigationAria: "Werkstoffpfade nach Bauteilanforderung",
       paths: [
         {
           label: "Verschleiß / Reibung",
           title: "Bewegte oder gleitende Bauteile",
           description:
-            "Vergleichen Sie Last, Geschwindigkeit, Gegenkörper, Schmierung, Geräusch und die geforderte Verschleißlebensdauer.",
+            "Bei Stick-Slip und Betätigungskraft vergleichen Sie PTFE oder Silikonöl, bei Spielzunahme Verschleiß und mechanischen Erhalt.",
         },
         {
           label: "Steifigkeit / Maßhaltigkeit",
           title: "Präzision unter Last",
           description:
-            "Vergleichen Sie Steifigkeit, Kriechen, Schwindungsverhalten, Verzug und Fließorientierung im Formteil.",
+            "Bei Halterdurchbiegung vergleichen Sie Biegemodul und Kriechen, bei Präzisionspassungen Richtungsschwindung und Verzug.",
         },
         {
           label: "Schlagzähigkeit / Montage",
           title: "Schnappverbindungen oder Stoßlasten",
           description:
-            "Stoßbelastung, Temperatur, Bindenähte und Montagespannungen bestimmen die Anforderungen an die Zähigkeit.",
+            "Bei Rastrissen prüfen Sie Kerbzähigkeit und Montagedehnung, bei Dauerklemmung Haltekraft nach Kriechen.",
         },
         {
           label: "Ableitfähigkeit",
           title: "Leitfähige oder antistatische Funktion",
           description:
-            "Widerstandsziel, Erdung, Geometrie, Farbe und Prüfverfahren orientieren die Auswahl der Polymermatrix.",
+            "Definieren Sie Widerstandsverfahren und Erdung und wählen Sie Matrix und CNT-/Kohlenstofffasersystem nach Temperatur, Steifigkeit und Maßen.",
         },
       ],
     },
@@ -195,30 +195,30 @@ const messages = {
         },
         {
           title: "POM-Basisharz",
-          label: "Ausgewählte Beschaffung",
+          label: "Basisharz",
           description:
-            "Ausgewählte Basisharze für den POM-Grundvergleich, technische Unterlagen und Projektbemusterung.",
+            "Für Form-, Maß- und Mechanikreferenzen; Fließtypen für allgemeine, komplexe oder dünnwandige Teile wählen.",
           metricLabel: "Basistypen",
         },
         {
           title: "PA6-Compounds",
-          label: "Weitere Werkstofffamilie",
+          label: "Polyamide",
           description:
-            "Ausgewählte PA6-Compounds für verstärkte, schlagzähmodifizierte, flammgeschützte, verschleißbeanspruchte und mineralgefüllte Formteile.",
+            "Glasfaserverstärktes, schlagzähes, flammgeschütztes, verschleißmodifiziertes und mineralgefülltes PA6; Auswahl nach Steifigkeit, Montagezähigkeit und Fließen.",
           metricLabel: "gelistete Typen",
         },
         {
           title: "PA66-Compounds",
-          label: "Weitere Werkstofffamilie",
+          label: "Polyamide",
           description:
-            "Ausgewählte PA66-Compounds für verstärkte, flammgeschützte, verschleißbeanspruchte und maßhaltige Formteile.",
+            "Glasfaserverstärktes, flammgeschütztes und verschleißmodifiziertes PA66; bei Warmlast Steifigkeitserhalt priorisieren und Trocken-/Konditionierungsmaße getrennt vergleichen.",
           metricLabel: "gelistete Typen",
         },
         {
           title: "PPA-Compounds",
           label: "Für höhere Temperaturen",
           description:
-            "PPA-Compounds für Formteile bei höheren Temperaturen, die Steifigkeit und Maßhaltigkeit erfordern.",
+            "Wenn PA66-Warmsteifigkeit oder Feuchtemaße begrenzen, vergleichen Sie PPA-Typen sowie Trocknung, Werkzeugtemperatur und Anlagenfähigkeit.",
           metricLabel: "gelistete Typen",
         },
         {
@@ -235,7 +235,7 @@ const messages = {
       eyebrow: "Anfrage vorbereiten",
       action: "Anwendung besprechen",
       body:
-        "Nennen Sie Anwendung, Werkzeugstand, Kavitätenzahl, Schwindungs- oder Verzugsrisiko, zentrale Leistungsanforderungen, aktuellen Referenzwerkstoff, Farbe, benötigte Unterlagen und geschätztes Volumen. Damit lassen sich die relevante Werkstofffamilie sowie die nächsten Schritte für Typendaten, Dokumente und Muster festlegen.",
+        "Senden Sie Bauteilfunktion, aktuellen Werkstoff und verfehlte Anforderungen sowie vorhandene Zeichnungen oder Einsatzdaten. Sie erhalten Typvergleiche, TDS, Versuchsmusterunterstützung und wichtige Prüfpunkte.",
       contactSource: "Produktverzeichnis",
     },
   },

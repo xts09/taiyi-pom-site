@@ -12682,7 +12682,7 @@
     "description": "Very high-flow POM resin grade for thin-wall and flow-sensitive injection-molded parts.",
     "features": [
       "Very high flow",
-      "Thin-wall molding direction",
+      "For thin-wall molding",
       "Injection molding",
       "Natural color"
     ],
@@ -13280,8 +13280,8 @@
     ],
     "description": "Low-density, high-impact POM resin grade for precision and general injection-molded parts.",
     "features": [
-      "Low-density direction",
-      "High-impact direction",
+      "Low-density POM",
+      "Impact-modified POM",
       "Injection molding",
       "Natural color"
     ],
@@ -13487,7 +13487,7 @@
     "colors": [
       "Natural"
     ],
-    "description": "Wear-resistant POM direction with higher tensile and flexural performance for sliding and moving molded parts.",
+    "description": "Wear-modified POM for sliding and moving parts with tensile and flexural requirements. Compare the relevant mechanical data alongside contact wear and clearance retention.",
     "features": [
       "High flow",
       "Wear resistance",
@@ -13592,7 +13592,7 @@
     "description": "Aramid-fiber modified high wear-resistant POM compound for molded parts that need improved stiffness, wear resistance, and heat resistance.",
     "features": [
       "10% aramid fiber content",
-      "High wear-resistant direction",
+      "Wear-modified POM",
       "Higher HDT performance"
     ],
     "applications": [
@@ -13988,7 +13988,7 @@
     "description": "High wear-resistant POM compound with a special wear-resistant additive package for sliding and functional molded parts.",
     "features": [
       "Special wear-resistant additive",
-      "High wear-resistant direction",
+      "Wear-modified POM",
       "Balanced molding performance"
     ],
     "applications": [
@@ -14183,9 +14183,9 @@
     "colors": [
       "Natural"
     ],
-    "description": "High wear-resistant POM compound direction for automotive, electrical, sanitary, and industrial molded applications.",
+    "description": "Wear-modified POM for automotive, electrical, sanitary and industrial moving parts. Include EDM-111 in same-contact-pair trials when wear or clearance growth is the main failure.",
     "features": [
-      "High wear-resistant direction",
+      "Wear-modified POM",
       "Natural color",
       "Stable injection molding"
     ],
@@ -14381,7 +14381,7 @@
     "colors": [
       "Black"
     ],
-    "description": "Black molybdenum-disulfide-filled POM compound supplied as granules for automotive, electrical and electronic, sanitary, and industrial applications. Listed properties are typical values for preliminary material selection.",
+    "description": "Black MoS2-modified wear-resistant POM. Start with EMS102 for complex flow paths or filling-sensitive parts: catalogue MFI 8 g/10 min and tensile strength 60 MPa.",
     "features": [
       "MoS2-filled POM",
       "Black color",
@@ -14581,10 +14581,10 @@
     "colors": [
       "Black"
     ],
-    "description": "MoS2-filled black high wear-resistant POM compound for molded parts requiring wear resistance and stable mechanical performance.",
+    "description": "Black MoS2-modified wear-resistant POM. Start with EMS162 for sliding and transmission parts where tensile strength is the main screening criterion: catalogue tensile strength 65 MPa and MFI 7 g/10 min.",
     "features": [
-      "MoS2-filled direction",
-      "High wear-resistant direction",
+      "MoS2-filled POM",
+      "Wear-resistant POM",
       "Black color"
     ],
     "applications": [
@@ -14781,7 +14781,7 @@
     ],
     "description": "High-impact and low-temperature resistant POM compound for automotive, electrical, sanitary, and industrial molded applications.",
     "features": [
-      "High-impact direction",
+      "Impact-modified POM",
       "Low-temperature resistance",
       "Natural color"
     ],
@@ -14979,7 +14979,7 @@
     ],
     "description": "High-impact and low-temperature resistant POM compound with improved toughness for functional molded parts.",
     "features": [
-      "High-impact direction",
+      "Impact-modified POM",
       "Low-temperature resistance",
       "Balanced molding performance"
     ],
@@ -15177,7 +15177,7 @@
     ],
     "description": "High-impact and low-temperature resistant POM compound for parts requiring stronger impact toughness and elongation.",
     "features": [
-      "High-impact direction",
+      "Impact-modified POM",
       "Low-temperature resistance",
       "High elongation at break"
     ],
@@ -15375,7 +15375,7 @@
     ],
     "description": "High-impact and low-temperature resistant POM compound for molded applications requiring balanced stiffness and toughness.",
     "features": [
-      "High-impact direction",
+      "Impact-modified POM",
       "Low-temperature resistance",
       "Balanced stiffness and toughness"
     ],
@@ -15576,7 +15576,7 @@
     ],
     "description": "High-impact and low-temperature resistant POM compound for functional molded parts requiring improved toughness.",
     "features": [
-      "High-impact direction",
+      "Impact-modified POM",
       "Low-temperature resistance",
       "Natural color"
     ],
@@ -15774,7 +15774,7 @@
     ],
     "description": "High-impact and low-temperature resistant POM compound with strong elongation performance for functional molded parts.",
     "features": [
-      "High-impact direction",
+      "Impact-modified POM",
       "Low-temperature resistance",
       "High elongation at break"
     ],
@@ -16375,10 +16375,10 @@
       "Natural",
       "Black"
     ],
-    "description": "High-impact matte UV-resistant POM compound for molded parts that need impact performance, matte appearance, and UV-resistant material direction.",
+    "description": "Impact-modified, matte UV-resistant POM. Use EDR180U as a candidate for exposed clips and housings requiring a balance of impact toughness, appearance and light-aging retention.",
     "features": [
       "UV-resistant grade",
-      "High-impact matte direction",
+      "Impact-modified matte POM",
       "Natural or black color"
     ],
     "applications": [
@@ -16775,7 +16775,7 @@
     "description": "High-impact UV and aging-resistant POM compound for molded parts requiring stable appearance and performance under light exposure.",
     "features": [
       "UV and aging resistance",
-      "High-impact direction",
+      "Impact-modified POM",
       "Natural or black color"
     ],
     "applications": [
@@ -17575,7 +17575,7 @@
     "description": "25% glass-bead-filled POM compound for injection-molded parts requiring balanced longitudinal and transverse shrinkage evaluation.",
     "features": [
       "25% glass bead content",
-      "Balanced longitudinal and transverse shrinkage direction",
+      "Longitudinal and transverse shrinkage balance",
       "Heat deflection temperature: 110 degC at 1.8 MPa",
       "Natural color"
     ],
@@ -17780,7 +17780,7 @@
     "features": [
       "25% glass fiber content",
       "High rigidity",
-      "Creep-resistance direction",
+      "For creep-sensitive parts",
       "Low molding shrinkage"
     ],
     "applications": [

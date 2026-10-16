@@ -2111,8 +2111,18 @@
   font-size: clamp(1.08rem, 1.3vw, 1.22rem);
 }
 
-.products-motion-root .product-directory-main p:not(.section-kicker) {
+.products-motion-root .product-directory-main p:not(.section-kicker):not(.product-directory-selection-note) {
   display: none;
+}
+
+.products-motion-root .product-directory-main p.product-directory-selection-note {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+  margin-top: var(--ds-space-2);
+  color: var(--ds-foreground-muted);
+  font-size: var(--ds-text-sm);
+  line-height: 1.65;
 }
 
 .products-motion-root .product-directory-specs {

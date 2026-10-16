@@ -143,7 +143,7 @@ const messages = {
       eyebrow: "Répertoire produits",
       title: "Compounds de plastiques techniques",
       body:
-        "Le POM modifié reste la gamme principale. La résine POM de base et une sélection de compounds PA6, PA66 et PPA couvrent les projets qui demandent un autre équilibre entre performances et mise en œuvre.",
+        "Pour usure et stick-slip, partez d’un POM lubrifié ; pour déformation sous charge, d’une formulation renforcée. Si le projet demande un équilibre température/ténacité de polyamide, comparez les grades PA6, PA66 et PPA.",
       startAction: "Choisir selon les exigences de la pièce",
       dataSheetsAction: "Trouver les données grade et TDS",
     },
@@ -151,32 +151,32 @@ const messages = {
       kicker: "Les exigences d'abord",
       title: "Que doit accomplir la pièce ?",
       body:
-        "Des options de matériaux et leurs compromis de performance selon les exigences de votre pièce.",
+        "Identifiez la défaillance dominante, puis choisissez les premières formulations et critères par ces parcours.",
       navigationAria: "Parcours matière selon les exigences de la pièce",
       paths: [
         {
           label: "Usure / Frottement",
           title: "Pièces mobiles ou coulissantes",
           description:
-            "Comparez la charge, la vitesse, le matériau antagoniste, la lubrification, le bruit et la durée de vie en usure requise.",
+            "Pour stick-slip et effort, comparez PTFE ou silicone ; pour le jeu croissant, usure et tenue mécanique.",
         },
         {
           label: "Rigidité / Dimension",
           title: "Précision sous charge",
           description:
-            "Comparez la rigidité, le fluage, le retrait, le gauchissement et l'orientation d'écoulement dans la pièce moulée.",
+            "Pour la flèche des supports, comparez module en flexion et fluage ; pour les ajustements, retrait orienté et gauchissement.",
         },
         {
           label: "Impact / Assemblage",
           title: "Clipsage ou charges de choc",
           description:
-            "Les chocs, la température, les lignes de soudure et les contraintes d’assemblage déterminent les besoins en ténacité.",
+            "Pour fissures de clips, vérifiez ténacité entaillée et déformation ; pour serrage durable, retenue après fluage.",
         },
         {
           label: "Contrôle électrostatique",
           title: "Fonction conductrice ou antistatique",
           description:
-            "La résistance cible, la mise à la terre, la géométrie, la couleur et la méthode d’essai orientent le choix de la matrice.",
+            "Fixez méthode de résistance et terre, puis matrice et système CNT/carbone selon température, rigidité et dimensions.",
         },
       ],
     },
@@ -195,30 +195,30 @@ const messages = {
         },
         {
           title: "Résine POM de base",
-          label: "Approvisionnement sélectionné",
+          label: "Résine de base",
           description:
-            "Résines de base sélectionnées pour la comparaison POM, les documents techniques et l'échantillonnage de projet.",
+            "Établissez les références de moulage, dimensions et mécanique ; choisissez la fluidité pour pièces courantes, complexes ou minces.",
           metricLabel: "grades de base",
         },
         {
           title: "Compounds PA6",
-          label: "Famille complémentaire",
+          label: "Polyamides",
           description:
-            "Compounds PA6 sélectionnés pour pièces renforcées, modifiées choc, ignifugées, soumises à l'usure ou chargées minérales.",
+            "PA6 renforcé verre, modifié choc, ignifugé, anti-usure ou chargé minéral ; sélection selon rigidité, ténacité au montage et fluidité.",
           metricLabel: "grades répertoriés",
         },
         {
           title: "Compounds PA66",
-          label: "Famille complémentaire",
+          label: "Polyamides",
           description:
-            "Compounds PA66 sélectionnés pour pièces renforcées, ignifugées, soumises à l'usure et dimensionnellement stables.",
+            "PA66 renforcé verre, ignifugé ou anti-usure ; privilégiez la rigidité sous charge chaude et séparez dimensions sèches et conditionnées.",
           metricLabel: "grades répertoriés",
         },
         {
           title: "Compounds PPA",
           label: "Haute température",
           description:
-            "Compounds PPA pour pièces moulées à température plus élevée nécessitant rigidité et stabilité dimensionnelle.",
+            "Si rigidité à chaud ou dimensions en humidité limitent le PA66, comparez les grades PPA et vérifiez séchage, température du moule et équipement.",
           metricLabel: "grades répertoriés",
         },
         {
@@ -235,7 +235,7 @@ const messages = {
       eyebrow: "Préparation de la demande",
       action: "Parler de votre application",
       body:
-        "Indiquez l'application, l'état d'avancement du moule, le nombre d'empreintes, les risques de retrait ou de gauchissement, les performances clés, la matière de référence actuelle, la couleur, les documents requis et le volume estimé. Ces éléments permettent d'identifier la famille pertinente et de cadrer les données grade, documents et échantillons à fournir.",
+        "Transmettez fonction, matériau actuel et exigences non atteintes, avec plans ou conditions disponibles. Recevez comparaison de grades, TDS, appui en échantillons et contrôles prioritaires.",
       contactSource: "Répertoire produits",
     },
   },

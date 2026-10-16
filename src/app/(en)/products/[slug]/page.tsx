@@ -303,10 +303,10 @@ function EngineeringProductDetailPage({
     .filter(Boolean);
   const featureItems = [
     document.screening?.comparison ??
-      `${document.family} ${document.category} compound direction`,
+      `${document.family} ${document.category} formulation`,
     document.filler && document.filler !== "-"
       ? `${document.filler}% filler or reinforcement reference`
-      : "Modified compound direction for project review",
+      : "Modified formulation for the listed part requirements",
     document.flammability && document.flammability !== "-"
       ? `${document.flammability} flammability reference`
       : "Grade-specific document support for review",

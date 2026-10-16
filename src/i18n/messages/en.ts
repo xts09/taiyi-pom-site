@@ -224,7 +224,7 @@ const messages = {
           action: "View Resin Grades",
           specs: [
             ["Role", "Supplementary Line"],
-            ["Use", "Selected Sourcing"],
+            ["Use", "Base Resin"],
             ["Fit", "Base Resin Needs"],
             ["Color", "Natural"],
           ],
@@ -384,7 +384,7 @@ const messages = {
       eyebrow: "Product Directory",
       title: "Engineering Plastic Compounds",
       body:
-        "Modified POM leads the range. Base POM resin and selected PA6, PA66, and PPA compounds extend the options when a project calls for a different balance of performance and processing.",
+        "Start with lubricated POM for wear and stick-slip, or reinforced formulations for load deformation. When the project calls for a polyamide temperature or toughness balance, compare specific PA6, PA66 and PPA grades.",
       startAction: "Choose by Part Requirements",
       dataSheetsAction: "Find Grade Data & TDS",
     },
@@ -392,32 +392,32 @@ const messages = {
       kicker: "Requirement First",
       title: "What must the part do?",
       body:
-        "Explore material options and performance tradeoffs for your part requirements.",
+        "Identify the dominant failure, then use these paths to select first-trial formulations and comparison criteria.",
       navigationAria: "Material paths by part requirement",
       paths: [
         {
           label: "Wear / Friction",
           title: "Moving or sliding parts",
           description:
-            "Compare load, speed, counterpart, lubrication, noise, and the required wear life.",
+            "For stick-slip and operating force, compare PTFE or silicone-oil systems; for growing clearance, compare wear and mechanical retention.",
         },
         {
           label: "Stiffness / Dimension",
           title: "Precision under load",
           description:
-            "Compare stiffness, creep, shrinkage behavior, warpage, and molded flow orientation.",
+            "For support deflection, compare flexural modulus and creep; for precision fits, check directional shrinkage and warpage.",
         },
         {
           label: "Impact / Assembly",
           title: "Snap fits or shock loads",
           description:
-            "Check impact load, temperature, weld lines, and assembly stress before selecting toughness.",
+            "For clip cracking, check notch toughness and assembly strain; for sustained clamping, compare retention after creep.",
         },
         {
           label: "Static Control",
           title: "Conductive or antistatic function",
           description:
-            "Resistance targets, grounding, geometry, color and test method guide matrix selection.",
+            "Define resistance methods and grounding first, then select the matrix and CNT/carbon-fiber system for temperature, stiffness and dimensions.",
         },
       ],
     },
@@ -436,30 +436,30 @@ const messages = {
         },
         {
           title: "Base POM Resin",
-          label: "Selected Sourcing",
+          label: "Base Resin",
           description:
-            "Selected base resin options for baseline POM comparison, technical documents, and project sampling.",
+            "Establish molding, dimensional and mechanical baselines; choose flow grades for general, complex-flow or thin-wall parts.",
           metricLabel: "base grades",
         },
         {
           title: "PA6 Compounds",
-          label: "Additional Family",
+          label: "Polyamides",
           description:
-            "Selected PA6 compound options for reinforced, impact-modified, flame-retardant, wear-related, and mineral-filled molded parts.",
+            "Glass-reinforced, toughened, flame-retardant, wear-modified and mineral-filled PA6; select by stiffness, assembly toughness and molding flow.",
           metricLabel: "listed grades",
         },
         {
           title: "PA66 Compounds",
-          label: "Additional Family",
+          label: "Polyamides",
           description:
-            "Selected PA66 compound options for reinforced, flame-retardant, wear-related, and dimensionally stable molded parts.",
+            "Glass-reinforced, flame-retardant and wear-modified PA66; prioritize stiffness retention under hot loads and compare dry/conditioned dimensions separately.",
           metricLabel: "listed grades",
         },
         {
           title: "PPA Compounds",
           label: "Higher Temperature",
           description:
-            "PPA compound options for higher-temperature molded parts that need stiffness and dimensional stability.",
+            "When PA66 hot stiffness or moisture-related dimensions limit the part, compare PPA grades and check drying, mold temperature and equipment capability.",
           metricLabel: "listed grades",
         },
         {
@@ -476,7 +476,7 @@ const messages = {
       eyebrow: "Inquiry Preparation",
       action: "Discuss Your Application",
       body:
-        "Share the application, mold stage, cavity count, shrinkage or warpage concern, key performance requirements, current material reference, color, document requirements, and estimated volume. These inputs identify the relevant material family and establish the grade data, document, and sample follow-up for the project.",
+        "Send the part function, current material and unmet requirements, with available drawings or conditions. Receive candidate-grade comparisons, TDS and molding-trial sample support, with the key validation items.",
       contactSource: "Product directory",
     },
   },

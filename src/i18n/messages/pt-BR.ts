@@ -143,7 +143,7 @@ const messages = {
       eyebrow: "Diretório de produtos",
       title: "Compostos de plásticos de engenharia",
       body:
-        "O POM modificado é a linha principal. A resina POM base e uma seleção de compostos de PA6, PA66 e PPA complementam o portfólio quando a peça exige outro equilíbrio entre desempenho e processamento.",
+        "Para desgaste e stick-slip, comece com POM lubrificado; para deformação sob carga, com formulações reforçadas. Quando precisar do equilíbrio térmico ou de tenacidade de poliamidas, compare graus de PA6, PA66 e PPA.",
       startAction: "Escolher pelos requisitos da peça",
       dataSheetsAction: "Encontrar dados de grades e TDS",
     },
@@ -151,32 +151,32 @@ const messages = {
       kicker: "Requisitos primeiro",
       title: "O que a peça precisa fazer?",
       body:
-        "Opções de materiais e compromissos de desempenho conforme os requisitos da sua peça.",
+        "Identifique a falha principal e use estes caminhos para escolher formulações e critérios iniciais.",
       navigationAria: "Rotas de material por requisito da peça",
       paths: [
         {
           label: "Desgaste / Atrito",
           title: "Peças móveis ou deslizantes",
           description:
-            "Compare carga, velocidade, contrapeça, lubrificação, ruído e a vida útil de desgaste necessária.",
+            "Para stick-slip e força, compare PTFE ou silicone; para folga crescente, desgaste e retenção mecânica.",
         },
         {
           label: "Rigidez / Dimensão",
           title: "Precisão sob carga",
           description:
-            "Compare rigidez, fluência, retração, empenamento e orientação do fluxo na peça moldada.",
+            "Para flexão de suportes, compare módulo e fluência; para ajustes precisos, contração direcional e empenamento.",
         },
         {
           label: "Impacto / Montagem",
           title: "Encaixes ou cargas de choque",
           description:
-            "Impacto, temperatura, linhas de solda e tensões de montagem definem os requisitos de tenacidade.",
+            "Para trincas nas travas, confira tenacidade ao entalhe e deformação; para fixação contínua, retenção após fluência.",
         },
         {
           label: "Controle estático",
           title: "Função condutiva ou antiestática",
           description:
-            "Resistência-alvo, aterramento, geometria, cor e método de ensaio orientam a escolha da matriz.",
+            "Defina método de resistência e aterramento, depois matriz e sistema CNT/carbono por temperatura, rigidez e dimensões.",
         },
       ],
     },
@@ -195,30 +195,30 @@ const messages = {
         },
         {
           title: "Resina POM base",
-          label: "Fornecimento selecionado",
+          label: "Resina base",
           description:
-            "Opções selecionadas de resina base para comparação de POM, documentos técnicos e amostragem de projetos.",
+            "Estabeleça referências de moldagem, dimensões e mecânica; escolha fluidez para peças gerais, complexas ou finas.",
           metricLabel: "grades base",
         },
         {
           title: "Compostos de PA6",
-          label: "Família adicional",
+          label: "Poliamidas",
           description:
-            "Compostos de PA6 selecionados para peças reforçadas, modificadas para impacto, retardantes de chama, sujeitas a desgaste e com carga mineral.",
+            "PA6 com vidro, tenacificação, retardante de chama, antidesgaste ou mineral; selecione por rigidez, tenacidade e fluidez.",
           metricLabel: "grades listados",
         },
         {
           title: "Compostos de PA66",
-          label: "Família adicional",
+          label: "Poliamidas",
           description:
-            "Compostos de PA66 selecionados para peças reforçadas, retardantes de chama, sujeitas a desgaste e dimensionalmente estáveis.",
+            "PA66 com vidro, retardante de chama ou antidesgaste; priorize rigidez sob carga quente e separe dimensões secas e condicionadas.",
           metricLabel: "grades listados",
         },
         {
           title: "Compostos de PPA",
           label: "Alta temperatura",
           description:
-            "Compostos de PPA para peças moldadas em temperaturas mais altas que exigem rigidez e estabilidade dimensional.",
+            "Se rigidez quente ou dimensões sob umidade limitarem PA66, compare PPA e verifique secagem, temperatura do molde e equipamento.",
           metricLabel: "grades listados",
         },
         {
@@ -235,7 +235,7 @@ const messages = {
       eyebrow: "Preparação da consulta",
       action: "Fale sobre sua aplicação",
       body:
-        "Informe a aplicação, o estágio do molde, o número de cavidades, a preocupação com retração ou empenamento, os principais requisitos de desempenho, a referência atual de material, a cor, os documentos necessários e o volume estimado. Esses dados identificam a família relevante e orientam o acompanhamento de dados de grade, documentos e amostras.",
+        "Envie função, material atual e requisitos não atendidos, com desenhos ou condições disponíveis. Receba comparação de graus, TDS, suporte com amostras e verificações prioritárias.",
       contactSource: "Diretório de produtos",
     },
   },

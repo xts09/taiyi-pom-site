@@ -30,7 +30,7 @@ const defaultMessages = {
   reviewEyebrow: "Technical Review",
   reviewTitle: "Need help applying this guidance to your part?",
   reviewDescription:
-    "Share the part, working conditions, target properties, current material, tooling stage, and document needs. We will help identify relevant material families and the data needed for comparison.",
+    "Send the current material, part function and unmet requirements for candidate-grade comparisons, TDS and molding-trial sample support. Existing test records will help define the first validation priorities.",
   reviewAction: "Discuss Your Application",
   contactSourcePrefix: "Technical resource",
   englishDestinationLabel: "English content",

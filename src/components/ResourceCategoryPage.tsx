@@ -51,7 +51,7 @@ const defaultMessages = {
     reviewEyebrow: "Technical Review",
     reviewTitle: "Need Help Choosing a Starting Point?",
     reviewDescription:
-      "Share the part, current material, target property, process, and document needs. We will help identify a practical material family and the documents needed for comparison.",
+      "Send the current material, part function and unmet requirements for candidate-grade comparisons, TDS and molding-trial sample support. Existing test records will help define the first validation priorities.",
     reviewAction: "Discuss Your Application",
   },
 };

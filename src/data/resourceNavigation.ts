@@ -33,63 +33,63 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
         href: "/resources/material-selection-guide",
         type: "Guide",
         description:
-          "A practical POM material selection guide for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV, and high-impact compounds.",
+          "Start with wear, cracking or deformation to shortlist lubricated, toughened or reinforced POM grades.",
       },
       {
         label: "Wear / Low-Friction POM Guide",
         href: "/resources/wear-resistant-low-friction-pom-selection-guide",
         type: "Guide",
         description:
-          "A practical guide to selecting wear-resistant and low-friction POM for gears, bushings, rollers, sliders, guides, and valve moving parts.",
+          "Separate starting resistance from long-term wear and select PTFE, MoS₂, silicone-oil or aramid-modified POM for the contact pair.",
       },
       {
         label: "POM Gear Material Selection",
         href: "/resources/pom-gear-material-selection",
         type: "Guide",
         description:
-          "Select POM for plastic gears by load, fatigue, contact pair, lubrication, temperature, precision molding, and representative validation.",
+          "How do tooth wear, root fatigue and creep change POM selection? Use listed grades and the gear case to define first-trial priorities.",
       },
       {
         label: "PA6 vs PA66 Selection Guide",
         href: "/resources/pa6-vs-pa66-reinforced-parts",
         type: "Guide",
         description:
-          "Compare reinforced PA6 and PA66 by conditioning state, temperature, mechanical balance, dimensional behavior, molding risk, and grade data.",
+          "Compare EAG130 and EAG230 GF30 to separate matrix, moisture-state and temperature effects on stiffness and dimensions.",
       },
       {
         label: "Reinforced PA6 / PA66 Guide",
         href: "/resources/glass-fiber-reinforced-pa6-pa66-selection-guide",
         type: "Guide",
         description:
-          "Select glass-fiber-reinforced PA6 and PA66 by fiber level, conditioning, load, orientation, warpage, molding feasibility, and part evidence.",
+          "Compare PA6 and PA66 at equal glass content, then adjust stiffness along the catalog ladder while controlling orientation-driven warpage and assembly toughness.",
       },
       {
         label: "PPA vs PA66 Selection Guide",
         href: "/resources/ppa-vs-pa66-material-selection",
         type: "Guide",
         description:
-          "Choose PPA over PA66 only for a defined high-temperature, conditioned, dimensional, chemical, or electrical performance gap.",
+          "When PA66 misses hot-stiffness or moisture-related dimensional targets, use EAG230/EAG630H GF30 data to focus PPA comparison and molding trials.",
       },
       {
         label: "Conductive PA6 / PA66 / PPA Guide",
         href: "/resources/conductive-antistatic-pa6-pa66-ppa-selection-guide",
         type: "Guide",
         description:
-          "Select CNT or carbon-fiber PA6, PA66 and PPA by electrical method, target band, grounding, geometry, conditioning, molding, and validation.",
+          "Start with resistance targets and grounding to choose CNT or carbon-fiber formulations and define electrical checks on molded parts.",
       },
       {
         label: "Application Notes",
         href: "/resources/application-notes",
         type: "Technical note",
         description:
-          "Review modified POM by part function, failure risk, operating conditions, and the evidence needed before selecting a grade direction.",
+          "Turn failure modes into selection criteria: fatigue and wear for gears, starting force and sealing for spools, stiffness and creep for supports.",
       },
       {
         label: "Reinforcement Materials Overview",
         href: "/resources/reinforcement-materials-overview",
         type: "Guide",
         description:
-          "Compare glass fiber and carbon fiber directions by load path, dimensional target, electrical function, molding risk, and validation scope.",
+          "Choose glass fiber for a stiffness gap or assess carbon fiber for conductivity, while accounting for orientation, warpage and mating-part wear.",
       },
     ],
   },
@@ -108,21 +108,21 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
         href: "/resources/processing-guide",
         type: "Technical note",
         description:
-          "A practical POM injection molding guide for material handling, mold trials, shrinkage, warpage, dimensional drift, defects, and troubleshooting inputs.",
+          "Stabilize material handling, filling and packing, then diagnose shrinkage, warpage and dimensional drift in a controlled sequence.",
       },
       {
         label: "POM Warpage Troubleshooting",
         href: "/resources/pom-warpage-troubleshooting",
         type: "Technical note",
         description:
-          "Diagnose POM warpage through measurement, shrinkage direction, part and mold design, packing, cooling, and validation.",
+          "Map warpage to cavity, flow direction and measurement time to locate cooling, packing or orientation differences.",
       },
       {
         label: "PA6 / PA66 Moisture Guide",
         href: "/resources/pa6-pa66-moisture-drying-conditioning-guide",
         type: "Technical note",
         description:
-          "Separate pellet drying, dry-as-molded parts, conditioning, service exposure, measurement, and validation for PA6 and PA66.",
+          "Separate pre-molding drying from post-molding conditioning and define repeatable moisture states for dimensional and assembly checks.",
       },
     ],
   },
@@ -140,7 +140,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
         href: "/resources/alternative-pom-grade-validation",
         type: "Guide",
         description:
-          "Compare an alternative POM grade through documents, controlled molding, dimensions, function, compliance, and production-release evidence.",
+          "When changing POM supply, establish dimensional, molding and functional baselines and build a trial and production-release checklist.",
       },
       {
         label: "POM Wear Test Benchmark",
@@ -168,7 +168,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
         href: "/resources/faq",
         type: "FAQ",
         description:
-          "Clear answers about POM vs PA, wear and friction grades, reinforced and conductive POM, TDS properties, shrinkage, warpage, and material selection guidance.",
+          "Clarify POM versus PA and low friction versus wear resistance, then find next steps for TDS, shrinkage and warpage questions.",
       },
     ],
   },

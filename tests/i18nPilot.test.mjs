@@ -2308,7 +2308,7 @@ test("the second Simplified Chinese resource article slice matches source struct
       sections: 6,
       features: 3,
       modules: 3,
-      relatedLinks: 5,
+      relatedLinks: 6,
     },
   };
 

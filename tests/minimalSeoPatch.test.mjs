@@ -68,7 +68,7 @@ test("separates Material Selection display labels from stable metadata titles", 
   assert.equal(guide.navLabel, "POM Material Selection");
   assert.equal(
     guide.description,
-    "A practical POM material selection guide for comparing wear-resistant, low-friction, reinforced, conductive, antistatic, UV, and high-impact compounds.",
+    "Start with wear, cracking or deformation to shortlist lubricated, toughened or reinforced POM grades.",
   );
   assert.equal(
     resourceIndexLinks.find(

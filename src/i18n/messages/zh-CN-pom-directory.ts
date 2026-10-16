@@ -49,7 +49,7 @@ export const chinesePomDirectoryMessages = {
     items: {
       "Wear-Resistant Low-Friction POM Compound": {
         label: "耐磨与低摩擦 POM",
-        use: "用于齿轮、轴套、滚轮、导轨及反复运动部件的磨损与摩擦评估。",
+        use: "粘滑从 EPTL402 的 PTFE 体系切入，耐磨与拉伸平衡从 EMS102／EMS162 切入。",
       },
       "High-Impact POM Compound": {
         label: "高抗冲 POM",
@@ -57,7 +57,7 @@ export const chinesePomDirectoryMessages = {
       },
       "UV-Resistant POM Compound": {
         label: "耐候 POM",
-        use: "用于户外或光照环境下，需要评估外观保持与耐候方向的零件。",
+        use: "光照暴露先以 ETM090U 为基准，兼顾冲击与哑光外观时加入 EDR180U；对比颜色、开裂与韧性保持。",
       },
       "Glass Fiber Reinforced POM Compound": {
         label: "玻纤增强 POM",
@@ -143,9 +143,9 @@ export const chinesePomDirectoryMessages = {
       "edm-111-high-wear-resistant-pom":
         "高耐磨 POM 方向，面向汽车、电气、卫浴和工业注塑应用。",
       "ems102-high-wear-resistant-pom":
-        "MoS2 填充黑色高耐磨 POM，用于需要耐磨与稳定力学表现的零件。",
+        "MoS2 改性黑色耐磨 POM。复杂流道或充模流动性敏感的零件，首轮优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。",
       "ems162-high-wear-resistant-pom":
-        "MoS2 填充黑色高耐磨 POM，用于需要耐磨与稳定力学表现的零件。",
+        "MoS2 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，从 EMS162 切入对比（65 MPa，MFI 7 g/10 min）。",
       "ehi202t-high-impact-pom":
         "高抗冲、耐低温 POM，用于汽车、电气、卫浴和工业注塑应用。",
       "ehi402t-high-impact-pom":

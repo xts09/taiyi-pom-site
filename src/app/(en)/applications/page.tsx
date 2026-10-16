@@ -79,12 +79,10 @@ export default function ApplicationsPage() {
               className="mt-5 max-w-3xl text-lg leading-8 text-slate-200"
               style={{ "--item-index": 2 } as CSSProperties}
             >
-              Material selection starts with the molded part and its operating
-              conditions. Motion, load, environment, dimensions, tooling stage
-              and document needs determine which modified POM candidates
-              deserve comparison. PA6, PA66 and PPA are evaluated separately
-              when the required property balance falls outside the practical
-              POM range.
+              Select by part failure: balance friction and wear in moving parts,
+              toughness and retention in clips, stiffness and dimensions in loaded
+              structures. Browse by industry or component for candidate
+              formulations, grade data and trial priorities.
             </p>
 
             <div
@@ -321,11 +319,9 @@ export default function ApplicationsPage() {
           }
         >
           <p>
-            Share the application, mold stage, cavity count, shrinkage or
-            warpage concern, current material reference, color, document
-            requirements, and estimated volume. We will use those inputs to
-            prepare a modified-material shortlist and confirm the next document
-            or sample step.
+            Send the current material, part function and unmet requirements for
+            candidate-grade comparisons, TDS and molding-trial sample support.
+            Existing test records will help define the first validation priorities.
           </p>
         </ActionPanel>
       </section>

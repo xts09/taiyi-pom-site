@@ -218,6 +218,12 @@ released destination, and action text. Keep the rendered row classes and
 responsive data grid shared without moving product or translation policy into
 the component.
 
+Localized POM directory formulation labels are resolved from the catalogue's
+first feature by `src/i18n/pomDirectoryCopy.ts`. Filler percentages remain
+catalogue-owned. The localized wear-POM category displays the reviewed
+EMS102/EMS162 selection notes beside their catalogue data. Label translations
+and compact test-condition notes stay outside the structural row component.
+
 ### Engineering Property Table — Canonical
 
 **Owner:** `src/components/EngineeringPropertyTable.tsx` owns the engineering

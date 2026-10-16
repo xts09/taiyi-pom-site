@@ -131,18 +131,18 @@ export const chinesePomGradeExpansionC = {
     imageAlt: "POM 改性材料示意图",
     eyebrow: "MoS2 填充 POM · 黑色",
     summary:
-      "EMS102 是采用二硫化钼（MoS2）填充的黑色 POM 牌号。所列流动、力学、热、电学与注塑数据用于初步选型；实际摩擦磨耗、寿命和零件适用性需按项目工况验证。",
-    flowNote: "用于汽车、电气电子、卫浴和工业零件的 MoS2 填充黑色 POM",
+      "MoS2 改性黑色耐磨 POM。复杂流道或充模流动性敏感的零件，首轮优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。",
+    flowNote: "MoS2 填充 · 充模流动性优先",
     colorValue: "黑色",
-    features: ["MoS2 填充", "黑色", "提供注塑参考数据", "实际摩擦副需验证"],
+    features: ["MoS2 填充", "黑色", "充模流动性优先", "目录 MFI 8 g/10 min"],
     applications: ["汽车零部件", "电子电气零件", "卫浴配件", "工业注塑件"],
     evaluationBody:
-      "EMS102 作为技术评估候选材料提供。最终认可需在客户模具和实际使用条件下完成尺寸、摩擦磨耗及寿命验证。",
+      "充模敏感的零件优先将 EMS102 纳入首轮试模，记录填充完整性与熔接线，再按实际对偶面比较启动阻力、磨耗和间隙变化。",
     notesBody:
-      "本页数据用于 EMS102 的初步选型。摩擦副材料、表面状态、载荷、速度、润滑、温度与加工条件都可能改变零件表现。",
-    inquiryTitle: "评估 EMS102 是否适用于您的注塑零件？",
+      "目录典型值；拉伸强度：ISO 527；MFI：ISO 1133，195 °C／2.16 kg。牌号放行以目标摩擦副下的磨耗、间隙和寿命验收结果为准。",
+    inquiryTitle: "EMS102 选型与试模资料",
     inquiryBody:
-      "请提供零部件用途、图纸、摩擦副、载荷与速度、润滑、温度、当前材料、目标性能、用量和所需资料，以便安排牌号与样品评估。",
+      "说明零件结构、现用材料和磨损问题，获取 EMS102 与 EMS162 的物性对比、TDS 和试模样品支持。",
   }),
   "ems162-high-wear-resistant-pom": createChinesePomGradeProfile({
     grade: "EMS162",
@@ -151,20 +151,20 @@ export const chinesePomGradeExpansionC = {
     metadataDescription:
       "评估 EMS162 MoS2 填充黑色耐磨 POM 的磨耗、力学、尺寸与热性能方向，并申请样品。",
     imageAlt: "台益 EMS162 MoS2 填充黑色耐磨 POM 粒子",
-    eyebrow: "MoS2 填充 POM · 黑色耐磨方向",
+    eyebrow: "MoS2 填充 POM · 黑色",
     summary:
-      "EMS162 是采用 MoS2 填充的黑色高耐磨 POM 候选牌号，用于滑动件、汽车功能件和工业注塑件的耐磨与稳定力学表现评估。最终适用性需结合摩擦副、载荷、速度、润滑、温度和外观要求确认。",
-    flowNote: "兼顾耐磨与稳定力学表现的 MoS2 填充黑色方向",
+      "MoS2 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，从 EMS162 切入对比（65 MPa，MFI 7 g/10 min）。",
+    flowNote: "MoS2 填充 · 拉伸强度优先",
     colorValue: "黑色",
-    features: ["MoS2 填充方向", "高耐磨方向", "稳定力学方向", "黑色"],
+    features: ["MoS2 填充", "黑色", "拉伸强度优先", "目录拉伸强度 65 MPa"],
     applications: ["滑动件", "汽车功能零件", "电子电气零件", "工业注塑件"],
     evaluationBody:
-      "EMS162 作为技术评估候选材料提供。最终认可需在客户模具和实际摩擦副中完成磨耗、噪声、尺寸、外观与寿命验证。",
+      "以拉伸受力为主要要求的滑动与传动件，从 EMS162 切入试模。用现用材料作基准，比较受力变形、接触磨耗与间隙保持。",
     notesBody:
-      "本页用于 EMS162 的初步选型。MoS2 填充方向的实际摩擦与磨耗表现受配对材料、表面状态、载荷、速度、润滑、温度和加工条件影响。",
-    inquiryTitle: "评估 EMS162 是否适用于您的黑色耐磨零件？",
+      "目录典型值；拉伸强度：ISO 527；MFI：ISO 1133，195 °C／2.16 kg。牌号放行以目标摩擦副下的磨耗、间隙和寿命验收结果为准。",
+    inquiryTitle: "EMS162 选型与试模资料",
     inquiryBody:
-      "请提供零部件几何、摩擦副、载荷与速度、润滑、温度、当前材料、磨损或噪声问题、黑色外观要求、用量和所需资料。我们将据此准备牌号与样品评估。",
+      "说明零件受力、对偶件和当前磨损问题，获取 EMS162 与 EMS102 的物性对比、TDS 和试模样品支持。",
   }),
 } satisfies Record<
   ChineseOnlyProductGradeSliceCSlug,

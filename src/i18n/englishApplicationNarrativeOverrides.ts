@@ -1,4 +1,11 @@
+import { selectionEditorialLocaleOverrides } from "./selectionEditorialLocaleOverrides.ts";
+
 export const englishApplicationNarrativeOverrides: Record<string, string> = {
+  ...selectionEditorialLocaleOverrides.en,
+  "同心度、压配量、滑动行程与拆装循环决定尺寸保持、表面接触和开裂风险。":
+    "Concentricity, press-fit interference, sliding stroke and assembly cycles guide the choice between dimensional retention and crack resistance.",
+  "接触面积、载荷分布、行程、启动频率与粉尘环境决定粘滑、磨损和间隙变化。":
+    "Low-speed starts can expose stick-slip, while repeated sliding wear increases guide clearance. Match the lubrication system to the mating surface and dust conditions.",
   汽车: "Automotive",
   电子电气: "Electronics & Electrical",
   输送与自动化: "Conveyor & Automation",

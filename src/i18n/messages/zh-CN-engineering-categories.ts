@@ -79,7 +79,7 @@ export const chineseEngineeringDirectionCopy: Record<
 > = {
   "Carbon Fiber Reinforced": {
     label: "碳纤维增强",
-    summary: "用于评估更高刚性、强度、导电方向与尺寸稳定性。",
+    summary: "结构刚性与导电并重时采用碳纤维增强体系，分别核对流向／横向尺寸和成型件电阻。",
   },
   "Flame Retardant": {
     label: "阻燃",
@@ -91,7 +91,7 @@ export const chineseEngineeringDirectionCopy: Record<
   },
   "Glass Bead Filled": {
     label: "玻璃微珠填充",
-    summary: "用于评估尺寸稳定性、收缩均衡与较低各向异性。",
+    summary: "尺寸偏差与方向性收缩主导时，比较玻璃微珠填充体系的纵横向收缩，并核对装配韧性。",
   },
   "Glass Fiber Reinforced": {
     label: "玻璃纤维增强",
@@ -107,15 +107,15 @@ export const chineseEngineeringDirectionCopy: Record<
   },
   "Mold Release": {
     label: "易脱模",
-    summary: "用于复杂注塑件的脱模、表面和稳定生产评估。",
+    summary: "顶出擦伤或脱模阻力突出时，优先比较易脱模配方的顶出表现与表面保持。",
   },
   "V0 Flame Retardant": {
     label: "V-0 阻燃",
-    summary: "用于需要 V-0 阻燃方向并兼顾结构性能的电气零部件。",
+    summary: "电气结构件要求 V-0 时，按对应牌号、颜色与测试厚度筛选阻燃配方，再比较刚性和装配韧性。",
   },
   "Wear Low Friction": {
     label: "耐磨／低摩擦",
-    summary: "用于滑动、旋转或往复运动零部件的摩擦与磨损评估。",
+    summary: "干滑动与频繁启停先比较内润滑配方的启动阻力，连续运动再比较磨耗、温升和间隙保持。",
   },
 };
 

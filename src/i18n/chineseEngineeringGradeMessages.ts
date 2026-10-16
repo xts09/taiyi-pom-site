@@ -127,7 +127,7 @@ export const createChineseEngineeringGradeCopy = (
   const flammabilityText = hasValue(document.flammability)
     ? `${document.flammability} 阻燃等级参考`
     : "阻燃等级按牌号与项目确认";
-  const summary = `${document.grade} 是 ${document.family} ${direction.label}方向牌号，${direction.summary} 当前页面所列数值用于技术初筛；最终适用性需结合零部件几何、模具、加工窗口和实际工况确认。`;
+  const summary = `${document.grade} 是 ${document.family} ${direction.label}牌号。${direction.summary}`;
   const metadataDescription = document.flammability
     ? `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度、阻燃等级及完整性能表。`
     : `${document.grade} ${document.family} ${direction.label}牌号数据，包括密度、拉伸强度、热变形温度及完整性能表。`;

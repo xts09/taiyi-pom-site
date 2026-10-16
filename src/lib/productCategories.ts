@@ -92,7 +92,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Wear-Resistant Low-Friction POM Compound",
     label: "Wear-Resistant & Low-Friction POM",
     description:
-      "PLATFORM® wear-resistant and low-friction POM uses PTFE, MoS2, aramid fiber, and other modification systems for gears, bushings, rollers, guide rails, and other moving parts. The range offers different balances of friction, wear, mechanical strength, and processing performance.",
+      "For gears, bushings and guides, distinguish wear, stick-slip and load deformation first. PLATFORM® wear-resistant and low-friction POM provides lubricated, solid-lubricant and fiber-blend formulations for a first comparison by dominant risk.",
     overview:
       "The range covers low-friction, wear-resistant, reinforced, and hybrid-modified formulations. Published data, technical documents, and samples are confirmed by grade and project.",
     navSubtitle:
@@ -118,7 +118,7 @@ export const productCategoryData: ProductCategoryData[] = [
       {
         question: "What modification systems does the range cover?",
         answer:
-          "The range includes PTFE-filled, MoS2-filled, aramid-fiber-reinforced, and other wear-modified systems, offering different balances of low friction, wear resistance, mechanical strength, and processing performance.",
+          "Compare PTFE for sliding force and stick-slip, MoS₂ for wear/tensile balance, and aramid for stiffness/wear tradeoffs. When external lubrication or mating material changes, record wear and heat for each combination.",
       },
       {
         question: "What information is available for material evaluation?",

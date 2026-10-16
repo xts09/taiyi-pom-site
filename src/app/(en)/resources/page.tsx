@@ -178,8 +178,8 @@ export default function ResourcesPage() {
               <div>
                 <h2>Need a grade-specific document?</h2>
                 <p>
-                  Share the grade, application, required document, and project
-                  stage so availability can be confirmed in context.
+                  Send the grade or part function and document needs to obtain
+                  the relevant TDS, grade comparisons and molding-trial sample support.
                 </p>
               </div>
               <Button asChild variant="primary" size="form">

@@ -781,6 +781,29 @@ Use proof points such as factory scale, production lines, testing equipment, ava
 
 The voice is professional, restrained, technical, and helpful.
 
+Write active engineering guidance. Explain the failure risk, formulation choice,
+and a catalogue-backed starting grade. Translate verified differences into
+first-trial priorities: compare MFI under the same conditions for flow-sensitive
+parts, tensile strength for tensile loading, and modulus for stiffness. Use the
+corresponding evidence for impact, fatigue, creep and wear. General polymer
+engineering knowledge may explain selection tradeoffs; grade-specific results,
+service-life figures and commercial commitments require their own evidence.
+
+Inquiry copy names the deliverable: candidate-grade comparisons, TDS, sample
+evaluation support or specific molding-trial checks. Present test conditions and
+typical-value notes in compact data annotations. Keep a general engineering
+release reminder in one place per page, beside the data or validation checklist.
+
+Application copy is owned by the Chinese application index/detail slices and
+the application-specific group data. English details and expanded locales use
+the reviewed mappings in `src/i18n/selectionEditorialLocaleOverrides.ts`;
+product-directory messages remain native to each locale. Resource article
+copy is owned by `src/data/resources.ts` and the Chinese resource slices,
+with the same reviewed mapping for expanded locales. Keep section-linked
+features, card summaries and the contextual inquiry deliverables aligned when
+editing these sources. Published catalog properties and recorded test results
+remain the evidence for grade-specific claims.
+
 Chinese and English engineering-plastics terminology is governed by
 `docs/content/zh-en-engineering-plastics-terminology.md`. Use that glossary to
 separate market-entry aliases from preferred technical terms and from claims
