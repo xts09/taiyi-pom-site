@@ -132,8 +132,9 @@ const messages = {
     breadcrumbProducts: "产品",
     hero: {
       eyebrow: "产品目录",
-      title: "工程塑料改性材料",
-      body: "磨损与粘滑优先从润滑改性 POM 切入，承载变形优先比较增强配方。需要聚酰胺的温度或韧性平衡时，再比较 PA6、PA66 与 PPA 的具体牌号。",
+      title: "材料与牌号",
+      body:
+        "PLATFORM® 改性 POM 具有耐磨、低摩擦及良好的尺寸稳定性，适用于齿轮、轴承和精密配合零件。台益提供润滑、增强、增韧等改性系列，以及 PA6、PA66、PPA 和导电、抗静电材料，面向汽车、电子电气与工业机械应用。",
       startAction: "按零部件需求选材",
       dataSheetsAction: "查找牌号数据与 TDS",
     },

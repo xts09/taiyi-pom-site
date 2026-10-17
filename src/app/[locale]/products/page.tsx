@@ -63,6 +63,8 @@ export default async function LocalizedProductsPage({
   return (
     <ProductsDirectoryPage
       messages={messages.Products}
+      catalogueMessages={messages.Home.taskFirst}
+      materialLabels={messages.Contact.form.materialOptionLabels}
       pagePath={getLocalizedProductsPath(localeConfig.urlSegment)}
       inLanguage={localeConfig.htmlLang}
       englishDestinationLabel={messages.Header.englishDestinationLabel}

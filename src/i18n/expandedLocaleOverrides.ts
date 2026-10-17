@@ -16,6 +16,7 @@ export const expandedLocaleOverrides: Partial<
   Record<LocalizedUrlSegment, TranslationOverrides>
 > = {
   de: {
+    "提交零件功能、现用材料及载荷、运动方式等关键工况，获取针对性的候选牌号建议、物性对比资料与试模样品支持。已有模具、关键尺寸或文件要求可一并提供。": "Senden Sie Bauteilfunktion, bisherigen Werkstoff und die wichtigsten Einsatzbedingungen wie Last und Bewegungsart. Sie erhalten passende Typenvorschläge, vergleichende Werkstoffdaten und Unterstützung mit Material für Spritzgießversuche. Ergänzen Sie vorhandene Werkzeugdaten, kritische Maße und Dokumentenanforderungen.",
     ...selectionEditorialLocaleOverrides['de'],
     "碳纤维增强": "Kohlenstofffaserverstärkt",
     "{{grade}} 是 PA6 玻璃纤维增强牌号。用于需要更高刚性、强度、耐热和承载能力的结构件。": "{{grade}} ist ein PA6-Typ mit Glasfaserverstärkung. Für Strukturteile mit höheren Anforderungen an Steifigkeit, Festigkeit, Wärmeverhalten und Tragfähigkeit.",
@@ -223,6 +224,7 @@ export const expandedLocaleOverrides: Partial<
       "Deutscher materialübergreifender Leitfähigkeits- und Antistatik-Katalog",
   },
   fr: {
+    "提交零件功能、现用材料及载荷、运动方式等关键工况，获取针对性的候选牌号建议、物性对比资料与试模样品支持。已有模具、关键尺寸或文件要求可一并提供。": "Indiquez la fonction de la pièce, le matériau actuel et les conditions clés, notamment la charge et le mouvement. Vous recevrez des recommandations de grades, des données comparatives et un accompagnement pour les échantillons d’essai de moulage. Joignez les informations disponibles sur le moule, les dimensions critiques et les documents requis.",
     ...selectionEditorialLocaleOverrides['fr'],
     "碳纤维增强": "Renforcé de fibres de carbone",
     "{{grade}} 是 PA6 玻璃纤维增强牌号。用于需要更高刚性、强度、耐热和承载能力的结构件。": "{{grade}} est un grade de PA6 renforcé de fibres de verre. Pour les pièces structurelles exigeant davantage de rigidité, de résistance, de tenue thermique et de capacité de charge.",
@@ -446,6 +448,7 @@ export const expandedLocaleOverrides: Partial<
       "Catalogue français multimatériaux conducteurs et antistatiques",
   },
   "pt-br": {
+    "提交零件功能、现用材料及载荷、运动方式等关键工况，获取针对性的候选牌号建议、物性对比资料与试模样品支持。已有模具、关键尺寸或文件要求可一并提供。": "Informe a função da peça, o material atual e as condições principais, como carga e tipo de movimento. Receba recomendações de grades, dados comparativos de propriedades e suporte com amostras para testes de injeção. Inclua as informações disponíveis sobre o molde, as dimensões críticas e os documentos necessários.",
     ...selectionEditorialLocaleOverrides['pt-br'],
     "碳纤维增强": "Reforçado com fibra de carbono",
     "{{grade}} 是 PA6 玻璃纤维增强牌号。用于需要更高刚性、强度、耐热和承载能力的结构件。": "{{grade}} é um grau de PA6 reforçado com fibra de vidro. Para peças estruturais com maiores requisitos de rigidez, resistência, comportamento térmico e capacidade de carga.",

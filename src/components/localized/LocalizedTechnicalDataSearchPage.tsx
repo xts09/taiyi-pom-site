@@ -449,7 +449,7 @@ export function LocalizedTechnicalDataSearchPage({
             <section className="resource-grade-browse" aria-labelledby="grade-browse-title">
               <div className="resource-grade-browse-head">
                 <h2 id="grade-browse-title">{copy.browseTitle}</h2>
-                <p>{copy.browseBody}</p>
+                <p>{copy.browseBody(technicalDataGradeBrowseGroups.reduce((total, group) => total + group.items.length, 0))}</p>
               </div>
               <div className="resource-grade-browse-groups">
                 {technicalDataGradeBrowseGroups.map((group) => (

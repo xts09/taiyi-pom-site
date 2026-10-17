@@ -23,7 +23,7 @@ export const deTechnicalSearch: TechnicalSearchLocale = {
     noResultsTitle: "Keine passenden Inhalte gefunden",
     noResultsBody: "Versuchen Sie einen allgemeineren Typnamen, eine Materialeigenschaft oder eine Anwendung.",
     browseTitle: "Alle Typdaten durchsuchen",
-    browseBody: "115 veröffentlichte Typdatenseiten, geordnet nach Materialfamilie. Der Dokumentstatus beschreibt den Website-Katalog; aktuelle technische Unterlagen werden für den jeweiligen Typ und das Projekt bestätigt.",
+    browseBody: (count) => `${count} veröffentlichte Typdatenseiten, geordnet nach Materialfamilie. Der Dokumentstatus beschreibt den Website-Katalog; aktuelle technische Unterlagen werden für den jeweiligen Typ und das Projekt bestätigt.`,
     browseCount: (count) => `${count} Typen`, viewGrade: "Typdaten ansehen",
     resourcePage: "Technische Ressource", engineeringEyebrow: "Typdaten technischer Kunststoffe",
     conductiveEyebrow: "Leitfähige / antistatische Typen", suggestedEyebrow: "PLATFORM Vorauswahl",

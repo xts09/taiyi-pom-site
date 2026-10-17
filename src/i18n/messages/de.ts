@@ -137,9 +137,9 @@ const messages = {
     breadcrumbProducts: "Produkte",
     hero: {
       eyebrow: "Produktverzeichnis",
-      title: "Technische Kunststoff-Compounds",
+      title: "Werkstoffe und Typen",
       body:
-        "Bei Verschleiß und Stick-Slip beginnen Sie mit geschmiertem POM, bei Lastverformung mit verstärkten Rezepturen. Wenn der Temperatur- oder Zähigkeitsbedarf zu Polyamiden führt, vergleichen Sie konkrete PA6-, PA66- und PPA-Typen.",
+        "Modifiziertes POM von PLATFORM® verbindet Verschleißfestigkeit, geringe Reibung und Maßhaltigkeit für Zahnräder, Lager und präzise Passungen. Taiyi Polymer bietet gleitmodifizierte, verstärkte und schlagzähmodifizierte Typen sowie PA6, PA66, PPA und leitfähige oder antistatische Werkstoffe für Automobilbau, Elektrotechnik, Elektronik und Industriemaschinen.",
       startAction: "Nach Bauteilanforderung auswählen",
       dataSheetsAction: "Typendaten & TDS finden",
     },

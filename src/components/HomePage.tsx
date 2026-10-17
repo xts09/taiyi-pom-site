@@ -15,7 +15,6 @@ import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 type HomePageProps = {
   messages: HomeMessages;
   inquiryLabels: ContactFormMessages["inquiryTypeOptions"];
-  materialLabels: ContactFormMessages["materialOptionLabels"];
   inLanguage: string;
   localeSegment?: LocalizedUrlSegment;
 };
@@ -23,7 +22,6 @@ type HomePageProps = {
 export function HomePage({
   messages,
   inquiryLabels,
-  materialLabels,
   inLanguage,
   localeSegment,
 }: HomePageProps) {
@@ -116,7 +114,6 @@ export function HomePage({
         <TaskFirstHomeNarrative
           certifications={localizedCertifications}
           messages={taskFirstMessages}
-          materialLabels={materialLabels}
           localizedHref={localizedHref}
         />
 

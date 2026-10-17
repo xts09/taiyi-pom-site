@@ -21,6 +21,8 @@ export default function ProductsPage() {
   return (
     <ProductsDirectoryPage
       messages={messages.Products}
+      catalogueMessages={messages.Home.taskFirst}
+      materialLabels={messages.Contact.form.materialOptionLabels}
       pagePath="/products"
       inLanguage="en"
       englishDestinationLabel={messages.Header.englishDestinationLabel}

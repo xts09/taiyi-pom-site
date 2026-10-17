@@ -378,9 +378,9 @@ const messages = {
     breadcrumbProducts: "Products",
     hero: {
       eyebrow: "Product Directory",
-      title: "Engineering Plastic Compounds",
+      title: "Materials & Grades",
       body:
-        "Start with lubricated POM for wear and stick-slip, or reinforced formulations for load deformation. When the project calls for a polyamide temperature or toughness balance, compare specific PA6, PA66 and PPA grades.",
+        "PLATFORM® modified POM combines wear resistance, low friction and dimensional stability for gears, bearings and precision-fit parts. Taiyi Polymer offers lubricated, reinforced and impact-modified grades, alongside PA6, PA66, PPA and conductive and antistatic materials for automotive, electrical, electronic and industrial applications.",
       startAction: "Choose by Part Requirements",
       dataSheetsAction: "Find Grade Data & TDS",
     },

@@ -103,7 +103,7 @@ spacing, not the arrangement inside every section.
 - `inverse` — white action on controlled dark/evidence surfaces.
 - `secondary` — neutral surface or quiet border.
 - `productHeroPrimary` / `productHeroSecondary` — the verified paired
-  actions used by product-directory Heroes; pair with the `productHero` size.
+  actions used by product-category Heroes; pair with the `productHero` size.
 - `productDetailPrimary` / `productDetailSecondary` — the verified paired
   actions used by product-detail Heroes; pair with the `productDetailHero`
   size.
@@ -127,9 +127,11 @@ spacing, not the arrangement inside every section.
 verified `inverse` link-button variant across product, application, POM landing,
 and resource routes. Existing page-specific responsive geometry is preserved,
 and the Applications index Hero is the first verified non-ActionPanel
-primary/secondary pair. Product index and product-category Heroes now use the shared
+primary/secondary pair. Product-category Heroes use the shared
 `productHeroPrimary` / `productHeroSecondary` variants and `productHero` size
 while preserving the legacy pair's exact geometry and responsive behavior.
+The Products overview uses one `primary` TDS action with `form` sizing in its
+image-led `PageHero`.
 Product-detail Heroes use the dedicated product-detail variants and size so
 their 48px geometry, compact type, mobile full-width behavior, and longer
 campaign labels remain stable without page-local button classes.
@@ -390,6 +392,17 @@ overlay geometry and imagery but must not redefine the panel material. Shared
 `--ds-product-hero-*gap` and `--ds-product-hero-inset` roles own the internal
 rhythm: 48px maximum inset on wide screens, 24px minimum inset on mobile, a
 tight eyebrow/title group, and a clearly separated supporting-copy group.
+
+The Products overview uses canonical `PageHero` with the existing natural-POM
+material photograph. `ProductsDirectoryPage.module.css` owns its rail,
+responsive image/copy grid and TDS-action placement, using existing product
+typography tokens. Product introduction copy stays in `Products.hero.body`.
+Category and grade Heroes retain their existing imagery and action variants.
+
+The Chinese motion-components scene title uses the width of its local copy
+column, owned by
+`src/components/localized/LocalizedApplicationDetailPage.module.css`, with
+balanced wrapping. This does not change other application headings.
 
 **Applications convergence:** The Applications directory and detail Heroes
 share `--ds-application-hero-*` typography roles, aliased to the verified
@@ -737,6 +750,47 @@ and summaries follow the same left edge, with the case link below on mobile.
 Keep the sample quantity, test conditions, subsequent wear observations and
 result boundary next to the acceptance result. This module has no original
 report download or customer imagery.
+
+## Homepage Body Composition — 2026-10-17
+
+`HomePage.tsx` retains the shared homepage Hero and passes localized Contact
+intent labels to the inquiry owner. `TaskFirstHomeNarrative.tsx` composes the
+material showcase, component, industry, project support, and factory/laboratory
+sequence. `HomeCoreProductExplorer.tsx` owns the opening material photograph
+and four family links, styled by its existing `home.css` rules.
+`HomeSections.module.css` owns the following page-local surfaces, hierarchy and
+responsive layout. Hero motion remains in `HomeMotion`; body owners do not opt
+into its previous scroll-reveal hooks.
+
+`HomeMaterialCatalogue.tsx` owns the three desktop columns and mobile
+single-open disclosure using the canonical Accordion. Its `compact` density is
+rendered by `ProductsDirectoryPage.tsx` ahead of requirement-based selection,
+replacing the previous family rows. `src/lib/homeMaterialCatalogue.ts` owns the
+shared server-side column builder. Counts and family paths come from catalogue
+data and product-category helpers; only compact presentation props reach the
+client. The polyamide column's TDS action opens the localized data directory.
+
+`src/data/homeEntries.ts` owns the component/industry destinations and images.
+`HomeEntryCards.tsx` exports `HomeComponentCard` and `HomeIndustryCard`, used by
+Home and its acceptance specimens. Both take `title`, `href`, `image` and
+`imageAlt`; the component card also takes the typed `part` key for
+geometry-specific containment. These remain homepage-scoped compositions.
+Component images are contained; industry photographs are cropped, with the
+mobile title below the photograph.
+
+`HomePatternShowcase.tsx` at `/design-system#home-patterns` reuses the Products
+overview's compact catalogue and the homepage's entry-card owners.
+`src/app/(en)/design-system/home/page.tsx` composes the real homepage body in
+English, Chinese, German, French and Brazilian Portuguese. These acceptance
+surfaces remain development-only. Specimen CSS owns layout; production
+components retain their appearance and behavior.
+
+Evidence uses canonical `MediaFigure` and `DocumentCard` compositions. The six
+component images, eight industry routes, certificate PDF destinations,
+`#entry-points`, `#material-review` and `#factory-snapshot` anchors remain
+available. `HomeInquirySection.tsx` owns TDS, sample, grade-evaluation and
+quote/supply links using existing Contact labels and the canonical
+contact-context helper; TDS opens the released data directory.
 
 ## Conversion Components
 

@@ -4,14 +4,13 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { DocumentCard } from "@/components/DocumentCard";
 import { HomeComponentCard, HomeIndustryCard } from "@/components/HomeEntryCards";
-import { HomeMaterialCatalogue } from "@/components/HomeMaterialCatalogue";
+import { HomeCoreProductExplorer } from "@/components/HomeCoreProductExplorer";
 import { MediaFigure } from "@/components/MediaFigure";
 import { SectionIntro } from "@/components/SectionIntro";
 import { availableDocuments, companyFigures, type Certification } from "@/data/company";
 import { homeComponentEntries, homeIndustryEntries } from "@/data/homeEntries";
-import type { ContactFormMessages, HomeTaskFirstMessages } from "@/i18n/types";
+import type { HomeTaskFirstMessages } from "@/i18n/types";
 import { createContactHref } from "@/lib/contactContext";
-import { buildHomeMaterialColumns } from "@/lib/homeMaterialCatalogue";
 import { publicPath } from "@/lib/paths";
 import styles from "./HomeSections.module.css";
 
@@ -20,7 +19,6 @@ const proofFigures = [companyFigures[0], companyFigures[2], companyFigures[4]];
 type TaskFirstHomeNarrativeProps = {
   certifications: readonly Certification[];
   messages: HomeTaskFirstMessages;
-  materialLabels: ContactFormMessages["materialOptionLabels"];
   localizedHref: (href: string) => string;
 };
 
@@ -28,7 +26,7 @@ function HomeProofSection({
   certifications,
   messages,
   localizedHref,
-}: Omit<TaskFirstHomeNarrativeProps, "materialLabels">) {
+}: TaskFirstHomeNarrativeProps) {
   const proof = messages.proof;
   return (
     <section id="factory-snapshot" className={`${styles.section} ${styles.cool}`} aria-labelledby="home-proof-title">
@@ -130,53 +128,21 @@ function HomeProofSection({
 export function TaskFirstHomeNarrative({
   certifications,
   messages,
-  materialLabels,
   localizedHref,
 }: TaskFirstHomeNarrativeProps) {
-  const catalogue = messages.catalogue;
-  const columns = buildHomeMaterialColumns({ messages, materialLabels, localizedHref });
   return (
     <>
-      <section className={`${styles.section} ${styles.cool}`} aria-labelledby="home-collaboration-title">
-        <div className={`site-container ${styles.whyLayout}`}>
-          <div className={styles.whyCopy}>
-            <SectionIntro
-              className={styles.intro}
-              titleClassName={styles.title}
-              descriptionClassName={styles.description}
-              title={messages.collaboration.title}
-              titleId="home-collaboration-title"
-              description={messages.collaboration.body}
-            />
-            <Link className={styles.textLink} href="#factory-snapshot">
-              {messages.proof.eyebrow}<ArrowRight aria-hidden="true" size={16} />
-            </Link>
-          </div>
-          <ul className={styles.supportGrid} aria-label={messages.collaboration.itemsAria}>
-            {messages.collaboration.items.map((item) => (
-              <li key={item.title}><h3>{item.title}</h3><p>{item.description}</p></li>
-            ))}
-          </ul>
-        </div>
-      </section>
-      <section id="entry-points" className={styles.section} aria-labelledby="home-catalogue-title">
-        <div className="site-container">
-          <header className={styles.sectionHeader}>
-            <SectionIntro
-              className={styles.intro}
-              titleClassName={styles.title}
-              descriptionClassName={styles.description}
-              title={catalogue.title}
-              titleId="home-catalogue-title"
-              description={catalogue.body}
-            />
-            <Link className={styles.textLink} href={localizedHref("/products")}>
-              {messages.core.allFamiliesAction}<ArrowRight aria-hidden="true" size={16} />
-            </Link>
-          </header>
-          <HomeMaterialCatalogue columns={columns} />
-        </div>
-      </section>
+      <HomeCoreProductExplorer
+        messages={messages.core}
+        familyHrefs={[
+          "/products/categories/pom",
+          "/products/categories/pa6-compound",
+          "/products/categories/pa66-compound",
+          "/products/categories/ppa-compound",
+        ].map(localizedHref)}
+        pomHref={localizedHref("/products/categories/pom")}
+        carbonFiberHref={localizedHref("/products/categories/carbon-fiber-reinforced-pom-compound")}
+      />
       <section className={`${styles.section} ${styles.cool}`} aria-labelledby="home-components-title">
         <div className="site-container">
           <header className={styles.sectionHeader}>
@@ -217,6 +183,28 @@ export function TaskFirstHomeNarrative({
               />
             ))}
           </div>
+        </div>
+      </section>
+      <section className={styles.section} aria-labelledby="home-collaboration-title">
+        <div className={`site-container ${styles.whyLayout}`}>
+          <div className={styles.whyCopy}>
+            <SectionIntro
+              className={styles.intro}
+              titleClassName={styles.title}
+              descriptionClassName={styles.description}
+              title={messages.collaboration.title}
+              titleId="home-collaboration-title"
+              description={messages.collaboration.body}
+            />
+            <Link className={styles.textLink} href="#factory-snapshot">
+              {messages.proof.eyebrow}<ArrowRight aria-hidden="true" size={16} />
+            </Link>
+          </div>
+          <ul className={styles.supportGrid} aria-label={messages.collaboration.itemsAria}>
+            {messages.collaboration.items.map((item) => (
+              <li key={item.title}><h3>{item.title}</h3><p>{item.description}</p></li>
+            ))}
+          </ul>
         </div>
       </section>
       <HomeProofSection certifications={certifications} messages={messages} localizedHref={localizedHref} />

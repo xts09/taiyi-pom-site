@@ -36,7 +36,6 @@ export function HomeCoreProductExplorer({
     <section
       id="entry-points"
       className="home-material-entry home-task-section"
-      data-home-reveal
     >
       <div className="site-container">
         <header className="home-products-intro">

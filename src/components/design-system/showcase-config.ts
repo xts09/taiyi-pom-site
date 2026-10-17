@@ -13,10 +13,10 @@ export const showcaseSections = [
 ] as const;
 
 export const homePreviewSections = [
-  { id: "home-collaboration-title", label: "项目支持" },
-  { id: "entry-points", label: "材料目录" },
+  { id: "entry-points", label: "材料展示" },
   { id: "home-components-title", label: "零部件入口" },
   { id: "home-applications-title", label: "行业入口" },
+  { id: "home-collaboration-title", label: "项目支持" },
   { id: "factory-snapshot", label: "制造与实验室" },
   { id: "material-review", label: "询盘入口" },
 ] as const;

@@ -49,7 +49,6 @@ export default async function HomeComponentAcceptancePage({
       <TaskFirstHomeNarrative
         messages={messages.Home.taskFirst}
         certifications={localizedCertifications}
-        materialLabels={messages.Contact.form.materialOptionLabels}
         localizedHref={localizedHref}
       />
       <HomeInquirySection

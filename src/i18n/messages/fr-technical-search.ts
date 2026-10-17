@@ -23,7 +23,7 @@ export const frTechnicalSearch: TechnicalSearchLocale = {
     noResultsTitle: "Aucun contenu correspondant",
     noResultsBody: "Essayez un nom de grade, une propriété ou une application plus générale.",
     browseTitle: "Parcourir toutes les données de grades",
-    browseBody: "115 pages de données publiées, classées par famille de matériaux. Le statut documentaire décrit le catalogue du site ; les documents techniques à jour sont à confirmer pour le grade et le projet concernés.",
+    browseBody: (count) => `${count} pages de données publiées, classées par famille de matériaux. Le statut documentaire décrit le catalogue du site ; les documents techniques à jour sont à confirmer pour le grade et le projet concernés.`,
     browseCount: (count) => `${count} grade${count === 1 ? "" : "s"}`, viewGrade: "Consulter les données",
     resourcePage: "Ressource technique", engineeringEyebrow: "Données de plastiques techniques",
     conductiveEyebrow: "Grades conducteurs / antistatiques", suggestedEyebrow: "Présélection PLATFORM",

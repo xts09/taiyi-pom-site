@@ -25,10 +25,10 @@ export function HomePatternShowcase({ messages, preview }: { messages: SiteMessa
     <>
       <div className={styles.specimenGroup}>
         <header className={styles.specimenHeader}>
-          <h3>材料目录</h3>
-          <p>桌面三列并排，手机单组展开；牌号数量和分类链接与首页共用数据。</p>
+          <h3>产品总览 · 材料目录</h3>
+          <p>桌面三列紧凑排列，手机单组展开；与产品总览页共用组件、牌号数量和分类链接。</p>
         </header>
-        <div lang={preview.htmlLang}><HomeMaterialCatalogue columns={columns} /></div>
+        <div lang={preview.htmlLang}><HomeMaterialCatalogue columns={columns} density="compact" /></div>
       </div>
       <div className={styles.specimenGroup}>
         <header className={styles.specimenHeader}>
@@ -65,7 +65,10 @@ export function HomePatternShowcase({ messages, preview }: { messages: SiteMessa
         </div>
       </div>
       <div className={styles.consumerLinks}>
-        <p className={styles.specLabel}>完整组合 · 项目支持、材料、零部件、行业、制造证据与询盘</p>
+        <p className={styles.specLabel}>完整组合 · 材料展示、零部件、行业、项目支持、制造证据与询盘</p>
+        <Button variant="secondary" size="form" asChild>
+          <Link href={localizedHref("/products#product-families")}>查看实际产品总览<ArrowRight data-icon="inline-end" /></Link>
+        </Button>
         <Button variant="secondary" size="form" asChild>
           <Link href={`/design-system/home?lang=${preview.value}`}>查看完整首页组合<ArrowRight data-icon="inline-end" /></Link>
         </Button>

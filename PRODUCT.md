@@ -6,7 +6,9 @@ This file is the product, content, design, and acceptance reference for the Taiy
 
 The homepage body, precision-gear and engineering-GF compositions, application
 part groups, shared reading controls and inquiry diagnostics are approved for
-release together. Internal component acceptance pages remain development-only.
+release together. The Home material showcase, Products overview and priority
+copy/CTA fixes are included in the October 17 release revision. Internal
+component acceptance pages remain development-only.
 The current production Header remains the released navigation owner; the local
 navigation revision and its related tokens, messages, examples and tests stay
 outside this release. Actual deployment timing and verification evidence belong
@@ -60,6 +62,45 @@ The current homepage and main navigation baseline is:
   localized `/technical-data-sheets` directory. The desktop TDS action and
   mobile data link lead to that same released directory; this entry does not
   imply a separate site-wide resource search.
+
+### Homepage And Products Composition — Release Revision, 2026-10-17
+
+The homepage body uses the existing Hero in English, Chinese, German, French
+and Brazilian Portuguese. Its revised body opens with the material photograph
+and POM/PA6/PA66/PPA links, followed by component images, industry photos,
+project support, manufacturing and laboratory evidence, then four inquiry paths.
+Public routes and metadata retain their owners.
+
+The Products overview uses the three-column material catalogue in place of its
+former family list, ahead of requirement-based selection: POM, PA6/PA66/PPA,
+and conductive/antistatic compounds. Its compact density reduces row spacing
+and padding. Its Hero pairs a natural-POM material photograph with an
+introduction to material properties, typical parts and product families, plus
+one TDS action. The directory follows directly, with requirement-based selection
+below. The introduction is owned by `Products.hero.body` in all five languages.
+Its H1 names the page's task: “Materials & Grades” / “材料与牌号”, with native
+equivalents in German, French and Brazilian Portuguese.
+
+Counts come from the catalogue; conductive coverage is expressed as polymer
+matrices, separate from individual published grades. POM subfamily totals do
+not double-count the ultra-high-flow subset of base resin. The mobile catalogue
+expands one group at a time; component and industry image entries retain their
+existing destinations. Manufacturing evidence uses real factory and laboratory
+photographs, company figures and original certificate PDFs.
+
+TDS links open the data directory. Sample, grade evaluation and supply links
+open the existing localized Contact flow with the corresponding intent.
+Localized POM grade data tables' document requests use the `tds` intent and
+retain the grade, material and source. Localized TDS browse descriptions derive
+their total from the displayed grade groups. Selection and inquiry copy names
+concrete candidate grades, engineering tradeoffs and deliverables using verified
+catalogue information.
+
+The inquiry module's blue curve is a decorative generated asset. Composition
+and priority-fix evidence is recorded under
+`outputs/home-products-catalogue-preview-2026-10-17/` and
+`outputs/priority-fixes-2026-10-17/`; production release evidence is recorded
+separately when deployment completes.
 
 ### Approved Release Scope (2026-10-07)
 

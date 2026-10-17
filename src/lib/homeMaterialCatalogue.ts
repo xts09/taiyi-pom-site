@@ -48,7 +48,7 @@ export function buildHomeMaterialColumns({
         count: catalogEngineeringTds.filter((record) => record.family === family).length,
       })),
       action: catalogue.polyamideAction,
-      href: localizedHref("/products#product-families"),
+      href: localizedHref("/technical-data-sheets"),
     },
     {
       id: "functional",

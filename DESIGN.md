@@ -195,11 +195,12 @@ logic rather than introduce a disconnected surface language.
 ## Homepage First-Two-Screen Benchmark
 
 The Home Hero remains the production baseline for repairs and extensions.
-The below-hero composition adopted on 2026-10-14 is owned by
-`HomeSections.module.css`: project support, material catalogue, component images,
-industry photos, manufacturing/testing, then inquiry paths. Earlier material-story
-opening modules are historical references. Requested concepts and redesigns may
-choose another composition within the user's scope.
+The below-hero composition revised on 2026-10-17 begins with the existing
+material photograph and four family links in `HomeCoreProductExplorer.tsx` /
+`home.css`. `HomeSections.module.css` owns the following component images,
+industry photos, project support, manufacturing/testing and inquiry paths.
+The three-column material catalogue belongs on the Products overview, before
+requirement-based selection.
 
 `/design-system#home-patterns` maintains the actual catalogue and entry-card
 specimens; `/design-system#evidence` covers the shared photo, metric and document
@@ -219,13 +220,14 @@ compositions. Their maintenance contract lives in `COMPONENTS.md`.
   fallback. Text wraps within the real title column. The body measure, media
   and actions retain their owners. Exact copy lives in the Home messages
   and `PRODUCT.md`.
-- **Below the Hero — clear routes and evidence:** Begin with four concise support
-  items on a cool canvas. Follow with a navy POM column, cobalt polyamide column,
-  and pale-blue conductive/antistatic column. Counts come from the catalogue;
-  family rows lead to their actual directories. On mobile, one material group is
-  expanded at a time. Six isolated component images precede eight shorter scene
-  cards. Real factory and laboratory photographs alternate with short facts;
-  certificate previews retain original PDF links.
+- **Below the Hero — clear routes and evidence:** Begin with the material
+  photograph, POM description and direct POM/PA6/PA66/PPA links. Six isolated
+  component images precede eight shorter scene cards. Four concise support
+  items connect to real factory and laboratory photographs, short facts and
+  original certificate PDF links. The Products overview carries the navy POM,
+  cobalt polyamide and pale-blue conductive/antistatic columns in compact
+  density. Counts come from the catalogue and family rows open their actual
+  directories. On mobile, one material group is expanded at a time.
 - **Homepage section hierarchy:** Use the `homeSection` title role above with
   lighter headings, square image-card arrow surfaces, and cold white/canvas
   backgrounds. The inquiry module uses a white panel over a blue material curve

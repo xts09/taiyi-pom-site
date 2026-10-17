@@ -82,8 +82,8 @@ export const zhTechnicalDataSearchMessages = {
   noResultsTitle: "没有找到匹配内容",
   noResultsBody: "请尝试更宽泛的牌号、材料方向或应用关键词。",
   browseTitle: "浏览全部牌号数据",
-  browseBody:
-    "按材料系列逐步展开 115 个已发布牌号数据页面。目录状态仅表示网站当前登记情况，不表示现实中不存在正式技术资料。",
+  browseBody: (count: number) =>
+    `按材料系列逐步展开 ${count} 个已发布牌号数据页面。目录状态仅表示网站当前登记情况，不表示现实中不存在正式技术资料。`,
   browseCount: (count: number) => `${count} 个牌号`,
   viewGrade: "查看牌号数据",
   resourcePage: "技术资源页面",

@@ -137,9 +137,9 @@ const messages = {
     breadcrumbProducts: "Produtos",
     hero: {
       eyebrow: "Diretório de produtos",
-      title: "Compostos de plásticos de engenharia",
+      title: "Materiais e grades",
       body:
-        "Para desgaste e stick-slip, comece com POM lubrificado; para deformação sob carga, com formulações reforçadas. Quando precisar do equilíbrio térmico ou de tenacidade de poliamidas, compare graus de PA6, PA66 e PPA.",
+        "O POM modificado PLATFORM® combina resistência ao desgaste, baixo atrito e estabilidade dimensional para engrenagens, mancais e peças de encaixe preciso. A Taiyi Polymer oferece grades lubrificados, reforçados e modificados ao impacto, além de PA6, PA66, PPA e materiais condutivos e antiestáticos para aplicações automotivas, elétricas, eletrônicas e industriais.",
       startAction: "Escolher pelos requisitos da peça",
       dataSheetsAction: "Encontrar dados de grades e TDS",
     },

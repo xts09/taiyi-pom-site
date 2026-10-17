@@ -13,6 +13,15 @@ const locales = [
   ["pt-br", ptBRTechnicalSearch, "DESGASTE", "Engrenagens", "Fibra de vidro"],
 ];
 
+test("localized browse descriptions use the current catalogue count", () => {
+  const catalog = JSON.parse(readFileSync(new URL("../src/generated/catalog.json", import.meta.url), "utf8"));
+  const count = catalog.filter((record) => record.kind === "product" || record.kind === "engineering-tds").length;
+  for (const copy of [zhTechnicalDataSearchMessages, ...locales.map(([, data]) => data.copy)]) {
+    assert.match(copy.browseBody(count), new RegExp(`\\b${count}\\b`));
+    assert.match(copy.browseBody(count + 1), new RegExp(`\\b${count + 1}\\b`));
+  }
+});
+
 for (const [locale, data, wear, gear, glass] of locales) {
   test(`${locale}: local terms match canonical search terms without changing grade identifiers`, () => {
     for (const [input, expected] of [[wear, "wear"], [gear, "gear"], [glass, "glass fiber"], ["ETM450", "ETM450"], ["A-USURE450", "A-USURE450"]]) {

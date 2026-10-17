@@ -10,6 +10,7 @@ import { ApplicationPartGroups, type ApplicationPartGroup } from "@/components/A
 import { electronicsPageDesign } from "@/data/electronicsPageDesign";
 import { applicationPartGroupPresentations } from "@/data/applicationPartGroupPresentation";
 import automotiveStyles from "@/components/AutomotiveSystemGroup.module.css";
+import pageStyles from "./LocalizedApplicationDetailPage.module.css";
 import { automotivePageDesign } from "@/data/automotivePageDesign";
 import { automotivePartMaterials, automotiveSelectionLabels } from "@/data/automotiveSelection";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
@@ -756,7 +757,7 @@ export function LocalizedApplicationDetailPage({
                 )}
               />
 
-              <div className="application-scene-copy application-scene-copy-overlay">
+              <div className={cx("application-scene-copy application-scene-copy-overlay", application.slug === "motion-components" && pageStyles.motionSceneCopy)}>
                 {!usesReviewedApplicationDensity ? (
                   <p className="section-kicker mb-3">
                     {messages.scene.eyebrow}

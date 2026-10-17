@@ -57,6 +57,14 @@ export function LocalizedProductGradePage({
       source: messages.common.contactSourceGrade,
     }),
   );
+  const documentsHref = localizedPath(
+    createContactHref({
+      grade: product.grade,
+      intent: "tds",
+      material: categoryLabel,
+      source: messages.common.contactSourceGrade,
+    }),
+  );
   const getProperty = (label: string) =>
     product.properties.find((property) => property.label === label);
   const tensileProperty = getProperty("Tensile Strength");
@@ -288,7 +296,7 @@ export function LocalizedProductGradePage({
                 </p>
               ) : null}
               <p>{copy.properties.body}</p>
-              <Link href={evaluationHref}>{copy.properties.requestAction}</Link>
+              <Link href={documentsHref}>{copy.properties.requestAction}</Link>
             </div>
           </section>
 

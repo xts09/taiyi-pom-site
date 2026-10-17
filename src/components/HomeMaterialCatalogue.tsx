@@ -48,12 +48,14 @@ function MaterialLinks({ column }: { column: HomeMaterialColumn }) {
 
 export function HomeMaterialCatalogue({
   columns,
+  density = "comfortable",
 }: {
   columns: readonly HomeMaterialColumn[];
+  density?: "comfortable" | "compact";
 }) {
   return (
     <>
-      <div className={styles.catalogueDesktop}>
+      <div className={styles.catalogueDesktop} data-density={density}>
         {columns.map((column) => (
           <article key={column.id} className={styles.material} data-material={column.id}>
             <h3 className={styles.materialTitle}>{column.title}</h3>
@@ -64,6 +66,7 @@ export function HomeMaterialCatalogue({
       </div>
       <Accordion
         className={styles.catalogueMobile}
+        data-density={density}
         type="single"
         collapsible
         defaultValue="pom"
