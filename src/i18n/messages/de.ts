@@ -1,3 +1,4 @@
+import { headerPomMenuMessages } from "../headerPomMenuMessages.ts";
 import type { SiteMessages } from "@/i18n/types";
 import coreMessages from "./de-core.ts";
 
@@ -14,10 +15,10 @@ const messages = {
     },
     productEyebrows: {
       coreLine: "Kernsortiment",
-      additionalFamily: "Weitere Werkstofffamilie",
-      higherTemperature: "Für höhere Temperaturen",
-      supplement: "Ergänzung",
-      crossMaterial: "Werkstoffübergreifend",
+      additionalFamily: "Polyamid-Familie",
+      higherTemperature: "Hochtemperatur-Polyamid",
+      supplement: "Basisharz",
+      crossMaterial: "Leitfähig & antistatisch",
     },
     applications: {
       automotive: "Automobilindustrie",
@@ -46,6 +47,7 @@ const messages = {
     },
   },
   Header: {
+    pomMenu: headerPomMenuMessages["de"],
     brandHomeLabel: "Startseite von Taiyi Polymer",
     navigationAria: "Hauptnavigation",
     products: "Produkte",
@@ -72,6 +74,7 @@ const messages = {
     menu: "Menü",
     close: "Schließen",
     findGradeData: "Werkstoffdaten und TDS finden",
+    findTds: "TDS finden",
     discussApplication: "Anwendung besprechen",
   },
   Footer: {
@@ -147,7 +150,7 @@ const messages = {
       kicker: "Anforderung zuerst",
       title: "Was muss das Bauteil leisten?",
       body:
-        "Bestimmen Sie den Hauptausfall und wählen Sie über diese Pfade erste Rezepturen und Vergleichskriterien.",
+        "Vergleichen Sie Modifizierungssysteme anhand der wesentlichen Ausfallrisiken des Bauteils und legen Sie die zu prüfenden Kennwerte fest.",
       navigationAria: "Werkstoffpfade nach Bauteilanforderung",
       paths: [
         {

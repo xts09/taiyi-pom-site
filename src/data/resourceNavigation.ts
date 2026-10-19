@@ -47,7 +47,7 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
         href: "/resources/pom-gear-material-selection",
         type: "Guide",
         description:
-          "How do tooth wear, root fatigue and creep change POM selection? Use listed grades and the gear case to define first-trial priorities.",
+          "How do tooth wear, root fatigue and creep affect POM selection? Use listed grades and the gear case to define what to validate.",
       },
       {
         label: "PA6 vs PA66 Selection Guide",
@@ -143,11 +143,11 @@ export const resourceNavigationGroups: ResourceNavigationGroup[] = [
           "When changing POM supply, establish dimensional, molding and functional baselines and build a trial and production-release checklist.",
       },
       {
-        label: "POM Wear Test Benchmark",
+        label: "POM Wear-Test Records",
         href: "/resources/pom-wear-benchmark",
         type: "Technical note",
         description:
-          "Internal wear-test records grouped by condition, with measured results, process curves and available specimen photos.",
+          "In-house wear-test records grouped by condition, with measured values, process curves and specimen photos where available.",
       },
       {
         label: "Data / TDS Search",

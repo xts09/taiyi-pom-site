@@ -1,6 +1,41 @@
 type CopyAuditResourceLocale = "de" | "fr" | "pt-br";
 
 const copy: Record<string, Record<CopyAuditResourceLocale, string>> = {
+  "PA66 零件在高温受载或调湿后尺寸上未达标时，以 EAG230 PA66 GF30 为基准，将 EAG630H PPA GF30 作为候选纳入对比。本指南说明如何复测性能缺口、比较牌号数据，并确认 PPA 对干燥、模具与设备的要求。": {
+    de: "Wenn PA66-Bauteile die Anforderungen unter Last bei erhöhter Temperatur oder an Maße nach Konditionierung verfehlen, nutzen Sie EAG230 PA66 GF30 als Referenz und vergleichen EAG630H PPA GF30 als Kandidaten. Dieser Leitfaden zeigt, wie Sie das Leistungsdefizit nachprüfen, Werkstoffdaten vergleichen und die Trocknungs-, Werkzeug- und Maschinenanforderungen von PPA klären.",
+    fr: "Lorsque les pièces en PA66 ne satisfont pas aux exigences sous charge à chaud ou de dimensions après conditionnement, prenez l’EAG230 PA66 GF30 comme référence et comparez l’EAG630H PPA GF30 comme candidat. Ce guide explique comment vérifier l’écart de performance, comparer les données des grades et confirmer les exigences du PPA en matière de séchage, de moule et d’équipement.",
+    "pt-br": "Quando peças de PA66 não atendem às metas sob carga em alta temperatura ou de dimensões após condicionamento, use EAG230 PA66 GF30 como referência e compare EAG630H PPA GF30 como candidato. Este guia mostra como verificar a deficiência de desempenho, comparar dados dos graus e confirmar os requisitos de secagem, molde e equipamento do PPA.",
+  },
+  "明确 PA66 基准的性能缺口": {
+    de: "Leistungsdefizit der PA66-Referenz bestimmen",
+    fr: "Définir l’écart de performance du PA66 de référence",
+    "pt-br": "Definir a deficiência de desempenho da referência em PA66",
+  },
+  "以 EAG230（PA66 GF30）为基准，将 EAG630H（PPA GF30）作为高温受载或刚性不足时的对比候选。两者均为 30% 玻纤增强配方；EAG630H 的目录 HDT 和弯曲模量更高，热态刚性与蠕变表现仍需通过对应测试确认。": {
+    de: "Nutzen Sie EAG230 (PA66 GF30) als Referenz und vergleichen Sie EAG630H (PPA GF30) als Kandidaten für Lasten bei erhöhter Temperatur oder unzureichende Steifigkeit. Beide Rezepturen enthalten 30 % Glasfasern. EAG630H weist im Katalog eine höhere HDT und einen höheren Biegemodul auf; Steifigkeit bei erhöhter Temperatur und Kriechverhalten müssen durch entsprechende Prüfungen bestätigt werden.",
+    fr: "Prenez l’EAG230 (PA66 GF30) comme référence et comparez l’EAG630H (PPA GF30) comme candidat pour une charge à chaud ou une rigidité insuffisante. Les deux formulations contiennent 30 % de fibres de verre. L’EAG630H présente une HDT et un module en flexion plus élevés au catalogue ; la rigidité à chaud et le comportement au fluage restent à vérifier par les essais correspondants.",
+    "pt-br": "Use EAG230 (PA66 GF30) como referência e compare EAG630H (PPA GF30) como candidato para cargas em alta temperatura ou rigidez insuficiente. Ambas as formulações contêm 30% de fibra de vidro. EAG630H tem HDT e módulo de flexão mais altos no catálogo; a rigidez a quente e o comportamento em fluência ainda precisam ser confirmados por ensaios correspondentes.",
+  },
+  "明确 PA66 的性能缺口": {
+    de: "Leistungsdefizit des PA66 bestimmen",
+    fr: "Définir l’écart de performance du PA66",
+    "pt-br": "Definir a deficiência de desempenho do PA66",
+  },
+  "记录现用 PA66 未达标的项目、测试条件与验收限值，再判断是否比较 PPA。": {
+    de: "Dokumentieren Sie die nicht erfüllte PA66-Anforderung, Prüfbedingungen und Abnahmegrenze, bevor Sie über einen Vergleich mit PPA entscheiden.",
+    fr: "Relevez l’exigence non satisfaite par le PA66, les conditions d’essai et la limite d’acceptation avant de décider d’une comparaison avec le PPA.",
+    "pt-br": "Registre o requisito não atendido pelo PA66, as condições de ensaio e o limite de aceitação antes de decidir pela comparação com PPA.",
+  },
+  "明确 PA66 缺口": {
+    de: "PA66-Defizit bestimmen",
+    fr: "Définir l’écart du PA66",
+    "pt-br": "Definir a deficiência do PA66",
+  },
+  "以现用 PA66 的实测结果和目标限值，确定 PPA 候选牌号需要改善的项目。": {
+    de: "Leiten Sie aus den Messwerten des aktuellen PA66 und dem Zielgrenzwert ab, was ein PPA-Kandidat verbessern muss.",
+    fr: "À partir des résultats du PA66 actuel et de la limite visée, définissez ce qu’un grade PPA candidat doit améliorer.",
+    "pt-br": "Use os resultados do PA66 atual e o limite alvo para definir o que um grau candidato de PPA precisa melhorar.",
+  },
   "POM 耐磨测试记录": {
     de: "POM-Verschleißprüfberichte",
     fr: "Rapports d’essais d’usure du POM",

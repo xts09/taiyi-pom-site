@@ -16,7 +16,7 @@ export const chinesePomCategoryExpansion = {
       eyebrow: "POM 改性材料系列",
       title: "耐磨与低摩擦 POM",
       description:
-        "齿轮、轴套和导轨的选型，先区分磨耗、粘滑与承载变形。PLATFORM® 耐磨与低摩擦 POM 提供润滑、固体润滑及纤维复合配方，按主导风险建立首轮牌号对比。",
+        "PLATFORM® 耐磨与低摩擦 POM 面向齿轮、轴套和导轨，覆盖 PTFE、MoS₂ 和芳纶等改性体系，可按启动摩擦、接触磨耗与承载变形筛选候选牌号。",
       overviewLabel: "材料概览",
       overview:
         "系列配套关键力学与热性能数据，技术文件和样品按具体牌号与项目确认。",
@@ -30,22 +30,22 @@ export const chinesePomCategoryExpansion = {
       kicker: "牌号范围",
       title: "耐磨与低摩擦 POM 牌号",
       body:
-        "低启动阻力从 EPTL402 切入，耐磨与拉伸平衡从 EMS102／EMS162 切入，刚性与接触耐磨并重时加入 EPAF100A。下列目录按配方标注牌号，并列出关键数据。",
+        "启动阻力或粘滑突出时，可比较 EPTL402；需要兼顾耐磨与拉伸性能时，可对比 EMS102／EMS162；刚性与接触耐磨并重时，可将 EPAF100A 纳入比较。下列目录按改性体系列出牌号与关键数据。",
       summaries: {
         "etm270h-wear-resistant-pom":
           "耐磨改性 POM，兼顾较高的拉伸与弯曲表现。",
         "epaf100a-high-wear-resistant-pom":
-          "10% 芳纶纤维改性 POM；滑动件需要同时比较刚性、耐磨与热变形时，从 EPAF100A 切入。",
+          "10% 芳纶纤维改性 POM。滑动件需要兼顾刚性、耐磨与热变形表现时，可将 EPAF100A 纳入比较。",
         "eptl402-high-wear-resistant-pom":
-          "PTFE 润滑改性 POM；轴套、滑块的启动阻力或粘滑突出时，优先将 EPTL402 纳入首轮试模。",
+          "PTFE 润滑改性 POM。轴套、滑块的启动阻力或粘滑突出时，可将 EPTL402 纳入试模比较。",
         "enm1040-high-wear-resistant-pom":
           "采用特殊耐磨添加剂体系的 POM，用于滑动与功能零件。",
         "edm-111-high-wear-resistant-pom":
           "面向汽车、电气、卫浴和工业注塑应用的高耐磨 POM。",
         "ems102-high-wear-resistant-pom":
-          "MoS2 改性黑色耐磨 POM。复杂流道或充模流动性敏感的零件，首轮优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。",
+          "MoS₂ 改性黑色耐磨 POM。流道复杂或对充模流动性敏感时，可优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。",
         "ems162-high-wear-resistant-pom":
-          "MoS2 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，从 EMS162 切入对比（65 MPa，MFI 7 g/10 min）。",
+          "MoS₂ 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，可比较 EMS162（拉伸强度 65 MPa，MFI 7 g/10 min）。",
       },
     },
     faq: {
@@ -65,7 +65,7 @@ export const chinesePomCategoryExpansion = {
         {
           question: "可查看哪些资料？",
           answer:
-            "牌号页列出关键性能数据；技术文件和样品可按项目申请，零件试验可结合实际摩擦副与工况开展。",
+            "请提供摩擦副材料、载荷、速度、使用温度及润滑条件。我们可结合公开数据与相关内部耐磨测试记录比较候选牌号，再确认项目可用的资料和样品。",
         },
       ],
     },

@@ -1,3 +1,4 @@
+import { headerPomMenuMessages } from "../headerPomMenuMessages.ts";
 import type { SiteMessages } from "@/i18n/types";
 import coreMessages from "./fr-core.ts";
 
@@ -14,10 +15,10 @@ const messages = {
     },
     productEyebrows: {
       coreLine: "Gamme principale",
-      additionalFamily: "Famille complémentaire",
-      higherTemperature: "Haute température",
-      supplement: "Complément",
-      crossMaterial: "Multi-matrices",
+      additionalFamily: "Famille polyamide",
+      higherTemperature: "Polyamide haute température",
+      supplement: "Résine de base",
+      crossMaterial: "Conducteur et antistatique",
     },
     applications: {
       automotive: "Automobile",
@@ -46,6 +47,7 @@ const messages = {
     },
   },
   Header: {
+    pomMenu: headerPomMenuMessages["fr"],
     brandHomeLabel: "Accueil Taiyi Polymer",
     navigationAria: "Navigation principale",
     products: "Produits",
@@ -72,6 +74,7 @@ const messages = {
     menu: "Menu",
     close: "Fermer",
     findGradeData: "Trouver les données grades et TDS",
+    findTds: "Trouver TDS",
     discussApplication: "Parler de votre application",
   },
   Footer: {
@@ -147,7 +150,7 @@ const messages = {
       kicker: "Les exigences d'abord",
       title: "Que doit accomplir la pièce ?",
       body:
-        "Identifiez la défaillance dominante, puis choisissez les premières formulations et critères par ces parcours.",
+        "Comparez les types de modification selon les principaux risques de défaillance de la pièce et définissez les propriétés à vérifier.",
       navigationAria: "Parcours matière selon les exigences de la pièce",
       paths: [
         {

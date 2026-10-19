@@ -1,6 +1,25 @@
 // Reviewed copy for application selection, product discovery and technical resources.
-export const selectionEditorialLocaleOverrides: Record<string, Record<string, string>> = {
+const selectionEditorialLocaleOverridesBase: Record<string, Record<string, string>> = {
   "en": {
+    "PLATFORM® 耐磨与低摩擦 POM 面向齿轮、轴套和导轨，覆盖 PTFE、MoS₂ 和芳纶等改性体系，可按启动摩擦、接触磨耗与承载变形筛选候选牌号。": "PLATFORM® wear-resistant and low-friction POM covers PTFE, MoS₂ and aramid modifications for gears, bushings and guides. Screen candidate grades against starting friction, contact wear and deformation under load.",
+    "启动阻力或粘滑突出时，可比较 EPTL402；需要兼顾耐磨与拉伸性能时，可对比 EMS102／EMS162；刚性与接触耐磨并重时，可将 EPAF100A 纳入比较。下列目录按改性体系列出牌号与关键数据。": "Compare EPTL402 for starting resistance or stick-slip, EMS102/EMS162 for wear-tensile balance, and EPAF100A for stiffness with contact-wear resistance. The directory groups grades by modification system and lists key data.",
+    "10% 芳纶纤维改性 POM。滑动件需要兼顾刚性、耐磨与热变形表现时，可将 EPAF100A 纳入比较。": "POM modified with 10% aramid fiber. Include EPAF100A in comparisons when sliding parts require a balance of stiffness, wear resistance and heat-deflection behavior.",
+    "PTFE 润滑改性 POM。轴套、滑块的启动阻力或粘滑突出时，可将 EPTL402 纳入试模比较。": "PTFE-lubricated POM. Include EPTL402 in molding-trial comparisons when starting resistance or stick-slip is a concern in bushings or sliders.",
+    "MoS₂ 改性黑色耐磨 POM。流道复杂或对充模流动性敏感时，可优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。": "Black, MoS₂-modified wear-resistant POM. Prioritize EMS102 for evaluation when flow paths are complex or mold filling is flow-sensitive (MFI 8 g/10 min, tensile strength 60 MPa).",
+    "MoS₂ 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，可比较 EMS162（拉伸强度 65 MPa，MFI 7 g/10 min）。": "Black, MoS₂-modified wear-resistant POM. Compare EMS162 when tensile strength is the main screening criterion for sliding or drive parts (tensile strength 65 MPa, MFI 7 g/10 min).",
+    "请提供摩擦副材料、载荷、速度、使用温度及润滑条件。我们可结合公开数据与相关内部耐磨测试记录比较候选牌号，再确认项目可用的资料和样品。": "Share the mating material, load, speed, operating temperature and lubrication conditions. We can compare candidate grades with published data and relevant in-house wear-test records, then confirm the documents and samples available for your project.",
+    "齿面磨损、齿根疲劳与蠕变分别怎样影响 POM 选择？结合已有牌号与齿轮案例，确定需要验证的项目。": "How do tooth wear, root fatigue and creep affect POM selection? Use listed grades and the gear case to define what to validate.",
+    "高速连续啮合先看齿面磨损与温升，大扭矩启停先看齿根受力和冲击；持续负载还要控制蠕变带来的侧隙变化。以现用材料或既有 ETM 100P 齿轮案例为基准，按主导风险确定候选配方和测量项目。": "At continuous high speed, prioritize tooth wear and heat; at high-torque starts, root load and impact. Under sustained load, track creep-driven backlash. Use the current material or the ETM 100P gear case as a baseline for candidate formulations and measurements.",
+    "先明确扭矩、转速范围、目标循环数和允许侧隙，再比较材料。正常运行与启动、堵转等峰值载荷应分别记录；几何、工作循环、环境和润滑条件按下方清单补全。": "Start with the required torque, speed range, life target and allowable backlash. Record running loads separately from startup, stall and other peaks, then use the checklist below to complete the geometry, duty cycle, environment and lubrication requirements.",
+    "输入与输出扭矩、转速范围、转动方向、启停频率与工作循环": "Input and output torque, speed range, rotation direction, start-stop frequency and duty cycle",
+    "轴支撑、对中、壳体刚性与允许侧隙": "Shaft support, alignment, housing stiffness and allowable backlash",
+    "按主导风险筛选候选牌号": "Shortlist Grades by Dominant Risk",
+    "候选牌号": "Candidate Grades",
+    "参考 ETM 100P 齿轮耐久案例时，先核对负载、运动方式和润滑等条件与本项目的差异。干摩擦、粘滑或齿面磨耗突出时，对比 EPTL402 与 EMS102／EMS162；承载变形突出时，再比较玻纤增强 POM 的刚性、取向和对偶齿轮磨损。": "When using the ETM 100P gear-endurance case, first compare its load, motion and lubrication conditions with the project. For dry sliding, stick-slip or tooth wear, compare EPTL402 and EMS102/EMS162. For load deformation, compare glass-fiber-reinforced POM stiffness, orientation and mating-gear wear.",
+    "以标准 POM 作成型、疲劳与精度的对照基准": "Use standard POM as the baseline for molding, fatigue and precision",
+    "重点核对": "Key checks",
+    "齿轮类型、模数或径节、齿数、齿宽与传动比": "Gear type, module or diametral pitch, tooth count, face width and ratio",
+    "运行扭矩与启动、堵转、卡死、反转、制动峰值；目标循环次数": "Running torque and startup, stall, jam, reversal and braking peaks; target cycle count",
     "连续啮合先控制齿面磨损与温升，频繁启停先处理粘滑与冲击。按主导风险选择润滑、增韧或增强 POM，并从已有牌号切入试模。": "For continuous meshing, start with tooth wear and heat; for frequent starts, address stick-slip and impact. Match lubricated, toughened or reinforced POM to the dominant risk and shortlist listed grades for trials.",
     "链节销孔磨损会拉长节距，导轨粘滑会抬高驱动负荷。先区分承载变形与接触磨耗，再为链板、滚轮和导轨匹配增强或润滑改性 POM。": "Pin-bore wear lengthens chain pitch, while guide stick-slip raises drive load. Separate load deformation from contact wear before choosing reinforced or lubricated POM for chains, rollers and guides.",
     "阀芯卡滞与密封泄漏常从配合间隙变化开始。运动界面优先处理启动摩擦和磨损，承压壳体优先控制蠕变与翘曲，并按介质和水温筛选配方。": "Spool sticking and seal leakage can begin with changing clearances. Prioritize starting friction and wear at moving interfaces, and creep and warpage in pressure housings; screen formulations against fluid and water temperature.",
@@ -187,6 +206,25 @@ export const selectionEditorialLocaleOverrides: Record<string, Record<string, st
     "台益基准候选牌号": "Taiyi Polymer baseline candidates"
   },
   "de": {
+    "PLATFORM® 耐磨与低摩擦 POM 面向齿轮、轴套和导轨，覆盖 PTFE、MoS₂ 和芳纶等改性体系，可按启动摩擦、接触磨耗与承载变形筛选候选牌号。": "Verschleißfestes und reibungsarmes PLATFORM® POM umfasst PTFE-, MoS₂- und Aramid-Modifizierungen für Zahnräder, Buchsen und Führungen. Kandidatentypen lassen sich anhand von Anfahrreibung, Kontaktverschleiß und Verformung unter Last eingrenzen.",
+    "启动阻力或粘滑突出时，可比较 EPTL402；需要兼顾耐磨与拉伸性能时，可对比 EMS102／EMS162；刚性与接触耐磨并重时，可将 EPAF100A 纳入比较。下列目录按改性体系列出牌号与关键数据。": "Vergleichen Sie EPTL402 bei Anfahrwiderstand oder Stick-Slip, EMS102/EMS162 für Verschleiß und Zugfestigkeit sowie EPAF100A für Steifigkeit und Kontaktverschleiß. Das Verzeichnis gruppiert die Typen nach Modifizierung und nennt Kerndaten.",
+    "10% 芳纶纤维改性 POM。滑动件需要兼顾刚性、耐磨与热变形表现时，可将 EPAF100A 纳入比较。": "POM mit 10% Aramidfasern. Beziehen Sie EPAF100A in den Vergleich ein, wenn bei Gleitbauteilen Steifigkeit, Verschleißfestigkeit und Wärmeformbeständigkeit gemeinsam zu bewerten sind.",
+    "PTFE 润滑改性 POM。轴套、滑块的启动阻力或粘滑突出时，可将 EPTL402 纳入试模比较。": "PTFE-geschmiertes POM. Beziehen Sie EPTL402 in vergleichende Werkzeugbemusterungen ein, wenn bei Buchsen oder Gleitschiebern Anfahrwiderstand oder Stick-Slip im Vordergrund stehen.",
+    "MoS₂ 改性黑色耐磨 POM。流道复杂或对充模流动性敏感时，可优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。": "Schwarzes, mit MoS₂ modifiziertes verschleißfestes POM. Prüfen Sie EMS102 vorrangig bei komplexen Fließwegen oder fließkritischer Formfüllung (MFI 8 g/10 min, Zugfestigkeit 60 MPa).",
+    "MoS₂ 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，可比较 EMS162（拉伸强度 65 MPa，MFI 7 g/10 min）。": "Schwarzes, mit MoS₂ modifiziertes verschleißfestes POM. Vergleichen Sie EMS162, wenn Zugfestigkeit das wichtigste Auswahlkriterium für Gleit- oder Antriebsbauteile ist (Zugfestigkeit 65 MPa, MFI 7 g/10 min).",
+    "请提供摩擦副材料、载荷、速度、使用温度及润滑条件。我们可结合公开数据与相关内部耐磨测试记录比较候选牌号，再确认项目可用的资料和样品。": "Teilen Sie uns Gegenwerkstoff, Belastung, Geschwindigkeit, Betriebstemperatur und Schmierbedingungen mit. Wir können Kandidatentypen anhand veröffentlichter Daten und relevanter interner Verschleißprüfprotokolle vergleichen und anschließend die für Ihr Projekt verfügbaren Unterlagen und Muster bestätigen.",
+    "齿面磨损、齿根疲劳与蠕变分别怎样影响 POM 选择？结合已有牌号与齿轮案例，确定需要验证的项目。": "Wie beeinflussen Zahnflankenverschleiß, Zahnfußermüdung und Kriechen die POM-Auswahl? Nutzen Sie gelistete Typen und den Zahnradfall, um die nötigen Prüfungen festzulegen.",
+    "高速连续啮合先看齿面磨损与温升，大扭矩启停先看齿根受力和冲击；持续负载还要控制蠕变带来的侧隙变化。以现用材料或既有 ETM 100P 齿轮案例为基准，按主导风险确定候选配方和测量项目。": "Bei kontinuierlicher hoher Drehzahl stehen Zahnflankenverschleiß und Erwärmung im Vordergrund, bei Anläufen mit hohem Drehmoment Zahnfußbelastung und Stoß. Unter Dauerlast ist kriechbedingtes Flankenspiel zu verfolgen. Nutzen Sie den aktuellen Werkstoff oder den ETM-100P-Zahnradfall als Referenz für Kandidatenrezepturen und Messgrößen.",
+    "先明确扭矩、转速范围、目标循环数和允许侧隙，再比较材料。正常运行与启动、堵转等峰值载荷应分别记录；几何、工作循环、环境和润滑条件按下方清单补全。": "Klären Sie zunächst Drehmoment, Drehzahlbereich, Zielzyklenzahl und zulässiges Flankenspiel. Erfassen Sie Betriebslasten getrennt von Anlauf-, Blockier- und anderen Spitzenlasten. Ergänzen Sie Geometrie, Lastzyklus, Umgebung und Schmierung anhand der folgenden Liste.",
+    "输入与输出扭矩、转速范围、转动方向、启停频率与工作循环": "Ein- und Ausgangsdrehmoment, Drehzahlbereich, Drehrichtung, Start-Stopp-Häufigkeit und Lastzyklus",
+    "轴支撑、对中、壳体刚性与允许侧隙": "Wellenlagerung, Ausrichtung, Gehäusesteifigkeit und zulässiges Flankenspiel",
+    "按主导风险筛选候选牌号": "Kandidatentypen nach dem dominanten Risiko eingrenzen",
+    "候选牌号": "Kandidatentypen",
+    "参考 ETM 100P 齿轮耐久案例时，先核对负载、运动方式和润滑等条件与本项目的差异。干摩擦、粘滑或齿面磨耗突出时，对比 EPTL402 与 EMS102／EMS162；承载变形突出时，再比较玻纤增强 POM 的刚性、取向和对偶齿轮磨损。": "Vergleichen Sie beim ETM-100P-Zahnradfall zunächst Last, Bewegung und Schmierung mit Ihrem Projekt. Bei Trockenreibung, Stick-Slip oder Zahnflankenverschleiß vergleichen Sie EPTL402 und EMS102/EMS162. Bei lastbedingter Verformung prüfen Sie bei glasfaserverstärktem POM Steifigkeit, Orientierung und Verschleiß des Gegenrads.",
+    "以标准 POM 作成型、疲劳与精度的对照基准": "Standard-POM als Vergleichsbasis für Verarbeitung, Ermüdung und Präzision nutzen",
+    "重点核对": "Wichtige Prüfpunkte",
+    "齿轮类型、模数或径节、齿数、齿宽与传动比": "Zahnradart, Modul oder Diametral Pitch, Zähnezahl, Zahnbreite und Übersetzung",
+    "运行扭矩与启动、堵转、卡死、反转、制动峰值；目标循环次数": "Betriebsdrehmoment und Spitzen bei Anlauf, Stillstand unter Last, Verklemmen, Drehrichtungswechsel und Bremsen; Zielzyklenzahl",
     "连续啮合先控制齿面磨损与温升，频繁启停先处理粘滑与冲击。按主导风险选择润滑、增韧或增强 POM，并从已有牌号切入试模。": "Bei kontinuierlichem Zahneingriff stehen Verschleiß und Wärme im Vordergrund, bei häufigem Anfahren Stick-Slip und Stoßbelastung. Wählen Sie geschmiertes, schlagzähes oder verstärktes POM nach dem Hauptrisiko und starten Sie mit gelisteten Typen.",
     "链节销孔磨损会拉长节距，导轨粘滑会抬高驱动负荷。先区分承载变形与接触磨耗，再为链板、滚轮和导轨匹配增强或润滑改性 POM。": "Verschleiß an Bolzenbohrungen vergrößert die Kettenteilung; Stick-Slip an Führungen erhöht die Antriebslast. Unterscheiden Sie Lastverformung und Kontaktverschleiß, bevor Sie verstärktes oder geschmiertes POM auswählen.",
     "阀芯卡滞与密封泄漏常从配合间隙变化开始。运动界面优先处理启动摩擦和磨损，承压壳体优先控制蠕变与翘曲，并按介质和水温筛选配方。": "Klemmende Schieber und undichte Dichtungen können durch veränderte Passungsspiele entstehen. An bewegten Flächen zählen Anlaufreibung und Verschleiß, an Druckgehäusen Kriechen und Verzug. Grenzen Sie Rezepturen nach Medium und Wassertemperatur ein.",
@@ -373,6 +411,25 @@ export const selectionEditorialLocaleOverrides: Record<string, Record<string, st
     "台益基准候选牌号": "Taiyi Polymer Referenztypen"
   },
   "fr": {
+    "PLATFORM® 耐磨与低摩擦 POM 面向齿轮、轴套和导轨，覆盖 PTFE、MoS₂ 和芳纶等改性体系，可按启动摩擦、接触磨耗与承载变形筛选候选牌号。": "Le POM PLATFORM® résistant à l’usure et à faible frottement comprend des formulations modifiées au PTFE, au MoS₂ ou à l’aramide pour les engrenages, bagues et guides. Les grades candidats se sélectionnent selon le frottement au démarrage, l’usure de contact et la déformation sous charge.",
+    "启动阻力或粘滑突出时，可比较 EPTL402；需要兼顾耐磨与拉伸性能时，可对比 EMS102／EMS162；刚性与接触耐磨并重时，可将 EPAF100A 纳入比较。下列目录按改性体系列出牌号与关键数据。": "EPTL402 cible le démarrage et le stick-slip. EMS102/EMS162 équilibrent usure et traction. EPAF100A combine rigidité et résistance à l’usure. Le répertoire résume les données clés par modification.",
+    "10% 芳纶纤维改性 POM。滑动件需要兼顾刚性、耐磨与热变形表现时，可将 EPAF100A 纳入比较。": "POM modifié avec 10% de fibres d’aramide. Incluez EPAF100A dans la comparaison lorsque les pièces de glissement nécessitent un équilibre entre rigidité, résistance à l’usure et comportement à la déformation sous chaleur.",
+    "PTFE 润滑改性 POM。轴套、滑块的启动阻力或粘滑突出时，可将 EPTL402 纳入试模比较。": "POM lubrifié au PTFE. Incluez EPTL402 dans les essais comparatifs de moulage lorsque la résistance au démarrage ou le stick-slip pose problème sur des bagues ou des coulisseaux.",
+    "MoS₂ 改性黑色耐磨 POM。流道复杂或对充模流动性敏感时，可优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。": "POM noir résistant à l’usure, modifié au MoS₂. Évaluez EMS102 en priorité pour les parcours d’écoulement complexes ou les pièces dont le remplissage dépend fortement de la fluidité (MFI 8 g/10 min, résistance à la traction 60 MPa).",
+    "MoS₂ 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，可比较 EMS162（拉伸强度 65 MPa，MFI 7 g/10 min）。": "POM noir résistant à l’usure, modifié au MoS₂. Comparez EMS162 lorsque la résistance à la traction est le principal critère de sélection des pièces de glissement ou de transmission (résistance à la traction 65 MPa, MFI 7 g/10 min).",
+    "请提供摩擦副材料、载荷、速度、使用温度及润滑条件。我们可结合公开数据与相关内部耐磨测试记录比较候选牌号，再确认项目可用的资料和样品。": "Indiquez le matériau antagoniste, la charge, la vitesse, la température de service et les conditions de lubrification. Nous pouvons comparer les grades candidats à partir des données publiées et des comptes rendus d’essais d’usure internes pertinents, puis confirmer les documents et échantillons disponibles pour votre projet.",
+    "齿面磨损、齿根疲劳与蠕变分别怎样影响 POM 选择？结合已有牌号与齿轮案例，确定需要验证的项目。": "Comment l’usure des dents, la fatigue en pied de dent et le fluage orientent-ils le choix du POM ? Appuyez-vous sur les grades répertoriés et le cas d’engrenage pour définir les vérifications nécessaires.",
+    "高速连续啮合先看齿面磨损与温升，大扭矩启停先看齿根受力和冲击；持续负载还要控制蠕变带来的侧隙变化。以现用材料或既有 ETM 100P 齿轮案例为基准，按主导风险确定候选配方和测量项目。": "À vitesse élevée en continu, privilégiez l’usure des dents et l’échauffement ; aux démarrages à fort couple, la charge en pied de dent et les chocs. Sous charge prolongée, suivez le jeu lié au fluage. Prenez le matériau actuel ou le cas d’engrenage ETM 100P comme référence pour choisir les formulations et les mesures.",
+    "先明确扭矩、转速范围、目标循环数和允许侧隙，再比较材料。正常运行与启动、堵转等峰值载荷应分别记录；几何、工作循环、环境和润滑条件按下方清单补全。": "Précisez d’abord le couple, la plage de vitesse, le nombre de cycles visé et le jeu admissible. Distinguez les charges en régime établi des pics au démarrage, au blocage et dans les autres situations. Complétez ensuite géométrie, cycle de fonctionnement, environnement et lubrification avec la liste ci-dessous.",
+    "输入与输出扭矩、转速范围、转动方向、启停频率与工作循环": "Couples d’entrée et de sortie, plage de vitesse, sens de rotation, fréquence des démarrages et arrêts, cycle de fonctionnement",
+    "轴支撑、对中、壳体刚性与允许侧隙": "Support des arbres, alignement, rigidité du carter et jeu admissible",
+    "按主导风险筛选候选牌号": "Présélectionner les grades selon le risque dominant",
+    "候选牌号": "Grades candidats",
+    "参考 ETM 100P 齿轮耐久案例时，先核对负载、运动方式和润滑等条件与本项目的差异。干摩擦、粘滑或齿面磨耗突出时，对比 EPTL402 与 EMS102／EMS162；承载变形突出时，再比较玻纤增强 POM 的刚性、取向和对偶齿轮磨损。": "Avant d’utiliser le cas d’endurance ETM 100P, comparez ses charges, mouvements et conditions de lubrification à ceux du projet. Pour le glissement à sec, le stick-slip ou l’usure des dents, comparez EPTL402 et EMS102/EMS162. En cas de déformation sous charge, comparez rigidité, orientation et usure de l’engrenage associé avec un POM renforcé de fibres de verre.",
+    "以标准 POM 作成型、疲劳与精度的对照基准": "Utiliser un POM standard comme référence pour le moulage, la fatigue et la précision",
+    "重点核对": "Points à vérifier",
+    "齿轮类型、模数或径节、齿数、齿宽与传动比": "Type d’engrenage, module ou pas diamétral, nombre de dents, largeur de denture et rapport de transmission",
+    "运行扭矩与启动、堵转、卡死、反转、制动峰值；目标循环次数": "Couple en fonctionnement et pics au démarrage, au calage, au coincement, à l’inversion et au freinage ; nombre de cycles visé",
     "连续啮合先控制齿面磨损与温升，频繁启停先处理粘滑与冲击。按主导风险选择润滑、增韧或增强 POM，并从已有牌号切入试模。": "En engrènement continu, privilégiez usure et échauffement ; en démarrages fréquents, traitez stick-slip et chocs. Choisissez un POM lubrifié, modifié choc ou renforcé selon le risque dominant, puis retenez des grades pour les essais.",
     "链节销孔磨损会拉长节距，导轨粘滑会抬高驱动负荷。先区分承载变形与接触磨耗，再为链板、滚轮和导轨匹配增强或润滑改性 POM。": "L’usure des alésages allonge le pas de chaîne ; le stick-slip des guides augmente la charge du moteur. Distinguez déformation sous charge et usure avant de choisir un POM renforcé ou lubrifié.",
     "阀芯卡滞与密封泄漏常从配合间隙变化开始。运动界面优先处理启动摩擦和磨损，承压壳体优先控制蠕变与翘曲，并按介质和水温筛选配方。": "Le grippage d’un tiroir et les fuites peuvent commencer par une variation de jeu. Priorisez frottement au démarrage et usure aux interfaces mobiles, fluage et gauchissement des corps sous pression, selon le fluide et sa température.",
@@ -559,6 +616,25 @@ export const selectionEditorialLocaleOverrides: Record<string, Record<string, st
     "台益基准候选牌号": "Grades de référence Taiyi Polymer"
   },
   "pt-br": {
+    "PLATFORM® 耐磨与低摩擦 POM 面向齿轮、轴套和导轨，覆盖 PTFE、MoS₂ 和芳纶等改性体系，可按启动摩擦、接触磨耗与承载变形筛选候选牌号。": "O POM PLATFORM® resistente ao desgaste e de baixo atrito inclui formulações modificadas com PTFE, MoS₂ e aramida para engrenagens, buchas e guias. Selecione grades candidatos conforme o atrito de partida, o desgaste de contato e a deformação sob carga.",
+    "启动阻力或粘滑突出时，可比较 EPTL402；需要兼顾耐磨与拉伸性能时，可对比 EMS102／EMS162；刚性与接触耐磨并重时，可将 EPAF100A 纳入比较。下列目录按改性体系列出牌号与关键数据。": "Compare EPTL402 para atrito de partida ou stick-slip, EMS102/EMS162 para equilibrar desgaste e tração e EPAF100A para rigidez com resistência ao desgaste. O diretório agrupa os grades por modificação e resume os dados principais.",
+    "10% 芳纶纤维改性 POM。滑动件需要兼顾刚性、耐磨与热变形表现时，可将 EPAF100A 纳入比较。": "POM modificado com 10% de fibra de aramida. Inclua EPAF100A na comparação quando peças deslizantes exigirem um equilíbrio entre rigidez, resistência ao desgaste e comportamento de deflexão sob calor.",
+    "PTFE 润滑改性 POM。轴套、滑块的启动阻力或粘滑突出时，可将 EPTL402 纳入试模比较。": "POM lubrificado com PTFE. Inclua EPTL402 em testes comparativos de molde quando a resistência de partida ou o stick-slip forem relevantes em buchas ou peças deslizantes.",
+    "MoS₂ 改性黑色耐磨 POM。流道复杂或对充模流动性敏感时，可优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。": "POM preto resistente ao desgaste, modificado com MoS₂. Priorize a avaliação de EMS102 quando os percursos de fluxo forem complexos ou o preenchimento depender fortemente da fluidez (MFI 8 g/10 min, resistência à tração 60 MPa).",
+    "MoS₂ 改性黑色耐磨 POM。滑动与传动件以拉伸强度为主要筛选指标时，可比较 EMS162（拉伸强度 65 MPa，MFI 7 g/10 min）。": "POM preto resistente ao desgaste, modificado com MoS₂. Compare EMS162 quando a resistência à tração for o principal critério de seleção para peças deslizantes ou de transmissão (resistência à tração 65 MPa, MFI 7 g/10 min).",
+    "请提供摩擦副材料、载荷、速度、使用温度及润滑条件。我们可结合公开数据与相关内部耐磨测试记录比较候选牌号，再确认项目可用的资料和样品。": "Informe o material da contraface, a carga, a velocidade, a temperatura de operação e as condições de lubrificação. Podemos comparar grades candidatos com dados publicados e registros internos de ensaios de desgaste pertinentes e, em seguida, confirmar os documentos e as amostras disponíveis para seu projeto.",
+    "齿面磨损、齿根疲劳与蠕变分别怎样影响 POM 选择？结合已有牌号与齿轮案例，确定需要验证的项目。": "Como desgaste dos dentes, fadiga na raiz e fluência afetam a seleção de POM? Use os graus listados e o caso de engrenagem para definir o que validar.",
+    "高速连续啮合先看齿面磨损与温升，大扭矩启停先看齿根受力和冲击；持续负载还要控制蠕变带来的侧隙变化。以现用材料或既有 ETM 100P 齿轮案例为基准，按主导风险确定候选配方和测量项目。": "Em alta rotação contínua, priorize desgaste dos dentes e aquecimento; nas partidas de alto torque, carga na raiz e impacto. Sob carga contínua, acompanhe a folga causada por fluência. Use o material atual ou o caso de engrenagem ETM 100P como referência para formulações candidatas e medições.",
+    "先明确扭矩、转速范围、目标循环数和允许侧隙，再比较材料。正常运行与启动、堵转等峰值载荷应分别记录；几何、工作循环、环境和润滑条件按下方清单补全。": "Defina primeiro torque, faixa de rotação, número de ciclos desejado e folga admissível. Registre as cargas em operação separadamente dos picos de partida, bloqueio e outras situações. Complete geometria, ciclo de trabalho, ambiente e lubrificação com a lista abaixo.",
+    "输入与输出扭矩、转速范围、转动方向、启停频率与工作循环": "Torque de entrada e saída, faixa de rotação, sentido de giro, frequência de partidas e paradas e ciclo de trabalho",
+    "轴支撑、对中、壳体刚性与允许侧隙": "Apoio dos eixos, alinhamento, rigidez da carcaça e folga admissível",
+    "按主导风险筛选候选牌号": "Selecionar graus candidatos pelo risco principal",
+    "候选牌号": "Graus candidatos",
+    "参考 ETM 100P 齿轮耐久案例时，先核对负载、运动方式和润滑等条件与本项目的差异。干摩擦、粘滑或齿面磨耗突出时，对比 EPTL402 与 EMS102／EMS162；承载变形突出时，再比较玻纤增强 POM 的刚性、取向和对偶齿轮磨损。": "Ao usar o caso de durabilidade ETM 100P, compare primeiro carga, movimento e lubrificação com o projeto. Para deslizamento a seco, stick-slip ou desgaste dos dentes, compare EPTL402 e EMS102/EMS162. Para deformação sob carga, compare rigidez, orientação e desgaste da engrenagem oposta com POM reforçado com fibra de vidro.",
+    "以标准 POM 作成型、疲劳与精度的对照基准": "Usar POM padrão como referência para moldagem, fadiga e precisão",
+    "重点核对": "Principais verificações",
+    "齿轮类型、模数或径节、齿数、齿宽与传动比": "Tipo de engrenagem, módulo ou passo diametral, número de dentes, largura dos dentes e relação de transmissão",
+    "运行扭矩与启动、堵转、卡死、反转、制动峰值；目标循环次数": "Torque em operação e picos de partida, travamento, obstrução, reversão e frenagem; número de ciclos desejado",
     "连续啮合先控制齿面磨损与温升，频繁启停先处理粘滑与冲击。按主导风险选择润滑、增韧或增强 POM，并从已有牌号切入试模。": "No engrenamento contínuo, priorize desgaste e aquecimento; em partidas frequentes, trate stick-slip e impacto. Selecione POM lubrificado, tenacificado ou reforçado conforme o risco principal e inicie os testes com graus do catálogo.",
     "链节销孔磨损会拉长节距，导轨粘滑会抬高驱动负荷。先区分承载变形与接触磨耗，再为链板、滚轮和导轨匹配增强或润滑改性 POM。": "O desgaste dos furos dos pinos aumenta o passo da corrente; o stick-slip nas guias eleva a carga do acionamento. Separe deformação sob carga de desgaste de contato para escolher POM reforçado ou lubrificado.",
     "阀芯卡滞与密封泄漏常从配合间隙变化开始。运动界面优先处理启动摩擦和磨损，承压壳体优先控制蠕变与翘曲，并按介质和水温筛选配方。": "Travamento do carretel e vazamento podem começar com mudanças de folga. Priorize atrito de partida e desgaste nas interfaces móveis, fluência e empenamento nas carcaças pressurizadas, conforme o fluido e a temperatura da água.",
@@ -744,4 +820,99 @@ export const selectionEditorialLocaleOverrides: Record<string, Record<string, st
     "改性体系": "Sistema de modificação",
     "台益基准候选牌号": "Graus de referência Taiyi Polymer"
   }
+};
+
+type Batch2Locale = "en" | "de" | "fr" | "pt-br";
+
+const batch2Copy: Record<string, Record<Batch2Locale, string>> = {
+  "运动件关注摩擦与磨耗，卡扣关注韧性与保持力，承载件关注刚性与尺寸稳定性。按行业或零部件浏览候选材料、牌号数据与试模重点。": {
+    en: "Moving parts require attention to friction and wear, clips to toughness and retention, and loaded structures to stiffness and dimensional stability. Browse by industry or component for candidate materials, grade data and molding-trial priorities.",
+    de: "Bei bewegten Bauteilen zählen Reibung und Verschleiß, bei Clips Zähigkeit und Haltekraft, bei belasteten Strukturen Steifigkeit und Maßstabilität. Finden Sie nach Branche oder Bauteil passende Werkstoffkandidaten, Typdaten und Schwerpunkte für Spritzgießversuche.",
+    fr: "Les pièces mobiles exigent une attention au frottement et à l’usure, les clips à la ténacité et à la retenue, les structures chargées à la rigidité et à la stabilité dimensionnelle. Parcourez les secteurs ou les composants pour trouver des matériaux candidats, des données de grades et les priorités des essais de moulage.",
+    "pt-br": "Peças móveis exigem atenção ao atrito e ao desgaste; travas, à tenacidade e à retenção; estruturas sob carga, à rigidez e à estabilidade dimensional. Navegue por setor ou componente para encontrar materiais candidatos, dados de grades e prioridades dos testes de molde.",
+  },
+  "传动齿轮关注齿根受力与齿面磨损，卡扣关注装配开裂与保持力，燃油和水路件关注介质接触后的尺寸与密封。按失效现象比较候选牌号及相关性能。": {
+    en: "For drive gears, compare tooth-root loading and tooth wear; for clips, assembly cracking and retention; for fuel and water-system parts, dimensions and sealing after fluid exposure. Use observed failures to compare candidate grades and relevant properties.",
+    de: "Bei Antriebszahnrädern sind Zahnfußbelastung und Flankenverschleiß zu prüfen, bei Clips Montagerisse und Haltekraft, bei Bauteilen in Kraftstoff- und Wasserkreisläufen Maße und Dichtheit nach Medienkontakt. Vergleichen Sie Kandidatentypen und relevante Kennwerte anhand der beobachteten Ausfälle.",
+    fr: "Pour les engrenages, comparez la sollicitation en pied de dent et l’usure des dents ; pour les clips, la fissuration au montage et la retenue ; pour les pièces de circuits de carburant et d’eau, les dimensions et l’étanchéité après exposition au fluide. Comparez les grades candidats et les propriétés pertinentes selon les défaillances observées.",
+    "pt-br": "Em engrenagens, compare a carga na raiz e o desgaste dos dentes; em travas, trincas na montagem e retenção; em componentes de circuitos de combustível e água, dimensões e vedação após contato com fluidos. Use as falhas observadas para comparar grades candidatos e propriedades relevantes.",
+  },
+  "连接器需要兼顾卡扣保持力与薄壁充模，传动件重点比较磨耗与异响。静电搬运件按目标电阻和接地路径筛选 CNT 或碳纤维配方。": {
+    en: "Connectors need a balance of latch retention and thin-wall filling; drive parts require wear and noise comparisons. Screen CNT or carbon-fiber formulations for static-control handling parts against resistance targets and the grounding path.",
+    de: "Bei Steckverbindern sind Rastkraft und Dünnwandfüllung abzuwägen, bei Antriebsbauteilen Verschleiß und Geräusch zu vergleichen. Grenzen Sie CNT- oder Kohlenstofffaserrezepturen für Handhabungsteile zur statischen Kontrolle anhand des Zielwiderstands und des Erdungspfads ein.",
+    fr: "Les connecteurs nécessitent un équilibre entre tenue des clips et remplissage des parois minces ; les pièces de transmission, une comparaison de l’usure et du bruit. Sélectionnez les formulations CNT ou fibres de carbone pour les pièces de manutention à contrôle électrostatique selon la résistance cible et le chemin de mise à la terre.",
+    "pt-br": "Conectores precisam equilibrar a retenção das travas e o preenchimento de paredes finas; peças de transmissão exigem comparação de desgaste e ruído. Selecione formulações com CNT ou fibra de carbono para peças de movimentação com controle estático conforme a resistência-alvo e o caminho de aterramento.",
+  },
+  "连续啮合关注齿面磨损与温升，频繁启停关注粘滑与冲击。按主导风险比较润滑、增韧或增强 POM，筛选候选牌号并明确试模比较项目。": {
+    en: "Continuous meshing calls for attention to tooth wear and heat; frequent starts and stops to stick-slip and impact. Compare lubricated, toughened or reinforced POM against the dominant risk, shortlist candidate grades and define molding-trial comparisons.",
+    de: "Bei kontinuierlichem Zahneingriff zählen Flankenverschleiß und Erwärmung, bei häufigem Anfahren und Stoppen Stick-Slip und Stoßbelastung. Vergleichen Sie geschmiertes, schlagzähmodifiziertes oder verstärktes POM nach dem Hauptrisiko, grenzen Sie Kandidatentypen ein und legen Sie Vergleichspunkte für Spritzgießversuche fest.",
+    fr: "L’engrènement continu exige une attention à l’usure des dents et à l’échauffement ; les démarrages et arrêts fréquents, au stick-slip et aux chocs. Comparez les POM lubrifiés, modifiés choc ou renforcés selon le risque dominant, retenez des grades candidats et définissez les comparaisons à effectuer en essais de moulage.",
+    "pt-br": "O engrenamento contínuo exige atenção ao desgaste dos dentes e ao aquecimento; partidas e paradas frequentes, ao stick-slip e ao impacto. Compare POM lubrificado, tenacificado ou reforçado conforme o risco principal, selecione grades candidatos e defina os itens de comparação nos testes de molde.",
+  },
+  "低速启停、干摩擦或粘滑异响较突出时，可将 PTFE 润滑改性 EPTL402 纳入比较。钢对塑与塑对塑分别记录启动阻力、运行转矩和磨耗。": {
+    en: "Include PTFE-lubricated EPTL402 in comparisons when low-speed starts, dry sliding or stick-slip noise are prominent. Record starting resistance, running torque and wear separately for steel–plastic and plastic–plastic pairs.",
+    de: "Beziehen Sie PTFE-geschmiertes EPTL402 in den Vergleich ein, wenn langsames Anfahren, Trockenlauf oder Stick-Slip-Geräusche im Vordergrund stehen. Erfassen Sie Anfahrwiderstand, Betriebsmoment und Verschleiß getrennt für Stahl–Kunststoff- und Kunststoff–Kunststoff-Paarungen.",
+    fr: "Incluez EPTL402 lubrifié au PTFE dans la comparaison lorsque les démarrages à faible vitesse, le glissement à sec ou les bruits de stick-slip sont importants. Relevez séparément la résistance au démarrage, le couple en fonctionnement et l’usure pour les couples acier–plastique et plastique–plastique.",
+    "pt-br": "Inclua EPTL402 lubrificado com PTFE na comparação quando partidas em baixa velocidade, deslizamento a seco ou ruído de stick-slip forem relevantes. Registre separadamente a resistência de partida, o torque em operação e o desgaste nos pares aço–plástico e plástico–plástico.",
+  },
+  "下列候选牌号用于比较不同改性体系的性能取舍；完整物性与成型条件见对应 TDS。": {
+    en: "The candidate grades below help compare property tradeoffs across modification systems. Consult each TDS for complete properties and molding conditions.",
+    de: "Die folgenden Kandidatentypen ermöglichen den Vergleich von Eigenschaftsabwägungen zwischen unterschiedlichen Modifizierungssystemen. Vollständige Kennwerte und Verarbeitungsbedingungen stehen im jeweiligen TDS.",
+    fr: "Les grades candidats ci-dessous permettent de comparer les compromis de propriétés entre les différents types de modification. Consultez chaque TDS pour les propriétés complètes et les conditions de moulage.",
+    "pt-br": "Os grades candidatos abaixo permitem comparar os compromissos entre propriedades dos diferentes sistemas de modificação. Consulte cada TDS para obter as propriedades completas e as condições de moldagem.",
+  },
+  "存在装配冲击、突然载荷或低温开裂风险时，可比较增韧 POM EHI402T。按目标温度核对缺口冲击与刚性，并复测卡扣保持力或传动间隙。": {
+    en: "Compare impact-modified POM EHI402T where assembly impact, sudden loads or low-temperature cracking are risks. Check notched impact and stiffness at the target temperature, then retest clip retention or drive clearance.",
+    de: "Vergleichen Sie schlagzähmodifiziertes POM EHI402T bei Risiken durch Montagestoß, plötzliche Lasten oder Kälterisse. Prüfen Sie Kerbschlagzähigkeit und Steifigkeit bei der Zieltemperatur und wiederholen Sie anschließend die Prüfung von Clip-Haltekraft oder Antriebsspiel.",
+    fr: "Comparez le POM modifié choc EHI402T en présence de risques de choc au montage, de charges soudaines ou de fissuration à basse température. Vérifiez la résistance au choc entaillé et la rigidité à la température cible, puis reprenez les essais de retenue des clips ou de jeu de transmission.",
+    "pt-br": "Compare o POM tenacificado EHI402T quando houver risco de impacto na montagem, cargas repentinas ou trincas em baixa temperatura. Verifique o impacto com entalhe e a rigidez na temperatura alvo e repita os testes de retenção das travas ou folga da transmissão.",
+  },
+  "候选材料": { en: "Candidate Materials", de: "Werkstoffkandidaten", fr: "Matériaux candidats", "pt-br": "Materiais candidatos" },
+  "按运动条件筛选候选材料": { en: "Screen Candidate Materials by Motion Conditions", de: "Werkstoffkandidaten nach Bewegungsbedingungen auswählen", fr: "Sélectionner les matériaux candidats selon les conditions de mouvement", "pt-br": "Selecionar materiais candidatos conforme as condições de movimento" },
+  "先分清是磨损、开裂还是变形，再筛选润滑、增韧或增强 POM 候选牌号。": {
+    en: "Start with wear, cracking or deformation to shortlist lubricated, toughened or reinforced POM grades.",
+    de: "Grenzen Sie geschmierte, schlagzähmodifizierte oder verstärkte POM-Typen nach dem vorherrschenden Problem ein: Verschleiß, Risse oder Verformung.",
+    fr: "Identifiez d’abord le problème dominant — usure, fissuration ou déformation — pour présélectionner les grades POM lubrifiés, modifiés choc ou renforcés.",
+    "pt-br": "Identifique primeiro o problema principal — desgaste, trincas ou deformação — para selecionar graus candidatos de POM lubrificado, tenacificado ou reforçado.",
+  },
+  "先明确目标电阻和接地路径，再筛选 CNT 或碳纤维配方，并确定成型后需要复测的电气指标。": {
+    en: "Start with resistance targets and grounding to choose CNT or carbon-fiber formulations and define electrical checks on molded parts.",
+    de: "Klären Sie Zielwiderstand und Erdungspfad, grenzen Sie dann CNT- oder Kohlenstofffaserrezepturen ein und legen Sie die elektrischen Nachprüfungen am Formteil fest.",
+    fr: "Définissez la résistance cible et le chemin de mise à la terre, puis présélectionnez les formulations CNT ou fibres de carbone et les contrôles électriques à reprendre après moulage.",
+    "pt-br": "Defina a resistência alvo e o caminho de aterramento, selecione formulações candidatas de CNT ou fibra de carbono e determine quais propriedades elétricas testar novamente após a moldagem.",
+  },
+  "提交现用材料、零件用途和未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可帮助确定优先验证的项目。": {
+    en: "Send the current material, part function and unmet requirements for candidate-grade comparisons, TDS and molding-trial sample support. Use relevant test records to identify priority validation checks.",
+    de: "Senden Sie aktuellen Werkstoff, Bauteilfunktion und nicht erfüllte Anforderungen für Typvergleiche, TDS und Versuchsmuster. Relevante Prüfergebnisse helfen, die vorrangigen Validierungsprüfungen festzulegen.",
+    fr: "Transmettez le matériau actuel, la fonction de la pièce et les exigences non satisfaites pour obtenir une comparaison de grades, les fiches techniques et un appui en échantillons d’essai. Les résultats d’essais pertinents aident à définir les vérifications prioritaires.",
+    "pt-br": "Informe o material atual, a função da peça e os requisitos não atendidos para obter comparações de graus, TDS e apoio com amostras para testes de moldagem. Use registros de ensaios relevantes para definir as verificações prioritárias.",
+  },
+  "先确定最先失效的位置，再选择重点比较的材料指标：齿根看疲劳与冲击，滑动面看摩擦与磨耗，承载支架看挠曲与蠕变。": {
+    en: "Locate the first failing region, then choose screening criteria: fatigue/impact at tooth roots, friction/wear at sliding faces, deflection/creep in loaded supports.",
+    de: "Bestimmen Sie zuerst den frühesten Ausfallort und wählen Sie die maßgeblichen Vergleichsgrößen: Ermüdung und Schlag am Zahnfuß, Reibung und Verschleiß an Gleitflächen sowie Durchbiegung und Kriechen an belasteten Halterungen.",
+    fr: "Localisez d’abord la première zone défaillante, puis choisissez les propriétés à comparer en priorité : fatigue et choc en pied de dent, frottement et usure sur les surfaces glissantes, flèche et fluage sur les supports chargés.",
+    "pt-br": "Localize primeiro a região que falha e escolha as propriedades prioritárias para comparação: fadiga e impacto na raiz dos dentes, atrito e desgaste nas superfícies de deslizamento, deflexão e fluência nos suportes sob carga.",
+  },
+  "提交运动方式、对偶件材质和当前磨损或粘滑现象，即可获取候选牌号对比建议、TDS 与试模样品支持。已有的载荷、速度和润滑信息将用于确定试模时的测量项目。": {
+    en: "Submit motion, mating material and current wear or stick-slip for a candidate-grade comparison, TDS and trial-sample support. Use available load, speed and lubrication information to define measurements for the trial.",
+    de: "Senden Sie Bewegungsart, Gegenwerkstoff und aktuelles Verschleiß- oder Stick-Slip-Verhalten für einen Typvergleich, TDS und Versuchsmuster. Vorliegende Angaben zu Last, Geschwindigkeit und Schmierung bestimmen die Messgrößen für den Versuch.",
+    fr: "Transmettez le mouvement, le contre-matériau et l’usure ou le stick-slip observés pour obtenir une comparaison de grades, les fiches techniques et un appui en échantillons. Les données disponibles de charge, vitesse et lubrification servent à définir les mesures de l’essai.",
+    "pt-br": "Informe movimento, material da contraparte e desgaste ou stick-slip observado para obter uma comparação de graus, TDS e apoio com amostras. Use as informações disponíveis de carga, velocidade e lubrificação para definir as medições do teste.",
+  },
+  "内部耐磨试验记录按工况分组，附测量值、过程曲线及现有试样照片。": {
+    en: "In-house wear-test records grouped by condition, with measured values, process curves and specimen photos where available.",
+    de: "Interne Verschleißprüfberichte, nach Prüfbedingungen gruppiert, mit Messwerten, Prozesskurven und verfügbaren Probenfotos.",
+    fr: "Rapports internes d’essais d’usure regroupés par conditions, avec valeurs mesurées, courbes de suivi et photos d’éprouvettes lorsqu’elles sont disponibles.",
+    "pt-br": "Registros internos de ensaios de desgaste agrupados por condição, com valores medidos, curvas de processo e fotos das amostras quando disponíveis.",
+  },
+};
+
+const batch2DictionaryFor = (locale: Batch2Locale): Record<string, string> =>
+  Object.fromEntries(Object.entries(batch2Copy).map(([source, translations]) => [source, translations[locale]]));
+
+export const selectionEditorialLocaleOverrides: Record<string, Record<string, string>> = {
+  en: { ...selectionEditorialLocaleOverridesBase.en, ...batch2DictionaryFor("en") },
+  de: { ...selectionEditorialLocaleOverridesBase.de, ...batch2DictionaryFor("de") },
+  fr: { ...selectionEditorialLocaleOverridesBase.fr, ...batch2DictionaryFor("fr") },
+  "pt-br": { ...selectionEditorialLocaleOverridesBase["pt-br"], ...batch2DictionaryFor("pt-br") },
 };

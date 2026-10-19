@@ -92,7 +92,7 @@ export const productCategoryData: ProductCategoryData[] = [
     category: "Wear-Resistant Low-Friction POM Compound",
     label: "Wear-Resistant & Low-Friction POM",
     description:
-      "For gears, bushings and guides, distinguish wear, stick-slip and load deformation first. PLATFORM® wear-resistant and low-friction POM provides lubricated, solid-lubricant and fiber-blend formulations for a first comparison by dominant risk.",
+      "PLATFORM® wear-resistant and low-friction POM covers PTFE, MoS₂ and aramid modifications for gears, bushings and guides. Screen candidate grades against starting friction, contact wear and deformation under load.",
     overview:
       "The range covers low-friction, wear-resistant, reinforced, and hybrid-modified formulations. Published data, technical documents, and samples are confirmed by grade and project.",
     navSubtitle:
@@ -123,7 +123,7 @@ export const productCategoryData: ProductCategoryData[] = [
       {
         question: "What information is available for material evaluation?",
         answer:
-          "Published grade data, technical documents, and samples can be reviewed against the mating material, load, speed, temperature, and lubrication conditions of the part.",
+          "Share the mating material, load, speed, operating temperature and lubrication conditions. We can compare candidate grades with published data and relevant in-house wear-test records, then confirm the documents and samples available for your project.",
       },
     ],
     selectionLinks: [

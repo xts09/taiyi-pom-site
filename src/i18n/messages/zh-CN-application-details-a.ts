@@ -592,7 +592,7 @@ const messages = {
       },
     ],
   },
-  "motion-components": {
+    "motion-components": {
     title: applicationIndexMessages.cards["motion-components"].title,
     description:
       applicationIndexMessages.cards["motion-components"].description,
@@ -604,7 +604,7 @@ const messages = {
         mobileMenuLabel: "本页内容",
         scene: "选材起点",
         parts: "部件关注点",
-        materials: "材料方向",
+        materials: "候选材料",
         evaluation: "下一步",
       },
       hero: {
@@ -640,10 +640,10 @@ const messages = {
         componentTitle: "以下部件可继续查看专项选材指南",
       },
       materials: {
-        eyebrow: "材料方向",
-        title: "按运动条件缩小材料范围",
+        eyebrow: "候选材料",
+        title: "按运动条件筛选候选材料",
         description:
-          "先按主导失效选择配方，再用下列基准牌号建立首轮对比；完整物性与成型条件见对应 TDS。",
+          "下列候选牌号用于比较不同改性体系的性能取舍；完整物性与成型条件见对应 TDS。",
         keyUseLabel: "何时考虑",
         imageAltSuffix: "材料颗粒",
       },
@@ -672,13 +672,13 @@ const messages = {
       {
         label: "低摩擦 POM — 面向启动阻力、噪声与运动顺畅性",
         keyUse:
-          "低速启停、干摩擦或粘滑异响优先从 PTFE 润滑改性的 EPTL402 切入。钢对塑与塑对塑分别对比启动阻力、运行转矩和磨耗。",
+          "低速启停、干摩擦或粘滑异响较突出时，可将 PTFE 润滑改性 EPTL402 纳入比较。钢对塑与塑对塑分别记录启动阻力、运行转矩和磨耗。",
         shortLabel: "低摩擦 POM",
       },
       {
         label: "高抗冲 POM — 面向冲击载荷与低温韧性要求",
         keyUse:
-          "装配冲击、突然载荷或低温开裂优先从增韧 POM EHI402T 切入；重点平衡缺口冲击与刚性，并复测卡扣保持力或传动间隙。",
+          "存在装配冲击、突然载荷或低温开裂风险时，可比较增韧 POM EHI402T。按目标温度核对缺口冲击与刚性，并复测卡扣保持力或传动间隙。",
         shortLabel: "高抗冲 POM",
       },
       {

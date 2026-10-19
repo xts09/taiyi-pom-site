@@ -204,7 +204,7 @@ export const chinesePomDirectoryMessages = {
     kicker: "应用路径",
     title: "从零件场景继续筛选",
     body:
-      "这些应用页可帮助把零件功能与材料方向联系起来。候选牌号仍需根据实际工况和项目要求确认。",
+      "应用页列出典型零件、材料选项与选材重点。候选牌号需按实际工况和项目要求验证。",
     allAction: "查看全部应用",
     items: {
       automotive: "汽车零部件",

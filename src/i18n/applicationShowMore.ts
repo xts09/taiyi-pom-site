@@ -11,28 +11,28 @@ const showMoreFormatters: Record<
   en: {
     parts: (count) => `Show ${count} more ${count === 1 ? "part" : "parts"}`,
     materials: (count) =>
-      `Show ${count} more material ${count === 1 ? "direction" : "directions"}`,
+      `Show ${count} more candidate ${count === 1 ? "material" : "materials"}`,
   },
   de: {
     parts: (count) =>
       `${count} ${count === 1 ? "weiteres Bauteil" : "weitere Bauteile"} anzeigen`,
     materials: (count) =>
-      `${count} ${count === 1 ? "weitere Werkstoffrichtung" : "weitere Werkstoffrichtungen"} anzeigen`,
+      `${count} ${count === 1 ? "weiteren Werkstoffkandidaten" : "weitere Werkstoffkandidaten"} anzeigen`,
   },
   fr: {
     parts: (count) =>
       `Afficher ${count} ${count === 1 ? "pièce supplémentaire" : "pièces supplémentaires"}`,
     materials: (count) =>
-      `Afficher ${count} ${count === 1 ? "orientation matériau supplémentaire" : "orientations matériau supplémentaires"}`,
+      `Afficher ${count} ${count === 1 ? "matériau candidat supplémentaire" : "matériaux candidats supplémentaires"}`,
   },
   "pt-BR": {
     parts: (count) => `Mostrar mais ${count} ${count === 1 ? "peça" : "peças"}`,
     materials: (count) =>
-      `Mostrar mais ${count} ${count === 1 ? "direção de material" : "direções de material"}`,
+      `Mostrar mais ${count} ${count === 1 ? "material candidato" : "materiais candidatos"}`,
   },
   "zh-CN": {
     parts: (count) => `再查看 ${count} 个部件`,
-    materials: (count) => `再查看 ${count} 个材料方向`,
+    materials: (count) => `再查看 ${count} 个候选材料`,
   },
 };
 
@@ -42,23 +42,23 @@ const showLessLabels: Record<
 > = {
   en: {
     parts: "Show fewer parts",
-    materials: "Show fewer material directions",
+    materials: "Show fewer candidate materials",
   },
   de: {
     parts: "Weniger Bauteile anzeigen",
-    materials: "Weniger Werkstoffrichtungen anzeigen",
+    materials: "Weniger Werkstoffkandidaten anzeigen",
   },
   fr: {
     parts: "Afficher moins de pièces",
-    materials: "Afficher moins d’orientations matériau",
+    materials: "Afficher moins de matériaux candidats",
   },
   "pt-BR": {
     parts: "Mostrar menos peças",
-    materials: "Mostrar menos direções de material",
+    materials: "Mostrar menos materiais candidatos",
   },
   "zh-CN": {
     parts: "收起部件列表",
-    materials: "收起材料方向",
+    materials: "收起候选材料",
   },
 };
 

@@ -1,6 +1,11 @@
 type PomSelectionLocale = "de" | "fr" | "pt-br";
 
 const copy: Record<string, Record<PomSelectionLocale, string>> = {
+  "应用页列出典型零件、材料选项与选材重点。候选牌号需按实际工况和项目要求验证。": {
+    de: "Die Anwendungsseiten beschreiben typische Bauteile, Werkstoffoptionen und Auswahlkriterien. Kandidatentypen müssen unter den tatsächlichen Einsatzbedingungen und gemäß den Projektanforderungen validiert werden.",
+    fr: "Les pages d’application présentent les pièces typiques, les options de matériaux et les critères de sélection. Les grades candidats doivent être validés dans les conditions réelles d’utilisation et selon les exigences du projet.",
+    "pt-br": "As páginas de aplicação apresentam peças típicas, opções de materiais e critérios de seleção. Os grades candidatos devem ser validados nas condições reais de operação e conforme os requisitos do projeto.",
+  },
   "MoS2 改性黑色耐磨 POM。复杂流道或充模流动性敏感的零件，首轮优先评估 EMS102（MFI 8 g/10 min，拉伸强度 60 MPa）。": {
     de: "Schwarzes, mit MoS2 modifiziertes verschleißfestes POM. Bei komplexen Fließwegen oder fließkritischen Bauteilen EMS102 in die erste Bemusterung aufnehmen (MFI 8 g/10 min, Zugfestigkeit 60 MPa).",
     fr: "POM noir anti-usure modifié au MoS2. Pour les parcours d’écoulement complexes ou les pièces sensibles au remplissage, retenir EMS102 pour les premiers essais (MFI 8 g/10 min, résistance à la traction 60 MPa).",

@@ -91,13 +91,13 @@ const messages = {
     "/resources/pom-wear-benchmark": {
       label: "POM 耐磨测试记录",
       type: "technicalNote",
-      description: "报告记录按工况分组，附测量值、过程曲线和现有试样照片。",
+      description: "内部耐磨试验记录按工况分组，附测量值、过程曲线及现有试样照片。",
     },
     "/resources/material-selection-guide": {
       label: "POM 材料选型指南",
       type: "guide",
       description:
-        "从磨损、开裂或变形等主导失效切入，找到润滑、增韧或增强 POM 的首轮候选牌号。",
+        "先分清是磨损、开裂还是变形，再筛选润滑、增韧或增强 POM 候选牌号。",
     },
     "/resources/wear-resistant-low-friction-pom-selection-guide": {
       label: "耐磨 / 低摩擦 POM 选型指南",
@@ -109,7 +109,7 @@ const messages = {
       label: "POM 齿轮材料选型",
       type: "guide",
       description:
-        "齿面磨损、齿根疲劳与蠕变分别怎样影响 POM 选择？结合已有牌号与齿轮案例确定首轮验证重点。",
+        "齿面磨损、齿根疲劳与蠕变分别怎样影响 POM 选择？结合已有牌号与齿轮案例，确定需要验证的项目。",
     },
     "/resources/pa6-vs-pa66-reinforced-parts": {
       label: "PA6 与 PA66 选型指南",
@@ -133,7 +133,7 @@ const messages = {
       label: "导电 PA6 / PA66 / PPA 指南",
       type: "guide",
       description:
-        "从目标电阻与接地路径切入，选择 CNT 或碳纤维配方，明确成型后应复测的电气指标。",
+        "先明确目标电阻和接地路径，再筛选 CNT 或碳纤维配方，并确定成型后需要复测的电气指标。",
     },
     "/resources/application-notes": {
       label: "应用说明",
@@ -200,7 +200,7 @@ const messages = {
     reviewEyebrow: "技术审核",
     reviewTitle: "不确定应从哪项资料开始？",
     reviewDescription:
-      "提交当前材料、零件用途与未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可用于确定首轮验证重点。",
+      "提交现用材料、零件用途和未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可帮助确定优先验证的项目。",
     reviewAction: "讨论您的应用",
   },
   articleUi: {
@@ -218,7 +218,7 @@ const messages = {
     reviewEyebrow: "技术审核",
     reviewTitle: "需要把这些说明用于您的零部件？",
     reviewDescription:
-      "提交当前材料、零件用途与未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可用于确定首轮验证重点。",
+      "提交现用材料、零件用途和未达标项目，获取候选牌号对比建议、TDS 和试模样品支持；已有测试记录可帮助确定优先验证的项目。",
     reviewAction: "讨论您的应用",
     contactSourcePrefix: "技术资料",
     sidebarLabel: "本页内容",

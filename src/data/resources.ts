@@ -590,7 +590,7 @@ export const resourcePages: ResourcePage[] = [
         title: "What to Send Before Grade Recommendation",
         navLabel: "Review Inputs",
         paragraphs: [
-          "Submit motion, mating material and current wear or stick-slip for a candidate-grade comparison, TDS and trial-sample support. Available load, speed and lubrication information will define the first measurements.",
+          "Submit motion, mating material and current wear or stick-slip for a candidate-grade comparison, TDS and trial-sample support. Use available load, speed and lubrication information to define measurements for the trial.",
           "Use this information to choose a material direction. Then review the applicable TDS, mold representative parts, and test them under actual or closely simulated operating conditions.",
         ],
         points: [
@@ -726,7 +726,7 @@ export const resourcePages: ResourcePage[] = [
     title: "How to Select POM for Plastic Gears",
     navLabel: "POM Gear Material Selection",
     description:
-      "How do tooth wear, root fatigue and creep change POM selection? Use listed grades and the gear case to define first-trial priorities.",
+      "How do tooth wear, root fatigue and creep affect POM selection? Use listed grades and the gear case to define what to validate.",
     intro:
       "At continuous high speed, prioritize tooth wear and heat; at high-torque starts, root load and impact. Under sustained load, track creep-driven backlash. Use the current material or the ETM 100P gear case as a baseline for candidate formulations and measurements.",
     articleSections: [
@@ -734,12 +734,14 @@ export const resourcePages: ResourcePage[] = [
         title: "Define the Gear Duty Before Comparing Materials",
         navLabel: "Gear Duty",
         paragraphs: [
-          "Begin with the transmission requirement rather than a preferred resin name. Record gear type, module or diametral pitch, tooth count, face width, ratio, input and output torque, speed range, rotation direction, starts and stops, duty cycle, required life, and acceptable backlash. Distinguish normal running torque from startup, stall, jam, reversal, braking, and other shock events.",
+          "Start with the required torque, speed range, life target and allowable backlash. Record running loads separately from startup, stall and other peaks, then use the checklist below to complete the geometry, duty cycle, environment and lubrication requirements.",
           "Define the operating environment around the gear mesh. Ambient temperature alone may not represent the tooth temperature because speed, load, friction, and lubrication can generate local heat. Include nearby heat sources, cooling, chemicals, dust, washdown, humidity, expected noise, maintenance limits, and whether the gear must run dry, with initial lubrication, or with continuous lubrication.",
         ],
         points: [
-          "Torque spectrum, speed range, reversals, shock and expected cycles",
-          "Gear geometry, shaft support, alignment, housing stiffness and backlash",
+          "Gear type, module or diametral pitch, tooth count, face width and ratio",
+          "Input and output torque, speed range, rotation direction, start-stop frequency and duty cycle",
+          "Running torque and startup, stall, jam, reversal and braking peaks; target cycle count",
+          "Shaft support, alignment, housing stiffness and allowable backlash",
           "Ambient and local temperature, chemicals, contamination and moisture",
           "Lubrication method, maintenance interval, noise and efficiency target",
         ],
@@ -775,14 +777,14 @@ export const resourcePages: ResourcePage[] = [
         ],
       },
       {
-        title: "Choose the Grade Direction From the Dominant Risk",
-        navLabel: "Grade Direction",
+        title: "Shortlist Grades by Dominant Risk",
+        navLabel: "Candidate Grades",
         paragraphs: [
-          "Start with the ETM 100P gear-endurance case and identify how its conditions differ from the project. For dry sliding, stick-slip or tooth wear, shortlist EPTL402 and EMS102/EMS162. For load deformation, compare reinforced POM stiffness, orientation and mating-gear wear.",
+          "When using the ETM 100P gear-endurance case, first compare its load, motion and lubrication conditions with the project. For dry sliding, stick-slip or tooth wear, compare EPTL402 and EMS102/EMS162. For load deformation, compare glass-fiber-reinforced POM stiffness, orientation and mating-gear wear.",
           "Use POM as a starting point for low moisture-related dimensional change. Include PA when a different toughness or temperature balance is required; record dry and conditioned states separately and compare grades at equal torque, temperature and backlash limits.",
         ],
         points: [
-          "Standard POM for the baseline balance of molding, fatigue and precision",
+          "Use standard POM as the baseline for molding, fatigue and precision",
           "Wear-modified POM when tooth and counterpart wear govern service life",
           "Low-friction POM when running force, stick-slip, noise or heat governs",
           "Reinforced or alternative polymers only after orientation and trade-off review",
@@ -819,7 +821,7 @@ export const resourcePages: ResourcePage[] = [
         position: "after-section",
         sectionTitle: "Identify the Governing Failure Mode",
         title: "Gear failure evidence map",
-        columns: ["Observed issue", "Primary review", "Evidence"],
+        columns: ["Observed issue", "Key checks", "Evidence"],
         rows: [
           [
             "Tooth-root crack or break",
@@ -1830,7 +1832,7 @@ export const resourcePages: ResourcePage[] = [
     description:
       "When PA66 misses hot-stiffness or moisture-related dimensional targets, use EAG230/EAG630H GF30 data to focus PPA comparison and molding trials.",
     intro:
-      "When PA66 parts miss hot-load or conditioned-dimension targets, use EAG230 PA66 GF30 as a baseline and include EAG630H PPA GF30 in the first comparison. This guide shows how to retest the performance gap, compare grade data, and check PPA drying, tooling and machine requirements.",
+      "When PA66 parts miss hot-load or conditioned-dimension targets, use EAG230 PA66 GF30 as a baseline and compare EAG630H PPA GF30 as a candidate. This guide shows how to retest the performance gap, compare grade data, and check PPA drying, tooling and machine requirements.",
     articleSections: [
       {
         title: "Prove the Performance Gap in the PA66 Baseline",
@@ -1880,7 +1882,7 @@ export const resourcePages: ResourcePage[] = [
         title: "Use Matched GF30 Catalogue Examples Correctly",
         navLabel: "Catalogue Examples",
         paragraphs: [
-          "Use EAG230 (PA66 GF30) as a baseline and include EAG630H (PPA GF30) in the first comparison for elevated-temperature loads or insufficient stiffness. Both compounds contain 30% glass fiber. EAG630H has higher catalogue HDT and flexural modulus; verify hot stiffness and creep retention with the corresponding tests.",
+          "Use EAG230 (PA66 GF30) as the baseline and compare EAG630H (PPA GF30) as a candidate for elevated-temperature loads or insufficient stiffness. Both compounds contain 30% glass fiber. EAG630H has higher catalogue HDT and flexural modulus; verify hot stiffness and creep performance with the corresponding tests.",
           "The table lists typical catalogue values with the test method for each property. HDT compares thermal deformation under a specified load; consult the corresponding grade data for continuous-use temperature, thermal aging and chemical resistance.",
         ],
       },
@@ -1899,9 +1901,9 @@ export const resourcePages: ResourcePage[] = [
         position: "after-intro",
         items: [
           {
-            title: "Prove the PA66 performance gap first",
+            title: "Define the PA66 performance gap",
             description:
-              "Define the exact elevated-temperature, conditioned, dimensional, chemical, electrical, or durability result the current PA66 grade cannot meet.",
+              "Record the unmet PA66 requirement, test conditions and acceptance limit before deciding whether to compare PPA.",
           },
           {
             title: "Retest the improvement and establish PPA production conditions",
@@ -1953,10 +1955,10 @@ export const resourcePages: ResourcePage[] = [
     ],
     modules: [
       {
-        title: "Prove the PA66 Gap",
+        title: "Define the PA66 Gap",
         navLabel: "Performance Gap",
         description:
-          "Define the exact elevated-temperature, conditioned, dimensional, chemical or electrical requirement that the PA66 baseline cannot meet.",
+          "Use the current PA66 results and target limit to define what a PPA candidate must improve.",
       },
       {
         title: "Confirm Manufacturing Feasibility",

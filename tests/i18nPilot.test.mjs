@@ -730,15 +730,15 @@ test("application show-more controls use complete locale sentences", () => {
     en: {
       parts: ["Show 1 more part", "Show 2 more parts"],
       materials: [
-        "Show 1 more material direction",
-        "Show 2 more material directions",
+        "Show 1 more candidate material",
+        "Show 2 more candidate materials",
       ],
     },
     de: {
       parts: ["1 weiteres Bauteil anzeigen", "2 weitere Bauteile anzeigen"],
       materials: [
-        "1 weitere Werkstoffrichtung anzeigen",
-        "2 weitere Werkstoffrichtungen anzeigen",
+        "1 weiteren Werkstoffkandidaten anzeigen",
+        "2 weitere Werkstoffkandidaten anzeigen",
       ],
     },
     fr: {
@@ -747,28 +747,28 @@ test("application show-more controls use complete locale sentences", () => {
         "Afficher 2 pièces supplémentaires",
       ],
       materials: [
-        "Afficher 1 orientation matériau supplémentaire",
-        "Afficher 2 orientations matériau supplémentaires",
+        "Afficher 1 matériau candidat supplémentaire",
+        "Afficher 2 matériaux candidats supplémentaires",
       ],
     },
     "pt-BR": {
       parts: ["Mostrar mais 1 peça", "Mostrar mais 2 peças"],
       materials: [
-        "Mostrar mais 1 direção de material",
-        "Mostrar mais 2 direções de material",
+        "Mostrar mais 1 material candidato",
+        "Mostrar mais 2 materiais candidatos",
       ],
     },
     "zh-CN": {
       parts: ["再查看 1 个部件", "再查看 2 个部件"],
-      materials: ["再查看 1 个材料方向", "再查看 2 个材料方向"],
+      materials: ["再查看 1 个候选材料", "再查看 2 个候选材料"],
     },
   };
   const collapseExpectations = {
-    en: ["Show fewer parts", "Show fewer material directions"],
-    de: ["Weniger Bauteile anzeigen", "Weniger Werkstoffrichtungen anzeigen"],
-    fr: ["Afficher moins de pièces", "Afficher moins d’orientations matériau"],
-    "pt-BR": ["Mostrar menos peças", "Mostrar menos direções de material"],
-    "zh-CN": ["收起部件列表", "收起材料方向"],
+    en: ["Show fewer parts", "Show fewer candidate materials"],
+    de: ["Weniger Bauteile anzeigen", "Weniger Werkstoffkandidaten anzeigen"],
+    fr: ["Afficher moins de pièces", "Afficher moins de matériaux candidats"],
+    "pt-BR": ["Mostrar menos peças", "Mostrar menos materiais candidatos"],
+    "zh-CN": ["收起部件列表", "收起候选材料"],
   };
 
   for (const [locale, kinds] of Object.entries(expectations)) {
@@ -2698,6 +2698,9 @@ test("publishes the complete Simplified Chinese resource route family atomically
   );
   const sitemap = readProjectFile("src/app/sitemap.ts");
   const header = readProjectFile("src/components/Header.tsx");
+  const headerNavigation = readProjectFile("src/lib/headerNavigation.ts");
+  const mobileHeader = readProjectFile("src/components/HeaderMobileMenu.tsx");
+  const siteDocument = readProjectFile("src/components/SiteDocument.tsx");
   const sectionIdHelper = readProjectFile("src/lib/resource-page.ts");
 
   assert.doesNotMatch(localizedIndex, /localeConfig\.locale !== "zh-CN"/);
@@ -2718,7 +2721,20 @@ test("publishes the complete Simplified Chinese resource route family atomically
   assert.match(sitemap, /sourcePath:\s*"\/resources"/);
   assert.match(sitemap, /\.\.\.resourceNavigationGroups\.map/);
   assert.match(sitemap, /\.\.\.resourcePages\.map/);
-  assert.match(header, /href=\{localizedHref\("\/resources"\)\}/);
+  assert.match(
+    headerNavigation,
+    /overview:\s*item\(messages\.Header\.allResources,\s*"\/resources"\)/,
+  );
+  assert.match(
+    headerNavigation,
+    /href:\s*getLocalizedHref\(path,\s*localeSegment\)/,
+  );
+  assert.match(
+    siteDocument,
+    /navigation=\{buildHeaderNavigation\(messages,\s*localeSegment\)\}/,
+  );
+  assert.match(header, /menuLink\(section\.overview\)/);
+  assert.match(mobileHeader, /overview\s*&&\s*itemLink\(overview,/);
   assert.doesNotMatch(header, /href="\/resources"/);
   assert.match(sectionIdHelper, /\\p\{Letter\}/);
 });
@@ -2810,6 +2826,8 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   const englishLayout = readProjectFile("src/app/(en)/layout.tsx");
   const sitemap = readProjectFile("src/app/sitemap.ts");
   const header = readProjectFile("src/components/Header.tsx");
+  const mobileHeader = readProjectFile("src/components/HeaderMobileMenu.tsx");
+  const headerNavigation = readProjectFile("src/lib/headerNavigation.ts");
   const footer = readProjectFile("src/components/Footer.tsx");
   const nextConfig = readProjectFile("next.config.ts");
 
@@ -2875,7 +2893,13 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   assert.match(englishContact, /contactLanguageAlternates/);
   assert.match(englishContact, /indexable:\s*isLocalizedReleaseIndexable/);
   assert.doesNotMatch(header, /href="\/about"/);
-  assert.match(header, /href=\{localizedHref\("\/about"\)\}/);
+  assert.match(
+    header,
+    /title:\s*messages\.aboutUs,\s*href:\s*localizedHref\("\/about"\)/,
+  );
+  assert.match(header, /rootLinks\.slice\(1\)\.map/);
+  assert.match(header, /rootLinks=\{rootLinks\}/);
+  assert.match(mobileHeader, /rootLinks\.map\(item\s*=>\s*itemLink\(item\)\)/);
   assert.match(
     englishApplications,
     /getLanguageAlternates\("\/applications"\)/,
@@ -2938,8 +2962,15 @@ test("localized funnel pages are public with reciprocal SEO signals", () => {
   );
   assert.match(sitemap, /alternates:\s*\{[\s\S]*languages:/);
   assert.match(header, /getLanguageOptions/);
-  assert.match(header, /href=\{localizedHref\("\/applications"\)\}/);
-  assert.match(header, /href=\{localizedHref\(item\.href\)\}/);
+  assert.match(
+    headerNavigation,
+    /overview:\s*item\(messages\.Header\.allApplications,\s*"\/applications"\)/,
+  );
+  assert.match(
+    headerNavigation,
+    /href:\s*getLocalizedHref\(path,\s*localeSegment\)/,
+  );
+  assert.match(header, /href=\{item\.href\}/);
   assert.match(header, /language-switcher--/);
   assert.doesNotMatch(header, /i18n-preview/);
   assert.doesNotMatch(footer, /i18n-preview/);

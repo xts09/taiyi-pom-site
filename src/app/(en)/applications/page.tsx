@@ -79,10 +79,10 @@ export default function ApplicationsPage() {
               className="mt-5 max-w-3xl text-lg leading-8 text-slate-200"
               style={{ "--item-index": 2 } as CSSProperties}
             >
-              Select by part failure: balance friction and wear in moving parts,
-              toughness and retention in clips, stiffness and dimensions in loaded
-              structures. Browse by industry or component for candidate
-              formulations, grade data and trial priorities.
+              Moving parts require attention to friction and wear, clips to toughness
+              and retention, and loaded structures to stiffness and dimensional
+              stability. Browse by industry or component for candidate materials,
+              grade data and molding-trial priorities.
             </p>
 
             <div

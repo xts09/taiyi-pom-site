@@ -1,3 +1,4 @@
+import { headerPomMenuMessages } from "../headerPomMenuMessages.ts";
 import type { SiteMessages } from "@/i18n/types";
 import coreMessages from "./pt-BR-core.ts";
 
@@ -14,10 +15,10 @@ const messages = {
     },
     productEyebrows: {
       coreLine: "Linha principal",
-      additionalFamily: "Família adicional",
-      higherTemperature: "Alta temperatura",
-      supplement: "Complemento",
-      crossMaterial: "Multimaterial",
+      additionalFamily: "Família poliamida",
+      higherTemperature: "Poliamida de alta temperatura",
+      supplement: "Resina base",
+      crossMaterial: "Condutivo e antiestático",
     },
     applications: {
       automotive: "Automotivo",
@@ -46,6 +47,7 @@ const messages = {
     },
   },
   Header: {
+    pomMenu: headerPomMenuMessages["pt-br"],
     brandHomeLabel: "Página inicial da Taiyi Polymer",
     navigationAria: "Navegação principal",
     products: "Produtos",
@@ -72,6 +74,7 @@ const messages = {
     menu: "Menu",
     close: "Fechar",
     findGradeData: "Localizar dados de grades e TDS",
+    findTds: "Buscar TDS",
     discussApplication: "Fale sobre sua aplicação",
   },
   Footer: {
@@ -147,7 +150,7 @@ const messages = {
       kicker: "Requisitos primeiro",
       title: "O que a peça precisa fazer?",
       body:
-        "Identifique a falha principal e use estes caminhos para escolher formulações e critérios iniciais.",
+        "Compare os sistemas de modificação conforme os principais riscos de falha da peça e identifique as propriedades a verificar.",
       navigationAria: "Rotas de material por requisito da peça",
       paths: [
         {

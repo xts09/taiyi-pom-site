@@ -1,3 +1,4 @@
+import { headerPomMenuMessages } from "../headerPomMenuMessages.ts";
 import type { SiteMessages } from "@/i18n/types";
 import { homeTaskFirstLocaleMessages } from "../homeTaskFirstLocaleMessages.ts";
 
@@ -13,10 +14,10 @@ const messages = {
     },
     productEyebrows: {
       coreLine: "Core line",
-      additionalFamily: "Additional family",
-      higherTemperature: "Higher-temperature",
-      supplement: "Supplement",
-      crossMaterial: "Cross-material",
+      additionalFamily: "Polyamide family",
+      higherTemperature: "High-temperature polyamide",
+      supplement: "Base resin",
+      crossMaterial: "Conductive & antistatic",
     },
     applications: {
       automotive: "Automotive",
@@ -45,6 +46,7 @@ const messages = {
     },
   },
   Header: {
+    pomMenu: headerPomMenuMessages["en"],
     brandHomeLabel: "Taiyi Polymer home",
     navigationAria: "Primary navigation",
     products: "Products",
@@ -71,6 +73,7 @@ const messages = {
     menu: "Menu",
     close: "Close",
     findGradeData: "Find Grade Data & TDS",
+    findTds: "Find TDS",
     discussApplication: "Discuss Your Application",
   },
   Footer: {
@@ -388,7 +391,7 @@ const messages = {
       kicker: "Requirement First",
       title: "What must the part do?",
       body:
-        "Identify the dominant failure, then use these paths to select first-trial formulations and comparison criteria.",
+        "Compare modification systems against the part’s main failure risks and identify the properties to check.",
       navigationAria: "Material paths by part requirement",
       paths: [
         {

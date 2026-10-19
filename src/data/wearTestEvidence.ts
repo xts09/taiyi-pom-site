@@ -80,12 +80,12 @@ const enGradeCount = (count: number) => `${count} ${count === 1 ? "grade" : "gra
 
 const copy = {
   en: {
-    navLabel: "Wear test benchmark",
-    entryTitle: "Wear test benchmark",
-    entryIntro: `Explore ${counts.records} report records by condition, with measured results, process curves and available specimen photos.`,
-    entryAction: "Open the wear test benchmark",
-    benchmarkTitle: "POM wear test benchmark",
-    benchmarkIntro: `Explore test results for ${counts.grades} POM grades, with load, run time, process curves and before-and-after specimen photos.`,
+    navLabel: "Wear-test records",
+    entryTitle: "Wear-test records",
+    entryIntro: `Browse ${counts.records} internal wear-test records by condition, with measured values, process curves and specimen photos where available.`,
+    entryAction: "View wear-test records",
+    benchmarkTitle: "POM wear-test records",
+    benchmarkIntro: `Browse test results for ${counts.grades} POM grades, with load, run time, process curves and before-and-after specimen photos where available.`,
     benchmarkKicker: "TEST EVIDENCE / POM",
     tableTitle: "Test results",
     tableIntro: "Compare conditions, run time and end state together. Validate part performance under the intended operating conditions.",
@@ -131,7 +131,7 @@ const copy = {
     entryIntro: `按工况查看 ${counts.records} 条报告记录、测量值、过程曲线和现有试样照片。`,
     entryAction: "查看耐磨测试记录",
     benchmarkTitle: "POM 耐磨测试记录",
-    benchmarkIntro: `查看 ${counts.grades} 个 POM 牌号的测试结果、运行工况、过程曲线与试验前后照片。`,
+    benchmarkIntro: `查看 ${counts.grades} 个 POM 牌号的测试结果、运行工况、过程曲线及现有试样前后照片。`,
     benchmarkKicker: "测试证据 / POM",
     tableTitle: "测试结果",
     tableIntro: "结合工况、时长和结束状态比较；实际零件表现需按目标工况验证。",

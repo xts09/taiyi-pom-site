@@ -1,3 +1,4 @@
+import { headerPomMenuMessages } from "../headerPomMenuMessages.ts";
 import type { SiteMessages } from "@/i18n/types";
 import coreMessages from "./zh-CN-core.ts";
 
@@ -14,10 +15,10 @@ const messages = {
     },
     productEyebrows: {
       coreLine: "核心产品线",
-      additionalFamily: "其他材料系列",
-      higherTemperature: "较高温应用",
-      supplement: "补充产品线",
-      crossMaterial: "跨基材",
+      additionalFamily: "聚酰胺系列",
+      higherTemperature: "高温聚酰胺",
+      supplement: "基础树脂",
+      crossMaterial: "导电与抗静电",
     },
     applications: {
       automotive: "汽车",
@@ -46,6 +47,7 @@ const messages = {
     },
   },
   Header: {
+    pomMenu: headerPomMenuMessages["zh"],
     brandHomeLabel: "台益首页",
     navigationAria: "主导航",
     products: "产品",
@@ -69,6 +71,7 @@ const messages = {
     menu: "菜单",
     close: "关闭",
     findGradeData: "查找牌号数据与 TDS",
+    findTds: "查找 TDS",
     discussApplication: "讨论您的应用",
   },
   Footer: {
@@ -141,7 +144,7 @@ const messages = {
     selection: {
       kicker: "从需求开始",
       title: "零部件需要实现什么？",
-      body: "先定位主导失效，再按下列路径确定首轮配方与比较指标。",
+      body: "按零部件的主要失效风险比较改性体系，明确需要核对的性能指标。",
       navigationAria: "按零部件需求划分的选材路径",
       paths: [
         {

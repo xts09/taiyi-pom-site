@@ -53,8 +53,9 @@ const evidenceCopy = {
       title: "Separate acceptance criteria from failure observations",
       navLabel: "Reading a test result",
       paragraphs: [
-        "Passing a specified cycle requirement and documenting later wear are different records. In one customer-side POM gear-assembly test, the report recorded a pass against the project requirement alongside later observations of small-gear slipping and the functional condition of the second-stage gears.",
-        "For a comparable test, define load, motion, mating components, lubrication, environment, sample quantity, inspection items and failure criteria. Record the condition of each gear stage so that the findings can inform material and design reviews.",
+        `In the ${test.grade} massage-chair armrest gear trial, the report recorded ${test.sampleQuantity} sample meeting the ${cycles}-cycle project requirement under ${test.loadPerSideKg} kg on each side. Later testing recorded small-gear wear and slipping, while the second-stage gears remained functional at the documented checks.`,
+        `The customer subsequently adopted ${test.grade} for production and placed repeat orders.`,
+        "The test results apply only to that historical sample and test conditions. For a comparable test, define load, motion, mating components, lubrication, environment, sample quantity, inspection items and failure criteria. Record each gear stage separately so the findings can inform material and design reviews.",
       ],
       caseAction: "Read the armrest gear test example",
     },
@@ -95,8 +96,9 @@ const evidenceCopy = {
       title: "把验收要求和失效观察分开记录",
       navLabel: "试验结果解读",
       paragraphs: [
-        "组件通过规定次数的验收，与继续运行后何时出现磨损，是两个不同的记录。在一项客户侧 POM 齿轮组件试验中，报告判定样件满足项目规定的次数要求，同时记录了后续小齿轮磨损打滑及二级齿轮的功能状态。",
-        "制定类似试验时，应写明负载、运动方式、配对件、润滑、环境、样本数量、点检项目与失效判据。分别记录各级齿轮状态，才能让结果用于后续选材和结构评估。",
+        `在 ${test.grade} 按摩椅扶手齿轮试验中，报告记载的 ${test.sampleQuantity} 个样件在左右各 ${test.loadPerSideKg} kg 负载下，通过了 ${cycles} 次项目要求。继续运行后的记录显示，小齿轮出现磨损打滑，二级齿轮在所记录的检查节点仍功能正常。`,
+        `客户随后将 ${test.grade} 用于量产，并形成复购。`,
+        "试验结果仅适用于该次历史样件和试验条件。制定类似试验时，应写明负载、运动方式、配对件、润滑、环境、样本数量、点检项目与失效判据。分别记录各级齿轮状态，才能让结果用于选材和结构评估。",
       ],
       caseAction: "查看扶手翻转机构齿轮试验案例",
     },

@@ -102,7 +102,7 @@ export const applications: ApplicationItem[] = [
     slug: "automotive",
     title: "Automotive",
     description:
-      "Drive gears require a balance of root loading and tooth wear; clips need crack resistance and retention; fluid parts need dimensional and sealing stability after exposure. Build the first grade comparison around the part’s failure mode.",
+      "For drive gears, compare tooth-root loading and tooth wear; for clips, assembly cracking and retention; for fuel and water-system parts, dimensions and sealing after fluid exposure. Use observed failures to compare candidate grades and relevant properties.",
     materialDirections: [
       materialDirection(
         "High-Impact POM Compound",
@@ -292,7 +292,7 @@ export const applications: ApplicationItem[] = [
     slug: "electronics",
     title: "Electronics",
     description:
-      "For connectors, balance latch retention with thin-wall filling; for drives, control wear and noise. For static-control handling parts, start with resistance targets and the grounding path to select CNT or carbon-fiber formulations.",
+      "Connectors need a balance of latch retention and thin-wall filling; drive parts require wear and noise comparisons. Screen CNT or carbon-fiber formulations for static-control handling parts against resistance targets and the grounding path.",
     materialDirections: [
       materialDirection(
         "Conductive / Antistatic POM Compound",
@@ -596,7 +596,7 @@ export const applications: ApplicationItem[] = [
     slug: "motion-components",
     title: "Motion Components",
     description:
-      "For continuous meshing, start with tooth wear and heat; for frequent starts, address stick-slip and impact. Match lubricated, toughened or reinforced POM to the dominant risk and shortlist listed grades for trials.",
+      "Continuous meshing calls for attention to tooth wear and heat; frequent starts and stops to stick-slip and impact. Compare lubricated, toughened or reinforced POM against the dominant risk, shortlist candidate grades and define molding-trial comparisons.",
     materialDirections: [
       {
         ...materialDirection("Wear-Resistant POM Compound"),
