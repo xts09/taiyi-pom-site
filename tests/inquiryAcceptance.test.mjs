@@ -8,14 +8,14 @@ import ts from 'typescript';
 // Exercise the real compiled form handler without mail, Google traffic, or a browser.
 const root = process.cwd();
 const componentPath = resolve(root, 'src/components/ContactInquiryForm.tsx');
-function fixture({ consent = 'granted', response, fetchError, clipboardPending } = {}) {
+function fixture({ consent = 'granted', response, fetchError, clipboardPending, pathname = '/contact', formMailError = false } = {}) {
   const events = [], posts = [], clipboard = [], states = [], effects = [], observers = [];
   const storage = new Map(consent ? [['taiyi_google_analytics_consent', consent]] : []);
   let resets = 0, hook = 0;
-  const location = { pathname: '/contact', hostname: 'www.taiyipolymer.com', href: 'https://www.taiyipolymer.com/contact' };
+  const location = { pathname, hostname: 'www.taiyipolymer.com', href: 'https://www.taiyipolymer.com' + pathname };
   const window = {
     location, localStorage: { getItem: k => storage.get(k) ?? null, setItem: (k,v) => storage.set(k,v), removeItem: k => storage.delete(k) },
-    gtag: (...args) => events.push(args), setTimeout: () => 1, clearTimeout: () => {},
+    gtag: (...args) => { if (formMailError && args[1] === 'form_mail') throw new Error('Ads fixture failure'); events.push(args); }, setTimeout: () => 1, clearTimeout: () => {},
   };
   const react = {
     useEffect: effect => effects.push(effect),
@@ -98,7 +98,10 @@ test('a form without analytics consent does not observe or record visibility', (
 });
 test('successful delivery creates one lead and clears the form', async () => {
   const f = fixture(); await f.submit();
-  assert.equal(f.posts.length, 1); assert.deepEqual(names(f), ['inquiry_attempt', 'generate_lead']); assert.equal(f.resets(), 1); assert.equal(f.clipboard.length, 0);
+  assert.equal(f.posts.length, 1); assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail', 'generate_lead', 'conversion']); assert.equal(f.resets(), 1); assert.equal(f.clipboard.length, 0);
+  assert.deepEqual(JSON.parse(JSON.stringify(f.events.find(e => e[1] === 'form_mail')[2])), { send_to: 'AW-18381447688' });
+  assert.deepEqual(JSON.parse(JSON.stringify(f.events.find(e => e[1] === 'conversion')[2])), { send_to: 'AW-18381447688/VBrBCNWr3qEdEIjE-rxE' });
+  assert.ok(!JSON.stringify(f.events).includes('qa@example.invalid'));
 });
 for (const scenario of [
   { name: 'provider error', response: { ok: false, json: async () => ({ delivered: false, fallback: true }) }, reason: 'delivery_unavailable' },
@@ -110,7 +113,7 @@ for (const scenario of [
   { name: 'network error', fetchError: new TypeError('fixture'), reason: 'network' },
 ]) test(scenario.name + ' opens only a draft, never a success event', async () => {
   const f = fixture(scenario); await f.submit();
-  assert.deepEqual(names(f), ['inquiry_attempt', 'inquiry_error', 'contact_fallback']);
+  assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail', 'inquiry_error', 'contact_fallback']);
   const diagnostic = f.events.find(e => e[1] === 'inquiry_error');
   assert.equal(diagnostic[2].error_reason, scenario.reason);
   assert.ok(!JSON.stringify(diagnostic).includes('private server detail'));
@@ -118,13 +121,13 @@ for (const scenario of [
   assert.equal(f.resets(), 0); assert.equal(f.clipboard.length, 1); assert.match(f.location.href, /^mailto:/);
 });
 test('spam filtering does not generate a lead', async () => {
-  const f = fixture({ response: { ok: true, json: async () => ({ delivered: true, spamFiltered: true }) } }); await f.submit(); assert.deepEqual(names(f), ['inquiry_attempt']);
+  const f = fixture({ response: { ok: true, json: async () => ({ delivered: true, spamFiltered: true }) } }); await f.submit(); assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail']);
 });
 test('one in-flight submission ignores immediate repeated submit events', async () => {
   let finish; const pending = new Promise(r => finish = r);
   const f = fixture({ response: () => pending }); const first = f.submit(); const second = f.submit();
   const countWhilePending = f.posts.length; finish({ ok: true, json: async () => ({ delivered: true, fallback: false }) }); await Promise.all([first,second]);
-  assert.equal(countWhilePending, 1); assert.deepEqual(names(f), ['inquiry_attempt', 'generate_lead']);
+  assert.equal(countWhilePending, 1); assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail', 'generate_lead', 'conversion']);
 });
 test('no choice never sends success events even when consent bootstrap defines gtag', async () => {
   const f = fixture({ consent: null }); await f.submit(); assert.deepEqual(names(f), []); assert.equal(f.resets(), 1);
@@ -140,10 +143,32 @@ test('the submission lock also covers the pending mail-draft fallback', async ()
   const f = fixture({ response: { ok: false, json: async () => ({ fallback: true }) }, clipboardPending: pending });
   const first = f.submit(); await new Promise(r => setImmediate(r));
   const second = f.submit(); const count = f.posts.length; finish(); await Promise.all([first, second]);
-  assert.equal(count, 1); assert.deepEqual(names(f), ['inquiry_attempt', 'inquiry_error', 'contact_fallback']);
+  assert.equal(count, 1); assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail', 'inquiry_error', 'contact_fallback']);
 });
 test('accepting again permits a subsequent new delivery event', async () => {
   const f = fixture({ consent: 'denied' }); await f.submit();
   const consent = f.consentModule(); consent.storeGoogleAnalyticsConsent('granted'); consent.updateGoogleAnalyticsConsent('granted'); await f.submit();
-  assert.equal(f.posts.length, 2); assert.deepEqual(names(f), ['inquiry_attempt', 'generate_lead']);
+  assert.equal(f.posts.length, 2); assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail', 'generate_lead', 'conversion']);
+});
+
+for (const pathname of ['/contact', '/de/contact', '/fr/contact', '/pt-br/contact', '/zh/contact']) {
+  test('Ads conversion uses delivery status on ' + pathname, async () => {
+    const f = fixture({ pathname }); await f.submit();
+    assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail', 'generate_lead', 'conversion']);
+    assert.equal(f.events.filter(e => e[1] === 'conversion').length, 1);
+  });
+}
+
+test('a later successful submission records its own conversion', async () => {
+  const f = fixture(); await f.submit(); await f.submit();
+  assert.equal(f.posts.length, 2);
+  assert.equal(f.events.filter(e => e[1] === 'form_mail').length, 2);
+  assert.equal(f.events.filter(e => e[1] === 'conversion').length, 2);
+});
+
+test('an Ads attempt tracking failure does not prevent delivery', async () => {
+  const f = fixture({ formMailError: true }); await f.submit();
+  assert.equal(f.posts.length, 1);
+  assert.equal(f.resets(), 1);
+  assert.deepEqual(names(f), ['inquiry_attempt', 'generate_lead', 'conversion']);
 });

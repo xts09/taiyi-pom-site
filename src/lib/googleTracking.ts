@@ -19,7 +19,10 @@ export const googleAdsId =
     : "";
 
 export const googleAdsLeadConversionLabel =
-  process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_CONVERSION_LABEL ?? "";
+  process.env.NEXT_PUBLIC_GOOGLE_ADS_LEAD_CONVERSION_LABEL ??
+  (process.env.NODE_ENV === "production" && googleAdsId === defaultGoogleAdsId
+    ? "VBrBCNWr3qEdEIjE-rxE"
+    : "");
 
 export const googleSiteVerification =
   process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? "";

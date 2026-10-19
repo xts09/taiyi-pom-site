@@ -7,6 +7,7 @@ import { Header } from "@/components/Header";
 import type { LocalizedUrlSegment } from "@/i18n/config";
 import type { SiteMessages } from "@/i18n/types";
 import { googleTagId } from "@/lib/googleTracking";
+import { buildHeaderNavigation } from "@/lib/headerNavigation";
 
 const skipLinkLabels: Record<string, string> = {
   de: "Zum Hauptinhalt springen",
@@ -39,8 +40,8 @@ export function SiteDocument({
         </a>
         <Header
           messages={messages.Header}
-          taxonomy={messages.Taxonomy}
           localeSegment={localeSegment}
+          navigation={buildHeaderNavigation(messages, localeSegment)}
         />
         <div id="main-content" className="flex-1" tabIndex={-1}>
           {children}

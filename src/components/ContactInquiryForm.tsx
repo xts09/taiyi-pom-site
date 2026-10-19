@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   trackInquiryFallback,
+  trackInquiryFormMail,
   trackInquiryFunnel,
   trackInquirySubmitted,
   type InquiryErrorReason,
@@ -389,6 +390,7 @@ export function ContactInquiryForm({
 
     submissionInFlight.current = true;
     trackInquiryFunnel("attempt");
+    trackInquiryFormMail();
     try {
       await submitInquiry(event.currentTarget);
     } finally {

@@ -11,7 +11,7 @@ const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
   "object-src 'none'",
-  "frame-ancestors 'none'",
+  `frame-ancestors '${isDevelopment ? "self" : "none"}'`,
   "img-src 'self' data: https:",
   "media-src 'self'",
   "font-src 'self' data:",
@@ -37,7 +37,7 @@ const securityHeaders = [
   },
   {
     key: "X-Frame-Options",
-    value: "DENY",
+    value: isDevelopment ? "SAMEORIGIN" : "DENY",
   },
   {
     key: "Permissions-Policy",

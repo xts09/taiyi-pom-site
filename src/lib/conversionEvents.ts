@@ -111,6 +111,18 @@ export function trackInquiryFunnel(
   return true;
 }
 
+export function trackInquiryFormMail() {
+  if (!hasGtag() || !googleAdsId) return;
+
+  try {
+    window.gtag?.("event", "form_mail", {
+      send_to: googleAdsId,
+    });
+  } catch {
+    // Optional Ads tracking must not prevent inquiry delivery.
+  }
+}
+
 export function trackInquirySubmitted(method: "server_email") {
   if (!hasGtag()) {
     return;
