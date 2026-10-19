@@ -8,6 +8,10 @@ const compiled = ts.transpileModule(
   readFileSync(new URL("../src/lib/googleTracking.ts", import.meta.url), "utf8"),
   { compilerOptions: { module: ts.ModuleKind.CommonJS } },
 ).outputText;
+const nextConfigSource = readFileSync(
+  new URL("../next.config.ts", import.meta.url),
+  "utf8",
+);
 
 function configuration(env = {}) {
   const exports = {};
@@ -38,4 +42,8 @@ test("local development does not enable the production Ads defaults", () => {
   const config = configuration({ NODE_ENV: "development" });
   assert.equal(config.googleAdsId, "");
   assert.equal(config.googleAdsLeadConversionLabel, "");
+});
+
+test("the CSP allows the Google Ads collection endpoint used by gtag", () => {
+  assert.match(nextConfigSource, /connect-src[^\n]+https:\/\/pagead2\.googlesyndication\.com/);
 });
