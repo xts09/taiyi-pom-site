@@ -18,6 +18,17 @@ Use these sources in this order:
 Page CSS may arrange shared components, but must not silently create a new
 surface, action, form-control, radius, or focus system.
 
+## Applicability
+
+This registry governs production implementations, repairs and extensions.
+Independent concepts/Demos in `outputs/` may use their own HTML/CSS, Header,
+buttons, cards and temporary interaction patterns. They do not need to migrate
+canonical components or exercise unchanged route families before showing a
+draft. Use existing assets and components when useful, not as a mandatory
+constraint on visual exploration. A requested production redesign may introduce
+new variants or owners within its authorized scope and update this registry
+when those choices are adopted.
+
 ## Status Legend
 
 - **Canonical** — shared implementation exists and should be used for new work.
@@ -76,7 +87,9 @@ manufacturer/material-brand relation in the caption below. Desktop navigation ha
 labels wrap within their own column. Do not truncate labels, shrink type, or
 force nowrap. Resources includes the localized Grade Data & TDS entrance.
 Mobile navigation uses labeled, line-separated disclosures with 44px minimum
-link targets. Keep the footerAdjacent pitch suppression contract.
+link targets. Brand relation, direct contacts, navigation, and legal links are
+owned by Footer on every route. Application inquiry and grade-evaluation
+sections belong to their page compositions and do not change Footer structure.
 
 ### Rail / Section Shell — Partial
 
@@ -130,8 +143,8 @@ and the Applications index Hero is the first verified non-ActionPanel
 primary/secondary pair. Product-category Heroes use the shared
 `productHeroPrimary` / `productHeroSecondary` variants and `productHero` size
 while preserving the legacy pair's exact geometry and responsive behavior.
-The Products overview uses one `primary` TDS action with `form` sizing in its
-image-led `PageHero`.
+The Products overview uses one `primary` action with `form` sizing in its
+image PageHero.
 Product-detail Heroes use the dedicated product-detail variants and size so
 their 48px geometry, compact type, mobile full-width behavior, and longer
 campaign labels remain stable without page-local button classes.
@@ -164,6 +177,136 @@ focus states.
 
 **Rule:** page CSS may control field-grid placement and label spacing. It must
 not redefine control height, radius, border, placeholder, or focus halo.
+
+**Field composition pilot (2026-10-10):** `src/components/ui/field.tsx` and
+`label.tsx` adapt the official shadcn/ui Field structure to the existing native
+controls, utility import, and semantic tokens. `FieldSet`, `FieldLegend`,
+`FieldGroup`, `Field`, `FieldLabel`, and `FieldDescription` own the label/control/
+help-text composition. Vertical, horizontal, and responsive orientations are
+explicit variants. Consumers provide unique IDs and `aria-describedby` links.
+The initial consumer is the development-only component acceptance page;
+Contact retains its current form owner pending a separately verified migration.
+
+### Component Acceptance Page — Development Only
+
+**Owners:** `src/app/(en)/design-system/page.tsx` and
+`src/components/design-system/ComponentShowcase.tsx` with its CSS module.
+
+**Route:** `/design-system`; unavailable outside development, with `noindex`
+metadata and no public navigation or sitemap entry.
+
+**Acceptance-tool interface:** `ShowcaseNavigation.tsx` owns the sticky category
+index, current-section state and native language selector shared by the gallery
+and Home companion. `showcase-config.ts` owns their section definitions,
+supported language options and preview-language resolution. The navigation uses
+passive scroll observation, reads current section nodes after streamed updates,
+and keeps the selected link visible within the desktop horizontal index. Below
+48rem, a native category selector replaces that index; it shares the same
+current-section state and stable anchors. Category and language controls sit
+side by side in one 64px row, with accessible labels.
+
+`/design-system?lang=zh|en|de|fr|pt-br` selects the existing Home, navigation and evidence
+messages and localized destinations; the tool interface stays Chinese. Language
+changes retain a recognized section hash and re-align it beneath the sticky
+controls. Home composition and actual-home links preserve the chosen language.
+The selector uses the existing native Select and Field owners, including their
+focus and disabled states while navigation is pending.
+
+Catalogue headings and navigation are the acceptance tool's own compact
+interface. They do not redefine the specimens' appearance. The shared
+SectionIntro examples remain under `#composition`; all production specimens
+continue to use their actual component owners.
+
+`NavigationShowcase.tsx` and its CSS module own the internal navigation
+specimen at `#navigation`. Its version selector defaults to the actual local
+Header and also offers the selected single-row concept and original proposal.
+The single-row concept lives in `outputs/navigation-single-row-2026-10-17/`
+and is served only in development by
+`src/app/(en)/design-system/navigation-single-row/route.ts`. It receives existing
+messages and `buildHeaderNavigation` destinations. Scene, initial menu state,
+language and viewport controls support visual comparison. The single-row
+direction was adopted in the shared local Header on 2026-10-17. The original proposal
+is an independent HTML artifact in `outputs/navigation-concept-20261015/`,
+served only in development by
+`src/app/(en)/design-system/navigation-concept/route.ts`; its approved direction
+was adopted into the shared Header on 2026-10-15. Its data comes from existing messages and navigation
+sources. A single lazy iframe switches among these concepts and the actual
+localized Home or Products page. The actual Header, routes, menu state and
+keyboard behavior remain under their production owners. Existing Field/Select controls switch the scene
+and the viewport (current width, 390px, 1024px or 1920px). Fixed widths scroll
+inside the preview stage; the page itself must not overflow. The real-page
+link follows the chosen scene and language. Inspect closed/expanded, dark/white,
+current-section, language and keyboard states in this live specimen and on the
+representative real routes. The actual-Header option uses its real owner;
+the separately labeled original proposal remains an independent reference.
+`next.config.ts` permits only same-origin framing in development for this
+preview; production retains `frame-ancestors 'none'` and `X-Frame-Options: DENY`.
+
+**Purpose:** Keep this route as the living acceptance surface for the shared
+UI system. Its examples evolve with the production components and approved
+visual system. `DESIGN.md` defines visual intent, `tokens.css` supplies runtime
+values, and this registry records component APIs and migration status; the page
+shows their actual rendered behavior.
+
+**Maintenance contract:**
+
+1. When adding, changing, or retiring a shared component, approved variant,
+   token role, or interaction state, keep the affected examples current in the
+   same task. Update the owning registry entry when its API, variants,
+   ownership, or migration status changes. Existing examples inherit shared
+   styling automatically; revise their composition when coverage changes.
+2. Import the real owning components. Showcase CSS controls specimen layout
+   and foundation displays; control appearance and behavior stay with the
+   shared owners.
+3. Cover supported states that matter for each component: default, hover,
+   keyboard focus, disabled, open/closed, and relevant field validation or
+   loading states. Include long Chinese/English content and narrow layouts.
+   Record planned variants as planned until their implementation exists.
+4. Preserve the section anchors below. Add new shared roles to a suitable
+   group or a clearly named new section, and keep the section navigation in
+   sync. Retirement removes obsolete examples and updates their references.
+5. Verify the affected group at desktop 1920x1080 and mobile 390x844, including
+   keyboard and meaningful interactions. Check representative real consumers
+   to confirm the same behavior in context; save task evidence under `outputs/`.
+   Specialized compositions may use development-only companion routes such
+   as `/design-system/engineering-gf`.
+
+| Stable entry | Review purpose |
+| --- | --- |
+| `/design-system#foundations` | Semantic colors, typography, spacing, and radius roles |
+| `/design-system#actions` | Button variants and interaction states |
+| `/design-system#fields` | Field composition, control states, and long content |
+| `/design-system#disclosures` | Accordion states, keyboard behavior, and long labels |
+| `/design-system#surfaces` | Shared Card surfaces and content slots |
+| `/design-system#navigation` | Actual Header in dark/white, desktop/mobile and interactive menu states |
+| `/design-system#evidence` | Real MediaFigure, MetricGroup and DocumentCard specimens |
+| `/design-system#composition` | Section Intro layouts and component composition |
+| `/design-system#home-patterns` | Home material catalogue and component/industry entry cards |
+
+`/design-system/engineering-gf` provides a development-only representative
+consumer using the unchanged `EngineeringGfLandingPage` PA66 composition.
+Its route owner is `src/app/(en)/design-system/engineering-gf/page.tsx`.
+This preview allows component regression checks while the production route's
+release gate remains closed. It has the same development and indexing guards.
+
+**Coverage:** semantic foreground/background pairs, type/spacing/radius,
+primary/secondary/inverse actions, disabled and long-label cases, native field
+controls, working Radix disclosures, standard/soft/evidence surfaces, and
+stacked/split Section Intro compositions. `EvidenceShowcase.tsx` uses real
+factory/laboratory images, company figures and certificate PDF destinations.
+`HomePatternShowcase.tsx` uses the Products overview's compact catalogue and
+the homepage's entry-card owners. Hover and keyboard focus are checked
+on real controls. Preview CSS owns layout and foundation specimens only;
+existing component variants and runtime tokens remain the styling owners.
+
+`/design-system/home?lang=zh` is a development-only companion for the complete
+homepage body. Its owner is `src/app/(en)/design-system/home/page.tsx`; it calls
+the real `TaskFirstHomeNarrative` and `HomeInquirySection` with existing messages
+and localized destinations. Language links cover `zh`, `en`, `de`, `fr` and
+`pt-br`. The production Home Hero stays in its existing owner; the companion
+checks body composition and inquiry routing. It has the same development and
+indexing guards as the acceptance page. Existing `#entry-points`,
+`#factory-snapshot` and `#material-review` anchors remain usable.
 
 ### Surface / Card — Partial
 
@@ -292,6 +435,25 @@ Desktop insets are 24px; below 48rem they are 16px. `panel` remains planned.
 **Rule:** triggers, keyboard behavior, focus, and open/closed indicators come
 from the primitive. Content structure remains domain-specific.
 
+`accordion.tsx` owns the header, label, indicator, content, and body slots.
+`accordion.module.css` owns row alignment, the centered chevron, open/hover
+colors, technical grouping, content spacing, motion, and a single 2px cobalt
+keyboard-focus outline. The technical variant insets this outline within the
+row. Forced colors use `Highlight`; reduced motion disables transitions and
+content animation. Consumers arrange domain content and may constrain its
+reading measure; they must not redefine shared states or indicators.
+
+When opening an item displaces its trigger beyond the viewport or beneath the
+sticky header, the shared trigger restores that row to view after layout.
+Visible triggers do not move; caller click handlers and prevented events are
+preserved.
+
+`AccordionContent forceMount` retains technical content in server-rendered HTML
+and hides it while closed. This opt-in behavior is used by the English/Chinese
+gear landing; other consumers retain Radix mounting behavior. Shared height
+and opacity animation follows the 180ms motion token. Closed panels must stay
+absent from the visible accessibility tree.
+
 ## Navigation Components
 
 ### Breadcrumbs — Canonical
@@ -319,36 +481,80 @@ placement. Pages supply labels, anchors, and optional actions.
 
 ### Header and Mega Menu — Canonical
 
-**Owner:** `src/components/Header.tsx` and
-`src/app/(en)/styles/header.css`. The localized layout imports the same shared
-stylesheet; it does not own a separate navigation skin.
+**Owners:** `src/components/Header.tsx` owns desktop navigation, the current
+section and language destinations. `HeaderMobileMenu.tsx` owns the native
+dialog and its three-level mobile flow. `src/lib/headerNavigation.ts` builds
+compact labels and localized destinations on the server; `SiteDocument.tsx`
+passes that model to Header without serializing the grade catalogue.
+`BrandDescriptor.tsx` owns the optional inline two-line
+HIGH-PERFORMANCE / ENGINEERING PLASTICS descriptor and the stacked
+ENGINEERED POLYMERS caption used in the mobile dialog. The shared skin is
+`src/app/(en)/styles/header.css`, imported by every localized layout.
 
-**Rule:** preserve the existing shared navigation contract. Mega-menu layout is
-a specialized composition, not a generic Card.
+**Composition:** the adopted local single-row Header is 80px high at 1200px
+and above. Brand, business links, company links, language and Find TDS action
+share one vertical center. Main labels use 17px/500 on wide desktop and
+16px/500 below 1680px; the language/action use 15px. The 190px wordmark has
+an inline 11px/600 descriptor above 1679px; compact desktop hides that
+descriptor, and 1200–1279px uses a 164px wordmark. Company links and tools
+remain distinct groups within the same row. Accept visible centers within 2px.
+Products retains its three material groups in a 2:1:1 grid; the POM group
+keeps its two subcolumns and separate Base Resin entry. Tablet widths through
+1199px use a 76px bar and phone widths through 600px use 72px. The mobile
+bar shows the wordmark, localized Find TDS action and labeled Menu control.
+Height tokens live in `tokens.css` and feed `--site-header-height` offsets.
 
-**Language control:** one current-language disclosure, rather than a persistent
-row of locale pills. Desktop shows the native language name; mobile shows the
-short label beside Menu, outside its panel. The dropdown lists native names,
-marks the current language, and retains equivalent-route and inquiry-context
-links. Native summary/links support Enter and Tab; Escape closes and returns
-focus, and outside pointer/focus closes the dropdown. Language and main
-navigation are mutually exclusive: opening either dismisses the other,
-including desktop hover and mobile disclosure toggles. Trigger and option
-hit areas remain at least 44px high.
+The `.site-header-glass` layer alone owns the continuous Hero backdrop,
+spanning bar and panel with the existing fill/filter/shadow tokens. Menu
+content stays transparent. Inner routes connect the white bar directly to
+the white panel. Both use the page rail; preserve the material and visible
+edges on actual rendered pages. Language popovers retain their navy surface.
+Groups and overview actions use spacing; the inline descriptor's subtle
+vertical separator belongs only to that wide-desktop brand lockup.
+
+**POM navigation:** `Header.pomMenu` owns short names in all five language
+messages, sourced from `src/i18n/headerPomMenuMessages.ts`. The server model
+uses `getCategoryPath` for the existing eight categories. POM's two subgroups
+contain performance modifications and reinforcement/fillers; Base Resin is a
+separate supplemental destination. Desktop renders that structure; mobile uses
+the same ordered items beneath the POM heading. Visible labels omit redundant
+material suffixes; accessible labels retain POM context. Catalogue names,
+product-page copy and the homepage material presentation keep their owners.
+
+**Visible affordances:** Products, Applications and Resources pair their text
+with a shared chevron that rotates only while open. `.nav-link-label` owns the
+top-level text underline; the chevron is outside that underline. Main links use
+17px/500 and expanded destination links 16px/500 in `--nav-ink`, with the accent
+color on hover/focus. Supplemental paragraphs retain `--nav-muted`. All menu links,
+including menu-overview links, have at least a 44px click target. The existing
+`.mega-nav-label` continues to own menu-item underlines.
+
+**Language control:** desktop uses one native-name disclosure with equivalent
+route links, current-language marking, Escape/focus return and outside close.
+Opening it closes the mega menu, and vice versa. Mobile keeps a native-language
+select in the dialog footer beside its TDS entry. Both consume the same
+release-manifest language options and preserve Contact query/hash context.
+Trigger and option targets remain at least 44px high.
 
 **Menu interaction:** Radix owns desktop hover and click state; focusing a
 trigger does not pre-open it. Enter/Space opens or toggles the focused trigger,
 Arrow Down enters an open panel, and Escape closes it and restores trigger
-focus. Touch at desktop widths toggles once per tap. Mobile Menu closes on
-outside pointer/focus and Escape, and remains mutually exclusive with the
-language control. Direct panel rows and the inquiry CTA do not flex-shrink;
-all mobile links and controls retain a minimum 44px target as the panel scrolls.
+focus. Touch at desktop widths toggles once per tap. The mobile native dialog
+keeps the page inert, explicitly wraps Tab/Shift+Tab at its first/last control,
+and closes on Escape or Close. Root → group → links uses one view
+state; Back restores the originating row, closing restores the trigger, and
+closing/unmounting releases the page scroll lock. Destination links close it;
+the content scrolls while TDS/language remain in the footer. The opening control
+shows the localized Menu label beside its icon. Controls retain
+a minimum 44px target.
 
-**Grade data entry:** the Resources mega menu starts with the localized
-`findGradeData` link to `/technical-data-sheets`, followed by task groups and
-released case-study entries. The desktop search utility and mobile data link
-use the same destination and purpose. Resource item underlines remain owned
-by `.mega-nav-label`.
+**Grade data entry:** Resources retains the full localized `findGradeData`
+link to `/technical-data-sheets`. The bar and mobile footer visibly use
+`Header.findTds`: Find TDS / 查找 TDS and corresponding locale labels. The
+bar retains the full accessible name and title. Every width keeps this action
+label rather than shortening it to an acronym. The concept route consumes the
+same message. Resource item underlines remain owned by `.mega-nav-label`.
+
 
 
 ## Content Components
@@ -399,12 +605,13 @@ responsive image/copy grid and TDS-action placement, using existing product
 typography tokens. Product introduction copy stays in `Products.hero.body`.
 Category and grade Heroes retain their existing imagery and action variants.
 
-The Chinese motion-components scene title uses the width of its local copy
-column, owned by
-`src/components/localized/LocalizedApplicationDetailPage.module.css`, with
-balanced wrapping. This does not change other application headings.
-
 **Applications convergence:** The Applications directory and detail Heroes
+retain their shared typography. The Chinese motion-components scene title's
+available width is owned locally by
+`src/components/localized/LocalizedApplicationDetailPage.module.css` so its
+heading wraps naturally without changing other application headings.
+
+The Applications directory and detail Heroes
 share `--ds-application-hero-*` typography roles, aliased to the verified
 Products Hero scale. Image composition and information density remain
 route-specific, while eyebrow, H1, and primary supporting copy use the same
@@ -473,9 +680,10 @@ inner-page Hero.
 `src/components/AutomotiveSystemGroup.tsx` and its CSS module own the automotive
 component selection layout, adjacent structural cases, material comparison
 section and resource/inquiry section. The material directions reuse the
-application-detail card treatment without imagery. `AutomotivePartTabs.tsx` is the
-small client boundary for every multi-part system and keyboard navigation;
-each active panel's content is composed on the server. `src/data/automotiveSelection.ts`
+application-detail card treatment without imagery. The now-retired
+`AutomotivePartTabs.tsx` supplied the small client boundary for every multi-part
+system and keyboard navigation; active panel content was composed on the server.
+`src/data/automotiveSelection.ts`
 owns the candidate-family mappings and shared automotive labels;
 `src/data/automotivePageDesign.ts` owns the approved five-language page copy.
 This is a page-specific composition using
@@ -693,6 +901,25 @@ the shared native `Select` primitive and catalogue-sourced percentages. All
 grades render initially; a selection filters the table and cards together in
 local client state without creating a route or changing catalogue records.
 Labels belong to `engineeringGfLandingMessages.ts` in all five released languages.
+`EngineeringGfLandingPage` owns the surrounding page composition. PA66 sets
+`tradeoffs` to `null` in its source and localized page content, consolidating
+those notes into its properties section and moving the existing guide links there.
+The omitted tab follows that content state; PA6 and PPA keep their separate
+tradeoff block and tab. PA66's GF50 introduction interpolates grade names from
+the catalog. This composition refinement remains local.
+PA66's registration selects a separate edited specimen-material illustration;
+its localized caption and alt text identify it as an illustration. The original
+laboratory image, figure geometry and PA6/PPA image selections remain intact.
+PA66's optional `materialNotes` content selects an unnumbered definition list
+and the canonical Accordion primitive for molding/selection details. Existing
+guide links sit in the same text column. Its five-language UI copy overrides
+belong to `engineeringGfLandingMessages.ts`; PA6/PPA keep their numbered lists
+and existing labels. The specimen crop and outer split remain unchanged.
+For this PA66 composition, the same material-properties section renders before
+the grade directory and applications. Its navigation order follows that section
+order. The shared renderer keeps the existing section content and uses the
+presence of `materialNotes` to select this composition; PA6/PPA retain their
+original order.
 POM TDS links
 remain on the individual grade detail pages. The localized PA pages reuse the
 same catalogue records and layout while translating visible labels, links,
@@ -739,58 +966,99 @@ Other components and other gear locales retain the existing renderer.
 Material suitability remains visible in the comparison. Validation checks sit
 with each material family's selection details inside the shared disclosure.
 The landing reuses the existing application button variant and size for both
-general inquiry actions. Local heading rules distinguish the material choices,
-case and inquiry from the main section headings, including on mobile.
-The material comparison uses one light surface, semantic definition lists and
-shared desktop row tracks; mobile restores the single-column reading order.
-The local disclosure summary preserves native details behavior while adding
-decorative plus/minus states, hover and keyboard focus feedback. Case headings
-and summaries follow the same left edge, with the case link below on mobile.
+general inquiry actions. Material, case and technical introductions use
+`SectionIntro`, including its responsive type and description behavior.
+The material comparison uses the canonical 5/7 split: an introduction beside
+three material rows with suitability copy and existing product-owner links.
+Selection disclosures follow those rows. At tablet widths the introduction
+stacks above them; mobile also stacks each row's title and description.
+`Accordion` owns trigger geometry, keyboard navigation, chevron state and focus
+feedback. Technical topics form a single-open group. Material,
+test-interpretation and technical-topic
+anchors remain addressable.
+The page owns its case composition instead of changing `RelatedCaseStudies`:
+the ETM story and recorded test use a balanced evidence grid, followed by
+gear-first supporting-case rows with issue, material/design and reported-stage
+copy. `Card variant="evidence" asChild` owns the ETM evidence surface; its
+article grid and domain-specific content remain in the gear composition.
+Existing case records still own titles, grades, links and stages.
+Technical topics sit beside a smaller introduction and contextual reading
+links. Narrow layouts retain the introduction, topics, then reading order.
+One content-grid gap owns section separation; adjacent section paddings and
+shared-case margins must not accumulate. The final inquiry consumes the
+canonical compact `ActionPanel` with concise supporting copy
+and one application inquiry action. English and Chinese share this composition;
+other gear locales keep their existing renderer.
 
 Keep the sample quantity, test conditions, subsequent wear observations and
 result boundary next to the acceptance result. This module has no original
 report download or customer imagery.
 
-## Homepage Body Composition — 2026-10-17
+## Reading Contrast — Canonical
+
+`tokens.css` owns `--ds-color-reading-slate` and the semantic
+`--ds-foreground-muted` role. Home, shared sections/cards/fields and migrated
+legacy product/resource text consume that role. Dark surfaces retain their
+dedicated light foreground. `/design-system#foundations` includes white,
+canvas and navy reading specimens, using live tokens. The navigation specimen
+loads the actual Header and its localized destination model.
+
+## Typography — Canonical
+
+`globals.css` and `tokens.css` own the existing IBM Plex Sans interface and
+heading roles, with Noto Sans SC and system fallbacks. Both root layouts retain
+the existing Fontsource import. `UnitText.tsx` owns unit and exponent markup;
+`MetricGroup.module.css` uses the shared display font. `/design-system#foundations`
+shows the shared heading, body and label typography.
+
+The Tailwind import explicitly scans `src/`, where production UI classes live.
+Generated previews and archived compilation directories are not class sources.
+
+## Homepage Body Composition — 2026-10-14
 
 `HomePage.tsx` retains the shared homepage Hero and passes localized Contact
 intent labels to the inquiry owner. `TaskFirstHomeNarrative.tsx` composes the
-material showcase, component, industry, project support, and factory/laboratory
-sequence. `HomeCoreProductExplorer.tsx` owns the opening material photograph
-and four family links, styled by its existing `home.css` rules.
-`HomeSections.module.css` owns the following page-local surfaces, hierarchy and
-responsive layout. Hero motion remains in `HomeMotion`; body owners do not opt
-into its previous scroll-reveal hooks.
+material showcase, component, industry, project support, and factory/laboratory sequence;
+`HomeSections.module.css` owns its page-local surfaces, hierarchy and responsive
+layout. `HomeMaterialCatalogue.tsx` owns the three desktop columns and mobile
+single-open disclosure using the canonical Accordion. The Products overview
+renders its `compact` density ahead of requirement-based selection, replacing
+the previous family rows. Counts and family paths
+are derived on the server from catalogue data and product-category helpers;
+only compact presentation props reach the client.
 
-`HomeMaterialCatalogue.tsx` owns the three desktop columns and mobile
-single-open disclosure using the canonical Accordion. Its `compact` density is
-rendered by `ProductsDirectoryPage.tsx` ahead of requirement-based selection,
-replacing the previous family rows. `src/lib/homeMaterialCatalogue.ts` owns the
-shared server-side column builder. Counts and family paths come from catalogue
-data and product-category helpers; only compact presentation props reach the
-client. The polyamide column's TDS action opens the localized data directory.
+**Hero title:** `HomePage.tsx` renders `Home.hero.title` directly inside one H1.
+`home.css` owns its existing scale, leading and real-column wrap behavior;
+the font comes from the existing shared display role. Background, eyebrow, body,
+actions and metadata keep their existing owners. The actual Home scene at
+`/design-system#navigation` verifies this Hero with the shared Header.
 
-`src/data/homeEntries.ts` owns the component/industry destinations and images.
-`HomeEntryCards.tsx` exports `HomeComponentCard` and `HomeIndustryCard`, used by
-Home and its acceptance specimens. Both take `title`, `href`, `image` and
-`imageAlt`; the component card also takes the typed `part` key for
-geometry-specific containment. These remain homepage-scoped compositions.
-Component images are contained; industry photographs are cropped, with the
-mobile title below the photograph.
+`src/lib/homeMaterialCatalogue.ts` owns the server-side column builder shared
+by `ProductsDirectoryPage.tsx` and `/design-system#home-patterns`.
+`src/data/homeEntries.ts` owns the existing
+component/industry destinations and images. `HomeEntryCards.tsx` exports
+`HomeComponentCard` and `HomeIndustryCard`, used by both Home and its acceptance
+specimens. Both take `title`, `href`, `image` and `imageAlt`; the component card
+also takes the typed `part` key for geometry-specific containment. These are
+homepage-scoped compositions with their existing `HomeSections.module.css`
+styles, not generic Card variants. Component images remain contained; industry
+photographs remain cropped, with the mobile title below the photograph.
 
-`HomePatternShowcase.tsx` at `/design-system#home-patterns` reuses the Products
-overview's compact catalogue and the homepage's entry-card owners.
-`src/app/(en)/design-system/home/page.tsx` composes the real homepage body in
-English, Chinese, German, French and Brazilian Portuguese. These acceptance
-surfaces remain development-only. Specimen CSS owns layout; production
-components retain their appearance and behavior.
+The catalogue, image entries, manufacturing/certificate rows and inquiry paths
+are maintained on `/design-system` and its Home companion in the same task as
+their production owners. Preview CSS supplies specimen layout only.
 
-Evidence uses canonical `MediaFigure` and `DocumentCard` compositions. The six
-component images, eight industry routes, certificate PDF destinations,
-`#entry-points`, `#material-review` and `#factory-snapshot` anchors remain
-available. `HomeInquirySection.tsx` owns TDS, sample, grade-evaluation and
-quote/supply links using existing Contact labels and the canonical
-contact-context helper; TDS opens the released data directory.
+Evidence uses canonical `MediaFigure` and `DocumentCard` compositions. The
+six component images, eight industry routes, certificate PDF destinations,
+`#entry-points` Hero destination and `#material-review` anchor remain available.
+`#factory-snapshot` connects the Why section to its production evidence. Old
+`HomeCoreProductExplorer.tsx` owns the opening material photograph and four
+family links, styled by its existing `home.css` rules. Hero motion remains in
+`HomeMotion`; body owners do not opt into its previous scroll-reveal hooks.
+
+`HomeInquirySection.tsx` owns TDS, sample, grade-evaluation and quote/supply links.
+It uses localized labels from the existing Contact form and the canonical
+contact-context helper, with TDS opening the released data directory.
 
 ## Conversion Components
 
@@ -834,10 +1102,33 @@ engineering glass-fiber landing pages, use `compact` with the primary Button.
 In stacked layouts, both copy and optional aside size to their contents;
 desktop horizontal flex bases must not become mobile reserved heights.
 
-Set `footerAdjacent` only when the panel is the page's final conversion action.
-The shared Footer then omits its own pitch and duplicate CTA while preserving
-brand, contact actions, navigation, and legal information. Do not set it when
-related grades, documents, or another decision section follows the panel.
+Place the panel according to the page's decision flow. Page conversion actions
+remain within the main content; Footer independently owns brand, direct contact
+actions, navigation, and legal information on every route.
+
+### Contact Inquiry Context And Diagnostics
+
+`ContactPage.tsx` owns the translated form/sidebar composition.
+`ContactInquiryForm.tsx` owns field state, explicit context clearing and the
+server-delivery/fallback behavior. `ContactDirectEmailLink.tsx` owns only the
+dedicated sidebar draft link, using `contactContext.ts` to compose its href
+from initial query context or the active inquiry hash. Hash changes and the
+explicit context-change event keep it in sync when the visitor clears context.
+It does not copy entered contact/form fields or alter the plain email link.
+
+`AnalyticsTracker.tsx` owns internal contact-entry clicks.
+`ContactInquiryForm.tsx` owns a once-per-mount visible-form event, accepted
+submission attempts and coarse failure diagnostics; the in-flight guard also
+guards the attempt event. `conversionEvents.ts` applies current consent to
+every dispatch. These diagnostic events carry no form contents, source
+context, attribution values, query or hash and do not invoke the Ads lead action.
+Confirmed non-spam server delivery retains the existing lead boundary.
+
+`trackInquiryFormMail` emits the consent-gated Ads `form_mail` attempt event
+from the same in-flight-protected form submit handler. It sends only the Ads
+destination, without email or other form contents. The configured Ads
+`conversion` is emitted by `trackInquirySubmitted`, never by observing translated
+success text. The existing global `GoogleTag` remains the sole loader.
 
 ### Contact Action Tile — Canonical, Footer-scoped
 

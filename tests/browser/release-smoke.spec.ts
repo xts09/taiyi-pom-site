@@ -224,12 +224,12 @@ for (const route of ["/", "/zh/resources/pom-wear-benchmark"]) {
     await trigger.focus();
     await expect(trigger).toHaveAttribute("aria-expanded", "false");
     await trigger.press("Enter");
-    await expect(page.locator(".product-menu")).toBeVisible();
+    await expect(page.locator(".mega-menu-content")).toBeVisible();
     await info.attach("expanded", { body: await page.screenshot(), contentType: "image/png" });
     await trigger.press("ArrowDown");
-    await expect(page.locator(".product-menu a").first()).toBeFocused();
+    await expect(page.locator(".mega-menu-content a").first()).toBeFocused();
     await page.keyboard.press("Escape");
-    await expect(page.locator(".product-menu")).toBeHidden();
+    await expect(page.locator(".mega-menu-content")).toBeHidden();
     await expect(trigger).toBeFocused();
     await page.locator(".site-footer-logo").scrollIntoViewIfNeeded();
     await expect.poll(() => page.locator(".site-footer-logo img").evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
@@ -248,7 +248,7 @@ for (const route of ["/", "/zh/resources/pom-wear-benchmark"]) {
 }
 
 test.describe("desktop navigation with touch input", () => {
-  test.use({ hasTouch: true, viewport: { width: 1024, height: 768 } });
+  test.use({ hasTouch: true, viewport: { width: 1280, height: 800 } });
 
   test("each section toggles once per tap", async ({ page }) => {
     await page.goto("/zh/resources/pom-wear-benchmark");
@@ -269,22 +269,22 @@ test.describe("desktop navigation with touch input", () => {
 test("mobile navigation and inquiry context survive language switching", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/zh/resources/pom-wear-benchmark#record-enm1040");
-  const menu = page.locator("details.mobile-menu");
-  const language = page.locator(".language-switcher--mobile");
-  await menu.locator(":scope > summary").click();
+  const menuTrigger = page.locator(".header-menu-trigger");
+  const menu = page.locator("dialog.header-mobile-dialog");
+  await menuTrigger.click();
+  await expect(menu).toBeVisible();
   await expect(menu).toHaveAttribute("open", "");
-  await language.locator("summary").click();
-  await expect(language).toHaveAttribute("open", "");
-  await expect(menu).not.toHaveAttribute("open");
-  await menu.locator(":scope > summary").click();
-  await expect(language).not.toHaveAttribute("open");
-  await menu.locator(":scope > summary").click();
+  await menu.locator(".header-mobile-close").click();
+  await expect(menu).toBeHidden();
+  await menuTrigger.click();
+  await expect(menu).toBeVisible();
+  await menu.locator(".header-mobile-close").click();
   await page.locator('#record-enm1040 a[href*="#inquiry?"]').click();
   await expect(page.locator('input[name="grade"]')).toHaveValue("ENM1040");
   await expect(page.locator('select[name="intent"]')).toHaveValue("grade-evaluation");
   await page.evaluate(() => scrollTo(0, 0));
-  await language.locator("summary").click();
-  await language.locator('a[hreflang="en"]').click();
+  await menuTrigger.click();
+  await page.locator(".header-mobile-language select").selectOption({ label: "English" });
   await expect(page).toHaveURL(url => url.pathname === "/contact");
   await expect(page.locator('input[name="grade"]')).toHaveValue("ENM1040");
   await expect(page.locator('select[name="intent"]')).toHaveValue("grade-evaluation");

@@ -32,7 +32,15 @@ export type TaxonomyMessages = {
   >;
 };
 
+export type HeaderPomMenuMessages = {
+  title: string;
+  performance: string;
+  reinforcement: string;
+  items: Record<"wear" | "impact" | "uv" | "electrical" | "glassFiber" | "carbonFiber" | "glassBead" | "base", string>;
+};
+
 export type HeaderMessages = {
+  pomMenu: HeaderPomMenuMessages;
   brandHomeLabel: string;
   navigationAria: string;
   products: string;
@@ -56,6 +64,7 @@ export type HeaderMessages = {
   menu: string;
   close: string;
   findGradeData: string;
+  findTds: string;
   discussApplication: string;
 };
 

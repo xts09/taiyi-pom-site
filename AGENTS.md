@@ -195,7 +195,7 @@ searches, and representative consumers of changed shared components.
 - Mega-menu item hover underlines are owned by the shared `.mega-nav-label` element in `Header.tsx` and `header.css`. Products, Applications, and Resources must not reintroduce separate pseudo-element underline implementations.
 - Top-level current-section and hover underlines share one text-level baseline. The mega-menu underline is also text-level, while remaining structurally owned by `.mega-nav-label`.
 - Navigation alignment is accepted by visible rendered edges, not by matching container variables alone.
-- Dark header and expanded mega menu must render as one perceived frosted-glass material. White inner-page navigation must connect directly to the expanded panel without a visible gap.
+- Hero-route navigation uses one continuous dark frosted-glass surface for the header and expanded mega menu, restored on 2026-10-16. White inner-page navigation connects directly to its white panel without a visible gap. Follow the current material in `DESIGN.md` and verify the perceived blur, transparency and background bleed, not just matching variables.
 
 ## Visual Feedback Handling Protocol
 

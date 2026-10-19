@@ -29,9 +29,11 @@ import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { loadMessages } from "@/i18n/messages";
+import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { EvidenceShowcase } from "./EvidenceShowcase";
 import { HomePatternShowcase } from "./HomePatternShowcase";
 import { PomDirectoryShowcase } from "./PomDirectoryShowcase";
+import { NavigationShowcase } from "./NavigationShowcase";
 import { ShowcaseNavigation } from "./ShowcaseNavigation";
 import { showcaseSections, type PreviewConfig } from "./showcase-config";
 
@@ -244,6 +246,15 @@ export async function ComponentShowcase({ preview }: { preview: PreviewConfig })
               </Card>
             ))}
           </div>
+        </section>
+
+        <section id="navigation" className={styles.section} aria-labelledby="navigation-title">
+          <CatalogueIntro titleId="navigation-title" title="导航" description="检查正式导航的深浅表面、展开菜单和手机分级浏览，并保留原始方案供对照。" />
+          <NavigationShowcase
+            language={preview.value}
+            homeHref={getLocalizedHref("/", preview.localeSegment)}
+            innerHref={getLocalizedHref("/products", preview.localeSegment)}
+          />
         </section>
 
         <section id="evidence" className={styles.section} aria-labelledby="evidence-title">

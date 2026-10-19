@@ -3,102 +3,30 @@
 import Image from "next/image";
 import Link from "next/link";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { Check, ChevronDown, Search } from "lucide-react";
-import { usePathname, useSearchParams } from "next/navigation";
-import {
-  Suspense,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type FocusEvent,
-  type KeyboardEvent,
-  type MouseEvent,
-  type PointerEvent,
-} from "react";
-import { applicationNavigationEntries } from "@/data/applicationNavigation";
-import { getCaseStudyNavigation, isCaseStudyPath } from "@/data/caseStudyNavigation";
+import { ArrowRight, Check, ChevronDown, FileSearch, Globe } from "lucide-react";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { EnglishDestinationBadge } from "@/components/EnglishDestinationBadge";
-import {
-  getResourceNavigationGroupPath,
-  resourceNavigationGroups,
-} from "@/data/resourceNavigation";
+import { BrandDescriptor } from "@/components/BrandDescriptor";
+import { HeaderMobileMenu } from "@/components/HeaderMobileMenu";
+import { isCaseStudyPath } from "@/data/caseStudyNavigation";
 import { stripLocalizedPrefix, type LocalizedUrlSegment } from "@/i18n/config";
-import {
-  getLocalizedHref,
-  getLanguageOptions,
-  isEnglishFallbackHref,
-  type LanguageOption,
-} from "@/i18n/releaseManifest";
-import type {
-  HeaderMessages,
-  ProductEyebrowKey,
-  ProductTaxonomyKey,
-  ResourceTaxonomyKey,
-  TaxonomyMessages,
-} from "@/i18n/types";
-import {
-  createContactHref,
-  parseContactContext,
-  parseContactContextHash,
-} from "@/lib/contactContext";
-import { getCategoryPath } from "@/lib/productCategories";
-
-const productCategoryLinks = [
-  {
-    labelKey: "pom",
-    href: getCategoryPath("POM"),
-    eyebrowKey: "coreLine",
-  },
-  {
-    labelKey: "pa6",
-    href: getCategoryPath("PA6 Compound"),
-    eyebrowKey: "additionalFamily",
-  },
-  {
-    labelKey: "pa66",
-    href: getCategoryPath("PA66 Compound"),
-    eyebrowKey: "additionalFamily",
-  },
-  {
-    labelKey: "ppa",
-    href: getCategoryPath("PPA Compound"),
-    eyebrowKey: "higherTemperature",
-  },
-  {
-    labelKey: "pomResin",
-    href: getCategoryPath("Base POM Resin"),
-    eyebrowKey: "supplement",
-  },
-  {
-    labelKey: "conductiveAntistatic",
-    href: "/products/conductive-antistatic-compounds",
-    eyebrowKey: "crossMaterial",
-  },
-] satisfies ReadonlyArray<{
-  labelKey: ProductTaxonomyKey;
-  href: string;
-  eyebrowKey: ProductEyebrowKey;
-}>;
+import { getLocalizedHref, getLanguageOptions, type LanguageOption } from "@/i18n/releaseManifest";
+import type { HeaderMessages } from "@/i18n/types";
+import { createContactHref, parseContactContext, parseContactContextHash } from "@/lib/contactContext";
+import type { HeaderNavigationModel, HeaderNavigationSection, HeaderNavigationGroup, HeaderNavigationItem } from "@/lib/headerNavigation";
 
 const newsHref = "/news/chinaplas-2026";
-
 type MegaValue = "" | "products" | "applications" | "resources";
-
-const HEADER_SURFACE_HYSTERESIS = 8;
-
-const isMegaValue = (value: string): value is Exclude<MegaValue, ""> =>
-  value === "products" || value === "applications" || value === "resources";
-
-const isNodeTarget = (target: EventTarget | null): target is Node =>
-  target instanceof Node;
+const isMegaValue = (value: string): value is Exclude<MegaValue, ""> => value === "products" || value === "applications" || value === "resources";
+const isNodeTarget = (target: EventTarget | null): target is Node => target instanceof Node;
 
 type LanguageSwitcherProps = {
   label: string;
   options: ReadonlyArray<LanguageOption>;
   currentLocaleKey: LanguageOption["localeKey"];
   preserveContactContext?: boolean;
-  variant: "desktop" | "mobile";
+  variant: "desktop" | "mobile" | "panel";
   onOpen?: () => void;
 };
 
@@ -109,6 +37,7 @@ function LanguageSwitcherLinks({
   variant,
   onOpen,
 }: LanguageSwitcherProps) {
+  const router = useRouter();
   const detailsRef = useRef<HTMLDetailsElement>(null);
   const currentOption = options.find(
     (option) => option.localeKey === currentLocaleKey,
@@ -128,6 +57,15 @@ function LanguageSwitcherLinks({
       document.removeEventListener("focusin", closeOutside);
     };
   }, []);
+
+  if (variant === "panel") return (
+    <label className="header-mobile-language">
+      <span><Globe aria-hidden="true" size={18} />{label}</span>
+      <select aria-label={label} value={currentOption.href} onChange={event => router.push(event.currentTarget.value)}>
+        {options.map(option => <option key={option.localeKey} value={option.href} lang={option.hreflang}>{option.nativeLabel}</option>)}
+      </select>
+    </label>
+  );
 
   return (
     <details
@@ -149,6 +87,7 @@ function LanguageSwitcherLinks({
         className="language-switcher-trigger"
         aria-label={`${label}: ${currentOption.nativeLabel}`}
       >
+        {variant === "desktop" ? <Globe aria-hidden="true" size={18} /> : null}
         <span lang={currentOption.hreflang}>
           {variant === "mobile" ? currentOption.shortLabel : currentOption.nativeLabel}
         </span>
@@ -240,818 +179,162 @@ function LanguageSwitcher(props: LanguageSwitcherProps) {
 
 type HeaderProps = {
   messages: HeaderMessages;
-  taxonomy: TaxonomyMessages;
+  navigation: HeaderNavigationModel;
   localeSegment?: LocalizedUrlSegment;
 };
 
-export function Header({ messages, taxonomy, localeSegment }: HeaderProps) {
+export function Header({ messages, navigation, localeSegment }: HeaderProps) {
   const pathname = usePathname();
   const logicalPathname = stripLocalizedPrefix(pathname, localeSegment);
   const languageOptions = getLanguageOptions(logicalPathname);
   const currentLocaleKey = localeSegment ?? "en";
   const localizedHref = (href: string) => getLocalizedHref(href, localeSegment);
-  const englishDestinationBadge = (href: string) =>
-    isEnglishFallbackHref(href, localeSegment) ? (
-      <EnglishDestinationBadge label={messages.englishDestinationLabel} />
-    ) : null;
   const isHome = logicalPathname === "/";
-  const isAbout =
-    logicalPathname === "/about" || logicalPathname.startsWith("/about/");
-  const hasHeroHeaderSurface = isHome || isAbout;
-  const isCurrentSection = (href: string) =>
-    logicalPathname === href || logicalPathname.startsWith(`${href}/`);
-  const caseStudies = getCaseStudyNavigation(localeSegment);
-  const isResourcesSection = isCurrentSection("/resources") || isCaseStudyPath(logicalPathname);
-  const applicationLinks = [
-    ...applicationNavigationEntries.map((application) => ({
-      label: taxonomy.applications[application.slug] ?? application.title,
-      href: `/applications/${application.slug}`,
-    })),
-    {
-      label: taxonomy.componentSolutions,
-      href: "/components",
-    },
-  ];
-  const navItems = [{ label: messages.contact, href: "/contact" }];
+  const isAbout = logicalPathname === "/about" || logicalPathname.startsWith("/about/");
+  const isCurrentSection = (href: string) => logicalPathname === href || logicalPathname.startsWith(`${href}/`);
   const [isOverHomeHero, setIsOverHomeHero] = useState(true);
   const [megaValue, setMegaValue] = useState<MegaValue>("");
-  const closeTimerRef = useRef<number | null>(null);
-  const headerRef = useRef<HTMLElement | null>(null);
-  const isOverHomeHeroRef = useRef(true);
-  const megaResizeObserverRef = useRef<ResizeObserver | null>(null);
-  const mobileMenuRef = useRef<HTMLDetailsElement | null>(null);
-  const activeMega = megaValue || null;
+  const headerRef = useRef<HTMLElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const megaObserverRef = useRef<ResizeObserver | null>(null);
   const useHeroHeader = isAbout || (isHome && isOverHomeHero);
-
+  const closeLanguageMenus = () => headerRef.current?.querySelectorAll<HTMLDetailsElement>("details.language-switcher[open]").forEach(menu => { menu.open = false; });
   const cancelScheduledClose = () => {
-    if (closeTimerRef.current === null) {
-      return;
-    }
-
-    window.clearTimeout(closeTimerRef.current);
+    if (closeTimerRef.current !== null) clearTimeout(closeTimerRef.current);
     closeTimerRef.current = null;
   };
-
-  const closeMega = () => {
-    cancelScheduledClose();
-    setMegaValue((currentValue) => (currentValue ? "" : currentValue));
-  };
-
-  const scheduleCloseMega = () => {
-    cancelScheduledClose();
-    closeTimerRef.current = window.setTimeout(() => {
-      closeTimerRef.current = null;
-      setMegaValue((currentValue) => (currentValue ? "" : currentValue));
-    }, 90);
-  };
-
-  const closeMobileMenu = () => {
-    if (mobileMenuRef.current) {
-      mobileMenuRef.current.open = false;
-    }
-  };
-
-  const closeLanguageMenus = () => {
-    headerRef.current
-      ?.querySelectorAll<HTMLDetailsElement>("details.language-switcher[open]")
-      .forEach((menu) => {
-        menu.open = false;
-      });
-  };
-
-  const closeMobileMenuOnLinkClick = (event: MouseEvent<HTMLElement>) => {
-    const target = event.target;
-
-    if (target instanceof Element && target.closest("a")) {
-      closeMobileMenu();
-    }
-  };
-
-  const syncActiveMegaHeight = useCallback((node: HTMLDivElement | null) => {
-    megaResizeObserverRef.current?.disconnect();
-    megaResizeObserverRef.current = null;
-
-    const header = headerRef.current;
-    if (!header) {
-      return;
-    }
-
-    if (!node) {
-      header.style.removeProperty("--active-mega-height");
-      return;
-    }
-
-    const updateHeight = () => {
-      header.style.setProperty(
-        "--active-mega-height",
-        `${node.getBoundingClientRect().height}px`,
-      );
-    };
-
-    updateHeight();
-    if (typeof ResizeObserver !== "undefined") {
-      megaResizeObserverRef.current = new ResizeObserver(updateHeight);
-      megaResizeObserverRef.current.observe(node);
-    }
-  }, []);
-
-  useEffect(() => {
-    const closeNavigationOnDocumentEscape = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMegaValue("");
-        const mobileMenu = mobileMenuRef.current;
-        if (mobileMenu?.open) {
-          event.preventDefault();
-          mobileMenu.open = false;
-          mobileMenu.querySelector("summary")?.focus();
-        }
-      }
-    };
-
-    const closeMobileNavigationOutside = (event: Event) => {
-      const mobileMenu = mobileMenuRef.current;
-      const target = event.target;
-      if (mobileMenu?.open && target instanceof Node && !mobileMenu.contains(target)) {
-        mobileMenu.open = false;
-      }
-    };
-
-    document.addEventListener("pointerdown", closeMobileNavigationOutside);
-    document.addEventListener("focusin", closeMobileNavigationOutside);
-    document.addEventListener("keydown", closeNavigationOnDocumentEscape);
-
-    return () => {
-      document.removeEventListener("pointerdown", closeMobileNavigationOutside);
-      document.removeEventListener("focusin", closeMobileNavigationOutside);
-      document.removeEventListener("keydown", closeNavigationOnDocumentEscape);
-    };
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (closeTimerRef.current !== null) {
-        window.clearTimeout(closeTimerRef.current);
-      }
-      megaResizeObserverRef.current?.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isHome) {
-      return;
-    }
-
-    let frame: number | null = null;
-
-    const updateHeaderSurface = () => {
-      frame = null;
-      const heroSurface = document.querySelector(".home-hero");
-      const heroBottom = heroSurface?.getBoundingClientRect().bottom;
-      const headerHeight =
-        document
-          .querySelector(".site-header > .site-container")
-          ?.getBoundingClientRect().height ?? 64;
-
-      const distanceFromBoundary =
-        heroBottom === undefined
-          ? Number.POSITIVE_INFINITY
-          : heroBottom - headerHeight;
-      const nextIsOverHomeHero = isOverHomeHeroRef.current
-        ? distanceFromBoundary > -HEADER_SURFACE_HYSTERESIS
-        : distanceFromBoundary > HEADER_SURFACE_HYSTERESIS;
-
-      if (nextIsOverHomeHero !== isOverHomeHeroRef.current) {
-        isOverHomeHeroRef.current = nextIsOverHomeHero;
-        setIsOverHomeHero(nextIsOverHomeHero);
-      }
-    };
-
-    const scheduleHeaderSurfaceUpdate = () => {
-      if (frame === null) {
-        frame = window.requestAnimationFrame(updateHeaderSurface);
-      }
-    };
-
-    scheduleHeaderSurfaceUpdate();
-    window.addEventListener("scroll", scheduleHeaderSurfaceUpdate, {
-      passive: true,
-    });
-    window.addEventListener("resize", scheduleHeaderSurfaceUpdate);
-
-    return () => {
-      if (frame !== null) {
-        window.cancelAnimationFrame(frame);
-      }
-      window.removeEventListener("scroll", scheduleHeaderSurfaceUpdate);
-      window.removeEventListener("resize", scheduleHeaderSurfaceUpdate);
-    };
-  }, [isHome]);
-
+  const closeMega = () => { cancelScheduledClose(); setMegaValue(""); };
   const updateMegaValue = (value: string) => {
-    if (value === "") {
-      cancelScheduledClose();
-      setMegaValue("");
-      return;
-    }
-
-    if (!isMegaValue(value)) {
-      return;
-    }
-
     cancelScheduledClose();
-    closeLanguageMenus();
-    setMegaValue((currentValue) =>
-      currentValue === value ? currentValue : value,
-    );
+    if (value === "") setMegaValue("");
+    else if (isMegaValue(value)) { closeLanguageMenus(); setMegaValue(value); }
   };
-
-  const closeMegaOnPointerLeave = (event: PointerEvent<HTMLElement>) => {
-    const nextTarget = event.relatedTarget;
-
-    if (
-      !isNodeTarget(nextTarget) ||
-      !event.currentTarget.contains(nextTarget)
-    ) {
-      scheduleCloseMega();
-    }
-  };
-
-  const closeMegaOnBlur = (event: FocusEvent<HTMLElement>) => {
-    const nextTarget = event.relatedTarget;
-    if (
-      !isNodeTarget(nextTarget) ||
-      !event.currentTarget.contains(nextTarget)
-    ) {
-      closeMega();
-    }
-  };
-
-  const closeMegaOnEscape = (event: KeyboardEvent<HTMLElement>) => {
-    if (event.key === "Escape") {
-      closeMega();
-    }
-  };
-
+  const syncActiveMegaHeight = useCallback((node: HTMLDivElement | null) => {
+    megaObserverRef.current?.disconnect();
+    megaObserverRef.current = null;
+    const header = headerRef.current;
+    if (!header) return;
+    if (!node) { header.style.removeProperty("--active-mega-height"); return; }
+    const update = () => header.style.setProperty("--active-mega-height", `${(node.parentElement ?? node).getBoundingClientRect().height}px`);
+    update();
+    megaObserverRef.current = new ResizeObserver(update);
+    megaObserverRef.current.observe(node);
+  }, []);
+  useEffect(() => {
+    if (!isHome) return;
+    let frame: number | null = null;
+    const measure = () => {
+      frame = null;
+      const bottom = document.querySelector(".home-hero")?.getBoundingClientRect().bottom ?? -1;
+      const height = headerRef.current?.getBoundingClientRect().height ?? 80;
+      setIsOverHomeHero(current => current ? bottom > height - 8 : bottom > height + 8);
+    };
+    const schedule = () => { if (frame === null) frame = requestAnimationFrame(measure); };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => { if (frame !== null) cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); };
+  }, [isHome]);
+  useEffect(() => () => { if (closeTimerRef.current !== null) clearTimeout(closeTimerRef.current); megaObserverRef.current?.disconnect(); }, []);
+  useEffect(() => {
+    const media = matchMedia("(max-width: 1199px)");
+    const close = () => setMegaValue("");
+    media.addEventListener("change", close);
+    return () => media.removeEventListener("change", close);
+  }, []);
+  const isSectionCurrent = (section: HeaderNavigationSection) => section.id === "applications"
+    ? isCurrentSection("/applications") || isCurrentSection("/components")
+    : section.id === "resources" ? isCurrentSection("/resources") || isCaseStudyPath(logicalPathname)
+    : isCurrentSection("/products");
+  const menuLink = (item: HeaderNavigationItem, className = "header-menu-link") => (
+    <Link key={`${item.href}-${item.title}`} href={item.href} prefetch={false} className={className} onClick={closeMega} aria-label={item.accessibleLabel} aria-current={pathname === item.href ? "page" : undefined}>
+      <span className="header-menu-link-text"><span className="mega-nav-label">{item.title}</span>{item.englishDestination ? <EnglishDestinationBadge label={messages.englishDestinationLabel} /> : null}</span>
+      <ArrowRight aria-hidden="true" size={18} />
+    </Link>
+  );
+  const group = (entry: HeaderNavigationGroup, twoColumns: boolean) => (
+    <section className="header-menu-group" key={entry.id}>
+      <h2 className="header-menu-heading">{entry.title}</h2>
+      {entry.subgroups ? (
+        <>
+          <div className="header-menu-subgroups">
+            {entry.subgroups.map(subgroup => (
+              <section className="header-menu-subgroup" key={subgroup.id}>
+                <h3 className="header-menu-subheading">{subgroup.title}</h3>
+                <ul className="header-menu-list">
+                  {subgroup.items.map(item => <li key={item.href}>{menuLink(item)}</li>)}
+                </ul>
+              </section>
+            ))}
+          </div>
+          <div className="header-menu-supplement">
+            {entry.supplementalItems?.map(item => menuLink(item))}
+          </div>
+        </>
+      ) : (
+        <ul className={twoColumns ? "header-menu-list header-menu-list--two-up" : "header-menu-list"}>
+          {entry.items.map(item => <li key={`${item.href}-${item.title}`}>{menuLink(item)}</li>)}
+        </ul>
+      )}
+    </section>
+  );
+  const dataLink = (className: string) => (
+    <Link href={localizedHref("/technical-data-sheets")} prefetch={false} className={className} aria-label={messages.findGradeData} title={messages.findGradeData} aria-current={isCurrentSection("/technical-data-sheets") ? "page" : undefined}>
+      <FileSearch aria-hidden="true" size={18} /><span className="nav-data-label">{messages.findTds}</span>
+    </Link>
+  );
+  const rootLinks = [{ title: messages.news, href: localizedHref(newsHref) }, { title: messages.aboutUs, href: localizedHref("/about") }, { title: messages.contact, href: localizedHref("/contact") }];
+  const languages = (variant: "desktop" | "panel") => languageOptions.length > 0 ? <LanguageSwitcher label={messages.languageSwitcherLabel} options={languageOptions} currentLocaleKey={currentLocaleKey} preserveContactContext={logicalPathname === "/contact"} variant={variant} onOpen={closeMega} /> : null;
   return (
-    <header
-      ref={headerRef}
-      className={[
-        "site-header sticky top-0 z-50 text-slate-950",
-        hasHeroHeaderSurface ? "site-header--hero-route" : "",
-        isHome ? "site-header--home" : "",
-        useHeroHeader ? "site-header--over-hero" : "site-header--solid",
-        activeMega ? "site-header--mega-open" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
-      onBlur={closeMegaOnBlur}
-      onKeyDown={closeMegaOnEscape}
-      onPointerEnter={cancelScheduledClose}
-      onPointerLeave={closeMegaOnPointerLeave}
-    >
-      <span className="site-header-glass" aria-hidden="true" />
-      <div className="site-container flex items-center justify-between py-3">
-        <Link
-          href={localizedHref("/")}
-          prefetch={false}
-          className="brand-mark group inline-flex"
-          aria-label={messages.brandHomeLabel}
-          aria-current={isHome ? "page" : undefined}
-        >
-          <span className="brand-logo w-[clamp(9.35rem,11.4vw,10.65rem)] max-w-[46vw]">
-            <Image
-              src={
-                useHeroHeader
-                  ? "/platform-wordmark-white.png"
-                  : "/platform-wordmark.png"
-              }
-              alt="PLATFORM"
-              width={1400}
-              height={217}
-              sizes="(max-width: 325px) 46vw, (max-width: 1312px) 150px, (max-width: 1495px) 11.4vw, 171px"
-              priority
-              className="block h-auto w-full"
-            />
-          </span>
-          <span className="brand-descriptor">
-            <span>HIGH-PERFORMANCE</span>
-            <span>ENGINEERING PLASTICS</span>
-          </span>
-        </Link>
-
-        <div className="header-desktop-navigation hidden items-center justify-end lg:flex">
-          <NavigationMenu.Root
-            aria-label={messages.navigationAria}
-            value={megaValue}
-            onValueChange={updateMegaValue}
-            delayDuration={110}
-            skipDelayDuration={260}
-            className="desktop-navigation-menu"
-          >
-            <NavigationMenu.List className="desktop-navigation-list">
-              <NavigationMenu.Item value="products">
-                <NavigationMenu.Trigger
-                  className="nav-link nav-trigger transition"
-                  aria-current={
-                    isCurrentSection("/products") ? "page" : undefined
-                  }
-                >
-                  {messages.products}
-                </NavigationMenu.Trigger>
-                <NavigationMenu.Content className="mega-menu mega-menu-content product-menu">
-                  {activeMega === "products" ? (
-                    <div
-                      ref={syncActiveMegaHeight}
-                      className="mega-menu-inner mega-menu-inner-products"
-                    >
-                      <div className="mega-menu-panel-head">
-                        <div>
-                          <span>{messages.productCategories}</span>
-                          <p>{messages.productDescription}</p>
+    <>
+      <header ref={headerRef} className={["site-header", isHome || isAbout ? "site-header--hero-route" : "", isHome ? "site-header--home" : "", useHeroHeader ? "site-header--over-hero" : "site-header--solid", megaValue ? "site-header--mega-open" : ""].filter(Boolean).join(" ")}
+        onPointerEnter={cancelScheduledClose}
+        onPointerLeave={event => { if (!(event.relatedTarget instanceof Node) || !event.currentTarget.contains(event.relatedTarget)) { cancelScheduledClose(); closeTimerRef.current = setTimeout(() => setMegaValue(""), 180); } }}
+        onBlur={event => { if (!(event.relatedTarget instanceof Node) || !event.currentTarget.contains(event.relatedTarget)) closeMega(); }}>
+        <span className="site-header-glass" aria-hidden="true" />
+        <div className="site-container header-grid">
+          <Link href={localizedHref("/")} prefetch={false} className="brand-mark" aria-label={messages.brandHomeLabel} aria-current={isHome ? "page" : undefined}>
+            <span className="brand-logo"><Image src={useHeroHeader ? "/platform-wordmark-white.png" : "/platform-wordmark.png"} alt="PLATFORM" width={1400} height={217} sizes="(max-width:600px) 150px, (max-width:1279px) 164px, 190px" priority /></span>
+            <BrandDescriptor inline />
+          </Link>
+          <div className="header-desktop-navigation">
+            <NavigationMenu.Root aria-label={messages.navigationAria} value={megaValue} onValueChange={updateMegaValue} delayDuration={110} skipDelayDuration={260} className="desktop-navigation-menu">
+              <NavigationMenu.List className="desktop-navigation-list">
+                {navigation.sections.map(section => (
+                  <NavigationMenu.Item value={section.id} key={section.id}>
+                    <NavigationMenu.Trigger className="nav-link nav-trigger" aria-current={isSectionCurrent(section) ? "page" : undefined}><span className="nav-link-label">{section.title}</span><ChevronDown className="nav-disclosure-icon" aria-hidden="true" size={12} /></NavigationMenu.Trigger>
+                    <NavigationMenu.Content className="mega-menu-content" onPointerEnter={cancelScheduledClose}>
+                      {megaValue === section.id ? <div ref={syncActiveMegaHeight} className="site-container mega-menu-inner">
+                        <div className={`header-menu-grid header-menu-grid--${section.id}`}>
+                          {section.id === "resources" ? <section className="header-resource-lead"><h2 className="header-menu-heading">{messages.findGradeData}</h2><p>{messages.resourceDescription}</p>{menuLink({ title: messages.findGradeData, href: localizedHref("/technical-data-sheets") }, "header-resource-action")}</section> : null}
+                          {section.groups.map((entry, index) => group(entry, section.id === "applications" || (section.id === "products" && index === 0)))}
+                          {section.id === "applications" ? <div className="header-part-feature"><Image src="/applications/parts/generated/components-directory-gears-cad-transparent-v1.webp" alt="" width={190} height={160} sizes="190px" />{menuLink(navigation.feature)}</div> : null}
                         </div>
-                        <Link
-                          href={localizedHref("/products")}
-                          prefetch={false}
-                          className="mega-menu-all-link"
-                          onClick={closeMega}
-                        >
-                          {messages.allProducts}{" "}
-                          <span aria-hidden="true">&rarr;</span>
-                        </Link>
-                      </div>
-
-                      <div className="mega-category-grid">
-                        {productCategoryLinks.map((item) => (
-                          <Link
-                            key={`${item.labelKey}-${item.href}`}
-                            href={localizedHref(item.href)}
-                            prefetch={false}
-                            className="mega-category-link"
-                            onClick={closeMega}
-                          >
-                            <span className="mega-category-eyebrow">
-                              {taxonomy.productEyebrows[item.eyebrowKey]}
-                            </span>
-                            <span className="flex min-w-0 items-center gap-2">
-                              <span className="mega-category-title mega-nav-label">
-                                {taxonomy.products[item.labelKey]}
-                              </span>
-                              {englishDestinationBadge(item.href)}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </NavigationMenu.Content>
-              </NavigationMenu.Item>
-
-              <NavigationMenu.Item value="applications">
-                <NavigationMenu.Trigger
-                  className="nav-link nav-trigger transition"
-                  aria-current={
-                    isCurrentSection("/applications") ||
-                    isCurrentSection("/components")
-                      ? "page"
-                      : undefined
-                  }
-                >
-                  {messages.applications}
-                </NavigationMenu.Trigger>
-                <NavigationMenu.Content className="mega-menu mega-menu-content application-menu">
-                  {activeMega === "applications" ? (
-                    <div
-                      ref={syncActiveMegaHeight}
-                      className="mega-menu-inner mega-menu-inner-simple"
-                    >
-                      <div className="mega-menu-panel-head">
-                        <div>
-                          <span>{messages.applicationAreas}</span>
-                          <p>{messages.applicationDescription}</p>
-                        </div>
-                        <Link
-                          href={localizedHref("/applications")}
-                          prefetch={false}
-                          className="mega-menu-all-link"
-                          onClick={closeMega}
-                        >
-                          {messages.allApplications}{" "}
-                          {englishDestinationBadge("/applications")}
-                          <span aria-hidden="true">&rarr;</span>
-                        </Link>
-                      </div>
-
-                      <div className="mega-simple-grid mega-simple-grid-applications">
-                        {applicationLinks.map((item) => (
-                          <Link
-                            key={item.href}
-                            href={localizedHref(item.href)}
-                            prefetch={false}
-                            className="mega-simple-link"
-                            onClick={closeMega}
-                          >
-                            <span className="flex min-w-0 items-center gap-2">
-                              <span className="mega-simple-title mega-nav-label">
-                                {item.label}
-                              </span>
-                              {englishDestinationBadge(item.href)}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ) : null}
-                </NavigationMenu.Content>
-              </NavigationMenu.Item>
-
-              <NavigationMenu.Item value="resources">
-                <NavigationMenu.Trigger
-                  className="nav-link nav-trigger transition"
-                  aria-current={
-                    isResourcesSection ? "page" : undefined
-                  }
-                >
-                  {messages.resources}
-                </NavigationMenu.Trigger>
-                <NavigationMenu.Content className="mega-menu mega-menu-content resource-menu">
-                  {activeMega === "resources" ? (
-                    <div
-                      ref={syncActiveMegaHeight}
-                      className="mega-menu-inner mega-menu-inner-simple mega-menu-inner-compact"
-                    >
-                      <div className="mega-menu-panel-head">
-                        <div>
-                          <span>{messages.technicalResources}</span>
-                          <p>{messages.resourceDescription}</p>
-                        </div>
-                        <Link
-                          href={localizedHref("/resources")}
-                          prefetch={false}
-                          className="mega-menu-all-link"
-                          onClick={closeMega}
-                        >
-                          {messages.allResources}{" "}
-                          {englishDestinationBadge("/resources")}
-                          <span aria-hidden="true">&rarr;</span>
-                        </Link>
-                      </div>
-
-                      <div className="mega-simple-grid mega-simple-grid-resources">
-                        <Link
-                          href={localizedHref("/technical-data-sheets")}
-                          prefetch={false}
-                          className="mega-simple-link"
-                          onClick={closeMega}
-                        >
-                          <span className="mega-simple-title mega-nav-label">
-                            {messages.findGradeData}
-                          </span>
-                        </Link>
-                        {resourceNavigationGroups.map((group) => (
-                          <Link
-                            key={group.id}
-                            href={localizedHref(
-                              getResourceNavigationGroupPath(group),
-                            )}
-                            prefetch={false}
-                            className="mega-simple-link"
-                            onClick={closeMega}
-                          >
-                            <span className="flex min-w-0 items-center gap-2">
-                              <span className="mega-simple-title mega-nav-label">
-                                {
-                                  taxonomy.resources[
-                                    group.id as ResourceTaxonomyKey
-                                  ].title
-                                }
-                              </span>
-                              {englishDestinationBadge(
-                                getResourceNavigationGroupPath(group),
-                              )}
-                            </span>
-                          </Link>
-                        ))}
-                        {caseStudies ? (
-                          <Link
-                            href={localizedHref(caseStudies.href)}
-                            prefetch={false}
-                            className="mega-simple-link"
-                            onClick={closeMega}
-                          >
-                            <span className="mega-simple-title mega-nav-label">{caseStudies.label}</span>
-                          </Link>
-                        ) : null}
-                      </div>
-                    </div>
-                  ) : null}
-                </NavigationMenu.Content>
-              </NavigationMenu.Item>
-
-              <NavigationMenu.Item>
-                <NavigationMenu.Link asChild>
-                  <Link
-                    href={localizedHref(newsHref)}
-                    prefetch={false}
-                    className="nav-link transition"
-                    aria-current={
-                      isCurrentSection("/news") ? "page" : undefined
-                    }
-                    onClick={closeMega}
-                  >
-                    <span>{messages.news}</span>
-                    {englishDestinationBadge(newsHref)}
-                  </Link>
-                </NavigationMenu.Link>
-              </NavigationMenu.Item>
-
-              <NavigationMenu.Item>
-                <NavigationMenu.Link asChild>
-                  <Link
-                    href={localizedHref("/about")}
-                    prefetch={false}
-                    className="nav-link transition"
-                    aria-current={
-                      isCurrentSection("/about") ? "page" : undefined
-                    }
-                    onClick={closeMega}
-                  >
-                    <span>{messages.aboutUs}</span>
-                    {englishDestinationBadge("/about")}
-                  </Link>
-                </NavigationMenu.Link>
-              </NavigationMenu.Item>
-
-              {navItems.map((item) => (
-                <NavigationMenu.Item key={item.href}>
-                  <NavigationMenu.Link asChild>
-                    <Link
-                      href={localizedHref(item.href)}
-                      prefetch={false}
-                      className="nav-link nav-trigger transition"
-                      aria-current={
-                        isCurrentSection(item.href) ? "page" : undefined
-                      }
-                    >
-                      {item.label}
-                    </Link>
-                  </NavigationMenu.Link>
-                </NavigationMenu.Item>
-              ))}
-            </NavigationMenu.List>
-          </NavigationMenu.Root>
-
-          <div className="header-utility-group">
-            {languageOptions.length > 0 ? (
-              <LanguageSwitcher
-                label={messages.languageSwitcherLabel}
-                options={languageOptions}
-                currentLocaleKey={currentLocaleKey}
-                preserveContactContext={logicalPathname === "/contact"}
-                variant="desktop"
-                onOpen={() => setMegaValue("")}
-              />
-            ) : null}
-
-            <Link
-              href={localizedHref("/technical-data-sheets")}
-              prefetch={false}
-              className="nav-search-button inline-flex items-center justify-center"
-              aria-label={messages.findGradeData}
-              aria-current={
-                isCurrentSection("/technical-data-sheets") ? "page" : undefined
-              }
-            >
-              <Search aria-hidden="true" size={18} strokeWidth={2.1} />
-            </Link>
+                        <div className="header-menu-bottom">{menuLink(section.overview)}{menuLink({ title: messages.discussApplication, href: localizedHref("/contact") })}</div>
+                      </div> : null}
+                    </NavigationMenu.Content>
+                  </NavigationMenu.Item>
+                ))}
+                <NavigationMenu.Item><NavigationMenu.Link asChild><Link href={localizedHref(newsHref)} prefetch={false} className="nav-link" aria-current={isCurrentSection("/news") ? "page" : undefined} onClick={closeMega}><span className="nav-link-label">{messages.news}</span></Link></NavigationMenu.Link></NavigationMenu.Item>
+              </NavigationMenu.List>
+            </NavigationMenu.Root>
+            <div className="header-business-actions">
+              <nav className="header-company-links" aria-label={messages.aboutUs}>
+                {rootLinks.slice(1).map(item => <Link key={item.href} href={item.href} prefetch={false} className="nav-link header-utility-link" aria-current={pathname === item.href ? "page" : undefined} onClick={closeMega}><span className="nav-link-label">{item.title}</span></Link>)}
+              </nav>
+              <div className="header-company-tools">
+                {languages("desktop")}
+                {dataLink("nav-data-link")}
+              </div>
+            </div>
+          </div>
+          <div className="header-mobile-utilities">
+            {dataLink("nav-data-link nav-data-link--mobile")}
+            <HeaderMobileMenu key={pathname} messages={messages} navigation={navigation} rootLinks={rootLinks} tdsHref={localizedHref("/technical-data-sheets")} languageControl={languages("panel")} onOpen={() => { closeMega(); closeLanguageMenus(); }} />
           </div>
         </div>
-
-        <div className="header-mobile-utilities flex items-center gap-2 lg:hidden">
-          {languageOptions.length > 0 ? (
-            <LanguageSwitcher
-              label={messages.languageSwitcherLabel}
-              options={languageOptions}
-              currentLocaleKey={currentLocaleKey}
-              preserveContactContext={logicalPathname === "/contact"}
-              variant="mobile"
-              onOpen={closeMobileMenu}
-            />
-          ) : null}
-        <details
-          key={pathname}
-          ref={mobileMenuRef}
-          className="mobile-menu relative z-50 lg:hidden"
-          onToggle={(event) => {
-            if (event.currentTarget.open) closeLanguageMenus();
-          }}
-        >
-          <summary className="nav-pill inline-flex cursor-pointer list-none items-center justify-center gap-2 px-3 py-2 text-sm">
-            <span className="mobile-menu-label mobile-menu-label-open">
-              {messages.menu}
-            </span>
-            <span className="mobile-menu-label mobile-menu-label-close">
-              {messages.close}
-            </span>
-            <span className="mobile-menu-icon" aria-hidden="true">
-              <span className="mobile-menu-icon-bar mobile-menu-icon-bar-first" />
-              <span className="mobile-menu-icon-bar mobile-menu-icon-bar-second" />
-            </span>
-          </summary>
-
-          <nav
-            className="mobile-menu-panel animate-menu-down absolute right-0 top-[calc(100%+0.8rem)] flex w-[min(20rem,calc(100vw-2.5rem))] flex-col p-4 text-sm font-semibold"
-            onClick={closeMobileMenuOnLinkClick}
-          >
-            <details className="mobile-product-group mobile-menu-section py-3">
-              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
-                <span>{messages.products}</span>
-                <span aria-hidden="true">+</span>
-              </summary>
-
-              <div className="mt-3 space-y-1 pl-4">
-                <Link
-                  href={localizedHref("/products")}
-                  prefetch={false}
-                  className="mobile-product-list mb-2 block py-1"
-                  aria-current={
-                    isCurrentSection("/products") ? "page" : undefined
-                  }
-                >
-                  {messages.allProducts}
-                </Link>
-
-                {productCategoryLinks.map((category) => (
-                  <Link
-                    key={`${category.labelKey}-${category.href}`}
-                    href={localizedHref(category.href)}
-                    prefetch={false}
-                    className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
-                    aria-current={
-                      logicalPathname === category.href ? "page" : undefined
-                    }
-                  >
-                    <span>{taxonomy.products[category.labelKey]}</span>
-                    {englishDestinationBadge(category.href)}
-                  </Link>
-                ))}
-              </div>
-            </details>
-
-            <details className="mobile-product-group mobile-menu-section py-3">
-              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
-                <span>{messages.applications}</span>
-                <span aria-hidden="true">+</span>
-              </summary>
-
-              <div className="mt-3 space-y-1 pl-4">
-                <Link
-                  href={localizedHref("/applications")}
-                  prefetch={false}
-                  className="mobile-product-list mb-2 flex items-center justify-between gap-3 py-1"
-                  aria-current={
-                    logicalPathname === "/applications" ? "page" : undefined
-                  }
-                >
-                  <span>{messages.allApplications}</span>
-                  {englishDestinationBadge("/applications")}
-                </Link>
-
-                {applicationLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={localizedHref(item.href)}
-                    prefetch={false}
-                    className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
-                    aria-current={
-                      logicalPathname === item.href ? "page" : undefined
-                    }
-                  >
-                    <span>{item.label}</span>
-                    {englishDestinationBadge(item.href)}
-                  </Link>
-                ))}
-              </div>
-            </details>
-
-            <details className="mobile-product-group mobile-menu-section py-3">
-              <summary className="mobile-menu-section-summary flex cursor-pointer list-none items-center justify-between gap-3">
-                <span>{messages.resources}</span>
-                <span aria-hidden="true">+</span>
-              </summary>
-
-              <div className="mt-3 space-y-1 pl-4">
-                <Link
-                  href={localizedHref("/resources")}
-                  prefetch={false}
-                  className="mobile-product-list mb-2 flex items-center justify-between gap-3 py-1"
-                  aria-current={
-                    logicalPathname === "/resources" ? "page" : undefined
-                  }
-                >
-                  <span>{messages.allResources}</span>
-                  {englishDestinationBadge("/resources")}
-                </Link>
-
-                {resourceNavigationGroups.map((group) => (
-                  <div className="mobile-resource-group" key={group.id}>
-                    <span className="mobile-resource-group-title">
-                      {
-                        taxonomy.resources[group.id as ResourceTaxonomyKey]
-                          .navigationLabel
-                      }
-                    </span>
-                    <Link
-                      href={localizedHref(
-                        getResourceNavigationGroupPath(group),
-                      )}
-                      prefetch={false}
-                      className="mobile-menu-sub-link flex items-center justify-between gap-3 py-2"
-                      aria-current={
-                        logicalPathname ===
-                        getResourceNavigationGroupPath(group)
-                          ? "page"
-                          : undefined
-                      }
-                    >
-                      <span>
-                        {
-                          taxonomy.resources[group.id as ResourceTaxonomyKey]
-                            .title
-                        }
-                      </span>
-                      {englishDestinationBadge(
-                        getResourceNavigationGroupPath(group),
-                      )}
-                    </Link>
-                  </div>
-                ))}
-                {caseStudies ? (
-                  <Link
-                    href={localizedHref(caseStudies.href)}
-                    prefetch={false}
-                    className="mobile-product-list flex items-center justify-between gap-3 py-1"
-                  >
-                    <span>{caseStudies.label}</span>
-                  </Link>
-                ) : null}
-              </div>
-            </details>
-
-            <Link
-              href={localizedHref(newsHref)}
-              prefetch={false}
-              className="mobile-menu-primary-link flex items-center justify-between gap-3 py-3"
-              aria-current={isCurrentSection("/news") ? "page" : undefined}
-            >
-              <span>{messages.news}</span>
-              {englishDestinationBadge(newsHref)}
-            </Link>
-
-            <Link
-              href={localizedHref("/about")}
-              prefetch={false}
-              className="mobile-menu-primary-link flex items-center justify-between gap-3 py-3"
-              aria-current={isCurrentSection("/about") ? "page" : undefined}
-            >
-              <span>{messages.aboutUs}</span>
-              {englishDestinationBadge("/about")}
-            </Link>
-
-            <Link
-              href={localizedHref("/technical-data-sheets")}
-              prefetch={false}
-              className="mobile-menu-primary-link mobile-menu-search-link py-3"
-              aria-current={
-                isCurrentSection("/technical-data-sheets") ? "page" : undefined
-              }
-            >
-              <Search aria-hidden="true" size={16} strokeWidth={2.1} />
-              <span>{messages.findGradeData}</span>
-            </Link>
-
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={localizedHref(item.href)}
-                prefetch={false}
-                className="mobile-menu-primary-link py-3"
-                aria-current={isCurrentSection(item.href) ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            ))}
-
-            <Link
-              href={localizedHref("/contact")}
-              prefetch={false}
-              className="cta-primary mt-4 px-4 py-3 text-center text-sm"
-            >
-              {messages.discussApplication}
-            </Link>
-          </nav>
-        </details>
-        </div>
-      </div>
-    </header>
+      </header>
+      {megaValue ? <button type="button" className="header-mega-scrim" tabIndex={-1} aria-label={messages.close} onClick={closeMega} /> : null}
+    </>
   );
 }

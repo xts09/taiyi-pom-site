@@ -13,7 +13,7 @@
   --taiyi-cyan: #00b8d9;
   --taiyi-mint: #45d3a7;
   --taiyi-line: rgba(148, 163, 184, 0.28);
-  --site-header-height: 3.9375rem;
+  --site-header-height: var(--ds-header-height-desktop);
   --site-max: 92rem;
   --site-gutter: clamp(2rem, 7.5vw, 7rem);
   --site-rail-width: min(var(--site-max), calc(100vw - var(--site-gutter) * 2));
@@ -3090,17 +3090,6 @@ body {
   transform: translateY(0);
   transition-delay: 0s;
   visibility: visible;
-}
-
-.mega-menu-inner {
-  width: min(100%, 72rem);
-  margin: 0 auto;
-  padding: clamp(1.35rem, 2.4vw, 2rem) clamp(1rem, 4vw, 2.5rem)
-    clamp(1.45rem, 2.6vw, 2.2rem);
-}
-
-.mega-menu-inner-compact {
-  width: min(100%, 42rem);
 }
 
 .product-menu-head {

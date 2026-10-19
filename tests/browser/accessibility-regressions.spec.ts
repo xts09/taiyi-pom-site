@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { applicationNavigationEntries } from "../../src/data/applicationNavigation.ts";
 import {
   getSitemapLanguageOptions,
   getSitemapReleasedSourcePaths,
@@ -102,6 +103,7 @@ test("mobile show-more controls a real region and retains keyboard focus", async
 test("Header application navigation is stable on dark and light surfaces", async ({
   page,
 }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
   for (const [path, overHero] of [
     ["/", true],
     ["/products", false],
@@ -115,12 +117,23 @@ test("Header application navigation is stable on dark and light surfaces", async
       await expect(header).not.toHaveClass(/site-header--over-hero/);
     }
 
-    await page.getByRole("button", { name: "Applications" }).focus();
-    const applicationMenu = page.locator(".application-menu");
+    const trigger = header.getByRole("button", { name: "Applications", exact: true });
+    await trigger.focus();
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await page.keyboard.press("Enter");
+    const applicationMenu = page.locator(".header-menu-grid--applications");
     await expect(applicationMenu).toBeVisible();
-    await expect(
-      applicationMenu.locator(".mega-simple-grid-applications a"),
-    ).toHaveCount(9);
+    const industryLinks = applicationMenu.locator(".header-menu-group").first().getByRole("link");
+    await expect(industryLinks).toHaveCount(applicationNavigationEntries.length);
+    for (const entry of applicationNavigationEntries) {
+      await expect(applicationMenu.locator(`a[href="/applications/${entry.slug}"]`)).toBeVisible();
+    }
+    await page.keyboard.press("ArrowDown");
+    await expect.poll(() => applicationMenu.evaluate(element => element.contains(document.activeElement))).toBe(true);
+    await page.keyboard.press("Escape");
+    await expect(applicationMenu).not.toBeVisible();
+    await expect(trigger).toBeFocused();
+    await expect(header.locator(".header-company-tools .nav-data-label")).toHaveText("Find TDS");
   }
 });
 

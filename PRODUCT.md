@@ -6,9 +6,7 @@ This file is the product, content, design, and acceptance reference for the Taiy
 
 The homepage body, precision-gear and engineering-GF compositions, application
 part groups, shared reading controls and inquiry diagnostics are approved for
-release together. The Home material showcase, Products overview and priority
-copy/CTA fixes are included in the October 17 release revision. Internal
-component acceptance pages remain development-only.
+release together. Internal component acceptance pages remain development-only.
 The current production Header remains the released navigation owner; the local
 navigation revision and its related tokens, messages, examples and tests stay
 outside this release. Actual deployment timing and verification evidence belong
@@ -47,60 +45,147 @@ The current homepage and main navigation baseline is:
 - Header, mega menu, homepage content, and inner-page modules use the shared
   `92rem` maximum rail with fluid side gutters defined by the runtime site
   variables.
-- Main navigation is white, compact, and right-weighted, with a dark logo, smaller nav labels, a `Contact` text link, and a search icon button instead of a heavy quote button.
-- The homepage should avoid region-dividing lines, faint grid overlays, nested pale panels, and second-layer background blocks over the main page background.
-- The first screen should stay restrained and image-led. React Bits-style interaction should begin below the hero unless there is a strong functional reason.
-- The homepage hero copy is a lower-left group with a maximum 56rem column and
-  the existing medium hero title role on wide desktops. Do not restore the old
+- The local Header adopts the selected single-row layout (2026-10-17).
+  Wordmark, Products, Applications, Resources, News, About, Contact, native
+  language and Find TDS share one vertical center. Wide desktop includes the
+  inline HIGH-PERFORMANCE / ENGINEERING PLASTICS descriptor; compact desktop
+  hides the supplementary descriptor. Hero routes retain continuous dark
+  frosted glass and inner routes retain white. Products keeps the POM,
+  polyamide and conductive/antistatic groups; POM distinguishes performance
+  from reinforcement/fillers with Base Resin separate. The change is local;
+  it has not been included in the production release above. Existing routes,
+  full grade-data descriptions and language destinations remain authoritative.
+- Homepage content uses cold white and canvas surfaces, with fine rules for
+  support items, catalogue rows and manufacturing facts. Avoid decorative grid
+  overlays and unnecessary nested panels.
+- The first screen stays restrained and image-led. Below-hero content remains
+  visible without entrance or scroll effects; hover/focus feedback serves links.
+- The homepage hero copy is a lower-left material statement with a single
+  H1 and the existing title column. Headings use IBM Plex Sans with Chinese
+  sans fallbacks. Body copy keeps its existing measure. Do not restore the old
   72px upward translation. Mobile reserves the header height plus 32px before
-  the copy; existing copy, video, and next-module ownership remain unchanged.
-- The shared language selector exposes one current-language control and opens
-  native-language destination links on demand. On mobile it stays available
-  beside Menu, not buried inside the main navigation panel.
+  the copy; existing Hero copy and video ownership remain unchanged.
+- The shared language selector exposes one native-name disclosure on desktop.
+  Mobile uses a native-language select in the persistent full-screen menu
+  footer, retaining equivalent-route and Contact-context destinations.
 
 - The Resources mega menu includes an explicit grade-data/TDS entry to the
   localized `/technical-data-sheets` directory. The desktop TDS action and
   mobile data link lead to that same released directory; this entry does not
   imply a separate site-wide resource search.
 
-### Homepage And Products Composition — Release Revision, 2026-10-17
+### Homepage Hero — Local Implementation, 2026-10-16
+
+The English homepage uses the approved high-performance material statement,
+with manufacturer identity and modified POM positioning in the supporting copy:
+
+- English H1: `High-Performance Engineering Plastics`
+- English Hero body: `Taiyi Polymer is an engineering plastics manufacturer with modified POM at its core and a portfolio extending to PA6, PA66 and PPA. We develop tailored materials for wear resistance, low friction, reinforcement, conductivity and antistatic performance—helping customers move new ideas toward production.`
+- English SEO title: `Engineering Plastics & Modified POM Manufacturer | PLATFORM®`
+- English meta description: `Taiyi Polymer is a manufacturer of high-performance engineering plastics, specializing in modified POM and custom PA6, PA66 and PPA compounds for industrial applications.`
+- Chinese: `面向精密注塑零部件的工程塑料制造商`
+
+Existing i18n fields own this English copy and metadata, rendered once inside a
+single H1 using the existing responsive title column and type scale. Other
+languages retain their current copy and metadata. Hero media, eyebrow, CTA links,
+canonical/language alternates, Open Graph configuration, structured data and all
+homepage body modules retain their existing owners. Open Graph and Twitter text
+continue to follow the homepage title and description through the existing
+metadata builder. The Organization schema retains the legal company name and
+uses Taiyi Polymer as its alternate public name.
+
+The website uses its existing IBM Plex Sans typography and Chinese sans
+fallbacks. Homepage H1 copy remains owned by the existing translation fields.
+
+### Navigation Adoption — Local Implementation, 2026-10-15
+
+The reviewed navigation proposal is adopted in the shared Header across
+released languages and route families. Product groups reuse the Home material
+builder; industry/component destinations and released Resource entries reuse
+their registries. Desktop uses company utilities, business navigation and TDS;
+tablet/phone uses a full-screen drill-down menu with Back, Close, TDS and
+language selection. `/design-system#navigation` now defaults to the actual
+Header, with the original concept retained as a reference. The current visual
+and ownership contracts live in `DESIGN.md` and `COMPONENTS.md`.
+
+This records local implementation, not a deployment. Verification evidence
+is under `outputs/hero-navigation-adoption-20261015/`.
+
+### Homepage Body Adoption — Local Implementation, 2026-10-14
 
 The homepage body uses the existing Hero in English, Chinese, German, French
-and Brazilian Portuguese. Its revised body opens with the material photograph
-and POM/PA6/PA66/PPA links, followed by component images, industry photos,
-project support, manufacturing and laboratory evidence, then four inquiry paths.
-Public routes and metadata retain their owners.
+and Brazilian Portuguese. The local composition revised on 2026-10-17 opens
+with the material photograph and POM/PA6/PA66/PPA links, followed by component
+images, industry photos, project support, manufacturing and laboratory evidence,
+then four inquiry paths. This revision is a local preview; publishing remains
+paused. Public routes, metadata and release boundaries retain their owners.
 
 The Products overview uses the three-column material catalogue in place of its
 former family list, ahead of requirement-based selection: POM, PA6/PA66/PPA,
 and conductive/antistatic compounds. Its compact density reduces row spacing
-and padding. Its Hero pairs a natural-POM material photograph with an
+and padding. Its local Hero pairs a natural-POM material photograph with an
 introduction to material properties, typical parts and product families, plus
 one TDS action. The directory follows directly, with requirement-based selection
 below. The introduction is owned by `Products.hero.body` in all five languages.
 Its H1 names the page's task: “Materials & Grades” / “材料与牌号”, with native
 equivalents in German, French and Brazilian Portuguese.
-
-Counts come from the catalogue; conductive coverage is expressed as polymer
-matrices, separate from individual published grades. POM subfamily totals do
-not double-count the ultra-high-flow subset of base resin. The mobile catalogue
-expands one group at a time; component and industry image entries retain their
-existing destinations. Manufacturing evidence uses real factory and laboratory
-photographs, company figures and original certificate PDFs.
+Counts are derived from the current catalogue; conductive coverage
+is expressed as polymer matrices, separate from individual published grades.
+POM subfamily totals do not double-count the ultra-high-flow subset of base
+resin. The mobile catalogue expands one group at a time; component and industry
+cards use compact two-column layouts. Evidence uses existing Yancheng factory
+and laboratory photographs, company figures and original certificate PDFs.
 
 TDS links open the data directory. Sample, grade evaluation and supply links
 open the existing localized Contact flow with the corresponding intent.
 Localized POM grade data tables' document requests use the `tds` intent and
 retain the grade, material and source. Localized TDS browse descriptions derive
-their total from the displayed grade groups. Selection and inquiry copy names
-concrete candidate grades, engineering tradeoffs and deliverables using verified
-catalogue information.
+their total from the displayed grade groups.
 
-The inquiry module's blue curve is a decorative generated asset. Composition
-and priority-fix evidence is recorded under
-`outputs/home-products-catalogue-preview-2026-10-17/` and
-`outputs/priority-fixes-2026-10-17/`; production release evidence is recorded
-separately when deployment completes.
+The blue curve is a decorative generated asset, not a manufacturing photograph.
+Task evidence is saved in `outputs/home-adoption-20261014/`; this entry records
+local implementation rather than a deployment.
+
+### Internal Component Acceptance — 2026-10-10
+
+`/design-system` is a development-only review surface for the shared UI system.
+It remains a long-term internal tool, maintained alongside shared components,
+approved variants, tokens, and interaction states. `COMPONENTS.md` defines its
+maintenance contract and stable section entries; `AGENTS.md` applies that
+contract to future production UI tasks.
+It uses the existing runtime tokens and production components, plus the initial
+shadcn Field composition adapter. It is excluded from public navigation and
+sitemaps, marks itself `noindex`, and returns not-found outside development.
+It does not add a customer-facing route or change the approved release scope.
+Component ownership and migration boundaries remain documented in
+`COMPONENTS.md`; rendered task evidence is kept under
+`outputs/component-system-20261010/`.
+
+The development-only `/design-system/engineering-gf` companion calls the real
+PA66 landing composition for shared-component verification. Its production
+release gate remains owned by the release manifest.
+
+The Home acceptance coverage includes material catalogue and image-entry
+specimens at `/design-system#home-patterns`, shared photos/figures/documents at
+`/design-system#evidence`, and the complete body at `/design-system/home`.
+The companion selects existing localized messages with `?lang=zh`, `en`, `de`,
+`fr` or `pt-br` and uses the production body components and inquiry destinations.
+It follows the same development-only, noindex and public-navigation/sitemap
+boundaries. The Home Hero remains on the production homepage.
+
+The gallery and Home companion share a sticky section index and preview-language
+selector. The gallery's `?lang=` selects existing Home/evidence messages and
+localized destinations; the internal interface stays Chinese. Switching language
+preserves the current recognized section. Links to the full composition and
+actual homepage retain that language. These are internal acceptance controls
+and do not change public navigation, page content or release coverage.
+
+The gallery's `#navigation` specimen loads the actual localized Home or Products
+page in one isolated preview, covering the shared Header's dark/white surfaces,
+menus, language control and responsive states. Its scene and viewport controls
+remain internal. On mobile, the gallery and Home companion use a single-row
+native category selector beside the language selector, retaining the stable
+anchors and current-section state.
 
 ### Approved Release Scope (2026-10-07)
 
@@ -547,6 +632,30 @@ introduction with separate factory and laboratory evidence rows.
   general inquiry buttons use the canonical application label and pass POM
   plus the localized gear application into the existing contact form.
 
+### Precision Gear Landing Composition (2026-10-09, Local Implementation)
+
+- The English and Chinese Precision Plastic Gears page now follows material
+  comparison, grouped customer-case evidence, optional technical topics and
+  the final inquiry. The Hero prioritizes material comparison while retaining
+  the direct application inquiry.
+- Material comparison rows show the family, suitability and product path.
+  Validation checks accompany the respective family in the selection-details
+  disclosure.
+- The ETM 100P case separates the customer problem and production adoption
+  from the recorded assembly-test conditions and result. Sample quantity,
+  subsequent wear/slipping and the test boundary remain beside the result.
+  The page does not publish customer photographs or invent a material-life
+  guarantee.
+- Supporting cases put the vending-machine drive gear before the wiper-motor
+  support housing, with concise issue, material/design and reported-stage
+  summaries. Their existing case records and placement mappings remain canonical;
+  the local order does not reorder other pages.
+- Technical content and document/application links remain available in native
+  disclosures and contextual reading groups. The final inquiry pairs a concise
+  description with one application inquiry action within the page. The shared
+  Footer provides brand, contact channels, navigation, and legal links. This composition is
+  local and awaits release.
+
 ### Engineering GF Directory And Material Copy (2026-10-06, Local Implementation)
 
 - PA6, PA66 and PPA glass-fiber landing directories support filtering by
@@ -959,6 +1068,25 @@ Avoid:
 
 ## Content And Data Requirements
 
+### Grade And Application Copy Distillation — 2026-10-09, local implementation
+
+- English grade Heroes and localized engineering/POM introductions describe the material, grade or available data directly. Property-data qualifications remain beside the tables; the localized grade owners render the shared data-basis paragraph once below the table.
+- Localized engineering introductions retain the catalog family and reinforcement direction. Reviewed grade-summary translation templates are owned by `engineeringGradeMessages.ts` and `expandedLocaleOverrides.ts`; the general translation entry accepts those exact templates. Catalog properties, test methods and project notes retain their existing sources.
+- Applications index copy describes the available parts, material information and grade-data paths. The shared application-detail and component-detail messages use concise section labels and inquiry introductions. Bespoke application sections keep their page-specific owners; this change does not replace their technical narratives.
+- The English/Chinese gear landing uses a direct POM material heading and grade-data inquiry. Its three material checks, authentic endurance case and detailed technical disclosures retain their evidence and scope.
+- The five-language PA66 GF landing now places its material-properties section immediately after the Hero/navigation, before the grade directory. Navigation follows the displayed order: properties, grades, applications. Its molding/selection notes remain in the existing disclosure. PA6/PPA keep their current composition. This refinement remains local and awaits release.
+
+### Gear Component Adoption — 2026-10-13, local implementation
+
+The English/Chinese precision-plastic-gear landing now composes shared
+`SectionIntro`, Radix `Accordion`, and the `Card` evidence surface. Material
+links, section anchors, recorded customer-case facts and the final grade-data
+inquiry retain their owners. Technical panels stay in server-rendered HTML
+through opt-in mounting while remaining hidden until opened. Page-local CSS
+owns the content grid and spacing; component styles own titles, disclosure
+interaction and the evidence surface. This local implementation does not
+change the approved release scope.
+
 ### Case discovery and inquiry repair — 2026-09-09, local implementation
 
 - Case overview and detail inquiry actions resolve the localized Contact path
@@ -1089,7 +1217,39 @@ evidence and technical boundaries remain valid.
   The automotive module omits the mixed
   handle/guide-ring asset until an accurate image is supplied. Fuel parts link
   to evaluation guidance and inquiry without a generic material recommendation.
-- This update is local and has not been deployed.
+- The original review status was local; later release history is recorded
+  separately. Do not infer the current production version from this entry.
+
+#### Automotive application subcategories — 2026-10-08, local implementation
+
+- Automotive now uses the same category-tab, part-image and adjacent
+  requirements composition as the other seven reviewed application details.
+  Visibility/window systems remain the initial category; fuel management,
+  seat guidance, control/actuation and retention/latching remain peer entries.
+- All twelve canonical part records, source descriptions and group memberships
+  are retained. Materials and contextual inquiries follow the selected part,
+  using `automotivePartMaterials` rather than a category-wide union. Wear and
+  friction retain both source conditions at their common material destination.
+- EGH402H carrier-plate and EGH602H gearbox-housing evidence follows its
+  corresponding part image, with unchanged summaries, validation stages,
+  structural-use boundaries and English source markings where required.
+  The final resources section retains all three case links and their validation
+  stages, including the EGH502H seat-positioning plate case; it does not
+  establish guide-ring suitability.
+- Fuel parts retain evaluation/inquiry without generic POM recommendations or
+  material prefill. The mixed seat-guide/handle image remains omitted; that
+  category uses an image-free requirements/material composition.
+- Five-language category copy is owned by
+  `src/data/automotivePartGroupPageDesign.ts`. Existing category and part
+  bookmarks still reveal their target. The follow-up simplification keeps
+  material conditions and exact component guides beside each part, omits the
+  duplicate standalone material grid and component-card area, and places case
+  discovery within the final resources section. Former material-section hashes
+  resolve to the part/material area. Shared navigation retains its owner;
+  automotive exposes two section links. The final consultation section remains
+  within the page; the shared Footer owns contact channels and navigation.
+  Quality-evidence scope remains unchanged. These October 8 changes are local
+  and await release.
 
 ### Resources
 
@@ -1119,6 +1279,15 @@ evidence and technical boundaries remain valid.
   Ads lead action retain the confirmed server-delivery boundary; opening an
   email draft remains a fallback, not a delivered inquiry. This repair awaits
   release and GA4 receipt verification.
+
+- Google Ads inquiry tracking reuses the existing global Google tag and
+  server-confirmed, non-spam delivery boundary. The default production target
+  for `AW-18381447688` is `VBrBCNWr3qEdEIjE-rxE`; an explicit environment label
+  overrides it, and an empty label disables that conversion. A different Ads
+  account requires its own explicit label. Consent-gated `form_mail` records an
+  accepted submit attempt, not a delivered inquiry. Email enhanced conversions
+  remain disabled while `ad_user_data` is denied. Local implementation does not
+  establish deployment or Google Ads receipt.
 
 ## Functional Requirements
 
@@ -1209,6 +1378,9 @@ Avoid:
 - Treating code-level sameness as visual sameness. Shared variables, reused selectors, or one DOM layer do not satisfy the design unless the rendered surface actually looks consistent.
 
 ## Header Glass Quality Bar
+
+The dark frosted-glass material was restored on 2026-10-16 at the user's
+request. These criteria apply to the current Hero-route navigation.
 
 When the header uses a dark frosted-glass treatment, the navigation bar and expanded mega menu must read as one intentional material system.
 
@@ -1342,6 +1514,9 @@ The shared Footer retains the white PLATFORM® wordmark and identifies the
 manufacturer/material-brand relation in the caption below. Its Resources group includes a direct Grade Data & TDS link
 to `/technical-data-sheets`, resolved through the active locale release manifest.
 Five-language labels stay complete and wrap within their navigation columns.
-Mobile retains labeled disclosures and contact channels. A page CTA marked
-`footerAdjacent` suppresses the Footer inquiry pitch. This refinement is local;
+Mobile retains labeled disclosures and contact channels. Brand relationship,
+public contact channels, localized navigation, and legal links use the same
+shared composition on every route. Application consultation and grade-evaluation
+actions belong to page content. `Footer.tsx` owns the structure and `FooterMessages`
+contains only the copy that this structure consumes. This implementation is local;
 publication requires the normal release checks.

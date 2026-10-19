@@ -6,6 +6,7 @@ export const showcaseSections = [
   { id: "fields", label: "表单" },
   { id: "disclosures", label: "折叠" },
   { id: "surfaces", label: "卡片" },
+  { id: "navigation", label: "导航" },
   { id: "evidence", label: "图片与证据" },
   { id: "composition", label: "标题与组合" },
   { id: "grade-directory", label: "牌号目录" },

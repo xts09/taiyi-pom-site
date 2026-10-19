@@ -109,6 +109,16 @@
   --ds-section-space-lg: var(--ds-space-28);
 
   /* Layer 3: component roles. */
+  --ds-header-height-desktop: 5rem;
+  --ds-header-height-tablet: 4.75rem;
+  --ds-header-height-mobile: 4.5rem;
+  --ds-header-surface-dark: #0a1c2b;
+  --ds-header-glass-fill: rgba(2, 7, 10, 0.48);
+  --ds-header-glass-filter: blur(28px) saturate(1.14) brightness(0.94) contrast(1.04);
+  --ds-header-glass-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+  --ds-header-muted-dark: #b9c8d6;
+  --ds-header-accent-dark: #a8d4ff;
+  --ds-header-rule-dark: rgba(206, 224, 241, 0.18);
   --ds-button-primary-bg: var(--ds-action-primary);
   --ds-button-primary-bg-hover: var(--ds-action-primary-hover);
   --ds-button-primary-fg: var(--ds-foreground-on-dark);

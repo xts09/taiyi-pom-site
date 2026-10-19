@@ -14,9 +14,31 @@ test("Header uses the lightweight application navigation boundary", () => {
     resolve(projectRoot, "src/components/Header.tsx"),
     "utf8",
   );
+  const navigationSource = readFileSync(
+    resolve(projectRoot, "src/lib/headerNavigation.ts"),
+    "utf8",
+  );
+  const siteDocumentSource = readFileSync(
+    resolve(projectRoot, "src/components/SiteDocument.tsx"),
+    "utf8",
+  );
 
-  assert.match(headerSource, /@\/data\/applicationNavigation/);
   assert.doesNotMatch(headerSource, /@\/data\/applications/);
+  assert.doesNotMatch(headerSource, /@\/data\/applicationNavigation/);
+  assert.match(
+    headerSource,
+    /import type \{[^}]*HeaderNavigationModel[^}]*\} from "@\/lib\/headerNavigation"/,
+  );
+  assert.match(navigationSource, /@\/data\/applicationNavigation/);
+  assert.doesNotMatch(navigationSource, /@\/data\/applications/);
+  assert.match(navigationSource, /applicationNavigationEntries\.map/);
+  assert.match(navigationSource, /messages\.Taxonomy\.applications\[entry\.slug\]/);
+  assert.match(navigationSource, /`\/applications\/\$\{entry\.slug\}`/);
+  assert.match(
+    siteDocumentSource,
+    /navigation=\{buildHeaderNavigation\(messages,\s*localeSegment\)\}/,
+  );
+  assert.match(headerSource, /navigation\.sections\.map/);
 });
 
 test("application navigation entries stay aligned with application owners", () => {

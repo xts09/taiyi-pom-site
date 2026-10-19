@@ -16,6 +16,10 @@ colors:
   on-dark: "#ffffff"
   on-dark-muted: "rgba(226, 236, 245, 0.82)"
   quiet-rule: "rgba(15, 23, 42, 0.13)"
+  header-navy: "#0a1c2b"
+  header-muted: "#b9c8d6"
+  header-accent: "#a8d4ff"
+  header-rule: "rgba(206, 224, 241, 0.18)"
 typography:
   display:
     fontFamily: '"IBM Plex Sans Variable", "Noto Sans SC", system-ui, sans-serif'
@@ -90,6 +94,20 @@ breakpoints:
   lg: "64rem"
   xl: "80rem"
 components:
+  header:
+    desktopHeight: "5rem"
+    tabletHeight: "4.75rem"
+    mobileHeight: "4.5rem"
+    tabletMaxWidth: "1199px"
+    mobileMaxWidth: "600px"
+    darkSurface: "{colors.header-navy}"
+    glassFill: "rgba(2, 7, 10, 0.48)"
+    glassFilter: "blur(28px) saturate(1.14) brightness(0.94) contrast(1.04)"
+    glassShadow: "0 12px 30px rgba(0, 0, 0, 0.16)"
+    darkMuted: "{colors.header-muted}"
+    darkAccent: "{colors.header-accent}"
+    darkRule: "{colors.header-rule}"
+    lightSurface: "{colors.polymer-white}"
   button-primary:
     backgroundColor: "{colors.taiyi-cobalt}"
     textColor: "{colors.on-dark}"
@@ -153,7 +171,7 @@ can be reviewed before that production migration or business-content audit.
 
 The site should feel like a well-run materials laboratory connected directly to a real production floor. It is precise, evidence-led, calm, and physical. Real factory, laboratory, certificate, pellet, molded-part, and technical-document imagery carries more authority than decorative graphics.
 
-The existing industrial identity remains the foundation: a near-white technical canvas, deep navy evidence surfaces, Taiyi cobalt interactions, restrained satin texture, one IBM Plex Sans voice across display, navigation, and body roles, and a shared wide content rail. The system consolidates these choices rather than replacing them.
+The current production foundation uses a near-white technical canvas, deep navy evidence surfaces, Taiyi cobalt interactions, restrained satin texture, one IBM Plex Sans voice and a shared wide content rail. Preserve it for repairs and extensions. A concept or requested redesign may test a different visual language under the applicability rules above.
 
 Cards, shadows, dark sections, and texture must explain hierarchy. They are not default decoration. Pages should first establish one clear reading path, then use components only where grouping or interaction earns them.
 
@@ -195,12 +213,12 @@ logic rather than introduce a disconnected surface language.
 ## Homepage First-Two-Screen Benchmark
 
 The Home Hero remains the production baseline for repairs and extensions.
-The below-hero composition revised on 2026-10-17 begins with the existing
+The local below-hero composition revised on 2026-10-17 begins with the existing
 material photograph and four family links in `HomeCoreProductExplorer.tsx` /
 `home.css`. `HomeSections.module.css` owns the following component images,
 industry photos, project support, manufacturing/testing and inquiry paths.
-The three-column material catalogue belongs on the Products overview, before
-requirement-based selection.
+The three-column material catalogue now belongs on the Products overview,
+before requirement-based selection. This composition is a local preview.
 
 `/design-system#home-patterns` maintains the actual catalogue and entry-card
 specimens; `/design-system#evidence` covers the shared photo, metric and document
@@ -467,7 +485,9 @@ The system is flat by default and uses tonal layering first. Light panels separa
 
 - **Header Ambient:** A subtle downward shadow on the solid inner-page header to separate navigation from content.
 - **Panel Ambient:** A soft navy-tinted shadow for large evidence, contact, or inquiry panels that need to lift from a similar background.
-- **Frosted Header Depth:** Blur, a faint inner highlight, and one restrained shadow behave as a single material when the header overlays imagery.
+- **Header Continuity:** The header and expanded panel share one uninterrupted
+  frosted-glass surface on Hero routes. A single backdrop layer spans the bar
+  and expanded menu, with soft background bleed and no material seam.
 
 **The Flat by Default Rule.** A component gets either a border, a surface change, or a shadow at rest. Do not stack all three.
 
@@ -486,15 +506,15 @@ Every background or panel surface must declare one of these roles:
 - **Evidence:** Production/evidence navy around real certificates, documents,
   factory images, or test context.
 - **Conversion:** One decisive inquiry area near the end of a page.
-- **Footer:** Production navy navigation and contact foundation; it does not
-  become a second full conversion section when a conversion band directly
-  precedes it.
+- **Footer:** Production navy foundation for brand, contact channels,
+  navigation, and legal information. Application consultation belongs to the
+  page's main content.
 
 Adjacent full-width bands must differ through a meaningful role, not a thin
 line. Do not place more than two visually similar dark bands in sequence. When
-a dark conversion band sits directly above the Footer, either reduce the
-Footer pitch hierarchy or simplify the conversion band so the two do not read
-as duplicate endings.
+a dark conversion band sits directly above the Footer, keep its application
+action within the page and let the Footer continue with its brand, contact,
+navigation, and legal composition.
 
 Generated texture is permitted only for calm, non-factual material surfaces.
 Real certificates, factories, laboratories, parts, and production claims must
@@ -513,6 +533,22 @@ Borders are one pixel and quiet. Decorative thick side rules, repeated card outl
 The production component inventory, ownership rules, controlled variants, and
 migration status live in `COMPONENTS.md`. This section defines the visual rules;
 the registry defines which shared implementation owns each recurring role.
+
+`/design-system` is the maintained internal visual acceptance surface for
+these rules. Its specimens use the real shared components and runtime tokens.
+Production system changes keep the affected examples current and are reviewed
+both there and in representative consuming pages. The maintenance contract
+and stable section entries live in `COMPONENTS.md`.
+
+The acceptance tool has its own compact category hierarchy and sticky index.
+Its page and category headings use the existing fixed type tokens, while the
+specimens retain their production typography, surfaces and interactions. A
+shared native language control lets Home, navigation and evidence specimens use
+existing localized content without changing runtime design-token values.
+On mobile, native category and language selectors share one 64px row; the
+category selector replaces the horizontally scrolling index. The navigation
+specimen embeds one actual page at a time so menu surfaces and interactions
+stay owned by the production Header.
 
 ### Buttons
 
@@ -594,16 +630,58 @@ height, radius, border, focus treatment, or primary-action color.
 
 ### Navigation
 
-- **Desktop:** Single-line navigation using IBM Plex Sans. Current-section and hover indicators share one text-level underline baseline; mega-menu link hover indicators stay at text level as well.
-- **Hero routes:** Header and expanded menu read as one dark frosted material with stable contrast and no visible gap.
-- **Inner routes:** White header and white expanded menu connect directly without a separate gray strip.
-- **Desktop fit:** Between 1024px and 1279px, use compact token spacing between navigation labels and utilities. Keep a visible gap between the logo and navigation. The supplementary brand descriptor appears from 1440px; labels remain on one line at every desktop width.
-- **Mobile:** Use the existing labeled Menu control and stacked groups. Do not shrink the desktop menu into an unreadable row. Mobile rows retain at least the 44px touch-target token, and the inquiry CTA stays fully visible when reached by scrolling. Disclosure indicators use the header's active accent so they remain legible on both dark and white panels.
+- **Desktop:** The selected single-row navigation uses an 80px bar at widths
+  of 1200px and above. Wordmark, business links, company links, native-language
+  control and cobalt Find TDS action share one vertical center. Accept visible
+  centers within 2px in rendered output. The existing shared rail remains.
+  At 1680px and above, the 190px wordmark has an inline two-line
+  HIGH-PERFORMANCE / ENGINEERING PLASTICS descriptor with an 11px/600 type
+  treatment and one subtle vertical separator. Below 1680px this supplementary
+  descriptor is hidden. The mobile bar shows the wordmark alone; the mobile
+  dialog retains its stacked ENGINEERED POLYMERS caption.
+- **Type and controls:** IBM Plex Sans remains the shared navigation face.
+  Main labels are 17px/500 on wide desktop and 16px/500 on compact desktop;
+  expanded destinations are 16px/500. Dark-header controls use white.
+  The action and language control use 15px type. All controls retain at least
+  a 44px target. `.nav-link-label` owns current/hover text underlines, excluding
+  the rotating chevron; `.mega-nav-label` owns expanded-item underlines.
+- **Hero routes:** Header and expanded panel share the continuous dark frosted
+  glass restored on 2026-10-16. One backdrop layer spans their combined height
+  using the component fill, 28px filter and soft shadow tokens. Keep the
+  perceived blur, background bleed and seamless join. Navy is the opaque fallback
+  and language-popover surface.
+- **Inner routes:** White header and expanded menu connect directly without
+  a separate strip or gap. Visible menu edges align with the same page rail.
+- **Menu composition:** Products uses a 2:1:1 grid for POM, polyamides and
+  conductive/antistatic materials. POM has two labeled subcolumns, Performance
+  and Reinforcement & Fillers, with Base Resin separate. Applications retains
+  industry/component groups and the gear entry. Resources leads with grade
+  data and technical/support routes. Existing model, destinations and localized
+  labels remain authoritative. Groups and overview actions use spacing rather
+  than decorative dividers.
+- **Desktop fit:** Between 1200px and 1679px, hide the inline descriptor and
+  use compact spacing. Between 1200px and 1279px use a 164px wordmark and
+  tighter group spacing. Keep labels on one line and the localized action
+  visible at every desktop width.
+- **Grade data utility:** The visible action is `Find TDS` in English and
+  `查找 TDS` in Chinese, with corresponding German/French/Portuguese labels
+  owned by `Header.findTds`. Keep the full `findGradeData` accessible name and
+  title and the localized `/technical-data-sheets` target. Resource descriptions
+  retain their full grade-data wording.
+- **Tablet and mobile:** At 1199px and below use a 76px bar; at 600px and below
+  use 72px. At 360px and below the wordmark contracts to 96px. Keep the
+  localized Find TDS action and labeled Menu control. The full-screen native
+  dialog retains root, group and destination levels, 44px minimum targets,
+  persistent TDS/language footer, focus return and scroll release on close.
+  Equivalent-route and inquiry-context language destinations are preserved.
+- **Offsets:** `--site-header-height` aliases responsive component height
+  tokens in `tokens.css`; sticky secondary navigation and anchor offsets use
+  that value.
 
 ### Footer
 
 - **Surface:** Production navy with restrained satin depth.
-- **Structure:** Retain the white PLATFORM® wordmark with the manufacturer/material-brand relation in the caption below. Brand, inquiry path and contact actions accompany four navigation columns. Suppress the inquiry pitch when the preceding page CTA is marked footerAdjacent.
+- **Structure:** Retain the white PLATFORM® wordmark with the manufacturer/material-brand relation in the caption below. Brand and direct contact actions accompany four navigation columns and legal information. The shared Footer uses this same composition on every route; page-specific inquiry sections stay in the main content.
 - **Navigation:** Full localized labels wrap within flexible columns. Mobile uses line-separated labeled disclosures; controls remain at least 44px high.
 - **Contact actions:** Entire rows are clickable; icon frames use 8px corners and share one treatment and focus state.
 
