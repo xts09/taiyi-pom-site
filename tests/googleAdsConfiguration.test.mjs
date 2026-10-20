@@ -12,6 +12,28 @@ const nextConfigSource = readFileSync(
   new URL("../next.config.ts", import.meta.url),
   "utf8",
 );
+const compiledNextConfig = ts.transpileModule(nextConfigSource, {
+  compilerOptions: { module: ts.ModuleKind.CommonJS },
+}).outputText;
+
+async function productionCsp() {
+  const exports = {};
+  vm.runInNewContext(compiledNextConfig, {
+    exports,
+    process: { env: { NODE_ENV: "production" } },
+    require: (id) => {
+      assert.equal(id, "next-intl/plugin");
+      return { default: () => (config) => config };
+    },
+  });
+  const routes = await exports.default.headers();
+  const header = routes.find((route) => route.source === "/:path*").headers
+    .find((header) => header.key === "Content-Security-Policy");
+  return new Map(header.value.split("; ").map((directive) => {
+    const [name, ...sources] = directive.split(" ");
+    return [name, sources];
+  }));
+}
 
 function configuration(env = {}) {
   const exports = {};
@@ -46,4 +68,27 @@ test("local development does not enable the production Ads defaults", () => {
 
 test("the CSP allows the Google Ads collection endpoint used by gtag", () => {
   assert.match(nextConfigSource, /connect-src[^\n]+https:\/\/pagead2\.googlesyndication\.com/);
+});
+
+test("production response headers allow the Tag Assistant badge styles and fonts", async () => {
+  const csp = await productionCsp();
+  const styles = [
+    "https://www.googletagmanager.com/debug/badge.css",
+    "https://fonts.googleapis.com/icon?family=Material+Icons+Extended|Google+Material+Icons",
+    "https://fonts.googleapis.com/css?family=Product+Sans:400|Google+Sans:400,500",
+  ];
+  for (const asset of styles) {
+    assert.ok(csp.get("style-src").includes(new URL(asset).origin), `${asset} must be allowed`);
+  }
+  assert.ok(csp.get("font-src").includes("https://fonts.gstatic.com"));
+});
+
+test("Tag Assistant support retains the existing production script and framing restrictions", async () => {
+  const csp = await productionCsp();
+  assert.deepEqual(Array.from(csp.get("default-src")), ["'self'"]);
+  assert.deepEqual(Array.from(csp.get("object-src")), ["'none'"]);
+  assert.deepEqual(Array.from(csp.get("frame-ancestors")), ["'none'"]);
+  assert.ok(!csp.get("script-src").includes("'unsafe-eval'"));
+  assert.ok(!csp.get("style-src").includes("https:"));
+  assert.ok(!csp.get("font-src").includes("https:"));
 });
