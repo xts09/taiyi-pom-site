@@ -162,6 +162,9 @@ export function LocalizedProductGradePage({
                   </div>
 
                   <div className="product-detail-hero-side stagger-list">
+                    <p className="product-detail-hero-action-note">
+                      {copy.independentNote}
+                    </p>
                     <div className="product-detail-hero-actions stagger-list">
                       <Button
                         asChild
@@ -178,9 +181,6 @@ export function LocalizedProductGradePage({
                         <Link href={evaluationHref}>{copy.evaluationAction}</Link>
                       </Button>
                     </div>
-                    <p className="product-detail-hero-action-note">
-                      {copy.independentNote}
-                    </p>
                   </div>
                 </div>
               </div>

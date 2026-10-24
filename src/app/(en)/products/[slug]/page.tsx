@@ -799,39 +799,39 @@ export default async function ProductDetailPage({
                   </div>
 
                   <div className="product-detail-hero-side stagger-list">
+                    {campaignProfile ? (
+                      <p className="product-detail-hero-action-note">
+                        Independent Taiyi grade · Sample testing recommended
+                      </p>
+                    ) : null}
                     <div className="product-detail-hero-actions stagger-list">
-                  <Button
-                    asChild
-                    size="productDetailHero"
-                    variant="productDetailPrimary"
-                  >
-                    <Link
-                      href={campaignProfile ? sampleRequestHref : tdsRequestHref}
-                    >
-                      {campaignProfile
-                        ? `Request an ${product.grade} Sample`
-                        : "Request Full TDS"}
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    size="productDetailHero"
-                    variant="productDetailSecondary"
-                  >
-                    <Link
-                      href={campaignProfile ? gradeEvaluationHref : sampleRequestHref}
-                    >
-                      {campaignProfile
-                        ? "Ask for Grade Evaluation"
-                        : "Request Sample"}
-                    </Link>
-                  </Button>
-                </div>
-                {campaignProfile ? (
-                  <p className="product-detail-hero-action-note">
-                    Independent Taiyi grade · Sample testing recommended
-                  </p>
-                ) : null}
+                      <Button
+                        asChild
+                        size="productDetailHero"
+                        variant="productDetailPrimary"
+                      >
+                        <Link
+                          href={campaignProfile ? sampleRequestHref : tdsRequestHref}
+                        >
+                          {campaignProfile
+                            ? `Request an ${product.grade} Sample`
+                            : "Request Full TDS"}
+                        </Link>
+                      </Button>
+                      <Button
+                        asChild
+                        size="productDetailHero"
+                        variant="productDetailSecondary"
+                      >
+                        <Link
+                          href={campaignProfile ? gradeEvaluationHref : sampleRequestHref}
+                        >
+                          {campaignProfile
+                            ? "Ask for Grade Evaluation"
+                            : "Request Sample"}
+                        </Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
