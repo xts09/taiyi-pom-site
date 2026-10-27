@@ -1277,8 +1277,9 @@ evidence and technical boundaries remain valid.
   fixed form/link context and coarse error categories, without inquiry text,
   email, company, grade context or query/hash values. `generate_lead` and the
   Ads lead action retain the confirmed server-delivery boundary; opening an
-  email draft remains a fallback, not a delivered inquiry. This repair awaits
-  release and GA4 receipt verification.
+  email draft remains a fallback, not a delivered inquiry. The released flow
+  was checked on October 27, 2026: a labelled test inquiry reached the inbox
+  and the GA4 `generate_lead` collection request returned a successful response.
 
 - Google Ads inquiry tracking reuses the existing global Google tag and
   server-confirmed, non-spam delivery boundary. The default production target
@@ -1290,7 +1291,16 @@ evidence and technical boundaries remain valid.
   grants Ads permission. Ad personalization remains denied. No email or
   enhanced-conversion user data is sent by the website event. The repair was
   released on October 27, 2026; production consent and destination checks passed.
-  Receipt of a real conversion in Google Ads remains unverified.
+  A labelled direct-visit test also reached both Google Ads conversion collection
+  endpoints. Google Ads reporting attribution and its diagnostic acceptance
+  remain unverified; collection responses are not equivalent to those results.
+  A same-day CSP repair permits the documented Google tag and Ads connection
+  origins, including `ad.doubleclick.net` and `www.googleadservices.com`, without
+  adding a wildcard connection permission. The reported production CSP violation
+  was reproduced before the repair and absent after release. DoubleClick TLS
+  connections still failed from the test machine, so that network limitation
+  remains separate from the repaired site policy. Evidence is recorded in
+  `outputs/ads-csp-fix-2026-10-27/report.md`.
 
 ## Functional Requirements
 

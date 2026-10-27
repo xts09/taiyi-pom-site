@@ -74,6 +74,11 @@
   one resource page, and `/technical-data-sheets`.
 - Submit a real inquiry and verify delivery, reply-to behavior, success state,
   and failure state.
+- When changing Google tags, consent or response security headers, inspect
+  browser `securitypolicyviolation` events and the actual Google collection
+  requests after consent. A successful lead-conversion response alone does not
+  prove auxiliary Ads endpoints are unblocked. Separate CSP violations from
+  network failures and Google Ads backend tracking status.
 - Confirm the inquiry endpoint returns `503` when delivery configuration is
   absent and `502` when the email provider rejects a request.
 - Confirm the Vercel Firewall records `/api/inquiry` traffic and returns `429`
