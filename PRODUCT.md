@@ -1288,8 +1288,9 @@ evidence and technical boundaries remain valid.
   accepted submit attempt, not a delivered inquiry. Accept All grants website
   analytics and Ads measurement; a prior analytics choice never automatically
   grants Ads permission. Ad personalization remains denied. No email or
-  enhanced-conversion user data is sent by the website event. The October 27
-  local repair has not itself established deployment or Google Ads receipt.
+  enhanced-conversion user data is sent by the website event. The repair was
+  released on October 27, 2026; production consent and destination checks passed.
+  Receipt of a real conversion in Google Ads remains unverified.
 
 ## Functional Requirements
 
@@ -1443,7 +1444,7 @@ The site is successful when:
 
 ## SEO And Performance Requirements
 
-### Application Search Copy And Grade Paths — 2026-10-26, local implementation
+### Application Search Copy And Grade Paths — implemented 2026-10-26, released 2026-10-27
 
 English and Simplified Chinese application-detail search titles and descriptions
 are owned by `src/i18n/applicationMetadata.ts`, separately from the body profiles.
@@ -1463,8 +1464,11 @@ available. An empty component list no longer hides valid application links.
 This restores existing published relationships without adding new ones.
 The simple localized related-path directories reuse their existing mobile
 single-column layout so application labels do not collapse into narrow columns.
-ETM 100P remains an inquiry-only historical grade. These changes are local and do
-not by themselves record a production release.
+ETM 100P remains an inquiry-only historical grade. The October 27 production
+release included these changes and the consent repair. Production checks covered
+40 application routes, 20 category routes and 50 grade destinations, including
+370 exact-grade links. This dated release evidence does not imply improved search
+rankings or inquiry volume. See `outputs/combined-release-2026-10-27/report.md`.
 
 - Page titles and metadata should reflect material family, application, or resource intent.
 - Product and application pages should use plain technical language that matches buyer search behavior.
