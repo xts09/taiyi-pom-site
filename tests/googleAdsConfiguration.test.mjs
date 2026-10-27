@@ -66,8 +66,20 @@ test("local development does not enable the production Ads defaults", () => {
   assert.equal(config.googleAdsLeadConversionLabel, "");
 });
 
-test("the CSP allows the Google Ads collection endpoint used by gtag", () => {
-  assert.match(nextConfigSource, /connect-src[^\n]+https:\/\/pagead2\.googlesyndication\.com/);
+test("production response headers allow Google Ads collection using fetch and beacon", async () => {
+  const csp = await productionCsp();
+  const connectSources = csp.get("connect-src");
+  for (const endpoint of [
+    "https://ad.doubleclick.net/ccm/s/collect",
+    "https://www.googleadservices.com/ccm/conversion/18381447688/",
+    "https://www.googletagmanager.com",
+    "https://www.google.com/pagead/1p-conversion/18381447688/",
+    "https://pagead2.googlesyndication.com",
+  ]) {
+    assert.ok(connectSources.includes(new URL(endpoint).origin), `${endpoint} must be allowed by connect-src`);
+  }
+  assert.ok(!connectSources.includes("*"));
+  assert.ok(!connectSources.includes("https:"));
 });
 
 test("production response headers allow the Tag Assistant badge styles and fonts", async () => {
