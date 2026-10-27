@@ -117,15 +117,12 @@ const messages = {
   },
   Analytics: {
     title: "Vos choix de confidentialité",
-    descriptionBeforeLink:
-      "Nous utilisons des cookies d’analyse facultatifs pour comprendre comment les visiteurs utilisent ce site et améliorer nos informations sur les matériaux. Les statistiques restent désactivées sans votre accord. Vous pouvez modifier votre choix à tout moment dans les paramètres des cookies. Consultez notre",
+    descriptionBeforeLink: "Nous utilisons des cookies facultatifs de Google Analytics et Google Ads pour mesurer l’utilisation du site et les demandes issues des annonces. Sélectionnez « Tout accepter » pour autoriser les deux. Consultez notre",
     privacyPolicy: "Politique de confidentialité",
-    currentChoice: "Choix actuel :",
-    accepted: "accepté",
-    notAccepted: "refusé",
-    accept: "Accepter les cookies d’analyse",
-    continueWithout: "Continuer sans cookies d’analyse",
-    dismiss: "Décider plus tard",
+    preferenceNotice: "Modifiez ou retirez votre choix dans les paramètres des cookies. La publicité personnalisée reste désactivée.",
+    acceptAll: "Tout accepter",
+    rejectOptional: "Continuer sans cookies facultatifs",
+    dismiss: "Fermer sans modifier les choix",
     settings: "Paramètres des cookies",
   },
   Products: {

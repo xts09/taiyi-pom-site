@@ -9,6 +9,7 @@ import { ems102LocaleOverrides } from "./ems102LocaleOverrides.ts";
 import { functionalPomLocaleOverrides } from "./functionalPomLocaleOverrides.ts";
 import { pomSelectionLocaleOverrides } from "./pomSelectionLocaleOverrides.ts";
 import { copyAuditResourceLocaleOverrides } from "./copyAuditResourceLocaleOverrides.ts";
+import { privacyConsentLocaleOverrides } from "./privacyConsentLocaleOverrides.ts";
 
 type TranslationOverrides = Readonly<Record<string, string>>;
 
@@ -117,6 +118,7 @@ export const expandedLocaleOverrides: Partial<
     ...componentDetailLocaleOverrides.de,
     ...pomSelectionLocaleOverrides.de,
     ...copyAuditResourceLocaleOverrides.de,
+    ...privacyConsentLocaleOverrides.de,
     "IC 周转托盘": "IC-Handling-Trays",
     精密塑料齿轮: "Präzisionszahnräder aus Kunststoff",
     "聚焦改性 POM 的工程塑料制造商":
@@ -326,6 +328,7 @@ export const expandedLocaleOverrides: Partial<
     ...componentDetailLocaleOverrides.fr,
     ...pomSelectionLocaleOverrides.fr,
     ...copyAuditResourceLocaleOverrides.fr,
+    ...privacyConsentLocaleOverrides.fr,
     "IC 周转托盘": "Plateaux de manutention pour circuits intégrés",
     "EAI210 PA66 抗冲改性牌号 | 台益":
       "EAI210 PA66 modifié choc | Taiyi Polymer",
@@ -553,6 +556,7 @@ export const expandedLocaleOverrides: Partial<
     ...componentDetailLocaleOverrides["pt-br"],
     ...pomSelectionLocaleOverrides["pt-br"],
     ...copyAuditResourceLocaleOverrides["pt-br"],
+    ...privacyConsentLocaleOverrides["pt-br"],
     "IC 周转托盘": "Bandejas para manuseio de CIs",
     "EAI210 PA66 抗冲改性牌号 | 台益":
       "EAI210 PA66 modificado para impacto | Taiyi Polymer",

@@ -111,11 +111,9 @@ export type AnalyticsMessages = {
   title: string;
   descriptionBeforeLink: string;
   privacyPolicy: string;
-  currentChoice: string;
-  accepted: string;
-  notAccepted: string;
-  accept: string;
-  continueWithout: string;
+  preferenceNotice: string;
+  acceptAll: string;
+  rejectOptional: string;
   dismiss: string;
   settings: string;
 };

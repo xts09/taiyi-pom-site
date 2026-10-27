@@ -116,15 +116,12 @@ const messages = {
   },
   Analytics: {
     title: "Your Privacy Choices",
-    descriptionBeforeLink:
-      "We use optional analytics cookies to understand how visitors use this website and improve our material information. Analytics remains off unless you accept. You can change your choice at any time in Cookie Settings. Read our",
+    descriptionBeforeLink: "We use optional Google Analytics and Google Ads cookies to understand site use and measure inquiries from ads. Select Accept All to allow both. Read our",
     privacyPolicy: "Privacy Policy",
-    currentChoice: "Current choice:",
-    accepted: "accepted",
-    notAccepted: "not accepted",
-    accept: "Accept Analytics Cookies",
-    continueWithout: "Continue Without Analytics",
-    dismiss: "Decide later",
+    preferenceNotice: "Change or withdraw your choice in Cookie Settings. Personalized advertising stays off.",
+    acceptAll: "Accept All",
+    rejectOptional: "Continue Without Optional Cookies",
+    dismiss: "Close without changing choices",
     settings: "Cookie Settings",
   },
   Home: {

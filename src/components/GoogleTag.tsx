@@ -1,10 +1,13 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   clearGoogleAnalyticsCookies,
+  clearGoogleAdvertisingCookies,
   useGoogleAnalyticsConsent,
+  useGoogleAdvertisingConsent,
+  updateGoogleConsentPreferences,
 } from "@/lib/googleConsent";
 import {
   GOOGLE_INTERNAL_TRAFFIC_DISABLED_VALUE,
@@ -14,7 +17,8 @@ import {
 } from "@/lib/googleInternalTraffic";
 import {
   googleTagConfigIds,
-  googleTagId,
+  googleAnalyticsId,
+  googleAdsId,
   isGoogleTagHostnameAllowed,
 } from "@/lib/googleTracking";
 import { analyticsPageLocationParamNames } from "@/lib/analyticsAttribution";
@@ -60,8 +64,12 @@ function setGoogleTagDisabled(disabled: boolean) {
 
 export function GoogleTag() {
   const consent = useGoogleAnalyticsConsent();
+  const advertisingConsent = useGoogleAdvertisingConsent();
   const [runtimeState, setRuntimeState] =
     useState<GoogleTagRuntimeState>("checking");
+  const [loaderId, setLoaderId] = useState("");
+  const initialized = useRef(false);
+  const configured = useRef(new Set<string>());
 
   useEffect(() => {
     let cancelled = false;
@@ -95,6 +103,7 @@ export function GoogleTag() {
 
     if (internalTrafficDisabled) {
       clearGoogleAnalyticsCookies();
+      clearGoogleAdvertisingCookies();
     }
 
     queueMicrotask(() => {
@@ -109,59 +118,61 @@ export function GoogleTag() {
   }, []);
 
   useEffect(() => {
-    setGoogleTagDisabled(
-      consent !== "granted" || runtimeState !== "enabled",
-    );
-  }, [consent, runtimeState]);
+    const analyticsAllowed = consent === "granted" && runtimeState === "enabled";
+    const advertisingAllowed = advertisingConsent === "granted" && runtimeState === "enabled";
+    const analyticsWindow = window as unknown as Record<string, unknown>;
+    if (googleAnalyticsId) analyticsWindow[`ga-disable-${googleAnalyticsId}`] = !analyticsAllowed;
+    if (googleAdsId) analyticsWindow[`ga-disable-${googleAdsId}`] = !advertisingAllowed;
+
+    updateGoogleConsentPreferences({
+      analytics: analyticsAllowed ? "granted" : "denied",
+      advertising: advertisingAllowed ? "granted" : "denied",
+    });
+    if (consent === "denied" || runtimeState === "disabled") clearGoogleAnalyticsCookies();
+    if (advertisingConsent === "denied" || runtimeState === "disabled") clearGoogleAdvertisingCookies();
+
+    const allowedIds = [analyticsAllowed ? googleAnalyticsId : "", advertisingAllowed ? googleAdsId : ""].filter(Boolean);
+    for (const id of configured.current) {
+      if (!allowedIds.includes(id)) configured.current.delete(id);
+    }
+    if (!allowedIds.length) return;
+    if (!initialized.current) {
+      window.gtag?.("js", new Date());
+      initialized.current = true;
+    }
+    const pageUrl = new URL(window.location.href);
+    for (const name of Array.from(pageUrl.searchParams.keys())) {
+      if (!(analyticsPageLocationParamNames as readonly string[]).includes(name)) pageUrl.searchParams.delete(name);
+    }
+    pageUrl.hash = "";
+    for (const id of allowedIds) {
+      if (configured.current.has(id)) continue;
+      window.gtag?.("config", id, {
+        page_location: pageUrl.toString(),
+        page_path: window.location.pathname,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false,
+      });
+      configured.current.add(id);
+    }
+    let cancelled = false;
+    queueMicrotask(() => { if (!cancelled) setLoaderId(current => current || allowedIds[0]); });
+    return () => { cancelled = true; };
+  }, [consent, advertisingConsent, runtimeState]);
 
   if (
-    !googleTagId ||
-    consent !== "granted" ||
+    !loaderId ||
+    (consent !== "granted" && advertisingConsent !== "granted") ||
     runtimeState !== "enabled"
   ) {
     return null;
   }
 
-  const configCalls = googleTagConfigIds
-    .map(
-      (id) =>
-        `gtag("config", "${id}", { page_location: analyticsPageLocation, page_path: window.location.pathname });`,
-    )
-    .join("\n");
-
   return (
-    <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${googleTagId}`}
+        id="google-tag-loader"
+        src={`https://www.googletagmanager.com/gtag/js?id=${loaderId}`}
         strategy="afterInteractive"
       />
-      <Script
-        id="google-tag-init"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag("consent", "update", {
-  analytics_storage: "granted",
-  ad_storage: "denied",
-  ad_user_data: "denied",
-  ad_personalization: "denied"
-});
-gtag("js", new Date());
-const allowedPageLocationParams = new Set(${JSON.stringify(
-            analyticsPageLocationParamNames,
-          )});
-const analyticsPageUrl = new URL(window.location.href);
-for (const name of Array.from(analyticsPageUrl.searchParams.keys())) {
-  if (!allowedPageLocationParams.has(name)) analyticsPageUrl.searchParams.delete(name);
-}
-analyticsPageUrl.hash = "";
-const analyticsPageLocation = analyticsPageUrl.toString();
-${configCalls}
-          `.trim(),
-        }}
-      />
-    </>
   );
 }

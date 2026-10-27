@@ -1130,6 +1130,18 @@ destination, without email or other form contents. The configured Ads
 `conversion` is emitted by `trackInquirySubmitted`, never by observing translated
 success text. The existing global `GoogleTag` remains the sole loader.
 
+### Cookie Preferences
+
+`AnalyticsConsent.tsx` owns the shared preference panel and Footer settings
+entry across all routes and five languages. Accept All grants website analytics
+and Google Ads measurement; the other action rejects optional cookies.
+Closing keeps the current choice, and Footer settings allow withdrawal.
+Previous analytics permission is preserved but never grants advertising
+measurement. `googleConsent.ts` owns persistence and withdrawal, while
+`GoogleTag.tsx` applies the choices before configuring destinations. The
+`/design-system` inline example exercises the panel without changing a
+visitor's stored consent.
+
 ### Contact Action Tile — Canonical, Footer-scoped
 
 **Owner:** `src/components/Footer.tsx`.

@@ -37,6 +37,7 @@ const chinesePrivacyMessages = {
       "您通过电子邮件、电话、WhatsApp 或 LinkedIn 与我们联系时提供的联系方式。",
       "用于运行和保护网站的有限技术信息。询价接口会临时使用 IP 地址进行频率限制和防止滥用。",
       "如果您接受分析，Google Analytics 可能收集浏览器与设备信息、大致位置、网站交互以及 Cookie 或类似标识符。",
+      "如果您同意广告衡量，Google Ads 可能使用广告 Cookie、广告点击标识符和转化事件数据，将广告互动与本网站的后续询盘关联。",
     ],
   },
   usage: {
@@ -46,6 +47,7 @@ const chinesePrivacyMessages = {
       "在评估过程中提供相关样品、技术资料和您要求的后续信息。",
       "运行、保护、诊断并改进网站。",
       "在您接受分析后衡量网站和询价表现。",
+      "在您同意广告衡量后，了解哪些广告互动带来了询盘，并评估广告投放表现。",
       "履行适用的法律义务。",
     ],
   },
@@ -59,9 +61,15 @@ const chinesePrivacyMessages = {
       body: "我们不会出售个人信息。我们可能与支持网站托管、邮件发送、安全、分析和广告衡量的服务提供商共享信息；法律要求时，也可能与顾问或主管机关共享。这些接收方只会为相关服务或法律目的处理信息。",
     },
     cookies: {
-      title: "Cookie 与分析",
+      title: "Cookie、分析与广告衡量",
+      analyticsBody:
+        "点击“全部接受”将启用网站分析和广告衡量。Google Analytics 可能使用第一方 Cookie，并收集设备、浏览器、大致位置和网站交互数据。",
+      advertisingBody:
+        "Google Ads 广告衡量在您点击“全部接受”后启用。它可能使用广告 Cookie、广告点击标识符和转化事件数据，衡量广告互动与后续询盘的关联。广告个性化保持关闭。",
+      choicesBody:
+        "我们会在浏览器中保存您的选择。您可以通过页脚中的“Cookie 设置”接受或拒绝可选 Cookie，随时更改或撤回同意。关闭选择面板不会更改现有选择。您也可以通过浏览器设置阻止或删除 Cookie。",
       bodyBeforeLink:
-        "除非您选择接受分析，否则 Google Analytics 保持关闭。接受后，它可能使用第一方 Cookie，并收集设备、浏览器、大致位置和网站交互数据。我们会在您的浏览器中保存选择，以便网站记住该设置；广告存储和个性化保持关闭。您可以随时通过页脚中的 Cookie 设置更改或撤回选择，也可通过浏览器设置阻止和删除 Cookie。更多信息请参阅 Google 的",
+        "有关 Google 处理数据的更多信息，请参阅其",
       link: "隐私政策",
       bodyAfterLink: "。",
     },
@@ -177,6 +185,9 @@ export default async function LocalizedPrivacyPolicyPage({
 
           <section className={styles.section}>
             <h2>{messages.sections.cookies.title}</h2>
+            <p>{messages.sections.cookies.analyticsBody}</p>
+            <p>{messages.sections.cookies.advertisingBody}</p>
+            <p>{messages.sections.cookies.choicesBody}</p>
             <p>
               {messages.sections.cookies.bodyBeforeLink}{" "}
               <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">

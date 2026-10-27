@@ -117,15 +117,12 @@ const messages = {
   },
   Analytics: {
     title: "Suas escolhas de privacidade",
-    descriptionBeforeLink:
-      "Usamos cookies de análise opcionais para entender como os visitantes usam este site e melhorar nossas informações sobre materiais. A análise permanece desativada até você aceitar. Você pode alterar sua escolha a qualquer momento nas Configurações de cookies. Leia nossa",
+    descriptionBeforeLink: "Usamos cookies opcionais do Google Analytics e do Google Ads para medir o uso do site e as consultas geradas por anúncios. Selecione “Aceitar todos” para permitir ambos. Leia nossa",
     privacyPolicy: "Política de privacidade",
-    currentChoice: "Escolha atual:",
-    accepted: "aceita",
-    notAccepted: "não aceita",
-    accept: "Aceitar cookies de análise",
-    continueWithout: "Continuar sem cookies de análise",
-    dismiss: "Decidir depois",
+    preferenceNotice: "Altere ou retire sua escolha nas Configurações de cookies. A publicidade personalizada permanece desativada.",
+    acceptAll: "Aceitar todos",
+    rejectOptional: "Continuar sem cookies opcionais",
+    dismiss: "Fechar sem alterar as escolhas",
     settings: "Configurações de cookies",
   },
   Products: {

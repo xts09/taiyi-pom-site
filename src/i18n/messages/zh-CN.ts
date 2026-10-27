@@ -113,15 +113,12 @@ const messages = {
   },
   Analytics: {
     title: "您的隐私选择",
-    descriptionBeforeLink:
-      "我们使用可选的分析 Cookie 了解访客如何使用本网站，并持续改进材料信息。除非您主动接受，否则分析功能不会启用。您可以随时通过“Cookie 设置”更改选择。请查看我们的",
+    descriptionBeforeLink: "我们使用 Google Analytics 和 Google Ads 的可选 Cookie，了解网站使用情况并衡量广告带来的询盘。点击“全部接受”将同时启用这两项功能。请查看我们的",
     privacyPolicy: "隐私政策",
-    currentChoice: "当前选择：",
-    accepted: "已同意",
-    notAccepted: "未同意",
-    accept: "接受分析 Cookie",
-    continueWithout: "不启用分析并继续",
-    dismiss: "稍后决定",
+    preferenceNotice: "您可以通过页脚的 Cookie 设置更改或撤回选择。广告个性化保持关闭。",
+    acceptAll: "全部接受",
+    rejectOptional: "不使用可选 Cookie",
+    dismiss: "关闭并保留当前选择",
     settings: "Cookie 设置",
   },
   Products: {

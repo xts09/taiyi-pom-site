@@ -4,6 +4,7 @@ export const showcaseSections = [
   { id: "foundations", label: "基础规范" },
   { id: "actions", label: "按钮" },
   { id: "fields", label: "表单" },
+  { id: "consent", label: "Cookie 选择" },
   { id: "disclosures", label: "折叠" },
   { id: "surfaces", label: "卡片" },
   { id: "navigation", label: "导航" },

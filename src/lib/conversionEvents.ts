@@ -1,17 +1,18 @@
 "use client";
 
 import {
+  googleAnalyticsId,
   googleAdsId,
   googleAdsLeadConversionLabel,
 } from "@/lib/googleTracking";
 import { readMarketingAttribution } from "@/lib/analyticsAttribution";
-import { readGoogleAnalyticsConsent } from "@/lib/googleConsent";
+import { readGoogleAnalyticsConsent, readGoogleAdvertisingConsent } from "@/lib/googleConsent";
 
-type GtagCommand = "consent" | "event";
+type GtagCommand = "consent" | "event" | "config" | "js" | "set";
 
 type Gtag = (
   command: GtagCommand,
-  eventName: string,
+  eventName: string | Date,
   eventParameters?: Record<string, string | number | boolean>,
 ) => void;
 
@@ -23,8 +24,22 @@ declare global {
 
 const hasGtag = () =>
   typeof window !== "undefined" &&
-  readGoogleAnalyticsConsent() === "granted" &&
   typeof window.gtag === "function";
+
+function sendEvent(destination: string, name: string, parameters: Record<string, string | number | boolean> = {}) {
+  if (!hasGtag() || !destination || (window as unknown as Record<string, unknown>)[`ga-disable-${destination}`] === true) return false;
+  try {
+    window.gtag?.("event", name, { ...parameters, send_to: destination });
+    return true;
+  } catch {
+    // Optional measurement must never change inquiry delivery or its success UI.
+    return false;
+  }
+}
+
+function sendAnalyticsEvent(name: string, parameters: Record<string, string | number | boolean>) {
+  return readGoogleAnalyticsConsent() === "granted" && sendEvent(googleAnalyticsId, name, parameters);
+}
 
 const readLeadAttributionParameters = () => {
   const attribution = readMarketingAttribution();
@@ -49,9 +64,7 @@ export function trackContactClick(
   method: "email" | "phone" | "whatsapp",
   context: string,
 ) {
-  if (!hasGtag()) return;
-
-  window.gtag?.("event", "contact_click", {
+  sendAnalyticsEvent("contact_click", {
     contact_method: method,
     link_context: context,
     page_path: window.location.pathname,
@@ -60,9 +73,7 @@ export function trackContactClick(
 }
 
 export function trackDocumentDownload(fileName: string, context: string) {
-  if (!hasGtag()) return;
-
-  window.gtag?.("event", "document_download", {
+  sendAnalyticsEvent("document_download", {
     file_name: fileName,
     link_context: context,
     page_path: window.location.pathname,
@@ -71,9 +82,7 @@ export function trackDocumentDownload(fileName: string, context: string) {
 }
 
 export function trackTechnicalDataClick(context: string) {
-  if (!hasGtag()) return;
-
-  window.gtag?.("event", "technical_data_click", {
+  sendAnalyticsEvent("technical_data_click", {
     link_context: context,
     page_path: window.location.pathname,
     ...readLeadAttributionParameters(),
@@ -81,9 +90,7 @@ export function trackTechnicalDataClick(context: string) {
 }
 
 export function trackInquiryEntry(context: "footer" | "contact_page" | "page") {
-  if (!hasGtag()) return;
-
-  window.gtag?.("event", "inquiry_entry", {
+  sendAnalyticsEvent("inquiry_entry", {
     link_context: context,
     page_path: window.location.pathname,
   });
@@ -101,52 +108,33 @@ export function trackInquiryFunnel(
   stage: "view" | "attempt" | "error",
   reason?: InquiryErrorReason,
 ) {
-  if (!hasGtag()) return false;
-
-  window.gtag?.("event", `inquiry_${stage}`, {
+  return sendAnalyticsEvent(`inquiry_${stage}`, {
     form_name: "material_requirement",
     page_path: window.location.pathname,
     ...(stage === "error" && reason ? { error_reason: reason } : {}),
   });
-  return true;
 }
 
 export function trackInquiryFormMail() {
-  if (!hasGtag() || !googleAdsId) return;
-
-  try {
-    window.gtag?.("event", "form_mail", {
-      send_to: googleAdsId,
-    });
-  } catch {
-    // Optional Ads tracking must not prevent inquiry delivery.
-  }
+  if (readGoogleAdvertisingConsent() !== "granted") return;
+  sendEvent(googleAdsId, "form_mail");
 }
 
 export function trackInquirySubmitted(method: "server_email") {
-  if (!hasGtag()) {
-    return;
-  }
-
-  window.gtag?.("event", "generate_lead", {
+  sendAnalyticsEvent("generate_lead", {
     form_name: "material_requirement",
     method,
     ...readLeadAttributionParameters(),
   });
 
-  if (googleAdsId && googleAdsLeadConversionLabel) {
-    window.gtag?.("event", "conversion", {
-      send_to: `${googleAdsId}/${googleAdsLeadConversionLabel}`,
-    });
+  if (readGoogleAdvertisingConsent() === "granted" && googleAdsId && googleAdsLeadConversionLabel &&
+    (window as unknown as Record<string, unknown>)[`ga-disable-${googleAdsId}`] !== true) {
+    sendEvent(`${googleAdsId}/${googleAdsLeadConversionLabel}`, "conversion");
   }
 }
 
 export function trackInquiryFallback(method: "mailto_draft") {
-  if (!hasGtag()) {
-    return;
-  }
-
-  window.gtag?.("event", "contact_fallback", {
+  sendAnalyticsEvent("contact_fallback", {
     form_name: "material_requirement",
     method,
     ...readLeadAttributionParameters(),

@@ -8,14 +8,15 @@ import ts from 'typescript';
 // Exercise the real compiled form handler without mail, Google traffic, or a browser.
 const root = process.cwd();
 const componentPath = resolve(root, 'src/components/ContactInquiryForm.tsx');
-function fixture({ consent = 'granted', response, fetchError, clipboardPending, pathname = '/contact', formMailError = false } = {}) {
+function fixture({ consent = 'granted', advertising = consent, legacy = false, response, fetchError, clipboardPending, pathname = '/contact', formMailError = false } = {}) {
   const events = [], posts = [], clipboard = [], states = [], effects = [], observers = [];
   const storage = new Map(consent ? [['taiyi_google_analytics_consent', consent]] : []);
+  if (!legacy && consent) storage.set('taiyi_google_consent_v2', JSON.stringify({ version: 2, analytics: consent, advertising }));
   let resets = 0, hook = 0;
   const location = { pathname, hostname: 'www.taiyipolymer.com', href: 'https://www.taiyipolymer.com' + pathname };
   const window = {
     location, localStorage: { getItem: k => storage.get(k) ?? null, setItem: (k,v) => storage.set(k,v), removeItem: k => storage.delete(k) },
-    gtag: (...args) => { if (formMailError && args[1] === 'form_mail') throw new Error('Ads fixture failure'); events.push(args); }, setTimeout: () => 1, clearTimeout: () => {},
+    gtag: (...args) => { if (formMailError && args[1] === 'form_mail') throw new Error('Ads fixture failure'); events.push(args); }, setTimeout: () => 1, clearTimeout: () => {}, dispatchEvent: () => true,
   };
   const react = {
     useEffect: effect => effects.push(effect),
@@ -36,7 +37,7 @@ function fixture({ consent = 'granted', response, fetchError, clipboardPending, 
   };
   const context = vm.createContext({
     window, document: { cookie: '' }, navigator: { clipboard: { writeText: async body => { clipboard.push(body); if (clipboardPending) await clipboardPending; } } },
-    AbortController, URL, Set, Map, queueMicrotask, process: { env: { NODE_ENV: 'production' } },
+    AbortController, URL, Set, Map, queueMicrotask, CustomEvent: class { constructor(type) { this.type = type; } }, process: { env: { NODE_ENV: 'production' } },
     IntersectionObserver: class {
       constructor(callback) { this.callback = callback; this.disconnected = false; observers.push(this); }
       observe() {}
@@ -136,7 +137,7 @@ test('declined consent still permits delivery but never a Google success event',
   const f = fixture({ consent: 'denied' }); await f.submit(); assert.deepEqual(names(f), []); assert.equal(f.resets(), 1);
 });
 test('same-page withdrawal stops subsequent inquiry events', async () => {
-  const f = fixture(); const consent = f.consentModule(); consent.storeGoogleAnalyticsConsent('denied'); consent.updateGoogleAnalyticsConsent('denied'); await f.submit(); assert.deepEqual(names(f), []);
+  const f = fixture(); const consent = f.consentModule(); const choice = { analytics: 'denied', advertising: 'denied' }; consent.storeGoogleConsentPreferences(choice); consent.updateGoogleConsentPreferences(choice); await f.submit(); assert.deepEqual(names(f), []);
 });
 test('the submission lock also covers the pending mail-draft fallback', async () => {
   let finish; const pending = new Promise(r => finish = r);
@@ -147,7 +148,7 @@ test('the submission lock also covers the pending mail-draft fallback', async ()
 });
 test('accepting again permits a subsequent new delivery event', async () => {
   const f = fixture({ consent: 'denied' }); await f.submit();
-  const consent = f.consentModule(); consent.storeGoogleAnalyticsConsent('granted'); consent.updateGoogleAnalyticsConsent('granted'); await f.submit();
+  const consent = f.consentModule(); const choice = { analytics: 'granted', advertising: 'granted' }; consent.storeGoogleConsentPreferences(choice); consent.updateGoogleConsentPreferences(choice); await f.submit();
   assert.equal(f.posts.length, 2); assert.deepEqual(names(f), ['inquiry_attempt', 'form_mail', 'generate_lead', 'conversion']);
 });
 
@@ -171,4 +172,23 @@ test('an Ads attempt tracking failure does not prevent delivery', async () => {
   assert.equal(f.posts.length, 1);
   assert.equal(f.resets(), 1);
   assert.deepEqual(names(f), ['inquiry_attempt', 'generate_lead', 'conversion']);
+});
+
+for (const [analytics, advertising, expected] of [
+  ['granted', 'denied', ['inquiry_attempt', 'generate_lead']],
+  ['denied', 'granted', ['form_mail', 'conversion']],
+  ['denied', 'denied', []],
+]) {
+  test(`successful delivery respects independent preferences ${analytics}/${advertising}`, async () => {
+    const f = fixture({ consent: analytics, advertising });
+    await f.submit();
+    assert.deepEqual(names(f), expected);
+    assert.equal(f.resets(), 1);
+  });
+}
+
+test('legacy analytics acceptance never authorizes Ads conversion', async () => {
+  const f = fixture({ legacy: true });
+  await f.submit();
+  assert.deepEqual(names(f), ['inquiry_attempt', 'generate_lead']);
 });

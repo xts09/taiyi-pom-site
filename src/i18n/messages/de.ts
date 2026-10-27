@@ -117,15 +117,12 @@ const messages = {
   },
   Analytics: {
     title: "Ihre Datenschutzeinstellungen",
-    descriptionBeforeLink:
-      "Wir verwenden optionale Analyse-Cookies, um zu verstehen, wie Besucher diese Website nutzen, und unsere Werkstoffinformationen zu verbessern. Die Analyse bleibt deaktiviert, bis Sie zustimmen. Sie können Ihre Auswahl jederzeit in den Cookie-Einstellungen ändern. Lesen Sie unsere",
+    descriptionBeforeLink: "Wir verwenden optionale Cookies von Google Analytics und Google Ads, um die Website-Nutzung und Anfragen nach Anzeigen zu messen. Wählen Sie „Alle akzeptieren“, um beides zu erlauben. Lesen Sie unsere",
     privacyPolicy: "Datenschutzerklärung",
-    currentChoice: "Aktuelle Auswahl:",
-    accepted: "akzeptiert",
-    notAccepted: "nicht akzeptiert",
-    accept: "Analyse-Cookies akzeptieren",
-    continueWithout: "Ohne Analyse-Cookies fortfahren",
-    dismiss: "Später entscheiden",
+    preferenceNotice: "Sie können Ihre Auswahl in den Cookie-Einstellungen ändern oder widerrufen. Personalisierte Werbung bleibt deaktiviert.",
+    acceptAll: "Alle akzeptieren",
+    rejectOptional: "Ohne optionale Cookies fortfahren",
+    dismiss: "Schließen, ohne die Auswahl zu ändern",
     settings: "Cookie-Einstellungen",
   },
   Products: {

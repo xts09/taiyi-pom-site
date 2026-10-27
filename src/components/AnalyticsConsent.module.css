@@ -5,13 +5,24 @@
   right: var(--site-rail-inset);
   display: grid;
   width: min(38rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2 * var(--ds-space-4));
+  max-height: calc(100dvh - 2 * var(--ds-space-4));
   gap: var(--ds-space-4);
   padding: var(--ds-space-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
   color: var(--ds-foreground-primary);
   background: var(--ds-background-surface);
   border-radius: var(--ds-radius-panel);
   box-shadow: var(--ds-shadow-panel);
   animation: consent-enter var(--ds-duration-short) var(--ds-ease-out) both;
+}
+
+.inlinePanel {
+  position: static;
+  width: min(38rem, 100%);
+  max-height: none;
+  animation: none;
 }
 
 .copy {
@@ -76,15 +87,29 @@
   background: var(--ds-panel-bg-soft);
 }
 
-.currentChoice {
+.notices p {
   color: var(--ds-foreground-muted);
-  font-size: var(--ds-text-xs);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.notices {
+  display: grid;
+  gap: var(--ds-space-2);
+}
+
+.notices p {
+  margin: 0;
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: var(--ds-space-3);
+}
+
+.actions button {
+  flex: 1 1 auto;
 }
 
 .settingsButton {
@@ -134,6 +159,10 @@
     padding: var(--ds-space-4);
   }
 
+  .inlinePanel {
+    width: 100%;
+  }
+
   .actions {
     display: grid;
   }
@@ -147,4 +176,5 @@
   .panel {
     animation: none;
   }
+
 }

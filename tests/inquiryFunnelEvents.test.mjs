@@ -21,8 +21,8 @@ function eventHarness(initialConsent = "granted") {
     gtag: (...args) => events.push(JSON.parse(JSON.stringify(args))),
   };
   const mocks = {
-    "@/lib/googleTracking": { googleAdsId: "AW-test", googleAdsLeadConversionLabel: "test-lead" },
-    "@/lib/googleConsent": { readGoogleAnalyticsConsent: () => consent },
+    "@/lib/googleTracking": { googleAnalyticsId: "G-test", googleAdsId: "AW-test", googleAdsLeadConversionLabel: "test-lead" },
+    "@/lib/googleConsent": { readGoogleAnalyticsConsent: () => consent, readGoogleAdvertisingConsent: () => consent },
     "@/lib/analyticsAttribution": {
       readMarketingAttribution: () => ({ lastTouch: { source: "private-attribution" } }),
     },
@@ -41,10 +41,10 @@ test("funnel diagnostics transmit only route, fixed form and coarse failure reas
   api.trackInquiryFunnel("attempt");
   api.trackInquiryFunnel("error", "timeout");
   assert.deepEqual(events, [
-    ["event", "inquiry_entry", { link_context: "footer", page_path: "/zh/contact" }],
-    ["event", "inquiry_view", { form_name: "material_requirement", page_path: "/zh/contact" }],
-    ["event", "inquiry_attempt", { form_name: "material_requirement", page_path: "/zh/contact" }],
-    ["event", "inquiry_error", { form_name: "material_requirement", page_path: "/zh/contact", error_reason: "timeout" }],
+    ["event", "inquiry_entry", { link_context: "footer", page_path: "/zh/contact", send_to: "G-test" }],
+    ["event", "inquiry_view", { form_name: "material_requirement", page_path: "/zh/contact", send_to: "G-test" }],
+    ["event", "inquiry_attempt", { form_name: "material_requirement", page_path: "/zh/contact", send_to: "G-test" }],
+    ["event", "inquiry_error", { form_name: "material_requirement", page_path: "/zh/contact", error_reason: "timeout", send_to: "G-test" }],
   ]);
   assert.ok(!JSON.stringify(events).includes("private"));
   assert.ok(!JSON.stringify(events).includes("PRIVATE-GRADE"));

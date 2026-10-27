@@ -1,4 +1,4 @@
 export const privacyPolicyRelease = {
-  lastModified: "2026-08-08",
-  lastUpdatedLabel: "August 8, 2026",
+  lastModified: "2026-10-27",
+  lastUpdatedLabel: "October 27, 2026",
 } as const;

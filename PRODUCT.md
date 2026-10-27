@@ -1285,9 +1285,11 @@ evidence and technical boundaries remain valid.
   for `AW-18381447688` is `VBrBCNWr3qEdEIjE-rxE`; an explicit environment label
   overrides it, and an empty label disables that conversion. A different Ads
   account requires its own explicit label. Consent-gated `form_mail` records an
-  accepted submit attempt, not a delivered inquiry. Email enhanced conversions
-  remain disabled while `ad_user_data` is denied. Local implementation does not
-  establish deployment or Google Ads receipt.
+  accepted submit attempt, not a delivered inquiry. Accept All grants website
+  analytics and Ads measurement; a prior analytics choice never automatically
+  grants Ads permission. Ad personalization remains denied. No email or
+  enhanced-conversion user data is sent by the website event. The October 27
+  local repair has not itself established deployment or Google Ads receipt.
 
 ## Functional Requirements
 

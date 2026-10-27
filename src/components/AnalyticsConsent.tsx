@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,12 +9,12 @@ import type { AnalyticsMessages } from "@/i18n/types";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
 import {
   clearGoogleAnalyticsCookies,
-  GOOGLE_ANALYTICS_CONSENT_CHANGE_EVENT,
+  clearGoogleAdvertisingCookies,
   GOOGLE_ANALYTICS_CONSENT_OPEN_EVENT,
-  type GoogleAnalyticsConsent,
-  storeGoogleAnalyticsConsent,
-  useGoogleAnalyticsConsent,
-  updateGoogleAnalyticsConsent,
+  type GoogleConsentPreferences,
+  storeGoogleConsentPreferences,
+  useGoogleConsentPreferences,
+  updateGoogleConsentPreferences,
 } from "@/lib/googleConsent";
 import styles from "./AnalyticsConsent.module.css";
 
@@ -24,14 +24,93 @@ type AnalyticsConsentProps = {
   localeSegment?: LocalizedUrlSegment;
 };
 
+export type ConsentPreferencesPanelProps = {
+  messages: AnalyticsMessages;
+  onAcceptAll: () => void;
+  onRejectOptional: () => void;
+  onDismiss: () => void;
+  localeSegment?: LocalizedUrlSegment;
+  placement?: "floating" | "inline";
+  focusOnOpen?: boolean;
+};
+
+export function ConsentPreferencesPanel({
+  messages,
+  onAcceptAll,
+  onRejectOptional,
+  onDismiss,
+  localeSegment,
+  placement = "floating",
+  focusOnOpen = false,
+}: ConsentPreferencesPanelProps) {
+  const panelId = useId();
+  const titleId = `${panelId}-title`;
+  const descriptionId = `${panelId}-description`;
+  const acceptButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (focusOnOpen) {
+      acceptButtonRef.current?.focus();
+    }
+  }, [focusOnOpen]);
+
+  return (
+    <section
+      className={`${styles.panel} ${placement === "inline" ? styles.inlinePanel : ""}`}
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+      onKeyDown={(event) => {
+        if (event.key === "Escape") {
+          onDismiss();
+        }
+      }}
+    >
+      <div className={styles.copy}>
+        <div className={styles.panelHeader}>
+          <h2 id={titleId}>{messages.title}</h2>
+          <button
+            className={styles.dismissButton}
+            type="button"
+            aria-label={messages.dismiss}
+            title={messages.dismiss}
+            onClick={onDismiss}
+          >
+            <X aria-hidden="true" />
+          </button>
+        </div>
+        <p id={descriptionId}>
+          {messages.descriptionBeforeLink}{" "}
+          <Link href={getLocalizedHref("/privacy", localeSegment)}>
+            {messages.privacyPolicy}
+          </Link>{localeSegment === "zh" ? "。" : "."}
+        </p>
+      </div>
+
+      <div className={styles.notices}>
+        <p>{messages.preferenceNotice}</p>
+      </div>
+
+      <div className={styles.actions}>
+        <Button ref={acceptButtonRef} type="button" variant="primary" size="form" onClick={onAcceptAll}>
+          {messages.acceptAll}
+        </Button>
+        <Button type="button" variant="secondary" size="form" onClick={onRejectOptional}>
+          {messages.rejectOptional}
+        </Button>
+      </div>
+    </section>
+  );
+}
+
 export function AnalyticsConsent({
   enabled,
   messages,
   localeSegment,
 }: AnalyticsConsentProps) {
-  const choice = useGoogleAnalyticsConsent();
+  const choice = useGoogleConsentPreferences();
   const [isManuallyOpen, setIsManuallyOpen] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!enabled) {
@@ -39,6 +118,10 @@ export function AnalyticsConsent({
     }
 
     const openSettings = () => {
+      returnFocusRef.current =
+        document.activeElement instanceof HTMLElement
+          ? document.activeElement
+          : null;
       setIsDismissed(false);
       setIsManuallyOpen(true);
     };
@@ -57,84 +140,47 @@ export function AnalyticsConsent({
 
   const isOpen = isManuallyOpen || (choice === null && !isDismissed);
 
-  if (!enabled || choice === "loading" || !isOpen) {
+  if (
+    !enabled ||
+    choice === "loading" ||
+    !isOpen
+  ) {
     return null;
   }
 
-  const choose = (nextChoice: GoogleAnalyticsConsent) => {
-    storeGoogleAnalyticsConsent(nextChoice);
-    updateGoogleAnalyticsConsent(nextChoice);
+  const choose = (nextChoice: GoogleConsentPreferences) => {
+    storeGoogleConsentPreferences(nextChoice);
+    updateGoogleConsentPreferences(nextChoice);
 
-    if (nextChoice === "denied") {
+    if (nextChoice.analytics === "denied") {
       clearGoogleAnalyticsCookies();
     }
+    if (nextChoice.advertising === "denied") {
+      clearGoogleAdvertisingCookies();
+    }
 
+    returnFocusRef.current?.focus();
+    returnFocusRef.current = null;
     setIsManuallyOpen(false);
     setIsDismissed(false);
-    window.dispatchEvent(
-      new CustomEvent<GoogleAnalyticsConsent>(
-        GOOGLE_ANALYTICS_CONSENT_CHANGE_EVENT,
-        { detail: nextChoice },
-      ),
-    );
   };
 
   const dismiss = () => {
+    returnFocusRef.current?.focus();
+    returnFocusRef.current = null;
     setIsManuallyOpen(false);
     setIsDismissed(choice === null);
   };
 
   return (
-    <section
-      className={styles.panel}
-      aria-labelledby="analytics-consent-title"
-      aria-describedby="analytics-consent-description"
-    >
-      <div className={styles.copy}>
-        <div className={styles.panelHeader}>
-          <h2 id="analytics-consent-title">{messages.title}</h2>
-          <button
-            className={styles.dismissButton}
-            type="button"
-            aria-label={messages.dismiss}
-            title={messages.dismiss}
-            onClick={dismiss}
-          >
-            <X aria-hidden="true" />
-          </button>
-        </div>
-        <p id="analytics-consent-description">
-          {messages.descriptionBeforeLink}{" "}
-          <Link href={getLocalizedHref("/privacy", localeSegment)}>
-            {messages.privacyPolicy}
-          </Link>.
-        </p>
-        {choice !== null ? (
-          <span className={styles.currentChoice}>
-            {messages.currentChoice}{" "}
-            {choice === "granted" ? messages.accepted : messages.notAccepted}
-          </span>
-        ) : null}
-      </div>
-      <div className={styles.actions}>
-        <Button
-          type="button"
-          variant="primary"
-          size="form"
-          onClick={() => choose("granted")}
-        >
-          {messages.accept}
-        </Button>
-        <Button
-          type="button"
-          variant="secondary"
-          size="form"
-          onClick={() => choose("denied")}
-        >
-          {messages.continueWithout}
-        </Button>
-      </div>
-    </section>
+    <ConsentPreferencesPanel
+      messages={messages}
+      onAcceptAll={() => choose({ analytics: "granted", advertising: "granted" })}
+      onRejectOptional={() => choose({ analytics: "denied", advertising: "denied" })}
+      onDismiss={dismiss}
+      localeSegment={localeSegment}
+      focusOnOpen={isManuallyOpen}
+    />
   );
 }
 

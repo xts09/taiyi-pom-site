@@ -31,6 +31,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { loadMessages } from "@/i18n/messages";
 import { getLocalizedHref } from "@/i18n/releaseManifest";
 import { EvidenceShowcase } from "./EvidenceShowcase";
+import { ConsentShowcase } from "./ConsentShowcase";
 import { HomePatternShowcase } from "./HomePatternShowcase";
 import { PomDirectoryShowcase } from "./PomDirectoryShowcase";
 import { NavigationShowcase } from "./NavigationShowcase";
@@ -199,6 +200,11 @@ export async function ComponentShowcase({ preview }: { preview: PreviewConfig })
               </CardContent>
             </Card>
           </div>
+        </section>
+
+        <section id="consent" className={styles.section} aria-labelledby="consent-title">
+          <CatalogueIntro titleId="consent-title" title="Cookie 选择" description="演示接受、拒绝和关闭；示例不修改真实同意。" />
+          <ConsentShowcase messages={messages.Analytics} localeSegment={preview.localeSegment} />
         </section>
 
         <section id="disclosures" className={styles.section} aria-labelledby="disclosures-title">

@@ -61,6 +61,12 @@ export default function PrivacyPolicyPage() {
                 browser and device information, approximate location, site
                 interactions, and cookie or similar identifiers.
               </li>
+              <li>
+                If you allow advertising measurement, Google Ads may use
+                advertising cookies, ad-click identifiers, and conversion event
+                data to associate ad interactions with subsequent inquiries on
+                this website.
+              </li>
             </ul>
           </section>
 
@@ -76,6 +82,10 @@ export default function PrivacyPolicyPage() {
               <li>
                 To measure site and inquiry performance when you have accepted
                 analytics.
+              </li>
+              <li>
+                To measure which ad interactions lead to inquiries and assess
+                advertising performance when you allow advertising measurement.
               </li>
               <li>To comply with applicable legal obligations.</li>
             </ul>
@@ -104,16 +114,28 @@ export default function PrivacyPolicyPage() {
           </section>
 
           <section className={styles.section}>
-            <h2>Cookies and analytics</h2>
+            <h2>Cookies, analytics, and advertising measurement</h2>
             <p>
-              Google Analytics stays off unless you select Accept analytics.
-              If accepted, it may use first-party cookies and collect device,
-              browser, approximate location, and site interaction data. We
-              store your choice in your browser so the site can remember it.
-              Advertising storage and personalization remain disabled. You can
-              change or withdraw your choice at any time using Cookie Settings
-              in the footer, or block and delete cookies through your browser
-              settings. For more information, see Google&apos;s{" "}
+              Selecting “Accept All” enables website analytics and advertising
+              measurement. Google Analytics may use first-party cookies and
+              collect device, browser, approximate location, and site interaction
+              data.
+            </p>
+            <p>
+              Google Ads advertising measurement starts when you select
+              “Accept All”. It may use advertising cookies, ad-click identifiers, and
+              conversion event data to measure the relationship between ad
+              interactions and subsequent inquiries. Personalized advertising
+              remains disabled.
+            </p>
+            <p>
+              We store your choice in your browser. You can accept or reject
+              optional cookies, or withdraw your consent, through Cookie Settings
+              in the footer. Closing the panel leaves your current choice unchanged.
+              You can also block or delete cookies through your browser settings.
+            </p>
+            <p>
+              For more information about how Google handles data, see its{" "}
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"

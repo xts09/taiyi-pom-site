@@ -40,7 +40,7 @@ test.beforeEach(async ({ context }) => {
   }, { consentKey });
 });
 
-test("captures safe campaign attribution and contact-link events", async ({
+test("captures safe campaign attribution without sending local contact events", async ({
   page,
 }) => {
   await page.goto(
@@ -84,21 +84,10 @@ test("captures safe campaign attribution and contact-link events", async ({
     );
   });
 
-  expect(contactEvents).toHaveLength(3);
-  expect(contactEvents.map((event) => (event[2] as { contact_method: string }).contact_method))
-    .toEqual(["email", "phone", "whatsapp"]);
-  expect(contactEvents[0]?.[2]).toMatchObject({
-    lead_source: "google",
-    lead_medium: "cpc",
-    lead_campaign: "pom-global",
-    lead_campaign_id: "campaign-42",
-    lead_term: "pom gf25",
-    ads_click_id_type: "gclid",
-    has_ads_click_id: true,
-  });
+  expect(contactEvents).toHaveLength(0);
 });
 
-test("tracks technical-data interest and clears attribution when consent is denied", async ({
+test("keeps technical-data events local and clears attribution when consent is denied", async ({
   page,
 }) => {
   await page.goto("/resources?utm_source=google&utm_medium=cpc&utm_term=pom+cf20");
@@ -116,12 +105,7 @@ test("tracks technical-data interest and clears attribution when consent is deni
       (event) => event[0] === "event" && event[1] === "technical_data_click",
     );
   });
-  expect(technicalDataEvent?.[2]).toMatchObject({
-    page_path: "/resources",
-    lead_source: "google",
-    lead_medium: "cpc",
-    lead_term: "pom cf20",
-  });
+  expect(technicalDataEvent).toBeUndefined();
 
   await page.evaluate(({ consentKey }) => {
     window.localStorage.setItem(consentKey, "denied");
