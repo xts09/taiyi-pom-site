@@ -6,6 +6,7 @@ import {
   loadEnglishApplicationProfiles,
   localizeApplication,
 } from "@/i18n/applicationMessages";
+import { applicationDetailMetadata } from "@/i18n/applicationMetadata";
 import {
   isLocalizedApplicationSlug,
   localizedApplicationSlugs,
@@ -57,6 +58,7 @@ const resolveApplication = async (
 
   return {
     profile,
+    slug: sourceApplication.slug,
     sourceApplication,
     sourcePath: `/applications/${sourceApplication.slug}` as ReleasedSourcePath,
   };
@@ -65,12 +67,11 @@ const resolveApplication = async (
 export async function generateMetadata({
   params,
 }: ApplicationDetailPageProps): Promise<Metadata> {
-  const { profile, sourceApplication, sourcePath } =
+  const { profile, slug, sourceApplication, sourcePath } =
     await resolveApplication(params);
 
   return createPageMetadata({
-    title: `${profile.title} ${englishApplicationDetailMessages.metadata.titleSuffix}`,
-    description: `${profile.description} ${englishApplicationDetailMessages.metadata.descriptionSuffix}`,
+    ...applicationDetailMetadata.en[slug],
     path: sourcePath,
     image: sourceApplication.heroImage?.src,
     imageAlt: profile.heroImageAlt,

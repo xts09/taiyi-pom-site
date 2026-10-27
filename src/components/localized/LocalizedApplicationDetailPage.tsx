@@ -7,6 +7,7 @@ import { ApplicationAnimeMotion } from "@/components/ApplicationAnimeMotion";
 import { ApplicationExpandableGrid } from "@/components/ApplicationExpandableGrid";
 import { AutomotivePartEvidence, AutomotiveNextSteps } from "@/components/AutomotiveSystemGroup";
 import { ApplicationPartGroups, type ApplicationPartGroup } from "@/components/ApplicationPartGroups";
+import { ApplicationGradeText } from "@/components/ApplicationGradeText";
 import { electronicsPageDesign } from "@/data/electronicsPageDesign";
 import { applicationPartGroupPresentations } from "@/data/applicationPartGroupPresentation";
 import automotiveStyles from "@/components/AutomotiveSystemGroup.module.css";
@@ -543,9 +544,12 @@ export function LocalizedApplicationDetailPage({
   );
   const interactivePartGroups: ApplicationPartGroup[] | undefined = partGroupPresentation && partGroupsUi && applicationInlinePartGroups
     ? applicationInlinePartGroups.map(group => {
-      const toMaterial = (card: MaterialDirectionCardData) => ({
+      const toMaterial = (card: MaterialDirectionCardData, conditions = [card.condition]) => ({
         title: card.directionName,
-        conditions: [card.condition],
+        conditions,
+        linkedConditions: automotiveUi ? undefined : conditions.map(condition => (
+          <ApplicationGradeText key={condition} text={condition} localeSegment={localeSegment} />
+        )),
         href: card.href === "/contact" ? contactHref : card.href ? getLocalizedHref(card.href, localeSegment) : undefined,
         action: card.href === "/contact" ? messages.hero.primaryAction : partGroupsUi.materialsAction,
         badge: card.href && isEnglishFallbackHref(card.href, localeSegment) ? componentMessages.englishDestinationLabel : undefined,
@@ -557,9 +561,9 @@ export function LocalizedApplicationDetailPage({
           const cards = materialDirectionCards.filter((card, index) => card.href === path && (!sourceIndices || sourceIndices.includes(index)));
           // Merge duplicate wear/friction destinations while retaining both source conditions.
           if (cards.length > 1 && path === "/products/categories/wear-resistant-low-friction-pom-compound") {
-            return [{ ...toMaterial(cards[0]), title: partGroupsUi.driveMaterialTitle, conditions: cards.map(card => card.condition) }];
+            return [{ ...toMaterial(cards[0], cards.map(card => card.condition)), title: partGroupsUi.driveMaterialTitle }];
           }
-          return cards.map(toMaterial);
+          return cards.map(card => toMaterial(card));
         });
 
       return {
@@ -576,7 +580,7 @@ export function LocalizedApplicationDetailPage({
           const partMaterials = partCards.flatMap(card => {
             if (wearCards.length > 1 && wearCards.includes(card)) {
               return card === wearCards[0]
-                ? [{ ...toMaterial(card), title: partGroupsUi.driveMaterialTitle, conditions: wearCards.map(candidate => candidate.condition) }]
+                ? [{ ...toMaterial(card, wearCards.map(candidate => candidate.condition)), title: partGroupsUi.driveMaterialTitle }]
                 : [];
             }
             return [toMaterial(card)];

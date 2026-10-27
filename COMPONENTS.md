@@ -753,6 +753,17 @@ adjacent part name, description and exact guide follow the selected image,
 without a separate requirements label. Image-free single-part groups retain
 their part details and align them with the material column on desktop.
 
+`ApplicationGradeText.tsx` owns exact POM catalog-grade links within existing
+non-automotive material conditions. It resolves indexable catalog names on the
+server and uses the language release manifest for destinations; it does not
+infer aliases or introduce grade recommendations. Each name links once per
+condition paragraph. `ApplicationPartGroups`
+accepts optional server-rendered `linkedConditions` alongside the unchanged
+condition strings. Merged wear/friction directions retain each source condition.
+The inline link's color, underline and keyboard focus are owned by
+`ApplicationGradeText.module.css`; `/design-system#composition` shows the real
+owner. Automotive's part-specific recommendations retain their existing path.
+
 Automotive retains all twelve canonical parts and defaults to Visibility &
 Window Systems. Its material conditions, contextual inquiry and structural
 case evidence follow the selected part image. `automotivePartMaterials` remains
@@ -860,6 +871,15 @@ card. One document equals one interactive surface.
 the `certificate` variant without moving certification scope back under each
 preview. Engineering-grade and product TDS search results use `compact-link`,
 which remains a border-separated directory row rather than a floating card.
+
+### Localized POM Category Related Paths
+
+`LocalizedBasePomCategoryPage.tsx` shows its application-path section and local
+navigation entry when released applications or component solutions exist.
+`BasePomRelatedPaths.module.css` owns the simple directory's mobile single-column
+layout across these localized categories, so long application labels retain a
+readable text column. Desktop layout and the richer English category directory
+retain their existing owners.
 
 ### Carbon-Fiber POM Reference Comparison — Pilot
 

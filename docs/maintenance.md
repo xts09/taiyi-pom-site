@@ -110,6 +110,12 @@ page; do not describe it as zero or as proof that the original report lacks it.
 
 ## SEO
 
+Application-detail search copy in English and Simplified Chinese lives in
+`src/i18n/applicationMetadata.ts`, separate from the longer body profiles.
+Other languages retain their route's existing metadata composition. Application
+grade links use exact indexable POM catalog names and the release manifest; do not
+add alias guesses or change technical conditions merely to create a link.
+
 Titles, descriptions, canonical URLs, social metadata, structured data, and the
 sitemap are generated from catalog data. Only add a product-level `seo` object
 when the default wording needs an intentional override:

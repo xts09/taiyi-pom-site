@@ -9,7 +9,7 @@ import { publicPath } from "@/lib/paths";
 import { Button } from "./ui/button";
 import styles from "./ApplicationPartGroups.module.css";
 
-type MaterialDirection = { title: string; conditions: string[]; href?: string; action: string; badge?: string };
+type MaterialDirection = { title: string; conditions: string[]; linkedConditions?: ReactNode[]; href?: string; action: string; badge?: string };
 
 export type ApplicationPartGroup = {
   id: string;
@@ -151,7 +151,7 @@ export function ApplicationPartGroups({ groups, ui, technicalData, inquiry, idPr
               {ui.materialsLabel ? <p className={styles.listLabel}>{ui.materialsLabel} · {selectedPart.label}</p> : null}
               {materials.map(material => <div key={material.title}>
                 <h4>{material.title}</h4>
-                {material.conditions.map(condition => <p key={condition}>{condition}</p>)}
+                {material.conditions.map((condition, conditionIndex) => <p key={condition}>{material.linkedConditions?.[conditionIndex] ?? condition}</p>)}
                 {material.href ? <TextLink href={material.href} label={material.action} badge={material.badge} /> : null}
               </div>)}
               {!materials.length && group.materialNote ? <p>{group.materialNote}</p> : null}

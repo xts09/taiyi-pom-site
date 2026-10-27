@@ -2,6 +2,7 @@ import { ArrowRight, Download } from "lucide-react";
 import Link from "next/link";
 
 import { SectionIntro } from "@/components/SectionIntro";
+import { ApplicationGradeText } from "@/components/ApplicationGradeText";
 import {
   Accordion,
   AccordionContent,
@@ -270,6 +271,17 @@ export async function ComponentShowcase({ preview }: { preview: PreviewConfig })
 
         <section id="composition" className={styles.section} aria-labelledby="composition-title">
           <CatalogueIntro titleId="composition-title" title="标题与组合" description="共享标题控制字号和层级。页面选择堆叠或左右布局，并让正文延续对应的栅格。" />
+          <Card variant="standard" className={styles.recipe}>
+            <CardContent>
+              <SpecLabel>Application grade links / 应用选型中的牌号直链</SpecLabel>
+              <p><ApplicationGradeText
+                text={preview.value === "en"
+                  ? "Compare EMS102 and EMS162 for sliding wear; consider EPTL402 where friction is the main selection factor."
+                  : "滑动磨损可比较 EMS102 与 EMS162，摩擦是主要选型因素时可进一步查看 EPTL402。"}
+                localeSegment={preview.localeSegment}
+              /></p>
+            </CardContent>
+          </Card>
           <Card variant="standard" className={styles.recipe}>
             <CardContent>
               <SpecLabel>Stacked / 单列介绍</SpecLabel>

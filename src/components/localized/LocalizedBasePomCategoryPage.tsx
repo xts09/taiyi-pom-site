@@ -95,6 +95,8 @@ export function LocalizedProductCategoryContent({
   ).map((relation) =>
     getLocalizedComponentSolution(relation.componentSlug, localeSegment),
   );
+  const hasRelatedPaths =
+    relatedApplicationItems.length > 0 || relatedComponentSolutions.length > 0;
   const releasedProducts = categoryProducts.filter((product) =>
     isLocalizedReleaseIndexable(`/products/${product.slug}`, localeSegment),
   );
@@ -129,7 +131,7 @@ export function LocalizedProductCategoryContent({
   ];
   const sectionTabs = [
     { href: "#pom-grades", label: copy.navigation.grades },
-    ...(relatedComponentSolutions.length > 0
+    ...(hasRelatedPaths
       ? [
           {
             href: "#category-applications",
@@ -331,10 +333,10 @@ export function LocalizedProductCategoryContent({
 
           )}
 
-          {relatedComponentSolutions.length > 0 ? (
+          {hasRelatedPaths ? (
             <section
               id="category-applications"
-              className={`product-application-directory products-motion-secondary mt-12 ${categorySlug === "base-pom-resin" ? relatedPathStyles.section : ""}`}
+              className={`product-application-directory products-motion-secondary mt-12 ${relatedPathStyles.section}`}
             >
               <div className="product-application-directory-head">
                 <p className="section-kicker mb-3">

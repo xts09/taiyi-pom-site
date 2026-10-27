@@ -1443,6 +1443,29 @@ The site is successful when:
 
 ## SEO And Performance Requirements
 
+### Application Search Copy And Grade Paths — 2026-10-26, local implementation
+
+English and Simplified Chinese application-detail search titles and descriptions
+are owned by `src/i18n/applicationMetadata.ts`, separately from the body profiles.
+They identify the material/application task without appending a repeated
+selection-process sentence. German, French and Brazilian Portuguese retain
+their existing metadata composition.
+
+Existing POM catalog-grade names in the seven non-automotive application material
+conditions link to released grade details in the current language. The text,
+candidate conditions and material-category actions remain their factual owners;
+exact-name linking does not establish additional suitability or aliases.
+Automotive retains its part-specific mappings and fuel-evaluation boundary.
+
+Localized material-category application sections and their section-navigation
+items appear when existing related applications or component solutions are
+available. An empty component list no longer hides valid application links.
+This restores existing published relationships without adding new ones.
+The simple localized related-path directories reuse their existing mobile
+single-column layout so application labels do not collapse into narrow columns.
+ETM 100P remains an inquiry-only historical grade. These changes are local and do
+not by themselves record a production release.
+
 - Page titles and metadata should reflect material family, application, or resource intent.
 - Product and application pages should use plain technical language that matches buyer search behavior.
 - Images should be compressed, intentionally cropped, and given useful alt text when they communicate real content.

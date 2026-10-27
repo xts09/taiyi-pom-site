@@ -8,6 +8,7 @@ import {
   loadApplicationProfiles,
   localizeApplication,
 } from "@/i18n/applicationMessages";
+import { applicationDetailMetadata } from "@/i18n/applicationMetadata";
 import {
   isLocalizedApplicationSlug,
   localizedApplicationSlugs,
@@ -74,10 +75,13 @@ export async function generateMetadata({
     loadApplicationProfiles(localeConfig.urlSegment),
   ]);
   const profile: LocalizedApplicationProfileMessages = profiles[slug];
+  const metadataCopy = localeConfig.urlSegment === "zh"
+    ? applicationDetailMetadata.zh[slug]
+    : undefined;
 
   return createPageMetadata({
-    title: `${profile.title} ${messages.detail.metadata.titleSuffix}`,
-    description: `${profile.description} ${messages.detail.metadata.descriptionSuffix}`,
+    title: metadataCopy?.title ?? `${profile.title} ${messages.detail.metadata.titleSuffix}`,
+    description: metadataCopy?.description ?? `${profile.description} ${messages.detail.metadata.descriptionSuffix}`,
     path: getLocalizedHref(sourcePath, localeConfig.urlSegment),
     image: sourceApplication.heroImage?.src,
     imageAlt: profile.heroImageAlt,
